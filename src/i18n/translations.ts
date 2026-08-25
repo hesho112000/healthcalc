@@ -643,6 +643,9 @@ type TranslationKeys = {
   close: string;
   altOptions: string;
   kcal: string;
+  dashOfflineTitle: string;
+  dashOfflineDesc: string;
+  backendUnavailable: string;
 };
 
 export const translations: Record<Language, TranslationKeys> = {
@@ -1266,6 +1269,9 @@ export const translations: Record<Language, TranslationKeys> = {
     close: 'Close',
     altOptions: 'Alternative Options',
     kcal: 'kcal',
+    dashOfflineTitle: 'Offline Mode',
+    dashOfflineDesc: 'Server is unavailable. Health history is stored locally on this device.',
+    backendUnavailable: 'Server is currently unavailable. All calculators work locally without a connection.',
   },
   fr: {
     appName: 'HealthCalc.ai',
@@ -1887,6 +1893,9 @@ export const translations: Record<Language, TranslationKeys> = {
     close: 'Fermer',
     altOptions: 'Options Alternatives',
     kcal: 'kcal',
+    dashOfflineTitle: 'Mode Hors Ligne',
+    dashOfflineDesc: 'Le serveur est indisponible. L\'historique de santé est stocké localement.',
+    backendUnavailable: 'Le serveur est actuellement indisponible. Tous les calculateurs fonctionnent localement.',
   },
   es: {
     appName: 'HealthCalc.ai',
@@ -2508,6 +2517,9 @@ export const translations: Record<Language, TranslationKeys> = {
     close: 'Cerrar',
     altOptions: 'Opciones Alternativas',
     kcal: 'kcal',
+    dashOfflineTitle: 'Modo Sin Conexión',
+    dashOfflineDesc: 'El servidor no está disponible. El historial se almacena localmente.',
+    backendUnavailable: 'El servidor no está disponible. Todas las calculadoras funcionan localmente.',
   },
   ar: {
     appName: 'HealthCalc.ai',
@@ -3129,6 +3141,9 @@ export const translations: Record<Language, TranslationKeys> = {
     close: 'إغلاق',
     altOptions: 'خيارات بديلة',
     kcal: 'كيلو كالوري',
+    dashOfflineTitle: 'وضع عدم الاتصال',
+    dashOfflineDesc: 'الخادم غير متاح. يتم تخزين السجل الصحي محلياً على هذا الجهاز.',
+    backendUnavailable: 'الخادم غير متاح حالياً. جميع الآلات الحاسبة تعمل محلياً بدون اتصال.',
   },
 };
 

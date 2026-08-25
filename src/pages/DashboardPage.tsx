@@ -18,7 +18,7 @@ const getModuleLabels = (t: (k: any) => string): Record<string, { label: string;
 });
 
 const DashboardPage: React.FC = () => {
-  const { user, updateUser } = useAuth();
+  const { user, updateUser, backendUp } = useAuth();
   const [records, setRecords] = useState<HealthRecord[]>([]);
   const [stats, setStats] = useState<StatsResponse | null>(null);
   const [loading, setLoading] = useState(true);
@@ -45,6 +45,7 @@ const DashboardPage: React.FC = () => {
   }, [user]);
 
   const loadData = async () => {
+    if (!backendUp) { setLoading(false); return; }
     setLoading(true);
     try {
       const [histData, statsData] = await Promise.all([
@@ -140,6 +141,15 @@ const DashboardPage: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        {!backendUp && (
+          <div className="mb-6 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-800 text-sm flex items-center gap-3">
+            <span className="text-xl">⚠️</span>
+            <div>
+              <p className="font-semibold">{t('dashOfflineTitle') || 'Offline Mode'}</p>
+              <p className="text-amber-600 text-xs mt-0.5">{t('dashOfflineDesc') || 'Server is unavailable. Health history is stored locally on this device.'}</p>
+            </div>
+          </div>
+        )}
         <div className="toggle-group mb-8">
           {[
             { key: 'history' as const, label: `📊 ${t('dashHealthHistory')}`, count: total },

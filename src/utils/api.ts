@@ -1,5 +1,7 @@
 const API_BASE = '/api';
 
+let backendAvailable: boolean | null = null;
+
 interface FetchOptions extends RequestInit {
   token?: string;
 }
@@ -7,6 +9,23 @@ interface FetchOptions extends RequestInit {
 class ApiClient {
   private getToken(): string | null {
     return localStorage.getItem('healthcalc-token');
+  }
+
+  async checkBackend(): Promise<boolean> {
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 3000);
+      const res = await fetch(`${API_BASE}/auth/me`, { method: 'GET', signal: controller.signal });
+      clearTimeout(timeout);
+      backendAvailable = res.ok || res.status === 401 || res.status === 403;
+    } catch {
+      backendAvailable = false;
+    }
+    return backendAvailable;
+  }
+
+  isBackendAvailable(): boolean | null {
+    return backendAvailable;
   }
 
   private async request<T>(endpoint: string, options: FetchOptions = {}): Promise<T> {
@@ -22,12 +41,23 @@ class ApiClient {
       headers['Authorization'] = `Bearer ${authToken}`;
     }
 
-    const res = await fetch(`${API_BASE}${endpoint}`, {
-      ...fetchOptions,
-      headers,
-    });
+    let res: Response;
+    try {
+      res = await fetch(`${API_BASE}${endpoint}`, {
+        ...fetchOptions,
+        headers,
+      });
+    } catch (err: any) {
+      if (err?.name === 'AbortError') throw new Error('Server unavailable');
+      throw new Error('Cannot connect to server. Running in offline mode.');
+    }
 
-    const data = await res.json();
+    let data: any;
+    try {
+      data = await res.json();
+    } catch {
+      throw new Error('Server returned an invalid response.');
+    }
 
     if (!res.ok) {
       throw new Error(data.error || `Request failed with status ${res.status}`);
@@ -129,3 +159,8 @@ interface StatsResponse {
 
 export type { User, HealthRecord, StatsResponse };
 export const api = new ApiClient();
+
+export async function ensureBackend(): Promise<boolean> {
+  if (backendAvailable !== null) return backendAvailable;
+  return api.checkBackend();
+}
