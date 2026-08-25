@@ -3,9 +3,8 @@ import react from '@vitejs/plugin-react'
 import { copyFileSync } from 'fs'
 import { resolve } from 'path'
 
+// https://vite.dev/config/
 export default defineConfig({
-server: {
-    allowedHosts: true,
   base: './',
   plugins: [
     react(),
@@ -16,17 +15,11 @@ server: {
           resolve(__dirname, 'dist/index.html'),
           resolve(__dirname, 'dist/404.html')
         )
-      },
-    },
+      }
+    }
   ],
   server: {
-    port: 3000,
-    open: true,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3001',
-        changeOrigin: true,
-      },
-    },
-  },
+    host: '0.0.0.0',
+    port: Number(process.env.PORT) || 3000,
+  }
 })
