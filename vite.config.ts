@@ -16,7 +16,7 @@ function copyIndexPlugin() {
 }
 
 export default defineConfig({
-  base: './',
+  base: '/healthcalc/',
   plugins: [react(), copyIndexPlugin()],
   server: {
     port: 3000,
