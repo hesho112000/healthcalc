@@ -1,11 +1,11 @@
 const CACHE_NAME = 'healthcalc-v1';
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/favicon.svg',
-  '/icons/icon-192.svg',
-  '/icons/icon-512.svg',
-  '/manifest.json',
+  './',
+  './index.html',
+  './favicon.svg',
+  './icons/icon-192.svg',
+  './icons/icon-512.svg',
+  './manifest.json',
 ];
 
 self.addEventListener('install', (event) => {
@@ -55,10 +55,10 @@ self.addEventListener('push', (event) => {
     const data = event.data.json();
     const options = {
       body: data.body || 'Check your daily health plan',
-      icon: '/icons/icon-192.svg',
-      badge: '/icons/icon-192.svg',
+      icon: './icons/icon-192.svg',
+      badge: './icons/icon-192.svg',
       vibrate: [100, 50, 100],
-      data: { url: data.url || '/' },
+      data: { url: data.url || './' },
     };
     event.waitUntil(self.registration.showNotification(data.title || 'HealthCalc.ai', options));
   } catch (e) {}
@@ -66,5 +66,5 @@ self.addEventListener('push', (event) => {
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-  event.waitUntil(clients.openWindow(event.notification.data?.url || '/'));
+  event.waitUntil(clients.openWindow(event.notification.data?.url || './'));
 });

@@ -2,9 +2,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: '/healthcalc/',
+  base: './',
   plugins: [react()],
-  base: '/healthcalc/',
   server: {
     port: 3000,
     open: true,
