@@ -1,0 +1,59 @@
+{
+  "name": "HealthCalc.ai - AI Health Platform",
+  "short_name": "HealthCalc",
+  "description": "AI-powered health platform for personalized nutrition, workout plans, and medical health calculators.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#1a6df5",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["health", "medical", "fitness", "lifestyle"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Fitness Calculator",
+      "short_name": "Fitness",
+      "url": "/fitness",
+      "description": "BMI, BMR, TDEE & Calorie calculators"
+    },
+    {
+      "name": "Weight Loss Plans",
+      "short_name": "Weight Loss",
+      "url": "/weight-loss",
+      "description": "Personalized 30-day meal and workout plans"
+    },
+    {
+      "name": "Diabetes Management",
+      "short_name": "Diabetes",
+      "url": "/diabetes",
+      "description": "Lab interpreter, BP tracker & 30-day plans"
+    },
+    {
+      "name": "Smartwatch Sync",
+      "short_name": "Sync",
+      "url": "/smartwatch-sync",
+      "description": "Connect your smartwatch and sync health data"
+    }
+  ]
+}

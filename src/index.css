@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply font-sans text-gray-800 bg-[#f8fafc] antialiased;
+  }
+  ::selection {
+    @apply bg-primary-200 text-primary-900;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-2xl transition-all duration-200 shadow-sm active:scale-[0.98] text-sm;
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 20px -4px rgb(51 141 255 / 0.25);
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 bg-sage-500 hover:bg-sage-600 text-white font-semibold py-3 px-6 rounded-2xl transition-all duration-200 shadow-sm active:scale-[0.98] text-sm;
+  }
+  .btn-secondary:hover {
+    box-shadow: 0 0 20px -4px rgb(52 158 95 / 0.25);
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-primary-200 text-primary-700 hover:bg-primary-50 hover:border-primary-300 font-semibold py-3 px-6 rounded-2xl transition-all duration-200 text-sm;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 font-medium py-2 px-4 rounded-xl transition-all duration-200 text-sm;
+  }
+  .card {
+    @apply bg-white rounded-2xl shadow-card border border-gray-100/80 p-6 transition-all duration-300;
+  }
+  .card-hover {
+    @apply card hover:shadow-card-hover hover:-translate-y-0.5 cursor-pointer;
+  }
+  .card-glass {
+    @apply bg-white/80 backdrop-blur-xl rounded-2xl shadow-card border border-white/50 p-6;
+  }
+  .input-field {
+    @apply w-full px-4 py-3.5 rounded-2xl border border-gray-200 bg-gray-50/50 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-400/40 focus:border-primary-300 focus:bg-white transition-all duration-200 text-sm;
+  }
+  .input-field-lg {
+    @apply w-full px-5 py-4 rounded-2xl border-2 border-gray-200 bg-gray-50/50 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-400/40 focus:border-primary-400 focus:bg-white transition-all duration-200 text-base font-medium;
+  }
+  .select-field {
+    @apply w-full px-4 py-3.5 rounded-2xl border border-gray-200 bg-gray-50/50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-400/40 focus:border-primary-300 focus:bg-white transition-all duration-200 appearance-none cursor-pointer text-sm;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 1.25em 1.25em;
+  }
+  .label {
+    @apply block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2;
+  }
+  .section-title {
+    @apply text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight;
+  }
+  .section-subtitle {
+    @apply text-gray-500 mt-2 text-sm md:text-base;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold;
+  }
+  .badge-primary {
+    @apply badge bg-primary-50 text-primary-700;
+  }
+  .badge-sage {
+    @apply badge bg-sage-50 text-sage-700;
+  }
+  .badge-amber {
+    @apply badge bg-amber-50 text-amber-700;
+  }
+  .stat-card {
+    @apply bg-white rounded-2xl border border-gray-100/80 p-5 transition-all duration-300;
+  }
+  .toggle-group {
+    @apply flex gap-1 bg-gray-100/80 p-1 rounded-2xl;
+  }
+  .toggle-btn {
+    @apply flex-1 py-2.5 px-3 rounded-xl text-sm font-medium transition-all duration-200 whitespace-nowrap;
+  }
+  .toggle-btn-active {
+    @apply toggle-btn bg-white text-gray-900 shadow-sm;
+  }
+  .toggle-btn-inactive {
+    @apply toggle-btn text-gray-500 hover:text-gray-700;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-sage-500;
+  }
+  .text-gradient-brand {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-500 via-primary-600 to-sage-500;
+  }
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  text-align: right;
+}
+[dir="rtl"] .select-field {
+  background-position: left 0.75rem center;
+  padding-right: 1rem;
+  padding-left: 2.5rem;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { @apply bg-transparent; }
+::-webkit-scrollbar-thumb { @apply bg-gray-300 rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-gray-400; }
+
+/* Stagger animations */
+.stagger-1 { animation: fadeIn 0.5s ease-out 0.05s both; }
+.stagger-2 { animation: fadeIn 0.5s ease-out 0.1s both; }
+.stagger-3 { animation: fadeIn 0.5s ease-out 0.15s both; }
+.stagger-4 { animation: fadeIn 0.5s ease-out 0.2s both; }
+.stagger-5 { animation: fadeIn 0.5s ease-out 0.25s both; }
+
+/* Legacy animation classes used by some components */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+.animate-fadeIn,
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+.animate-slideUp,
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out forwards;
+}
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+/* Print styles */
+@media print {
+  body { background: white !important; }
+  .print\:hidden { display: none !important; }
+  .print\:shadow-none { box-shadow: none !important; }
+  .print\:rounded-none { border-radius: 0 !important; }
+  .print\:max-h-none { max-height: none !important; }
+  .print\:max-w-none { max-width: none !important; }
+  .print\:bg-primary-600 { background-color: #1a6df5 !important; }
+  .print\:bg-sage-50 { background-color: #f0faf4 !important; }
+  .print\:overflow-visible { overflow: visible !important; }
+  .print\:p-6 { padding: 1.5rem !important; }
+  .print\:gap-3 { gap: 0.75rem !important; }
+  .print\:border-gray-200 { border-color: #e5e7eb !important; }
+  .print\:flex { display: flex !important; }
+  .print\:justify-between { justify-content: space-between !important; }
+  .print\:items-center { align-items: center !important; }
+  .print\:text-sm { font-size: 0.875rem !important; }
+  .print\:font-bold { font-weight: 700 !important; }
+  .print\:text-gray-900 { color: #111827 !important; }
+
+  /* Lab-to-Plan specific print overrides */
+  header, footer, nav, .sticky { display: none !important; }
+  main { padding: 0 !important; margin: 0 !important; }
+  .bg-gradient-to-r.from-primary-600,
+  .bg-gradient-to-r.from-sage-600 { background: none !important; color: #111827 !important; padding: 1rem 0 !important; }
+  .animate-fade-in, .stagger-1, .stagger-2, .stagger-3, .stagger-4, .stagger-5 { animation: none !important; opacity: 1 !important; }
+  .card { box-shadow: none !important; border: 1px solid #e5e7eb !important; break-inside: avoid; }
+  .bg-gradient-to-br { background: #f9fafb !important; }
+  .btn-primary, .btn-secondary, .btn-outline, .btn-ghost, button[title] { display: none !important; }
+  table { width: 100% !important; border-collapse: collapse !important; }
+  th, td { border: 1px solid #e5e7eb !important; padding: 6px 10px !important; }
+}
