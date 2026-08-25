@@ -4,6 +4,8 @@ import { copyFileSync } from 'fs'
 import { resolve } from 'path'
 
 export default defineConfig({
+server: {
+    allowedHosts: true,
   base: './',
   plugins: [
     react(),
