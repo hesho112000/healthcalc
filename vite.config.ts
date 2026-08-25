@@ -1,7 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { writeFileSync, copyFileSync } from 'fs'
+import { copyFileSync, readFileSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
+
+const BASE = '/healthcalc/'
 
 function copyIndexPlugin() {
   return {
@@ -15,9 +17,23 @@ function copyIndexPlugin() {
   }
 }
 
+function rewriteHtmlPaths() {
+  return {
+    name: 'rewrite-html-paths',
+    transformIndexHtml(html: string) {
+      return html
+        .replace(/href="\.\/(favicon\.svg)"/g, `href="${BASE}$1"`)
+        .replace(/href="\.\/(manifest\.json)"/g, `href="${BASE}$1"`)
+        .replace(/href="\.\/(icons\/[^"]+)"/g, `href="${BASE}$1"`)
+        .replace(/src="\.\/(sw\.js)"/g, `src="${BASE}$1"`)
+        .replace(/register\('\.\/(sw\.js)'\)/g, `register('${BASE}$1')`)
+    },
+  }
+}
+
 export default defineConfig({
-  base: '/healthcalc/',
-  plugins: [react(), copyIndexPlugin()],
+  base: BASE,
+  plugins: [react(), rewriteHtmlPaths(), copyIndexPlugin()],
   server: {
     port: 3000,
     open: true,
