@@ -20,6 +20,7 @@ import ContactUs from './pages/ContactUs';
 import LabToPlanPage from './pages/LabToPlanPage';
 import FitnessPage from './pages/FitnessPage';
 import SmartwatchSyncPage from './pages/SmartwatchSyncPage';
+import FoodLibraryPage from './pages/FoodLibraryPage';
 import InstallBanner from './components/InstallBanner';
 
 const LegacySeoRedirect: React.FC = () => {
@@ -60,6 +61,7 @@ const AppContent: React.FC = () => {
           <Route path="/lab-to-plan" element={<LabToPlanPage />} />
           <Route path="/fitness" element={<FitnessPage />} />
           <Route path="/smartwatch-sync" element={<SmartwatchSyncPage />} />
+          <Route path="/food-library" element={<FoodLibraryPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route

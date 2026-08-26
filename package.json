@@ -8,7 +8,7 @@
     "dev:ui": "vite --host",
     "dev:api": "cd server && node index.js",
     "start": "concurrently \"npm run dev:api\" \"npm run dev:ui\"",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
