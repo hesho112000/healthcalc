@@ -2,12 +2,13 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { DiabetesInputs, LabResult, BPResult } from '../types';
 import { interpretLabResults, classifyBloodPressure } from '../utils/calculations';
-import { generateDiabetesPlan, smartMealSwap, type DayPlan } from '../utils/healthPlans';
+import { generateDiabetesPlan, type DayPlan } from '../utils/healthPlans';
 import { usePersistedState } from '../hooks/usePersistedState';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import Breadcrumbs from '../components/Breadcrumbs';
 import SaveProgressButton from '../components/SaveProgressButton';
 import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../components/HealthPlanTemplate';
+import { CUISINE_OPTIONS, type Cuisine } from '../utils/calculations_expanded';
 
 const DiabetesPage: React.FC = () => {
   const { t } = useLanguage();
@@ -27,7 +28,10 @@ const DiabetesPage: React.FC = () => {
   });
   const [dayCompletions, setDayCompletions] = usePersistedState<Record<number, Record<number, boolean>>>({}, 'hc_diabetes_day_completions');
   const [streak, setStreak] = useState({ current: 0, longest: 0, daysCompleted: 0 });
-  const [swapTags, setSwapTags] = usePersistedState<Record<number, Record<number, string>>>({}, 'hc_diabetes_swap_tags');
+  const [selectedCuisine, setSelectedCuisine] = useState<Cuisine>(() => {
+    const saved = localStorage.getItem('hc_selectedCuisine');
+    return (saved as Cuisine) || 'egyptian';
+  });
   const [workoutCompletions, setWorkoutCompletions] = usePersistedState<Record<number, Record<number, boolean>>>({}, 'hc_diabetes_workout_completions');
 
   const handleAnalyzeLabs = (e: React.FormEvent) => {
@@ -41,8 +45,8 @@ const DiabetesPage: React.FC = () => {
   };
 
   const thirtyDayPlan = useMemo(() =>
-    generateDiabetesPlan({ age: form.age, weight: form.weight, height: 170 }, { hba1c: form.hba1c, fastingGlucose: form.fastingGlucose }),
-    [form.age, form.weight, form.hba1c, form.fastingGlucose]
+    generateDiabetesPlan({ age: form.age, weight: form.weight, height: 170 }, { hba1c: form.hba1c, fastingGlucose: form.fastingGlucose }, selectedCuisine),
+    [form.age, form.weight, form.hba1c, form.fastingGlucose, selectedCuisine]
   );
 
   const currentDay: DayPlan = thirtyDayPlan[selectedDay];
@@ -55,14 +59,10 @@ const DiabetesPage: React.FC = () => {
     setWorkoutCompletions(prev => ({ ...prev, [dayIdx]: { ...prev[dayIdx], [workoutIdx]: done } }));
   }, []);
 
-  const handleMealSwap = useCallback((dayIdx: number, mealIdx: number) => {
-    const dayPlan = thirtyDayPlan[dayIdx];
-    const meal = dayPlan?.meals[mealIdx];
-    if (!meal) return;
-    const alt = smartMealSwap('diabetes', meal.meal, { calories: meal.calories });
-    if (!alt) return;
-    setSwapTags(prev => ({ ...prev, [dayIdx]: { ...prev[dayIdx], [mealIdx]: `Swapped → ${alt.label}` } }));
-  }, [thirtyDayPlan]);
+  const handleCuisineChange = useCallback((cuisine: Cuisine) => {
+    setSelectedCuisine(cuisine);
+    localStorage.setItem('hc_selectedCuisine', cuisine);
+  }, []);
 
   const sections = [
     { key: 'labs' as const, label: 'Lab Interpreter', icon: '🔬' },
@@ -361,14 +361,26 @@ const DiabetesPage: React.FC = () => {
                       <h3 className="font-bold text-gray-900 mb-1">{currentDay.label} — Diabetes Management</h3>
                       <p className="text-sm text-gray-500">{currentDay.phase} · {currentDay.dailyGoal}</p>
                     </div>
+                    {/* Cuisine Selector */}
+                    <div className="card p-4">
+                      <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ اختر المطبخ</label>
+                      <div className="flex flex-wrap gap-2">
+                        {CUISINE_OPTIONS.map((c) => (
+                          <button key={c.key} type="button" onClick={() => handleCuisineChange(c.key)}
+                            className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
+                              selectedCuisine === c.key ? 'border-green-500 bg-green-50 text-green-700' : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                            }`}>
+                            {c.flag} {c.label_ar}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                     {currentDay.meals.map((meal, i) => (
                       <MealCard
                         key={i}
                         meal={meal}
                         done={!!dayCompletions[selectedDay]?.[i]}
                         onToggle={(done) => toggleMealDone(selectedDay, i, done)}
-                        onSwap={() => handleMealSwap(selectedDay, i)}
-                        swappedTag={swapTags[selectedDay]?.[i]}
                       />
                     ))}
                   </div>
@@ -421,14 +433,25 @@ const DiabetesPage: React.FC = () => {
                       <h3 className="font-bold text-gray-900 mb-1">{currentDay.label} — Nutrition</h3>
                       <p className="text-sm text-gray-500">{currentDay.phase} · {currentDay.dailyGoal}</p>
                     </div>
+                    <div className="card p-4">
+                      <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ اختر المطبخ</label>
+                      <div className="flex flex-wrap gap-2">
+                        {CUISINE_OPTIONS.map((c) => (
+                          <button key={c.key} type="button" onClick={() => handleCuisineChange(c.key)}
+                            className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
+                              selectedCuisine === c.key ? 'border-green-500 bg-green-50 text-green-700' : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                            }`}>
+                            {c.flag} {c.label_ar}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                     {currentDay.meals.map((meal, i) => (
                       <MealCard
                         key={i}
                         meal={meal}
                         done={!!dayCompletions[selectedDay]?.[i]}
                         onToggle={(done) => toggleMealDone(selectedDay, i, done)}
-                        onSwap={() => handleMealSwap(selectedDay, i)}
-                        swappedTag={swapTags[selectedDay]?.[i]}
                       />
                     ))}
                   </div>

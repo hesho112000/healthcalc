@@ -101,7 +101,67 @@ const pick = <T>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
 const pickN = <T>(arr: T[], n: number): T[] => [...arr].sort(() => Math.random() - 0.5).slice(0, n);
 const shuffle = <T>(arr: T[]): T[] => [...arr].sort(() => Math.random() - 0.5);
 
-const generatePlan = (days: number, condition: string): DayPlan[] => {
+const buildMealsFromCuisine = (cuisine?: string): PlanMealItem[] => {
+  const FOODS: Array<{ name: string; calories: number; protein: number; carbs: number; fat: number; cuisine: string[] }> = [
+    { name: 'Grilled Chicken Breast', calories: 165, protein: 31, carbs: 0, fat: 3.6, cuisine: ['american', 'mediterranean', 'high_protein'] },
+    { name: 'Salmon Fillet', calories: 208, protein: 20, carbs: 0, fat: 13, cuisine: ['mediterranean', 'asian', 'keto', 'high_protein'] },
+    { name: 'Brown Rice', calories: 216, protein: 5, carbs: 45, fat: 1.8, cuisine: ['asian'] },
+    { name: 'Quinoa', calories: 222, protein: 8, carbs: 39, fat: 3.5, cuisine: ['mediterranean'] },
+    { name: 'Sweet Potato', calories: 103, protein: 2, carbs: 24, fat: 0.1, cuisine: ['american', 'african'] },
+    { name: 'Avocado', calories: 240, protein: 3, carbs: 12, fat: 22, cuisine: ['mexican', 'mediterranean', 'keto'] },
+    { name: 'Greek Yogurt', calories: 100, protein: 17, carbs: 6, fat: 0.7, cuisine: ['mediterranean', 'high_protein'] },
+    { name: 'Hummus + Pita', calories: 250, protein: 10, carbs: 30, fat: 10, cuisine: ['middle_eastern'] },
+    { name: 'Lentil Soup', calories: 230, protein: 18, carbs: 35, fat: 2, cuisine: ['middle_eastern', 'egyptian'] },
+    { name: 'Chicken Tikka Masala', calories: 430, protein: 30, carbs: 20, fat: 25, cuisine: ['indian', 'high_protein'] },
+    { name: 'Sushi Roll', calories: 255, protein: 9, carbs: 38, fat: 7, cuisine: ['asian'] },
+    { name: 'Tacos', calories: 380, protein: 18, carbs: 30, fat: 20, cuisine: ['mexican'] },
+    { name: 'Falafel Bowl', calories: 450, protein: 15, carbs: 50, fat: 22, cuisine: ['middle_eastern'] },
+    { name: 'Eggs (2 large)', calories: 143, protein: 13, carbs: 1, fat: 10, cuisine: ['american', 'mediterranean', 'keto', 'high_protein'] },
+    { name: 'Oatmeal', calories: 154, protein: 5, carbs: 27, fat: 3, cuisine: ['american'] },
+    { name: 'Almonds', calories: 164, protein: 6, carbs: 6, fat: 14, cuisine: ['mediterranean', 'indian', 'keto'] },
+    { name: 'Broccoli Stir Fry', calories: 120, protein: 8, carbs: 12, fat: 5, cuisine: ['asian', 'mediterranean', 'keto'] },
+    { name: 'Tuna Salad', calories: 200, protein: 28, carbs: 5, fat: 8, cuisine: ['american', 'mediterranean', 'keto', 'high_protein'] },
+    { name: 'Couscous Salad', calories: 280, protein: 10, carbs: 42, fat: 6, cuisine: ['mediterranean', 'middle_eastern'] },
+    { name: 'Koshari', calories: 450, protein: 15, carbs: 70, fat: 10, cuisine: ['egyptian'] },
+    { name: 'Ful Medames', calories: 340, protein: 18, carbs: 40, fat: 12, cuisine: ['egyptian', 'middle_eastern'] },
+    { name: 'Molokhia', calories: 280, protein: 14, carbs: 30, fat: 10, cuisine: ['egyptian'] },
+    { name: 'Pasta Bolognese', calories: 480, protein: 25, carbs: 55, fat: 15, cuisine: ['italian'] },
+    { name: 'Margherita Pizza', calories: 400, protein: 18, carbs: 42, fat: 16, cuisine: ['italian'] },
+    { name: 'Risotto', calories: 380, protein: 12, carbs: 50, fat: 12, cuisine: ['italian'] },
+    { name: 'Grilled Steak', calories: 350, protein: 40, carbs: 0, fat: 18, cuisine: ['american', 'high_protein'] },
+    { name: 'Cottage Cheese', calories: 110, protein: 14, carbs: 5, fat: 4, cuisine: ['high_protein'] },
+    { name: 'Whey Protein Shake', calories: 120, protein: 25, carbs: 3, fat: 1, cuisine: ['high_protein'] },
+    { name: 'Paneer Tikka', calories: 320, protein: 22, carbs: 8, fat: 22, cuisine: ['indian', 'high_protein'] },
+    { name: 'Butter Chicken', calories: 480, protein: 28, carbs: 16, fat: 32, cuisine: ['indian'] },
+    { name: 'Pad Thai', calories: 420, protein: 18, carbs: 50, fat: 14, cuisine: ['asian'] },
+    { name: 'Caesar Salad', calories: 350, protein: 22, carbs: 12, fat: 24, cuisine: ['american', 'mediterranean'] },
+    { name: 'Steak & Eggs', calories: 450, protein: 42, carbs: 2, fat: 28, cuisine: ['american', 'keto', 'high_protein'] },
+    { name: 'Keto Salmon Bowl', calories: 380, protein: 30, carbs: 5, fat: 26, cuisine: ['keto', 'mediterranean'] },
+    { name: 'Cheese Omelette', calories: 300, protein: 20, carbs: 2, fat: 22, cuisine: ['american', 'italian', 'keto', 'high_protein'] },
+    { name: 'Grilled Vegetables', calories: 120, protein: 4, carbs: 14, fat: 6, cuisine: ['mediterranean', 'italian'] },
+    { name: 'Tofu Stir Fry', calories: 280, protein: 16, carbs: 18, fat: 16, cuisine: ['asian'] },
+    { name: 'Fattoush Salad', calories: 180, protein: 5, carbs: 18, fat: 10, cuisine: ['middle_eastern'] },
+    { name: 'Shawarma Plate', calories: 500, protein: 30, carbs: 35, fat: 24, cuisine: ['middle_eastern'] },
+  ];
+
+  const labels = ['🌅 Breakfast', '☀️ Lunch', '🌙 Dinner'];
+  const filtered = cuisine ? FOODS.filter(f => f.cuisine.includes(cuisine)) : FOODS;
+  const pool = filtered.length >= 3 ? filtered : FOODS;
+  const picked = pickN(pool, 3);
+
+  return picked.map((food, i) => ({
+    meal: labels[i],
+    label: labels[i],
+    calories: food.calories,
+    items: [food.name],
+    tips: `${food.calories} kcal · ${food.protein}g protein`,
+    protein: food.protein,
+    carbs: food.carbs,
+    fat: food.fat,
+  }));
+};
+
+const generatePlan = (days: number, condition: string, cuisine?: string): DayPlan[] => {
   const phases = ['Foundation', 'Building', 'Peak', 'Maintenance'];
   const guidelines: Record<string, string[]> = {
     diabetes: ['Monitor blood glucose before meals', 'Limit refined carbs to <45g per meal', 'Walk 15 min after each meal', 'Stay hydrated — aim for 8 glasses daily'],
@@ -120,7 +180,7 @@ const generatePlan = (days: number, condition: string): DayPlan[] => {
       day: i + 1,
       label: `Day ${i + 1}`,
       phase,
-      meals: shuffle(mealPool).slice(0, 3),
+      meals: buildMealsFromCuisine(cuisine),
       workouts: pickN(workoutPool, 2),
       dailyGoal: 'Complete all meals and at least 30 min activity',
       guidelines: guidelines[condKey] || guidelines.general,
@@ -128,11 +188,11 @@ const generatePlan = (days: number, condition: string): DayPlan[] => {
   });
 };
 
-export const generateDiabetesPlan = (_profile?: any, _labs?: any): DayPlan[] => generatePlan(30, 'diabetes');
-export const generateHypertensionPlan = (_profile?: any, _labs?: any): DayPlan[] => generatePlan(30, 'hypertension');
-export const generateWeightLossPlan = (_profile?: any, _labs?: any): DayPlan[] => generatePlan(30, 'weightloss');
-export const generateMuscleGainPlan = (_profile?: any, _labs?: any): DayPlan[] => generatePlan(30, 'muscle');
-export const generate30DayPlan = (condition: string, _profile?: any, _labs?: any): DayPlan[] => generatePlan(30, condition);
+export const generateDiabetesPlan = (_profile?: any, _labs?: any, cuisine?: string): DayPlan[] => generatePlan(30, 'diabetes', cuisine);
+export const generateHypertensionPlan = (_profile?: any, _labs?: any, cuisine?: string): DayPlan[] => generatePlan(30, 'hypertension', cuisine);
+export const generateWeightLossPlan = (_profile?: any, _labs?: any, cuisine?: string): DayPlan[] => generatePlan(30, 'weightloss', cuisine);
+export const generateMuscleGainPlan = (_profile?: any, _labs?: any, cuisine?: string): DayPlan[] => generatePlan(30, 'muscle', cuisine);
+export const generate30DayPlan = (condition: string, _profile?: any, _labs?: any, cuisine?: string): DayPlan[] => generatePlan(30, condition, cuisine);
 
 export const getCheckInFields = (_condition?: string): CheckInField[] => [
   { key: 'weight', label: 'Weight', unit: 'kg', min: 30, max: 250, step: 0.5, placeholder: 70, icon: '⚖️' },

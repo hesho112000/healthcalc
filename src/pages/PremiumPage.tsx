@@ -9,9 +9,10 @@ import CheckoutModal from '../components/CheckoutModal';
 import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../components/HealthPlanTemplate';
 import {
   generate30DayPlan, getCheckInFields, computeAIAdjustments, computeStreak,
-  buildCSVExport, buildEmailReport, triggerFoods, symptomOptions, smartMealSwap,
+  buildCSVExport, buildEmailReport, triggerFoods, symptomOptions,
   type DayPlan, type CheckInField, type SymptomTrigger, type AIAdjustment, type StreakBadge,
 } from '../utils/healthPlans';
+import { CUISINE_OPTIONS, type Cuisine } from '../utils/calculations_expanded';
 
 /* ═══════════════════════════════════════════════════════════════════
    TYPES
@@ -154,7 +155,10 @@ const PremiumPage: React.FC = () => {
   const [selectedPlanTab, setSelectedPlanTab] = useState<'meals' | 'workout'>('meals');
   const [mealCompletions, setMealCompletions] = usePersistedState<Record<string, Record<number, Record<number, boolean>>>>({}, 'hc_premium_meals');
   const [workoutCompletions, setWorkoutCompletions] = usePersistedState<Record<string, Record<number, Record<number, boolean>>>>({}, 'hc_premium_workouts');
-  const [mealSwapTags, setMealSwapTags] = usePersistedState<Record<string, Record<number, Record<number, string>>>>({}, 'hc_premium_swap');
+  const [selectedCuisine, setSelectedCuisine] = useState<Cuisine>(() => {
+    const saved = localStorage.getItem('hc_selectedCuisine');
+    return (saved as Cuisine) || 'egyptian';
+  });
 
   const [checkIns, setCheckIns] = useState<Record<string, Array<Record<string, string | number>>>>({});
   const [showCheckInForm, setShowCheckInForm] = useState(false);
@@ -250,14 +254,17 @@ const PremiumPage: React.FC = () => {
     setWorkoutCompletions(prev => ({ ...prev, [condId]: { ...prev[condId], [dayIdx]: { ...(prev[condId]?.[dayIdx] || {}), [workoutIdx]: done } } }));
   }, []);
 
-  const handlePremiumMealSwap = useCallback((condId: string, dayIdx: number, mealIdx: number) => {
-    const plan = plans30[condId];
-    const meal = plan?.[dayIdx]?.meals[mealIdx];
-    if (!meal) return;
-    const alt = smartMealSwap(condId, meal.meal, { calories: meal.calories });
-    if (!alt) return;
-    setMealSwapTags(prev => ({ ...prev, [condId]: { ...prev[condId], [dayIdx]: { ...(prev[condId]?.[dayIdx] || {}), [mealIdx]: `Swapped → ${alt.label}` } } }));
-  }, [plans30]);
+  const handleCuisineChange = useCallback((cuisine: Cuisine) => {
+    setSelectedCuisine(cuisine);
+    localStorage.setItem('hc_selectedCuisine', cuisine);
+    // Regenerate plans for all selected conditions with new cuisine
+    const newPlans: Record<string, DayPlan[]> = {};
+    selectedConditions.forEach(cid => {
+      newPlans[cid] = generate30DayPlan(cid, profile, labValues[cid], cuisine);
+    });
+    setPlans30(newPlans);
+  }, [selectedConditions, profile, labValues]);
+
   const checkInFields = firstSelected ? getCheckInFields(firstSelected) : [];
   const streak = firstSelected ? computeStreak((checkIns[firstSelected] || []).map(e => String(e.date || ''))) : { current: 0, longest: 0, badges: [] as StreakBadge[] };
   const hasTriggerFeature = firstSelected && ['ibs', 'gout', 'liver'].includes(firstSelected);
@@ -327,25 +334,6 @@ const PremiumPage: React.FC = () => {
     a.href = url; a.download = `healthcalc_${firstSelected}_30day_report.csv`; a.click();
     URL.revokeObjectURL(url);
   }, [firstSelected, checkIns, currentPlan]);
-
-  const handleMealSwap = useCallback((dayIdx: number) => {
-    if (!firstSelected) return;
-    setPlans30(prev => {
-      const plans = { ...prev };
-      if (!plans[firstSelected]) return plans;
-      const dayPlans = [...plans[firstSelected]];
-      const day = { ...dayPlans[dayIdx] };
-      const meals = [...day.meals];
-      const first = { ...meals[0] };
-      const last = { ...meals[meals.length - 1] };
-      meals[0] = last;
-      meals[meals.length - 1] = first;
-      day.meals = meals;
-      dayPlans[dayIdx] = day;
-      plans[firstSelected] = dayPlans;
-      return plans;
-    });
-  }, [firstSelected]);
 
   const conflicts = useMemo(() => detectConflicts(selectedConditions), [selectedConditions]);
   const scores = useMemo(() => {
@@ -556,13 +544,22 @@ const PremiumPage: React.FC = () => {
                   checkedDays={checkIns[firstSelected]?.map(e => Number(e.day)).filter(Boolean) || []}
                   label={`${selectedInfo.name} — 30-Day Plan`}
                   subtitle={`${currentDay?.phase} · ${currentDay?.dailyGoal}`}
-                  action={
-                    <button onClick={() => handleMealSwap(activeDay - 1)} className="btn-primary text-sm">
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
-                      Swap Meals
-                    </button>
-                  }
                 />
+
+                {/* Cuisine Selector */}
+                <div className="card p-4">
+                  <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ اختر المطبخ</label>
+                  <div className="flex flex-wrap gap-2">
+                    {CUISINE_OPTIONS.map((c) => (
+                      <button key={c.key} type="button" onClick={() => handleCuisineChange(c.key)}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
+                          selectedCuisine === c.key ? 'border-green-500 bg-green-50 text-green-700' : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                        }`}>
+                        {c.flag} {c.label_ar}
+                      </button>
+                    ))}
+                  </div>
+                </div>
 
                 {currentDay && (
                   <>
@@ -594,8 +591,6 @@ const PremiumPage: React.FC = () => {
                             meal={meal}
                             done={!!mealCompletions[firstSelected || '']?.[activeDay - 1]?.[i]}
                             onToggle={(done) => firstSelected && togglePremiumMeal(firstSelected, activeDay - 1, i, done)}
-                            onSwap={() => firstSelected && handlePremiumMealSwap(firstSelected, activeDay - 1, i)}
-                            swappedTag={mealSwapTags[firstSelected || '']?.[activeDay - 1]?.[i]}
                           />
                         ))}
                       </div>

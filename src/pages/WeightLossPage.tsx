@@ -2,7 +2,6 @@ import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { UserProfile, CalorieResult } from '../types';
 import { calculateFullResults } from '../utils/calculations';
-import { smartMealSwap } from '../utils/healthPlans';
 import { usePersistedState } from '../hooks/usePersistedState';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import Breadcrumbs from '../components/Breadcrumbs';
@@ -14,8 +13,7 @@ import {
   DayProgressHeader, StreakBar,
 } from '../components/HealthPlanTemplate';
 
-// ✅ EXPANDED: 10 مطابخ
-import { FOODS_DATABASE, CUISINE_META, Cuisine } from '../utils/calculations_expanded';
+import { FOODS_DATABASE, CUISINE_META, Cuisine, CUISINE_OPTIONS } from '../utils/calculations_expanded';
 
 const WeightLossPage: React.FC = () => {
   const { t } = useLanguage();
@@ -26,8 +24,10 @@ const WeightLossPage: React.FC = () => {
   const [completedExercises, setCompletedExercises] = useState<Record<string, boolean>>({});
   const [dayCompletions, setDayCompletions] = usePersistedState<Record<number, Record<number, boolean>>>({}, 'hc_wl_day_completions');
   const [streak, setStreak] = useState({ current: 0, longest: 0, daysCompleted: 0 });
-  const [swapTags, setSwapTags] = usePersistedState<Record<number, Record<number, string>>>({}, 'hc_wl_swap_tags');
-  const [selectedCuisine, setSelectedCuisine] = useState<Cuisine>('egyptian');
+  const [selectedCuisine, setSelectedCuisine] = useState<Cuisine>(() => {
+    const saved = localStorage.getItem('hc_selectedCuisine');
+    return (saved as Cuisine) || 'egyptian';
+  });
   
   const [form, setForm] = useState<UserProfile>(() => {
     const bridge = localStorage.getItem('hc_calculator_bridge');
@@ -64,13 +64,10 @@ const WeightLossPage: React.FC = () => {
     setDayCompletions(prev => ({ ...prev, [selectedDay]: { ...prev[selectedDay], [mealIdx]: done } }));
   }, [selectedDay]);
 
-  const handleMealSwap = useCallback((mealIdx: number) => {
-    const meal = dayMeals[mealIdx];
-    if (!meal) return;
-    const alt = smartMealSwap('weightloss', meal.meal, { calories: meal.calories });
-    if (!alt) return;
-    setSwapTags(prev => ({ ...prev, [selectedDay]: { ...prev[selectedDay], [mealIdx]: `Swapped → ${alt.label}` } }));
-  }, [selectedDay, dayMeals]);
+  const handleCuisineChange = useCallback((cuisine: Cuisine) => {
+    setSelectedCuisine(cuisine);
+    localStorage.setItem('hc_selectedCuisine', cuisine);
+  }, []);
 
   const filteredFoods = useMemo(() => {
     return FOODS_DATABASE.filter(f => f.cuisine.includes(selectedCuisine)).slice(0, 8);
@@ -152,27 +149,22 @@ const WeightLossPage: React.FC = () => {
 
               {activeTab === 'meals' && (
                 <div className="space-y-5">
-                  {/* ✅ 10 مطابخ */}
+                  {/* Cuisine Selector */}
                   <div className="card p-5">
-                    <h3 className="font-bold mb-3 flex items-center justify-between">
-                      <span className="flex items-center gap-2">🍽️ اختار مطبخك المفضل - 10 مطابخ عالمية</span>
-                      <a href="/food-library" className="text-xs text-green-600 hover:underline">📚 مكتبة الأكل الكاملة →</a>
-                    </h3>
-                    <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
-                      {Object.entries(CUISINE_META).map(([key, meta]) => (
+                    <h3 className="font-bold mb-3 flex items-center gap-2">🍽️ اختر مطبخك</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {CUISINE_OPTIONS.map((c) => (
                         <button
-                          key={key}
+                          key={c.key}
                           type="button"
-                          onClick={() => setSelectedCuisine(key as Cuisine)}
-                          className={`p-3 rounded-xl border-2 text-right transition-all ${
-                            selectedCuisine === key ? 'border-green-500 bg-green-50 ring-2 ring-green-100' : 'border-gray-200 bg-white hover:border-gray-300'
+                          onClick={() => handleCuisineChange(c.key)}
+                          className={`px-4 py-2 rounded-xl text-sm font-medium border-2 transition-all ${
+                            selectedCuisine === c.key
+                              ? 'border-green-500 bg-green-50 text-green-700'
+                              : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
                           }`}
                         >
-                          <div className="flex items-center gap-2">
-                            <span className="text-xl">{meta.flag}</span>
-                            <span className="font-bold text-sm">{meta.label_ar}</span>
-                          </div>
-                          <p className="text-[10px] text-gray-500 mt-1 truncate">{meta.label_en}</p>
+                          {c.flag} {c.label_ar}
                         </button>
                       ))}
                     </div>
@@ -181,7 +173,7 @@ const WeightLossPage: React.FC = () => {
                   <DayProgressHeader completed={dayDoneCount} total={dayMeals.length + 1} dailyGoal="Complete all meals" />
                   <div className="grid gap-4">
                     {dayMeals.map((meal, idx) => (
-                      <MealCard key={idx} meal={meal as any} done={!!dayDone[idx]} swappedTag={swapTags[selectedDay]?.[idx]} onToggle={(done) => toggleMealDone(idx, done)} onSwap={() => handleMealSwap(idx)} />
+                      <MealCard key={idx} meal={meal as any} done={!!dayDone[idx]} onToggle={(done) => toggleMealDone(idx, done)} />
                     ))}
                   </div>
 
