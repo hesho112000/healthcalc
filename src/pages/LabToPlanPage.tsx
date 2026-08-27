@@ -5,6 +5,7 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../components/HealthPlanTemplate';
 import { generateDiabetesPlan, generateHypertensionPlan, getCuisineLabel, type DayPlan } from '../utils/healthPlans';
 import { CUISINE_OPTIONS, type Cuisine } from '../utils/calculations_expanded';
+import MealPlanModal from '../components/MealPlanModal';
 
 /* ──────────────── Types ──────────────── */
 type MealSlot = 'breakfast' | 'lunch' | 'dinner';
@@ -244,6 +245,8 @@ const LabToPlanPage: React.FC = () => {
   const [diabetesActiveTab, setDiabetesActiveTab] = useState<'macros' | 'meals' | 'workout'>('meals');
   const [htSelectedDay, setHtSelectedDay] = useState(0);
   const [htActiveTab, setHtActiveTab] = useState<'macros' | 'meals' | 'workout'>('meals');
+  const [showDiabetesPlan, setShowDiabetesPlan] = useState(false);
+  const [showHtPlan, setShowHtPlan] = useState(false);
 
   const [diabetesCompletions, setDiabetesCompletions] = useState<Record<number, Record<number, boolean>>>({});
   const [diabetesWorkoutCompletions, setDiabetesWorkoutCompletions] = useState<Record<number, Record<number, boolean>>>({});
@@ -589,6 +592,15 @@ const LabToPlanPage: React.FC = () => {
                         ))}
                       </div>
                     </div>
+                    <button
+                      onClick={() => setShowDiabetesPlan(true)}
+                      className="w-full btn-primary py-3 text-sm font-bold flex items-center justify-center gap-2"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
+                      </svg>
+                      Full 30-Day Plan
+                    </button>
                     {diabetesCurrentDay.meals.map((meal, i) => (
                       <MealCard
                         key={i}
@@ -698,6 +710,15 @@ const LabToPlanPage: React.FC = () => {
                         ))}
                       </div>
                     </div>
+                    <button
+                      onClick={() => setShowHtPlan(true)}
+                      className="w-full btn-primary py-3 text-sm font-bold flex items-center justify-center gap-2"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
+                      </svg>
+                      Full 30-Day Plan
+                    </button>
                     {htCurrentDay.meals.map((meal, i) => (
                       <MealCard
                         key={i}
@@ -938,6 +959,8 @@ const LabToPlanPage: React.FC = () => {
                 <div><p className="text-sm font-semibold text-emerald-800">Email client opened</p><p className="text-xs text-emerald-600">Your full health report with profile, plans, and progress is ready to send.</p></div>
               </div>
             )}
+            <MealPlanModal isOpen={showDiabetesPlan} onClose={() => setShowDiabetesPlan(false)} targetCalories={0} mealPlan={[]} fullMealPlan={diabetesPlan} selectedDay={diabetesSelectedDay} onDayChange={setDiabetesSelectedDay} weight={0} onSave={() => setShowDiabetesPlan(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} />
+            <MealPlanModal isOpen={showHtPlan} onClose={() => setShowHtPlan(false)} targetCalories={0} mealPlan={[]} fullMealPlan={htPlan} selectedDay={htSelectedDay} onDayChange={setHtSelectedDay} weight={0} onSave={() => setShowHtPlan(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} />
             <MedicalDisclaimer />
           </div>
         )}

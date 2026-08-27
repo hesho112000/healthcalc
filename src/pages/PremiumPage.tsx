@@ -6,6 +6,7 @@ import AdPlaceholder from '../components/AdPlaceholder';
 import Breadcrumbs from '../components/Breadcrumbs';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import CheckoutModal from '../components/CheckoutModal';
+import MealPlanModal from '../components/MealPlanModal';
 import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../components/HealthPlanTemplate';
 import {
   generate30DayPlan, getCheckInFields, computeAIAdjustments, computeStreak,
@@ -155,6 +156,7 @@ const PremiumPage: React.FC = () => {
   const [selectedPlanTab, setSelectedPlanTab] = useState<'meals' | 'workout'>('meals');
   const [mealCompletions, setMealCompletions] = usePersistedState<Record<string, Record<number, Record<number, boolean>>>>({}, 'hc_premium_meals');
   const [workoutCompletions, setWorkoutCompletions] = usePersistedState<Record<string, Record<number, Record<number, boolean>>>>({}, 'hc_premium_workouts');
+  const [showFullPlan, setShowFullPlan] = useState(false);
   const [selectedCuisine, setSelectedCuisine] = useState<Cuisine>(() => {
     const saved = localStorage.getItem('hc_selectedCuisine');
     return (saved as Cuisine) || 'egyptian';
@@ -573,6 +575,15 @@ const PremiumPage: React.FC = () => {
 
                     {selectedPlanTab === 'meals' && (
                       <div className="space-y-4 animate-fade-in">
+                        <button
+                          onClick={() => setShowFullPlan(true)}
+                          className="w-full btn-primary py-3 text-sm font-bold flex items-center justify-center gap-2"
+                        >
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
+                          </svg>
+                          Full 30-Day Plan
+                        </button>
                         <StreakBar
                           currentStreak={streak.current}
                           longestStreak={streak.longest}
@@ -807,6 +818,7 @@ const PremiumPage: React.FC = () => {
           </div>
         )}
 
+        <MealPlanModal isOpen={showFullPlan} onClose={() => setShowFullPlan(false)} targetCalories={0} mealPlan={[]} fullMealPlan={currentPlan || undefined} selectedDay={activeDay - 1} onDayChange={(d) => setActiveDay(d + 1)} weight={0} onSave={() => setShowFullPlan(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} />
         <AdPlaceholder size="sidebar" className="mx-auto mb-10" />
 
         <div className="card bg-gradient-to-br from-gray-50 to-white">

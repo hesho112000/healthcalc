@@ -9,6 +9,7 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import SaveProgressButton from '../components/SaveProgressButton';
 import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../components/HealthPlanTemplate';
 import { CUISINE_OPTIONS, type Cuisine } from '../utils/calculations_expanded';
+import MealPlanModal from '../components/MealPlanModal';
 
 const DiabetesPage: React.FC = () => {
   const { t, language } = useLanguage();
@@ -32,6 +33,7 @@ const DiabetesPage: React.FC = () => {
     const saved = localStorage.getItem('hc_selectedCuisine');
     return (saved as Cuisine) || 'egyptian';
   });
+  const [showFullPlan, setShowFullPlan] = useState(false);
   const [workoutCompletions, setWorkoutCompletions] = usePersistedState<Record<number, Record<number, boolean>>>({}, 'hc_diabetes_workout_completions');
 
   const handleAnalyzeLabs = (e: React.FormEvent) => {
@@ -375,6 +377,15 @@ const DiabetesPage: React.FC = () => {
                         ))}
                       </div>
                     </div>
+                    <button
+                      onClick={() => setShowFullPlan(true)}
+                      className="w-full btn-primary py-3 text-sm font-bold flex items-center justify-center gap-2"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
+                      </svg>
+                      Full 30-Day Plan
+                    </button>
                     {currentDay.meals.map((meal, i) => (
                       <MealCard
                         key={i}
@@ -408,6 +419,7 @@ const DiabetesPage: React.FC = () => {
                   </div>
                 )}
                 <MedicalDisclaimer />
+                <MealPlanModal isOpen={showFullPlan} onClose={() => setShowFullPlan(false)} targetCalories={0} mealPlan={[]} fullMealPlan={thirtyDayPlan} selectedDay={selectedDay} onDayChange={setSelectedDay} weight={0} onSave={() => setShowFullPlan(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} />
               </div>
             )}
 

@@ -1,17 +1,28 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { MealPlan, DailyMealPlan } from '../types';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import { MealPlan } from '../types';
 import { useLanguage } from '../context/LanguageContext';
+import { CUISINE_OPTIONS, CUISINE_META, Cuisine, FOODS_DATABASE } from '../utils/calculations_expanded';
+import { getCuisineLabel } from '../utils/healthPlans';
+
+interface ModalDayData {
+  meals: Array<{ meal: string; calories: number; protein: number; carbs: number; fat: number; items: string[]; icon?: string; description?: string; tips?: string }>;
+  theme?: string;
+  label?: string;
+  day?: number;
+}
 
 interface MealPlanModalProps {
   isOpen: boolean;
   onClose: () => void;
   targetCalories: number;
   mealPlan: MealPlan[];
-  fullMealPlan?: DailyMealPlan[];
+  fullMealPlan?: ModalDayData[];
   selectedDay?: number;
   onDayChange?: (day: number) => void;
   weight: number;
   onSave: () => void;
+  cuisine?: Cuisine;
+  onCuisineChange?: (cuisine: Cuisine) => void;
 }
 
 const mealIcons: Record<string, string> = {
@@ -37,30 +48,46 @@ const mealIconBg: string[] = [
   'bg-cyan-100 text-cyan-600',
 ];
 
-const mealSwapOptions: string[][] = [
-  ['50g Rolled Oats + 170g Greek Yogurt + 15g Almonds', '2 Whole Eggs + 1 Slice Whole-Grain Toast + Avocado (50g)', 'Smoothie: 1 Scoop Protein + 1 Banana + 200ml Almond Milk'],
-  ['30g Whey Isolate + 250ml Almond Milk', '150g Cottage Cheese + Cucumber Slices', '2 Hard-Boiled Eggs + Cherry Tomatoes'],
-  ['180g Grilled Salmon + 150g Quinoa + 200g Roasted Veg', '180g Grilled Chicken + 150g Brown Rice + Green Salad', '180g Lean Turkey + 150g Sweet Potato + Steamed Broccoli'],
-  ['170g Greek Yogurt + 15g Walnuts + 50g Raspberries', 'Apple (150g) + 20g Almond Butter', 'Protein Bar (30g Protein) + Green Tea'],
-  ['50g Rolled Oats + 170g Greek Yogurt', '120g Grilled Chicken + Large Mixed Salad', '150g Baked Cod + Steamed Asparagus'],
-  ['125g 2% Cottage Cheese + Cinnamon', 'Casein Shake (30g) + 200ml Water', 'Herbal Tea + 15g Pumpkin Seeds'],
-];
+const buildMealsForCuisine = (cuisine: Cuisine): MealPlan[] => {
+  const foods = FOODS_DATABASE.filter(f => f.cuisine.includes(cuisine));
+  const pool = foods.length >= 3 ? foods : FOODS_DATABASE;
+  const labels = ['🌅 Breakfast', '☀️ Lunch', '🌙 Dinner'];
+  const shuffled = [...pool].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, 3).map((food, i) => ({
+    meal: labels[i],
+    icon: 'meal' as const,
+    calories: food.calories,
+    protein: food.protein,
+    carbs: food.carbs,
+    fat: food.fat,
+    items: [food.name_en],
+    description: `${food.name_en} · ${food.calories} kcal · ${food.protein}g protein · ${food.portion}`,
+  }));
+};
 
-const MealPlanModal: React.FC<MealPlanModalProps> = ({ isOpen, onClose, targetCalories, mealPlan, fullMealPlan, selectedDay: externalDay, onDayChange, weight, onSave }) => {
-  const { t } = useLanguage();
+const MealPlanModal: React.FC<MealPlanModalProps> = ({ isOpen, onClose, targetCalories, mealPlan, fullMealPlan, selectedDay: externalDay, onDayChange, weight, onSave, cuisine: propCuisine, onCuisineChange }) => {
+  const { t, language } = useLanguage();
   const [internalDay, setInternalDay] = useState(externalDay ?? 0);
   const activeDay = externalDay ?? internalDay;
   const setDay = onDayChange ?? setInternalDay;
 
+  const [internalCuisine, setInternalCuisine] = useState<Cuisine>(() => {
+    const saved = localStorage.getItem('hc_selectedCuisine');
+    return (saved as Cuisine) || 'egyptian';
+  });
+  const activeCuisine = propCuisine ?? internalCuisine;
+  const handleCuisineChange = onCuisineChange ?? ((c: Cuisine) => { setInternalCuisine(c); localStorage.setItem('hc_selectedCuisine', c); });
+
   const currentDayData = fullMealPlan && fullMealPlan[activeDay] ? fullMealPlan[activeDay] : null;
-  const activeMealPlan = currentDayData ? currentDayData.meals : mealPlan;
+
+  const cuisineMeals = useMemo(() => buildMealsForCuisine(activeCuisine), [activeCuisine]);
+
+  const activeMealPlan = currentDayData ? currentDayData.meals : (mealPlan.length > 0 ? cuisineMeals : mealPlan);
   const dayTheme = currentDayData?.theme ?? 'Today\'s Plan';
 
   const [completed, setCompleted] = useState<boolean[]>(new Array(activeMealPlan.length).fill(false));
   const [showProgressTracker, setShowProgressTracker] = useState(false);
   const [waterIntake, setWaterIntake] = useState(0);
-  const [swappedMeals, setSwappedMeals] = useState<number[]>([]);
-  const [showSwapFor, setShowSwapFor] = useState<number | null>(null);
 
   const waterGoal = Math.round(weight * 0.033 * 10) / 10;
 
@@ -69,8 +96,6 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({ isOpen, onClose, targetCa
       document.body.style.overflow = 'hidden';
       setCompleted(new Array(activeMealPlan.length).fill(false));
       setWaterIntake(0);
-      setSwappedMeals([]);
-      setShowSwapFor(null);
     } else {
       document.body.style.overflow = '';
     }
@@ -79,9 +104,7 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({ isOpen, onClose, targetCa
 
   useEffect(() => {
     setCompleted(new Array(activeMealPlan.length).fill(false));
-    setSwappedMeals([]);
-    setShowSwapFor(null);
-  }, [activeDay, activeMealPlan.length]);
+  }, [activeDay, activeMealPlan.length, activeCuisine]);
 
   const toggleComplete = useCallback((index: number) => {
     setCompleted(prev => {
@@ -124,7 +147,7 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({ isOpen, onClose, targetCa
       ${fullMealPlan && fullMealPlan[activeDay] ? `<p style="font-size:14px;font-weight:600;margin-bottom:16px;">Day ${activeDay + 1} — ${fullMealPlan[activeDay].theme}</p>` : ''}
       ${activeMealPlan.map((meal, i) => `
         <div class="card">
-          <h3>${mealIcons[meal.icon]} ${meal.meal}</h3>
+          <h3>${mealIcons[meal.icon ?? 'meal']} ${meal.meal}</h3>
           <p class="meta">${meal.calories} kcal · ${meal.protein}g Protein · ${meal.carbs}g Carbs · ${meal.fat}g Fat</p>
           <ul>${meal.items.map(item => `<li>${item}</li>`).join('')}</ul>
           <p class="desc">${meal.description}</p>
@@ -211,6 +234,29 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({ isOpen, onClose, targetCa
             </div>
           </div>
         )}
+
+        {/* Cuisine Selector (replaces Smart Swap) */}
+        <div className="bg-gradient-to-r from-sage-50/80 to-primary-50/80 border-b border-sage-100 px-6 py-3 shrink-0 print:hidden">
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-bold text-gray-500 shrink-0">🍽️</span>
+            <div className="flex gap-1.5 overflow-x-auto scrollbar-thin flex-1">
+              {CUISINE_OPTIONS.map((c) => (
+                <button
+                  key={c.key}
+                  type="button"
+                  onClick={() => handleCuisineChange(c.key)}
+                  className={`shrink-0 px-3 py-1.5 rounded-xl text-[11px] font-semibold border transition-all duration-200 ${
+                    activeCuisine === c.key
+                      ? 'bg-primary-600 text-white border-primary-600 shadow-sm'
+                      : 'bg-white text-gray-500 border-gray-200 hover:border-primary-300 hover:text-primary-600'
+                  }`}
+                >
+                  {c.flag} {getCuisineLabel(c, language)}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
 
         {/* Top Summary Bar: Calories + Water */}
         <div className="bg-gradient-to-r from-sage-50 to-primary-50 border-b border-sage-100 px-6 py-4 shrink-0 print:bg-sage-50">
@@ -376,19 +422,13 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({ isOpen, onClose, targetCa
                 {/* Meal Header */}
                 <div className="flex items-center gap-3 mb-3">
                   <div className={`w-10 h-10 ${mealIconBg[i % mealIconBg.length]} rounded-xl flex items-center justify-center text-lg shrink-0`}>
-                    {mealIcons[meal.icon] || '🍽️'}
+                    {mealIcons[meal.icon ?? 'meal'] || '🍽️'}
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className={`font-bold ${completed[i] ? 'text-sage-700' : 'text-gray-900'}`}>{meal.meal}</h3>
                     <p className={`text-xs ${completed[i] ? 'text-sage-400' : 'text-gray-400'}`}>{meal.calories} kcal</p>
                   </div>
                   <div className="flex items-center gap-1.5 shrink-0 print:hidden">
-                    <button
-                      onClick={() => setShowSwapFor(showSwapFor === i ? null : i)}
-                      className="px-2 py-1 rounded-lg text-[10px] font-semibold bg-white/80 text-gray-500 hover:bg-white hover:text-primary-600 border border-gray-200/80 transition-all duration-200"
-                    >
-                      ↻ {t('smartSwap')}
-                    </button>
                     <button
                       onClick={() => toggleComplete(i)}
                       className={`w-7 h-7 rounded-xl border-2 flex items-center justify-center transition-all duration-200 ${
@@ -403,35 +443,6 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({ isOpen, onClose, targetCa
                     </button>
                   </div>
                 </div>
-
-                {/* Swap Options */}
-                {showSwapFor === i && (
-                  <div className="mb-3 p-3 bg-white/90 rounded-xl border border-gray-100 animate-fade-in print:hidden">
-                    <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-2">{t('altOptions')}</p>
-                    <div className="space-y-1.5">
-                      {(mealSwapOptions[i] || []).map((opt, j) => (
-                        <button
-                          key={j}
-                          onClick={() => {
-                            setSwappedMeals(prev => {
-                              const next = [...prev];
-                              next[i] = j;
-                              return next;
-                            });
-                            setShowSwapFor(null);
-                          }}
-                          className={`w-full text-left px-3 py-2 rounded-lg text-xs transition-all duration-200 ${
-                            swappedMeals[i] === j
-                              ? 'bg-primary-50 text-primary-700 font-semibold border border-primary-200'
-                              : 'bg-gray-50 text-gray-600 hover:bg-primary-50 hover:text-primary-600 border border-transparent'
-                          }`}
-                        >
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
 
                 {/* Macro Badges */}
                 <div className="flex gap-2 mb-3 flex-wrap">
@@ -448,10 +459,7 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({ isOpen, onClose, targetCa
 
                 {/* Food Items */}
                 <ul className="space-y-1.5">
-                  {(swappedMeals[i] !== undefined
-                    ? [mealSwapOptions[i][swappedMeals[i]]]
-                    : meal.items
-                  ).map((item, j) => (
+                  {meal.items.map((item, j) => (
                     <li key={j} className="flex items-center gap-2 text-sm text-gray-700">
                       <span className="w-1.5 h-1.5 bg-sage-400 rounded-full shrink-0" />
                       {item}
