@@ -2,6 +2,7 @@ import React from 'react';
 import { HashRouter as Router, Routes, Route, Navigate, useParams, Link } from 'react-router-dom';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { AuthProvider } from './context/AuthContext';
+import { activateAdmin, deactivateAdmin, isAdmin } from './context/AuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -48,6 +49,44 @@ const NotFoundPage: React.FC = () => {
   );
 };
 
+const AdminPage: React.FC = () => {
+  const { t } = useLanguage();
+  const active = isAdmin();
+
+  const handleToggle = () => {
+    if (active) {
+      deactivateAdmin();
+    } else {
+      activateAdmin();
+    }
+    window.location.reload();
+  };
+
+  return (
+    <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center px-4">
+      <div className="text-center max-w-sm animate-fade-in">
+        <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <span className="text-3xl">🛡️</span>
+        </div>
+        <h1 className="text-xl font-extrabold text-gray-900 mb-2">Admin Panel</h1>
+        <p className="text-sm text-gray-500 mb-6">Developer mode bypass for premium features.</p>
+        <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold mb-6 ${active ? 'bg-sage-100 text-sage-700' : 'bg-gray-100 text-gray-500'}`}>
+          <span className={`w-2 h-2 rounded-full ${active ? 'bg-sage-500' : 'bg-gray-400'}`} />
+          {active ? 'Admin Mode: ON' : 'Admin Mode: OFF'}
+        </div>
+        <br />
+        <button
+          onClick={handleToggle}
+          className={`px-6 py-3 rounded-2xl text-sm font-bold transition-all ${active ? 'bg-red-500 text-white hover:bg-red-600' : 'bg-primary-600 text-white hover:bg-primary-700'}`}
+        >
+          {active ? 'Deactivate Admin' : 'Activate Admin'}
+        </button>
+        <p className="text-[10px] text-gray-400 mt-4">dev_mode = ADMIN_2026</p>
+      </div>
+    </div>
+  );
+};
+
 const AppContent: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
@@ -76,6 +115,8 @@ const AppContent: React.FC = () => {
           <Route path="/terms" element={<TermsOfService />} />
           <Route path="/disclaimer" element={<MedicalDisclaimerPage />} />
           <Route path="/contact" element={<ContactUs />} />
+
+          <Route path="/admin" element={<AdminPage />} />
 
           <Route path="/:lang/landing/:slug" element={<LocalizedSeoPage />} />
           <Route path="/health-guide/:slug" element={<LegacySeoRedirect />} />

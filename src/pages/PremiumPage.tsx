@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { useAuth } from '../context/AuthContext';
+import { useAuth, hasPremiumAccess } from '../context/AuthContext';
 import { usePersistedState } from '../hooks/usePersistedState';
 import AdPlaceholder from '../components/AdPlaceholder';
 import Breadcrumbs from '../components/Breadcrumbs';
@@ -134,7 +134,7 @@ const saveJSON = (key: string, val: unknown) => localStorage.setItem(key, JSON.s
 const PremiumPage: React.FC = () => {
   const { t, language } = useLanguage();
   const { user } = useAuth();
-  const isUnlocked = user?.subscription_status === 'premium';
+  const isUnlocked = hasPremiumAccess(user);
   const [showCheckout, setShowCheckout] = useState(false);
   const [selectedConditions, setSelectedConditions] = useState<Set<string>>(new Set());
   const [activeTab, setActiveTab] = useState<Tab>('plan30');

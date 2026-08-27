@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth, hasPremiumAccess } from '../context/AuthContext';
 import { api, HealthRecord, StatsResponse } from '../utils/api';
 import HealthMetricsWidget from '../components/HealthMetricsWidget';
 import { useLanguage } from '../context/LanguageContext';
@@ -114,6 +114,7 @@ const DashboardPage: React.FC = () => {
 
   const totalPages = Math.ceil(total / limit);
   const [showCheckout, setShowCheckout] = useState(false);
+  const isPremium = hasPremiumAccess(user);
 
   return (
     <div className="min-h-screen bg-[#f8fafc]">
@@ -127,10 +128,10 @@ const DashboardPage: React.FC = () => {
               </div>
               <div>
                 <h1 className="text-xl md:text-2xl font-extrabold tracking-tight">{t('dashWelcome')} {user?.name}</h1>
-                <p className="text-primary-200 text-sm">{user?.email} · {user?.subscription_status === 'premium' ? `✨ ${t('premium')}` : t('dashFreePlan')}{user?.subscription_end_date && user?.subscription_status === 'premium' ? ` · ${t('dashRenews')} ${new Date(user.subscription_end_date).toLocaleDateString()}` : ''}</p>
+                <p className="text-primary-200 text-sm">{user?.email} · {isPremium ? `✨ ${t('premium')}` : t('dashFreePlan')}{user?.subscription_end_date && isPremium ? ` · ${t('dashRenews')} ${new Date(user.subscription_end_date).toLocaleDateString()}` : ''}</p>
               </div>
             </div>
-            {user?.subscription_status !== 'premium' && (
+            {!isPremium && (
               <button onClick={() => setShowCheckout(true)} className="px-4 py-2 bg-gradient-to-r from-amber-400 to-orange-400 text-white text-xs font-bold rounded-xl hover:from-amber-500 hover:to-orange-500 transition-all shadow-sm flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                 {t('upgradeToPremium') || 'Upgrade — $15/year'}
@@ -363,15 +364,15 @@ const DashboardPage: React.FC = () => {
                 <div>
                   <label className="label">{t('dashSubscription')}</label>
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className={`badge ${user?.subscription_status === 'premium' ? 'badge-amber' : 'bg-gray-100 text-gray-600'}`}>
-                      {user?.subscription_status === 'premium' ? '✨ Premium ($15/year)' : t('dashFreePlan')}
+                    <span className={`badge ${isPremium ? 'badge-amber' : 'bg-gray-100 text-gray-600'}`}>
+                      {isPremium ? '✨ Premium ($15/year)' : t('dashFreePlan')}
                     </span>
                     {user?.subscription_end_date && (
                       <span className="text-xs text-gray-500">
                         {t('dashRenews')} {new Date(user.subscription_end_date).toLocaleDateString()}
                       </span>
                     )}
-                    {user?.subscription_status !== 'premium' && (
+                    {!isPremium && (
                       <button type="button" onClick={() => setShowCheckout(true)} className="text-xs text-amber-600 font-semibold hover:underline">{t('dashUpgrade')} →</button>
                     )}
                   </div>

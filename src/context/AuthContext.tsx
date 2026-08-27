@@ -1,6 +1,22 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { api, User, ensureBackend } from '../utils/api';
 
+export const isAdmin = (): boolean => {
+  return localStorage.getItem('dev_mode') === 'ADMIN_2026';
+};
+
+export const activateAdmin = (): void => {
+  localStorage.setItem('dev_mode', 'ADMIN_2026');
+};
+
+export const deactivateAdmin = (): void => {
+  localStorage.removeItem('dev_mode');
+};
+
+export const hasPremiumAccess = (user: User | null): boolean => {
+  return user?.subscription_status === 'premium' || isAdmin();
+};
+
 interface AuthContextType {
   user: User | null;
   loading: boolean;

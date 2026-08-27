@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth, hasPremiumAccess } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import CheckoutModal from './CheckoutModal';
 
@@ -12,7 +12,7 @@ const PremiumGate: React.FC<PremiumGateProps> = ({ children, fallback }) => {
   const { user } = useAuth();
   const { t } = useLanguage();
   const [showCheckout, setShowCheckout] = useState(false);
-  const isPremium = user?.subscription_status === 'premium';
+  const isPremium = hasPremiumAccess(user);
 
   if (isPremium) {
     return <>{children}</>;
