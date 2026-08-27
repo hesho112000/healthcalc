@@ -102,11 +102,12 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999]" role="dialog" aria-modal="true" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 9999 }}>
-      <div className="fixed inset-0 bg-black/50" onClick={onClose} style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 9998, background: 'rgba(0,0,0,0.5)' }} />
-
-      <div className="fixed inset-0 flex items-center justify-center p-4" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-      <div className="relative bg-white rounded-3xl shadow-elevated w-full max-w-4xl overflow-hidden flex flex-col animate-scale-in print:shadow-none print:max-h-none print:max-w-none print:rounded-none" style={{ position: 'relative', maxHeight: '90vh', overflow: 'hidden', margin: 'auto' }}>
+    <div className="fixed inset-0 bg-black/50 z-[9999] flex items-center justify-center p-4" onClick={onClose} style={{ overflowY: 'auto' }}>
+      <div
+        className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl my-4 flex flex-col"
+        style={{ maxHeight: '90vh' }}
+        onClick={e => e.stopPropagation()}
+      >
         {/* Header */}
         <div className="bg-gradient-to-r from-rose-600 to-orange-500 text-white px-6 py-5 shrink-0 print:bg-rose-600">
           <div className="flex items-center justify-between">
@@ -413,7 +414,6 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
             </button>
           </div>
         </div>
-      </div>
       </div>
     </div>
   );
