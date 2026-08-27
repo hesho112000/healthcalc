@@ -7,6 +7,8 @@ export interface PlanMealItem {
   protein: number;
   carbs: number;
   fat: number;
+  nameAr?: string;
+  nameEn?: string;
 }
 
 export interface PlanWorkoutItem {
@@ -101,47 +103,56 @@ const pick = <T>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
 const pickN = <T>(arr: T[], n: number): T[] => [...arr].sort(() => Math.random() - 0.5).slice(0, n);
 const shuffle = <T>(arr: T[]): T[] => [...arr].sort(() => Math.random() - 0.5);
 
+export const getFoodName = (meal: PlanMealItem, lang?: string): string => {
+  if (lang === 'ar') return meal.nameAr || meal.items[0] || '';
+  return meal.nameEn || meal.items[0] || '';
+};
+
+export const getCuisineLabel = (option: { label_ar: string; label_en: string }, lang?: string): string => {
+  return lang === 'ar' ? option.label_ar : option.label_en;
+};
+
 const buildMealsFromCuisine = (cuisine?: string): PlanMealItem[] => {
-  const FOODS: Array<{ name: string; calories: number; protein: number; carbs: number; fat: number; cuisine: string[] }> = [
-    { name: 'Grilled Chicken Breast', calories: 165, protein: 31, carbs: 0, fat: 3.6, cuisine: ['american', 'mediterranean', 'high_protein'] },
-    { name: 'Salmon Fillet', calories: 208, protein: 20, carbs: 0, fat: 13, cuisine: ['mediterranean', 'asian', 'keto', 'high_protein'] },
-    { name: 'Brown Rice', calories: 216, protein: 5, carbs: 45, fat: 1.8, cuisine: ['asian'] },
-    { name: 'Quinoa', calories: 222, protein: 8, carbs: 39, fat: 3.5, cuisine: ['mediterranean'] },
-    { name: 'Sweet Potato', calories: 103, protein: 2, carbs: 24, fat: 0.1, cuisine: ['american', 'african'] },
-    { name: 'Avocado', calories: 240, protein: 3, carbs: 12, fat: 22, cuisine: ['mexican', 'mediterranean', 'keto'] },
-    { name: 'Greek Yogurt', calories: 100, protein: 17, carbs: 6, fat: 0.7, cuisine: ['mediterranean', 'high_protein'] },
-    { name: 'Hummus + Pita', calories: 250, protein: 10, carbs: 30, fat: 10, cuisine: ['middle_eastern'] },
-    { name: 'Lentil Soup', calories: 230, protein: 18, carbs: 35, fat: 2, cuisine: ['middle_eastern', 'egyptian'] },
-    { name: 'Chicken Tikka Masala', calories: 430, protein: 30, carbs: 20, fat: 25, cuisine: ['indian', 'high_protein'] },
-    { name: 'Sushi Roll', calories: 255, protein: 9, carbs: 38, fat: 7, cuisine: ['asian'] },
-    { name: 'Tacos', calories: 380, protein: 18, carbs: 30, fat: 20, cuisine: ['mexican'] },
-    { name: 'Falafel Bowl', calories: 450, protein: 15, carbs: 50, fat: 22, cuisine: ['middle_eastern'] },
-    { name: 'Eggs (2 large)', calories: 143, protein: 13, carbs: 1, fat: 10, cuisine: ['american', 'mediterranean', 'keto', 'high_protein'] },
-    { name: 'Oatmeal', calories: 154, protein: 5, carbs: 27, fat: 3, cuisine: ['american'] },
-    { name: 'Almonds', calories: 164, protein: 6, carbs: 6, fat: 14, cuisine: ['mediterranean', 'indian', 'keto'] },
-    { name: 'Broccoli Stir Fry', calories: 120, protein: 8, carbs: 12, fat: 5, cuisine: ['asian', 'mediterranean', 'keto'] },
-    { name: 'Tuna Salad', calories: 200, protein: 28, carbs: 5, fat: 8, cuisine: ['american', 'mediterranean', 'keto', 'high_protein'] },
-    { name: 'Couscous Salad', calories: 280, protein: 10, carbs: 42, fat: 6, cuisine: ['mediterranean', 'middle_eastern'] },
-    { name: 'Koshari', calories: 450, protein: 15, carbs: 70, fat: 10, cuisine: ['egyptian'] },
-    { name: 'Ful Medames', calories: 340, protein: 18, carbs: 40, fat: 12, cuisine: ['egyptian', 'middle_eastern'] },
-    { name: 'Molokhia', calories: 280, protein: 14, carbs: 30, fat: 10, cuisine: ['egyptian'] },
-    { name: 'Pasta Bolognese', calories: 480, protein: 25, carbs: 55, fat: 15, cuisine: ['italian'] },
-    { name: 'Margherita Pizza', calories: 400, protein: 18, carbs: 42, fat: 16, cuisine: ['italian'] },
-    { name: 'Risotto', calories: 380, protein: 12, carbs: 50, fat: 12, cuisine: ['italian'] },
-    { name: 'Grilled Steak', calories: 350, protein: 40, carbs: 0, fat: 18, cuisine: ['american', 'high_protein'] },
-    { name: 'Cottage Cheese', calories: 110, protein: 14, carbs: 5, fat: 4, cuisine: ['high_protein'] },
-    { name: 'Whey Protein Shake', calories: 120, protein: 25, carbs: 3, fat: 1, cuisine: ['high_protein'] },
-    { name: 'Paneer Tikka', calories: 320, protein: 22, carbs: 8, fat: 22, cuisine: ['indian', 'high_protein'] },
-    { name: 'Butter Chicken', calories: 480, protein: 28, carbs: 16, fat: 32, cuisine: ['indian'] },
-    { name: 'Pad Thai', calories: 420, protein: 18, carbs: 50, fat: 14, cuisine: ['asian'] },
-    { name: 'Caesar Salad', calories: 350, protein: 22, carbs: 12, fat: 24, cuisine: ['american', 'mediterranean'] },
-    { name: 'Steak & Eggs', calories: 450, protein: 42, carbs: 2, fat: 28, cuisine: ['american', 'keto', 'high_protein'] },
-    { name: 'Keto Salmon Bowl', calories: 380, protein: 30, carbs: 5, fat: 26, cuisine: ['keto', 'mediterranean'] },
-    { name: 'Cheese Omelette', calories: 300, protein: 20, carbs: 2, fat: 22, cuisine: ['american', 'italian', 'keto', 'high_protein'] },
-    { name: 'Grilled Vegetables', calories: 120, protein: 4, carbs: 14, fat: 6, cuisine: ['mediterranean', 'italian'] },
-    { name: 'Tofu Stir Fry', calories: 280, protein: 16, carbs: 18, fat: 16, cuisine: ['asian'] },
-    { name: 'Fattoush Salad', calories: 180, protein: 5, carbs: 18, fat: 10, cuisine: ['middle_eastern'] },
-    { name: 'Shawarma Plate', calories: 500, protein: 30, carbs: 35, fat: 24, cuisine: ['middle_eastern'] },
+  const FOODS: Array<{ name_en: string; name_ar: string; calories: number; protein: number; carbs: number; fat: number; cuisine: string[] }> = [
+    { name_en: 'Grilled Chicken Breast', name_ar: 'صدر دجاج مشوي', calories: 165, protein: 31, carbs: 0, fat: 3.6, cuisine: ['american', 'mediterranean', 'high_protein'] },
+    { name_en: 'Salmon Fillet', name_ar: 'فيليه سلمون', calories: 208, protein: 20, carbs: 0, fat: 13, cuisine: ['mediterranean', 'asian', 'keto', 'high_protein'] },
+    { name_en: 'Brown Rice', name_ar: 'أرز بني', calories: 216, protein: 5, carbs: 45, fat: 1.8, cuisine: ['asian'] },
+    { name_en: 'Quinoa', name_ar: 'كينوا', calories: 222, protein: 8, carbs: 39, fat: 3.5, cuisine: ['mediterranean'] },
+    { name_en: 'Sweet Potato', name_ar: 'بطاطا حلوة', calories: 103, protein: 2, carbs: 24, fat: 0.1, cuisine: ['american', 'african'] },
+    { name_en: 'Avocado', name_ar: 'أفوكادو', calories: 240, protein: 3, carbs: 12, fat: 22, cuisine: ['mexican', 'mediterranean', 'keto'] },
+    { name_en: 'Greek Yogurt', name_ar: 'زبادي يوناني', calories: 100, protein: 17, carbs: 6, fat: 0.7, cuisine: ['mediterranean', 'high_protein'] },
+    { name_en: 'Hummus + Pita', name_ar: 'حمص وخبز', calories: 250, protein: 10, carbs: 30, fat: 10, cuisine: ['middle_eastern'] },
+    { name_en: 'Lentil Soup', name_ar: 'شوربة عدس', calories: 230, protein: 18, carbs: 35, fat: 2, cuisine: ['middle_eastern', 'egyptian'] },
+    { name_en: 'Chicken Tikka Masala', name_ar: 'دجاج تكا ماسالا', calories: 430, protein: 30, carbs: 20, fat: 25, cuisine: ['indian', 'high_protein'] },
+    { name_en: 'Sushi Roll', name_ar: 'رول سوشي', calories: 255, protein: 9, carbs: 38, fat: 7, cuisine: ['asian'] },
+    { name_en: 'Tacos', name_ar: 'تاكوس', calories: 380, protein: 18, carbs: 30, fat: 20, cuisine: ['mexican'] },
+    { name_en: 'Falafel Bowl', name_ar: 'طبق فلافل', calories: 450, protein: 15, carbs: 50, fat: 22, cuisine: ['middle_eastern'] },
+    { name_en: 'Eggs (2 large)', name_ar: 'بيض (2 حبة)', calories: 143, protein: 13, carbs: 1, fat: 10, cuisine: ['american', 'mediterranean', 'keto', 'high_protein'] },
+    { name_en: 'Oatmeal', name_ar: 'شوفان', calories: 154, protein: 5, carbs: 27, fat: 3, cuisine: ['american'] },
+    { name_en: 'Almonds', name_ar: 'لوز', calories: 164, protein: 6, carbs: 6, fat: 14, cuisine: ['mediterranean', 'indian', 'keto'] },
+    { name_en: 'Broccoli Stir Fry', name_ar: 'بروكلي مقلي', calories: 120, protein: 8, carbs: 12, fat: 5, cuisine: ['asian', 'mediterranean', 'keto'] },
+    { name_en: 'Tuna Salad', name_ar: 'سلطة تونة', calories: 200, protein: 28, carbs: 5, fat: 8, cuisine: ['american', 'mediterranean', 'keto', 'high_protein'] },
+    { name_en: 'Couscous Salad', name_ar: 'سلطة كسكس', calories: 280, protein: 10, carbs: 42, fat: 6, cuisine: ['mediterranean', 'middle_eastern'] },
+    { name_en: 'Koshari', name_ar: 'كشري', calories: 450, protein: 15, carbs: 70, fat: 10, cuisine: ['egyptian'] },
+    { name_en: 'Ful Medames', name_ar: 'فول مدمس', calories: 340, protein: 18, carbs: 40, fat: 12, cuisine: ['egyptian', 'middle_eastern'] },
+    { name_en: 'Molokhia', name_ar: 'ملوخية', calories: 280, protein: 14, carbs: 30, fat: 10, cuisine: ['egyptian'] },
+    { name_en: 'Pasta Bolognese', name_ar: 'معكرونة بولونيز', calories: 480, protein: 25, carbs: 55, fat: 15, cuisine: ['italian'] },
+    { name_en: 'Margherita Pizza', name_ar: 'بيتزا مارغريتا', calories: 400, protein: 18, carbs: 42, fat: 16, cuisine: ['italian'] },
+    { name_en: 'Risotto', name_ar: 'ريزوتو', calories: 380, protein: 12, carbs: 50, fat: 12, cuisine: ['italian'] },
+    { name_en: 'Grilled Steak', name_ar: 'ستيك مشوي', calories: 350, protein: 40, carbs: 0, fat: 18, cuisine: ['american', 'high_protein'] },
+    { name_en: 'Cottage Cheese', name_ar: 'جبنة قريش', calories: 110, protein: 14, carbs: 5, fat: 4, cuisine: ['high_protein'] },
+    { name_en: 'Whey Protein Shake', name_ar: 'شيك بروتين مصل اللبن', calories: 120, protein: 25, carbs: 3, fat: 1, cuisine: ['high_protein'] },
+    { name_en: 'Paneer Tikka', name_ar: 'بانير تيكا', calories: 320, protein: 22, carbs: 8, fat: 22, cuisine: ['indian', 'high_protein'] },
+    { name_en: 'Butter Chicken', name_ar: 'دجاج بالزبدة', calories: 480, protein: 28, carbs: 16, fat: 32, cuisine: ['indian'] },
+    { name_en: 'Pad Thai', name_ar: 'باد تاي', calories: 420, protein: 18, carbs: 50, fat: 14, cuisine: ['asian'] },
+    { name_en: 'Caesar Salad', name_ar: 'سلطة سيزر', calories: 350, protein: 22, carbs: 12, fat: 24, cuisine: ['american', 'mediterranean'] },
+    { name_en: 'Steak & Eggs', name_ar: 'ستيك وبويض', calories: 450, protein: 42, carbs: 2, fat: 28, cuisine: ['american', 'keto', 'high_protein'] },
+    { name_en: 'Keto Salmon Bowl', name_ar: 'طبق سلمون كيتو', calories: 380, protein: 30, carbs: 5, fat: 26, cuisine: ['keto', 'mediterranean'] },
+    { name_en: 'Cheese Omelette', name_ar: 'أومليت بالجبنة', calories: 300, protein: 20, carbs: 2, fat: 22, cuisine: ['american', 'italian', 'keto', 'high_protein'] },
+    { name_en: 'Grilled Vegetables', name_ar: 'خضروات مشوية', calories: 120, protein: 4, carbs: 14, fat: 6, cuisine: ['mediterranean', 'italian'] },
+    { name_en: 'Tofu Stir Fry', name_ar: 'توفو مقلي', calories: 280, protein: 16, carbs: 18, fat: 16, cuisine: ['asian'] },
+    { name_en: 'Fattoush Salad', name_ar: 'سلطة فتوش', calories: 180, protein: 5, carbs: 18, fat: 10, cuisine: ['middle_eastern'] },
+    { name_en: 'Shawarma Plate', name_ar: 'طبق شاورما', calories: 500, protein: 30, carbs: 35, fat: 24, cuisine: ['middle_eastern'] },
   ];
 
   const labels = ['🌅 Breakfast', '☀️ Lunch', '🌙 Dinner'];
@@ -153,11 +164,13 @@ const buildMealsFromCuisine = (cuisine?: string): PlanMealItem[] => {
     meal: labels[i],
     label: labels[i],
     calories: food.calories,
-    items: [food.name],
+    items: [food.name_en],
     tips: `${food.calories} kcal · ${food.protein}g protein`,
     protein: food.protein,
     carbs: food.carbs,
     fat: food.fat,
+    nameAr: food.name_ar,
+    nameEn: food.name_en,
   }));
 };
 

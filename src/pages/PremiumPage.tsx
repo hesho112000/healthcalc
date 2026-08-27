@@ -9,7 +9,7 @@ import CheckoutModal from '../components/CheckoutModal';
 import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../components/HealthPlanTemplate';
 import {
   generate30DayPlan, getCheckInFields, computeAIAdjustments, computeStreak,
-  buildCSVExport, buildEmailReport, triggerFoods, symptomOptions,
+  buildCSVExport, buildEmailReport, triggerFoods, symptomOptions, getCuisineLabel,
   type DayPlan, type CheckInField, type SymptomTrigger, type AIAdjustment, type StreakBadge,
 } from '../utils/healthPlans';
 import { CUISINE_OPTIONS, type Cuisine } from '../utils/calculations_expanded';
@@ -130,7 +130,7 @@ const saveJSON = (key: string, val: unknown) => localStorage.setItem(key, JSON.s
    MAIN COMPONENT
    ═══════════════════════════════════════════════════════════════════ */
 const PremiumPage: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { user } = useAuth();
   const isUnlocked = user?.subscription_status === 'premium';
   const [showCheckout, setShowCheckout] = useState(false);
@@ -548,14 +548,14 @@ const PremiumPage: React.FC = () => {
 
                 {/* Cuisine Selector */}
                 <div className="card p-4">
-                  <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ اختر المطبخ</label>
+                  <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ {t('chooseCuisine')}</label>
                   <div className="flex flex-wrap gap-2">
                     {CUISINE_OPTIONS.map((c) => (
                       <button key={c.key} type="button" onClick={() => handleCuisineChange(c.key)}
                         className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
                           selectedCuisine === c.key ? 'border-green-500 bg-green-50 text-green-700' : 'border-gray-200 text-gray-600 hover:border-gray-300'
                         }`}>
-                        {c.flag} {c.label_ar}
+                        {c.flag} {getCuisineLabel(c, language)}
                       </button>
                     ))}
                   </div>

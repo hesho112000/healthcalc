@@ -646,6 +646,7 @@ type TranslationKeys = {
   dashOfflineTitle: string;
   dashOfflineDesc: string;
   backendUnavailable: string;
+  chooseCuisine: string;
 };
 
 export const translations: Record<Language, TranslationKeys> = {
@@ -1272,6 +1273,7 @@ export const translations: Record<Language, TranslationKeys> = {
     dashOfflineTitle: 'Offline Mode',
     dashOfflineDesc: 'Server is unavailable. Health history is stored locally on this device.',
     backendUnavailable: 'Server is currently unavailable. All calculators work locally without a connection.',
+    chooseCuisine: 'Choose your cuisine',
   },
   fr: {
     appName: 'HealthCalc.ai',
@@ -1896,6 +1898,7 @@ export const translations: Record<Language, TranslationKeys> = {
     dashOfflineTitle: 'Mode Hors Ligne',
     dashOfflineDesc: 'Le serveur est indisponible. L\'historique de santé est stocké localement.',
     backendUnavailable: 'Le serveur est actuellement indisponible. Tous les calculateurs fonctionnent localement.',
+    chooseCuisine: 'Choisissez votre cuisine',
   },
   es: {
     appName: 'HealthCalc.ai',
@@ -2520,6 +2523,7 @@ export const translations: Record<Language, TranslationKeys> = {
     dashOfflineTitle: 'Modo Sin Conexión',
     dashOfflineDesc: 'El servidor no está disponible. El historial se almacena localmente.',
     backendUnavailable: 'El servidor no está disponible. Todas las calculadoras funcionan localmente.',
+    chooseCuisine: 'Elige tu cocina',
   },
   ar: {
     appName: 'HealthCalc.ai',
@@ -3144,6 +3148,7 @@ export const translations: Record<Language, TranslationKeys> = {
     dashOfflineTitle: 'وضع عدم الاتصال',
     dashOfflineDesc: 'الخادم غير متاح. يتم تخزين السجل الصحي محلياً على هذا الجهاز.',
     backendUnavailable: 'الخادم غير متاح حالياً. جميع الآلات الحاسبة تعمل محلياً بدون اتصال.',
+    chooseCuisine: 'اختر مطبخك',
   },
 };
 

@@ -14,9 +14,10 @@ import {
 } from '../components/HealthPlanTemplate';
 
 import { FOODS_DATABASE, CUISINE_META, Cuisine, CUISINE_OPTIONS } from '../utils/calculations_expanded';
+import { getCuisineLabel } from '../utils/healthPlans';
 
 const WeightLossPage: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [result, setResult] = useState<CalorieResult | null>(null);
   const [activeTab, setActiveTab] = useState<'calories' | 'meals' | 'workout'>('calories');
   const [showMealPlanModal, setShowMealPlanModal] = useState(false);
@@ -125,7 +126,7 @@ const WeightLossPage: React.FC = () => {
                   <MacroBreakdown proteinG={result.macros.proteinGrams} proteinPct={result.macros.protein} carbsG={result.macros.carbsGrams} carbsPct={result.macros.carbs} fatG={result.macros.fatGrams} fatPct={result.macros.fat} />
                   <div className="card p-6">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-lg font-bold">📊 جدول السعرات - {CUISINE_META[selectedCuisine].flag} {CUISINE_META[selectedCuisine].label_ar}</h3>
+                      <h3 className="text-lg font-bold">📊 جدول السعرات - {CUISINE_META[selectedCuisine].flag} {getCuisineLabel(CUISINE_OPTIONS.find(c => c.key === selectedCuisine) || CUISINE_OPTIONS[0], language)}</h3>
                       <span className="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full font-bold">USDA دقيق</span>
                     </div>
                     <div className="overflow-x-auto">
@@ -151,7 +152,7 @@ const WeightLossPage: React.FC = () => {
                 <div className="space-y-5">
                   {/* Cuisine Selector */}
                   <div className="card p-5">
-                    <h3 className="font-bold mb-3 flex items-center gap-2">🍽️ اختر مطبخك</h3>
+                    <h3 className="font-bold mb-3 flex items-center gap-2">🍽️ {t('chooseCuisine')}</h3>
                     <div className="flex flex-wrap gap-2">
                       {CUISINE_OPTIONS.map((c) => (
                         <button
@@ -164,7 +165,7 @@ const WeightLossPage: React.FC = () => {
                               : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
                           }`}
                         >
-                          {c.flag} {c.label_ar}
+                          {c.flag} {getCuisineLabel(c, language)}
                         </button>
                       ))}
                     </div>
@@ -178,7 +179,7 @@ const WeightLossPage: React.FC = () => {
                   </div>
 
                   <div className="card p-5 bg-gradient-to-r from-green-50 to-emerald-50 border-green-200">
-                    <h4 className="font-bold mb-3">💡 اقتراحات من مطبخ {CUISINE_META[selectedCuisine].label_ar} {CUISINE_META[selectedCuisine].flag}</h4>
+                    <h4 className="font-bold mb-3">💡 اقتراحات من مطبخ {getCuisineLabel(CUISINE_OPTIONS.find(c => c.key === selectedCuisine) || CUISINE_OPTIONS[0], language)} {CUISINE_META[selectedCuisine].flag}</h4>
                     <div className="flex flex-wrap gap-2">
                       {filteredFoods.map((food, idx) => (
                         <span key={idx} className="bg-white border px-3 py-1.5 rounded-full text-xs font-medium shadow-sm">
