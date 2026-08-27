@@ -1,4 +1,7 @@
 import { UserProfile, CalorieResult, Macros, MealPlan, DailyMealPlan, WorkoutPlan, DiabetesInputs, LabResult, BPResult } from '../types';
+import { CUISINE_GROUPS, CUISINE_FLAGS, REGIONAL_FOODS, type Cuisine, type MealType } from './cuisineCatalog';
+
+export type { Cuisine, MealType } from './cuisineCatalog';
 
 export const calculateBMI = (weight: number, height: number): number => {
   const h = height / 100;
@@ -39,30 +42,27 @@ const generateMealPlan = (targetCalories: number, cuisineId?: Cuisine, lang: str
 
 const shuffleFoods = (foods: FoodItem[]): FoodItem[] => [...foods].sort(() => Math.random() - 0.5);
 
-const pickFoods = (cuisineId: Cuisine, category?: string, count: number = 2): FoodItem[] => {
-  const byCuisine = FOODS_DATABASE.filter((f) => f.cuisine.includes(cuisineId));
-  let pool = byCuisine.length >= 5 ? byCuisine : FOODS_DATABASE;
-  if (category) {
-    const filtered = pool.filter((f) => f.category === category);
-    if (filtered.length > 0) pool = filtered;
-  }
-  return shuffleFoods(pool).slice(0, count);
+const foodsForSlot = (cuisineId: Cuisine, mealType: MealType): FoodItem[] => {
+  const pool = FOODS_DATABASE.filter((f) => f.cuisine.includes(cuisineId));
+  const source = pool.length > 0 ? pool : FOODS_DATABASE;
+  const exact = source.filter((f) => (f.mealType ?? undefined) === mealType);
+  if (exact.length >= 2) return exact;
+  if (exact.length === 1) return [...exact, ...source.filter((f) => f.mealType !== mealType)];
+  return source;
 };
 
-const foodItemNames = (foods: FoodItem[], lang: string): string[] =>
-  foods.map((f) => (lang === 'ar' ? f.name_ar : f.name_en));
+export const buildMealRowsForCuisine = (cuisineId: Cuisine, lang: string = 'en', targetCalories: number = 2000): MealPlan[] =>
+  buildCuisineMealPlan(targetCalories, cuisineId, lang);
 
 const buildCuisineMealPlan = (targetCalories: number, cuisineId: Cuisine, lang: string): MealPlan[] => {
-  const breakfastFoods = pickFoods(cuisineId, 'grain', 1);
-  const breakfastExtra = pickFoods(cuisineId, 'dairy', 1);
-  const lunchProtein = pickFoods(cuisineId, 'protein', 1);
-  const lunchGrain = pickFoods(cuisineId, 'grain', 1);
-  const lunchVeg = pickFoods(cuisineId, 'vegetable', 1);
-  const snackFood = pickFoods(cuisineId, 'fruit', 1);
-  const snackExtra = pickFoods(cuisineId, 'nuts', 1);
-  const dinnerProtein = pickFoods(cuisineId, 'protein', 1);
-  const dinnerVeg = pickFoods(cuisineId, 'vegetable', 1);
-  const dinnerGrain = pickFoods(cuisineId, 'grain', 1);
+  const L = (f: FoodItem): string => (lang === 'ar' ? f.name_ar : f.name_en);
+  const pick = (mealType: MealType, count: number): FoodItem[] => shuffleFoods(foodsForSlot(cuisineId, mealType)).slice(0, count);
+
+  const breakfast = pick('breakfast', 3);
+  const morningSnack = pick('snack', 2);
+  const lunch = pick('lunch', 3);
+  const afternoonSnack = pick('snack', 2);
+  const dinner = pick('dinner', 3);
 
   const pct = (p: number) => Math.round(targetCalories * p);
   const pProtein = (cal: number) => Math.round(cal * 0.3 / 4);
@@ -77,31 +77,31 @@ const buildCuisineMealPlan = (targetCalories: number, cuisineId: Cuisine, lang: 
     {
       meal: '🌅 Breakfast', icon: 'meal', calories: breakfastCal,
       protein: pProtein(breakfastCal), carbs: pCarbs(breakfastCal), fat: pFat(breakfastCal),
-      items: [...foodItemNames(breakfastFoods, lang), ...foodItemNames(breakfastExtra, lang)],
+      items: breakfast.map(L),
       description: `${lang === 'ar' ? 'فطور متوازن' : 'Balanced breakfast'} · ${getCuisineName(cuisineId)}`,
     },
     {
       meal: '🍎 Morning Snack', icon: 'snack', calories: pct(0.1),
       protein: Math.round(pct(0.1) * 0.2 / 4), carbs: 15, fat: 5,
-      items: [...foodItemNames(snackFood, lang), ...foodItemNames(snackExtra, lang)],
+      items: morningSnack.map(L),
       description: lang === 'ar' ? 'وجبة خفيفة' : 'Light snack',
     },
     {
       meal: '☀️ Lunch', icon: 'meal', calories: lunchCal,
       protein: pProtein(lunchCal), carbs: pCarbs(lunchCal), fat: pFat(lunchCal),
-      items: [...foodItemNames(lunchProtein, lang), ...foodItemNames(lunchGrain, lang), ...foodItemNames(lunchVeg, lang)],
+      items: lunch.map(L),
       description: `${lang === 'ar' ? 'غداء متوازن' : 'Balanced lunch'} · ${getCuisineName(cuisineId)}`,
     },
     {
       meal: '🍎 Afternoon Snack', icon: 'snack', calories: pct(0.1),
       protein: 8, carbs: 15, fat: 4,
-      items: [...foodItemNames(snackFood, lang), ...foodItemNames(snackExtra, lang)],
+      items: afternoonSnack.map(L),
       description: lang === 'ar' ? 'طاقة بعد الظهر' : 'Afternoon energy',
     },
     {
       meal: '🌙 Dinner', icon: 'meal', calories: dinnerCal,
       protein: pProtein(dinnerCal), carbs: pCarbs(dinnerCal), fat: pFat(dinnerCal),
-      items: [...foodItemNames(dinnerProtein, lang), ...foodItemNames(dinnerVeg, lang), ...foodItemNames(dinnerGrain, lang)],
+      items: dinner.map(L),
       description: `${lang === 'ar' ? 'عشاء خفيف' : 'Light dinner'} · ${getCuisineName(cuisineId)}`,
     },
   ];
@@ -124,7 +124,12 @@ const generateFullMealPlan = (targetCalories: number, cuisineId?: Cuisine, lang:
     mediterranean: ['Mediterranean', 'Protein Focus', 'High Fiber', 'Low Carb', 'Balanced', 'Seafood', 'Plant Based'],
   };
   const baseThemes = ['Mediterranean', 'Protein Focus', 'High Fiber', 'Low Carb', 'Balanced', 'Asian Inspired', 'Plant Based'];
-  const themesForCuisine = cuisineId && themes[cuisineId] ? themes[cuisineId] : baseThemes;
+  const regionLabel = cuisineId && CUISINE_GROUPS.find((g) => g.items.some((i) => i.id === cuisineId))?.region;
+  const themesForCuisine = cuisineId && themes[cuisineId]
+    ? themes[cuisineId]
+    : regionLabel
+      ? [`${regionLabel} Classics`, 'Protein Focus', 'High Fiber', 'Low Carb', 'Balanced', 'Fresh & Light', 'Plant Based']
+      : baseThemes;
   for (let i = 0; i < 30; i++) {
     days.push({
       day: i + 1,
@@ -203,23 +208,17 @@ export interface FoodItem {
   fat: number;
   category: string;
   cuisine: string[];
+  mealType?: MealType;
   portion: string;
 }
 
-export type Cuisine = 'mediterranean' | 'asian' | 'american' | 'mexican' | 'indian' | 'middle_eastern' | 'african' | 'egyptian' | 'italian' | 'keto' | 'high_protein' | 'vegetarian';
-
-export const CUISINE_OPTIONS: Array<{ key: Cuisine; label_ar: string; label_en: string; flag: string }> = [
-  { key: 'egyptian', label_ar: 'مصري', label_en: 'Egyptian', flag: '🇪🇬' },
-  { key: 'italian', label_ar: 'إيطالي', label_en: 'Italian', flag: '🇮🇹' },
-  { key: 'asian', label_ar: 'آسيوي', label_en: 'Asian', flag: '🌏' },
-  { key: 'mexican', label_ar: 'مكسيكي', label_en: 'Mexican', flag: '🇲🇽' },
-  { key: 'american', label_ar: 'أمريكي', label_en: 'American', flag: '🇺🇸' },
-  { key: 'indian', label_ar: 'هندي', label_en: 'Indian', flag: '🇮🇳' },
-  { key: 'mediterranean', label_ar: 'متوسطي', label_en: 'Mediterranean', flag: '🌍' },
-  { key: 'keto', label_ar: 'كيتو', label_en: 'Keto', flag: '🥑' },
-  { key: 'vegetarian', label_ar: 'نباتي', label_en: 'Vegetarian', flag: '🌱' },
-  { key: 'high_protein', label_ar: 'عالي البروتين', label_en: 'High Protein', flag: '💪' },
-];
+export const CUISINE_OPTIONS: Array<{ key: Cuisine; label_ar: string; label_en: string; flag: string }> =
+  CUISINE_GROUPS.flatMap((g) => g.items.map((i) => ({
+    key: i.id,
+    label_ar: i.nameAr,
+    label_en: i.nameEn,
+    flag: CUISINE_FLAGS[i.id] || '🍽️',
+  })));
 
 export const FOODS_DATABASE: FoodItem[] = [
   { name: 'Grilled Chicken Breast', name_en: 'Grilled Chicken Breast', name_ar: 'صدر دجاج مشوي', calories: 165, protein: 31, carbs: 0, fat: 3.6, category: 'protein', cuisine: ['american', 'mediterranean', 'high_protein'], portion: '150g' },
@@ -261,22 +260,39 @@ export const FOODS_DATABASE: FoodItem[] = [
   { name: 'Grilled Vegetables', name_en: 'Grilled Vegetables', name_ar: 'خضروات مشوية', calories: 120, protein: 4, carbs: 14, fat: 6, category: 'vegetable', cuisine: ['mediterranean', 'italian'], portion: '1 plate' },
   { name: 'Caesar Chicken Wrap', name_en: 'Caesar Chicken Wrap', name_ar: 'ساندويتش سيزر بالدجاج', calories: 380, protein: 28, carbs: 30, fat: 14, category: 'protein', cuisine: ['american'], portion: '1 wrap' },
   { name: 'Tofu Stir Fry', name_en: 'Tofu Stir Fry', name_ar: 'توفو مقلي', calories: 280, protein: 16, carbs: 18, fat: 16, category: 'protein', cuisine: ['asian'], portion: '1 plate' },
+  ...Object.entries(REGIONAL_FOODS).flatMap(([cuisineId, foods]) =>
+    foods.map((f) => ({
+      name: f.name_en,
+      name_en: f.name_en,
+      name_ar: f.name_ar,
+      calories: f.calories,
+      protein: f.protein,
+      carbs: f.carbs,
+      fat: f.fat,
+      category: f.mealType,
+      cuisine: [cuisineId],
+      mealType: f.mealType,
+      portion: '1 serving',
+    }))
+  ),
 ];
 
-export const CUISINE_META: Record<string, { label: string; emoji: string; color: string; flag: string; label_ar: string; label_en: string }> = {
-  mediterranean: { label: 'Mediterranean', emoji: '🫒', color: 'bg-blue-100 text-blue-700', flag: '🌍', label_ar: 'متوسطي', label_en: 'Mediterranean' },
-  asian: { label: 'Asian', emoji: '🥢', color: 'bg-red-100 text-red-700', flag: '🌏', label_ar: 'آسيوي', label_en: 'Asian' },
-  american: { label: 'American', emoji: '🍔', color: 'bg-yellow-100 text-yellow-700', flag: '🇺🇸', label_ar: 'أمريكي', label_en: 'American' },
-  mexican: { label: 'Mexican', emoji: '🌮', color: 'bg-green-100 text-green-700', flag: '🇲🇽', label_ar: 'مكسيكي', label_en: 'Mexican' },
-  indian: { label: 'Indian', emoji: '🍛', color: 'bg-orange-100 text-orange-700', flag: '🇮🇳', label_ar: 'هندي', label_en: 'Indian' },
-  middle_eastern: { label: 'Middle Eastern', emoji: '🧆', color: 'bg-amber-100 text-amber-700', flag: '🇸🇦', label_ar: 'شرق أوسطي', label_en: 'Middle Eastern' },
-  african: { label: 'African', emoji: '🌍', color: 'bg-emerald-100 text-emerald-700', flag: '🌍', label_ar: 'أفريقي', label_en: 'African' },
-  egyptian: { label: 'Egyptian', emoji: '🇪🇬', color: 'bg-red-100 text-red-700', flag: '🇪🇬', label_ar: 'مصري', label_en: 'Egyptian' },
-  italian: { label: 'Italian', emoji: '🍝', color: 'bg-rose-100 text-rose-700', flag: '🇮🇹', label_ar: 'إيطالي', label_en: 'Italian' },
-  keto: { label: 'Keto', emoji: '🥑', color: 'bg-lime-100 text-lime-700', flag: '🥑', label_ar: 'كيتو', label_en: 'Keto' },
-  high_protein: { label: 'High Protein', emoji: '💪', color: 'bg-purple-100 text-purple-700', flag: '💪', label_ar: 'عالي البروتين', label_en: 'High Protein' },
-  vegetarian: { label: 'Vegetarian', emoji: '🌱', color: 'bg-green-100 text-green-700', flag: '🌱', label_ar: 'نباتي', label_en: 'Vegetarian' },
-};
+const CUISINE_COLORS = ['bg-blue-100 text-blue-700', 'bg-red-100 text-red-700', 'bg-yellow-100 text-yellow-700', 'bg-green-100 text-green-700', 'bg-orange-100 text-orange-700', 'bg-amber-100 text-amber-700', 'bg-emerald-100 text-emerald-700', 'bg-rose-100 text-rose-700', 'bg-lime-100 text-lime-700', 'bg-purple-100 text-purple-700', 'bg-indigo-100 text-indigo-700', 'bg-teal-100 text-teal-700'];
+
+export const CUISINE_META: Record<string, { label: string; emoji: string; color: string; flag: string; label_ar: string; label_en: string }> =
+  CUISINE_GROUPS.flatMap((g) => g.items).reduce((acc, item, idx) => {
+    acc[item.id] = {
+      label: item.nameEn,
+      emoji: CUISINE_FLAGS[item.id] || '🍽️',
+      color: CUISINE_COLORS[idx % CUISINE_COLORS.length],
+      flag: CUISINE_FLAGS[item.id] || '🍽️',
+      label_ar: item.nameAr,
+      label_en: item.nameEn,
+    };
+    return acc;
+  }, {} as Record<string, { label: string; emoji: string; color: string; flag: string; label_ar: string; label_en: string }>);
+
+export { CUISINE_GROUPS, CUISINE_FLAGS, REGIONAL_FOODS } from './cuisineCatalog';
 
 export const getFoodsByCuisine = (cuisine: Cuisine, _targetCalories?: number): FoodItem[] =>
   FOODS_DATABASE.filter((f) => f.cuisine.includes(cuisine));

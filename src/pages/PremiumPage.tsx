@@ -7,14 +7,15 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import CheckoutModal from '../components/CheckoutModal';
 import MealPlanModal from '../components/MealPlanModal';
+import CuisineSelector from '../components/CuisineSelector';
 import WorkoutBlueprintModal from '../components/WorkoutBlueprintModal';
 import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../components/HealthPlanTemplate';
 import {
   generate30DayPlan, getCheckInFields, computeAIAdjustments, computeStreak,
-  buildCSVExport, buildEmailReport, triggerFoods, symptomOptions, getCuisineLabel,
+  buildCSVExport, buildEmailReport, triggerFoods, symptomOptions,
   type DayPlan, type CheckInField, type SymptomTrigger, type AIAdjustment, type StreakBadge,
 } from '../utils/healthPlans';
-import { CUISINE_OPTIONS, type Cuisine } from '../utils/calculations_expanded';
+import { type Cuisine } from '../utils/calculations_expanded';
 
 /* ═══════════════════════════════════════════════════════════════════
    TYPES
@@ -554,16 +555,7 @@ const PremiumPage: React.FC = () => {
                 {/* Cuisine Selector */}
                 <div className="card p-4">
                   <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ {t('chooseCuisine')}</label>
-                  <div className="flex flex-wrap gap-2">
-                    {CUISINE_OPTIONS.map((c) => (
-                      <button key={c.key} type="button" onClick={() => handleCuisineChange(c.key)}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
-                          selectedCuisine === c.key ? 'border-green-500 bg-green-50 text-green-700' : 'border-gray-200 text-gray-600 hover:border-gray-300'
-                        }`}>
-                        {c.flag} {getCuisineLabel(c, language)}
-                      </button>
-                    ))}
-                  </div>
+                  <CuisineSelector selected={selectedCuisine} onChange={handleCuisineChange} className="max-h-64 overflow-y-auto pr-1" />
                 </div>
 
                 {currentDay && (

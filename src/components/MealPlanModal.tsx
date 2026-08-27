@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { MealPlan } from '../types';
+import { Cuisine } from '../utils/calculations_expanded';
+import { buildMealRowsForCuisine } from '../utils/calculations';
+import CuisineSelector from './CuisineSelector';
 import { useLanguage } from '../context/LanguageContext';
-import { CUISINE_OPTIONS, CUISINE_META, Cuisine, FOODS_DATABASE } from '../utils/calculations_expanded';
-import { getCuisineLabel } from '../utils/healthPlans';
 
 interface ModalDayData {
   meals: Array<{ meal: string; calories: number; protein: number; carbs: number; fat: number; items: string[]; icon?: string; description?: string; tips?: string }>;
@@ -27,23 +28,6 @@ interface MealPlanModalProps {
 
 const mealIcons: Record<string, string> = { meal: '🍳', snack: '🥤' };
 
-const buildMealsForCuisine = (cuisine: Cuisine): MealPlan[] => {
-  const foods = FOODS_DATABASE.filter(f => f.cuisine.includes(cuisine));
-  const pool = foods.length >= 3 ? foods : FOODS_DATABASE;
-  const labels = ['🌅 Breakfast', '☀️ Lunch', '🌙 Dinner'];
-  const shuffled = [...pool].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, 3).map((food, i) => ({
-    meal: labels[i],
-    icon: 'meal' as const,
-    calories: food.calories,
-    protein: food.protein,
-    carbs: food.carbs,
-    fat: food.fat,
-    items: [food.name_en],
-    description: `${food.name_en} · ${food.calories} kcal · ${food.protein}g protein · ${food.portion}`,
-  }));
-};
-
 const MealPlanModal: React.FC<MealPlanModalProps> = ({
   isOpen, onClose, targetCalories, mealPlan, fullMealPlan,
   selectedDay: externalDay, onDayChange, weight, onSave,
@@ -62,7 +46,7 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
   const handleCuisineChange = onCuisineChange ?? ((c: Cuisine) => { setInternalCuisine(c); localStorage.setItem('hc_selectedCuisine', c); });
 
   const currentDayData = fullMealPlan && fullMealPlan[activeDay] ? fullMealPlan[activeDay] : null;
-  const cuisineMeals = useMemo(() => buildMealsForCuisine(activeCuisine), [activeCuisine]);
+  const cuisineMeals = useMemo(() => buildMealRowsForCuisine(activeCuisine, language === 'ar' ? 'ar' : 'en', targetCalories || 2000), [activeCuisine, language, targetCalories]);
   const activeMealPlan = currentDayData ? currentDayData.meals : (mealPlan.length > 0 ? cuisineMeals : mealPlan);
   const dayTheme = currentDayData?.theme ?? 'Today\'s Plan';
 
@@ -197,15 +181,8 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
         <div className="bg-gradient-to-r from-sage-50/80 to-primary-50/80 border-b border-sage-100 px-6 py-3 shrink-0">
           <div className="flex items-center gap-3">
             <span className="text-xs font-bold text-gray-500 shrink-0">🍽️</span>
-            <div className="flex gap-1.5 overflow-x-auto flex-1">
-              {CUISINE_OPTIONS.map(c => (
-                <button key={c.key} onClick={() => handleCuisineChange(c.key)} className="shrink-0 px-3 py-1.5 rounded-xl text-[11px] font-semibold border transition-all cursor-pointer"
-                  style={activeCuisine === c.key
-                    ? { background: '#1a6df5', color: '#fff', borderColor: '#1a6df5' }
-                    : { background: '#fff', color: '#6b7280', borderColor: '#e5e7eb' }}>
-                  {c.flag} {getCuisineLabel(c, language)}
-                </button>
-              ))}
+            <div className="flex-1 max-h-56 overflow-y-auto">
+              <CuisineSelector selected={activeCuisine} onChange={handleCuisineChange} />
             </div>
           </div>
         </div>

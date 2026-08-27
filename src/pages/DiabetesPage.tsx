@@ -2,14 +2,15 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { DiabetesInputs, LabResult, BPResult } from '../types';
 import { interpretLabResults, classifyBloodPressure } from '../utils/calculations';
-import { generateDiabetesPlan, getCuisineLabel, type DayPlan } from '../utils/healthPlans';
+import { generateDiabetesPlan, type DayPlan } from '../utils/healthPlans';
 import { usePersistedState } from '../hooks/usePersistedState';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import Breadcrumbs from '../components/Breadcrumbs';
 import SaveProgressButton from '../components/SaveProgressButton';
 import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../components/HealthPlanTemplate';
-import { CUISINE_OPTIONS, type Cuisine } from '../utils/calculations_expanded';
+import { type Cuisine } from '../utils/calculations_expanded';
 import MealPlanModal from '../components/MealPlanModal';
+import CuisineSelector from '../components/CuisineSelector';
 import WorkoutBlueprintModal from '../components/WorkoutBlueprintModal';
 
 const DiabetesPage: React.FC = () => {
@@ -369,16 +370,7 @@ const DiabetesPage: React.FC = () => {
                     {/* Cuisine Selector */}
                     <div className="card p-4">
                       <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ {t('chooseCuisine')}</label>
-                      <div className="flex flex-wrap gap-2">
-                        {CUISINE_OPTIONS.map((c) => (
-                          <button key={c.key} type="button" onClick={() => handleCuisineChange(c.key)}
-                            className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
-                              selectedCuisine === c.key ? 'border-green-500 bg-green-50 text-green-700' : 'border-gray-200 text-gray-600 hover:border-gray-300'
-                            }`}>
-                            {c.flag} {getCuisineLabel(c, language)}
-                          </button>
-                        ))}
-                      </div>
+                      <CuisineSelector selected={selectedCuisine} onChange={handleCuisineChange} className="max-h-64 overflow-y-auto pr-1" />
                     </div>
                     <button
                       onClick={() => setShowFullPlan(true)}
@@ -459,16 +451,7 @@ const DiabetesPage: React.FC = () => {
                     </div>
                     <div className="card p-4">
                       <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ {t('chooseCuisine')}</label>
-                      <div className="flex flex-wrap gap-2">
-                        {CUISINE_OPTIONS.map((c) => (
-                          <button key={c.key} type="button" onClick={() => handleCuisineChange(c.key)}
-                            className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
-                              selectedCuisine === c.key ? 'border-green-500 bg-green-50 text-green-700' : 'border-gray-200 text-gray-600 hover:border-gray-300'
-                            }`}>
-                            {c.flag} {getCuisineLabel(c, language)}
-                          </button>
-                        ))}
-                      </div>
+                      <CuisineSelector selected={selectedCuisine} onChange={handleCuisineChange} className="max-h-64 overflow-y-auto pr-1" />
                     </div>
                     {currentDay.meals.map((meal, i) => (
                       <MealCard

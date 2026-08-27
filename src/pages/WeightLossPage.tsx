@@ -8,6 +8,7 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import SaveProgressButton from '../components/SaveProgressButton';
 import MealPlanModal from '../components/MealPlanModal';
 import WorkoutBlueprintModal from '../components/WorkoutBlueprintModal';
+import CuisineSelector from '../components/CuisineSelector';
 import {
   PageHero, TwoColumnLayout, StatsBar, DaySelectorBar,
   PlanTabBar, MacroBreakdown, MealCard, EmptyPlanState,
@@ -173,22 +174,7 @@ const WeightLossPage: React.FC = () => {
                   {/* Cuisine Selector */}
                   <div className="card p-5">
                     <h3 className="font-bold mb-3 flex items-center gap-2">🍽️ {t('chooseCuisine')}</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {CUISINE_OPTIONS.map((c) => (
-                        <button
-                          key={c.key}
-                          type="button"
-                          onClick={() => handleCuisineChange(c.key)}
-                          className={`px-4 py-2 rounded-xl text-sm font-medium border-2 transition-all ${
-                            selectedCuisine === c.key
-                              ? 'border-green-500 bg-green-50 text-green-700'
-                              : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
-                          }`}
-                        >
-                          {c.flag} {getCuisineLabel(c, language)}
-                        </button>
-                      ))}
-                    </div>
+                    <CuisineSelector selected={selectedCuisine} onChange={handleCuisineChange} className="max-h-72 overflow-y-auto pr-1" />
                   </div>
 
                   <DayProgressHeader completed={dayDoneCount} total={dayMeals.length + 1} dailyGoal="Complete all meals" />

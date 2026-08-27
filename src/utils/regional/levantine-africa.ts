@@ -1,0 +1,36 @@
+import type { RegionalFood } from '../cuisineCatalog';
+
+export const FOODS: Record<string, RegionalFood[]> = {
+  middle_eastern: [
+    { name_en: 'Foul with Tahini', name_ar: 'فول بالطحينة', mealType: 'breakfast', calories: 300, protein: 16, carbs: 34, fat: 11 },
+    { name_en: 'Labneh with Zaatar', name_ar: 'لبنة بالزعتر', mealType: 'breakfast', calories: 220, protein: 11, carbs: 12, fat: 14 },
+    { name_en: 'Manakish Zaatar', name_ar: 'مناقيش زعتر', mealType: 'breakfast', calories: 280, protein: 8, carbs: 44, fat: 8 },
+    { name_en: 'Shakshuka', name_ar: 'شكشوكة', mealType: 'breakfast', calories: 320, protein: 18, carbs: 14, fat: 21 },
+    { name_en: 'Musakhan', name_ar: 'مسخن', mealType: 'lunch', calories: 640, protein: 30, carbs: 58, fat: 30 },
+    { name_en: 'Maqluba', name_ar: 'مقلوبة', mealType: 'lunch', calories: 550, protein: 26, carbs: 72, fat: 16 },
+    { name_en: 'Shawarma Chicken', name_ar: 'شاورما دجاج', mealType: 'lunch', calories: 480, protein: 32, carbs: 38, fat: 20 },
+    { name_en: 'Kabsa-style Rice', name_ar: 'كبسة', mealType: 'lunch', calories: 620, protein: 28, carbs: 78, fat: 20 },
+    { name_en: 'Tabbouleh & Hummus Plate', name_ar: 'تبولة مع حمص', mealType: 'dinner', calories: 350, protein: 12, carbs: 40, fat: 16 },
+    { name_en: 'Kibbeh', name_ar: 'كبة', mealType: 'dinner', calories: 520, protein: 26, carbs: 44, fat: 25 },
+    { name_en: 'Grilled Kofta', name_ar: 'كفتة مشوية', mealType: 'dinner', calories: 430, protein: 30, carbs: 18, fat: 26 },
+    { name_en: 'Sayadieh', name_ar: 'صيادية', mealType: 'dinner', calories: 560, protein: 28, carbs: 74, fat: 16 },
+    { name_en: 'Kanafeh', name_ar: 'كنافة', mealType: 'snack', calories: 380, protein: 8, carbs: 52, fat: 16 },
+    { name_en: 'Halva', name_ar: 'حلاوة', mealType: 'snack', calories: 290, protein: 8, carbs: 34, fat: 14 },
+  ],
+  african: [
+    { name_en: 'Akara', name_ar: 'أكارا', mealType: 'breakfast', calories: 260, protein: 11, carbs: 20, fat: 15 },
+    { name_en: 'Fit-Fit', name_ar: 'فتفت', mealType: 'breakfast', calories: 330, protein: 10, carbs: 46, fat: 12 },
+    { name_en: 'Uji Porridge', name_ar: 'عصيدة أوجي', mealType: 'breakfast', calories: 210, protein: 7, carbs: 40, fat: 3 },
+    { name_en: 'Chapati with Egg', name_ar: 'شباتي بالبيض', mealType: 'breakfast', calories: 380, protein: 14, carbs: 42, fat: 17 },
+    { name_en: 'Jollof Rice with Chicken', name_ar: 'أرز جولوف مع دجاج', mealType: 'lunch', calories: 640, protein: 30, carbs: 82, fat: 20 },
+    { name_en: 'Ugali with Sukuma Wiki', name_ar: 'أوغالي مع سوكوما', mealType: 'lunch', calories: 420, protein: 15, carbs: 62, fat: 11 },
+    { name_en: 'Injera with Doro Wat', name_ar: 'إنجيرا مع دورو وات', mealType: 'lunch', calories: 520, protein: 32, carbs: 48, fat: 20 },
+    { name_en: 'Fufu with Egusi Soup', name_ar: 'فوفو مع حساء إيغوسي', mealType: 'lunch', calories: 590, protein: 24, carbs: 52, fat: 31 },
+    { name_en: 'Bobotie', name_ar: 'بوبوتي', mealType: 'dinner', calories: 540, protein: 28, carbs: 36, fat: 30 },
+    { name_en: 'Braai Grilled Fish', name_ar: 'سمك مشوي بالفحم', mealType: 'dinner', calories: 360, protein: 38, carbs: 18, fat: 16 },
+    { name_en: 'Groundnut Stew', name_ar: 'حساء الفول السوداني', mealType: 'dinner', calories: 430, protein: 20, carbs: 30, fat: 25 },
+    { name_en: 'Thieboudienne', name_ar: 'تيبوديين', mealType: 'dinner', calories: 580, protein: 30, carbs: 80, fat: 14 },
+    { name_en: 'Mandazi', name_ar: 'مندازي', mealType: 'snack', calories: 260, protein: 6, carbs: 38, fat: 10 },
+    { name_en: 'Chin Chin', name_ar: 'تشين تشين', mealType: 'snack', calories: 240, protein: 5, carbs: 30, fat: 11 },
+  ],
+};
