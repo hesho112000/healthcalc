@@ -23,7 +23,10 @@ export const calculateMacros = (calories: number) => ({
   fat: Math.round((calories * 0.25) / 9),
 });
 
-const generateMealPlan = (targetCalories: number): MealPlan[] => {
+const generateMealPlan = (targetCalories: number, cuisineId?: Cuisine, lang: string = 'en'): MealPlan[] => {
+  if (cuisineId) {
+    return buildCuisineMealPlan(targetCalories, cuisineId, lang);
+  }
   const meals: MealPlan[] = [
     { meal: '🌅 Breakfast', icon: 'meal', calories: Math.round(targetCalories * 0.3), protein: Math.round(targetCalories * 0.3 * 0.3 / 4), carbs: Math.round(targetCalories * 0.3 * 0.45 / 4), fat: Math.round(targetCalories * 0.3 * 0.25 / 9), items: ['Oatmeal with berries', 'Greek yogurt', 'Green tea'], description: 'Healthy breakfast' },
     { meal: '🍎 Morning Snack', icon: 'snack', calories: Math.round(targetCalories * 0.1), protein: 5, carbs: 15, fat: 5, items: ['Apple slices', 'Almond butter'], description: 'Light snack' },
@@ -34,15 +37,100 @@ const generateMealPlan = (targetCalories: number): MealPlan[] => {
   return meals;
 };
 
-const generateFullMealPlan = (targetCalories: number): DailyMealPlan[] => {
+const shuffleFoods = (foods: FoodItem[]): FoodItem[] => [...foods].sort(() => Math.random() - 0.5);
+
+const pickFoods = (cuisineId: Cuisine, category?: string, count: number = 2): FoodItem[] => {
+  const byCuisine = FOODS_DATABASE.filter((f) => f.cuisine.includes(cuisineId));
+  let pool = byCuisine.length >= 5 ? byCuisine : FOODS_DATABASE;
+  if (category) {
+    const filtered = pool.filter((f) => f.category === category);
+    if (filtered.length > 0) pool = filtered;
+  }
+  return shuffleFoods(pool).slice(0, count);
+};
+
+const foodItemNames = (foods: FoodItem[], lang: string): string[] =>
+  foods.map((f) => (lang === 'ar' ? f.name_ar : f.name_en));
+
+const buildCuisineMealPlan = (targetCalories: number, cuisineId: Cuisine, lang: string): MealPlan[] => {
+  const breakfastFoods = pickFoods(cuisineId, 'grain', 1);
+  const breakfastExtra = pickFoods(cuisineId, 'dairy', 1);
+  const lunchProtein = pickFoods(cuisineId, 'protein', 1);
+  const lunchGrain = pickFoods(cuisineId, 'grain', 1);
+  const lunchVeg = pickFoods(cuisineId, 'vegetable', 1);
+  const snackFood = pickFoods(cuisineId, 'fruit', 1);
+  const snackExtra = pickFoods(cuisineId, 'nuts', 1);
+  const dinnerProtein = pickFoods(cuisineId, 'protein', 1);
+  const dinnerVeg = pickFoods(cuisineId, 'vegetable', 1);
+  const dinnerGrain = pickFoods(cuisineId, 'grain', 1);
+
+  const pct = (p: number) => Math.round(targetCalories * p);
+  const pProtein = (cal: number) => Math.round(cal * 0.3 / 4);
+  const pCarbs = (cal: number) => Math.round(cal * 0.45 / 4);
+  const pFat = (cal: number) => Math.round(cal * 0.25 / 9);
+
+  const breakfastCal = pct(0.3);
+  const lunchCal = pct(0.3);
+  const dinnerCal = pct(0.2);
+
+  return [
+    {
+      meal: '🌅 Breakfast', icon: 'meal', calories: breakfastCal,
+      protein: pProtein(breakfastCal), carbs: pCarbs(breakfastCal), fat: pFat(breakfastCal),
+      items: [...foodItemNames(breakfastFoods, lang), ...foodItemNames(breakfastExtra, lang)],
+      description: `${lang === 'ar' ? 'فطور متوازن' : 'Balanced breakfast'} · ${getCuisineName(cuisineId)}`,
+    },
+    {
+      meal: '🍎 Morning Snack', icon: 'snack', calories: pct(0.1),
+      protein: Math.round(pct(0.1) * 0.2 / 4), carbs: 15, fat: 5,
+      items: [...foodItemNames(snackFood, lang), ...foodItemNames(snackExtra, lang)],
+      description: lang === 'ar' ? 'وجبة خفيفة' : 'Light snack',
+    },
+    {
+      meal: '☀️ Lunch', icon: 'meal', calories: lunchCal,
+      protein: pProtein(lunchCal), carbs: pCarbs(lunchCal), fat: pFat(lunchCal),
+      items: [...foodItemNames(lunchProtein, lang), ...foodItemNames(lunchGrain, lang), ...foodItemNames(lunchVeg, lang)],
+      description: `${lang === 'ar' ? 'غداء متوازن' : 'Balanced lunch'} · ${getCuisineName(cuisineId)}`,
+    },
+    {
+      meal: '🍎 Afternoon Snack', icon: 'snack', calories: pct(0.1),
+      protein: 8, carbs: 15, fat: 4,
+      items: [...foodItemNames(snackFood, lang), ...foodItemNames(snackExtra, lang)],
+      description: lang === 'ar' ? 'طاقة بعد الظهر' : 'Afternoon energy',
+    },
+    {
+      meal: '🌙 Dinner', icon: 'meal', calories: dinnerCal,
+      protein: pProtein(dinnerCal), carbs: pCarbs(dinnerCal), fat: pFat(dinnerCal),
+      items: [...foodItemNames(dinnerProtein, lang), ...foodItemNames(dinnerVeg, lang), ...foodItemNames(dinnerGrain, lang)],
+      description: `${lang === 'ar' ? 'عشاء خفيف' : 'Light dinner'} · ${getCuisineName(cuisineId)}`,
+    },
+  ];
+};
+
+const getCuisineName = (cuisineId: Cuisine): string => {
+  const meta = CUISINE_META[cuisineId];
+  return meta ? meta.label_en : cuisineId;
+};
+
+const generateFullMealPlan = (targetCalories: number, cuisineId?: Cuisine, lang: string = 'en'): DailyMealPlan[] => {
   const days: DailyMealPlan[] = [];
-  const themes = ['Mediterranean', 'Protein Focus', 'High Fiber', 'Low Carb', 'Balanced', 'Asian Inspired', 'Plant Based'];
+  const themes: Record<string, string[]> = {
+    egyptian: ['Egyptian Classics', 'High Fiber', 'Balanced', 'Legume Focus', 'Veggie Rich', 'Traditional', 'Protein Focus'],
+    italian: ['Mediterranean Italian', 'Pasta Night', 'Balanced', 'Seafood', 'Vegetarian', 'Risotto', 'Lean Protein'],
+    asian: ['Asian Inspired', 'Wok Night', 'Balanced', 'Rice Focus', 'Stir Fry', 'Noodle Night', 'Light'],
+    mexican: ['Mexican Fiesta', 'Fresh & Light', 'Beans & Grains', 'Taco Night', 'Balanced', 'Grilled', 'Protein Focus'],
+    american: ['American Classics', 'Lean Grill', 'Balanced', 'Protein Focus', 'Farm Fresh', 'Comfort Light', 'High Protein'],
+    indian: ['Indian Spices', 'Curry Night', 'Balanced', 'Dal Focus', 'Tandoori', 'Vegetarian', 'Protein Focus'],
+    mediterranean: ['Mediterranean', 'Protein Focus', 'High Fiber', 'Low Carb', 'Balanced', 'Seafood', 'Plant Based'],
+  };
+  const baseThemes = ['Mediterranean', 'Protein Focus', 'High Fiber', 'Low Carb', 'Balanced', 'Asian Inspired', 'Plant Based'];
+  const themesForCuisine = cuisineId && themes[cuisineId] ? themes[cuisineId] : baseThemes;
   for (let i = 0; i < 30; i++) {
     days.push({
       day: i + 1,
       label: `Day ${i + 1}`,
-      theme: themes[i % themes.length],
-      meals: generateMealPlan(targetCalories),
+      theme: themesForCuisine[i % themesForCuisine.length],
+      meals: generateMealPlan(targetCalories, cuisineId, lang),
     });
   }
   return days;
@@ -58,7 +146,7 @@ const generateWorkoutPlan = (goal: string): WorkoutPlan => {
   };
 };
 
-export const calculateFullResults = (profile: UserProfile): CalorieResult => {
+export const calculateFullResults = (profile: UserProfile, cuisineId?: Cuisine, lang: string = 'en'): CalorieResult => {
   const bmr = calculateBMR(profile.weight, profile.height, profile.age, profile.gender);
   const tdee = calculateTDEE(bmr, profile.activityLevel);
   let targetCalories = tdee;
@@ -74,8 +162,8 @@ export const calculateFullResults = (profile: UserProfile): CalorieResult => {
   };
   return {
     bmr, tdee, targetCalories, macros,
-    mealPlan: generateMealPlan(targetCalories),
-    fullMealPlan: generateFullMealPlan(targetCalories),
+    mealPlan: generateMealPlan(targetCalories, cuisineId, lang),
+    fullMealPlan: generateFullMealPlan(targetCalories, cuisineId, lang),
     workoutPlan: generateWorkoutPlan(profile.goal),
   };
 };

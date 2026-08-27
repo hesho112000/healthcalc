@@ -50,7 +50,7 @@ const WeightLossPage: React.FC = () => {
 
   const handleCalculate = (e: React.FormEvent) => {
     e.preventDefault();
-    const res = calculateFullResults(form);
+    const res = calculateFullResults(form, selectedCuisine, language);
     setResult(res);
     setCompletedExercises({});
     window.scrollTo({ top: 300, behavior: 'smooth' });
@@ -73,6 +73,22 @@ const WeightLossPage: React.FC = () => {
     setSelectedCuisine(cuisine);
     localStorage.setItem('hc_selectedCuisine', cuisine);
   }, []);
+
+  useEffect(() => {
+    if (!result) return;
+    setResult((prev) => {
+      if (!prev) return prev;
+      const next = calculateFullResults(form, selectedCuisine, language);
+      return {
+        ...next,
+        bmr: prev.bmr,
+        tdee: prev.tdee,
+        targetCalories: prev.targetCalories,
+        macros: prev.macros,
+        workoutPlan: prev.workoutPlan,
+      };
+    });
+  }, [selectedCuisine, language]);
 
   const filteredFoods = useMemo(() => {
     return FOODS_DATABASE.filter(f => f.cuisine.includes(selectedCuisine)).slice(0, 8);
