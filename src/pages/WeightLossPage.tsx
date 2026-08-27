@@ -7,13 +7,14 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import Breadcrumbs from '../components/Breadcrumbs';
 import SaveProgressButton from '../components/SaveProgressButton';
 import MealPlanModal from '../components/MealPlanModal';
+import WorkoutBlueprintModal from '../components/WorkoutBlueprintModal';
 import {
   PageHero, TwoColumnLayout, StatsBar, DaySelectorBar,
   PlanTabBar, MacroBreakdown, MealCard, EmptyPlanState,
   DayProgressHeader, StreakBar,
 } from '../components/HealthPlanTemplate';
 
-import { FOODS_DATABASE, CUISINE_META, Cuisine, CUISINE_OPTIONS } from '../utils/calculations_expanded';
+import { FOODS_DATABASE, CUISINE_META, Cuisine, CUISINE_OPTIONS, recommendExercises, EXERCISE_TYPE_LABELS, EXERCISE_TYPE_OPTIONS, ExerciseType } from '../utils/calculations_expanded';
 import { getCuisineLabel } from '../utils/healthPlans';
 
 const WeightLossPage: React.FC = () => {
@@ -21,7 +22,10 @@ const WeightLossPage: React.FC = () => {
   const [result, setResult] = useState<CalorieResult | null>(null);
   const [activeTab, setActiveTab] = useState<'calories' | 'meals' | 'workout'>('calories');
   const [showMealPlanModal, setShowMealPlanModal] = useState(false);
+  const [showWorkoutModal, setShowWorkoutModal] = useState(false);
   const [selectedDay, setSelectedDay] = useState(() => (new Date().getDate() % 30));
+  const [workoutSelectedDay, setWorkoutSelectedDay] = useState(0);
+  const [workoutType, setWorkoutType] = useState<ExerciseType | 'auto'>('auto');
   const [completedExercises, setCompletedExercises] = useState<Record<string, boolean>>({});
   const [dayCompletions, setDayCompletions] = usePersistedState<Record<number, Record<number, boolean>>>({}, 'hc_wl_day_completions');
   const [streak, setStreak] = useState({ current: 0, longest: 0, daysCompleted: 0 });
@@ -205,7 +209,52 @@ const WeightLossPage: React.FC = () => {
               {activeTab === 'workout' && (
                 <div className="space-y-5">
                   <StreakBar currentStreak={streak.current} longestStreak={streak.longest} todayChecked={false} daysCompleted={streak.daysCompleted} totalDays={30} />
-                  <div className="text-center py-8 text-gray-400">تمارين - نفس الكود القديم</div>
+
+                  {/* Exercise Type Selector */}
+                  <div className="card p-5">
+                    <h3 className="font-bold mb-3 flex items-center gap-2">💪 {language === 'ar' ? 'نوع التمرين' : 'Exercise Type'}</h3>
+                    <div className="flex flex-wrap gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setWorkoutType('auto')}
+                        className={`px-4 py-2 rounded-xl text-sm font-medium border-2 transition-all ${
+                          workoutType === 'auto'
+                            ? 'border-rose-500 bg-rose-50 text-rose-700'
+                            : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
+                        }`}
+                      >
+                        🤖 {language === 'ar' ? 'توصية تلقائية' : 'Auto Recommend'}
+                      </button>
+                      {EXERCISE_TYPE_OPTIONS.map((type) => (
+                        <button
+                          key={type}
+                          type="button"
+                          onClick={() => setWorkoutType(type)}
+                          className={`px-4 py-2 rounded-xl text-sm font-medium border-2 transition-all ${
+                            workoutType === type
+                              ? 'border-rose-500 bg-rose-50 text-rose-700'
+                              : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
+                          }`}
+                        >
+                          {EXERCISE_TYPE_LABELS[type][language === 'ar' ? 'ar' : 'en']}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => setShowWorkoutModal(true)}
+                    className="w-full btn-primary py-3 text-sm font-bold flex items-center justify-center gap-2 bg-gradient-to-r from-rose-600 to-orange-500 hover:from-rose-700 hover:to-orange-600"
+                  >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
+                    </svg>
+                    {language === 'ar' ? 'خطة التمرين الكاملة - 30 يوم' : 'Full 30-Day Workout Plan'}
+                  </button>
+
+                  <div className="text-center py-8 text-gray-400 text-sm">
+                    {language === 'ar' ? 'اختر نوع التمرين أعلاه ثم اضغط الزر لفتح الخطة' : 'Select exercise type above, then click the button to open the plan'}
+                  </div>
                 </div>
               )}
               <MedicalDisclaimer />
@@ -216,6 +265,9 @@ const WeightLossPage: React.FC = () => {
 
       {result && (
         <MealPlanModal isOpen={showMealPlanModal} onClose={() => setShowMealPlanModal(false)} targetCalories={result.targetCalories} mealPlan={result.mealPlan} fullMealPlan={result.fullMealPlan} selectedDay={selectedDay} onDayChange={setSelectedDay} weight={form.weight} onSave={() => setShowMealPlanModal(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} />
+      )}
+      {result && (
+        <WorkoutBlueprintModal isOpen={showWorkoutModal} onClose={() => setShowWorkoutModal(false)} bmi={+(form.weight / ((form.height / 100) ** 2)).toFixed(1)} goal={form.goal} fitnessLevel="beginner" weight={form.weight} selectedDay={workoutSelectedDay} onDayChange={setWorkoutSelectedDay} onSave={() => setShowWorkoutModal(false)} />
       )}
     </div>
   );

@@ -161,10 +161,11 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({ isOpen, onClose, targetCa
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true">
-      <div className="absolute inset-0 bg-gray-900/60 backdrop-blur-sm" onClick={onClose} />
+    <div className="fixed inset-0 z-[9999]" role="dialog" aria-modal="true" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 9999 }}>
+      <div className="fixed inset-0 bg-black/50" onClick={onClose} style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 9998, background: 'rgba(0,0,0,0.5)' }} />
 
-      <div className="relative bg-white rounded-3xl shadow-elevated w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col animate-scale-in print:shadow-none print:max-h-none print:max-w-none print:rounded-none">
+      <div className="fixed inset-0 flex items-center justify-center p-4" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+      <div className="relative bg-white rounded-3xl shadow-elevated w-full max-w-4xl overflow-hidden flex flex-col animate-scale-in print:shadow-none print:max-h-none print:max-w-none print:rounded-none" style={{ position: 'relative', maxHeight: '90vh', overflow: 'hidden', margin: 'auto' }}>
         {/* Header */}
         <div className="bg-gradient-to-r from-primary-600 to-primary-700 text-white px-6 py-5 shrink-0 print:bg-primary-600">
           <div className="flex items-center justify-between">
@@ -507,6 +508,7 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({ isOpen, onClose, targetCa
             </button>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

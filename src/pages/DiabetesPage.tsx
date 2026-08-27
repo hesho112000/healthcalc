@@ -10,6 +10,7 @@ import SaveProgressButton from '../components/SaveProgressButton';
 import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../components/HealthPlanTemplate';
 import { CUISINE_OPTIONS, type Cuisine } from '../utils/calculations_expanded';
 import MealPlanModal from '../components/MealPlanModal';
+import WorkoutBlueprintModal from '../components/WorkoutBlueprintModal';
 
 const DiabetesPage: React.FC = () => {
   const { t, language } = useLanguage();
@@ -35,6 +36,8 @@ const DiabetesPage: React.FC = () => {
   });
   const [showFullPlan, setShowFullPlan] = useState(false);
   const [workoutCompletions, setWorkoutCompletions] = usePersistedState<Record<number, Record<number, boolean>>>({}, 'hc_diabetes_workout_completions');
+  const [showDiabetesWorkoutModal, setShowDiabetesWorkoutModal] = useState(false);
+  const [diabetesWorkoutSelectedDay, setDiabetesWorkoutSelectedDay] = useState(0);
 
   const handleAnalyzeLabs = (e: React.FormEvent) => {
     e.preventDefault();
@@ -407,6 +410,15 @@ const DiabetesPage: React.FC = () => {
                       <h3 className="font-bold text-gray-900 mb-1">{currentDay.label} — Exercise Protocol</h3>
                       <p className="text-sm text-gray-500">ACSM guidelines · Monitor blood glucose before/after exercise</p>
                     </div>
+                    <button
+                      onClick={() => setShowDiabetesWorkoutModal(true)}
+                      className="w-full py-3 text-sm font-bold flex items-center justify-center gap-2 bg-gradient-to-r from-rose-600 to-orange-500 hover:from-rose-700 hover:to-orange-600 text-white rounded-2xl transition-all"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
+                      </svg>
+                      Full 30-Day Workout Plan
+                    </button>
                     {currentDay.workouts.map((w, i) => (
                       <WorkoutCard
                         key={i}
@@ -479,6 +491,15 @@ const DiabetesPage: React.FC = () => {
                       <h3 className="font-bold text-gray-900 mb-1">{currentDay.label} — Exercise Protocol</h3>
                       <p className="text-sm text-gray-500">ACSM guidelines · Monitor blood glucose before/after exercise</p>
                     </div>
+                    <button
+                      onClick={() => setShowDiabetesWorkoutModal(true)}
+                      className="w-full py-3 text-sm font-bold flex items-center justify-center gap-2 bg-gradient-to-r from-rose-600 to-orange-500 hover:from-rose-700 hover:to-orange-600 text-white rounded-2xl transition-all"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
+                      </svg>
+                      Full 30-Day Workout Plan
+                    </button>
                     {currentDay.workouts.map((w, i) => (
                       <WorkoutCard
                         key={i}
@@ -496,6 +517,7 @@ const DiabetesPage: React.FC = () => {
           </div>
         </div>
       </div>
+      <WorkoutBlueprintModal isOpen={showDiabetesWorkoutModal} onClose={() => setShowDiabetesWorkoutModal(false)} bmi={25} goal="lose_weight" fitnessLevel="beginner" weight={75} selectedDay={diabetesWorkoutSelectedDay} onDayChange={setDiabetesWorkoutSelectedDay} onSave={() => setShowDiabetesWorkoutModal(false)} />
     </div>
   );
 };

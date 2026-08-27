@@ -7,6 +7,7 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import CheckoutModal from '../components/CheckoutModal';
 import MealPlanModal from '../components/MealPlanModal';
+import WorkoutBlueprintModal from '../components/WorkoutBlueprintModal';
 import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../components/HealthPlanTemplate';
 import {
   generate30DayPlan, getCheckInFields, computeAIAdjustments, computeStreak,
@@ -157,6 +158,8 @@ const PremiumPage: React.FC = () => {
   const [mealCompletions, setMealCompletions] = usePersistedState<Record<string, Record<number, Record<number, boolean>>>>({}, 'hc_premium_meals');
   const [workoutCompletions, setWorkoutCompletions] = usePersistedState<Record<string, Record<number, Record<number, boolean>>>>({}, 'hc_premium_workouts');
   const [showFullPlan, setShowFullPlan] = useState(false);
+  const [showWorkoutModal, setShowWorkoutModal] = useState(false);
+  const [workoutSelectedDay, setWorkoutSelectedDay] = useState(0);
   const [selectedCuisine, setSelectedCuisine] = useState<Cuisine>(() => {
     const saved = localStorage.getItem('hc_selectedCuisine');
     return (saved as Cuisine) || 'egyptian';
@@ -609,6 +612,15 @@ const PremiumPage: React.FC = () => {
 
                     {selectedPlanTab === 'workout' && (
                       <div className="space-y-3 animate-fade-in">
+                        <button
+                          onClick={() => setShowWorkoutModal(true)}
+                          className="w-full py-3 text-sm font-bold flex items-center justify-center gap-2 bg-gradient-to-r from-rose-600 to-orange-500 hover:from-rose-700 hover:to-orange-600 text-white rounded-2xl transition-all"
+                        >
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
+                          </svg>
+                          Full 30-Day Workout Plan
+                        </button>
                         <DayProgressHeader
                           completed={Object.values(workoutCompletions[firstSelected || '']?.[activeDay - 1] || {}).filter(Boolean).length}
                           total={currentDay.workouts.length}
@@ -835,6 +847,7 @@ const PremiumPage: React.FC = () => {
             ))}
           </div>
         </div>
+        <WorkoutBlueprintModal isOpen={showWorkoutModal} onClose={() => setShowWorkoutModal(false)} bmi={25} goal="lose_weight" fitnessLevel="beginner" weight={75} selectedDay={workoutSelectedDay} onDayChange={setWorkoutSelectedDay} onSave={() => setShowWorkoutModal(false)} />
       </div>
     </div>
   );
