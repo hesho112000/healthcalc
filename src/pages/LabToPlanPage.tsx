@@ -595,12 +595,9 @@ const LabToPlanPage: React.FC = () => {
                     </div>
                     <button
                       onClick={() => { console.log('BLUEPRINT CLICKED'); setBlueprintKind('diabetes'); setShowBlueprint(true); setShowDiabetesPlan(false); }}
-                      className="w-full bg-white border-2 border-blue-500 text-blue-700 hover:bg-blue-50 py-3 rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                      className="bg-white border border-blue-600 text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer"
                     >
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
-                      </svg>
-                      View Your Personalized Health Blueprint
+                      View Blueprint
                     </button>
                     {diabetesCurrentDay.meals.map((meal, i) => (
                       <MealCard
@@ -713,12 +710,9 @@ const LabToPlanPage: React.FC = () => {
                     </div>
                     <button
                       onClick={() => { console.log('BLUEPRINT CLICKED'); setBlueprintKind('ht'); setShowBlueprint(true); setShowHtPlan(false); }}
-                      className="w-full bg-white border-2 border-blue-500 text-blue-700 hover:bg-blue-50 py-3 rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                      className="bg-white border border-blue-600 text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer"
                     >
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
-                      </svg>
-                      View Your Personalized Health Blueprint
+                      View Blueprint
                     </button>
                     {htCurrentDay.meals.map((meal, i) => (
                       <MealCard
