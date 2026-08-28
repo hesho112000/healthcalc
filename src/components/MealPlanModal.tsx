@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { MealPlan } from '../types';
 import { Cuisine } from '../utils/calculations_expanded';
 import { buildMealRowsForCuisine } from '../utils/calculations';
-import CuisineSelector from './CuisineSelector';
+import CuisineRegionCards from './CuisineRegionCards';
 import { useLanguage } from '../context/LanguageContext';
 
 interface ModalDayData {
@@ -182,7 +182,7 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
           <div className="flex items-center gap-3">
             <span className="text-xs font-bold text-gray-500 shrink-0">🍽️</span>
             <div className="flex-1 max-h-56 overflow-y-auto">
-              <CuisineSelector selected={activeCuisine} onChange={handleCuisineChange} />
+              <CuisineRegionCards selected={activeCuisine} onChange={handleCuisineChange} />
             </div>
           </div>
         </div>

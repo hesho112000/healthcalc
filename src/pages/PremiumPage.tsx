@@ -7,7 +7,7 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import CheckoutModal from '../components/CheckoutModal';
 import MealPlanModal from '../components/MealPlanModal';
-import CuisineSelector from '../components/CuisineSelector';
+import CuisineRegionCards from '../components/CuisineRegionCards';
 import WorkoutBlueprintModal from '../components/WorkoutBlueprintModal';
 import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../components/HealthPlanTemplate';
 import {
@@ -555,7 +555,7 @@ const PremiumPage: React.FC = () => {
                 {/* Cuisine Selector */}
                 <div className="card p-4">
                   <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ {t('chooseCuisine')}</label>
-                  <CuisineSelector selected={selectedCuisine} onChange={handleCuisineChange} className="max-h-64 overflow-y-auto pr-1" />
+                  <CuisineRegionCards selected={selectedCuisine} onChange={handleCuisineChange} />
                 </div>
 
                 {currentDay && (

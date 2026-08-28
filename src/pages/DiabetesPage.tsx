@@ -10,7 +10,7 @@ import SaveProgressButton from '../components/SaveProgressButton';
 import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../components/HealthPlanTemplate';
 import { type Cuisine } from '../utils/calculations_expanded';
 import MealPlanModal from '../components/MealPlanModal';
-import CuisineSelector from '../components/CuisineSelector';
+import CuisineRegionCards from '../components/CuisineRegionCards';
 import WorkoutBlueprintModal from '../components/WorkoutBlueprintModal';
 
 const DiabetesPage: React.FC = () => {
@@ -370,7 +370,7 @@ const DiabetesPage: React.FC = () => {
                     {/* Cuisine Selector */}
                     <div className="card p-4">
                       <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ {t('chooseCuisine')}</label>
-                      <CuisineSelector selected={selectedCuisine} onChange={handleCuisineChange} className="max-h-64 overflow-y-auto pr-1" />
+                      <CuisineRegionCards selected={selectedCuisine} onChange={handleCuisineChange} />
                     </div>
                     <button
                       onClick={() => setShowFullPlan(true)}
@@ -451,7 +451,7 @@ const DiabetesPage: React.FC = () => {
                     </div>
                     <div className="card p-4">
                       <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ {t('chooseCuisine')}</label>
-                      <CuisineSelector selected={selectedCuisine} onChange={handleCuisineChange} className="max-h-64 overflow-y-auto pr-1" />
+                      <CuisineRegionCards selected={selectedCuisine} onChange={handleCuisineChange} />
                     </div>
                     {currentDay.meals.map((meal, i) => (
                       <MealCard

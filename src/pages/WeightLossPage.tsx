@@ -8,7 +8,7 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import SaveProgressButton from '../components/SaveProgressButton';
 import MealPlanModal from '../components/MealPlanModal';
 import WorkoutBlueprintModal from '../components/WorkoutBlueprintModal';
-import CuisineSelector from '../components/CuisineSelector';
+import CuisineRegionCards from '../components/CuisineRegionCards';
 import {
   PageHero, TwoColumnLayout, StatsBar, DaySelectorBar,
   PlanTabBar, MacroBreakdown, MealCard, EmptyPlanState,
@@ -174,7 +174,7 @@ const WeightLossPage: React.FC = () => {
                   {/* Cuisine Selector */}
                   <div className="card p-5">
                     <h3 className="font-bold mb-3 flex items-center gap-2">🍽️ {t('chooseCuisine')}</h3>
-                    <CuisineSelector selected={selectedCuisine} onChange={handleCuisineChange} className="max-h-72 overflow-y-auto pr-1" />
+                    <CuisineRegionCards selected={selectedCuisine} onChange={handleCuisineChange} />
                   </div>
 
                   <DayProgressHeader completed={dayDoneCount} total={dayMeals.length + 1} dailyGoal="Complete all meals" />
