@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { UserProfile, CalorieResult } from '../types';
+import { UserProfile, CalorieResult, MealPlan, DailyMealPlan } from '../types';
 import { calculateFullResults } from '../utils/calculations';
 import { usePersistedState } from '../hooks/usePersistedState';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
@@ -9,6 +9,7 @@ import SaveProgressButton from '../components/SaveProgressButton';
 import MealPlanModal from '../components/MealPlanModal';
 import WorkoutBlueprintModal from '../components/WorkoutBlueprintModal';
 import CuisineRegionCards from '../components/CuisineRegionCards';
+import MealBuilder from '../components/MealBuilder';
 import {
   PageHero, TwoColumnLayout, StatsBar, DaySelectorBar,
   PlanTabBar, MacroBreakdown, MealCard, EmptyPlanState,
@@ -24,6 +25,7 @@ const WeightLossPage: React.FC = () => {
   const [result, setResult] = useState<CalorieResult | null>(null);
   const [activeTab, setActiveTab] = useState<'calories' | 'meals' | 'workout'>('calories');
   const [showMealPlanModal, setShowMealPlanModal] = useState(false);
+  const [customPlan, setCustomPlan] = useState<{ mealPlan: MealPlan[]; fullMealPlan: DailyMealPlan[] } | null>(null);
   const [showWorkoutModal, setShowWorkoutModal] = useState(false);
   const [selectedDay, setSelectedDay] = useState(() => (new Date().getDate() % 30));
   const [workoutSelectedDay, setWorkoutSelectedDay] = useState(0);
@@ -63,7 +65,8 @@ const WeightLossPage: React.FC = () => {
     setCompletedExercises(prev => ({ ...prev, [key]: !prev[key] }));
   }, []);
 
-  const dayMeals = result?.fullMealPlan[selectedDay]?.meals || [];
+  const displayResult = customPlan && result ? { ...result, mealPlan: customPlan.mealPlan, fullMealPlan: customPlan.fullMealPlan } : result;
+  const dayMeals = displayResult?.fullMealPlan[selectedDay]?.meals || [];
   const dayDone = dayCompletions[selectedDay] || {};
   const dayDoneCount = Object.values(dayDone).filter(Boolean).length;
   const todayAllDone = dayDoneCount === (dayMeals.length + 1) && dayMeals.length > 0;
@@ -204,6 +207,19 @@ const WeightLossPage: React.FC = () => {
                     <CuisineRegionCards selected={selectedCuisine} onChange={handleCuisineChange} />
                   </div>
 
+                  <div className="card p-5">
+                    <MealBuilder
+                      cuisine={selectedCuisine}
+                      sectionType="weight-loss"
+                      targetCalories={result?.targetCalories ?? 2000}
+                      onGenerate={(payload) => {
+                        setCustomPlan({ mealPlan: payload.mealPlan, fullMealPlan: payload.fullMealPlan });
+                        setShowMealPlanModal(true);
+                      }}
+                      onCuisineChange={handleCuisineChange}
+                    />
+                  </div>
+
                   <DayProgressHeader completed={dayDoneCount} total={dayMeals.length + 1} dailyGoal="Complete all meals" />
                   <button
                     onClick={() => setShowMealPlanModal(true)}
@@ -292,8 +308,8 @@ const WeightLossPage: React.FC = () => {
         }
       </TwoColumnLayout>
 
-      {result && (
-        <MealPlanModal isOpen={showMealPlanModal} onClose={() => setShowMealPlanModal(false)} targetCalories={result.targetCalories} mealPlan={result.mealPlan} fullMealPlan={result.fullMealPlan} selectedDay={selectedDay} onDayChange={setSelectedDay} weight={form.weight} onSave={() => setShowMealPlanModal(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} />
+      {displayResult && (
+        <MealPlanModal isOpen={showMealPlanModal} onClose={() => setShowMealPlanModal(false)} targetCalories={displayResult.targetCalories} mealPlan={displayResult.mealPlan} fullMealPlan={displayResult.fullMealPlan} selectedDay={selectedDay} onDayChange={setSelectedDay} weight={form.weight} onSave={() => setShowMealPlanModal(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} />
       )}
       {result && (
         <WorkoutBlueprintModal isOpen={showWorkoutModal} onClose={() => setShowWorkoutModal(false)} bmi={+(form.weight / ((form.height / 100) ** 2)).toFixed(1)} goal={form.goal} fitnessLevel="beginner" weight={form.weight} selectedDay={workoutSelectedDay} onDayChange={setWorkoutSelectedDay} onSave={() => setShowWorkoutModal(false)} />

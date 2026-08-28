@@ -5,9 +5,11 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../components/HealthPlanTemplate';
 import { getMealLabel } from '../utils/mealLabels';
 import { generateDiabetesPlan, generateHypertensionPlan, type DayPlan } from '../utils/healthPlans';
+import { toDayPlans } from '../utils/mealBuilder';
 import { type Cuisine } from '../utils/calculations_expanded';
 import MealPlanModal from '../components/MealPlanModal';
 import CuisineRegionCards from '../components/CuisineRegionCards';
+import MealBuilder from '../components/MealBuilder';
 import WorkoutBlueprintModal from '../components/WorkoutBlueprintModal';
 
 /* ──────────────── Types ──────────────── */
@@ -250,6 +252,8 @@ const LabToPlanPage: React.FC = () => {
   const [htActiveTab, setHtActiveTab] = useState<'macros' | 'meals' | 'workout'>('meals');
   const [showDiabetesPlan, setShowDiabetesPlan] = useState(false);
   const [showHtPlan, setShowHtPlan] = useState(false);
+  const [customDiabetesPlan, setCustomDiabetesPlan] = useState<DayPlan[] | null>(null);
+  const [customHtPlan, setCustomHtPlan] = useState<DayPlan[] | null>(null);
 
   const handleOpenFullPlan = (kind: 'diabetes' | 'ht' = 'diabetes') => {
     console.log('OPEN FULL-30 DAY PLAN');
@@ -291,8 +295,8 @@ const LabToPlanPage: React.FC = () => {
 
   const diabetesPlan = useMemo(() => generateDiabetesPlan({ age, weight, height }, { hba1c, fastingGlucose: fasting }, selectedCuisine), [age, weight, height, hba1c, fasting, selectedCuisine]);
   const htPlan = useMemo(() => generateHypertensionPlan({ age, weight, height }, { systolic, diastolic }, selectedCuisine), [age, weight, height, systolic, diastolic, selectedCuisine]);
-  const diabetesCurrentDay = diabetesPlan[diabetesSelectedDay];
-  const htCurrentDay = htPlan[htSelectedDay];
+  const diabetesCurrentDay = (customDiabetesPlan ?? diabetesPlan)[diabetesSelectedDay];
+  const htCurrentDay = (customHtPlan ?? htPlan)[htSelectedDay];
 
   const toggleDiabetesMeal = useCallback((dayIdx: number, mealIdx: number, done: boolean) => {
     setDiabetesCompletions(prev => ({ ...prev, [dayIdx]: { ...prev[dayIdx], [mealIdx]: done } }));
@@ -597,6 +601,18 @@ const LabToPlanPage: React.FC = () => {
                       <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ {t('chooseCuisine')}</label>
                       <CuisineRegionCards selected={selectedCuisine} onChange={handleCuisineChange} />
                     </div>
+                    <div className="card p-5">
+                      <MealBuilder
+                        cuisine={selectedCuisine}
+                        sectionType="lab-to-plan"
+                        filters={{ lowSugar: true }}
+                        onGenerate={(payload) => {
+                          setCustomDiabetesPlan(toDayPlans(payload.fullMealPlan, diabetesPlan));
+                          setShowDiabetesPlan(true);
+                        }}
+                        onCuisineChange={handleCuisineChange}
+                      />
+                    </div>
                     {diabetesCurrentDay.meals.map((meal, i) => (
                       <MealCard
                         key={i}
@@ -716,6 +732,18 @@ const LabToPlanPage: React.FC = () => {
                     <div className="card p-4">
                       <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ {t('chooseCuisine')}</label>
                       <CuisineRegionCards selected={selectedCuisine} onChange={handleCuisineChange} />
+                    </div>
+                    <div className="card p-5">
+                      <MealBuilder
+                        cuisine={selectedCuisine}
+                        sectionType="lab-to-plan"
+                        filters={{ lowSodium: true }}
+                        onGenerate={(payload) => {
+                          setCustomHtPlan(toDayPlans(payload.fullMealPlan, htPlan));
+                          setShowHtPlan(true);
+                        }}
+                        onCuisineChange={handleCuisineChange}
+                      />
                     </div>
                     {htCurrentDay.meals.map((meal, i) => (
                       <MealCard
@@ -989,8 +1017,8 @@ const LabToPlanPage: React.FC = () => {
       </div>
 
       <MedicalDisclaimer />
-      <MealPlanModal isOpen={showDiabetesPlan} onClose={() => setShowDiabetesPlan(false)} targetCalories={0} mealPlan={[]} fullMealPlan={diabetesPlan} selectedDay={diabetesSelectedDay} onDayChange={setDiabetesSelectedDay} weight={0} onSave={() => setShowDiabetesPlan(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} labSummary={`🩸 Fasting ${fasting} mg/dL · Postprandial ${postprandial} mg/dL · HbA1c ${hba1c}%`} />
-      <MealPlanModal isOpen={showHtPlan} onClose={() => setShowHtPlan(false)} targetCalories={0} mealPlan={[]} fullMealPlan={htPlan} selectedDay={htSelectedDay} onDayChange={setHtSelectedDay} weight={0} onSave={() => setShowHtPlan(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} labSummary={`❤️ BP ${systolic}/${diastolic} mmHg`} />
+      <MealPlanModal isOpen={showDiabetesPlan} onClose={() => setShowDiabetesPlan(false)} targetCalories={0} mealPlan={[]} fullMealPlan={customDiabetesPlan ?? diabetesPlan} selectedDay={diabetesSelectedDay} onDayChange={setDiabetesSelectedDay} weight={0} onSave={() => setShowDiabetesPlan(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} labSummary={`🩸 Fasting ${fasting} mg/dL · Postprandial ${postprandial} mg/dL · HbA1c ${hba1c}%`} />
+      <MealPlanModal isOpen={showHtPlan} onClose={() => setShowHtPlan(false)} targetCalories={0} mealPlan={[]} fullMealPlan={customHtPlan ?? htPlan} selectedDay={htSelectedDay} onDayChange={setHtSelectedDay} weight={0} onSave={() => setShowHtPlan(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} labSummary={`❤️ BP ${systolic}/${diastolic} mmHg`} />
       <WorkoutBlueprintModal isOpen={showDiabetesWorkoutModal} onClose={() => setShowDiabetesWorkoutModal(false)} bmi={25} goal="lose_weight" fitnessLevel="beginner" weight={75} selectedDay={diabetesWorkoutSelectedDay} onDayChange={setDiabetesWorkoutSelectedDay} onSave={() => setShowDiabetesWorkoutModal(false)} />
       <WorkoutBlueprintModal isOpen={showHtWorkoutModal} onClose={() => setShowHtWorkoutModal(false)} bmi={25} goal="lose_weight" fitnessLevel="beginner" weight={75} selectedDay={htWorkoutSelectedDay} onDayChange={setHtWorkoutSelectedDay} onSave={() => setShowHtWorkoutModal(false)} />
     </div>

@@ -3,6 +3,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { DiabetesInputs, LabResult, BPResult } from '../types';
 import { interpretLabResults, classifyBloodPressure } from '../utils/calculations';
 import { generateDiabetesPlan, type DayPlan } from '../utils/healthPlans';
+import { toDayPlans } from '../utils/mealBuilder';
 import { usePersistedState } from '../hooks/usePersistedState';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import Breadcrumbs from '../components/Breadcrumbs';
@@ -11,6 +12,7 @@ import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, S
 import { type Cuisine } from '../utils/calculations_expanded';
 import MealPlanModal from '../components/MealPlanModal';
 import CuisineRegionCards from '../components/CuisineRegionCards';
+import MealBuilder from '../components/MealBuilder';
 import WorkoutBlueprintModal from '../components/WorkoutBlueprintModal';
 
 const DiabetesPage: React.FC = () => {
@@ -36,6 +38,7 @@ const DiabetesPage: React.FC = () => {
     return (saved as Cuisine) || 'egyptian';
   });
   const [showFullPlan, setShowFullPlan] = useState(false);
+  const [customDayPlan, setCustomDayPlan] = useState<DayPlan[] | null>(null);
   const [workoutCompletions, setWorkoutCompletions] = usePersistedState<Record<number, Record<number, boolean>>>({}, 'hc_diabetes_workout_completions');
   const [showDiabetesWorkoutModal, setShowDiabetesWorkoutModal] = useState(false);
   const [diabetesWorkoutSelectedDay, setDiabetesWorkoutSelectedDay] = useState(0);
@@ -55,7 +58,7 @@ const DiabetesPage: React.FC = () => {
     [form.age, form.weight, form.hba1c, form.fastingGlucose, selectedCuisine]
   );
 
-  const currentDay: DayPlan = thirtyDayPlan[selectedDay];
+  const currentDay: DayPlan = (customDayPlan ?? thirtyDayPlan)[selectedDay];
 
   const toggleMealDone = useCallback((dayIdx: number, mealIdx: number, done: boolean) => {
     setDayCompletions(prev => ({ ...prev, [dayIdx]: { ...prev[dayIdx], [mealIdx]: done } }));
@@ -372,6 +375,18 @@ const DiabetesPage: React.FC = () => {
                       <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ {t('chooseCuisine')}</label>
                       <CuisineRegionCards selected={selectedCuisine} onChange={handleCuisineChange} />
                     </div>
+                    <div className="card p-5">
+                      <MealBuilder
+                        cuisine={selectedCuisine}
+                        sectionType="diabetes"
+                        filters={{ lowSugar: true, wholeGrainOnly: true }}
+                        onGenerate={(payload) => {
+                          setCustomDayPlan(toDayPlans(payload.fullMealPlan, thirtyDayPlan));
+                          setShowFullPlan(true);
+                        }}
+                        onCuisineChange={handleCuisineChange}
+                      />
+                    </div>
                     <button
                       onClick={() => setShowFullPlan(true)}
                       className="w-full btn-primary py-3 text-sm font-bold flex items-center justify-center gap-2"
@@ -423,7 +438,7 @@ const DiabetesPage: React.FC = () => {
                   </div>
                 )}
                 <MedicalDisclaimer />
-                <MealPlanModal isOpen={showFullPlan} onClose={() => setShowFullPlan(false)} targetCalories={0} mealPlan={[]} fullMealPlan={thirtyDayPlan} selectedDay={selectedDay} onDayChange={setSelectedDay} weight={0} onSave={() => setShowFullPlan(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} />
+                <MealPlanModal isOpen={showFullPlan} onClose={() => setShowFullPlan(false)} targetCalories={0} mealPlan={[]} fullMealPlan={customDayPlan ?? thirtyDayPlan} selectedDay={selectedDay} onDayChange={setSelectedDay} weight={0} onSave={() => setShowFullPlan(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} />
               </div>
             )}
 

@@ -8,6 +8,7 @@ import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import CheckoutModal from '../components/CheckoutModal';
 import MealPlanModal from '../components/MealPlanModal';
 import CuisineRegionCards from '../components/CuisineRegionCards';
+import MealBuilder from '../components/MealBuilder';
 import WorkoutBlueprintModal from '../components/WorkoutBlueprintModal';
 import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../components/HealthPlanTemplate';
 import {
@@ -15,6 +16,7 @@ import {
   buildCSVExport, buildEmailReport, triggerFoods, symptomOptions,
   type DayPlan, type CheckInField, type SymptomTrigger, type AIAdjustment, type StreakBadge,
 } from '../utils/healthPlans';
+import { toDayPlans, type MealBuilderFilters, type MealBuilderSection } from '../utils/mealBuilder';
 import { type Cuisine } from '../utils/calculations_expanded';
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -154,6 +156,7 @@ const PremiumPage: React.FC = () => {
   const [profileApplied, setProfileApplied] = useState(false);
 
   const [plans30, setPlans30] = useState<Record<string, DayPlan[]>>({});
+  const [customPlans, setCustomPlans] = useState<Record<string, DayPlan[]>>({});
   const [activeDay, setActiveDay] = useState(1);
   const [selectedPlanTab, setSelectedPlanTab] = useState<'meals' | 'workout'>('meals');
   const [mealCompletions, setMealCompletions] = usePersistedState<Record<string, Record<number, Record<number, boolean>>>>({}, 'hc_premium_meals');
@@ -249,8 +252,10 @@ const PremiumPage: React.FC = () => {
     setAiAdjustments(newAdjustments);
   }, [selectedConditions, profile, labValues, checkIns]);
 
-  const currentPlan = firstSelected && plans30[firstSelected] ? plans30[firstSelected] : null;
+  const currentPlan = firstSelected && (customPlans[firstSelected] || plans30[firstSelected]) ? (customPlans[firstSelected] || plans30[firstSelected]) : null;
   const currentDay = currentPlan ? currentPlan[activeDay - 1] : null;
+  const builderSection: MealBuilderSection = firstSelected === 'diabetes' ? 'diabetes' : firstSelected === 'hypertension' ? 'hypertension' : 'advanced-care';
+  const builderFilters: MealBuilderFilters | undefined = firstSelected === 'diabetes' ? { lowSugar: true, wholeGrainOnly: true } : firstSelected === 'hypertension' ? { lowSodium: true } : undefined;
 
   const togglePremiumMeal = useCallback((condId: string, dayIdx: number, mealIdx: number, done: boolean) => {
     setMealCompletions(prev => ({ ...prev, [condId]: { ...prev[condId], [dayIdx]: { ...(prev[condId]?.[dayIdx] || {}), [mealIdx]: done } } }));
@@ -556,6 +561,21 @@ const PremiumPage: React.FC = () => {
                 <div className="card p-4">
                   <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ {t('chooseCuisine')}</label>
                   <CuisineRegionCards selected={selectedCuisine} onChange={handleCuisineChange} />
+                </div>
+
+                <div className="card p-5">
+                  <MealBuilder
+                    cuisine={selectedCuisine}
+                    sectionType={builderSection}
+                    filters={builderFilters}
+                    onGenerate={(payload) => {
+                      if (firstSelected) {
+                        setCustomPlans((prev) => ({ ...prev, [firstSelected]: toDayPlans(payload.fullMealPlan, plans30[firstSelected]) }));
+                        setShowFullPlan(true);
+                      }
+                    }}
+                    onCuisineChange={handleCuisineChange}
+                  />
                 </div>
 
                 {currentDay && (
