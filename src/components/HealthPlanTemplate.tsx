@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { getMealName, getFoodItemText, normalizeMealKey } from '../utils/mealLabels';
+import { isHeavyMeal } from '../data/cuisine-allowed';
 
 /* ═══════════════════════════════════════════════════════════════════
    SHARED TYPES
@@ -243,6 +244,7 @@ export const MealCard: React.FC<{
   const protein = meal.protein ?? Math.round(meal.calories * 0.3 / 4);
   const carbs = meal.carbs ?? Math.round(meal.calories * 0.45 / 4);
   const fat = meal.fat ?? Math.round(meal.calories * 0.25 / 9);
+  const heavy = isHeavyMeal(meal.meal, meal.calories, fat);
 
   const toggle = () => {
     const next = !isDone;
@@ -275,6 +277,9 @@ export const MealCard: React.FC<{
           <div className="flex items-center justify-end gap-1.5">
             {meal.verified && (
               <span className="px-1.5 py-0.5 rounded-md bg-emerald-600 text-[9px] font-bold text-white" title="USDA Database">USDA ✓</span>
+            )}
+            {heavy && (
+              <span className="px-1.5 py-0.5 rounded-md bg-red-100 text-[9px] font-bold text-red-700" title="Heavy dish · best at lunch">⚠️ {language === 'ar' ? 'ثقيلة' : 'Heavy'}</span>
             )}
             <p className="text-2xl font-black text-primary-700 leading-none">{meal.calories}</p>
           </div>

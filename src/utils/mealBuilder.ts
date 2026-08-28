@@ -3,6 +3,7 @@ import type { DayPlan } from './healthPlans';
 import { FOODS_DATABASE, type FoodItem } from './calculations';
 import { usdaEnrich } from './usda-meals-database';
 import { getPortionMeasure, type Portion } from './cuisineCatalog';
+import { matchesWhitelist, isTimeSuitable, isHeavyMeal, type MealSlot } from '../data/cuisine-allowed';
 
 export type MealBuilderSection = 'weight-loss' | 'diabetes' | 'hypertension' | 'lab-to-plan' | 'advanced-care';
 
@@ -144,26 +145,28 @@ export const buildBuilderPool = (cuisine: string, _section?: MealBuilderSection,
   const mainPool = (slot: 'breakfast' | 'lunch' | 'dinner'): FoodItem[] => {
     const exact = db.filter((f) => f.mealType === slot && !f.type && f.cuisine.includes(cuisine));
     const globals = db.filter((f) => f.mealType === slot && !f.type && f.cuisine.includes('all') && !f.cuisine.includes(cuisine));
-    const others = db.filter((f) => f.mealType === slot && !f.type && !inCuisine(f));
     const pool: FoodItem[] = [];
     const seen = new Set<string>();
     const push = (f: FoodItem) => {
       const key = f.name_en || f.name;
       if (seen.has(key)) return;
       seen.add(key);
-      pool.push(f);
+      if (matchesWhitelist(cuisine, slot, key, f.cuisine) && isTimeSuitable(slot, key, isHeavyMeal(key, f.calories, f.fat), f.calories, f.fat)) pool.push(f);
     };
     exact.forEach(push);
     globals.forEach(push);
-    others.forEach(push);
-    let lowSodium = filters?.lowSodium;
-    if (lowSodium) {
-      const filtered = pool.filter((f) => !/(processed|deli|pickl|canned|smok|salted|sausage|bacon|salami)/i.test(f.name_en || f.name));
-      if (filtered.length >= MIN_POOL[slot] - 2) return filtered;
+    if (pool.length < MIN_POOL[slot]) {
+      db.filter((f) => f.mealType === slot && !f.type && !f.cuisine.includes(cuisine) && !f.cuisine.includes('all'))
+        .forEach(push);
     }
     if (pool.length < MIN_POOL[slot]) {
       const extras = db.filter((f) => f.mealType === slot && !f.type && !seen.has(f.name_en || f.name));
       extras.forEach(push);
+    }
+    let lowSodium = filters?.lowSodium;
+    if (lowSodium) {
+      const filtered = pool.filter((f) => !/(processed|deli|pickl|canned|smok|salted|sausage|bacon|salami)/i.test(f.name_en || f.name));
+      if (filtered.length >= MIN_POOL[slot] - 2) return filtered;
     }
     return pool;
   };

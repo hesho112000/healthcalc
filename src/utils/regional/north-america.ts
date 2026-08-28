@@ -3,11 +3,11 @@ import type { RegionalFood } from '../cuisineCatalog';
 export const FOODS: Record<string, RegionalFood[]> = {
   american: [
     { name_en: 'Pancakes with Maple Syrup', name_ar: 'بان كيك بشراب القيقب', mealType: 'breakfast', calories: 480, protein: 9, carbs: 84, fat: 12 },
-    { name_en: 'Scrambled Eggs and Bacon', name_ar: 'بيض مخفوق مع لحم مقدد', mealType: 'breakfast', calories: 420, protein: 24, carbs: 4, fat: 34 },
+    { name_en: 'Scrambled Eggs and Turkey Bacon', name_ar: 'بيض مخفوق مع بيكون ديك رومي', mealType: 'breakfast', calories: 420, protein: 24, carbs: 4, fat: 34 },
     { name_en: 'Waffles with Butter', name_ar: 'وافل بالزبدة', mealType: 'breakfast', calories: 380, protein: 8, carbs: 58, fat: 13 },
     { name_en: 'Cinnamon French Toast', name_ar: 'خبز فرنسي بالقرفة', mealType: 'breakfast', calories: 410, protein: 12, carbs: 60, fat: 15 },
     { name_en: 'Cheeseburger', name_ar: 'تشيز برجر', mealType: 'lunch', calories: 540, protein: 28, carbs: 42, fat: 29 },
-    { name_en: 'BBQ Pork Ribs', name_ar: 'أضلاع لحم الخنزير بالباربكيو', mealType: 'lunch', calories: 620, protein: 42, carbs: 30, fat: 37 },
+    { name_en: 'BBQ Beef Ribs', name_ar: 'أضلاع لحم البقر بالباربكيو', mealType: 'lunch', calories: 620, protein: 42, carbs: 30, fat: 37 },
     { name_en: 'Grilled Salmon', name_ar: 'سلمون مشوي', mealType: 'lunch', calories: 380, protein: 36, carbs: 6, fat: 24 },
     { name_en: 'Caesar Chicken Wrap', name_ar: 'لفة دجاج سيزر', mealType: 'lunch', calories: 450, protein: 30, carbs: 40, fat: 18 },
     { name_en: 'Meatloaf with Mashed Potatoes', name_ar: 'رغيف اللحم مع البطاطا المهروسة', mealType: 'dinner', calories: 560, protein: 34, carbs: 46, fat: 28 },
@@ -35,7 +35,7 @@ export const FOODS: Record<string, RegionalFood[]> = {
   ],
   canadian: [
     { name_en: 'Maple Pancakes', name_ar: 'فطائر بالشراب القيقبي', mealType: 'breakfast', calories: 500, protein: 10, carbs: 88, fat: 12 },
-    { name_en: 'Peameal Bacon Sandwich', name_ar: 'ساندويتش لحم مقدد مطحون', mealType: 'breakfast', calories: 430, protein: 24, carbs: 50, fat: 15 },
+    { name_en: 'Peameal Beef Bacon Sandwich', name_ar: 'ساندويتش بيكون لحم بقري', mealType: 'breakfast', calories: 430, protein: 24, carbs: 50, fat: 15 },
     { name_en: 'Beaver Tails', name_ar: 'بيفر تيلز (حلوى البيور)', mealType: 'breakfast', calories: 380, protein: 6, carbs: 60, fat: 13 },
     { name_en: 'Oatmeal with Maple Syrup', name_ar: 'شوفان بشراب القيقب', mealType: 'breakfast', calories: 280, protein: 10, carbs: 52, fat: 5 },
     { name_en: 'Poutine', name_ar: 'بوتين', mealType: 'lunch', calories: 720, protein: 20, carbs: 82, fat: 36 },
@@ -76,7 +76,7 @@ export const FOODS: Record<string, RegionalFood[]> = {
     { name_en: 'Curry Chicken with Rice and Peas', name_ar: 'دجاج بالكاري مع أرز وبازلاء', mealType: 'lunch', calories: 560, protein: 36, carbs: 58, fat: 20 },
     { name_en: 'Oxtail Stew', name_ar: 'يخنة ذيل الثور', mealType: 'dinner', calories: 620, protein: 42, carbs: 40, fat: 34 },
     { name_en: 'Curry Goat', name_ar: 'ماعز بالكاري', mealType: 'dinner', calories: 540, protein: 38, carbs: 22, fat: 34 },
-    { name_en: 'Rice and Peas with Jerk Pork', name_ar: 'أرز وبازلاء مع لحم الخنزير جيرك', mealType: 'dinner', calories: 550, protein: 30, carbs: 60, fat: 21 },
+    { name_en: 'Rice and Peas with Jerk Chicken', name_ar: 'أرز وبازلاء مع دجاج جيرك', mealType: 'dinner', calories: 550, protein: 30, carbs: 60, fat: 21 },
     { name_en: 'Escovitch Fish', name_ar: 'سمك إسكوفيتش', mealType: 'dinner', calories: 420, protein: 34, carbs: 24, fat: 22 },
     { name_en: 'Jamaican Pattie', name_ar: 'باتي جامايكي', mealType: 'snack', calories: 300, protein: 10, carbs: 30, fat: 16 },
     { name_en: 'Grater Cake', name_ar: 'كعكة الجزر المبشور', mealType: 'snack', calories: 250, protein: 3, carbs: 48, fat: 6 },

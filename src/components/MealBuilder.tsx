@@ -120,6 +120,9 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
           )}
           <span className="px-1.5 py-0.5 rounded-md bg-orange-50 text-[10px] font-semibold text-orange-600">P {item.protein}g</span>
           <span className="px-1.5 py-0.5 rounded-md bg-yellow-50 text-[10px] font-semibold text-yellow-700">C {item.carbs}g</span>
+          {item.heavy && (
+            <span className="px-1.5 py-0.5 rounded-md bg-red-100 text-[10px] font-bold text-red-700" title="Heavy dish">⚠️ {ar ? 'ثقيلة' : 'Heavy'}</span>
+          )}
           {showGl && <span className="px-1.5 py-0.5 rounded-md bg-rose-50 text-[10px] font-semibold text-rose-600">GL≈{gl}</span>}
           {showLowSodium && sodium !== undefined && (
             <span className={`px-1.5 py-0.5 rounded-md text-[10px] font-semibold ${sodium <= 180 ? 'bg-teal-50 text-teal-700' : 'bg-gray-100 text-gray-500'}`}>

@@ -1,6 +1,7 @@
 import { UserProfile, CalorieResult, Macros, MealPlan, DailyMealPlan, WorkoutPlan, DiabetesInputs, LabResult, BPResult } from '../types';
 import { CUISINE_GROUPS, CUISINE_FLAGS, REGIONAL_FOODS, FRUITS, JUICES, CUISINE_FRUITS, CUISINE_JUICES, getPortion, getPortionMeasure, type Portion, type Cuisine, type MealType } from './cuisineCatalog';
 import { usdaEnrich } from './usda-meals-database';
+import { isHeavyMeal } from '../data/cuisine-allowed';
 
 export type { Cuisine, MealType } from './cuisineCatalog';
 
@@ -261,6 +262,8 @@ export interface FoodItem {
   saturatedFat?: number;
   cholesterol?: number;
   benefits?: string;
+  halal?: boolean;
+  heavy?: boolean;
 }
 
 export const CUISINE_OPTIONS: Array<{ key: Cuisine; label_ar: string; label_en: string; flag: string }> =
@@ -363,6 +366,8 @@ export const FOODS_DATABASE: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
     ...enriched,
     verified: enriched.verified,
     nutritionSource: enriched.source,
+    halal: true,
+    heavy: isHeavyMeal(f.name_en || f.name, f.calories, f.fat),
   };
 });
 
