@@ -101,6 +101,19 @@ for (const rawLine of tail.split('\n')) {
 
 const dupes = [...new Set(entries.map((e) => e.key).filter((k, i) => entries.findIndex((x) => x.key === k) !== i))];
 
+// Guards against the historic "grams * 0.11 generic protein factor" class of bug:
+// no production source may scale macros by an ad-hoc per-gram decimal constant.
+// The only legitimate scaling is the USDA per-100 proportion used in
+// getMealNutrition (factor = grams / (perServing ?? 100)).
+const genericFactorHits = [];
+const FACTOR_BAD = /(protein|carbs|fat)\s*[:=]\s*\(?grams?\s*\*?\s*0\.1[0-9]/i;
+for (const target of ['src/utils/calculations.ts', 'src/utils/mealBuilder.ts', 'src/utils/usda-meals-database.ts', 'src/utils/healthPlans.ts']) {
+  const text = readFileSync(join(__dirname, target), 'utf8');
+  for (const m of text.matchAll(/^(.*)$/gm)) {
+    if (FACTOR_BAD.test(m[1])) genericFactorHits.push(`${target}: ${m[1].trim().slice(0, 90)}`);
+  }
+}
+
 // Entries whose kcal intentionally exceeds macro-derived sum by >10 kcal (USDA rounding:
 // fibre, sugar alcohols, MCT oils, absorbed fry oil, or rounded p/c/f to 1 decimal).
 const ALLOWED_IMBALANCE = new Set([
@@ -190,6 +203,11 @@ if (warnings.length > 0) {
 if (dupes.length > 0) {
   console.log(`⚠️ Duplicate keys (last wins — first is shadowed): ${dupes.join(', ')}\n`);
 }
+if (genericFactorHits.length > 0) {
+  console.log(`❌ Generic macro factor pattern found (grams × 0.1x) — must use USDA per-100:\n`);
+  for (const g of genericFactorHits) console.log(`   • ${g}`);
+  console.log('');
+}
 if (imbalanceUnexpected.length > 0) {
   console.log(`${imbalanceUnexpected.length} entries fail P*4+C*4+F*9 ±10 kcal check:\n`);
   for (const i of imbalanceUnexpected) console.log(`   • ${i.key}: kcal=${i.kcal} vs macro-derived ${i.macroKcal} (Δ${i.diff})`);
@@ -219,4 +237,4 @@ console.log(`   With fiber:         ${entries.filter((e) => e.fiber != null).len
 console.log(`   With sodium:        ${entries.filter((e) => e.sodium != null).length}`);
 console.log(`   With sugar:         ${entries.filter((e) => e.sugar != null).length}`);
 
-process.exit(suspicious.length > 0 || imbalanceUnexpected.length > 0 ? 1 : 0);
+process.exit(suspicious.length > 0 || imbalanceUnexpected.length > 0 || genericFactorHits.length > 0 ? 1 : 0);
