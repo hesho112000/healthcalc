@@ -6,7 +6,6 @@ import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, S
 import { generateDiabetesPlan, generateHypertensionPlan, type DayPlan } from '../utils/healthPlans';
 import { type Cuisine } from '../utils/calculations_expanded';
 import MealPlanModal from '../components/MealPlanModal';
-import SimpleBlueprint from '../components/SimpleBlueprint';
 import CuisineRegionCards from '../components/CuisineRegionCards';
 import WorkoutBlueprintModal from '../components/WorkoutBlueprintModal';
 
@@ -249,9 +248,13 @@ const LabToPlanPage: React.FC = () => {
   const [htSelectedDay, setHtSelectedDay] = useState(0);
   const [htActiveTab, setHtActiveTab] = useState<'macros' | 'meals' | 'workout'>('meals');
   const [showDiabetesPlan, setShowDiabetesPlan] = useState(false);
-  const [showBlueprint, setShowBlueprint] = useState(false);
-  const [blueprintKind, setBlueprintKind] = useState<'diabetes' | 'ht'>('diabetes');
   const [showHtPlan, setShowHtPlan] = useState(false);
+
+  const handleOpenFullPlan = (kind: 'diabetes' | 'ht' = 'diabetes') => {
+    console.log('OPEN FULL-30 DAY PLAN');
+    setShowDiabetesPlan(kind === 'diabetes');
+    setShowHtPlan(kind === 'ht');
+  };
 
   const [showDiabetesWorkoutModal, setShowDiabetesWorkoutModal] = useState(false);
   const [showHtWorkoutModal, setShowHtWorkoutModal] = useState(false);
@@ -593,12 +596,6 @@ const LabToPlanPage: React.FC = () => {
                       <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ {t('chooseCuisine')}</label>
                       <CuisineRegionCards selected={selectedCuisine} onChange={handleCuisineChange} />
                     </div>
-                    <button
-                      onClick={() => { console.log('BLUEPRINT CLICKED'); setBlueprintKind('diabetes'); setShowBlueprint(true); setShowDiabetesPlan(false); }}
-                      className="bg-white border border-blue-600 text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer"
-                    >
-                      View Blueprint
-                    </button>
                     {diabetesCurrentDay.meals.map((meal, i) => (
                       <MealCard
                         key={i}
@@ -607,6 +604,17 @@ const LabToPlanPage: React.FC = () => {
                         onToggle={(done) => toggleDiabetesMeal(diabetesSelectedDay, i, done)}
                       />
                     ))}
+                    <div className="mt-8 space-y-4">
+                      <div className="border-t pt-6">
+                        <button
+                          onClick={() => handleOpenFullPlan('diabetes')}
+                          className="w-full bg-green-50 border border-green-200 text-green-700 py-4 px-6 rounded-xl font-medium hover:bg-green-100 transition-all flex items-center justify-center gap-2"
+                        >
+                          <span>📄</span> Open Full-30 Day Plan with PDF / Print
+                        </button>
+                        <p className="text-center text-xs text-gray-500 mt-2">Download or print your complete personalized plan</p>
+                      </div>
+                    </div>
                   </div>
                 )}
 
@@ -708,12 +716,6 @@ const LabToPlanPage: React.FC = () => {
                       <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ {t('chooseCuisine')}</label>
                       <CuisineRegionCards selected={selectedCuisine} onChange={handleCuisineChange} />
                     </div>
-                    <button
-                      onClick={() => { console.log('BLUEPRINT CLICKED'); setBlueprintKind('ht'); setShowBlueprint(true); setShowHtPlan(false); }}
-                      className="bg-white border border-blue-600 text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer"
-                    >
-                      View Blueprint
-                    </button>
                     {htCurrentDay.meals.map((meal, i) => (
                       <MealCard
                         key={i}
@@ -722,6 +724,17 @@ const LabToPlanPage: React.FC = () => {
                         onToggle={(done) => toggleHtMeal(htSelectedDay, i, done)}
                       />
                     ))}
+                    <div className="mt-8 space-y-4">
+                      <div className="border-t pt-6">
+                        <button
+                          onClick={() => handleOpenFullPlan('ht')}
+                          className="w-full bg-green-50 border border-green-200 text-green-700 py-4 px-6 rounded-xl font-medium hover:bg-green-100 transition-all flex items-center justify-center gap-2"
+                        >
+                          <span>📄</span> Open Full-30 Day Plan with PDF / Print
+                        </button>
+                        <p className="text-center text-xs text-gray-500 mt-2">Download or print your complete personalized plan</p>
+                      </div>
+                    </div>
                   </div>
                 )}
 
@@ -963,17 +976,6 @@ const LabToPlanPage: React.FC = () => {
                 <div><p className="text-sm font-semibold text-emerald-800">Email client opened</p><p className="text-xs text-emerald-600">Your full health report with profile, plans, and progress is ready to send.</p></div>
               </div>
             )}
-
-            {/* GREEN BAR: Full 30-Day Plan (only full-width bar — no blue bar) */}
-            <div className="mt-8">
-              <button
-                onClick={() => { console.log('FULL 30-DAY PLAN CLICKED'); setShowBlueprint(false); if (blueprintKind === 'ht') setShowHtPlan(true); else setShowDiabetesPlan(true); }}
-                className="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-4 px-6 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
-              >
-                <span>📅</span> Full 30-Day Plan with AI Food Index <span>→</span>
-              </button>
-              <p className="text-center text-sm text-gray-500 mt-2">Personalized based on your lab results + {selectedCuisine} cuisine</p>
-            </div>
           </div>
         )}
 
@@ -985,14 +987,6 @@ const LabToPlanPage: React.FC = () => {
         )}
       </div>
 
-      {showBlueprint && (
-        <SimpleBlueprint
-          onClose={() => setShowBlueprint(false)}
-          selectedCuisine={selectedCuisine}
-          dayMeals={(blueprintKind === 'ht' ? htPlan : diabetesPlan)?.[0]}
-          onFullPlan={() => { setShowBlueprint(false); if (blueprintKind === 'ht') setShowHtPlan(true); else setShowDiabetesPlan(true); }}
-        />
-      )}
       <MedicalDisclaimer />
       <MealPlanModal isOpen={showDiabetesPlan} onClose={() => setShowDiabetesPlan(false)} targetCalories={0} mealPlan={[]} fullMealPlan={diabetesPlan} selectedDay={diabetesSelectedDay} onDayChange={setDiabetesSelectedDay} weight={0} onSave={() => setShowDiabetesPlan(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} labSummary={`🩸 Fasting ${fasting} mg/dL · Postprandial ${postprandial} mg/dL · HbA1c ${hba1c}%`} />
       <MealPlanModal isOpen={showHtPlan} onClose={() => setShowHtPlan(false)} targetCalories={0} mealPlan={[]} fullMealPlan={htPlan} selectedDay={htSelectedDay} onDayChange={setHtSelectedDay} weight={0} onSave={() => setShowHtPlan(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} labSummary={`❤️ BP ${systolic}/${diastolic} mmHg`} />
