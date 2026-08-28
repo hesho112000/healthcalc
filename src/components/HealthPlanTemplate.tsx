@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { getMealName, getFoodItemText, normalizeMealKey } from '../utils/mealLabels';
 
 /* ═══════════════════════════════════════════════════════════════════
    SHARED TYPES
    ═══════════════════════════════════════════════════════════════════ */
-export interface PlanMealItem { meal: string; calories: number; items: string[]; tips?: string; protein?: number; carbs?: number; fat?: number }
+export interface PlanMealItem { meal: string; calories: number; items: string[]; tips?: string; protein?: number; carbs?: number; fat?: number; nameAr?: string; nameEn?: string }
 export interface PlanWorkoutItem { exercise: string; sets: string; notes: string; duration?: string; calories?: number }
 export interface PlanDay { day: number; label: string; phase: string; meals: PlanMealItem[]; workouts: PlanWorkoutItem[]; dailyGoal: string; guidelines?: string[] }
 export interface StatsData { bmr?: number; tdee?: number; targetCalories?: number }
@@ -223,8 +224,8 @@ export const MacroBreakdown: React.FC<{
    SMART MEAL CARD — macro badges, calorie counter, swap, checkbox
    ═══════════════════════════════════════════════════════════════════ */
 const mealIcons: Record<string, string> = {
-  breakfast: '🌅', lunch: '☀️', dinner: '🌙', snack: '🥜', 'snack am': '🍏', 'snack pm': '🥜',
-  'mid-morning snack': '🍏', 'afternoon snack': '🥜',
+  breakfast: '🌅', lunch: '☀️', dinner: '🌙', snack: '🥜',
+  'morning snack': '🍏', 'afternoon snack': '🥜',
 };
 
 export const MealCard: React.FC<{
@@ -234,10 +235,11 @@ export const MealCard: React.FC<{
   onSwap?: () => void;
   swappedTag?: string;
 }> = ({ meal, done: doneProp, onToggle, onSwap, swappedTag }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [localDone, setLocalDone] = useState(false);
   const isDone = doneProp ?? localDone;
-  const icon = mealIcons[meal.meal.toLowerCase()] || '🍽️';
+  const mealKey = normalizeMealKey(meal.meal);
+  const icon = mealIcons[mealKey] || '🍽️';
   const protein = meal.protein ?? Math.round(meal.calories * 0.3 / 4);
   const carbs = meal.carbs ?? Math.round(meal.calories * 0.45 / 4);
   const fat = meal.fat ?? Math.round(meal.calories * 0.25 / 9);
@@ -265,7 +267,7 @@ export const MealCard: React.FC<{
           <div>
             <div className="flex items-center gap-2">
               <span className="text-base">{icon}</span>
-              <h4 className={`font-bold text-sm ${isDone ? 'text-sage-600 line-through' : 'text-gray-900'}`}>{meal.meal}</h4>
+              <h4 className={`font-bold text-sm ${isDone ? 'text-sage-600 line-through' : 'text-gray-900'}`}>{getMealName(meal, language)}</h4>
             </div>
           </div>
         </div>
@@ -300,7 +302,7 @@ export const MealCard: React.FC<{
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5">
           {meal.items.map((item, j) => (
             <li key={j} className="flex items-center gap-2 text-xs text-gray-600">
-              <span className="w-1.5 h-1.5 bg-sage-400 rounded-full shrink-0" />{item}
+              <span className="w-1.5 h-1.5 bg-sage-400 rounded-full shrink-0" />{getFoodItemText(item, meal.nameAr, meal.nameEn, language)}
             </li>
           ))}
         </ul>

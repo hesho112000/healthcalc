@@ -14,20 +14,50 @@ export type MealType = 'breakfast' | 'lunch' | 'dinner' | 'snack' | 'fruit' | 'j
 export interface Portion {
   grams: number;
   measure: string;
+  measureAr?: string;
   ml?: number;
   note?: string;
 }
 
-export const DEFAULT_PORTION: Portion = { grams: 150, measure: '1 serving (150g)' };
+export const DEFAULT_PORTION: Portion = { grams: 150, measure: '1 serving (150g)', measureAr: 'حصة واحدة (150 جم)' };
 
 export const PORTION_BY_MEALTYPE: Record<MealType, Portion> = {
-  breakfast: { grams: 250, measure: '1 plate (250g)' },
-  lunch: { grams: 300, measure: '1 plate (300g)' },
-  dinner: { grams: 280, measure: '1 portion (280g)' },
-  snack: { grams: 60, measure: '1 serving (60g)' },
-  fruit: { grams: 120, measure: '1 serving (120g)' },
-  juice: { grams: 200, measure: '1 cup (200ml)', ml: 200, note: 'no added sugar' },
+  breakfast: { grams: 250, measure: '1 plate (250g)', measureAr: 'طبق واحد (250 جم)' },
+  lunch: { grams: 300, measure: '1 plate (300g)', measureAr: 'طبق واحد (300 جم)' },
+  dinner: { grams: 280, measure: '1 portion (280g)', measureAr: 'حصة واحدة (280 جم)' },
+  snack: { grams: 60, measure: '1 serving (60g)', measureAr: 'حصة واحدة (60 جم)' },
+  fruit: { grams: 120, measure: '1 serving (120g)', measureAr: 'حصة واحدة (120 جم)' },
+  juice: { grams: 200, measure: '1 cup (200ml)', measureAr: 'كوب واحد (200 مل)', ml: 200, note: 'no added sugar' },
 };
+
+export interface PortionLike {
+  grams?: number;
+  measure?: string;
+  measureEn?: string;
+  measureAr?: string;
+  ml?: number;
+}
+
+const warnedMeasures = new Set<string>();
+
+export const getPortionMeasure = (portion: PortionLike | undefined, lang?: string): string => {
+  if (!portion) return '';
+  const en = portion.measureEn ?? portion.measure;
+  if (lang === 'ar') {
+    if (portion.measureAr) return portion.measureAr;
+    if (en && !warnedMeasures.has(en)) {
+      warnedMeasures.add(en);
+      console.warn(`[healthcalc] Missing Arabic measure for "${en}" — falling back to "${portion.ml ? portion.ml + ' مل' : portion.grams ? portion.grams + ' جم' : en}".`);
+    }
+    if (portion.ml) return `${portion.ml} مل`;
+    if (portion.grams) return `${portion.grams} جم`;
+    return en || '';
+  }
+  return en ?? (portion.ml ? `${portion.ml}ml` : portion.grams ? `${portion.grams}g` : '');
+};
+
+export const getMeasure = (meal: { portion?: PortionLike } | undefined, lang?: string): string =>
+  getPortionMeasure(meal?.portion, lang);
 
 export const PORTION_OVERRIDES: Record<string, Portion> = {
   'Foul Medames with Olive Oil': { grams: 150, measure: '1 bowl (150g)' },

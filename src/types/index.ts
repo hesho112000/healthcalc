@@ -48,6 +48,8 @@ export interface MealPlan {
   fat: number;
   items: string[];
   description: string;
+  nameAr?: string;
+  nameEn?: string;
 }
 
 export interface DailyMealPlan {

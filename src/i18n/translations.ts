@@ -647,11 +647,24 @@ type TranslationKeys = {
   dashOfflineDesc: string;
   backendUnavailable: string;
   chooseCuisine: string;
+  // Meal labels
+  mealBreakfast: string;
+  mealLunch: string;
+  mealDinner: string;
+  mealMorningSnack: string;
+  mealAfternoonSnack: string;
+  mealSnack: string;
 };
 
 export const translations: Record<Language, TranslationKeys> = {
   en: {
     appName: 'HealthCalc.ai',
+    mealBreakfast: 'Breakfast',
+    mealLunch: 'Lunch',
+    mealDinner: 'Dinner',
+    mealMorningSnack: 'Morning Snack',
+    mealAfternoonSnack: 'Afternoon Snack',
+    mealSnack: 'Snack',
     tagline: 'Your AI Health Companion',
     searchPlaceholder: 'Search health calculators...',
     home: 'Home',
@@ -1277,6 +1290,12 @@ export const translations: Record<Language, TranslationKeys> = {
   },
   fr: {
     appName: 'HealthCalc.ai',
+    mealBreakfast: 'Petit-déjeuner',
+    mealLunch: 'Déjeuner',
+    mealDinner: 'Dîner',
+    mealMorningSnack: 'Collation du matin',
+    mealAfternoonSnack: 'Collation de l\'après-midi',
+    mealSnack: 'Collation',
     tagline: 'Votre Compagnon Santé IA',
     searchPlaceholder: 'Rechercher des calculateurs de santé...',
     home: 'Accueil',
@@ -1902,6 +1921,12 @@ export const translations: Record<Language, TranslationKeys> = {
   },
   es: {
     appName: 'HealthCalc.ai',
+    mealBreakfast: 'Desayuno',
+    mealLunch: 'Almuerzo',
+    mealDinner: 'Cena',
+    mealMorningSnack: 'Merienda de la mañana',
+    mealAfternoonSnack: 'Merienda de la tarde',
+    mealSnack: 'Merienda',
     tagline: 'Tu Compañero de Salud IA',
     searchPlaceholder: 'Buscar calculadoras de salud...',
     home: 'Inicio',
@@ -2527,6 +2552,12 @@ export const translations: Record<Language, TranslationKeys> = {
   },
   ar: {
     appName: 'HealthCalc.ai',
+    mealBreakfast: 'الإفطار',
+    mealLunch: 'الغداء',
+    mealDinner: 'العشاء',
+    mealMorningSnack: 'وجبة خفيفة صباحية',
+    mealAfternoonSnack: 'وجبة خفيفة مسائية',
+    mealSnack: 'وجبة خفيفة',
     tagline: 'رفيقك الصحي بالذكاء الاصطناعي',
     searchPlaceholder: 'ابحث عن حاسبات صحية...',
     home: 'الرئيسية',

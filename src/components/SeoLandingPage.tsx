@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Language } from '../types';
 import { useLanguage } from '../context/LanguageContext';
+import { getMealLabel } from '../utils/mealLabels';
 import MedicalDisclaimer from './MedicalDisclaimer';
 
 export interface SeoPageData {
@@ -117,7 +118,7 @@ const SeoLandingPage: React.FC<SeoLandingPageProps> = ({ data, pageLang }) => {
                 {data.samplePlan.meals.map((meal, i) => (
                   <div key={i} className="bg-gray-50 rounded-xl p-4">
                     <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-bold text-gray-900 text-sm">{meal.meal}</h4>
+                      <h4 className="font-bold text-gray-900 text-sm">{getMealLabel(meal.meal, language)}</h4>
                       <span className="text-xs font-semibold text-primary-600 bg-primary-50 px-2 py-1 rounded-full">{meal.calories} kcal</span>
                     </div>
                     <ul className="space-y-1">

@@ -3,9 +3,10 @@ import { MealPlan } from '../types';
 import { Cuisine, CUISINE_META } from '../utils/calculations_expanded';
 import { buildMealRowsForCuisine } from '../utils/calculations';
 import { useLanguage } from '../context/LanguageContext';
+import { getMealName, getFoodItemText } from '../utils/mealLabels';
 
 interface ModalDayData {
-  meals: Array<{ meal: string; calories: number; protein: number; carbs: number; fat: number; items: string[]; icon?: string; description?: string; tips?: string }>;
+  meals: Array<{ meal: string; calories: number; protein: number; carbs: number; fat: number; items: string[]; icon?: string; description?: string; tips?: string; nameAr?: string; nameEn?: string }>;
   theme?: string;
   label?: string;
   day?: number;
@@ -115,9 +116,9 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
       ${fullMealPlan && fullMealPlan[activeDay] ? `<p style="font-size:14px;font-weight:600;margin-bottom:16px;">Day ${activeDay + 1} — ${fullMealPlan[activeDay].theme}</p>` : ''}
       ${activeMealPlan.map(meal => `
         <div class="card">
-          <h3>${mealIcons[meal.icon ?? 'meal']} ${meal.meal}</h3>
+          <h3>${mealIcons[meal.icon ?? 'meal'] || '🍽️'} ${getMealName(meal, language)}</h3>
           <p class="meta">${meal.calories} kcal · ${meal.protein}g Protein · ${meal.carbs}g Carbs · ${meal.fat}g Fat</p>
-          <ul>${meal.items.map(item => `<li>${item}</li>`).join('')}</ul>
+          <ul>${meal.items.map(item => `<li>${getFoodItemText(item, meal.nameAr, meal.nameEn, language)}</li>`).join('')}</ul>
           <p class="desc">${meal.description}</p>
         </div>
       `).join('')}
@@ -257,7 +258,7 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z" /></svg>
               Print
             </button>
-            <button onClick={() => { const s = encodeURIComponent('My HealthCalc.ai Meal Plan'); const b = encodeURIComponent(`Target: ${displayCalories} kcal\n\n${activeMealPlan.map(m => `${m.meal}: ${m.description}`).join('\n')}`); window.open(`mailto:?subject=${s}&body=${b}`); }}
+            <button onClick={() => { const s = encodeURIComponent('My HealthCalc.ai Meal Plan'); const b = encodeURIComponent(`Target: ${displayCalories} kcal\n\n${activeMealPlan.map(m => `${getMealName(m, language)}: ${m.description}`).join('\n')}`); window.open(`mailto:?subject=${s}&body=${b}`); }}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-sage-50 text-sage-700 hover:bg-sage-100 transition-all cursor-pointer">
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
               {t('emailPlan')}
@@ -312,7 +313,7 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
                     {mealIcons[meal.icon ?? 'meal'] || '🍽️'}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-bold" style={{ color: completed[i] ? '#15803d' : '#111827' }}>{meal.meal}</h3>
+                    <h3 className="font-bold" style={{ color: completed[i] ? '#15803d' : '#111827' }}>{getMealName(meal, language)}</h3>
                     <p className="text-xs" style={{ color: completed[i] ? '#86efac' : '#9ca3af' }}>{meal.calories} kcal</p>
                   </div>
                   <button onClick={() => toggleComplete(i)} className="w-7 h-7 rounded-xl border-2 flex items-center justify-center transition-all cursor-pointer shrink-0"
@@ -331,7 +332,7 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
                   {meal.items.map((item, j) => (
                     <li key={j} className="flex items-center gap-2 text-sm text-gray-700">
                       <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: '#86efac' }} />
-                      {item}
+                      {getFoodItemText(item, meal.nameAr, meal.nameEn, language)}
                     </li>
                   ))}
                 </ul>

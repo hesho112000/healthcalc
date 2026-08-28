@@ -1,5 +1,5 @@
 import { UserProfile, CalorieResult, Macros, MealPlan, DailyMealPlan, WorkoutPlan, DiabetesInputs, LabResult, BPResult } from '../types';
-import { CUISINE_GROUPS, CUISINE_FLAGS, REGIONAL_FOODS, FRUITS, JUICES, CUISINE_FRUITS, CUISINE_JUICES, getPortion, type Portion, type Cuisine, type MealType } from './cuisineCatalog';
+import { CUISINE_GROUPS, CUISINE_FLAGS, REGIONAL_FOODS, FRUITS, JUICES, CUISINE_FRUITS, CUISINE_JUICES, getPortion, getPortionMeasure, type Portion, type Cuisine, type MealType } from './cuisineCatalog';
 
 export type { Cuisine, MealType } from './cuisineCatalog';
 
@@ -38,11 +38,11 @@ const generateMealPlan = (targetCalories: number, cuisineId?: Cuisine, lang: str
     return buildCuisineMealPlan(targetCalories, cuisineId, lang);
   }
   const meals: MealPlan[] = [
-    { meal: '🌅 Breakfast', icon: 'meal', calories: Math.round(targetCalories * 0.3), protein: Math.round(targetCalories * 0.3 * 0.3 / 4), carbs: Math.round(targetCalories * 0.3 * 0.45 / 4), fat: Math.round(targetCalories * 0.3 * 0.25 / 9), items: ['Oatmeal with berries', 'Greek yogurt', 'Green tea', '🍎 Fruit: Apple (Rich in fiber & Vitamin C)', '🧃 Drink: Orange Juice (Vitamin C & potassium)'], description: 'Healthy breakfast' },
-    { meal: '🍎 Morning Snack', icon: 'snack', calories: Math.round(targetCalories * 0.1), protein: 5, carbs: 15, fat: 5, items: ['🍌 Fruit: Banana (Potassium & natural energy)', 'Almond butter'], description: 'Light snack' },
-    { meal: '☀️ Lunch', icon: 'meal', calories: Math.round(targetCalories * 0.3), protein: Math.round(targetCalories * 0.3 * 0.3 / 4), carbs: Math.round(targetCalories * 0.3 * 0.45 / 4), fat: Math.round(targetCalories * 0.3 * 0.25 / 9), items: ['Grilled chicken breast', 'Brown rice', 'Steamed broccoli', '🥭 Fruit: Mango (Rich in Vitamin A & C)'], description: 'Balanced lunch' },
-    { meal: '🍎 Afternoon Snack', icon: 'snack', calories: Math.round(targetCalories * 0.1), protein: 8, carbs: 15, fat: 4, items: ['🧃 Drink: Pomegranate Juice (Polyphenol powerhouse)', 'Greek yogurt'], description: 'Afternoon energy' },
-    { meal: '🌙 Dinner', icon: 'meal', calories: Math.round(targetCalories * 0.2), protein: Math.round(targetCalories * 0.2 * 0.3 / 4), carbs: Math.round(targetCalories * 0.2 * 0.45 / 4), fat: Math.round(targetCalories * 0.2 * 0.25 / 9), items: ['Baked fish', 'Roasted vegetables', 'Couscous'], description: 'Light dinner' },
+    { meal: '🌅 Breakfast', icon: 'meal', calories: Math.round(targetCalories * 0.3), protein: Math.round(targetCalories * 0.3 * 0.3 / 4), carbs: Math.round(targetCalories * 0.3 * 0.45 / 4), fat: Math.round(targetCalories * 0.3 * 0.25 / 9), items: lang === 'ar' ? ['شوفان مع التوت', 'زبادي يوناني', 'شاي أخضر', '🍎 فاكهة: تفاحة (غنية بالألياف وفيتامين سي)', '🧃 مشروب: عصير برتقال (فيتامين سي وبوتاسيوم)'] : ['Oatmeal with berries', 'Greek yogurt', 'Green tea', '🍎 Fruit: Apple (Rich in fiber & Vitamin C)', '🧃 Drink: Orange Juice (Vitamin C & potassium)'], description: lang === 'ar' ? 'فطور صحي' : 'Healthy breakfast' },
+    { meal: '🍎 Morning Snack', icon: 'snack', calories: Math.round(targetCalories * 0.1), protein: 5, carbs: 15, fat: 5, items: lang === 'ar' ? ['🍌 فاكهة: موزة (بوتاسيوم وطاقة طبيعية)', 'زبدة لوز'] : ['🍌 Fruit: Banana (Potassium & natural energy)', 'Almond butter'], description: lang === 'ar' ? 'وجبة خفيفة' : 'Light snack' },
+    { meal: '☀️ Lunch', icon: 'meal', calories: Math.round(targetCalories * 0.3), protein: Math.round(targetCalories * 0.3 * 0.3 / 4), carbs: Math.round(targetCalories * 0.3 * 0.45 / 4), fat: Math.round(targetCalories * 0.3 * 0.25 / 9), items: lang === 'ar' ? ['صدر دجاج مشوي', 'أرز بني', 'بروكلي مطهو على البخار', '🥭 فاكهة: مانجو (غني بفيتامين أ وسي)'] : ['Grilled chicken breast', 'Brown rice', 'Steamed broccoli', '🥭 Fruit: Mango (Rich in Vitamin A & C)'], description: lang === 'ar' ? 'غداء متوازن' : 'Balanced lunch' },
+    { meal: '🍎 Afternoon Snack', icon: 'snack', calories: Math.round(targetCalories * 0.1), protein: 8, carbs: 15, fat: 4, items: lang === 'ar' ? ['🧃 مشروب: عصير رمان (قوة البوليفينول)', 'زبادي يوناني'] : ['🧃 Drink: Pomegranate Juice (Polyphenol powerhouse)', 'Greek yogurt'], description: lang === 'ar' ? 'طاقة بعد الظهر' : 'Afternoon energy' },
+    { meal: '🌙 Dinner', icon: 'meal', calories: Math.round(targetCalories * 0.2), protein: Math.round(targetCalories * 0.2 * 0.3 / 4), carbs: Math.round(targetCalories * 0.2 * 0.45 / 4), fat: Math.round(targetCalories * 0.2 * 0.25 / 9), items: lang === 'ar' ? ['سمك مشوي', 'خضار مشوية', 'كسكس'] : ['Baked fish', 'Roasted vegetables', 'Couscous'], description: lang === 'ar' ? 'عشاء خفيف' : 'Light dinner' },
   ];
   return meals;
 };
@@ -72,13 +72,18 @@ const FRUIT_EMOJI: Record<string, string> = {
 
 const buildCuisineMealPlan = (targetCalories: number, cuisineId: Cuisine, lang: string): MealPlan[] => {
   const L = (f: FoodItem): string => (lang === 'ar' ? f.name_ar : f.name_en);
-  const portionPart = (f: FoodItem): string => ` · ${f.portion?.measure ?? '1 serving'}`;
+  const fruitWord = lang === 'ar' ? 'فاكهة' : 'Fruit';
+  const drinkWord = lang === 'ar' ? 'مشروب' : 'Drink';
+  const measurePart = (f: FoodItem): string => {
+    const m = getPortionMeasure(f.portion, lang);
+    return m ? ` · ${m}` : '';
+  };
   const setUp = (f: FoodItem): string =>
     f.type === 'fruit'
-      ? `${FRUIT_EMOJI[f.name_en] || '🍏'} Fruit: ${L(f)} (${f.benefits})${portionPart(f)}`
+      ? `${FRUIT_EMOJI[f.name_en] || '🍏'} ${fruitWord}: ${L(f)} (${f.benefits})${measurePart(f)}`
       : f.type === 'juice'
-        ? `🧃 Drink: ${L(f)} (${f.benefits})${portionPart(f)}`
-        : `${L(f)}${portionPart(f)}`;
+        ? `🧃 ${drinkWord}: ${L(f)} (${f.benefits})${measurePart(f)}`
+        : `${L(f)}${measurePart(f)}`;
   const pickMain = (mealType: MealType, count: number): FoodItem[] =>
     shuffleFoods(foodsForSlot(cuisineId, mealType).filter((f) => f.type !== 'fruit' && f.type !== 'juice')).slice(0, count);
   const pickByMealType = (mealType: MealType, count: number): FoodItem[] => shuffleFoods(foodsForSlot(cuisineId, mealType)).slice(0, count);

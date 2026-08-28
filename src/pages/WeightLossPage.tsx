@@ -16,6 +16,7 @@ import {
 } from '../components/HealthPlanTemplate';
 
 import { FOODS_DATABASE, CUISINE_META, Cuisine, CUISINE_OPTIONS, recommendExercises, EXERCISE_TYPE_LABELS, EXERCISE_TYPE_OPTIONS, ExerciseType } from '../utils/calculations_expanded';
+import { getPortionMeasure } from '../utils/cuisineCatalog';
 import { getCuisineLabel } from '../utils/healthPlans';
 
 const WeightLossPage: React.FC = () => {
@@ -179,7 +180,7 @@ const WeightLossPage: React.FC = () => {
                             <tr key={idx} className="border-b last:border-0 hover:bg-gray-50">
                               <td className="py-2.5 font-medium"><div>{food.name}</div><div className="text-xs text-gray-400">{food.name_en}</div></td>
                               <td className="py-2.5 text-gray-500">
-                                <div>{food.portion.measure}</div>
+                                <div>{getPortionMeasure(food.portion, language)}</div>
                                 <span className="inline-block mt-1 bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-[11px] font-bold whitespace-nowrap">
                                   {food.portion.grams}g • {food.calories} kcal
                                 </span>

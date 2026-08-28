@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { FOODS_DATABASE, CUISINE_META, Cuisine, FoodItem } from '../utils/calculations_expanded';
 import { useLanguage } from '../context/LanguageContext';
+import { getPortionMeasure } from '../utils/cuisineCatalog';
 
 const FoodLibraryPage: React.FC = () => {
   const { language } = useLanguage();
@@ -184,7 +185,7 @@ const FoodLibraryPage: React.FC = () => {
                       </div>
                     </td>
                     <td className="py-4 px-4 text-sm text-gray-600">
-                      <div>{food.portion.measure}</div>
+                      <div>{getPortionMeasure(food.portion, language)}</div>
                       <span className="inline-block mt-1 bg-gray-100 border text-gray-600 px-2 py-0.5 rounded-full text-[11px] font-bold whitespace-nowrap">
                         {food.portion.grams}g • {food.calories} kcal
                       </span>
