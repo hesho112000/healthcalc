@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function SimpleBlueprint({ onClose, selectedCuisine, dayMeals }: any) {
+export default function SimpleBlueprint({ onClose, selectedCuisine, dayMeals, onFullPlan }: any) {
   const meals = dayMeals?.meals ?? []
   const pick = (index: number, fallback: string) => {
     const m = meals[index]
@@ -23,7 +23,16 @@ export default function SimpleBlueprint({ onClose, selectedCuisine, dayMeals }: 
             <div className="border p-3 rounded-lg">🍱 Lunch: {pick(2, 'Kabsa')}</div>
             <div className="border p-3 rounded-lg">🍲 Dinner: {pick(4, 'Grilled Chicken')}</div>
           </div>
-          <p className="text-xs text-gray-400 mt-4">Get the full 30-day plan with PDF export from the "Full 30-Day Plan" button.</p>
+          {onFullPlan ? (
+            <button
+              onClick={onFullPlan}
+              className="w-full bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 py-3 rounded-xl font-semibold text-sm cursor-pointer transition-all"
+            >
+              📅 Open Full 30-Day Plan with PDF / Print
+            </button>
+          ) : (
+            <p className="text-xs text-gray-400 mt-4">Get the full 30-day plan with PDF export from the "Full 30-Day Plan" button.</p>
+          )}
         </div>
         <div className="p-6 border-t">
           <button onClick={onClose} className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold cursor-pointer">Close</button>
