@@ -6,6 +6,7 @@ import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, S
 import { generateDiabetesPlan, generateHypertensionPlan, type DayPlan } from '../utils/healthPlans';
 import { type Cuisine } from '../utils/calculations_expanded';
 import MealPlanModal from '../components/MealPlanModal';
+import SimpleBlueprint from '../components/SimpleBlueprint';
 import CuisineRegionCards from '../components/CuisineRegionCards';
 import WorkoutBlueprintModal from '../components/WorkoutBlueprintModal';
 
@@ -248,6 +249,7 @@ const LabToPlanPage: React.FC = () => {
   const [htSelectedDay, setHtSelectedDay] = useState(0);
   const [htActiveTab, setHtActiveTab] = useState<'macros' | 'meals' | 'workout'>('meals');
   const [showDiabetesPlan, setShowDiabetesPlan] = useState(false);
+  const [showBlueprint, setShowBlueprint] = useState(false);
   const [showHtPlan, setShowHtPlan] = useState(false);
 
   const [showDiabetesWorkoutModal, setShowDiabetesWorkoutModal] = useState(false);
@@ -591,13 +593,19 @@ const LabToPlanPage: React.FC = () => {
                       <CuisineRegionCards selected={selectedCuisine} onChange={handleCuisineChange} />
                     </div>
                     <button
-                      onClick={() => setShowDiabetesPlan(true)}
+                      onClick={() => { console.log('BLUEPRINT CLICKED'); setShowBlueprint(true); setShowDiabetesPlan(false); }}
                       className="w-full btn-primary py-3 text-sm font-bold flex items-center justify-center gap-2"
                     >
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
                       </svg>
                       📘 Your Personalized Health Blueprint
+                    </button>
+                    <button
+                      onClick={() => { setShowDiabetesPlan(true); setShowBlueprint(false); }}
+                      className="w-full btn-secondary py-3 text-sm font-semibold flex items-center justify-center gap-2"
+                    >
+                      📅 Full 30-Day Plan with PDF / Print
                     </button>
                     {diabetesCurrentDay.meals.map((meal, i) => (
                       <MealCard
@@ -709,13 +717,19 @@ const LabToPlanPage: React.FC = () => {
                       <CuisineRegionCards selected={selectedCuisine} onChange={handleCuisineChange} />
                     </div>
                     <button
-                      onClick={() => setShowHtPlan(true)}
+                      onClick={() => { console.log('BLUEPRINT CLICKED'); setShowBlueprint(true); setShowHtPlan(false); }}
                       className="w-full btn-primary py-3 text-sm font-bold flex items-center justify-center gap-2"
                     >
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
                       </svg>
                       📘 Your Personalized Health Blueprint
+                    </button>
+                    <button
+                      onClick={() => { setShowHtPlan(true); setShowBlueprint(false); }}
+                      className="w-full btn-secondary py-3 text-sm font-semibold flex items-center justify-center gap-2"
+                    >
+                      📅 Full 30-Day Plan with PDF / Print
                     </button>
                     {htCurrentDay.meals.map((meal, i) => (
                       <MealCard
@@ -977,6 +991,13 @@ const LabToPlanPage: React.FC = () => {
         )}
       </div>
 
+      {showBlueprint && (
+        <SimpleBlueprint
+          onClose={() => setShowBlueprint(false)}
+          selectedCuisine={selectedCuisine}
+          dayMeals={diabetesPlan?.[0]}
+        />
+      )}
       <MedicalDisclaimer />
       <MealPlanModal isOpen={showDiabetesPlan} onClose={() => setShowDiabetesPlan(false)} targetCalories={0} mealPlan={[]} fullMealPlan={diabetesPlan} selectedDay={diabetesSelectedDay} onDayChange={setDiabetesSelectedDay} weight={0} onSave={() => setShowDiabetesPlan(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} labSummary={`🩸 Fasting ${fasting} mg/dL · Postprandial ${postprandial} mg/dL · HbA1c ${hba1c}%`} />
       <MealPlanModal isOpen={showHtPlan} onClose={() => setShowHtPlan(false)} targetCalories={0} mealPlan={[]} fullMealPlan={htPlan} selectedDay={htSelectedDay} onDayChange={setHtSelectedDay} weight={0} onSave={() => setShowHtPlan(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} labSummary={`❤️ BP ${systolic}/${diastolic} mmHg`} />
