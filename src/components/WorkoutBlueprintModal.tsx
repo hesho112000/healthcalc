@@ -102,7 +102,7 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 z-[9999] flex items-center justify-center p-4" onClick={onClose} style={{ overflowY: 'auto' }}>
+    <div className="fixed inset-0 bg-black/50 z-[9999] flex items-center justify-center p-4 backdrop-blur-sm" onClick={onClose} style={{ overflowY: 'auto' }}>
       <div
         className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl my-4 flex flex-col"
         style={{ maxHeight: '90vh' }}
