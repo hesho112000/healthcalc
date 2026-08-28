@@ -963,6 +963,17 @@ const LabToPlanPage: React.FC = () => {
                 <div><p className="text-sm font-semibold text-emerald-800">Email client opened</p><p className="text-xs text-emerald-600">Your full health report with profile, plans, and progress is ready to send.</p></div>
               </div>
             )}
+
+            {/* GREEN BAR: Full 30-Day Plan (only full-width bar — no blue bar) */}
+            <div className="mt-8">
+              <button
+                onClick={() => { console.log('FULL 30-DAY PLAN CLICKED'); setShowBlueprint(false); if (blueprintKind === 'ht') setShowHtPlan(true); else setShowDiabetesPlan(true); }}
+                className="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-4 px-6 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+              >
+                <span>📅</span> Full 30-Day Plan with AI Food Index <span>→</span>
+              </button>
+              <p className="text-center text-sm text-gray-500 mt-2">Personalized based on your lab results + {selectedCuisine} cuisine</p>
+            </div>
           </div>
         )}
 
