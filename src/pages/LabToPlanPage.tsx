@@ -5,7 +5,7 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../components/HealthPlanTemplate';
 import { getMealLabel } from '../utils/mealLabels';
 import { generateDiabetesPlan, generateHypertensionPlan, type DayPlan } from '../utils/healthPlans';
-import { toDayPlans } from '../utils/mealBuilder';
+import { toDayPlans, type MealMacros } from '../utils/mealBuilder';
 import { type Cuisine } from '../utils/calculations_expanded';
 import MealPlanModal from '../components/MealPlanModal';
 import CuisineRegionCards from '../components/CuisineRegionCards';
@@ -606,6 +606,7 @@ const LabToPlanPage: React.FC = () => {
                         cuisine={selectedCuisine}
                         sectionType="lab-to-plan"
                         filters={{ lowSugar: true }}
+                        macros={{ proteinRatio: 0.3, carbsRatio: 0.4, fatRatio: 0.3 }}
                         onGenerate={(payload) => {
                           setCustomDiabetesPlan(toDayPlans(payload.fullMealPlan, diabetesPlan));
                           setShowDiabetesPlan(true);
@@ -738,6 +739,7 @@ const LabToPlanPage: React.FC = () => {
                         cuisine={selectedCuisine}
                         sectionType="lab-to-plan"
                         filters={{ lowSodium: true }}
+                        macros={{ proteinRatio: 0.25, carbsRatio: 0.5, fatRatio: 0.25 }}
                         onGenerate={(payload) => {
                           setCustomHtPlan(toDayPlans(payload.fullMealPlan, htPlan));
                           setShowHtPlan(true);

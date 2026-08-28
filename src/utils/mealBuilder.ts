@@ -11,6 +11,30 @@ export interface MealBuilderFilters {
   wholeGrainOnly?: boolean;
 }
 
+export interface MealMacros {
+  proteinRatio: number;
+  carbsRatio: number;
+  fatRatio: number;
+}
+
+export const DEFAULT_MACROS: MealMacros = { proteinRatio: 0.3, carbsRatio: 0.45, fatRatio: 0.25 };
+
+export const SECTION_MACROS: Record<MealBuilderSection, MealMacros> = {
+  'weight-loss': DEFAULT_MACROS,
+  'diabetes': { proteinRatio: 0.3, carbsRatio: 0.4, fatRatio: 0.3 },
+  'hypertension': { proteinRatio: 0.25, carbsRatio: 0.5, fatRatio: 0.25 },
+  'lab-to-plan': DEFAULT_MACROS,
+  'advanced-care': DEFAULT_MACROS,
+};
+
+export const MEAL_ALLOC: Record<string, number> = {
+  breakfast: 0.3,
+  morningSnack: 0.025,
+  lunch: 0.4,
+  afternoonSnack: 0.025,
+  dinner: 0.25,
+};
+
 export interface BuilderPool {
   breakfast: FoodItem[];
   lunch: FoodItem[];
@@ -334,57 +358,95 @@ const sumMacros = (items: FoodItem[]): { calories: number; protein: number; carb
     fat: acc.fat + (f.fat || 0),
   }), { calories: 0, protein: 0, carbs: 0, fat: 0 });
 
-export const buildCustomMealPlan = (targetCalories: number, lang: string, selections: BuilderSelections): MealPlan[] => {
-  const makeRow = (key: string, items: FoodItem[], extras?: FoodItem[]): MealPlan => {
-    const all = [...items, ...(extras || [])];
-    const macros = sumMacros(all);
-    return {
-      meal: MEAL_LABEL[key].en.replace(/^[^\s]+\s/, ''),
-      icon: MEAL_LABEL[key].icon,
-      calories: macros.calories || Math.round(targetCalories * 0.2),
-      protein: Math.round(macros.protein),
-      carbs: Math.round(macros.carbs),
-      fat: Math.round(macros.fat),
-      items: all.map((f) => setUp(f, lang)),
-      description: lang === 'ar' ? FOOD_DESC[key].ar : FOOD_DESC[key].en,
-    };
-  };
+const clamp = (v: number, lo: number, hi: number): number => Math.min(hi, Math.max(lo, v));
+const fit = (target: number, actual: number): number => (target > 0 && actual > 0 ? clamp(target / actual, 0.5, 1.5) : 1);
 
-  const mk = (key: string, items: FoodItem[]): MealPlan => makeRow(key, items);
-
-  return [
-    mk('breakfast', [...pickCounts(selections.breakfast, 0, 2, 0), ...pickCounts(selections.fruits, 0, 1, 0), ...pickCounts(selections.juices, 0, 1, 0)]),
-    mk('morningSnack', [...pickCounts(selections.fruits, 0, 1, 3), ...pickCounts(selections.juices, 0, 1, 3)]),
-    mk('lunch', [...pickCounts(selections.lunch, 0, 3, 0), ...pickCounts(selections.breads, 0, 1, 0)]),
-    mk('afternoonSnack', [...pickCounts(selections.fruits, 0, 1, 6), ...pickCounts(selections.juices, 0, 1, 6)]),
-    mk('dinner', [...pickCounts(selections.dinner, 0, 3, 1)]),
-  ];
+const scaledWeight = (f: FoodItem, factor: number, lang: string): string => {
+  const p = f.portion;
+  if (!p) return '';
+  const liquid = f.type === 'juice' || (p.ml != null && p.grams == null);
+  const base = f.type === 'juice' ? (p.ml ?? p.grams ?? 0) : (p.grams ?? p.ml ?? 0);
+  if (!base) return '';
+  const scaled = Math.max(1, Math.round(base * factor));
+  const unit = liquid ? (lang === 'ar' ? 'مل' : 'ml') : (lang === 'ar' ? 'جم' : 'g');
+  return ` · ${scaled} ${unit}`;
 };
 
-export const buildCustomFullMealPlan = (targetCalories: number, lang: string, selections: BuilderSelections, days = 30): DailyMealPlan[] => {
+const setUpScaled = (f: FoodItem, factor: number, lang: string, m: { cal: number; protein: number; carbs: number; fat: number }): string => {
+  const L = lang === 'ar' ? f.name_ar : f.name_en;
+  const benefits = f.benefits ? ` (${f.benefits})` : '';
+  const prefix = f.type === 'fruit'
+    ? `${FRUIT_EMOJI[f.name_en] || '🍏'} ${lang === 'ar' ? 'فاكهة' : 'Fruit'}: `
+    : f.type === 'juice'
+      ? `🧃 ${lang === 'ar' ? 'مشروب' : 'Drink'}: `
+      : f.category === 'bread'
+        ? `🥖 `
+        : '';
+  const w = scaledWeight(f, factor, lang);
+  const kc = lang === 'ar' ? 'سعرة' : 'kcal';
+  return `${prefix}${L}${benefits}${w} · ${m.cal} ${kc} · P${m.protein}/C${m.carbs}/F${m.fat}`;
+};
+
+export const scaleMeal = (
+  allocated: number,
+  foods: FoodItem[],
+  macros: MealMacros,
+  lang: string,
+): { calories: number; protein: number; carbs: number; fat: number; items: string[] } => {
+  const orig = sumMacros(foods);
+  if (!orig.calories) {
+    return { calories: Math.round(allocated), protein: 0, carbs: 0, fat: 0, items: foods.map((f) => setUp(f, lang)) };
+  }
+  const factor = clamp(allocated / orig.calories, 0.15, 1.5);
+  const scaled = foods.map((f) => ({
+    cal: Math.round((f.calories || 0) * factor),
+    protein: Math.round((f.protein || 0) * factor),
+    carbs: Math.round((f.carbs || 0) * factor),
+    fat: Math.round((f.fat || 0) * factor),
+    food: f,
+  }));
+  const sum = scaled.reduce((a, s) => ({ cal: a.cal + s.cal, protein: a.protein + s.protein, carbs: a.carbs + s.carbs, fat: a.fat + s.fat }), { cal: 0, protein: 0, carbs: 0, fat: 0 });
+  const cp = fit((allocated * macros.proteinRatio) / 4, sum.protein);
+  const cc = fit((allocated * macros.carbsRatio) / 4, sum.carbs);
+  const cf = fit((allocated * macros.fatRatio) / 9, sum.fat);
+  let protein = 0, carbs = 0, fat = 0;
+  const items = scaled.map((s) => {
+    const p = Math.round(s.protein * cp);
+    const c = Math.round(s.carbs * cc);
+    const f = Math.round(s.fat * cf);
+    protein += p;
+    carbs += c;
+    fat += f;
+    return setUpScaled(s.food, factor, lang, { cal: s.cal, protein: p, carbs: c, fat: f });
+  });
+  return { calories: Math.round(allocated), protein, carbs, fat, items };
+};
+
+const buildCustomDays = (targetCalories: number, lang: string, selections: BuilderSelections, macros: MealMacros, days: number): DailyMealPlan[] => {
   const plans: DailyMealPlan[] = [];
   for (let d = 0; d < days; d++) {
     const pick = (slot: BuilderSlot, count: number, offset = 0): FoodItem[] => {
       const arr = selections[slot];
       return pickCounts(arr, d, count, offset);
     };
-    const items = [
+    const mealsDefs = [
       { key: 'breakfast', foods: [...pick('breakfast', 2, 0), ...pick('fruits', 1, 0), ...pick('juices', 1, 0)] },
       { key: 'morningSnack', foods: [...pick('fruits', 1, 3), ...pick('juices', 1, 3)] },
       { key: 'lunch', foods: [...pick('lunch', 3, 0), ...pick('breads', 1, 0)] },
       { key: 'afternoonSnack', foods: [...pick('fruits', 1, 6), ...pick('juices', 1, 6)] },
       { key: 'dinner', foods: [...pick('dinner', 3, 1)] },
     ];
-    const meals: MealPlan[] = items.map(({ key, foods }) => {
-      const macros = sumMacros(foods);
+    const meals: MealPlan[] = mealsDefs.map(({ key, foods }) => {
+      const allocated = Math.round(targetCalories * MEAL_ALLOC[key]);
+      const scaled = scaleMeal(allocated, foods, macros, lang);
       return {
         meal: MEAL_LABEL[key].en.replace(/^[^\s]+\s/, ''),
         icon: MEAL_LABEL[key].icon,
-        calories: macros.calories || Math.round(targetCalories * 0.2),
-        protein: Math.round(macros.protein),
-        carbs: Math.round(macros.carbs),
-        fat: Math.round(macros.fat),
-        items: foods.map((f) => setUp(f, lang)),
+        calories: scaled.calories,
+        protein: scaled.protein,
+        carbs: scaled.carbs,
+        fat: scaled.fat,
+        items: scaled.items,
         description: lang === 'ar' ? FOOD_DESC[key].ar : FOOD_DESC[key].en,
       };
     });
@@ -399,10 +461,16 @@ export const buildCustomFullMealPlan = (targetCalories: number, lang: string, se
   return plans;
 };
 
-export const buildCustomPlan = (targetCalories: number, lang: string, selections: BuilderSelections | undefined, pool: BuilderPool): MealBuilderGeneratePayload => {
+export const buildCustomMealPlan = (targetCalories: number, lang: string, selections: BuilderSelections, macros: MealMacros = DEFAULT_MACROS): MealPlan[] =>
+  buildCustomDays(targetCalories, lang, selections, macros, 1)[0]?.meals ?? [];
+
+export const buildCustomFullMealPlan = (targetCalories: number, lang: string, selections: BuilderSelections, macros: MealMacros = DEFAULT_MACROS, days = 30): DailyMealPlan[] =>
+  buildCustomDays(targetCalories, lang, selections, macros, days);
+
+export const buildCustomPlan = (targetCalories: number, lang: string, selections: BuilderSelections | undefined, pool: BuilderPool, macros: MealMacros = DEFAULT_MACROS): MealBuilderGeneratePayload => {
   const filled = ensureFilled(selections ?? autoSelect(pool), pool);
-  const mealPlan = buildCustomMealPlan(targetCalories, lang, filled);
-  const fullMealPlan = buildCustomFullMealPlan(targetCalories, lang, filled);
+  const mealPlan = buildCustomMealPlan(targetCalories, lang, filled, macros);
+  const fullMealPlan = buildCustomFullMealPlan(targetCalories, lang, filled, macros);
   return { selections: filled, targetCalories, mealPlan, fullMealPlan };
 };
 

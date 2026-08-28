@@ -9,7 +9,9 @@ import {
   type MealBuilderFilters,
   type MealBuilderGeneratePayload,
   type MealBuilderSection,
+  type MealMacros,
   SLOT_LIMITS,
+  SECTION_MACROS,
   autoSelect,
   buildBuilderPool,
   buildCustomPlan,
@@ -25,6 +27,7 @@ export interface MealBuilderProps {
   sectionType: MealBuilderSection;
   filters?: MealBuilderFilters;
   targetCalories?: number;
+  macros?: Partial<MealMacros>;
   onGenerate: (payload: MealBuilderGeneratePayload) => void;
   onCuisineChange?: (cuisine: string) => void;
   className?: string;
@@ -43,7 +46,7 @@ const EXTRA_GROUPS: Array<{ slot: 'breads' | 'juices' | 'fruits'; en: string; ar
   { slot: 'fruits', en: 'Fruits', ar: 'فواكه', emoji: '🍎' },
 ];
 
-const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters, targetCalories = 2000, onGenerate, onCuisineChange, className = '' }) => {
+const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters, targetCalories = 2000, macros, onGenerate, onCuisineChange, className = '' }) => {
   const { language } = useLanguage();
   const ar = language === 'ar';
 
@@ -79,7 +82,8 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
   const getMeasure = (item: FoodItem) => getPortionMeasure(item.portion, language);
 
   const handleGenerate = () => {
-    onGenerate(buildCustomPlan(targetCalories, language, selections, pool));
+    const effectiveMacros: MealMacros = { ...SECTION_MACROS[sectionType], ...(macros ?? {}) };
+    onGenerate(buildCustomPlan(targetCalories, language, selections, pool, effectiveMacros));
   };
 
   const renderCard = (item: FoodItem, slot: BuilderSlot, key: number) => {
