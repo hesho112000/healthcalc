@@ -1,7 +1,10 @@
 import React, { useState, useMemo } from 'react';
 import { FOODS_DATABASE, CUISINE_META, Cuisine, FoodItem } from '../utils/calculations_expanded';
+import { useLanguage } from '../context/LanguageContext';
 
 const FoodLibraryPage: React.FC = () => {
+  const { language } = useLanguage();
+  const cuisineName = (meta: { label_ar: string; label_en: string }): string => (language === 'ar' ? meta.label_ar : meta.label_en);
   const [search, setSearch] = useState('');
   const [selectedCuisine, setSelectedCuisine] = useState<Cuisine | 'all'>('all');
   const [calorieFilter, setCalorieFilter] = useState<[number, number]>([0, 500]);
@@ -76,7 +79,7 @@ const FoodLibraryPage: React.FC = () => {
                 <option value="all">🌍 كل المطابخ ({FOODS_DATABASE.length})</option>
                 {Object.entries(CUISINE_META).map(([key, meta]) => (
                   <option key={key} value={key}>
-                    {meta.flag} {meta.label_ar} - {meta.label_en}
+                    {meta.flag} {cuisineName(meta)}
                   </option>
                 ))}
               </select>
@@ -144,7 +147,7 @@ const FoodLibraryPage: React.FC = () => {
                 selectedCuisine === key ? 'bg-green-500 text-white border-green-500' : `bg-white hover:bg-gray-50 ${meta.color}`
               }`}
             >
-              <span>{meta.flag}</span> {meta.label_ar}
+              <span>{meta.flag}</span> {cuisineName(meta)}
             </button>
           ))}
         </div>
@@ -175,7 +178,7 @@ const FoodLibraryPage: React.FC = () => {
                       <div className="flex flex-wrap gap-1">
                         {food.cuisine.slice(0, 2).map((c) => (
                           <span key={c} className="text-[11px] px-2 py-0.5 rounded-full bg-gray-100 border">
-                            {CUISINE_META[c]?.flag} {CUISINE_META[c]?.label_ar}
+                            {CUISINE_META[c]?.flag} {CUISINE_META[c] ? cuisineName(CUISINE_META[c]) : c}
                           </span>
                         ))}
                       </div>

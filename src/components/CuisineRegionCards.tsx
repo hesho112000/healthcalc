@@ -83,8 +83,7 @@ const CuisineRegionCards: React.FC<CuisineRegionCardsProps> = ({ selected, onCha
           <div key={region.nameEn} className={`bg-white rounded-xl border border-t-4 border-gray-200 shadow-sm p-4 hover:shadow-md transition-shadow ${region.accent}`}>
             <div className="flex items-center gap-2 mb-3">
               <span className="text-lg leading-none">{region.icon}</span>
-              <span className="text-sm font-extrabold text-gray-800">{region.nameEn}</span>
-              <span className="text-sm font-bold text-gray-400" dir="rtl">{region.nameAr}</span>
+              <span className="text-sm font-extrabold text-gray-800">{language === 'ar' ? region.nameAr : region.nameEn}</span>
             </div>
             <div className="flex flex-wrap gap-2">
               {region.cuisines.map((c) => {

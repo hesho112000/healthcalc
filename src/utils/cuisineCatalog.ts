@@ -9,7 +9,7 @@ import { FOODS as LEVANTINE_AFRICA_FOODS } from './regional/levantine-africa';
 import { FOODS as SPECIAL_DIETS_FOODS } from './regional/special-diets';
 
 export type Cuisine = string;
-export type MealType = 'breakfast' | 'lunch' | 'dinner' | 'snack';
+export type MealType = 'breakfast' | 'lunch' | 'dinner' | 'snack' | 'fruit' | 'juice';
 
 export interface RegionalFood {
   name_en: string;
@@ -171,64 +171,116 @@ export interface FruitJuiceInfo {
   mealType: MealType;
   type: 'fruit' | 'juice';
   benefits: string;
+  cuisine?: string[];
 }
 
 export const FRUITS: FruitJuiceInfo[] = [
-  { name_en: 'Apple', name_ar: 'تفاحة', calories: 95, protein: 0.5, carbs: 25, fat: 0.3, mealType: 'breakfast', type: 'fruit', benefits: 'Rich in fiber & Vitamin C' },
-  { name_en: 'Banana', name_ar: 'موزة', calories: 105, protein: 1.3, carbs: 27, fat: 0.4, mealType: 'breakfast', type: 'fruit', benefits: 'Potassium & natural energy' },
-  { name_en: 'Orange', name_ar: 'برتقالة', calories: 62, protein: 1.2, carbs: 15.5, fat: 0.2, mealType: 'breakfast', type: 'fruit', benefits: 'Vitamin C power' },
-  { name_en: 'Mango', name_ar: 'مانجو', calories: 100, protein: 1.4, carbs: 25, fat: 0.6, mealType: 'breakfast', type: 'fruit', benefits: 'Rich in Vitamin A & C' },
-  { name_en: 'Strawberries', name_ar: 'فراولة', calories: 50, protein: 1, carbs: 12, fat: 0.5, mealType: 'breakfast', type: 'fruit', benefits: 'Vitamin C & antioxidants' },
-  { name_en: 'Watermelon', name_ar: 'بطيخ', calories: 46, protein: 0.9, carbs: 11.5, fat: 0.2, mealType: 'breakfast', type: 'fruit', benefits: 'Hydration & lycopene' },
-  { name_en: 'Pineapple', name_ar: 'أناناس', calories: 82, protein: 0.9, carbs: 21.6, fat: 0.2, mealType: 'breakfast', type: 'fruit', benefits: 'Bromelain & Vitamin C' },
-  { name_en: 'Kiwi', name_ar: 'كيوي', calories: 42, protein: 0.8, carbs: 10, fat: 0.4, mealType: 'breakfast', type: 'fruit', benefits: 'Vitamin C & fiber' },
-  { name_en: 'Avocado', name_ar: 'أفوكادو', calories: 160, protein: 2, carbs: 9, fat: 15, mealType: 'breakfast', type: 'fruit', benefits: 'Healthy fats & potassium' },
-  { name_en: 'Grapes', name_ar: 'عنب', calories: 62, protein: 0.6, carbs: 16, fat: 0.2, mealType: 'snack', type: 'fruit', benefits: 'Antioxidants & quick energy' },
-  { name_en: 'Peach', name_ar: 'خوخ', calories: 59, protein: 1.4, carbs: 14, fat: 0.4, mealType: 'snack', type: 'fruit', benefits: 'Vitamins A & C' },
-  { name_en: 'Pear', name_ar: 'كمثرى', calories: 101, protein: 0.6, carbs: 27, fat: 0.2, mealType: 'snack', type: 'fruit', benefits: 'Fiber & Vitamin C' },
-  { name_en: 'Blueberries', name_ar: 'توت أزرق', calories: 84, protein: 1.1, carbs: 21, fat: 0.5, mealType: 'breakfast', type: 'fruit', benefits: 'Antioxidants' },
-  { name_en: 'Raspberries', name_ar: 'توت', calories: 64, protein: 1.5, carbs: 14.7, fat: 0.8, mealType: 'snack', type: 'fruit', benefits: 'Fiber & Vitamin C' },
-  { name_en: 'Blackberries', name_ar: 'عليق أسود', calories: 62, protein: 2, carbs: 14, fat: 0.7, mealType: 'snack', type: 'fruit', benefits: 'Antioxidants & fiber' },
-  { name_en: 'Cherries', name_ar: 'كرز', calories: 77, protein: 1.3, carbs: 19, fat: 0.4, mealType: 'snack', type: 'fruit', benefits: 'Melatonin & antioxidants' },
-  { name_en: 'Pomegranate', name_ar: 'رمان', calories: 83, protein: 1.7, carbs: 19, fat: 1.2, mealType: 'snack', type: 'fruit', benefits: 'Polyphenol powerhouse' },
-  { name_en: 'Papaya', name_ar: 'بابايا', calories: 59, protein: 0.9, carbs: 15, fat: 0.4, mealType: 'breakfast', type: 'fruit', benefits: 'Digestive enzymes & Vitamin C' },
-  { name_en: 'Guava', name_ar: 'جوافة', calories: 68, protein: 2.6, carbs: 14, fat: 1, mealType: 'breakfast', type: 'fruit', benefits: 'Vitamin C champion' },
-  { name_en: 'Cantaloupe', name_ar: 'شمام', calories: 54, protein: 1.3, carbs: 13, fat: 0.3, mealType: 'breakfast', type: 'fruit', benefits: 'Vitamin A & hydration' },
-  { name_en: 'Honeydew Melon', name_ar: 'قندولة', calories: 61, protein: 0.9, carbs: 16, fat: 0.2, mealType: 'snack', type: 'fruit', benefits: 'Hydration & Vitamin C' },
-  { name_en: 'Plum', name_ar: 'برقوق', calories: 76, protein: 0.8, carbs: 19, fat: 0.4, mealType: 'snack', type: 'fruit', benefits: 'Fiber & Vitamin C' },
-  { name_en: 'Apricot', name_ar: 'مشمش', calories: 48, protein: 0.7, carbs: 11, fat: 0.4, mealType: 'snack', type: 'fruit', benefits: 'Vitamin A & fiber' },
-  { name_en: 'Fig', name_ar: 'تين', calories: 74, protein: 0.8, carbs: 19, fat: 0.3, mealType: 'snack', type: 'fruit', benefits: 'Fiber & minerals' },
-  { name_en: 'Dates (3 pcs)', name_ar: 'تمر (3 حبات)', calories: 66, protein: 0.5, carbs: 18, fat: 0.1, mealType: 'snack', type: 'fruit', benefits: 'Natural energy & fiber' },
-  { name_en: 'Lemon', name_ar: 'ليمون', calories: 29, protein: 1.1, carbs: 9, fat: 0.3, mealType: 'snack', type: 'fruit', benefits: 'Vitamin C boost' },
-  { name_en: 'Lime', name_ar: 'ليمون أخضر', calories: 20, protein: 0.2, carbs: 7, fat: 0.1, mealType: 'snack', type: 'fruit', benefits: 'Vitamin C & refreshment' },
-  { name_en: 'Grapefruit', name_ar: 'جريب فروت', calories: 52, protein: 1, carbs: 13, fat: 0.2, mealType: 'snack', type: 'fruit', benefits: 'Vitamin C & fiber' },
-  { name_en: 'Starfruit', name_ar: 'فاكهة النجمة', calories: 41, protein: 1, carbs: 9, fat: 0.4, mealType: 'snack', type: 'fruit', benefits: 'Low-sugar Vitamin C' },
-  { name_en: 'Dragon Fruit', name_ar: 'بيتايا', calories: 60, protein: 1.2, carbs: 13, fat: 0.4, mealType: 'snack', type: 'fruit', benefits: 'Fiber & antioxidants' },
-  { name_en: 'Passion Fruit', name_ar: 'فاكهة الآلام', calories: 68, protein: 2.5, carbs: 16, fat: 0.5, mealType: 'snack', type: 'fruit', benefits: 'Fiber & Vitamin C' },
-  { name_en: 'Coconut (fresh)', name_ar: 'جوز هند طازج', calories: 160, protein: 1.5, carbs: 7, fat: 15, mealType: 'snack', type: 'fruit', benefits: 'Healthy MCT fats' },
-  { name_en: 'Cranberries', name_ar: 'توت بري', calories: 46, protein: 0.4, carbs: 12, fat: 0.1, mealType: 'snack', type: 'fruit', benefits: 'Antioxidants' },
+  { name_en: 'Apple', name_ar: 'تفاحة', calories: 95, protein: 0.5, carbs: 25, fat: 0.3, mealType: 'fruit', type: 'fruit', benefits: 'Rich in fiber & Vitamin C' },
+  { name_en: 'Banana', name_ar: 'موزة', calories: 105, protein: 1.3, carbs: 27, fat: 0.4, mealType: 'fruit', type: 'fruit', benefits: 'Potassium & natural energy' },
+  { name_en: 'Orange', name_ar: 'برتقالة', calories: 62, protein: 1.2, carbs: 15.5, fat: 0.2, mealType: 'fruit', type: 'fruit', benefits: 'Vitamin C power' },
+  { name_en: 'Mango', name_ar: 'مانجو', calories: 100, protein: 1.4, carbs: 25, fat: 0.6, mealType: 'fruit', type: 'fruit', benefits: 'Rich in Vitamin A & C' },
+  { name_en: 'Strawberries', name_ar: 'فراولة', calories: 50, protein: 1, carbs: 12, fat: 0.5, mealType: 'fruit', type: 'fruit', benefits: 'Vitamin C & antioxidants' },
+  { name_en: 'Watermelon', name_ar: 'بطيخ', calories: 46, protein: 0.9, carbs: 11.5, fat: 0.2, mealType: 'fruit', type: 'fruit', benefits: 'Hydration & lycopene' },
+  { name_en: 'Pineapple', name_ar: 'أناناس', calories: 82, protein: 0.9, carbs: 21.6, fat: 0.2, mealType: 'fruit', type: 'fruit', benefits: 'Bromelain & Vitamin C' },
+  { name_en: 'Kiwi', name_ar: 'كيوي', calories: 42, protein: 0.8, carbs: 10, fat: 0.4, mealType: 'fruit', type: 'fruit', benefits: 'Vitamin C & fiber' },
+  { name_en: 'Avocado', name_ar: 'أفوكادو', calories: 160, protein: 2, carbs: 9, fat: 15, mealType: 'fruit', type: 'fruit', benefits: 'Healthy fats & potassium' },
+  { name_en: 'Grapes', name_ar: 'عنب', calories: 62, protein: 0.6, carbs: 16, fat: 0.2, mealType: 'fruit', type: 'fruit', benefits: 'Antioxidants & quick energy' },
+  { name_en: 'Peach', name_ar: 'خوخ', calories: 59, protein: 1.4, carbs: 14, fat: 0.4, mealType: 'fruit', type: 'fruit', benefits: 'Vitamins A & C' },
+  { name_en: 'Pear', name_ar: 'كمثرى', calories: 101, protein: 0.6, carbs: 27, fat: 0.2, mealType: 'fruit', type: 'fruit', benefits: 'Fiber & Vitamin C' },
+  { name_en: 'Blueberries', name_ar: 'توت أزرق', calories: 84, protein: 1.1, carbs: 21, fat: 0.5, mealType: 'fruit', type: 'fruit', benefits: 'Antioxidants' },
+  { name_en: 'Raspberries', name_ar: 'توت', calories: 64, protein: 1.5, carbs: 14.7, fat: 0.8, mealType: 'fruit', type: 'fruit', benefits: 'Fiber & Vitamin C' },
+  { name_en: 'Blackberries', name_ar: 'عليق أسود', calories: 62, protein: 2, carbs: 14, fat: 0.7, mealType: 'fruit', type: 'fruit', benefits: 'Antioxidants & fiber' },
+  { name_en: 'Cherries', name_ar: 'كرز', calories: 77, protein: 1.3, carbs: 19, fat: 0.4, mealType: 'fruit', type: 'fruit', benefits: 'Melatonin & antioxidants' },
+  { name_en: 'Pomegranate', name_ar: 'رمان', calories: 83, protein: 1.7, carbs: 19, fat: 1.2, mealType: 'fruit', type: 'fruit', benefits: 'Polyphenol powerhouse' },
+  { name_en: 'Papaya', name_ar: 'بابايا', calories: 59, protein: 0.9, carbs: 15, fat: 0.4, mealType: 'fruit', type: 'fruit', benefits: 'Digestive enzymes & Vitamin C' },
+  { name_en: 'Guava', name_ar: 'جوافة', calories: 68, protein: 2.6, carbs: 14, fat: 1, mealType: 'fruit', type: 'fruit', benefits: 'Vitamin C champion' },
+  { name_en: 'Cantaloupe', name_ar: 'شمام', calories: 54, protein: 1.3, carbs: 13, fat: 0.3, mealType: 'fruit', type: 'fruit', benefits: 'Vitamin A & hydration' },
+  { name_en: 'Honeydew Melon', name_ar: 'قندولة', calories: 61, protein: 0.9, carbs: 16, fat: 0.2, mealType: 'fruit', type: 'fruit', benefits: 'Hydration & Vitamin C' },
+  { name_en: 'Plum', name_ar: 'برقوق', calories: 76, protein: 0.8, carbs: 19, fat: 0.4, mealType: 'fruit', type: 'fruit', benefits: 'Fiber & Vitamin C' },
+  { name_en: 'Apricot', name_ar: 'مشمش', calories: 48, protein: 0.7, carbs: 11, fat: 0.4, mealType: 'fruit', type: 'fruit', benefits: 'Vitamin A & fiber' },
+  { name_en: 'Fig', name_ar: 'تين', calories: 74, protein: 0.8, carbs: 19, fat: 0.3, mealType: 'fruit', type: 'fruit', benefits: 'Fiber & minerals' },
+  { name_en: 'Dates (3 pcs)', name_ar: 'تمر (3 حبات)', calories: 66, protein: 0.5, carbs: 18, fat: 0.1, mealType: 'fruit', type: 'fruit', benefits: 'Natural energy & fiber' },
+  { name_en: 'Lemon', name_ar: 'ليمون', calories: 29, protein: 1.1, carbs: 9, fat: 0.3, mealType: 'fruit', type: 'fruit', benefits: 'Vitamin C boost' },
+  { name_en: 'Lime', name_ar: 'ليمون أخضر', calories: 20, protein: 0.2, carbs: 7, fat: 0.1, mealType: 'fruit', type: 'fruit', benefits: 'Vitamin C & refreshment' },
+  { name_en: 'Grapefruit', name_ar: 'جريب فروت', calories: 52, protein: 1, carbs: 13, fat: 0.2, mealType: 'fruit', type: 'fruit', benefits: 'Vitamin C & fiber' },
+  { name_en: 'Starfruit', name_ar: 'فاكهة النجمة', calories: 41, protein: 1, carbs: 9, fat: 0.4, mealType: 'fruit', type: 'fruit', benefits: 'Low-sugar Vitamin C' },
+  { name_en: 'Dragon Fruit', name_ar: 'بيتايا', calories: 60, protein: 1.2, carbs: 13, fat: 0.4, mealType: 'fruit', type: 'fruit', benefits: 'Fiber & antioxidants' },
+  { name_en: 'Passion Fruit', name_ar: 'فاكهة الآلام', calories: 68, protein: 2.5, carbs: 16, fat: 0.5, mealType: 'fruit', type: 'fruit', benefits: 'Fiber & Vitamin C' },
+  { name_en: 'Coconut (fresh)', name_ar: 'جوز هند طازج', calories: 160, protein: 1.5, carbs: 7, fat: 15, mealType: 'fruit', type: 'fruit', benefits: 'Healthy MCT fats' },
+  { name_en: 'Cranberries', name_ar: 'توت بري', calories: 46, protein: 0.4, carbs: 12, fat: 0.1, mealType: 'fruit', type: 'fruit', benefits: 'Antioxidants' },
 ];
 
 export const JUICES: FruitJuiceInfo[] = [
-  { name_en: 'Orange Juice', name_ar: 'عصير برتقال', calories: 110, protein: 1.7, carbs: 25.5, fat: 0.4, mealType: 'snack', type: 'juice', benefits: 'Vitamin C & potassium' },
-  { name_en: 'Mango Juice', name_ar: 'عصير مانجو', calories: 120, protein: 1, carbs: 27, fat: 0.6, mealType: 'snack', type: 'juice', benefits: 'Vitamin A & C' },
-  { name_en: 'Strawberry Juice', name_ar: 'عصير فراولة', calories: 100, protein: 1, carbs: 24, fat: 0.3, mealType: 'snack', type: 'juice', benefits: 'Rich in Vitamin C' },
-  { name_en: 'Lemon Juice', name_ar: 'عصير ليمون', calories: 50, protein: 1, carbs: 15, fat: 0.2, mealType: 'snack', type: 'juice', benefits: 'Vitamin C & antioxidants' },
-  { name_en: 'Carrot Juice', name_ar: 'عصير جزر', calories: 80, protein: 2, carbs: 19, fat: 0.3, mealType: 'snack', type: 'juice', benefits: 'Beta-carotene (Vitamin A)' },
-  { name_en: 'Pomegranate Juice', name_ar: 'عصير رمان', calories: 130, protein: 0.5, carbs: 32, fat: 0.7, mealType: 'snack', type: 'juice', benefits: 'Polyphenols & immunity' },
-  { name_en: 'Guava Juice', name_ar: 'عصير جوافة', calories: 90, protein: 2, carbs: 22, fat: 0.5, mealType: 'snack', type: 'juice', benefits: 'Vitamin C champion' },
-  { name_en: 'Apple Juice', name_ar: 'عصير تفاح', calories: 115, protein: 0.2, carbs: 28, fat: 0.3, mealType: 'snack', type: 'juice', benefits: 'Quick natural energy' },
-  { name_en: 'Grape Juice', name_ar: 'عصير عنب', calories: 150, protein: 0.5, carbs: 37, fat: 0.3, mealType: 'snack', type: 'juice', benefits: 'Resveratrol antioxidants' },
-  { name_en: 'Pineapple Juice', name_ar: 'عصير أناناس', calories: 130, protein: 0.8, carbs: 33, fat: 0.1, mealType: 'snack', type: 'juice', benefits: 'Bromelain & Vitamin C' },
-  { name_en: 'Watermelon Juice', name_ar: 'عصير بطيخ', calories: 70, protein: 1, carbs: 18, fat: 0.3, mealType: 'snack', type: 'juice', benefits: 'Hydration & lycopene' },
-  { name_en: 'Tomato Juice', name_ar: 'عصير طماطم', calories: 41, protein: 1.8, carbs: 10, fat: 0.1, mealType: 'snack', type: 'juice', benefits: 'Lycopene & Vitamin K' },
-  { name_en: 'Cranberry Juice', name_ar: 'عصير توت بري', calories: 110, protein: 0.4, carbs: 27, fat: 0.2, mealType: 'snack', type: 'juice', benefits: 'Urinary tract health' },
-  { name_en: 'Grapefruit Juice', name_ar: 'عصير جريب فروت', calories: 96, protein: 1.3, carbs: 22, fat: 0.3, mealType: 'snack', type: 'juice', benefits: 'Vitamin C & metabolism' },
-  { name_en: 'Mixed Berry Juice', name_ar: 'عصير توت مشكل', calories: 120, protein: 1, carbs: 28, fat: 0.5, mealType: 'snack', type: 'juice', benefits: 'Antioxidant blend' },
-  { name_en: 'Peach Juice', name_ar: 'عصير خوخ', calories: 110, protein: 1.5, carbs: 25, fat: 0.3, mealType: 'snack', type: 'juice', benefits: 'Vitamins & soft fiber' },
-  { name_en: 'Papaya Juice', name_ar: 'عصير بابايا', calories: 115, protein: 0.8, carbs: 28, fat: 0.3, mealType: 'snack', type: 'juice', benefits: 'Digestive enzymes & Vitamin C' },
-  { name_en: 'Coconut Water', name_ar: 'ماء جوز الهند', calories: 46, protein: 1.7, carbs: 9, fat: 0.5, mealType: 'snack', type: 'juice', benefits: 'Electrolytes & hydration' },
-  { name_en: 'Multi-Fruit Cocktail', name_ar: 'كوكتيل فواكه', calories: 120, protein: 0.8, carbs: 29, fat: 0.2, mealType: 'snack', type: 'juice', benefits: 'Vitamin C mix' },
-  { name_en: 'Avocado Smoothie', name_ar: 'سموثي أفوكادو', calories: 180, protein: 2, carbs: 26, fat: 7, mealType: 'snack', type: 'juice', benefits: 'Healthy fats & energy' },
-  { name_en: 'Sugarcane Juice', name_ar: 'عصير قصب', calories: 120, protein: 0.3, carbs: 30, fat: 0.2, mealType: 'snack', type: 'juice', benefits: 'Quick energy & electrolytes' },
+  { name_en: 'Orange Juice', name_ar: 'عصير برتقال', calories: 110, protein: 1.7, carbs: 25.5, fat: 0.4, mealType: 'juice', type: 'juice', benefits: 'Vitamin C & potassium' },
+  { name_en: 'Mango Juice', name_ar: 'عصير مانجو', calories: 120, protein: 1, carbs: 27, fat: 0.6, mealType: 'juice', type: 'juice', benefits: 'Vitamin A & C' },
+  { name_en: 'Strawberry Juice', name_ar: 'عصير فراولة', calories: 100, protein: 1, carbs: 24, fat: 0.3, mealType: 'juice', type: 'juice', benefits: 'Rich in Vitamin C' },
+  { name_en: 'Lemon Juice', name_ar: 'عصير ليمون', calories: 50, protein: 1, carbs: 15, fat: 0.2, mealType: 'juice', type: 'juice', benefits: 'Vitamin C & antioxidants' },
+  { name_en: 'Carrot Juice', name_ar: 'عصير جزر', calories: 80, protein: 2, carbs: 19, fat: 0.3, mealType: 'juice', type: 'juice', benefits: 'Beta-carotene (Vitamin A)' },
+  { name_en: 'Pomegranate Juice', name_ar: 'عصير رمان', calories: 130, protein: 0.5, carbs: 32, fat: 0.7, mealType: 'juice', type: 'juice', benefits: 'Polyphenols & immunity' },
+  { name_en: 'Guava Juice', name_ar: 'عصير جوافة', calories: 90, protein: 2, carbs: 22, fat: 0.5, mealType: 'juice', type: 'juice', benefits: 'Vitamin C champion' },
+  { name_en: 'Apple Juice', name_ar: 'عصير تفاح', calories: 115, protein: 0.2, carbs: 28, fat: 0.3, mealType: 'juice', type: 'juice', benefits: 'Quick natural energy' },
+  { name_en: 'Grape Juice', name_ar: 'عصير عنب', calories: 150, protein: 0.5, carbs: 37, fat: 0.3, mealType: 'juice', type: 'juice', benefits: 'Resveratrol antioxidants' },
+  { name_en: 'Pineapple Juice', name_ar: 'عصير أناناس', calories: 130, protein: 0.8, carbs: 33, fat: 0.1, mealType: 'juice', type: 'juice', benefits: 'Bromelain & Vitamin C' },
+  { name_en: 'Watermelon Juice', name_ar: 'عصير بطيخ', calories: 70, protein: 1, carbs: 18, fat: 0.3, mealType: 'juice', type: 'juice', benefits: 'Hydration & lycopene' },
+  { name_en: 'Tomato Juice', name_ar: 'عصير طماطم', calories: 41, protein: 1.8, carbs: 10, fat: 0.1, mealType: 'juice', type: 'juice', benefits: 'Lycopene & Vitamin K' },
+  { name_en: 'Cranberry Juice', name_ar: 'عصير توت بري', calories: 110, protein: 0.4, carbs: 27, fat: 0.2, mealType: 'juice', type: 'juice', benefits: 'Urinary tract health' },
+  { name_en: 'Grapefruit Juice', name_ar: 'عصير جريب فروت', calories: 96, protein: 1.3, carbs: 22, fat: 0.3, mealType: 'juice', type: 'juice', benefits: 'Vitamin C & metabolism' },
+  { name_en: 'Mixed Berry Juice', name_ar: 'عصير توت مشكل', calories: 120, protein: 1, carbs: 28, fat: 0.5, mealType: 'juice', type: 'juice', benefits: 'Antioxidant blend' },
+  { name_en: 'Peach Juice', name_ar: 'عصير خوخ', calories: 110, protein: 1.5, carbs: 25, fat: 0.3, mealType: 'juice', type: 'juice', benefits: 'Vitamins & soft fiber' },
+  { name_en: 'Papaya Juice', name_ar: 'عصير بابايا', calories: 115, protein: 0.8, carbs: 28, fat: 0.3, mealType: 'juice', type: 'juice', benefits: 'Digestive enzymes & Vitamin C' },
+  { name_en: 'Coconut Water', name_ar: 'ماء جوز الهند', calories: 46, protein: 1.7, carbs: 9, fat: 0.5, mealType: 'juice', type: 'juice', benefits: 'Electrolytes & hydration' },
+  { name_en: 'Multi-Fruit Cocktail', name_ar: 'كوكتيل فواكه', calories: 120, protein: 0.8, carbs: 29, fat: 0.2, mealType: 'juice', type: 'juice', benefits: 'Vitamin C mix' },
+  { name_en: 'Avocado Smoothie', name_ar: 'سموثي أفوكادو', calories: 180, protein: 2, carbs: 26, fat: 7, mealType: 'juice', type: 'juice', benefits: 'Healthy fats & energy' },
+  { name_en: 'Sugarcane Juice', name_ar: 'عصير قصب', calories: 120, protein: 0.3, carbs: 30, fat: 0.2, mealType: 'juice', type: 'juice', benefits: 'Quick energy & electrolytes' },
 ];
+
+const signatureFruits = (name_en: string): FruitJuiceInfo | undefined => FRUITS.find((f) => f.name_en === name_en);
+const signatureJuices = (name_en: string): FruitJuiceInfo | undefined => JUICES.find((j) => j.name_en === name_en);
+
+const CUISINE_SIGNATURE_FRUITS: Record<string, string[]> = {
+  saudi: ['Dates (3 pcs)'],
+  emirati: ['Dates (3 pcs)'],
+  omani: ['Dates (3 pcs)'],
+  kuwaiti: ['Dates (3 pcs)'],
+  qatar: ['Dates (3 pcs)'],
+  bahraini: ['Dates (3 pcs)'],
+  egyptian: ['Guava', 'Mango'],
+  indian: ['Mango'],
+  mexican: ['Papaya'],
+  african: ['Pineapple', 'Papaya'],
+  brazilian: ['Passion Fruit'],
+  thai: ['Pineapple', 'Mango'],
+  moroccan: ['Orange'],
+  tunisian: ['Fig'],
+  middle_eastern: ['Fig'],
+  greek: ['Grapes'],
+  italian: ['Grapes'],
+  turkish: ['Apricot'],
+};
+
+const CUISINE_SIGNATURE_DRINKS: Record<string, string[]> = {
+  saudi: ['Sugarcane Juice'],
+  emirati: ['Sugarcane Juice'],
+  egyptian: ['Guava Juice', 'Mango Juice'],
+  indian: ['Mango Juice'],
+  pakistani: ['Mango Juice'],
+  thai: ['Pineapple Juice'],
+  mexican: ['Watermelon Juice'],
+  brazilian: ['Coconut Water'],
+  middle_eastern: ['Pomegranate Juice'],
+  mediterranean: ['Pomegranate Juice'],
+};
+
+export const CUISINE_FRUITS: Record<string, FruitJuiceInfo[]> = {};
+export const CUISINE_JUICES: Record<string, FruitJuiceInfo[]> = {};
+CUISINE_GROUPS.flatMap((g) => g.items).forEach((c, i) => {
+  const third = Math.floor(FRUITS.length / 3);
+  const baseFruits = [FRUITS[i % FRUITS.length], FRUITS[(i + third) % FRUITS.length], FRUITS[(i + third * 2) % FRUITS.length]];
+  const specialFruits = (CUISINE_SIGNATURE_FRUITS[c.id] ?? []).map(signatureFruits).filter(Boolean) as FruitJuiceInfo[];
+  CUISINE_FRUITS[c.id] = [...baseFruits, ...specialFruits].map((f) => ({ ...f, mealType: 'fruit' as MealType, cuisine: [c.id] }));
+
+  const quarter = Math.floor(JUICES.length / 3);
+  const baseJuices = [JUICES[i % JUICES.length], JUICES[(i + quarter) % JUICES.length], JUICES[(i + quarter * 2) % JUICES.length]];
+  const specialJuices = (CUISINE_SIGNATURE_DRINKS[c.id] ?? []).map(signatureJuices).filter(Boolean) as FruitJuiceInfo[];
+  CUISINE_JUICES[c.id] = [...baseJuices, ...specialJuices].map((f) => ({ ...f, mealType: 'juice' as MealType, cuisine: [c.id] }));
+});
