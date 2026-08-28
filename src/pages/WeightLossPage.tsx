@@ -178,7 +178,12 @@ const WeightLossPage: React.FC = () => {
                           {filteredFoods.map((food, idx) => (
                             <tr key={idx} className="border-b last:border-0 hover:bg-gray-50">
                               <td className="py-2.5 font-medium"><div>{food.name}</div><div className="text-xs text-gray-400">{food.name_en}</div></td>
-                              <td className="py-2.5 text-gray-500">{food.portion}</td>
+                              <td className="py-2.5 text-gray-500">
+                                <div>{food.portion.measure}</div>
+                                <span className="inline-block mt-1 bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-[11px] font-bold whitespace-nowrap">
+                                  {food.portion.grams}g • {food.calories} kcal
+                                </span>
+                              </td>
                               <td className="py-2.5 text-center"><span className="bg-orange-100 text-orange-700 px-2 py-1 rounded-full text-xs font-bold">{food.calories}</span></td>
                               <td className="py-2.5 text-center font-bold">{food.protein}ج</td>
                             </tr>

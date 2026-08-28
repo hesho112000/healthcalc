@@ -1,5 +1,5 @@
 import { UserProfile, CalorieResult, Macros, MealPlan, DailyMealPlan, WorkoutPlan, DiabetesInputs, LabResult, BPResult } from '../types';
-import { CUISINE_GROUPS, CUISINE_FLAGS, REGIONAL_FOODS, FRUITS, JUICES, CUISINE_FRUITS, CUISINE_JUICES, type Cuisine, type MealType } from './cuisineCatalog';
+import { CUISINE_GROUPS, CUISINE_FLAGS, REGIONAL_FOODS, FRUITS, JUICES, CUISINE_FRUITS, CUISINE_JUICES, getPortion, type Portion, type Cuisine, type MealType } from './cuisineCatalog';
 
 export type { Cuisine, MealType } from './cuisineCatalog';
 
@@ -72,12 +72,13 @@ const FRUIT_EMOJI: Record<string, string> = {
 
 const buildCuisineMealPlan = (targetCalories: number, cuisineId: Cuisine, lang: string): MealPlan[] => {
   const L = (f: FoodItem): string => (lang === 'ar' ? f.name_ar : f.name_en);
+  const portionPart = (f: FoodItem): string => ` · ${f.portion?.measure ?? '1 serving'}`;
   const setUp = (f: FoodItem): string =>
     f.type === 'fruit'
-      ? `${FRUIT_EMOJI[f.name_en] || '🍏'} Fruit: ${L(f)} (${f.benefits})`
+      ? `${FRUIT_EMOJI[f.name_en] || '🍏'} Fruit: ${L(f)} (${f.benefits})${portionPart(f)}`
       : f.type === 'juice'
-        ? `🧃 Drink: ${L(f)} (${f.benefits})`
-        : L(f);
+        ? `🧃 Drink: ${L(f)} (${f.benefits})${portionPart(f)}`
+        : `${L(f)}${portionPart(f)}`;
   const pickMain = (mealType: MealType, count: number): FoodItem[] =>
     shuffleFoods(foodsForSlot(cuisineId, mealType).filter((f) => f.type !== 'fruit' && f.type !== 'juice')).slice(0, count);
   const pickByMealType = (mealType: MealType, count: number): FoodItem[] => shuffleFoods(foodsForSlot(cuisineId, mealType)).slice(0, count);
@@ -244,7 +245,7 @@ export interface FoodItem {
   category: string;
   cuisine: string[];
   mealType?: MealType;
-  portion: string;
+  portion: Portion;
   type?: 'fruit' | 'juice';
   benefits?: string;
 }
@@ -262,20 +263,20 @@ export const FOODS_DATABASE: FoodItem[] = [
     name: f.name_en, name_en: f.name_en, name_ar: f.name_ar,
     calories: f.calories, protein: f.protein, carbs: f.carbs, fat: f.fat,
     category: f.type, cuisine: ['all'], mealType: f.mealType, type: f.type, benefits: f.benefits,
-    portion: '1 serving',
+    portion: getPortion(f.name_en, f.mealType),
   })),
   ...JUICES.map((f) => ({
     name: f.name_en, name_en: f.name_en, name_ar: f.name_ar,
     calories: f.calories, protein: f.protein, carbs: f.carbs, fat: f.fat,
     category: f.type, cuisine: ['all'], mealType: f.mealType, type: f.type, benefits: f.benefits,
-    portion: '1 glass',
+    portion: getPortion(f.name_en, f.mealType),
   })),
   ...Object.entries(CUISINE_FRUITS).flatMap(([cuisineId, list]) =>
     list.map((f) => ({
       name: f.name_en, name_en: f.name_en, name_ar: f.name_ar,
       calories: f.calories, protein: f.protein, carbs: f.carbs, fat: f.fat,
       category: f.type, cuisine: [cuisineId], mealType: f.mealType, type: f.type, benefits: f.benefits,
-      portion: '1 serving',
+      portion: getPortion(f.name_en, f.mealType),
     }))
   ),
   ...Object.entries(CUISINE_JUICES).flatMap(([cuisineId, list]) =>
@@ -283,48 +284,48 @@ export const FOODS_DATABASE: FoodItem[] = [
       name: f.name_en, name_en: f.name_en, name_ar: f.name_ar,
       calories: f.calories, protein: f.protein, carbs: f.carbs, fat: f.fat,
       category: f.type, cuisine: [cuisineId], mealType: f.mealType, type: f.type, benefits: f.benefits,
-      portion: '1 glass',
+      portion: getPortion(f.name_en, f.mealType),
     }))
   ),
-  { name: 'Grilled Chicken Breast', name_en: 'Grilled Chicken Breast', name_ar: 'صدر دجاج مشوي', calories: 165, protein: 31, carbs: 0, fat: 3.6, category: 'protein', cuisine: ['american', 'mediterranean', 'high_protein'], portion: '150g' },
-  { name: 'Salmon Fillet', name_en: 'Salmon Fillet', name_ar: 'فيليه سلمون', calories: 208, protein: 20, carbs: 0, fat: 13, category: 'protein', cuisine: ['mediterranean', 'asian', 'keto', 'high_protein'], portion: '150g' },
-  { name: 'Brown Rice', name_en: 'Brown Rice', name_ar: 'أرز بني', calories: 216, protein: 5, carbs: 45, fat: 1.8, category: 'grain', cuisine: ['asian'], portion: '1 cup' },
-  { name: 'Quinoa', name_en: 'Quinoa', name_ar: 'كينوا', calories: 222, protein: 8, carbs: 39, fat: 3.5, category: 'grain', cuisine: ['mediterranean'], portion: '1 cup' },
-  { name: 'Sweet Potato', name_en: 'Sweet Potato', name_ar: 'بطاطا حلوة', calories: 103, protein: 2, carbs: 24, fat: 0.1, category: 'vegetable', cuisine: ['american', 'african'], portion: '1 medium' },
-  { name: 'Avocado', name_en: 'Avocado', name_ar: 'أفوكادو', calories: 240, protein: 3, carbs: 12, fat: 22, category: 'fruit', cuisine: ['mexican', 'mediterranean', 'keto'], portion: '1 whole' },
-  { name: 'Greek Yogurt', name_en: 'Greek Yogurt', name_ar: 'زبادي يوناني', calories: 100, protein: 17, carbs: 6, fat: 0.7, category: 'dairy', cuisine: ['mediterranean', 'high_protein'], portion: '170g' },
-  { name: 'Hummus', name_en: 'Hummus', name_ar: 'حمص', calories: 166, protein: 8, carbs: 14, fat: 10, category: 'legume', cuisine: ['middle_eastern'], portion: '100g' },
-  { name: 'Lentil Soup', name_en: 'Lentil Soup', name_ar: 'شوربة عدس', calories: 230, protein: 18, carbs: 35, fat: 2, category: 'legume', cuisine: ['middle_eastern', 'egyptian'], portion: '1 bowl' },
-  { name: 'Chicken Tikka Masala', name_en: 'Chicken Tikka Masala', name_ar: 'دجاج تكا ماسالا', calories: 430, protein: 30, carbs: 20, fat: 25, category: 'protein', cuisine: ['indian', 'high_protein'], portion: '1 serving' },
-  { name: 'Sushi Roll', name_en: 'Sushi Roll', name_ar: 'رول سوشي', calories: 255, protein: 9, carbs: 38, fat: 7, category: 'grain', cuisine: ['asian'], portion: '6 pieces' },
-  { name: 'Tacos', name_en: 'Tacos', name_ar: 'تاكوس', calories: 380, protein: 18, carbs: 30, fat: 20, category: 'protein', cuisine: ['mexican'], portion: '2 pieces' },
-  { name: 'Falafel Bowl', name_en: 'Falafel Bowl', name_ar: 'طبق فلافل', calories: 450, protein: 15, carbs: 50, fat: 22, category: 'legume', cuisine: ['middle_eastern'], portion: '1 bowl' },
-  { name: 'Eggs (2 large)', name_en: 'Eggs (2 large)', name_ar: 'بيض (2 حبة)', calories: 143, protein: 13, carbs: 1, fat: 10, category: 'protein', cuisine: ['american', 'mediterranean', 'keto', 'high_protein'], portion: '2 large' },
-  { name: 'Oatmeal', name_en: 'Oatmeal', name_ar: 'شوفان', calories: 154, protein: 5, carbs: 27, fat: 3, category: 'grain', cuisine: ['american'], portion: '1 cup' },
-  { name: 'Banana', name_en: 'Banana', name_ar: 'موزة', calories: 105, protein: 1.3, carbs: 27, fat: 0.4, category: 'fruit', cuisine: ['african'], portion: '1 medium' },
-  { name: 'Almonds', name_en: 'Almonds', name_ar: 'لوز', calories: 164, protein: 6, carbs: 6, fat: 14, category: 'nuts', cuisine: ['mediterranean', 'indian', 'keto'], portion: '1oz (28g)' },
-  { name: 'Broccoli', name_en: 'Broccoli', name_ar: 'بروكلي', calories: 55, protein: 3.7, carbs: 11, fat: 0.6, category: 'vegetable', cuisine: ['asian', 'mediterranean', 'keto'], portion: '1 cup' },
-  { name: 'Tuna (canned)', name_en: 'Tuna (canned)', name_ar: 'تونة (معلبة)', calories: 128, protein: 26, carbs: 0, fat: 2.5, category: 'protein', cuisine: ['american', 'mediterranean', 'keto', 'high_protein'], portion: '1 can' },
-  { name: 'Couscous', name_en: 'Couscous', name_ar: 'كسكس', calories: 176, protein: 6, carbs: 36, fat: 0.3, category: 'grain', cuisine: ['mediterranean', 'middle_eastern'], portion: '1 cup' },
-  { name: 'Koshari', name_en: 'Koshari', name_ar: 'كشري', calories: 450, protein: 15, carbs: 70, fat: 10, category: 'grain', cuisine: ['egyptian'], portion: '1 plate' },
-  { name: 'Ful Medames', name_en: 'Ful Medames', name_ar: 'فول مدمس', calories: 340, protein: 18, carbs: 40, fat: 12, category: 'legume', cuisine: ['egyptian', 'middle_eastern'], portion: '1 bowl' },
-  { name: 'Molokhia', name_en: 'Molokhia', name_ar: 'ملوخية', calories: 280, protein: 14, carbs: 30, fat: 10, category: 'vegetable', cuisine: ['egyptian'], portion: '1 bowl' },
-  { name: 'Pasta Bolognese', name_en: 'Pasta Bolognese', name_ar: 'معكرونة بولونيز', calories: 480, protein: 25, carbs: 55, fat: 15, category: 'grain', cuisine: ['italian'], portion: '1 plate' },
-  { name: 'Margherita Pizza', name_en: 'Margherita Pizza', name_ar: 'بيتزا مارغريتا', calories: 400, protein: 18, carbs: 42, fat: 16, category: 'grain', cuisine: ['italian'], portion: '2 slices' },
-  { name: 'Risotto', name_en: 'Risotto', name_ar: 'ريزوتو', calories: 380, protein: 12, carbs: 50, fat: 12, category: 'grain', cuisine: ['italian'], portion: '1 cup' },
-  { name: 'Grilled Steak', name_en: 'Grilled Steak', name_ar: 'ستيك مشوي', calories: 350, protein: 40, carbs: 0, fat: 18, category: 'protein', cuisine: ['american', 'high_protein'], portion: '200g' },
-  { name: 'Cottage Cheese', name_en: 'Cottage Cheese', name_ar: 'جبنة قريش', calories: 110, protein: 14, carbs: 5, fat: 4, category: 'dairy', cuisine: ['high_protein'], portion: '150g' },
-  { name: 'Whey Protein Shake', name_en: 'Whey Protein Shake', name_ar: 'شيك بروتين مصل اللبن', calories: 120, protein: 25, carbs: 3, fat: 1, category: 'protein', cuisine: ['high_protein'], portion: '1 scoop' },
-  { name: 'Paneer Tikka', name_en: 'Paneer Tikka', name_ar: 'بانير تيكا', calories: 320, protein: 22, carbs: 8, fat: 22, category: 'protein', cuisine: ['indian', 'high_protein'], portion: '1 serving' },
-  { name: 'Butter Chicken', name_en: 'Butter Chicken', name_ar: 'دجاج بالزبدة', calories: 480, protein: 28, carbs: 16, fat: 32, category: 'protein', cuisine: ['indian'], portion: '1 serving' },
-  { name: 'Pad Thai', name_en: 'Pad Thai', name_ar: 'باد تاي', calories: 420, protein: 18, carbs: 50, fat: 14, category: 'grain', cuisine: ['asian'], portion: '1 plate' },
-  { name: 'Caesar Salad', name_en: 'Caesar Salad', name_ar: 'سلطة سيزر', calories: 350, protein: 22, carbs: 12, fat: 24, category: 'vegetable', cuisine: ['american', 'mediterranean'], portion: '1 bowl' },
-  { name: 'Steak & Eggs', name_en: 'Steak & Eggs', name_ar: 'ستيك وبويض', calories: 450, protein: 42, carbs: 2, fat: 28, category: 'protein', cuisine: ['american', 'keto', 'high_protein'], portion: '1 plate' },
-  { name: 'Keto Salmon Bowl', name_en: 'Keto Salmon Bowl', name_ar: 'طبق سلمون كيتو', calories: 380, protein: 30, carbs: 5, fat: 26, category: 'protein', cuisine: ['keto', 'mediterranean'], portion: '1 bowl' },
-  { name: 'Cheese Omelette', name_en: 'Cheese Omelette', name_ar: 'أومليت بالجبنة', calories: 300, protein: 20, carbs: 2, fat: 22, category: 'protein', cuisine: ['american', 'italian', 'keto', 'high_protein'], portion: '3 eggs' },
-  { name: 'Grilled Vegetables', name_en: 'Grilled Vegetables', name_ar: 'خضروات مشوية', calories: 120, protein: 4, carbs: 14, fat: 6, category: 'vegetable', cuisine: ['mediterranean', 'italian'], portion: '1 plate' },
-  { name: 'Caesar Chicken Wrap', name_en: 'Caesar Chicken Wrap', name_ar: 'ساندويتش سيزر بالدجاج', calories: 380, protein: 28, carbs: 30, fat: 14, category: 'protein', cuisine: ['american'], portion: '1 wrap' },
-  { name: 'Tofu Stir Fry', name_en: 'Tofu Stir Fry', name_ar: 'توفو مقلي', calories: 280, protein: 16, carbs: 18, fat: 16, category: 'protein', cuisine: ['asian'], portion: '1 plate' },
+  { name: 'Grilled Chicken Breast', name_en: 'Grilled Chicken Breast', name_ar: 'صدر دجاج مشوي', calories: 165, protein: 31, carbs: 0, fat: 3.6, category: 'protein', cuisine: ['american', 'mediterranean', 'high_protein'], portion: { grams: 150, measure: '1 breast (150g)' } },
+  { name: 'Salmon Fillet', name_en: 'Salmon Fillet', name_ar: 'فيليه سلمون', calories: 208, protein: 20, carbs: 0, fat: 13, category: 'protein', cuisine: ['mediterranean', 'asian', 'keto', 'high_protein'], portion: { grams: 150, measure: '1 fillet (150g)' } },
+  { name: 'Brown Rice', name_en: 'Brown Rice', name_ar: 'أرز بني', calories: 216, protein: 5, carbs: 45, fat: 1.8, category: 'grain', cuisine: ['asian'], portion: { grams: 195, measure: '1 cup (195g)' } },
+  { name: 'Quinoa', name_en: 'Quinoa', name_ar: 'كينوا', calories: 222, protein: 8, carbs: 39, fat: 3.5, category: 'grain', cuisine: ['mediterranean'], portion: { grams: 185, measure: '1 cup (185g)' } },
+  { name: 'Sweet Potato', name_en: 'Sweet Potato', name_ar: 'بطاطا حلوة', calories: 103, protein: 2, carbs: 24, fat: 0.1, category: 'vegetable', cuisine: ['american', 'african'], portion: { grams: 130, measure: '1 medium (130g)' } },
+  { name: 'Avocado', name_en: 'Avocado', name_ar: 'أفوكادو', calories: 240, protein: 3, carbs: 12, fat: 22, category: 'fruit', cuisine: ['mexican', 'mediterranean', 'keto'], portion: { grams: 100, measure: '½ medium (100g)' } },
+  { name: 'Greek Yogurt', name_en: 'Greek Yogurt', name_ar: 'زبادي يوناني', calories: 100, protein: 17, carbs: 6, fat: 0.7, category: 'dairy', cuisine: ['mediterranean', 'high_protein'], portion: { grams: 170, measure: '1 cup (170g)' } },
+  { name: 'Hummus', name_en: 'Hummus', name_ar: 'حمص', calories: 166, protein: 8, carbs: 14, fat: 10, category: 'legume', cuisine: ['middle_eastern'], portion: { grams: 100, measure: '¼ cup (100g)' } },
+  { name: 'Lentil Soup', name_en: 'Lentil Soup', name_ar: 'شوربة عدس', calories: 230, protein: 18, carbs: 35, fat: 2, category: 'legume', cuisine: ['middle_eastern', 'egyptian'], portion: { grams: 245, measure: '1 cup (245g)' } },
+  { name: 'Chicken Tikka Masala', name_en: 'Chicken Tikka Masala', name_ar: 'دجاج تكا ماسالا', calories: 430, protein: 30, carbs: 20, fat: 25, category: 'protein', cuisine: ['indian', 'high_protein'], portion: { grams: 200, measure: '1 bowl (200g)' } },
+  { name: 'Sushi Roll', name_en: 'Sushi Roll', name_ar: 'رول سوشي', calories: 255, protein: 9, carbs: 38, fat: 7, category: 'grain', cuisine: ['asian'], portion: { grams: 180, measure: '6 pieces (180g)' } },
+  { name: 'Tacos', name_en: 'Tacos', name_ar: 'تاكوس', calories: 380, protein: 18, carbs: 30, fat: 20, category: 'protein', cuisine: ['mexican'], portion: { grams: 180, measure: '2 tacos (180g)' } },
+  { name: 'Falafel Bowl', name_en: 'Falafel Bowl', name_ar: 'طبق فلافل', calories: 450, protein: 15, carbs: 50, fat: 22, category: 'legume', cuisine: ['middle_eastern'], portion: { grams: 300, measure: '1 bowl (300g)' } },
+  { name: 'Eggs (2 large)', name_en: 'Eggs (2 large)', name_ar: 'بيض (2 حبة)', calories: 143, protein: 13, carbs: 1, fat: 10, category: 'protein', cuisine: ['american', 'mediterranean', 'keto', 'high_protein'], portion: { grams: 100, measure: '2 large eggs (100g)' } },
+  { name: 'Oatmeal', name_en: 'Oatmeal', name_ar: 'شوفان', calories: 154, protein: 5, carbs: 27, fat: 3, category: 'grain', cuisine: ['american'], portion: { grams: 234, measure: '1 cup cooked (234g)' } },
+  { name: 'Banana', name_en: 'Banana', name_ar: 'موزة', calories: 105, protein: 1.3, carbs: 27, fat: 0.4, category: 'fruit', cuisine: ['african'], portion: { grams: 118, measure: '1 medium (118g)' } },
+  { name: 'Almonds', name_en: 'Almonds', name_ar: 'لوز', calories: 164, protein: 6, carbs: 6, fat: 14, category: 'nuts', cuisine: ['mediterranean', 'indian', 'keto'], portion: { grams: 28, measure: '1 oz (28g)' } },
+  { name: 'Broccoli', name_en: 'Broccoli', name_ar: 'بروكلي', calories: 55, protein: 3.7, carbs: 11, fat: 0.6, category: 'vegetable', cuisine: ['asian', 'mediterranean', 'keto'], portion: { grams: 91, measure: '1 cup (91g)' } },
+  { name: 'Tuna (canned)', name_en: 'Tuna (canned)', name_ar: 'تونة (معلبة)', calories: 128, protein: 26, carbs: 0, fat: 2.5, category: 'protein', cuisine: ['american', 'mediterranean', 'keto', 'high_protein'], portion: { grams: 140, measure: '1 can (140g)' } },
+  { name: 'Couscous', name_en: 'Couscous', name_ar: 'كسكس', calories: 176, protein: 6, carbs: 36, fat: 0.3, category: 'grain', cuisine: ['mediterranean', 'middle_eastern'], portion: { grams: 157, measure: '1 cup (157g)' } },
+  { name: 'Koshari', name_en: 'Koshari', name_ar: 'كشري', calories: 450, protein: 15, carbs: 70, fat: 10, category: 'grain', cuisine: ['egyptian'], portion: { grams: 250, measure: '1 plate (250g)' } },
+  { name: 'Ful Medames', name_en: 'Ful Medames', name_ar: 'فول مدمس', calories: 340, protein: 18, carbs: 40, fat: 12, category: 'legume', cuisine: ['egyptian', 'middle_eastern'], portion: { grams: 150, measure: '1 bowl (150g)' } },
+  { name: 'Molokhia', name_en: 'Molokhia', name_ar: 'ملوخية', calories: 280, protein: 14, carbs: 30, fat: 10, category: 'vegetable', cuisine: ['egyptian'], portion: { grams: 200, measure: '1 bowl (200g)' } },
+  { name: 'Pasta Bolognese', name_en: 'Pasta Bolognese', name_ar: 'معكرونة بولونيز', calories: 480, protein: 25, carbs: 55, fat: 15, category: 'grain', cuisine: ['italian'], portion: { grams: 200, measure: '1 plate (200g cooked)' } },
+  { name: 'Margherita Pizza', name_en: 'Margherita Pizza', name_ar: 'بيتزا مارغريتا', calories: 400, protein: 18, carbs: 42, fat: 16, category: 'grain', cuisine: ['italian'], portion: { grams: 150, measure: '1 slice of 12-inch (150g)' } },
+  { name: 'Risotto', name_en: 'Risotto', name_ar: 'ريزوتو', calories: 380, protein: 12, carbs: 50, fat: 12, category: 'grain', cuisine: ['italian'], portion: { grams: 250, measure: '1 cup (250g)' } },
+  { name: 'Grilled Steak', name_en: 'Grilled Steak', name_ar: 'ستيك مشوي', calories: 350, protein: 40, carbs: 0, fat: 18, category: 'protein', cuisine: ['american', 'high_protein'], portion: { grams: 200, measure: '1 steak (200g)' } },
+  { name: 'Cottage Cheese', name_en: 'Cottage Cheese', name_ar: 'جبنة قريش', calories: 110, protein: 14, carbs: 5, fat: 4, category: 'dairy', cuisine: ['high_protein'], portion: { grams: 150, measure: '1 cup (150g)' } },
+  { name: 'Whey Protein Shake', name_en: 'Whey Protein Shake', name_ar: 'شيك بروتين مصل اللبن', calories: 120, protein: 25, carbs: 3, fat: 1, category: 'protein', cuisine: ['high_protein'], portion: { grams: 250, measure: '1 shake (250ml)', ml: 250 } },
+  { name: 'Paneer Tikka', name_en: 'Paneer Tikka', name_ar: 'بانير تيكا', calories: 320, protein: 22, carbs: 8, fat: 22, category: 'protein', cuisine: ['indian', 'high_protein'], portion: { grams: 200, measure: '1 plate (200g)' } },
+  { name: 'Butter Chicken', name_en: 'Butter Chicken', name_ar: 'دجاج بالزبدة', calories: 480, protein: 28, carbs: 16, fat: 32, category: 'protein', cuisine: ['indian'], portion: { grams: 200, measure: '1 bowl (200g)', note: '100g steamed rice on the side' } },
+  { name: 'Pad Thai', name_en: 'Pad Thai', name_ar: 'باد تاي', calories: 420, protein: 18, carbs: 50, fat: 14, category: 'grain', cuisine: ['asian'], portion: { grams: 250, measure: '1 plate (250g)' } },
+  { name: 'Caesar Salad', name_en: 'Caesar Salad', name_ar: 'سلطة سيزر', calories: 350, protein: 22, carbs: 12, fat: 24, category: 'vegetable', cuisine: ['american', 'mediterranean'], portion: { grams: 200, measure: '1 bowl (200g)' } },
+  { name: 'Steak & Eggs', name_en: 'Steak & Eggs', name_ar: 'ستيك وبويض', calories: 450, protein: 42, carbs: 2, fat: 28, category: 'protein', cuisine: ['american', 'keto', 'high_protein'], portion: { grams: 250, measure: '1 plate (250g)' } },
+  { name: 'Keto Salmon Bowl', name_en: 'Keto Salmon Bowl', name_ar: 'طبق سلمون كيتو', calories: 380, protein: 30, carbs: 5, fat: 26, category: 'protein', cuisine: ['keto', 'mediterranean'], portion: { grams: 300, measure: '1 bowl (300g)' } },
+  { name: 'Cheese Omelette', name_en: 'Cheese Omelette', name_ar: 'أومليت بالجبنة', calories: 300, protein: 20, carbs: 2, fat: 22, category: 'protein', cuisine: ['american', 'italian', 'keto', 'high_protein'], portion: { grams: 200, measure: '3 eggs (200g)' } },
+  { name: 'Grilled Vegetables', name_en: 'Grilled Vegetables', name_ar: 'خضروات مشوية', calories: 120, protein: 4, carbs: 14, fat: 6, category: 'vegetable', cuisine: ['mediterranean', 'italian'], portion: { grams: 150, measure: '1 plate (150g)' } },
+  { name: 'Caesar Chicken Wrap', name_en: 'Caesar Chicken Wrap', name_ar: 'ساندويتش سيزر بالدجاج', calories: 380, protein: 28, carbs: 30, fat: 14, category: 'protein', cuisine: ['american'], portion: { grams: 200, measure: '1 wrap (200g)' } },
+  { name: 'Tofu Stir Fry', name_en: 'Tofu Stir Fry', name_ar: 'توفو مقلي', calories: 280, protein: 16, carbs: 18, fat: 16, category: 'protein', cuisine: ['asian'], portion: { grams: 300, measure: '1 plate (300g)' } },
   ...Object.entries(REGIONAL_FOODS).flatMap(([cuisineId, foods]) =>
     foods.map((f) => ({
       name: f.name_en,
@@ -337,7 +338,7 @@ export const FOODS_DATABASE: FoodItem[] = [
       category: f.mealType,
       cuisine: [cuisineId],
       mealType: f.mealType,
-      portion: '1 serving',
+      portion: f.portion ?? getPortion(f.name_en, f.mealType),
     }))
   ),
 ];

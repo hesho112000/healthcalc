@@ -183,7 +183,12 @@ const FoodLibraryPage: React.FC = () => {
                         ))}
                       </div>
                     </td>
-                    <td className="py-4 px-4 text-sm text-gray-600">{food.portion}</td>
+                    <td className="py-4 px-4 text-sm text-gray-600">
+                      <div>{food.portion.measure}</div>
+                      <span className="inline-block mt-1 bg-gray-100 border text-gray-600 px-2 py-0.5 rounded-full text-[11px] font-bold whitespace-nowrap">
+                        {food.portion.grams}g • {food.calories} kcal
+                      </span>
+                    </td>
                     <td className="py-4 px-3 text-center">
                       <span className={`px-3 py-1 rounded-full text-xs font-extrabold ${
                         food.calories < 100 ? 'bg-green-100 text-green-700' :
