@@ -18,6 +18,13 @@ export const calculateTDEE = (bmr: number, activity: string): number => {
   return Math.round(bmr * (map[activity] || 1.55));
 };
 
+export const getActivityFactor = (days: number): number => {
+  if (days <= 1) return 1.2;
+  if (days <= 3) return 1.375;
+  if (days <= 5) return 1.55;
+  return 1.725;
+};
+
 export const calculateCalories = calculateTDEE;
 
 export const calculateMacros = (calories: number) => ({
@@ -178,7 +185,10 @@ const generateWorkoutPlan = (goal: string): WorkoutPlan => {
 
 export const calculateFullResults = (profile: UserProfile, cuisineId?: Cuisine, lang: string = 'en'): CalorieResult => {
   const bmr = calculateBMR(profile.weight, profile.height, profile.age, profile.gender);
-  const tdee = calculateTDEE(bmr, profile.activityLevel);
+  const activityFactor = profile.workoutDays !== undefined
+    ? getActivityFactor(profile.workoutDays)
+    : ({ sedentary: 1.2, light: 1.375, moderate: 1.55, active: 1.725, very_active: 1.9 } as Record<string, number>)[profile.activityLevel] || 1.55;
+  const tdee = Math.round(bmr * activityFactor);
   let targetCalories = tdee;
   if (profile.goal === 'lose_weight') targetCalories = Math.round(tdee - 500);
   else if (profile.goal === 'gain_muscle') targetCalories = Math.round(tdee + 300);

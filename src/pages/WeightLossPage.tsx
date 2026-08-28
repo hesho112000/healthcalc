@@ -43,10 +43,11 @@ const WeightLossPage: React.FC = () => {
         return {
           age: data.age ?? 30, gender: data.gender ?? 'male', height: data.height ?? 175,
           weight: data.weight ?? 75, activityLevel: data.activityLevel ?? 'moderate', goal: data.goal ?? 'lose_weight',
+          workoutDays: data.workoutDays ?? 3,
         };
       } catch {}
     }
-    return { age: 30, gender: 'male', height: 175, weight: 75, activityLevel: 'moderate', goal: 'lose_weight' };
+    return { age: 30, gender: 'male', height: 175, weight: 75, activityLevel: 'moderate', goal: 'lose_weight', workoutDays: 3 };
   });
 
   const handleCalculate = (e: React.FormEvent) => {
@@ -130,6 +131,26 @@ const WeightLossPage: React.FC = () => {
               <div>
                 <label className="label">{t('weightLabel')} ({t('kgUnit')})</label>
                 <input type="number" min={30} max={300} value={form.weight} onChange={(e) => setForm({ ...form, weight: +e.target.value })} className="input-field-lg" />
+              </div>
+              <div className="mt-4">
+                <label className="text-sm font-medium text-gray-700">WORKOUT DAYS PER WEEK</label>
+                <div className="mt-2 flex items-center gap-3">
+                  <input
+                    type="range"
+                    min="0" max="7"
+                    value={form.workoutDays ?? 3}
+                    onChange={(e) => setForm({ ...form, workoutDays: +e.target.value })}
+                    className="flex-1 accent-blue-600"
+                  />
+                  <div className="bg-blue-50 border border-blue-200 px-4 py-2 rounded-lg min-w-[76px] text-center">
+                    <span className="font-bold text-blue-700">{form.workoutDays ?? 3} days</span>
+                  </div>
+                </div>
+                <div className="flex justify-between text-xs text-gray-400 mt-1">
+                  <span>0 - Sedentary</span>
+                  <span>3-4 - Moderate</span>
+                  <span>6-7 - Very Active</span>
+                </div>
               </div>
               <button type="submit" className="btn-primary w-full py-4 text-base font-bold">{t('calculate')}</button>
             </div>

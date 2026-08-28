@@ -14,6 +14,7 @@ export interface UserProfile {
   weight: number;
   activityLevel: ActivityLevel;
   goal: HealthGoal;
+  workoutDays?: number;
 }
 
 export type ActivityLevel = 'sedentary' | 'light' | 'moderate' | 'active' | 'very_active';
