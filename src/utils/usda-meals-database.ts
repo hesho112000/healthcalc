@@ -169,7 +169,7 @@ export const USDA_BASE: Record<string, USDAEntry> = {
   'Sugarcane Juice': { kcal: 70, protein: 0, carbs: 18, fat: 0, sugar: 16, sodium: 20, per100ml: true },
 
   // ---- FRUITS (per 100g) ----
-  'Apple': { kcal: 52, protein: 0.26, carbs: 13.8, fat: 0.17, fiber: 2.4, sugar: 10.4 },
+  'Apple': { kcal: 52, protein: 0.3, carbs: 14.0, fat: 0.2, fiber: 2.4, sugar: 10.4 },
   'Banana': { kcal: 89, protein: 1.09, carbs: 22.8, fat: 0.33, fiber: 2.6, sugar: 12.2 },
   'Dates': { kcal: 277, protein: 1.8, carbs: 75, fat: 0.15, fiber: 6.7, sugar: 63, sodium: 1 },
   'Dates (3 pcs)': { kcal: 277, protein: 1.8, carbs: 75, fat: 0.15, fiber: 6.7, sugar: 63, sodium: 1 },
@@ -931,11 +931,12 @@ export const getMealNutrition = (mealId: string, grams: number): VerificationRes
   const base = USDA_BASE[key];
   const factor = grams / (base.perServing ?? 100);
   const round = (v: number | undefined): number => Math.round((v ?? 0) * factor);
+  const round1 = (v: number | undefined): number => Math.round((v ?? 0) * factor * 10) / 10;
   return {
-    calories: Math.round(base.kcal * factor),
-    protein: round(base.protein),
-    carbs: round(base.carbs),
-    fat: round(base.fat),
+    calories: round(base.kcal),
+    protein: round1(base.protein),
+    carbs: round1(base.carbs),
+    fat: round1(base.fat),
     fiber: round(base.fiber),
     sodium: round(base.sodium),
     sugar: round(base.sugar),
