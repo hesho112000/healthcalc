@@ -1,6 +1,7 @@
 import type { DailyMealPlan, MealPlan } from '../types';
 import type { DayPlan } from './healthPlans';
 import { FOODS_DATABASE, type FoodItem } from './calculations';
+import { usdaEnrich } from './usda-meals-database';
 import { getPortionMeasure, type Portion } from './cuisineCatalog';
 
 export type MealBuilderSection = 'weight-loss' | 'diabetes' | 'hypertension' | 'lab-to-plan' | 'advanced-care';
@@ -102,17 +103,20 @@ const BREAD_SEEDS: BreadSeed[] = [
 ];
 
 const BREADS: FoodItem[] = BREAD_SEEDS.map((b) => ({
-  name: b.name_en,
-  name_en: b.name_en,
-  name_ar: b.name_ar,
-  calories: b.calories,
-  protein: b.protein,
-  carbs: b.carbs,
-  fat: b.fat,
+  ...usdaEnrich({
+    name: b.name_en,
+    name_en: b.name_en,
+    name_ar: b.name_ar,
+    calories: b.calories,
+    protein: b.protein,
+    carbs: b.carbs,
+    fat: b.fat,
+  }, b.portion.grams),
   category: 'bread',
   cuisine: b.cuisines,
   portion: b.portion,
-}));
+  sodium: undefined as number | undefined,
+} as FoodItem));
 
 export const isWholeGrainBread = (f: FoodItem): boolean => {
   const seed = BREAD_SEEDS.find((b) => b.name_en === (f.name_en || f.name));
@@ -392,10 +396,10 @@ export const scaleMeal = (
   foods: FoodItem[],
   macros: MealMacros,
   lang: string,
-): { calories: number; protein: number; carbs: number; fat: number; items: string[] } => {
+): { calories: number; protein: number; carbs: number; fat: number; items: string[]; verified: boolean; saturatedFat: number; cholesterol: number; fiber: number; sodium: number } => {
   const orig = sumMacros(foods);
   if (!orig.calories) {
-    return { calories: Math.round(allocated), protein: 0, carbs: 0, fat: 0, items: foods.map((f) => setUp(f, lang)) };
+    return { calories: Math.round(allocated), protein: 0, carbs: 0, fat: 0, items: foods.map((f) => setUp(f, lang)), verified: false, saturatedFat: 0, cholesterol: 0, fiber: 0, sodium: 0 };
   }
   const factor = clamp(allocated / orig.calories, 0.15, 1.5);
   const scaled = foods.map((f) => ({
@@ -419,7 +423,24 @@ export const scaleMeal = (
     fat += f;
     return setUpScaled(s.food, factor, lang, { cal: s.cal, protein: p, carbs: c, fat: f });
   });
-  return { calories: Math.round(allocated), protein, carbs, fat, items };
+  const micronut = foods.reduce((a, f) => ({
+    saturatedFat: a.saturatedFat + (f.saturatedFat || 0),
+    cholesterol: a.cholesterol + (f.cholesterol || 0),
+    fiber: a.fiber + (f.fiber || 0),
+    sodium: a.sodium + (f.sodium || 0),
+  }), { saturatedFat: 0, cholesterol: 0, fiber: 0, sodium: 0 });
+  return {
+    calories: Math.round(allocated),
+    protein,
+    carbs,
+    fat,
+    items,
+    verified: foods.length > 0 && foods.every((f) => f.verified),
+    saturatedFat: Math.round(micronut.saturatedFat * factor),
+    cholesterol: Math.round(micronut.cholesterol * factor),
+    fiber: Math.round(micronut.fiber * factor),
+    sodium: Math.round(micronut.sodium * factor),
+  };
 };
 
 const buildCustomDays = (targetCalories: number, lang: string, selections: BuilderSelections, macros: MealMacros, days: number): DailyMealPlan[] => {
@@ -447,6 +468,11 @@ const buildCustomDays = (targetCalories: number, lang: string, selections: Build
         carbs: scaled.carbs,
         fat: scaled.fat,
         items: scaled.items,
+        verified: scaled.verified,
+        saturatedFat: scaled.saturatedFat,
+        cholesterol: scaled.cholesterol,
+        fiber: scaled.fiber,
+        sodium: scaled.sodium,
         description: lang === 'ar' ? FOOD_DESC[key].ar : FOOD_DESC[key].en,
       };
     });

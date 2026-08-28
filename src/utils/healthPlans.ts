@@ -1,3 +1,6 @@
+import { FOODS_DATABASE } from './calculations';
+import { usdaEnrich } from './usda-meals-database';
+
 export interface PlanMealItem {
   meal: string;
   label: string;
@@ -9,6 +12,9 @@ export interface PlanMealItem {
   fat: number;
   nameAr?: string;
   nameEn?: string;
+  verified?: boolean;
+  saturatedFat?: number;
+  cholesterol?: number;
 }
 
 export interface PlanWorkoutItem {
@@ -160,18 +166,38 @@ const buildMealsFromCuisine = (cuisine?: string): PlanMealItem[] => {
   const pool = filtered.length >= 3 ? filtered : FOODS;
   const picked = pickN(pool, 3);
 
-  return picked.map((food, i) => ({
-    meal: labels[i],
-    label: labels[i],
-    calories: food.calories,
-    items: [food.name_en],
-    tips: `${food.calories} kcal · ${food.protein}g protein`,
-    protein: food.protein,
-    carbs: food.carbs,
-    fat: food.fat,
-    nameAr: food.name_ar,
-    nameEn: food.name_en,
-  }));
+  const enrichFood = (food: (typeof FOODS)[number]) => {
+    const db = FOODS_DATABASE.find((f) => f.name_en === food.name_en);
+    const base = db ?? usdaEnrich({ name: food.name_en, name_en: food.name_en, name_ar: food.name_ar, calories: food.calories, protein: food.protein, carbs: food.carbs, fat: food.fat } as Parameters<typeof usdaEnrich>[0], 120);
+    return {
+      calories: base.calories,
+      protein: base.protein,
+      carbs: base.carbs,
+      fat: base.fat,
+      verified: base.verified,
+      saturatedFat: base.saturatedFat,
+      cholesterol: base.cholesterol,
+    };
+  };
+
+  return picked.map((food, i) => {
+    const e = enrichFood(food);
+    return {
+      meal: labels[i],
+      label: labels[i],
+      calories: e.calories,
+      items: [food.name_en],
+      tips: `${e.calories} kcal · ${e.protein}g protein`,
+      protein: e.protein,
+      carbs: e.carbs,
+      fat: e.fat,
+      verified: e.verified,
+      saturatedFat: e.saturatedFat,
+      cholesterol: e.cholesterol,
+      nameAr: food.name_ar,
+      nameEn: food.name_en,
+    };
+  });
 };
 
 const generatePlan = (days: number, condition: string, cuisine?: string): DayPlan[] => {

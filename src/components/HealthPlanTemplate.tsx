@@ -5,7 +5,7 @@ import { getMealName, getFoodItemText, normalizeMealKey } from '../utils/mealLab
 /* ═══════════════════════════════════════════════════════════════════
    SHARED TYPES
    ═══════════════════════════════════════════════════════════════════ */
-export interface PlanMealItem { meal: string; calories: number; items: string[]; tips?: string; protein?: number; carbs?: number; fat?: number; nameAr?: string; nameEn?: string }
+export interface PlanMealItem { meal: string; calories: number; items: string[]; tips?: string; protein?: number; carbs?: number; fat?: number; nameAr?: string; nameEn?: string; verified?: boolean; saturatedFat?: number; cholesterol?: number }
 export interface PlanWorkoutItem { exercise: string; sets: string; notes: string; duration?: string; calories?: number }
 export interface PlanDay { day: number; label: string; phase: string; meals: PlanMealItem[]; workouts: PlanWorkoutItem[]; dailyGoal: string; guidelines?: string[] }
 export interface StatsData { bmr?: number; tdee?: number; targetCalories?: number }
@@ -272,7 +272,12 @@ export const MealCard: React.FC<{
           </div>
         </div>
         <div className="text-right">
-          <p className="text-2xl font-black text-primary-700 leading-none">{meal.calories}</p>
+          <div className="flex items-center justify-end gap-1.5">
+            {meal.verified && (
+              <span className="px-1.5 py-0.5 rounded-md bg-emerald-600 text-[9px] font-bold text-white" title="USDA Database">USDA ✓</span>
+            )}
+            <p className="text-2xl font-black text-primary-700 leading-none">{meal.calories}</p>
+          </div>
           <p className="text-[10px] font-semibold text-primary-400 uppercase">{t('kcal')}</p>
         </div>
       </div>
@@ -287,6 +292,16 @@ export const MealCard: React.FC<{
         <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-amber-50 text-amber-700 text-[10px] font-bold border border-amber-100">
           <span className="w-1.5 h-1.5 bg-amber-500 rounded-full" /> {t('fatLabel')} {fat}g
         </span>
+        {meal.saturatedFat != null && meal.saturatedFat > 0 && (
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-rose-50 text-rose-700 text-[10px] font-bold border border-rose-100">
+            🥩 Sat {meal.saturatedFat}g
+          </span>
+        )}
+        {meal.cholesterol != null && meal.cholesterol > 0 && (
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-orange-50 text-orange-700 text-[10px] font-bold border border-orange-100">
+            🥚 Chol {meal.cholesterol}mg
+          </span>
+        )}
       </div>
 
       {swappedTag && (

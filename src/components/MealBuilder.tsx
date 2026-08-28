@@ -115,6 +115,9 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
         {getMeasure(item) && <div className="text-[11px] text-gray-400 mt-0.5">{getMeasure(item)}</div>}
         <div className="flex flex-wrap gap-1 mt-1.5">
           <span className="px-1.5 py-0.5 rounded-md bg-gray-100 text-[10px] font-semibold text-gray-600">{item.calories} kcal</span>
+          {item.verified && (
+            <span className="px-1.5 py-0.5 rounded-md bg-emerald-600 text-[10px] font-bold text-white" title={item.nutritionSource || 'USDA verified'}>USDA ✓</span>
+          )}
           <span className="px-1.5 py-0.5 rounded-md bg-orange-50 text-[10px] font-semibold text-orange-600">P {item.protein}g</span>
           <span className="px-1.5 py-0.5 rounded-md bg-yellow-50 text-[10px] font-semibold text-yellow-700">C {item.carbs}g</span>
           {showGl && <span className="px-1.5 py-0.5 rounded-md bg-rose-50 text-[10px] font-semibold text-rose-600">GL≈{gl}</span>}

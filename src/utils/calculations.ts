@@ -1,5 +1,6 @@
 import { UserProfile, CalorieResult, Macros, MealPlan, DailyMealPlan, WorkoutPlan, DiabetesInputs, LabResult, BPResult } from '../types';
 import { CUISINE_GROUPS, CUISINE_FLAGS, REGIONAL_FOODS, FRUITS, JUICES, CUISINE_FRUITS, CUISINE_JUICES, getPortion, getPortionMeasure, type Portion, type Cuisine, type MealType } from './cuisineCatalog';
+import { usdaEnrich } from './usda-meals-database';
 
 export type { Cuisine, MealType } from './cuisineCatalog';
 
@@ -252,6 +253,13 @@ export interface FoodItem {
   mealType?: MealType;
   portion: Portion;
   type?: 'fruit' | 'juice';
+  verified?: boolean;
+  nutritionSource?: string;
+  fiber?: number;
+  sodium?: number;
+  sugar?: number;
+  saturatedFat?: number;
+  cholesterol?: number;
   benefits?: string;
 }
 
@@ -263,7 +271,7 @@ export const CUISINE_OPTIONS: Array<{ key: Cuisine; label_ar: string; label_en: 
     flag: CUISINE_FLAGS[i.id] || '🍽️',
   })));
 
-export const FOODS_DATABASE: FoodItem[] = [
+export const FOODS_DATABASE_RAW: FoodItem[] = [
   ...FRUITS.map((f) => ({
     name: f.name_en, name_en: f.name_en, name_ar: f.name_ar,
     calories: f.calories, protein: f.protein, carbs: f.carbs, fat: f.fat,
@@ -347,6 +355,16 @@ export const FOODS_DATABASE: FoodItem[] = [
     }))
   ),
 ];
+
+export const FOODS_DATABASE: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
+  const enriched = usdaEnrich(f, f.portion?.grams ?? (f.portion?.ml ?? 100));
+  return {
+    ...f,
+    ...enriched,
+    verified: enriched.verified,
+    nutritionSource: enriched.source,
+  };
+});
 
 const CUISINE_COLORS = ['bg-blue-100 text-blue-700', 'bg-red-100 text-red-700', 'bg-yellow-100 text-yellow-700', 'bg-green-100 text-green-700', 'bg-orange-100 text-orange-700', 'bg-amber-100 text-amber-700', 'bg-emerald-100 text-emerald-700', 'bg-rose-100 text-rose-700', 'bg-lime-100 text-lime-700', 'bg-purple-100 text-purple-700', 'bg-indigo-100 text-indigo-700', 'bg-teal-100 text-teal-700'];
 

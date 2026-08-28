@@ -172,7 +172,12 @@ const FoodLibraryPage: React.FC = () => {
                 {filteredFoods.map((food, idx) => (
                   <tr key={idx} className="border-b last:border-0 hover:bg-green-50/50 transition group">
                     <td className="py-4 px-6">
-                      <div className="font-bold text-gray-900 group-hover:text-green-700 transition">{food.name}</div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="font-bold text-gray-900 group-hover:text-green-700 transition">{food.name}</span>
+                        {food.verified && (
+                          <span className="px-1.5 py-0.5 rounded bg-emerald-600 text-[8px] font-bold text-white" title="USDA Database">USDA ✓</span>
+                        )}
+                      </div>
                       <div className="text-xs text-gray-400">{food.name_en}</div>
                     </td>
                     <td className="py-4 px-4">

@@ -50,6 +50,11 @@ export interface MealPlan {
   description: string;
   nameAr?: string;
   nameEn?: string;
+  verified?: boolean;
+  saturatedFat?: number;
+  cholesterol?: number;
+  fiber?: number;
+  sodium?: number;
 }
 
 export interface DailyMealPlan {

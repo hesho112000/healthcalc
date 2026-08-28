@@ -6,7 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { getMealName, getFoodItemText } from '../utils/mealLabels';
 
 interface ModalDayData {
-  meals: Array<{ meal: string; calories: number; protein: number; carbs: number; fat: number; items: string[]; icon?: string; description?: string; tips?: string; nameAr?: string; nameEn?: string }>;
+  meals: Array<{ meal: string; calories: number; protein: number; carbs: number; fat: number; items: string[]; icon?: string; description?: string; tips?: string; nameAr?: string; nameEn?: string; verified?: boolean; saturatedFat?: number; cholesterol?: number }>;
   theme?: string;
   label?: string;
   day?: number;
@@ -117,7 +117,7 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
       ${activeMealPlan.map(meal => `
         <div class="card">
           <h3>${mealIcons[meal.icon ?? 'meal'] || '🍽️'} ${getMealName(meal, language)}</h3>
-          <p class="meta">${meal.calories} kcal · ${meal.protein}g Protein · ${meal.carbs}g Carbs · ${meal.fat}g Fat</p>
+          <p class="meta">${meal.calories} kcal · ${meal.protein}g Protein · ${meal.carbs}g Carbs · ${meal.fat}g Fat${meal.verified ? ` · <span style="color:#059669;font-weight:700;">USDA ✓</span>` : ''}${meal.saturatedFat != null && meal.saturatedFat > 0 ? ` · Sat ${meal.saturatedFat}g` : ''}${meal.cholesterol != null && meal.cholesterol > 0 ? ` · Chol ${meal.cholesterol}mg` : ''}</p>
           <ul>${meal.items.map(item => `<li>${getFoodItemText(item, meal.nameAr, meal.nameEn, language)}</li>`).join('')}</ul>
           <p class="desc">${meal.description}</p>
         </div>
@@ -314,7 +314,12 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-bold" style={{ color: completed[i] ? '#15803d' : '#111827' }}>{getMealName(meal, language)}</h3>
-                    <p className="text-xs" style={{ color: completed[i] ? '#86efac' : '#9ca3af' }}>{meal.calories} kcal</p>
+                    <div className="flex items-center gap-1.5">
+                      {meal.verified && (
+                        <span className="px-1.5 py-0.5 rounded-md text-[9px] font-bold text-white" style={{ background: '#059669' }}>USDA ✓</span>
+                      )}
+                      <p className="text-xs" style={{ color: completed[i] ? '#86efac' : '#9ca3af' }}>{meal.calories} kcal</p>
+                    </div>
                   </div>
                   <button onClick={() => toggleComplete(i)} className="w-7 h-7 rounded-xl border-2 flex items-center justify-center transition-all cursor-pointer shrink-0"
                     style={completed[i]
@@ -327,6 +332,12 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
                   <span className="text-[10px] font-semibold px-2 py-0.5 rounded-lg" style={{ background: '#eff6ff', color: '#2563eb' }}>🥩 {meal.protein}g {t('proteinLabel')}</span>
                   <span className="text-[10px] font-semibold px-2 py-0.5 rounded-lg" style={{ background: '#f0fdf4', color: '#16a34a' }}>🌾 {meal.carbs}g {t('carbsLabel')}</span>
                   <span className="text-[10px] font-semibold px-2 py-0.5 rounded-lg" style={{ background: '#fffbeb', color: '#d97706' }}>🫒 {meal.fat}g {t('fatLabel')}</span>
+                  {meal.saturatedFat != null && meal.saturatedFat > 0 && (
+                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-lg" style={{ background: '#fff1f2', color: '#e11d48' }}>🥩 Sat {meal.saturatedFat}g</span>
+                  )}
+                  {meal.cholesterol != null && meal.cholesterol > 0 && (
+                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-lg" style={{ background: '#fff7ed', color: '#c2410c' }}>🥚 Chol {meal.cholesterol}mg</span>
+                  )}
                 </div>
                 <ul className="space-y-1.5">
                   {meal.items.map((item, j) => (
