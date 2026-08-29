@@ -19,6 +19,8 @@ import { CHINESE_FULL, type ChineseFullDish } from '../data/chinese-full';
 import { JAPANESE_FULL, type JapaneseFullDish } from '../data/japanese-full';
 import { KOREAN_FULL, type KoreanFullDish } from '../data/korean-full';
 import { THAI_FULL, type ThaiFullDish } from '../data/thai-full';
+import { ITALIAN_FULL, type ItalianFullDish } from '../data/italian-full';
+import { FRENCH_FULL, type FrenchFullDish } from '../data/french-full';
 
 export type { Cuisine, MealType } from './cuisineCatalog';
 
@@ -386,7 +388,7 @@ const fullFoodBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 
   return 'drink';
 };
 
-const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish | AlgerianFullDish | MoroccanFullDish | SaudiFullDish | EmiratiFullDish | KuwaitiFullDish | QatarFullDish | BahrainiFullDish | OmaniFullDish | IndianFullDish | PakistaniFullDish | ChineseFullDish | JapaneseFullDish | KoreanFullDish | ThaiFullDish, cuisineId: string): FoodItem => {
+const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish | AlgerianFullDish | MoroccanFullDish | SaudiFullDish | EmiratiFullDish | KuwaitiFullDish | QatarFullDish | BahrainiFullDish | OmaniFullDish | IndianFullDish | PakistaniFullDish | ChineseFullDish | JapaneseFullDish | KoreanFullDish | ThaiFullDish | ItalianFullDish | FrenchFullDish, cuisineId: string): FoodItem => {
   const base = fullFoodBase(e.mealType);
   const type = base === 'fruit' ? 'fruit' : undefined;
   return {
@@ -442,6 +444,8 @@ const toJapaneseFood = (e: JapaneseFullDish): FoodItem => toFullFood(e, 'japanes
 const toKoreanFood = (e: KoreanFullDish): FoodItem => toFullFood(e, 'korean');
 
 const toThaiFood = (e: ThaiFullDish): FoodItem => toFullFood(e, 'thai');
+const toItalianFood = (e: ItalianFullDish): FoodItem => toFullFood(e, 'italian');
+const toFrenchFood = (e: FrenchFullDish): FoodItem => toFullFood(e, 'french');
 
 const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   const enriched = usdaEnrich(f, f.portion?.grams ?? (f.portion?.ml ?? 100));
@@ -455,7 +459,7 @@ const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   };
 });
 
-const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'kuwaiti', 'qatar', 'bahraini', 'omani', 'indian', 'pakistani', 'chinese', 'japanese', 'korean', 'thai'];
+const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'kuwaiti', 'qatar', 'bahraini', 'omani', 'indian', 'pakistani', 'chinese', 'japanese', 'korean', 'thai', 'italian', 'french'];
 
 export const FOODS_DATABASE: FoodItem[] = [
   ...ENRICHED_ALL
@@ -478,6 +482,8 @@ export const FOODS_DATABASE: FoodItem[] = [
   ...JAPANESE_FULL.map(toJapaneseFood),
   ...KOREAN_FULL.map(toKoreanFood),
   ...THAI_FULL.map(toThaiFood),
+  ...ITALIAN_FULL.map(toItalianFood),
+  ...FRENCH_FULL.map(toFrenchFood),
 ];
 
 const CUISINE_COLORS = ['bg-blue-100 text-blue-700', 'bg-red-100 text-red-700', 'bg-yellow-100 text-yellow-700', 'bg-green-100 text-green-700', 'bg-orange-100 text-orange-700', 'bg-amber-100 text-amber-700', 'bg-emerald-100 text-emerald-700', 'bg-rose-100 text-rose-700', 'bg-lime-100 text-lime-700', 'bg-purple-100 text-purple-700', 'bg-indigo-100 text-indigo-700', 'bg-teal-100 text-teal-700'];
