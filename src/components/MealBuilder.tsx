@@ -42,7 +42,7 @@ const TABS: Array<{ id: 'breakfast' | 'lunch' | 'dinner' | 'extras'; en: string;
 
 const EXTRA_GROUPS: Array<{ slot: 'breads' | 'juices' | 'fruits'; en: string; ar: string; emoji: string }> = [
   { slot: 'breads', en: 'Bread', ar: 'خبز', emoji: '🥖' },
-  { slot: 'juices', en: 'Juices', ar: 'عصائر', emoji: '🧃' },
+  { slot: 'juices', en: 'Drinks', ar: 'مشروبات', emoji: '🧃' },
   { slot: 'fruits', en: 'Fruits', ar: 'فواكه', emoji: '🍎' },
 ];
 
@@ -160,7 +160,7 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
 
   const renderExtras = () => (
     <div className="space-y-5">
-      {EXTRA_GROUPS.map((group) => {
+      {EXTRA_GROUPS.filter((group) => pool[group.slot].length > 0).map((group) => {
         const items = pool[group.slot];
         const { min, max } = SLOT_LIMITS[group.slot];
         const count = selections[group.slot].length;
