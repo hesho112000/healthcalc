@@ -481,6 +481,8 @@ export const CUISINE_GROUPS: CuisineGroup[] = [
       { id: 'greek', nameAr: 'يوناني', nameEn: 'Greek' },
       { id: 'turkish', nameAr: 'تركي', nameEn: 'Turkish' },
       { id: 'german', nameAr: 'ألماني', nameEn: 'German' },
+      { id: 'british', nameAr: 'بريطاني', nameEn: 'British' },
+      { id: 'swiss', nameAr: 'سويسري', nameEn: 'Swiss' },
     ],
   },
   {
@@ -544,7 +546,7 @@ export const CUISINE_FLAGS: Record<string, string> = {
   egyptian: '🇪🇬', libyan: '🇱🇾', tunisian: '🇹🇳', algerian: '🇩🇿', moroccan: '🇲🇦',
   saudi: '🇸🇦', emirati: '🇦🇪', omani: '🇴🇲', kuwaiti: '🇰🇼', qatar: '🇶🇦', bahraini: '🇧🇭',
   indian: '🇮🇳', pakistani: '🇵🇰', chinese: '🇨🇳', korean: '🇰🇷', japanese: '🇯🇵', thai: '🇹🇭',
-  italian: '🇮🇹', french: '🇫🇷', spanish: '🇪🇸', greek: '🇬🇷', turkish: '🇹🇷', german: '🇩🇪',
+  italian: '🇮🇹', french: '🇫🇷', spanish: '🇪🇸', greek: '🇬🇷', turkish: '🇹🇷', german: '🇩🇪', british: '🇬🇧', swiss: '🇨🇭',
   american: '🇺🇸', mexican: '🇲🇽', canadian: '🇨🇦', cuban: '🇨🇺', jamaican: '🇯🇲', costa_rican: '🇨🇷',
   brazilian: '🇧🇷', argentinian: '🇦🇷', peruvian: '🇵🇪', colombian: '🇨🇴', chilean: '🇨🇱', venezuelan: '🇻🇪',
   australian: '🇦🇺',
