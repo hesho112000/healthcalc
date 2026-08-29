@@ -1,4 +1,4 @@
-// Single source of truth for Korean cuisine - 89 dishes verbatim from Korean-Full-100-USDA.json (filler rows omitted; every item has ref = real daily dish)
+// Single source of truth for Korean cuisine - 100 dishes verbatim from Korean-Full-100-CLEAN-USDA.json (every item has ref = real daily dish)
 export interface KoreanFullDish {
   id: string;
   nameAr: string;
@@ -15,6 +15,23 @@ export interface KoreanFullDish {
 }
 
 export const KOREAN_FULL: KoreanFullDish[] = [
+  {"id":"kr_gyeran_bap","nameAr":"جييران باب رز بيض كوري","nameEn":"Gyeran bap egg rice Korean","mealType":"breakfast","grams":200,"kcal":185,"protein":8,"carbs":24,"fat":5,"cooking":"pan","ref":"Egg rice breakfast"},
+  {"id":"kr_gyeran_bap_real","nameAr":"جييران باب رز بيض كوري فطار","nameEn":"Gyeran bap egg rice Korean breakfast","mealType":"breakfast","grams":200,"kcal":185,"protein":8,"carbs":24,"fat":5,"cooking":"pan","ref":"Gyeran bap - most common Korean breakfast"},
+  {"id":"kr_juk_dak","nameAr":"جوك دجاج كوري فطار","nameEn":"Dak juk chicken porridge Korean breakfast","mealType":"breakfast","grams":250,"kcal":145,"protein":10,"carbs":20,"fat":2.5,"cooking":"boiled","ref":"Chicken juk porridge breakfast"},
+  {"id":"kr_juk_haemul","nameAr":"جوك مأكولات بحرية كوري فطار","nameEn":"Haemul juk seafood porridge Korean breakfast","mealType":"breakfast","grams":250,"kcal":135,"protein":9,"carbs":18,"fat":2,"cooking":"boiled","ref":"Seafood porridge breakfast"},
+  {"id":"kr_toast_korean","nameAr":"توست كوري فطار","nameEn":"Gilgeori toast Korean breakfast","mealType":"breakfast","grams":150,"kcal":245,"protein":7,"carbs":26,"fat":12,"cooking":"pan","ref":"Korean street toast breakfast - famous"},
+  {"id":"kr_sandwich_korean","nameAr":"ساندوتش كوري فطار","nameEn":"Korean sandwich breakfast","mealType":"breakfast","grams":120,"kcal":185,"protein":6,"carbs":20,"fat":8,"cooking":"fresh","ref":"Korean sandwich"},
+  {"id":"kr_egg_roll_korean","nameAr":"رول بيض كوري فطار","nameEn":"Gyeran mari egg roll Korean breakfast","mealType":"breakfast","grams":100,"kcal":135,"protein":8,"carbs":2,"fat":10,"cooking":"pan","ref":"Rolled omelet breakfast banchan"},
+  {"id":"kr_kimchi_fried_egg","nameAr":"كيمتشي بيض مقلي كوري فطار","nameEn":"Kimchi fried egg Korean breakfast","mealType":"breakfast","grams":120,"kcal":125,"protein":7,"carbs":4,"fat":8,"cooking":"pan","ref":"Kimchi bokkeum with egg"},
+  {"id":"kr_soy_milk_korean","nameAr":"حليب صويا كوري فطار","nameEn":"Soy milk Korean breakfast","mealType":"breakfast","grams":200,"kcal":80,"protein":6,"carbs":6,"fat":3.5,"cooking":"fresh","ref":"Duyu Korean soy milk"},
+  {"id":"kr_apple_fuji_kr","nameAr":"تفاح فوجي كوري","nameEn":"Fuji apple Korean","mealType":"fruit","grams":150,"kcal":78,"protein":0.3,"carbs":20.6,"fat":0.4,"cooking":"fresh","ref":"Fuji apple Korea - very popular"},
+  {"id":"kr_banana_kr","nameAr":"موز كوري","nameEn":"Banana Korean","mealType":"fruit","grams":100,"kcal":89,"protein":1.1,"carbs":22.8,"fat":0.3,"cooking":"fresh","ref":"Banana popular in Korea"},
+  {"id":"kr_strawberry_kr","nameAr":"فراولة كورية","nameEn":"Strawberry Korean","mealType":"fruit","grams":150,"kcal":48,"protein":1,"carbs":11.5,"fat":0.5,"cooking":"fresh","ref":"Strawberry Korea winter famous"},
+  {"id":"kr_melon_korean","nameAr":"شمام كوري","nameEn":"Korean melon Chamoe","mealType":"fruit","grams":150,"kcal":45,"protein":0.8,"carbs":11,"fat":0.3,"cooking":"fresh","ref":"Chamoe Korean melon"},
+  {"id":"kr_persimmon","nameAr":"كاكا كوري (برسيمون)","nameEn":"Persimmon Korean","mealType":"fruit","grams":120,"kcal":85,"protein":0.6,"carbs":22,"fat":0.2,"cooking":"fresh","ref":"Gam persimmon autumn Korea"},
+  {"id":"kr_pear_korean","nameAr":"كمثرى كورية","nameEn":"Korean pear Bae","mealType":"fruit","grams":150,"kcal":63,"protein":0.6,"carbs":15.5,"fat":0.2,"cooking":"fresh","ref":"Bae Korean pear - famous"},
+  {"id":"kr_grape_korean","nameAr":"عنب كوري","nameEn":"Grape Korean","mealType":"fruit","grams":150,"kcal":103,"protein":1,"carbs":27,"fat":0.2,"cooking":"fresh","ref":"Campbell grapes Korea"},
+  {"id":"kr_tangerine_jeju","nameAr":"مندرين جيجو كوري","nameEn":"Jeju tangerine Korean Hallabong","mealType":"fruit","grams":150,"kcal":80,"protein":1.2,"carbs":20,"fat":0.4,"cooking":"fresh","ref":"Jeju hallabong tangerine famous"},
   {"id":"kr_bibimbap_veg","nameAr":"بيبيمباب خضار كوري","nameEn":"Bibimbap veg Korean","mealType":"lunch","grams":300,"kcal":285,"protein":8,"carbs":42,"fat":8,"cooking":"pan","ref":"Mixed rice veg Korea national"},
   {"id":"kr_bibimbap_beef","nameAr":"بيبيمباب لحم كوري","nameEn":"Bibimbap beef Korean","mealType":"lunch","grams":300,"kcal":345,"protein":16,"carbs":40,"fat":12,"cooking":"pan","ref":"Beef bibimbap"},
   {"id":"kr_bibimbap_ch","nameAr":"بيبيمباب دجاج كوري","nameEn":"Bibimbap chicken Korean","mealType":"lunch","grams":300,"kcal":325,"protein":18,"carbs":40,"fat":9,"cooking":"pan","ref":"Chicken bibimbap"},
@@ -93,15 +110,9 @@ export const KOREAN_FULL: KoreanFullDish[] = [
   {"id":"kr_bulgogi_dupbap","nameAr":"بولجوجي دوباب رز كوري","nameEn":"Bulgogi dupbap rice Korean","mealType":"lunch","grams":300,"kcal":345,"protein":16,"carbs":44,"fat":10,"cooking":"pan","ref":"Bulgogi rice bowl"},
   {"id":"kr_chamchi_dupbap","nameAr":"شامشي دوباب تونة كوري","nameEn":"Chamchi dupbap tuna rice Korean","mealType":"lunch","grams":250,"kcal":275,"protein":14,"carbs":36,"fat":6,"cooking":"fresh","ref":"Tuna rice bowl"},
   {"id":"kr_tuna_kimchi_dupbap","nameAr":"تونة كيمتشي دوباب كوري","nameEn":"Tuna kimchi dupbap Korean","mealType":"lunch","grams":250,"kcal":265,"protein":14,"carbs":32,"fat":7,"cooking":"fresh","ref":"Tuna kimchi bowl"},
-  {"id":"kr_gyeran_bap","nameAr":"جييران باب رز بيض كوري","nameEn":"Gyeran bap egg rice Korean","mealType":"breakfast","grams":200,"kcal":185,"protein":8,"carbs":24,"fat":5,"cooking":"pan","ref":"Egg rice breakfast"},
   {"id":"kr_gamja_jorim","nameAr":"جامجا جوريم بطاطس صويا كورية","nameEn":"Gamja jorim soy potato Korean","mealType":"side","grams":100,"kcal":85,"protein":1.5,"carbs":14,"fat":1.5,"cooking":"boiled","ref":"Soy braised potatoes"},
   {"id":"kr_bulgogi_pork_v35","nameAr":"بولجوجي لحم خنزير كوري مشوي لايت","nameEn":"Bulgogi pork grilled light Korean","mealType":"lunch","grams":150,"kcal":245,"protein":18,"carbs":6,"fat":14,"cooking":"grilled","ref":"Dwaeji bulgogi"},
   {"id":"kr_dak_kkochi_v36","nameAr":"داك كوتشي دجاج كوري مشوي","nameEn":"Dak kkochi grilled Korean","mealType":"side","grams":100,"kcal":165,"protein":14,"carbs":2,"fat":10,"cooking":"grilled","ref":"Chicken skewers street"},
   {"id":"kr_tteok_kkochi_v37","nameAr":"توك كوتشي كوري","nameEn":"Tteok kkochi Korean","mealType":"side","grams":80,"kcal":125,"protein":2,"carbs":20,"fat":1.5,"cooking":"grilled","ref":"Rice cake skewers"},
-  {"id":"kr_hotteok_light_v38","nameAr":"هوتيوك لايت كوري 1","nameEn":"Hotteok light Korean 1","mealType":"side","grams":50,"kcal":115,"protein":1.5,"carbs":18,"fat":3.5,"cooking":"pan","ref":"Sweet pancake"},
-  {"id":"kr_gyeran_jjim_v39","nameAr":"جييران جيم بيض بخار كوري","nameEn":"Gyeran jjim steamed egg Korean","mealType":"side","grams":120,"kcal":95,"protein":7,"carbs":2,"fat":6,"cooking":"steamed","ref":"Steamed eggs"},
-  {"id":"kr_bossam_v40","nameAr":"بوسام لحم خنزير كوري لايت","nameEn":"Bossam light Korean pork","mealType":"lunch","grams":150,"kcal":225,"protein":18,"carbs":2,"fat":14,"cooking":"boiled","ref":"Boiled pork wraps"},
-  {"id":"kr_mandu_3_v41","nameAr":"ماندو كوري 3 حبات","nameEn":"Mandu Korean 3","mealType":"side","grams":75,"kcal":115,"protein":4,"carbs":14,"fat":4,"cooking":"steamed","ref":"Korean dumplings"},
-  {"id":"kr_gimbap_cheese_v42","nameAr":"كيمباب جبن كوري 3 قطع","nameEn":"Cheese kimbap Korean 3","mealType":"side","grams":120,"kcal":175,"protein":5,"carbs":22,"fat":6,"cooking":"fresh","ref":"Cheese kimbap"},
-  {"id":"kr_bibim_guksu_v43","nameAr":"بيبيم جوكسو نودلز بارد حار كوري","nameEn":"Bibim guksu Korean","mealType":"lunch","grams":200,"kcal":195,"protein":5,"carbs":32,"fat":3.5,"cooking":"boiled","ref":"Spicy cold noodles"}
+  {"id":"kr_hotteok_light_v38","nameAr":"هوتيوك لايت كوري 1","nameEn":"Hotteok light Korean 1","mealType":"side","grams":50,"kcal":115,"protein":1.5,"carbs":18,"fat":3.5,"cooking":"pan","ref":"Sweet pancake"}
 ];
