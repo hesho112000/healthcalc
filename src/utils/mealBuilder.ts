@@ -31,10 +31,10 @@ export const SECTION_MACROS: Record<MealBuilderSection, MealMacros> = {
 
 export const MEAL_ALLOC: Record<string, number> = {
   breakfast: 0.3,
-  morningSnack: 0.025,
+  morningSnack: 0,
   lunch: 0.4,
-  afternoonSnack: 0.025,
-  dinner: 0.25,
+  afternoonSnack: 0,
+  dinner: 0.3,
 };
 
 export interface BuilderPool {
@@ -65,12 +65,12 @@ export interface MealBuilderGeneratePayload {
 }
 
 export const SLOT_LIMITS: Record<BuilderSlot, { min: number; max: number }> = {
-  breakfast: { min: 3, max: 5 },
-  lunch: { min: 3, max: 5 },
-  dinner: { min: 3, max: 5 },
-  breads: { min: 1, max: 3 },
-  juices: { min: 1, max: 3 },
-  fruits: { min: 1, max: 3 },
+  breakfast: { min: 1, max: 6 },
+  lunch: { min: 1, max: 6 },
+  dinner: { min: 1, max: 6 },
+  breads: { min: 0, max: 3 },
+  juices: { min: 0, max: 3 },
+  fruits: { min: 0, max: 3 },
 };
 
 interface BreadSeed {
@@ -261,12 +261,12 @@ export const buildBuilderPool = (cuisine: string, _section?: MealBuilderSection,
 };
 
 export const autoSelect = (pool: BuilderPool): BuilderSelections => ({
-  breakfast: pool.breakfast.slice(0, SLOT_LIMITS.breakfast.min),
-  lunch: pool.lunch.slice(0, SLOT_LIMITS.lunch.min),
-  dinner: pool.dinner.slice(0, SLOT_LIMITS.dinner.min),
-  breads: pool.breads.slice(0, SLOT_LIMITS.breads.min),
-  juices: pool.juices.slice(0, SLOT_LIMITS.juices.min),
-  fruits: pool.fruits.slice(0, SLOT_LIMITS.fruits.min),
+  breakfast: pool.breakfast.slice(0, Math.min(3, pool.breakfast.length)),
+  lunch: pool.lunch.slice(0, Math.min(3, pool.lunch.length)),
+  dinner: pool.dinner.slice(0, Math.min(3, pool.dinner.length)),
+  breads: pool.breads.slice(0, Math.min(1, pool.breads.length)),
+  juices: pool.juices.slice(0, Math.min(1, pool.juices.length)),
+  fruits: pool.fruits.slice(0, Math.min(1, pool.fruits.length)),
 });
 
 export const ensureFilled = (selections: BuilderSelections, pool: BuilderPool): BuilderSelections => {
@@ -378,9 +378,6 @@ const sumMacros = (items: FoodItem[]): { calories: number; protein: number; carb
     fat: acc.fat + (f.fat || 0),
   }), { calories: 0, protein: 0, carbs: 0, fat: 0 });
 
-const clamp = (v: number, lo: number, hi: number): number => Math.min(hi, Math.max(lo, v));
-const fit = (target: number, actual: number): number => (target > 0 && actual > 0 ? clamp(target / actual, 0.5, 1.5) : 1);
-
 const scaledWeight = (f: FoodItem, factor: number, lang: string): string => {
   const p = f.portion;
   if (!p) return '';
@@ -417,51 +414,17 @@ export const scaleMeal = (
   if (!orig.calories) {
     return { calories: Math.round(allocated), protein: 0, carbs: 0, fat: 0, items: foods.map((f) => setUp(f, lang)), verified: false, saturatedFat: 0, cholesterol: 0, fiber: 0, sodium: 0 };
   }
-  const exact = foods.length > 0 && foods.every((f) => !f.verified);
-  if (exact) {
-    const items = foods.map((f) =>
-      setUpScaled(f, 1, lang, { cal: f.calories || 0, protein: f.protein || 0, carbs: f.carbs || 0, fat: f.fat || 0 }),
-    );
-    const micronut = foods.reduce((a, f) => ({
-      saturatedFat: a.saturatedFat + (f.saturatedFat || 0),
-      cholesterol: a.cholesterol + (f.cholesterol || 0),
-      fiber: a.fiber + (f.fiber || 0),
-      sodium: a.sodium + (f.sodium || 0),
-    }), { saturatedFat: 0, cholesterol: 0, fiber: 0, sodium: 0 });
-    return {
-      calories: Math.round(orig.calories),
-      protein: Math.round(orig.protein * 10) / 10,
-      carbs: Math.round(orig.carbs * 10) / 10,
-      fat: Math.round(orig.fat * 10) / 10,
-      items,
-      verified: false,
-      saturatedFat: Math.round(micronut.saturatedFat),
-      cholesterol: Math.round(micronut.cholesterol),
-      fiber: Math.round(micronut.fiber),
-      sodium: Math.round(micronut.sodium),
-    };
-  }
-  const factor = clamp(allocated / orig.calories, 0.15, 1.5);
-  const scaled = foods.map((f) => ({
-    cal: Math.round((f.calories || 0) * factor),
-    protein: Math.round((f.protein || 0) * factor),
-    carbs: Math.round((f.carbs || 0) * factor),
-    fat: Math.round((f.fat || 0) * factor),
-    food: f,
-  }));
-  const sum = scaled.reduce((a, s) => ({ cal: a.cal + s.cal, protein: a.protein + s.protein, carbs: a.carbs + s.carbs, fat: a.fat + s.fat }), { cal: 0, protein: 0, carbs: 0, fat: 0 });
-  const cp = fit((allocated * macros.proteinRatio) / 4, sum.protein);
-  const cc = fit((allocated * macros.carbsRatio) / 4, sum.carbs);
-  const cf = fit((allocated * macros.fatRatio) / 9, sum.fat);
+  const factor = allocated / orig.calories;
   let protein = 0, carbs = 0, fat = 0;
-  const items = scaled.map((s) => {
-    const p = Math.round(s.protein * cp);
-    const c = Math.round(s.carbs * cc);
-    const f = Math.round(s.fat * cf);
+  const items = foods.map((f) => {
+    const cal = Math.round((f.calories || 0) * factor);
+    const p = Math.round((f.protein || 0) * factor * 10) / 10;
+    const c = Math.round((f.carbs || 0) * factor * 10) / 10;
+    const ff = Math.round((f.fat || 0) * factor * 10) / 10;
     protein += p;
     carbs += c;
-    fat += f;
-    return setUpScaled(s.food, factor, lang, { cal: s.cal, protein: p, carbs: c, fat: f });
+    fat += ff;
+    return setUpScaled(f, factor, lang, { cal, protein: p, carbs: c, fat: ff });
   });
   const micronut = foods.reduce((a, f) => ({
     saturatedFat: a.saturatedFat + (f.saturatedFat || 0),
@@ -491,13 +454,13 @@ const buildCustomDays = (targetCalories: number, lang: string, selections: Build
       return pickCounts(arr, d, count, offset);
     };
     const mealsDefs = [
-      { key: 'breakfast', foods: [...pick('breakfast', 2, 0), ...pick('fruits', 1, 0)] },
-      { key: 'morningSnack', foods: [...pick('fruits', 1, 3), ...pick('juices', 1, 3)] },
-      { key: 'lunch', foods: [...pick('lunch', 3, 0), ...pick('breads', 1, 0)] },
-      { key: 'afternoonSnack', foods: [...pick('fruits', 1, 6), ...pick('juices', 1, 6)] },
-      { key: 'dinner', foods: [...pick('dinner', 3, 1)] },
+      { key: 'breakfast', foods: [...pick('breakfast', selections.breakfast.length), ...pick('fruits', Math.min(1, selections.fruits.length), 0)] },
+      { key: 'lunch', foods: [...pick('lunch', selections.lunch.length), ...pick('breads', Math.min(1, selections.breads.length), 0)] },
+      { key: 'dinner', foods: [...pick('dinner', selections.dinner.length, 1)] },
     ];
-    const meals: MealPlan[] = mealsDefs.map(({ key, foods }) => {
+    const meals: MealPlan[] = mealsDefs
+      .filter(({ key }) => MEAL_ALLOC[key] > 0)
+      .map(({ key, foods }) => {
       const allocated = Math.round(targetCalories * MEAL_ALLOC[key]);
       const scaled = scaleMeal(allocated, foods, macros, lang);
       return {

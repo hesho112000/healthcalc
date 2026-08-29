@@ -10,6 +10,7 @@ import {
   type MealBuilderGeneratePayload,
   type MealBuilderSection,
   type MealMacros,
+  MEAL_ALLOC,
   SLOT_LIMITS,
   SECTION_MACROS,
   autoSelect,
@@ -19,6 +20,7 @@ import {
   estimateGL,
   getBreadSodium,
   isLowSodiumOption,
+  scaleMeal,
 } from '../utils/mealBuilder';
 import { detectCuisineByLocation, getCuisineLocalName, getGeoMeta } from '../utils/geo';
 
@@ -55,9 +57,36 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
   const [selections, setSelections] = useState<BuilderSelections>(() => autoSelect(pool));
   const [activeTab, setActiveTab] = useState<'breakfast' | 'lunch' | 'dinner' | 'extras'>('breakfast');
 
+  const effectiveMacros: MealMacros = useMemo(
+    () => ({ ...SECTION_MACROS[sectionType], ...(macros ?? {}) }),
+    [sectionType, macros],
+  );
+
+  const slotTarget = (slot: 'breakfast' | 'lunch' | 'dinner') => Math.round(targetCalories * MEAL_ALLOC[slot]);
+
+  const slotFoods = (slot: 'breakfast' | 'lunch' | 'dinner'): FoodItem[] => {
+    if (slot === 'breakfast') return [...selections.breakfast, ...selections.fruits.slice(0, 1)];
+    if (slot === 'lunch') return [...selections.lunch, ...selections.breads.slice(0, 1)];
+    return [...selections.dinner];
+  };
+
   useEffect(() => {
     setSelections((prev) => ensureFilled(prev, pool));
   }, [pool]);
+
+  const adjustCount = (slot: 'breakfast' | 'lunch' | 'dinner', delta: number) => {
+    setSelections((prev) => {
+      const list = prev[slot];
+      const count = list.length + delta;
+      if (count < SLOT_LIMITS[slot].min || count > SLOT_LIMITS[slot].max) return prev;
+      if (delta > 0) {
+        const missing = pool[slot].filter((p) => !list.some((s) => (s.name_en || s.name) === (p.name_en || p.name)));
+        if (!missing.length) return prev;
+        return { ...prev, [slot]: [...list, missing[0]] };
+      }
+      return { ...prev, [slot]: list.slice(0, count) };
+    });
+  };
 
   const geo = useMemo(() => getGeoMeta(), []);
   const detectedCuisine = useMemo(() => detectCuisineByLocation(), []);
@@ -82,7 +111,6 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
   const getMeasure = (item: FoodItem) => getPortionMeasure(item.portion, language);
 
   const handleGenerate = () => {
-    const effectiveMacros: MealMacros = { ...SECTION_MACROS[sectionType], ...(macros ?? {}) };
     onGenerate(buildCustomPlan(targetCalories, language, selections, pool, effectiveMacros));
   };
 
@@ -141,18 +169,58 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
     const items = pool[slot];
     const { min, max } = SLOT_LIMITS[slot];
     const count = selections[slot].length;
+    const preview = scaleMeal(slotTarget(slot), slotFoods(slot), effectiveMacros, language);
     return (
       <div>
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">
-            {ar ? `اختر ${min}-${max} من ${items.length} اختيار` : `Pick ${min}–${max} of ${items.length} choices`}
-          </span>
-          <span className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${count >= min ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>
-            {count}/{max}
+        <div className="flex items-center justify-between mb-2 gap-2 flex-wrap">
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={() => adjustCount(slot, -1)}
+              disabled={count <= min}
+              className="w-6 h-6 rounded-lg border border-gray-300 bg-white text-gray-700 text-sm font-bold leading-none disabled:opacity-40 hover:bg-gray-100 transition-colors cursor-pointer"
+            >
+              −
+            </button>
+            <span className={`min-w-6 text-center px-1.5 py-0.5 rounded-full text-[11px] font-bold ${count >= 1 ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>
+              {count}
+            </span>
+            <button
+              type="button"
+              onClick={() => adjustCount(slot, 1)}
+              disabled={count >= max}
+              className="w-6 h-6 rounded-lg border border-gray-300 bg-white text-gray-700 text-sm font-bold leading-none disabled:opacity-40 hover:bg-gray-100 transition-colors cursor-pointer"
+            >
+              +
+            </button>
+            <span className="ml-1.5 text-xs font-bold text-gray-400 uppercase tracking-wider">
+              {ar ? `${min}-${max} أطباق` : `${min}–${max} dishes`}
+            </span>
+          </div>
+          <span className="px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 text-[11px] font-bold">
+            {ar ? `الهدف ${slotTarget(slot)} سعرة` : `Target ${slotTarget(slot)} kcal`}
           </span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
           {items.map((item, idx) => renderCard(item, slot, idx))}
+        </div>
+        <div className="mt-3 rounded-xl border border-indigo-100 bg-indigo-50/60 p-3">
+          <div className="flex items-center justify-between mb-1">
+            <span className="text-xs font-extrabold text-indigo-800">{ar ? 'حِصص متكيفة تلقائيًا' : 'Smart adaptive portions'}</span>
+            <span className="text-[11px] font-bold text-indigo-700">
+              {preview.calories} <span className="font-medium">{ar ? 'سعرة' : 'kcal'}</span> · P{preview.protein} · C{preview.carbs} · F{preview.fat}
+            </span>
+          </div>
+          <ul className="space-y-0.5 text-[11px] text-gray-600 font-medium">
+            {preview.items.map((line, i) => (
+              <li key={i} className="leading-snug">{line}</li>
+            ))}
+          </ul>
+          <p className="mt-1.5 text-[10px] text-indigo-400">
+            {ar
+              ? 'تتغير الحصص تلقائيًا لتظل الوجبة دائمًا عند الهدف — أضف أو احذف أطباقًا وتتقلص الحصص أو تكبر.'
+              : 'Portions auto-resize so the meal always lands on target — add or remove dishes and portions shrink or grow.'}
+          </p>
         </div>
       </div>
     );
