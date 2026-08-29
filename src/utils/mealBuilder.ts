@@ -45,6 +45,7 @@ export interface BuilderPool {
   juices: FoodItem[];
   fruits: FoodItem[];
   sides: FoodItem[];
+  salads: FoodItem[];
 }
 
 export type BuilderSlot = keyof BuilderPool;
@@ -57,6 +58,7 @@ export interface BuilderSelections {
   juices: FoodItem[];
   fruits: FoodItem[];
   sides: FoodItem[];
+  salads: FoodItem[];
 }
 
 export interface MealBuilderGeneratePayload {
@@ -74,6 +76,7 @@ export const SLOT_LIMITS: Record<BuilderSlot, { min: number; max: number }> = {
   juices: { min: 0, max: 3 },
   fruits: { min: 0, max: 3 },
   sides: { min: 0, max: 4 },
+  salads: { min: 0, max: 1 },
 };
 
 interface BreadSeed {
@@ -130,7 +133,7 @@ export const isWholeGrainBread = (f: FoodItem): boolean => {
 
 export const getBreadSodium = (f: FoodItem): number | undefined => BREAD_SEEDS.find((b) => b.name_en === (f.name_en || f.name))?.sodium;
 
-const SLOT_BY_MEALTYPE: Record<BuilderSlot, 'breakfast' | 'lunch' | 'dinner' | 'juice' | 'fruit' | null> = {
+const SLOT_BY_MEALTYPE: Record<BuilderSlot, 'breakfast' | 'lunch' | 'dinner' | 'juice' | 'fruit' | 'salad' | null> = {
   breakfast: 'breakfast',
   lunch: 'lunch',
   dinner: 'dinner',
@@ -138,14 +141,15 @@ const SLOT_BY_MEALTYPE: Record<BuilderSlot, 'breakfast' | 'lunch' | 'dinner' | '
   juices: 'juice',
   fruits: 'fruit',
   sides: null,
+  salads: 'salad',
 };
 
-const MIN_POOL: Record<BuilderSlot, number> = { breakfast: 8, lunch: 8, dinner: 8, breads: 6, juices: 5, fruits: 7, sides: 4 };
+const MIN_POOL: Record<BuilderSlot, number> = { breakfast: 8, lunch: 8, dinner: 8, breads: 6, juices: 5, fruits: 7, sides: 4, salads: 0 };
 
 export const buildBuilderPool = (cuisine: string, _section?: MealBuilderSection, filters?: MealBuilderFilters): BuilderPool => {
   const db = FOODS_DATABASE;
 
-  if (cuisine === 'egyptian' || cuisine === 'libyan' || cuisine === 'tunisian' || cuisine === 'algerian' || cuisine === 'moroccan' || cuisine === 'saudi' || cuisine === 'emirati' || cuisine === 'kuwaiti' || cuisine === 'qatar' || cuisine === 'bahraini') {
+  if (cuisine === 'egyptian' || cuisine === 'libyan' || cuisine === 'tunisian' || cuisine === 'algerian' || cuisine === 'moroccan' || cuisine === 'saudi' || cuisine === 'emirati' || cuisine === 'kuwaiti' || cuisine === 'qatar' || cuisine === 'bahraini' || cuisine === 'omani') {
     const north = db.filter((f) => f.cuisine.includes(cuisine));
     return {
       breakfast: north.filter((f) => f.mealType === 'breakfast'),
@@ -155,6 +159,7 @@ export const buildBuilderPool = (cuisine: string, _section?: MealBuilderSection,
       juices: [],
       fruits: north.filter((f) => f.type === 'fruit'),
       sides: north.filter((f) => f.mealType === 'side'),
+      salads: north.filter((f) => f.mealType === 'salad'),
     };
   }
 
@@ -263,6 +268,7 @@ export const buildBuilderPool = (cuisine: string, _section?: MealBuilderSection,
     juices: juicePool(),
     fruits: fruitPool(),
     sides: [],
+    salads: db.filter((f) => f.mealType === 'salad' && inCuisine(f)),
   };
 };
 
@@ -274,6 +280,7 @@ export const autoSelect = (pool: BuilderPool): BuilderSelections => ({
   juices: pool.juices.slice(0, Math.min(1, pool.juices.length)),
   fruits: pool.fruits.slice(0, Math.min(1, pool.fruits.length)),
   sides: pool.sides.slice(0, Math.min(1, pool.sides.length)),
+  salads: pool.salads.slice(0, Math.min(1, pool.salads.length)),
 });
 
 export const ensureFilled = (selections: BuilderSelections, pool: BuilderPool): BuilderSelections => {
@@ -292,6 +299,7 @@ export const ensureFilled = (selections: BuilderSelections, pool: BuilderPool): 
     juices: fill(selections.juices, pool.juices, 'juices'),
     fruits: fill(selections.fruits, pool.fruits, 'fruits'),
     sides: fill(selections.sides, pool.sides, 'sides'),
+    salads: fill(selections.salads, pool.salads, 'salads'),
   };
 };
 
@@ -490,7 +498,7 @@ const buildCustomDays = (targetCalories: number, lang: string, selections: Build
     };
     const mealsDefs = [
       { key: 'breakfast', foods: [...pick('breakfast', selections.breakfast.length), ...pick('fruits', Math.min(1, selections.fruits.length), 0)] },
-      { key: 'lunch', foods: [...pick('lunch', selections.lunch.length), ...pick('breads', Math.min(1, selections.breads.length), 0), ...pick('sides', Math.min(1, selections.sides.length), 0)] },
+      { key: 'lunch', foods: [...pick('lunch', selections.lunch.length), ...pick('breads', Math.min(1, selections.breads.length), 0), ...pick('sides', Math.min(1, selections.sides.length), 0), ...pick('salads', Math.min(1, selections.salads.length), 0)] },
       { key: 'dinner', foods: [...pick('dinner', selections.dinner.length, 1)] },
     ];
     const meals: MealPlan[] = mealsDefs

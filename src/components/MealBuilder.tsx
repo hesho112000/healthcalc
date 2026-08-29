@@ -42,9 +42,10 @@ const TABS: Array<{ id: 'breakfast' | 'lunch' | 'dinner' | 'extras'; en: string;
   { id: 'extras', en: 'Extras', ar: 'إضافات', emoji: '🥖' },
 ];
 
-const EXTRA_GROUPS: Array<{ slot: 'breads' | 'juices' | 'fruits' | 'sides'; en: string; ar: string; emoji: string }> = [
+const EXTRA_GROUPS: Array<{ slot: 'breads' | 'juices' | 'fruits' | 'sides' | 'salads'; en: string; ar: string; emoji: string }> = [
   { slot: 'breads', en: 'Bread', ar: 'خبز', emoji: '🥖' },
-  { slot: 'sides', en: 'Sides', ar: 'أطباق جانبية', emoji: '🥗' },
+  { slot: 'salads', en: 'Salads', ar: 'سلطات', emoji: '🥗' },
+  { slot: 'sides', en: 'Sides', ar: 'أطباق جانبية', emoji: '🍲' },
   { slot: 'juices', en: 'Drinks', ar: 'مشروبات', emoji: '🧃' },
   { slot: 'fruits', en: 'Fruits', ar: 'فواكه', emoji: '🍎' },
 ];

@@ -12,6 +12,7 @@ import { EMIRATI_FULL, type EmiratiFullDish } from '../data/emirati-full';
 import { KUWAITI_FULL, type KuwaitiFullDish } from '../data/kuwaiti-full';
 import { QATAR_FULL, type QatarFullDish } from '../data/qatar-full';
 import { BAHRAINI_FULL, type BahrainiFullDish } from '../data/bahraini-full';
+import { OMANI_FULL, type OmaniFullDish } from '../data/omani-full';
 
 export type { Cuisine, MealType } from './cuisineCatalog';
 
@@ -369,16 +370,17 @@ export const FOODS_DATABASE_RAW: FoodItem[] = [
   ),
 ];
 
-const fullFoodBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 'drink' | 'side' => {
+const fullFoodBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 'drink' | 'side' | 'salad' => {
   if (mt === 'breakfast') return 'breakfast';
   if (mt === 'lunch') return 'lunch';
   if (mt === 'dinner') return 'dinner';
   if (mt === 'fruit') return 'fruit';
   if (mt === 'side') return 'side';
+  if (mt === 'salad') return 'salad';
   return 'drink';
 };
 
-const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish | AlgerianFullDish | MoroccanFullDish | SaudiFullDish | EmiratiFullDish | KuwaitiFullDish | QatarFullDish | BahrainiFullDish, cuisineId: string): FoodItem => {
+const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish | AlgerianFullDish | MoroccanFullDish | SaudiFullDish | EmiratiFullDish | KuwaitiFullDish | QatarFullDish | BahrainiFullDish | OmaniFullDish, cuisineId: string): FoodItem => {
   const base = fullFoodBase(e.mealType);
   const type = base === 'fruit' ? 'fruit' : undefined;
   return {
@@ -421,6 +423,8 @@ const toQatarFood = (e: QatarFullDish): FoodItem => toFullFood(e, 'qatar');
 
 const toBahrainiFood = (e: BahrainiFullDish): FoodItem => toFullFood(e, 'bahraini');
 
+const toOmaniFood = (e: OmaniFullDish): FoodItem => toFullFood(e, 'omani');
+
 const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   const enriched = usdaEnrich(f, f.portion?.grams ?? (f.portion?.ml ?? 100));
   return {
@@ -433,7 +437,7 @@ const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   };
 });
 
-const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'kuwaiti', 'qatar', 'bahraini'];
+const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'kuwaiti', 'qatar', 'bahraini', 'omani'];
 
 export const FOODS_DATABASE: FoodItem[] = [
   ...ENRICHED_ALL
@@ -449,6 +453,7 @@ export const FOODS_DATABASE: FoodItem[] = [
   ...KUWAITI_FULL.map(toKuwaitiFood),
   ...QATAR_FULL.map(toQatarFood),
   ...BAHRAINI_FULL.map(toBahrainiFood),
+  ...OMANI_FULL.map(toOmaniFood),
 ];
 
 const CUISINE_COLORS = ['bg-blue-100 text-blue-700', 'bg-red-100 text-red-700', 'bg-yellow-100 text-yellow-700', 'bg-green-100 text-green-700', 'bg-orange-100 text-orange-700', 'bg-amber-100 text-amber-700', 'bg-emerald-100 text-emerald-700', 'bg-rose-100 text-rose-700', 'bg-lime-100 text-lime-700', 'bg-purple-100 text-purple-700', 'bg-indigo-100 text-indigo-700', 'bg-teal-100 text-teal-700'];
