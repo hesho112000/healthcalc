@@ -49,6 +49,12 @@ const EXTRA_GROUPS: Array<{ slot: 'breads' | 'juices' | 'fruits' | 'sides'; en: 
   { slot: 'fruits', en: 'Fruits', ar: 'فواكه', emoji: '🍎' },
 ];
 
+const SLOT_NAMES: Record<'breakfast' | 'lunch' | 'dinner', { en: string; ar: string }> = {
+  breakfast: { en: 'Breakfast', ar: 'الفطار' },
+  lunch: { en: 'Lunch', ar: 'الغداء' },
+  dinner: { en: 'Dinner', ar: 'العشاء' },
+};
+
 const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters, targetCalories = 2000, macros, onGenerate, onCuisineChange, className = '' }) => {
   const { language } = useLanguage();
   const ar = language === 'ar';
@@ -57,6 +63,7 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
 
   const [selections, setSelections] = useState<BuilderSelections>(() => autoSelect(pool));
   const [activeTab, setActiveTab] = useState<'breakfast' | 'lunch' | 'dinner' | 'extras'>('breakfast');
+  const [openSlots, setOpenSlots] = useState<Record<string, boolean>>({});
 
   const effectiveMacros: MealMacros = useMemo(
     () => ({ ...SECTION_MACROS[sectionType], ...(macros ?? {}) }),
@@ -171,6 +178,7 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
     const { min, max } = SLOT_LIMITS[slot];
     const count = selections[slot].length;
     const preview = scaleMeal(slotTarget(slot), slotFoods(slot), effectiveMacros, language);
+    const open = !!openSlots[slot];
     return (
       <div>
         <div className="flex items-center justify-between mb-2 gap-2 flex-wrap">
@@ -206,22 +214,64 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
           {items.map((item, idx) => renderCard(item, slot, idx))}
         </div>
         <div className="mt-3 rounded-xl border border-indigo-100 bg-indigo-50/60 p-3">
-          <div className="flex items-center justify-between mb-1">
+          <button
+            type="button"
+            onClick={() => setOpenSlots((prev) => ({ ...prev, [slot]: !prev[slot] }))}
+            className="w-full flex items-center justify-between gap-2 text-left cursor-pointer"
+          >
             <span className="text-xs font-extrabold text-indigo-800">{ar ? 'حِصص متكيفة تلقائيًا' : 'Smart adaptive portions'}</span>
-            <span className="text-[11px] font-bold text-indigo-700">
-              {preview.calories} <span className="font-medium">{ar ? 'سعرة' : 'kcal'}</span> · P{preview.protein} · C{preview.carbs} · F{preview.fat}
+            <span className={`text-[11px] font-bold whitespace-nowrap ${open ? 'text-indigo-700' : 'bg-emerald-100 text-emerald-700 px-2 py-1 rounded-lg'}`}>
+              {open ? '▾ ' : '▸ '}
+              {ar ? `${open ? 'إخفاء' : 'عرض'} خطة ${SLOT_NAMES[slot].ar} - ${slotTarget(slot)} سعرة` : `${open ? 'Hide' : 'Show'} ${SLOT_NAMES[slot].en} Plan - ${slotTarget(slot)} kcal`}
             </span>
-          </div>
-          <ul className="space-y-0.5 text-[11px] text-gray-600 font-medium">
-            {preview.items.map((line, i) => (
-              <li key={i} className="leading-snug">{line}</li>
-            ))}
-          </ul>
-          <p className="mt-1.5 text-[10px] text-indigo-400">
-            {ar
-              ? 'تتغير الحصص تلقائيًا لتظل الوجبة دائمًا عند الهدف — أضف أو احذف أطباقًا وتتقلص الحصص أو تكبر.'
-              : 'Portions auto-resize so the meal always lands on target — add or remove dishes and portions shrink or grow.'}
-          </p>
+          </button>
+          {open && (
+            <div className="mt-2">
+              <div className="overflow-x-auto">
+                <table className="w-full text-[11px]">
+                  <thead>
+                    <tr className="text-left text-gray-400 border-b border-indigo-200/70">
+                      <th className="pb-1.5 pr-1">{ar ? 'الطبق' : 'Dish'}</th>
+                      <th className="pb-1.5 text-center">{ar ? 'الجرام' : 'Grams'}</th>
+                      <th className="pb-1.5 text-center">{ar ? 'السعرات' : 'kcal'}</th>
+                      <th className="pb-1.5 text-center">{ar ? 'بروتين' : 'Protein'}</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-indigo-100/70">
+                    {preview.rows.map((r, i) => (
+                      <tr key={i}>
+                        <td className="py-1.5 pr-1 font-medium text-gray-700">{r.label}</td>
+                        <td className="py-1.5 text-center text-gray-600">
+                          <span title={ar ? `كربوهيدرات ${r.carbs} جم · دهون ${r.fat} جم` : `Carbs ${r.carbs}g · Fat ${r.fat}g`} className="cursor-help">
+                            {r.grams} {r.unit === 'ml' ? (ar ? 'مل' : 'ml') : (ar ? 'جم' : 'g')}
+                          </span>
+                        </td>
+                        <td className="py-1.5 text-center"><span className="bg-orange-100 text-orange-700 px-1.5 py-0.5 rounded-md font-bold">{r.kcal}</span></td>
+                        <td className="py-1.5 text-center font-bold text-gray-700">{r.protein}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                  <tfoot>
+                    <tr className="border-t-2 border-indigo-200 font-extrabold text-indigo-800">
+                      <td className="pt-1.5 pr-1">{ar ? 'الإجمالي' : 'Total'}</td>
+                      <td className="pt-1.5 text-center">
+                        <span title={ar ? `كربوهيدرات ${preview.carbs} جم · دهون ${preview.fat} جم` : `Carbs ${preview.carbs}g · Fat ${preview.fat}g`} className="cursor-help">
+                          {preview.rows.reduce((s, r) => s + r.grams, 0)} {ar ? 'جم' : 'g'}
+                        </span>
+                      </td>
+                      <td className="pt-1.5 text-center"><span className="bg-indigo-600 text-white px-1.5 py-0.5 rounded-md">{preview.calories}</span></td>
+                      <td className="pt-1.5 text-center">{preview.protein}</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <p className="mt-2 text-[10px] text-indigo-400">
+                {ar
+                  ? 'تتغير الحصص تلقائيًا لتظل الوجبة دائمًا عند الهدف — أضف أو احذف أطباقًا وتتقلص الحصص أو تكبر.'
+                  : 'Portions auto-resize so the meal always lands on target — add or remove dishes and portions shrink or grow.'}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     );

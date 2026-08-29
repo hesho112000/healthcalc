@@ -412,18 +412,43 @@ const setUpScaled = (f: FoodItem, factor: number, lang: string, m: { cal: number
   return `${prefix}${L}${benefits}${w} · ${m.cal} ${kc} · P${m.protein}/C${m.carbs}/F${m.fat}`;
 };
 
+export interface ScaleMealRow {
+  label: string;
+  grams: number;
+  unit: 'g' | 'ml';
+  kcal: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+}
+
+const scaledGrams = (f: FoodItem, factor: number): { grams: number; unit: 'g' | 'ml' } => {
+  const p = f.portion;
+  if (!p) return { grams: 1, unit: 'g' };
+  const liquid = f.type === 'juice' || (p.ml != null && p.grams == null);
+  const base = f.type === 'juice' ? (p.ml ?? p.grams ?? 0) : (p.grams ?? p.ml ?? 0);
+  if (!base) return { grams: 1, unit: 'g' };
+  return { grams: Math.max(1, Math.round(base * factor)), unit: liquid ? 'ml' : 'g' };
+};
+
 export const scaleMeal = (
   allocated: number,
   foods: FoodItem[],
   macros: MealMacros,
   lang: string,
-): { calories: number; protein: number; carbs: number; fat: number; items: string[]; verified: boolean; saturatedFat: number; cholesterol: number; fiber: number; sodium: number } => {
+): { calories: number; protein: number; carbs: number; fat: number; items: string[]; rows: ScaleMealRow[]; verified: boolean; saturatedFat: number; cholesterol: number; fiber: number; sodium: number } => {
   const orig = sumMacros(foods);
   if (!orig.calories) {
-    return { calories: Math.round(allocated), protein: 0, carbs: 0, fat: 0, items: foods.map((f) => setUp(f, lang)), verified: false, saturatedFat: 0, cholesterol: 0, fiber: 0, sodium: 0 };
+    return {
+      calories: Math.round(allocated), protein: 0, carbs: 0, fat: 0,
+      items: foods.map((f) => setUp(f, lang)),
+      rows: foods.map((f) => ({ label: lang === 'ar' ? f.name_ar : f.name_en, ...scaledGrams(f, 1), kcal: f.calories || 0, protein: f.protein || 0, carbs: f.carbs || 0, fat: f.fat || 0 })),
+      verified: false, saturatedFat: 0, cholesterol: 0, fiber: 0, sodium: 0,
+    };
   }
   const factor = allocated / orig.calories;
   let protein = 0, carbs = 0, fat = 0;
+  const rows: ScaleMealRow[] = [];
   const items = foods.map((f) => {
     const cal = Math.round((f.calories || 0) * factor);
     const p = Math.round((f.protein || 0) * factor * 10) / 10;
@@ -432,6 +457,7 @@ export const scaleMeal = (
     protein += p;
     carbs += c;
     fat += ff;
+    rows.push({ label: lang === 'ar' ? f.name_ar : f.name_en, ...scaledGrams(f, factor), kcal: cal, protein: p, carbs: c, fat: ff });
     return setUpScaled(f, factor, lang, { cal, protein: p, carbs: c, fat: ff });
   });
   const micronut = foods.reduce((a, f) => ({
@@ -446,6 +472,7 @@ export const scaleMeal = (
     carbs,
     fat,
     items,
+    rows,
     verified: foods.length > 0 && foods.every((f) => f.verified),
     saturatedFat: Math.round(micronut.saturatedFat * factor),
     cholesterol: Math.round(micronut.cholesterol * factor),
