@@ -1,7 +1,8 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { UserProfile, CalorieResult, MealPlan, DailyMealPlan } from '../types';
+import { UserProfile, CalorieResult, MealPlan, DailyMealPlan, HealthGoal } from '../types';
 import { calculateFullResults } from '../utils/calculations';
+import AdviceBox from '../components/AdviceBox';
 import { usePersistedState } from '../hooks/usePersistedState';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import Breadcrumbs from '../components/Breadcrumbs';
@@ -19,6 +20,14 @@ import {
 import { FOODS_DATABASE, CUISINE_META, Cuisine, CUISINE_OPTIONS, recommendExercises, EXERCISE_TYPE_LABELS, EXERCISE_TYPE_OPTIONS, ExerciseType } from '../utils/calculations_expanded';
 import { getPortionMeasure } from '../utils/cuisineCatalog';
 import { getCuisineLabel } from '../utils/healthPlans';
+
+const GOAL_OPTIONS: Array<{ key: HealthGoal; en: string; ar: string; emoji: string }> = [
+  { key: 'lose_weight', en: 'Lose Fat', ar: 'خسارة الدهون', emoji: '🔥' },
+  { key: 'maintain', en: 'Maintain', ar: 'المحافظة', emoji: '⚖️' },
+  { key: 'gain_muscle', en: 'Gain Muscle', ar: 'بناء العضلات', emoji: '💪' },
+];
+
+const GOAL_DELTA: Record<HealthGoal, number> = { lose_weight: -500, maintain: 0, gain_muscle: 300 };
 
 const WeightLossPage: React.FC = () => {
   const { t, language } = useLanguage();
@@ -53,12 +62,23 @@ const WeightLossPage: React.FC = () => {
     return { age: 30, gender: 'male', height: 175, weight: 75, activityLevel: 'moderate', goal: 'lose_weight', workoutDays: 3 };
   });
 
+  const [activeGoal, setActiveGoal] = useState<HealthGoal>(form.goal);
+
   const handleCalculate = (e: React.FormEvent) => {
     e.preventDefault();
     const res = calculateFullResults(form, selectedCuisine, language);
     setResult(res);
+    setActiveGoal(form.goal);
     setCompletedExercises({});
     window.scrollTo({ top: 300, behavior: 'smooth' });
+  };
+
+  const handleGoalChange = (goal: HealthGoal) => {
+    setActiveGoal(goal);
+    setForm((prev) => ({ ...prev, goal }));
+    const res = calculateFullResults({ ...form, goal }, selectedCuisine, language);
+    setResult(res);
+    setCustomPlan(null);
   };
 
   const toggleExercise = useCallback((key: string) => {
@@ -164,6 +184,49 @@ const WeightLossPage: React.FC = () => {
         {!result ? <EmptyPlanState /> : (
             <div className="space-y-6">
               <StatsBar stats={{ bmr: result.bmr, tdee: result.tdee, targetCalories: result.targetCalories }} />
+
+              <div className="card p-5">
+                <h3 className="text-base font-bold mb-4 flex items-center gap-2">
+                  🎯 {language === 'ar' ? 'اختر هدفك — إعادة حساب الخطط تلقائيًا' : 'Goal Selector — recalculates all plans instantly'}
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {GOAL_OPTIONS.map((g) => {
+                    const kcal = result.tdee + GOAL_DELTA[g.key];
+                    const selected = activeGoal === g.key;
+                    return (
+                      <button
+                        key={g.key}
+                        type="button"
+                        onClick={() => handleGoalChange(g.key)}
+                        className={`text-left rounded-2xl border-2 p-4 transition-all ${
+                          selected ? 'border-primary-500 bg-primary-50 ring-2 ring-primary-200' : 'border-gray-200 bg-white hover:border-gray-300'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="text-lg">{g.emoji}</span>
+                          <input type="radio" readOnly checked={selected} className="pointer-events-none accent-primary-600" />
+                        </div>
+                        <div className="mt-1.5 font-bold text-gray-900">{language === 'ar' ? g.ar : g.en}</div>
+                        <div className="text-xs text-gray-500 mt-0.5">
+                          {GOAL_DELTA[g.key] > 0 && <>TDEE +{GOAL_DELTA[g.key]}</>}
+                          {GOAL_DELTA[g.key] < 0 && <>TDEE {GOAL_DELTA[g.key]}</>}
+                          {GOAL_DELTA[g.key] === 0 && <>TDEE</>} = <span className="font-bold text-gray-700">{kcal}</span> kcal
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <AdviceBox
+                weight={form.weight}
+                height={form.height}
+                age={form.age}
+                gender={form.gender}
+                targetCalories={result.targetCalories}
+                goal={activeGoal}
+              />
+
               <PlanTabBar activeTab={activeTab === 'calories' ? 'meals' : activeTab as any} onChange={(tab) => setActiveTab(tab as any)} />
               <DaySelectorBar days={30} activeDay={selectedDay + 1} onSelect={(d) => setSelectedDay(d - 1)} />
 
