@@ -9,7 +9,7 @@ import { FOODS as LEVANTINE_AFRICA_FOODS } from './regional/levantine-africa';
 import { FOODS as SPECIAL_DIETS_FOODS } from './regional/special-diets';
 
 export type Cuisine = string;
-export type MealType = 'breakfast' | 'lunch' | 'dinner' | 'snack' | 'fruit' | 'juice';
+export type MealType = 'breakfast' | 'lunch' | 'dinner' | 'snack' | 'fruit' | 'juice' | 'side' | 'drink';
 
 export interface Portion {
   grams: number;
@@ -28,6 +28,8 @@ export const PORTION_BY_MEALTYPE: Record<MealType, Portion> = {
   snack: { grams: 60, measure: '1 serving (60g)', measureAr: 'حصة واحدة (60 جم)' },
   fruit: { grams: 120, measure: '1 serving (120g)', measureAr: 'حصة واحدة (120 جم)' },
   juice: { grams: 200, measure: '1 cup (200ml)', measureAr: 'كوب واحد (200 مل)', ml: 200, note: 'no added sugar' },
+  side: { grams: 90, measure: '1 side serving (90g)', measureAr: 'طبق جانبي (90 جم)' },
+  drink: { grams: 200, measure: '1 cup (200ml)', measureAr: 'كوب واحد (200 مل)', ml: 200, note: 'no added sugar' },
 };
 
 export interface PortionLike {

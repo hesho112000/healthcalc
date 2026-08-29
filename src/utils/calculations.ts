@@ -2,7 +2,7 @@ import { UserProfile, CalorieResult, Macros, MealPlan, DailyMealPlan, WorkoutPla
 import { CUISINE_GROUPS, CUISINE_FLAGS, REGIONAL_FOODS, FRUITS, JUICES, CUISINE_FRUITS, CUISINE_JUICES, getPortion, getPortionMeasure, type Portion, type Cuisine, type MealType } from './cuisineCatalog';
 import { usdaEnrich } from './usda-meals-database';
 import { isHeavyMeal } from '../data/cuisine-allowed';
-import { EGYPTIAN_VERIFIED, type EgyptianVerifiedDish } from '../data/egyptian-verified';
+import { EGYPTIAN_FULL, type EgyptianFullDish } from '../data/egyptian-full';
 
 export type { Cuisine, MealType } from './cuisineCatalog';
 
@@ -360,46 +360,35 @@ export const FOODS_DATABASE_RAW: FoodItem[] = [
   ),
 ];
 
-const egyptianBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 'drink' => {
+const egyptianBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 'drink' | 'side' => {
   if (mt === 'breakfast') return 'breakfast';
-  if (mt === 'lunch' || mt === 'lunch_seafood' || mt === 'dessert') return 'lunch';
-  if (mt === 'dinner' || mt === 'dinner_seafood') return 'dinner';
+  if (mt === 'lunch') return 'lunch';
+  if (mt === 'dinner') return 'dinner';
   if (mt === 'fruit') return 'fruit';
+  if (mt === 'side') return 'side';
   return 'drink';
 };
 
-const parsePortionGrams = (ingredients: string, fallback: number): number => {
-  const m = ingredients.match(/(\d+)\s*(?:جم|مل)/);
-  return m ? Number(m[1]) : fallback;
-};
-
-const toEgyptianFood = (e: EgyptianVerifiedDish): FoodItem => {
-  const isFruitOrDrink = e.mealType === 'fruit' || e.mealType.startsWith('drink');
-  const kcal = isFruitOrDrink ? e.grams : e.kcal;
-  const protein = isFruitOrDrink ? e.carbs : e.protein;
-  const carbs = isFruitOrDrink ? e.protein : e.carbs;
-  const fat = e.fat;
+const toEgyptianFood = (e: EgyptianFullDish): FoodItem => {
   const base = egyptianBase(e.mealType);
-  const type = base === 'fruit' ? 'fruit' : base === 'drink' ? 'juice' : undefined;
-  const grams = isFruitOrDrink ? parsePortionGrams(e.ingredients, e.grams) : e.grams;
+  const type = base === 'fruit' ? 'fruit' : undefined;
   return {
     id: e.id,
     name: e.nameEn,
     name_en: e.nameEn,
     name_ar: e.nameAr,
-    calories: kcal,
-    protein,
-    carbs,
-    fat,
+    calories: e.kcal,
+    protein: e.protein,
+    carbs: e.carbs,
+    fat: e.fat,
     category: base,
     cuisine: ['egyptian'],
     mealType: base,
     type,
-    portion: { grams, measure: e.ingredients, measureAr: e.ingredients },
+    portion: { grams: e.grams, measure: `${e.grams} g`, measureAr: `${e.grams} جم` },
     verified: false,
-    nutritionSource: e.source,
     halal: true,
-    heavy: isHeavyMeal(e.nameEn, kcal, fat),
+    heavy: isHeavyMeal(e.nameEn, e.kcal, e.fat),
   } as FoodItem;
 };
 
@@ -419,7 +408,7 @@ export const FOODS_DATABASE: FoodItem[] = [
   ...ENRICHED_ALL
     .filter((f) => !f.cuisine.includes('egyptian') || f.cuisine.length > 1)
     .map((f) => (f.cuisine.includes('egyptian') ? { ...f, cuisine: f.cuisine.filter((c) => c !== 'egyptian') } : f)),
-  ...EGYPTIAN_VERIFIED.map(toEgyptianFood),
+  ...EGYPTIAN_FULL.map(toEgyptianFood),
 ];
 
 const CUISINE_COLORS = ['bg-blue-100 text-blue-700', 'bg-red-100 text-red-700', 'bg-yellow-100 text-yellow-700', 'bg-green-100 text-green-700', 'bg-orange-100 text-orange-700', 'bg-amber-100 text-amber-700', 'bg-emerald-100 text-emerald-700', 'bg-rose-100 text-rose-700', 'bg-lime-100 text-lime-700', 'bg-purple-100 text-purple-700', 'bg-indigo-100 text-indigo-700', 'bg-teal-100 text-teal-700'];
