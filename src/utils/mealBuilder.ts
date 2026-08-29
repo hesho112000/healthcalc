@@ -417,6 +417,30 @@ export const scaleMeal = (
   if (!orig.calories) {
     return { calories: Math.round(allocated), protein: 0, carbs: 0, fat: 0, items: foods.map((f) => setUp(f, lang)), verified: false, saturatedFat: 0, cholesterol: 0, fiber: 0, sodium: 0 };
   }
+  const exact = foods.length > 0 && foods.every((f) => !f.verified);
+  if (exact) {
+    const items = foods.map((f) =>
+      setUpScaled(f, 1, lang, { cal: f.calories || 0, protein: f.protein || 0, carbs: f.carbs || 0, fat: f.fat || 0 }),
+    );
+    const micronut = foods.reduce((a, f) => ({
+      saturatedFat: a.saturatedFat + (f.saturatedFat || 0),
+      cholesterol: a.cholesterol + (f.cholesterol || 0),
+      fiber: a.fiber + (f.fiber || 0),
+      sodium: a.sodium + (f.sodium || 0),
+    }), { saturatedFat: 0, cholesterol: 0, fiber: 0, sodium: 0 });
+    return {
+      calories: Math.round(orig.calories),
+      protein: Math.round(orig.protein * 10) / 10,
+      carbs: Math.round(orig.carbs * 10) / 10,
+      fat: Math.round(orig.fat * 10) / 10,
+      items,
+      verified: false,
+      saturatedFat: Math.round(micronut.saturatedFat),
+      cholesterol: Math.round(micronut.cholesterol),
+      fiber: Math.round(micronut.fiber),
+      sodium: Math.round(micronut.sodium),
+    };
+  }
   const factor = clamp(allocated / orig.calories, 0.15, 1.5);
   const scaled = foods.map((f) => ({
     cal: Math.round((f.calories || 0) * factor),
@@ -467,7 +491,7 @@ const buildCustomDays = (targetCalories: number, lang: string, selections: Build
       return pickCounts(arr, d, count, offset);
     };
     const mealsDefs = [
-      { key: 'breakfast', foods: [...pick('breakfast', 2, 0), ...pick('fruits', 1, 0), ...pick('juices', 1, 0)] },
+      { key: 'breakfast', foods: [...pick('breakfast', 2, 0), ...pick('fruits', 1, 0)] },
       { key: 'morningSnack', foods: [...pick('fruits', 1, 3), ...pick('juices', 1, 3)] },
       { key: 'lunch', foods: [...pick('lunch', 3, 0), ...pick('breads', 1, 0)] },
       { key: 'afternoonSnack', foods: [...pick('fruits', 1, 6), ...pick('juices', 1, 6)] },

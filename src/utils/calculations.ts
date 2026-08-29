@@ -381,7 +381,7 @@ const toEgyptianFood = (e: EgyptianVerifiedDish): FoodItem => {
   const fat = e.fat;
   const base = egyptianBase(e.mealType);
   const type = base === 'fruit' ? 'fruit' : base === 'drink' ? 'juice' : undefined;
-  const grams = parsePortionGrams(e.ingredients, e.grams);
+  const grams = isFruitOrDrink ? parsePortionGrams(e.ingredients, e.grams) : e.grams;
   return {
     id: e.id,
     name: e.nameEn,
