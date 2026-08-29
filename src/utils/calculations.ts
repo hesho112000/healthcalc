@@ -26,6 +26,8 @@ import { GREEK_FULL, type GreekFullDish } from '../data/greek-full';
 import { TURKISH_FULL, type TurkishFullDish } from '../data/turkish-full';
 import { BRITISH_FULL, type BritishFullDish } from '../data/british-full';
 import { SWISS_FULL, type SwissFullDish } from '../data/swiss-full';
+import { MEXICAN_FULL, type MexicanFullDish } from '../data/mexican-full';
+import { AMERICAN_FULL, type AmericanFullDish } from '../data/american-full';
 
 export type { Cuisine, MealType } from './cuisineCatalog';
 
@@ -393,7 +395,7 @@ const fullFoodBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 
   return 'drink';
 };
 
-const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish | AlgerianFullDish | MoroccanFullDish | SaudiFullDish | EmiratiFullDish | KuwaitiFullDish | QatarFullDish | BahrainiFullDish | OmaniFullDish | IndianFullDish | PakistaniFullDish | ChineseFullDish | JapaneseFullDish | KoreanFullDish | ThaiFullDish | ItalianFullDish | FrenchFullDish | SpanishFullDish | GreekFullDish | TurkishFullDish | BritishFullDish | SwissFullDish, cuisineId: string): FoodItem => {
+const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish | AlgerianFullDish | MoroccanFullDish | SaudiFullDish | EmiratiFullDish | KuwaitiFullDish | QatarFullDish | BahrainiFullDish | OmaniFullDish | IndianFullDish | PakistaniFullDish | ChineseFullDish | JapaneseFullDish | KoreanFullDish | ThaiFullDish | ItalianFullDish | FrenchFullDish | SpanishFullDish | GreekFullDish | TurkishFullDish | BritishFullDish | SwissFullDish | MexicanFullDish | AmericanFullDish, cuisineId: string): FoodItem => {
   const base = fullFoodBase(e.mealType);
   const type = base === 'fruit' ? 'fruit' : undefined;
   return {
@@ -457,6 +459,9 @@ const toTurkishFood = (e: TurkishFullDish): FoodItem => toFullFood(e, 'turkish')
 const toBritishFood = (e: BritishFullDish): FoodItem => toFullFood(e, 'british');
 const toSwissFood = (e: SwissFullDish): FoodItem => toFullFood(e, 'swiss');
 
+const toMexicanFood = (e: MexicanFullDish): FoodItem => toFullFood(e, 'mexican');
+const toAmericanFood = (e: AmericanFullDish): FoodItem => toFullFood(e, 'american');
+
 const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   const enriched = usdaEnrich(f, f.portion?.grams ?? (f.portion?.ml ?? 100));
   return {
@@ -469,7 +474,7 @@ const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   };
 });
 
-const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'kuwaiti', 'qatar', 'bahraini', 'omani', 'indian', 'pakistani', 'chinese', 'japanese', 'korean', 'thai', 'italian', 'french', 'spanish', 'greek', 'turkish', 'british', 'swiss'];
+const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'kuwaiti', 'qatar', 'bahraini', 'omani', 'indian', 'pakistani', 'chinese', 'japanese', 'korean', 'thai', 'italian', 'french', 'spanish', 'greek', 'turkish', 'british', 'swiss', 'mexican', 'american'];
 
 export const FOODS_DATABASE: FoodItem[] = [
   ...ENRICHED_ALL
@@ -499,6 +504,8 @@ export const FOODS_DATABASE: FoodItem[] = [
   ...TURKISH_FULL.map(toTurkishFood),
   ...BRITISH_FULL.map(toBritishFood),
   ...SWISS_FULL.map(toSwissFood),
+  ...MEXICAN_FULL.map(toMexicanFood),
+  ...AMERICAN_FULL.map(toAmericanFood),
 ];
 
 const CUISINE_COLORS = ['bg-blue-100 text-blue-700', 'bg-red-100 text-red-700', 'bg-yellow-100 text-yellow-700', 'bg-green-100 text-green-700', 'bg-orange-100 text-orange-700', 'bg-amber-100 text-amber-700', 'bg-emerald-100 text-emerald-700', 'bg-rose-100 text-rose-700', 'bg-lime-100 text-lime-700', 'bg-purple-100 text-purple-700', 'bg-indigo-100 text-indigo-700', 'bg-teal-100 text-teal-700'];
