@@ -5,6 +5,8 @@ import { isHeavyMeal } from '../data/cuisine-allowed';
 import { EGYPTIAN_FULL, type EgyptianFullDish } from '../data/egyptian-full';
 import { LIBYAN_FULL, type LibyanFullDish } from '../data/libyan-full';
 import { TUNISIAN_FULL, type TunisianFullDish } from '../data/tunisian-full';
+import { ALGERIAN_FULL, type AlgerianFullDish } from '../data/algerian-full';
+import { MOROCCAN_FULL, type MoroccanFullDish } from '../data/moroccan-full';
 
 export type { Cuisine, MealType } from './cuisineCatalog';
 
@@ -371,7 +373,7 @@ const fullFoodBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 
   return 'drink';
 };
 
-const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish, cuisineId: string): FoodItem => {
+const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish | AlgerianFullDish | MoroccanFullDish, cuisineId: string): FoodItem => {
   const base = fullFoodBase(e.mealType);
   const type = base === 'fruit' ? 'fruit' : undefined;
   return {
@@ -400,6 +402,10 @@ const toLibyanFood = (e: LibyanFullDish): FoodItem => toFullFood(e, 'libyan');
 
 const toTunisianFood = (e: TunisianFullDish): FoodItem => toFullFood(e, 'tunisian');
 
+const toAlgerianFood = (e: AlgerianFullDish): FoodItem => toFullFood(e, 'algerian');
+
+const toMoroccanFood = (e: MoroccanFullDish): FoodItem => toFullFood(e, 'moroccan');
+
 const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   const enriched = usdaEnrich(f, f.portion?.grams ?? (f.portion?.ml ?? 100));
   return {
@@ -412,13 +418,17 @@ const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   };
 });
 
+const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan'];
+
 export const FOODS_DATABASE: FoodItem[] = [
   ...ENRICHED_ALL
-    .filter((f) => (f.cuisine.includes('egyptian') || f.cuisine.includes('libyan') || f.cuisine.includes('tunisian')) ? f.cuisine.length > 1 : true)
-    .map((f) => (f.cuisine.includes('egyptian') || f.cuisine.includes('libyan') || f.cuisine.includes('tunisian') ? { ...f, cuisine: f.cuisine.filter((c) => c !== 'egyptian' && c !== 'libyan' && c !== 'tunisian') } : f)),
+    .filter((f) => (FULL_CUISINES.some((c) => f.cuisine.includes(c)) ? f.cuisine.length > 1 : true))
+    .map((f) => (FULL_CUISINES.some((c) => f.cuisine.includes(c)) ? { ...f, cuisine: f.cuisine.filter((c) => !FULL_CUISINES.includes(c)) } : f)),
   ...EGYPTIAN_FULL.map(toEgyptianFood),
   ...LIBYAN_FULL.map(toLibyanFood),
   ...TUNISIAN_FULL.map(toTunisianFood),
+  ...ALGERIAN_FULL.map(toAlgerianFood),
+  ...MOROCCAN_FULL.map(toMoroccanFood),
 ];
 
 const CUISINE_COLORS = ['bg-blue-100 text-blue-700', 'bg-red-100 text-red-700', 'bg-yellow-100 text-yellow-700', 'bg-green-100 text-green-700', 'bg-orange-100 text-orange-700', 'bg-amber-100 text-amber-700', 'bg-emerald-100 text-emerald-700', 'bg-rose-100 text-rose-700', 'bg-lime-100 text-lime-700', 'bg-purple-100 text-purple-700', 'bg-indigo-100 text-indigo-700', 'bg-teal-100 text-teal-700'];
