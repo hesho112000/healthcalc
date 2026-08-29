@@ -1,0 +1,97 @@
+// Single source of truth for Emirati cuisine - deduplicated from Emirati-Full-100-USDA.json
+export interface EmiratiFullDish {
+  id: string;
+  nameAr: string;
+  nameEn: string;
+  mealType: string;
+  grams: number;
+  kcal: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+  cooking?: string;
+  note?: string;
+}
+
+export const EMIRATI_FULL: EmiratiFullDish[] = [
+  {"id":"ae_balaleet","nameAr":"بلاليط إماراتي","nameEn":"Balaleet Emirati","mealType":"breakfast","grams":150,"kcal":225,"protein":5,"carbs":36,"fat":6,"cooking":"boiled"},
+  {"id":"ae_chebab","nameAr":"جباب إماراتي","nameEn":"Chebab Emirati","mealType":"breakfast","grams":80,"kcal":195,"protein":5,"carbs":28,"fat":6.5,"cooking":"pan"},
+  {"id":"ae_chebab_cheese","nameAr":"جباب بجبن إماراتي","nameEn":"Chebab cheese Emirati","mealType":"breakfast","grams":90,"kcal":215,"protein":7,"carbs":26,"fat":9,"cooking":"pan"},
+  {"id":"ae_khameer","nameAr":"خمير إماراتي","nameEn":"Khameer Emirati","mealType":"breakfast","grams":70,"kcal":185,"protein":4.5,"carbs":26,"fat":6.5,"cooking":"baked"},
+  {"id":"ae_foul_uae","nameAr":"فول إماراتي","nameEn":"Foul Emirati","mealType":"breakfast","grams":180,"kcal":195,"protein":12,"carbs":24,"fat":5,"cooking":"boiled"},
+  {"id":"ae_harees_bf","nameAr":"هريس فطار إماراتي","nameEn":"Harees breakfast Emirati","mealType":"breakfast","grams":200,"kcal":215,"protein":10,"carbs":26,"fat":6.5,"cooking":"boiled"},
+  {"id":"ae_bathitha","nameAr":"بثيثة إماراتية","nameEn":"Bathitha Emirati","mealType":"breakfast","grams":80,"kcal":225,"protein":3,"carbs":28,"fat":10.5,"cooking":"fresh"},
+  {"id":"ae_lgeimat_1","nameAr":"لقيمات إماراتية واحدة لايت","nameEn":"Lgeimat light Emirati 1","mealType":"side","grams":20,"kcal":55,"protein":0.6,"carbs":8,"fat":2.2,"cooking":"oven"},
+  {"id":"ae_shakshouka_ae","nameAr":"شكشوكة إماراتية","nameEn":"Shakshouka Emirati","mealType":"breakfast","grams":220,"kcal":215,"protein":14,"carbs":6,"fat":14.5,"cooking":"pan"},
+  {"id":"ae_khabisah","nameAr":"خبيصة إماراتية","nameEn":"Khabisah Emirati","mealType":"breakfast","grams":100,"kcal":195,"protein":2.5,"carbs":32,"fat":5.5,"cooking":"boiled"},
+  {"id":"ae_jben_ae","nameAr":"جبنة بيضاء إماراتية","nameEn":"White cheese Emirati","mealType":"breakfast","grams":60,"kcal":165,"protein":8.2,"carbs":1.8,"fat":13.8,"cooking":"fresh"},
+  {"id":"ae_majboos_ch","nameAr":"مجبوس دجاج إماراتي","nameEn":"Majboos chicken Emirati","mealType":"lunch","grams":350,"kcal":425,"protein":28,"carbs":48,"fat":12.5,"cooking":"oven"},
+  {"id":"ae_majboos_meat","nameAr":"مجبوس لحم إماراتي","nameEn":"Majboos meat Emirati","mealType":"lunch","grams":350,"kcal":465,"protein":26,"carbs":48,"fat":16,"cooking":"oven"},
+  {"id":"ae_majboos_fish","nameAr":"مجبوس سمك إماراتي","nameEn":"Majboos fish Emirati","mealType":"lunch","grams":350,"kcal":395,"protein":28,"carbs":48,"fat":9.5,"cooking":"oven"},
+  {"id":"ae_majboos_shrimp","nameAr":"مجبوس روبيان إماراتي","nameEn":"Majboos shrimp Emirati","mealType":"lunch","grams":350,"kcal":375,"protein":26,"carbs":48,"fat":8,"cooking":"oven"},
+  {"id":"ae_machboos_camel","nameAr":"مجبوس حاشي إماراتي","nameEn":"Majboos camel Emirati","mealType":"lunch","grams":350,"kcal":435,"protein":28,"carbs":48,"fat":13.5,"cooking":"oven"},
+  {"id":"ae_biryani_ch","nameAr":"برياني دجاج إماراتي لايت","nameEn":"Biryani chicken light Emirati","mealType":"lunch","grams":350,"kcal":415,"protein":27,"carbs":48,"fat":11,"cooking":"oven"},
+  {"id":"ae_biryani_meat","nameAr":"برياني لحم إماراتي لايت","nameEn":"Biryani meat light Emirati","mealType":"lunch","grams":350,"kcal":445,"protein":25,"carbs":48,"fat":14.5,"cooking":"oven"},
+  {"id":"ae_biryani_fish","nameAr":"برياني سمك إماراتي لايت","nameEn":"Biryani fish light Emirati","mealType":"lunch","grams":350,"kcal":385,"protein":27,"carbs":48,"fat":8.5,"cooking":"oven"},
+  {"id":"ae_harees_meat_ae","nameAr":"هريس لحم إماراتي","nameEn":"Harees meat Emirati","mealType":"lunch","grams":250,"kcal":285,"protein":18,"carbs":28,"fat":9.5,"cooking":"boiled"},
+  {"id":"ae_harees_ch_ae","nameAr":"هريس دجاج إماراتي","nameEn":"Harees chicken Emirati","mealType":"lunch","grams":250,"kcal":255,"protein":20,"carbs":28,"fat":6.5,"cooking":"boiled"},
+  {"id":"ae_thareed_meat","nameAr":"ثريد لحم إماراتي","nameEn":"Thareed meat Emirati","mealType":"lunch","grams":350,"kcal":365,"protein":22,"carbs":32,"fat":14.5,"cooking":"boiled"},
+  {"id":"ae_thareed_ch","nameAr":"ثريد دجاج إماراتي","nameEn":"Thareed chicken Emirati","mealType":"lunch","grams":350,"kcal":325,"protein":24,"carbs":32,"fat":10.5,"cooking":"boiled"},
+  {"id":"ae_salona_meat","nameAr":"صالونة لحم إماراتية","nameEn":"Salona meat Emirati","mealType":"lunch","grams":300,"kcal":275,"protein":18,"carbs":22,"fat":12,"cooking":"boiled"},
+  {"id":"ae_salona_ch","nameAr":"صالونة دجاج إماراتية","nameEn":"Salona chicken Emirati","mealType":"lunch","grams":300,"kcal":235,"protein":20,"carbs":22,"fat":8.5,"cooking":"boiled"},
+  {"id":"ae_salona_fish","nameAr":"صالونة سمك إماراتية","nameEn":"Salona fish Emirati","mealType":"lunch","grams":300,"kcal":215,"protein":22,"carbs":22,"fat":6,"cooking":"boiled"},
+  {"id":"ae_margooga_meat","nameAr":"مرقوقة لحم إماراتية","nameEn":"Margooga meat Emirati","mealType":"lunch","grams":300,"kcal":315,"protein":18,"carbs":32,"fat":11.5,"cooking":"boiled"},
+  {"id":"ae_margooga_ch","nameAr":"مرقوقة دجاج إماراتية","nameEn":"Margooga chicken Emirati","mealType":"lunch","grams":300,"kcal":275,"protein":20,"carbs":32,"fat":7.5,"cooking":"boiled"},
+  {"id":"ae_beef_boiled","nameAr":"لحم بقري مسلوق إماراتي","nameEn":"Beef boiled Emirati","mealType":"lunch","grams":150,"kcal":265,"protein":32,"carbs":0,"fat":14.5,"cooking":"boiled"},
+  {"id":"ae_beef_grilled","nameAr":"لحم بقري مشوي إماراتي","nameEn":"Beef grilled Emirati","mealType":"lunch","grams":150,"kcal":285,"protein":33,"carbs":0,"fat":16,"cooking":"grilled"},
+  {"id":"ae_lamb_boiled","nameAr":"لحم خروف مسلوق إماراتي","nameEn":"Lamb boiled Emirati","mealType":"lunch","grams":150,"kcal":315,"protein":28,"carbs":0,"fat":21.5,"cooking":"boiled"},
+  {"id":"ae_lamb_grilled","nameAr":"لحم خروف مشوي إماراتي","nameEn":"Lamb grilled Emirati","mealType":"lunch","grams":150,"kcal":335,"protein":29,"carbs":0,"fat":23,"cooking":"grilled"},
+  {"id":"ae_goat_boiled","nameAr":"لحم معيز مسلوق إماراتي","nameEn":"Goat boiled Emirati","mealType":"lunch","grams":150,"kcal":230,"protein":30,"carbs":0,"fat":11.2,"cooking":"boiled"},
+  {"id":"ae_camel_boiled","nameAr":"لحم حاشي مسلوق إماراتي","nameEn":"Camel boiled Emirati","mealType":"lunch","grams":150,"kcal":245,"protein":30,"carbs":0,"fat":12,"cooking":"boiled"},
+  {"id":"ae_camel_grilled","nameAr":"لحم حاشي مشوي إماراتي","nameEn":"Camel grilled Emirati","mealType":"lunch","grams":150,"kcal":265,"protein":31,"carbs":0,"fat":13.5,"cooking":"grilled"},
+  {"id":"ae_ch_breast_boiled","nameAr":"صدر دجاج مسلوق إماراتي","nameEn":"Chicken breast boiled Emirati","mealType":"lunch","grams":150,"kcal":210,"protein":32,"carbs":0,"fat":8,"cooking":"boiled"},
+  {"id":"ae_ch_breast_grilled","nameAr":"صدر دجاج مشوي إماراتي","nameEn":"Chicken breast grilled Emirati","mealType":"lunch","grams":150,"kcal":230,"protein":33,"carbs":0,"fat":9.5,"cooking":"grilled"},
+  {"id":"ae_turkey_grilled","nameAr":"صدر رومي مشوي إماراتي","nameEn":"Turkey grilled Emirati","mealType":"lunch","grams":150,"kcal":195,"protein":34,"carbs":0,"fat":5.5,"cooking":"grilled"},
+  {"id":"ae_duck_grill","nameAr":"بط مشوي إماراتي بدون جلد","nameEn":"Duck grilled Emirati","mealType":"lunch","grams":150,"kcal":285,"protein":28,"carbs":0,"fat":17.5,"cooking":"grilled"},
+  {"id":"ae_pigeon_grill","nameAr":"حمام مشوي إماراتي","nameEn":"Pigeon grilled Emirati","mealType":"lunch","grams":150,"kcal":245,"protein":26,"carbs":0,"fat":13.8,"cooking":"grilled"},
+  {"id":"ae_quail_grill","nameAr":"سمان مشوي إماراتي","nameEn":"Quail grilled Emirati","mealType":"lunch","grams":120,"kcal":185,"protein":22,"carbs":0,"fat":9.5,"cooking":"grilled"},
+  {"id":"ae_hamour_grill","nameAr":"هامور مشوي إماراتي","nameEn":"Hamour grilled Emirati","mealType":"lunch","grams":200,"kcal":235,"protein":32,"carbs":0,"fat":10,"cooking":"grilled"},
+  {"id":"ae_hamour_oven","nameAr":"هامور فرن إماراتي","nameEn":"Hamour oven Emirati","mealType":"lunch","grams":200,"kcal":255,"protein":31,"carbs":2,"fat":11.5,"cooking":"oven"},
+  {"id":"ae_kanad_grill","nameAr":"كنعد مشوي إماراتي","nameEn":"Kanad grilled Emirati","mealType":"lunch","grams":200,"kcal":245,"protein":33,"carbs":0,"fat":11.5,"cooking":"grilled"},
+  {"id":"ae_shaar_grill","nameAr":"شعري مشوي إماراتي","nameEn":"Shaar grilled Emirati","mealType":"lunch","grams":200,"kcal":225,"protein":31,"carbs":0,"fat":9.5,"cooking":"grilled"},
+  {"id":"ae_safi_grill","nameAr":"صافي مشوي إماراتي","nameEn":"Safi grilled Emirati","mealType":"lunch","grams":200,"kcal":215,"protein":30,"carbs":0,"fat":9,"cooking":"grilled"},
+  {"id":"ae_zubaidi_grill","nameAr":"زبيدي مشوي إماراتي","nameEn":"Zubaidi grilled Emirati","mealType":"lunch","grams":200,"kcal":265,"protein":29,"carbs":0,"fat":15,"cooking":"grilled"},
+  {"id":"ae_seabass_grill","nameAr":"سيباس مشوي إماراتي","nameEn":"Seabass grilled Emirati","mealType":"lunch","grams":200,"kcal":225,"protein":31,"carbs":0,"fat":10,"cooking":"grilled"},
+  {"id":"ae_hamra_grill","nameAr":"حمرا مشوية إماراتية","nameEn":"Hamra grilled Emirati","mealType":"lunch","grams":200,"kcal":235,"protein":30,"carbs":0,"fat":11,"cooking":"grilled"},
+  {"id":"ae_shrimp_grill","nameAr":"روبيان مشوي إماراتي","nameEn":"Shrimp grilled Emirati","mealType":"lunch","grams":150,"kcal":145,"protein":26,"carbs":1,"fat":2.5,"cooking":"grilled"},
+  {"id":"ae_shrimp_maj","nameAr":"روبيان مجبوس إماراتي","nameEn":"Shrimp majboos Emirati","mealType":"lunch","grams":300,"kcal":335,"protein":22,"carbs":42,"fat":7,"cooking":"oven"},
+  {"id":"ae_crab_boiled","nameAr":"قباقب مسلوق إماراتي","nameEn":"Crab boiled Emirati","mealType":"lunch","grams":150,"kcal":125,"protein":22,"carbs":0,"fat":2.8,"cooking":"boiled"},
+  {"id":"ae_lobster_grill","nameAr":"أم الربيان مشوي إماراتي","nameEn":"Lobster grilled Emirati","mealType":"lunch","grams":180,"kcal":165,"protein":28,"carbs":0,"fat":3.5,"cooking":"grilled"},
+  {"id":"ae_squid_grill","nameAr":"حبار مشوي إماراتي","nameEn":"Squid grilled Emirati","mealType":"lunch","grams":150,"kcal":135,"protein":22,"carbs":2.5,"fat":3.5,"cooking":"grilled"},
+  {"id":"ae_oyster_ae","nameAr":"محار إماراتي مسلوق","nameEn":"Oyster Emirati","mealType":"side","grams":100,"kcal":68,"protein":7,"carbs":4,"fat":2,"cooking":"boiled"},
+  {"id":"ae_tuna_grill","nameAr":"تونة مشوية إماراتية","nameEn":"Tuna grilled Emirati","mealType":"lunch","grams":180,"kcal":265,"protein":32,"carbs":0,"fat":13.5,"cooking":"grilled"},
+  {"id":"ae_yogurt_ae","nameAr":"زبادي إماراتي","nameEn":"Yogurt Emirati","mealType":"dinner","grams":150,"kcal":90,"protein":5.5,"carbs":7,"fat":4.5,"cooking":"fresh"},
+  {"id":"ae_laban_ae","nameAr":"لبن إماراتي","nameEn":"Laban Emirati","mealType":"dinner","grams":200,"kcal":85,"protein":5,"carbs":8,"fat":3.5,"cooking":"fresh"},
+  {"id":"ae_salad_green","nameAr":"سلطة خضراء إماراتية","nameEn":"Green salad Emirati","mealType":"side","grams":150,"kcal":35,"protein":1.5,"carbs":6,"fat":0.5,"cooking":"fresh"},
+  {"id":"ae_hummus_ae","nameAr":"حمص إماراتي","nameEn":"Hummus Emirati","mealType":"side","grams":80,"kcal":135,"protein":4.5,"carbs":12,"fat":7.5,"cooking":"fresh"},
+  {"id":"ae_egg_boiled","nameAr":"بيض مسلوق إماراتي","nameEn":"Boiled eggs Emirati","mealType":"dinner","grams":100,"kcal":140,"protein":12.6,"carbs":1.1,"fat":9.5,"cooking":"boiled"},
+  {"id":"ae_tuna_water","nameAr":"تونة ماء إماراتية","nameEn":"Tuna water Emirati","mealType":"dinner","grams":100,"kcal":116,"protein":25.5,"carbs":0,"fat":0.8,"cooking":"canned"},
+  {"id":"ae_dates_3","nameAr":"تمر إماراتي 3","nameEn":"Dates Emirati 3","mealType":"fruit","grams":24,"kcal":67,"protein":0.4,"carbs":18,"fat":0.1,"cooking":"fresh"},
+  {"id":"ae_banana","nameAr":"موز إماراتي","nameEn":"Banana Emirati","mealType":"fruit","grams":100,"kcal":89,"protein":1.1,"carbs":22.8,"fat":0.3,"cooking":"fresh"},
+  {"id":"ae_apple","nameAr":"تفاح إماراتي","nameEn":"Apple Emirati","mealType":"fruit","grams":150,"kcal":78,"protein":0.3,"carbs":20.6,"fat":0.4,"cooking":"fresh"},
+  {"id":"ae_eish_ae","nameAr":"عيش إماراتي","nameEn":"Bread Emirati","mealType":"side","grams":80,"kcal":195,"protein":6,"carbs":38,"fat":1.5,"cooking":"baked"},
+  {"id":"ae_arsiya","nameAr":"عرسية إماراتية","nameEn":"Arsiya Emirati","mealType":"lunch","grams":250,"kcal":275,"protein":16,"carbs":28,"fat":9,"cooking":"boiled"},
+  {"id":"ae_foga","nameAr":"فوقة إماراتية","nameEn":"Foga Emirati","mealType":"side","grams":150,"kcal":165,"protein":4,"carbs":22,"fat":6.5,"cooking":"boiled"},
+  {"id":"ae_khabees","nameAr":"خبيص إماراتي","nameEn":"Khabees Emirati","mealType":"side","grams":100,"kcal":195,"protein":2.5,"carbs":32,"fat":5.5,"cooking":"boiled"},
+  {"id":"ae_tahina_10","nameAr":"طحينة إماراتية 10جم","nameEn":"Tahini Emirati 10g","mealType":"side","grams":10,"kcal":59,"protein":1.7,"carbs":0.6,"fat":5.3,"cooking":"raw"},
+  {"id":"ae_roz_white","nameAr":"رز أبيض إماراتي","nameEn":"White rice Emirati","mealType":"side","grams":150,"kcal":195,"protein":3.5,"carbs":42,"fat":0.6,"cooking":"boiled"},
+  {"id":"ae_lentil_soup","nameAr":"شوربة عدس إماراتية","nameEn":"Lentil soup Emirati","mealType":"dinner","grams":250,"kcal":195,"protein":11.5,"carbs":28,"fat":2.8,"cooking":"boiled"},
+  {"id":"ae_chicken_soup","nameAr":"شوربة دجاج إماراتية","nameEn":"Chicken soup Emirati","mealType":"dinner","grams":250,"kcal":95,"protein":8,"carbs":6,"fat":4,"cooking":"boiled"},
+  {"id":"ae_omlet_veg","nameAr":"أومليت خضار إماراتي","nameEn":"Omelet veg Emirati","mealType":"dinner","grams":150,"kcal":195,"protein":13,"carbs":4,"fat":13.5,"cooking":"pan"},
+  {"id":"ae_saloona_crab","nameAr":"صالونة قباقب إماراتية","nameEn":"Salona crab Emirati","mealType":"lunch","grams":300,"kcal":195,"protein":20,"carbs":14,"fat":6,"cooking":"boiled"},
+  {"id":"ae_biryani_camel","nameAr":"برياني حاشي إماراتي","nameEn":"Biryani camel Emirati","mealType":"lunch","grams":350,"kcal":435,"protein":28,"carbs":48,"fat":13.5,"cooking":"oven"},
+  {"id":"ae_watermelon","nameAr":"بطيخ إماراتي","nameEn":"Watermelon Emirati","mealType":"fruit","grams":200,"kcal":60,"protein":1.2,"carbs":15,"fat":0.3,"cooking":"fresh"},
+  {"id":"ae_ferni","nameAr":"فرني إماراتي لايت","nameEn":"Ferni light Emirati","mealType":"side","grams":100,"kcal":95,"protein":2.5,"carbs":16,"fat":2,"cooking":"boiled"},
+  {"id":"ae_najil_grill","nameAr":"ناجل مشوي إماراتي","nameEn":"Najil grilled Emirati","mealType":"lunch","grams":200,"kcal":240,"protein":32,"carbs":0,"fat":10.5,"cooking":"grilled"},
+  {"id":"ae_sardine_grill","nameAr":"سردين مشوي إماراتي","nameEn":"Sardine grilled Emirati","mealType":"lunch","grams":150,"kcal":245,"protein":28,"carbs":0,"fat":14,"cooking":"grilled"}
+];

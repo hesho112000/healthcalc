@@ -7,6 +7,8 @@ import { LIBYAN_FULL, type LibyanFullDish } from '../data/libyan-full';
 import { TUNISIAN_FULL, type TunisianFullDish } from '../data/tunisian-full';
 import { ALGERIAN_FULL, type AlgerianFullDish } from '../data/algerian-full';
 import { MOROCCAN_FULL, type MoroccanFullDish } from '../data/moroccan-full';
+import { SAUDI_FULL, type SaudiFullDish } from '../data/saudi-full';
+import { EMIRATI_FULL, type EmiratiFullDish } from '../data/emirati-full';
 
 export type { Cuisine, MealType } from './cuisineCatalog';
 
@@ -373,7 +375,7 @@ const fullFoodBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 
   return 'drink';
 };
 
-const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish | AlgerianFullDish | MoroccanFullDish, cuisineId: string): FoodItem => {
+const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish | AlgerianFullDish | MoroccanFullDish | SaudiFullDish | EmiratiFullDish, cuisineId: string): FoodItem => {
   const base = fullFoodBase(e.mealType);
   const type = base === 'fruit' ? 'fruit' : undefined;
   return {
@@ -406,6 +408,10 @@ const toAlgerianFood = (e: AlgerianFullDish): FoodItem => toFullFood(e, 'algeria
 
 const toMoroccanFood = (e: MoroccanFullDish): FoodItem => toFullFood(e, 'moroccan');
 
+const toSaudiFood = (e: SaudiFullDish): FoodItem => toFullFood(e, 'saudi');
+
+const toEmiratiFood = (e: EmiratiFullDish): FoodItem => toFullFood(e, 'emirati');
+
 const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   const enriched = usdaEnrich(f, f.portion?.grams ?? (f.portion?.ml ?? 100));
   return {
@@ -418,7 +424,7 @@ const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   };
 });
 
-const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan'];
+const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati'];
 
 export const FOODS_DATABASE: FoodItem[] = [
   ...ENRICHED_ALL
@@ -429,6 +435,8 @@ export const FOODS_DATABASE: FoodItem[] = [
   ...TUNISIAN_FULL.map(toTunisianFood),
   ...ALGERIAN_FULL.map(toAlgerianFood),
   ...MOROCCAN_FULL.map(toMoroccanFood),
+  ...SAUDI_FULL.map(toSaudiFood),
+  ...EMIRATI_FULL.map(toEmiratiFood),
 ];
 
 const CUISINE_COLORS = ['bg-blue-100 text-blue-700', 'bg-red-100 text-red-700', 'bg-yellow-100 text-yellow-700', 'bg-green-100 text-green-700', 'bg-orange-100 text-orange-700', 'bg-amber-100 text-amber-700', 'bg-emerald-100 text-emerald-700', 'bg-rose-100 text-rose-700', 'bg-lime-100 text-lime-700', 'bg-purple-100 text-purple-700', 'bg-indigo-100 text-indigo-700', 'bg-teal-100 text-teal-700'];
