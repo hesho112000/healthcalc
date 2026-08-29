@@ -26,7 +26,7 @@ export const USDA_BASE: Record<string, USDAEntry> = {
   'Grilled Chicken Breast': { kcal: 165, protein: 31, carbs: 0, fat: 3.6, fiber: 0, sodium: 74, saturatedFat: 1, cholesterol: 85 },
   'Shawarma Chicken': { kcal: 215, protein: 18, carbs: 6, fat: 13, fiber: 0.5, sodium: 450, saturatedFat: 3.5, cholesterol: 85 },
   'Hummus': { kcal: 166, protein: 7.9, carbs: 14.3, fat: 9.6, fiber: 6, sodium: 379, saturatedFat: 1.4 },
-  'Ful Medames with Olive Oil': { kcal: 140, protein: 7, carbs: 14, fat: 4.5, fiber: 4.5, sodium: 6 },
+  'Ful Medames with Olive Oil': { kcal: 140, protein: 7.6, carbs: 14, fat: 4.5, fiber: 4.5, sodium: 6 },
   'Tabbouleh': { kcal: 80, protein: 2.4, carbs: 9, fat: 4.5, fiber: 1.8, sodium: 80 },
   'Fattoush Salad': { kcal: 95, protein: 2.5, carbs: 8, fat: 6, fiber: 2, sodium: 250 },
   'Musakhan': { kcal: 220, protein: 14, carbs: 20, fat: 9, fiber: 2.5, sodium: 420, cholesterol: 60 },
