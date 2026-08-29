@@ -4,6 +4,7 @@ import { usdaEnrich } from './usda-meals-database';
 import { isHeavyMeal } from '../data/cuisine-allowed';
 import { EGYPTIAN_FULL, type EgyptianFullDish } from '../data/egyptian-full';
 import { LIBYAN_FULL, type LibyanFullDish } from '../data/libyan-full';
+import { TUNISIAN_FULL, type TunisianFullDish } from '../data/tunisian-full';
 
 export type { Cuisine, MealType } from './cuisineCatalog';
 
@@ -370,7 +371,7 @@ const fullFoodBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 
   return 'drink';
 };
 
-const toFullFood = (e: EgyptianFullDish | LibyanFullDish, cuisineId: string): FoodItem => {
+const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish, cuisineId: string): FoodItem => {
   const base = fullFoodBase(e.mealType);
   const type = base === 'fruit' ? 'fruit' : undefined;
   return {
@@ -397,6 +398,8 @@ const toEgyptianFood = (e: EgyptianFullDish): FoodItem => toFullFood(e, 'egyptia
 
 const toLibyanFood = (e: LibyanFullDish): FoodItem => toFullFood(e, 'libyan');
 
+const toTunisianFood = (e: TunisianFullDish): FoodItem => toFullFood(e, 'tunisian');
+
 const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   const enriched = usdaEnrich(f, f.portion?.grams ?? (f.portion?.ml ?? 100));
   return {
@@ -411,10 +414,11 @@ const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
 
 export const FOODS_DATABASE: FoodItem[] = [
   ...ENRICHED_ALL
-    .filter((f) => (f.cuisine.includes('egyptian') || f.cuisine.includes('libyan')) ? f.cuisine.length > 1 : true)
-    .map((f) => (f.cuisine.includes('egyptian') || f.cuisine.includes('libyan') ? { ...f, cuisine: f.cuisine.filter((c) => c !== 'egyptian' && c !== 'libyan') } : f)),
+    .filter((f) => (f.cuisine.includes('egyptian') || f.cuisine.includes('libyan') || f.cuisine.includes('tunisian')) ? f.cuisine.length > 1 : true)
+    .map((f) => (f.cuisine.includes('egyptian') || f.cuisine.includes('libyan') || f.cuisine.includes('tunisian') ? { ...f, cuisine: f.cuisine.filter((c) => c !== 'egyptian' && c !== 'libyan' && c !== 'tunisian') } : f)),
   ...EGYPTIAN_FULL.map(toEgyptianFood),
   ...LIBYAN_FULL.map(toLibyanFood),
+  ...TUNISIAN_FULL.map(toTunisianFood),
 ];
 
 const CUISINE_COLORS = ['bg-blue-100 text-blue-700', 'bg-red-100 text-red-700', 'bg-yellow-100 text-yellow-700', 'bg-green-100 text-green-700', 'bg-orange-100 text-orange-700', 'bg-amber-100 text-amber-700', 'bg-emerald-100 text-emerald-700', 'bg-rose-100 text-rose-700', 'bg-lime-100 text-lime-700', 'bg-purple-100 text-purple-700', 'bg-indigo-100 text-indigo-700', 'bg-teal-100 text-teal-700'];
