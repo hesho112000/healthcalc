@@ -145,16 +145,16 @@ const MIN_POOL: Record<BuilderSlot, number> = { breakfast: 8, lunch: 8, dinner: 
 export const buildBuilderPool = (cuisine: string, _section?: MealBuilderSection, filters?: MealBuilderFilters): BuilderPool => {
   const db = FOODS_DATABASE;
 
-  if (cuisine === 'egyptian') {
-    const eg = db.filter((f) => f.cuisine.includes('egyptian'));
+  if (cuisine === 'egyptian' || cuisine === 'libyan') {
+    const north = db.filter((f) => f.cuisine.includes(cuisine));
     return {
-      breakfast: eg.filter((f) => f.mealType === 'breakfast'),
-      lunch: eg.filter((f) => f.mealType === 'lunch'),
-      dinner: eg.filter((f) => f.mealType === 'dinner'),
+      breakfast: north.filter((f) => f.mealType === 'breakfast'),
+      lunch: north.filter((f) => f.mealType === 'lunch'),
+      dinner: north.filter((f) => f.mealType === 'dinner'),
       breads: [],
       juices: [],
-      fruits: eg.filter((f) => f.type === 'fruit'),
-      sides: eg.filter((f) => f.mealType === 'side'),
+      fruits: north.filter((f) => f.type === 'fruit'),
+      sides: north.filter((f) => f.mealType === 'side'),
     };
   }
 

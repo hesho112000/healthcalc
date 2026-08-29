@@ -3,6 +3,7 @@ import { CUISINE_GROUPS, CUISINE_FLAGS, REGIONAL_FOODS, FRUITS, JUICES, CUISINE_
 import { usdaEnrich } from './usda-meals-database';
 import { isHeavyMeal } from '../data/cuisine-allowed';
 import { EGYPTIAN_FULL, type EgyptianFullDish } from '../data/egyptian-full';
+import { LIBYAN_FULL, type LibyanFullDish } from '../data/libyan-full';
 
 export type { Cuisine, MealType } from './cuisineCatalog';
 
@@ -360,7 +361,7 @@ export const FOODS_DATABASE_RAW: FoodItem[] = [
   ),
 ];
 
-const egyptianBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 'drink' | 'side' => {
+const fullFoodBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 'drink' | 'side' => {
   if (mt === 'breakfast') return 'breakfast';
   if (mt === 'lunch') return 'lunch';
   if (mt === 'dinner') return 'dinner';
@@ -369,8 +370,8 @@ const egyptianBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 
   return 'drink';
 };
 
-const toEgyptianFood = (e: EgyptianFullDish): FoodItem => {
-  const base = egyptianBase(e.mealType);
+const toFullFood = (e: EgyptianFullDish | LibyanFullDish, cuisineId: string): FoodItem => {
+  const base = fullFoodBase(e.mealType);
   const type = base === 'fruit' ? 'fruit' : undefined;
   return {
     id: e.id,
@@ -382,7 +383,7 @@ const toEgyptianFood = (e: EgyptianFullDish): FoodItem => {
     carbs: e.carbs,
     fat: e.fat,
     category: base,
-    cuisine: ['egyptian'],
+    cuisine: [cuisineId],
     mealType: base,
     type,
     portion: { grams: e.grams, measure: `${e.grams} g`, measureAr: `${e.grams} جم` },
@@ -391,6 +392,10 @@ const toEgyptianFood = (e: EgyptianFullDish): FoodItem => {
     heavy: isHeavyMeal(e.nameEn, e.kcal, e.fat),
   } as FoodItem;
 };
+
+const toEgyptianFood = (e: EgyptianFullDish): FoodItem => toFullFood(e, 'egyptian');
+
+const toLibyanFood = (e: LibyanFullDish): FoodItem => toFullFood(e, 'libyan');
 
 const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   const enriched = usdaEnrich(f, f.portion?.grams ?? (f.portion?.ml ?? 100));
@@ -406,9 +411,10 @@ const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
 
 export const FOODS_DATABASE: FoodItem[] = [
   ...ENRICHED_ALL
-    .filter((f) => !f.cuisine.includes('egyptian') || f.cuisine.length > 1)
-    .map((f) => (f.cuisine.includes('egyptian') ? { ...f, cuisine: f.cuisine.filter((c) => c !== 'egyptian') } : f)),
+    .filter((f) => (f.cuisine.includes('egyptian') || f.cuisine.includes('libyan')) ? f.cuisine.length > 1 : true)
+    .map((f) => (f.cuisine.includes('egyptian') || f.cuisine.includes('libyan') ? { ...f, cuisine: f.cuisine.filter((c) => c !== 'egyptian' && c !== 'libyan') } : f)),
   ...EGYPTIAN_FULL.map(toEgyptianFood),
+  ...LIBYAN_FULL.map(toLibyanFood),
 ];
 
 const CUISINE_COLORS = ['bg-blue-100 text-blue-700', 'bg-red-100 text-red-700', 'bg-yellow-100 text-yellow-700', 'bg-green-100 text-green-700', 'bg-orange-100 text-orange-700', 'bg-amber-100 text-amber-700', 'bg-emerald-100 text-emerald-700', 'bg-rose-100 text-rose-700', 'bg-lime-100 text-lime-700', 'bg-purple-100 text-purple-700', 'bg-indigo-100 text-indigo-700', 'bg-teal-100 text-teal-700'];
