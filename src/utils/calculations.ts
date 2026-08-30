@@ -31,6 +31,8 @@ import { AMERICAN_FULL, type AmericanFullDish } from '../data/american-full';
 import { CUBAN_FULL, type CubanFullDish } from '../data/cuban-full';
 import { COSTA_RICAN_FULL, type CostaRicanFullDish } from '../data/costa-rican-full';
 import { JAMAICAN_FULL, type JamaicanFullDish } from '../data/jamaican-full';
+import { BRAZILIAN_FULL, type BrazilianFullDish } from '../data/brazilian-full';
+import { PERUVIAN_FULL, type PeruvianFullDish } from '../data/peruvian-full';
 
 export type { Cuisine, MealType } from './cuisineCatalog';
 
@@ -398,7 +400,7 @@ const fullFoodBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 
   return 'drink';
 };
 
-const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish | AlgerianFullDish | MoroccanFullDish | SaudiFullDish | EmiratiFullDish | KuwaitiFullDish | QatarFullDish | BahrainiFullDish | OmaniFullDish | IndianFullDish | PakistaniFullDish | ChineseFullDish | JapaneseFullDish | KoreanFullDish | ThaiFullDish | ItalianFullDish | FrenchFullDish | SpanishFullDish | GreekFullDish | TurkishFullDish | BritishFullDish | SwissFullDish | MexicanFullDish | AmericanFullDish | CubanFullDish | CostaRicanFullDish | JamaicanFullDish, cuisineId: string): FoodItem => {
+const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish | AlgerianFullDish | MoroccanFullDish | SaudiFullDish | EmiratiFullDish | KuwaitiFullDish | QatarFullDish | BahrainiFullDish | OmaniFullDish | IndianFullDish | PakistaniFullDish | ChineseFullDish | JapaneseFullDish | KoreanFullDish | ThaiFullDish | ItalianFullDish | FrenchFullDish | SpanishFullDish | GreekFullDish | TurkishFullDish | BritishFullDish | SwissFullDish | MexicanFullDish | AmericanFullDish | CubanFullDish | CostaRicanFullDish | JamaicanFullDish | BrazilianFullDish | PeruvianFullDish, cuisineId: string): FoodItem => {
   const base = fullFoodBase(e.mealType);
   const type = base === 'fruit' ? 'fruit' : undefined;
   return {
@@ -467,6 +469,8 @@ const toAmericanFood = (e: AmericanFullDish): FoodItem => toFullFood(e, 'america
 const toCubanFood = (e: CubanFullDish): FoodItem => toFullFood(e, 'cuban');
 const toCostaRicanFood = (e: CostaRicanFullDish): FoodItem => toFullFood(e, 'costa_rican');
 const toJamaicanFood = (e: JamaicanFullDish): FoodItem => toFullFood(e, 'jamaican');
+const toBrazilianFood = (e: BrazilianFullDish): FoodItem => toFullFood(e, 'brazilian');
+const toPeruvianFood = (e: PeruvianFullDish): FoodItem => toFullFood(e, 'peruvian');
 
 const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   const enriched = usdaEnrich(f, f.portion?.grams ?? (f.portion?.ml ?? 100));
@@ -480,7 +484,7 @@ const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   };
 });
 
-const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'kuwaiti', 'qatar', 'bahraini', 'omani', 'indian', 'pakistani', 'chinese', 'japanese', 'korean', 'thai', 'italian', 'french', 'spanish', 'greek', 'turkish', 'british', 'swiss', 'mexican', 'american', 'cuban', 'costa_rican', 'jamaican'];
+const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'kuwaiti', 'qatar', 'bahraini', 'omani', 'indian', 'pakistani', 'chinese', 'japanese', 'korean', 'thai', 'italian', 'french', 'spanish', 'greek', 'turkish', 'british', 'swiss', 'mexican', 'american', 'cuban', 'costa_rican', 'jamaican', 'brazilian', 'peruvian'];
 
 export const FOODS_DATABASE: FoodItem[] = [
   ...ENRICHED_ALL
@@ -515,6 +519,8 @@ export const FOODS_DATABASE: FoodItem[] = [
   ...CUBAN_FULL.map(toCubanFood),
   ...COSTA_RICAN_FULL.map(toCostaRicanFood),
   ...JAMAICAN_FULL.map(toJamaicanFood),
+  ...BRAZILIAN_FULL.map(toBrazilianFood),
+  ...PERUVIAN_FULL.map(toPeruvianFood),
 ];
 
 const CUISINE_COLORS = ['bg-blue-100 text-blue-700', 'bg-red-100 text-red-700', 'bg-yellow-100 text-yellow-700', 'bg-green-100 text-green-700', 'bg-orange-100 text-orange-700', 'bg-amber-100 text-amber-700', 'bg-emerald-100 text-emerald-700', 'bg-rose-100 text-rose-700', 'bg-lime-100 text-lime-700', 'bg-purple-100 text-purple-700', 'bg-indigo-100 text-indigo-700', 'bg-teal-100 text-teal-700'];

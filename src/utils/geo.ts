@@ -9,6 +9,7 @@ interface GeoEntry {
 
 const GEO_ENTRIES: GeoEntry[] = [
   { re: /^America\/Sao_Paulo|^America\/Araguaina|^America\/Bahia|^America\/Belem|^America\/Boa_Vista|^America\/Campo_Grande|^America\/Cuiaba|^America\/Eirunepe|^America\/Fortaleza|^America\/Maceio|^America\/Manaus|^America\/Noronha|^America\/Porto_Velho|^America\/Recife|^America\/Rio_Branco|^America\/Rio/gi, cuisine: 'brazilian', countryEn: 'Brazil', countryAr: 'البرازيل' },
+  { re: /^America\/Lima/i, cuisine: 'peruvian', countryEn: 'Peru', countryAr: 'بيرو' },
   { re: /^America\/(Mexico|Baja_California|Baja_Sure|Chihuahua|Hermosillo|Mazatlan|Ojinaga|Tijuana)/i, cuisine: 'mexican', countryEn: 'Mexico', countryAr: 'المكسيك' },
   { re: /^America\/(Argentina|Argentina\/)/i, cuisine: 'argentinian', countryEn: 'Argentina', countryAr: 'الأرجنتين' },
   { re: /^America\/Canada|^America\/(Toronto|Vancouver|Montreal|Halifax|Winnipeg|Edmonton|Regina|St_Johns)/i, cuisine: 'canadian', countryEn: 'Canada', countryAr: 'كندا' },
