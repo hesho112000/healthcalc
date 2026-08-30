@@ -18,6 +18,7 @@ const GEO_ENTRIES: GeoEntry[] = [
   { re: /^America\/Jamaica/i, cuisine: 'jamaican', countryEn: 'Jamaica', countryAr: 'جامايكا' },
   { re: /^America\/Bogota/i, cuisine: 'colombian', countryEn: 'Colombia', countryAr: 'كولومبيا' },
   { re: /^America\/Santiago/i, cuisine: 'chilean', countryEn: 'Chile', countryAr: 'تشيلي' },
+  { re: /^America\/Caracas/i, cuisine: 'venezuelan', countryEn: 'Venezuela', countryAr: 'فنزويلا' },
   { re: /^America\/|^US\/|^US/i, cuisine: 'american', countryEn: 'United States', countryAr: 'الولايات المتحدة' },
   { re: /^Africa\/Cairo/i, cuisine: 'egyptian', countryEn: 'Egypt', countryAr: 'مصر' },
   { re: /^Africa\/Tripoli/i, cuisine: 'libyan', countryEn: 'Libya', countryAr: 'ليبيا' },
