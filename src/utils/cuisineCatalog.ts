@@ -517,6 +517,13 @@ export const CUISINE_GROUPS: CuisineGroup[] = [
     ],
   },
   {
+    region: 'New Zealand',
+    regionAr: 'نيوزيلندا (ماوري كاي)',
+    items: [
+      { id: 'new_zealand', nameAr: 'نيوزيلندي', nameEn: 'New Zealand' },
+    ],
+  },
+  {
     region: 'Middle East & Levant',
     regionAr: 'الشرق الأوسط والشام',
     items: [
@@ -550,6 +557,7 @@ export const CUISINE_FLAGS: Record<string, string> = {
   american: '🇺🇸', mexican: '🇲🇽', canadian: '🇨🇦', cuban: '🇨🇺', jamaican: '🇯🇲', costa_rican: '🇨🇷',
   brazilian: '🇧🇷', argentinian: '🇦🇷', peruvian: '🇵🇪', colombian: '🇨🇴', chilean: '🇨🇱', venezuelan: '🇻🇪',
   australian: '🇦🇺',
+  new_zealand: '🇳🇿',
   middle_eastern: '🧆', african: '🌍', mediterranean: '🫒', keto: '🥑', high_protein: '💪', vegetarian: '🌱',
 };
 

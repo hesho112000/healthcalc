@@ -47,6 +47,7 @@ const GEO_ENTRIES: GeoEntry[] = [
   { re: /^Europe\/Zurich|^Europe\/Geneva|^Europe\/Bern/i, cuisine: 'swiss', countryEn: 'Switzerland', countryAr: 'سويسرا' },
   { re: /^Europe\/Berlin|^Europe\/Vienna/i, cuisine: 'german', countryEn: 'Germany', countryAr: 'ألمانيا' },
   { re: /^Europe\//i, cuisine: 'italian', countryEn: 'Europe', countryAr: 'أوروبا' },
+  { re: /^Pacific\/Auckland/i, cuisine: 'new_zealand', countryEn: 'New Zealand', countryAr: 'نيوزيلندا' },
   { re: /^Australia|^Pacific|^Etc\//i, cuisine: 'australian', countryEn: 'Australia', countryAr: 'أستراليا' },
 ];
 
