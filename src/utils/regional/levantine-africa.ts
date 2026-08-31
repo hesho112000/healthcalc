@@ -1,7 +1,7 @@
 import type { RegionalFood } from '../cuisineCatalog';
 
 export const FOODS: Record<string, RegionalFood[]> = {
-  middle_eastern: [
+  lebanese: [
     { name_en: 'Foul with Tahini', name_ar: 'فول بالطحينة', mealType: 'breakfast', calories: 165, protein: 11.4, carbs: 29.4, fat: 0.6 },
     { name_en: 'Labneh with Zaatar', name_ar: 'لبنة بالزعتر', mealType: 'breakfast', calories: 130, protein: 6.5, carbs: 4.6, fat: 9.8 },
     { name_en: 'Manakish Zaatar', name_ar: 'مناقيش زعتر', mealType: 'breakfast', calories: 360, protein: 10.8, carbs: 54, fat: 10.8 },

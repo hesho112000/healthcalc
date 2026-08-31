@@ -38,6 +38,10 @@ import { CHILEAN_FULL, type ChileanFullDish } from '../data/chilean-full';
 import { VENEZUELAN_FULL, type VenezuelanFullDish } from '../data/venezuelan-full';
 import { AUSTRALIAN_FULL, type AustralianFullDish } from '../data/australian-full';
 import { NEW_ZEALAND_FULL, type NewZealandFullDish } from '../data/new-zealand-full';
+import lebaneseJson from '../data/lebanese-full-100-USDA.json';
+import palestinianJson from '../data/palestinian-full-100-USDA.json';
+import syrianJson from '../data/syrian-full-100-USDA.json';
+import jordanianJson from '../data/jordanian-full-100-USDA.json';
 
 export type { Cuisine, MealType } from './cuisineCatalog';
 
@@ -346,21 +350,21 @@ export const FOODS_DATABASE_RAW: FoodItem[] = [
   { name: 'Sweet Potato', name_en: 'Sweet Potato', name_ar: 'بطاطا حلوة', calories: 103, protein: 2, carbs: 24, fat: 0.1, category: 'vegetable', cuisine: ['american', 'african'], portion: { grams: 130, measure: '1 medium (130g)' } },
   { name: 'Avocado', name_en: 'Avocado', name_ar: 'أفوكادو', calories: 240, protein: 3, carbs: 12, fat: 22, category: 'fruit', cuisine: ['mexican', 'mediterranean', 'keto'], portion: { grams: 100, measure: '½ medium (100g)' } },
   { name: 'Greek Yogurt', name_en: 'Greek Yogurt', name_ar: 'زبادي يوناني', calories: 100, protein: 17, carbs: 6, fat: 0.7, category: 'dairy', cuisine: ['mediterranean', 'high_protein'], portion: { grams: 170, measure: '1 cup (170g)' } },
-  { name: 'Hummus', name_en: 'Hummus', name_ar: 'حمص', calories: 166, protein: 8, carbs: 14, fat: 10, category: 'legume', cuisine: ['middle_eastern'], portion: { grams: 100, measure: '¼ cup (100g)' } },
-  { name: 'Lentil Soup', name_en: 'Lentil Soup', name_ar: 'شوربة عدس', calories: 230, protein: 18, carbs: 35, fat: 2, category: 'legume', cuisine: ['middle_eastern', 'egyptian'], portion: { grams: 245, measure: '1 cup (245g)' } },
+  { name: 'Hummus', name_en: 'Hummus', name_ar: 'حمص', calories: 166, protein: 8, carbs: 14, fat: 10, category: 'legume', cuisine: ['lebanese'], portion: { grams: 100, measure: '¼ cup (100g)' } },
+  { name: 'Lentil Soup', name_en: 'Lentil Soup', name_ar: 'شوربة عدس', calories: 230, protein: 18, carbs: 35, fat: 2, category: 'legume', cuisine: ['lebanese', 'egyptian'], portion: { grams: 245, measure: '1 cup (245g)' } },
   { name: 'Chicken Tikka Masala', name_en: 'Chicken Tikka Masala', name_ar: 'دجاج تكا ماسالا', calories: 430, protein: 30, carbs: 20, fat: 25, category: 'protein', cuisine: ['indian', 'high_protein'], portion: { grams: 200, measure: '1 bowl (200g)' } },
   { name: 'Sushi Roll', name_en: 'Sushi Roll', name_ar: 'رول سوشي', calories: 255, protein: 9, carbs: 38, fat: 7, category: 'grain', cuisine: ['asian'], portion: { grams: 180, measure: '6 pieces (180g)' } },
   { name: 'Tacos', name_en: 'Tacos', name_ar: 'تاكوس', calories: 380, protein: 18, carbs: 30, fat: 20, category: 'protein', cuisine: ['mexican'], portion: { grams: 180, measure: '2 tacos (180g)' } },
-  { name: 'Falafel Bowl', name_en: 'Falafel Bowl', name_ar: 'طبق فلافل', calories: 450, protein: 15, carbs: 50, fat: 22, category: 'legume', cuisine: ['middle_eastern'], portion: { grams: 300, measure: '1 bowl (300g)' } },
+  { name: 'Falafel Bowl', name_en: 'Falafel Bowl', name_ar: 'طبق فلافل', calories: 450, protein: 15, carbs: 50, fat: 22, category: 'legume', cuisine: ['lebanese'], portion: { grams: 300, measure: '1 bowl (300g)' } },
   { name: 'Eggs (2 large)', name_en: 'Eggs (2 large)', name_ar: 'بيض (2 حبة)', calories: 143, protein: 13, carbs: 1, fat: 10, category: 'protein', cuisine: ['american', 'mediterranean', 'keto', 'high_protein'], portion: { grams: 100, measure: '2 large eggs (100g)' } },
   { name: 'Oatmeal', name_en: 'Oatmeal', name_ar: 'شوفان', calories: 154, protein: 5, carbs: 27, fat: 3, category: 'grain', cuisine: ['american'], portion: { grams: 234, measure: '1 cup cooked (234g)' } },
   { name: 'Banana', name_en: 'Banana', name_ar: 'موزة', calories: 105, protein: 1.3, carbs: 27, fat: 0.4, category: 'fruit', cuisine: ['african'], portion: { grams: 118, measure: '1 medium (118g)' } },
   { name: 'Almonds', name_en: 'Almonds', name_ar: 'لوز', calories: 164, protein: 6, carbs: 6, fat: 14, category: 'nuts', cuisine: ['mediterranean', 'indian', 'keto'], portion: { grams: 28, measure: '1 oz (28g)' } },
   { name: 'Broccoli', name_en: 'Broccoli', name_ar: 'بروكلي', calories: 55, protein: 3.7, carbs: 11, fat: 0.6, category: 'vegetable', cuisine: ['asian', 'mediterranean', 'keto'], portion: { grams: 91, measure: '1 cup (91g)' } },
   { name: 'Tuna (canned)', name_en: 'Tuna (canned)', name_ar: 'تونة (معلبة)', calories: 128, protein: 26, carbs: 0, fat: 2.5, category: 'protein', cuisine: ['american', 'mediterranean', 'keto', 'high_protein'], portion: { grams: 140, measure: '1 can (140g)' } },
-  { name: 'Couscous', name_en: 'Couscous', name_ar: 'كسكس', calories: 176, protein: 6, carbs: 36, fat: 0.3, category: 'grain', cuisine: ['mediterranean', 'middle_eastern'], portion: { grams: 157, measure: '1 cup (157g)' } },
+  { name: 'Couscous', name_en: 'Couscous', name_ar: 'كسكس', calories: 176, protein: 6, carbs: 36, fat: 0.3, category: 'grain', cuisine: ['mediterranean', 'lebanese'], portion: { grams: 157, measure: '1 cup (157g)' } },
   { name: 'Koshari', name_en: 'Koshari', name_ar: 'كشري', calories: 450, protein: 15, carbs: 70, fat: 10, category: 'grain', cuisine: ['egyptian'], portion: { grams: 250, measure: '1 plate (250g)' } },
-  { name: 'Ful Medames', name_en: 'Ful Medames', name_ar: 'فول مدمس', calories: 340, protein: 18, carbs: 40, fat: 12, category: 'legume', cuisine: ['egyptian', 'middle_eastern'], portion: { grams: 150, measure: '1 bowl (150g)' } },
+  { name: 'Ful Medames', name_en: 'Ful Medames', name_ar: 'فول مدمس', calories: 340, protein: 18, carbs: 40, fat: 12, category: 'legume', cuisine: ['egyptian', 'lebanese'], portion: { grams: 150, measure: '1 bowl (150g)' } },
   { name: 'Molokhia', name_en: 'Molokhia', name_ar: 'ملوخية', calories: 280, protein: 14, carbs: 30, fat: 10, category: 'vegetable', cuisine: ['egyptian'], portion: { grams: 200, measure: '1 bowl (200g)' } },
   { name: 'Pasta Bolognese', name_en: 'Pasta Bolognese', name_ar: 'معكرونة بولونيز', calories: 480, protein: 25, carbs: 55, fat: 15, category: 'grain', cuisine: ['italian'], portion: { grams: 200, measure: '1 plate (200g cooked)' } },
   { name: 'Margherita Pizza', name_en: 'Margherita Pizza', name_ar: 'بيتزا مارغريتا', calories: 400, protein: 18, carbs: 42, fat: 16, category: 'grain', cuisine: ['italian'], portion: { grams: 150, measure: '1 slice of 12-inch (150g)' } },
@@ -482,6 +486,48 @@ const toVenezuelanFood = (e: VenezuelanFullDish): FoodItem => toFullFood(e, 'ven
 const toAustralianFood = (e: AustralianFullDish): FoodItem => toFullFood(e, 'australian');
 const toNewZealandFood = (e: NewZealandFullDish): FoodItem => toFullFood(e, 'new_zealand');
 
+interface LevantJsonDish {
+  id: string;
+  name_ar: string;
+  name_en: string;
+  mealType: string;
+  grams: number;
+  kcal: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+  cooking?: string;
+  note?: string;
+  ref?: string;
+}
+
+const toLevantJsonFood = (e: LevantJsonDish, cuisineId: string): FoodItem => {
+  const base = fullFoodBase(e.mealType);
+  return {
+    id: e.id,
+    name: e.name_en,
+    name_en: e.name_en,
+    name_ar: e.name_ar,
+    calories: e.kcal,
+    protein: e.protein,
+    carbs: e.carbs,
+    fat: e.fat,
+    category: base,
+    cuisine: [cuisineId],
+    mealType: base,
+    type: base === 'fruit' ? 'fruit' : undefined,
+    portion: { grams: e.grams, measure: `${e.grams} g`, measureAr: `${e.grams} جم` },
+    verified: false,
+    halal: true,
+    heavy: isHeavyMeal(e.name_en, e.kcal, e.fat),
+  } as FoodItem;
+};
+
+const toLebaneseFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'lebanese');
+const toPalestinianFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'palestinian');
+const toSyrianFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'syrian');
+const toJordanianFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'jordanian');
+
 const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   const enriched = usdaEnrich(f, f.portion?.grams ?? (f.portion?.ml ?? 100));
   return {
@@ -494,7 +540,7 @@ const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   };
 });
 
-const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'kuwaiti', 'qatar', 'bahraini', 'omani', 'indian', 'pakistani', 'chinese', 'japanese', 'korean', 'thai', 'italian', 'french', 'spanish', 'greek', 'turkish', 'british', 'swiss', 'mexican', 'american', 'cuban', 'costa_rican', 'jamaican', 'brazilian', 'peruvian', 'colombian', 'chilean', 'venezuelan', 'australian', 'new_zealand'];
+const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'kuwaiti', 'qatar', 'bahraini', 'omani', 'indian', 'pakistani', 'chinese', 'japanese', 'korean', 'thai', 'italian', 'french', 'spanish', 'greek', 'turkish', 'british', 'swiss', 'mexican', 'american', 'cuban', 'costa_rican', 'jamaican', 'brazilian', 'peruvian', 'colombian', 'chilean', 'venezuelan', 'australian', 'new_zealand', 'lebanese', 'palestinian', 'syrian', 'jordanian'];
 
 export const FOODS_DATABASE: FoodItem[] = [
   ...ENRICHED_ALL
@@ -536,6 +582,10 @@ export const FOODS_DATABASE: FoodItem[] = [
   ...VENEZUELAN_FULL.map(toVenezuelanFood),
   ...AUSTRALIAN_FULL.map(toAustralianFood),
   ...NEW_ZEALAND_FULL.map(toNewZealandFood),
+  ...(lebaneseJson as LevantJsonDish[]).map(toLebaneseFood),
+  ...(palestinianJson as LevantJsonDish[]).map(toPalestinianFood),
+  ...(syrianJson as LevantJsonDish[]).map(toSyrianFood),
+  ...(jordanianJson as LevantJsonDish[]).map(toJordanianFood),
 ];
 
 const CUISINE_COLORS = ['bg-blue-100 text-blue-700', 'bg-red-100 text-red-700', 'bg-yellow-100 text-yellow-700', 'bg-green-100 text-green-700', 'bg-orange-100 text-orange-700', 'bg-amber-100 text-amber-700', 'bg-emerald-100 text-emerald-700', 'bg-rose-100 text-rose-700', 'bg-lime-100 text-lime-700', 'bg-purple-100 text-purple-700', 'bg-indigo-100 text-indigo-700', 'bg-teal-100 text-teal-700'];

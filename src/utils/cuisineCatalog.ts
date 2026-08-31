@@ -524,10 +524,13 @@ export const CUISINE_GROUPS: CuisineGroup[] = [
     ],
   },
   {
-    region: 'Middle East & Levant',
-    regionAr: 'الشرق الأوسط والشام',
+    region: 'Sham & Levant',
+    regionAr: 'بلاد الشام والمشرق',
     items: [
-      { id: 'middle_eastern', nameAr: 'شرق أوسطي', nameEn: 'Middle Eastern' },
+      { id: 'lebanese', nameAr: 'لبناني', nameEn: 'Lebanese' },
+      { id: 'palestinian', nameAr: 'فلسطيني', nameEn: 'Palestinian' },
+      { id: 'syrian', nameAr: 'سوري', nameEn: 'Syrian' },
+      { id: 'jordanian', nameAr: 'أردني', nameEn: 'Jordanian' },
     ],
   },
   {
@@ -558,7 +561,8 @@ export const CUISINE_FLAGS: Record<string, string> = {
   brazilian: '🇧🇷', argentinian: '🇦🇷', peruvian: '🇵🇪', colombian: '🇨🇴', chilean: '🇨🇱', venezuelan: '🇻🇪',
   australian: '🇦🇺',
   new_zealand: '🇳🇿',
-  middle_eastern: '🧆', african: '🌍', mediterranean: '🫒', keto: '🥑', high_protein: '💪', vegetarian: '🌱',
+  lebanese: '🇱🇧', palestinian: '🇵🇸', syrian: '🇸🇾', jordanian: '🇯🇴',
+  african: '🌍', mediterranean: '🫒', keto: '🥑', high_protein: '💪', vegetarian: '🌱',
 };
 
 export const REGIONAL_FOODS: Record<string, RegionalFood[]> = {
@@ -665,7 +669,10 @@ const CUISINE_SIGNATURE_FRUITS: Record<string, string[]> = {
   thai: ['Pineapple', 'Mango'],
   moroccan: ['Orange'],
   tunisian: ['Fig'],
-  middle_eastern: ['Fig'],
+  lebanese: ['Fig', 'Grapes'],
+  palestinian: ['Fig', 'Pomegranate'],
+  syrian: ['Apricot', 'Pomegranate'],
+  jordanian: ['Fig', 'Grapes'],
   greek: ['Grapes'],
   italian: ['Grapes'],
   turkish: ['Apricot'],
@@ -680,7 +687,10 @@ const CUISINE_SIGNATURE_DRINKS: Record<string, string[]> = {
   thai: ['Pineapple Juice'],
   mexican: ['Watermelon Juice'],
   brazilian: ['Coconut Water'],
-  middle_eastern: ['Pomegranate Juice'],
+  lebanese: ['Pomegranate Juice'],
+  palestinian: ['Pomegranate Juice'],
+  syrian: ['Pomegranate Juice'],
+  jordanian: ['Pomegranate Juice'],
   mediterranean: ['Pomegranate Juice'],
 };
 
