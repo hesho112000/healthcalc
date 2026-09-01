@@ -50,6 +50,7 @@ import veganDietJson from '../data/vegan-diet-100-medical.json';
 import glutenFreeDietJson from '../data/gluten-free-diet-100-medical.json';
 import lowCarbDietJson from '../data/low-carb-diet-100-medical.json';
 import dashDietJson from '../data/dash-diet-100-medical.json';
+import intermittentFastingDietJson from '../data/intermittent-fasting-diet-100-medical.json';
 import { SOUTH_AFRICAN_FULL, type SouthAfricanFullDish } from '../data/south-african-full';
 import { RWANDAN_FULL, type RwandanFullDish } from '../data/rwandan-full';
 import { KENYAN_FULL, type KenyanFullDish } from '../data/kenyan-full';
@@ -317,6 +318,7 @@ export interface FoodItem {
   benefits?: string;
   halal?: boolean;
   heavy?: boolean;
+  tag?: 'fasting_period' | 'eating_window';
 }
 
 export const CUISINE_OPTIONS: Array<{ key: Cuisine; label_ar: string; label_en: string; flag: string }> =
@@ -517,6 +519,7 @@ interface LevantJsonDish {
   cooking?: string;
   note?: string;
   ref?: string;
+  tag?: 'fasting_period' | 'eating_window';
 }
 
 const toLevantJsonFood = (e: LevantJsonDish, cuisineId: string): FoodItem => {
@@ -538,6 +541,7 @@ const toLevantJsonFood = (e: LevantJsonDish, cuisineId: string): FoodItem => {
     verified: false,
     halal: true,
     heavy: isHeavyMeal(e.name_en, e.kcal, e.fat),
+    tag: e.tag,
   } as FoodItem;
 };
 
@@ -553,6 +557,11 @@ const toVeganFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'vegan'
 const toGlutenFreeFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'gluten_free');
 const toLowCarbFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'low_carb');
 const toDashFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'dash');
+const toIntermittentFastingFood = (e: LevantJsonDish): FoodItem => {
+  const f = toLevantJsonFood(e, 'intermittent_fasting');
+  if (e.tag) f.tag = e.tag;
+  return f;
+};
 
 const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   const enriched = usdaEnrich(f, f.portion?.grams ?? (f.portion?.ml ?? 100));
@@ -566,7 +575,7 @@ const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   };
 });
 
-const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'kuwaiti', 'qatar', 'bahraini', 'omani', 'indian', 'pakistani', 'chinese', 'japanese', 'korean', 'thai', 'italian', 'french', 'spanish', 'greek', 'turkish', 'british', 'swiss', 'mexican', 'american', 'cuban', 'costa_rican', 'jamaican', 'brazilian', 'peruvian', 'colombian', 'chilean', 'venezuelan', 'australian', 'new_zealand', 'lebanese', 'palestinian', 'syrian', 'jordanian', 'south_african', 'rwandan', 'kenyan', 'nigerian', 'ethiopian', 'mediterranean', 'keto', 'high_protein', 'vegetarian', 'vegan', 'gluten_free', 'low_carb', 'dash'];
+const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'kuwaiti', 'qatar', 'bahraini', 'omani', 'indian', 'pakistani', 'chinese', 'japanese', 'korean', 'thai', 'italian', 'french', 'spanish', 'greek', 'turkish', 'british', 'swiss', 'mexican', 'american', 'cuban', 'costa_rican', 'jamaican', 'brazilian', 'peruvian', 'colombian', 'chilean', 'venezuelan', 'australian', 'new_zealand', 'lebanese', 'palestinian', 'syrian', 'jordanian', 'south_african', 'rwandan', 'kenyan', 'nigerian', 'ethiopian', 'mediterranean', 'keto', 'high_protein', 'vegetarian', 'vegan', 'gluten_free', 'low_carb', 'dash', 'intermittent_fasting'];
 
 export const FOODS_DATABASE: FoodItem[] = [
   ...ENRICHED_ALL
@@ -625,6 +634,7 @@ export const FOODS_DATABASE: FoodItem[] = [
   ...(glutenFreeDietJson as LevantJsonDish[]).map(toGlutenFreeFood),
   ...(lowCarbDietJson as LevantJsonDish[]).map(toLowCarbFood),
   ...(dashDietJson as LevantJsonDish[]).map(toDashFood),
+  ...(intermittentFastingDietJson as LevantJsonDish[]).map(toIntermittentFastingFood),
 ];
 
 const CUISINE_COLORS = ['bg-blue-100 text-blue-700', 'bg-red-100 text-red-700', 'bg-yellow-100 text-yellow-700', 'bg-green-100 text-green-700', 'bg-orange-100 text-orange-700', 'bg-amber-100 text-amber-700', 'bg-emerald-100 text-emerald-700', 'bg-rose-100 text-rose-700', 'bg-lime-100 text-lime-700', 'bg-purple-100 text-purple-700', 'bg-indigo-100 text-indigo-700', 'bg-teal-100 text-teal-700'];
