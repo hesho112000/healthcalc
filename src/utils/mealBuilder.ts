@@ -149,14 +149,14 @@ const MIN_POOL: Record<BuilderSlot, number> = { breakfast: 8, lunch: 8, dinner: 
 export const buildBuilderPool = (cuisine: string, _section?: MealBuilderSection, filters?: MealBuilderFilters): BuilderPool => {
   const db = FOODS_DATABASE;
 
-if (cuisine === 'egyptian' || cuisine === 'libyan' || cuisine === 'tunisian' || cuisine === 'algerian' || cuisine === 'moroccan' || cuisine === 'saudi' || cuisine === 'emirati' || cuisine === 'kuwaiti' || cuisine === 'qatar' || cuisine === 'bahraini' || cuisine === 'omani' || cuisine === 'indian' || cuisine === 'pakistani' || cuisine === 'chinese' || cuisine === 'japanese' || cuisine === 'korean' || cuisine === 'thai' || cuisine === 'italian' || cuisine === 'french' || cuisine === 'spanish' || cuisine === 'greek' || cuisine === 'turkish' || cuisine === 'british' || cuisine === 'swiss' || cuisine === 'mexican' || cuisine === 'american' || cuisine === 'cuban' || cuisine === 'costa_rican' || cuisine === 'jamaican' || cuisine === 'brazilian' || cuisine === 'peruvian' || cuisine === 'colombian' || cuisine === 'chilean' || cuisine === 'venezuelan' || cuisine === 'australian' || cuisine === 'new_zealand' || cuisine === 'lebanese' || cuisine === 'palestinian' || cuisine === 'syrian' || cuisine === 'jordanian' || cuisine === 'south_african' || cuisine === 'rwandan' || cuisine === 'kenyan' || cuisine === 'nigerian' || cuisine === 'ethiopian') {
+if (cuisine === 'egyptian' || cuisine === 'libyan' || cuisine === 'tunisian' || cuisine === 'algerian' || cuisine === 'moroccan' || cuisine === 'saudi' || cuisine === 'emirati' || cuisine === 'kuwaiti' || cuisine === 'qatar' || cuisine === 'bahraini' || cuisine === 'omani' || cuisine === 'indian' || cuisine === 'pakistani' || cuisine === 'chinese' || cuisine === 'japanese' || cuisine === 'korean' || cuisine === 'thai' || cuisine === 'italian' || cuisine === 'french' || cuisine === 'spanish' || cuisine === 'greek' || cuisine === 'turkish' || cuisine === 'british' || cuisine === 'swiss' || cuisine === 'mexican' || cuisine === 'american' || cuisine === 'cuban' || cuisine === 'costa_rican' || cuisine === 'jamaican' || cuisine === 'brazilian' || cuisine === 'peruvian' || cuisine === 'colombian' || cuisine === 'chilean' || cuisine === 'venezuelan' || cuisine === 'australian' || cuisine === 'new_zealand' || cuisine === 'lebanese' || cuisine === 'palestinian' || cuisine === 'syrian' || cuisine === 'jordanian' || cuisine === 'south_african' || cuisine === 'rwandan' || cuisine === 'kenyan' || cuisine === 'nigerian' || cuisine === 'ethiopian' || cuisine === 'mediterranean' || cuisine === 'keto' || cuisine === 'high_protein' || cuisine === 'vegetarian' || cuisine === 'vegan' || cuisine === 'gluten_free' || cuisine === 'low_carb' || cuisine === 'dash') {
     const north = db.filter((f) => f.cuisine.includes(cuisine));
     return {
       breakfast: north.filter((f) => f.mealType === 'breakfast'),
       lunch: north.filter((f) => f.mealType === 'lunch'),
       dinner: north.filter((f) => f.mealType === 'dinner'),
       breads: [],
-      juices: [],
+      juices: north.filter((f) => f.type === 'juice'),
       fruits: north.filter((f) => f.type === 'fruit'),
       sides: north.filter((f) => f.mealType === 'side'),
       salads: north.filter((f) => f.mealType === 'salad'),

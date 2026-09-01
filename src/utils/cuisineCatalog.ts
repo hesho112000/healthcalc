@@ -553,6 +553,10 @@ export const CUISINE_GROUPS: CuisineGroup[] = [
       { id: 'keto', nameAr: 'كيتو', nameEn: 'Keto' },
       { id: 'high_protein', nameAr: 'عالي البروتين', nameEn: 'High Protein' },
       { id: 'vegetarian', nameAr: 'نباتي', nameEn: 'Vegetarian' },
+      { id: 'vegan', nameAr: 'نباتي صرف', nameEn: 'Vegan' },
+      { id: 'gluten_free', nameAr: 'خالٍ من الغلوتين', nameEn: 'Gluten Free' },
+      { id: 'low_carb', nameAr: 'منخفض الكربوهيدرات', nameEn: 'Low Carb' },
+      { id: 'dash', nameAr: 'داش', nameEn: 'DASH' },
     ],
   },
 ];
@@ -568,7 +572,7 @@ export const CUISINE_FLAGS: Record<string, string> = {
   new_zealand: '🇳🇿',
   lebanese: '🇱🇧', palestinian: '🇵🇸', syrian: '🇸🇾', jordanian: '🇯🇴',
   south_african: '🇿🇦', rwandan: '🇷🇼', kenyan: '🇰🇪', nigerian: '🇳🇬', ethiopian: '🇪🇹',
-  african: '🌍', mediterranean: '🫒', keto: '🥑', high_protein: '💪', vegetarian: '🌱',
+  african: '🌍', mediterranean: 'MED', keto: 'KETO', high_protein: 'HP', vegetarian: 'VEG', vegan: 'VEGAN', gluten_free: 'GF', low_carb: 'LC', dash: 'DASH',
 };
 
 export const REGIONAL_FOODS: Record<string, RegionalFood[]> = {

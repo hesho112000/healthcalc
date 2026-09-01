@@ -42,6 +42,14 @@ import lebaneseJson from '../data/lebanese-full-100-USDA.json';
 import palestinianJson from '../data/palestinian-full-100-USDA.json';
 import syrianJson from '../data/syrian-full-100-USDA.json';
 import jordanianJson from '../data/jordanian-full-100-USDA.json';
+import mediterraneanDietJson from '../data/mediterranean-diet-100-medical.json';
+import ketoDietJson from '../data/keto-diet-100-medical.json';
+import highProteinDietJson from '../data/high-protein-diet-100-medical.json';
+import vegetarianDietJson from '../data/vegetarian-diet-100-medical.json';
+import veganDietJson from '../data/vegan-diet-100-medical.json';
+import glutenFreeDietJson from '../data/gluten-free-diet-100-medical.json';
+import lowCarbDietJson from '../data/low-carb-diet-100-medical.json';
+import dashDietJson from '../data/dash-diet-100-medical.json';
 import { SOUTH_AFRICAN_FULL, type SouthAfricanFullDish } from '../data/south-african-full';
 import { RWANDAN_FULL, type RwandanFullDish } from '../data/rwandan-full';
 import { KENYAN_FULL, type KenyanFullDish } from '../data/kenyan-full';
@@ -404,10 +412,11 @@ export const FOODS_DATABASE_RAW: FoodItem[] = [
   ),
 ];
 
-const fullFoodBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 'drink' | 'side' | 'salad' => {
+const fullFoodBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 'juice' | 'drink' | 'side' | 'salad' => {
   if (mt === 'breakfast') return 'breakfast';
   if (mt === 'lunch') return 'lunch';
   if (mt === 'dinner') return 'dinner';
+  if (mt === 'juice') return 'juice';
   if (mt === 'fruit') return 'fruit';
   if (mt === 'side') return 'side';
   if (mt === 'salad') return 'salad';
@@ -416,7 +425,6 @@ const fullFoodBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 
 
 const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish | AlgerianFullDish | MoroccanFullDish | SaudiFullDish | EmiratiFullDish | KuwaitiFullDish | QatarFullDish | BahrainiFullDish | OmaniFullDish | IndianFullDish | PakistaniFullDish | ChineseFullDish | JapaneseFullDish | KoreanFullDish | ThaiFullDish | ItalianFullDish | FrenchFullDish | SpanishFullDish | GreekFullDish | TurkishFullDish | BritishFullDish | SwissFullDish | MexicanFullDish | AmericanFullDish | CubanFullDish | CostaRicanFullDish | JamaicanFullDish | BrazilianFullDish | PeruvianFullDish | ColombianFullDish | ChileanFullDish | VenezuelanFullDish | AustralianFullDish | NewZealandFullDish | SouthAfricanFullDish | RwandanFullDish | KenyanFullDish | NigerianFullDish | EthiopianFullDish, cuisineId: string): FoodItem => {
   const base = fullFoodBase(e.mealType);
-  const type = base === 'fruit' ? 'fruit' : undefined;
   return {
     id: e.id,
     name: e.nameEn,
@@ -429,7 +437,7 @@ const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish | Al
     category: base,
     cuisine: [cuisineId],
     mealType: base,
-    type,
+    type: base === 'fruit' ? 'fruit' : base === 'juice' ? 'juice' : undefined,
     portion: { grams: e.grams, measure: `${e.grams} g`, measureAr: `${e.grams} جم` },
     verified: false,
     halal: true,
@@ -525,7 +533,7 @@ const toLevantJsonFood = (e: LevantJsonDish, cuisineId: string): FoodItem => {
     category: base,
     cuisine: [cuisineId],
     mealType: base,
-    type: base === 'fruit' ? 'fruit' : undefined,
+    type: base === 'fruit' ? 'fruit' : base === 'juice' ? 'juice' : undefined,
     portion: { grams: e.grams, measure: `${e.grams} g`, measureAr: `${e.grams} جم` },
     verified: false,
     halal: true,
@@ -537,6 +545,14 @@ const toLebaneseFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'leb
 const toPalestinianFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'palestinian');
 const toSyrianFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'syrian');
 const toJordanianFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'jordanian');
+const toMediterraneanFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'mediterranean');
+const toKetoFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'keto');
+const toHighProteinFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'high_protein');
+const toVegetarianFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'vegetarian');
+const toVeganFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'vegan');
+const toGlutenFreeFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'gluten_free');
+const toLowCarbFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'low_carb');
+const toDashFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'dash');
 
 const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   const enriched = usdaEnrich(f, f.portion?.grams ?? (f.portion?.ml ?? 100));
@@ -550,7 +566,7 @@ const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   };
 });
 
-const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'kuwaiti', 'qatar', 'bahraini', 'omani', 'indian', 'pakistani', 'chinese', 'japanese', 'korean', 'thai', 'italian', 'french', 'spanish', 'greek', 'turkish', 'british', 'swiss', 'mexican', 'american', 'cuban', 'costa_rican', 'jamaican', 'brazilian', 'peruvian', 'colombian', 'chilean', 'venezuelan', 'australian', 'new_zealand', 'lebanese', 'palestinian', 'syrian', 'jordanian', 'south_african', 'rwandan', 'kenyan', 'nigerian', 'ethiopian'];
+const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'kuwaiti', 'qatar', 'bahraini', 'omani', 'indian', 'pakistani', 'chinese', 'japanese', 'korean', 'thai', 'italian', 'french', 'spanish', 'greek', 'turkish', 'british', 'swiss', 'mexican', 'american', 'cuban', 'costa_rican', 'jamaican', 'brazilian', 'peruvian', 'colombian', 'chilean', 'venezuelan', 'australian', 'new_zealand', 'lebanese', 'palestinian', 'syrian', 'jordanian', 'south_african', 'rwandan', 'kenyan', 'nigerian', 'ethiopian', 'mediterranean', 'keto', 'high_protein', 'vegetarian', 'vegan', 'gluten_free', 'low_carb', 'dash'];
 
 export const FOODS_DATABASE: FoodItem[] = [
   ...ENRICHED_ALL
@@ -601,6 +617,14 @@ export const FOODS_DATABASE: FoodItem[] = [
   ...KENYAN_FULL.map(toKenyanFood),
   ...NIGERIAN_FULL.map(toNigerianFood),
   ...ETHIOPIAN_FULL.map(toEthiopianFood),
+  ...(mediterraneanDietJson as LevantJsonDish[]).map(toMediterraneanFood),
+  ...(ketoDietJson as LevantJsonDish[]).map(toKetoFood),
+  ...(highProteinDietJson as LevantJsonDish[]).map(toHighProteinFood),
+  ...(vegetarianDietJson as LevantJsonDish[]).map(toVegetarianFood),
+  ...(veganDietJson as LevantJsonDish[]).map(toVeganFood),
+  ...(glutenFreeDietJson as LevantJsonDish[]).map(toGlutenFreeFood),
+  ...(lowCarbDietJson as LevantJsonDish[]).map(toLowCarbFood),
+  ...(dashDietJson as LevantJsonDish[]).map(toDashFood),
 ];
 
 const CUISINE_COLORS = ['bg-blue-100 text-blue-700', 'bg-red-100 text-red-700', 'bg-yellow-100 text-yellow-700', 'bg-green-100 text-green-700', 'bg-orange-100 text-orange-700', 'bg-amber-100 text-amber-700', 'bg-emerald-100 text-emerald-700', 'bg-rose-100 text-rose-700', 'bg-lime-100 text-lime-700', 'bg-purple-100 text-purple-700', 'bg-indigo-100 text-indigo-700', 'bg-teal-100 text-teal-700'];
