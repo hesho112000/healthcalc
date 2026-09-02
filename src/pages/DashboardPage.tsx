@@ -31,8 +31,9 @@ const DashboardPage: React.FC = () => {
   const [pwForm, setPwForm] = useState({ current: '', newPw: '', confirm: '' });
   const [profileMsg, setProfileMsg] = useState({ type: '', text: '' });
   const [pwMsg, setPwMsg] = useState({ type: '', text: '' });
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const moduleLabels = getModuleLabels(t);
+  const fmtDate = (d: string | Date, opts?: Intl.DateTimeFormatOptions) => new Date(d).toLocaleDateString(language === 'ar' ? 'ar-EG' : language === 'fr' ? 'fr-FR' : language === 'es' ? 'es-ES' : 'en-US', opts);
 
   const limit = 10;
 
@@ -109,7 +110,7 @@ const DashboardPage: React.FC = () => {
 
   const formatDate = (d: string) => {
     const date = new Date(d);
-    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    return date.toLocaleDateString(language === 'ar' ? 'ar-EG' : language === 'fr' ? 'fr-FR' : language === 'es' ? 'es-ES' : 'en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
   };
 
   const totalPages = Math.ceil(total / limit);
@@ -128,7 +129,7 @@ const DashboardPage: React.FC = () => {
               </div>
               <div>
                 <h1 className="text-xl md:text-2xl font-extrabold tracking-tight">{t('dashWelcome')} {user?.name}</h1>
-                <p className="text-primary-200 text-sm">{user?.email} · {isPremium ? `✨ ${t('premium')}` : t('dashFreePlan')}{user?.subscription_end_date && isPremium ? ` · ${t('dashRenews')} ${new Date(user.subscription_end_date).toLocaleDateString()}` : ''}</p>
+                <p className="text-primary-200 text-sm">{user?.email} · {isPremium ? `✨ ${t('premium')}` : t('dashFreePlan')}{user?.subscription_end_date && isPremium ? ` · ${t('dashRenews')} ${fmtDate(user.subscription_end_date)}` : ''}</p>
               </div>
             </div>
             {!isPremium && (
@@ -183,7 +184,7 @@ const DashboardPage: React.FC = () => {
             </div>
             <div className="stat-card bg-gradient-to-br from-amber-50 to-white border-amber-100">
               <p className="text-xs font-semibold text-amber-600 uppercase tracking-wider mb-1">{t('dashMemberSince')}</p>
-              <p className="text-lg font-black text-amber-700">{user?.created_at ? new Date(user.created_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : t('dashNA')}</p>
+              <p className="text-lg font-black text-amber-700">{user?.created_at ? fmtDate(user.created_at, { month: 'short', year: 'numeric' }) : t('dashNA')}</p>
             </div>
           </div>
         )}
@@ -369,7 +370,7 @@ const DashboardPage: React.FC = () => {
                     </span>
                     {user?.subscription_end_date && (
                       <span className="text-xs text-gray-500">
-                        {t('dashRenews')} {new Date(user.subscription_end_date).toLocaleDateString()}
+                        {t('dashRenews')} {fmtDate(user.subscription_end_date)}
                       </span>
                     )}
                     {!isPremium && (

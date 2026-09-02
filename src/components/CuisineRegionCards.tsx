@@ -25,7 +25,7 @@ export interface CuisineRegionCardsProps {
 }
 
 const CuisineRegionCards: React.FC<CuisineRegionCardsProps> = ({ selected, onChange, onClear, className = '' }) => {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
 
   const regions = useMemo(() => CUISINE_GROUPS.map((group, idx) => ({
     nameEn: group.region,
@@ -58,7 +58,7 @@ const CuisineRegionCards: React.FC<CuisineRegionCardsProps> = ({ selected, onCha
       <div className="flex items-center justify-between bg-gray-50 border border-gray-100 rounded-xl px-4 py-2.5">
         <div className="flex items-center gap-2 text-sm">
           <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">
-            {language === 'ar' ? 'المطبخ المحدد' : 'Selected'}
+            {t('cuSelected')}
           </span>
           {selectedName ? (
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-blue-50 text-blue-700 font-bold">
@@ -66,7 +66,7 @@ const CuisineRegionCards: React.FC<CuisineRegionCardsProps> = ({ selected, onCha
               <span>{language === 'ar' ? selectedName.nameAr : selectedName.nameEn}</span>
             </span>
           ) : (
-            <span className="text-xs text-gray-400">{language === 'ar' ? 'لم يتم الاختيار' : 'None'}</span>
+            <span className="text-xs text-gray-400">{t('cuNone')}</span>
           )}
         </div>
         <button
@@ -74,7 +74,7 @@ const CuisineRegionCards: React.FC<CuisineRegionCardsProps> = ({ selected, onCha
           onClick={handleClear}
           className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-500 hover:text-gray-800 hover:bg-gray-200/60 transition-all cursor-pointer"
         >
-          ✕ <span>{language === 'ar' ? 'مسح' : 'Clear'}</span>
+          ✕ <span>{t('cuClear')}</span>
         </button>
       </div>
 

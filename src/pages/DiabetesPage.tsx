@@ -293,9 +293,9 @@ const DiabetesPage: React.FC = () => {
                 <div className="w-20 h-20 bg-rose-50 rounded-3xl flex items-center justify-center mx-auto mb-6">
                   <span className="text-4xl">🔬</span>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Lab Results Interpreter</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">{t('dbLabInterpreter')}</h3>
                 <p className="text-sm text-gray-400 max-w-sm mx-auto leading-relaxed">
-                  Enter your lab values on the left panel to get instant interpretation based on ADA medical guidelines.
+                  {t('dbLabsEmpty')}
                 </p>
               </div>
             )}
@@ -304,7 +304,7 @@ const DiabetesPage: React.FC = () => {
               <div className="space-y-4 animate-fade-in">
                 <div className="card p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="font-bold text-gray-900">Blood Pressure Classification (AHA)</h3>
+                    <h3 className="font-bold text-gray-900">{t('dbBpClassification')}</h3>
                     <SaveProgressButton module="diabetes" inputs={{ systolicBP: form.systolicBP, diastolicBP: form.diastolicBP }} results={{ bpResult }} />
                   </div>
                   <div className="flex items-baseline gap-2 mb-2">
@@ -314,15 +314,15 @@ const DiabetesPage: React.FC = () => {
                   <div className={`text-lg font-bold ${bpResult.color} mb-5`}>{bpResult.category}</div>
                   <div className="grid grid-cols-2 gap-3 mb-5">
                     <div className="p-3.5 bg-gray-50 rounded-2xl">
-                      <p className="text-xs text-gray-400 mb-0.5">Systolic Range</p>
+                      <p className="text-xs text-gray-400 mb-0.5">{t('dbSystolicRange')}</p>
                       <p className="font-semibold text-sm">{bpResult.systolicRange} mmHg</p>
                     </div>
                     <div className="p-3.5 bg-gray-50 rounded-2xl">
-                      <p className="text-xs text-gray-400 mb-0.5">Diastolic Range</p>
+                      <p className="text-xs text-gray-400 mb-0.5">{t('dbDiastolicRange')}</p>
                       <p className="font-semibold text-sm">{bpResult.diastolicRange} mmHg</p>
                     </div>
                   </div>
-                  <h4 className="font-bold text-gray-900 mb-3">Recommendations</h4>
+                  <h4 className="font-bold text-gray-900 mb-3">{t('dbRecommendations')}</h4>
                   <ul className="space-y-2.5">
                     {bpResult.recommendations.map((rec, i) => (
                       <li key={i} className="flex items-start gap-2.5 text-sm text-gray-600">
@@ -341,9 +341,9 @@ const DiabetesPage: React.FC = () => {
                 <div className="w-20 h-20 bg-rose-50 rounded-3xl flex items-center justify-center mx-auto mb-6">
                   <span className="text-4xl">❤️</span>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Blood Pressure Classifier</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">{t('dbBpClassifier')}</h3>
                 <p className="text-sm text-gray-400 max-w-sm mx-auto leading-relaxed">
-                  Enter your blood pressure readings to get classified according to AHA guidelines with personalized recommendations.
+                  {t('dbBpEmpty')}
                 </p>
               </div>
             )}
@@ -355,8 +355,8 @@ const DiabetesPage: React.FC = () => {
                   days={30}
                   activeDay={selectedDay + 1}
                   onSelect={(d) => setSelectedDay(d - 1)}
-                  label="30-Day Diabetes Meal Plan"
-                  subtitle={currentDay?.phase || 'Foundation'}
+                  label={t('db30DayMealPlan')}
+                  subtitle={currentDay?.phase || t('dbFoundation')}
                 />
                 <PlanTabBar activeTab={activeTab} onChange={setActiveTab} />
                 {activeTab === 'meals' && currentDay && (

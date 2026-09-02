@@ -136,6 +136,7 @@ const saveJSON = (key: string, val: unknown) => localStorage.setItem(key, JSON.s
    ═══════════════════════════════════════════════════════════════════ */
 const PremiumPage: React.FC = () => {
   const { t, language } = useLanguage();
+  const fmt = (tpl: string, vars: Record<string, string | number>) => tpl.replace(/\{(\w+)\}/g, (_, k) => (k in vars ? String(vars[k]) : `{${k}}`));
   const { user } = useAuth();
   const isUnlocked = hasPremiumAccess(user);
   const [showCheckout, setShowCheckout] = useState(false);
@@ -370,13 +371,13 @@ const PremiumPage: React.FC = () => {
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full mb-4">
               <span className="w-1.5 h-1.5 bg-amber-200 rounded-full" />
-              <span className="text-xs font-medium text-amber-100">Advanced Health Suite</span>
+              <span className="text-xs font-medium text-amber-100">{t('pmSuiteBadge')}</span>
             </div>
             <div className="flex flex-wrap items-center gap-3 mb-3">
               <h1 className="text-2xl md:text-4xl font-extrabold tracking-tight">{t('module3Title')}</h1>
-              <span className="badge bg-white/20 text-white text-[10px] font-bold">{freeCount} Free Modules</span>
+              <span className="badge bg-white/20 text-white text-[10px] font-bold">{fmt(t('pmFreeModules'), { n: freeCount })}</span>
             </div>
-            <p className="text-amber-100 text-sm md:text-base leading-relaxed">30-day structured health journeys with AI-adaptive plans, daily tracking, and clinical export for 8 conditions.</p>
+            <p className="text-amber-100 text-sm md:text-base leading-relaxed">{t('pmHeroSub')}</p>
           </div>
         </div>
       </div>
@@ -387,8 +388,8 @@ const PremiumPage: React.FC = () => {
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-sage-100 rounded-2xl flex items-center justify-center"><svg className="w-6 h-6 text-sage-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg></div>
               <div>
-                <h2 className="font-bold text-gray-900">Advanced Care Suite Active</h2>
-                <p className="text-sm text-gray-500">Full access to all modules including {freeCount} free condition programs.</p>
+                <h2 className="font-bold text-gray-900">{t('pmSuiteActive')}</h2>
+                <p className="text-sm text-gray-500">{fmt(t('pmSuiteActiveSub'), { n: freeCount })}</p>
               </div>
             </div>
           </div>
@@ -400,14 +401,14 @@ const PremiumPage: React.FC = () => {
           <div className="mb-8 space-y-3 animate-fade-in">
             {conflicts.map((c, i) => (
               <div key={i} className={`rounded-2xl border p-4 ${c.severity === 'danger' ? 'bg-red-50 border-red-200 text-red-800' : c.severity === 'warning' ? 'bg-amber-50 border-amber-200 text-amber-800' : 'bg-blue-50 border-blue-200 text-blue-800'}`}>
-                <div className="flex items-start gap-3"><span className="text-lg shrink-0">{c.icon}</span><div><p className="font-bold text-sm mb-1">Cross-Condition Advisory</p><p className="text-xs leading-relaxed">{c.warning}</p></div></div>
+                <div className="flex items-start gap-3"><span className="text-lg shrink-0">{c.icon}</span><div><p className="font-bold text-sm mb-1">{t('pmCrossAdvisory')}</p><p className="text-xs leading-relaxed">{c.warning}</p></div></div>
               </div>
             ))}
           </div>
         )}
 
         {/* ─── Module Cards ─── */}
-        <div className="mb-8"><h2 className="section-title mb-2">Condition Modules</h2><p className="section-subtitle">Select conditions to activate 30-day health journeys</p></div>
+        <div className="mb-8"><h2 className="section-title mb-2">{t('pmConditionModules')}</h2><p className="section-subtitle">{t('pmConditionSub')}</p></div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mb-10">
           {conditions.map((condition, idx) => {
             const isSelected = selectedConditions.has(condition.id);
@@ -415,9 +416,9 @@ const PremiumPage: React.FC = () => {
               <button key={condition.id} type="button" onClick={() => handleCardClick(condition.id)}
                 className={`text-left relative overflow-hidden cursor-pointer bg-white rounded-2xl shadow-card border border-gray-100/80 p-6 transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5 stagger-${Math.min(idx + 1, 5)} ${isSelected ? 'ring-2 ring-amber-400 shadow-card-hover -translate-y-0.5' : ''}`}>
                 <div className="absolute top-3 right-3">
-                  {isSelected ? <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-amber-100 text-amber-700">✓ Active</span>
-                    : condition.isFree ? <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700 border border-emerald-200/60">Free</span>
-                    : <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-amber-50 text-amber-600 border border-amber-200/60">🔒 Premium</span>}
+                  {isSelected ? <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-amber-100 text-amber-700">✓ {t('pmActive')}</span>
+                    : condition.isFree ? <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700 border border-emerald-200/60">{t('ltpFree')}</span>
+                    : <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-amber-50 text-amber-600 border border-amber-200/60">🔒 {t('pmPremium')}</span>}
                 </div>
                 <div className={`w-14 h-14 bg-gradient-to-br ${condition.color} rounded-2xl flex items-center justify-center mb-4 text-white text-2xl shadow-sm`}>{condition.icon}</div>
                 <h3 className="font-bold text-gray-900 mb-3 pr-16">{condition.name}</h3>
@@ -427,7 +428,7 @@ const PremiumPage: React.FC = () => {
                   ))}
                 </ul>
                 <div className="pt-3 border-t border-gray-100 text-center">
-                  {isSelected ? <span className="text-xs text-amber-600 font-semibold">Click to deactivate ↑</span> : <span className="text-xs text-primary-600 font-semibold">Click to activate →</span>}
+                  {isSelected ? <span className="text-xs text-amber-600 font-semibold">{t('pmClickDeactivate')}</span> : <span className="text-xs text-primary-600 font-semibold">{t('pmClickActivate')}</span>}
                 </div>
               </button>
             );
@@ -452,12 +453,12 @@ const PremiumPage: React.FC = () => {
                 <div className="flex items-center gap-3">
                   <span className="text-3xl">{selectedInfo.icon}</span>
                   <div><h3 className="font-bold text-gray-900 text-lg">{selectedInfo.name}</h3>
-                    <p className="text-sm text-gray-500">30-Day Health Journey {profileApplied && <span className="text-sage-600 font-medium">· Customized</span>}</p></div>
+                    <p className="text-sm text-gray-500">{t('pm30DayJourney')} {profileApplied && <span className="text-sage-600 font-medium">· {t('pmCustomized')}</span>}</p></div>
                 </div>
                 <div className="flex items-center gap-2 no-print">
-                  <button onClick={handlePrint} className="px-3 py-1.5 bg-white border border-gray-200 rounded-xl text-xs font-semibold text-gray-600 hover:bg-gray-50 transition-all shadow-sm flex items-center gap-1.5"><svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" /></svg>Print</button>
-                  <button onClick={handleEmail} className="px-3 py-1.5 bg-white border border-gray-200 rounded-xl text-xs font-semibold text-gray-600 hover:bg-gray-50 transition-all shadow-sm flex items-center gap-1.5"><svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>Email</button>
-                  <button onClick={handleCSVExport} className="px-3 py-1.5 bg-white border border-gray-200 rounded-xl text-xs font-semibold text-gray-600 hover:bg-gray-50 transition-all shadow-sm flex items-center gap-1.5"><svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>CSV Export</button>
+                  <button onClick={handlePrint} className="px-3 py-1.5 bg-white border border-gray-200 rounded-xl text-xs font-semibold text-gray-600 hover:bg-gray-50 transition-all shadow-sm flex items-center gap-1.5"><svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" /></svg>{t('print')}</button>
+                  <button onClick={handleEmail} className="px-3 py-1.5 bg-white border border-gray-200 rounded-xl text-xs font-semibold text-gray-600 hover:bg-gray-50 transition-all shadow-sm flex items-center gap-1.5"><svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>{t('pmEmail')}</button>
+                  <button onClick={handleCSVExport} className="px-3 py-1.5 bg-white border border-gray-200 rounded-xl text-xs font-semibold text-gray-600 hover:bg-gray-50 transition-all shadow-sm flex items-center gap-1.5"><svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>{t('pmCSVExport')}</button>
                   <button onClick={() => setSelectedConditions(new Set())} className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-all shrink-0"><svg className="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg></button>
                 </div>
               </div>
@@ -465,18 +466,18 @@ const PremiumPage: React.FC = () => {
 
             {/* ─── Patient Profile ─── */}
             <div className="card bg-gradient-to-br from-gray-50 to-white border-gray-200/80 animate-fade-in">
-              <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2"><span className="text-lg">👤</span> Patient Profile</h3>
+              <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2"><span className="text-lg">👤</span> {t('pmPatientProfile')}</h3>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
-                <div><label className="block text-xs font-semibold text-gray-600 mb-1">Age</label><input type="number" value={profile.age} onChange={e => { setProfile(p => ({ ...p, age: +e.target.value })); setProfileApplied(false); }} className="input-field-lg w-full" min={1} max={120} /></div>
-                <div><label className="block text-xs font-semibold text-gray-600 mb-1">Weight (kg)</label><input type="number" value={profile.weight} onChange={e => { setProfile(p => ({ ...p, weight: +e.target.value })); setProfileApplied(false); }} className="input-field-lg w-full" min={20} max={300} step={0.5} /></div>
-                <div><label className="block text-xs font-semibold text-gray-600 mb-1">Height (cm)</label><input type="number" value={profile.height} onChange={e => { setProfile(p => ({ ...p, height: +e.target.value })); setProfileApplied(false); }} className="input-field-lg w-full" min={100} max={250} /></div>
+                <div><label className="block text-xs font-semibold text-gray-600 mb-1">{t('age')}</label><input type="number" value={profile.age} onChange={e => { setProfile(p => ({ ...p, age: +e.target.value })); setProfileApplied(false); }} className="input-field-lg w-full" min={1} max={120} /></div>
+                <div><label className="block text-xs font-semibold text-gray-600 mb-1">{t('weightLabel')} (kg)</label><input type="number" value={profile.weight} onChange={e => { setProfile(p => ({ ...p, weight: +e.target.value })); setProfileApplied(false); }} className="input-field-lg w-full" min={20} max={300} step={0.5} /></div>
+                <div><label className="block text-xs font-semibold text-gray-600 mb-1">{t('height')} (cm)</label><input type="number" value={profile.height} onChange={e => { setProfile(p => ({ ...p, height: +e.target.value })); setProfileApplied(false); }} className="input-field-lg w-full" min={100} max={250} /></div>
               </div>
               {Array.from(selectedConditions).map(cid => {
                 const defs = labInputDefs[cid]; if (!defs) return null;
                 const info = conditions.find(c => c.id === cid);
                 return (
                   <div key={cid} className="mt-4 pt-4 border-t border-gray-200">
-                    <p className="text-xs font-bold text-gray-700 mb-3 flex items-center gap-2"><span>{info?.icon}</span> {info?.name} — Lab Values</p>
+                    <p className="text-xs font-bold text-gray-700 mb-3 flex items-center gap-2"><span>{info?.icon}</span> {info?.name} — {t('pmLabValues')}</p>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                       {defs.map(d => (
                         <div key={d.key}><label className="block text-xs font-semibold text-gray-600 mb-1">{d.label} ({d.unit})</label>
@@ -487,8 +488,8 @@ const PremiumPage: React.FC = () => {
                 );
               })}
               <div className="mt-4 flex items-center gap-3">
-                <button onClick={handleApplyProfile} className="px-5 py-2.5 bg-primary-600 text-white rounded-xl text-sm font-semibold hover:bg-primary-700 transition-all shadow-sm">Generate 30-Day Plan</button>
-                {profileApplied && <span className="text-xs text-sage-600 font-medium flex items-center gap-1"><svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>Plans generated &amp; customized</span>}
+                <button onClick={handleApplyProfile} className="px-5 py-2.5 bg-primary-600 text-white rounded-xl text-sm font-semibold hover:bg-primary-700 transition-all shadow-sm">{t('pmGeneratePlan')}</button>
+                {profileApplied && <span className="text-xs text-sage-600 font-medium flex items-center gap-1"><svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>{t('pmPlansGenerated')}</span>}
               </div>
               {profileApplied && (
                 <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -502,7 +503,7 @@ const PremiumPage: React.FC = () => {
                             <svg className="w-14 h-14 -rotate-90" viewBox="0 0 36 36"><circle cx="18" cy="18" r="15.5" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-200" /><circle cx="18" cy="18" r="15.5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeDasharray={`${sc} ${100 - sc}`} strokeLinecap="round" className={color} /></svg>
                             <span className={`absolute inset-0 flex items-center justify-center text-xs font-bold ${color}`}>{sc}%</span>
                           </div>
-                          <div><p className="text-xs font-bold text-gray-900">{info?.icon} {info?.name}</p><p className={`text-[10px] font-semibold ${color}`}>Health Score</p></div>
+                          <div><p className="text-xs font-bold text-gray-900">{info?.icon} {info?.name}</p><p className={`text-[10px] font-semibold ${color}`}>{t('pmHealthScore')}</p></div>
                         </div>
                       </div>
                     );
@@ -515,7 +516,7 @@ const PremiumPage: React.FC = () => {
             {profileApplied && (
               <div className="card">
                 <div className="flex items-center justify-between mb-3">
-                  <div><p className="font-bold text-gray-900 text-sm flex items-center gap-2"><span>🔥</span> Check-In Streak</p><p className="text-[10px] text-gray-500">Current: {streak.current} days · Longest: {streak.longest} days</p></div>
+                  <div><p className="font-bold text-gray-900 text-sm flex items-center gap-2"><span>🔥</span> {t('pmCheckInStreak')}</p><p className="text-[10px] text-gray-500">{fmt(t('pmStreakInfo'), { c: streak.current, l: streak.longest })}</p></div>
                   <div className="flex gap-1.5">{streak.badges.map(b => (
                     <span key={b.id} title={`${b.label}: ${b.description}`} className={`text-lg ${b.earned ? '' : 'opacity-30 grayscale'}`}>{b.icon}</span>
                   ))}</div>
@@ -533,7 +534,7 @@ const PremiumPage: React.FC = () => {
                 {aiAdjustments[firstSelected].map((adj, i) => (
                   <div key={i} className={`rounded-2xl border p-3 flex items-start gap-3 ${adj.direction === 'decrease' ? 'bg-amber-50 border-amber-200' : adj.direction === 'increase' ? 'bg-blue-50 border-blue-200' : 'bg-gray-50 border-gray-200'}`}>
                     <span className="text-lg shrink-0">🤖</span>
-                    <div><p className="text-xs font-bold text-gray-900">AI Auto-Adjustment: {adj.type.charAt(0).toUpperCase() + adj.type.slice(1)}</p>
+                    <div><p className="text-xs font-bold text-gray-900">{fmt(t('pmAIAutoAdj'), { type: adj.type.charAt(0).toUpperCase() + adj.type.slice(1) })}</p>
                       <p className="text-[11px] text-gray-600">{adj.reason}</p>
                       <p className={`text-[10px] font-semibold mt-1 ${adj.direction === 'decrease' ? 'text-amber-700' : adj.direction === 'increase' ? 'text-blue-700' : 'text-gray-600'}`}>
                         {adj.direction === 'decrease' ? '↓' : adj.direction === 'increase' ? '↑' : '='} {adj.type} {adj.adjustment > 0 ? '+' : ''}{adj.adjustment}{adj.type === 'calories' ? ' kcal' : adj.type === 'sodium' ? ' mg' : adj.type === 'carbs' ? 'g' : ''}
@@ -546,7 +547,7 @@ const PremiumPage: React.FC = () => {
 
             {/* ─── Main Tabs ─── */}
             <div className="toggle-group flex flex-wrap gap-1">
-              {([ { key: 'plan30' as Tab, label: '📅 30-Day Plan' }, { key: 'checkin' as Tab, label: '✅ Daily Check-In' }, { key: 'analytics' as Tab, label: '📊 Analytics & Streaks' }, { key: 'guidelines' as Tab, label: '📋 Guidelines' } ]).map(tab => (
+              {([ { key: 'plan30' as Tab, label: '📅 ' + t('pmTabPlan30') }, { key: 'checkin' as Tab, label: '✅ ' + t('pmTabCheckin') }, { key: 'analytics' as Tab, label: '📊 ' + t('pmTabAnalytics') }, { key: 'guidelines' as Tab, label: '📋 ' + t('pmTabGuidelines') } ]).map(tab => (
                 <button key={tab.key} type="button" onClick={() => setActiveTab(tab.key)} className={activeTab === tab.key ? 'toggle-btn-active' : 'toggle-btn-inactive'}>{tab.label}</button>
               ))}
             </div>
@@ -559,7 +560,7 @@ const PremiumPage: React.FC = () => {
                   activeDay={activeDay}
                   onSelect={setActiveDay}
                   checkedDays={checkIns[firstSelected]?.map(e => Number(e.day)).filter(Boolean) || []}
-                  label={`${selectedInfo.name} — 30-Day Plan`}
+                  label={fmt(t('pm30DayPlanLabel'), { name: selectedInfo.name })}
                   subtitle={`${currentDay?.phase} · ${currentDay?.dailyGoal}`}
                 />
 
@@ -604,7 +605,7 @@ const PremiumPage: React.FC = () => {
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
                           </svg>
-                          Full 30-Day Plan
+                          {t('wlFullPlan')}
                         </button>
                         <StreakBar
                           currentStreak={streak.current}
@@ -638,12 +639,12 @@ const PremiumPage: React.FC = () => {
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
                           </svg>
-                          Full 30-Day Workout Plan
+                          {t('wlFullWorkout')}
                         </button>
                         <DayProgressHeader
                           completed={Object.values(workoutCompletions[firstSelected || '']?.[activeDay - 1] || {}).filter(Boolean).length}
                           total={currentDay.workouts.length}
-                          dailyGoal="Complete all exercises"
+                          dailyGoal={t('ltpCompleteExercises')}
                         />
                         {currentDay.workouts.map((w, i) => (
                           <WorkoutCard
@@ -667,10 +668,10 @@ const PremiumPage: React.FC = () => {
               <div className="space-y-4 animate-fade-in">
                 <div className="card">
                   <div className="flex items-center justify-between mb-4">
-                    <div><h4 className="font-bold text-gray-900 flex items-center gap-2"><span>✅</span> Daily Check-In</h4><p className="text-xs text-gray-500">Day {activeDay} of 30 · Log your daily markers</p></div>
+                    <div><h4 className="font-bold text-gray-900 flex items-center gap-2"><span>✅</span> {t('pmDailyCheckIn')}</h4><p className="text-xs text-gray-500">{fmt(t('pmDayOf30'), { n: activeDay })}</p></div>
                     <button onClick={() => setShowCheckInForm(!showCheckInForm)} className="no-print px-4 py-2 bg-primary-600 text-white rounded-xl text-xs font-semibold hover:bg-primary-700 transition-all flex items-center gap-1.5">
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" /></svg>
-                      {showCheckInForm ? 'Cancel' : 'Log Today'}
+                      {showCheckInForm ? t('pmCancel') : t('pmLogToday')}
                     </button>
                   </div>
 
@@ -685,7 +686,7 @@ const PremiumPage: React.FC = () => {
                           </div>
                         ))}
                       </div>
-                      <button onClick={handleCheckIn} className="mt-3 px-4 py-2 bg-sage-600 text-white rounded-xl text-xs font-semibold hover:bg-sage-700 transition-all no-print">Save Check-In</button>
+                      <button onClick={handleCheckIn} className="mt-3 px-4 py-2 bg-sage-600 text-white rounded-xl text-xs font-semibold hover:bg-sage-700 transition-all no-print">{t('pmSaveCheckIn')}</button>
                     </div>
                   )}
 
@@ -694,14 +695,14 @@ const PremiumPage: React.FC = () => {
                     <div className="overflow-x-auto">
                       <table className="w-full text-xs">
                         <thead><tr className="border-b border-gray-200">
-                          <th className="text-left py-2 px-2 font-semibold text-gray-600">Day</th>
-                          <th className="text-left py-2 px-2 font-semibold text-gray-600">Date</th>
+                          <th className="text-left py-2 px-2 font-semibold text-gray-600">{t('pmDayLabel').replace(/\{n\}/, '')}</th>
+                          <th className="text-left py-2 px-2 font-semibold text-gray-600">{t('ltpDate')}</th>
                           {checkInFields.slice(0, 4).map(f => <th key={f.key} className="text-right py-2 px-2 font-semibold text-gray-600">{f.icon} {f.label}</th>)}
                         </tr></thead>
                         <tbody>
                           {checkIns[firstSelected].slice(-10).reverse().map((e, i) => (
                             <tr key={i} className="border-b border-gray-50">
-                              <td className="py-2 px-2 text-gray-500 font-medium">Day {String(e.day ?? '?')}</td>
+                              <td className="py-2 px-2 text-gray-500 font-medium">{fmt(t('pmDayLabel'), { n: String(e.day ?? '?') })}</td>
                               <td className="py-2 px-2 text-gray-500">{String(e.date)}</td>
                               {checkInFields.slice(0, 4).map(f => <td key={f.key} className="py-2 px-2 text-right font-medium text-gray-700">{typeof e[f.key] === 'number' ? e[f.key] : '—'}</td>)}
                             </tr>
@@ -716,41 +717,41 @@ const PremiumPage: React.FC = () => {
                 {hasTriggerFeature && (
                   <div className="card">
                     <div className="flex items-center justify-between mb-3">
-                      <div><h4 className="font-bold text-gray-900 flex items-center gap-2"><span>🔍</span> Symptom Trigger Log</h4><p className="text-xs text-gray-500">Record flare-ups and identify patterns</p></div>
-                      <button onClick={() => setShowTriggerForm(!showTriggerForm)} className="no-print px-3 py-1.5 bg-amber-500 text-white rounded-xl text-xs font-semibold hover:bg-amber-600 transition-all">Log Trigger</button>
+                      <div><h4 className="font-bold text-gray-900 flex items-center gap-2"><span>🔍</span> {t('pmSymptomLog')}</h4><p className="text-xs text-gray-500">{t('pmSymptomLogSub')}</p></div>
+                      <button onClick={() => setShowTriggerForm(!showTriggerForm)} className="no-print px-3 py-1.5 bg-amber-500 text-white rounded-xl text-xs font-semibold hover:bg-amber-600 transition-all">{t('pmLogTrigger')}</button>
                     </div>
                     {showTriggerForm && firstSelected && (
                       <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200 mb-3 animate-fade-in">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
                           <div>
-                            <label className="block text-[10px] font-semibold text-gray-600 mb-1">Symptom</label>
+                            <label className="block text-[10px] font-semibold text-gray-600 mb-1">{t('pmSymptom')}</label>
                             <select value={triggerSymptom} onChange={e => setTriggerSymptom(e.target.value)} className="input-field-lg w-full">
-                              <option value="">Select...</option>
+                              <option value="">{t('pmSelectOption')}</option>
                               {(symptomOptions[firstSelected] || []).map(s => <option key={s} value={s}>{s}</option>)}
                             </select>
                           </div>
                           <div>
-                            <label className="block text-[10px] font-semibold text-gray-600 mb-1">Possible Trigger Food/Cause</label>
+                            <label className="block text-[10px] font-semibold text-gray-600 mb-1">{t('pmTriggerFood')}</label>
                             <select value={triggerCause} onChange={e => setTriggerCause(e.target.value)} className="input-field-lg w-full">
-                              <option value="">Select or type custom...</option>
+                              <option value="">{t('pmSelectCustom')}</option>
                               {(triggerFoods[firstSelected] || []).map(f => <option key={f} value={f}>{f}</option>)}
                             </select>
                           </div>
                           <div>
-                            <label className="block text-[10px] font-semibold text-gray-600 mb-1">Severity (1-10): {triggerSeverity}</label>
+                            <label className="block text-[10px] font-semibold text-gray-600 mb-1">{fmt(t('pmSeverity'), { n: triggerSeverity })}</label>
                             <input type="range" min={1} max={10} value={triggerSeverity} onChange={e => setTriggerSeverity(+e.target.value)} className="w-full" />
                           </div>
-                          <div><label className="block text-[10px] font-semibold text-gray-600 mb-1">Notes</label><input type="text" value={triggerNotes} onChange={e => setTriggerNotes(e.target.value)} className="input-field-lg w-full" placeholder="Additional context..." /></div>
+                          <div><label className="block text-[10px] font-semibold text-gray-600 mb-1">{t('pmNotes')}</label><input type="text" value={triggerNotes} onChange={e => setTriggerNotes(e.target.value)} className="input-field-lg w-full" placeholder={t('pmNotesPlaceholder')} /></div>
                         </div>
-                        <button onClick={handleLogTrigger} className="px-4 py-2 bg-amber-500 text-white rounded-xl text-xs font-semibold hover:bg-amber-600 transition-all no-print">Save Trigger</button>
+                        <button onClick={handleLogTrigger} className="px-4 py-2 bg-amber-500 text-white rounded-xl text-xs font-semibold hover:bg-amber-600 transition-all no-print">{t('pmSaveTrigger')}</button>
                       </div>
                     )}
                     {symptomTriggers[firstSelected] && symptomTriggers[firstSelected].length > 0 && (
                       <div className="space-y-2 max-h-48 overflow-y-auto">
-                        {symptomTriggers[firstSelected].slice(-10).reverse().map(t => (
-                          <div key={t.id} className="flex items-center gap-3 p-2 rounded-xl bg-gray-50 border border-gray-100">
-                            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0 ${t.severity <= 3 ? 'bg-emerald-500' : t.severity <= 6 ? 'bg-amber-500' : 'bg-red-500'}`}>{t.severity}</div>
-                            <div className="flex-1 min-w-0"><p className="text-xs font-bold text-gray-900">{t.symptom}</p><p className="text-[10px] text-gray-500">{t.possibleCause && `Trigger: ${t.possibleCause} · `}{t.date}</p></div>
+                        {symptomTriggers[firstSelected].slice(-10).reverse().map(tr => (
+                          <div key={tr.id} className="flex items-center gap-3 p-2 rounded-xl bg-gray-50 border border-gray-100">
+                            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0 ${tr.severity <= 3 ? 'bg-emerald-500' : tr.severity <= 6 ? 'bg-amber-500' : 'bg-red-500'}`}>{tr.severity}</div>
+                            <div className="flex-1 min-w-0"><p className="text-xs font-bold text-gray-900">{tr.symptom}</p><p className="text-[10px] text-gray-500">{tr.possibleCause && `${t('pmTriggerPrefix')} ${tr.possibleCause} · `}{tr.date}</p></div>
                           </div>
                         ))}
                       </div>
@@ -766,22 +767,22 @@ const PremiumPage: React.FC = () => {
                 {/* Milestones */}
                 {milestones[firstSelected] && milestones[firstSelected].length > 0 && (
                   <div className="card">
-                    <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2"><span>🎯</span> Weekly Milestones</h4>
+                    <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2"><span>🎯</span> {t('pmWeeklyMilestones')}</h4>
                     <div className="space-y-2 mb-4">
                       {milestones[firstSelected].map(m => (
                         <div key={m.id} className={`flex items-center gap-3 p-3 rounded-xl border transition-all ${m.completed ? 'bg-sage-50 border-sage-200' : 'bg-white border-gray-100'}`}>
                           <button onClick={() => toggleMilestone(firstSelected, m.id)} className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 transition-all ${m.completed ? 'bg-sage-500 border-sage-500' : 'border-gray-300 hover:border-sage-400'}`}>
                             {m.completed && <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>}
                           </button>
-                          <div className="flex-1"><p className={`text-sm font-medium ${m.completed ? 'text-sage-700 line-through' : 'text-gray-900'}`}>{m.label}</p><p className="text-[10px] text-gray-500">Target: {m.target} {m.unit} {m.currentValue > 0 ? `(current: ${m.currentValue})` : ''}</p></div>
+                          <div className="flex-1"><p className={`text-sm font-medium ${m.completed ? 'text-sage-700 line-through' : 'text-gray-900'}`}>{m.label}</p><p className="text-[10px] text-gray-500">{fmt(t('pmMilestoneTarget'), { t: m.target, u: m.unit })} {m.currentValue > 0 ? fmt(t('pmMilestoneCurrent'), { n: m.currentValue }) : ''}</p></div>
                         </div>
                       ))}
                     </div>
                     <div className="flex flex-wrap items-end gap-2">
-                      <input type="text" placeholder="Milestone description" value={customMilestoneText} onChange={e => setCustomMilestoneText(e.target.value)} className="input-field-lg flex-1 min-w-[150px]" />
-                      <input type="number" placeholder="Target" value={customMilestoneTarget} onChange={e => setCustomMilestoneTarget(e.target.value)} className="input-field-lg w-24" />
-                      <input type="text" placeholder="Unit" value={customMilestoneUnit} onChange={e => setCustomMilestoneUnit(e.target.value)} className="input-field-lg w-20" />
-                      <button onClick={() => addCustomMilestone(firstSelected)} className="px-4 py-2 bg-primary-600 text-white rounded-xl text-xs font-semibold hover:bg-primary-700 transition-all no-print">Add</button>
+                      <input type="text" placeholder={t('pmMilestoneDescPlaceholder')} value={customMilestoneText} onChange={e => setCustomMilestoneText(e.target.value)} className="input-field-lg flex-1 min-w-[150px]" />
+                      <input type="number" placeholder={t('ltpTarget')} value={customMilestoneTarget} onChange={e => setCustomMilestoneTarget(e.target.value)} className="input-field-lg w-24" />
+                      <input type="text" placeholder={t('pmUnit')} value={customMilestoneUnit} onChange={e => setCustomMilestoneUnit(e.target.value)} className="input-field-lg w-20" />
+                      <button onClick={() => addCustomMilestone(firstSelected)} className="px-4 py-2 bg-primary-600 text-white rounded-xl text-xs font-semibold hover:bg-primary-700 transition-all no-print">{t('pmAdd')}</button>
                     </div>
                   </div>
                 )}
@@ -789,7 +790,7 @@ const PremiumPage: React.FC = () => {
                 {/* Weekly Trend Chart */}
                 {checkIns[firstSelected] && checkIns[firstSelected].length >= 2 && (
                   <div className="card">
-                    <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2"><span>📈</span> Recent Trends</h4>
+                    <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2"><span>📈</span> {t('pmRecentTrends')}</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {checkInFields.slice(0, 2).map(field => {
                         const data = checkIns[firstSelected].slice(-7);
@@ -810,7 +811,7 @@ const PremiumPage: React.FC = () => {
                               })}
                             </div>
                             <div className="flex items-center gap-3 text-[10px]">
-                              <span className="text-gray-500">Avg: {avg.toFixed(1)}</span>
+                              <span className="text-gray-500">{fmt(t('pmAvg'), { n: avg.toFixed(1) })}</span>
                               <span className={trend < 0 ? 'text-sage-600' : trend > 0 ? 'text-amber-600' : 'text-gray-500'}>{trend < 0 ? '↓' : trend > 0 ? '↑' : '→'} {Math.abs(trend).toFixed(1)} {field.unit}</span>
                             </div>
                           </div>
@@ -822,10 +823,10 @@ const PremiumPage: React.FC = () => {
 
                 {/* Summary Stats */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                  <div className="stat-card text-center"><p className="text-2xl font-bold text-primary-600">{checkIns[firstSelected]?.length || 0}</p><p className="text-[10px] text-gray-500">Check-Ins</p></div>
-                  <div className="stat-card text-center"><p className="text-2xl font-bold text-sage-600">{streak.current}</p><p className="text-[10px] text-gray-500">Day Streak</p></div>
-                  <div className="stat-card text-center"><p className="text-2xl font-bold text-amber-600">{milestones[firstSelected]?.filter(m => m.completed).length || 0}/{milestones[firstSelected]?.length || 0}</p><p className="text-[10px] text-gray-500">Milestones</p></div>
-                  <div className="stat-card text-center"><p className="text-2xl font-bold text-red-500">{symptomTriggers[firstSelected]?.length || 0}</p><p className="text-[10px] text-gray-500">Triggers Logged</p></div>
+                  <div className="stat-card text-center"><p className="text-2xl font-bold text-primary-600">{checkIns[firstSelected]?.length || 0}</p><p className="text-[10px] text-gray-500">{t('pmCheckIns')}</p></div>
+                  <div className="stat-card text-center"><p className="text-2xl font-bold text-sage-600">{streak.current}</p><p className="text-[10px] text-gray-500">{t('pmDayStreak')}</p></div>
+                  <div className="stat-card text-center"><p className="text-2xl font-bold text-amber-600">{milestones[firstSelected]?.filter(m => m.completed).length || 0}/{milestones[firstSelected]?.length || 0}</p><p className="text-[10px] text-gray-500">{t('pmMilestones')}</p></div>
+                  <div className="stat-card text-center"><p className="text-2xl font-bold text-red-500">{symptomTriggers[firstSelected]?.length || 0}</p><p className="text-[10px] text-gray-500">{t('pmTriggersLogged')}</p></div>
                 </div>
               </div>
             )}
@@ -834,7 +835,7 @@ const PremiumPage: React.FC = () => {
             {activeTab === 'guidelines' && (
               <div className="space-y-4 animate-fade-in">
                 <div className="card">
-                  <h4 className="font-bold text-gray-900 mb-4">Medical Guidelines &amp; Recommendations</h4>
+                  <h4 className="font-bold text-gray-900 mb-4">{t('pmGuidelinesTitle')}</h4>
                   <ul className="space-y-3">
                     {(premiumContent[firstSelected]?.guidelines || []).map((g, i) => (
                       <li key={i} className="flex items-start gap-3 text-sm text-gray-600">
@@ -853,14 +854,14 @@ const PremiumPage: React.FC = () => {
         <AdPlaceholder size="sidebar" className="mx-auto mb-10" />
 
         <div className="card bg-gradient-to-br from-gray-50 to-white">
-          <h2 className="section-title mb-2 text-center">What's Included?</h2>
-          <p className="section-subtitle text-center mb-8">Complete condition-specific health management</p>
+          <h2 className="section-title mb-2 text-center">{t('pmWhatsIncluded')}</h2>
+          <p className="section-subtitle text-center mb-8">{t('pmIncludeSub')}</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: '📅', title: '30-Day Plans', desc: 'Structured daily journeys with meals, exercises, and clinical goals' },
-              { icon: '✅', title: 'Daily Tracking', desc: 'Check-in logs, symptom triggers, and medication compliance' },
-              { icon: '🤖', title: 'AI Adaptation', desc: 'Smart auto-adjustments based on your tracking data' },
-              { icon: '📊', title: 'Clinical Export', desc: 'PDF/CSV reports for physician consultations' },
+              { icon: '📅', title: t('pmIncPlans'), desc: t('pmIncPlansDesc') },
+              { icon: '✅', title: t('pmIncTracking'), desc: t('pmIncTrackingDesc') },
+              { icon: '🤖', title: t('pmIncAI'), desc: t('pmIncAIDesc') },
+              { icon: '📊', title: t('pmIncExport'), desc: t('pmIncExportDesc') },
             ].map((item, i) => (
               <div key={i} className="stat-card text-center"><span className="text-3xl mb-3 block">{item.icon}</span><h3 className="font-bold text-gray-900 mb-1">{item.title}</h3><p className="text-xs text-gray-500">{item.desc}</p></div>
             ))}

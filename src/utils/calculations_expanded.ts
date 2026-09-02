@@ -45,7 +45,7 @@ export const EXERCISES_DATABASE: Exercise[] = [
   // Strength (5)
   { id: 's1', nameEn: 'Barbell Squat', nameAr: 'سكوات بالباربيل', type: 'strength', calories: 120, duration: '20 min', difficulty: 'intermediate', bmiRange: [25, 40], goals: ['lose_weight', 'maintain'] },
   { id: 's2', nameEn: 'Push-Ups', nameAr: 'بنش برس', type: 'strength', calories: 80, duration: '15 min', difficulty: 'beginner', bmiRange: [18, 40], goals: ['lose_weight', 'maintain', 'gain_muscle'] },
-  { id: 's3', nameEn: 'Dumbbell Row', nameAr: 'صف ل [[' , type: 'strength', calories: 90, duration: '18 min', difficulty: 'intermediate', bmiRange: [20, 35], goals: ['gain_muscle', 'maintain'] },
+  { id: 's3', nameEn: 'Dumbbell Row', nameAr: 'صف بالدمبل' , type: 'strength', calories: 90, duration: '18 min', difficulty: 'intermediate', bmiRange: [20, 35], goals: ['gain_muscle', 'maintain'] },
   { id: 's4', nameEn: 'Leg Press', nameAr: 'ضغط الرجلين', type: 'strength', calories: 110, duration: '20 min', difficulty: 'intermediate', bmiRange: [25, 38], goals: ['lose_weight', 'gain_muscle'] },
   { id: 's5', nameEn: 'Deadlift', nameAr: 'ديدلفت', type: 'strength', calories: 130, duration: '22 min', difficulty: 'advanced', bmiRange: [20, 35], goals: ['gain_muscle', 'maintain'] },
 

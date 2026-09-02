@@ -597,8 +597,11 @@ type TranslationKeys = {
   homeGoutDesc: string;
   homeIBS: string;
   homeIBSDesc: string;
+  homeThyroid: string;
+  homeThyroidDesc: string;
   homeSmartwatchDesc: string;
   premiumRequired: string;
+  loading: string;
   premiumUnlockDescription: string;
   upgradeToPremium: string;
   loginRequired: string;
@@ -647,6 +650,334 @@ type TranslationKeys = {
   dashOfflineDesc: string;
   backendUnavailable: string;
   chooseCuisine: string;
+  // Food library
+  foodLibTitle: string;
+  foodLibSubtitle: string;
+  foodLibSearchBadge: string;
+  foodLibSearchLabel: string;
+  foodLibSearchPlaceholder: string;
+  foodLibCuisineLabel: string;
+  foodLibAllCuisines: string;
+  foodLibSortLabel: string;
+  foodLibSortCalories: string;
+  foodLibSortHighProtein: string;
+  foodLibSortName: string;
+  foodLibCaloriesFilter: string;
+  foodLibCalLow: string;
+  foodLibCalMid: string;
+  foodLibCalHigh: string;
+  foodLibCalAll: string;
+  foodLibResults: string;
+  foodLibAll: string;
+  foodLibColItem: string;
+  foodLibColCuisine: string;
+  foodLibColPortion: string;
+  foodLibColCalories: string;
+  foodLibColProtein: string;
+  foodLibColCarbs: string;
+  foodLibColFat: string;
+  foodLibUsdaBadge: string;
+  foodLibNoResults: string;
+  foodLibClearFilters: string;
+  foodLibSeoTitle: string;
+  foodLibSeoBody: string;
+  // Checkout / payment
+  coAnnualSub: string;
+  coAdvancedSuite: string;
+  coAnnualBilling: string;
+  coFullName: string;
+  coEmailAddress: string;
+  coCardNumber: string;
+  coExpiryDate: string;
+  coCvv: string;
+  coSecurityNote: string;
+  coPay: string;
+  coProcessing: string;
+  coVerifyWait: string;
+  coPaymentSuccess: string;
+  coWelcomeSuite: string;
+  coRedirecting: string;
+  coPaymentFailed: string;
+  coTryAgain: string;
+  coPaymentFailedFallback: string;
+  cuSelected: string;
+  cuNone: string;
+  cuClear: string;
+  adviceTitle: string;
+  adviceLive: string;
+  adviceBmi: string;
+  adviceIdealWeight: string;
+  adviceBmr: string;
+  adviceGoalDeficit: string;
+  adviceGoalSurplus: string;
+  adviceGoalMaintain: string;
+  adviceRecLoss: string;
+  adviceProteinDay: string;
+  adviceWaterDay: string;
+  adviceMacros: string;
+  adviceWeightMult: string;
+  adviceWaterMult: string;
+  adviceCatUnderweight: string;
+  adviceCatNormal: string;
+  adviceCatOverweight: string;
+  adviceCatObese: string;
+  adviceCondDiabetes: string;
+  adviceCondDiabetesTip: string;
+  adviceCondBp: string;
+  adviceCondBpTip: string;
+  adviceCondCholesterol: string;
+  adviceCondCholesterolTip: string;
+  cuisine: string;
+  changeFromMain: string;
+  print: string;
+  todayPlan: string;
+  noLabData: string;
+  noLabDataDesc: string;
+  wbTitle: string;
+  wbSubtitle: string;
+  wbDay: string;
+  wbType: string;
+  wbAuto: string;
+  wbBurnTarget: string;
+  wbGoal: string;
+  wbExercisesDone: string;
+  wbEmailPlan: string;
+  wbDailyProgress: string;
+  wbOfEx: string;
+  wbLevelBeginner: string;
+  wbLevelIntermediate: string;
+  wbLevelAdvanced: string;
+  wbDone: string;
+  wbExercisesCompleted: string;
+  mbBuild: string;
+  mbPicked: string;
+  mbUse: string;
+  mbDetectedCuisine: string;
+  mbDetectedRegion: string;
+  mbAutoFill: string;
+  mbGenerate30: string;
+  mbDishes: string;
+  mbTarget: string;
+  mbSmartPortions: string;
+  mbShowPlan: string;
+  mbHidePlan: string;
+  mbDish: string;
+  mbGrams: string;
+  mbCalories: string;
+  mbProtein: string;
+  mbTotal: string;
+  mbCarbsFat: string;
+  mbAdaptiveDesc: string;
+  mbHeavy: string;
+  mbExtras: string;
+  mbBread: string;
+  mbSalads: string;
+  mbSides: string;
+  mbDrinks: string;
+  mbFruits: string;
+  wlHeroPill: string;
+  wlGoalSelector: string;
+  wlExerciseType: string;
+  wlAutoRecommend: string;
+  wlFullWorkout: string;
+  wlWorkoutHint: string;
+  wlAgeYears: string;
+  wlWorkoutDaysPerWeek: string;
+  wlDays: string;
+  wlSedentary: string;
+  wlModerate: string;
+  wlVeryActive: string;
+  wlCaloriesSchedule: string;
+  wlUsdaAccurate: string;
+  wlCompleteAllMeals: string;
+  wlFullPlan: string;
+  wlSuggestions: string;
+  wlCaloriesItem: string;
+  wlProteinUnit: string;
+  dbLabInterpreter: string;
+  dbLabsEmpty: string;
+  dbBpClassification: string;
+  dbSystolicRange: string;
+  dbDiastolicRange: string;
+  dbRecommendations: string;
+  dbBpClassifier: string;
+  dbBpEmpty: string;
+  db30DayMealPlan: string;
+  dbFoundation: string;
+  unitUs: string;
+  ltpEmptyPrompt: string;
+  pmIncExportDesc: string;
+  pmCSVExport: string;
+  pmEmail: string;
+  pmIncExport: string;
+  pmIncAIDesc: string;
+  pmIncAI: string;
+  pmIncTrackingDesc: string;
+  pmIncTracking: string;
+  pmIncPlansDesc: string;
+  pmIncPlans: string;
+  pmIncludeSub: string;
+  pmWhatsIncluded: string;
+  pmGuidelinesTitle: string;
+  pmTriggersLogged: string;
+  pmMilestones: string;
+  pmDayStreak: string;
+  pmCheckIns: string;
+  pmAvg: string;
+  pmRecentTrends: string;
+  pmAdd: string;
+  pmUnit: string;
+  pmMilestoneDescPlaceholder: string;
+  pmMilestoneCurrent: string;
+  pmMilestoneTarget: string;
+  pmWeeklyMilestones: string;
+  pmTriggerPrefix: string;
+  pmSaveTrigger: string;
+  pmNotesPlaceholder: string;
+  pmNotes: string;
+  pmSeverity: string;
+  pmSelectCustom: string;
+  pmTriggerFood: string;
+  pmSelectOption: string;
+  pmSymptom: string;
+  pmLogTrigger: string;
+  pmSymptomLogSub: string;
+  pmSymptomLog: string;
+  pmDayLabel: string;
+  pmSaveCheckIn: string;
+  pmLogToday: string;
+  pmCancel: string;
+  pmDayOf30: string;
+  pmDailyCheckIn: string;
+  pm30DayPlanLabel: string;
+  pmTabGuidelines: string;
+  pmTabAnalytics: string;
+  pmTabCheckin: string;
+  pmTabPlan30: string;
+  pmAIAutoAdj: string;
+  pmStreakInfo: string;
+  pmCheckInStreak: string;
+  pmHealthScore: string;
+  pmPlansGenerated: string;
+  pmGeneratePlan: string;
+  pmLabValues: string;
+  pmPatientProfile: string;
+  pmCustomized: string;
+  pm30DayJourney: string;
+  pmClickActivate: string;
+  pmClickDeactivate: string;
+  pmPremium: string;
+  pmActive: string;
+  pmConditionSub: string;
+  pmConditionModules: string;
+  pmCrossAdvisory: string;
+  pmSuiteActiveSub: string;
+  pmSuiteActive: string;
+  pmHeroSub: string;
+  pmFreeModules: string;
+  pmSuiteBadge: string;
+  ltpEmailReady: string;
+  ltpEmailOpened: string;
+  ltpEmailReport: string;
+  ltpPrintReport: string;
+  ltpClinicalSummary: string;
+  ltpWeight: string;
+  ltpDate: string;
+  ltpWeightTrend: string;
+  ltpFasting: string;
+  ltpBPTrend: string;
+  ltpPostprandial: string;
+  ltpPostShort: string;
+  ltpGlucoseTrend: string;
+  ltpNoProgress: string;
+  ltpClearAll: string;
+  ltpEntries: string;
+  ltpProgressTracking: string;
+  ltpStatusOver: string;
+  ltpStatusBelow: string;
+  ltpStatusAttention: string;
+  ltpStatusOnTrack: string;
+  ltpStatusSafe: string;
+  ltpActual: string;
+  ltpTarget: string;
+  ltpMetric: string;
+  ltpDailyTracking: string;
+  ltpShuffle: string;
+  ltpMealSummary: string;
+  ltpDailyMealPlan: string;
+  ltpAHAGuidelines: string;
+  ltpWeightAware: string;
+  ltpDASHAligned: string;
+  ltpDASHMeals: string;
+  ltpHTPlan30: string;
+  ltpBMITarget: string;
+  ltpExercise: string;
+  ltpPotassium: string;
+  ltpSodium: string;
+  ltpBPTarget: string;
+  ltpAHATargets: string;
+  ltpReading: string;
+  ltpBPProfile: string;
+  ltpHTSub: string;
+  ltpHTPlan: string;
+  ltpADAGuidelines: string;
+  ltpAgeAdjusted: string;
+  ltpExerciseProtocol: string;
+  ltpCompleteExercises: string;
+  ltpDownloadPrint: string;
+  ltpOpenFullPlan: string;
+  ltpADAAligned: string;
+  ltpDiabetesMeals: string;
+  ltpDiaPlan30: string;
+  ltpFiberGoal: string;
+  ltpCarbBudget: string;
+  ltpGITarget: string;
+  ltpCarbPerMeal: string;
+  ltpPostMeal: string;
+  ltpADATargets: string;
+  ltpStatus: string;
+  ltpGlucoseProfile: string;
+  ltpFree: string;
+  ltpDiaSub: string;
+  ltpDiabetesPlan: string;
+  ltpFat: string;
+  ltpCarbs: string;
+  ltpProtein: string;
+  ltpTargetsSub: string;
+  ltpDailyTargets: string;
+  ltpRisk: string;
+  ltpGlucose: string;
+  ltpProgress: string;
+  ltpShow: string;
+  ltpHide: string;
+  ltpEvaluate: string;
+  ltpStage2: string;
+  ltpStage1: string;
+  ltpElevated: string;
+  ltpNormal: string;
+  ltpDiaShort: string;
+  ltpSysShort: string;
+  ltpDiastolicLabel: string;
+  ltpSystolicLabel: string;
+  ltpDiastolic: string;
+  ltpSystolic: string;
+  ltpBloodPressure: string;
+  ltpHba1cRange: string;
+  ltpPostRange: string;
+  ltpPostLabel: string;
+  ltpFastingRange: string;
+  ltpFastingLabel: string;
+  ltpBloodGlucose: string;
+  ltpUserProfile: string;
+  ltpProfileLabSub: string;
+  ltpProfileLab: string;
+  ltpHeroDesc: string;
+  ltpHeroTitle: string;
+  ltpEngine: string;
+  unitMetric: string;
+
+
+
   // Meal labels
   mealBreakfast: string;
   mealLunch: string;
@@ -1237,8 +1568,11 @@ export const translations: Record<Language, TranslationKeys> = {
     homeGoutDesc: 'Low-purine anti-inflammatory',
     homeIBS: 'IBS',
     homeIBSDesc: 'Low-FODMAP meal plans',
+    homeThyroid: 'Thyroid Health',
+    homeThyroidDesc: 'TSH-based nutrition & follow-up',
     homeSmartwatchDesc: 'Real-time health data integration',
     premiumRequired: 'Premium Required',
+    loading: 'Loading...',
     premiumUnlockDescription: 'Unlock the Advanced Health Suite with full access to all condition modules.',
     upgradeToPremium: 'Upgrade — $15/year',
     loginRequired: 'Login Required',
@@ -1287,6 +1621,360 @@ export const translations: Record<Language, TranslationKeys> = {
     dashOfflineDesc: 'Server is unavailable. Health history is stored locally on this device.',
     backendUnavailable: 'Server is currently unavailable. All calculators work locally without a connection.',
     chooseCuisine: 'Choose your cuisine',
+    // Food library
+    foodLibTitle: 'Calorie Library',
+    foodLibSubtitle: '60+ dish categories from global kitchens with accurate USDA calories',
+    foodLibSearchBadge: 'Search any food + filter by cuisine + sort by protein',
+    foodLibSearchLabel: 'Search',
+    foodLibSearchPlaceholder: 'e.g. tamales, koshari, sushi...',
+    foodLibCuisineLabel: 'Cuisine',
+    foodLibAllCuisines: 'All cuisines',
+    foodLibSortLabel: 'Sort',
+    foodLibSortCalories: 'Lowest calories',
+    foodLibSortHighProtein: 'Highest protein',
+    foodLibSortName: 'Alphabetical',
+    foodLibCaloriesFilter: 'Calories:',
+    foodLibCalLow: 'Low <150',
+    foodLibCalMid: 'Medium 150-250',
+    foodLibCalHigh: 'High >250',
+    foodLibCalAll: 'All',
+    foodLibResults: 'results',
+    foodLibAll: 'All',
+    foodLibColItem: 'Item',
+    foodLibColCuisine: 'Cuisine',
+    foodLibColPortion: 'Portion',
+    foodLibColCalories: 'Calories',
+    foodLibColProtein: 'Protein',
+    foodLibColCarbs: 'Carbs',
+    foodLibColFat: 'Fat',
+    foodLibUsdaBadge: 'USDA',
+    foodLibNoResults: 'No results for this search',
+    foodLibClearFilters: 'Clear filters',
+    foodLibSeoTitle: 'Why is the HealthCalc library accurate?',
+    foodLibSeoBody: 'Every calorie comes from USDA FoodData Central, the world\'s largest food database. Each item is calculated per gram, not estimated. Use the library in any diet: weight loss, muscle gain, keto, or plant-based. Kitchens: Mediterranean, Gulf, Levant, North African, Asian, European and more.',
+    coAnnualSub: 'Annual subscription · Cancel anytime',
+    coAdvancedSuite: 'Advanced Health Suite',
+    coAnnualBilling: 'Annual billing · Renews automatically',
+    coFullName: 'Full Name',
+    coEmailAddress: 'Email Address',
+    coCardNumber: 'Card Number',
+    coExpiryDate: 'Expiry Date',
+    coCvv: 'CVV',
+    coSecurityNote: 'Your payment info is encrypted and secure. This is a demo — no real charges will be made.',
+    coPay: 'Pay',
+    coProcessing: 'Processing Payment...',
+    coVerifyWait: 'Please wait while we verify your payment.',
+    coPaymentSuccess: 'Payment Successful!',
+    coWelcomeSuite: 'Welcome to the Advanced Health Suite.',
+    coRedirecting: 'Redirecting you now...',
+    coPaymentFailed: 'Payment Failed',
+    coTryAgain: 'Try Again',
+    coPaymentFailedFallback: 'Payment failed. Please try again.',
+    cuSelected: 'Selected Cuisine',
+    cuNone: 'None',
+    cuClear: 'Clear',
+    adviceTitle: 'Personal Health Advice',
+    adviceLive: 'Live update',
+    adviceBmi: 'BMI',
+    adviceIdealWeight: 'Ideal weight',
+    adviceBmr: 'BMR',
+    adviceGoalDeficit: 'Goal: 500 kcal daily deficit ≈ 0.5 kg/week loss.',
+    adviceGoalSurplus: 'Goal: 300 kcal daily surplus plus resistance training to build muscle.',
+    adviceGoalMaintain: 'Goal: maintain weight by balancing intake with expenditure.',
+    adviceRecLoss: 'Recommended weight loss: {loss} kg to reach your ideal weight (~{weeks} weeks at 0.5 kg/week).',
+    adviceProteinDay: 'Protein / day',
+    adviceWaterDay: 'Water / day',
+    adviceMacros: 'Macros (your target)',
+    adviceWeightMult: 'weight × 1.6–2.2 g',
+    adviceWaterMult: 'weight × 0.033 L',
+    adviceCatUnderweight: 'Underweight',
+    adviceCatNormal: 'Normal',
+    adviceCatOverweight: 'Overweight',
+    adviceCatObese: 'Obese',
+    adviceCondDiabetes: 'Diabetes',
+    adviceCondDiabetesTip: 'Choose low-glycemic carbs, spread meals evenly, and monitor HbA1c. Prefer fiber-rich vegetables.',
+    adviceCondBp: 'Blood Pressure',
+    adviceCondBpTip: 'Reduce sodium below 5g/day, avoid processed & pickled foods, and include potassium-rich vegetables.',
+    adviceCondCholesterol: 'Cholesterol',
+    adviceCondCholesterolTip: 'Keep saturated fat under 7% of calories, focus on LDL, and raise fiber with oats, legumes & fruit.',
+    cuisine: 'Cuisine',
+    changeFromMain: 'Change from main page',
+    print: 'Print',
+    todayPlan: 'Today\'s Plan',
+    noLabData: 'No lab data yet',
+    noLabDataDesc: 'Enter your blood test results on the main page, then click "Evaluate & Generate Plan".',
+    wbTitle: 'Your Personalized Workout Blueprint',
+    wbSubtitle: 'HealthCalc.ai — Science-Based Exercise Planning',
+    wbDay: 'Day',
+    wbType: 'Type:',
+    wbAuto: 'Auto Recommend',
+    wbBurnTarget: 'Calorie Burn Target',
+    wbGoal: 'Workout Goal',
+    wbExercisesDone: 'Exercises Done',
+    wbEmailPlan: 'Email Plan',
+    wbDailyProgress: 'Daily Progress',
+    wbOfEx: 'of {n}',
+    wbLevelBeginner: 'Beginner',
+    wbLevelIntermediate: 'Intermediate',
+    wbLevelAdvanced: 'Advanced',
+    wbDone: 'Done',
+    wbExercisesCompleted: 'exercises completed',
+    mbBuild: 'Build Your Meals',
+    mbPicked: '{n} picked',
+    mbUse: 'Use',
+    mbDetectedCuisine: 'We detected you are in {country} — {cuisine} plan',
+    mbDetectedRegion: 'Detected region: {country} — {cuisine} cuisine',
+    mbAutoFill: 'Auto-filled with {cuisine} favorites — adjust freely',
+    mbGenerate30: 'Generate My 30-Day Plan',
+    mbDishes: '{min}–{max} dishes',
+    mbTarget: 'Target {kcal} kcal',
+    mbSmartPortions: 'Smart adaptive portions',
+    mbShowPlan: 'Show {meal} Plan – {kcal} kcal',
+    mbHidePlan: 'Hide {meal} Plan – {kcal} kcal',
+    mbDish: 'Dish',
+    mbGrams: 'Grams',
+    mbCalories: 'kcal',
+    mbProtein: 'Protein',
+    mbTotal: 'Total',
+    mbCarbsFat: 'Carbs {carbs}g · Fat {fat}g',
+    mbAdaptiveDesc: 'Portions auto-resize so the meal always lands on target — add or remove dishes and portions shrink or grow.',
+    mbHeavy: 'Heavy',
+    mbExtras: 'Extras',
+    mbBread: 'Bread',
+    mbSalads: 'Salads',
+    mbSides: 'Sides',
+    mbDrinks: 'Drinks',
+    mbFruits: 'Fruits',
+    wlHeroPill: '10 Kitchens · USDA Verified · Mifflin-St Jeor',
+    wlGoalSelector: 'Goal Selector — recalculates all plans instantly',
+    wlExerciseType: 'Exercise Type',
+    wlAutoRecommend: 'Auto Recommend',
+    wlFullWorkout: 'Full 30-Day Workout Plan',
+    wlWorkoutHint: 'Select exercise type above, then click the button to open the plan',
+    wlAgeYears: 'years',
+    wlWorkoutDaysPerWeek: 'Workout Days Per Week',
+    wlDays: '{n} days',
+    wlSedentary: 'Sedentary',
+    wlModerate: 'Moderate',
+    wlVeryActive: 'Very Active',
+    wlCaloriesSchedule: 'Calories Schedule — {cuisine}',
+    wlUsdaAccurate: 'USDA Verified',
+    wlCompleteAllMeals: 'Complete all meals',
+    wlFullPlan: 'Full 30-Day Plan',
+    wlSuggestions: 'Suggestions from {cuisine} kitchen',
+    wlCaloriesItem: '{name} - {kcal} kcal',
+    wlProteinUnit: 'g',
+    dbLabInterpreter: 'Lab Results Interpreter',
+    dbLabsEmpty: 'Enter your lab values on the left panel to get instant interpretation based on ADA medical guidelines.',
+    dbBpClassification: 'Blood Pressure Classification (AHA)',
+    dbSystolicRange: 'Systolic Range',
+    dbDiastolicRange: 'Diastolic Range',
+    dbRecommendations: 'Recommendations',
+    dbBpClassifier: 'Blood Pressure Classifier',
+    dbBpEmpty: 'Enter your blood pressure readings to get classified according to AHA guidelines with personalized recommendations.',
+    db30DayMealPlan: '30-Day Diabetes Meal Plan',
+    dbFoundation: 'Foundation',
+    unitMetric: 'Metric',
+    unitUs: 'US',
+    ltpEngine: 'Smart Health Engine',
+    ltpHeroTitle: 'Diabetes & Hypertension Suite',
+    ltpHeroDesc: 'Enter your profile and lab values to instantly receive personalized meal plans, exercise routines, and progress tracking — all aligned with ADA and AHA clinical guidelines.',
+    ltpProfileLab: 'Profile & Lab Values',
+    ltpProfileLabSub: 'Enter your metrics for personalized ADA & AHA evaluation',
+    ltpUserProfile: 'User Profile',
+    ltpBloodGlucose: 'Blood Glucose',
+    ltpFastingLabel: 'Fasting (mg/dL)',
+    ltpFastingRange: 'Normal: 70–99 · Pre: 100–125 · Diabetes: ≥126',
+    ltpPostLabel: 'Postprandial 2hr (mg/dL)',
+    ltpPostRange: 'Normal: <140 · Pre: 140–199 · Diabetes: ≥200',
+    ltpHba1cRange: 'Normal: <5.7% · Pre: 5.7–6.4% · Diabetes: ≥6.5%',
+    ltpBloodPressure: 'Blood Pressure',
+    ltpSystolic: 'Systolic',
+    ltpDiastolic: 'Diastolic',
+    ltpSystolicLabel: 'Systolic (mmHg)',
+    ltpDiastolicLabel: 'Diastolic (mmHg)',
+    ltpSysShort: 'Sys',
+    ltpDiaShort: 'Dia',
+    ltpNormal: 'Normal (AHA):',
+    ltpElevated: 'Elevated:',
+    ltpStage1: 'Stage 1 HTN:',
+    ltpStage2: 'Stage 2 HTN:',
+    ltpEvaluate: 'Evaluate & Generate Plan',
+    ltpHide: 'Hide',
+    ltpShow: 'Show',
+    ltpProgress: 'Progress',
+    ltpGlucose: 'Glucose',
+    ltpRisk: 'Risk',
+    ltpDailyTargets: 'Your Daily Targets',
+    ltpTargetsSub: 'Calculated from age, weight, height, and activity level',
+    ltpProtein: 'Protein:',
+    ltpCarbs: 'Carbs:',
+    ltpFat: 'Fat:',
+    ltpDiabetesPlan: 'Diabetes Management Plan',
+    ltpDiaSub: 'ADA guideline-based · Low-GI · Carb-counted · Age-adjusted',
+    ltpFree: 'Free',
+    ltpGlucoseProfile: 'Glucose Profile',
+    ltpStatus: 'Status',
+    ltpADATargets: 'ADA Targets',
+    ltpPostMeal: 'Post-meal',
+    ltpCarbPerMeal: 'Carb/Meal',
+    ltpGITarget: 'GI Target',
+    ltpCarbBudget: 'Carb Budget',
+    ltpFiberGoal: 'Fiber Goal',
+    ltpDiaPlan30: '30-Day Diabetes Meal & Workout Plan',
+    ltpDiabetesMeals: 'Diabetes Meals',
+    ltpADAAligned: 'ADA-Aligned',
+    ltpOpenFullPlan: 'Open Full 30-Day Plan with PDF / Print',
+    ltpDownloadPrint: 'Download or print your complete personalized plan',
+    ltpCompleteExercises: 'Complete all exercises',
+    ltpExerciseProtocol: 'Exercise Protocol',
+    ltpAgeAdjusted: 'Age-Adjusted',
+    ltpADAGuidelines: 'ADA Guidelines',
+    ltpHTPlan: 'Hypertension Management Plan',
+    ltpHTSub: 'AHA guideline-based · DASH diet · Low-sodium · Weight-aware',
+    ltpBPProfile: 'BP Profile',
+    ltpReading: 'Reading',
+    ltpAHATargets: 'AHA Targets',
+    ltpBPTarget: 'BP Target',
+    ltpSodium: 'Sodium',
+    ltpPotassium: 'Potassium',
+    ltpExercise: 'Exercise',
+    ltpBMITarget: 'BMI Target',
+    ltpHTPlan30: '30-Day Hypertension Meal & Workout Plan',
+    ltpDASHMeals: 'DASH Meals',
+    ltpDASHAligned: 'DASH-Aligned',
+    ltpWeightAware: 'Weight-Aware',
+    ltpAHAGuidelines: 'AHA Guidelines',
+    ltpDailyMealPlan: 'Daily Meal Plan',
+    ltpMealSummary: '{kcal} kcal · Avg GI: {gi} · {target} kcal target',
+    ltpShuffle: 'Shuffle',
+    ltpDailyTracking: 'Daily Tracking',
+    ltpMetric: 'Metric',
+    ltpTarget: 'Target',
+    ltpActual: 'Actual',
+    ltpStatusSafe: 'Safe',
+    ltpStatusOnTrack: 'On Track',
+    ltpStatusAttention: 'Needs Attention',
+    ltpStatusBelow: 'Below Target',
+    ltpStatusOver: 'Over Limit',
+    ltpProgressTracking: 'Progress Tracking',
+    ltpEntries: '{n} entries',
+    ltpClearAll: 'Clear All',
+    ltpNoProgress: 'No readings yet. Click "{action}" to log your first entry.',
+    ltpGlucoseTrend: 'Glucose Trend (Recent 7)',
+    ltpPostShort: 'Post.',
+    ltpPostprandial: 'Postprandial',
+    ltpBPTrend: 'Blood Pressure Trend (Recent 7)',
+    ltpFasting: 'Fasting',
+    ltpWeightTrend: 'Weight Trend',
+    ltpDate: 'Date',
+    ltpWeight: 'Weight',
+    ltpClinicalSummary: 'Clinical Summary',
+    ltpPrintReport: 'Print / Download Report',
+    ltpEmailReport: 'Email Report',
+    ltpEmailOpened: 'Email client opened',
+    ltpEmailReady: 'Your full health report with profile, plans, and progress is ready to send.',
+    ltpEmptyPrompt: 'Enter your profile and lab values above, then click "{action}".',
+    pmSuiteBadge: 'Advanced Health Suite',
+    pmFreeModules: '{n} Free Modules',
+    pmHeroSub: '30-day structured health journeys with AI-adaptive plans, daily tracking, and clinical export for 8 conditions.',
+    pmSuiteActive: 'Advanced Care Suite Active',
+    pmSuiteActiveSub: 'Full access to all modules including {n} free condition programs.',
+    pmCrossAdvisory: 'Cross-Condition Advisory',
+    pmConditionModules: 'Condition Modules',
+    pmConditionSub: 'Select conditions to activate 30-day health journeys',
+    pmActive: 'Active',
+    pmPremium: 'Premium',
+    pmClickDeactivate: 'Click to deactivate ↑',
+    pmClickActivate: 'Click to activate →',
+    pm30DayJourney: '30-Day Health Journey',
+    pmCustomized: 'Customized',
+    pmPatientProfile: 'Patient Profile',
+    pmLabValues: 'Lab Values',
+    pmGeneratePlan: 'Generate 30-Day Plan',
+    pmPlansGenerated: 'Plans generated & customized',
+    pmHealthScore: 'Health Score',
+    pmCheckInStreak: 'Check-In Streak',
+    pmStreakInfo: 'Current: {c} days · Longest: {l} days',
+    pmAIAutoAdj: 'AI Auto-Adjustment: {type}',
+    pmTabPlan30: '30-Day Plan',
+    pmTabCheckin: 'Daily Check-In',
+    pmTabAnalytics: 'Analytics & Streaks',
+    pmTabGuidelines: 'Guidelines',
+    pm30DayPlanLabel: '{name} — 30-Day Plan',
+    pmDailyCheckIn: 'Daily Check-In',
+    pmDayOf30: 'Day {n} of 30 · Log your daily markers',
+    pmCancel: 'Cancel',
+    pmLogToday: 'Log Today',
+    pmSaveCheckIn: 'Save Check-In',
+    pmDayLabel: 'Day {n}',
+    pmSymptomLog: 'Symptom Trigger Log',
+    pmSymptomLogSub: 'Record flare-ups and identify patterns',
+    pmLogTrigger: 'Log Trigger',
+    pmSymptom: 'Symptom',
+    pmSelectOption: 'Select...',
+    pmTriggerFood: 'Possible Trigger Food/Cause',
+    pmSelectCustom: 'Select or type custom...',
+    pmSeverity: 'Severity (1-10): {n}',
+    pmNotes: 'Notes',
+    pmNotesPlaceholder: 'Additional context...',
+    pmSaveTrigger: 'Save Trigger',
+    pmTriggerPrefix: 'Trigger:',
+    pmWeeklyMilestones: 'Weekly Milestones',
+    pmMilestoneTarget: 'Target: {t} {u}',
+    pmMilestoneCurrent: '(current: {n})',
+    pmMilestoneDescPlaceholder: 'Milestone description',
+    pmUnit: 'Unit',
+    pmAdd: 'Add',
+    pmRecentTrends: 'Recent Trends',
+    pmAvg: 'Avg: {n}',
+    pmCheckIns: 'Check-Ins',
+    pmDayStreak: 'Day Streak',
+    pmMilestones: 'Milestones',
+    pmTriggersLogged: 'Triggers Logged',
+    pmGuidelinesTitle: 'Medical Guidelines & Recommendations',
+    pmWhatsIncluded: 'What\'s Included?',
+    pmIncludeSub: 'Complete condition-specific health management',
+    pmIncPlans: '30-Day Plans',
+    pmIncPlansDesc: 'Structured daily journeys with meals, exercises, and clinical goals',
+    pmIncTracking: 'Daily Tracking',
+    pmIncTrackingDesc: 'Check-in logs, symptom triggers, and medication compliance',
+    pmIncAI: 'AI Adaptation',
+    pmIncAIDesc: 'Smart auto-adjustments based on your tracking data',
+    pmIncExport: 'Clinical Export',
+    pmIncExportDesc: 'PDF/CSV reports for physician consultations',
+    pmCSVExport: 'CSV Export',
+    pmEmail: 'Email'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   },
   fr: {
     appName: 'HealthCalc.ai',
@@ -1868,8 +2556,11 @@ export const translations: Record<Language, TranslationKeys> = {
     homeGoutDesc: 'Anti-inflammatoire pauvre en purines',
     homeIBS: 'SCI (Syndrome de l\'Intestin Irritable)',
     homeIBSDesc: 'Plans de repas pauvres en FODMAP',
+    homeThyroid: 'Santé de la thyroïde',
+    homeThyroidDesc: 'Nutrition basée sur la TSH et suivi',
     homeSmartwatchDesc: 'Intégration de données de santé en temps réel',
     premiumRequired: 'Premium Requis',
+    loading: 'Chargement...',
     premiumUnlockDescription: 'Débloquez la Suite Santé Avancée avec un accès complet à tous les modules.',
     upgradeToPremium: 'Passer à Premium — 15$/an',
     loginRequired: 'Connexion Requise',
@@ -1918,6 +2609,330 @@ export const translations: Record<Language, TranslationKeys> = {
     dashOfflineDesc: 'Le serveur est indisponible. L\'historique de santé est stocké localement.',
     backendUnavailable: 'Le serveur est actuellement indisponible. Tous les calculateurs fonctionnent localement.',
     chooseCuisine: 'Choisissez votre cuisine',
+    // Food library
+    foodLibTitle: 'Bibliothèque de Calories',
+    foodLibSubtitle: 'Plus de 60 catégories de plats de cuisines du monde avec des calories USDA précises',
+    foodLibSearchBadge: 'Recherchez un aliment + filtrez par cuisine + triez par protéines',
+    foodLibSearchLabel: 'Rechercher',
+    foodLibSearchPlaceholder: 'ex. tamales, couscous, sushi...',
+    foodLibCuisineLabel: 'Cuisine',
+    foodLibAllCuisines: 'Toutes les cuisines',
+    foodLibSortLabel: 'Trier',
+    foodLibSortCalories: 'Moins de calories',
+    foodLibSortHighProtein: 'Plus de protéines',
+    foodLibSortName: 'Alphabétique',
+    foodLibCaloriesFilter: 'Calories:',
+    foodLibCalLow: 'Faible <150',
+    foodLibCalMid: 'Moyen 150-250',
+    foodLibCalHigh: 'Élevé >250',
+    foodLibCalAll: 'Tous',
+    foodLibResults: 'résultats',
+    foodLibAll: 'Tous',
+    foodLibColItem: 'Plat',
+    foodLibColCuisine: 'Cuisine',
+    foodLibColPortion: 'Portion',
+    foodLibColCalories: 'Calories',
+    foodLibColProtein: 'Protéines',
+    foodLibColCarbs: 'Glucides',
+    foodLibColFat: 'Lipides',
+    foodLibUsdaBadge: 'USDA',
+    foodLibNoResults: 'Aucun résultat pour cette recherche',
+    foodLibClearFilters: 'Effacer les filtres',
+    foodLibSeoTitle: 'Pourquoi la bibliothèque HealthCalc est-elle précise ?',
+    foodLibSeoBody: 'Chaque calorie provient de USDA FoodData Central, la plus grande base de données alimentaires au monde. Chaque plat est calculé au gramme près, sans approximation. Utilisez la bibliothèque dans tout régime : perte de poids, prise de masse, cétogène ou végétal. Cuisines : méditerranéenne, du Golfe, du Levant, d\'Afrique du Nord, asiatique, européenne et plus.',
+    coAnnualSub: 'Abonnement annuel · Annulable à tout moment',
+    coAdvancedSuite: 'Pack Santé Avancé',
+    coAnnualBilling: 'Facturation annuelle · Renouvellement automatique',
+    coFullName: 'Nom Complet',
+    coEmailAddress: 'Adresse Email',
+    coCardNumber: 'Numéro de Carte',
+    coExpiryDate: 'Date d\'Expiration',
+    coCvv: 'CVV',
+    coSecurityNote: 'Vos informations de paiement sont chiffrées et sécurisées. Ceci est une démo — aucun paiement réel ne sera effectué.',
+    coPay: 'Payer',
+    coProcessing: 'Traitement du Paiement...',
+    coVerifyWait: 'Veuillez patienter pendant la vérification de votre paiement.',
+    coPaymentSuccess: 'Paiement Réussi !',
+    coWelcomeSuite: 'Bienvenue dans le Pack Santé Avancé.',
+    coRedirecting: 'Redirection en cours...',
+    coPaymentFailed: 'Paiement Échoué',
+    coTryAgain: 'Réessayer',
+    coPaymentFailedFallback: 'Échec du paiement. Veuillez réessayer.',
+    cuSelected: 'Cuisine sélectionnée',
+    cuNone: 'Aucune',
+    cuClear: 'Effacer',
+    adviceTitle: 'Conseils de santé personnels',
+    adviceLive: 'Mise à jour en direct',
+    adviceBmi: 'IMC',
+    adviceIdealWeight: 'Poids idéal',
+    adviceBmr: 'MB',
+    adviceGoalDeficit: 'Objectif : déficit de 500 kcal/jour ≈ 0,5 kg/semaine.',
+    adviceGoalSurplus: 'Objectif : surplus de 300 kcal/jour plus entraînement de résistance pour la masse musculaire.',
+    adviceGoalMaintain: 'Objectif : maintenir le poids en équilibrant apports et dépenses.',
+    adviceRecLoss: 'Perte de poids recommandée : {loss} kg pour atteindre votre poids idéal (~{weeks} semaines à 0,5 kg/semaine).',
+    adviceProteinDay: 'Protéines / jour',
+    adviceWaterDay: 'Eau / jour',
+    adviceMacros: 'Macros (votre objectif)',
+    adviceWeightMult: 'poids × 1,6–2,2 g',
+    adviceWaterMult: 'poids × 0,033 L',
+    adviceCatUnderweight: 'Insuffisance pondérale',
+    adviceCatNormal: 'Normal',
+    adviceCatOverweight: 'Surpoids',
+    adviceCatObese: 'Obésité',
+    adviceCondDiabetes: 'Diabète',
+    adviceCondDiabetesTip: 'Choisissez des glucides à faible index glycémique, répartissez les repas et surveillez l\'HbA1c. Privilégiez les légumes riches en fibres.',
+    adviceCondBp: 'Tension artérielle',
+    adviceCondBpTip: 'Réduisez le sodium sous 5 g/jour, évitez les aliments transformés et marinés, et incluez des légumes riches en potassium.',
+    adviceCondCholesterol: 'Cholestérol',
+    adviceCondCholesterolTip: 'Maintenez les graisses saturées sous 7 % des calories, surveillez le LDL et augmentez les fibres avec avoine, légumineuses et fruits.',
+    cuisine: 'Cuisine',
+    changeFromMain: 'Modifiable depuis la page principale',
+    print: 'Imprimer',
+    todayPlan: 'Plan du jour',
+    noLabData: 'Aucune donnée de laboratoire pour le moment',
+    noLabDataDesc: 'Saisissez vos résultats sanguins sur la page principale, puis cliquez sur « Évaluer et Générer le Plan ».',
+    wbTitle: 'Votre Plan Entraînement Personnalisé',
+    wbSubtitle: 'HealthCalc.ai — Des exercices fondés sur la science',
+    wbDay: 'Jour',
+    wbType: 'Type :',
+    wbAuto: 'Recommandation automatique',
+    wbBurnTarget: 'Objectif de dépense calorique',
+    wbGoal: 'Objectif de la séance',
+    wbExercisesDone: 'Exercices Effectués',
+    wbEmailPlan: 'Envoyer par email',
+    wbDailyProgress: 'Progression quotidienne',
+    wbOfEx: 'sur {n}',
+    wbLevelBeginner: 'Débutant',
+    wbLevelIntermediate: 'Intermédiaire',
+    wbLevelAdvanced: 'Avancé',
+    wbDone: 'Fait',
+    wbExercisesCompleted: 'exercices effectués',
+    mbBuild: 'Composez vos repas',
+    mbPicked: '{n} sélectionnés',
+    mbUse: 'Utiliser',
+    mbDetectedCuisine: 'Nous avons détecté que vous êtes en {country} — plan {cuisine}',
+    mbDetectedRegion: 'Région détectée : {country} — cuisine {cuisine}',
+    mbAutoFill: 'Rempli automatiquement avec les favoris {cuisine} — ajustez librement',
+    mbGenerate30: 'Générer Mon Plan 30 Jours',
+    mbDishes: '{min}–{max} plats',
+    mbTarget: 'Objectif {kcal} kcal',
+    mbSmartPortions: 'Portions adaptatives intelligentes',
+    mbShowPlan: 'Afficher le plan {meal} – {kcal} kcal',
+    mbHidePlan: 'Masquer le plan {meal} – {kcal} kcal',
+    mbDish: 'Plat',
+    mbGrams: 'Grammes',
+    mbCalories: 'kcal',
+    mbProtein: 'Protéines',
+    mbTotal: 'Total',
+    mbCarbsFat: 'Glucides {carbs}g · Lipides {fat}g',
+    mbAdaptiveDesc: 'Les portions s\'ajustent automatiquement pour que le repas atteigne toujours l\'objectif — ajoutez ou retirez des plats et les portions rétrécissent ou grandissent.',
+    mbHeavy: 'Lourd',
+    mbExtras: 'Extras',
+    mbBread: 'Pain',
+    mbSalads: 'Salades',
+    mbSides: 'Accompagnements',
+mbDrinks: 'Boissons',
+    mbFruits: 'Fruits',
+    wlHeroPill: '10 cuisines · USDA vérifié · Mifflin-St Jeor',
+    wlGoalSelector: 'Sélecteur d\'objectif — recalcule instantanément tous les plans',
+    wlExerciseType: 'Type d\'exercice',
+    wlAutoRecommend: 'Recommandation automatique',
+    wlFullWorkout: 'Plan d\'entraînement complet 30 jours',
+    wlWorkoutHint: 'Sélectionnez un type d\'exercice ci-dessus, puis cliquez sur le bouton pour ouvrir le plan.',
+    wlAgeYears: 'ans',
+    wlWorkoutDaysPerWeek: 'Jours d\'entraînement par semaine',
+    wlDays: '{n} jours',
+    wlSedentary: 'Sédentaire',
+    wlModerate: 'Modéré',
+    wlVeryActive: 'Très actif',
+    wlCaloriesSchedule: 'Calendrier des calories — {cuisine}',
+    wlUsdaAccurate: 'Vérifié USDA',
+    wlCompleteAllMeals: 'Terminer tous les repas',
+    wlFullPlan: 'Plan complet 30 jours',
+    wlSuggestions: 'Suggestions de la cuisine {cuisine}',
+    wlCaloriesItem: '{name} - {kcal} kcal',
+    wlProteinUnit: 'g',
+    dbLabInterpreter: 'Interpréteur de Résultats de Laboratoire',
+    dbLabsEmpty: 'Entrez vos valeurs de laboratoire dans le panneau de gauche pour une interprétation instantanée basée sur les directives médicales de l\'ADA.',
+    dbBpClassification: 'Classification de la Pression Artérielle (AHA)',
+    dbSystolicRange: 'Plage Systolique',
+    dbDiastolicRange: 'Plage Diastolique',
+    dbRecommendations: 'Recommandations',
+    dbBpClassifier: 'Classificateur de Pression Artérielle',
+    dbBpEmpty: 'Entrez vos lectures de pression artérielle pour les classer selon les directives AHA avec des recommandations personnalisées.',
+    db30DayMealPlan: 'Plan de Repas Diabète - 30 Jours',
+    dbFoundation: 'Fondation',
+    unitMetric: 'Métrique',
+    unitUs: 'US',
+    ltpEngine: 'Moteur de Santé Intelligent',
+    ltpHeroTitle: 'Suite Diabète & Hypertension',
+    ltpHeroDesc: 'Entrez votre profil et vos valeurs de laboratoire pour recevoir instantanément des plans de repas personnalisés, des routines d\'exercice et un suivi de progression — le tout aligné sur les directives cliniques ADA et AHA.',
+    ltpProfileLab: 'Profil & Valeurs de Laboratoire',
+    ltpProfileLabSub: 'Saisissez vos données pour une évaluation personnalisée ADA & AHA',
+    ltpUserProfile: 'Profil Utilisateur',
+    ltpBloodGlucose: 'Glycémie',
+    ltpFastingLabel: 'À jeun (mg/dL)',
+    ltpFastingRange: 'Normal : 70–99 · Pré-diabète : 100–125 · Diabète : ≥126',
+    ltpPostLabel: 'Postprandiale 2h (mg/dL)',
+    ltpPostRange: 'Normal : <140 · Pré-diabète : 140–199 · Diabète : ≥200',
+    ltpHba1cRange: 'Normal : <5,7 % · Pré-diabète : 5,7–6,4 % · Diabète : ≥6,5 %',
+    ltpBloodPressure: 'Pression Artérielle',
+    ltpSystolic: 'Systolique',
+    ltpDiastolic: 'Diastolique',
+    ltpSystolicLabel: 'Systolique (mmHg)',
+    ltpDiastolicLabel: 'Diastolique (mmHg)',
+    ltpSysShort: 'Sys',
+    ltpDiaShort: 'Dia',
+    ltpNormal: 'Normale (AHA) :',
+    ltpElevated: 'Élevée :',
+    ltpStage1: 'Stade 1 HTA :',
+    ltpStage2: 'Stade 2 HTA :',
+    ltpEvaluate: 'Évaluer et Générer le Plan',
+    ltpHide: 'Masquer',
+    ltpShow: 'Afficher',
+    ltpProgress: 'Progression',
+    ltpGlucose: 'Glucose',
+    ltpRisk: 'Risque',
+    ltpDailyTargets: 'Vos Objectifs Quotidiens',
+    ltpTargetsSub: 'Calculés à partir de l\'âge, du poids, de la taille et du niveau d\'activité',
+    ltpProtein: 'Protéines :',
+    ltpCarbs: 'Glucides :',
+    ltpFat: 'Lipides :',
+    ltpDiabetesPlan: 'Plan de Gestion du Diabète',
+    ltpDiaSub: 'Basé sur les directives ADA · IG bas · Glucides comptés · Ajusté à l\'âge',
+    ltpFree: 'Gratuit',
+    ltpGlucoseProfile: 'Profil Glycémique',
+    ltpStatus: 'Statut',
+    ltpADATargets: 'Objectifs ADA',
+    ltpPostMeal: 'Après le repas',
+    ltpCarbPerMeal: 'Glucides/Repas',
+    ltpGITarget: 'Cible IG',
+    ltpCarbBudget: 'Budget Glucides',
+    ltpFiberGoal: 'Objectif Fibres',
+    ltpDiaPlan30: 'Plan de Repas et d\'Exercice Diabète - 30 Jours',
+    ltpDiabetesMeals: 'Repas Diabète',
+    ltpADAAligned: 'Conforme ADA',
+    ltpOpenFullPlan: 'Ouvrir le Plan Complet 30 Jours en PDF / Impression',
+    ltpDownloadPrint: 'Téléchargez ou imprimez votre plan personnalisé complet',
+    ltpCompleteExercises: 'Terminer tous les exercices',
+    ltpExerciseProtocol: 'Protocole d\'Exercice',
+    ltpAgeAdjusted: 'Ajusté à l\'âge',
+    ltpADAGuidelines: 'Directives ADA',
+    ltpHTPlan: 'Plan de Gestion de l\'Hypertension',
+    ltpHTSub: 'Basé sur les directives AHA · Régime DASH · Faible teneur en sodium · Conscience du poids',
+    ltpBPProfile: 'Profil TA',
+    ltpReading: 'Lecture',
+    ltpAHATargets: 'Objectifs AHA',
+    ltpBPTarget: 'Cible Pression',
+    ltpSodium: 'Sodium',
+    ltpPotassium: 'Potassium',
+    ltpExercise: 'Exercice',
+    ltpBMITarget: 'Cible IMC',
+    ltpHTPlan30: 'Plan de Repas et d\'Exercice Hypertension - 30 Jours',
+    ltpDASHMeals: 'Repas DASH',
+    ltpDASHAligned: 'Conforme DASH',
+    ltpWeightAware: 'Sensible au poids',
+    ltpAHAGuidelines: 'Directives AHA',
+    ltpDailyMealPlan: 'Plan de Repas Quotidien',
+    ltpMealSummary: '{kcal} kcal · IG moyen : {gi} · objectif {target} kcal',
+    ltpShuffle: 'Mélanger',
+    ltpDailyTracking: 'Suivi Quotidien',
+    ltpMetric: 'Métrique',
+    ltpTarget: 'Objectif',
+    ltpActual: 'Réel',
+    ltpStatusSafe: 'Sûr',
+    ltpStatusOnTrack: 'Sur la bonne voie',
+    ltpStatusAttention: 'Nécessite une attention',
+    ltpStatusBelow: 'Sous l\'objectif',
+    ltpStatusOver: 'Dépassement',
+    ltpProgressTracking: 'Suivi de la Progression',
+    ltpEntries: '{n} entrées',
+    ltpClearAll: 'Tout Effacer',
+    ltpNoProgress: 'Aucune lecture pour le moment. Cliquez sur « {action} » pour enregistrer votre première entrée.',
+    ltpGlucoseTrend: 'Tendance de la Glycémie (7 derniers)',
+    ltpPostShort: 'Post.',
+    ltpPostprandial: 'Postprandiale',
+    ltpBPTrend: 'Tendance de la Pression Artérielle (7 derniers)',
+    ltpFasting: 'À jeun',
+    ltpWeightTrend: 'Tendance du Poids',
+    ltpDate: 'Date',
+    ltpWeight: 'Poids',
+    ltpClinicalSummary: 'Résumé Clinique',
+    ltpPrintReport: 'Imprimer / Télécharger le Rapport',
+    ltpEmailReport: 'Envoyer par E-mail',
+    ltpEmailOpened: 'Client e-mail ouvert',
+    ltpEmailReady: 'Votre rapport de santé complet avec profil, plans et progression est prêt à être envoyé.',
+    ltpEmptyPrompt: 'Entrez votre profil et vos valeurs de laboratoire ci-dessus, puis cliquez sur « {action} ».',
+    pmSuiteBadge: 'Suite Santé Avancée',
+    pmFreeModules: '{n} Modules Gratuits',
+    pmHeroSub: 'Parcours de santé structurés de 30 jours avec plans adaptatifs IA, suivi quotidien et export clinique pour 8 pathologies.',
+    pmSuiteActive: 'Suite de Soins Avancés Active',
+    pmSuiteActiveSub: 'Accès complet à tous les modules, y compris {n} programmes de santé gratuits.',
+    pmCrossAdvisory: 'Conseil Inter-Pathologies',
+    pmConditionModules: 'Modules de Pathologie',
+    pmConditionSub: 'Sélectionnez des pathologies pour activer des parcours de santé de 30 jours',
+    pmActive: 'Actif',
+    pmPremium: 'Premium',
+    pmClickDeactivate: 'Cliquez pour désactiver ↑',
+    pmClickActivate: 'Cliquez pour activer →',
+    pm30DayJourney: 'Parcours de Santé de 30 Jours',
+    pmCustomized: 'Personnalisé',
+    pmPatientProfile: 'Profil Patient',
+    pmLabValues: 'Valeurs de Laboratoire',
+    pmGeneratePlan: 'Générer le Plan de 30 Jours',
+    pmPlansGenerated: 'Plans générés et personnalisés',
+    pmHealthScore: 'Score de Santé',
+    pmCheckInStreak: 'Série d\'Enregistrements',
+    pmStreakInfo: 'Actuel : {c} jours · Maximum : {l} jours',
+    pmAIAutoAdj: 'Ajustement Automatique IA : {type}',
+    pmTabPlan30: 'Plan de 30 Jours',
+    pmTabCheckin: 'Enregistrement Quotidien',
+    pmTabAnalytics: 'Analyses & Séries',
+    pmTabGuidelines: 'Directives',
+    pm30DayPlanLabel: '{name} — Plan de 30 Jours',
+    pmDailyCheckIn: 'Enregistrement Quotidien',
+    pmDayOf30: 'Jour {n} sur 30 · Enregistrez vos marqueurs quotidiens',
+    pmCancel: 'Annuler',
+    pmLogToday: 'Enregistrer Aujourd\'hui',
+    pmSaveCheckIn: 'Enregistrer',
+    pmDayLabel: 'Jour {n}',
+    pmSymptomLog: 'Journal des Déclencheurs',
+    pmSymptomLogSub: 'Enregistrez les poussées et identifiez les schémas',
+    pmLogTrigger: 'Enregistrer un Déclencheur',
+    pmSymptom: 'Symptôme',
+    pmSelectOption: 'Sélectionner...',
+    pmTriggerFood: 'Aliment/Déclencheur Possible',
+    pmSelectCustom: 'Sélectionnez ou saisissez une valeur personnalisée...',
+    pmSeverity: 'Sévérité (1-10) : {n}',
+    pmNotes: 'Notes',
+    pmNotesPlaceholder: 'Contexte supplémentaire...',
+    pmSaveTrigger: 'Enregistrer le Déclencheur',
+    pmTriggerPrefix: 'Déclencheur :',
+    pmWeeklyMilestones: 'Objectifs Hebdomadaires',
+    pmMilestoneTarget: 'Objectif : {t} {u}',
+    pmMilestoneCurrent: '(actuel : {n})',
+    pmMilestoneDescPlaceholder: 'Description de l\'objectif',
+    pmUnit: 'Unité',
+    pmAdd: 'Ajouter',
+    pmRecentTrends: 'Tendances Récentes',
+    pmAvg: 'Moy : {n}',
+    pmCheckIns: 'Enregistrements',
+    pmDayStreak: 'Série de Jours',
+    pmMilestones: 'Objectifs',
+    pmTriggersLogged: 'Déclencheurs Enregistrés',
+    pmGuidelinesTitle: 'Directives Médicales & Recommandations',
+    pmWhatsIncluded: 'Qu\'est-ce qui est inclus ?',
+    pmIncludeSub: 'Gestion de santé complète spécifique à la pathologie',
+    pmIncPlans: 'Plans de 30 Jours',
+    pmIncPlansDesc: 'Parcours quotidiens structurés avec repas, exercices et objectifs cliniques',
+    pmIncTracking: 'Suivi Quotidien',
+    pmIncTrackingDesc: 'Journal des enregistrements, déclencheurs de symptômes et observance des médicaments',
+    pmIncAI: 'Adaptation IA',
+    pmIncAIDesc: 'Ajustements automatiques intelligents basés sur vos données de suivi',
+    pmIncExport: 'Export Clinique',
+    pmIncExportDesc: 'Rapports PDF/CSV pour les consultations médicales',
+    pmCSVExport: 'Export CSV',
+    pmEmail: 'E-mail'
   },
   es: {
     appName: 'HealthCalc.ai',
@@ -2499,8 +3514,11 @@ export const translations: Record<Language, TranslationKeys> = {
     homeGoutDesc: 'Antiinflamatorio bajo en purinas',
     homeIBS: 'SII (Síndrome de Intestino Irritable)',
     homeIBSDesc: 'Planes de comidas bajas en FODMAP',
+    homeThyroid: 'Salud de la Tiroides',
+    homeThyroidDesc: 'Nutrición basada en TSH y seguimiento',
     homeSmartwatchDesc: 'Integración de datos de salud en tiempo real',
     premiumRequired: 'Premium Requerido',
+    loading: 'Cargando...',
     premiumUnlockDescription: 'Desbloquea la Suite de Salud Avanzada con acceso completo a todos los módulos.',
     upgradeToPremium: 'Actualizar — $15/año',
     loginRequired: 'Inicio de Sesión Requerido',
@@ -2549,6 +3567,330 @@ export const translations: Record<Language, TranslationKeys> = {
     dashOfflineDesc: 'El servidor no está disponible. El historial se almacena localmente.',
     backendUnavailable: 'El servidor no está disponible. Todas las calculadoras funcionan localmente.',
     chooseCuisine: 'Elige tu cocina',
+    // Food library
+    foodLibTitle: 'Biblioteca de Calorías',
+    foodLibSubtitle: 'Más de 60 categorías de platos de cocinas del mundo con calorías USDA precisas',
+    foodLibSearchBadge: 'Busca cualquier alimento + filtra por cocina + ordena por proteína',
+    foodLibSearchLabel: 'Buscar',
+    foodLibSearchPlaceholder: 'ej. tamales, cuscús, sushi...',
+    foodLibCuisineLabel: 'Cocina',
+    foodLibAllCuisines: 'Todas las cocinas',
+    foodLibSortLabel: 'Ordenar',
+    foodLibSortCalories: 'Menos calorías',
+    foodLibSortHighProtein: 'Más proteína',
+    foodLibSortName: 'Alfabético',
+    foodLibCaloriesFilter: 'Calorías:',
+    foodLibCalLow: 'Bajo <150',
+    foodLibCalMid: 'Medio 150-250',
+    foodLibCalHigh: 'Alto >250',
+    foodLibCalAll: 'Todos',
+    foodLibResults: 'resultados',
+    foodLibAll: 'Todos',
+    foodLibColItem: 'Plato',
+    foodLibColCuisine: 'Cocina',
+    foodLibColPortion: 'Porción',
+    foodLibColCalories: 'Calorías',
+    foodLibColProtein: 'Proteína',
+    foodLibColCarbs: 'Carbohidratos',
+    foodLibColFat: 'Grasa',
+    foodLibUsdaBadge: 'USDA',
+    foodLibNoResults: 'Sin resultados para esta búsqueda',
+    foodLibClearFilters: 'Limpiar filtros',
+    foodLibSeoTitle: '¿Por qué es precisa la biblioteca de HealthCalc?',
+    foodLibSeoBody: 'Cada caloría proviene de USDA FoodData Central, la base de datos de alimentos más grande del mundo. Cada plato se calcula por gramo, no por estimación. Usa la biblioteca en cualquier dieta: pérdida de peso, ganancia muscular, cetogénica o vegetal. Cocinas: mediterránea, del Golfo, levantina, norteafricana, asiática, europea y más.',
+    coAnnualSub: 'Suscripción anual · Cancela cuando quieras',
+    coAdvancedSuite: 'Suite de Salud Avanzada',
+    coAnnualBilling: 'Facturación anual · Renovación automática',
+    coFullName: 'Nombre Completo',
+    coEmailAddress: 'Correo Electrónico',
+    coCardNumber: 'Número de Tarjeta',
+    coExpiryDate: 'Fecha de Vencimiento',
+    coCvv: 'CVV',
+    coSecurityNote: 'Tu información de pago está cifrada y segura. Esto es una demo — no se realizará ningún cargo real.',
+    coPay: 'Pagar',
+    coProcessing: 'Procesando Pago...',
+    coVerifyWait: 'Espera mientras verificamos tu pago.',
+    coPaymentSuccess: '¡Pago Exitoso!',
+    coWelcomeSuite: 'Bienvenido a la Suite de Salud Avanzada.',
+    coRedirecting: 'Redirigiendo ahora...',
+    coPaymentFailed: 'Pago Fallido',
+    coTryAgain: 'Reintentar',
+    coPaymentFailedFallback: 'Error en el pago. Inténtalo de nuevo.',
+    cuSelected: 'Cocina seleccionada',
+    cuNone: 'Ninguna',
+    cuClear: 'Limpiar',
+    adviceTitle: 'Consejos de salud personales',
+    adviceLive: 'Actualización en vivo',
+    adviceBmi: 'IMC',
+    adviceIdealWeight: 'Peso ideal',
+    adviceBmr: 'TMB',
+    adviceGoalDeficit: 'Objetivo: déficit diario de 500 kcal ≈ 0,5 kg/semana.',
+    adviceGoalSurplus: 'Objetivo: superávit diario de 300 kcal más entrenamiento de fuerza para ganar músculo.',
+    adviceGoalMaintain: 'Objetivo: mantener el peso equilibrando la ingesta con el gasto.',
+    adviceRecLoss: 'Pérdida de peso recomendada: {loss} kg para alcanzar tu peso ideal (~{weeks} semanas a 0,5 kg/semana).',
+    adviceProteinDay: 'Proteína / día',
+    adviceWaterDay: 'Agua / día',
+    adviceMacros: 'Macros (tu objetivo)',
+    adviceWeightMult: 'peso × 1,6–2,2 g',
+    adviceWaterMult: 'peso × 0,033 L',
+    adviceCatUnderweight: 'Bajo peso',
+    adviceCatNormal: 'Normal',
+    adviceCatOverweight: 'Sobrepeso',
+    adviceCatObese: 'Obesidad',
+    adviceCondDiabetes: 'Diabetes',
+    adviceCondDiabetesTip: 'Elige carbohidratos de bajo índice glucémico, reparte las comidas y controla la HbA1c. Prefiere verduras ricas en fibra.',
+    adviceCondBp: 'Presión arterial',
+    adviceCondBpTip: 'Reduce el sodio por debajo de 5 g/día, evita los alimentos procesados y encurtidos, e incluye verduras ricas en potasio.',
+    adviceCondCholesterol: 'Colesterol',
+    adviceCondCholesterolTip: 'Mantén las grasas saturadas por debajo del 7 % de las calorías, controla el LDL y aumenta la fibra con avena, legumbres y fruta.',
+    cuisine: 'Cocina',
+    changeFromMain: 'Cámbialo desde la página principal',
+    print: 'Imprimir',
+    todayPlan: 'Plan de hoy',
+    noLabData: 'Aún no hay datos de laboratorio',
+    noLabDataDesc: 'Introduce tus resultados de análisis en la página principal y haz clic en "Evaluar y Generar Plan".',
+    wbTitle: 'Tu Plan de Ejercicio Personalizado',
+    wbSubtitle: 'HealthCalc.ai — Planificación de ejercicio basada en la ciencia',
+    wbDay: 'Día',
+    wbType: 'Tipo:',
+    wbAuto: 'Recomendación automática',
+    wbBurnTarget: 'Objetivo de quema de calorías',
+    wbGoal: 'Objetivo de ejercicio',
+    wbExercisesDone: 'Ejercicios Completados',
+    wbEmailPlan: 'Enviar por correo',
+    wbDailyProgress: 'Progreso diario',
+    wbOfEx: 'de {n}',
+    wbLevelBeginner: 'Principiante',
+    wbLevelIntermediate: 'Intermedio',
+    wbLevelAdvanced: 'Avanzado',
+    wbDone: 'Hecho',
+    wbExercisesCompleted: 'ejercicios completados',
+    mbBuild: 'Construye tus comidas',
+    mbPicked: '{n} elegidos',
+    mbUse: 'Usar',
+    mbDetectedCuisine: 'Detectamos que estás en {country} — plan {cuisine}',
+    mbDetectedRegion: 'Región detectada: {country} — cocina {cuisine}',
+    mbAutoFill: 'Rellenado automáticamente con los favoritos de {cuisine} — ajústalo libremente',
+    mbGenerate30: 'Generar Mi Plan de 30 Días',
+    mbDishes: '{min}–{max} platos',
+    mbTarget: 'Objetivo {kcal} kcal',
+    mbSmartPortions: 'Porciones adaptativas inteligentes',
+    mbShowPlan: 'Mostrar plan de {meal} – {kcal} kcal',
+    mbHidePlan: 'Ocultar plan de {meal} – {kcal} kcal',
+    mbDish: 'Plato',
+    mbGrams: 'Gramos',
+    mbCalories: 'kcal',
+    mbProtein: 'Proteína',
+    mbTotal: 'Total',
+    mbCarbsFat: 'Carbohidratos {carbs}g · Grasas {fat}g',
+    mbAdaptiveDesc: 'Las porciones se ajustan automáticamente para que la comida llegue siempre al objetivo: añade o quita platos y las porciones se reducen o crecen.',
+    mbHeavy: 'Pesado',
+    mbExtras: 'Extras',
+    mbBread: 'Pan',
+    mbSalads: 'Ensaladas',
+    mbSides: 'Guarniciones',
+    mbDrinks: 'Bebidas',
+    mbFruits: 'Frutas',
+    wlHeroPill: '10 cocinas · USDA verificado · Mifflin-St Jeor',
+    wlGoalSelector: 'Selector de objetivo: recalcula todos los planes al instante',
+    wlExerciseType: 'Tipo de ejercicio',
+    wlAutoRecommend: 'Recomendación automática',
+    wlFullWorkout: 'Plan de ejercicio completo de 30 días',
+    wlWorkoutHint: 'Selecciona un tipo de ejercicio arriba y luego haz clic en el botón para abrir el plan.',
+    wlAgeYears: 'años',
+    wlWorkoutDaysPerWeek: 'Días de ejercicio por semana',
+    wlDays: '{n} días',
+    wlSedentary: 'Sedentario',
+    wlModerate: 'Moderado',
+    wlVeryActive: 'Muy activo',
+    wlCaloriesSchedule: 'Horario de calorías — {cuisine}',
+    wlUsdaAccurate: 'Verificado por USDA',
+    wlCompleteAllMeals: 'Completar todas las comidas',
+    wlFullPlan: 'Plan completo de 30 días',
+    wlSuggestions: 'Sugerencias de la cocina {cuisine}',
+    wlCaloriesItem: '{name} - {kcal} kcal',
+    wlProteinUnit: 'g',
+    dbLabInterpreter: 'Interpretador de Resultados de Laboratorio',
+    dbLabsEmpty: 'Introduce tus valores de laboratorio en el panel izquierdo para obtener una interpretación instantánea según las guías médicas de la ADA.',
+    dbBpClassification: 'Clasificación de la Presión Arterial (AHA)',
+    dbSystolicRange: 'Rango Sistólico',
+    dbDiastolicRange: 'Rango Diastólico',
+    dbRecommendations: 'Recomendaciones',
+    dbBpClassifier: 'Clasificador de Presión Arterial',
+    dbBpEmpty: 'Introduce tus lecturas de presión arterial para clasificarlas según las guías de la AHA con recomendaciones personalizadas.',
+    db30DayMealPlan: 'Plan de Comidas para Diabetes - 30 Días',
+    dbFoundation: 'Fundación',
+    unitMetric: 'Métrico',
+    unitUs: 'US',
+    ltpEngine: 'Motor de Salud Inteligente',
+    ltpHeroTitle: 'Suite Diabetes e Hipertensión',
+    ltpHeroDesc: 'Introduce tu perfil y valores de laboratorio para recibir al instante planes de comidas personalizados, rutinas de ejercicio y seguimiento de progreso, todo alineado con las guías clínicas de ADA y AHA.',
+    ltpProfileLab: 'Perfil y Valores de Laboratorio',
+    ltpProfileLabSub: 'Introduce tus métricas para una evaluación personalizada según ADA y AHA',
+    ltpUserProfile: 'Perfil de Usuario',
+    ltpBloodGlucose: 'Glucosa en Sangre',
+    ltpFastingLabel: 'En ayunas (mg/dL)',
+    ltpFastingRange: 'Normal: 70–99 · Pre: 100–125 · Diabetes: ≥126',
+    ltpPostLabel: 'Posprandial 2h (mg/dL)',
+    ltpPostRange: 'Normal: <140 · Pre: 140–199 · Diabetes: ≥200',
+    ltpHba1cRange: 'Normal: <5.7% · Pre: 5.7–6.4% · Diabetes: ≥6.5%',
+    ltpBloodPressure: 'Presión Arterial',
+    ltpSystolic: 'Sistólica',
+    ltpDiastolic: 'Diastólica',
+    ltpSystolicLabel: 'Sistólica (mmHg)',
+    ltpDiastolicLabel: 'Diastólica (mmHg)',
+    ltpSysShort: 'Sis',
+    ltpDiaShort: 'Dia',
+    ltpNormal: 'Normal (AHA):',
+    ltpElevated: 'Elevada:',
+    ltpStage1: 'Etapa 1 HTA:',
+    ltpStage2: 'Etapa 2 HTA:',
+    ltpEvaluate: 'Evaluar y Generar Plan',
+    ltpHide: 'Ocultar',
+    ltpShow: 'Mostrar',
+    ltpProgress: 'Progreso',
+    ltpGlucose: 'Glucosa',
+    ltpRisk: 'Riesgo',
+    ltpDailyTargets: 'Tus Objetivos Diarios',
+    ltpTargetsSub: 'Calculados a partir de edad, peso, estatura y nivel de actividad',
+    ltpProtein: 'Proteína:',
+    ltpCarbs: 'Carbohidratos:',
+    ltpFat: 'Grasa:',
+    ltpDiabetesPlan: 'Plan de Manejo de la Diabetes',
+    ltpDiaSub: 'Basado en guías de la ADA · IG bajo · Carbohidratos contados · Ajustado a la edad',
+    ltpFree: 'Gratis',
+    ltpGlucoseProfile: 'Perfil de Glucosa',
+    ltpStatus: 'Estado',
+    ltpADATargets: 'Metas ADA',
+    ltpPostMeal: 'Después de la comida',
+    ltpCarbPerMeal: 'Carb/Comida',
+    ltpGITarget: 'Objetivo GI',
+    ltpCarbBudget: 'Presupuesto de Carbohidratos',
+    ltpFiberGoal: 'Meta de Fibra',
+    ltpDiaPlan30: 'Plan de Comidas y Ejercicio para Diabetes - 30 Días',
+    ltpDiabetesMeals: 'Comidas para Diabetes',
+    ltpADAAligned: 'Alineado con ADA',
+    ltpOpenFullPlan: 'Abrir Plan Completo de 30 Días con PDF / Imprimir',
+    ltpDownloadPrint: 'Descarga o imprime tu plan personalizado completo',
+    ltpCompleteExercises: 'Completar todos los ejercicios',
+    ltpExerciseProtocol: 'Protocolo de Ejercicio',
+    ltpAgeAdjusted: 'Ajustado a la edad',
+    ltpADAGuidelines: 'Guías ADA',
+    ltpHTPlan: 'Plan de Manejo de la Hipertensión',
+    ltpHTSub: 'Basado en guías de la AHA · Dieta DASH · Bajo en sodio · Consciente del peso',
+    ltpBPProfile: 'Perfil de PA',
+    ltpReading: 'Lectura',
+    ltpAHATargets: 'Metas AHA',
+    ltpBPTarget: 'Objetivo de PA',
+    ltpSodium: 'Sodio',
+    ltpPotassium: 'Potasio',
+    ltpExercise: 'Ejercicio',
+    ltpBMITarget: 'Objetivo IMC',
+    ltpHTPlan30: 'Plan de Comidas y Ejercicio para Hipertensión - 30 Días',
+    ltpDASHMeals: 'Comidas DASH',
+    ltpDASHAligned: 'Alineado con DASH',
+    ltpWeightAware: 'Consciente del peso',
+    ltpAHAGuidelines: 'Guías AHA',
+    ltpDailyMealPlan: 'Plan de Comidas Diario',
+    ltpMealSummary: '{kcal} kcal · GI medio: {gi} · objetivo {target} kcal',
+    ltpShuffle: 'Mezclar',
+    ltpDailyTracking: 'Seguimiento Diario',
+    ltpMetric: 'Métrica',
+    ltpTarget: 'Objetivo',
+    ltpActual: 'Real',
+    ltpStatusSafe: 'Seguro',
+    ltpStatusOnTrack: 'En camino',
+    ltpStatusAttention: 'Requiere atención',
+    ltpStatusBelow: 'Por debajo del objetivo',
+    ltpStatusOver: 'Sobre el límite',
+    ltpProgressTracking: 'Seguimiento del Progreso',
+    ltpEntries: '{n} registros',
+    ltpClearAll: 'Borrar Todo',
+    ltpNoProgress: 'Aún no hay lecturas. Haz clic en "{action}" para registrar tu primera entrada.',
+    ltpGlucoseTrend: 'Tendencia de Glucosa (últimos 7)',
+    ltpPostShort: 'Post.',
+    ltpPostprandial: 'Posprandial',
+    ltpBPTrend: 'Tendencia de Presión Arterial (últimos 7)',
+    ltpFasting: 'En ayunas',
+    ltpWeightTrend: 'Tendencia de Peso',
+    ltpDate: 'Fecha',
+    ltpWeight: 'Peso',
+    ltpClinicalSummary: 'Resumen Clínico',
+    ltpPrintReport: 'Imprimir / Descargar Informe',
+    ltpEmailReport: 'Enviar Informe por Correo',
+    ltpEmailOpened: 'Cliente de correo abierto',
+    ltpEmailReady: 'Tu informe de salud completo con perfil, planes y progreso está listo para enviarse.',
+    ltpEmptyPrompt: 'Introduce tu perfil y valores de laboratorio arriba y luego haz clic en "{action}".',
+    pmSuiteBadge: 'Suite de Salud Avanzada',
+    pmFreeModules: '{n} Módulos Gratuitos',
+    pmHeroSub: 'Rutas de salud estructuradas de 30 días con planes adaptativos de IA, seguimiento diario y exportación clínica para 8 afecciones.',
+    pmSuiteActive: 'Suite de Cuidados Avanzados Activa',
+    pmSuiteActiveSub: 'Acceso completo a todos los módulos, incluidos {n} programas gratuitos.',
+    pmCrossAdvisory: 'Asesoría Inter-afecciones',
+    pmConditionModules: 'Módulos de Afecciones',
+    pmConditionSub: 'Selecciona afecciones para activar rutas de salud de 30 días',
+    pmActive: 'Activo',
+    pmPremium: 'Premium',
+    pmClickDeactivate: 'Clic para desactivar ↑',
+    pmClickActivate: 'Clic para activar →',
+    pm30DayJourney: 'Ruta de Salud de 30 Días',
+    pmCustomized: 'Personalizado',
+    pmPatientProfile: 'Perfil del Paciente',
+    pmLabValues: 'Valores de Laboratorio',
+    pmGeneratePlan: 'Generar Plan de 30 Días',
+    pmPlansGenerated: 'Planes generados y personalizados',
+    pmHealthScore: 'Puntaje de Salud',
+    pmCheckInStreak: 'Racha de Registros',
+    pmStreakInfo: 'Actual: {c} días · Mayor: {l} días',
+    pmAIAutoAdj: 'Autoajuste de IA: {type}',
+    pmTabPlan30: 'Plan de 30 Días',
+    pmTabCheckin: 'Registro Diario',
+    pmTabAnalytics: 'Análisis y Rachas',
+    pmTabGuidelines: 'Guías',
+    pm30DayPlanLabel: '{name} — Plan de 30 Días',
+    pmDailyCheckIn: 'Registro Diario',
+    pmDayOf30: 'Día {n} de 30 · Registra tus marcadores diarios',
+    pmCancel: 'Cancelar',
+    pmLogToday: 'Registrar Hoy',
+    pmSaveCheckIn: 'Guardar Registro',
+    pmDayLabel: 'Día {n}',
+    pmSymptomLog: 'Registro de Desencadenantes',
+    pmSymptomLogSub: 'Registra brotes e identifica patrones',
+    pmLogTrigger: 'Registrar Desencadenante',
+    pmSymptom: 'Síntoma',
+    pmSelectOption: 'Seleccionar...',
+    pmTriggerFood: 'Posible Alimento/Causa Desencadenante',
+    pmSelectCustom: 'Selecciona o escribe una personalizada...',
+    pmSeverity: 'Severidad (1-10): {n}',
+    pmNotes: 'Notas',
+    pmNotesPlaceholder: 'Contexto adicional...',
+    pmSaveTrigger: 'Guardar Desencadenante',
+    pmTriggerPrefix: 'Desencadenante:',
+    pmWeeklyMilestones: 'Metas Semanales',
+    pmMilestoneTarget: 'Objetivo: {t} {u}',
+    pmMilestoneCurrent: '(actual: {n})',
+    pmMilestoneDescPlaceholder: 'Descripción de la meta',
+    pmUnit: 'Unidad',
+    pmAdd: 'Agregar',
+    pmRecentTrends: 'Tendencias Recientes',
+    pmAvg: 'Prom: {n}',
+    pmCheckIns: 'Registros',
+    pmDayStreak: 'Racha de Días',
+    pmMilestones: 'Metas',
+    pmTriggersLogged: 'Desencadenantes Registrados',
+    pmGuidelinesTitle: 'Guías Médicas y Recomendaciones',
+    pmWhatsIncluded: '¿Qué está incluido?',
+    pmIncludeSub: 'Gestión de salud completa específica de la afección',
+    pmIncPlans: 'Planes de 30 Días',
+    pmIncPlansDesc: 'Rutas diarias estructuradas con comidas, ejercicios y objetivos clínicos',
+    pmIncTracking: 'Seguimiento Diario',
+    pmIncTrackingDesc: 'Registros, desencadenantes de síntomas y cumplimiento de medicación',
+    pmIncAI: 'Adaptación IA',
+    pmIncAIDesc: 'Autoajustes inteligentes basados en tus datos de seguimiento',
+    pmIncExport: 'Exportación Clínica',
+    pmIncExportDesc: 'Informes PDF/CSV para consultas médicas',
+    pmCSVExport: 'Exportación CSV',
+    pmEmail: 'Correo'
   },
   ar: {
     appName: 'HealthCalc.ai',
@@ -3117,7 +4459,7 @@ export const translations: Record<Language, TranslationKeys> = {
     commonExInfo: 'معلومات التمرين',
     mdTitle: 'إخلاء المسؤولية الطبية',
     homeWeightLossDesc: 'عجز سعرات حرارية وتتبع المغذيات الكبرى',
-    homeDiabetesDesc: 'مؤشر glycemic منخفض ومراقبة السكر',
+    homeDiabetesDesc: 'مؤشر جلايسيمي منخفض ومراقبة السكر',
     homeHypertension: 'ارتفاع ضغط الدم',
     homeHypertensionDesc: 'نظام DASH والتحكم بالصوديوم',
     homeCholesterol: 'الكوليسترول',
@@ -3130,8 +4472,11 @@ export const translations: Record<Language, TranslationKeys> = {
     homeGoutDesc: 'مضاد للالتهاب منخفض البروتينات',
     homeIBS: 'متلازمة القولون العصبي',
     homeIBSDesc: 'خطط وجبات منخفضة FODMAP',
+    homeThyroid: 'صحة الغدة الدرقية',
+    homeThyroidDesc: 'تغذية مبنية على TSH ومتابعة',
     homeSmartwatchDesc: 'تكامل بيانات الصحة في الوقت الفعلي',
     premiumRequired: 'الاشتراك المميز مطلوب',
+    loading: 'جارٍ التحميل...',
     premiumUnlockDescription: 'افتح مجموعة الصحة المتقدمة مع الوصول الكامل لجميع الوحدات.',
     upgradeToPremium: 'ترقية — 15$/سنة',
     loginRequired: 'تسجيل الدخول مطلوب',
@@ -3180,6 +4525,340 @@ export const translations: Record<Language, TranslationKeys> = {
     dashOfflineDesc: 'الخادم غير متاح. يتم تخزين السجل الصحي محلياً على هذا الجهاز.',
     backendUnavailable: 'الخادم غير متاح حالياً. جميع الآلات الحاسبة تعمل محلياً بدون اتصال.',
     chooseCuisine: 'اختر مطبخك',
+    // Food library
+    foodLibTitle: 'مكتبة السعرات الحرارية',
+    foodLibSubtitle: '60+ صنف أكل من مطابخ عالمية بسعرات دقيقة من USDA',
+    foodLibSearchBadge: 'ابحث عن أي أكل + فلتر بالمطبخ + رتب بالبروتين',
+    foodLibSearchLabel: 'ابحث',
+    foodLibSearchPlaceholder: 'فول، كشري، كبسة، سوشي...',
+    foodLibCuisineLabel: 'المطبخ',
+    foodLibAllCuisines: 'كل المطابخ',
+    foodLibSortLabel: 'ترتيب',
+    foodLibSortCalories: 'الأقل سعرات',
+    foodLibSortHighProtein: 'الأعلى بروتين',
+    foodLibSortName: 'أبجدي',
+    foodLibCaloriesFilter: 'سعرات:',
+    foodLibCalLow: 'قليل <150',
+    foodLibCalMid: 'متوسط 150-250',
+    foodLibCalHigh: 'عالي >250',
+    foodLibCalAll: 'الكل',
+    foodLibResults: 'نتيجة',
+    foodLibAll: 'الكل',
+    foodLibColItem: 'الصنف',
+    foodLibColCuisine: 'المطبخ',
+    foodLibColPortion: 'الكمية',
+    foodLibColCalories: 'سعرات',
+    foodLibColProtein: 'بروتين',
+    foodLibColCarbs: 'كارب',
+    foodLibColFat: 'دهون',
+    foodLibUsdaBadge: 'USDA',
+    foodLibNoResults: 'لا توجد نتائج لهذا البحث',
+    foodLibClearFilters: 'مسح الفلاتر',
+    foodLibSeoTitle: 'ليه مكتبة healthcalc دقيقة؟',
+    foodLibSeoBody: 'كل السعرات محسوبة من USDA FoodData Central - أكبر قاعدة بيانات أكل في العالم. بنحسب كل صنف بالجرام، مش تقديري. تقدر تستخدم المكتبة دي في أي نظام غذائي: تخسيس، تضخيم، كيتو، أو نباتي. المطابخ: متوسطي، خليجي، شامي، شمال أفريقي، آسيوي، أوروبي وأكثر.',
+    coAnnualSub: 'اشتراك سنوي · إلغاء في أي وقت',
+    coAdvancedSuite: 'حزمة الصحة المتقدمة',
+    coAnnualBilling: 'فوترة سنوية · تتجدد تلقائياً',
+    coFullName: 'الاسم الكامل',
+    coEmailAddress: 'البريد الإلكتروني',
+    coCardNumber: 'رقم البطاقة',
+    coExpiryDate: 'تاريخ الانتهاء',
+    coCvv: 'CVV',
+    coSecurityNote: 'معلوماتك المالية مشفّرة وآمنة. دي نسخة تجريبية — مش هنتحرك أي مبالغ حقيقية.',
+    coPay: 'ادفع',
+    coProcessing: 'جارٍ معالجة الدفع...',
+    coVerifyWait: 'من فضلك انتظر بينما نتحقق من الدفع.',
+    coPaymentSuccess: 'تم الدفع بنجاح!',
+    coWelcomeSuite: 'أهلاً بك في حزمة الصحة المتقدمة.',
+    coRedirecting: 'جارٍ تحويلك الآن...',
+    coPaymentFailed: 'فشل الدفع',
+    coTryAgain: 'حاول مرة أخرى',
+    coPaymentFailedFallback: 'فشل الدفع. يرجى المحاولة مرة أخرى.',
+    cuSelected: 'المطبخ المحدد',
+    cuNone: 'لم يتم الاختيار',
+    cuClear: 'مسح',
+    adviceTitle: 'الدليل الصحي الشخصي',
+    adviceLive: 'تحديث مباشر',
+    adviceBmi: 'مؤشر كتلة الجسم',
+    adviceIdealWeight: 'الوزن المثالي',
+    adviceBmr: 'معدل الأيض الأساسي',
+    adviceGoalDeficit: 'هدفك: خفض 500 سعر يوميًا لفقدان ~0.5 كجم أسبوعيًا.',
+    adviceGoalSurplus: 'هدفك: زيادة 300 سعر يوميًا مع تدريب مقاومة لبناء العضلات.',
+    adviceGoalMaintain: 'هدفك: الحفاظ على الوزن عبر موازنة السعرات مع الإنفاق.',
+    adviceRecLoss: 'نوصي بفقدان {loss} كجم للوصول للوزن المثالي (~{weeks} أسبوع بمعدل 0.5 كجم/أسبوع).',
+    adviceProteinDay: 'البروتين / اليوم',
+    adviceWaterDay: 'الماء / اليوم',
+    adviceMacros: 'المغذيات (هدفك)',
+    adviceWeightMult: 'كمية الوزن × 1.6–2.2 جم',
+    adviceWaterMult: 'الوزن × 0.033 لتر',
+    adviceCatUnderweight: 'نحافة',
+    adviceCatNormal: 'طبيعي',
+    adviceCatOverweight: 'وزن زائد',
+    adviceCatObese: 'سمنة',
+    adviceCondDiabetes: 'سكري',
+    adviceCondDiabetesTip: 'اختر كربوهيدرات منخفضة المؤشر الجلايسيمي، ووزّع الوجبات بالتساوي، وتابع فحص HbA1c. فضّل الخضروات الغنية بالألياف.',
+    adviceCondBp: 'ضغط الدم',
+    adviceCondBpTip: 'قلل الصوديوم لأقل من 5 جم يوميًا، وتجنب الأطعمة المصنعة والمخللات، وادمج الخضروات الغنية بالبوتاسيوم.',
+    adviceCondCholesterol: 'كوليسترول',
+    adviceCondCholesterolTip: 'أبقِ الدهون المشبعة أقل من 7% من السعرات، وركّز على مستوى LDL، وزد الألياف بالشوفان والبقوليات والفواكه.',
+    cuisine: 'المطبخ',
+    changeFromMain: 'غيّره من الصفحة الرئيسية',
+    print: 'طباعة',
+    todayPlan: 'خطة اليوم',
+    noLabData: 'لا توجد بيانات تحاليل بعد',
+    noLabDataDesc: 'أدخل نتائج فحص الدم من الصفحة الرئيسية ثم اضغط «تقييم وتوليد الخطة».',
+    wbTitle: 'خطة التمرين المخصصة لك',
+    wbSubtitle: 'HealthCalc.ai — تمارين علمية',
+    wbDay: 'اليوم',
+    wbType: 'نوع التمرين:',
+    wbAuto: 'توصية تلقائية',
+    wbBurnTarget: 'هدف حرق السعرات',
+    wbGoal: 'هدف التمرين',
+    wbExercisesDone: 'التمارين المنجزة',
+    wbEmailPlan: 'إرسال بالبريد',
+    wbDailyProgress: 'التقدم اليومي',
+    wbOfEx: 'من {n}',
+    wbLevelBeginner: 'مبتدئ',
+    wbLevelIntermediate: 'متوسط',
+    wbLevelAdvanced: 'متقدم',
+    wbDone: 'تم',
+    wbExercisesCompleted: 'تمارين منجزة',
+    mbBuild: 'ابني وجباتك',
+    mbPicked: '{n} اختيار',
+    mbUse: 'استخدم',
+    mbDetectedCuisine: 'اكتشفنا أنك في {country} — خطة {cuisine}',
+    mbDetectedRegion: 'اكتشفنا منطقتك: {country} — مطبخ {cuisine}',
+    mbAutoFill: 'تم ملؤها تلقائيًا باختيارات المطبخ المفضلة — عدّل بحرية',
+    mbGenerate30: 'أنشئ خطتي لـ 30 يومًا',
+    mbDishes: 'من {min} إلى {max} أطباق',
+    mbTarget: 'الهدف {kcal} سعرة',
+    mbSmartPortions: 'حِصص متكيفة تلقائيًا',
+    mbShowPlan: '{meal} - {kcal} سعرة',
+    mbHidePlan: '{meal} - {kcal} سعرة',
+    mbDish: 'الطبق',
+    mbGrams: 'الجرام',
+    mbCalories: 'السعرات',
+    mbProtein: 'بروتين',
+    mbTotal: 'الإجمالي',
+    mbCarbsFat: 'كربوهيدرات {carbs} جم · دهون {fat} جم',
+    mbAdaptiveDesc: 'تتغير الحصص تلقائيًا لتظل الوجبة دائمًا عند الهدف — أضف أو احذف أطباقًا وتتقلص الحصص أو تكبر.',
+    mbHeavy: 'ثقيلة',
+    mbExtras: 'إضافات',
+    mbBread: 'خبز',
+    mbSalads: 'سلطات',
+    mbSides: 'أطباق جانبية',
+    mbDrinks: 'مشروبات',
+    mbFruits: 'فواكه',
+    wlHeroPill: '10 مطابخ · دقيق من USDA · Mifflin-St Jeor',
+    wlGoalSelector: 'اختر هدفك — إعادة حساب الخطط تلقائيًا',
+    wlExerciseType: 'نوع التمرين',
+    wlAutoRecommend: 'توصية تلقائية',
+    wlFullWorkout: 'خطة التمرين الكاملة - 30 يوم',
+    wlWorkoutHint: 'اختر نوع التمرين أعلاه ثم اضغط الزر لفتح الخطة',
+    wlAgeYears: 'سنة',
+    wlWorkoutDaysPerWeek: 'أيام التمرين في الأسبوع',
+    wlDays: '{n} أيام',
+    wlSedentary: 'خامل',
+    wlModerate: 'معتدل',
+    wlVeryActive: 'نشيط جدًا',
+    wlCaloriesSchedule: 'جدول السعرات - {cuisine}',
+    wlUsdaAccurate: 'دقيق',
+    wlCompleteAllMeals: 'أكمل جميع الوجبات',
+    wlFullPlan: 'الخطة الكاملة - 30 يوم',
+    wlSuggestions: 'اقتراحات من مطبخ {cuisine}',
+    wlCaloriesItem: '{name} - {kcal} سعر',
+    wlProteinUnit: 'ج',
+    dbLabInterpreter: 'مفسّر نتائج المختبر',
+    dbLabsEmpty: 'أدخل قيم المختبر الخاصة بك في اللوحة اليسرى للحصول على تفسير فوري وفقًا للإرشادات الطبية لـ ADA.',
+    dbBpClassification: 'تصنيف ضغط الدم (AHA)',
+    dbSystolicRange: 'النطاق الانقباضي',
+    dbDiastolicRange: 'النطاق الانبساطي',
+    dbRecommendations: 'التوصيات',
+    dbBpClassifier: 'مصنّف ضغط الدم',
+    dbBpEmpty: 'أدخل قراءات ضغط الدم لديك ليتم تصنيفها وفقًا لإرشادات AHA مع توصيات مخصصة.',
+    db30DayMealPlan: 'خطة وجبات السكري - 30 يوم',
+    dbFoundation: 'الأساس',
+    unitMetric: 'متري',
+    unitUs: 'أمريكي',
+    ltpEngine: 'محرك الصحة الذكي',
+    ltpHeroTitle: 'مجموعة السكري وارتفاع ضغط الدم',
+    ltpHeroDesc: 'أدخل ملفك وقيم المختبر لتتلقى فورًا خطط وجبات مخصصة وتمارين وتتبع تقدم — كل ذلك متوافق مع الإرشادات السريرية لـ ADA و AHA.',
+    ltpProfileLab: 'الملف وقيم المختبر',
+    ltpProfileLabSub: 'أدخل بياناتك للحصول على تقييم شخصي وفقًا لـ ADA و AHA',
+    ltpUserProfile: 'الملف الشخصي',
+    ltpBloodGlucose: 'سكر الدم',
+    ltpFastingLabel: 'صائم (ملغ/دل)',
+    ltpFastingRange: 'طبيعي: 70–99 · ما قبل السكري: 100–125 · سكري: ≥126',
+    ltpPostLabel: 'بعد الأكل بساعتين (ملغ/دل)',
+    ltpPostRange: 'طبيعي: أقل من 140 · ما قبل السكري: 140–199 · سكري: ≥200',
+    ltpHba1cRange: 'طبيعي: أقل من 5.7% · ما قبل السكري: 5.7–6.4% · سكري: ≥6.5%',
+    ltpBloodPressure: 'ضغط الدم',
+    ltpSystolic: 'الانقباضي',
+    ltpDiastolic: 'الانبساطي',
+    ltpSystolicLabel: 'الانقباضي (مم زئبق)',
+    ltpDiastolicLabel: 'الانبساطي (مم زئبق)',
+    ltpSysShort: 'انق',
+    ltpDiaShort: 'انب',
+    ltpNormal: 'طبيعي (AHA):',
+    ltpElevated: 'مرتفع:',
+    ltpStage1: 'المرحلة 1:',
+    ltpStage2: 'المرحلة 2:',
+    ltpEvaluate: 'تقييم وإنشاء الخطة',
+    ltpHide: 'إخفاء',
+    ltpShow: 'إظهار',
+    ltpProgress: 'التقدم',
+    ltpGlucose: 'الجلوكوز',
+    ltpRisk: 'الخطر',
+    ltpDailyTargets: 'أهدافك اليومية',
+    ltpTargetsSub: 'محسوبة من العمر والوزن والطول ومستوى النشاط',
+    ltpProtein: 'بروتين:',
+    ltpCarbs: 'كربوهيدرات:',
+    ltpFat: 'دهون:',
+    ltpDiabetesPlan: 'خطة إدارة السكري',
+    ltpDiaSub: 'مبني على إرشادات ADA · مؤشر سكري منخفض · كربوهيدرات محسوبة · مُعدّل حسب العمر',
+    ltpFree: 'مجاني',
+    ltpGlucoseProfile: 'ملف الجلوكوز',
+    ltpStatus: 'الحالة',
+    ltpADATargets: 'أهداف ADA',
+    ltpPostMeal: 'بعد الوجبة',
+    ltpCarbPerMeal: 'كربوهيدرات/وجبة',
+    ltpGITarget: 'هدف المؤشر السكري',
+    ltpCarbBudget: 'ميزانية الكربوهيدرات',
+    ltpFiberGoal: 'هدف الألياف',
+    ltpDiaPlan30: 'خطة وجبات وتمارين السكري - 30 يوم',
+    ltpDiabetesMeals: 'وجبات السكري',
+    ltpADAAligned: 'متوافق مع ADA',
+    ltpOpenFullPlan: 'فتح الخطط الكاملة - 30 يوم مع PDF / الطباعة',
+    ltpDownloadPrint: 'حمّل أو اطبع خطتك الشخصية الكاملة',
+    ltpCompleteExercises: 'أكمل جميع التمارين',
+    ltpExerciseProtocol: 'بروتوكول التمرين',
+    ltpAgeAdjusted: 'مُعدّل حسب العمر',
+    ltpADAGuidelines: 'إرشادات ADA',
+    ltpHTPlan: 'خطة إدارة ارتفاع ضغط الدم',
+    ltpHTSub: 'مبني على إرشادات AHA · حمية DASH · قليل الصوديوم · مراعٍ للوزن',
+    ltpBPProfile: 'ملف ضغط الدم',
+    ltpReading: 'القراءة',
+    ltpAHATargets: 'أهداف AHA',
+    ltpBPTarget: 'هدف ضغط الدم',
+    ltpSodium: 'الصوديوم',
+    ltpPotassium: 'البوتاسيوم',
+    ltpExercise: 'التمرين',
+    ltpBMITarget: 'هدف مؤشر كتلة الجسم',
+    ltpHTPlan30: 'خطة وجبات وتمارين ارتفاع ضغط الدم - 30 يوم',
+    ltpDASHMeals: 'وجبات DASH',
+    ltpDASHAligned: 'متوافق مع DASH',
+    ltpWeightAware: 'مراعٍ للوزن',
+    ltpAHAGuidelines: 'إرشادات AHA',
+    ltpDailyMealPlan: 'خطة الوجبات اليومية',
+    ltpMealSummary: '{kcal} سعر · متوسط المؤشر السكري: {gi} · الهدف {target} سعر',
+    ltpShuffle: 'تبديل',
+    ltpDailyTracking: 'التتبع اليومي',
+    ltpMetric: 'القياس',
+    ltpTarget: 'الهدف',
+    ltpActual: 'الفعلي',
+    ltpStatusSafe: 'آمن',
+    ltpStatusOnTrack: 'على المسار الصحيح',
+    ltpStatusAttention: 'يحتاج إلى انتباه',
+    ltpStatusBelow: 'أقل من الهدف',
+    ltpStatusOver: 'تجاوز الحد',
+    ltpProgressTracking: 'تتبع التقدم',
+    ltpEntries: '{n} إدخال',
+    ltpClearAll: 'مسح الكل',
+    ltpNoProgress: 'لا توجد قراءات بعد. اضغط "{action}" لتسجيل أول إدخال.',
+    ltpGlucoseTrend: 'اتجاه الجلوكوز (آخر 7)',
+    ltpPostShort: 'بعد.',
+    ltpPostprandial: 'بعد الأكل',
+    ltpBPTrend: 'اتجاه ضغط الدم (آخر 7)',
+    ltpFasting: 'صائم',
+    ltpWeightTrend: 'اتجاه الوزن',
+    ltpDate: 'التاريخ',
+    ltpWeight: 'الوزن',
+    ltpClinicalSummary: 'الملخص السريري',
+    ltpPrintReport: 'طباعة / تنزيل التقرير',
+    ltpEmailReport: 'إرسال التقرير بالبريد',
+    ltpEmailOpened: 'تم فتح برنامج البريد',
+    ltpEmailReady: 'تقريرك الصحي الكامل مع الملف والخطط والتقدم جاهز للإرسال.',
+    ltpEmptyPrompt: 'أدخل ملفك وقيم المختبر أعلاه ثم اضغط "{action}".',
+    pmSuiteBadge: 'حزمة الصحة المتقدمة',
+    pmFreeModules: '{n} وحدات مجانية',
+    pmHeroSub: 'رحلات صحية منظمة لمدة 30 يومًا مع خطط متكيفة بالذكاء الاصطناعي وتتبع يومي وتصدير سريري لـ 8 حالات.',
+    pmSuiteActive: 'حزمة الرعاية المتقدمة مفعّلة',
+    pmSuiteActiveSub: 'وصول كامل إلى جميع الوحدات بما في ذلك {n} برامج مجانية.',
+    pmCrossAdvisory: 'استشارة مشتركة بين الحالات',
+    pmConditionModules: 'وحدات الحالات',
+    pmConditionSub: 'اختر الحالات لتفعيل رحلات صحية لمدة 30 يومًا',
+    pmActive: 'مفعّل',
+    pmPremium: 'متميز',
+    pmClickDeactivate: 'اضغط للإلغاء ↑',
+    pmClickActivate: 'اضغط للتفعيل →',
+    pm30DayJourney: 'رحلة صحية لمدة 30 يومًا',
+    pmCustomized: 'مخصص',
+    pmPatientProfile: 'الملف الطبي للمريض',
+    pmLabValues: 'قيم المختبر',
+    pmGeneratePlan: 'إنشاء خطة الـ 30 يوم',
+    pmPlansGenerated: 'تم إنشاء الخطط وتخصيصها',
+    pmHealthScore: 'درجة الصحة',
+    pmCheckInStreak: 'سلسلة تسجيل الدخول',
+    pmStreakInfo: 'الحالية: {c} أيام · الأطول: {l} أيام',
+    pmAIAutoAdj: 'تعديل ذكي تلقائي: {type}',
+    pmTabPlan30: 'خطة 30 يوم',
+    pmTabCheckin: 'تسجيل يومي',
+    pmTabAnalytics: 'التحليلات والسلاسل',
+    pmTabGuidelines: 'الإرشادات',
+    pm30DayPlanLabel: '{name} — خطة 30 يوم',
+    pmDailyCheckIn: 'تسجيل يومي',
+    pmDayOf30: 'اليوم {n} من 30 · سجل مؤشراتك اليومية',
+    pmCancel: 'إلغاء',
+    pmLogToday: 'سجل اليوم',
+    pmSaveCheckIn: 'حفظ التسجيل',
+    pmDayLabel: 'اليوم {n}',
+    pmSymptomLog: 'سجل محفّزات الأعراض',
+    pmSymptomLogSub: 'سجّل النوبات وحدد الأنماط',
+    pmLogTrigger: 'تسجيل محفّز',
+    pmSymptom: 'العرض',
+    pmSelectOption: 'اختر...',
+    pmTriggerFood: 'طعام/سبب محفّز محتمل',
+    pmSelectCustom: 'اختر أو اكتب قيمة مخصصة...',
+    pmSeverity: 'الشدة (1-10): {n}',
+    pmNotes: 'ملاحظات',
+    pmNotesPlaceholder: 'سياق إضافي...',
+    pmSaveTrigger: 'حفظ المحفّز',
+    pmTriggerPrefix: 'المحفّز:',
+    pmWeeklyMilestones: 'أهداف أسبوعية',
+    pmMilestoneTarget: 'الهدف: {t} {u}',
+    pmMilestoneCurrent: '(الحالي: {n})',
+    pmMilestoneDescPlaceholder: 'وصف الهدف',
+    pmUnit: 'الوحدة',
+    pmAdd: 'إضافة',
+    pmRecentTrends: 'الاتجاهات الأخيرة',
+    pmAvg: 'المتوسط: {n}',
+    pmCheckIns: 'التسجيلات',
+    pmDayStreak: 'سلسلة الأيام',
+    pmMilestones: 'الأهداف',
+    pmTriggersLogged: 'المحفّزات المسجلة',
+    pmGuidelinesTitle: 'الإرشادات الطبية والتوصيات',
+    pmWhatsIncluded: 'ما المكوّن؟',
+    pmIncludeSub: 'إدارة صحية كاملة خاصة بالحالة',
+    pmIncPlans: 'خطط 30 يوم',
+    pmIncPlansDesc: 'رحلات يومية منظمة مع وجبات وتمارين وأهداف سريرية',
+    pmIncTracking: 'تتبع يومي',
+    pmIncTrackingDesc: 'سجلات التسجيل ومحفّزات الأعراض والالتزام بالأدوية',
+    pmIncAI: 'تكيّف ذكي',
+    pmIncAIDesc: 'تعديلات ذكية تلقائية بناءً على بيانات تتبعك',
+    pmIncExport: 'تصدير سريري',
+    pmIncExportDesc: 'تقارير PDF/CSV لاستشارات الأطباء',
+    pmCSVExport: 'تصدير CSV',
+    pmEmail: 'بريد'
+
+
+
+
+
+
+
+
+
+
   },
 };
 

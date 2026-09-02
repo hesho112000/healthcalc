@@ -279,7 +279,7 @@ export const MealCard: React.FC<{
               <span className="px-1.5 py-0.5 rounded-md bg-emerald-600 text-[9px] font-bold text-white" title="USDA Database">USDA ✓</span>
             )}
             {heavy && (
-              <span className="px-1.5 py-0.5 rounded-md bg-red-100 text-[9px] font-bold text-red-700" title="Heavy dish · best at lunch">⚠️ {language === 'ar' ? 'ثقيلة' : 'Heavy'}</span>
+              <span className="px-1.5 py-0.5 rounded-md bg-red-100 text-[9px] font-bold text-red-700" title="Heavy dish · best at lunch">⚠️ {t('mbHeavy')}</span>
             )}
             <p className="text-2xl font-black text-primary-700 leading-none">{meal.calories}</p>
           </div>

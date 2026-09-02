@@ -121,8 +121,8 @@ const BmiPage: React.FC = () => {
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-base font-bold text-gray-900">{t('bmiYourDetails')}</h2>
                 <div className="toggle-group">
-                  <button type="button" onClick={() => setUnit('metric')} className={unit === 'metric' ? 'toggle-btn-active' : 'toggle-btn-inactive'}>Metric</button>
-                  <button type="button" onClick={() => setUnit('us')} className={unit === 'us' ? 'toggle-btn-active' : 'toggle-btn-inactive'}>US</button>
+                  <button type="button" onClick={() => setUnit('metric')} className={unit === 'metric' ? 'toggle-btn-active' : 'toggle-btn-inactive'}>{t('unitMetric')}</button>
+                  <button type="button" onClick={() => setUnit('us')} className={unit === 'us' ? 'toggle-btn-active' : 'toggle-btn-inactive'}>{t('unitUs')}</button>
                 </div>
               </div>
 

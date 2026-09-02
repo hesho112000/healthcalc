@@ -35,29 +35,34 @@ export interface MealBuilderProps {
   className?: string;
 }
 
-const TABS: Array<{ id: 'breakfast' | 'lunch' | 'dinner' | 'extras'; en: string; ar: string; emoji: string }> = [
-  { id: 'breakfast', en: 'Breakfast', ar: 'الإفطار', emoji: '🍳' },
-  { id: 'lunch', en: 'Lunch', ar: 'الغداء', emoji: '☀️' },
-  { id: 'dinner', en: 'Dinner', ar: 'العشاء', emoji: '🌙' },
-  { id: 'extras', en: 'Extras', ar: 'إضافات', emoji: '🥖' },
+type MealSlotId = 'breakfast' | 'lunch' | 'dinner';
+
+const TABS: Array<{ id: 'breakfast' | 'lunch' | 'dinner' | 'extras'; key: 'mealBreakfast' | 'mealLunch' | 'mealDinner' | 'mbExtras'; emoji: string }> = [
+  { id: 'breakfast', key: 'mealBreakfast', emoji: '🍳' },
+  { id: 'lunch', key: 'mealLunch', emoji: '☀️' },
+  { id: 'dinner', key: 'mealDinner', emoji: '🌙' },
+  { id: 'extras', key: 'mbExtras', emoji: '🥖' },
 ];
 
-const EXTRA_GROUPS: Array<{ slot: 'breads' | 'juices' | 'fruits' | 'sides' | 'salads'; en: string; ar: string; emoji: string }> = [
-  { slot: 'breads', en: 'Bread', ar: 'خبز', emoji: '🥖' },
-  { slot: 'salads', en: 'Salads', ar: 'سلطات', emoji: '🥗' },
-  { slot: 'sides', en: 'Sides', ar: 'أطباق جانبية', emoji: '🍲' },
-  { slot: 'juices', en: 'Drinks', ar: 'مشروبات', emoji: '🧃' },
-  { slot: 'fruits', en: 'Fruits', ar: 'فواكه', emoji: '🍎' },
+const EXTRA_GROUPS: Array<{ slot: 'breads' | 'juices' | 'fruits' | 'sides' | 'salads'; key: 'mbBread' | 'mbDrinks' | 'mbFruits' | 'mbSides' | 'mbSalads'; emoji: string }> = [
+  { slot: 'breads', key: 'mbBread', emoji: '🥖' },
+  { slot: 'salads', key: 'mbSalads', emoji: '🥗' },
+  { slot: 'sides', key: 'mbSides', emoji: '🍲' },
+  { slot: 'juices', key: 'mbDrinks', emoji: '🧃' },
+  { slot: 'fruits', key: 'mbFruits', emoji: '🍎' },
 ];
 
-const SLOT_NAMES: Record<'breakfast' | 'lunch' | 'dinner', { en: string; ar: string }> = {
-  breakfast: { en: 'Breakfast', ar: 'الفطار' },
-  lunch: { en: 'Lunch', ar: 'الغداء' },
-  dinner: { en: 'Dinner', ar: 'العشاء' },
+const SLOT_NAME_KEYS: Record<MealSlotId, 'mealBreakfast' | 'mealLunch' | 'mealDinner'> = {
+  breakfast: 'mealBreakfast',
+  lunch: 'mealLunch',
+  dinner: 'mealDinner',
 };
 
+const fmt = (template: string, vars: Record<string, string | number>): string =>
+  template.replace(/\{(\w+)\}/g, (_, k) => (k in vars ? String(vars[k]) : `{${k}}`));
+
 const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters, targetCalories = 2000, macros, onGenerate, onCuisineChange, className = '' }) => {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const ar = language === 'ar';
 
   const pool = useMemo(() => buildBuilderPool(cuisine, sectionType, filters), [cuisine, sectionType, filters]);
@@ -71,9 +76,9 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
     [sectionType, macros],
   );
 
-  const slotTarget = (slot: 'breakfast' | 'lunch' | 'dinner') => Math.round(targetCalories * MEAL_ALLOC[slot]);
+  const slotTarget = (slot: MealSlotId) => Math.round(targetCalories * MEAL_ALLOC[slot]);
 
-  const slotFoods = (slot: 'breakfast' | 'lunch' | 'dinner'): FoodItem[] => {
+  const slotFoods = (slot: MealSlotId): FoodItem[] => {
     if (slot === 'breakfast') return [...selections.breakfast, ...selections.fruits.slice(0, 1)];
     if (slot === 'lunch') return [...selections.lunch, ...selections.breads.slice(0, 1)];
     return [...selections.dinner];
@@ -83,7 +88,7 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
     setSelections((prev) => ensureFilled(prev, pool));
   }, [pool]);
 
-  const adjustCount = (slot: 'breakfast' | 'lunch' | 'dinner', delta: number) => {
+  const adjustCount = (slot: MealSlotId, delta: number) => {
     setSelections((prev) => {
       const list = prev[slot];
       const count = list.length + delta;
@@ -158,7 +163,7 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
           <span className="px-1.5 py-0.5 rounded-md bg-orange-50 text-[10px] font-semibold text-orange-600">P {item.protein}g</span>
           <span className="px-1.5 py-0.5 rounded-md bg-yellow-50 text-[10px] font-semibold text-yellow-700">C {item.carbs}g</span>
           {item.heavy && (
-            <span className="px-1.5 py-0.5 rounded-md bg-red-100 text-[10px] font-bold text-red-700" title="Heavy dish">⚠️ {ar ? 'ثقيلة' : 'Heavy'}</span>
+            <span className="px-1.5 py-0.5 rounded-md bg-red-100 text-[10px] font-bold text-red-700" title="Heavy dish">⚠️ {t('mbHeavy')}</span>
           )}
           {showGl && <span className="px-1.5 py-0.5 rounded-md bg-rose-50 text-[10px] font-semibold text-rose-600">GL≈{gl}</span>}
           {showLowSodium && sodium !== undefined && (
@@ -174,12 +179,13 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
     );
   };
 
-  const renderSlot = (slot: 'breakfast' | 'lunch' | 'dinner') => {
+  const renderSlot = (slot: MealSlotId) => {
     const items = pool[slot];
     const { min, max } = SLOT_LIMITS[slot];
     const count = selections[slot].length;
     const preview = scaleMeal(slotTarget(slot), slotFoods(slot), effectiveMacros, language);
     const open = !!openSlots[slot];
+    const slotNameKey = SLOT_NAME_KEYS[slot];
     return (
       <div>
         <div className="flex items-center justify-between mb-2 gap-2 flex-wrap">
@@ -204,11 +210,11 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
               +
             </button>
             <span className="ml-1.5 text-xs font-bold text-gray-400 uppercase tracking-wider">
-              {ar ? `${min}-${max} أطباق` : `${min}–${max} dishes`}
+              {fmt(t('mbDishes'), { min, max })}
             </span>
           </div>
           <span className="px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 text-[11px] font-bold">
-            {ar ? `الهدف ${slotTarget(slot)} سعرة` : `Target ${slotTarget(slot)} kcal`}
+            {fmt(t('mbTarget'), { kcal: slotTarget(slot) })}
           </span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
@@ -220,10 +226,10 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
             onClick={() => setOpenSlots((prev) => ({ ...prev, [slot]: !prev[slot] }))}
             className="w-full flex items-center justify-between gap-2 text-left cursor-pointer"
           >
-            <span className="text-xs font-extrabold text-indigo-800">{ar ? 'حِصص متكيفة تلقائيًا' : 'Smart adaptive portions'}</span>
+            <span className="text-xs font-extrabold text-indigo-800">{t('mbSmartPortions')}</span>
             <span className={`text-[11px] font-bold whitespace-nowrap ${open ? 'text-indigo-700' : 'bg-emerald-100 text-emerald-700 px-2 py-1 rounded-lg'}`}>
               {open ? '▾ ' : '▸ '}
-              {ar ? `${open ? 'إخفاء' : 'عرض'} خطة ${SLOT_NAMES[slot].ar} - ${slotTarget(slot)} سعرة` : `${open ? 'Hide' : 'Show'} ${SLOT_NAMES[slot].en} Plan - ${slotTarget(slot)} kcal`}
+              {fmt(open ? t('mbHidePlan') : t('mbShowPlan'), { meal: t(slotNameKey), kcal: slotTarget(slot) })}
             </span>
           </button>
           {open && (
@@ -232,10 +238,10 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
                 <table className="w-full text-[11px]">
                   <thead>
                     <tr className="text-left text-gray-400 border-b border-indigo-200/70">
-                      <th className="pb-1.5 pr-1">{ar ? 'الطبق' : 'Dish'}</th>
-                      <th className="pb-1.5 text-center">{ar ? 'الجرام' : 'Grams'}</th>
-                      <th className="pb-1.5 text-center">{ar ? 'السعرات' : 'kcal'}</th>
-                      <th className="pb-1.5 text-center">{ar ? 'بروتين' : 'Protein'}</th>
+                      <th className="pb-1.5 pr-1">{t('mbDish')}</th>
+                      <th className="pb-1.5 text-center">{t('mbGrams')}</th>
+                      <th className="pb-1.5 text-center">{t('mbCalories')}</th>
+                      <th className="pb-1.5 text-center">{t('mbProtein')}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-indigo-100/70">
@@ -243,7 +249,7 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
                       <tr key={i}>
                         <td className="py-1.5 pr-1 font-medium text-gray-700">{r.label}</td>
                         <td className="py-1.5 text-center text-gray-600">
-                          <span title={ar ? `كربوهيدرات ${r.carbs} جم · دهون ${r.fat} جم` : `Carbs ${r.carbs}g · Fat ${r.fat}g`} className="cursor-help">
+                          <span title={fmt(t('mbCarbsFat'), { carbs: r.carbs, fat: r.fat })} className="cursor-help">
                             {r.grams} {r.unit === 'ml' ? (ar ? 'مل' : 'ml') : (ar ? 'جم' : 'g')}
                           </span>
                         </td>
@@ -254,9 +260,9 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
                   </tbody>
                   <tfoot>
                     <tr className="border-t-2 border-indigo-200 font-extrabold text-indigo-800">
-                      <td className="pt-1.5 pr-1">{ar ? 'الإجمالي' : 'Total'}</td>
+                      <td className="pt-1.5 pr-1">{t('mbTotal')}</td>
                       <td className="pt-1.5 text-center">
-                        <span title={ar ? `كربوهيدرات ${preview.carbs} جم · دهون ${preview.fat} جم` : `Carbs ${preview.carbs}g · Fat ${preview.fat}g`} className="cursor-help">
+                        <span title={fmt(t('mbCarbsFat'), { carbs: preview.carbs, fat: preview.fat })} className="cursor-help">
                           {preview.rows.reduce((s, r) => s + r.grams, 0)} {ar ? 'جم' : 'g'}
                         </span>
                       </td>
@@ -267,9 +273,7 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
                 </table>
               </div>
               <p className="mt-2 text-[10px] text-indigo-400">
-                {ar
-                  ? 'تتغير الحصص تلقائيًا لتظل الوجبة دائمًا عند الهدف — أضف أو احذف أطباقًا وتتقلص الحصص أو تكبر.'
-                  : 'Portions auto-resize so the meal always lands on target — add or remove dishes and portions shrink or grow.'}
+                {t('mbAdaptiveDesc')}
               </p>
             </div>
           )}
@@ -288,7 +292,7 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
           <div key={group.slot}>
             <div className="flex items-center gap-2 mb-2">
               <span className="text-lg leading-none">{group.emoji}</span>
-              <span className="text-sm font-extrabold text-gray-800">{ar ? group.ar : group.en}</span>
+              <span className="text-sm font-extrabold text-gray-800">{t(group.key)}</span>
               <span className={`ml-auto px-2 py-0.5 rounded-full text-[11px] font-bold ${count >= min ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>
                 {count}/{max}
               </span>
@@ -308,28 +312,28 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
     <div className={`space-y-4 ${className}`}>
       <div className="flex items-center gap-2">
         <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 text-white text-xs font-extrabold flex items-center justify-center">2</span>
-        <h3 className="font-bold text-gray-900">{ar ? 'ابني وجباتك' : 'Build Your Meals'}</h3>
-        <span className="ml-auto text-[11px] font-bold text-gray-400">{ar ? `${totalPicked} اختيار` : `${totalPicked} picked`}</span>
+        <h3 className="font-bold text-gray-900">{t('mbBuild')}</h3>
+        <span className="ml-auto text-[11px] font-bold text-gray-400">{fmt(t('mbPicked'), { n: totalPicked })}</span>
       </div>
 
       {geo && onCuisineChange && detectedCuisine !== cuisine && (
         <div className="flex items-center gap-2 justify-between bg-blue-50 border border-blue-100 rounded-xl px-3 py-2 text-xs">
           <span className="text-blue-700 font-medium">
-            📍 {ar ? `اكتشفنا أنك في ${geo.countryAr} — خطة ${getCuisineLocalName(detectedCuisine, language)}` : `Detected you're in ${geo.countryEn} — ${getCuisineLocalName(detectedCuisine, 'en')} plan`}
+            📍 {fmt(t('mbDetectedCuisine'), { country: ar ? geo.countryAr : geo.countryEn, cuisine: getCuisineLocalName(detectedCuisine, language) })}
           </span>
           <button type="button" onClick={() => onCuisineChange(detectedCuisine)} className="px-2.5 py-1 rounded-lg bg-blue-600 text-white text-[11px] font-bold hover:bg-blue-700 transition-colors cursor-pointer">
-            {ar ? 'استخدم' : 'Use'}
+            {t('mbUse')}
           </button>
         </div>
       )}
       {geo && onCuisineChange && detectedCuisine === cuisine && (
         <div className="px-3 py-2 rounded-xl bg-gray-50 border border-gray-100 text-xs text-gray-500">
-          📍 {ar ? `اكتشفنا منطقتك: ${geo.countryAr} — مطبخ ${getCuisineLocalName(cuisine, language)}` : `Detected region: ${geo.countryEn} — ${getCuisineLocalName(cuisine, 'en')} cuisine`}
+          📍 {fmt(t('mbDetectedRegion'), { country: ar ? geo.countryAr : geo.countryEn, cuisine: getCuisineLocalName(cuisine, language) })}
         </div>
       )}
 
       <div className="text-[11px] text-gray-400 -mt-1">
-        {ar ? 'تم ملؤها تلقائيًا باختيارات المطبخ المفضلة — عدّل بحرية' : `Auto-filled with ${getCuisineLocalName(cuisine, ar ? 'ar' : 'en')} favorites — adjust freely`}
+        {fmt(t('mbAutoFill'), { cuisine: getCuisineLocalName(cuisine, language) })}
       </div>
 
       <div className="flex flex-wrap gap-2">
@@ -344,7 +348,7 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
                 : 'border-gray-200 bg-white text-gray-600 hover:border-blue-300'
             }`}
           >
-            {tab.emoji} {ar ? tab.ar : tab.en}
+            {tab.emoji} {t(tab.key)}
           </button>
         ))}
       </div>
@@ -361,7 +365,7 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
           onClick={handleGenerate}
           className="flex-1 btn-primary py-3.5 text-sm font-extrabold flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
         >
-          ✨ {ar ? 'أنشئ خطتي لـ 30 يومًا' : 'Generate My 30-Day Plan'}
+          ✨ {t('mbGenerate30')}
         </button>
       </div>
     </div>

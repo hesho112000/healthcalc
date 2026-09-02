@@ -49,7 +49,7 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
   const currentDayData = fullMealPlan && fullMealPlan[activeDay] ? fullMealPlan[activeDay] : null;
   const cuisineMeals = useMemo(() => buildMealRowsForCuisine(activeCuisine, language === 'ar' ? 'ar' : 'en', targetCalories || 2000), [activeCuisine, language, targetCalories]);
   const activeMealPlan = currentDayData ? currentDayData.meals : (mealPlan.length > 0 ? cuisineMeals : mealPlan);
-  const dayTheme = currentDayData?.theme ?? 'Today\'s Plan';
+  const dayTheme = currentDayData?.theme ?? t('todayPlan');
   const displayCalories = targetCalories > 0 ? targetCalories : Math.round(activeMealPlan.reduce((sum, m) => sum + (m.calories || 0), 0));
   const cuisineMeta = CUISINE_META[activeCuisine];
   const cuisineLabel = cuisineMeta
@@ -186,7 +186,7 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
         {/* Lab Results */}
         {labSummary && (
           <div className="bg-blue-50/60 border-b border-blue-100 px-6 py-2 shrink-0 flex items-center gap-2">
-            <span className="text-[10px] font-bold text-blue-600 uppercase tracking-wider">🩸 {language === 'ar' ? 'نتائج التحاليل' : 'Lab Results'}</span>
+            <span className="text-[10px] font-bold text-blue-600 uppercase tracking-wider">🩸 {t('labResults')}</span>
             <span className="text-xs text-gray-700 font-medium">{labSummary}</span>
           </div>
         )}
@@ -196,9 +196,9 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
           <div className="flex items-center gap-3">
             <span className="text-xs font-bold text-gray-500 shrink-0">🍽️</span>
             <div className="flex items-center gap-2 text-sm text-gray-600 flex-wrap">
-              <span className="font-semibold">{language === 'ar' ? 'المطبخ' : 'Cuisine'}:</span>
+              <span className="font-semibold">{t('cuisine')}:</span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-blue-50 text-blue-700 font-bold">{cuisineLabel}</span>
-              <span className="text-[10px] text-gray-400">({language === 'ar' ? 'غيّره من الصفحة الرئيسية' : 'Change from main page'})</span>
+              <span className="text-[10px] text-gray-400">({t('changeFromMain')})</span>
             </div>
           </div>
         </div>
@@ -256,7 +256,7 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
             </button>
             <button onClick={handlePrint} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200 transition-all cursor-pointer">
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z" /></svg>
-              Print
+              {t('print')}
             </button>
             <button onClick={() => { const s = encodeURIComponent('My HealthCalc.ai Meal Plan'); const b = encodeURIComponent(`Target: ${displayCalories} kcal\n\n${activeMealPlan.map(m => `${getMealName(m, language)}: ${m.description}`).join('\n')}`); window.open(`mailto:?subject=${s}&body=${b}`); }}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-sage-50 text-sage-700 hover:bg-sage-100 transition-all cursor-pointer">
@@ -298,8 +298,8 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
           {activeMealPlan.length === 0 ? (
             <div className="min-h-[40vh] flex flex-col items-center justify-center text-center">
               <span className="text-5xl mb-4">📋</span>
-              <p className="font-extrabold text-gray-800 text-base">{language === 'ar' ? 'لا توجد بيانات تحاليل بعد' : 'No lab data yet'}</p>
-              <p className="text-xs text-gray-400 mt-1 max-w-xs">{language === 'ar' ? 'أدخل نتائج فحص الدم من الصفحة الرئيسية ثم اضغط "تقييم وتوليد الخطة"' : 'Enter your blood test results on the main page, then click "Evaluate & Generate Plan".'}</p>
+              <p className="font-extrabold text-gray-800 text-base">{t('noLabData')}</p>
+              <p className="text-xs text-gray-400 mt-1 max-w-xs">{t('noLabDataDesc')}</p>
             </div>
           ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

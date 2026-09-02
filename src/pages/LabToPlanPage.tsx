@@ -217,6 +217,7 @@ function evaluateLabs(fasting: number, postprandial: number, hba1c: number, syst
 /* ──────────────── Component ──────────────── */
 const LabToPlanPage: React.FC = () => {
   const { t, language } = useLanguage();
+  const fmt = (tpl: string, vars: Record<string, string | number>) => tpl.replace(/\{(\w+)\}/g, (_, k) => (k in vars ? String(vars[k]) : `{${k}}`));
 
   const [age, setAge] = useState<number>(45);
   const [weight, setWeight] = useState<number>(75);
@@ -355,16 +356,16 @@ const LabToPlanPage: React.FC = () => {
   };
 
   const getStatusLabel = (row: TrackingRow): string => {
-    if (row.label === 'Hydration') { if (row.actual >= row.target && row.actual <= 12) return 'On Track'; if (row.actual >= row.target - 2) return 'Needs Attention'; return 'Below Target'; }
-    if (row.actual <= row.target) return 'Safe';
-    if (row.actual <= row.target * 1.15) return 'Needs Attention';
-    return 'Over Limit';
+    if (row.label === 'Hydration') { if (row.actual >= row.target && row.actual <= 12) return t('ltpStatusOnTrack'); if (row.actual >= row.target - 2) return t('ltpStatusAttention'); return t('ltpStatusBelow'); }
+    if (row.actual <= row.target) return t('ltpStatusSafe');
+    if (row.actual <= row.target * 1.15) return t('ltpStatusAttention');
+    return t('ltpStatusOver');
   };
 
   const currentMeals: MealSlot[] = ['breakfast', 'lunch', 'dinner'];
   const totalCalories = currentMeals.reduce((sum, s) => sum + mealDB[s][mealIndices[s]].calories, 0);
   const totalGI = Math.round(currentMeals.reduce((sum, s) => sum + mealDB[s][mealIndices[s]].gi, 0) / 3);
-  const slotLabels: Record<MealSlot, { label: string; icon: string }> = { breakfast: { label: 'Breakfast', icon: '🌅' }, lunch: { label: 'Lunch', icon: '☀️' }, dinner: { label: 'Dinner', icon: '🌙' } };
+  const slotLabels: Record<MealSlot, { label: string; icon: string }> = { breakfast: { label: t('mealBreakfast'), icon: '🌅' }, lunch: { label: t('mealLunch'), icon: '☀️' }, dinner: { label: t('mealDinner'), icon: '🌙' } };
 
   const getExerciseForProfile = (base: ConditionWorkout[]): ConditionWorkout[] => {
     return base.map(ex => {
@@ -405,11 +406,11 @@ const LabToPlanPage: React.FC = () => {
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full mb-4">
               <span className="w-1.5 h-1.5 bg-primary-200 rounded-full animate-pulse-soft" />
-              <span className="text-xs font-medium text-primary-100">Smart Health Engine</span>
+              <span className="text-xs font-medium text-primary-100">{t('ltpEngine')}</span>
             </div>
-            <h1 className="text-2xl md:text-4xl font-extrabold tracking-tight mb-3">Diabetes &amp; Hypertension Suite</h1>
+            <h1 className="text-2xl md:text-4xl font-extrabold tracking-tight mb-3">{t('ltpHeroTitle')}</h1>
             <p className="text-primary-100 text-sm md:text-base leading-relaxed">
-              Enter your profile and lab values to instantly receive personalized meal plans, exercise routines, and progress tracking — all aligned with ADA and AHA clinical guidelines.
+              {t('ltpHeroDesc')}
             </p>
           </div>
         </div>
@@ -424,32 +425,32 @@ const LabToPlanPage: React.FC = () => {
               <svg className="w-5 h-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714a2.25 2.25 0 00.659 1.591L19 14.5m-4.25-11.398c.251.023.501.05.75.082M5 14.5l-.94 1.88a2.25 2.25 0 002.064 3.12h9.752a2.25 2.25 0 002.064-3.12L19 14.5" /></svg>
             </div>
             <div>
-              <h2 className="font-bold text-gray-900">Profile &amp; Lab Values</h2>
-              <p className="text-xs text-gray-500">Enter your metrics for personalized ADA &amp; AHA evaluation</p>
+              <h2 className="font-bold text-gray-900">{t('ltpProfileLab')}</h2>
+              <p className="text-xs text-gray-500">{t('ltpProfileLabSub')}</p>
             </div>
           </div>
 
           {/* Profile Row */}
           <div className="bg-gradient-to-br from-sage-50 to-primary-50 rounded-2xl p-5 border border-sage-100/80 mb-6">
-            <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2"><span className="text-lg">👤</span> User Profile</h3>
+            <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2"><span className="text-lg">👤</span> {t('ltpUserProfile')}</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div>
-                <label className="label text-sage-600">Age</label>
+                <label className="label text-sage-600">{t('age')}</label>
                 <input type="number" value={age} onChange={e => setAge(+e.target.value)} className="input-field-lg bg-white" />
               </div>
               <div>
-                <label className="label text-sage-600">Weight (kg)</label>
+                <label className="label text-sage-600">{t('weightLabel')} (kg)</label>
                 <input type="number" value={weight} onChange={e => setWeight(+e.target.value)} className="input-field-lg bg-white" />
               </div>
               <div>
-                <label className="label text-sage-600">Height (cm)</label>
+                <label className="label text-sage-600">{t('height')} (cm)</label>
                 <input type="number" value={height} onChange={e => setHeight(+e.target.value)} className="input-field-lg bg-white" />
               </div>
               <div>
-                <label className="label text-sage-600">Gender</label>
+                <label className="label text-sage-600">{t('gender')}</label>
                 <select value={gender} onChange={e => setGender(e.target.value)} className="input-field-lg bg-white">
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
+                  <option value="male">{t('male')}</option>
+                  <option value="female">{t('female')}</option>
                 </select>
               </div>
             </div>
@@ -463,25 +464,25 @@ const LabToPlanPage: React.FC = () => {
           {/* Lab Values Row */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div className="bg-gradient-to-br from-rose-50 to-orange-50 rounded-2xl p-5 border border-rose-100/80">
-              <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2"><span className="text-lg">🩸</span> Blood Glucose</h3>
+              <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2"><span className="text-lg">🩸</span> {t('ltpBloodGlucose')}</h3>
               <div className="space-y-3">
-                <div><label className="label text-rose-600">Fasting (mg/dL)</label><input type="number" value={fasting} onChange={e => setFasting(+e.target.value)} className="input-field-lg bg-white" /><p className="text-[10px] text-gray-400 mt-1">Normal: 70–99 · Pre: 100–125 · Diabetes: ≥126</p></div>
-                <div><label className="label text-rose-600">Postprandial 2hr (mg/dL)</label><input type="number" value={postprandial} onChange={e => setPostprandial(+e.target.value)} className="input-field-lg bg-white" /><p className="text-[10px] text-gray-400 mt-1">Normal: &lt;140 · Pre: 140–199 · Diabetes: ≥200</p></div>
-                <div><label className="label text-rose-600">HbA1c (%)</label><input type="number" step="0.1" value={hba1c} onChange={e => setHba1c(+e.target.value)} className="input-field-lg bg-white" /><p className="text-[10px] text-gray-400 mt-1">Normal: &lt;5.7% · Pre: 5.7–6.4% · Diabetes: ≥6.5%</p></div>
+                <div><label className="label text-rose-600">{t('ltpFastingLabel')}</label><input type="number" value={fasting} onChange={e => setFasting(+e.target.value)} className="input-field-lg bg-white" /><p className="text-[10px] text-gray-400 mt-1">{t('ltpFastingRange')}</p></div>
+                <div><label className="label text-rose-600">{t('ltpPostLabel')}</label><input type="number" value={postprandial} onChange={e => setPostprandial(+e.target.value)} className="input-field-lg bg-white" /><p className="text-[10px] text-gray-400 mt-1">{t('ltpPostRange')}</p></div>
+                <div><label className="label text-rose-600">HbA1c (%)</label><input type="number" step="0.1" value={hba1c} onChange={e => setHba1c(+e.target.value)} className="input-field-lg bg-white" /><p className="text-[10px] text-gray-400 mt-1">{t('ltpHba1cRange')}</p></div>
               </div>
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-5 border border-blue-100/80">
-              <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2"><span className="text-lg">❤️</span> Blood Pressure</h3>
+              <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2"><span className="text-lg">❤️</span> {t('ltpBloodPressure')}</h3>
               <div className="space-y-3">
                 <div className="flex gap-3">
-                  <div className="flex-1"><label className="label text-blue-600">Systolic (mmHg)</label><input type="number" value={systolic} onChange={e => setSystolic(+e.target.value)} className="input-field-lg bg-white" /></div>
-                  <div className="flex-1"><label className="label text-blue-600">Diastolic (mmHg)</label><input type="number" value={diastolic} onChange={e => setDiastolic(+e.target.value)} className="input-field-lg bg-white" /></div>
+                  <div className="flex-1"><label className="label text-blue-600">{t('ltpSystolicLabel')}</label><input type="number" value={systolic} onChange={e => setSystolic(+e.target.value)} className="input-field-lg bg-white" /></div>
+                  <div className="flex-1"><label className="label text-blue-600">{t('ltpDiastolicLabel')}</label><input type="number" value={diastolic} onChange={e => setDiastolic(+e.target.value)} className="input-field-lg bg-white" /></div>
                 </div>
                 <div className="bg-white/60 rounded-xl p-3 text-[11px] text-gray-500 space-y-1">
-                  <div className="flex justify-between"><span>Normal (AHA):</span><span className="font-medium">≤120 / ≤80</span></div>
-                  <div className="flex justify-between"><span>Elevated:</span><span className="font-medium">121–129 / &lt;80</span></div>
-                  <div className="flex justify-between"><span>Stage 1 HTN:</span><span className="font-medium">130–139 / 80–89</span></div>
-                  <div className="flex justify-between"><span>Stage 2 HTN:</span><span className="font-medium">≥140 / ≥90</span></div>
+                  <div className="flex justify-between"><span>{t('ltpNormal')}</span><span className="font-medium">≤120 / ≤80</span></div>
+                  <div className="flex justify-between"><span>{t('ltpElevated')}</span><span className="font-medium">121–129 / &lt;80</span></div>
+                  <div className="flex justify-between"><span>{t('ltpStage1')}</span><span className="font-medium">130–139 / 80–89</span></div>
+                  <div className="flex justify-between"><span>{t('ltpStage2')}</span><span className="font-medium">≥140 / ≥90</span></div>
                 </div>
               </div>
             </div>
@@ -490,10 +491,10 @@ const LabToPlanPage: React.FC = () => {
           <div className="flex gap-3">
             <button onClick={handleEvaluate} className="btn-primary flex-1 sm:flex-none">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
-              Evaluate &amp; Generate Plan
+              {t('ltpEvaluate')}
             </button>
             <button onClick={() => setShowProgress(!showProgress)} className="btn-outline flex-1 sm:flex-none print:hidden">
-              {showProgress ? 'Hide' : 'Show'} Progress
+              {showProgress ? t('ltpHide') : t('ltpShow')} {t('ltpProgress')}
             </button>
           </div>
         </div>
@@ -506,11 +507,11 @@ const LabToPlanPage: React.FC = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className={`card border ${evaluated.glucoseColor.split(' ')[2]} flex items-center gap-3`}>
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg ${evaluated.glucoseColor.split(' ').slice(1).join(' ')}`}>🩸</div>
-                <div><p className="text-[9px] font-semibold text-gray-400 uppercase">Glucose</p><p className={`font-bold text-xs ${evaluated.glucoseColor.split(' ')[0]}`}>{evaluated.glucoseLabel}</p></div>
+                <div><p className="text-[9px] font-semibold text-gray-400 uppercase">{t('ltpGlucose')}</p><p className={`font-bold text-xs ${evaluated.glucoseColor.split(' ')[0]}`}>{evaluated.glucoseLabel}</p></div>
               </div>
               <div className={`card border ${evaluated.bpColor.split(' ')[2]} flex items-center gap-3`}>
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg ${evaluated.bpColor.split(' ').slice(1).join(' ')}`}>❤️</div>
-                <div><p className="text-[9px] font-semibold text-gray-400 uppercase">Blood Pressure</p><p className={`font-bold text-xs ${evaluated.bpColor.split(' ')[0]}`}>{evaluated.bpLabel}</p></div>
+                <div><p className="text-[9px] font-semibold text-gray-400 uppercase">{t('ltpBloodPressure')}</p><p className={`font-bold text-xs ${evaluated.bpColor.split(' ')[0]}`}>{evaluated.bpLabel}</p></div>
               </div>
               <div className="card border border-sage-200 bg-sage-50 flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center text-lg bg-sage-100">⚖️</div>
@@ -520,7 +521,7 @@ const LabToPlanPage: React.FC = () => {
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg ${evaluated.overallRisk === 'high' ? 'bg-red-100 text-red-700' : evaluated.overallRisk === 'moderate' ? 'bg-amber-100 text-amber-700' : 'bg-emerald-100 text-emerald-700'}`}>
                   {evaluated.overallRisk === 'high' ? '⚠️' : evaluated.overallRisk === 'moderate' ? '⚡' : '✅'}
                 </div>
-                <div><p className="text-[9px] font-semibold text-gray-400 uppercase">Risk</p><p className={`font-bold text-xs capitalize ${evaluated.overallRisk === 'high' ? 'text-red-700' : evaluated.overallRisk === 'moderate' ? 'text-amber-700' : 'text-emerald-700'}`}>{evaluated.overallRisk}</p></div>
+                <div><p className="text-[9px] font-semibold text-gray-400 uppercase">{t('ltpRisk')}</p><p className={`font-bold text-xs capitalize ${evaluated.overallRisk === 'high' ? 'text-red-700' : evaluated.overallRisk === 'moderate' ? 'text-amber-700' : 'text-emerald-700'}`}>{evaluated.overallRisk}</p></div>
               </div>
             </div>
 
@@ -530,15 +531,15 @@ const LabToPlanPage: React.FC = () => {
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-sage-100 rounded-xl flex items-center justify-center"><span className="text-lg">🎯</span></div>
                   <div>
-                    <h3 className="font-bold text-gray-900 text-sm">Your Daily Targets</h3>
-                    <p className="text-[10px] text-gray-500">Calculated from age, weight, height, and activity level</p>
+                    <h3 className="font-bold text-gray-900 text-sm">{t('ltpDailyTargets')}</h3>
+                    <p className="text-[10px] text-gray-500">{t('ltpTargetsSub')}</p>
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <span className="badge-primary">TDEE: {tdee} kcal</span>
-                  <span className="badge-sage">Protein: {Math.round(weight * 1.2)}g</span>
-                  <span className="badge-amber">Carbs: {Math.round(tdee * 0.45 / 4)}g</span>
-                  <span className="badge bg-gray-100 text-gray-700">Fat: {Math.round(tdee * 0.30 / 9)}g</span>
+                  <span className="badge-sage">{t('ltpProtein')} {Math.round(weight * 1.2)}g</span>
+                  <span className="badge-amber">{t('ltpCarbs')} {Math.round(tdee * 0.45 / 4)}g</span>
+                  <span className="badge bg-gray-100 text-gray-700">{t('ltpFat')} {Math.round(tdee * 0.30 / 9)}g</span>
                 </div>
               </div>
             </div>
@@ -549,24 +550,24 @@ const LabToPlanPage: React.FC = () => {
                 <div className="print:hidden bg-gradient-to-r from-rose-500 to-red-600 text-white rounded-2xl px-6 py-5 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-white/15 backdrop-blur-sm rounded-2xl flex items-center justify-center text-xl">🩸</div>
-                    <div><h3 className="text-base font-extrabold tracking-tight">Diabetes Management Plan</h3><p className="text-rose-100 text-xs">ADA guideline-based · Low-GI · Carb-counted · Age-adjusted</p></div>
+                    <div><h3 className="text-base font-extrabold tracking-tight">{t('ltpDiabetesPlan')}</h3><p className="text-rose-100 text-xs">{t('ltpDiaSub')}</p></div>
                   </div>
-                  <span className="print:hidden badge bg-white/20 text-white text-[10px] font-bold">Free</span>
+                  <span className="print:hidden badge bg-white/20 text-white text-[10px] font-bold">{t('ltpFree')}</span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="bg-gradient-to-br from-rose-50 to-orange-50 rounded-2xl p-5 border border-rose-100/80">
-                    <h4 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2"><span className="text-base">📊</span> Glucose Profile</h4>
+                    <h4 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2"><span className="text-base">📊</span> {t('ltpGlucoseProfile')}</h4>
                     <div className="space-y-2">
-                      {[['Fasting', `${fasting} mg/dL`], ['Postprandial', `${postprandial} mg/dL`], ['HbA1c', `${hba1c}%`], ['Status', evaluated.glucoseLabel]].map(([l, v], i) => (
+                      {[[t('ltpFasting'), `${fasting} mg/dL`], [t('ltpPostprandial'), `${postprandial} mg/dL`], ['HbA1c', `${hba1c}%`], [t('ltpStatus'), evaluated.glucoseLabel]].map(([l, v], i) => (
                         <div key={i} className="flex items-center justify-between bg-white/60 rounded-xl px-3 py-2"><span className="text-xs text-gray-600">{l}</span><span className="font-bold text-xs text-rose-700">{v}</span></div>
                       ))}
                     </div>
                   </div>
                   <div className="bg-gradient-to-br from-rose-50 to-pink-50 rounded-2xl p-5 border border-rose-100/80">
-                    <h4 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2"><span className="text-base">🎯</span> ADA Targets</h4>
+                    <h4 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2"><span className="text-base">🎯</span> {t('ltpADATargets')}</h4>
                     <div className="space-y-2">
-                      {[['Fasting', '80–130 mg/dL'], ['Post-meal', '<180 mg/dL'], ['HbA1c', '<7.0%'], ['Carb/Meal', '30–45g']].map(([l, v], i) => (
+                      {[[t('ltpFasting'), '80–130 mg/dL'], [t('ltpPostMeal'), '<180 mg/dL'], ['HbA1c', '<7.0%'], [t('ltpCarbPerMeal'), '30–45g']].map(([l, v], i) => (
                         <div key={i} className="flex items-center justify-between bg-white/60 rounded-xl px-3 py-2"><span className="text-xs text-gray-600">{l}</span><span className="font-bold text-xs text-gray-700">{v}</span></div>
                       ))}
                     </div>
@@ -574,9 +575,9 @@ const LabToPlanPage: React.FC = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {[{ label: 'GI Target', value: '<55', icon: '📉', bg: 'from-emerald-50 to-sage-50', border: 'border-emerald-200/80' },
-                    { label: 'Carb Budget', value: `${Math.round(tdee * 0.45 / 4)}g/day`, icon: '🍞', bg: 'from-amber-50 to-orange-50', border: 'border-amber-200/80' },
-                    { label: 'Fiber Goal', value: '25–30g', icon: '🥦', bg: 'from-primary-50 to-blue-50', border: 'border-primary-200/80' }
+                  {[{ label: t('ltpGITarget'), value: '<55', icon: '📉', bg: 'from-emerald-50 to-sage-50', border: 'border-emerald-200/80' },
+                    { label: t('ltpCarbBudget'), value: `${Math.round(tdee * 0.45 / 4)}g/day`, icon: '🍞', bg: 'from-amber-50 to-orange-50', border: 'border-amber-200/80' },
+                    { label: t('ltpFiberGoal'), value: '25–30g', icon: '🥦', bg: 'from-primary-50 to-blue-50', border: 'border-primary-200/80' }
                   ].map((c, i) => (
                     <div key={i} className={`bg-gradient-to-br ${c.bg} rounded-2xl p-4 border ${c.border} text-center`}>
                       <span className="text-xl mb-2 block">{c.icon}</span>
@@ -586,7 +587,7 @@ const LabToPlanPage: React.FC = () => {
                   ))}
                 </div>
 
-                <DaySelectorBar days={30} activeDay={diabetesSelectedDay + 1} onSelect={(d) => setDiabetesSelectedDay(d - 1)} label="30-Day Diabetes Meal & Workout Plan" subtitle={diabetesCurrentDay?.phase || 'Foundation'} />
+                <DaySelectorBar days={30} activeDay={diabetesSelectedDay + 1} onSelect={(d) => setDiabetesSelectedDay(d - 1)} label={t('ltpDiaPlan30')} subtitle={diabetesCurrentDay?.phase || t('dbFoundation')} />
                 <PlanTabBar activeTab={diabetesActiveTab} onChange={setDiabetesActiveTab} />
 
                 {diabetesActiveTab === 'meals' && diabetesCurrentDay && (
@@ -596,7 +597,7 @@ const LabToPlanPage: React.FC = () => {
                       total={diabetesCurrentDay.meals.length}
                       dailyGoal={diabetesCurrentDay.dailyGoal}
                     />
-                    <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm"><span>🍽️</span> {diabetesCurrentDay.label} — Diabetes Meals <span className="badge-primary text-[10px]">ADA-Aligned</span></h4>
+                    <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm"><span>🍽️</span> {diabetesCurrentDay.label} — {t('ltpDiabetesMeals')} <span className="badge-primary text-[10px]">{t('ltpADAAligned')}</span></h4>
                     <div className="card p-4">
                       <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ {t('chooseCuisine')}</label>
                       <CuisineRegionCards selected={selectedCuisine} onChange={handleCuisineChange} />
@@ -628,9 +629,9 @@ const LabToPlanPage: React.FC = () => {
                           onClick={() => handleOpenFullPlan('diabetes')}
                           className="w-full bg-green-50 border border-green-200 text-green-700 py-4 px-6 rounded-xl font-medium hover:bg-green-100 transition-all flex items-center justify-center gap-2"
                         >
-                          <span>📄</span> Open Full-30 Day Plan with PDF / Print
+                          <span>📄</span> {t('ltpOpenFullPlan')}
                         </button>
-                        <p className="text-center text-xs text-gray-500 mt-2">Download or print your complete personalized plan</p>
+                        <p className="text-center text-xs text-gray-500 mt-2">{t('ltpDownloadPrint')}</p>
                       </div>
                     </div>
                   </div>
@@ -641,9 +642,9 @@ const LabToPlanPage: React.FC = () => {
                     <DayProgressHeader
                       completed={Object.values(diabetesWorkoutCompletions[diabetesSelectedDay] || {}).filter(Boolean).length}
                       total={diabetesCurrentDay.workouts.length}
-                      dailyGoal="Complete all exercises"
+                      dailyGoal={t('ltpCompleteExercises')}
                     />
-                    <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm"><span>🏃</span> {diabetesCurrentDay.label} — Exercise Protocol <span className="badge-sage text-[10px]">Age-Adjusted</span></h4>
+                    <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm"><span>🏃</span> {diabetesCurrentDay.label} — {t('ltpExerciseProtocol')} <span className="badge-sage text-[10px]">{t('ltpAgeAdjusted')}</span></h4>
                     <button
                       onClick={() => setShowDiabetesWorkoutModal(true)}
                       className="w-full py-3 text-sm font-bold flex items-center justify-center gap-2 bg-gradient-to-r from-rose-600 to-orange-500 hover:from-rose-700 hover:to-orange-600 text-white rounded-2xl transition-all"
@@ -666,7 +667,7 @@ const LabToPlanPage: React.FC = () => {
                 )}
 
                 <div className="card bg-gradient-to-br from-gray-50 to-white">
-                  <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2 text-sm"><span>📋</span> ADA Guidelines</h4>
+                  <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2 text-sm"><span>📋</span> {t('ltpADAGuidelines')}</h4>
                   <ul className="space-y-2">
                     {conditionContent.diabetes.guidelines.map((g, i) => (
                       <li key={i} className="flex items-start gap-2.5 text-xs text-gray-600"><span className="w-5 h-5 bg-rose-100 rounded-full flex items-center justify-center shrink-0 text-[10px] font-bold text-rose-700">{i + 1}</span>{g}</li>
@@ -682,24 +683,24 @@ const LabToPlanPage: React.FC = () => {
                 <div className="print:hidden bg-gradient-to-r from-red-500 to-rose-600 text-white rounded-2xl px-6 py-5 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-white/15 backdrop-blur-sm rounded-2xl flex items-center justify-center text-xl">❤️</div>
-                    <div><h3 className="text-base font-extrabold tracking-tight">Hypertension Management Plan</h3><p className="text-red-100 text-xs">AHA guideline-based · DASH diet · Low-sodium · Weight-aware</p></div>
+                    <div><h3 className="text-base font-extrabold tracking-tight">{t('ltpHTPlan')}</h3><p className="text-red-100 text-xs">{t('ltpHTSub')}</p></div>
                   </div>
-                  <span className="print:hidden badge bg-white/20 text-white text-[10px] font-bold">Free</span>
+                  <span className="print:hidden badge bg-white/20 text-white text-[10px] font-bold">{t('ltpFree')}</span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-5 border border-blue-100/80">
-                    <h4 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2"><span className="text-base">📊</span> BP Profile</h4>
+                    <h4 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2"><span className="text-base">📊</span> {t('ltpBPProfile')}</h4>
                     <div className="space-y-2">
-                      {[['Systolic', `${systolic} mmHg`], ['Diastolic', `${diastolic} mmHg`], ['Reading', `${systolic}/${diastolic}`], ['Status', evaluated.bpLabel]].map(([l, v], i) => (
+                      {[[t('ltpSystolic'), `${systolic} mmHg`], [t('ltpDiastolic'), `${diastolic} mmHg`], [t('ltpReading'), `${systolic}/${diastolic}`], [t('ltpStatus'), evaluated.bpLabel]].map(([l, v], i) => (
                         <div key={i} className="flex items-center justify-between bg-white/60 rounded-xl px-3 py-2"><span className="text-xs text-gray-600">{l}</span><span className="font-bold text-xs text-blue-700">{v}</span></div>
                       ))}
                     </div>
                   </div>
                   <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-5 border border-blue-100/80">
-                    <h4 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2"><span className="text-base">🎯</span> AHA Targets</h4>
+                    <h4 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2"><span className="text-base">🎯</span> {t('ltpAHATargets')}</h4>
                     <div className="space-y-2">
-                      {[['BP Target', '<130/80 mmHg'], ['Sodium', '<1,500 mg/day'], ['Potassium', '3,500–5,000 mg/day'], ['Exercise', '150 min/week']].map(([l, v], i) => (
+                      {[[t('ltpBPTarget'), '<130/80 mmHg'], [t('ltpSodium'), '<1,500 mg/day'], [t('ltpPotassium'), '3,500–5,000 mg/day'], [t('ltpExercise'), '150 min/week']].map(([l, v], i) => (
                         <div key={i} className="flex items-center justify-between bg-white/60 rounded-xl px-3 py-2"><span className="text-xs text-gray-600">{l}</span><span className="font-bold text-xs text-gray-700">{v}</span></div>
                       ))}
                     </div>
@@ -707,9 +708,9 @@ const LabToPlanPage: React.FC = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {[{ label: 'Sodium', value: '<1,500mg', icon: '🧂', bg: 'from-blue-50 to-indigo-50', border: 'border-blue-200/80' },
-                    { label: 'Potassium', value: '4,700mg', icon: '🍌', bg: 'from-emerald-50 to-sage-50', border: 'border-emerald-200/80' },
-                    { label: 'BMI Target', value: '18.5–24.9', icon: '⚖️', bg: 'from-amber-50 to-orange-50', border: 'border-amber-200/80' }
+                  {[{ label: t('ltpSodium'), value: '<1,500mg', icon: '🧂', bg: 'from-blue-50 to-indigo-50', border: 'border-blue-200/80' },
+                    { label: t('ltpPotassium'), value: '4,700mg', icon: '🍌', bg: 'from-emerald-50 to-sage-50', border: 'border-emerald-200/80' },
+                    { label: t('ltpBMITarget'), value: '18.5–24.9', icon: '⚖️', bg: 'from-amber-50 to-orange-50', border: 'border-amber-200/80' }
                   ].map((c, i) => (
                     <div key={i} className={`bg-gradient-to-br ${c.bg} rounded-2xl p-4 border ${c.border} text-center`}>
                       <span className="text-xl mb-2 block">{c.icon}</span>
@@ -719,7 +720,7 @@ const LabToPlanPage: React.FC = () => {
                   ))}
                 </div>
 
-                <DaySelectorBar days={30} activeDay={htSelectedDay + 1} onSelect={(d) => setHtSelectedDay(d - 1)} label="30-Day Hypertension Meal & Workout Plan" subtitle={htCurrentDay?.phase || 'Foundation'} />
+                <DaySelectorBar days={30} activeDay={htSelectedDay + 1} onSelect={(d) => setHtSelectedDay(d - 1)} label={t('ltpHTPlan30')} subtitle={htCurrentDay?.phase || t('dbFoundation')} />
                 <PlanTabBar activeTab={htActiveTab} onChange={setHtActiveTab} />
 
                 {htActiveTab === 'meals' && htCurrentDay && (
@@ -729,7 +730,7 @@ const LabToPlanPage: React.FC = () => {
                       total={htCurrentDay.meals.length}
                       dailyGoal={htCurrentDay.dailyGoal}
                     />
-                    <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm"><span>🍽️</span> {htCurrentDay.label} — DASH Meals <span className="badge-sage text-[10px]">DASH-Aligned</span></h4>
+                    <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm"><span>🍽️</span> {htCurrentDay.label} — {t('ltpDASHMeals')} <span className="badge-sage text-[10px]">{t('ltpDASHAligned')}</span></h4>
                     <div className="card p-4">
                       <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ {t('chooseCuisine')}</label>
                       <CuisineRegionCards selected={selectedCuisine} onChange={handleCuisineChange} />
@@ -761,9 +762,9 @@ const LabToPlanPage: React.FC = () => {
                           onClick={() => handleOpenFullPlan('ht')}
                           className="w-full bg-green-50 border border-green-200 text-green-700 py-4 px-6 rounded-xl font-medium hover:bg-green-100 transition-all flex items-center justify-center gap-2"
                         >
-                          <span>📄</span> Open Full-30 Day Plan with PDF / Print
+                          <span>📄</span> {t('ltpOpenFullPlan')}
                         </button>
-                        <p className="text-center text-xs text-gray-500 mt-2">Download or print your complete personalized plan</p>
+                        <p className="text-center text-xs text-gray-500 mt-2">{t('ltpDownloadPrint')}</p>
                       </div>
                     </div>
                   </div>
@@ -774,9 +775,9 @@ const LabToPlanPage: React.FC = () => {
                     <DayProgressHeader
                       completed={Object.values(htWorkoutCompletions[htSelectedDay] || {}).filter(Boolean).length}
                       total={htCurrentDay.workouts.length}
-                      dailyGoal="Complete all exercises"
+                      dailyGoal={t('ltpCompleteExercises')}
                     />
-                    <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm"><span>🏊</span> {htCurrentDay.label} — Exercise Protocol <span className="badge-sage text-[10px]">Weight-Aware</span></h4>
+                    <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm"><span>🏊</span> {htCurrentDay.label} — {t('ltpExerciseProtocol')} <span className="badge-sage text-[10px]">{t('ltpWeightAware')}</span></h4>
                     <button
                       onClick={() => setShowHtWorkoutModal(true)}
                       className="w-full py-3 text-sm font-bold flex items-center justify-center gap-2 bg-gradient-to-r from-rose-600 to-orange-500 hover:from-rose-700 hover:to-orange-600 text-white rounded-2xl transition-all"
@@ -799,7 +800,7 @@ const LabToPlanPage: React.FC = () => {
                 )}
 
                 <div className="card bg-gradient-to-br from-gray-50 to-white">
-                  <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2 text-sm"><span>📋</span> AHA Guidelines</h4>
+                  <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2 text-sm"><span>📋</span> {t('ltpAHAGuidelines')}</h4>
                   <ul className="space-y-2">
                     {conditionContent.hypertension.guidelines.map((g, i) => (
                       <li key={i} className="flex items-start gap-2.5 text-xs text-gray-600"><span className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center shrink-0 text-[10px] font-bold text-blue-700">{i + 1}</span>{g}</li>
@@ -812,7 +813,7 @@ const LabToPlanPage: React.FC = () => {
             {/* ─── SHUFFLE MEAL PLAN ─── */}
             <div>
               <div className="flex items-center justify-between mb-5">
-                <div><h2 className="section-title text-xl mb-1">Daily Meal Plan</h2><p className="text-xs text-gray-500">{totalCalories} kcal · Avg GI: {totalGI} · {tdee} kcal target</p></div>
+                <div><h2 className="section-title text-xl mb-1">{t('ltpDailyMealPlan')}</h2><p className="text-xs text-gray-500">{fmt(t('ltpMealSummary'), { kcal: totalCalories, gi: totalGI, target: tdee })}</p></div>
                 <div className="print:hidden bg-primary-50 text-primary-700 px-3 py-1.5 rounded-xl text-xs font-bold">{tracking[0].actual}mg Na · {tracking[1].actual}g carbs</div>
               </div>
               <div className="space-y-4">
@@ -836,7 +837,7 @@ const LabToPlanPage: React.FC = () => {
                         </div>
                         <button onClick={() => shuffleMeal(slot)} className="print:hidden shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-primary-50 hover:bg-primary-100 text-primary-700 rounded-xl text-xs font-semibold transition-all active:scale-95">
                           <svg className="w-3.5 h-3.5 transition-transform group-hover:rotate-180 duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" /></svg>
-                          Shuffle
+                          {t('ltpShuffle')}
                         </button>
                       </div>
                       <div className="bg-gray-50 rounded-xl p-3"><ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5">{meal.items.map((item, i) => <li key={i} className="flex items-center gap-2 text-xs text-gray-600"><span className="w-1.5 h-1.5 bg-primary-400 rounded-full shrink-0" />{item}</li>)}</ul></div>
@@ -848,14 +849,14 @@ const LabToPlanPage: React.FC = () => {
 
             {/* ─── TRACKING TABLE ─── */}
             <div className="card">
-              <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2 text-sm"><span>📊</span> Daily Tracking</h3>
+              <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2 text-sm"><span>📊</span> {t('ltpDailyTracking')}</h3>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead><tr className="border-b border-gray-100">
-                    <th className="text-left py-3 px-4 text-[10px] font-bold text-gray-400 uppercase">Metric</th>
-                    <th className="text-center py-3 px-4 text-[10px] font-bold text-gray-400 uppercase">Target</th>
-                    <th className="text-center py-3 px-4 text-[10px] font-bold text-gray-400 uppercase">Actual</th>
-                    <th className="text-center py-3 px-4 text-[10px] font-bold text-gray-400 uppercase">Status</th>
+                    <th className="text-left py-3 px-4 text-[10px] font-bold text-gray-400 uppercase">{t('ltpMetric')}</th>
+                    <th className="text-center py-3 px-4 text-[10px] font-bold text-gray-400 uppercase">{t('ltpTarget')}</th>
+                    <th className="text-center py-3 px-4 text-[10px] font-bold text-gray-400 uppercase">{t('ltpActual')}</th>
+                    <th className="text-center py-3 px-4 text-[10px] font-bold text-gray-400 uppercase">{t('ltpStatus')}</th>
                   </tr></thead>
                   <tbody>
                     {tracking.map((row, i) => {
@@ -875,7 +876,7 @@ const LabToPlanPage: React.FC = () => {
                           </td>
                           <td className="text-center py-3 px-4">
                             <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border ${sc}`}>
-                              {sl === 'Safe' || sl === 'On Track' ? <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> : <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126z" /></svg>}
+                              {sl === t('ltpStatusSafe') || sl === t('ltpStatusOnTrack') ? <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> : <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126z" /></svg>}
                               {sl}
                             </span>
                           </td>
@@ -891,51 +892,51 @@ const LabToPlanPage: React.FC = () => {
             {showProgress && (
               <div className="card animate-fade-in">
                 <div className="flex items-center justify-between mb-5">
-                  <h3 className="font-bold text-gray-900 flex items-center gap-2 text-sm"><span>📈</span> Progress Tracking <span className="badge-sage text-[10px]">{progress.length} entries</span></h3>
-                  {progress.length > 0 && <button onClick={clearProgress} className="print:hidden text-[10px] text-red-500 hover:text-red-700 font-semibold">Clear All</button>}
+                  <h3 className="font-bold text-gray-900 flex items-center gap-2 text-sm"><span>📈</span> {t('ltpProgressTracking')} <span className="badge-sage text-[10px]">{fmt(t('ltpEntries'), { n: progress.length })}</span></h3>
+                  {progress.length > 0 && <button onClick={clearProgress} className="print:hidden text-[10px] text-red-500 hover:text-red-700 font-semibold">{t('ltpClearAll')}</button>}
                 </div>
 
                 {progress.length === 0 ? (
-                  <p className="text-center text-xs text-gray-400 py-8">No readings yet. Click "Evaluate & Generate Plan" to log your first entry.</p>
+                  <p className="text-center text-xs text-gray-400 py-8">{fmt(t('ltpNoProgress'), { action: t('ltpEvaluate') })}</p>
                 ) : (
                   <>
                     {/* Trend Charts */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
                       {/* Glucose Trend */}
                       <div className="bg-gradient-to-br from-rose-50 to-orange-50 rounded-2xl p-4 border border-rose-100/80">
-                        <h4 className="text-xs font-bold text-gray-900 mb-3">Glucose Trend (Recent 7)</h4>
+                        <h4 className="text-xs font-bold text-gray-900 mb-3">{t('ltpGlucoseTrend')}</h4>
                         <div className="flex items-end gap-1.5 h-24">
                           {recentGlucose.map((e, i) => (
                             <div key={i} className="flex-1 flex flex-col items-center gap-0.5">
-                              <div className="w-full rounded-t-md bg-rose-400 transition-all" style={{ height: `${(e.fasting / maxGlucose) * 80}px` }} title={`Fasting: ${e.fasting}`} />
-                              <div className="w-full rounded-t-md bg-amber-400 transition-all" style={{ height: `${(e.postprandial / maxGlucose) * 80}px` }} title={`Post: ${e.postprandial}`} />
+                              <div className="w-full rounded-t-md bg-rose-400 transition-all" style={{ height: `${(e.fasting / maxGlucose) * 80}px` }} title={`${t('ltpFasting')}: ${e.fasting}`} />
+                              <div className="w-full rounded-t-md bg-amber-400 transition-all" style={{ height: `${(e.postprandial / maxGlucose) * 80}px` }} title={`${t('ltpPostShort')} ${e.postprandial}`} />
                               <span className="text-[8px] text-gray-400 mt-0.5">{e.date.split('/')[0]}/{e.date.split('/')[1]}</span>
                             </div>
                           ))}
                         </div>
-                        <div className="flex gap-3 mt-2"><span className="text-[9px] text-gray-500 flex items-center gap-1"><span className="w-2 h-2 bg-rose-400 rounded-sm" />Fasting</span><span className="text-[9px] text-gray-500 flex items-center gap-1"><span className="w-2 h-2 bg-amber-400 rounded-sm" />Postprandial</span></div>
+                        <div className="flex gap-3 mt-2"><span className="text-[9px] text-gray-500 flex items-center gap-1"><span className="w-2 h-2 bg-rose-400 rounded-sm" />{t('ltpFasting')}</span><span className="text-[9px] text-gray-500 flex items-center gap-1"><span className="w-2 h-2 bg-amber-400 rounded-sm" />{t('ltpPostprandial')}</span></div>
                       </div>
 
                       {/* BP Trend */}
                       <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-100/80">
-                        <h4 className="text-xs font-bold text-gray-900 mb-3">Blood Pressure Trend (Recent 7)</h4>
+                        <h4 className="text-xs font-bold text-gray-900 mb-3">{t('ltpBPTrend')}</h4>
                         <div className="flex items-end gap-1.5 h-24">
                           {recentBP.map((e, i) => (
                             <div key={i} className="flex-1 flex flex-col items-center gap-0.5">
-                              <div className="w-full rounded-t-md bg-blue-400 transition-all" style={{ height: `${(e.systolic / maxSystolic) * 80}px` }} title={`Sys: ${e.systolic}`} />
-                              <div className="w-full rounded-t-md bg-cyan-400 transition-all" style={{ height: `${(e.diastolic / maxSystolic) * 80}px` }} title={`Dia: ${e.diastolic}`} />
+                              <div className="w-full rounded-t-md bg-blue-400 transition-all" style={{ height: `${(e.systolic / maxSystolic) * 80}px` }} title={`${t('ltpSysShort')}: ${e.systolic}`} />
+                              <div className="w-full rounded-t-md bg-cyan-400 transition-all" style={{ height: `${(e.diastolic / maxSystolic) * 80}px` }} title={`${t('ltpDiaShort')}: ${e.diastolic}`} />
                               <span className="text-[8px] text-gray-400 mt-0.5">{e.date.split('/')[0]}/{e.date.split('/')[1]}</span>
                             </div>
                           ))}
                         </div>
-                        <div className="flex gap-3 mt-2"><span className="text-[9px] text-gray-500 flex items-center gap-1"><span className="w-2 h-2 bg-blue-400 rounded-sm" />Systolic</span><span className="text-[9px] text-gray-500 flex items-center gap-1"><span className="w-2 h-2 bg-cyan-400 rounded-sm" />Diastolic</span></div>
+                        <div className="flex gap-3 mt-2"><span className="text-[9px] text-gray-500 flex items-center gap-1"><span className="w-2 h-2 bg-blue-400 rounded-sm" />{t('ltpSystolic')}</span><span className="text-[9px] text-gray-500 flex items-center gap-1"><span className="w-2 h-2 bg-cyan-400 rounded-sm" />{t('ltpDiastolic')}</span></div>
                       </div>
                     </div>
 
                     {/* Weight Trend */}
                     {progress.some(e => e.weight > 0) && (
                       <div className="bg-gradient-to-br from-sage-50 to-emerald-50 rounded-2xl p-4 border border-sage-100/80 mb-5">
-                        <h4 className="text-xs font-bold text-gray-900 mb-3">Weight Trend</h4>
+                        <h4 className="text-xs font-bold text-gray-900 mb-3">{t('ltpWeightTrend')}</h4>
                         <div className="flex items-end gap-1.5 h-20">
                           {recentGlucose.map((e, i) => (
                             <div key={i} className="flex-1 flex flex-col items-center gap-0.5">
@@ -951,12 +952,12 @@ const LabToPlanPage: React.FC = () => {
                     <div className="overflow-x-auto">
                       <table className="w-full text-sm">
                         <thead><tr className="border-b border-gray-100">
-                          <th className="text-left py-2 px-3 text-[9px] font-bold text-gray-400 uppercase">Date</th>
-                          <th className="text-center py-2 px-3 text-[9px] font-bold text-gray-400 uppercase">Fasting</th>
-                          <th className="text-center py-2 px-3 text-[9px] font-bold text-gray-400 uppercase">Post.</th>
+                          <th className="text-left py-2 px-3 text-[9px] font-bold text-gray-400 uppercase">{t('ltpDate')}</th>
+                          <th className="text-center py-2 px-3 text-[9px] font-bold text-gray-400 uppercase">{t('ltpFasting')}</th>
+                          <th className="text-center py-2 px-3 text-[9px] font-bold text-gray-400 uppercase">{t('ltpPostShort')}</th>
                           <th className="text-center py-2 px-3 text-[9px] font-bold text-gray-400 uppercase">HbA1c</th>
                           <th className="text-center py-2 px-3 text-[9px] font-bold text-gray-400 uppercase">BP</th>
-                          <th className="text-center py-2 px-3 text-[9px] font-bold text-gray-400 uppercase">Weight</th>
+                          <th className="text-center py-2 px-3 text-[9px] font-bold text-gray-400 uppercase">{t('ltpWeight')}</th>
                         </tr></thead>
                         <tbody>
                           {progress.slice().reverse().slice(0, 14).map((e, i) => {
@@ -982,7 +983,7 @@ const LabToPlanPage: React.FC = () => {
 
             {/* ─── SUMMARY ─── */}
             <div className="card bg-gradient-to-br from-gray-50 to-white">
-              <h3 className="font-bold text-gray-900 mb-3 text-sm">Clinical Summary</h3>
+              <h3 className="font-bold text-gray-900 mb-3 text-sm">{t('ltpClinicalSummary')}</h3>
               <p className="text-sm text-gray-600 leading-relaxed">{evaluated.summary}</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {evaluated.dietTags.slice(0, 3).map((tag, i) => <span key={`d${i}`} className="badge-sage text-[10px]">{tag}</span>)}
@@ -994,17 +995,17 @@ const LabToPlanPage: React.FC = () => {
             <div className="print:hidden flex flex-col sm:flex-row gap-3">
               <button onClick={handlePrint} className="btn-primary flex-1">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m0 0a48.468 48.468 0 018.5 0" /></svg>
-                Print / Download Report
+                {t('ltpPrintReport')}
               </button>
               <button onClick={handleEmail} className="btn-secondary flex-1">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
-                Email Report
+                {t('ltpEmailReport')}
               </button>
             </div>
             {showEmailSuccess && (
               <div className="print:hidden animate-fade-in bg-emerald-50 border border-emerald-200 rounded-2xl p-4 flex items-center gap-3">
                 <div className="w-8 h-8 bg-emerald-100 rounded-xl flex items-center justify-center shrink-0"><svg className="w-4 h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg></div>
-                <div><p className="text-sm font-semibold text-emerald-800">Email client opened</p><p className="text-xs text-emerald-600">Your full health report with profile, plans, and progress is ready to send.</p></div>
+                <div><p className="text-sm font-semibold text-emerald-800">{t('ltpEmailOpened')}</p><p className="text-xs text-emerald-600">{t('ltpEmailReady')}</p></div>
               </div>
             )}
           </div>
@@ -1013,13 +1014,13 @@ const LabToPlanPage: React.FC = () => {
         {!showResults && (
           <div className="print:hidden text-center py-16 text-gray-400">
             <svg className="w-16 h-16 mx-auto mb-4 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}><path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714a2.25 2.25 0 00.659 1.591L19 14.5m-4.25-11.398c.251.023.501.05.75.082M5 14.5l-.94 1.88a2.25 2.25 0 002.064 3.12h9.752a2.25 2.25 0 002.064-3.12L19 14.5" /></svg>
-            <p className="text-sm font-medium">Enter your profile and lab values above, then click <strong>Evaluate &amp; Generate Plan</strong>.</p>
+            <p className="text-sm font-medium">{fmt(t('ltpEmptyPrompt'), { action: t('ltpEvaluate') })}</p>
           </div>
         )}
       </div>
 
       <MedicalDisclaimer />
-      <MealPlanModal isOpen={showDiabetesPlan} onClose={() => setShowDiabetesPlan(false)} targetCalories={0} mealPlan={[]} fullMealPlan={customDiabetesPlan ?? diabetesPlan} selectedDay={diabetesSelectedDay} onDayChange={setDiabetesSelectedDay} weight={0} onSave={() => setShowDiabetesPlan(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} labSummary={`🩸 Fasting ${fasting} mg/dL · Postprandial ${postprandial} mg/dL · HbA1c ${hba1c}%`} />
+      <MealPlanModal isOpen={showDiabetesPlan} onClose={() => setShowDiabetesPlan(false)} targetCalories={0} mealPlan={[]} fullMealPlan={customDiabetesPlan ?? diabetesPlan} selectedDay={diabetesSelectedDay} onDayChange={setDiabetesSelectedDay} weight={0} onSave={() => setShowDiabetesPlan(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} labSummary={`🩸 ${t('ltpFasting')} ${fasting} mg/dL · ${t('ltpPostprandial')} ${postprandial} mg/dL · HbA1c ${hba1c}%`} />
       <MealPlanModal isOpen={showHtPlan} onClose={() => setShowHtPlan(false)} targetCalories={0} mealPlan={[]} fullMealPlan={customHtPlan ?? htPlan} selectedDay={htSelectedDay} onDayChange={setHtSelectedDay} weight={0} onSave={() => setShowHtPlan(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} labSummary={`❤️ BP ${systolic}/${diastolic} mmHg`} />
       <WorkoutBlueprintModal isOpen={showDiabetesWorkoutModal} onClose={() => setShowDiabetesWorkoutModal(false)} bmi={25} goal="lose_weight" fitnessLevel="beginner" weight={75} selectedDay={diabetesWorkoutSelectedDay} onDayChange={setDiabetesWorkoutSelectedDay} onSave={() => setShowDiabetesWorkoutModal(false)} />
       <WorkoutBlueprintModal isOpen={showHtWorkoutModal} onClose={() => setShowHtWorkoutModal(false)} bmi={25} goal="lose_weight" fitnessLevel="beginner" weight={75} selectedDay={htWorkoutSelectedDay} onDayChange={setHtWorkoutSelectedDay} onSave={() => setShowHtWorkoutModal(false)} />

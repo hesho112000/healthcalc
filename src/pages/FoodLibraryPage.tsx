@@ -4,8 +4,10 @@ import { useLanguage } from '../context/LanguageContext';
 import { getPortionMeasure } from '../utils/cuisineCatalog';
 
 const FoodLibraryPage: React.FC = () => {
-  const { language } = useLanguage();
+  const { language, t, dir } = useLanguage();
   const cuisineName = (meta: { label_ar: string; label_en: string }): string => (language === 'ar' ? meta.label_ar : meta.label_en);
+  const dishName = (f: FoodItem): string => (language === 'ar' ? f.name_ar || f.name_en : f.name_en || f.name);
+  const gramsSuffix = language === 'ar' ? 'جم' : 'g';
   const [search, setSearch] = useState('');
   const [selectedCuisine, setSelectedCuisine] = useState<Cuisine | 'all'>('all');
   const [calorieFilter, setCalorieFilter] = useState<[number, number]>([0, 500]);
@@ -14,41 +16,45 @@ const FoodLibraryPage: React.FC = () => {
   const filteredFoods = useMemo(() => {
     let foods = [...FOODS_DATABASE];
 
-    // بحث
     if (search) {
       foods = foods.filter(f => 
         f.name.toLowerCase().includes(search.toLowerCase()) ||
+        (f.name_ar || '').toLowerCase().includes(search.toLowerCase()) ||
         f.name_en.toLowerCase().includes(search.toLowerCase())
       );
     }
 
-    // فلتر مطبخ
     if (selectedCuisine !== 'all') {
       foods = foods.filter(f => f.cuisine.includes(selectedCuisine));
     }
 
-    // فلتر سعرات
     foods = foods.filter(f => f.calories >= calorieFilter[0] && f.calories <= calorieFilter[1]);
 
-    // ترتيب
     foods.sort((a, b) => {
       if (sortBy === 'calories') return a.calories - b.calories;
       if (sortBy === 'protein') return b.protein - a.protein;
-      return a.name.localeCompare(b.name);
+      return dishName(a).localeCompare(dishName(b), language === 'ar' ? 'ar' : undefined);
     });
 
     return foods;
   }, [search, selectedCuisine, calorieFilter, sortBy]);
 
+  const calorieOptions: { label: string; range: [number, number] }[] = [
+    { label: t('foodLibCalLow'), range: [0, 150] },
+    { label: t('foodLibCalMid'), range: [150, 250] },
+    { label: t('foodLibCalHigh'), range: [250, 500] },
+    { label: t('foodLibCalAll'), range: [0, 500] },
+  ];
+
   return (
-    <div className="min-h-screen bg-[#f8fafc]">
+    <div className="min-h-screen bg-[#f8fafc]" dir={dir}>
       {/* Hero */}
       <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white py-12 px-4">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl font-extrabold mb-3">📚 مكتبة السعرات الحرارية</h1>
-          <p className="text-lg opacity-90">35+ صنف أكل من 10 مطابخ عالمية بسعرات دقيقة من USDA</p>
+          <h1 className="text-4xl font-extrabold mb-3">📚 {t('foodLibTitle')}</h1>
+          <p className="text-lg opacity-90">{t('foodLibSubtitle')}</p>
           <div className="mt-4 inline-flex bg-white/20 backdrop-blur px-4 py-2 rounded-full text-sm">
-            🔍 ابحث عن أي أكل + فلتر بالمطبخ + رتب بالبروتين
+            🔍 {t('foodLibSearchBadge')}
           </div>
         </div>
       </div>
@@ -57,27 +63,25 @@ const FoodLibraryPage: React.FC = () => {
         {/* Search & Filters */}
         <div className="bg-white rounded-2xl shadow-sm border p-6 mb-8 sticky top-20 z-10">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-            {/* بحث */}
             <div className="md:col-span-5">
-              <label className="text-xs font-bold text-gray-500 mb-2 block">🔍 ابحث</label>
+              <label className="text-xs font-bold text-gray-500 mb-2 block">🔍 {t('foodLibSearchLabel')}</label>
               <input
                 type="text"
-                placeholder="فول، كشري، كبسة، سوشي..."
+                placeholder={t('foodLibSearchPlaceholder')}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-100 outline-none transition"
               />
             </div>
 
-            {/* مطبخ */}
             <div className="md:col-span-4">
-              <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ المطبخ</label>
+              <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ {t('foodLibCuisineLabel')}</label>
               <select
                 value={selectedCuisine}
                 onChange={(e) => setSelectedCuisine(e.target.value as any)}
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 outline-none bg-white"
               >
-                <option value="all">🌍 كل المطابخ ({FOODS_DATABASE.length})</option>
+                <option value="all">🌍 {t('foodLibAllCuisines')} ({FOODS_DATABASE.length})</option>
                 {Object.entries(CUISINE_META).map(([key, meta]) => (
                   <option key={key} value={key}>
                     {meta.flag} {cuisineName(meta)}
@@ -86,33 +90,27 @@ const FoodLibraryPage: React.FC = () => {
               </select>
             </div>
 
-            {/* ترتيب */}
             <div className="md:col-span-3">
-              <label className="text-xs font-bold text-gray-500 mb-2 block">📊 ترتيب</label>
+              <label className="text-xs font-bold text-gray-500 mb-2 block">📊 {t('foodLibSortLabel')}</label>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 outline-none bg-white"
               >
-                <option value="calories">🔥 الأقل سعرات</option>
-                <option value="protein">💪 الأعلى بروتين</option>
-                <option value="name">🔤 أبجدي</option>
+                <option value="calories">🔥 {t('foodLibSortCalories')}</option>
+                <option value="protein">💪 {t('foodLibSortHighProtein')}</option>
+                <option value="name">🔤 {t('foodLibSortName')}</option>
               </select>
             </div>
           </div>
 
-          {/* فلتر سعرات */}
-          <div className="mt-6 flex items-center gap-4">
-            <span className="text-xs font-bold text-gray-500">سعرات:</span>
-            <div className="flex gap-2">
-              {[
-                { label: 'قليل <150', range: [0, 150] as [number, number] },
-                { label: 'متوسط 150-250', range: [150, 250] as [number, number] },
-                { label: 'عالي >250', range: [250, 500] as [number, number] },
-                { label: 'الكل', range: [0, 500] as [number, number] },
-              ].map((opt) => (
+          {/* Calorie filter */}
+          <div className="mt-6 flex items-center gap-4 flex-wrap">
+            <span className="text-xs font-bold text-gray-500">{t('foodLibCaloriesFilter')}</span>
+            <div className="flex gap-2 flex-wrap">
+              {calorieOptions.map((opt) => (
                 <button
-                  key={opt.label}
+                  key={opt.range.join('-')}
                   onClick={() => setCalorieFilter(opt.range)}
                   className={`px-3 py-1.5 rounded-full text-xs font-bold border transition ${
                     calorieFilter[0] === opt.range[0] && calorieFilter[1] === opt.range[1]
@@ -125,12 +123,12 @@ const FoodLibraryPage: React.FC = () => {
               ))}
             </div>
             <span className="ml-auto text-xs text-gray-400">
-              {filteredFoods.length} نتيجة
+              {filteredFoods.length} {t('foodLibResults')}
             </span>
           </div>
         </div>
 
-        {/* مطابخ سريعة */}
+        {/* Quick cuisine chips */}
         <div className="flex flex-wrap gap-2 mb-6">
           <button
             onClick={() => setSelectedCuisine('all')}
@@ -138,7 +136,7 @@ const FoodLibraryPage: React.FC = () => {
               selectedCuisine === 'all' ? 'bg-gray-900 text-white border-gray-900' : 'bg-white border-gray-200 hover:border-gray-300'
             }`}
           >
-            🌍 الكل
+            🌍 {t('foodLibAll')}
           </button>
           {Object.entries(CUISINE_META).map(([key, meta]) => (
             <button
@@ -153,19 +151,19 @@ const FoodLibraryPage: React.FC = () => {
           ))}
         </div>
 
-        {/* جدول الأكل */}
+        {/* Food table */}
         <div className="bg-white rounded-2xl shadow-sm border overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="bg-gray-50 border-b text-[11px] uppercase tracking-wider text-gray-500">
-                  <th className="text-right py-4 px-6 font-bold">الصنف</th>
-                  <th className="text-right py-4 px-4 font-bold">المطبخ</th>
-                  <th className="text-right py-4 px-4 font-bold">الكمية</th>
-                  <th className="text-center py-4 px-3 font-bold">🔥 سعرات</th>
-                  <th className="text-center py-4 px-3 font-bold">💪 بروتين</th>
-                  <th className="text-center py-4 px-3 font-bold">🍞 كارب</th>
-                  <th className="text-center py-4 px-3 font-bold">🥑 دهون</th>
+                  <th className="px-6 py-4 font-bold text-start">{t('foodLibColItem')}</th>
+                  <th className="px-4 py-4 font-bold text-start">{t('foodLibColCuisine')}</th>
+                  <th className="px-4 py-4 font-bold text-start">{t('foodLibColPortion')}</th>
+                  <th className="px-3 py-4 font-bold text-center">🔥 {t('foodLibColCalories')}</th>
+                  <th className="px-3 py-4 font-bold text-center">💪 {t('foodLibColProtein')}</th>
+                  <th className="px-3 py-4 font-bold text-center">🍞 {t('foodLibColCarbs')}</th>
+                  <th className="px-3 py-4 font-bold text-center">🥑 {t('foodLibColFat')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -173,12 +171,14 @@ const FoodLibraryPage: React.FC = () => {
                   <tr key={idx} className="border-b last:border-0 hover:bg-green-50/50 transition group">
                     <td className="py-4 px-6">
                       <div className="flex items-center gap-1.5">
-                        <span className="font-bold text-gray-900 group-hover:text-green-700 transition">{food.name}</span>
+                        <span className="font-bold text-gray-900 group-hover:text-green-700 transition">{dishName(food)}</span>
                         {food.verified && (
-                          <span className="px-1.5 py-0.5 rounded bg-emerald-600 text-[8px] font-bold text-white" title="USDA Database">USDA ✓</span>
+                          <span className="px-1.5 py-0.5 rounded bg-emerald-600 text-[8px] font-bold text-white" title={`USDA ${t('foodLibColCalories')}`}>{t('foodLibUsdaBadge')} ✓</span>
                         )}
                       </div>
-                      <div className="text-xs text-gray-400">{food.name_en}</div>
+                      {language === 'ar' && food.name_en !== dishName(food) && (
+                        <div className="text-xs text-gray-400">{food.name_en}</div>
+                      )}
                     </td>
                     <td className="py-4 px-4">
                       <div className="flex flex-wrap gap-1">
@@ -192,7 +192,7 @@ const FoodLibraryPage: React.FC = () => {
                     <td className="py-4 px-4 text-sm text-gray-600">
                       <div>{getPortionMeasure(food.portion, language)}</div>
                       <span className="inline-block mt-1 bg-gray-100 border text-gray-600 px-2 py-0.5 rounded-full text-[11px] font-bold whitespace-nowrap">
-                        {food.portion.grams}g • {food.calories} kcal
+                        {food.portion.grams}{gramsSuffix} • {food.calories} kcal
                       </span>
                     </td>
                     <td className="py-4 px-3 text-center">
@@ -204,9 +204,9 @@ const FoodLibraryPage: React.FC = () => {
                         {food.calories}
                       </span>
                     </td>
-                    <td className="py-4 px-3 text-center text-sm font-bold text-gray-700">{food.protein}ج</td>
-                    <td className="py-4 px-3 text-center text-sm text-gray-500">{food.carbs}ج</td>
-                    <td className="py-4 px-3 text-center text-sm text-gray-500">{food.fat}ج</td>
+                    <td className="py-4 px-3 text-center text-sm font-bold text-gray-700">{food.protein}{gramsSuffix}</td>
+                    <td className="py-4 px-3 text-center text-sm text-gray-500">{food.carbs}{gramsSuffix}</td>
+                    <td className="py-4 px-3 text-center text-sm text-gray-500">{food.fat}{gramsSuffix}</td>
                   </tr>
                 ))}
               </tbody>
@@ -216,9 +216,9 @@ const FoodLibraryPage: React.FC = () => {
           {filteredFoods.length === 0 && (
             <div className="py-16 text-center">
               <div className="text-5xl mb-4">🔍</div>
-              <p className="text-gray-500 font-medium">مفيش نتائج للبحث ده</p>
+              <p className="text-gray-500 font-medium">{t('foodLibNoResults')}</p>
               <button onClick={() => { setSearch(''); setSelectedCuisine('all'); setCalorieFilter([0, 500]); }} className="mt-3 text-green-600 font-bold text-sm">
-                مسح الفلاتر
+                {t('foodLibClearFilters')}
               </button>
             </div>
           )}
@@ -226,11 +226,9 @@ const FoodLibraryPage: React.FC = () => {
 
         {/* SEO Footer */}
         <div className="mt-8 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-2xl p-6">
-          <h3 className="font-bold mb-2">💡 ليه مكتبة healthcalc دقيقة؟</h3>
+          <h3 className="font-bold mb-2">💡 {t('foodLibSeoTitle')}</h3>
           <p className="text-sm opacity-80 leading-relaxed">
-            كل السعرات محسوبة من <strong>USDA FoodData Central</strong> - أكبر قاعدة بيانات أكل في العالم.
-            بنحسب كل صنف بالجرام، مش تقديري. تقدر تستخدم المكتبة دي في أي نظام غذائي: تخسيس، تضخيم، كيتو، أو نباتي.
-            المطابخ: مصري، خليجي، شامي، مغربي، تركي، هندي، متوسطي، آسيوي.
+            {t('foodLibSeoBody')}
           </p>
         </div>
       </div>

@@ -10,7 +10,8 @@ import {
 } from '../utils/healthDataSync';
 
 const SmartwatchSyncPage: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const loc = language === 'ar' ? 'ar-EG' : language === 'fr' ? 'fr-FR' : language === 'es' ? 'es-ES' : 'en-US';
   const [metrics, setMetrics] = useState<HealthMetrics | null>(null);
   const [syncStatus, setSyncStatus] = useState<SyncStatus>(getSyncStatus());
   const [activeTab, setActiveTab] = useState<'dashboard' | 'guide' | 'settings'>('dashboard');
@@ -273,7 +274,7 @@ const SmartwatchSyncPage: React.FC = () => {
                   <div>
                     <p className="text-sm font-bold text-gray-900">{syncStatus.connected ? t('swConnected') : t('swNotConnected')}</p>
                     <p className="text-xs text-gray-400">
-                      {syncStatus.lastSync ? `${t('swLastSync')}: ${new Date(syncStatus.lastSync).toLocaleString()}` : t('swNeverSynced')}
+                      {syncStatus.lastSync ? `${t('swLastSync')}: ${new Date(syncStatus.lastSync).toLocaleString(loc)}` : t('swNeverSynced')}
                       {syncStatus.platform && ` · ${syncStatus.platform === 'ios' ? t('swAppleHealth') : syncStatus.platform === 'android' ? t('swGoogleHealthConnect') : t('swWebBrowser')}`}
                     </p>
                   </div>

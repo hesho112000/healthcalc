@@ -5,7 +5,7 @@ import { useLanguage } from '../context/LanguageContext';
 
 const RegisterPage: React.FC = () => {
   const { register } = useAuth();
-  const { t } = useLanguage();
+  const { t, dir } = useLanguage();
   const navigate = useNavigate();
   const [form, setForm] = useState({ name: '', email: '', password: '', confirmPassword: '' });
   const [error, setError] = useState('');
@@ -36,7 +36,7 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50/50 via-white to-sage-50/30 flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50/50 via-white to-sage-50/30 flex items-center justify-center px-4 py-12" dir={dir}>
       <div className="w-full max-w-md animate-fade-in">
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-2.5 mb-6">
@@ -51,8 +51,8 @@ const RegisterPage: React.FC = () => {
               <span className="text-sm font-semibold text-sage-500 ml-0.5">.ai</span>
             </div>
           </Link>
-          <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight">Create Your Account</h1>
-          <p className="text-sm text-gray-500 mt-1.5">Start tracking your health journey today</p>
+          <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight">{t('authCreateAccount')}</h1>
+          <p className="text-sm text-gray-500 mt-1.5">{t('authRegisterDesc')}</p>
         </div>
 
         <div className="card p-7">
@@ -67,7 +67,7 @@ const RegisterPage: React.FC = () => {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="label">Full Name</label>
+              <label className="label">{t('authFullName')}</label>
               <input
                 type="text"
                 required
@@ -79,7 +79,7 @@ const RegisterPage: React.FC = () => {
             </div>
 
             <div>
-              <label className="label">Email Address</label>
+              <label className="label">{t('authEmailAddress')}</label>
               <input
                 type="email"
                 required
@@ -91,7 +91,7 @@ const RegisterPage: React.FC = () => {
             </div>
 
             <div>
-              <label className="label">Password</label>
+              <label className="label">{t('authPassword')}</label>
               <input
                 type="password"
                 required
@@ -103,11 +103,11 @@ const RegisterPage: React.FC = () => {
             </div>
 
             <div>
-              <label className="label">Confirm Password</label>
+              <label className="label">{t('authConfirmPassword')}</label>
               <input
                 type="password"
                 required
-                placeholder="Repeat your password"
+                placeholder={t('authRepeatPassword')}
                 value={form.confirmPassword}
                 onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
                 className="input-field"
@@ -122,19 +122,19 @@ const RegisterPage: React.FC = () => {
               {loading ? (
                 <>
                   <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  Creating account...
+                  {t('authCreatingAccount')}
                 </>
               ) : (
-                'Create Account'
+                t('authCreateAccount')
               )}
             </button>
           </form>
 
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-500">
-              Already have an account?{' '}
+              {t('authAlreadyHave')}{' '}
               <Link to="/login" className="text-primary-600 font-semibold hover:text-primary-700 transition-colors">
-                Sign in
+                {t('authSignIn')}
               </Link>
             </p>
           </div>

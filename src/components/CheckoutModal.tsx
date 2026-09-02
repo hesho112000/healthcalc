@@ -75,7 +75,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, onSucces
     } catch (err: any) {
       console.error('Subscription error:', err);
       setStep('error');
-      setErrorMsg(err.message || 'Payment failed. Please try again.');
+      setErrorMsg(err.message || t('coPaymentFailedFallback'));
     }
   };
 
@@ -102,30 +102,30 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, onSucces
             </svg>
           </div>
           <h3 className="text-xl font-bold">{t('unlockPremium')}</h3>
-          <p className="text-amber-100 text-sm mt-1">Annual subscription · Cancel anytime</p>
+          <p className="text-amber-100 text-sm mt-1">{t('coAnnualSub')}</p>
         </div>
 
         <div className="p-6">
           {step === 'form' && (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
-                <p className="text-sm text-amber-700 font-medium">Advanced Health Suite</p>
+                <p className="text-sm text-amber-700 font-medium">{t('coAdvancedSuite')}</p>
                 <p className="text-3xl font-black text-amber-600">{price}</p>
-                <p className="text-xs text-amber-600 mt-1">Annual billing · Renews automatically</p>
+                <p className="text-xs text-amber-600 mt-1">{t('coAnnualBilling')}</p>
               </div>
 
               <div>
-                <label className="label">Full Name</label>
+                <label className="label">{t('coFullName')}</label>
                 <input type="text" required placeholder="John Doe" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="input-field" />
               </div>
 
               <div>
-                <label className="label">Email Address</label>
+                <label className="label">{t('coEmailAddress')}</label>
                 <input type="email" required placeholder="john@example.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="input-field" />
               </div>
 
               <div>
-                <label className="label">Card Number</label>
+                <label className="label">{t('coCardNumber')}</label>
                 <div className="relative">
                   <input type="text" required placeholder="4242 4242 4242 4242" value={form.cardNumber} onChange={(e) => setForm({ ...form, cardNumber: formatCardNumber(e.target.value) })} maxLength={19} className={`input-field ${dir === 'rtl' ? 'pl-12 text-left' : 'pl-12'}`} style={{ direction: 'ltr' }} />
                   <div className={`absolute top-1/2 -translate-y-1/2 ${dir === 'rtl' ? 'right-3' : 'left-3'} flex gap-1`}>
@@ -137,11 +137,11 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, onSucces
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="label">Expiry Date</label>
+                  <label className="label">{t('coExpiryDate')}</label>
                   <input type="text" required placeholder="MM / YY" value={form.expiry} onChange={(e) => setForm({ ...form, expiry: formatExpiry(e.target.value) })} maxLength={7} className="input-field" style={{ direction: 'ltr' }} />
                 </div>
                 <div>
-                  <label className="label">CVV</label>
+                  <label className="label">{t('coCvv')}</label>
                   <div className="relative">
                     <input type="text" required placeholder="123" value={form.cvv} onChange={(e) => setForm({ ...form, cvv: e.target.value.replace(/\D/g, '').slice(0, 4) })} maxLength={4} className="input-field" style={{ direction: 'ltr' }} />
                     <svg className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 ${dir === 'rtl' ? 'left-3' : 'right-3'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -155,11 +155,11 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, onSucces
                 <svg className="w-4 h-4 text-sage-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
-                <span>Your payment info is encrypted and secure. This is a demo — no real charges will be made.</span>
+                <span>{t('coSecurityNote')}</span>
               </div>
 
               <button type="submit" disabled={!isValid} className={`w-full py-3.5 rounded-xl font-bold text-white shadow-lg transition-all duration-200 ${isValid ? 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 hover:shadow-xl active:scale-[0.98]' : 'bg-gray-300 cursor-not-allowed'}`}>
-                Pay {price} →
+                {t('coPay')} {price} →
               </button>
             </form>
           )}
@@ -167,8 +167,8 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, onSucces
           {step === 'processing' && (
             <div className="text-center py-12">
               <div className="w-16 h-16 border-4 border-amber-200 border-t-amber-500 rounded-full animate-spin mx-auto mb-6"></div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Processing Payment...</h3>
-              <p className="text-sm text-gray-500">Please wait while we verify your payment.</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">{t('coProcessing')}</h3>
+              <p className="text-sm text-gray-500">{t('coVerifyWait')}</p>
             </div>
           )}
 
@@ -179,9 +179,9 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, onSucces
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Payment Successful!</h3>
-              <p className="text-sm text-gray-500 mb-4">Welcome to the Advanced Health Suite.</p>
-              <p className="text-xs text-gray-400">Redirecting you now...</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">{t('coPaymentSuccess')}</h3>
+              <p className="text-sm text-gray-500 mb-4">{t('coWelcomeSuite')}</p>
+              <p className="text-xs text-gray-400">{t('coRedirecting')}</p>
             </div>
           )}
 
@@ -192,10 +192,10 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, onSucces
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Payment Failed</h3>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">{t('coPaymentFailed')}</h3>
               <p className="text-sm text-gray-500 mb-4">{errorMsg}</p>
               <button onClick={() => setStep('form')} className="px-6 py-2.5 bg-primary-600 text-white text-sm font-semibold rounded-xl hover:bg-primary-700 transition-all">
-                Try Again
+                {t('coTryAgain')}
               </button>
             </div>
           )}

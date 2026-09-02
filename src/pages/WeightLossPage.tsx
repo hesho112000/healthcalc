@@ -31,6 +31,7 @@ const GOAL_DELTA: Record<HealthGoal, number> = { lose_weight: -500, maintain: 0,
 
 const WeightLossPage: React.FC = () => {
   const { t, language } = useLanguage();
+  const fmt = (tpl: string, vars: Record<string, string | number>) => tpl.replace(/\{(\w+)\}/g, (_, k) => (k in vars ? String(vars[k]) : `{${k}}`));
   const [result, setResult] = useState<CalorieResult | null>(null);
   const [activeTab, setActiveTab] = useState<'calories' | 'meals' | 'workout'>('calories');
   const [showMealPlanModal, setShowMealPlanModal] = useState(false);
@@ -123,7 +124,7 @@ const WeightLossPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#f8fafc]">
       <Breadcrumbs />
-      <PageHero pill="10 مطابخ · USDA دقيق · Mifflin-St Jeor" title={t('module1Title')} description={t('module1Desc')} />
+      <PageHero pill={t('wlHeroPill')} title={t('module1Title')} description={t('module1Desc')} />
 
       <TwoColumnLayout
         sidebar={
@@ -134,7 +135,7 @@ const WeightLossPage: React.FC = () => {
             </h2>
             <div className="space-y-5">
               <div>
-                <label className="label">{t('age')} (years)</label>
+                <label className="label">{t('age')} ({t('wlAgeYears')})</label>
                 <input type="number" min={14} max={100} value={form.age} onChange={(e) => setForm({ ...form, age: +e.target.value })} className="input-field-lg" />
               </div>
               <div>
@@ -157,7 +158,7 @@ const WeightLossPage: React.FC = () => {
                 <input type="number" min={30} max={300} value={form.weight} onChange={(e) => setForm({ ...form, weight: +e.target.value })} className="input-field-lg" />
               </div>
               <div className="mt-4">
-                <label className="text-sm font-medium text-gray-700">WORKOUT DAYS PER WEEK</label>
+                <label className="text-sm font-medium text-gray-700">{t('wlWorkoutDaysPerWeek')}</label>
                 <div className="mt-2 flex items-center gap-3">
                   <input
                     type="range"
@@ -167,13 +168,13 @@ const WeightLossPage: React.FC = () => {
                     className="flex-1 accent-blue-600"
                   />
                   <div className="bg-blue-50 border border-blue-200 px-4 py-2 rounded-lg min-w-[76px] text-center">
-                    <span className="font-bold text-blue-700">{form.workoutDays ?? 3} days</span>
+                    <span className="font-bold text-blue-700">{fmt(t('wlDays'), { n: form.workoutDays ?? 3 })}</span>
                   </div>
                 </div>
                 <div className="flex justify-between text-xs text-gray-400 mt-1">
-                  <span>0 - Sedentary</span>
-                  <span>3-4 - Moderate</span>
-                  <span>6-7 - Very Active</span>
+                  <span>0 - {t('wlSedentary')}</span>
+                  <span>3-4 - {t('wlModerate')}</span>
+                  <span>6-7 - {t('wlVeryActive')}</span>
                 </div>
               </div>
               <button type="submit" className="btn-primary w-full py-4 text-base font-bold">{t('calculate')}</button>
@@ -187,7 +188,7 @@ const WeightLossPage: React.FC = () => {
 
               <div className="card p-5">
                 <h3 className="text-base font-bold mb-4 flex items-center gap-2">
-                  🎯 {language === 'ar' ? 'اختر هدفك — إعادة حساب الخطط تلقائيًا' : 'Goal Selector — recalculates all plans instantly'}
+                  🎯 {t('wlGoalSelector')}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {GOAL_OPTIONS.map((g) => {
@@ -235,19 +236,19 @@ const WeightLossPage: React.FC = () => {
                   <MacroBreakdown proteinG={result.macros.proteinGrams} proteinPct={result.macros.protein} carbsG={result.macros.carbsGrams} carbsPct={result.macros.carbs} fatG={result.macros.fatGrams} fatPct={result.macros.fat} />
                   <div className="card p-6">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-lg font-bold">📊 جدول السعرات - {CUISINE_META[selectedCuisine].flag} {getCuisineLabel(CUISINE_OPTIONS.find(c => c.key === selectedCuisine) || CUISINE_OPTIONS[0], language)}</h3>
-                      <span className="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full font-bold">USDA دقيق</span>
+                      <h3 className="text-lg font-bold">📊 {fmt(t('wlCaloriesSchedule'), { cuisine: `${CUISINE_META[selectedCuisine].flag} ${getCuisineLabel(CUISINE_OPTIONS.find(c => c.key === selectedCuisine) || CUISINE_OPTIONS[0], language)}` })}</h3>
+                      <span className="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full font-bold">{t('wlUsdaAccurate')}</span>
                     </div>
                     <div className="overflow-x-auto">
                       <table className="w-full text-sm">
-                        <thead><tr className="text-left text-[11px] text-gray-400 uppercase border-b"><th className="pb-2">الصنف</th><th className="pb-2">الكمية</th><th className="pb-2 text-center">سعر</th><th className="pb-2 text-center">بروتين</th></tr></thead>
+                        <thead><tr className="text-left text-[11px] text-gray-400 uppercase border-b"><th className="pb-2">{t('foodLibColItem')}</th><th className="pb-2">{t('foodLibColPortion')}</th><th className="pb-2 text-center">{t('foodLibColCalories')}</th><th className="pb-2 text-center">{t('foodLibColProtein')}</th></tr></thead>
                         <tbody>
                           {filteredFoods.map((food, idx) => (
                             <tr key={idx} className="border-b last:border-0 hover:bg-gray-50">
                               <td className="py-2.5 font-medium">
                                 <div className="flex items-center gap-1.5">
                                   {food.name}
-                                  {food.verified && <span className="px-1 py-0.5 rounded bg-emerald-600 text-[8px] font-bold text-white" title="USDA Database">USDA ✓</span>}
+                                  {food.verified && <span className="px-1 py-0.5 rounded bg-emerald-600 text-[8px] font-bold text-white" title={t('wlUsdaAccurate')}>USDA ✓</span>}
                                 </div>
                                 <div className="text-xs text-gray-400">{food.name_en}</div>
                               </td>
@@ -258,7 +259,7 @@ const WeightLossPage: React.FC = () => {
                                 </span>
                               </td>
                               <td className="py-2.5 text-center"><span className="bg-orange-100 text-orange-700 px-2 py-1 rounded-full text-xs font-bold">{food.calories}</span></td>
-                              <td className="py-2.5 text-center font-bold">{food.protein}ج</td>
+                              <td className="py-2.5 text-center font-bold">{food.protein}{t('wlProteinUnit')}</td>
                             </tr>
                           ))}
                         </tbody>
@@ -289,7 +290,7 @@ const WeightLossPage: React.FC = () => {
                     />
                   </div>
 
-                  <DayProgressHeader completed={dayDoneCount} total={dayMeals.length + 1} dailyGoal="Complete all meals" />
+                  <DayProgressHeader completed={dayDoneCount} total={dayMeals.length + 1} dailyGoal={t('wlCompleteAllMeals')} />
                   <button
                     onClick={() => setShowMealPlanModal(true)}
                     className="w-full btn-primary py-3 text-sm font-bold flex items-center justify-center gap-2"
@@ -297,7 +298,7 @@ const WeightLossPage: React.FC = () => {
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
                     </svg>
-                    Full 30-Day Plan
+                    {t('wlFullPlan')}
                   </button>
                   <div className="grid gap-4">
                     {dayMeals.map((meal, idx) => (
@@ -306,11 +307,11 @@ const WeightLossPage: React.FC = () => {
                   </div>
 
                   <div className="card p-5 bg-gradient-to-r from-green-50 to-emerald-50 border-green-200">
-                    <h4 className="font-bold mb-3">💡 اقتراحات من مطبخ {getCuisineLabel(CUISINE_OPTIONS.find(c => c.key === selectedCuisine) || CUISINE_OPTIONS[0], language)} {CUISINE_META[selectedCuisine].flag}</h4>
+                    <h4 className="font-bold mb-3">💡 {fmt(t('wlSuggestions'), { cuisine: `${getCuisineLabel(CUISINE_OPTIONS.find(c => c.key === selectedCuisine) || CUISINE_OPTIONS[0], language)} ${CUISINE_META[selectedCuisine].flag}` })}</h4>
                     <div className="flex flex-wrap gap-2">
                       {filteredFoods.map((food, idx) => (
                         <span key={idx} className="bg-white border px-3 py-1.5 rounded-full text-xs font-medium shadow-sm">
-                          {food.name} - {food.calories} سعر
+                          {fmt(t('wlCaloriesItem'), { name: food.name, kcal: food.calories })}
                         </span>
                       ))}
                     </div>
@@ -326,7 +327,7 @@ const WeightLossPage: React.FC = () => {
 
                   {/* Exercise Type Selector */}
                   <div className="card p-5">
-                    <h3 className="font-bold mb-3 flex items-center gap-2">💪 {language === 'ar' ? 'نوع التمرين' : 'Exercise Type'}</h3>
+                    <h3 className="font-bold mb-3 flex items-center gap-2">💪 {t('wlExerciseType')}</h3>
                     <div className="flex flex-wrap gap-2">
                       <button
                         type="button"
@@ -337,7 +338,7 @@ const WeightLossPage: React.FC = () => {
                             : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
                         }`}
                       >
-                        🤖 {language === 'ar' ? 'توصية تلقائية' : 'Auto Recommend'}
+                        🤖 {t('wlAutoRecommend')}
                       </button>
                       {EXERCISE_TYPE_OPTIONS.map((type) => (
                         <button
@@ -363,11 +364,11 @@ const WeightLossPage: React.FC = () => {
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
                     </svg>
-                    {language === 'ar' ? 'خطة التمرين الكاملة - 30 يوم' : 'Full 30-Day Workout Plan'}
+                    {t('wlFullWorkout')}
                   </button>
 
                   <div className="text-center py-8 text-gray-400 text-sm">
-                    {language === 'ar' ? 'اختر نوع التمرين أعلاه ثم اضغط الزر لفتح الخطة' : 'Select exercise type above, then click the button to open the plan'}
+                    {t('wlWorkoutHint')}
                   </div>
                 </div>
               )}

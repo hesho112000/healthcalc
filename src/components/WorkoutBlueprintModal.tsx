@@ -47,6 +47,9 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
   workoutPlan: propPlan, selectedDay: externalDay, onDayChange, weight, onSave,
 }) => {
   const { t, language } = useLanguage();
+
+  const fmt = (template: string, vars: Record<string, string | number>): string =>
+    template.replace(/\{(\w+)\}/g, (_, k) => (k in vars ? String(vars[k]) : `{${k}}`));
   const [internalDay, setInternalDay] = useState(externalDay ?? 0);
   const activeDay = externalDay ?? internalDay;
   const setDay = onDayChange ?? setInternalDay;
@@ -117,10 +120,10 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
               </div>
               <div>
                 <h2 className="text-lg font-extrabold tracking-tight">
-                  {language === 'ar' ? 'خطة التمرين المخصصة لك' : language === 'fr' ? 'Votre Plan d\'Entraînement' : language === 'es' ? 'Tu Plan de Ejercicio' : 'Your Personalized Workout Blueprint'}
+                  {t('wbTitle')}
                 </h2>
                 <p className="text-rose-200 text-xs">
-                  {language === 'ar' ? 'HealthCalc.ai — تمارين علمية' : 'HealthCalc.ai — Science-Based Exercise Planning'}
+                  {t('wbSubtitle')}
                 </p>
               </div>
             </div>
@@ -150,7 +153,7 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-sm font-bold text-gray-900">
-                  {language === 'ar' ? 'اليوم' : 'Day'} {activeDay + 1}
+                  {t('wbDay')} {activeDay + 1}
                 </span>
                 <span className="text-[10px] font-semibold px-2 py-0.5 rounded-lg bg-rose-50 text-rose-600">
                   {currentDay?.workoutGoal}
@@ -188,7 +191,7 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
         <div className="bg-gradient-to-r from-rose-50/80 to-orange-50/80 border-b border-rose-100 px-6 py-3 shrink-0 print:hidden">
           <div className="flex items-center gap-3">
             <span className="text-xs font-bold text-gray-500 shrink-0">
-              {language === 'ar' ? 'نوع التمرين:' : 'Type:'}
+              {t('wbType')}
             </span>
             <div className="flex gap-1.5 overflow-x-auto scrollbar-thin flex-1">
               <button
@@ -200,7 +203,7 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
                     : 'bg-white text-gray-500 border-gray-200 hover:border-rose-300 hover:text-rose-600'
                 }`}
               >
-                {language === 'ar' ? '🤖 توصية تلقائية' : '🤖 Auto Recommend'}
+                🤖 {t('wbAuto')}
               </button>
               {EXERCISE_TYPE_OPTIONS.map((type) => (
                 <button
@@ -229,7 +232,7 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
               </div>
               <div>
                 <p className="text-[10px] font-semibold text-rose-600 uppercase tracking-wider">
-                  {language === 'ar' ? 'هدف حرق السعرات' : 'Calorie Burn Target'}
+                  {t('wbBurnTarget')}
                 </p>
                 <p className="text-xl font-black text-gray-900">{currentDay?.calorieBurnTarget || 0} <span className="text-sm font-bold text-gray-500">kcal</span></p>
               </div>
@@ -241,7 +244,7 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
               </div>
               <div>
                 <p className="text-[10px] font-semibold text-orange-600 uppercase tracking-wider">
-                  {language === 'ar' ? 'هدف التمرين' : 'Workout Goal'}
+                  {t('wbGoal')}
                 </p>
                 <p className="text-sm font-bold text-gray-900">{currentDay?.workoutGoal}</p>
               </div>
@@ -253,7 +256,7 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
               </div>
               <div className="min-w-0">
                 <p className="text-[10px] font-semibold text-amber-600 uppercase tracking-wider">
-                  {language === 'ar' ? 'التمارين المنجزة' : 'Exercises Done'}
+                  {t('wbExercisesDone')}
                 </p>
                 <div className="h-2 bg-amber-100 rounded-full overflow-hidden mt-1">
                   <div
@@ -282,7 +285,7 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
               </svg>
-              {language === 'ar' ? 'إرسال بالبريد' : 'Email Plan'}
+              {t('wbEmailPlan')}
             </button>
           </div>
           <button
@@ -296,7 +299,7 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
             </svg>
-            {language === 'ar' ? 'تتبع التقدم' : 'Progress Tracker'}
+            {t('progressTracker')}
           </button>
         </div>
 
@@ -307,7 +310,7 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-bold text-amber-700">
-                    {language === 'ar' ? 'التقدم اليومي' : 'Daily Progress'}
+                    {t('wbDailyProgress')}
                   </span>
                   <span className="text-xs font-bold text-amber-600">{completionPct}%</span>
                 </div>
@@ -321,7 +324,7 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
               <div className="text-center">
                 <p className="text-2xl font-black text-amber-700">{completedCount}</p>
                 <p className="text-[10px] font-semibold text-amber-500 uppercase">
-                  {language === 'ar' ? `من ${currentDay?.exercises.length || 0}` : `of ${currentDay?.exercises.length || 0}`}
+                  {fmt(t('wbOfEx'), { n: currentDay?.exercises.length || 0 })}
                 </p>
               </div>
             </div>
@@ -375,13 +378,13 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
                     {EXERCISE_TYPE_LABELS[exercise.type]?.[language === 'ar' ? 'ar' : 'en']}
                   </span>
                   <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-lg ${difficultyColors[exercise.difficulty] || 'bg-gray-100 text-gray-600'}`}>
-                    {language === 'ar' ? (exercise.difficulty === 'beginner' ? 'مبتدئ' : exercise.difficulty === 'intermediate' ? 'متوسط' : 'متقدم') : exercise.difficulty}
+                    {exercise.difficulty === 'beginner' ? t('wbLevelBeginner') : exercise.difficulty === 'intermediate' ? t('wbLevelIntermediate') : t('wbLevelAdvanced')}
                   </span>
                 </div>
                 {completed[i] && (
                   <div className="absolute top-3 left-3 print:hidden">
                     <span className="badge-sage text-[10px]">
-                      ✓ {language === 'ar' ? 'تم' : 'Done'}
+                      ✓ {t('wbDone')}
                     </span>
                   </div>
                 )}
@@ -394,7 +397,7 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
         <div className="border-t border-gray-100 bg-gray-50/50 px-6 py-4 shrink-0 flex items-center justify-between print:hidden">
           <div className="flex items-center gap-2 text-xs text-gray-400">
             <span className="w-2 h-2 bg-sage-400 rounded-full" />
-            {completedCount}/{currentDay?.exercises.length || 0} {language === 'ar' ? 'تمارين منجزة' : 'exercises completed'}
+            {completedCount}/{currentDay?.exercises.length || 0} {t('wbExercisesCompleted')}
           </div>
           <div className="flex items-center gap-3">
             <button
