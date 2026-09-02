@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
-import { MealPlan } from '../types';
-import { Cuisine, CUISINE_META } from '../utils/calculations_expanded';
-import { buildMealRowsForCuisine } from '../utils/calculations';
-import { useLanguage } from '../context/LanguageContext';
-import { getMealName, getFoodItemText } from '../utils/mealLabels';
+import { MealPlan } from '../../types';
+import { Cuisine, CUISINE_META } from '../../utils/calculations_expanded';
+import { buildMealRowsForCuisine } from '../../utils/calculations';
+import { useLanguage } from '../../context/LanguageContext';
+import { getMealName, getFoodItemText } from '../../utils/mealLabels';
 
 interface ModalDayData {
   meals: Array<{ meal: string; calories: number; protein: number; carbs: number; fat: number; items: string[]; icon?: string; description?: string; tips?: string; nameAr?: string; nameEn?: string; verified?: boolean; saturatedFat?: number; cholesterol?: number }>;

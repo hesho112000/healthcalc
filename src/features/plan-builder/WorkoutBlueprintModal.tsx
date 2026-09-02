@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../../context/LanguageContext';
 import {
   Exercise, ExerciseType, EXERCISES_DATABASE, EXERCISE_TYPE_LABELS,
   EXERCISE_TYPE_OPTIONS, getExercisesByType, recommendExercises,
-} from '../utils/calculations_expanded';
+} from '../../utils/calculations_expanded';
 
 interface WorkoutDay {
   day: number;

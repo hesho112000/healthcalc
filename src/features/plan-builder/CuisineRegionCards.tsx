@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import { useLanguage } from '../context/LanguageContext';
-import { CUISINE_GROUPS, CUISINE_FLAGS, type Cuisine } from '../utils/cuisineCatalog';
+import { useLanguage } from '../../context/LanguageContext';
+import { CUISINE_GROUPS, CUISINE_FLAGS, type Cuisine } from '../../utils/cuisineCatalog';
 
 const DEFAULT_CUISINE = 'egyptian';
 

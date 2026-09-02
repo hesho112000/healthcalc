@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
-import { useLanguage } from '../context/LanguageContext';
-import { calculateIdealWeight, calculateBMR } from '../utils/calculations_expanded';
-import type { HealthGoal } from '../types';
+import { useLanguage } from '../../context/LanguageContext';
+import { calculateIdealWeight, calculateBMR } from '../../utils/calculations_expanded';
+import type { HealthGoal } from '../../types';
 
 export interface AdviceBoxProps {
   weight: number;

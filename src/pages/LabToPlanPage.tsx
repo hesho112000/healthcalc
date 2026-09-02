@@ -1,16 +1,16 @@
 import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
-import Breadcrumbs from '../components/Breadcrumbs';
-import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../components/HealthPlanTemplate';
+import Breadcrumbs from '../components/layout/Breadcrumbs';
+import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../features/plan-builder/HealthPlanTemplate';
 import { getMealLabel } from '../utils/mealLabels';
 import { generateDiabetesPlan, generateHypertensionPlan, type DayPlan } from '../utils/healthPlans';
 import { toDayPlans, type MealMacros } from '../utils/mealBuilder';
 import { type Cuisine } from '../utils/calculations_expanded';
-import MealPlanModal from '../components/MealPlanModal';
-import CuisineRegionCards from '../components/CuisineRegionCards';
-import MealBuilder from '../components/MealBuilder';
-import WorkoutBlueprintModal from '../components/WorkoutBlueprintModal';
+import MealPlanModal from '../features/plan-builder/MealPlanModal';
+import CuisineRegionCards from '../features/plan-builder/CuisineRegionCards';
+import MealBuilder from '../features/plan-builder/MealBuilder';
+import WorkoutBlueprintModal from '../features/plan-builder/WorkoutBlueprintModal';
 
 /* ──────────────── Types ──────────────── */
 type MealSlot = 'breakfast' | 'lunch' | 'dinner';

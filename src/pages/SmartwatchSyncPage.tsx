@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import Breadcrumbs from '../components/Breadcrumbs';
+import Breadcrumbs from '../components/layout/Breadcrumbs';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import {
   type HealthMetrics, type SyncStatus,

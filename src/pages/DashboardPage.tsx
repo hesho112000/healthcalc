@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth, hasPremiumAccess } from '../context/AuthContext';
 import { api, HealthRecord, StatsResponse } from '../utils/api';
-import HealthMetricsWidget from '../components/HealthMetricsWidget';
+import HealthMetricsWidget from '../features/health-tools/HealthMetricsWidget';
 import { useLanguage } from '../context/LanguageContext';
 import CheckoutModal from '../components/CheckoutModal';
 

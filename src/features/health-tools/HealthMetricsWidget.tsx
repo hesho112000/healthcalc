@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useLanguage } from '../context/LanguageContext';
-import { type HealthMetrics, type SyncStatus, getStoredMetrics, getSyncStatus, syncHealthData } from '../utils/healthDataSync';
+import { useLanguage } from '../../context/LanguageContext';
+import { type HealthMetrics, type SyncStatus, getStoredMetrics, getSyncStatus, syncHealthData } from '../../utils/healthDataSync';
 
 const HealthMetricsWidget: React.FC = () => {
   const { t } = useLanguage();

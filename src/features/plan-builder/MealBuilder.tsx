@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useLanguage } from '../context/LanguageContext';
-import { type FoodItem } from '../utils/calculations';
-import { getPortionMeasure } from '../utils/cuisineCatalog';
+import { useLanguage } from '../../context/LanguageContext';
+import { type FoodItem } from '../../utils/calculations';
+import { getPortionMeasure } from '../../utils/cuisineCatalog';
 import {
   type BuilderPool,
   type BuilderSelections,
@@ -21,8 +21,8 @@ import {
   getBreadSodium,
   isLowSodiumOption,
   scaleMeal,
-} from '../utils/mealBuilder';
-import { detectCuisineByLocation, getCuisineLocalName, getGeoMeta } from '../utils/geo';
+} from '../../utils/mealBuilder';
+import { detectCuisineByLocation, getCuisineLocalName, getGeoMeta } from '../../utils/geo';
 
 export interface MealBuilderProps {
   cuisine: string;

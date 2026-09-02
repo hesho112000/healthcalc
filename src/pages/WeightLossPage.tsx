@@ -2,20 +2,20 @@ import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { UserProfile, CalorieResult, MealPlan, DailyMealPlan, HealthGoal } from '../types';
 import { calculateFullResults } from '../utils/calculations';
-import AdviceBox from '../components/AdviceBox';
+import AdviceBox from '../features/health-tools/AdviceBox';
 import { usePersistedState } from '../hooks/usePersistedState';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
-import Breadcrumbs from '../components/Breadcrumbs';
-import SaveProgressButton from '../components/SaveProgressButton';
-import MealPlanModal from '../components/MealPlanModal';
-import WorkoutBlueprintModal from '../components/WorkoutBlueprintModal';
-import CuisineRegionCards from '../components/CuisineRegionCards';
-import MealBuilder from '../components/MealBuilder';
+import Breadcrumbs from '../components/layout/Breadcrumbs';
+import SaveProgressButton from '../features/health-tools/SaveProgressButton';
+import MealPlanModal from '../features/plan-builder/MealPlanModal';
+import WorkoutBlueprintModal from '../features/plan-builder/WorkoutBlueprintModal';
+import CuisineRegionCards from '../features/plan-builder/CuisineRegionCards';
+import MealBuilder from '../features/plan-builder/MealBuilder';
 import {
   PageHero, TwoColumnLayout, StatsBar, DaySelectorBar,
   PlanTabBar, MacroBreakdown, MealCard, EmptyPlanState,
   DayProgressHeader, StreakBar,
-} from '../components/HealthPlanTemplate';
+} from '../features/plan-builder/HealthPlanTemplate';
 
 import { FOODS_DATABASE, CUISINE_META, Cuisine, CUISINE_OPTIONS, recommendExercises, EXERCISE_TYPE_LABELS, EXERCISE_TYPE_OPTIONS, ExerciseType } from '../utils/calculations_expanded';
 import { getPortionMeasure } from '../utils/cuisineCatalog';

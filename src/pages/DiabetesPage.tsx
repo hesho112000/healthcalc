@@ -6,14 +6,14 @@ import { generateDiabetesPlan, type DayPlan } from '../utils/healthPlans';
 import { toDayPlans } from '../utils/mealBuilder';
 import { usePersistedState } from '../hooks/usePersistedState';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
-import Breadcrumbs from '../components/Breadcrumbs';
-import SaveProgressButton from '../components/SaveProgressButton';
-import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../components/HealthPlanTemplate';
+import Breadcrumbs from '../components/layout/Breadcrumbs';
+import SaveProgressButton from '../features/health-tools/SaveProgressButton';
+import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../features/plan-builder/HealthPlanTemplate';
 import { type Cuisine } from '../utils/calculations_expanded';
-import MealPlanModal from '../components/MealPlanModal';
-import CuisineRegionCards from '../components/CuisineRegionCards';
-import MealBuilder from '../components/MealBuilder';
-import WorkoutBlueprintModal from '../components/WorkoutBlueprintModal';
+import MealPlanModal from '../features/plan-builder/MealPlanModal';
+import CuisineRegionCards from '../features/plan-builder/CuisineRegionCards';
+import MealBuilder from '../features/plan-builder/MealBuilder';
+import WorkoutBlueprintModal from '../features/plan-builder/WorkoutBlueprintModal';
 
 const DiabetesPage: React.FC = () => {
   const { t, language } = useLanguage();

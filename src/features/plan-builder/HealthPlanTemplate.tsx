@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useLanguage } from '../context/LanguageContext';
-import { getMealName, getFoodItemText, normalizeMealKey } from '../utils/mealLabels';
-import { isHeavyMeal } from '../data/cuisine-allowed';
+import { useLanguage } from '../../context/LanguageContext';
+import { getMealName, getFoodItemText, normalizeMealKey } from '../../utils/mealLabels';
+import { isHeavyMeal } from '../../data/cuisine-allowed';
 
 /* ═══════════════════════════════════════════════════════════════════
    SHARED TYPES

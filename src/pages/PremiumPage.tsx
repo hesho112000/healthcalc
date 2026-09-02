@@ -2,15 +2,15 @@ import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth, hasPremiumAccess } from '../context/AuthContext';
 import { usePersistedState } from '../hooks/usePersistedState';
-import AdPlaceholder from '../components/AdPlaceholder';
-import Breadcrumbs from '../components/Breadcrumbs';
+import AdPlaceholder from '../features/health-tools/AdPlaceholder';
+import Breadcrumbs from '../components/layout/Breadcrumbs';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import CheckoutModal from '../components/CheckoutModal';
-import MealPlanModal from '../components/MealPlanModal';
-import CuisineRegionCards from '../components/CuisineRegionCards';
-import MealBuilder from '../components/MealBuilder';
-import WorkoutBlueprintModal from '../components/WorkoutBlueprintModal';
-import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../components/HealthPlanTemplate';
+import MealPlanModal from '../features/plan-builder/MealPlanModal';
+import CuisineRegionCards from '../features/plan-builder/CuisineRegionCards';
+import MealBuilder from '../features/plan-builder/MealBuilder';
+import WorkoutBlueprintModal from '../features/plan-builder/WorkoutBlueprintModal';
+import { DaySelectorBar, PlanTabBar, MealCard, WorkoutCard, DayProgressHeader, StreakBar } from '../features/plan-builder/HealthPlanTemplate';
 import {
   generate30DayPlan, getCheckInFields, computeAIAdjustments, computeStreak,
   buildCSVExport, buildEmailReport, triggerFoods, symptomOptions,
