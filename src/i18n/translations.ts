@@ -985,6 +985,48 @@ type TranslationKeys = {
   mealMorningSnack: string;
   mealAfternoonSnack: string;
   mealSnack: string;
+  workoutPlanBuilder: {
+    title: string;
+    subtitle: string;
+    goalLabel: string;
+    workoutDaysLabel: string;
+    durationLabel: string;
+    generateBtn: string;
+    regenerate: string;
+    openBlueprint: string;
+    dayLabel: string;
+    exercise_type: string;
+    equipment: string;
+    muscleGroup: string;
+    difficulty: string;
+    goal: string;
+    caloriesLabel: string;
+    minutes: string;
+    setsReps: string;
+    bmiLabel: string;
+    contraindications: string;
+    tips: string;
+    references: string;
+    beginner: string;
+    intermediate: string;
+    advanced: string;
+    fullBody: string;
+    upperBody: string;
+    lowerBody: string;
+    core: string;
+    cardiovascular: string;
+    balance: string;
+    flexibility: string;
+    muscular: string;
+    endurance: string;
+    power: string;
+    strength: string;
+    mobility: string;
+    stability: string;
+    relax: string;
+    mindfulness: string;
+    breathing: string;
+  };
 };
 
 export const translations: Record<Language, TranslationKeys> = {
@@ -996,6 +1038,48 @@ export const translations: Record<Language, TranslationKeys> = {
     mealMorningSnack: 'Morning Snack',
     mealAfternoonSnack: 'Afternoon Snack',
     mealSnack: 'Snack',
+    workoutPlanBuilder: {
+      title: 'Workout Plan Builder',
+      subtitle: 'Personalized exercise program in 4 easy steps',
+      goalLabel: 'Fitness Goal',
+      workoutDaysLabel: 'Days Per Week',
+      durationLabel: 'Session Length',
+      generateBtn: 'Generate My Workout',
+      regenerate: 'Regenerate',
+      openBlueprint: 'Open 30-Day Blueprint',
+      dayLabel: 'Day',
+      exercise_type: 'Exercise Type',
+      equipment: 'Equipment',
+      muscleGroup: 'Muscle Group',
+      difficulty: 'Difficulty',
+      goal: 'Goal',
+      caloriesLabel: 'Estimated Calories',
+      minutes: 'min',
+      setsReps: 'Sets × Reps',
+      bmiLabel: 'BMI Range',
+      contraindications: 'Contraindications',
+      tips: 'Tips',
+      references: 'References',
+      beginner: 'Beginner',
+      intermediate: 'Intermediate',
+      advanced: 'Advanced',
+      fullBody: 'Full Body',
+      upperBody: 'Upper Body',
+      lowerBody: 'Lower Body',
+      core: 'Core',
+      cardiovascular: 'Cardiovascular',
+      balance: 'Balance',
+      flexibility: 'Flexibility',
+      muscular: 'Muscular',
+      endurance: 'Endurance',
+      power: 'Power',
+      strength: 'Strength',
+      mobility: 'Mobility',
+      stability: 'Stability',
+      relax: 'Relaxation',
+      mindfulness: 'Mindfulness',
+      breathing: 'Breathing',
+    },
     tagline: 'Your AI Health Companion',
     searchPlaceholder: 'Search health calculators...',
     home: 'Home',
@@ -1984,6 +2068,48 @@ export const translations: Record<Language, TranslationKeys> = {
     mealMorningSnack: 'Collation du matin',
     mealAfternoonSnack: 'Collation de l\'après-midi',
     mealSnack: 'Collation',
+    workoutPlanBuilder: {
+      title: 'Planificateur de Programme d\'Entraînement',
+      subtitle: 'Programme d\'exercices personnalisé en 4 étapes simples',
+      goalLabel: 'Objectif Fitness',
+      workoutDaysLabel: 'Jours Par Semaine',
+      durationLabel: 'Durée de Séance',
+      generateBtn: 'Générer Mon Entraînement',
+      regenerate: 'Régénérer',
+      openBlueprint: 'Ouvrir le Plan de 30 Jours',
+      dayLabel: 'Jour',
+      exercise_type: 'Type d\'Exercice',
+      equipment: 'Équipement',
+      muscleGroup: 'Groupe Musculaire',
+      difficulty: 'Difficulté',
+      goal: 'Objectif',
+      caloriesLabel: 'Calories Estimées',
+      minutes: 'min',
+      setsReps: 'Séries × Répétitions',
+      bmiLabel: 'Plage IMC',
+      contraindications: 'Contre-indications',
+      tips: 'Conseils',
+      references: 'Références',
+      beginner: 'Débutant',
+      intermediate: 'Intermédiaire',
+      advanced: 'Avancé',
+      fullBody: 'Corps Entier',
+      upperBody: 'Haut du Corps',
+      lowerBody: 'Bas du Corps',
+      core: 'Gainage',
+      cardiovascular: 'Cardiovasculaire',
+      balance: 'Équilibre',
+      flexibility: 'Flexibilité',
+      muscular: 'Musculaire',
+      endurance: 'Endurance',
+      power: 'Puissance',
+      strength: 'Force',
+      mobility: 'Mobilité',
+      stability: 'Stabilité',
+      relax: 'Relaxation',
+      mindfulness: 'Pleine Conscience',
+      breathing: 'Respiration',
+    },
     tagline: 'Votre Compagnon Santé IA',
     searchPlaceholder: 'Rechercher des calculateurs de santé...',
     home: 'Accueil',
@@ -2731,7 +2857,7 @@ export const translations: Record<Language, TranslationKeys> = {
     mbBread: 'Pain',
     mbSalads: 'Salades',
     mbSides: 'Accompagnements',
-mbDrinks: 'Boissons',
+    mbDrinks: 'Boissons',
     mbFruits: 'Fruits',
     wlHeroPill: '10 cuisines · USDA vérifié · Mifflin-St Jeor',
     wlGoalSelector: 'Sélecteur d\'objectif — recalcule instantanément tous les plans',
@@ -2942,6 +3068,48 @@ mbDrinks: 'Boissons',
     mealMorningSnack: 'Merienda de la mañana',
     mealAfternoonSnack: 'Merienda de la tarde',
     mealSnack: 'Merienda',
+    workoutPlanBuilder: {
+      title: 'Creador de Plan de Entrenamiento',
+      subtitle: 'Programa de ejercicios personalizado en 4 pasos fáciles',
+      goalLabel: 'Objetivo Fitness',
+      workoutDaysLabel: 'Días Por Semana',
+      durationLabel: 'Duración de Sesión',
+      generateBtn: 'Generar Mi Entrenamiento',
+      regenerate: 'Regenerar',
+      openBlueprint: 'Abrir Plan de 30 Días',
+      dayLabel: 'Día',
+      exercise_type: 'Tipo de Ejercicio',
+      equipment: 'Equipamiento',
+      muscleGroup: 'Grupo Muscular',
+      difficulty: 'Dificultad',
+      goal: 'Objetivo',
+      caloriesLabel: 'Calorías Estimadas',
+      minutes: 'min',
+      setsReps: 'Series × Repeticiones',
+      bmiLabel: 'Rango IMC',
+      contraindications: 'Contraindicaciones',
+      tips: 'Consejos',
+      references: 'Referencias',
+      beginner: 'Principiante',
+      intermediate: 'Intermedio',
+      advanced: 'Avanzado',
+      fullBody: 'Cuerpo Completo',
+      upperBody: 'Parte Superior',
+      lowerBody: 'Parte Inferior',
+      core: 'Core',
+      cardiovascular: 'Cardiovascular',
+      balance: 'Equilibrio',
+      flexibility: 'Flexibilidad',
+      muscular: 'Muscular',
+      endurance: 'Resistencia',
+      power: 'Potencia',
+      strength: 'Fuerza',
+      mobility: 'Movilidad',
+      stability: 'Estabilidad',
+      relax: 'Relajación',
+      mindfulness: 'Atención Plena',
+      breathing: 'Respiración',
+    },
     tagline: 'Tu Compañero de Salud IA',
     searchPlaceholder: 'Buscar calculadoras de salud...',
     home: 'Inicio',
@@ -3900,6 +4068,48 @@ mbDrinks: 'Boissons',
     mealMorningSnack: 'وجبة خفيفة صباحية',
     mealAfternoonSnack: 'وجبة خفيفة مسائية',
     mealSnack: 'وجبة خفيفة',
+    workoutPlanBuilder: {
+      title: 'منشئ خطة التمرين',
+      subtitle: 'برنامج تمارين مخصص في 4 خطوات سهلة',
+      goalLabel: 'الهدف البدني',
+      workoutDaysLabel: 'أيام في الأسبوع',
+      durationLabel: 'مدة الجلسة',
+      generateBtn: 'إنشاء تمريني',
+      regenerate: 'إعادة الإنشاء',
+      openBlueprint: 'فتح خطة 30 يوماً',
+      dayLabel: 'اليوم',
+      exercise_type: 'نوع التمرين',
+      equipment: 'المعدات',
+      muscleGroup: 'مجموعة العضلات',
+      difficulty: 'الصعوبة',
+      goal: 'الهدف',
+      caloriesLabel: 'السعرات المقدرة',
+      minutes: 'دقيقة',
+      setsReps: 'مجموعات × تكرارات',
+      bmiLabel: 'نطاق مؤشر كتلة الجسم',
+      contraindications: 'موانع الاستعمال',
+      tips: 'نصائح',
+      references: 'المراجع',
+      beginner: 'مبتدئ',
+      intermediate: 'متوسط',
+      advanced: 'متقدم',
+      fullBody: 'الجسم كامل',
+      upperBody: 'الجزء العلوي',
+      lowerBody: 'الجزء السفلي',
+      core: 'الوسط',
+      cardiovascular: 'قلبي وعائي',
+      balance: 'التوازن',
+      flexibility: 'المرونة',
+      muscular: 'عضلي',
+      endurance: 'التحمل',
+      power: 'القوة الانفجارية',
+      strength: 'القوة',
+      mobility: 'الحركية',
+      stability: 'الثبات',
+      relax: 'الاسترخاء',
+      mindfulness: 'اليقظة الذهنية',
+      breathing: 'التنفس',
+    },
     tagline: 'رفيقك الصحي بالذكاء الاصطناعي',
     searchPlaceholder: 'ابحث عن حاسبات صحية...',
     home: 'الرئيسية',
@@ -4863,5 +5073,6 @@ mbDrinks: 'Boissons',
 };
 
 export const getTranslation = (lang: Language, key: keyof TranslationKeys): string => {
-  return translations[lang]?.[key] || translations.en[key] || key;
+  const val = translations[lang]?.[key] ?? translations.en[key] ?? key;
+  return typeof val === 'string' ? val : val.title;
 };

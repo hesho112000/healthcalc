@@ -14,6 +14,7 @@ const languages: { code: Language; name: string; flag: string }[] = [
 const searchPages = [
   { path: '/fitness', title: 'Fitness Calculators', keywords: 'bmi bmr tdee calorie ideal weight calculator', icon: '⚖️' },
   { path: '/weight-loss', title: 'Weight & Fitness Plans', keywords: 'weight loss meal plan workout 30 day calorie deficit', icon: '🏋️' },
+  { path: '/workout-plan', title: 'Workout Plan Builder', keywords: 'workout exercise trainer gym strength cardio hiit routine weekly plan builder', icon: '💪' },
   { path: '/diabetes', title: 'Diabetes Management', keywords: 'diabetes glucose hba1c blood sugar lab interpreter bp', icon: '🩸' },
   { path: '/lab-to-plan', title: 'Lab-to-Plan Engine', keywords: 'lab results blood work interpretation personalized plan', icon: '🔬' },
   { path: '/smartwatch-sync', title: 'Smartwatch Sync', keywords: 'smartwatch apple health google health connect fitness tracker watch sync wearable', icon: '⌚' },
@@ -73,6 +74,7 @@ const Header: React.FC = () => {
     { path: '/', label: t('home') },
     { path: '/smartwatch-sync', label: `⌚ ${t('swNav')}` },
     { path: '/fitness', label: t('fcNav') },
+    { path: '/workout-plan', label: `💪 ${t('workoutPlan')}` },
     { path: '/weight-loss', label: t('weightLoss') },
     { path: '/diabetes', label: t('diabetes') },
     { path: '/lab-to-plan', label: 'Lab-to-Plan' },

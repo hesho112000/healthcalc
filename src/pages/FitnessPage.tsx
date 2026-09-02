@@ -420,7 +420,21 @@ const FitnessPage: React.FC = () => {
           </div>
         </div>
 
-        <MedicalDisclaimer />
+        <div className="rounded-2xl bg-gradient-to-r from-rose-600 to-orange-500 text-white p-6 md:p-8 shadow-xl relative overflow-hidden">
+            <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-5 justify-between">
+              <div>
+                <p className="text-orange-100 text-xs font-semibold uppercase tracking-wider mb-1">💪</p>
+                <h3 className="text-xl md:text-2xl font-extrabold leading-tight">{t('workoutPlan')}</h3>
+                <p className="text-orange-100 text-sm mt-1 max-w-md">{t('workoutPlanBuilder')}</p>
+              </div>
+              <Link to="/workout-plan" className="inline-flex items-center gap-2 bg-white text-rose-600 font-extrabold px-6 py-3.5 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 text-sm whitespace-nowrap">
+                🏋️ {t('workoutPlan')}
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+              </Link>
+            </div>
+          </div>
+
+          <MedicalDisclaimer />
       </div>
     </div>
   );

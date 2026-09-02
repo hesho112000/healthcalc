@@ -32,6 +32,7 @@ const Breadcrumbs: React.FC = () => {
   const routeLabels: Record<string, string> = {
     '/': t('bcHome'),
     '/fitness': t('fcNav'),
+    '/workout-plan': t('workoutPlan'),
     '/weight-loss': t('weightLoss'),
     '/diabetes': t('diabetes'),
     '/lab-to-plan': 'Lab-to-Plan',

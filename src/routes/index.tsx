@@ -17,6 +17,7 @@ import MedicalDisclaimerPage from '../pages/MedicalDisclaimerPage';
 import ContactUs from '../pages/ContactUs';
 import LabToPlanPage from '../pages/LabToPlanPage';
 import FitnessPage from '../pages/FitnessPage';
+import WorkoutPlanPage from '../pages/WorkoutPlanPage';
 import SmartwatchSyncPage from '../pages/SmartwatchSyncPage';
 import FoodLibraryPage from '../pages/FoodLibraryPage';
 
@@ -91,6 +92,7 @@ export const AppRoutes: React.FC = () => (
     <Route path="/premium" element={<PremiumPage />} />
     <Route path="/lab-to-plan" element={<LabToPlanPage />} />
     <Route path="/fitness" element={<FitnessPage />} />
+    <Route path="/workout-plan" element={<WorkoutPlanPage />} />
     <Route path="/smartwatch-sync" element={<SmartwatchSyncPage />} />
     <Route path="/food-library" element={<FoodLibraryPage />} />
     <Route path="/login" element={<LoginPage />} />

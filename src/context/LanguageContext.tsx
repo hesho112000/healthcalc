@@ -35,7 +35,8 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   };
 
   const t = (key: keyof typeof translations.en): string => {
-    return translations[language]?.[key] || translations.en[key] || key;
+    const val = translations[language]?.[key] ?? translations.en[key] ?? key;
+    return typeof val === 'string' ? val : val.title;
   };
 
   const dir = languageConfig[language].dir;

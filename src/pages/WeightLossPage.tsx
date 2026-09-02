@@ -351,7 +351,7 @@ const WeightLossPage: React.FC = () => {
                               : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
                           }`}
                         >
-                          {EXERCISE_TYPE_LABELS[type][language === 'ar' ? 'ar' : 'en']}
+                          {EXERCISE_TYPE_LABELS[type][language]}
                         </button>
                       ))}
                     </div>

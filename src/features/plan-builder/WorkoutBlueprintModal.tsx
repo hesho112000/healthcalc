@@ -83,7 +83,10 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
     });
   }, [selectedType, bmi, goal, fitnessLevel]);
 
-  const plan = useMemo(() => propPlan ?? generateDefaultPlan(), [propPlan, generateDefaultPlan]);
+  const plan = useMemo(
+    () => (propPlan && selectedType === 'auto' ? propPlan : generateDefaultPlan()),
+    [propPlan, selectedType, generateDefaultPlan]
+  );
 
   const currentDay = plan[activeDay] || plan[0];
 
@@ -216,7 +219,7 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
                       : 'bg-white text-gray-500 border-gray-200 hover:border-rose-300 hover:text-rose-600'
                   }`}
                 >
-                  {EXERCISE_TYPE_LABELS[type][language === 'ar' ? 'ar' : 'en']}
+                  {EXERCISE_TYPE_LABELS[type][language]}
                 </button>
               ))}
             </div>
@@ -375,7 +378,7 @@ const WorkoutBlueprintModal: React.FC<WorkoutBlueprintModalProps> = ({
                 </div>
                 <div className="flex gap-2 mb-3 flex-wrap">
                   <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-lg border ${typeColors[exercise.type] || 'bg-gray-50 text-gray-600 border-gray-200'}`}>
-                    {EXERCISE_TYPE_LABELS[exercise.type]?.[language === 'ar' ? 'ar' : 'en']}
+                    {EXERCISE_TYPE_LABELS[exercise.type]?.[language]}
                   </span>
                   <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-lg ${difficultyColors[exercise.difficulty] || 'bg-gray-100 text-gray-600'}`}>
                     {exercise.difficulty === 'beginner' ? t('wbLevelBeginner') : exercise.difficulty === 'intermediate' ? t('wbLevelIntermediate') : t('wbLevelAdvanced')}
