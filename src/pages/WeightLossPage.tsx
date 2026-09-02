@@ -281,6 +281,7 @@ const WeightLossPage: React.FC = () => {
                     <MealBuilder
                       cuisine={selectedCuisine}
                       sectionType="weight-loss"
+                      condition={form.goal === 'lose_weight' ? 'overweight' : undefined}
                       targetCalories={result?.targetCalories ?? 2000}
                       onGenerate={(payload) => {
                         setCustomPlan({ mealPlan: payload.mealPlan, fullMealPlan: payload.fullMealPlan });

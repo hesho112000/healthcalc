@@ -379,6 +379,7 @@ const DiabetesPage: React.FC = () => {
                       <MealBuilder
                         cuisine={selectedCuisine}
                         sectionType="diabetes"
+                        condition="diabetes"
                         filters={{ lowSugar: true, wholeGrainOnly: true }}
                         onGenerate={(payload) => {
                           setCustomDayPlan(toDayPlans(payload.fullMealPlan, thirtyDayPlan));

@@ -23,6 +23,12 @@ import {
   scaleMeal,
 } from '../../utils/mealBuilder';
 import { detectCuisineByLocation, getCuisineLocalName, getGeoMeta } from '../../utils/geo';
+import {
+  evaluateSuitability,
+  suitabilityReasonKey,
+  Suitability,
+  SuitabilityCondition,
+} from '../../utils/dishSuitability';
 
 export interface MealBuilderProps {
   cuisine: string;
@@ -30,6 +36,7 @@ export interface MealBuilderProps {
   filters?: MealBuilderFilters;
   targetCalories?: number;
   macros?: Partial<MealMacros>;
+  condition?: SuitabilityCondition | SuitabilityCondition[];
   onGenerate: (payload: MealBuilderGeneratePayload) => void;
   onCuisineChange?: (cuisine: string) => void;
   className?: string;
@@ -61,9 +68,23 @@ const SLOT_NAME_KEYS: Record<MealSlotId, 'mealBreakfast' | 'mealLunch' | 'mealDi
 const fmt = (template: string, vars: Record<string, string | number>): string =>
   template.replace(/\{(\w+)\}/g, (_, k) => (k in vars ? String(vars[k]) : `{${k}}`));
 
-const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters, targetCalories = 2000, macros, onGenerate, onCuisineChange, className = '' }) => {
+const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters, targetCalories = 2000, macros, condition, onGenerate, onCuisineChange, className = '' }) => {
   const { language, t } = useLanguage();
   const ar = language === 'ar';
+
+  const suitConditions: SuitabilityCondition[] = Array.isArray(condition)
+    ? condition
+    : condition
+      ? [condition]
+      : [];
+  const hasSuit = suitConditions.length > 0;
+  const [suitFilter, setSuitFilter] = useState<'all' | 'suitable' | 'unsuitable'>('all');
+
+  const suitOf = (item: FoodItem): Suitability => evaluateSuitability(item, suitConditions);
+  const filterBySuit = (items: FoodItem[]): FoodItem[] => {
+    if (!hasSuit || suitFilter === 'all') return items;
+    return items.filter((it) => suitOf(it) === suitFilter);
+  };
 
   const pool = useMemo(() => buildBuilderPool(cuisine, sectionType, filters), [cuisine, sectionType, filters]);
 
@@ -135,6 +156,23 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
     const showGl = gl > 0 && (item.type === 'juice' || item.type === 'fruit' || (item.carbs ?? 0) > 10);
     const sodium = getBreadSodium(item);
     const showLowSodium = sectionType === 'hypertension' || filters?.lowSodium;
+    const suit = hasSuit ? suitOf(item) : 'neutral';
+    const suitTooltip = suit !== 'neutral'
+      ? `${suit === 'suitable' ? t('mbAllowedFor') : t('mbNotAllowedFor')} — ${t(suitabilityReasonKey(item, suitConditions, suit))}`
+      : undefined;
+
+    let cardClass: string;
+    if (suit === 'suitable') {
+      cardClass = 'border-emerald-400 bg-emerald-50/50';
+    } else if (suit === 'unsuitable') {
+      cardClass = 'border-red-300 bg-red-50 opacity-60';
+    } else if (selected) {
+      cardClass = 'border-emerald-500 bg-emerald-50 shadow-sm';
+    } else if (atMax) {
+      cardClass = 'border-gray-100 bg-gray-50 opacity-50 cursor-not-allowed';
+    } else {
+      cardClass = 'border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm';
+    }
 
     return (
       <button
@@ -142,18 +180,28 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
         type="button"
         onClick={() => toggle(slot, item)}
         disabled={atMax}
-        className={`group relative text-left rounded-xl border-2 p-3 transition-all cursor-pointer ${
-          selected
-            ? 'border-emerald-500 bg-emerald-50 shadow-sm'
-            : atMax
-              ? 'border-gray-100 bg-gray-50 opacity-50 cursor-not-allowed'
-              : 'border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm'
-        }`}
+        className={`group relative text-left rounded-xl border-2 p-3 transition-all cursor-pointer ${cardClass}`}
       >
-        {selected && (
+        {suit === 'suitable' && (
+          <span
+            title={suitTooltip}
+            className="absolute top-2 right-2 w-5 h-5 rounded-full bg-emerald-500 text-white text-[11px] font-bold flex items-center justify-center shadow-sm ring-2 ring-white cursor-help"
+          >
+            ✓
+          </span>
+        )}
+        {suit === 'unsuitable' && (
+          <span
+            title={suitTooltip}
+            className="absolute top-2 right-2 w-5 h-5 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center shadow-sm ring-2 ring-white cursor-help"
+          >
+            ✗
+          </span>
+        )}
+        {suit === 'neutral' && selected && (
           <span className="absolute top-2 right-2 w-5 h-5 rounded-full bg-emerald-500 text-white text-xs font-bold flex items-center justify-center">✓</span>
         )}
-        <div className="text-sm font-bold text-gray-800 leading-tight pr-6">{getName(item)}</div>
+        <div className={`text-sm font-bold text-gray-800 leading-tight ${suit !== 'neutral' ? 'pr-8' : 'pr-6'}`}>{getName(item)}</div>
         {getMeasure(item) && <div className="text-[11px] text-gray-400 mt-0.5">{getMeasure(item)}</div>}
         <div className="flex flex-wrap gap-1 mt-1.5">
           <span className="px-1.5 py-0.5 rounded-md bg-gray-100 text-[10px] font-semibold text-gray-600">{item.calories} kcal</span>
@@ -180,7 +228,7 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
   };
 
   const renderSlot = (slot: MealSlotId) => {
-    const items = pool[slot];
+    const items = filterBySuit(pool[slot]);
     const { min, max } = SLOT_LIMITS[slot];
     const count = selections[slot].length;
     const preview = scaleMeal(slotTarget(slot), slotFoods(slot), effectiveMacros, language);
@@ -218,7 +266,13 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
           </span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-          {items.map((item, idx) => renderCard(item, slot, idx))}
+          {items.length > 0
+            ? items.map((item, idx) => renderCard(item, slot, idx))
+            : (
+              <div className="col-span-full rounded-xl border border-dashed border-gray-200 bg-gray-50/60 p-6 text-center text-xs text-gray-400">
+                {t('mbSuitEmpty')}
+              </div>
+            )}
         </div>
         <div className="mt-3 rounded-xl border border-indigo-100 bg-indigo-50/60 p-3">
           <button
@@ -285,7 +339,7 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
   const renderExtras = () => (
     <div className="space-y-5">
       {EXTRA_GROUPS.filter((group) => pool[group.slot].length > 0).map((group) => {
-        const items = pool[group.slot];
+        const items = filterBySuit(pool[group.slot]);
         const { min, max } = SLOT_LIMITS[group.slot];
         const count = selections[group.slot].length;
         return (
@@ -298,7 +352,13 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
               </span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-              {items.map((item, idx) => renderCard(item, group.slot, idx))}
+              {items.length > 0
+                ? items.map((item, idx) => renderCard(item, group.slot, idx))
+                : (
+                  <div className="col-span-full rounded-xl border border-dashed border-gray-200 bg-gray-50/60 p-6 text-center text-xs text-gray-400">
+                    {t('mbSuitEmpty')}
+                  </div>
+                )}
             </div>
           </div>
         );
@@ -335,6 +395,29 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
       <div className="text-[11px] text-gray-400 -mt-1">
         {fmt(t('mbAutoFill'), { cuisine: getCuisineLocalName(cuisine, language) })}
       </div>
+
+      {hasSuit && (
+        <div className="flex flex-wrap items-center gap-2 bg-white rounded-xl border border-gray-200 p-2">
+          <span className="px-2 text-[11px] font-bold text-gray-400">🔎</span>
+          {[
+            { value: 'all' as const, label: t('mbFilterAll'), className: 'border-blue-600 bg-blue-600 text-white' },
+            { value: 'suitable' as const, label: `✓ ${t('mbSuitableFilter')}`, className: 'border-emerald-500 bg-emerald-50 text-emerald-700' },
+            { value: 'unsuitable' as const, label: `✗ ${t('mbNotSuitableFilter')}`, className: 'border-red-400 bg-red-50 text-red-600' },
+          ].map((f) => (
+            <button
+              key={f.value}
+              type="button"
+              onClick={() => setSuitFilter(f.value)}
+              aria-pressed={suitFilter === f.value}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold border-2 transition-all cursor-pointer ${
+                suitFilter === f.value ? f.className : 'border-gray-200 bg-white text-gray-500 hover:border-gray-300'
+              }`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+      )}
 
       <div className="flex flex-wrap gap-2">
         {TABS.map((tab) => (

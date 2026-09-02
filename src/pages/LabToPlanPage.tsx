@@ -606,6 +606,7 @@ const LabToPlanPage: React.FC = () => {
                       <MealBuilder
                         cuisine={selectedCuisine}
                         sectionType="lab-to-plan"
+                        condition="diabetes"
                         filters={{ lowSugar: true }}
                         macros={{ proteinRatio: 0.3, carbsRatio: 0.4, fatRatio: 0.3 }}
                         onGenerate={(payload) => {
@@ -739,6 +740,7 @@ const LabToPlanPage: React.FC = () => {
                       <MealBuilder
                         cuisine={selectedCuisine}
                         sectionType="lab-to-plan"
+                        condition="hypertension"
                         filters={{ lowSodium: true }}
                         macros={{ proteinRatio: 0.25, carbsRatio: 0.5, fatRatio: 0.25 }}
                         onGenerate={(payload) => {

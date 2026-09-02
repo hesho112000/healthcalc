@@ -18,6 +18,7 @@ import {
 } from '../utils/healthPlans';
 import { toDayPlans, type MealBuilderFilters, type MealBuilderSection, type MealMacros } from '../utils/mealBuilder';
 import { type Cuisine } from '../utils/calculations_expanded';
+import { type SuitabilityCondition } from '../utils/dishSuitability';
 
 /* ═══════════════════════════════════════════════════════════════════
    TYPES
@@ -257,6 +258,11 @@ const PremiumPage: React.FC = () => {
   const currentDay = currentPlan ? currentPlan[activeDay - 1] : null;
   const builderSection: MealBuilderSection = firstSelected === 'diabetes' ? 'diabetes' : firstSelected === 'hypertension' ? 'hypertension' : 'advanced-care';
   const builderFilters: MealBuilderFilters | undefined = firstSelected === 'diabetes' ? { lowSugar: true, wholeGrainOnly: true } : firstSelected === 'hypertension' ? { lowSodium: true } : undefined;
+  const SUITABLE_CONDITIONS: SuitabilityCondition[] = ['cholesterol', 'diabetes', 'hypertension', 'overweight', 'pcos', 'thyroid'];
+  const builderCondition: SuitabilityCondition | undefined =
+    firstSelected && SUITABLE_CONDITIONS.includes(firstSelected as SuitabilityCondition)
+      ? (firstSelected as SuitabilityCondition)
+      : undefined;
   const CONDITION_MACROS: Record<string, MealMacros> = {
     cholesterol: { proteinRatio: 0.25, carbsRatio: 0.45, fatRatio: 0.3 },
     kidney: { proteinRatio: 0.2, carbsRatio: 0.55, fatRatio: 0.25 },
@@ -576,6 +582,7 @@ const PremiumPage: React.FC = () => {
                     sectionType={builderSection}
                     filters={builderFilters}
                     macros={builderMacros}
+                    condition={builderCondition}
                     onGenerate={(payload) => {
                       if (firstSelected) {
                         setCustomPlans((prev) => ({ ...prev, [firstSelected]: toDayPlans(payload.fullMealPlan, plans30[firstSelected]) }));

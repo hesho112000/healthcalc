@@ -775,6 +775,23 @@ type TranslationKeys = {
   mbSides: string;
   mbDrinks: string;
   mbFruits: string;
+  mbFilterAll: string;
+  mbSuitableFilter: string;
+  mbNotSuitableFilter: string;
+  mbAllowedFor: string;
+  mbNotAllowedFor: string;
+  mbSuitEmpty: string;
+  mbBadHighFat: string;
+  mbBadHighSatFat: string;
+  mbBadLowFiber: string;
+  mbBadHighCarbs: string;
+  mbBadHighCalories: string;
+  mbBadHighSodium: string;
+  mbOkChol: string;
+  mbOkDiab: string;
+  mbOkHtn: string;
+  mbOkWeight: string;
+  mbOkPcos: string;
   wlHeroPill: string;
   wlGoalSelector: string;
   wlExerciseType: string;
@@ -1829,6 +1846,23 @@ export const translations: Record<Language, TranslationKeys> = {
     mbSides: 'Sides',
     mbDrinks: 'Drinks',
     mbFruits: 'Fruits',
+    mbFilterAll: 'All',
+    mbSuitableFilter: 'Allowed',
+    mbNotSuitableFilter: 'Not allowed',
+    mbAllowedFor: 'Allowed for your condition',
+    mbNotAllowedFor: 'Not suitable for your condition',
+    mbSuitEmpty: 'No dishes match this filter',
+    mbBadHighFat: 'high in fat',
+    mbBadHighSatFat: 'high in saturated fat',
+    mbBadLowFiber: 'low in fiber',
+    mbBadHighCarbs: 'high in carbs/sugar',
+    mbBadHighCalories: 'high in calories',
+    mbBadHighSodium: 'high in sodium',
+    mbOkChol: 'good for cholesterol',
+    mbOkDiab: 'good for diabetes',
+    mbOkHtn: 'good for blood pressure',
+    mbOkWeight: 'good for weight loss',
+    mbOkPcos: 'good for PCOS / thyroid',
     wlHeroPill: '10 Kitchens · USDA Verified · Mifflin-St Jeor',
     wlGoalSelector: 'Goal Selector — recalculates all plans instantly',
     wlExerciseType: 'Exercise Type',
@@ -2858,7 +2892,24 @@ export const translations: Record<Language, TranslationKeys> = {
     mbSalads: 'Salades',
     mbSides: 'Accompagnements',
     mbDrinks: 'Boissons',
-    mbFruits: 'Fruits',
+mbFruits: 'Fruits',
+    mbFilterAll: 'Tous',
+    mbSuitableFilter: 'Autorisés',
+    mbNotSuitableFilter: 'Non autorisés',
+    mbAllowedFor: 'Autorisé pour votre condition',
+    mbNotAllowedFor: 'Non adapté à votre condition',
+    mbSuitEmpty: 'Aucun plat ne correspond à ce filtre',
+    mbBadHighFat: 'riche en graisses',
+    mbBadHighSatFat: 'riche en graisses saturées',
+    mbBadLowFiber: 'pauvre en fibres',
+    mbBadHighCarbs: 'riche en glucides/sucres',
+    mbBadHighCalories: 'riche en calories',
+    mbBadHighSodium: 'riche en sodium',
+    mbOkChol: 'bon pour le cholestérol',
+    mbOkDiab: 'bon pour le diabète',
+    mbOkHtn: 'bon pour la tension',
+    mbOkWeight: 'bon pour la perte de poids',
+    mbOkPcos: 'bon pour SOPK / thyroïde',
     wlHeroPill: '10 cuisines · USDA vérifié · Mifflin-St Jeor',
     wlGoalSelector: 'Sélecteur d\'objectif — recalcule instantanément tous les plans',
     wlExerciseType: 'Type d\'exercice',
@@ -3859,6 +3910,23 @@ export const translations: Record<Language, TranslationKeys> = {
     mbSides: 'Guarniciones',
     mbDrinks: 'Bebidas',
     mbFruits: 'Frutas',
+    mbFilterAll: 'Todos',
+    mbSuitableFilter: 'Permitidos',
+    mbNotSuitableFilter: 'No permitidos',
+    mbAllowedFor: 'Permitido para tu condición',
+    mbNotAllowedFor: 'No apto para tu condición',
+    mbSuitEmpty: 'Ningún plato coincide con este filtro',
+    mbBadHighFat: 'alto en grasas',
+    mbBadHighSatFat: 'alto en grasas saturadas',
+    mbBadLowFiber: 'bajo en fibra',
+    mbBadHighCarbs: 'alto en carbohidratos/azúcar',
+    mbBadHighCalories: 'alto en calorías',
+    mbBadHighSodium: 'alto en sodio',
+    mbOkChol: 'bueno para el colesterol',
+    mbOkDiab: 'bueno para la diabetes',
+    mbOkHtn: 'bueno para la presión arterial',
+    mbOkWeight: 'bueno para bajar de peso',
+    mbOkPcos: 'bueno para SOP / tiroides',
     wlHeroPill: '10 cocinas · USDA verificado · Mifflin-St Jeor',
     wlGoalSelector: 'Selector de objetivo: recalcula todos los planes al instante',
     wlExerciseType: 'Tipo de ejercicio',
@@ -4859,6 +4927,23 @@ export const translations: Record<Language, TranslationKeys> = {
     mbSides: 'أطباق جانبية',
     mbDrinks: 'مشروبات',
     mbFruits: 'فواكه',
+    mbFilterAll: 'الكل',
+    mbSuitableFilter: 'المسموح',
+    mbNotSuitableFilter: 'غير المسموح',
+    mbAllowedFor: 'مسموح لحالتك',
+    mbNotAllowedFor: 'غير مناسب لحالتك',
+    mbSuitEmpty: 'لا توجد أطباق مطابقة لهذا الفلتر',
+    mbBadHighFat: 'دهون عالية',
+    mbBadHighSatFat: 'دهون مشبعة عالية',
+    mbBadLowFiber: 'ألياف منخفضة',
+    mbBadHighCarbs: 'كربوهيدرات وسكريات عالية',
+    mbBadHighCalories: 'سعرات حرارية عالية',
+    mbBadHighSodium: 'صوديوم عالي',
+    mbOkChol: 'مناسب للكوليسترول',
+    mbOkDiab: 'مناسب لمرض السكري',
+    mbOkHtn: 'مناسب لضغط الدم',
+    mbOkWeight: 'مناسب لتخفيف الوزن',
+    mbOkPcos: 'مناسب لمتلازمة تكيس المبايض / الغدة الدرقية',
     wlHeroPill: '10 مطابخ · دقيق من USDA · Mifflin-St Jeor',
     wlGoalSelector: 'اختر هدفك — إعادة حساب الخطط تلقائيًا',
     wlExerciseType: 'نوع التمرين',
