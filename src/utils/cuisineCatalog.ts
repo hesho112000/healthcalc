@@ -558,6 +558,7 @@ export const CUISINE_GROUPS: CuisineGroup[] = [
       { id: 'low_carb', nameAr: 'منخفض الكربوهيدرات', nameEn: 'Low Carb' },
       { id: 'dash', nameAr: 'داش', nameEn: 'DASH' },
       { id: 'intermittent_fasting', nameAr: 'صيام متقطع', nameEn: 'Intermittent Fasting' },
+      { id: 'paleo', nameAr: 'باليو', nameEn: 'Paleo' },
     ],
   },
 ];
@@ -573,7 +574,7 @@ export const CUISINE_FLAGS: Record<string, string> = {
   new_zealand: '🇳🇿',
   lebanese: '🇱🇧', palestinian: '🇵🇸', syrian: '🇸🇾', jordanian: '🇯🇴',
   south_african: '🇿🇦', rwandan: '🇷🇼', kenyan: '🇰🇪', nigerian: '🇳🇬', ethiopian: '🇪🇹',
-  african: '🌍', mediterranean: 'MED', keto: 'KETO', high_protein: 'HP', vegetarian: 'VEG', vegan: 'VEGAN', gluten_free: 'GF', low_carb: 'LC', dash: 'DASH', intermittent_fasting: 'IF',
+  african: '🌍', mediterranean: 'MED', keto: 'KETO', high_protein: 'HP', vegetarian: 'VEG', vegan: 'VEGAN', gluten_free: 'GF', low_carb: 'LC', dash: 'DASH', intermittent_fasting: 'IF', paleo: 'PALEO',
 };
 
 export const REGIONAL_FOODS: Record<string, RegionalFood[]> = {
