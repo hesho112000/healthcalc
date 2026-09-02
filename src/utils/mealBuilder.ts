@@ -21,6 +21,74 @@ export interface MealMacros {
 
 export const DEFAULT_MACROS: MealMacros = { proteinRatio: 0.3, carbsRatio: 0.45, fatRatio: 0.25 };
 
+export type DishSuitabilityStatus = 'allowed' | 'disallowed';
+
+const normalizeConditionKey = (condition?: string): string => (condition ?? '').toLowerCase().replace(/[^a-z]/g, '');
+
+export const estimateDishGlycemic = (item: FoodItem): number => {
+  const carbs = Number(item.carbs ?? 0);
+  const sugar = Number(item.sugar ?? 0);
+  const fiber = Number(item.fiber ?? 0);
+  const adjusted = Math.max(0, carbs + sugar * 1.4 - fiber * 1.5);
+  return Math.min(100, Math.round(adjusted));
+};
+
+export const getDishSuitability = (item: FoodItem, condition?: string): { status: DishSuitabilityStatus; title: string } => {
+  const key = normalizeConditionKey(condition);
+  const name = (item.name_en || item.name || '').toLowerCase();
+  const isSoyBased = /(soy|tofu|tempeh|edamame|miso|soybean)/i.test(name);
+  const carbs = Number(item.carbs ?? 0);
+  const sugar = Number(item.sugar ?? 0);
+  const fat = Number(item.fat ?? 0);
+  const saturated = Number(item.saturatedFat ?? 0);
+  const fiber = Number(item.fiber ?? 0);
+  const sodium = Number(item.sodium ?? 0);
+  const calories = Number(item.calories ?? 0);
+  const glycemic = estimateDishGlycemic(item);
+
+  if (key.includes('cholest')) {
+    const allowed = fat < 15 && saturated < 5 && fiber >= 3;
+    return {
+      status: allowed ? 'allowed' : 'disallowed',
+      title: allowed ? 'مسموح لحالتك - مناسب للكوليسترول' : 'غير مناسب لحالتك - دهون عالية',
+    };
+  }
+
+  if (key.includes('diab')) {
+    const allowed = carbs <= 30 && sugar <= 10 && glycemic <= 55;
+    return {
+      status: allowed ? 'allowed' : 'disallowed',
+      title: allowed ? 'مسموح لحالتك - مناسب لمرض السكر' : 'غير مناسب لحالتك - كربوهيدرات أو سكر عالي',
+    };
+  }
+
+  if (key.includes('hyper') || key.includes('bp')) {
+    const allowed = sodium <= 400;
+    return {
+      status: allowed ? 'allowed' : 'disallowed',
+      title: allowed ? 'مسموح لحالتك - مناسب لضغط الدم' : 'غير مناسب لحالتك - صوديوم عالي',
+    };
+  }
+
+  if (key.includes('over') || key.includes('weight')) {
+    const allowed = calories <= 250 && fat <= 15;
+    return {
+      status: allowed ? 'allowed' : 'disallowed',
+      title: allowed ? 'مسموح لحالتك - مناسب لفقدان الوزن' : 'غير مناسب لحالتك - سعرات أو دهون عالية',
+    };
+  }
+
+  if (key.includes('pcos') || key.includes('thyro')) {
+    const allowed = carbs <= 30 && !isSoyBased;
+    return {
+      status: allowed ? 'allowed' : 'disallowed',
+      title: allowed ? 'مسموح لحالتك - مناسب لPCOS/الغدة الدرقية' : 'غير مناسب لحالتك - كربوهيدرات أو صويا عالية',
+    };
+  }
+
+  return { status: 'allowed', title: 'مسموح لحالتك' };
+};
+
 export const SECTION_MACROS: Record<MealBuilderSection, MealMacros> = {
   'weight-loss': DEFAULT_MACROS,
   'diabetes': { proteinRatio: 0.3, carbsRatio: 0.4, fatRatio: 0.3 },

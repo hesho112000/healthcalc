@@ -576,6 +576,7 @@ const PremiumPage: React.FC = () => {
                     sectionType={builderSection}
                     filters={builderFilters}
                     macros={builderMacros}
+                    condition={firstSelected ?? undefined}
                     onGenerate={(payload) => {
                       if (firstSelected) {
                         setCustomPlans((prev) => ({ ...prev, [firstSelected]: toDayPlans(payload.fullMealPlan, plans30[firstSelected]) }));
