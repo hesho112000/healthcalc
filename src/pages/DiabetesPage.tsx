@@ -81,9 +81,10 @@ const DiabetesPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f8fafc]">
+    <div className="tool-page min-h-screen bg-[#f8fafc]">
       <Breadcrumbs />
-      <div className="bg-gradient-to-r from-rose-500 to-rose-600 text-white">
+      <div className="page-hero bg-gradient-to-r from-rose-500 to-rose-600 text-white">
+        <div className="page-hero-mesh" aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-14">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full mb-4">

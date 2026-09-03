@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ede9fe"/><stop offset="1" stop-color="#cffafe"/></linearGradient></defs><rect width="640" height="520" rx="42" fill="url(#bg)"/><circle cx="320" cy="250" r="155" fill="#fff" opacity=".36"/>
+<g transform="translate(92 95)"><circle cx="90" cy="65" r="48" fill="#ffd8c2"/><path d="M40 75q0-90 104-53l-8 88q-28-62-96-35" fill="#ec4899"/><path d="M25 132q66-40 130 0l20 210H0z" fill="#f9a8d4"/><path d="M30 145h120" stroke="#fff" stroke-width="10"/><circle cx="74" cy="69" r="5"/><circle cx="107" cy="69" r="5"/></g>
+<g transform="translate(355 90)"><circle cx="88" cy="68" r="48" fill="#e8b18e"/><path d="M38 68q15-86 105-30v70q-30-48-105-20" fill="#38bdf8"/><path d="M23 132q66-42 130 0l28 210H-2z" fill="#93c5fd"/><path d="M53 70h28M98 70h28" stroke="#334155" stroke-width="7"/><path d="M81 87h20" stroke="#334155" stroke-width="4"/></g>
+<g transform="translate(250 290)"><circle cx="70" cy="45" r="35" fill="#b87952"/><path d="M26 115q45-32 90 0l15 105H10z" fill="#fbbf24"/><circle cx="58" cy="47" r="4"/><circle cx="82" cy="47" r="4"/></g>
+<g fill="#fff" stroke="#10b981" stroke-width="3"><circle cx="84" cy="95" r="24"/><circle cx="557" cy="132" r="24"/><circle cx="548" cy="380" r="24"/><circle cx="87" cy="388" r="24"/></g><text x="77" y="103" font-size="22">♥</text><text x="549" y="140" font-size="20">◉</text><text x="539" y="388" font-size="20">✦</text><text x="78" y="396" font-size="20">⌁</text>
+</svg>

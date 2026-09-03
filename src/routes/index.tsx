@@ -20,6 +20,7 @@ import FitnessPage from '../pages/FitnessPage';
 import WorkoutPlanPage from '../pages/WorkoutPlanPage';
 import SmartwatchSyncPage from '../pages/SmartwatchSyncPage';
 import FoodLibraryPage from '../pages/FoodLibraryPage';
+import AdvancedCarePage from '../pages/AdvancedCarePage';
 
 const LegacySeoRedirect: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -95,6 +96,7 @@ export const AppRoutes: React.FC = () => (
     <Route path="/workout-plan" element={<WorkoutPlanPage />} />
     <Route path="/smartwatch-sync" element={<SmartwatchSyncPage />} />
     <Route path="/food-library" element={<FoodLibraryPage />} />
+    <Route path="/advanced-care" element={<AdvancedCarePage />} />
     <Route path="/login" element={<LoginPage />} />
     <Route path="/register" element={<RegisterPage />} />
     <Route

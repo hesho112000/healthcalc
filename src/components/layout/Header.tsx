@@ -18,7 +18,7 @@ const searchPages = [
   { path: '/diabetes', title: 'Diabetes Management', keywords: 'diabetes glucose hba1c blood sugar lab interpreter bp', icon: '🩸' },
   { path: '/lab-to-plan', title: 'Lab-to-Plan Engine', keywords: 'lab results blood work interpretation personalized plan', icon: '🔬' },
   { path: '/smartwatch-sync', title: 'Smartwatch Sync', keywords: 'smartwatch apple health google health connect fitness tracker watch sync wearable', icon: '⌚' },
-  { path: '/premium', title: 'Advanced Care Plans', keywords: 'ibs gout kidney liver cholesterol thyroid hypertension premium', icon: '✨' },
+  { path: '/advanced-care', title: 'Advanced Care Plans', keywords: 'ibs gout kidney liver cholesterol thyroid hypertension premium', icon: '✨' },
   { path: '/privacy', title: 'Privacy Policy', keywords: 'privacy data protection gdpr', icon: '🔒' },
   { path: '/terms', title: 'Terms of Service', keywords: 'terms conditions legal', icon: '📜' },
   { path: '/contact', title: 'Contact Us', keywords: 'contact support help email', icon: '📧' },
@@ -78,7 +78,7 @@ const Header: React.FC = () => {
     { path: '/weight-loss', label: t('weightLoss') },
     { path: '/diabetes', label: t('diabetes') },
     { path: '/lab-to-plan', label: 'Lab-to-Plan' },
-    { path: '/premium', label: t('premium') },
+    { path: '/advanced-care', label: 'Advanced Calc' },
   ];
 
   const currentLang = languages.find((l) => l.code === language);
@@ -90,11 +90,11 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100/60">
+    <header className="site-header sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center gap-2.5 shrink-0">
-            <div className="w-9 h-9 bg-gradient-to-br from-primary-500 to-sage-500 rounded-xl flex items-center justify-center shadow-sm">
+          <Link to="/" className="brand-mark flex items-center gap-2.5 shrink-0" aria-label="HealthCalc.ai home">
+            <div className="brand-icon w-9 h-9 bg-gradient-to-br from-primary-500 to-sage-500 rounded-xl flex items-center justify-center shadow-sm">
               <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               </svg>
@@ -118,7 +118,8 @@ const Header: React.FC = () => {
                 value={searchQuery}
                 onChange={(e) => { setSearchQuery(e.target.value); setSearchOpen(true); }}
                 onFocus={() => setSearchOpen(true)}
-                className={`w-full py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-400/40 focus:border-primary-300 transition-all ${dir === 'rtl' ? 'pr-10 pl-4 text-right' : 'pl-10 pr-4'}`}
+                aria-label={t('searchPlaceholder')}
+                className={`header-search w-full py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-400/40 focus:border-primary-300 transition-all ${dir === 'rtl' ? 'pr-10 pl-4 text-right' : 'pl-10 pr-4'}`}
               />
               {searchOpen && filteredResults.length > 0 && (
                 <div className="absolute top-full mt-2 w-full bg-white rounded-2xl shadow-elevated border border-gray-100 py-2 z-50 animate-fade-in">
@@ -266,6 +267,8 @@ const Header: React.FC = () => {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={mobileMenuOpen}
               className="lg:hidden p-2 rounded-xl hover:bg-gray-100 transition-all"
             >
               <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -351,6 +354,24 @@ const Header: React.FC = () => {
           </div>
         </div>
       )}
+
+      <nav className="mobile-bottom-nav lg:hidden" aria-label="Quick navigation">
+        {[
+          { path: '/', icon: '⌂', label: t('home') },
+          { path: '/fitness', icon: '⚖️', label: t('fcNav') },
+          { path: '/weight-loss', icon: '✦', label: t('weightLoss') },
+          { path: '/advanced-care', icon: '♡', label: 'Care' },
+        ].map((link) => (
+          <Link
+            key={link.path}
+            to={link.path}
+            className={location.pathname === link.path ? 'mobile-bottom-nav__item is-active' : 'mobile-bottom-nav__item'}
+          >
+            <span aria-hidden="true">{link.icon}</span>
+            <small>{link.label}</small>
+          </Link>
+        ))}
+      </nav>
     </header>
   );
 };

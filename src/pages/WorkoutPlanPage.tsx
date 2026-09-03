@@ -163,12 +163,12 @@ const WorkoutPlanPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-gray-900">
+    <div className="tool-page min-h-screen bg-[#f8fafc] text-gray-900">
       <div className="max-w-6xl mx-auto px-4 pb-16">
         <Breadcrumbs />
 
         {/* Hero */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-rose-600 via-orange-500 to-amber-400 text-white mt-6 p-8 md:p-12 shadow-xl">
+        <div className="page-hero relative overflow-hidden rounded-3xl bg-gradient-to-br from-rose-600 via-orange-500 to-amber-400 text-white mt-6 p-8 md:p-12 shadow-xl">
           <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, white 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
           <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="flex-1">

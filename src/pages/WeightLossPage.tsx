@@ -122,7 +122,7 @@ const WeightLossPage: React.FC = () => {
   }, [selectedCuisine]);
 
   return (
-    <div className="min-h-screen bg-[#f8fafc]">
+    <div className="tool-page min-h-screen bg-[#f8fafc]">
       <Breadcrumbs />
       <PageHero pill={t('wlHeroPill')} title={t('module1Title')} description={t('module1Desc')} />
 

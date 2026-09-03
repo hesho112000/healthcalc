@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
   }));
 
   return (
-    <footer className="bg-gray-900 text-gray-400">
+    <footer className="site-footer bg-gray-900 text-gray-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
           <div className="md:col-span-1">
@@ -31,6 +31,7 @@ const Footer: React.FC = () => {
             <p className="text-sm text-gray-500 leading-relaxed mb-4">
               {t('footerTagline')}
             </p>
+            <div className="footer-status"><span /> Built for small, consistent wins</div>
             <div className="flex flex-wrap gap-1.5">
               {['ADA', 'DASH', 'USDA', 'ACSM'].map((g) => (
                 <span key={g} className="text-[10px] font-semibold bg-gray-800 px-2 py-1 rounded-lg text-gray-500">{g}</span>
@@ -44,9 +45,12 @@ const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-3">
               <li><Link to="/" className="text-sm hover:text-white transition-colors">{t('home')}</Link></li>
+              <li><Link to="/fitness" className="text-sm hover:text-white transition-colors">{t('fcNav')}</Link></li>
+              <li><Link to="/smartwatch-sync" className="text-sm hover:text-white transition-colors">{t('swNav')}</Link></li>
               <li><Link to="/weight-loss" className="text-sm hover:text-white transition-colors">{t('weightLoss')}</Link></li>
               <li><Link to="/diabetes" className="text-sm hover:text-white transition-colors">{t('diabetes')}</Link></li>
               <li><Link to="/premium" className="text-sm hover:text-white transition-colors">{t('premium')}</Link></li>
+              <li><Link to="/advanced-care" className="text-sm hover:text-white transition-colors">Advanced Calc</Link></li>
             </ul>
           </div>
 

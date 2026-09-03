@@ -398,10 +398,11 @@ const LabToPlanPage: React.FC = () => {
   const maxSystolic = Math.max(160, ...recentBP.map(e => e.systolic));
 
   return (
-    <div className="min-h-screen bg-[#f8fafc]">
+    <div className="tool-page min-h-screen bg-[#f8fafc]">
       <Breadcrumbs />
       {/* ─── Hero ─── */}
-      <div className="print:hidden bg-gradient-to-r from-primary-600 to-sage-600 text-white">
+      <div className="page-hero print:hidden bg-gradient-to-r from-primary-600 to-sage-600 text-white">
+        <div className="page-hero-mesh" aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-14">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full mb-4">
