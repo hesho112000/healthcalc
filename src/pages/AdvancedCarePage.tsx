@@ -56,10 +56,10 @@ const cuisines = [
 ];
 
 const imageForStep = (step: number) => {
-  if (step === 1 || step === 2) return '/anime/compassionate_chronic_care.svg';
-  if (step === 4) return '/anime/lab_interpreter_holograms.svg';
-  if (step === 5 || step === 6) return '/anime/fitness_plan_trio.svg';
-  return '/anime/ghibli_holographic_health_calculator.svg';
+  if (step === 1 || step === 2) return '/anime/compassionate_chronic_care.jpg';
+  if (step === 4) return '/anime/lab_interpreter_holograms.jpg';
+  if (step === 5 || step === 6) return '/anime/fitness_plan_trio.jpg';
+  return '/anime/ghibli_holographic_health_calculator.jpg';
 };
 
 const AdvancedCarePage: React.FC = () => {

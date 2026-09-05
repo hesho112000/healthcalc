@@ -5,11 +5,11 @@ import { useLanguage } from '../context/LanguageContext';
 type IllustrationKind = 'calculator' | 'plan' | 'care' | 'lab' | 'watch';
 
 const illustrations: Record<IllustrationKind, { src: string; accent: string; title: string }> = {
-  calculator: { src: '/anime/ghibli_holographic_health_calculator.svg', accent: 'from-cyan-100 to-emerald-100', title: 'Health dashboard' },
-  plan: { src: '/anime/fitness_plan_trio.svg', accent: 'from-amber-100 to-pink-100', title: 'Personal plan' },
-  care: { src: '/anime/compassionate_chronic_care.svg', accent: 'from-violet-100 to-cyan-100', title: 'Compassionate care' },
-  lab: { src: '/anime/lab_interpreter_holograms.svg', accent: 'from-emerald-100 to-teal-100', title: 'Lab interpreter' },
-  watch: { src: '/anime/fitness_plan_trio.svg', accent: 'from-indigo-100 to-cyan-100', title: 'Smart sync' },
+  calculator: { src: '/anime/ghibli_holographic_health_calculator.jpg', accent: 'from-cyan-100 to-emerald-100', title: 'Health dashboard' },
+  plan: { src: '/anime/fitness_plan_trio.jpg', accent: 'from-amber-100 to-pink-100', title: 'Personal plan' },
+  care: { src: '/anime/compassionate_chronic_care.jpg', accent: 'from-violet-100 to-cyan-100', title: 'Compassionate care' },
+  lab: { src: '/anime/lab_interpreter_holograms.jpg', accent: 'from-emerald-100 to-teal-100', title: 'Lab interpreter' },
+  watch: { src: '/anime/fitness_plan_trio.jpg', accent: 'from-indigo-100 to-cyan-100', title: 'Smart sync' },
 };
 
 const conditions = [
