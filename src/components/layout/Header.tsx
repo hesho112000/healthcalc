@@ -79,9 +79,8 @@ const Header: React.FC = () => {
     { path: '/bmr', label: 'BMR' },
     { path: '/ideal-weight', label: 'Ideal Weight' },
     { path: '/calories', label: 'Calories' },
-    { path: '/advanced-care', label: 'Advanced Care (8)' },
-    { path: '/smartwatch-sync', label: `⌚ ${t('swNav')}` },
-    { path: '/fitness', label: 'Get Started Free', cta: true },
+    { path: '/advanced-care', label: 'Advanced Care' },
+    { path: '/smartwatch-sync', label: t('swNav') },
   ];
 
   const currentLang = languages.find((l) => l.code === language);
@@ -148,27 +147,17 @@ const Header: React.FC = () => {
 
           <nav className="hidden lg:flex items-center gap-0.5">
             {navLinks.map((link) => (
-              link.cta ? (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className="ml-3 px-4 py-2 rounded-xl text-sm font-bold bg-primary-600 text-white hover:bg-primary-700 transition-all duration-200 shadow-sm"
-                >
-                  {link.label}
-                </Link>
-              ) : (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
-                    location.pathname === link.path
-                      ? 'bg-primary-50 text-primary-700'
-                      : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              )
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                  location.pathname === link.path
+                    ? 'bg-primary-50 text-primary-700'
+                    : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+                }`}
+              >
+                {link.label}
+              </Link>
             ))}
           </nav>
 
@@ -331,13 +320,11 @@ const Header: React.FC = () => {
                 key={link.path}
                 to={link.path}
                 onClick={() => setMobileMenuOpen(false)}
-                className={link.cta
-                  ? 'block px-4 py-3 rounded-xl text-sm font-bold bg-primary-600 text-white text-center mb-2'
-                  : `block px-4 py-3 rounded-xl text-sm font-medium transition-all ${
-                      location.pathname === link.path
-                        ? 'bg-primary-50 text-primary-700'
-                        : 'text-gray-600 hover:bg-gray-50'
-                    }`}
+                className={`block px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                  location.pathname === link.path
+                    ? 'bg-primary-50 text-primary-700'
+                    : 'text-gray-600 hover:bg-gray-50'
+                }`}
               >
                 {link.label}
               </Link>
