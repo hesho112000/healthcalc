@@ -75,12 +75,9 @@ const Header: React.FC = () => {
 
   const navLinks = [
     { path: '/', label: t('home') },
-    { path: '/bmi', label: 'BMI' },
-    { path: '/bmr', label: 'BMR' },
-    { path: '/ideal-weight', label: 'Ideal Weight' },
-    { path: '/calories', label: 'Calories' },
-    { path: '/advanced-care', label: 'Advanced Care' },
     { path: '/smartwatch-sync', label: t('swNav') },
+    { path: '/fitness', label: t('fcNav') },
+    { path: '/weight-loss', label: t('weightLoss') },
   ];
 
   const currentLang = languages.find((l) => l.code === language);
