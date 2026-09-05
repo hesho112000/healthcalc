@@ -19,6 +19,7 @@ import {
 import { toDayPlans, type MealBuilderFilters, type MealBuilderSection, type MealMacros } from '../utils/mealBuilder';
 import { type Cuisine } from '../utils/calculations_expanded';
 import { type SuitabilityCondition } from '../utils/dishSuitability';
+import { ANIME_IMAGES } from '../utils/animeImages';
 
 /* ═══════════════════════════════════════════════════════════════════
    TYPES
@@ -372,18 +373,22 @@ const PremiumPage: React.FC = () => {
       <Breadcrumbs />
 
       {/* ─── Hero ─── */}
-      <div className="bg-gradient-to-r from-amber-500 to-orange-600 text-white">
+      <div className="page-hero page-hero-light">
+        <div className="page-hero-mesh" aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-14">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full mb-4">
-              <span className="w-1.5 h-1.5 bg-amber-200 rounded-full" />
-              <span className="text-xs font-medium text-amber-100">{t('pmSuiteBadge')}</span>
+          <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-8 items-center">
+            <div className="page-hero-copy">
+              <div className="page-hero-pill inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4">
+                <span className="w-1.5 h-1.5 bg-amber-500 rounded-full" />
+                <span className="text-xs font-medium">{t('pmSuiteBadge')}</span>
+              </div>
+              <div className="flex flex-wrap items-center gap-3 mb-3">
+                <h1 className="text-2xl md:text-4xl font-extrabold tracking-tight">{t('module3Title')}</h1>
+                <span className="badge bg-amber-100 text-amber-700 text-[10px] font-bold">{fmt(t('pmFreeModules'), { n: freeCount })}</span>
+              </div>
+              <p className="text-sm md:text-base leading-relaxed">{t('pmHeroSub')}</p>
             </div>
-            <div className="flex flex-wrap items-center gap-3 mb-3">
-              <h1 className="text-2xl md:text-4xl font-extrabold tracking-tight">{t('module3Title')}</h1>
-              <span className="badge bg-white/20 text-white text-[10px] font-bold">{fmt(t('pmFreeModules'), { n: freeCount })}</span>
-            </div>
-            <p className="text-amber-100 text-sm md:text-base leading-relaxed">{t('pmHeroSub')}</p>
+            <img className="page-anime" src={firstSelected === 'diabetes' || firstSelected === 'cholesterol' ? ANIME_IMAGES.lab : ANIME_IMAGES.care} alt="" aria-hidden="true" />
           </div>
         </div>
       </div>
@@ -420,7 +425,7 @@ const PremiumPage: React.FC = () => {
             const isSelected = selectedConditions.has(condition.id);
             return (
               <button key={condition.id} type="button" onClick={() => handleCardClick(condition.id)}
-                className={`text-left relative overflow-hidden cursor-pointer bg-white rounded-2xl shadow-card border border-gray-100/80 p-6 transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5 stagger-${Math.min(idx + 1, 5)} ${isSelected ? 'ring-2 ring-amber-400 shadow-card-hover -translate-y-0.5' : ''}`}>
+                className={`text-left relative overflow-hidden cursor-pointer bg-white rounded-3xl shadow-card border border-gray-100/80 p-6 transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5 stagger-${Math.min(idx + 1, 5)} ${isSelected ? 'ring-2 ring-amber-400 shadow-card-hover -translate-y-0.5' : ''}`}>
                 <div className="absolute top-3 right-3">
                   {isSelected ? <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-amber-100 text-amber-700">✓ {t('pmActive')}</span>
                     : condition.isFree ? <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700 border border-emerald-200/60">{t('ltpFree')}</span>

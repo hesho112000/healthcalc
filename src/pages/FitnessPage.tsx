@@ -2,6 +2,7 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
+import { ANIME_IMAGES } from '../utils/animeImages';
 
 type Tab = 'bmi' | 'bmr' | 'calorie' | 'ideal';
 
@@ -182,16 +183,19 @@ const FitnessPage: React.FC<FitnessPageProps> = ({ initialTab = 'bmi' }) => {
   return (
     <div className="tool-page min-h-screen bg-[#f8fafc]">
       {/* Hero */}
-      <div className="page-hero bg-gradient-to-r from-primary-600 to-primary-700 text-white">
+      <div className="page-hero page-hero-light">
         <div className="page-hero-mesh" aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-14">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full mb-4">
-              <span className="w-1.5 h-1.5 bg-sage-300 rounded-full" />
-              <span className="text-xs font-medium text-primary-100">WHO · CDC · NIH · Mifflin-St Jeor</span>
+          <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-8 items-center">
+            <div className="page-hero-copy">
+              <div className="page-hero-pill inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4">
+                <span className="w-1.5 h-1.5 bg-sage-500 rounded-full" />
+                <span className="text-xs font-medium">WHO · CDC · NIH · Mifflin-St Jeor</span>
+              </div>
+              <h1 className="text-2xl md:text-4xl font-extrabold mb-3 tracking-tight">{t('fcTitle')}</h1>
+              <p className="text-sm md:text-base leading-relaxed">{t('fcSubtitle')}</p>
             </div>
-            <h1 className="text-2xl md:text-4xl font-extrabold mb-3 tracking-tight">{t('fcTitle')}</h1>
-            <p className="text-primary-100 text-sm md:text-base leading-relaxed">{t('fcSubtitle')}</p>
+            <img className="page-anime" src={ANIME_IMAGES.calculator} alt="" aria-hidden="true" />
           </div>
         </div>
       </div>

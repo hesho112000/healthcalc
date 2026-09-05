@@ -92,6 +92,19 @@ type TranslationKeys = {
   healthTools: string;
   healthToolsDesc: string;
   getStarted: string;
+  // Get Started dropdown
+  ddFitness: string;
+  ddWeight: string;
+  ddAdvancedCare: string;
+  ddDiabetesCare: string;
+  ddHypertensionCare: string;
+  ddCholesterolCare: string;
+  ddGoutCare: string;
+  ddIbsCare: string;
+  ddLiverCare: string;
+  ddKidneyCare: string;
+  ddThyroidCare: string;
+  ddSmartwatch: string;
   // Calculator
   enterDetails: string;
   enterDetailsDesc: string;
@@ -1109,6 +1122,18 @@ export const translations: Record<Language, TranslationKeys> = {
     healthTools: 'Health Tools',
     healthToolsDesc: 'Professional calculators and planners backed by international medical guidelines',
     getStarted: 'Get Started',
+    ddFitness: 'Fitness & Health Calculator',
+    ddWeight: 'Weight & Fitness',
+    ddAdvancedCare: 'Advanced Care (8 Conditions)',
+    ddDiabetesCare: 'Diabetes Care',
+    ddHypertensionCare: 'Hypertension Care',
+    ddCholesterolCare: 'Cholesterol Care',
+    ddGoutCare: 'Gout Care',
+    ddIbsCare: 'IBS Care',
+    ddLiverCare: 'Liver Care',
+    ddKidneyCare: 'Kidney Care',
+    ddThyroidCare: 'Thyroid Care',
+    ddSmartwatch: 'Smartwatch Sync',
     enterDetails: 'Enter Your Details',
     enterDetailsDesc: 'Fill in your profile information and click Calculate to get your personalized health plan.',
     yourProfile: 'Your Profile',
@@ -2156,6 +2181,18 @@ export const translations: Record<Language, TranslationKeys> = {
     healthTools: 'Outils de Sante',
     healthToolsDesc: 'Calculateurs et planificateurs professionnels bases sur des guidelines medicales internationales',
     getStarted: 'Commencer',
+    ddFitness: 'Calculateur Fitness & Santé',
+    ddWeight: 'Poids & Fitness',
+    ddAdvancedCare: 'Soins Avancés (8 Conditions)',
+    ddDiabetesCare: 'Soins Diabète',
+    ddHypertensionCare: 'Soins Hypertension',
+    ddCholesterolCare: 'Soins Cholestérol',
+    ddGoutCare: 'Soins Goutte',
+    ddIbsCare: 'Soins SCI',
+    ddLiverCare: 'Soins Foie',
+    ddKidneyCare: 'Soins Reins',
+    ddThyroidCare: 'Soins Thyroïde',
+    ddSmartwatch: 'Synchronisation Montre',
     enterDetails: 'Entrez Vos Coordonnees',
     enterDetailsDesc: 'Remplissez les informations de votre profil et cliquez sur Calculer pour obtenir votre plan sante personnalise.',
     yourProfile: 'Votre Profil',
@@ -3173,6 +3210,18 @@ mbFruits: 'Fruits',
     healthTools: 'Herramientas de Salud',
     healthToolsDesc: 'Calculadoras y planificadores profesionales respaldados por guias medicas internacionales',
     getStarted: 'Empezar',
+    ddFitness: 'Calculadora Fitness y Salud',
+    ddWeight: 'Peso y Fitness',
+    ddAdvancedCare: 'Atención Avanzada (8 Condiciones)',
+    ddDiabetesCare: 'Atención Diabetes',
+    ddHypertensionCare: 'Atención Hipertensión',
+    ddCholesterolCare: 'Atención Colesterol',
+    ddGoutCare: 'Atención Gota',
+    ddIbsCare: 'Atención SII',
+    ddLiverCare: 'Atención Hígado',
+    ddKidneyCare: 'Atención Riñones',
+    ddThyroidCare: 'Atención Tiroides',
+    ddSmartwatch: 'Sincronización Reloj',
     enterDetails: 'Ingresa Tus Datos',
     enterDetailsDesc: 'Completa tu perfil y haz clic en Calcular para obtener tu plan de salud personalizado.',
     yourProfile: 'Tu Perfil',
@@ -4190,6 +4239,18 @@ mbFruits: 'Fruits',
     healthTools: 'الأدوات الصحية',
     healthToolsDesc: 'حاسبات ومخططات مهنية مدعمة بإرشادات طبية دولية',
     getStarted: 'ابدأ',
+    ddFitness: 'حاسبة اللياقة والصحة',
+    ddWeight: 'الوزن واللياقة',
+    ddAdvancedCare: 'الرعاية المتقدمة (8 حالات)',
+    ddDiabetesCare: 'رعاية السكري',
+    ddHypertensionCare: 'رعاية ارتفاع الضغط',
+    ddCholesterolCare: 'رعاية الكوليسترول',
+    ddGoutCare: 'رعاية النقرس',
+    ddIbsCare: 'رعاية القولون العصبي',
+    ddLiverCare: 'رعاية الكبد',
+    ddKidneyCare: 'رعاية الكلى',
+    ddThyroidCare: 'رعاية الغدة الدرقية',
+    ddSmartwatch: 'مزامنة الساعة الذكية',
     enterDetails: 'أدخل بياناتك',
     enterDetailsDesc: 'املأ معلومات ملفك الشخصي واضغط حسب للحصول على خطتك الصحية المخصصة.',
     yourProfile: 'ملفك الشخصي',

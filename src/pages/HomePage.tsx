@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { ANIME_IMAGES } from '../utils/animeImages';
+import StartFreeDropdown from '../components/layout/StartFreeDropdown';
 
 type IllustrationKind = 'calculator' | 'plan' | 'care' | 'lab' | 'watch';
 
@@ -55,7 +56,7 @@ const HomePage: React.FC = () => {
               <h1>Your <span>Personalized</span> Health &amp; Fitness Blueprint</h1>
               <p>Science-backed calculators, meal plans, and workout routines powered by internationally recognized medical guidelines.</p>
               <div className="flex flex-wrap gap-3">
-                <Link to="/fitness" className="btn-primary hero-cta">Get Started Free <span>→</span></Link>
+                <StartFreeDropdown />
               </div>
               <div className="trust-row"><span>Trusted frameworks</span>{['ADA', 'DASH', 'USDA', 'ACSM'].map((x) => <b key={x}>{x}</b>)}</div>
             </div>
@@ -110,7 +111,7 @@ const HomePage: React.FC = () => {
         <div className="watch-banner"><Illustration kind="watch" /><div><span className="step-pill blue">SMARTWATCH SYNC</span><h2>اربط ساعتك الذكية</h2><p>Sync steps, heart rate, sleep, and workouts to make every plan more personal.</p><div className="watch-steps"><span>01 Install your app</span><span>02 Enable permissions</span><span>03 Data syncs</span></div><Link to="/smartwatch-sync" className="btn-primary">Connect your watch →</Link></div></div>
       </section>
 
-      <section className="section-wrap final-cta"><div><span className="eyebrow">YOUR NEXT CHAPTER STARTS HERE ✨</span><h2>Small inputs. Smarter health decisions.</h2><p>Everything you need to understand your body and build a plan you can actually follow.</p><Link to="/fitness" className="btn-primary hero-cta">Get Started Free <span>→</span></Link></div></section>
+      <section className="section-wrap final-cta"><div><span className="eyebrow">YOUR NEXT CHAPTER STARTS HERE ✨</span><h2>Small inputs. Smarter health decisions.</h2><p>Everything you need to understand your body and build a plan you can actually follow.</p><div className="flex justify-center"><StartFreeDropdown /></div></div></section>
     </div>
   );
 };

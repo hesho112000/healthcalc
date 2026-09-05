@@ -40,13 +40,13 @@
     @apply inline-flex items-center justify-center gap-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 font-medium py-2 px-4 rounded-xl transition-all duration-200 text-sm;
   }
   .card {
-    @apply bg-white rounded-2xl shadow-card border border-gray-100/80 p-6 transition-all duration-300;
+    @apply bg-white rounded-3xl shadow-card border border-gray-100/80 p-6 transition-all duration-300;
   }
   .card-hover {
     @apply card hover:shadow-card-hover hover:-translate-y-0.5 cursor-pointer;
   }
   .card-glass {
-    @apply bg-white/80 backdrop-blur-xl rounded-2xl shadow-card border border-white/50 p-6;
+    @apply bg-white/80 backdrop-blur-xl rounded-3xl shadow-card border border-white/50 p-6;
   }
   .site-header {
     box-shadow: 0 8px 30px rgb(15 23 42 / .04);
@@ -107,7 +107,7 @@
     @apply badge bg-amber-50 text-amber-700;
   }
   .stat-card {
-    @apply bg-white rounded-2xl border border-gray-100/80 p-5 transition-all duration-300;
+    @apply bg-white rounded-3xl border border-gray-100/80 p-5 transition-all duration-300;
   }
   .toggle-group {
     @apply flex gap-1 bg-gray-100/80 p-1 rounded-2xl;
@@ -299,6 +299,53 @@
   font-size: .65rem;
   font-weight: 800;
   box-shadow: 0 10px 25px rgb(2 44 34 / .16);
+}
+
+/* Light hero (homepage-style) */
+.page-hero-light {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ecfdf5 0%, #f8fafc 48%, #eff6ff 100%);
+  box-shadow: 0 14px 34px rgb(15 23 42 / .08);
+}
+.page-hero-light .page-hero-mesh {
+  background-image: radial-gradient(circle, #10b981 1px, transparent 1px), radial-gradient(circle, #93c5fd 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+  opacity: .5;
+}
+.page-hero-light::after {
+  content: '';
+  position: absolute;
+  width: 18rem;
+  height: 18rem;
+  right: -7rem;
+  top: -9rem;
+  border: 1px solid rgb(16 185 129 / .18);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2rem rgb(16 185 129 / .04), 0 0 0 4rem rgb(16 185 129 / .03);
+  pointer-events: none;
+}
+.page-hero-light .page-hero-copy h1 { color: #0f172a; }
+.page-hero-light .page-hero-copy .page-hero-pill {
+  color: #047857;
+  background: #ffffffb8;
+  border: 1px solid #a7f3d0;
+  backdrop-filter: blur(12px);
+}
+.page-hero-light .page-hero-copy p { color: #64748b; }
+.page-anime {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  filter: drop-shadow(0 12px 24px rgba(16,185,129,0.25));
+  animation: float 3s ease-in-out infinite;
+  max-width: 400px;
+  border-radius: 24px;
+  display: block;
+  margin: 20px auto;
 }
 .footer-status {
   display: inline-flex;

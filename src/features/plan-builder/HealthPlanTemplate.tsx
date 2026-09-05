@@ -475,32 +475,24 @@ export const PageHero: React.FC<{
   title: string;
   description: string;
   pill?: string;
-}> = ({ gradient = 'from-primary-600 to-primary-700', badge, title, description, pill }) => (
-  <div className={`page-hero bg-gradient-to-r ${gradient} text-white`}>
+  anime?: string;
+}> = ({ gradient = 'from-primary-600 to-primary-700', badge, title, description, pill, anime }) => (
+  <div className={`page-hero page-hero-light`}>
     <div className="page-hero-mesh" aria-hidden="true" />
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-14 relative">
-      <div className="max-w-2xl relative z-10">
+      <div className="max-w-3xl relative z-10 mx-auto text-center">
+        {anime && <img className="page-anime" src={anime} alt="" aria-hidden="true" />}
         {pill && (
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full mb-4">
-            <span className="w-1.5 h-1.5 bg-sage-300 rounded-full" />
-            <span className="text-xs font-medium text-primary-100">{pill}</span>
+          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full mb-4 border border-sage-200">
+            <span className="w-1.5 h-1.5 bg-sage-500 rounded-full" />
+            <span className="text-xs font-medium text-sage-700">{pill}</span>
           </div>
         )}
-        <div className="flex flex-wrap items-center gap-3 mb-3">
-          <h1 className="text-2xl md:text-4xl font-extrabold tracking-tight">{title}</h1>
-          {badge && <span className="badge bg-white/20 text-white text-[10px] font-bold">{badge}</span>}
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-3">
+          <h1 className="text-2xl md:text-4xl font-extrabold tracking-tight text-gray-900">{title}</h1>
+          {badge && <span className="badge bg-sage-100 text-sage-700 text-[10px] font-bold">{badge}</span>}
         </div>
-        <p className="text-primary-100 text-sm md:text-base leading-relaxed">{description}</p>
-      </div>
-      <div className="page-hero-art" aria-hidden="true">
-        <span className="page-hero-orbit page-hero-orbit-a" />
-        <span className="page-hero-orbit page-hero-orbit-b" />
-        <svg viewBox="0 0 180 140" fill="none">
-          <path d="M90 114C79 101 38 78 38 46c0-14 10-25 24-25 11 0 20 7 28 17 8-10 17-17 28-17 14 0 24 11 24 25 0 32-41 55-52 68Z" fill="white" fillOpacity=".2" />
-          <path d="M90 105C78 90 50 73 50 49c0-9 6-16 15-16 10 0 17 8 25 19 8-11 15-19 25-19 9 0 15 7 15 16 0 24-28 41-40 56Z" stroke="white" strokeOpacity=".9" strokeWidth="3" />
-          <path d="M23 69h25l8-18 12 38 12-27 8 14h24" stroke="#A7F3D0" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-        {badge && <span className="page-hero-float">{badge}</span>}
+        <p className="text-gray-500 text-sm md:text-base leading-relaxed">{description}</p>
       </div>
     </div>
   </div>

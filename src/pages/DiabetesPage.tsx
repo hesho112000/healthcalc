@@ -14,6 +14,7 @@ import MealPlanModal from '../features/plan-builder/MealPlanModal';
 import CuisineRegionCards from '../features/plan-builder/CuisineRegionCards';
 import MealBuilder from '../features/plan-builder/MealBuilder';
 import WorkoutBlueprintModal from '../features/plan-builder/WorkoutBlueprintModal';
+import { ANIME_IMAGES } from '../utils/animeImages';
 
 const DiabetesPage: React.FC = () => {
   const { t, language } = useLanguage();
@@ -83,16 +84,19 @@ const DiabetesPage: React.FC = () => {
   return (
     <div className="tool-page min-h-screen bg-[#f8fafc]">
       <Breadcrumbs />
-      <div className="page-hero bg-gradient-to-r from-rose-500 to-rose-600 text-white">
+      <div className="page-hero page-hero-light">
         <div className="page-hero-mesh" aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-14">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full mb-4">
-              <span className="w-1.5 h-1.5 bg-rose-200 rounded-full" />
-              <span className="text-xs font-medium text-rose-100">ADA · AHA · DASH</span>
+          <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-8 items-center">
+            <div className="page-hero-copy">
+              <div className="page-hero-pill inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4">
+                <span className="w-1.5 h-1.5 bg-rose-500 rounded-full" />
+                <span className="text-xs font-medium">ADA · AHA · DASH</span>
+              </div>
+              <h1 className="text-2xl md:text-4xl font-extrabold mb-3 tracking-tight">{t('module2Title')}</h1>
+              <p className="text-sm md:text-base leading-relaxed">{t('module2Desc')}</p>
             </div>
-            <h1 className="text-2xl md:text-4xl font-extrabold mb-3 tracking-tight">{t('module2Title')}</h1>
-            <p className="text-rose-100 text-sm md:text-base leading-relaxed">{t('module2Desc')}</p>
+            <img className="page-anime" src={ANIME_IMAGES.lab} alt="" aria-hidden="true" />
           </div>
         </div>
       </div>
