@@ -1,5 +1,5 @@
-import React, { useState, useCallback, useMemo } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import { ANIME_IMAGES } from '../utils/animeImages';
@@ -39,8 +39,37 @@ const FitnessPage: React.FC<FitnessPageProps> = ({ initialTab = 'bmi' }) => {
   const [calRes, setCalRes] = useState<CalorieResult | null>(null);
   const [idealRes, setIdealRes] = useState<IdealResult | null>(null);
   const [saved, setSaved] = useState(false);
+  const [live, setLive] = useState({ bmi: '--', bmiStatus: 'Healthy', bmiColor: '#10b981', cal: '--', rmr: '--', ideal: '--' });
+  const [liveActive, setLiveActive] = useState(false);
 
-  const set = useCallback((patch: Partial<FormData>) => setForm(p => ({ ...p, ...patch })), []);
+  const updateLive = useCallback((f: FormData) => {
+    const h = f.heightCm / 100;
+    if (!h || !f.weightKg || !f.age) return;
+    const bmi = f.weightKg / (h * h);
+    const rmr = f.gender === 'male'
+      ? 10 * f.weightKg + 6.25 * f.heightCm - 5 * f.age + 5
+      : 10 * f.weightKg + 6.25 * f.heightCm - 5 * f.age - 161;
+    const r = idealRange(f.heightCm);
+    let status = 'Healthy'; let color = '#10b981';
+    if (bmi < 18.5) { status = 'Underweight'; color = '#3b82f6'; }
+    else if (bmi < 25) { status = 'Healthy'; color = '#10b981'; }
+    else if (bmi < 30) { status = 'Overweight'; color = '#f59e0b'; }
+    else { status = 'Obese'; color = '#ef4444'; }
+    setLiveActive(true);
+    setLive({
+      bmi: bmi.toFixed(1),
+      bmiStatus: status,
+      bmiColor: color,
+      cal: Math.round(rmr * 1.55).toLocaleString(),
+      rmr: Math.round(rmr).toLocaleString(),
+      ideal: `${r.min}–${r.max}`,
+    });
+  }, []);
+
+  const handleChange = useCallback((patch: Partial<FormData>) => {
+    setForm(p => ({ ...p, ...patch }));
+    updateLive({ ...form, ...patch });
+  }, [form, updateLive]);
 
   const saveProfile = useCallback(() => {
     localStorage.setItem('hc_calc_profile', JSON.stringify(form));
@@ -128,41 +157,45 @@ const FitnessPage: React.FC<FitnessPageProps> = ({ initialTab = 'bmi' }) => {
   ];
 
   const SharedInputs: React.FC = () => (
-    <div className="space-y-4">
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div>
-          <label className="label">{t('age')}</label>
-          <input type="number" min={2} max={120} value={form.age} onChange={e => set({ age: +e.target.value })} className="input-field-lg" />
-        </div>
-        <div>
-          <label className="label">{t('gender')}</label>
+    <div className="space-y-3">
+      {/* Card 1: Age + Gender */}
+      <div className="flex items-center justify-between gap-3 rounded-2xl bg-[#f0fdfa] border border-[#ccfbf1] p-4">
+        <span className="flex items-center gap-2 text-sm font-semibold text-gray-700 shrink-0"><span className="text-lg">👤</span> {t('age')}</span>
+        <div className="flex items-center gap-2">
+          <input type="number" min={2} max={120} value={form.age} onChange={e => handleChange({ age: +e.target.value })} className="w-20 px-3 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-800 text-right font-bold focus:outline-none focus:ring-2 focus:ring-primary-400/40" />
           <div className="toggle-group">
-            <button type="button" onClick={() => set({ gender: 'male' })} className={form.gender === 'male' ? 'toggle-btn-active' : 'toggle-btn-inactive'}>♂ {t('male')}</button>
-            <button type="button" onClick={() => set({ gender: 'female' })} className={form.gender === 'female' ? 'toggle-btn-active' : 'toggle-btn-inactive'}>♀ {t('female')}</button>
+            <button type="button" onClick={() => handleChange({ gender: 'male' })} className={form.gender === 'male' ? 'toggle-btn-active' : 'toggle-btn-inactive'}>♂ {t('male')}</button>
+            <button type="button" onClick={() => handleChange({ gender: 'female' })} className={form.gender === 'female' ? 'toggle-btn-active' : 'toggle-btn-inactive'}>♀ {t('female')}</button>
           </div>
-        </div>
-        <div>
-          <label className="label">{t('height')} (cm)</label>
-          <input type="number" min={100} max={250} step={0.5} value={form.heightCm} onChange={e => set({ heightCm: +e.target.value })} className="input-field-lg" />
-        </div>
-        <div>
-          <label className="label">{t('weightLabel')} (kg)</label>
-          <input type="number" min={20} max={300} step={0.5} value={form.weightKg} onChange={e => set({ weightKg: +e.target.value })} className="input-field-lg" />
         </div>
       </div>
-      {(tab === 'bmr' || tab === 'calorie') && (
-        <div>
-          <label className="label">{t('activityLevel')}</label>
-          <div className="flex flex-wrap gap-1.5">
-            {Object.keys(ACT).map(k => (
-              <button key={k} type="button" onClick={() => set({ activityLevel: k })}
-                className={`px-3 py-2 rounded-xl text-[11px] font-semibold transition-all ${form.activityLevel === k ? 'bg-primary-600 text-white shadow-sm' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}>
-                {t(ACT_LABELS[k] as any)}
-              </button>
-            ))}
+      {/* Card 2: Height & Weight */}
+      <div className="flex items-center justify-between gap-3 rounded-2xl bg-[#f0fdfa] border border-[#ccfbf1] p-4">
+        <span className="flex items-center gap-2 text-sm font-semibold text-gray-700 shrink-0"><span className="text-lg">📏</span> {t('height')} &amp; {t('weightLabel')}</span>
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
+            <input type="number" min={100} max={250} step={0.5} value={form.heightCm} onChange={e => handleChange({ heightCm: +e.target.value })} className="w-20 px-3 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-800 text-right font-bold focus:outline-none focus:ring-2 focus:ring-primary-400/40" />
+            <span className="text-xs text-gray-400">cm</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <input type="number" min={20} max={300} step={0.5} value={form.weightKg} onChange={e => handleChange({ weightKg: +e.target.value })} className="w-20 px-3 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-800 text-right font-bold focus:outline-none focus:ring-2 focus:ring-primary-400/40" />
+            <span className="text-xs text-gray-400">kg</span>
           </div>
         </div>
-      )}
+      </div>
+      {/* Card 3: Activity Level dropdown */}
+      <div className="flex items-center justify-between gap-3 rounded-2xl bg-[#f0fdfa] border border-[#ccfbf1] p-4">
+        <span className="flex items-center gap-2 text-sm font-semibold text-gray-700 shrink-0"><span className="text-lg">⚡</span> {t('activityLevel')}</span>
+        <select
+          value={form.activityLevel}
+          onChange={e => handleChange({ activityLevel: e.target.value })}
+          className="px-3 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-800 text-sm font-bold text-right focus:outline-none focus:ring-2 focus:ring-primary-400/40 cursor-pointer appearance-none"
+        >
+          {Object.keys(ACT).map(k => (
+            <option key={k} value={k}>{t(ACT_LABELS[k] as any)}</option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 
@@ -185,17 +218,73 @@ const FitnessPage: React.FC<FitnessPageProps> = ({ initialTab = 'bmi' }) => {
       {/* Hero */}
       <div className="page-hero page-hero-light">
         <div className="page-hero-mesh" aria-hidden="true" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-14">
-          <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-8 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-16">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-8 items-center">
+            {/* Left copy */}
             <div className="page-hero-copy">
-              <div className="page-hero-pill inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4">
-                <span className="w-1.5 h-1.5 bg-sage-500 rounded-full" />
-                <span className="text-xs font-medium">WHO · CDC · NIH · Mifflin-St Jeor</span>
+              <h1 className="text-4xl md:text-[48px] font-extrabold tracking-tight leading-tight">{t('fcTitle')}</h1>
+              <p className="mt-4 text-lg text-gray-500 leading-relaxed">{t('fcSubtitle')}</p>
+              <div className="mt-6 flex flex-wrap gap-2.5">
+                {[
+                  { icon: '🌍', label: 'WHO' },
+                  { icon: '🦠', label: 'CDC' },
+                  { icon: '🧬', label: 'NIH' },
+                  { icon: '🏥', label: 'Mayo Clinic' },
+                ].map(b => (
+                  <span key={b.label} className="inline-flex items-center gap-1.5 bg-white border border-gray-200 rounded-full px-3.5 py-1.5 text-xs font-semibold text-gray-600 shadow-sm">
+                    <span className="text-sm">{b.icon}</span>{b.label}
+                  </span>
+                ))}
               </div>
-              <h1 className="text-2xl md:text-4xl font-extrabold mb-3 tracking-tight">{t('fcTitle')}</h1>
-              <p className="text-sm md:text-base leading-relaxed">{t('fcSubtitle')}</p>
             </div>
-            <img className="page-anime" src={ANIME_IMAGES.calculator} alt="" aria-hidden="true" />
+
+            {/* Right: anime + holographic live cards */}
+            <div className="relative mx-auto w-full max-w-[420px]">
+              <img className="page-anime" src={ANIME_IMAGES.calculator} alt="" aria-hidden="true"
+                style={{ maxWidth: 420, margin: '0 auto', display: 'block' }} />
+
+              {/* Floating cards — desktop (absolute) */}
+              <div className="hidden md:block">
+                <div className="holo-card" id="card-bmi" style={{ position: 'absolute', top: '5%', right: '5%', background: 'rgba(255,255,255,0.75)', backdropFilter: 'blur(12px)', border: '1px solid rgba(16,185,129,0.3)', borderRadius: 16, padding: '12px 18px', boxShadow: '0 0 20px rgba(16,185,129,0.15)', animation: 'float 3s ease-in-out infinite' }}>
+                  <div style={{ fontSize: 11, color: '#64748b', letterSpacing: 0.5 }}>BMI</div>
+                  <div style={{ fontSize: 22, fontWeight: 800, color: '#0f172a' }}>{liveActive ? live.bmi : '--'}</div>
+                  <div id="liveBMIStatus" style={{ fontSize: 11, color: liveActive ? live.bmiColor : '#10b981', fontWeight: 600 }}>{liveActive ? live.bmiStatus : 'Healthy'}</div>
+                </div>
+                <div className="holo-card" id="card-cal" style={{ position: 'absolute', top: '30%', right: '-8%', background: 'rgba(255,255,255,0.75)', backdropFilter: 'blur(12px)', border: '1px solid rgba(59,130,246,0.3)', borderRadius: 16, padding: '12px 18px', boxShadow: '0 0 20px rgba(59,130,246,0.15)', animation: 'float 3s ease-in-out infinite 0.5s' }}>
+                  <div style={{ fontSize: 11, color: '#64748b' }}>Daily Calories 🔥</div>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: '#0f172a' }}>{liveActive ? `${live.cal} kcal` : '-- kcal'}</div>
+                </div>
+                <div className="holo-card" id="card-rmr" style={{ position: 'absolute', top: '55%', right: '0%', background: 'rgba(255,255,255,0.75)', backdropFilter: 'blur(12px)', border: '1px solid rgba(139,92,246,0.3)', borderRadius: 16, padding: '12px 18px', boxShadow: '0 0 20px rgba(139,92,246,0.15)', animation: 'float 3s ease-in-out infinite 1s' }}>
+                  <div style={{ fontSize: 11, color: '#64748b' }}>RMR</div>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: '#0f172a' }}>{liveActive ? `${live.rmr} kcal/day` : '-- kcal/day'}</div>
+                </div>
+                <div className="holo-card" id="card-ideal" style={{ position: 'absolute', top: '78%', right: '8%', background: 'rgba(255,255,255,0.75)', backdropFilter: 'blur(12px)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: 16, padding: '12px 18px', boxShadow: '0 0 20px rgba(245,158,11,0.15)', animation: 'float 3s ease-in-out infinite 1.5s' }}>
+                  <div style={{ fontSize: 11, color: '#64748b' }}>Ideal Weight</div>
+                  <div style={{ fontSize: 16, fontWeight: 700, color: '#0f172a' }}>{liveActive ? `${live.ideal} kg` : '-- kg'}</div>
+                </div>
+              </div>
+
+              {/* Mobile: static 2x2 grid below anime */}
+              <div className="mt-6 grid grid-cols-2 gap-3 md:hidden">
+                <div className="holo-card" style={{ background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(16,185,129,0.3)', borderRadius: 16, padding: '12px 18px', boxShadow: '0 0 20px rgba(16,185,129,0.15)' }}>
+                  <div style={{ fontSize: 11, color: '#64748b', letterSpacing: 0.5 }}>BMI</div>
+                  <div style={{ fontSize: 22, fontWeight: 800, color: '#0f172a' }}>{liveActive ? live.bmi : '--'}</div>
+                  <div id="liveBMIStatusM" style={{ fontSize: 11, color: liveActive ? live.bmiColor : '#10b981', fontWeight: 600 }}>{liveActive ? live.bmiStatus : 'Healthy'}</div>
+                </div>
+                <div className="holo-card" style={{ background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(59,130,246,0.3)', borderRadius: 16, padding: '12px 18px', boxShadow: '0 0 20px rgba(59,130,246,0.15)' }}>
+                  <div style={{ fontSize: 11, color: '#64748b' }}>Calories 🔥</div>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: '#0f172a' }}>{liveActive ? `${live.cal} kcal` : '-- kcal'}</div>
+                </div>
+                <div className="holo-card" style={{ background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(139,92,246,0.3)', borderRadius: 16, padding: '12px 18px', boxShadow: '0 0 20px rgba(139,92,246,0.15)' }}>
+                  <div style={{ fontSize: 11, color: '#64748b' }}>RMR</div>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: '#0f172a' }}>{liveActive ? `${live.rmr} kcal/day` : '-- kcal/day'}</div>
+                </div>
+                <div className="holo-card" style={{ background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: 16, padding: '12px 18px', boxShadow: '0 0 20px rgba(245,158,11,0.15)' }}>
+                  <div style={{ fontSize: 11, color: '#64748b' }}>Ideal Weight</div>
+                  <div style={{ fontSize: 16, fontWeight: 700, color: '#0f172a' }}>{liveActive ? `${live.ideal} kg` : '-- kg'}</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -221,7 +310,7 @@ const FitnessPage: React.FC<FitnessPageProps> = ({ initialTab = 'bmi' }) => {
         {tab === 'bmi' && (
           <div className="space-y-5 animate-fade-in">
             <div className="card">
-              <button onClick={calcBmi} className="btn-primary w-full text-center">{t('calculate')} {t('fcTabBmi')}</button>
+              <button onClick={calcBmi} className="w-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold text-base py-4 px-8 shadow-lg hover:shadow-xl hover:scale-[1.01] transition-all duration-200">{t('calculate')} {t('fcTabBmi')}</button>
             </div>
             {bmiRes && (
               <div className="space-y-5 animate-fade-in">
@@ -266,7 +355,7 @@ const FitnessPage: React.FC<FitnessPageProps> = ({ initialTab = 'bmi' }) => {
         {tab === 'bmr' && (
           <div className="space-y-5 animate-fade-in">
             <div className="card">
-              <button onClick={calcBmr} className="btn-primary w-full text-center">{t('calculate')} {t('fcTabBmr')}</button>
+              <button onClick={calcBmr} className="w-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold text-base py-4 px-8 shadow-lg hover:shadow-xl hover:scale-[1.01] transition-all duration-200">{t('calculate')} {t('fcTabBmr')}</button>
             </div>
             {bmrRes && (
               <div className="space-y-5 animate-fade-in">
@@ -294,7 +383,7 @@ const FitnessPage: React.FC<FitnessPageProps> = ({ initialTab = 'bmi' }) => {
         {tab === 'calorie' && (
           <div className="space-y-5 animate-fade-in">
             <div className="card">
-              <button onClick={calcBmr} className="btn-primary w-full text-center">{t('calculate')} {t('fcTabCal')}</button>
+              <button onClick={calcBmr} className="w-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold text-base py-4 px-8 shadow-lg hover:shadow-xl hover:scale-[1.01] transition-all duration-200">{t('calculate')} {t('fcTabCal')}</button>
             </div>
             {calRes && (
               <div className="space-y-5 animate-fade-in">
@@ -341,7 +430,7 @@ const FitnessPage: React.FC<FitnessPageProps> = ({ initialTab = 'bmi' }) => {
         {tab === 'ideal' && (
           <div className="space-y-5 animate-fade-in">
             <div className="card">
-              <button onClick={calcIdeal} className="btn-primary w-full text-center">{t('calculate')} {t('fcTabIdeal')}</button>
+              <button onClick={calcIdeal} className="w-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold text-base py-4 px-8 shadow-lg hover:shadow-xl hover:scale-[1.01] transition-all duration-200">{t('calculate')} {t('fcTabIdeal')}</button>
             </div>
             {idealRes && (
               <div className="space-y-5 animate-fade-in">
@@ -429,21 +518,7 @@ const FitnessPage: React.FC<FitnessPageProps> = ({ initialTab = 'bmi' }) => {
           </div>
         </div>
 
-        <div className="rounded-2xl bg-gradient-to-r from-rose-600 to-orange-500 text-white p-6 md:p-8 shadow-xl relative overflow-hidden">
-            <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-5 justify-between">
-              <div>
-                <p className="text-orange-100 text-xs font-semibold uppercase tracking-wider mb-1">💪</p>
-                <h3 className="text-xl md:text-2xl font-extrabold leading-tight">{t('workoutPlan')}</h3>
-                <p className="text-orange-100 text-sm mt-1 max-w-md">{t('workoutPlanBuilder')}</p>
-              </div>
-              <Link to="/workout-plan" className="inline-flex items-center gap-2 bg-white text-rose-600 font-extrabold px-6 py-3.5 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 text-sm whitespace-nowrap">
-                🏋️ {t('workoutPlan')}
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-              </Link>
-            </div>
-          </div>
-
-          <MedicalDisclaimer />
+        <MedicalDisclaimer />
       </div>
     </div>
   );
