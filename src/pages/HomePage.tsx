@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { ANIME_IMAGES } from '../utils/animeImages';
 
 type IllustrationKind = 'calculator' | 'plan' | 'care' | 'lab' | 'watch';
 
 const illustrations: Record<IllustrationKind, { src: string; accent: string; title: string }> = {
-  calculator: { src: '/anime/ghibli_holographic_health_calculator.jpg', accent: 'from-cyan-100 to-emerald-100', title: 'Health dashboard' },
-  plan: { src: '/anime/fitness_plan_trio.jpg', accent: 'from-amber-100 to-pink-100', title: 'Personal plan' },
-  care: { src: '/anime/compassionate_chronic_care.jpg', accent: 'from-violet-100 to-cyan-100', title: 'Compassionate care' },
-  lab: { src: '/anime/lab_interpreter_holograms.jpg', accent: 'from-emerald-100 to-teal-100', title: 'Lab interpreter' },
-  watch: { src: '/anime/fitness_plan_trio.jpg', accent: 'from-indigo-100 to-cyan-100', title: 'Smart sync' },
+  calculator: { src: ANIME_IMAGES.calculator, accent: 'from-cyan-100 to-emerald-100', title: 'Health dashboard' },
+  plan: { src: ANIME_IMAGES.plan, accent: 'from-amber-100 to-pink-100', title: 'Personal plan' },
+  care: { src: ANIME_IMAGES.care, accent: 'from-violet-100 to-cyan-100', title: 'Compassionate care' },
+  lab: { src: ANIME_IMAGES.lab, accent: 'from-emerald-100 to-teal-100', title: 'Lab interpreter' },
+  watch: { src: ANIME_IMAGES.plan, accent: 'from-indigo-100 to-cyan-100', title: 'Smart sync' },
 };
 
 const conditions = [

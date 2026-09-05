@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { EXERCISES_DATABASE } from '../data/exercises';
 import { FOODS_DATABASE, type FoodItem } from '../utils/calculations';
+import { ANIME_IMAGES } from '../utils/animeImages';
 
 type ConditionId = 'diabetes' | 'hypertension' | 'cholesterol' | 'gout' | 'liver' | 'kidney' | 'thyroid' | 'ibs';
 type LabValues = Record<string, string>;
@@ -56,10 +57,10 @@ const cuisines = [
 ];
 
 const imageForStep = (step: number) => {
-  if (step === 1 || step === 2) return '/anime/compassionate_chronic_care.jpg';
-  if (step === 4) return '/anime/lab_interpreter_holograms.jpg';
-  if (step === 5 || step === 6) return '/anime/fitness_plan_trio.jpg';
-  return '/anime/ghibli_holographic_health_calculator.jpg';
+  if (step === 1 || step === 2) return ANIME_IMAGES.care;
+  if (step === 4) return ANIME_IMAGES.lab;
+  if (step === 5 || step === 6) return ANIME_IMAGES.plan;
+  return ANIME_IMAGES.calculator;
 };
 
 const AdvancedCarePage: React.FC = () => {

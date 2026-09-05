@@ -10,6 +10,20 @@ export type SuitabilityCondition =
 
 export type Suitability = 'suitable' | 'unsuitable' | 'neutral';
 
+export type SuitabilityReasonKey =
+  | 'mbOkChol'
+  | 'mbOkDiab'
+  | 'mbOkHtn'
+  | 'mbOkWeight'
+  | 'mbOkPcos'
+  | 'mbSuitableFilter'
+  | 'mbBadHighFat'
+  | 'mbBadHighSatFat'
+  | 'mbBadLowFiber'
+  | 'mbBadHighCarbs'
+  | 'mbBadHighSodium'
+  | 'mbBadHighCalories';
+
 const num = (v?: number, fallback = 0): number => (typeof v === 'number' && !Number.isNaN(v) ? v : fallback);
 
 const CHOLESTEROL = { fatOk: 15, satFatOk: 5, fiberOk: 3 };
@@ -81,7 +95,7 @@ export function suitabilityReasonKey(
   dish: FoodItem,
   conditions: SuitabilityCondition[],
   status: Exclude<Suitability, 'neutral'>,
-): string {
+): SuitabilityReasonKey {
   if (conditions.length > 1) {
     for (const condition of conditions) {
       if (evaluateFor(dish, condition) === status) return reasonFor(condition, dish, status);
@@ -94,7 +108,7 @@ function reasonFor(
   condition: SuitabilityCondition,
   dish: FoodItem,
   status: 'suitable' | 'unsuitable',
-): string {
+): SuitabilityReasonKey {
   if (status === 'suitable') {
     switch (condition) {
       case 'cholesterol': return 'mbOkChol';
