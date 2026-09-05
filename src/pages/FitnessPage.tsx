@@ -24,10 +24,14 @@ function bmiCat(bmi: number) { return BMI_CATS.find(c => bmi >= c.min && bmi < c
 function gaugeRot(bmi: number) { return ((Math.min(Math.max(bmi, 10), 45) - 10) / 35) * 180 - 90; }
 function idealRange(hCm: number) { const h = hCm / 100; return { min: Math.round(18.5 * h * h * 10) / 10, max: Math.round(24.9 * h * h * 10) / 10 }; }
 
-const FitnessPage: React.FC = () => {
+interface FitnessPageProps {
+  initialTab?: Tab;
+}
+
+const FitnessPage: React.FC<FitnessPageProps> = ({ initialTab = 'bmi' }) => {
   const { t } = useLanguage();
   const navigate = useNavigate();
-  const [tab, setTab] = useState<Tab>('bmi');
+  const [tab, setTab] = useState<Tab>(initialTab);
   const [form, setForm] = useState<FormData>({ age: 30, gender: 'male', heightCm: 170, weightKg: 70, activityLevel: 'moderate' });
   const [bmiRes, setBmiRes] = useState<BmiResult | null>(null);
   const [bmrRes, setBmrRes] = useState<BmrResult | null>(null);

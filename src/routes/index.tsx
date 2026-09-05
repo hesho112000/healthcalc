@@ -93,6 +93,10 @@ export const AppRoutes: React.FC = () => (
     <Route path="/premium" element={<PremiumPage />} />
     <Route path="/lab-to-plan" element={<LabToPlanPage />} />
     <Route path="/fitness" element={<FitnessPage />} />
+    <Route path="/bmi" element={<FitnessPage initialTab="bmi" />} />
+    <Route path="/bmr" element={<FitnessPage initialTab="bmr" />} />
+    <Route path="/ideal-weight" element={<FitnessPage initialTab="ideal" />} />
+    <Route path="/calories" element={<FitnessPage initialTab="calorie" />} />
     <Route path="/workout-plan" element={<WorkoutPlanPage />} />
     <Route path="/smartwatch-sync" element={<SmartwatchSyncPage />} />
     <Route path="/food-library" element={<FoodLibraryPage />} />

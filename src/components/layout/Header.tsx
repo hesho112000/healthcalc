@@ -12,7 +12,10 @@ const languages: { code: Language; name: string; flag: string }[] = [
 ];
 
 const searchPages = [
-  { path: '/fitness', title: 'Fitness Calculators', keywords: 'bmi bmr tdee calorie ideal weight calculator', icon: '⚖️' },
+  { path: '/bmi', title: 'BMI Calculator', keywords: 'bmi body mass index calculator', icon: '⚖️' },
+  { path: '/bmr', title: 'BMR Calculator', keywords: 'bmr basal metabolic rate metabolism calculator', icon: '🔥' },
+  { path: '/ideal-weight', title: 'Ideal Weight Calculator', keywords: 'ideal weight target healthy range calculator', icon: '🎯' },
+  { path: '/calories', title: 'Calorie Calculator (TDEE)', keywords: 'tdee calorie intake daily calories weight maintenance', icon: '🍽️' },
   { path: '/weight-loss', title: 'Weight & Fitness Plans', keywords: 'weight loss meal plan workout 30 day calorie deficit', icon: '🏋️' },
   { path: '/workout-plan', title: 'Workout Plan Builder', keywords: 'workout exercise trainer gym strength cardio hiit routine weekly plan builder', icon: '💪' },
   { path: '/diabetes', title: 'Diabetes Management', keywords: 'diabetes glucose hba1c blood sugar lab interpreter bp', icon: '🩸' },
@@ -72,13 +75,13 @@ const Header: React.FC = () => {
 
   const navLinks = [
     { path: '/', label: t('home') },
+    { path: '/bmi', label: 'BMI' },
+    { path: '/bmr', label: 'BMR' },
+    { path: '/ideal-weight', label: 'Ideal Weight' },
+    { path: '/calories', label: 'Calories' },
+    { path: '/advanced-care', label: 'Advanced Care (8)' },
     { path: '/smartwatch-sync', label: `⌚ ${t('swNav')}` },
-    { path: '/fitness', label: t('fcNav') },
-    { path: '/workout-plan', label: `💪 ${t('workoutPlan')}` },
-    { path: '/weight-loss', label: t('weightLoss') },
-    { path: '/diabetes', label: t('diabetes') },
-    { path: '/lab-to-plan', label: 'Lab-to-Plan' },
-    { path: '/advanced-care', label: 'Advanced Calc' },
+    { path: '/fitness', label: 'Get Started Free', cta: true },
   ];
 
   const currentLang = languages.find((l) => l.code === language);
@@ -145,17 +148,27 @@ const Header: React.FC = () => {
 
           <nav className="hidden lg:flex items-center gap-0.5">
             {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
-                  location.pathname === link.path
-                    ? 'bg-primary-50 text-primary-700'
-                    : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
-                }`}
-              >
-                {link.label}
-              </Link>
+              link.cta ? (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className="ml-3 px-4 py-2 rounded-xl text-sm font-bold bg-primary-600 text-white hover:bg-primary-700 transition-all duration-200 shadow-sm"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                    location.pathname === link.path
+                      ? 'bg-primary-50 text-primary-700'
+                      : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
           </nav>
 
@@ -318,11 +331,13 @@ const Header: React.FC = () => {
                 key={link.path}
                 to={link.path}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`block px-4 py-3 rounded-xl text-sm font-medium transition-all ${
-                  location.pathname === link.path
-                    ? 'bg-primary-50 text-primary-700'
-                    : 'text-gray-600 hover:bg-gray-50'
-                }`}
+                className={link.cta
+                  ? 'block px-4 py-3 rounded-xl text-sm font-bold bg-primary-600 text-white text-center mb-2'
+                  : `block px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                      location.pathname === link.path
+                        ? 'bg-primary-50 text-primary-700'
+                        : 'text-gray-600 hover:bg-gray-50'
+                    }`}
               >
                 {link.label}
               </Link>

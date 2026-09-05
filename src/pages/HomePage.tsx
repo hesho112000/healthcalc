@@ -56,7 +56,6 @@ const HomePage: React.FC = () => {
               <p>Science-backed calculators, meal plans, and workout routines powered by internationally recognized medical guidelines.</p>
               <div className="flex flex-wrap gap-3">
                 <Link to="/fitness" className="btn-primary hero-cta">Get Started Free <span>→</span></Link>
-                <Link to="/diabetes" className="btn-outline hero-cta">Diabetes &amp; Hypertension Calculator</Link>
               </div>
               <div className="trust-row"><span>Trusted frameworks</span>{['ADA', 'DASH', 'USDA', 'ACSM'].map((x) => <b key={x}>{x}</b>)}</div>
             </div>
