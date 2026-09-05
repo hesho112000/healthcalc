@@ -149,6 +149,14 @@ const FitnessPage: React.FC<FitnessPageProps> = ({ initialTab = 'bmi' }) => {
     </div>
   );
 
+  const CalcDisclaimer: React.FC = () => (
+    <div style={{ marginTop: 20, padding: 14, background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 12, fontSize: 11, color: '#92400e', lineHeight: 1.5 }}>
+      <strong>Disclaimer:</strong> This tool is for educational and informational purposes only and is not medical advice. Calculations are based on publicly available formulas (WHO BMI classification, Mifflin-St Jeor equation) referenced by public health agencies. This site is not affiliated with, endorsed by, or sponsored by WHO, CDC, NIH, or Mayo Clinic. Always consult a qualified healthcare professional for medical decisions.
+      <br /><br />
+      <span style={{ direction: 'rtl', display: 'block' }}>إخلاء مسؤولية: هذه الأداة للتثقيف فقط وليست نصيحة طبية. الحسابات مبنية على معادلات عامة منشورة. هذا الموقع غير تابع أو معتمد من منظمة الصحة العالمية أو غيرها. استشر طبيبك دائماً.</span>
+    </div>
+  );
+
   const tabs: { key: Tab; icon: string; label: string }[] = [
     { key: 'bmi', icon: '⚖️', label: t('fcTabBmi') },
     { key: 'bmr', icon: '🔥', label: t('fcTabBmr') },
@@ -224,17 +232,10 @@ const FitnessPage: React.FC<FitnessPageProps> = ({ initialTab = 'bmi' }) => {
             <div className="page-hero-copy">
               <h1 className="text-4xl md:text-[48px] font-extrabold tracking-tight leading-tight">{t('fcTitle')}</h1>
               <p className="mt-4 text-lg text-gray-500 leading-relaxed">{t('fcSubtitle')}</p>
-              <div className="mt-6 flex flex-wrap gap-2.5">
-                {[
-                  { icon: '🌍', label: 'WHO' },
-                  { icon: '🦠', label: 'CDC' },
-                  { icon: '🧬', label: 'NIH' },
-                  { icon: '🏥', label: 'Mayo Clinic' },
-                ].map(b => (
-                  <span key={b.label} className="inline-flex items-center gap-1.5 bg-white border border-gray-200 rounded-full px-3.5 py-1.5 text-xs font-semibold text-gray-600 shadow-sm">
-                    <span className="text-sm">{b.icon}</span>{b.label}
-                  </span>
-                ))}
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', margin: '12px 0' }}>
+                <span style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 20, padding: '6px 14px', fontSize: 12, color: '#475569', fontWeight: 600 }}>✓ Evidence-based</span>
+                <span style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 20, padding: '6px 14px', fontSize: 12, color: '#475569', fontWeight: 600 }}>Based on WHO / CDC / NIH Standards</span>
+                <span style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 20, padding: '6px 14px', fontSize: 12, color: '#475569', fontWeight: 600 }}>For information only</span>
               </div>
             </div>
 
@@ -346,6 +347,7 @@ const FitnessPage: React.FC<FitnessPageProps> = ({ initialTab = 'bmi' }) => {
                   </div>
                 </div>
                 {saved ? <SavedBanner /> : <LaunchButton />}
+                <CalcDisclaimer />
               </div>
             )}
           </div>
@@ -374,6 +376,7 @@ const FitnessPage: React.FC<FitnessPageProps> = ({ initialTab = 'bmi' }) => {
                   </div>
                 </div>
                 {saved ? <SavedBanner /> : <LaunchButton />}
+                <CalcDisclaimer />
               </div>
             )}
           </div>
@@ -421,6 +424,7 @@ const FitnessPage: React.FC<FitnessPageProps> = ({ initialTab = 'bmi' }) => {
                   </div>
                 </div>
                 {saved ? <SavedBanner /> : <LaunchButton />}
+                <CalcDisclaimer />
               </div>
             )}
           </div>
@@ -459,6 +463,7 @@ const FitnessPage: React.FC<FitnessPageProps> = ({ initialTab = 'bmi' }) => {
                   </div>
                 )}
                 {saved ? <SavedBanner /> : <LaunchButton />}
+                <CalcDisclaimer />
               </div>
             )}
           </div>

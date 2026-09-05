@@ -84,6 +84,9 @@ const Footer: React.FC = () => {
       <div className="border-t border-gray-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5">
           <p className="text-center text-xs text-gray-600">{t('allRights')}</p>
+          <p style={{ textAlign: 'center', fontSize: 11, color: '#94a3b8', padding: '12px 0', borderTop: '1px solid #334155', marginTop: 16 }}>
+            © 2026 HealthCalc.ai • Not affiliated with WHO, CDC, NIH, or Mayo Clinic • Information only, not medical advice • <Link to="/terms" style={{ color: '#64748b', textDecoration: 'underline' }}>Terms &amp; Privacy</Link>
+          </p>
         </div>
       </div>
     </footer>

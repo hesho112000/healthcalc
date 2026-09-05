@@ -97,6 +97,7 @@ export const termsOfServiceDocs: Record<Language, LegalDocument> = {
       { heading: '8. Changes to Terms', body: 'We reserve the right to modify these Terms at any time. Changes will be effective immediately upon posting. Your continued use of the service after changes are posted constitutes acceptance of the modified terms.' },
       { heading: '9. Governing Law', body: 'These Terms shall be governed by and construed in accordance with applicable laws, without regard to conflict of law principles.' },
       { heading: '10. Contact', body: 'For questions about these Terms, contact us at legal@healthcalc.ai.' },
+      { heading: '11. Trademarks', body: 'Trademarks: WHO, CDC, NIH, Mayo Clinic names and logos are trademarks of their respective owners. Use of their names here is for informational reference (nominative fair use) only and does not imply affiliation, endorsement, or sponsorship.' },
     ],
   },
   fr: {
@@ -114,6 +115,7 @@ export const termsOfServiceDocs: Record<Language, LegalDocument> = {
       { heading: '8. Modifications des conditions', body: 'Nous nous réservons le droit de modifier ces conditions à tout moment. Les modifications prendront effet immédiatement après leur publication. Votre utilisation continue du service après la publication des modifications constitue une acceptation des conditions modifiées.' },
       { heading: '9. Droit applicable', body: 'Ces conditions sont régies et interprétées conformément aux lois applicables, sans égard aux principes de conflit de lois.' },
       { heading: '10. Contact', body: 'Pour toute question sur ces conditions, contactez-nous à legal@healthcalc.ai.' },
+      { heading: '11. Marques déposées', body: 'Marques : les noms et logos de l\'OMS, des CDC, des NIH et de la Mayo Clinic sont des marques déposées de leurs propriétaires respectifs. Leur mention ici n\'a qu\'une valeur de référence informative (usage loyal nominatif) et n\'implique aucune affiliation, approbation ou parrainage.' },
     ],
   },
   es: {
@@ -131,6 +133,7 @@ export const termsOfServiceDocs: Record<Language, LegalDocument> = {
       { heading: '8. Cambios en los términos', body: 'Nos reservamos el derecho de modificar estos Términos en cualquier momento. Los cambios serán efectivos inmediatamente después de su publicación. Tu uso continuo del servicio después de los cambios constituye la aceptación de los términos modificados.' },
       { heading: '9. Ley aplicable', body: 'Estos Términos se regirán e interpretarán de acuerdo con las leyes aplicables, sin consideración a los principios de conflicto de leyes.' },
       { heading: '10. Contacto', body: 'Para preguntas sobre estos Términos, contáctanos en legal@healthcalc.ai.' },
+      { heading: '11. Marcas comerciales', body: 'Marcas: los nombres y logotipos de la OMS, los CDC, los NIH y Mayo Clinic son marcas comerciales de sus respectivos propietarios. Su uso aquí es solo como referencia informativa (uso justo nominativo) y no implica afiliación, respaldo ni patrocinio.' },
     ],
   },
   ar: {
@@ -148,6 +151,7 @@ export const termsOfServiceDocs: Record<Language, LegalDocument> = {
       { heading: '8. التغييرات على الشروط', body: 'نحتفظ بالحق في تعديل هذه الشروط في أي وقت. ستكون التغييرات سارية المفعول فور نشرها. استمرارك في استخدام الخدمة بعد نشر التغييرات يشكل قبولاً للشروط المعدّلة.' },
       { heading: '9. القانون الحاكم', body: 'تخضع هذه الشروط وتُفسر وفقاً للقوانين المعمول بها، دون اعتبار لمبادئ تضارب القوانين.' },
       { heading: '10. الاتصال', body: 'للاستفسار عن هذه الشروط، يرجى الاتصال بنا على legal@healthcalc.ai.' },
+      { heading: '11. العلامات التجارية', body: 'العلامات التجارية: أسماء وشعارات منظمة الصحة العالمية ومراكز مكافحة الأمراض والمعاهد الوطنية للصحة وعيادة مايو كلينيك هي علامات تجارية لأصحابها المعنيين. استخدام أسمائها هنا هو لأغراض مرجعية معلوماتية فقط (استخدام عادل) ولا يعني الانتماء أو التأييد أو الرعاية.' },
     ],
   },
 };
