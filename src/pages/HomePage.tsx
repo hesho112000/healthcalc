@@ -32,7 +32,7 @@ const cuisines = [
 const Illustration: React.FC<{ kind: IllustrationKind; large?: boolean }> = ({ kind, large = false }) => {
   const item = illustrations[kind];
   return (
-    <div className={`anime-scene bg-gradient-to-br ${item.accent} ${large ? 'anime-scene-lg' : ''}`} aria-label={item.title}>
+    <div className={`anime-scene ${large ? 'anime-scene-lg' : ''}`} aria-label={item.title}>
       <span className="sparkle sparkle-a">✦</span><span className="sparkle sparkle-b">✧</span><span className="sparkle sparkle-c">✨</span>
       <div className="anime-orbit orbit-one" /><div className="anime-orbit orbit-two" />
       <img className="anime-character" src={item.src} alt="" aria-hidden="true" />
