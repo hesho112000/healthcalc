@@ -283,6 +283,39 @@ type TranslationKeys = {
   fcCtaLaunch: string;
   fcCtaLaunchSub: string;
   fcRedirecting: string;
+  fcHeroCta: string;
+  fcHeroLearn: string;
+  fcHeroTrust: string;
+  fcProfileNote: string;
+  fcCardAge: string;
+  fcCardAgeSub: string;
+  fcCardHw: string;
+  fcCardHwSub: string;
+  fcCardActSub: string;
+  fcDailyActivity: string;
+  fcActHint: string;
+  fcCalcBmi: string;
+  fcBmiRangeLabel: string;
+  fcBmiRangeRef: string;
+  fcIdealFor: string;
+  fcIdealAt: string;
+  fcPonderal: string;
+  fcInsightUnder: string;
+  fcInsightOk: string;
+  fcInsightAbove: string;
+  fcScaleUnder: string;
+  fcScaleHealthy: string;
+  fcScaleOver: string;
+  fcChipFormula: string;
+  fcChipRmr: string;
+  fcChipTdee: string;
+  fcAccMethod: string;
+  fcAccLimits: string;
+  fcAccFormulaBody: string;
+  fcAccSourcesBody: string;
+  fcAccLimitsBody: string;
+  fcCardIdealSub: string;
+  fcMaintenance: string;
   // Smartwatch Sync
   swNav: string;
   swTitle: string;
@@ -1371,6 +1404,39 @@ export const translations: Record<Language, TranslationKeys> = {
     fcCtaLaunch: 'Save & Go to My Weight & Fitness Plan',
     fcCtaLaunchSub: 'One click — your metrics transfer instantly, zero re-entry required',
     fcRedirecting: 'Redirecting to your Weight & Fitness plan in',
+    fcHeroCta: 'Start Calculator →',
+    fcHeroLearn: 'Learn More',
+    fcHeroTrust: 'Trusted by 42k+ users • No sign-up required',
+    fcProfileNote: 'All fields stay on-device • Private by design',
+    fcCardAge: 'Age & Gender',
+    fcCardAgeSub: 'Personal baseline',
+    fcCardHw: 'Height & Weight',
+    fcCardHwSub: 'For BMI & ideal range',
+    fcCardActSub: 'For TDEE estimate',
+    fcDailyActivity: 'Daily activity',
+    fcActHint: 'Exercise 3-5 days/week • Moderate effort',
+    fcCalcBmi: 'Calculate BMI →',
+    fcBmiRangeLabel: 'Healthy BMI range',
+    fcBmiRangeRef: 'WHO classification',
+    fcIdealFor: 'Healthy weight for you',
+    fcIdealAt: 'At {height} cm height',
+    fcPonderal: 'Ponderal • Insight',
+    fcInsightUnder: 'You’re below the healthy range. Focus on nutrient-dense foods and strength training.',
+    fcInsightOk: 'You’re in the optimal zone. Maintain with balanced intake & activity.',
+    fcInsightAbove: 'You’re above the healthy range. Small, consistent changes work best.',
+    fcScaleUnder: 'Under',
+    fcScaleHealthy: '18.5–24.9 Healthy',
+    fcScaleOver: 'Over',
+    fcChipFormula: 'Formula: weight / height²',
+    fcChipRmr: 'RMR ≈ Mifflin-St Jeor',
+    fcChipTdee: 'TDEE = RMR × activity',
+    fcAccMethod: 'View Methodology — Data Sources',
+    fcAccLimits: 'View Limitations & When to Consult',
+    fcAccFormulaBody: 'BMI = weight(kg) / height(m)². Healthy range defined by WHO 18.5–24.9. Ideal weight via Robinson (1983) & Devine (1974) averaged. RMR via Mifflin-St Jeor equation, validated against indirect calorimetry.',
+    fcAccSourcesBody: 'Standards referenced: WHO BMI classification, CDC growth charts, NIH Body Weight Planner methodology, Mifflin-St Jeor RMR. TDEE multipliers: 1.2 sedentary to 1.9 extra active.',
+    fcAccLimitsBody: 'BMI does not directly measure body fat. Athletes, pregnant individuals, elderly may need adjusted interpretation. This tool is for information only and does not replace professional medical advice.',
+    fcCardIdealSub: 'Robinson • Devine avg',
+    fcMaintenance: 'Maintenance',
     // Smartwatch Sync
     swNav: 'Smartwatch',
     swTitle: 'Smartwatch Sync',
@@ -2430,6 +2496,39 @@ export const translations: Record<Language, TranslationKeys> = {
     fcCtaLaunch: 'Enregistrer & Aller à Mon Plan Poids & Fitness',
     fcCtaLaunchSub: 'Un seul clic — vos données transférées instantanément, zéro ressaisie',
     fcRedirecting: 'Redirection vers votre plan Poids & Fitness dans',
+    fcHeroCta: 'Lancer le calculateur →',
+    fcHeroLearn: 'En savoir plus',
+    fcHeroTrust: 'Approuvé par 42k+ utilisateurs • Sans inscription',
+    fcProfileNote: 'Vos données restent sur votre appareil • Confidentialité par conception',
+    fcCardAge: 'Âge et sexe',
+    fcCardAgeSub: 'Référence personnelle',
+    fcCardHw: 'Taille et poids',
+    fcCardHwSub: 'Pour l’IMC et le poids idéal',
+    fcCardActSub: 'Pour l’estimation de la TDEE',
+    fcDailyActivity: 'Activité quotidienne',
+    fcActHint: 'Sport 3 à 5 jours/semaine • Effort modéré',
+    fcCalcBmi: 'Calculer l’IMC →',
+    fcBmiRangeLabel: 'Niveau d’IMC sain',
+    fcBmiRangeRef: 'Classification OMS',
+    fcIdealFor: 'Poids sain pour vous',
+    fcIdealAt: 'À {height} cm de hauteur',
+    fcPonderal: 'Ponderal • Aperçu',
+    fcInsightUnder: 'Vous êtes sous la fourchette saine. Privilégiez les aliments riches en nutriments et la musculation.',
+    fcInsightOk: 'Vous êtes dans la zone optimale. Maintenez une alimentation équilibrée et une activité régulière.',
+    fcInsightAbove: 'Vous êtes au-dessus de la fourchette saine. De petits changements réguliers font la différence.',
+    fcScaleUnder: 'Sous',
+    fcScaleHealthy: '18,5–24,9 Sain',
+    fcScaleOver: 'Au-dessus',
+    fcChipFormula: 'Formule : poids / taille²',
+    fcChipRmr: 'MB ≈ Mifflin-St Jeor',
+    fcChipTdee: 'TDEE = MB × activité',
+    fcAccMethod: 'Voir Méthodologie — Sources de données',
+    fcAccLimits: 'Voir Limites & Quand consulter',
+    fcAccFormulaBody: 'IMC = poids(kg) / taille(m)². Fourchette saine définie par l’OMS 18,5–24,9. Poids idéal via Robinson (1983) et Devine (1974) moyennés. MB via l’équation de Mifflin-St Jeor, validée par calorimétrie indirecte.',
+    fcAccSourcesBody: 'Normes référencées : classification IMC de l’OMS, courbes de croissance CDC, méthodologie du NIH Body Weight Planner, MB de Mifflin-St Jeor. Multiplicateurs TDEE : 1,2 sédentaire à 1,9 très actif.',
+    fcAccLimitsBody: 'L’IMC ne mesure pas directement la graisse corporelle. Les athlètes, les femmes enceintes et les personnes âgées peuvent nécessiter une interprétation ajustée. Cet outil est fourni à titre informatif et ne remplace pas un avis médical professionnel.',
+    fcCardIdealSub: 'Moyenne Robinson • Devine',
+    fcMaintenance: 'Maintien',
     // Smartwatch Sync
     swNav: 'Montre',
     swTitle: 'Synchronisation Montre',
@@ -3459,6 +3558,39 @@ mbFruits: 'Fruits',
     fcCtaLaunch: 'Guardar e Ir a Mi Plan de Peso y Fitness',
     fcCtaLaunchSub: 'Un clic — tus métricas se transfieren al instante, cero reinscripción',
     fcRedirecting: 'Redirigiendo a tu plan de Peso y Fitness en',
+    fcHeroCta: 'Empezar →',
+    fcHeroLearn: 'Más información',
+    fcHeroTrust: 'Con la confianza de 42k+ usuarios • Sin registro',
+    fcProfileNote: 'Todos los datos quedan en tu dispositivo • Privacidad por diseño',
+    fcCardAge: 'Edad y género',
+    fcCardAgeSub: 'Datos personales',
+    fcCardHw: 'Altura y peso',
+    fcCardHwSub: 'Para IMC y peso ideal',
+    fcCardActSub: 'Para estimar el TDEE',
+    fcDailyActivity: 'Actividad diaria',
+    fcActHint: 'Ejercicio 3-5 días/semana • Esfuerzo moderado',
+    fcCalcBmi: 'Calcular IMC →',
+    fcBmiRangeLabel: 'Rango de IMC saludable',
+    fcBmiRangeRef: 'Clasificación OMS',
+    fcIdealFor: 'Peso saludable para ti',
+    fcIdealAt: 'A {height} cm de altura',
+    fcPonderal: 'Ponderal • Información',
+    fcInsightUnder: 'Estás por debajo del rango saludable. Prioriza alimentos densos en nutrientes y entrenamiento de fuerza.',
+    fcInsightOk: 'Estás en la zona óptima. Mantente con una ingesta equilibrada y actividad regular.',
+    fcInsightAbove: 'Estás por encima del rango saludable. Los cambios pequeños y constantes funcionan mejor.',
+    fcScaleUnder: 'Por debajo',
+    fcScaleHealthy: '18,5–24,9 Saludable',
+    fcScaleOver: 'Por encima',
+    fcChipFormula: 'Fórmula: peso / altura²',
+    fcChipRmr: 'TMB ≈ Mifflin-St Jeor',
+    fcChipTdee: 'TDEE = TMB × actividad',
+    fcAccMethod: 'Ver Metodología — Fuentes de datos',
+    fcAccLimits: 'Ver Limitaciones y Cuándo Consultar',
+    fcAccFormulaBody: 'IMC = peso(kg) / altura(m)². Rango saludable definido por la OMS 18,5–24,9. Peso ideal mediante Robinson (1983) y Devine (1974) promediados. TMB mediante la ecuación de Mifflin-St Jeor, validada por calorimetría indirecta.',
+    fcAccSourcesBody: 'Estándares referenciados: clasificación de IMC de la OMS, tablas de crecimiento del CDC, metodología del NIH Body Weight Planner, TMB de Mifflin-St Jeor. Multiplicadores TDEE: 1,2 sedentario a 1,9 muy activo.',
+    fcAccLimitsBody: 'El IMC no mide directamente la grasa corporal. Los atletas, las embarazadas y los ancianos pueden necesitar una interpretación ajustada. Esta herramienta es solo informativa y no sustituye el consejo médico profesional.',
+    fcCardIdealSub: 'Promedio Robinson • Devine',
+    fcMaintenance: 'Mantenimiento',
     // Smartwatch Sync
     swNav: 'Reloj',
     swTitle: 'Sincronización de Reloj Inteligente',
@@ -4488,6 +4620,39 @@ mbFruits: 'Fruits',
     fcCtaLaunch: 'احفظ وانتقل إلى خطة الوزن واللياقة',
     fcCtaLaunchSub: 'نقرة واحدة — بياناتك تُنقل فوراً، صفر إعادة إدخال',
     fcRedirecting: 'جارٍ التحويل إلى خطة الوزن واللياقة في',
+    fcHeroCta: 'ابدأ الحساب ←',
+    fcHeroLearn: 'اعرف المزيد',
+    fcHeroTrust: 'يثق بنا +42 ألف مستخدم • بدون تسجيل',
+    fcProfileNote: 'جميع البيانات تبقى على جهازك • الخصوصية بالتصميم',
+    fcCardAge: 'العمر والجنس',
+    fcCardAgeSub: 'البيانات الأساسية الشخصية',
+    fcCardHw: 'الطول والوزن',
+    fcCardHwSub: 'لمؤشر كتلة الجسم والوزن المثالي',
+    fcCardActSub: 'لتقدير السعرات اليومية',
+    fcDailyActivity: 'النشاط اليومي',
+    fcActHint: 'تمارين 3-5 أيام أسبوعياً • جهد معتدل',
+    fcCalcBmi: 'احسب مؤشر كتلة الجسم ←',
+    fcBmiRangeLabel: 'نطاق مؤشر كتلة الجسم الصحي',
+    fcBmiRangeRef: 'تصنيف منظمة الصحة العالمية',
+    fcIdealFor: 'الوزن الصحي المناسب لك',
+    fcIdealAt: 'عند طول {height} سم',
+    fcPonderal: 'بونديرال • نظرة عامة',
+    fcInsightUnder: 'أنت تحت النطاق الصحي. ركّز على الأطعمة الغنية بالعناصر وتمارين القوة.',
+    fcInsightOk: 'أنت في المنطقة المثالية. حافظ على توازن التغذية والنشاط.',
+    fcInsightAbove: 'أنت فوق النطاق الصحي. التغييرات الصغيرة المنتظمة هي الأفضل.',
+    fcScaleUnder: 'أقل',
+    fcScaleHealthy: '18.5–24.9 صحي',
+    fcScaleOver: 'أعلى',
+    fcChipFormula: 'المعادلة: الوزن / الطول²',
+    fcChipRmr: 'معدل الأيض ≈ Mifflin-St Jeor',
+    fcChipTdee: 'السعرات = معدل الأيض × النشاط',
+    fcAccMethod: 'عرض المنهجية — مصادر البيانات',
+    fcAccLimits: 'عرض القيود ومتى تستشير الطبيب',
+    fcAccFormulaBody: 'مؤشر كتلة الجسم = الوزن (كغ) ÷ الطول² (م). النطاق الصحي حسب منظمة الصحة العالمية 18.5–24.9. الوزن المثالي بمتوسط معادلتي Robinson (1983) وDevine (1974). معدل الأيض بمعادلة Mifflin-St Jeor الموثقة بالقياس غير المباشر.',
+    fcAccSourcesBody: 'المعايير المرجعية: تصنيف منظمة الصحة العالمية لمؤشر كتلة الجسم، مخططات نمو CDC، منهجية NIH لتخطيط وزن الجسم، ومعدل الأيض Mifflin-St Jeor. معاملات السعرات: من 1.2 لغير النشط إلى 1.9 للنشط جداً.',
+    fcAccLimitsBody: 'مؤشر كتلة الجسم لا يقيس الدهون مباشرة. الرياضيون والحوامل وكبار السن قد يحتاجون تفسيراً معدلاً. هذه الأداة للمعلومات فقط ولا تغني عن الاستشارة الطبية المتخصصة.',
+    fcCardIdealSub: 'متوسط Robinson • Devine',
+    fcMaintenance: 'صيانة الوزن',
     // Smartwatch Sync
     swNav: 'الساعة الذكية',
     swTitle: 'مزامنة الساعة الذكية',
