@@ -967,6 +967,23 @@ type TranslationKeys = {
   wlfMealSectionTitle: string;
   wlfWorkoutSectionTitle: string;
   wlfCuisineGenericDesc: string;
+  wlfSourcesTitle: string;
+  wlfSourcesSub: string;
+  wlfSrcChicken: string;
+  wlfSrcEggs: string;
+  wlfSrcRedMeat: string;
+  wlfSrcFish: string;
+  wlfSrcTuna: string;
+  wlfStyleTitle: string;
+  wlfStyleSub: string;
+  wlfStyleVeg: string;
+  wlfStyleHighProtein: string;
+  wlfStyleLowCarb: string;
+  wlfExcludeTitle: string;
+  wlfExcludeSub: string;
+  wlfExcNuts: string;
+  wlfExcDairy: string;
+  wlfExcGluten: string;
   dbLabInterpreter: string;
   dbLabsEmpty: string;
   dbBpClassification: string;
@@ -2190,6 +2207,23 @@ export const translations: Record<Language, TranslationKeys> = {
     wlfMealSectionTitle: 'Meal Plan',
     wlfWorkoutSectionTitle: 'Workout Plan',
     wlfCuisineGenericDesc: 'Balanced meals from a rich local food tradition',
+    wlfSourcesTitle: 'Protein Sources',
+    wlfSourcesSub: 'Pick your daily protein staples',
+    wlfSrcChicken: 'Chicken Breast',
+    wlfSrcEggs: 'Eggs',
+    wlfSrcRedMeat: 'Red Meat',
+    wlfSrcFish: 'Fish',
+    wlfSrcTuna: 'Tuna',
+    wlfStyleTitle: 'Dietary Style',
+    wlfStyleSub: 'Choose your eating approach',
+    wlfStyleVeg: 'Vegetarian',
+    wlfStyleHighProtein: 'High Protein',
+    wlfStyleLowCarb: 'Low Carb',
+    wlfExcludeTitle: 'Exclude (Allergies)',
+    wlfExcludeSub: 'Ingredients to keep out of your plan',
+    wlfExcNuts: 'No Nuts',
+    wlfExcDairy: 'No Dairy',
+    wlfExcGluten: 'No Gluten',
     dbLabInterpreter: 'Lab Results Interpreter',
     dbLabsEmpty: 'Enter your lab values on the left panel to get instant interpretation based on ADA medical guidelines.',
     dbBpClassification: 'Blood Pressure Classification (AHA)',
@@ -3389,6 +3423,23 @@ mbFruits: 'Fruits',
     wlfMealSectionTitle: 'Meal Plan',
     wlfWorkoutSectionTitle: 'Workout Plan',
     wlfCuisineGenericDesc: 'Balanced meals from a rich local food tradition',
+    wlfSourcesTitle: 'Protein Sources',
+    wlfSourcesSub: 'Pick your daily protein staples',
+    wlfSrcChicken: 'Chicken Breast',
+    wlfSrcEggs: 'Eggs',
+    wlfSrcRedMeat: 'Red Meat',
+    wlfSrcFish: 'Fish',
+    wlfSrcTuna: 'Tuna',
+    wlfStyleTitle: 'Dietary Style',
+    wlfStyleSub: 'Choose your eating approach',
+    wlfStyleVeg: 'Vegetarian',
+    wlfStyleHighProtein: 'High Protein',
+    wlfStyleLowCarb: 'Low Carb',
+    wlfExcludeTitle: 'Exclude (Allergies)',
+    wlfExcludeSub: 'Ingredients to keep out of your plan',
+    wlfExcNuts: 'No Nuts',
+    wlfExcDairy: 'No Dairy',
+    wlfExcGluten: 'No Gluten',
     dbLabInterpreter: 'Interpréteur de Résultats de Laboratoire',
     dbLabsEmpty: 'Entrez vos valeurs de laboratoire dans le panneau de gauche pour une interprétation instantanée basée sur les directives médicales de l\'ADA.',
     dbBpClassification: 'Classification de la Pression Artérielle (AHA)',
@@ -4558,6 +4609,23 @@ mbFruits: 'Fruits',
     wlfMealSectionTitle: 'Meal Plan',
     wlfWorkoutSectionTitle: 'Workout Plan',
     wlfCuisineGenericDesc: 'Balanced meals from a rich local food tradition',
+    wlfSourcesTitle: 'Protein Sources',
+    wlfSourcesSub: 'Pick your daily protein staples',
+    wlfSrcChicken: 'Chicken Breast',
+    wlfSrcEggs: 'Eggs',
+    wlfSrcRedMeat: 'Red Meat',
+    wlfSrcFish: 'Fish',
+    wlfSrcTuna: 'Tuna',
+    wlfStyleTitle: 'Dietary Style',
+    wlfStyleSub: 'Choose your eating approach',
+    wlfStyleVeg: 'Vegetarian',
+    wlfStyleHighProtein: 'High Protein',
+    wlfStyleLowCarb: 'Low Carb',
+    wlfExcludeTitle: 'Exclude (Allergies)',
+    wlfExcludeSub: 'Ingredients to keep out of your plan',
+    wlfExcNuts: 'No Nuts',
+    wlfExcDairy: 'No Dairy',
+    wlfExcGluten: 'No Gluten',
     dbLabInterpreter: 'Interpretador de Resultados de Laboratorio',
     dbLabsEmpty: 'Introduce tus valores de laboratorio en el panel izquierdo para obtener una interpretación instantánea según las guías médicas de la ADA.',
     dbBpClassification: 'Clasificación de la Presión Arterial (AHA)',
@@ -5727,6 +5795,23 @@ mbFruits: 'Fruits',
     wlfMealSectionTitle: 'خطة الوجبات',
     wlfWorkoutSectionTitle: 'خطة التمارين',
     wlfCuisineGenericDesc: 'وجبات متوازنة من تراث غذائي غني',
+    wlfSourcesTitle: 'مصادر البروتين',
+    wlfSourcesSub: 'اختر مصادر البروتين اليومية المفضلة',
+    wlfSrcChicken: 'صدر دجاج',
+    wlfSrcEggs: 'بيض',
+    wlfSrcRedMeat: 'لحوم حمراء',
+    wlfSrcFish: 'سمك',
+    wlfSrcTuna: 'تونة',
+    wlfStyleTitle: 'النمط الغذائي',
+    wlfStyleSub: 'اختر أسلوب التغذية المناسب لك',
+    wlfStyleVeg: 'نباتي',
+    wlfStyleHighProtein: 'غني بالبروتين',
+    wlfStyleLowCarb: 'منخفض الكربوهيدرات',
+    wlfExcludeTitle: 'استبعاد (حساسية)',
+    wlfExcludeSub: 'مكونات تريد إبقاءها خارج خطتك',
+    wlfExcNuts: 'بدون مكسرات',
+    wlfExcDairy: 'بدون ألبان',
+    wlfExcGluten: 'بدون جلوتين',
     dbLabInterpreter: 'مفسّر نتائج المختبر',
     dbLabsEmpty: 'أدخل قيم المختبر الخاصة بك في اللوحة اليسرى للحصول على تفسير فوري وفقًا للإرشادات الطبية لـ ADA.',
     dbBpClassification: 'تصنيف ضغط الدم (AHA)',

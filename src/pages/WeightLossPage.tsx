@@ -15,7 +15,7 @@ import {
 } from '../features/plan-builder/HealthPlanTemplate';
 import GoalSelector, { FunnelGoal } from '../features/weight-funnel/GoalSelector';
 import PlanTypeSelector, { PlanType } from '../features/weight-funnel/PlanTypeSelector';
-import HealthBlueprint from '../features/weight-funnel/HealthBlueprint';
+import HealthBlueprint, { ProteinSource, DietStyle, ExcludePref } from '../features/weight-funnel/HealthBlueprint';
 
 import { FOODS_DATABASE, CUISINE_META, Cuisine, CUISINE_OPTIONS, EXERCISE_TYPE_LABELS, EXERCISE_TYPE_OPTIONS, ExerciseType } from '../utils/calculations_expanded';
 import { getCuisineLabel } from '../utils/healthPlans';
@@ -72,6 +72,9 @@ const WeightLossPage: React.FC = () => {
     return (saved as Cuisine) || 'mediterranean';
   });
   const [exerciseType, setExerciseType] = useState<ExerciseType | 'auto'>('auto');
+  const [selectedSources, setSelectedSources] = useState<ProteinSource[]>(['chicken', 'eggs', 'fish']);
+  const [selectedStyle, setSelectedStyle] = useState<DietStyle[]>(['high_protein']);
+  const [selectedExcludes, setSelectedExcludes] = useState<ExcludePref[]>([]);
   const [result, setResult] = useState<CalorieResult | null>(null);
   const [showMealPlanModal, setShowMealPlanModal] = useState(false);
   const [showWorkoutModal, setShowWorkoutModal] = useState(false);
@@ -198,6 +201,12 @@ const WeightLossPage: React.FC = () => {
           onWorkoutDaysChange={(days) => setForm((prev) => ({ ...prev, workoutDays: days }))}
           exerciseType={exerciseType}
           onExerciseTypeChange={setExerciseType}
+          selectedSources={selectedSources}
+          onSourcesChange={setSelectedSources}
+          selectedStyle={selectedStyle}
+          onStyleChange={setSelectedStyle}
+          selectedExcludes={selectedExcludes}
+          onExcludesChange={setSelectedExcludes}
           onGenerate={handleGenerate}
         />
 
