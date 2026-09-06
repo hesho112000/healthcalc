@@ -927,13 +927,46 @@ type TranslationKeys = {
   wlSedentary: string;
   wlModerate: string;
   wlVeryActive: string;
-  wlCaloriesSchedule: string;
-  wlUsdaAccurate: string;
   wlCompleteAllMeals: string;
   wlFullPlan: string;
   wlSuggestions: string;
   wlCaloriesItem: string;
   wlProteinUnit: string;
+  wlfBasicsTitle: string;
+  wlfBasicsSub: string;
+  wlfStepGoalTitle: string;
+  wlfStepGoalSub: string;
+  wlfGoalLoseTitle: string;
+  wlfGoalLoseDesc: string;
+  wlfGoalGainTitle: string;
+  wlfGoalGainDesc: string;
+  wlfGoalHealthTitle: string;
+  wlfGoalHealthDesc: string;
+  wlfGoalMuscleTitle: string;
+  wlfGoalMuscleDesc: string;
+  wlfGoalNoTargetDesc: string;
+  wlfKcalDay: string;
+  wlfCannotCombine: string;
+  wlfSelectGoalError: string;
+  wlfStepPlanTitle: string;
+  wlfStepPlanSub: string;
+  wlfPlanMealTitle: string;
+  wlfPlanMealDesc: string;
+  wlfPlanWorkoutTitle: string;
+  wlfPlanWorkoutDesc: string;
+  wlfPlanBothTitle: string;
+  wlfPlanBothDesc: string;
+  wlfBlueprintTitle: string;
+  wlfBlueprintSub: string;
+  wlfCuisineTitle: string;
+  wlfCuisineSub: string;
+  wlfRecommended: string;
+  wlfGenerate: string;
+  wlfResultsTitle: string;
+  wlfResultsSub: string;
+  wlfMealSectionTitle: string;
+  wlfWorkoutSectionTitle: string;
+  wlfCuisineGenericDesc: string;
   dbLabInterpreter: string;
   dbLabsEmpty: string;
   dbBpClassification: string;
@@ -2117,13 +2150,46 @@ export const translations: Record<Language, TranslationKeys> = {
     wlSedentary: 'Sedentary',
     wlModerate: 'Moderate',
     wlVeryActive: 'Very Active',
-    wlCaloriesSchedule: 'Calories Schedule — {cuisine}',
-    wlUsdaAccurate: 'USDA Verified',
     wlCompleteAllMeals: 'Complete all meals',
     wlFullPlan: 'Full 30-Day Plan',
     wlSuggestions: 'Suggestions from {cuisine} kitchen',
     wlCaloriesItem: '{name} - {kcal} kcal',
     wlProteinUnit: 'g',
+    wlfBasicsTitle: 'Your Basics',
+    wlfBasicsSub: "Enter your details — we'll calculate the right calorie targets for you",
+    wlfStepGoalTitle: 'Your Goal',
+    wlfStepGoalSub: "Select one or more goals. We'll combine them into your personalized blueprint.",
+    wlfGoalLoseTitle: 'Lose Fat',
+    wlfGoalLoseDesc: 'Burn fat, reduce body weight',
+    wlfGoalGainTitle: 'Gain Weight',
+    wlfGoalGainDesc: 'Increase weight & mass',
+    wlfGoalHealthTitle: 'Improve Overall Health',
+    wlfGoalHealthDesc: 'Boost overall wellness & energy',
+    wlfGoalMuscleTitle: 'Gain Muscle',
+    wlfGoalMuscleDesc: 'Build lean muscle mass',
+    wlfGoalNoTargetDesc: 'No calorie target · wellness plan',
+    wlfKcalDay: 'kcal/day',
+    wlfCannotCombine: 'Cannot combine {a} with {b}',
+    wlfSelectGoalError: 'Please select at least one goal',
+    wlfStepPlanTitle: 'What do you want to generate?',
+    wlfStepPlanSub: 'Choose what kind of plan your blueprint should include.',
+    wlfPlanMealTitle: 'Meal Plan',
+    wlfPlanMealDesc: 'Custom nutrition & meals plan',
+    wlfPlanWorkoutTitle: 'Workout Plan',
+    wlfPlanWorkoutDesc: 'Exercise routines & training plan',
+    wlfPlanBothTitle: 'Both',
+    wlfPlanBothDesc: 'Meal + Workout combined plan',
+    wlfBlueprintTitle: 'Your Personalized Health Blueprint',
+    wlfBlueprintSub: 'Fine-tune your preferences',
+    wlfCuisineTitle: 'Cuisine Selector',
+    wlfCuisineSub: 'Choose your preferred cuisine',
+    wlfRecommended: 'Recommended by HealthCalc',
+    wlfGenerate: 'Generate Plan',
+    wlfResultsTitle: 'Your Personalized Plan',
+    wlfResultsSub: 'Here is your blueprint in action — day by day',
+    wlfMealSectionTitle: 'Meal Plan',
+    wlfWorkoutSectionTitle: 'Workout Plan',
+    wlfCuisineGenericDesc: 'Balanced meals from a rich local food tradition',
     dbLabInterpreter: 'Lab Results Interpreter',
     dbLabsEmpty: 'Enter your lab values on the left panel to get instant interpretation based on ADA medical guidelines.',
     dbBpClassification: 'Blood Pressure Classification (AHA)',
@@ -3283,13 +3349,46 @@ mbFruits: 'Fruits',
     wlSedentary: 'Sédentaire',
     wlModerate: 'Modéré',
     wlVeryActive: 'Très actif',
-    wlCaloriesSchedule: 'Calendrier des calories — {cuisine}',
-    wlUsdaAccurate: 'Vérifié USDA',
     wlCompleteAllMeals: 'Terminer tous les repas',
     wlFullPlan: 'Plan complet 30 jours',
     wlSuggestions: 'Suggestions de la cuisine {cuisine}',
     wlCaloriesItem: '{name} - {kcal} kcal',
     wlProteinUnit: 'g',
+    wlfBasicsTitle: 'Your Basics',
+    wlfBasicsSub: "Enter your details — we'll calculate the right calorie targets for you",
+    wlfStepGoalTitle: 'Your Goal',
+    wlfStepGoalSub: "Select one or more goals. We'll combine them into your personalized blueprint.",
+    wlfGoalLoseTitle: 'Lose Fat',
+    wlfGoalLoseDesc: 'Burn fat, reduce body weight',
+    wlfGoalGainTitle: 'Gain Weight',
+    wlfGoalGainDesc: 'Increase weight & mass',
+    wlfGoalHealthTitle: 'Improve Overall Health',
+    wlfGoalHealthDesc: 'Boost overall wellness & energy',
+    wlfGoalMuscleTitle: 'Gain Muscle',
+    wlfGoalMuscleDesc: 'Build lean muscle mass',
+    wlfGoalNoTargetDesc: 'No calorie target · wellness plan',
+    wlfKcalDay: 'kcal/day',
+    wlfCannotCombine: 'Cannot combine {a} with {b}',
+    wlfSelectGoalError: 'Please select at least one goal',
+    wlfStepPlanTitle: 'What do you want to generate?',
+    wlfStepPlanSub: 'Choose what kind of plan your blueprint should include.',
+    wlfPlanMealTitle: 'Meal Plan',
+    wlfPlanMealDesc: 'Custom nutrition & meals plan',
+    wlfPlanWorkoutTitle: 'Workout Plan',
+    wlfPlanWorkoutDesc: 'Exercise routines & training plan',
+    wlfPlanBothTitle: 'Both',
+    wlfPlanBothDesc: 'Meal + Workout combined plan',
+    wlfBlueprintTitle: 'Your Personalized Health Blueprint',
+    wlfBlueprintSub: 'Fine-tune your preferences',
+    wlfCuisineTitle: 'Cuisine Selector',
+    wlfCuisineSub: 'Choose your preferred cuisine',
+    wlfRecommended: 'Recommended by HealthCalc',
+    wlfGenerate: 'Generate Plan',
+    wlfResultsTitle: 'Your Personalized Plan',
+    wlfResultsSub: 'Here is your blueprint in action — day by day',
+    wlfMealSectionTitle: 'Meal Plan',
+    wlfWorkoutSectionTitle: 'Workout Plan',
+    wlfCuisineGenericDesc: 'Balanced meals from a rich local food tradition',
     dbLabInterpreter: 'Interpréteur de Résultats de Laboratoire',
     dbLabsEmpty: 'Entrez vos valeurs de laboratoire dans le panneau de gauche pour une interprétation instantanée basée sur les directives médicales de l\'ADA.',
     dbBpClassification: 'Classification de la Pression Artérielle (AHA)',
@@ -4419,13 +4518,46 @@ mbFruits: 'Fruits',
     wlSedentary: 'Sedentario',
     wlModerate: 'Moderado',
     wlVeryActive: 'Muy activo',
-    wlCaloriesSchedule: 'Horario de calorías — {cuisine}',
-    wlUsdaAccurate: 'Verificado por USDA',
     wlCompleteAllMeals: 'Completar todas las comidas',
     wlFullPlan: 'Plan completo de 30 días',
     wlSuggestions: 'Sugerencias de la cocina {cuisine}',
     wlCaloriesItem: '{name} - {kcal} kcal',
     wlProteinUnit: 'g',
+    wlfBasicsTitle: 'Your Basics',
+    wlfBasicsSub: "Enter your details — we'll calculate the right calorie targets for you",
+    wlfStepGoalTitle: 'Your Goal',
+    wlfStepGoalSub: "Select one or more goals. We'll combine them into your personalized blueprint.",
+    wlfGoalLoseTitle: 'Lose Fat',
+    wlfGoalLoseDesc: 'Burn fat, reduce body weight',
+    wlfGoalGainTitle: 'Gain Weight',
+    wlfGoalGainDesc: 'Increase weight & mass',
+    wlfGoalHealthTitle: 'Improve Overall Health',
+    wlfGoalHealthDesc: 'Boost overall wellness & energy',
+    wlfGoalMuscleTitle: 'Gain Muscle',
+    wlfGoalMuscleDesc: 'Build lean muscle mass',
+    wlfGoalNoTargetDesc: 'No calorie target · wellness plan',
+    wlfKcalDay: 'kcal/day',
+    wlfCannotCombine: 'Cannot combine {a} with {b}',
+    wlfSelectGoalError: 'Please select at least one goal',
+    wlfStepPlanTitle: 'What do you want to generate?',
+    wlfStepPlanSub: 'Choose what kind of plan your blueprint should include.',
+    wlfPlanMealTitle: 'Meal Plan',
+    wlfPlanMealDesc: 'Custom nutrition & meals plan',
+    wlfPlanWorkoutTitle: 'Workout Plan',
+    wlfPlanWorkoutDesc: 'Exercise routines & training plan',
+    wlfPlanBothTitle: 'Both',
+    wlfPlanBothDesc: 'Meal + Workout combined plan',
+    wlfBlueprintTitle: 'Your Personalized Health Blueprint',
+    wlfBlueprintSub: 'Fine-tune your preferences',
+    wlfCuisineTitle: 'Cuisine Selector',
+    wlfCuisineSub: 'Choose your preferred cuisine',
+    wlfRecommended: 'Recommended by HealthCalc',
+    wlfGenerate: 'Generate Plan',
+    wlfResultsTitle: 'Your Personalized Plan',
+    wlfResultsSub: 'Here is your blueprint in action — day by day',
+    wlfMealSectionTitle: 'Meal Plan',
+    wlfWorkoutSectionTitle: 'Workout Plan',
+    wlfCuisineGenericDesc: 'Balanced meals from a rich local food tradition',
     dbLabInterpreter: 'Interpretador de Resultados de Laboratorio',
     dbLabsEmpty: 'Introduce tus valores de laboratorio en el panel izquierdo para obtener una interpretación instantánea según las guías médicas de la ADA.',
     dbBpClassification: 'Clasificación de la Presión Arterial (AHA)',
@@ -5555,13 +5687,46 @@ mbFruits: 'Fruits',
     wlSedentary: 'خامل',
     wlModerate: 'معتدل',
     wlVeryActive: 'نشيط جدًا',
-    wlCaloriesSchedule: 'جدول السعرات - {cuisine}',
-    wlUsdaAccurate: 'دقيق',
     wlCompleteAllMeals: 'أكمل جميع الوجبات',
     wlFullPlan: 'الخطة الكاملة - 30 يوم',
     wlSuggestions: 'اقتراحات من مطبخ {cuisine}',
     wlCaloriesItem: '{name} - {kcal} سعر',
     wlProteinUnit: 'ج',
+    wlfBasicsTitle: 'بياناتك الأساسية',
+    wlfBasicsSub: 'أدخل بياناتك — وسنحسب أهداف السعرات المناسبة لك',
+    wlfStepGoalTitle: 'هدفك',
+    wlfStepGoalSub: 'اختر هدفًا واحدًا أو أكثر وسندمجها في مخططك الشخصي.',
+    wlfGoalLoseTitle: 'خسارة الدهون',
+    wlfGoalLoseDesc: 'حرق الدهون وتقليل وزن الجسم',
+    wlfGoalGainTitle: 'زيادة الوزن',
+    wlfGoalGainDesc: 'زيادة الوزن والكتلة',
+    wlfGoalHealthTitle: 'تحسين الصحة العامة',
+    wlfGoalHealthDesc: 'تعزيز العافية والطاقة العامة',
+    wlfGoalMuscleTitle: 'بناء العضلات',
+    wlfGoalMuscleDesc: 'بناء كتلة عضلية رشيقة',
+    wlfGoalNoTargetDesc: 'بدون هدف سعرات · خطة عافية',
+    wlfKcalDay: 'سعرة/يوم',
+    wlfCannotCombine: 'لا يمكن الجمع بين {a} و{b}',
+    wlfSelectGoalError: 'يرجى اختيار هدف واحد على الأقل',
+    wlfStepPlanTitle: 'ماذا تريد أن نُنشئ لك؟',
+    wlfStepPlanSub: 'اختر نوع الخطة الذي تريد تضمينه في مخططك.',
+    wlfPlanMealTitle: 'خطة وجبات',
+    wlfPlanMealDesc: 'خطة تغذية ووجبات مخصصة',
+    wlfPlanWorkoutTitle: 'خطة تمارين',
+    wlfPlanWorkoutDesc: 'روتين تدريبات وتمارين',
+    wlfPlanBothTitle: 'كلاهما',
+    wlfPlanBothDesc: 'خطة وجبات وتمارين معًا',
+    wlfBlueprintTitle: 'مخططك الصحي الشخصي',
+    wlfBlueprintSub: 'خصص تفضيلاتك حسب ما يناسبك',
+    wlfCuisineTitle: 'اختيار المطبخ',
+    wlfCuisineSub: 'اختر مطبخك المفضل',
+    wlfRecommended: 'موصى به من HealthCalc',
+    wlfGenerate: 'إنشاء الخطة',
+    wlfResultsTitle: 'خطتك الشخصية',
+    wlfResultsSub: 'هذا هو مخططك في التطبيق — يومًا بيوم',
+    wlfMealSectionTitle: 'خطة الوجبات',
+    wlfWorkoutSectionTitle: 'خطة التمارين',
+    wlfCuisineGenericDesc: 'وجبات متوازنة من تراث غذائي غني',
     dbLabInterpreter: 'مفسّر نتائج المختبر',
     dbLabsEmpty: 'أدخل قيم المختبر الخاصة بك في اللوحة اليسرى للحصول على تفسير فوري وفقًا للإرشادات الطبية لـ ADA.',
     dbBpClassification: 'تصنيف ضغط الدم (AHA)',

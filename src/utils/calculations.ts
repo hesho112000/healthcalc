@@ -90,7 +90,7 @@ export const calculateMacros = (calories: number) => ({
   fat: Math.round((calories * 0.25) / 9),
 });
 
-const generateMealPlan = (targetCalories: number, cuisineId?: Cuisine, lang: string = 'en'): MealPlan[] => {
+export const generateMealPlan = (targetCalories: number, cuisineId?: Cuisine, lang: string = 'en'): MealPlan[] => {
   if (cuisineId) {
     return buildCuisineMealPlan(targetCalories, cuisineId, lang);
   }
@@ -207,7 +207,7 @@ const getCuisineName = (cuisineId: Cuisine, lang: string): string => {
   return lang === 'ar' ? meta.label_ar : meta.label_en;
 };
 
-const generateFullMealPlan = (targetCalories: number, cuisineId?: Cuisine, lang: string = 'en'): DailyMealPlan[] => {
+export const generateFullMealPlan = (targetCalories: number, cuisineId?: Cuisine, lang: string = 'en'): DailyMealPlan[] => {
   const days: DailyMealPlan[] = [];
   const themes: Record<string, string[]> = {
     egyptian: ['Egyptian Classics', 'High Fiber', 'Balanced', 'Legume Focus', 'Veggie Rich', 'Traditional', 'Protein Focus'],
