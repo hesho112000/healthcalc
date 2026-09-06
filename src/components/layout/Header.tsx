@@ -36,6 +36,7 @@ const Header: React.FC = () => {
   }, [searchOpen]);
 
   const navLinks = [
+    { path: '/', label: t('home') },
     { path: '/smartwatch-sync', label: t('swNav') },
     { path: '/fitness', label: t('fcNav') },
     { path: '/weight-loss', label: t('weightLoss') },
