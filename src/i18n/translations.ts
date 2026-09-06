@@ -285,6 +285,12 @@ type TranslationKeys = {
   fcCtaLaunch: string;
   fcCtaLaunchSub: string;
   fcRedirecting: string;
+  fcEvidence: string;
+  fcBasedOn: string;
+  fcInfoOnly: string;
+  fcCalories: string;
+  fcYears: string;
+  fcPillHealthy: string;
   fcHeroCta: string;
   fcHeroLearn: string;
   fcHeroTrust: string;
@@ -1409,6 +1415,12 @@ export const translations: Record<Language, TranslationKeys> = {
     fcCtaLaunch: 'Save & Go to My Weight & Fitness Plan',
     fcCtaLaunchSub: 'One click — your metrics transfer instantly, zero re-entry required',
     fcRedirecting: 'Redirecting to your Weight & Fitness plan in',
+    fcEvidence: 'Evidence-based',
+    fcBasedOn: 'Based on WHO / CDC / NIH Standards',
+    fcInfoOnly: 'For information only',
+    fcCalories: 'Daily Calories',
+    fcYears: 'yrs',
+    fcPillHealthy: 'Healthy',
     fcHeroCta: 'Start Calculator →',
     fcHeroLearn: 'Learn More',
     fcHeroTrust: 'Trusted by 42k+ users • No sign-up required',
@@ -2504,6 +2516,12 @@ export const translations: Record<Language, TranslationKeys> = {
     fcCtaLaunch: 'Enregistrer & Aller à Mon Plan Poids & Fitness',
     fcCtaLaunchSub: 'Un seul clic — vos données transférées instantanément, zéro ressaisie',
     fcRedirecting: 'Redirection vers votre plan Poids & Fitness dans',
+    fcEvidence: 'Basé sur des preuves',
+    fcBasedOn: 'Basé sur les normes OMS / CDC / NIH',
+    fcInfoOnly: 'Uniquement à titre informatif',
+    fcCalories: 'Calories Quotidiennes',
+    fcYears: 'ans',
+    fcPillHealthy: 'Sain',
     fcHeroCta: 'Lancer le calculateur →',
     fcHeroLearn: 'En savoir plus',
     fcHeroTrust: 'Approuvé par 42k+ utilisateurs • Sans inscription',
@@ -3569,6 +3587,12 @@ mbFruits: 'Fruits',
     fcCtaLaunch: 'Guardar e Ir a Mi Plan de Peso y Fitness',
     fcCtaLaunchSub: 'Un clic — tus métricas se transfieren al instante, cero reinscripción',
     fcRedirecting: 'Redirigiendo a tu plan de Peso y Fitness en',
+    fcEvidence: 'Basado en evidencia',
+    fcBasedOn: 'Basado en estándares OMS / CDC / NIH',
+    fcInfoOnly: 'Solo con fines informativos',
+    fcCalories: 'Calorías Diarias',
+    fcYears: 'años',
+    fcPillHealthy: 'Saludable',
     fcHeroCta: 'Empezar →',
     fcHeroLearn: 'Más información',
     fcHeroTrust: 'Con la confianza de 42k+ usuarios • Sin registro',
@@ -4634,6 +4658,12 @@ mbFruits: 'Fruits',
     fcCtaLaunch: 'احفظ وانتقل إلى خطة الوزن واللياقة',
     fcCtaLaunchSub: 'نقرة واحدة — بياناتك تُنقل فوراً، صفر إعادة إدخال',
     fcRedirecting: 'جارٍ التحويل إلى خطة الوزن واللياقة في',
+    fcEvidence: 'مبني على أدلة علمية',
+    fcBasedOn: 'بناءً على معايير منظمة الصحة العالمية',
+    fcInfoOnly: 'للمعلومات فقط',
+    fcCalories: 'السعرات اليومية',
+    fcYears: 'سنة',
+    fcPillHealthy: 'صحي',
     fcHeroCta: 'ابدأ الحساب ←',
     fcHeroLearn: 'اعرف المزيد',
     fcHeroTrust: 'يثق بنا +42 ألف مستخدم • بدون تسجيل',

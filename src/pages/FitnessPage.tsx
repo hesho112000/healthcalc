@@ -17,6 +17,7 @@ const BMI_CATS = [
   { min: 25, max: 30, cat: 'Overweight', key: 'fcBmiOver', color: 'text-amber-600', bg: 'bg-amber-50', border: 'border-amber-200', gauge: '#f59e0b', risk: 'Increased' },
   { min: 30, max: 100, cat: 'Obese', key: 'fcBmiObese', color: 'text-red-600', bg: 'bg-red-50', border: 'border-red-200', gauge: '#ef4444', risk: 'High' },
 ];
+const STATUS_KEY: Record<string, string> = { Underweight: 'fcBmiUnder', Healthy: 'fcPillHealthy', Overweight: 'fcBmiOver', Obese: 'fcBmiObese' };
 
 function bmiCat(bmi: number) { return BMI_CATS.find(c => bmi >= c.min && bmi < c.max) || BMI_CATS[3]; }
 function idealRange(hCm: number) { const h = hCm / 100; return { min: Math.round(18.5 * h * h * 10) / 10, max: Math.round(24.9 * h * h * 10) / 10 }; }
@@ -113,10 +114,8 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
   }, []);
 
   const CalcDisclaimer: React.FC = () => (
-    <div style={{ marginTop: 20, padding: 14, background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 12, fontSize: 11, color: '#92400e', lineHeight: 1.5 }}>
-      <strong>Disclaimer:</strong> This tool is for educational and informational purposes only and is not medical advice. Calculations are based on publicly available formulas (WHO BMI classification, Mifflin-St Jeor equation) referenced by public health agencies. This site is not affiliated with, endorsed by, or sponsored by WHO, CDC, NIH, or Mayo Clinic. Always consult a qualified healthcare professional for medical decisions.
-      <br /><br />
-      <span style={{ direction: 'rtl', display: 'block' }}>إخلاء مسؤولية: هذه الأداة للتثقيف فقط وليست نصيحة طبية. الحسابات مبنية على معادلات عامة منشورة. هذا الموقع غير تابع أو معتمد من منظمة الصحة العالمية أو غيرها. استشر طبيبك دائماً.</span>
+    <div className="mixed-text" style={{ marginTop: 20, padding: 14, background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 12, fontSize: 11, color: '#92400e', lineHeight: 1.5 }}>
+      <strong>{t('medicalDisclaimer')}: </strong>{t('disclaimer')}
     </div>
   );
 
@@ -145,9 +144,9 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
               <h1 className="text-4xl md:text-[48px] font-extrabold tracking-tight leading-tight">{t('fcTitle')}</h1>
               <p className="mt-4 text-lg text-gray-500 leading-relaxed mixed-text">{t('fcSubtitle')}</p>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', margin: '12px 0' }}>
-                <span style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 20, padding: '6px 14px', fontSize: 12, color: '#475569', fontWeight: 600 }}>✓ Evidence-based</span>
-                <span style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 20, padding: '6px 14px', fontSize: 12, color: '#475569', fontWeight: 600 }}>Based on WHO / CDC / NIH Standards</span>
-                <span style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 20, padding: '6px 14px', fontSize: 12, color: '#475569', fontWeight: 600 }}>For information only</span>
+                <span style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 20, padding: '6px 14px', fontSize: 12, color: '#475569', fontWeight: 600 }}>✓ {t('fcEvidence')}</span>
+                <span className="mixed-text" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 20, padding: '6px 14px', fontSize: 12, color: '#475569', fontWeight: 600 }}>{t('fcBasedOn')}</span>
+                <span style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 20, padding: '6px 14px', fontSize: 12, color: '#475569', fontWeight: 600 }}>{t('fcInfoOnly')}</span>
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 24 }}>
                 <button onClick={scrollProfile} style={{ height: 46, padding: '0 28px', borderRadius: 999, background: 'linear-gradient(90deg,#10b981,#14b8a6)', color: '#fff', fontWeight: 600, fontSize: 14, boxShadow: '0 8px 20px rgba(16,185,129,0.25)', cursor: 'pointer' }}>{t('fcHeroCta')}</button>
@@ -178,7 +177,7 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
                   </div>
                   <div style={{ marginTop: 4, display: 'flex', alignItems: 'baseline', gap: 4 }}>
                     <span style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em', color: '#0f172a' }}>{liveActive ? live.bmi : '--'}</span>
-                    <span style={statusPill}>{liveActive ? live.bmiStatus : 'Healthy'}</span>
+                    <span style={statusPill}>{liveActive ? t(STATUS_KEY[live.bmiStatus] as any) : t('fcPillHealthy')}</span>
                   </div>
                   <div style={{ marginTop: 8, height: 6, width: '100%', background: '#f1f5f9', borderRadius: 999, overflow: 'hidden' }}>
                     <div style={{ height: '100%', width: `${bmiPercent}%`, background: 'linear-gradient(90deg,#34d399,#2dd4bf)', borderRadius: 999 }} />
@@ -189,7 +188,7 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
                 <div className="holo-card" style={{ position: 'absolute', top: '30%', right: '-12%', width: 150, padding: '12px 14px', border: '1px solid rgba(59,130,246,0.7)', borderRadius: 16, boxShadow: '0 8px 24px rgba(59,130,246,0.18)', ...glass, animation: 'float 3s ease-in-out 0.4s infinite' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                     <span style={{ fontSize: 12 }}>🔥</span>
-                    <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#2563eb' }}>Daily Calories</span>
+                    <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#2563eb' }}>{t('fcCalories')}</span>
                   </div>
                   <div style={{ marginTop: 4, fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: '#0f172a' }}>
                     {liveActive ? `${live.cal} ` : '-- '}<span style={{ fontSize: 11, fontWeight: 500, color: '#64748b' }}>kcal</span>
@@ -212,7 +211,7 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
 
                 {/* Ideal Weight */}
                 <div className="holo-card" style={{ position: 'absolute', top: '77%', right: '8%', width: 152, padding: '12px 14px', border: '1px solid rgba(245,158,11,0.7)', borderRadius: 16, boxShadow: '0 8px 24px rgba(245,158,11,0.16)', ...glass, animation: 'float 3s ease-in-out 1.2s infinite' }}>
-                  <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#d97706' }}>Ideal Weight</div>
+                  <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#d97706' }}>{t('fcTabIdeal')}</div>
                   <div style={{ marginTop: 4, fontSize: 16, fontWeight: 800, color: '#0f172a' }}>
                     {liveActive ? `${live.ideal} ` : '-- '}<span style={{ fontSize: 11, fontWeight: 500, color: '#64748b' }}>kg</span>
                   </div>
@@ -225,10 +224,10 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
                 <div className="holo-card" style={{ background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(16,185,129,0.7)', borderRadius: 16, padding: '12px 14px', boxShadow: '0 8px 24px rgba(16,185,129,0.15)' }}>
                   <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: '#059669' }}>BMI</div>
                   <div style={{ marginTop: 4, fontSize: 18, fontWeight: 800, color: '#0f172a' }}>{liveActive ? live.bmi : '--'}</div>
-                  <div style={statusPill}>{liveActive ? live.bmiStatus : 'Healthy'}</div>
+                  <div style={statusPill}>{liveActive ? t(STATUS_KEY[live.bmiStatus] as any) : t('fcPillHealthy')}</div>
                 </div>
                 <div className="holo-card" style={{ background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(59,130,246,0.7)', borderRadius: 16, padding: '12px 14px', boxShadow: '0 8px 24px rgba(59,130,246,0.15)' }}>
-                  <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: '#2563eb' }}>Daily Calories 🔥</div>
+                  <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: '#2563eb' }}>{t('fcCalories')} 🔥</div>
                   <div style={{ marginTop: 4, fontSize: 18, fontWeight: 800, color: '#0f172a' }}>{liveActive ? `${live.cal} kcal` : '-- kcal'}</div>
                 </div>
                 <div className="holo-card" style={{ background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(139,92,246,0.7)', borderRadius: 16, padding: '12px 14px', boxShadow: '0 8px 24px rgba(139,92,246,0.15)' }}>
@@ -236,7 +235,7 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
                   <div style={{ marginTop: 4, fontSize: 18, fontWeight: 800, color: '#0f172a' }}>{liveActive ? `${live.rmr} kcal/day` : '-- kcal/day'}</div>
                 </div>
                 <div className="holo-card" style={{ background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(245,158,11,0.7)', borderRadius: 16, padding: '12px 14px', boxShadow: '0 8px 24px rgba(245,158,11,0.15)' }}>
-                  <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: '#d97706' }}>Ideal Weight</div>
+                  <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: '#d97706' }}>{t('fcTabIdeal')}</div>
                   <div style={{ marginTop: 4, fontSize: 16, fontWeight: 800, color: '#0f172a' }}>{liveActive ? `${live.ideal} kg` : '-- kg'}</div>
                 </div>
               </div>
@@ -267,7 +266,7 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
                   <label style={{ fontSize: 11, fontWeight: 500, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t('age')}</label>
                   <div style={{ marginTop: 6, display: 'flex', alignItems: 'center', background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '0 12px', height: 44 }}>
                     <input type="number" min={2} max={120} value={form.age} onChange={e => handleChange({ age: +e.target.value })} style={{ width: '100%', background: 'transparent', outline: 'none', fontSize: 15, fontWeight: 600, color: '#0f172a' }} />
-                    <span style={{ fontSize: 12, color: '#94a3b8', marginInlineStart: 8 }}>yrs</span>
+                    <span className="mixed-text" style={{ fontSize: 12, color: '#94a3b8', marginInlineStart: 8 }}>{t('fcYears')}</span>
                   </div>
                 </div>
                 <div style={{ flex: 1 }}>
