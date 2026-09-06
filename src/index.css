@@ -20,6 +20,10 @@
   }
 }
 
+.mixed-text {
+  unicode-bidi: plaintext;
+}
+
 @layer components {
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-2xl transition-all duration-200 shadow-sm active:scale-[0.98] text-sm;

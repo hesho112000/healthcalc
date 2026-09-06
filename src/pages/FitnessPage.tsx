@@ -143,7 +143,7 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
             {/* Left copy */}
             <div className="page-hero-copy">
               <h1 className="text-4xl md:text-[48px] font-extrabold tracking-tight leading-tight">{t('fcTitle')}</h1>
-              <p className="mt-4 text-lg text-gray-500 leading-relaxed">{t('fcSubtitle')}</p>
+              <p className="mt-4 text-lg text-gray-500 leading-relaxed mixed-text">{t('fcSubtitle')}</p>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', margin: '12px 0' }}>
                 <span style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 20, padding: '6px 14px', fontSize: 12, color: '#475569', fontWeight: 600 }}>✓ Evidence-based</span>
                 <span style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 20, padding: '6px 14px', fontSize: 12, color: '#475569', fontWeight: 600 }}>Based on WHO / CDC / NIH Standards</span>
@@ -159,7 +159,7 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
                   <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#d1fae5', border: '2px solid #fff', marginInlineStart: -8 }} />
                   <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#cffafe', border: '2px solid #fff', marginInlineStart: -8 }} />
                 </div>
-                <span>{t('fcHeroTrust')}</span>
+                <span className="mixed-text">{t('fcHeroTrust')}</span>
               </div>
             </div>
 
@@ -194,7 +194,7 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
                   <div style={{ marginTop: 4, fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: '#0f172a' }}>
                     {liveActive ? `${live.cal} ` : '-- '}<span style={{ fontSize: 11, fontWeight: 500, color: '#64748b' }}>kcal</span>
                   </div>
-                  <div style={{ marginTop: 4, fontSize: 10, color: '#64748b' }}>{t('fcMaintenance')} • {t(ACT_LABELS[form.activityLevel] as any)}</div>
+                  <div className="mixed-text" style={{ marginTop: 4, fontSize: 10, color: '#64748b' }}>{t('fcMaintenance')} • {t(ACT_LABELS[form.activityLevel] as any)}</div>
                 </div>
 
                 {/* RMR */}
@@ -216,7 +216,7 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
                   <div style={{ marginTop: 4, fontSize: 16, fontWeight: 800, color: '#0f172a' }}>
                     {liveActive ? `${live.ideal} ` : '-- '}<span style={{ fontSize: 11, fontWeight: 500, color: '#64748b' }}>kg</span>
                   </div>
-                  <div style={{ marginTop: 4, fontSize: 10, color: '#64748b' }}>{t('fcCardIdealSub')}</div>
+                  <div className="mixed-text" style={{ marginTop: 4, fontSize: 10, color: '#64748b' }}>{t('fcCardIdealSub')}</div>
                 </div>
               </div>
 
@@ -326,7 +326,7 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
                   </select>
                   <span style={{ position: 'absolute', insetInlineEnd: 12, top: '50%', transform: 'translateY(-50%)', color: '#94a3b8', pointerEvents: 'none', fontSize: 12 }}>▼</span>
                 </div>
-                <div style={{ marginTop: 8, fontSize: 11, color: '#64748b' }}>{t('fcActHint')}</div>
+                <div className="mixed-text" style={{ marginTop: 8, fontSize: 11, color: '#64748b' }}>{t('fcActHint')}</div>
               </div>
             </div>
           </div>
@@ -373,14 +373,14 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
                     <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 12, padding: 16 }}>
                       <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#64748b', fontWeight: 500 }}>{t('fcIdealFor')}</div>
                       <div style={{ marginTop: 4, fontSize: 14, fontWeight: 600, color: '#0f172a' }}>{idealRange(form.heightCm).min} – {idealRange(form.heightCm).max} kg</div>
-                      <div style={{ marginTop: 4, fontSize: 11, color: '#64748b' }}>{t('fcIdealAt').replace('{height}', String(form.heightCm))}</div>
+                      <div className="mixed-text" style={{ marginTop: 4, fontSize: 11, color: '#64748b' }}>{t('fcIdealAt').replace('{height}', String(form.heightCm))}</div>
                     </div>
                     <div style={{ background: '#ecfdf5', border: '1px solid #d1fae5', borderRadius: 12, padding: 16 }}>
                       <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#047857', fontWeight: 500 }}>{t('fcPonderal')}</div>
-                      <div style={{ marginTop: 4, fontSize: 13, fontWeight: 500, color: '#065f46', lineHeight: 1.45 }}>{bmiRes.bmi < 18.5 ? t('fcInsightUnder') : bmiRes.bmi < 25 ? t('fcInsightOk') : t('fcInsightAbove')}</div>
+                      <div className="mixed-text" style={{ marginTop: 4, fontSize: 13, fontWeight: 500, color: '#065f46', lineHeight: 1.45 }}>{bmiRes.bmi < 18.5 ? t('fcInsightUnder') : bmiRes.bmi < 25 ? t('fcInsightOk') : t('fcInsightAbove')}</div>
                     </div>
                   </div>
-                  <button onClick={handleBridge} style={{ marginTop: 24, width: '100%', height: 48, borderRadius: 12, background: '#059669', color: '#fff', fontWeight: 600, fontSize: 14, boxShadow: '0 1px 2px rgba(0,0,0,0.05)', cursor: 'pointer', transition: 'background .2s' }}>{t('fcCtaLaunch')} →</button>
+                  <button onClick={handleBridge} className="mixed-text" style={{ marginTop: 24, width: '100%', height: 48, borderRadius: 12, background: '#059669', color: '#fff', fontWeight: 600, fontSize: 14, boxShadow: '0 1px 2px rgba(0,0,0,0.05)', cursor: 'pointer', transition: 'background .2s' }}>{t('fcCtaLaunch')} →</button>
                   <div style={{ marginTop: 16, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                     <span style={{ padding: '4px 10px', borderRadius: 999, background: '#f8fafc', border: '1px solid #e2e8f0', fontSize: 11, color: '#475569' }}>{t('fcChipFormula')}</span>
                     <span style={{ padding: '4px 10px', borderRadius: 999, background: '#f8fafc', border: '1px solid #e2e8f0', fontSize: 11, color: '#475569' }}>{t('fcChipRmr')}</span>
