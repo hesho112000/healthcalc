@@ -222,6 +222,74 @@ type TranslationKeys = {
   calcEduFormula: string;
   calcEduFormulaNote: string;
   calcEduBmiTable: string;
+  // Header navigation
+  navHome: string;
+  navSmartwatch: string;
+  navFitness: string;
+  navWeight: string;
+  navAdvanced: string;
+  navLabs: string;
+  // Footer
+  footerStatus: string;
+  footerDisclaimer: string;
+  footerTermsShort: string;
+  // Home
+  homeEyebrow: string;
+  homeHeroA: string;
+  homeHeroB: string;
+  homeHeroC: string;
+  homeHeroSub: string;
+  homeTrust: string;
+  homeStatBmi: string;
+  homeStatBmr: string;
+  homeStep1: string;
+  homeStep1Title: string;
+  homeStep1Desc: string;
+  homeMockAge: string;
+  homeMockAgeVal: string;
+  homeMockHeight: string;
+  homeMockHeightVal: string;
+  homeMockWeight: string;
+  homeMockWeightVal: string;
+  homeFeat1: string;
+  homeFeat2: string;
+  homeFeat3: string;
+  homeTryCalc: string;
+  homePanelNote: string;
+  homeStep2: string;
+  homeStep2Title: string;
+  homeStep2Desc: string;
+  homeSeePlan: string;
+  homeStep3: string;
+  homeStep3Title: string;
+  homeStep3Desc: string;
+  homeExploreCare: string;
+  homeLabPill: string;
+  homeLabTitle: string;
+  homeLabDesc: string;
+  homeLive: string;
+  homeLabH3: string;
+  homeBarGlucose: string;
+  homeBarBp: string;
+  homeBarChol: string;
+  homeStartInterpret: string;
+  homeWatchPill: string;
+  homeWatchTitle: string;
+  homeWatchDesc: string;
+  homeWatch1: string;
+  homeWatch2: string;
+  homeWatch3: string;
+  homeConnectWatch: string;
+  homeCardHealth: string;
+  homeCardLab: string;
+  homeCardSteps: string;
+  homeCardComplete: string;
+  homeCardCare: string;
+  homeCardPlan: string;
+  homeCardScience: string;
+  homeFinalEyebrow: string;
+  homeFinalTitle: string;
+  homeFinalDesc: string;
   // Fitness & Health Calculator
   fcNav: string;
   fcTitle: string;
@@ -1695,6 +1763,71 @@ export const translations: Record<Language, TranslationKeys> = {
     headerNoResults: 'No results found',
     // Footer
     footerTagline: 'Your AI Health Companion',
+    navHome: 'Home',
+    navSmartwatch: 'Smartwatch',
+    navFitness: 'Fitness Calculator',
+    navWeight: 'Weight & Fitness',
+    navAdvanced: 'Advanced Care',
+    navLabs: 'Lab Interpretation',
+    footerStatus: 'Built for small, consistent wins',
+    footerDisclaimer: '© 2026 HealthCalc.ai • Not affiliated with WHO, CDC, NIH, or Mayo Clinic • Information only, not medical advice',
+    footerTermsShort: 'Terms & Privacy',
+    homeEyebrow: 'AI-POWERED · ANIME MAGIC ✨',
+    homeHeroA: 'Your',
+    homeHeroB: 'Personalized',
+    homeHeroC: 'Health & Fitness Blueprint',
+    homeHeroSub: 'Science-backed calculators, meal plans, and workout routines powered by internationally recognized medical guidelines.',
+    homeTrust: 'Trusted frameworks',
+    homeStatBmi: 'BMI · healthy',
+    homeStatBmr: 'BMR kcal',
+    homeStep1: 'STEP 1 · ASSESS',
+    homeStep1Title: '1. Health & Fitness Calculator',
+    homeStep1Desc: 'Enter your profile once and get instant BMI, BMR, daily calories, water, and protein targets with transparent formulas.',
+    homeMockAge: 'AGE',
+    homeMockAgeVal: '28 years',
+    homeMockHeight: 'HEIGHT',
+    homeMockHeightVal: '172 cm',
+    homeMockWeight: 'WEIGHT',
+    homeMockWeightVal: '74 kg',
+    homeFeat1: 'BMI & ideal weight',
+    homeFeat2: 'BMR and daily calories',
+    homeFeat3: 'Water and protein targets',
+    homeTryCalc: 'Try the calculator now',
+    homePanelNote: 'Save your result and jump straight to your weight & fitness plan.',
+    homeStep2: 'STEP 2 · PLAN',
+    homeStep2Title: '2. Weight & Fitness — Your Personal Plan',
+    homeStep2Desc: 'Choose fat loss, maintenance, or muscle gain. Explore cuisines, meal tabs, and workouts that fit your goal and lifestyle.',
+    homeSeePlan: 'See your plan',
+    homeStep3: 'STEP 3 · ADVANCED CARE',
+    homeStep3Title: '3. Advanced Care — For Every Condition',
+    homeStep3Desc: 'Interpret labs and blood pressure, then build condition-aware nutrition and exercise guidance for your next step.',
+    homeExploreCare: 'Explore care plans',
+    homeLabPill: 'LAB INTERPRETER',
+    homeLabTitle: 'From lab results to a clear plan',
+    homeLabDesc: 'Enter glucose, HbA1c, blood pressure, lipids, liver, kidney, thyroid, or gout markers and see useful ranges and next steps.',
+    homeLive: 'LIVE INTERPRETATION',
+    homeLabH3: 'Understand your numbers without the overwhelm.',
+    homeBarGlucose: 'Glucose · in range',
+    homeBarBp: 'Blood pressure · stage 1',
+    homeBarChol: 'Cholesterol · optimal',
+    homeStartInterpret: 'Start lab interpretation',
+    homeWatchPill: 'SMARTWATCH SYNC',
+    homeWatchTitle: 'Connect your smartwatch',
+    homeWatchDesc: 'Sync steps, heart rate, sleep, and workouts to make every plan more personal.',
+    homeWatch1: '01 Install your app',
+    homeWatch2: '02 Enable permissions',
+    homeWatch3: '03 Data syncs',
+    homeConnectWatch: 'Connect your watch →',
+    homeCardHealth: 'YOUR HEALTH',
+    homeCardLab: 'LAB RESULTS',
+    homeCardSteps: '8,420 steps',
+    homeCardComplete: '75% complete',
+    homeCardCare: 'Care team online',
+    homeCardPlan: 'Plan matched ✨',
+    homeCardScience: 'Science-backed',
+    homeFinalEyebrow: 'YOUR NEXT CHAPTER STARTS HERE ✨',
+    homeFinalTitle: 'Small inputs. Smarter health decisions.',
+    homeFinalDesc: 'Everything you need to understand your body and build a plan you can actually follow.',
     footerQuickLinks: 'Quick Links',
     footerLegal: 'Legal',
     footerHealthGuides: 'Health Guides',
@@ -2796,6 +2929,71 @@ export const translations: Record<Language, TranslationKeys> = {
     headerNoResults: 'Aucun résultat trouvé',
     // Footer
     footerTagline: 'Votre Compagnon Santé IA',
+    navHome: 'Accueil',
+    navSmartwatch: 'Montre Connectée',
+    navFitness: 'Calculateur Fitness',
+    navWeight: 'Poids & Fitness',
+    navAdvanced: 'Soins Avancés',
+    navLabs: 'Analyse Labo',
+    footerStatus: 'Built for small, consistent wins',
+    footerDisclaimer: '© 2026 HealthCalc.ai • Not affiliated with WHO, CDC, NIH, or Mayo Clinic • Information only, not medical advice',
+    footerTermsShort: 'Terms & Privacy',
+    homeEyebrow: 'AI-POWERED · ANIME MAGIC ✨',
+    homeHeroA: 'Your',
+    homeHeroB: 'Personalized',
+    homeHeroC: 'Health & Fitness Blueprint',
+    homeHeroSub: 'Science-backed calculators, meal plans, and workout routines powered by internationally recognized medical guidelines.',
+    homeTrust: 'Trusted frameworks',
+    homeStatBmi: 'BMI · healthy',
+    homeStatBmr: 'BMR kcal',
+    homeStep1: 'STEP 1 · ASSESS',
+    homeStep1Title: '1. Health & Fitness Calculator',
+    homeStep1Desc: 'Enter your profile once and get instant BMI, BMR, daily calories, water, and protein targets with transparent formulas.',
+    homeMockAge: 'AGE',
+    homeMockAgeVal: '28 years',
+    homeMockHeight: 'HEIGHT',
+    homeMockHeightVal: '172 cm',
+    homeMockWeight: 'WEIGHT',
+    homeMockWeightVal: '74 kg',
+    homeFeat1: 'BMI & ideal weight',
+    homeFeat2: 'BMR and daily calories',
+    homeFeat3: 'Water and protein targets',
+    homeTryCalc: 'Try the calculator now',
+    homePanelNote: 'Save your result and jump straight to your weight & fitness plan.',
+    homeStep2: 'STEP 2 · PLAN',
+    homeStep2Title: '2. Weight & Fitness — Your Personal Plan',
+    homeStep2Desc: 'Choose fat loss, maintenance, or muscle gain. Explore cuisines, meal tabs, and workouts that fit your goal and lifestyle.',
+    homeSeePlan: 'See your plan',
+    homeStep3: 'STEP 3 · ADVANCED CARE',
+    homeStep3Title: '3. Advanced Care — For Every Condition',
+    homeStep3Desc: 'Interpret labs and blood pressure, then build condition-aware nutrition and exercise guidance for your next step.',
+    homeExploreCare: 'Explore care plans',
+    homeLabPill: 'LAB INTERPRETER',
+    homeLabTitle: 'From lab results to a clear plan',
+    homeLabDesc: 'Enter glucose, HbA1c, blood pressure, lipids, liver, kidney, thyroid, or gout markers and see useful ranges and next steps.',
+    homeLive: 'LIVE INTERPRETATION',
+    homeLabH3: 'Understand your numbers without the overwhelm.',
+    homeBarGlucose: 'Glucose · in range',
+    homeBarBp: 'Blood pressure · stage 1',
+    homeBarChol: 'Cholesterol · optimal',
+    homeStartInterpret: 'Start lab interpretation',
+    homeWatchPill: 'SMARTWATCH SYNC',
+    homeWatchTitle: 'Connect your smartwatch',
+    homeWatchDesc: 'Sync steps, heart rate, sleep, and workouts to make every plan more personal.',
+    homeWatch1: '01 Install your app',
+    homeWatch2: '02 Enable permissions',
+    homeWatch3: '03 Data syncs',
+    homeConnectWatch: 'Connect your watch →',
+    homeCardHealth: 'YOUR HEALTH',
+    homeCardLab: 'LAB RESULTS',
+    homeCardSteps: '8,420 steps',
+    homeCardComplete: '75% complete',
+    homeCardCare: 'Care team online',
+    homeCardPlan: 'Plan matched ✨',
+    homeCardScience: 'Science-backed',
+    homeFinalEyebrow: 'YOUR NEXT CHAPTER STARTS HERE ✨',
+    homeFinalTitle: 'Small inputs. Smarter health decisions.',
+    homeFinalDesc: 'Everything you need to understand your body and build a plan you can actually follow.',
     footerQuickLinks: 'Liens Rapides',
     footerLegal: 'Mentions Légales',
     footerHealthGuides: 'Guides Santé',
@@ -3867,6 +4065,71 @@ mbFruits: 'Fruits',
     headerNoResults: 'Sin resultados',
     // Footer
     footerTagline: 'Tu Compañero de Salud IA',
+    navHome: 'Inicio',
+    navSmartwatch: 'Reloj Inteligente',
+    navFitness: 'Calculadora Fitness',
+    navWeight: 'Peso y Fitness',
+    navAdvanced: 'Cuidado Avanzado',
+    navLabs: 'Análisis Lab',
+    footerStatus: 'Built for small, consistent wins',
+    footerDisclaimer: '© 2026 HealthCalc.ai • Not affiliated with WHO, CDC, NIH, or Mayo Clinic • Information only, not medical advice',
+    footerTermsShort: 'Terms & Privacy',
+    homeEyebrow: 'AI-POWERED · ANIME MAGIC ✨',
+    homeHeroA: 'Your',
+    homeHeroB: 'Personalized',
+    homeHeroC: 'Health & Fitness Blueprint',
+    homeHeroSub: 'Science-backed calculators, meal plans, and workout routines powered by internationally recognized medical guidelines.',
+    homeTrust: 'Trusted frameworks',
+    homeStatBmi: 'BMI · healthy',
+    homeStatBmr: 'BMR kcal',
+    homeStep1: 'STEP 1 · ASSESS',
+    homeStep1Title: '1. Health & Fitness Calculator',
+    homeStep1Desc: 'Enter your profile once and get instant BMI, BMR, daily calories, water, and protein targets with transparent formulas.',
+    homeMockAge: 'AGE',
+    homeMockAgeVal: '28 years',
+    homeMockHeight: 'HEIGHT',
+    homeMockHeightVal: '172 cm',
+    homeMockWeight: 'WEIGHT',
+    homeMockWeightVal: '74 kg',
+    homeFeat1: 'BMI & ideal weight',
+    homeFeat2: 'BMR and daily calories',
+    homeFeat3: 'Water and protein targets',
+    homeTryCalc: 'Try the calculator now',
+    homePanelNote: 'Save your result and jump straight to your weight & fitness plan.',
+    homeStep2: 'STEP 2 · PLAN',
+    homeStep2Title: '2. Weight & Fitness — Your Personal Plan',
+    homeStep2Desc: 'Choose fat loss, maintenance, or muscle gain. Explore cuisines, meal tabs, and workouts that fit your goal and lifestyle.',
+    homeSeePlan: 'See your plan',
+    homeStep3: 'STEP 3 · ADVANCED CARE',
+    homeStep3Title: '3. Advanced Care — For Every Condition',
+    homeStep3Desc: 'Interpret labs and blood pressure, then build condition-aware nutrition and exercise guidance for your next step.',
+    homeExploreCare: 'Explore care plans',
+    homeLabPill: 'LAB INTERPRETER',
+    homeLabTitle: 'From lab results to a clear plan',
+    homeLabDesc: 'Enter glucose, HbA1c, blood pressure, lipids, liver, kidney, thyroid, or gout markers and see useful ranges and next steps.',
+    homeLive: 'LIVE INTERPRETATION',
+    homeLabH3: 'Understand your numbers without the overwhelm.',
+    homeBarGlucose: 'Glucose · in range',
+    homeBarBp: 'Blood pressure · stage 1',
+    homeBarChol: 'Cholesterol · optimal',
+    homeStartInterpret: 'Start lab interpretation',
+    homeWatchPill: 'SMARTWATCH SYNC',
+    homeWatchTitle: 'Connect your smartwatch',
+    homeWatchDesc: 'Sync steps, heart rate, sleep, and workouts to make every plan more personal.',
+    homeWatch1: '01 Install your app',
+    homeWatch2: '02 Enable permissions',
+    homeWatch3: '03 Data syncs',
+    homeConnectWatch: 'Connect your watch →',
+    homeCardHealth: 'YOUR HEALTH',
+    homeCardLab: 'LAB RESULTS',
+    homeCardSteps: '8,420 steps',
+    homeCardComplete: '75% complete',
+    homeCardCare: 'Care team online',
+    homeCardPlan: 'Plan matched ✨',
+    homeCardScience: 'Science-backed',
+    homeFinalEyebrow: 'YOUR NEXT CHAPTER STARTS HERE ✨',
+    homeFinalTitle: 'Small inputs. Smarter health decisions.',
+    homeFinalDesc: 'Everything you need to understand your body and build a plan you can actually follow.',
     footerQuickLinks: 'Enlaces Rápidos',
     footerLegal: 'Legal',
     footerHealthGuides: 'Guías de Salud',
@@ -4938,6 +5201,71 @@ mbFruits: 'Fruits',
     headerNoResults: 'لا توجد نتائج',
     // Footer
     footerTagline: 'رفيقك الصحي بالذكاء الاصطناعي',
+    navHome: 'الرئيسية',
+    navSmartwatch: 'الساعة الذكية',
+    navFitness: 'حاسبة اللياقة',
+    navWeight: 'الوزن واللياقة',
+    navAdvanced: 'الرعاية المتقدمة',
+    navLabs: 'تفسير التحاليل',
+    footerStatus: 'صُمم لتحقيق مكاسب صغيرة ومستمرة',
+    footerDisclaimer: '© 2026 HealthCalc.ai • غير تابع لمنظمة الصحة العالمية أو CDC أو NIH أو Mayo Clinic • معلومات فقط وليست نصيحة طبية',
+    footerTermsShort: 'الشروط والخصوصية',
+    homeEyebrow: 'مدعوم بالذكاء الاصطناعي · سحر الأنمي ✨',
+    homeHeroA: 'صحتك',
+    homeHeroB: 'الشخصية',
+    homeHeroC: 'وخريطة اللياقة البدنية',
+    homeHeroSub: 'حاسبات مدعومة بالعلم وخطط وجبات وبرامج تمارين مبنية على إرشادات طبية معترف بها دولياً.',
+    homeTrust: 'أطر مرجعية موثوقة',
+    homeStatBmi: 'BMI · صحي',
+    homeStatBmr: 'BMR kcal',
+    homeStep1: 'الخطوة 1 · تقييم',
+    homeStep1Title: '1. حاسبة اللياقة الصحية والتمارين',
+    homeStep1Desc: 'أدخل بياناتك مرة واحدة واحصل فوراً على BMI وBMR وسعراتك اليومية وأهداف الماء والبروتين بمعادلات واضحة.',
+    homeMockAge: 'العمر',
+    homeMockAgeVal: '28 عاماً',
+    homeMockHeight: 'الطول',
+    homeMockHeightVal: '172 سم',
+    homeMockWeight: 'الوزن',
+    homeMockWeightVal: '74 كجم',
+    homeFeat1: 'BMI والوزن المثالي',
+    homeFeat2: 'BMR والسعرات اليومية',
+    homeFeat3: 'أهداف الماء والبروتين',
+    homeTryCalc: 'جرب الحاسبة الآن',
+    homePanelNote: 'احفظ النتيجة وانتقل مباشرة إلى خطة الوزن واللياقة.',
+    homeStep2: 'الخطوة 2 · الخطة',
+    homeStep2Title: '2. الوزن واللياقة - خطتك الشخصية',
+    homeStep2Desc: 'اختر فقدان الدهون أو التثبيت أو بناء العضلات، واستكشف المطابخ وتبويبات الوجبات والتمارين المناسبة لهدفك وأسلوب حياتك.',
+    homeSeePlan: 'شوف خطتك',
+    homeStep3: 'الخطوة 3 · الرعاية المتقدمة',
+    homeStep3Title: '3. الرعاية المتقدمة - لكل الحالات',
+    homeStep3Desc: 'فسّر التحاليل وضغط الدم، ثم ابنِ إرشادات تغذية وتمارين مخصصة لحالتك.',
+    homeExploreCare: 'استكشف خطط الرعاية',
+    homeLabPill: 'مفسر التحاليل',
+    homeLabTitle: 'من نتائج التحاليل إلى خطة واضحة',
+    homeLabDesc: 'أدخل قياسات السكر وHbA1c وضغط الدم والدهون والكبد والكلى والغدة الدرقية والنقرس وشاهد النطاقات المفيدة والخطوات التالية.',
+    homeLive: 'تفسير مباشر',
+    homeLabH3: 'افهم أرقامك بدون تعقيد.',
+    homeBarGlucose: 'سكر · ضمن النطاق',
+    homeBarBp: 'ضغط الدم · المرحلة 1',
+    homeBarChol: 'كوليسترول · مثالي',
+    homeStartInterpret: 'ابدأ تفسير التحاليل',
+    homeWatchPill: 'مزامنة الساعة الذكية',
+    homeWatchTitle: 'اربط ساعتك الذكية',
+    homeWatchDesc: 'زامن الخطوات ونبض القلب والنوم والتمارين لتجعل كل خطة أكثر تخصيصاً.',
+    homeWatch1: '01 ثبّت التطبيق',
+    homeWatch2: '02 فعّل الأذونات',
+    homeWatch3: '03 تتم مزامنة البيانات',
+    homeConnectWatch: 'اربط ساعتك ←',
+    homeCardHealth: 'صحتك',
+    homeCardLab: 'نتائج التحاليل',
+    homeCardSteps: '8,420 خطوة',
+    homeCardComplete: 'اكتمل 75%',
+    homeCardCare: 'فريق الرعاية متاح الآن',
+    homeCardPlan: 'تمت مطابقة الخطة ✨',
+    homeCardScience: 'مدعوم بالعلم',
+    homeFinalEyebrow: 'الفصل التالي يبدأ من هنا ✨',
+    homeFinalTitle: 'مدخلات صغيرة. قرارات صحية أذكى.',
+    homeFinalDesc: 'كل ما تحتاجه لفهم جسمك وبناء خطة يمكنك الالتزام بها فعلاً.',
     footerQuickLinks: 'روابط سريعة',
     footerLegal: 'قانوني',
     footerHealthGuides: 'أدلة صحية',

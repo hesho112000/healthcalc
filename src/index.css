@@ -24,6 +24,21 @@
   unicode-bidi: plaintext;
 }
 
+.num {
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-family: 'Inter', sans-serif;
+  display: inline-block;
+}
+
+html[lang='ar'] body,
+html[lang='ar'] button,
+html[lang='ar'] input,
+html[lang='ar'] select,
+html[lang='ar'] textarea {
+  font-family: 'Cairo', 'Inter', sans-serif;
+}
+
 @layer components {
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-2xl transition-all duration-200 shadow-sm active:scale-[0.98] text-sm;

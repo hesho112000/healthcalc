@@ -36,12 +36,12 @@ const Header: React.FC = () => {
   }, [searchOpen]);
 
   const navLinks = [
-    { path: '/', label: t('home') },
-    { path: '/smartwatch-sync', label: t('swNav') },
-    { path: '/fitness', label: t('fcNav') },
-    { path: '/weight-loss', label: t('weightLoss') },
-    { path: '/advanced-care', label: t('premium') },
-    { path: '/lab-to-plan', label: t('headerLabInterpret') },
+    { path: '/', label: t('navHome') },
+    { path: '/smartwatch-sync', label: t('navSmartwatch') },
+    { path: '/fitness', label: t('navFitness') },
+    { path: '/weight-loss', label: t('navWeight') },
+    { path: '/advanced-care', label: t('navAdvanced') },
+    { path: '/lab-to-plan', label: t('navLabs') },
   ];
 
   const currentLang = languages.find((l) => l.code === language);

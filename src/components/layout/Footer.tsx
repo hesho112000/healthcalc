@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
             <p className="text-sm text-gray-500 leading-relaxed mb-4">
               {t('footerTagline')}
             </p>
-            <div className="footer-status"><span /> Built for small, consistent wins</div>
+            <div className="footer-status"><span /> {t('footerStatus')}</div>
             <div className="flex flex-wrap gap-1.5">
               {['ADA', 'DASH', 'USDA', 'ACSM'].map((g) => (
                 <span key={g} className="text-[10px] font-semibold bg-gray-800 px-2 py-1 rounded-lg text-gray-500">{g}</span>
@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
               <li><Link to="/weight-loss" className="text-sm hover:text-white transition-colors">{t('weightLoss')}</Link></li>
               <li><Link to="/diabetes" className="text-sm hover:text-white transition-colors">{t('diabetes')}</Link></li>
               <li><Link to="/premium" className="text-sm hover:text-white transition-colors">{t('premium')}</Link></li>
-              <li><Link to="/advanced-care" className="text-sm hover:text-white transition-colors">Advanced Calc</Link></li>
+              <li><Link to="/advanced-care" className="text-sm hover:text-white transition-colors">{t('navAdvanced')}</Link></li>
             </ul>
           </div>
 
@@ -85,7 +85,7 @@ const Footer: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5">
           <p className="text-center text-xs text-gray-600">{t('allRights')}</p>
           <p style={{ textAlign: 'center', fontSize: 11, color: '#94a3b8', padding: '12px 0', borderTop: '1px solid #334155', marginTop: 16 }}>
-            © 2026 HealthCalc.ai • Not affiliated with WHO, CDC, NIH, or Mayo Clinic • Information only, not medical advice • <Link to="/terms" style={{ color: '#64748b', textDecoration: 'underline' }}>Terms &amp; Privacy</Link>
+            {t('footerDisclaimer')} • <Link to="/terms" style={{ color: '#64748b', textDecoration: 'underline' }}>{t('footerTermsShort')}</Link>
           </p>
         </div>
       </div>
