@@ -5,6 +5,8 @@ type TranslationKeys = {
   appName: string;
   tagline: string;
   searchPlaceholder: string;
+  searchResultsTitle: string;
+  searchResultsFor: string;
   // Nav
   home: string;
   weightLoss: string;
@@ -1146,6 +1148,8 @@ export const translations: Record<Language, TranslationKeys> = {
     },
     tagline: 'Your AI Health Companion',
     searchPlaceholder: 'Search health calculators...',
+    searchResultsTitle: 'Search Results',
+    searchResultsFor: 'Results for',
     home: 'Home',
     weightLoss: 'Weight & Fitness',
     diabetes: 'Diabetes & Hypertension',
@@ -2239,6 +2243,8 @@ export const translations: Record<Language, TranslationKeys> = {
     },
     tagline: 'Votre Compagnon Santé IA',
     searchPlaceholder: 'Rechercher des calculateurs de santé...',
+    searchResultsTitle: 'Résultats de Recherche',
+    searchResultsFor: 'Résultats pour',
     home: 'Accueil',
     weightLoss: 'Poids & Fitness',
     diabetes: 'Diabète & Hypertension',
@@ -3302,6 +3308,8 @@ mbFruits: 'Fruits',
     },
     tagline: 'Tu Compañero de Salud IA',
     searchPlaceholder: 'Buscar calculadoras de salud...',
+    searchResultsTitle: 'Resultados de Búsqueda',
+    searchResultsFor: 'Resultados para',
     home: 'Inicio',
     weightLoss: 'Peso y Fitness',
     diabetes: 'Diabetes e Hipertensión',
@@ -4364,7 +4372,9 @@ mbFruits: 'Fruits',
       breathing: 'التنفس',
     },
     tagline: 'رفيقك الصحي بالذكاء الاصطناعي',
-    searchPlaceholder: 'ابحث عن حاسبات صحية...',
+    searchPlaceholder: 'ابحث عن BMI، سعرات، تحاليل...',
+    searchResultsTitle: 'نتائج البحث',
+    searchResultsFor: 'نتائج عن',
     home: 'الرئيسية',
     weightLoss: 'الوزن واللياقة',
     diabetes: 'السكري وارتفاع ضغط الدم',

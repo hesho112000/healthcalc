@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 import { useAuth } from '../../context/AuthContext';
@@ -19,10 +19,21 @@ const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setMobileMenuOpen(false);
+    setSearchQuery('');
+    setSearchOpen(false);
   }, [location.pathname]);
+
+  useEffect(() => {
+    if (searchOpen) {
+      searchInputRef.current?.focus();
+    }
+  }, [searchOpen]);
 
   const navLinks = [
     { path: '/smartwatch-sync', label: t('swNav') },
@@ -38,6 +49,14 @@ const Header: React.FC = () => {
     logout();
     setUserDropdownOpen(false);
     navigate('/');
+  };
+
+  const handleSearchSubmit = () => {
+    const q = searchQuery.trim();
+    if (!q) return;
+    setSearchQuery('');
+    setSearchOpen(false);
+    navigate(`/search?q=${encodeURIComponent(q)}`);
   };
 
   return (
@@ -110,6 +129,39 @@ const Header: React.FC = () => {
                         <span>{lang.name}</span>
                       </button>
                     ))}
+                  </div>
+                </>
+              )}
+            </div>
+
+            <div className="relative">
+              <button
+                onClick={() => { setSearchOpen((o) => !o); setLangDropdownOpen(false); setUserDropdownOpen(false); }}
+                aria-label={t('searchPlaceholder')}
+                aria-expanded={searchOpen}
+                className="flex items-center justify-center w-10 h-10 bg-[#f8fafc] border border-[#e2e8f0] rounded-full hover:bg-white hover:shadow-sm transition-all"
+              >
+                <svg className="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </button>
+
+              {searchOpen && (
+                <>
+                  <div className="fixed inset-0 z-40" onClick={() => setSearchOpen(false)} />
+                  <div
+                    className={`absolute z-50 w-[320px] max-w-[calc(100vw-2rem)] bg-white border border-[#e2e8f0] rounded-2xl p-3 shadow-[0_10px_30px_rgba(0,0,0,0.1)] ${dir === 'rtl' ? 'left-0' : 'right-0'}`}
+                    style={{ top: 48 }}
+                  >
+                    <input
+                      ref={searchInputRef}
+                      type="text"
+                      placeholder={t('searchPlaceholder')}
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onKeyDown={(e) => { if (e.key === 'Enter') handleSearchSubmit(); }}
+                      className="w-full p-3 border border-[#e2e8f0] rounded-[10px] text-sm text-gray-900 focus:outline-none focus:border-primary-400 focus:ring-2 focus:ring-primary-400/30 transition-all"
+                    />
                   </div>
                 </>
               )}
