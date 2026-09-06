@@ -556,6 +556,7 @@ type TranslationKeys = {
   headerSignOut: string;
   headerSignIn: string;
   headerSignUp: string;
+  headerLabInterpret: string;
   headerNoResults: string;
   // Footer
   footerTagline: string;
@@ -1674,6 +1675,7 @@ export const translations: Record<Language, TranslationKeys> = {
     headerSignOut: 'Sign Out',
     headerSignIn: 'Sign In',
     headerSignUp: 'Sign Up',
+    headerLabInterpret: 'Lab Interpretation',
     headerNoResults: 'No results found',
     // Footer
     footerTagline: 'Your AI Health Companion',
@@ -2766,6 +2768,7 @@ export const translations: Record<Language, TranslationKeys> = {
     headerSignOut: 'Déconnexion',
     headerSignIn: 'Connexion',
     headerSignUp: 'Inscription',
+    headerLabInterpret: 'Interprétation des Analyses',
     headerNoResults: 'Aucun résultat trouvé',
     // Footer
     footerTagline: 'Votre Compagnon Santé IA',
@@ -3828,6 +3831,7 @@ mbFruits: 'Fruits',
     headerSignOut: 'Cerrar Sesión',
     headerSignIn: 'Iniciar Sesión',
     headerSignUp: 'Registrarse',
+    headerLabInterpret: 'Interpretación de Análisis',
     headerNoResults: 'Sin resultados',
     // Footer
     footerTagline: 'Tu Compañero de Salud IA',
@@ -4890,6 +4894,7 @@ mbFruits: 'Fruits',
     headerSignOut: 'تسجيل الخروج',
     headerSignIn: 'تسجيل الدخول',
     headerSignUp: 'إنشاء حساب',
+    headerLabInterpret: 'تفسير التحاليل',
     headerNoResults: 'لا توجد نتائج',
     // Footer
     footerTagline: 'رفيقك الصحي بالذكاء الاصطناعي',
