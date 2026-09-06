@@ -14,7 +14,8 @@ import MealPlanModal from '../features/plan-builder/MealPlanModal';
 import CuisineRegionCards from '../features/plan-builder/CuisineRegionCards';
 import MealBuilder from '../features/plan-builder/MealBuilder';
 import WorkoutBlueprintModal from '../features/plan-builder/WorkoutBlueprintModal';
-import { ANIME_IMAGES } from '../utils/animeImages';
+import { Microscope } from 'lucide-react';
+import { IconScene } from '../components/IconScene';
 
 const DiabetesPage: React.FC = () => {
   const { t, language } = useLanguage();
@@ -96,7 +97,7 @@ const DiabetesPage: React.FC = () => {
               <h1 className="text-2xl md:text-4xl font-extrabold mb-3 tracking-tight">{t('module2Title')}</h1>
               <p className="text-sm md:text-base leading-relaxed">{t('module2Desc')}</p>
             </div>
-            <img className="page-anime" src={ANIME_IMAGES.lab} alt="" aria-hidden="true" />
+            <div className="page-anime"><IconScene icon={Microscope} color="#14b8a6" large /></div>
           </div>
         </div>
       </div>

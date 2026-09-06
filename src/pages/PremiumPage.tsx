@@ -19,7 +19,8 @@ import {
 import { toDayPlans, type MealBuilderFilters, type MealBuilderSection, type MealMacros } from '../utils/mealBuilder';
 import { type Cuisine } from '../utils/calculations_expanded';
 import { type SuitabilityCondition } from '../utils/dishSuitability';
-import { ANIME_IMAGES } from '../utils/animeImages';
+import { Microscope, HeartPulse } from 'lucide-react';
+import { IconScene } from '../components/IconScene';
 
 /* ═══════════════════════════════════════════════════════════════════
    TYPES
@@ -388,7 +389,7 @@ const PremiumPage: React.FC = () => {
               </div>
               <p className="text-sm md:text-base leading-relaxed">{t('pmHeroSub')}</p>
             </div>
-            <img className="page-anime" src={firstSelected === 'diabetes' || firstSelected === 'cholesterol' ? ANIME_IMAGES.lab : ANIME_IMAGES.care} alt="" aria-hidden="true" />
+            <div className="page-anime"><IconScene icon={firstSelected === 'diabetes' || firstSelected === 'cholesterol' ? Microscope : HeartPulse} color={firstSelected === 'diabetes' || firstSelected === 'cholesterol' ? '#14b8a6' : '#8b5cf6'} large /></div>
           </div>
         </div>
       </div>

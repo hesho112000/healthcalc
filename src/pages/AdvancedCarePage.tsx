@@ -1,8 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { HeartPulse, ClipboardList, Calculator, Microscope, Target } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { EXERCISES_DATABASE } from '../data/exercises';
 import { FOODS_DATABASE, type FoodItem } from '../utils/calculations';
-import { ANIME_IMAGES } from '../utils/animeImages';
+import { IconScene } from '../components/IconScene';
 import { useLanguage } from '../context/LanguageContext';
 
 type ConditionId = 'diabetes' | 'hypertension' | 'cholesterol' | 'gout' | 'liver' | 'kidney' | 'thyroid' | 'ibs';
@@ -98,11 +100,13 @@ const cuisines = [
   ['🌏', 'Asian'], ['🇺🇸', 'American'], ['🥗', 'Vegetarian'], ['🥑', 'Keto'],
 ];
 
-const imageForStep = (step: number) => {
-  if (step === 1 || step === 2) return ANIME_IMAGES.care;
-  if (step === 4) return ANIME_IMAGES.lab;
-  if (step === 5 || step === 6) return ANIME_IMAGES.plan;
-  return ANIME_IMAGES.calculator;
+const stepScene: Record<number, { icon: LucideIcon; color: string }> = {
+  1: { icon: HeartPulse, color: '#8b5cf6' },
+  2: { icon: ClipboardList, color: '#f59e0b' },
+  3: { icon: Calculator, color: '#10b981' },
+  4: { icon: Microscope, color: '#14b8a6' },
+  5: { icon: ClipboardList, color: '#3b82f6' },
+  6: { icon: Target, color: '#10b981' },
 };
 
 const UI = {
@@ -250,7 +254,7 @@ const AdvancedCarePage: React.FC = () => {
         </div>
 
         <div className="grid lg:grid-cols-[.8fr_1.2fr] gap-8 items-start">
-          <div className="care-illustration"><img src={imageForStep(step)} alt="" /><span className="sparkle sparkle-a">✦</span><span className="sparkle sparkle-b">✨</span></div>
+          <div className="care-illustration"><IconScene icon={stepScene[step].icon} color={stepScene[step].color} large /></div>
           <div className="card !rounded-3xl min-h-[430px] care-step" key={step}>
             {step === 1 && <><p className="text-slate-500 mb-6">{L('chooseMultipleHint')}</p><div className="grid grid-cols-2 md:grid-cols-4 gap-3">{conditions.map((condition) => <button key={condition.id} type="button" onClick={() => toggleCondition(condition.id)} className={`condition-choice ${selected.includes(condition.id) ? 'selected' : ''}`}><span>{condition.icon}</span><strong>{condition.name[language]}</strong>{selected.includes(condition.id) && <b className="choice-check">✓</b>}</button>)}</div>{selected.length > 0 && <div className="mt-5 space-y-2">{selected.map((id) => { const c = conditions.find((item) => item.id === id); return c ? <div key={id} className="rounded-2xl bg-white border border-slate-200 p-4 text-sm text-slate-700 flex gap-3"><span className="text-xl shrink-0">{c.icon}</span><div><b className="text-slate-900">{c.name[language]}</b><p className="mt-0.5 text-slate-500 leading-relaxed">{c.desc[language]}</p></div></div> : null; })}</div>}<p className="text-sm text-emerald-700 font-bold mt-5">{selectedCountLabel}</p><button disabled={!selected.length} onClick={() => save(2)} className="btn-primary w-full mt-6 disabled:opacity-40">{L('next')}</button></>}
             {step === 2 && <div className="space-y-4"><p className="text-slate-500 mb-6">{L('labsIntro')}</p><div className="grid md:grid-cols-2 gap-4">{[[true, L('yesHasLabs'), '📋'], [false, L('noHasLabs'), '🌱']].map(([value, label, icon]) => <button key={String(value)} onClick={() => setHasLabs(value as boolean)} className={`choice-card ${hasLabs === value ? 'selected' : ''}`}><span>{icon}</span><strong>{label}</strong><small>{value ? L('labsYesSub') : L('labsNoSub')}</small></button>)}</div>{hasLabs === true && <p className="text-xs text-slate-500 bg-slate-50 rounded-xl p-3 animate-fade-in">{L('labsNote')}</p>}<button disabled={hasLabs === null} onClick={() => save(3)} className="btn-primary w-full mt-5 disabled:opacity-40">{L('next')}</button></div>}

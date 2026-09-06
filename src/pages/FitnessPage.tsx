@@ -1,8 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Calculator as CalculatorIcon, PersonStanding, Flame, HeartPulse, Target } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { IconScene, SoftIcon } from '../components/IconScene';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
-import { ANIME_IMAGES } from '../utils/animeImages';
 
 type Tab = 'bmi' | 'bmr' | 'calorie' | 'ideal';
 
@@ -162,10 +163,9 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
               </div>
             </div>
 
-            {/* Right: anime + holographic live cards */}
+            {/* Right: abstract 3D icon scene + holographic live cards */}
             <div className="relative mx-auto w-full max-w-[420px]">
-              <img className="page-anime" src={ANIME_IMAGES.calculator} alt="" aria-hidden="true"
-                style={{ maxWidth: 420, margin: '0 auto', display: 'block' }} />
+              <IconScene icon={CalculatorIcon} color="#10b981" large />
 
               {/* Floating cards — desktop (absolute) */}
               <div className="hidden md:block">
@@ -173,7 +173,7 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
                 <div className="holo-card" style={{ position: 'absolute', top: '5%', right: '-6%', width: 148, padding: '12px 14px', border: '1px solid rgba(16,185,129,0.7)', borderRadius: 16, boxShadow: '0 8px 24px rgba(16,185,129,0.18)', ...glass, animation: 'float 3s ease-in-out infinite' }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#059669' }}>BMI</span>
-                    <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#eff6ff', color: '#3b82f6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11 }}>◐</span>
+                    <SoftIcon icon={PersonStanding} color="#10b981" size={12} tile={22} />
                   </div>
                   <div style={{ marginTop: 4, display: 'flex', alignItems: 'baseline', gap: 4 }}>
                     <span style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em', color: '#0f172a' }}>{liveActive ? live.bmi : '--'}</span>
@@ -185,10 +185,10 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
                 </div>
 
                 {/* Daily Calories */}
-                <div className="holo-card" style={{ position: 'absolute', top: '30%', right: '-12%', width: 150, padding: '12px 14px', border: '1px solid rgba(59,130,246,0.7)', borderRadius: 16, boxShadow: '0 8px 24px rgba(59,130,246,0.18)', ...glass, animation: 'float 3s ease-in-out 0.4s infinite' }}>
+                <div className="holo-card" style={{ position: 'absolute', top: '30%', right: '-12%', width: 150, padding: '12px 14px', border: '1px solid rgba(245,158,11,0.7)', borderRadius: 16, boxShadow: '0 8px 24px rgba(245,158,11,0.18)', ...glass, animation: 'float 3s ease-in-out 0.4s infinite' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                    <span style={{ fontSize: 12 }}>🔥</span>
-                    <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#2563eb' }}>{t('fcCalories')}</span>
+                    <SoftIcon icon={Flame} color="#f59e0b" size={12} tile={22} />
+                    <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#d97706' }}>{t('fcCalories')}</span>
                   </div>
                   <div style={{ marginTop: 4, fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: '#0f172a' }}>
                     {liveActive ? `${live.cal} ` : '-- '}<span style={{ fontSize: 11, fontWeight: 500, color: '#64748b' }}>kcal</span>
@@ -197,8 +197,11 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
                 </div>
 
                 {/* RMR */}
-                <div className="holo-card" style={{ position: 'absolute', top: '54%', right: '2%', width: 148, padding: '12px 14px', border: '1px solid rgba(139,92,246,0.7)', borderRadius: 16, boxShadow: '0 8px 24px rgba(139,92,246,0.16)', ...glass, animation: 'float 3s ease-in-out 0.8s infinite' }}>
-                  <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#7c3aed' }}>RMR</div>
+                <div className="holo-card" style={{ position: 'absolute', top: '54%', right: '2%', width: 148, padding: '12px 14px', border: '1px solid rgba(239,68,68,0.6)', borderRadius: 16, boxShadow: '0 8px 24px rgba(239,68,68,0.16)', ...glass, animation: 'float 3s ease-in-out 0.8s infinite' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#dc2626' }}>RMR</span>
+                    <SoftIcon icon={HeartPulse} color="#ef4444" size={12} tile={22} />
+                  </div>
                   <div style={{ marginTop: 4, fontSize: 18, fontWeight: 800, color: '#0f172a' }}>
                     {liveActive ? `${live.rmr} ` : '-- '}<span style={{ fontSize: 11, fontWeight: 500, color: '#64748b' }}>kcal/day</span>
                   </div>
@@ -210,8 +213,11 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
                 </div>
 
                 {/* Ideal Weight */}
-                <div className="holo-card" style={{ position: 'absolute', top: '77%', right: '8%', width: 152, padding: '12px 14px', border: '1px solid rgba(245,158,11,0.7)', borderRadius: 16, boxShadow: '0 8px 24px rgba(245,158,11,0.16)', ...glass, animation: 'float 3s ease-in-out 1.2s infinite' }}>
-                  <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#d97706' }}>{t('fcTabIdeal')}</div>
+                <div className="holo-card" style={{ position: 'absolute', top: '77%', right: '8%', width: 152, padding: '12px 14px', border: '1px solid rgba(59,130,246,0.7)', borderRadius: 16, boxShadow: '0 8px 24px rgba(59,130,246,0.16)', ...glass, animation: 'float 3s ease-in-out 1.2s infinite' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#2563eb' }}>{t('fcTabIdeal')}</span>
+                    <SoftIcon icon={Target} color="#3b82f6" size={12} tile={22} />
+                  </div>
                   <div style={{ marginTop: 4, fontSize: 16, fontWeight: 800, color: '#0f172a' }}>
                     {liveActive ? `${live.ideal} ` : '-- '}<span style={{ fontSize: 11, fontWeight: 500, color: '#64748b' }}>kg</span>
                   </div>
@@ -222,20 +228,32 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
               {/* Mobile: static 2x2 grid below anime */}
               <div className="mt-6 grid grid-cols-2 gap-3 md:hidden">
                 <div className="holo-card" style={{ background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(16,185,129,0.7)', borderRadius: 16, padding: '12px 14px', boxShadow: '0 8px 24px rgba(16,185,129,0.15)' }}>
-                  <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: '#059669' }}>BMI</div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: '#059669' }}>BMI</span>
+                    <SoftIcon icon={PersonStanding} color="#10b981" size={12} tile={22} />
+                  </div>
                   <div style={{ marginTop: 4, fontSize: 18, fontWeight: 800, color: '#0f172a' }}>{liveActive ? live.bmi : '--'}</div>
                   <div style={statusPill}>{liveActive ? t(STATUS_KEY[live.bmiStatus] as any) : t('fcPillHealthy')}</div>
                 </div>
-                <div className="holo-card" style={{ background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(59,130,246,0.7)', borderRadius: 16, padding: '12px 14px', boxShadow: '0 8px 24px rgba(59,130,246,0.15)' }}>
-                  <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: '#2563eb' }}>{t('fcCalories')} 🔥</div>
+                <div className="holo-card" style={{ background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(245,158,11,0.7)', borderRadius: 16, padding: '12px 14px', boxShadow: '0 8px 24px rgba(245,158,11,0.15)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: '#d97706' }}>{t('fcCalories')}</span>
+                    <SoftIcon icon={Flame} color="#f59e0b" size={12} tile={22} />
+                  </div>
                   <div style={{ marginTop: 4, fontSize: 18, fontWeight: 800, color: '#0f172a' }}>{liveActive ? `${live.cal} kcal` : '-- kcal'}</div>
                 </div>
-                <div className="holo-card" style={{ background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(139,92,246,0.7)', borderRadius: 16, padding: '12px 14px', boxShadow: '0 8px 24px rgba(139,92,246,0.15)' }}>
-                  <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: '#7c3aed' }}>RMR</div>
+                <div className="holo-card" style={{ background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(239,68,68,0.6)', borderRadius: 16, padding: '12px 14px', boxShadow: '0 8px 24px rgba(239,68,68,0.15)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: '#dc2626' }}>RMR</span>
+                    <SoftIcon icon={HeartPulse} color="#ef4444" size={12} tile={22} />
+                  </div>
                   <div style={{ marginTop: 4, fontSize: 18, fontWeight: 800, color: '#0f172a' }}>{liveActive ? `${live.rmr} kcal/day` : '-- kcal/day'}</div>
                 </div>
-                <div className="holo-card" style={{ background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(245,158,11,0.7)', borderRadius: 16, padding: '12px 14px', boxShadow: '0 8px 24px rgba(245,158,11,0.15)' }}>
-                  <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: '#d97706' }}>{t('fcTabIdeal')}</div>
+                <div className="holo-card" style={{ background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(59,130,246,0.7)', borderRadius: 16, padding: '12px 14px', boxShadow: '0 8px 24px rgba(59,130,246,0.15)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: '#2563eb' }}>{t('fcTabIdeal')}</span>
+                    <SoftIcon icon={Target} color="#3b82f6" size={12} tile={22} />
+                  </div>
                   <div style={{ marginTop: 4, fontSize: 16, fontWeight: 800, color: '#0f172a' }}>{liveActive ? `${live.ideal} kg` : '-- kg'}</div>
                 </div>
               </div>

@@ -1,17 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Calculator, ClipboardList, HeartPulse, Microscope, Watch } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { ANIME_IMAGES } from '../utils/animeImages';
+import { IconScene } from '../components/IconScene';
 import StartFreeDropdown from '../components/layout/StartFreeDropdown';
 
 type IllustrationKind = 'calculator' | 'plan' | 'care' | 'lab' | 'watch';
 
-const illustrations: Record<IllustrationKind, { src: string; accent: string; title: string }> = {
-  calculator: { src: ANIME_IMAGES.calculator, accent: 'from-cyan-100 to-emerald-100', title: 'Health dashboard' },
-  plan: { src: ANIME_IMAGES.plan, accent: 'from-amber-100 to-pink-100', title: 'Personal plan' },
-  care: { src: ANIME_IMAGES.care, accent: 'from-violet-100 to-cyan-100', title: 'Compassionate care' },
-  lab: { src: ANIME_IMAGES.lab, accent: 'from-emerald-100 to-teal-100', title: 'Lab interpreter' },
-  watch: { src: ANIME_IMAGES.plan, accent: 'from-indigo-100 to-cyan-100', title: 'Smart sync' },
+const illustrations: Record<IllustrationKind, { icon: LucideIcon; color: string; title: string }> = {
+  calculator: { icon: Calculator, color: '#10b981', title: 'Health dashboard' },
+  plan: { icon: ClipboardList, color: '#f59e0b', title: 'Personal plan' },
+  care: { icon: HeartPulse, color: '#8b5cf6', title: 'Compassionate care' },
+  lab: { icon: Microscope, color: '#14b8a6', title: 'Lab interpreter' },
+  watch: { icon: Watch, color: '#3b82f6', title: 'Smart sync' },
 };
 
 const conditions = [
@@ -33,14 +35,17 @@ const cuisines = [
 const Illustration: React.FC<{ kind: IllustrationKind; large?: boolean }> = ({ kind, large = false }) => {
   const { t } = useLanguage();
   const item = illustrations[kind];
+  const stat = kind === 'calculator' ? 'BMI 22.4' : kind === 'watch' ? t('homeCardSteps') : t('homeCardComplete');
+  const labelTop = kind === 'lab' ? t('homeCardLab') : t('homeCardHealth');
+  const bottom = kind === 'care' ? t('homeCardCare') : kind === 'plan' ? t('homeCardPlan') : t('homeCardScience');
   return (
-    <div className={`anime-scene ${large ? 'anime-scene-lg' : ''}`} aria-label={item.title}>
-      <span className="sparkle sparkle-a">✦</span><span className="sparkle sparkle-b">✧</span><span className="sparkle sparkle-c">✨</span>
-      <div className="anime-orbit orbit-one" /><div className="anime-orbit orbit-two" />
-      <img className="anime-character" src={item.src} alt="" aria-hidden="true" />
-      <div className="anime-card anime-card-top"><b>{kind === 'lab' ? t('homeCardLab') : t('homeCardHealth')}</b><span>{kind === 'calculator' ? <span className="num">BMI 22.4</span> : kind === 'watch' ? t('homeCardSteps') : t('homeCardComplete')}</span></div>
-      <div className="anime-card anime-card-bottom"><span className="mini-dot" />{kind === 'care' ? t('homeCardCare') : kind === 'plan' ? t('homeCardPlan') : t('homeCardScience')}</div>
-    </div>
+    <IconScene
+      icon={item.icon}
+      color={item.color}
+      large={large}
+      chip={{ value: stat, sub: labelTop }}
+      chip2={{ value: bottom }}
+    />
   );
 };
 

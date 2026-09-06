@@ -20,7 +20,7 @@ import {
 import { FOODS_DATABASE, CUISINE_META, Cuisine, CUISINE_OPTIONS, recommendExercises, EXERCISE_TYPE_LABELS, EXERCISE_TYPE_OPTIONS, ExerciseType } from '../utils/calculations_expanded';
 import { getPortionMeasure } from '../utils/cuisineCatalog';
 import { getCuisineLabel } from '../utils/healthPlans';
-import { ANIME_IMAGES } from '../utils/animeImages';
+import { ClipboardList } from 'lucide-react';
 
 const GOAL_OPTIONS: Array<{ key: HealthGoal; en: string; ar: string; emoji: string }> = [
   { key: 'lose_weight', en: 'Lose Fat', ar: 'خسارة الدهون', emoji: '🔥' },
@@ -125,7 +125,7 @@ const WeightLossPage: React.FC = () => {
   return (
     <div className="tool-page min-h-screen bg-[#f8fafc]">
       <Breadcrumbs />
-      <PageHero pill={t('wlHeroPill')} title={t('module1Title')} description={t('module1Desc')} anime={ANIME_IMAGES.plan} />
+      <PageHero pill={t('wlHeroPill')} title={t('module1Title')} description={t('module1Desc')} icon={ClipboardList} color="#f59e0b" />
 
       <TwoColumnLayout
         sidebar={

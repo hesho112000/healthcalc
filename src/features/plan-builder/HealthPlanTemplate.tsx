@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import type { LucideIcon } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { getMealName, getFoodItemText, normalizeMealKey } from '../../utils/mealLabels';
 import { isHeavyMeal } from '../../data/cuisine-allowed';
+import { IconScene } from '../../components/IconScene';
 
 /* ═══════════════════════════════════════════════════════════════════
    SHARED TYPES
@@ -475,13 +477,20 @@ export const PageHero: React.FC<{
   title: string;
   description: string;
   pill?: string;
-  anime?: string;
-}> = ({ gradient = 'from-primary-600 to-primary-700', badge, title, description, pill, anime }) => (
+  icon?: LucideIcon;
+  color?: string;
+}> = ({ gradient = 'from-primary-600 to-primary-700', badge, title, description, pill, icon, color }) => (
   <div className={`page-hero page-hero-light`}>
     <div className="page-hero-mesh" aria-hidden="true" />
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-14 relative">
       <div className="max-w-3xl relative z-10 mx-auto text-center">
-        {anime && <img className="page-anime" src={anime} alt="" aria-hidden="true" />}
+        {icon && (
+          <div className="flex justify-center mb-2">
+            <div className="page-anime">
+              <IconScene icon={icon} color={color || '#10b981'} />
+            </div>
+          </div>
+        )}
         {pill && (
           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full mb-4 border border-sage-200">
             <span className="w-1.5 h-1.5 bg-sage-500 rounded-full" />
