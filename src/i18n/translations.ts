@@ -1024,6 +1024,11 @@ type TranslationKeys = {
   wlfResultsTitle: string;
   wlfResultsSub: string;
   wlfMealSectionTitle: string;
+  wlHealthyOnly: string;
+  wlMinistryBadge: string;
+  wlDisclaimerFooter: string;
+  wlPortionGuide: string;
+  wlDualCal: string;
   wlfWorkoutSectionTitle: string;
   wlfCuisineGenericDesc: string;
   wlfSourcesTitle: string;
@@ -2390,6 +2395,11 @@ export const translations: Record<Language, TranslationKeys> = {
     wlfResultsTitle: 'Your Personalized Plan',
     wlfResultsSub: 'Here is your blueprint in action — day by day',
     wlfMealSectionTitle: 'Meal Plan',
+    wlHealthyOnly: 'Healthy foods only',
+    wlMinistryBadge: 'Ministry-verified',
+    wlDisclaimerFooter: 'Source: National Nutrition Institute + USDA - calories vary with samna amount',
+    wlPortionGuide: 'Standard Portion Guide',
+    wlDualCal: '100g = {cal100} kcal | plate {grams}g = {calories} kcal',
     wlfWorkoutSectionTitle: 'Workout Plan',
     wlfCuisineGenericDesc: 'Balanced meals from a rich local food tradition',
     wlfSourcesTitle: 'Protein Sources',
@@ -3732,6 +3742,11 @@ mbFruits: 'Fruits',
     wlfResultsTitle: 'Your Personalized Plan',
     wlfResultsSub: 'Here is your blueprint in action — day by day',
     wlfMealSectionTitle: 'Meal Plan',
+    wlHealthyOnly: 'Aliments sains uniquement',
+    wlMinistryBadge: 'Vérifié par le ministère',
+    wlDisclaimerFooter: 'Source : Institut national de nutrition + USDA - les calories varient selon la quantité de samna utilisée',
+    wlPortionGuide: 'Guide des portions',
+    wlDualCal: '100g = {cal100} kcal | assiette {grams}g = {calories} kcal',
     wlfWorkoutSectionTitle: 'Workout Plan',
     wlfCuisineGenericDesc: 'Balanced meals from a rich local food tradition',
     wlfSourcesTitle: 'Protein Sources',
@@ -5044,6 +5059,11 @@ mbFruits: 'Fruits',
     wlfResultsTitle: 'Your Personalized Plan',
     wlfResultsSub: 'Here is your blueprint in action — day by day',
     wlfMealSectionTitle: 'Meal Plan',
+    wlHealthyOnly: 'Solo alimentos saludables',
+    wlMinistryBadge: 'Verificado por el ministerio',
+    wlDisclaimerFooter: 'Fuente: Instituto Nacional de Nutrición + USDA - las calorías varían según la cantidad de samna',
+    wlPortionGuide: 'Guía de porciones',
+    wlDualCal: '100g = {cal100} kcal | plato {grams}g = {calories} kcal',
     wlfWorkoutSectionTitle: 'Workout Plan',
     wlfCuisineGenericDesc: 'Balanced meals from a rich local food tradition',
     wlfSourcesTitle: 'Protein Sources',
@@ -6356,6 +6376,11 @@ mbFruits: 'Fruits',
     wlfResultsTitle: 'خطتك الشخصية',
     wlfResultsSub: 'هذا هو مخططك في التطبيق — يومًا بيوم',
     wlfMealSectionTitle: 'خطة الوجبات',
+    wlHealthyOnly: 'أكلات صحية فقط',
+    wlMinistryBadge: 'مؤكد من وزارة الصحة',
+    wlDisclaimerFooter: 'المصدر: المعهد القومي للتغذية + USDA - السعرات تختلف حسب كمية السمن',
+    wlPortionGuide: 'دليل الحصص القياسية',
+    wlDualCal: '100جم = {cal100} سعر | طبقك {grams}جم = {calories} سعر',
     wlfWorkoutSectionTitle: 'خطة التمارين',
     wlfCuisineGenericDesc: 'وجبات متوازنة من تراث غذائي غني',
     wlfSourcesTitle: 'مصادر البروتين',

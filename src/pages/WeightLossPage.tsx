@@ -20,6 +20,7 @@ import HealthBlueprint, { ProteinSource, DietStyle, ExcludePref, MealCount } fro
 import { FOODS_DATABASE, CUISINE_META, Cuisine, CUISINE_OPTIONS, EXERCISE_TYPE_LABELS, EXERCISE_TYPE_OPTIONS, ExerciseType } from '../utils/calculations_expanded';
 import { getSwapOptions, addCustomToCuisineDB } from '../utils/cuisineSwapDB';
 import { getCuisineLabel } from '../utils/healthPlans';
+import { EGYPTIAN_PORTION_GUIDE, EGYPTIAN_DISCLAIMER, isMinistryVerified } from '../data/egyptian-full';
 import { ClipboardList } from 'lucide-react';
 
 const getPrimaryGoal = (goals: FunnelGoal[]): HealthGoal =>
@@ -143,6 +144,7 @@ const WeightLossPage: React.FC = () => {
   });
 
   const [selectedCuisine, setSelectedCuisine] = useState<Cuisine | null>(null);
+  const [healthyOnly, setHealthyOnly] = useState(false);
   const [exerciseType, setExerciseType] = useState<ExerciseType | 'auto'>('auto');
   const [selectedProteins, setSelectedProteins] = useState<ProteinSource[]>(['chicken', 'eggs', 'fish']);
   const [selectedStyle, setSelectedStyle] = useState<DietStyle[]>(['high_protein']);
@@ -176,7 +178,7 @@ const WeightLossPage: React.FC = () => {
   }, [suggestedMealCount, selectedGoals.length]);
 
   const buildResult = useCallback(
-    (goals: FunnelGoal[], cuisine: Cuisine | null, lang: string): CalorieResult => {
+    (goals: FunnelGoal[], cuisine: Cuisine | null, lang: string, healthyOnly: boolean = false): CalorieResult => {
       const primary = getPrimaryGoal(goals);
       const base = calculateFullResults({ ...form, goal: primary }, cuisine ?? undefined, lang);
       const target = getTargetCalories(base.tdee, goals);
@@ -192,8 +194,8 @@ const WeightLossPage: React.FC = () => {
         ...base,
         targetCalories: target,
         macros,
-        mealPlan: generateMealPlan(target, cuisine ?? undefined, lang),
-        fullMealPlan: generateFullMealPlan(target, cuisine ?? undefined, lang).map((d) => ({
+        mealPlan: generateMealPlan(target, cuisine ?? undefined, lang, healthyOnly),
+        fullMealPlan: generateFullMealPlan(target, cuisine ?? undefined, lang, healthyOnly).map((d) => ({
           ...d,
           meals: applyMealStructure(d.meals, mealCount, target),
         })),
@@ -208,14 +210,14 @@ const WeightLossPage: React.FC = () => {
       return;
     }
     setGoalError(null);
-    setResult(buildResult(selectedGoals, selectedCuisine, language));
+    setResult(buildResult(selectedGoals, selectedCuisine, language, healthyOnly));
     requestAnimationFrame(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
   };
 
   useEffect(() => {
     if (!result) return;
-    setResult(buildResult(selectedGoals, selectedCuisine, language));
-  }, [selectedCuisine, language, mealCount, buildResult]);
+    setResult(buildResult(selectedGoals, selectedCuisine, language, healthyOnly));
+  }, [selectedCuisine, language, mealCount, healthyOnly, buildResult]);
 
   const handleCuisineChange = useCallback((cuisine: Cuisine | null) => {
     setSelectedCuisine(cuisine);
@@ -351,11 +353,14 @@ const WeightLossPage: React.FC = () => {
 
   const filteredFoods = useMemo(() => {
     const key = selectedCuisine ?? 'egyptian';
-    return FOODS_DATABASE.filter(f => f.cuisine.includes(key)).slice(0, 8);
-  }, [selectedCuisine]);
+    const base = FOODS_DATABASE.filter(f => f.cuisine.includes(key));
+    const list = healthyOnly ? base.filter(f => f.healthy === undefined || f.healthy === true) : base;
+    return list.slice(0, 8);
+  }, [selectedCuisine, healthyOnly]);
 
   const showMeals = includesMeal(planType);
   const showWorkouts = includesWorkout(planType);
+  const effectiveCuisine = selectedCuisine ?? 'egyptian';
   const activeCuisineLabel = selectedCuisine
     ? `${getCuisineLabel(CUISINE_OPTIONS.find(c => c.key === selectedCuisine) || CUISINE_OPTIONS[0], language)} ${CUISINE_META[selectedCuisine].flag}`
     : '';
@@ -531,10 +536,34 @@ const WeightLossPage: React.FC = () => {
 
             {showMeals && (
               <section className="space-y-5">
-                <div className="pt-2 flex items-center gap-2">
+                <div className="pt-2 flex items-center gap-2 flex-wrap">
                   <h3 className="text-lg font-bold text-gray-900">🍽️ {t('wlfMealSectionTitle')}</h3>
                   <span className="text-xs bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full font-bold">{result.targetCalories} {t('wlfKcalDay')}</span>
+                  {effectiveCuisine === 'egyptian' && (
+                    <button
+                      type="button"
+                      onClick={() => setHealthyOnly(v => !v)}
+                      className={`text-[11px] px-3 py-1.5 rounded-full font-bold border-2 transition-all ${
+                        healthyOnly
+                          ? 'bg-emerald-600 text-white border-emerald-600'
+                          : 'bg-white text-emerald-700 border-emerald-200 hover:border-emerald-400'
+                      }`}
+                    >
+                      🥗 {t('wlHealthyOnly')}
+                    </button>
+                  )}
                 </div>
+
+                {effectiveCuisine === 'egyptian' && EGYPTIAN_PORTION_GUIDE.length > 0 && (
+                  <div className="card p-4 bg-white border border-amber-200 space-y-2">
+                    <div className="text-xs font-bold text-amber-800 flex items-center gap-1">⚖️ {t('wlPortionGuide')}</div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {EGYPTIAN_PORTION_GUIDE.map((g, i) => (
+                        <span key={i} className="bg-amber-50 border border-amber-200 px-2.5 py-1 rounded-full text-[11px] font-semibold text-amber-900">{g}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 <MacroBreakdown proteinG={result.macros.proteinGrams} proteinPct={result.macros.protein} carbsG={result.macros.carbsGrams} carbsPct={result.macros.carbs} fatG={result.macros.fatGrams} fatPct={result.macros.fat} />
 
@@ -716,11 +745,20 @@ const WeightLossPage: React.FC = () => {
                   <div className="flex flex-wrap gap-2">
                     {filteredFoods.map((food, idx) => (
                       <span key={idx} className="bg-white border px-3 py-1.5 rounded-full text-xs font-medium shadow-sm">
-                        {fmt(t('wlCaloriesItem'), { name: food.name, kcal: food.calories })}
+                        {food.cal100 != null && food.servG
+                          ? `${fmt(t('wlCaloriesItem'), { name: food.name, kcal: food.calories })} (${fmt(t('wlDualCal'), { cal100: food.cal100, grams: food.servG, calories: food.calories })})`
+                          : fmt(t('wlCaloriesItem'), { name: food.name, kcal: food.calories })}
+                        {isMinistryVerified(food.source) && (
+                          <span className="ml-1 inline-flex items-center gap-0.5 text-emerald-700 font-bold">🛡️ {t('wlMinistryBadge')}</span>
+                        )}
                       </span>
                     ))}
                   </div>
                 </div>
+
+                {effectiveCuisine === 'egyptian' && (
+                  <div className="text-[11px] text-gray-500 text-center px-2">{EGYPTIAN_DISCLAIMER}</div>
+                )}
 
                 <SaveProgressButton module="weightloss" inputs={form} results={result} />
               </section>

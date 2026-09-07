@@ -2,7 +2,7 @@ import { UserProfile, CalorieResult, Macros, MealPlan, DailyMealPlan, WorkoutPla
 import { CUISINE_GROUPS, CUISINE_FLAGS, REGIONAL_FOODS, FRUITS, JUICES, CUISINE_FRUITS, CUISINE_JUICES, getPortion, getPortionMeasure, type Portion, type Cuisine, type MealType } from './cuisineCatalog';
 import { usdaEnrich } from './usda-meals-database';
 import { isHeavyMeal } from '../data/cuisine-allowed';
-import { EGYPTIAN_FULL, type EgyptianFullDish } from '../data/egyptian-full';
+import { EGYPTIAN_FULL, isMinistryVerified, type EgyptianFullDish } from '../data/egyptian-full';
 import { LIBYAN_FULL, type LibyanFullDish } from '../data/libyan-full';
 import { TUNISIAN_FULL, type TunisianFullDish } from '../data/tunisian-full';
 import { ALGERIAN_FULL, type AlgerianFullDish } from '../data/algerian-full';
@@ -90,9 +90,9 @@ export const calculateMacros = (calories: number) => ({
   fat: Math.round((calories * 0.25) / 9),
 });
 
-export const generateMealPlan = (targetCalories: number, cuisineId?: Cuisine, lang: string = 'en'): MealPlan[] => {
+export const generateMealPlan = (targetCalories: number, cuisineId?: Cuisine, lang: string = 'en', healthyOnly: boolean = false): MealPlan[] => {
   if (cuisineId) {
-    return buildCuisineMealPlan(targetCalories, cuisineId, lang);
+    return buildCuisineMealPlan(targetCalories, cuisineId, lang, healthyOnly);
   }
   const meals: MealPlan[] = [
     { meal: '🌅 Breakfast', icon: 'meal', calories: Math.round(targetCalories * 0.3), protein: Math.round(targetCalories * 0.3 * 0.3 / 4), carbs: Math.round(targetCalories * 0.3 * 0.45 / 4), fat: Math.round(targetCalories * 0.3 * 0.25 / 9), items: lang === 'ar' ? ['شوفان مع التوت', 'زبادي يوناني', 'شاي أخضر', '🍎 فاكهة: تفاحة (غنية بالألياف وفيتامين سي)', '🧃 مشروب: عصير برتقال (فيتامين سي وبوتاسيوم)'] : ['Oatmeal with berries', 'Greek yogurt', 'Green tea', '🍎 Fruit: Apple (Rich in fiber & Vitamin C)', '🧃 Drink: Orange Juice (Vitamin C & potassium)'], description: lang === 'ar' ? 'فطور صحي' : 'Healthy breakfast' },
@@ -106,9 +106,10 @@ export const generateMealPlan = (targetCalories: number, cuisineId?: Cuisine, la
 
 const shuffleFoods = (foods: FoodItem[]): FoodItem[] => [...foods].sort(() => Math.random() - 0.5);
 
-const foodsForSlot = (cuisineId: Cuisine, mealType: MealType): FoodItem[] => {
+const foodsForSlot = (cuisineId: Cuisine, mealType: MealType, healthyOnly: boolean = false): FoodItem[] => {
   const pool = FOODS_DATABASE.filter((f) => f.cuisine.includes(cuisineId) || f.cuisine.includes('all'));
-  const source = pool.length > 0 ? pool : FOODS_DATABASE;
+  const hp = healthyOnly ? pool.filter((f) => f.healthy === undefined || f.healthy === true) : pool;
+  const source = hp.length > 0 ? hp : FOODS_DATABASE;
   const exact = source.filter((f) => (f.mealType ?? undefined) === mealType);
   if (exact.length >= 2) return exact;
   if (exact.length === 1) return [...exact, ...source.filter((f) => f.mealType !== mealType)];
@@ -127,7 +128,7 @@ const FRUIT_EMOJI: Record<string, string> = {
   'Dragon Fruit': '🐉', 'Passion Fruit': '🍈', 'Coconut (fresh)': '🥥', 'Cranberries': '🍒',
 };
 
-const buildCuisineMealPlan = (targetCalories: number, cuisineId: Cuisine, lang: string): MealPlan[] => {
+const buildCuisineMealPlan = (targetCalories: number, cuisineId: Cuisine, lang: string, healthyOnly: boolean = false): MealPlan[] => {
   const L = (f: FoodItem): string => (lang === 'ar' ? f.name_ar : f.name_en);
   const fruitWord = lang === 'ar' ? 'فاكهة' : 'Fruit';
   const drinkWord = lang === 'ar' ? 'مشروب' : 'Drink';
@@ -135,15 +136,24 @@ const buildCuisineMealPlan = (targetCalories: number, cuisineId: Cuisine, lang: 
     const m = getPortionMeasure(f.portion, lang);
     return m ? ` · ${m}` : '';
   };
+  const dualCal = (f: FoodItem): string => {
+    if (f.cal100 == null || !f.servG) return '';
+    const badge = isMinistryVerified(f.source)
+      ? lang === 'ar' ? ' · 🛡️ مؤكد من وزارة الصحة' : ' · 🛡️ Ministry verified'
+      : '';
+    return lang === 'ar'
+      ? ` · 100جم = ${f.cal100} سعر | طبقك ${f.servG}جم = ${f.calories} سعر${badge}`
+      : ` · 100g = ${f.cal100} kcal | plate ${f.servG}g = ${f.calories} kcal${badge}`;
+  };
   const setUp = (f: FoodItem): string =>
     f.type === 'fruit'
       ? `${FRUIT_EMOJI[f.name_en] || '🍏'} ${fruitWord}: ${L(f)} (${f.benefits})${measurePart(f)}`
       : f.type === 'juice'
         ? `🧃 ${drinkWord}: ${L(f)} (${f.benefits})${measurePart(f)}`
-        : `${L(f)}${measurePart(f)}`;
+        : `${L(f)}${measurePart(f)}${dualCal(f)}`;
   const pickMain = (mealType: MealType, count: number): FoodItem[] =>
-    shuffleFoods(foodsForSlot(cuisineId, mealType).filter((f) => f.type !== 'fruit' && f.type !== 'juice')).slice(0, count);
-  const pickByMealType = (mealType: MealType, count: number): FoodItem[] => shuffleFoods(foodsForSlot(cuisineId, mealType)).slice(0, count);
+    shuffleFoods(foodsForSlot(cuisineId, mealType, healthyOnly).filter((f) => f.type !== 'fruit' && f.type !== 'juice')).slice(0, count);
+  const pickByMealType = (mealType: MealType, count: number): FoodItem[] => shuffleFoods(foodsForSlot(cuisineId, mealType, healthyOnly)).slice(0, count);
   const pickSnack = (): FoodItem[] =>
     Math.random() < 0.5
       ? [...pickByMealType('fruit', 1), ...pickByMealType('juice', 1)]
@@ -207,7 +217,7 @@ const getCuisineName = (cuisineId: Cuisine, lang: string): string => {
   return lang === 'ar' ? meta.label_ar : meta.label_en;
 };
 
-export const generateFullMealPlan = (targetCalories: number, cuisineId?: Cuisine, lang: string = 'en'): DailyMealPlan[] => {
+export const generateFullMealPlan = (targetCalories: number, cuisineId?: Cuisine, lang: string = 'en', healthyOnly: boolean = false): DailyMealPlan[] => {
   const days: DailyMealPlan[] = [];
   const themes: Record<string, string[]> = {
     egyptian: ['Egyptian Classics', 'High Fiber', 'Balanced', 'Legume Focus', 'Veggie Rich', 'Traditional', 'Protein Focus'],
@@ -230,7 +240,7 @@ export const generateFullMealPlan = (targetCalories: number, cuisineId?: Cuisine
       day: i + 1,
       label: `Day ${i + 1}`,
       theme: themesForCuisine[i % themesForCuisine.length],
-      meals: generateMealPlan(targetCalories, cuisineId, lang),
+      meals: generateMealPlan(targetCalories, cuisineId, lang, healthyOnly),
     });
   }
   return days;
@@ -320,6 +330,10 @@ export interface FoodItem {
   halal?: boolean;
   heavy?: boolean;
   tag?: 'fasting_period' | 'eating_window';
+  cal100?: number;
+  servG?: number;
+  healthy?: boolean;
+  source?: string;
 }
 
 export const CUISINE_OPTIONS: Array<{ key: Cuisine; label_ar: string; label_en: string; flag: string }> =
@@ -415,7 +429,7 @@ export const FOODS_DATABASE_RAW: FoodItem[] = [
   ),
 ];
 
-const fullFoodBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 'juice' | 'drink' | 'side' | 'salad' => {
+const fullFoodBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 'juice' | 'drink' | 'side' | 'salad' | 'snack' => {
   if (mt === 'breakfast') return 'breakfast';
   if (mt === 'lunch') return 'lunch';
   if (mt === 'dinner') return 'dinner';
@@ -423,6 +437,7 @@ const fullFoodBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 
   if (mt === 'fruit') return 'fruit';
   if (mt === 'side') return 'side';
   if (mt === 'salad') return 'salad';
+  if (mt === 'snack') return 'snack';
   return 'drink';
 };
 
@@ -448,7 +463,13 @@ const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish | Al
   } as FoodItem;
 };
 
-const toEgyptianFood = (e: EgyptianFullDish): FoodItem => toFullFood(e, 'egyptian');
+const toEgyptianFood = (e: EgyptianFullDish): FoodItem => ({
+  ...toFullFood(e, 'egyptian'),
+  cal100: e.cal100,
+  servG: e.servG,
+  healthy: e.healthy,
+  source: e.source,
+});
 
 const toLibyanFood = (e: LibyanFullDish): FoodItem => toFullFood(e, 'libyan');
 
