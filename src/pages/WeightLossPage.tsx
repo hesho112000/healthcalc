@@ -10,7 +10,7 @@ import SaveProgressButton from '../features/health-tools/SaveProgressButton';
 import MealPlanModal from '../features/plan-builder/MealPlanModal';
 import WorkoutBlueprintModal from '../features/plan-builder/WorkoutBlueprintModal';
 import {
-  PageHero, StatsBar, DaySelectorBar,
+  StatsBar, DaySelectorBar,
   MacroBreakdown, MealCard, DayProgressHeader, StreakBar,
 } from '../features/plan-builder/HealthPlanTemplate';
 import GoalSelector, { FunnelGoal } from '../features/weight-funnel/GoalSelector';
@@ -360,41 +360,133 @@ const WeightLossPage: React.FC = () => {
     ? `${getCuisineLabel(CUISINE_OPTIONS.find(c => c.key === selectedCuisine) || CUISINE_OPTIONS[0], language)} ${CUISINE_META[selectedCuisine].flag}`
     : '';
 
+  const bmi = form.height > 0 ? +(form.weight / ((form.height / 100) ** 2)).toFixed(1) : 0;
+  const bmiCatKey = bmi < 18.5 ? 'adviceCatUnderweight' : bmi < 25 ? 'adviceCatNormal' : bmi < 30 ? 'adviceCatOverweight' : 'adviceCatObese';
+  const hM = form.height > 0 ? form.height / 100 : 1.75;
+  const wMin = 18.5 * hM * hM;
+  const wMax = 25 * hM * hM;
+  const weightPct = Math.min(100, Math.max(0, Math.round(((form.weight - wMin) / (wMax - wMin)) * 100)));
+
   return (
     <div className="tool-page min-h-screen bg-[#f8fafc]" dir={dir}>
       <Breadcrumbs />
-      <PageHero pill={t('wlHeroPill')} title={t('module1Title')} description={t('module1Desc')} icon={ClipboardList} color="#f59e0b" />
-
-      <div className="max-w-4xl mx-auto px-4 pb-16 space-y-6">
-        <section className="card p-6">
-          <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-            <div className="w-8 h-8 bg-emerald-50 rounded-xl flex items-center justify-center">👤</div>
-            {t('wlfBasicsTitle')}
-          </h2>
-          <p className="text-sm text-gray-500 mt-1">{t('wlfBasicsSub')}</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-5">
-            <div>
-              <label className="label">{t('age')} ({t('wlAgeYears')})</label>
-              <input type="number" min={14} max={100} value={form.age} onChange={(e) => setForm({ ...form, age: +e.target.value })} className="input-field-lg" />
+      <div className="max-w-4xl mx-auto px-4 pt-4 pb-16 space-y-6">
+        <div className="flex items-center justify-between gap-3 flex-wrap">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center">
+              <ClipboardList size={20} className="text-emerald-600" />
             </div>
             <div>
-              <label className="label">{t('gender')}</label>
-              <div className="grid grid-cols-2 gap-1.5">
-                {[{ value: 'male' as const, icon: '👨' }, { value: 'female' as const, icon: '👩' }].map((g) => (
-                  <button key={g.value} type="button" onClick={() => setForm({ ...form, gender: g.value })}
-                    className={`py-3 rounded-xl text-sm font-semibold border-2 ${form.gender === g.value ? 'border-primary-500 bg-primary-50 text-primary-700' : 'border-gray-200 text-gray-500'}`}>
-                    <span className="mr-1">{g.icon}</span>
+              <h1 className="text-lg font-bold text-gray-900">{t('module1Title')}</h1>
+              <p className="text-xs text-gray-500">{t('module1Desc')}</p>
+            </div>
+          </div>
+          <span className="text-[11px] bg-sage-100 text-sage-700 px-3 py-1 rounded-full font-bold">{t('wlHeroPill')}</span>
+        </div>
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center text-white text-sm">👤</div>
+            <div>
+              <div className="font-bold text-gray-900">{t('wlfBasicsTitle')}</div>
+              <div className="text-[11px] text-gray-500">{t('wlfBasicsSub')}</div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div className="col-span-1">
+              <label className="text-sm font-semibold text-gray-700 flex items-center gap-1">{t('wlAgeLabel')}</label>
+              <div className="relative mt-1.5">
+                <input
+                  type="number" min={14} max={100} placeholder="25"
+                  value={form.age}
+                  onChange={(e) => setForm({ ...form, age: +e.target.value })}
+                  className="w-full h-11 px-3 pr-10 border border-gray-200 rounded-xl text-sm focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 outline-none"
+                />
+                <span className="absolute right-3 top-3 text-xs text-gray-400">{t('wlAgeYears')}</span>
+              </div>
+            </div>
+
+            <div className="col-span-1">
+              <label className="text-sm font-semibold text-gray-700">{t('wlGenderLabel')}</label>
+              <div className="mt-1.5 flex gap-1.5 p-1 bg-gray-100 rounded-xl">
+                {[{ value: 'male' as const, icon: '👨', label: t('male') }, { value: 'female' as const, icon: '👩', label: t('female') }].map((g) => (
+                  <button
+                    key={g.value} type="button" onClick={() => setForm({ ...form, gender: g.value })}
+                    className={`flex-1 h-9 rounded-lg text-xs font-semibold transition-all ${
+                      form.gender === g.value ? 'bg-white shadow-sm border border-gray-200 text-gray-900' : 'text-gray-500 hover:text-gray-700'
+                    }`}
+                  >
+                    {g.icon} {g.label}
                   </button>
                 ))}
               </div>
             </div>
-            <div>
-              <label className="label">{t('height')} ({t('cmUnit')})</label>
-              <input type="number" min={100} max={250} value={form.height} onChange={(e) => setForm({ ...form, height: +e.target.value })} className="input-field-lg" />
+
+            <div className="col-span-1">
+              <label className="text-sm font-semibold text-gray-700">{t('wlWeightLabel')}</label>
+              <div className="relative mt-1.5">
+                <input
+                  type="number" min={30} max={300} placeholder="75"
+                  value={form.weight}
+                  onChange={(e) => setForm({ ...form, weight: +e.target.value })}
+                  className="w-full h-11 px-3 pr-10 border border-gray-200 rounded-xl text-sm focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 outline-none"
+                />
+                <span className="absolute right-3 top-3 text-xs text-gray-400">{t('kgUnit')}</span>
+              </div>
+              <div className="mt-1.5 h-1 bg-gray-100 rounded-full overflow-hidden">
+                <div className="h-full bg-gradient-to-r from-emerald-400 to-teal-500" style={{ width: `${weightPct}%` }} />
+              </div>
             </div>
+
+            <div className="col-span-1">
+              <label className="text-sm font-semibold text-gray-700">{t('wlHeightLabel')}</label>
+              <div className="relative mt-1.5">
+                <input
+                  type="number" min={100} max={250} placeholder="175"
+                  value={form.height}
+                  onChange={(e) => setForm({ ...form, height: +e.target.value })}
+                  className="w-full h-11 px-3 pr-10 border border-gray-200 rounded-xl text-sm focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 outline-none"
+                />
+                <span className="absolute right-3 top-3 text-xs text-gray-400">{t('cmUnit')}</span>
+              </div>
+            </div>
+
+            <div className="col-span-2 mt-2">
+              <label className="text-sm font-semibold text-gray-700">{t('wlActivityTitle')}</label>
+              <div className="mt-1.5 grid grid-cols-3 gap-2">
+                {[
+                  { icon: '🛋️', labelKey: 'wlActivityLow' as const, subKey: 'wlActivityLowSub' as const, vals: ['sedentary', 'light'], apply: 'sedentary' as const },
+                  { icon: '🚶', labelKey: 'wlActivityMod' as const, subKey: 'wlActivityModSub' as const, vals: ['moderate'], apply: 'moderate' as const },
+                  { icon: '🏋️', labelKey: 'wlActivityHigh' as const, subKey: 'wlActivityHighSub' as const, vals: ['active', 'very_active'], apply: 'active' as const },
+                ].map((a) => {
+                  const isActive = a.vals.includes(form.activityLevel);
+                  return (
+                    <button
+                      key={a.labelKey} type="button"
+                      onClick={() => setForm({ ...form, activityLevel: a.apply })}
+                      className={`relative p-2.5 border-2 rounded-xl text-center transition-all ${isActive ? 'border-emerald-600 bg-emerald-50' : 'border-gray-200 bg-white hover:border-emerald-300'}`}
+                    >
+                      <div className="text-lg leading-none">{a.icon}</div>
+                      <div className={`text-xs font-semibold mt-1 ${isActive ? 'text-emerald-700' : 'text-gray-700'}`}>{t(a.labelKey)}</div>
+                      <div className={`text-[10px] ${isActive ? 'text-emerald-600' : 'text-gray-500'}`}>{t(a.subKey)}</div>
+                      {isActive && <span className="absolute top-1 right-1 w-4 h-4 bg-emerald-600 rounded-full flex items-center justify-center text-white text-[10px]">✓</span>}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 p-3 bg-gradient-to-r from-teal-50 to-emerald-50 border border-emerald-100 rounded-xl flex flex-wrap justify-between items-center gap-2">
             <div>
-              <label className="label">{t('weightLabel')} ({t('kgUnit')})</label>
-              <input type="number" min={30} max={300} value={form.weight} onChange={(e) => setForm({ ...form, weight: +e.target.value })} className="input-field-lg" />
+              <div className="text-[11px] text-gray-600">{t('wlBmiYour')}</div>
+              <div className="text-sm font-bold text-emerald-700">
+                {bmi} — {t(bmiCatKey)} {bmi > 0 ? (bmi < 18.5 || bmi >= 25 ? '⚠️' : '✅') : ''}
+              </div>
+            </div>
+            <div className="text-right">
+              <div className="text-[11px] text-gray-600">{t('wlCalsMaintain')}</div>
+              <div className="text-sm font-bold text-gray-900">~{Math.round(tdee)} kcal</div>
             </div>
           </div>
         </section>

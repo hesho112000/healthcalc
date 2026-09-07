@@ -934,6 +934,19 @@ type TranslationKeys = {
   wlProteinUnit: string;
   wlfBasicsTitle: string;
   wlfBasicsSub: string;
+  wlAgeLabel: string;
+  wlGenderLabel: string;
+  wlWeightLabel: string;
+  wlHeightLabel: string;
+  wlActivityTitle: string;
+  wlActivityLow: string;
+  wlActivityLowSub: string;
+  wlActivityMod: string;
+  wlActivityModSub: string;
+  wlActivityHigh: string;
+  wlActivityHighSub: string;
+  wlBmiYour: string;
+  wlCalsMaintain: string;
   wlfStepGoalTitle: string;
   wlfStepGoalSub: string;
   wlfGoalLoseTitle: string;
@@ -2240,7 +2253,20 @@ export const translations: Record<Language, TranslationKeys> = {
     wlCaloriesItem: '{name} - {kcal} kcal',
     wlProteinUnit: 'g',
     wlfBasicsTitle: 'Your Basics',
-    wlfBasicsSub: "Enter your details — we'll calculate the right calorie targets for you",
+    wlfBasicsSub: "Enter your details — we'll calculate your calories and meal plan",
+    wlAgeLabel: '🎂 Age',
+    wlGenderLabel: '⚧️ Gender',
+    wlWeightLabel: '⚖️ Weight',
+    wlHeightLabel: '📏 Height',
+    wlActivityTitle: '🏃 Activity Level',
+    wlActivityLow: 'Low',
+    wlActivityLowSub: 'Desk job',
+    wlActivityMod: 'Moderate',
+    wlActivityModSub: '3-4 times',
+    wlActivityHigh: 'High',
+    wlActivityHighSub: 'Daily',
+    wlBmiYour: 'Your BMI',
+    wlCalsMaintain: 'Maintenance calories',
     wlfStepGoalTitle: 'Your Goal',
     wlfStepGoalSub: "Select one or more goals. We'll combine them into your personalized blueprint.",
     wlfGoalLoseTitle: 'Lose Fat',
@@ -3523,7 +3549,20 @@ mbFruits: 'Fruits',
     wlCaloriesItem: '{name} - {kcal} kcal',
     wlProteinUnit: 'g',
     wlfBasicsTitle: 'Your Basics',
-    wlfBasicsSub: "Enter your details — we'll calculate the right calorie targets for you",
+    wlfBasicsSub: "Enter your details — we'll calculate your calories and meal plan",
+    wlAgeLabel: '🎂 Age',
+    wlGenderLabel: '⚧️ Gender',
+    wlWeightLabel: '⚖️ Weight',
+    wlHeightLabel: '📏 Height',
+    wlActivityTitle: '🏃 Activity Level',
+    wlActivityLow: 'Low',
+    wlActivityLowSub: 'Desk job',
+    wlActivityMod: 'Moderate',
+    wlActivityModSub: '3-4 times',
+    wlActivityHigh: 'High',
+    wlActivityHighSub: 'Daily',
+    wlBmiYour: 'Your BMI',
+    wlCalsMaintain: 'Maintenance calories',
     wlfStepGoalTitle: 'Your Goal',
     wlfStepGoalSub: "Select one or more goals. We'll combine them into your personalized blueprint.",
     wlfGoalLoseTitle: 'Lose Fat',
@@ -4776,7 +4815,20 @@ mbFruits: 'Fruits',
     wlCaloriesItem: '{name} - {kcal} kcal',
     wlProteinUnit: 'g',
     wlfBasicsTitle: 'Your Basics',
-    wlfBasicsSub: "Enter your details — we'll calculate the right calorie targets for you",
+    wlfBasicsSub: "Enter your details — we'll calculate your calories and meal plan",
+    wlAgeLabel: '🎂 Age',
+    wlGenderLabel: '⚧️ Gender',
+    wlWeightLabel: '⚖️ Weight',
+    wlHeightLabel: '📏 Height',
+    wlActivityTitle: '🏃 Activity Level',
+    wlActivityLow: 'Low',
+    wlActivityLowSub: 'Desk job',
+    wlActivityMod: 'Moderate',
+    wlActivityModSub: '3-4 times',
+    wlActivityHigh: 'High',
+    wlActivityHighSub: 'Daily',
+    wlBmiYour: 'Your BMI',
+    wlCalsMaintain: 'Maintenance calories',
     wlfStepGoalTitle: 'Your Goal',
     wlfStepGoalSub: "Select one or more goals. We'll combine them into your personalized blueprint.",
     wlfGoalLoseTitle: 'Lose Fat',
@@ -6029,7 +6081,20 @@ mbFruits: 'Fruits',
     wlCaloriesItem: '{name} - {kcal} سعر',
     wlProteinUnit: 'ج',
     wlfBasicsTitle: 'بياناتك الأساسية',
-    wlfBasicsSub: 'أدخل بياناتك — وسنحسب أهداف السعرات المناسبة لك',
+    wlfBasicsSub: 'البيانات دي هتحدد سعراتك وخطة أكلك',
+    wlAgeLabel: '🎂 السن',
+    wlGenderLabel: '⚧️ النوع',
+    wlWeightLabel: '⚖️ الوزن',
+    wlHeightLabel: '📏 الطول',
+    wlActivityTitle: '🏃 مستوى النشاط',
+    wlActivityLow: 'قليل',
+    wlActivityLowSub: 'مكتبي',
+    wlActivityMod: 'متوسط',
+    wlActivityModSub: '3-4 مرات',
+    wlActivityHigh: 'عالي',
+    wlActivityHighSub: 'يومي',
+    wlBmiYour: 'الـ BMI بتاعك',
+    wlCalsMaintain: 'سعرات الثبات',
     wlfStepGoalTitle: 'هدفك',
     wlfStepGoalSub: 'اختر هدفًا واحدًا أو أكثر وسندمجها في مخططك الشخصي.',
     wlfGoalLoseTitle: 'خسارة الدهون',
