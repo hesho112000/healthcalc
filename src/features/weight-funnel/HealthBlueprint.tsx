@@ -14,6 +14,7 @@ import MealPreferencesSelector, { ProteinSource, DietStyle, ExcludePref } from '
 import FoodChecker from './FoodChecker';
 
 export type { ProteinSource, DietStyle, ExcludePref };
+export type MealCount = 3 | 4 | 5;
 
 const CUISINE_BLURB: Record<string, { en: string; ar: string }> = {
   mediterranean: { en: 'Balanced, heart-healthy', ar: 'متوازنة وصحية للقلب' },
@@ -56,6 +57,10 @@ interface HealthBlueprintProps {
   onExcludesChange: (excludes: ExcludePref[]) => void;
   selectedGoals: FunnelGoal[];
   onAddMeal: (meal: MealPlan) => void;
+  tdee: number;
+  mealCount: MealCount;
+  onMealCountChange: (count: MealCount) => void;
+  suggestedMealCount: MealCount;
   onGenerate: () => void;
 }
 
@@ -78,6 +83,10 @@ const HealthBlueprint: React.FC<HealthBlueprintProps> = ({
   onExcludesChange,
   selectedGoals,
   onAddMeal,
+  tdee,
+  mealCount,
+  onMealCountChange,
+  suggestedMealCount,
   onGenerate,
 }) => {
   const { t, language } = useLanguage();
@@ -167,6 +176,41 @@ const HealthBlueprint: React.FC<HealthBlueprintProps> = ({
           />
         </div>
       </div>
+
+      {includesMeal(planType) && (
+        <div className="mt-6 p-4 bg-white border border-gray-200 rounded-xl">
+          <div className="font-bold text-gray-900">🍽️ {t('wlMealCountTitle')}</div>
+          {tdee > 0 && (
+            <p className="text-[11px] text-emerald-700 mt-0.5">{fmt(t('wlMealCountAuto'), { n: suggestedMealCount })}</p>
+          )}
+          <div className="mt-3 flex gap-2">
+            {([3, 4, 5] as MealCount[]).map((n) => {
+              const active = mealCount === n;
+              return (
+                <button
+                  key={n}
+                  type="button"
+                  onClick={() => onMealCountChange(n)}
+                  className={`flex-1 rounded-xl border-2 p-3 text-center transition-all ${
+                    active ? 'border-emerald-600 bg-emerald-50' : 'border-gray-200 hover:border-gray-300 bg-white'
+                  }`}
+                >
+                  <span className={`text-sm font-bold ${active ? 'text-emerald-700' : 'text-gray-800'}`}>
+                    {fmt(t('wlMealCountN'), { n })}
+                  </span>
+                  {n === 4 && (
+                    <span className={`ml-1 text-[9px] font-bold px-1.5 py-0.5 rounded-full align-middle ${active ? 'bg-emerald-600 text-white' : 'bg-gray-100 text-gray-500'}`}>
+                      ✨ {t('wlMealCountRecommended')}
+                    </span>
+                  )}
+                  <span className="block text-[11px] font-medium text-gray-500 mt-1">{t(n === 3 ? 'wlMealCount3Sub' : n === 4 ? 'wlMealCount4Sub' : 'wlMealCount5Sub')}</span>
+                  <span className={`block text-[10px] mt-0.5 font-semibold ${active ? 'text-emerald-600' : 'text-gray-400'}`}>{t(n === 3 ? 'wlMealCount3Tag' : n === 4 ? 'wlMealCount4Tag' : 'wlMealCount5Tag')}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       <div className={`mt-6 ${includesWorkout(planType) ? 'block' : 'hidden'}`}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

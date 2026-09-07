@@ -1041,6 +1041,16 @@ type TranslationKeys = {
   wlSwapMixed: string;
   wlSwapOptions: string;
   wlSwapCuisineHint: string;
+  wlMealCountTitle: string;
+  wlMealCountAuto: string;
+  wlMealCountN: string;
+  wlMealCountRecommended: string;
+  wlMealCount3Sub: string;
+  wlMealCount3Tag: string;
+  wlMealCount4Sub: string;
+  wlMealCount4Tag: string;
+  wlMealCount5Sub: string;
+  wlMealCount5Tag: string;
   dbLabInterpreter: string;
   dbLabsEmpty: string;
   dbBpClassification: string;
@@ -2338,6 +2348,16 @@ export const translations: Record<Language, TranslationKeys> = {
     wlSwapMixed: 'Mixed',
     wlSwapOptions: 'options',
     wlSwapCuisineHint: '💡 Choose a cuisine above (Egyptian, Mediterranean...) so Swap brings meals from the same cuisine',
+    wlMealCountTitle: '🍽️ Number of meals per day',
+    wlMealCountAuto: '🤖 Based on your goal, we suggest {n} meals',
+    wlMealCountN: '{n} meals',
+    wlMealCountRecommended: '✨ Recommended',
+    wlMealCount3Sub: 'Breakfast + Lunch + Dinner',
+    wlMealCount3Tag: 'For fat loss',
+    wlMealCount4Sub: '3 + 1 snack',
+    wlMealCount4Tag: 'Balanced',
+    wlMealCount5Sub: '3 + 2 snacks',
+    wlMealCount5Tag: 'For muscle & weight gain',
     dbLabInterpreter: 'Lab Results Interpreter',
     dbLabsEmpty: 'Enter your lab values on the left panel to get instant interpretation based on ADA medical guidelines.',
     dbBpClassification: 'Blood Pressure Classification (AHA)',
@@ -3611,6 +3631,16 @@ mbFruits: 'Fruits',
     wlSwapMixed: 'Mixed',
     wlSwapOptions: 'options',
     wlSwapCuisineHint: '💡 Choose a cuisine above (Egyptian, Mediterranean...) so Swap brings meals from the same cuisine',
+    wlMealCountTitle: '🍽️ Number of meals per day',
+    wlMealCountAuto: '🤖 Based on your goal, we suggest {n} meals',
+    wlMealCountN: '{n} meals',
+    wlMealCountRecommended: '✨ Recommended',
+    wlMealCount3Sub: 'Breakfast + Lunch + Dinner',
+    wlMealCount3Tag: 'For fat loss',
+    wlMealCount4Sub: '3 + 1 snack',
+    wlMealCount4Tag: 'Balanced',
+    wlMealCount5Sub: '3 + 2 snacks',
+    wlMealCount5Tag: 'For muscle & weight gain',
     dbLabInterpreter: 'Interpréteur de Résultats de Laboratoire',
     dbLabsEmpty: 'Entrez vos valeurs de laboratoire dans le panneau de gauche pour une interprétation instantanée basée sur les directives médicales de l\'ADA.',
     dbBpClassification: 'Classification de la Pression Artérielle (AHA)',
@@ -4854,6 +4884,16 @@ mbFruits: 'Fruits',
     wlSwapMixed: 'Mixed',
     wlSwapOptions: 'options',
     wlSwapCuisineHint: '💡 Choose a cuisine above (Egyptian, Mediterranean...) so Swap brings meals from the same cuisine',
+    wlMealCountTitle: '🍽️ Number of meals per day',
+    wlMealCountAuto: '🤖 Based on your goal, we suggest {n} meals',
+    wlMealCountN: '{n} meals',
+    wlMealCountRecommended: '✨ Recommended',
+    wlMealCount3Sub: 'Breakfast + Lunch + Dinner',
+    wlMealCount3Tag: 'For fat loss',
+    wlMealCount4Sub: '3 + 1 snack',
+    wlMealCount4Tag: 'Balanced',
+    wlMealCount5Sub: '3 + 2 snacks',
+    wlMealCount5Tag: 'For muscle & weight gain',
     dbLabInterpreter: 'Interpretador de Resultados de Laboratorio',
     dbLabsEmpty: 'Introduce tus valores de laboratorio en el panel izquierdo para obtener una interpretación instantánea según las guías médicas de la ADA.',
     dbBpClassification: 'Clasificación de la Presión Arterial (AHA)',
@@ -6097,6 +6137,16 @@ mbFruits: 'Fruits',
     wlSwapMixed: 'متنوع',
     wlSwapOptions: 'خيارات',
     wlSwapCuisineHint: '💡 اختار مطبخ من فوق (Egyptian, Mediterranean...) عشان الـ Swap يجيبلك وجبات من نفس المطبخ',
+    wlMealCountTitle: '🍽️ عدد الوجبات في اليوم',
+    wlMealCountAuto: '🤖 بناءً على هدفك نقترح {n} وجبات',
+    wlMealCountN: '{n} وجبات',
+    wlMealCountRecommended: '✨ موصى به',
+    wlMealCount3Sub: 'فطار + غدا + عشا',
+    wlMealCount3Tag: 'للتخسيس',
+    wlMealCount4Sub: '3 + سناك واحد',
+    wlMealCount4Tag: 'متوازن',
+    wlMealCount5Sub: '3 + 2 سناك',
+    wlMealCount5Tag: 'للعضلات وزيادة وزن',
     dbLabInterpreter: 'مفسّر نتائج المختبر',
     dbLabsEmpty: 'أدخل قيم المختبر الخاصة بك في اللوحة اليسرى للحصول على تفسير فوري وفقًا للإرشادات الطبية لـ ADA.',
     dbBpClassification: 'تصنيف ضغط الدم (AHA)',

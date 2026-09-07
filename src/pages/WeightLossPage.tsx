@@ -15,7 +15,7 @@ import {
 } from '../features/plan-builder/HealthPlanTemplate';
 import GoalSelector, { FunnelGoal } from '../features/weight-funnel/GoalSelector';
 import PlanTypeSelector, { PlanType } from '../features/weight-funnel/PlanTypeSelector';
-import HealthBlueprint, { ProteinSource, DietStyle, ExcludePref } from '../features/weight-funnel/HealthBlueprint';
+import HealthBlueprint, { ProteinSource, DietStyle, ExcludePref, MealCount } from '../features/weight-funnel/HealthBlueprint';
 
 import { FOODS_DATABASE, CUISINE_META, Cuisine, CUISINE_OPTIONS, EXERCISE_TYPE_LABELS, EXERCISE_TYPE_OPTIONS, ExerciseType } from '../utils/calculations_expanded';
 import { getSwapOptions, addCustomToCuisineDB } from '../utils/cuisineSwapDB';
@@ -45,7 +45,45 @@ interface SwapItem extends SwapAlt { qty: number }
 interface SwapState { foods: SwapItem[]; isAuto: boolean; original: MealPlan }
 type AutoGoal = 'lose_fat' | 'gain_muscle' | 'gain_weight' | 'overall';
 
-const SLOT_BUDGET: Record<'breakfast' | 'lunch' | 'dinner' | 'snack', number> = { breakfast: 0.25, lunch: 0.35, dinner: 0.25, snack: 0.15 };
+const SLOT_BUDGET: Record<'breakfast' | 'lunch' | 'dinner' | 'snack', number> = { breakfast: 0.25, lunch: 0.35, dinner: 0.25, snack: 0.1 };
+
+const MEAL_STRUCTURES: Record<MealCount, Array<{ slot: 'breakfast' | 'lunch' | 'dinner' | 'snack'; pct: number }>> = {
+  3: [{ slot: 'breakfast', pct: 0.3 }, { slot: 'lunch', pct: 0.4 }, { slot: 'dinner', pct: 0.3 }],
+  4: [{ slot: 'breakfast', pct: 0.25 }, { slot: 'snack', pct: 0.1 }, { slot: 'lunch', pct: 0.35 }, { slot: 'dinner', pct: 0.3 }],
+  5: [{ slot: 'breakfast', pct: 0.25 }, { slot: 'snack', pct: 0.1 }, { slot: 'lunch', pct: 0.3 }, { slot: 'snack', pct: 0.1 }, { slot: 'dinner', pct: 0.25 }],
+};
+
+const applyMealStructure = (source: MealPlan[], mealCount: MealCount, target: number): MealPlan[] => {
+  const structure = MEAL_STRUCTURES[mealCount];
+  const used = new Set<number>();
+  return structure.map(({ slot, pct }) => {
+    const idx = slot === 'snack'
+      ? source.findIndex((m, i) => !used.has(i) && slotOf(m) === 'snack')
+      : source.findIndex((m, i) => !used.has(i) && slotOf(m) === slot);
+    if (idx >= 0) used.add(idx);
+    const src = idx >= 0 ? source[idx] : undefined;
+    const fallback: MealPlan = {
+      meal: slot === 'snack' ? '🍎 Snack' : slot === 'breakfast' ? '🌅 Breakfast' : slot === 'lunch' ? '☀️ Lunch' : '🌙 Dinner',
+      icon: slot === 'snack' ? 'snack' : 'meal',
+      calories: 0, protein: 0, carbs: 0, fat: 0, items: [], description: '',
+    };
+    const base = src ?? fallback;
+    const kcal = Math.round(target * pct);
+    return {
+      ...base,
+      calories: kcal,
+      protein: Math.round(kcal * 0.3 / 4),
+      carbs: Math.round(kcal * 0.45 / 4),
+      fat: Math.round(kcal * 0.25 / 9),
+    };
+  });
+};
+
+const suggestMealCount = (goals: FunnelGoal[], target: number): MealCount => {
+  if (goals.includes('lose_fat') && target < 1800) return 3;
+  if (goals.includes('gain_muscle') || goals.includes('gain_weight') || target > 2200) return 5;
+  return 4;
+};
 
 const autoRate = (goal: AutoGoal, food: SwapAlt): number => {
   if (goal === 'lose_fat') return food.fat > 10 ? 0.3 : food.protein > 20 ? 0.6 : 0.7;
@@ -86,6 +124,7 @@ const WeightLossPage: React.FC = () => {
     return [];
   });
   const [planType, setPlanType] = useState<PlanType>('both');
+  const [mealCount, setMealCount] = useState<MealCount>(4);
   const [goalError, setGoalError] = useState<string | null>(null);
 
   const [form, setForm] = useState<UserProfile>(() => {
@@ -127,6 +166,15 @@ const WeightLossPage: React.FC = () => {
     return base.tdee;
   }, [form, language]);
 
+  const suggestedMealCount = useMemo(
+    () => suggestMealCount(selectedGoals, getTargetCalories(tdee, selectedGoals)),
+    [selectedGoals, tdee],
+  );
+
+  useEffect(() => {
+    if (selectedGoals.length > 0) setMealCount(suggestedMealCount);
+  }, [suggestedMealCount, selectedGoals.length]);
+
   const buildResult = useCallback(
     (goals: FunnelGoal[], cuisine: Cuisine | null, lang: string): CalorieResult => {
       const primary = getPrimaryGoal(goals);
@@ -145,10 +193,13 @@ const WeightLossPage: React.FC = () => {
         targetCalories: target,
         macros,
         mealPlan: generateMealPlan(target, cuisine ?? undefined, lang),
-        fullMealPlan: generateFullMealPlan(target, cuisine ?? undefined, lang),
+        fullMealPlan: generateFullMealPlan(target, cuisine ?? undefined, lang).map((d) => ({
+          ...d,
+          meals: applyMealStructure(d.meals, mealCount, target),
+        })),
       };
     },
-    [form],
+    [form, mealCount],
   );
 
   const handleGenerate = () => {
@@ -164,7 +215,7 @@ const WeightLossPage: React.FC = () => {
   useEffect(() => {
     if (!result) return;
     setResult(buildResult(selectedGoals, selectedCuisine, language));
-  }, [selectedCuisine, language, buildResult]);
+  }, [selectedCuisine, language, mealCount, buildResult]);
 
   const handleCuisineChange = useCallback((cuisine: Cuisine | null) => {
     setSelectedCuisine(cuisine);
@@ -368,6 +419,10 @@ const WeightLossPage: React.FC = () => {
           onExcludesChange={setSelectedExcludes}
           selectedGoals={selectedGoals}
           onAddMeal={handleAddMeal}
+          tdee={tdee}
+          mealCount={mealCount}
+          onMealCountChange={setMealCount}
+          suggestedMealCount={suggestedMealCount}
           onGenerate={handleGenerate}
         />
 
