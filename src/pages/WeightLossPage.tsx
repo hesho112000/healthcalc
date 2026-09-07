@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { UserProfile, CalorieResult, HealthGoal } from '../types';
+import { UserProfile, CalorieResult, HealthGoal, MealPlan } from '../types';
 import { calculateFullResults, generateMealPlan, generateFullMealPlan } from '../utils/calculations';
 import AdviceBox from '../features/health-tools/AdviceBox';
 import { usePersistedState } from '../hooks/usePersistedState';
@@ -33,6 +33,25 @@ const getTargetCalories = (tdee: number, goals: FunnelGoal[]): number => {
 
 const includesMeal = (planType: PlanType) => planType === 'meal' || planType === 'both';
 const includesWorkout = (planType: PlanType) => planType === 'workout' || planType === 'both';
+
+const slotOf = (meal: MealPlan): 'breakfast' | 'lunch' | 'dinner' | 'snack' =>
+  /breakfast/i.test(meal.meal) ? 'breakfast'
+    : /lunch/i.test(meal.meal) ? 'lunch'
+      : /dinner/i.test(meal.meal) ? 'dinner' : 'snack';
+
+const shuffle = <T,>(arr: T[]): T[] => [...arr].sort(() => Math.random() - 0.5);
+
+interface SwapAlt { name: string; nameAr?: string; calories: number; protein: number; carbs: number; fat: number }
+
+const buildAlternatives = (meal: MealPlan): SwapAlt[] => {
+  const slot = slotOf(meal);
+  const pool = FOODS_DATABASE.filter((f) => (f.mealType ?? '') === slot);
+  let near = pool.filter((f) => Math.abs(f.calories - meal.calories) <= 50);
+  if (near.length < 5) near = [...near, ...pool].filter((v, i, a) => a.findIndex((x) => x.name === v.name) === i);
+  return shuffle(near).slice(0, 5).map((f) => ({
+    name: f.name, nameAr: f.name_ar, calories: f.calories, protein: f.protein, carbs: f.carbs, fat: f.fat,
+  }));
+};
 
 const WeightLossPage: React.FC = () => {
   const { t, language, dir } = useLanguage();
@@ -67,12 +86,9 @@ const WeightLossPage: React.FC = () => {
     return { age: 30, gender: 'male', height: 175, weight: 75, activityLevel: 'moderate', goal: 'lose_weight', workoutDays: 3 };
   });
 
-  const [selectedCuisine, setSelectedCuisine] = useState<Cuisine>(() => {
-    const saved = localStorage.getItem('hc_selectedCuisine');
-    return (saved as Cuisine) || 'mediterranean';
-  });
+  const [selectedCuisine, setSelectedCuisine] = useState<Cuisine | null>(null);
   const [exerciseType, setExerciseType] = useState<ExerciseType | 'auto'>('auto');
-  const [selectedSources, setSelectedSources] = useState<ProteinSource[]>(['chicken', 'eggs', 'fish']);
+  const [selectedProteins, setSelectedProteins] = useState<ProteinSource[]>(['chicken', 'eggs', 'fish']);
   const [selectedStyle, setSelectedStyle] = useState<DietStyle[]>(['high_protein']);
   const [selectedExcludes, setSelectedExcludes] = useState<ExcludePref[]>([]);
   const [result, setResult] = useState<CalorieResult | null>(null);
@@ -80,19 +96,22 @@ const WeightLossPage: React.FC = () => {
   const [showWorkoutModal, setShowWorkoutModal] = useState(false);
   const [selectedDay, setSelectedDay] = useState(() => (new Date().getDate() % 30));
   const [workoutSelectedDay, setWorkoutSelectedDay] = useState(0);
-  const [completedExercises, setCompletedExercises] = useState<Record<string, boolean>>({});
   const [dayCompletions, setDayCompletions] = usePersistedState<Record<number, Record<number, boolean>>>({}, 'hc_wl_day_completions');
   const [streak, setStreak] = useState({ current: 0, longest: 0, daysCompleted: 0 });
+  const [swapOpen, setSwapOpen] = useState<number | null>(null);
+  const [swapped, setSwapped] = useState<Record<number, MealPlan>>({});
+  const [portions, setPortions] = useState<Record<number, number>>({});
+  const [customSwap, setCustomSwap] = useState('');
 
   const tdee = useMemo(() => {
-    const base = calculateFullResults({ ...form, goal: 'maintain' }, 'egyptian', language);
+    const base = calculateFullResults({ ...form, goal: 'maintain' }, undefined, language);
     return base.tdee;
   }, [form, language]);
 
   const buildResult = useCallback(
-    (goals: FunnelGoal[], cuisine: Cuisine, lang: string): CalorieResult => {
+    (goals: FunnelGoal[], cuisine: Cuisine | null, lang: string): CalorieResult => {
       const primary = getPrimaryGoal(goals);
-      const base = calculateFullResults({ ...form, goal: primary }, cuisine, lang);
+      const base = calculateFullResults({ ...form, goal: primary }, cuisine ?? undefined, lang);
       const target = getTargetCalories(base.tdee, goals);
       const macros = {
         protein: Math.round((target * 0.3) / 4),
@@ -106,8 +125,8 @@ const WeightLossPage: React.FC = () => {
         ...base,
         targetCalories: target,
         macros,
-        mealPlan: generateMealPlan(target, cuisine, lang),
-        fullMealPlan: generateFullMealPlan(target, cuisine, lang),
+        mealPlan: generateMealPlan(target, cuisine ?? undefined, lang),
+        fullMealPlan: generateFullMealPlan(target, cuisine ?? undefined, lang),
       };
     },
     [form],
@@ -120,7 +139,6 @@ const WeightLossPage: React.FC = () => {
     }
     setGoalError(null);
     setResult(buildResult(selectedGoals, selectedCuisine, language));
-    setCompletedExercises({});
     requestAnimationFrame(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
   };
 
@@ -129,9 +147,10 @@ const WeightLossPage: React.FC = () => {
     setResult(buildResult(selectedGoals, selectedCuisine, language));
   }, [selectedCuisine, language, buildResult]);
 
-  const handleCuisineChange = useCallback((cuisine: Cuisine) => {
+  const handleCuisineChange = useCallback((cuisine: Cuisine | null) => {
     setSelectedCuisine(cuisine);
-    localStorage.setItem('hc_selectedCuisine', cuisine);
+    if (cuisine) localStorage.setItem('hc_selectedCuisine', cuisine);
+    else localStorage.removeItem('hc_selectedCuisine');
   }, []);
 
   const toggleMealDone = useCallback((mealIdx: number, done: boolean) => {
@@ -143,19 +162,48 @@ const WeightLossPage: React.FC = () => {
   const dayDoneCount = Object.values(dayDone).filter(Boolean).length;
   const activeGoal = getPrimaryGoal(selectedGoals);
 
+  const dayTotals = useMemo(() => dayMeals.reduce((acc, meal, idx) => {
+    const base = swapped[idx] ?? meal;
+    const scale = (portions[idx] ?? 150) / 150;
+    acc.kcal += Math.round(base.calories * scale);
+    acc.protein += Math.round((base.protein ?? 0) * scale);
+    return acc;
+  }, { kcal: 0, protein: 0 }), [dayMeals, swapped, portions]);
+
+  const applySwap = (idx: number, alt: SwapAlt) => {
+    const base = swapped[idx] ?? dayMeals[idx];
+    setSwapped(prev => ({ ...prev, [idx]: { ...base, meal: alt.name, nameEn: alt.name, nameAr: alt.nameAr, calories: alt.calories, protein: alt.protein, carbs: alt.carbs, fat: alt.fat, items: [language === 'ar' ? (alt.nameAr ?? alt.name) : alt.name], description: '' } }));
+    setSwapOpen(null);
+    setCustomSwap('');
+  };
+
+  const applyCustomSwap = (idx: number) => {
+    const q = customSwap.trim().toLowerCase();
+    const found = FOODS_DATABASE.find((f) => f.name.toLowerCase().includes(q) || (f.name_ar || '').includes(customSwap.trim()));
+    applySwap(idx, found ? { name: found.name, nameAr: found.name_ar, calories: found.calories, protein: found.protein, carbs: found.carbs, fat: found.fat } : { name: customSwap.trim(), calories: 200, protein: 10, carbs: 20, fat: 8 });
+  };
+
+  const handleAddMeal = useCallback((meal: MealPlan) => {
+    setResult(prev => prev ? { ...prev, fullMealPlan: prev.fullMealPlan.map((d, i) => (i === selectedDay ? { ...d, meals: [...d.meals, meal] } : d)) } : prev);
+  }, [selectedDay]);
+
   const filteredFoods = useMemo(() => {
-    return FOODS_DATABASE.filter(f => f.cuisine.includes(selectedCuisine)).slice(0, 8);
+    const key = selectedCuisine ?? 'egyptian';
+    return FOODS_DATABASE.filter(f => f.cuisine.includes(key)).slice(0, 8);
   }, [selectedCuisine]);
 
   const showMeals = includesMeal(planType);
   const showWorkouts = includesWorkout(planType);
+  const activeCuisineLabel = selectedCuisine
+    ? `${getCuisineLabel(CUISINE_OPTIONS.find(c => c.key === selectedCuisine) || CUISINE_OPTIONS[0], language)} ${CUISINE_META[selectedCuisine].flag}`
+    : '';
 
   return (
     <div className="tool-page min-h-screen bg-[#f8fafc]" dir={dir}>
       <Breadcrumbs />
       <PageHero pill={t('wlHeroPill')} title={t('module1Title')} description={t('module1Desc')} icon={ClipboardList} color="#f59e0b" />
 
-      <div className="max-w-3xl mx-auto px-4 pb-16 space-y-6">
+      <div className="max-w-4xl mx-auto px-4 pb-16 space-y-6">
         <section className="card p-6">
           <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
             <div className="w-8 h-8 bg-emerald-50 rounded-xl flex items-center justify-center">👤</div>
@@ -201,12 +249,14 @@ const WeightLossPage: React.FC = () => {
           onWorkoutDaysChange={(days) => setForm((prev) => ({ ...prev, workoutDays: days }))}
           exerciseType={exerciseType}
           onExerciseTypeChange={setExerciseType}
-          selectedSources={selectedSources}
-          onSourcesChange={setSelectedSources}
+          selectedProteins={selectedProteins}
+          onProteinsChange={setSelectedProteins}
           selectedStyle={selectedStyle}
           onStyleChange={setSelectedStyle}
           selectedExcludes={selectedExcludes}
           onExcludesChange={setSelectedExcludes}
+          selectedGoals={selectedGoals}
+          onAddMeal={handleAddMeal}
           onGenerate={handleGenerate}
         />
 
@@ -232,6 +282,12 @@ const WeightLossPage: React.FC = () => {
 
                 <DaySelectorBar days={30} activeDay={selectedDay + 1} onSelect={(d) => setSelectedDay(d - 1)} />
 
+                <div className="card p-4 bg-white border border-emerald-200 flex flex-wrap items-center gap-x-6 gap-y-2">
+                  <span className="text-sm font-bold text-gray-900">{t('wlDayTotals')}</span>
+                  <span className="text-xs bg-primary-50 text-primary-700 px-3 py-1 rounded-full font-bold">🔥 {Math.round(dayTotals.kcal)} kcal</span>
+                  <span className="text-xs bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full font-bold">💪 {fmt(t('wlSwapAlt'), { kcal: 0, protein: dayTotals.protein }).split(' | ')[1]}</span>
+                </div>
+
                 <DayProgressHeader completed={dayDoneCount} total={dayMeals.length + 1} dailyGoal={t('wlCompleteAllMeals')} />
                 <button
                   onClick={() => setShowMealPlanModal(true)}
@@ -242,14 +298,79 @@ const WeightLossPage: React.FC = () => {
                   </svg>
                   {t('wlFullPlan')}
                 </button>
+
                 <div className="grid gap-4">
-                  {dayMeals.map((meal, idx) => (
-                    <MealCard key={idx} meal={meal as any} done={!!dayDone[idx]} onToggle={(done) => toggleMealDone(idx, done)} />
-                  ))}
+                  {dayMeals.map((meal, idx) => {
+                    const base = swapped[idx] ?? meal;
+                    const grams = portions[idx] ?? 150;
+                    const scale = grams / 150;
+                    const scaled: MealPlan = {
+                      ...base,
+                      calories: Math.round(base.calories * scale),
+                      protein: Math.round((base.protein ?? 0) * scale),
+                      carbs: Math.round((base.carbs ?? 0) * scale),
+                      fat: Math.round((base.fat ?? 0) * scale),
+                    };
+                    const alts = buildAlternatives(base);
+                    return (
+                      <div key={idx} className="relative space-y-2">
+                        <MealCard meal={scaled} done={!!dayDone[idx]} onToggle={(done) => toggleMealDone(idx, done)} />
+                        <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-2.5">
+                          <button
+                            type="button"
+                            onClick={() => { setSwapOpen(swapOpen === idx ? null : idx); setCustomSwap(''); }}
+                            className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-bold border-2 transition-all ${
+                              swapOpen === idx ? 'border-emerald-600 bg-emerald-50 text-emerald-700' : 'border-gray-200 hover:border-emerald-300'
+                            }`}
+                          >
+                            🔄 {t('wlSwapBtn')}
+                          </button>
+                          <span className="text-[11px] font-medium text-gray-500 shrink-0">{t('wlPortion')}</span>
+                          <input
+                            type="range"
+                            min={50} max={300} step={50}
+                            value={grams}
+                            onChange={(e) => setPortions(prev => ({ ...prev, [idx]: +e.target.value }))}
+                            className="flex-1 accent-emerald-600 min-w-0"
+                          />
+                          <span className="text-xs font-bold text-gray-700 shrink-0 whitespace-nowrap">{fmt(t('wlGrams'), { g: grams })} · {scaled.calories} kcal</span>
+                        </div>
+
+                        {swapOpen === idx && (
+                          <div className="absolute z-10 p-3 bg-white border border-gray-200 rounded-xl shadow-xl w-72 right-0 -bottom-2 translate-y-full">
+                            <div className="text-sm font-bold text-gray-900">{t('wlSwapTitle')}</div>
+                            <div className="mt-2 space-y-1 max-h-60 overflow-y-auto scrollbar-thin">
+                              {alts.map((alt, i) => (
+                                <button
+                                  key={i}
+                                  type="button"
+                                  onClick={() => applySwap(idx, alt)}
+                                  className="w-full text-left px-3 py-2 rounded-lg hover:bg-emerald-50 border border-transparent hover:border-emerald-200 transition-all"
+                                >
+                                  <span className="text-xs font-semibold text-gray-800">{language === 'ar' ? (alt.nameAr ?? alt.name) : alt.name}</span>
+                                  <span className="block text-[11px] text-gray-500">{fmt(t('wlSwapAlt'), { kcal: alt.calories, protein: alt.protein })}</span>
+                                </button>
+                              ))}
+                            </div>
+                            <div className="mt-2 pt-2 border-t flex gap-1.5">
+                              <input
+                                value={customSwap}
+                                onChange={(e) => setCustomSwap(e.target.value)}
+                                onKeyDown={(e) => e.key === 'Enter' && applyCustomSwap(idx)}
+                                placeholder={t('wlSwapCustomPlaceholder')}
+                                className="flex-1 h-8 px-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:ring-1 focus:ring-emerald-300"
+                              />
+                              <button type="button" onClick={() => applyCustomSwap(idx)} className="text-xs text-emerald-600 font-bold shrink-0">{t('wlcCheck')}</button>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
 
                 <div className="card p-5 bg-gradient-to-r from-green-50 to-emerald-50 border-green-200">
-                  <h4 className="font-bold mb-3">💡 {fmt(t('wlSuggestions'), { cuisine: `${getCuisineLabel(CUISINE_OPTIONS.find(c => c.key === selectedCuisine) || CUISINE_OPTIONS[0], language)} ${CUISINE_META[selectedCuisine].flag}` })}</h4>
+                  <h4 className="font-bold mb-3">💡 {fmt(t('wlSuggestions'), { cuisine: activeCuisineLabel || t('wlfMealPrefTitle') })}</h4>
                   <div className="flex flex-wrap gap-2">
                     {filteredFoods.map((food, idx) => (
                       <span key={idx} className="bg-white border px-3 py-1.5 rounded-full text-xs font-medium shadow-sm">
@@ -333,7 +454,7 @@ const WeightLossPage: React.FC = () => {
       </div>
 
       {result && (
-        <MealPlanModal isOpen={showMealPlanModal} onClose={() => setShowMealPlanModal(false)} targetCalories={result.targetCalories} mealPlan={result.mealPlan} fullMealPlan={result.fullMealPlan} selectedDay={selectedDay} onDayChange={setSelectedDay} weight={form.weight} onSave={() => setShowMealPlanModal(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} />
+        <MealPlanModal isOpen={showMealPlanModal} onClose={() => setShowMealPlanModal(false)} targetCalories={result.targetCalories} mealPlan={result.mealPlan} fullMealPlan={result.fullMealPlan} selectedDay={selectedDay} onDayChange={setSelectedDay} weight={form.weight} onSave={() => setShowMealPlanModal(false)} cuisine={selectedCuisine ?? 'egyptian'} onCuisineChange={handleCuisineChange} />
       )}
       {result && (
         <WorkoutBlueprintModal isOpen={showWorkoutModal} onClose={() => setShowWorkoutModal(false)} bmi={+(form.weight / ((form.height / 100) ** 2)).toFixed(1)} goal={activeGoal} fitnessLevel="beginner" weight={form.weight} selectedDay={workoutSelectedDay} onDayChange={setWorkoutSelectedDay} onSave={() => setShowWorkoutModal(false)} />

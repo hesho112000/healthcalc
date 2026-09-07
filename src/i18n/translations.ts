@@ -984,6 +984,41 @@ type TranslationKeys = {
   wlfExcNuts: string;
   wlfExcDairy: string;
   wlfExcGluten: string;
+  wlfSearchFoods: string;
+  wlfMealPrefTitle: string;
+  wlfMealPrefSub: string;
+  wlfSrcTurkey: string;
+  wlfStyleVegan: string;
+  wlfStyleKeto: string;
+  wlfExcSeafood: string;
+  wlfSearchEmpty: string;
+  wlcTitle: string;
+  wlcSub: string;
+  wlcPlaceholder: string;
+  wlcCheck: string;
+  wlcCalories: string;
+  wlcProtein: string;
+  wlcCarbs: string;
+  wlcFat: string;
+  wlcPer100: string;
+  wlcYes: string;
+  wlcModerate: string;
+  wlcNo: string;
+  wlcBestTime: string;
+  wlcPortionLabel: string;
+  wlcAdd: string;
+  wlcBadgeBreakfast: string;
+  wlcBadgeLunch: string;
+  wlcBadgeDinner: string;
+  wlcBadgeSnack: string;
+  wlSwapTitle: string;
+  wlSwapCustomPlaceholder: string;
+  wlPortion: string;
+  wlGrams: string;
+  wlDayTotals: string;
+  wlSwapAlt: string;
+  wlSwapBtn: string;
+  wlfClearCuisine: string;
   dbLabInterpreter: string;
   dbLabsEmpty: string;
   dbBpClassification: string;
@@ -2224,6 +2259,41 @@ export const translations: Record<Language, TranslationKeys> = {
     wlfExcNuts: 'No Nuts',
     wlfExcDairy: 'No Dairy',
     wlfExcGluten: 'No Gluten',
+    wlfSearchFoods: 'Search foods...',
+    wlfMealPrefTitle: 'Meal Preferences',
+    wlfMealPrefSub: 'Choose what you like',
+    wlfSrcTurkey: 'Turkey',
+    wlfStyleVegan: 'Vegan',
+    wlfStyleKeto: 'Keto',
+    wlfExcSeafood: 'No Seafood',
+    wlfSearchEmpty: 'No foods match',
+    wlcTitle: 'Check Any Food — is it right for you?',
+    wlcSub: 'Type any food — we tell you if it fits your goal and the best time to eat it',
+    wlcPlaceholder: 'Example: Koshari, Shawarma, Foul, Molto...',
+    wlcCheck: 'Check',
+    wlcCalories: 'Calories',
+    wlcProtein: 'Protein',
+    wlcCarbs: 'Carbs',
+    wlcFat: 'Fat',
+    wlcPer100: 'per 100g',
+    wlcYes: '✅ Works for you',
+    wlcModerate: '⚠️ OK in small amounts',
+    wlcNo: '❌ Not suitable',
+    wlcBestTime: 'Best time: ',
+    wlcPortionLabel: 'Suggested portion: ',
+    wlcAdd: 'Add to my plan as a {time} meal',
+    wlcBadgeBreakfast: '🌅 Breakfast',
+    wlcBadgeLunch: '☀️ Lunch',
+    wlcBadgeDinner: '🌙 Dinner',
+    wlcBadgeSnack: '🍎 Snack',
+    wlSwapTitle: 'Swap with:',
+    wlSwapCustomPlaceholder: 'Custom food...',
+    wlPortion: 'Portion',
+    wlGrams: '{g} g',
+    wlDayTotals: 'Today\'s plan',
+    wlSwapAlt: '{kcal} kcal | {protein} g P',
+    wlSwapBtn: 'Swap',
+    wlfClearCuisine: 'Remove cuisine',
     dbLabInterpreter: 'Lab Results Interpreter',
     dbLabsEmpty: 'Enter your lab values on the left panel to get instant interpretation based on ADA medical guidelines.',
     dbBpClassification: 'Blood Pressure Classification (AHA)',
@@ -3440,6 +3510,41 @@ mbFruits: 'Fruits',
     wlfExcNuts: 'No Nuts',
     wlfExcDairy: 'No Dairy',
     wlfExcGluten: 'No Gluten',
+    wlfSearchFoods: 'Search foods...',
+    wlfMealPrefTitle: 'Meal Preferences',
+    wlfMealPrefSub: 'Choose what you like',
+    wlfSrcTurkey: 'Turkey',
+    wlfStyleVegan: 'Vegan',
+    wlfStyleKeto: 'Keto',
+    wlfExcSeafood: 'No Seafood',
+    wlfSearchEmpty: 'No foods match',
+    wlcTitle: 'Check Any Food — is it right for you?',
+    wlcSub: 'Type any food — we tell you if it fits your goal and the best time to eat it',
+    wlcPlaceholder: 'Example: Koshari, Shawarma, Foul, Molto...',
+    wlcCheck: 'Check',
+    wlcCalories: 'Calories',
+    wlcProtein: 'Protein',
+    wlcCarbs: 'Carbs',
+    wlcFat: 'Fat',
+    wlcPer100: 'per 100g',
+    wlcYes: '✅ Works for you',
+    wlcModerate: '⚠️ OK in small amounts',
+    wlcNo: '❌ Not suitable',
+    wlcBestTime: 'Best time: ',
+    wlcPortionLabel: 'Suggested portion: ',
+    wlcAdd: 'Add to my plan as a {time} meal',
+    wlcBadgeBreakfast: '🌅 Breakfast',
+    wlcBadgeLunch: '☀️ Lunch',
+    wlcBadgeDinner: '🌙 Dinner',
+    wlcBadgeSnack: '🍎 Snack',
+    wlSwapTitle: 'Swap with:',
+    wlSwapCustomPlaceholder: 'Custom food...',
+    wlPortion: 'Portion',
+    wlGrams: '{g} g',
+    wlDayTotals: 'Today\'s plan',
+    wlSwapAlt: '{kcal} kcal | {protein} g P',
+    wlSwapBtn: 'Swap',
+    wlfClearCuisine: 'Remove cuisine',
     dbLabInterpreter: 'Interpréteur de Résultats de Laboratoire',
     dbLabsEmpty: 'Entrez vos valeurs de laboratoire dans le panneau de gauche pour une interprétation instantanée basée sur les directives médicales de l\'ADA.',
     dbBpClassification: 'Classification de la Pression Artérielle (AHA)',
@@ -4626,6 +4731,41 @@ mbFruits: 'Fruits',
     wlfExcNuts: 'No Nuts',
     wlfExcDairy: 'No Dairy',
     wlfExcGluten: 'No Gluten',
+    wlfSearchFoods: 'Search foods...',
+    wlfMealPrefTitle: 'Meal Preferences',
+    wlfMealPrefSub: 'Choose what you like',
+    wlfSrcTurkey: 'Turkey',
+    wlfStyleVegan: 'Vegan',
+    wlfStyleKeto: 'Keto',
+    wlfExcSeafood: 'No Seafood',
+    wlfSearchEmpty: 'No foods match',
+    wlcTitle: 'Check Any Food — is it right for you?',
+    wlcSub: 'Type any food — we tell you if it fits your goal and the best time to eat it',
+    wlcPlaceholder: 'Example: Koshari, Shawarma, Foul, Molto...',
+    wlcCheck: 'Check',
+    wlcCalories: 'Calories',
+    wlcProtein: 'Protein',
+    wlcCarbs: 'Carbs',
+    wlcFat: 'Fat',
+    wlcPer100: 'per 100g',
+    wlcYes: '✅ Works for you',
+    wlcModerate: '⚠️ OK in small amounts',
+    wlcNo: '❌ Not suitable',
+    wlcBestTime: 'Best time: ',
+    wlcPortionLabel: 'Suggested portion: ',
+    wlcAdd: 'Add to my plan as a {time} meal',
+    wlcBadgeBreakfast: '🌅 Breakfast',
+    wlcBadgeLunch: '☀️ Lunch',
+    wlcBadgeDinner: '🌙 Dinner',
+    wlcBadgeSnack: '🍎 Snack',
+    wlSwapTitle: 'Swap with:',
+    wlSwapCustomPlaceholder: 'Custom food...',
+    wlPortion: 'Portion',
+    wlGrams: '{g} g',
+    wlDayTotals: 'Today\'s plan',
+    wlSwapAlt: '{kcal} kcal | {protein} g P',
+    wlSwapBtn: 'Swap',
+    wlfClearCuisine: 'Remove cuisine',
     dbLabInterpreter: 'Interpretador de Resultados de Laboratorio',
     dbLabsEmpty: 'Introduce tus valores de laboratorio en el panel izquierdo para obtener una interpretación instantánea según las guías médicas de la ADA.',
     dbBpClassification: 'Clasificación de la Presión Arterial (AHA)',
@@ -5812,6 +5952,41 @@ mbFruits: 'Fruits',
     wlfExcNuts: 'بدون مكسرات',
     wlfExcDairy: 'بدون ألبان',
     wlfExcGluten: 'بدون جلوتين',
+    wlfSearchFoods: 'ابحث عن أطعمة...',
+    wlfMealPrefTitle: 'تفضيلات الوجبات',
+    wlfMealPrefSub: 'اختر ما يعجبك',
+    wlfSrcTurkey: 'ديك رومي',
+    wlfStyleVegan: 'نباتي صرف',
+    wlfStyleKeto: 'كيتو',
+    wlfExcSeafood: 'بدون مأكولات بحرية',
+    wlfSearchEmpty: 'لا توجد أطعمة مطابقة',
+    wlcTitle: 'افحص أي أكلة — هل الأكلة دي تنفعني؟',
+    wlcSub: 'اكتب اسم أي أكل ونقول لك ينفع لهدفك ولا لا + أفضل وقت تأكله',
+    wlcPlaceholder: 'مثال: كشري، شاورما، فول، مولتو...',
+    wlcCheck: 'افحص',
+    wlcCalories: 'سعرات',
+    wlcProtein: 'بروتين',
+    wlcCarbs: 'كارب',
+    wlcFat: 'دهون',
+    wlcPer100: 'لكل 100g',
+    wlcYes: '✅ ينفع',
+    wlcModerate: '⚠️ ينفع بكمية قليلة',
+    wlcNo: '❌ مش مناسب للتخسيس',
+    wlcBestTime: 'أفضل وقت: ',
+    wlcPortionLabel: 'الكمية المقترحة: ',
+    wlcAdd: '+ أضف للخطة بتاعتي كوجبة {time}',
+    wlcBadgeBreakfast: '🌅 فطار',
+    wlcBadgeLunch: '☀️ غدا',
+    wlcBadgeDinner: '🌙 عشاء',
+    wlcBadgeSnack: '🍎 سناك',
+    wlSwapTitle: 'بدل بـ:',
+    wlSwapCustomPlaceholder: 'أكل مخصص...',
+    wlPortion: 'الكمية',
+    wlGrams: '{g} جم',
+    wlDayTotals: 'إجمالي اليوم',
+    wlSwapAlt: '{kcal} سعرة | {protein} جم بروتين',
+    wlSwapBtn: 'بدل',
+    wlfClearCuisine: 'إزالة المطبخ',
     dbLabInterpreter: 'مفسّر نتائج المختبر',
     dbLabsEmpty: 'أدخل قيم المختبر الخاصة بك في اللوحة اليسرى للحصول على تفسير فوري وفقًا للإرشادات الطبية لـ ADA.',
     dbBpClassification: 'تصنيف ضغط الدم (AHA)',
