@@ -138,9 +138,15 @@ const buildCuisineMealPlan = (targetCalories: number, cuisineId: Cuisine, lang: 
   };
   const dualCal = (f: FoodItem): string => {
     if (f.cal100 == null || !f.servG) return '';
-    const badge = isMinistryVerified(f.source)
-      ? lang === 'ar' ? ' · 🛡️ مؤكد من وزارة الصحة' : ' · 🛡️ Ministry verified'
-      : '';
+    const badge = f.confidence === 100
+      ? lang === 'ar' ? ' · ✅ موثق 100%' : ' · ✅ 100% verified'
+      : f.confidence && f.confidence >= 85
+        ? ' · 🟡 85%'
+        : f.confidence && f.confidence >= 70
+          ? ' · 🟠 70%'
+          : isMinistryVerified(f.source)
+            ? lang === 'ar' ? ' · 🛡️ مؤكد من وزارة الصحة' : ' · 🛡️ Ministry verified'
+            : '';
     return lang === 'ar'
       ? ` · 100جم = ${f.cal100} سعر | طبقك ${f.servG}جم = ${f.calories} سعر${badge}`
       : ` · 100g = ${f.cal100} kcal | plate ${f.servG}g = ${f.calories} kcal${badge}`;
@@ -334,6 +340,13 @@ export interface FoodItem {
   servG?: number;
   healthy?: boolean;
   source?: string;
+  note?: string;
+  p100?: number;
+  c100?: number;
+  f100?: number;
+  confidence?: number;
+  confidenceLabel?: string;
+  confidenceColor?: 'green' | 'yellow' | 'orange';
 }
 
 export const CUISINE_OPTIONS: Array<{ key: Cuisine; label_ar: string; label_en: string; flag: string }> =
@@ -469,11 +482,31 @@ const toEgyptianFood = (e: EgyptianFullDish): FoodItem => ({
   servG: e.servG,
   healthy: e.healthy,
   source: e.source,
+  note: e.note,
+  p100: e.p100,
+  c100: e.c100,
+  f100: e.f100,
+  confidence: e.confidence,
+  confidenceLabel: e.confidenceLabel,
+  confidenceColor: e.confidenceColor,
 });
 
 const toLibyanFood = (e: LibyanFullDish): FoodItem => toFullFood(e, 'libyan');
 
-const toTunisianFood = (e: TunisianFullDish): FoodItem => toFullFood(e, 'tunisian');
+const toTunisianFood = (e: TunisianFullDish): FoodItem => ({
+  ...toFullFood(e, 'tunisian'),
+  cal100: e.cal100,
+  servG: e.servG,
+  healthy: e.healthy,
+  source: e.source,
+  note: e.note,
+  p100: e.p100,
+  c100: e.c100,
+  f100: e.f100,
+  confidence: e.confidence,
+  confidenceLabel: e.confidenceLabel,
+  confidenceColor: e.confidenceColor,
+});
 
 const toAlgerianFood = (e: AlgerianFullDish): FoodItem => toFullFood(e, 'algerian');
 

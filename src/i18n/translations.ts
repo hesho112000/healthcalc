@@ -1029,6 +1029,17 @@ type TranslationKeys = {
   wlDisclaimerFooter: string;
   wlPortionGuide: string;
   wlDualCal: string;
+  wlConfInfo100: string;
+  wlConfInfo85: string;
+  wlConfInfo70: string;
+  wlConfInfoNote: string;
+  wlConfFilter: string;
+  wlConfAll: string;
+  wlConf100Only: string;
+  wlConf85Plus: string;
+  wlConf70Plus: string;
+  wlDishMacros: string;
+  wlDishSource: string;
   wlfWorkoutSectionTitle: string;
   wlfCuisineGenericDesc: string;
   wlfSourcesTitle: string;
@@ -2400,6 +2411,17 @@ export const translations: Record<Language, TranslationKeys> = {
     wlDisclaimerFooter: 'Source: National Nutrition Institute + USDA - calories vary with samna amount',
     wlPortionGuide: 'Standard Portion Guide',
     wlDualCal: '100g = {cal100} kcal | plate {grams}g = {calories} kcal',
+    wlConfInfo100: 'lab analysis from the National Nutrition Institute - Ministry of Health (foul, fatteh, kahk, kunafa crema)',
+    wlConfInfo85: 'USDA + traditional recipe calculated from ingredients - high accuracy ±10% - most of the file',
+    wlConfInfo70: 'rare dishes or ones that vary greatly per home (dried osban, homemade pickles, qadid)',
+    wlConfInfoNote: 'calories are per 100g cooked ready - vary with oil/samna amount. Plate = customary Egyptian/Tunisian weight.',
+    wlConfFilter: 'Confidence level:',
+    wlConfAll: 'All',
+    wlConf100Only: '100% only',
+    wlConf85Plus: '85%+',
+    wlConf70Plus: '70%+',
+    wlDishMacros: 'Protein {p}g | Carbs {c}g | Fat {f}g',
+    wlDishSource: 'Source: {source} - {notes}',
     wlfWorkoutSectionTitle: 'Workout Plan',
     wlfCuisineGenericDesc: 'Balanced meals from a rich local food tradition',
     wlfSourcesTitle: 'Protein Sources',
@@ -3747,6 +3769,17 @@ mbFruits: 'Fruits',
     wlDisclaimerFooter: 'Source : Institut national de nutrition + USDA - les calories varient selon la quantité de samna utilisée',
     wlPortionGuide: 'Guide des portions',
     wlDualCal: '100g = {cal100} kcal | assiette {grams}g = {calories} kcal',
+    wlConfInfo100: 'analyse en laboratoire de l\'Institut national de nutrition - ministère de la Santé (foul, fatteh, kahk, kunafa crema)',
+    wlConfInfo85: 'USDA + recette traditionnelle calculée à partir des ingrédients - précision élevée ±10% - l\'essentiel du fichier',
+    wlConfInfo70: 'plats rares ou très variables selon les maisons (osban séché, pickles maison, qadid)',
+    wlConfInfoNote: 'calories pour 100g cuits prêts - varient selon l\'huile/samna utilisée. L\'assiette = poids habituel égyptien/tunisien.',
+    wlConfFilter: 'Niveau de confiance :',
+    wlConfAll: 'Tous',
+    wlConf100Only: '100% uniquement',
+    wlConf85Plus: '85%+',
+    wlConf70Plus: '70%+',
+    wlDishMacros: 'Protéines {p}g | Glucides {c}g | Lipides {f}g',
+    wlDishSource: 'Source : {source} - {notes}',
     wlfWorkoutSectionTitle: 'Workout Plan',
     wlfCuisineGenericDesc: 'Balanced meals from a rich local food tradition',
     wlfSourcesTitle: 'Protein Sources',
@@ -5064,6 +5097,17 @@ mbFruits: 'Fruits',
     wlDisclaimerFooter: 'Fuente: Instituto Nacional de Nutrición + USDA - las calorías varían según la cantidad de samna',
     wlPortionGuide: 'Guía de porciones',
     wlDualCal: '100g = {cal100} kcal | plato {grams}g = {calories} kcal',
+    wlConfInfo100: 'análisis de laboratorio del Instituto Nacional de Nutrición - Ministerio de Salud (foul, fatteh, kahk, kunafa crema)',
+    wlConfInfo85: 'USDA + receta tradicional calculada de los ingredientes - gran precisión ±10% - la mayor parte del archivo',
+    wlConfInfo70: 'platos raros o muy variables según el hogar (osban seco, encurtidos caseros, qadid)',
+    wlConfInfoNote: 'calorías por 100g cocinados listos - varían con la cantidad de aceite/samna. El plato = peso habitual egipcio/tunecino.',
+    wlConfFilter: 'Nivel de confianza:',
+    wlConfAll: 'Todos',
+    wlConf100Only: 'Solo 100%',
+    wlConf85Plus: '85%+',
+    wlConf70Plus: '70%+',
+    wlDishMacros: 'Proteínas {p}g | Carbs {c}g | Grasas {f}g',
+    wlDishSource: 'Fuente: {source} - {notes}',
     wlfWorkoutSectionTitle: 'Workout Plan',
     wlfCuisineGenericDesc: 'Balanced meals from a rich local food tradition',
     wlfSourcesTitle: 'Protein Sources',
@@ -6381,6 +6425,17 @@ mbFruits: 'Fruits',
     wlDisclaimerFooter: 'المصدر: المعهد القومي للتغذية + USDA - السعرات تختلف حسب كمية السمن',
     wlPortionGuide: 'دليل الحصص القياسية',
     wlDualCal: '100جم = {cal100} سعر | طبقك {grams}جم = {calories} سعر',
+    wlConfInfo100: 'تحليل معملي من المعهد القومي للتغذية - وزارة الصحة (فول، فتة، كحك، كنافة كريمة)',
+    wlConfInfo85: 'USDA + وصفة تقليدية محسوبة من المكونات - دقة عالية ±10% - أغلب الملف',
+    wlConfInfo70: 'أطباق نادرة أو تختلف جدا حسب البيت (عصبان مجفف، مخللات بيتية، قديد)',
+    wlConfInfoNote: 'السعرات لكل 100جم مطبوخ جاهز - تختلف حسب كمية الزيت/السمن. الطبق = وزن مصري/تونسي معتاد.',
+    wlConfFilter: 'مستوى الثقة:',
+    wlConfAll: 'الكل',
+    wlConf100Only: '100% فقط',
+    wlConf85Plus: '85%+',
+    wlConf70Plus: '70%+',
+    wlDishMacros: 'بروتين {p}جم | كارب {c}جم | دهون {f}جم',
+    wlDishSource: 'المصدر: {source} - {notes}',
     wlfWorkoutSectionTitle: 'خطة التمارين',
     wlfCuisineGenericDesc: 'وجبات متوازنة من تراث غذائي غني',
     wlfSourcesTitle: 'مصادر البروتين',

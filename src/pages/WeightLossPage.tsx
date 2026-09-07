@@ -21,6 +21,7 @@ import { FOODS_DATABASE, CUISINE_META, Cuisine, CUISINE_OPTIONS, EXERCISE_TYPE_L
 import { getSwapOptions, addCustomToCuisineDB } from '../utils/cuisineSwapDB';
 import { getCuisineLabel } from '../utils/healthPlans';
 import { EGYPTIAN_PORTION_GUIDE, EGYPTIAN_DISCLAIMER, isMinistryVerified } from '../data/egyptian-full';
+import { TUNISIAN_PORTION_GUIDE, TUNISIAN_DISCLAIMER } from '../data/tunisian-full';
 import { ClipboardList } from 'lucide-react';
 
 const getPrimaryGoal = (goals: FunnelGoal[]): HealthGoal =>
@@ -145,6 +146,7 @@ const WeightLossPage: React.FC = () => {
 
   const [selectedCuisine, setSelectedCuisine] = useState<Cuisine | null>(null);
   const [healthyOnly, setHealthyOnly] = useState(false);
+  const [confidenceFilter, setConfidenceFilter] = useState<'all' | 100 | 85 | 70>('all');
   const [exerciseType, setExerciseType] = useState<ExerciseType | 'auto'>('auto');
   const [selectedProteins, setSelectedProteins] = useState<ProteinSource[]>(['chicken', 'eggs', 'fish']);
   const [selectedStyle, setSelectedStyle] = useState<DietStyle[]>(['high_protein']);
@@ -355,8 +357,11 @@ const WeightLossPage: React.FC = () => {
     const key = selectedCuisine ?? 'egyptian';
     const base = FOODS_DATABASE.filter(f => f.cuisine.includes(key));
     const list = healthyOnly ? base.filter(f => f.healthy === undefined || f.healthy === true) : base;
-    return list.slice(0, 8);
-  }, [selectedCuisine, healthyOnly]);
+    const confFiltered = confidenceFilter === 'all'
+      ? list
+      : list.filter(f => (f.confidence ?? 0) >= confidenceFilter);
+    return confFiltered.slice(0, 8);
+  }, [selectedCuisine, healthyOnly, confidenceFilter]);
 
   const showMeals = includesMeal(planType);
   const showWorkouts = includesWorkout(planType);
@@ -364,6 +369,14 @@ const WeightLossPage: React.FC = () => {
   const activeCuisineLabel = selectedCuisine
     ? `${getCuisineLabel(CUISINE_OPTIONS.find(c => c.key === selectedCuisine) || CUISINE_OPTIONS[0], language)} ${CUISINE_META[selectedCuisine].flag}`
     : '';
+
+  const confBadgeClass = (c?: 'green' | 'yellow' | 'orange'): string =>
+    c === 'green'
+      ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+      : c === 'yellow'
+        ? 'bg-yellow-100 text-yellow-800 border-yellow-300'
+        : 'bg-orange-100 text-orange-800 border-orange-300';
+  const isKitchenCuisine = effectiveCuisine === 'egyptian' || effectiveCuisine === 'tunisian';
 
   const bmi = form.height > 0 ? +(form.weight / ((form.height / 100) ** 2)).toFixed(1) : 0;
   const bmiCatKey = bmi < 18.5 ? 'adviceCatUnderweight' : bmi < 25 ? 'adviceCatNormal' : bmi < 30 ? 'adviceCatOverweight' : 'adviceCatObese';
@@ -539,7 +552,7 @@ const WeightLossPage: React.FC = () => {
                 <div className="pt-2 flex items-center gap-2 flex-wrap">
                   <h3 className="text-lg font-bold text-gray-900">🍽️ {t('wlfMealSectionTitle')}</h3>
                   <span className="text-xs bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full font-bold">{result.targetCalories} {t('wlfKcalDay')}</span>
-                  {effectiveCuisine === 'egyptian' && (
+                  {(['egyptian', 'tunisian'] as Cuisine[]).includes(effectiveCuisine) && (
                     <button
                       type="button"
                       onClick={() => setHealthyOnly(v => !v)}
@@ -559,6 +572,17 @@ const WeightLossPage: React.FC = () => {
                     <div className="text-xs font-bold text-amber-800 flex items-center gap-1">⚖️ {t('wlPortionGuide')}</div>
                     <div className="flex flex-wrap gap-1.5">
                       {EGYPTIAN_PORTION_GUIDE.map((g, i) => (
+                        <span key={i} className="bg-amber-50 border border-amber-200 px-2.5 py-1 rounded-full text-[11px] font-semibold text-amber-900">{g}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {effectiveCuisine === 'tunisian' && TUNISIAN_PORTION_GUIDE.length > 0 && (
+                  <div className="card p-4 bg-white border border-amber-200 space-y-2">
+                    <div className="text-xs font-bold text-amber-800 flex items-center gap-1">⚖️ {t('wlPortionGuide')}</div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {TUNISIAN_PORTION_GUIDE.map((g, i) => (
                         <span key={i} className="bg-amber-50 border border-amber-200 px-2.5 py-1 rounded-full text-[11px] font-semibold text-amber-900">{g}</span>
                       ))}
                     </div>
@@ -742,22 +766,87 @@ const WeightLossPage: React.FC = () => {
 
                 <div className="card p-5 bg-gradient-to-r from-green-50 to-emerald-50 border-green-200">
                   <h4 className="font-bold mb-3">💡 {fmt(t('wlSuggestions'), { cuisine: activeCuisineLabel || t('wlfMealPrefTitle') })}</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {filteredFoods.map((food, idx) => (
-                      <span key={idx} className="bg-white border px-3 py-1.5 rounded-full text-xs font-medium shadow-sm">
-                        {food.cal100 != null && food.servG
-                          ? `${fmt(t('wlCaloriesItem'), { name: food.name, kcal: food.calories })} (${fmt(t('wlDualCal'), { cal100: food.cal100, grams: food.servG, calories: food.calories })})`
-                          : fmt(t('wlCaloriesItem'), { name: food.name, kcal: food.calories })}
-                        {isMinistryVerified(food.source) && (
-                          <span className="ml-1 inline-flex items-center gap-0.5 text-emerald-700 font-bold">🛡️ {t('wlMinistryBadge')}</span>
-                        )}
-                      </span>
-                    ))}
-                  </div>
+
+                  {isKitchenCuisine && (
+                    <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-3 space-y-1.5">
+                      <strong className="text-blue-900">دقة الأرقام:</strong>
+                      <div className="text-[11px] text-blue-800">
+                        ✅ <strong>100% موثق:</strong> {t('wlConfInfo100')}
+                      </div>
+                      <div className="text-[11px] text-blue-800">
+                        🟡 <strong>85% محسوب:</strong> {t('wlConfInfo85')}
+                      </div>
+                      <div className="text-[11px] text-blue-800">
+                        🟠 <strong>70% تقديري:</strong> {t('wlConfInfo70')}
+                      </div>
+                      <div className="mt-1.5 text-[11px] text-blue-700">{t('wlConfInfoNote')}</div>
+                    </div>
+                  )}
+
+                  {isKitchenCuisine && (
+                    <div className="flex items-center gap-2 mb-3">
+                      <label className="text-xs font-bold text-gray-700">{t('wlConfFilter')}</label>
+                      <select
+                        value={confidenceFilter}
+                        onChange={(e) => {
+                          const v = e.target.value;
+                          setConfidenceFilter(v === 'all' ? 'all' : (Number(v) as 100 | 85 | 70));
+                        }}
+                        className="h-9 px-2 rounded-xl border border-gray-200 bg-white text-xs font-semibold text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-300"
+                      >
+                        <option value="all">{t('wlConfAll')}</option>
+                        <option value="100">{t('wlConf100Only')}</option>
+                        <option value="85">{t('wlConf85Plus')}</option>
+                        <option value="70">{t('wlConf70Plus')}</option>
+                      </select>
+                    </div>
+                  )}
+
+                  {isKitchenCuisine ? (
+                    <div className="grid sm:grid-cols-2 gap-2.5">
+                      {filteredFoods.map((food, idx) => (
+                        <div key={idx} className="dish-card bg-white border border-gray-200 rounded-xl p-3 shadow-sm">
+                          <div className="flex justify-between gap-2 items-start">
+                            <h3 className="text-sm font-bold text-gray-900">{language === 'ar' ? (food.name_ar || food.name) : food.name}</h3>
+                            {food.confidence != null && (
+                              <span className={`shrink-0 px-2 py-0.5 rounded-full border-2 text-[10px] font-bold ${confBadgeClass(food.confidenceColor)}`}>
+                                {food.confidenceLabel ?? `${food.confidence}%`}
+                              </span>
+                            )}
+                          </div>
+                          <div className="mt-1 text-xs font-semibold text-gray-800">
+                            {fmt(t('wlDualCal'), { cal100: food.cal100 ?? 0, grams: food.servG ?? 0, calories: food.calories })}
+                          </div>
+                          <div className="text-[11px] text-gray-600">
+                            {fmt(t('wlDishMacros'), { p: food.p100 ?? 0, c: food.c100 ?? 0, f: food.f100 ?? 0 })}
+                          </div>
+                          <div className="text-[10px] text-gray-500 mt-1">
+                            {fmt(t('wlDishSource'), { source: food.source ?? '—', notes: food.note ?? '' })}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="flex flex-wrap gap-2">
+                      {filteredFoods.map((food, idx) => (
+                        <span key={idx} className="bg-white border px-3 py-1.5 rounded-full text-xs font-medium shadow-sm">
+                          {food.cal100 != null && food.servG
+                            ? `${fmt(t('wlCaloriesItem'), { name: food.name, kcal: food.calories })} (${fmt(t('wlDualCal'), { cal100: food.cal100, grams: food.servG, calories: food.calories })})`
+                            : fmt(t('wlCaloriesItem'), { name: food.name, kcal: food.calories })}
+                          {isMinistryVerified(food.source) && (
+                            <span className="ml-1 inline-flex items-center gap-0.5 text-emerald-700 font-bold">🛡️ {t('wlMinistryBadge')}</span>
+                          )}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 {effectiveCuisine === 'egyptian' && (
                   <div className="text-[11px] text-gray-500 text-center px-2">{EGYPTIAN_DISCLAIMER}</div>
+                )}
+                {effectiveCuisine === 'tunisian' && (
+                  <div className="text-[11px] text-gray-500 text-center px-2">{TUNISIAN_DISCLAIMER}</div>
                 )}
 
                 <SaveProgressButton module="weightloss" inputs={form} results={result} />

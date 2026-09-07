@@ -27,7 +27,10 @@
           "cal_serv": 45,
           "healthy": true,
           "source": "USDA beef broth + معهد التغذية",
-          "notes": "بدون دهون زائدة"
+          "notes": "بدون دهون زائدة",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "شوربة الدجاج",
@@ -39,7 +42,10 @@
           "cal_serv": 70,
           "healthy": true,
           "source": "USDA chicken broth",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "شوربة الخضار المشكلة",
@@ -51,7 +57,10 @@
           "cal_serv": 80,
           "healthy": true,
           "source": "USDA vegetable soup",
-          "notes": "جزر بسلة كوسة بطاطس"
+          "notes": "جزر بسلة كوسة بطاطس",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "شوربة العدس الأصفر",
@@ -63,7 +72,10 @@
           "cal_serv": 170,
           "healthy": true,
           "source": "معهد التغذية - عدس 110سعر/100جم نابت مطبوخ يزيد",
-          "notes": "عالي البروتين والألياف"
+          "notes": "عالي البروتين والألياف",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "شوربة لسان عصفور",
@@ -75,7 +87,10 @@
           "cal_serv": 120,
           "healthy": false,
           "source": "USDA pasta soup",
-          "notes": "لسان عصفور 30جم + شوربة"
+          "notes": "لسان عصفور 30جم + شوربة",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "شوربة الشعرية",
@@ -87,7 +102,10 @@
           "cal_serv": 115,
           "healthy": false,
           "source": "USDA",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "شوربة الطماطم",
@@ -99,7 +117,10 @@
           "cal_serv": 65,
           "healthy": true,
           "source": "USDA tomato soup",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "شوربة البصل الفرنسية",
@@ -111,7 +132,10 @@
           "cal_serv": 105,
           "healthy": false,
           "source": "USDA French onion",
-          "notes": "بصل مكرمل + زبدة + جبنة"
+          "notes": "بصل مكرمل + زبدة + جبنة",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "شوربة الكريمة بالدجاج أو المشروم",
@@ -123,7 +147,10 @@
           "cal_serv": 195,
           "healthy": false,
           "source": "USDA cream soup",
-          "notes": "كريمة لباني ترفع الدهون"
+          "notes": "كريمة لباني ترفع الدهون",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "شوربة السي فود (المأكولات البحرية)",
@@ -135,7 +162,10 @@
           "cal_serv": 145,
           "healthy": true,
           "source": "USDA seafood soup",
-          "notes": "جمبري كابوريا سبيط"
+          "notes": "جمبري كابوريا سبيط",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "شوربة الكوارع",
@@ -147,7 +177,10 @@
           "cal_serv": 212,
           "healthy": false,
           "source": "تقديري - كوارع عالية الجيلاتين والدهون",
-          "notes": "عالية الكولاجين"
+          "notes": "عالية الكولاجين",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "شوربة لسان العصفور بالكبد والأوانص",
@@ -159,7 +192,10 @@
           "cal_serv": 180,
           "healthy": false,
           "source": "USDA - كبد 130سعر/100جم",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         }
       ]
     },
@@ -178,7 +214,10 @@
           "cal_serv": 370,
           "healthy": false,
           "source": "USDA beef stew",
-          "notes": "بصل كتير يقلل السعرات"
+          "notes": "بصل كتير يقلل السعرات",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "بفتيك اللحم المقلي بالبقسماط",
@@ -190,7 +229,10 @@
           "cal_serv": 367,
           "healthy": false,
           "source": "USDA breaded beef",
-          "notes": "مقلي"
+          "notes": "مقلي",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "لحم مسلوق (مع الشوربة)",
@@ -202,7 +244,10 @@
           "cal_serv": 247,
           "healthy": true,
           "source": "USDA boiled beef lean",
-          "notes": "بدون تحمير"
+          "notes": "بدون تحمير",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "لحم محمر بالسمن أو الزبدة",
@@ -214,7 +259,10 @@
           "cal_serv": 367,
           "healthy": false,
           "source": "USDA + سمن بلدي",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "كفتة اللحم المشوية على الفحم أو الفرن",
@@ -226,7 +274,10 @@
           "cal_serv": 292,
           "healthy": true,
           "source": "USDA grilled kofta",
-          "notes": "مشوية أفضل من مقلية"
+          "notes": "مشوية أفضل من مقلية",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "صينية اللحم بالبطاطس (طاجن بطاطس باللحمة)",
@@ -238,7 +289,10 @@
           "cal_serv": 312,
           "healthy": false,
           "source": "USDA potato beef casserole",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "فخدة خروف مشوية بالفرن",
@@ -250,7 +304,10 @@
           "cal_serv": 470,
           "healthy": false,
           "source": "USDA lamb leg roasted",
-          "notes": "ضاني عالي الدهون"
+          "notes": "ضاني عالي الدهون",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "ريش ضاني مشوية أو مقلية",
@@ -262,7 +319,10 @@
           "cal_serv": 442,
           "healthy": false,
           "source": "USDA lamb chops",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "طاجن البامية باللحمة",
@@ -274,7 +334,10 @@
           "cal_serv": 195,
           "healthy": true,
           "source": "USDA okra stew",
-          "notes": "بامية عالية الألياف"
+          "notes": "بامية عالية الألياف",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "طاجن البسلة باللحمة والجزر",
@@ -286,7 +349,10 @@
           "cal_serv": 212,
           "healthy": true,
           "source": "USDA pea stew",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "طاجن الفاصوليا البيضاء أو الجافة",
@@ -298,7 +364,10 @@
           "cal_serv": 237,
           "healthy": true,
           "source": "USDA white beans 110cal/100 نابت - مطبوخة",
-          "notes": "عالي البروتين النباتي"
+          "notes": "عالي البروتين النباتي",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "طاجن السبانخ بالحمص والكزبرة",
@@ -310,7 +379,10 @@
           "cal_serv": 155,
           "healthy": true,
           "source": "USDA spinach stew",
-          "notes": "حديد عالي"
+          "notes": "حديد عالي",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "طاجن الكوسة باللحمة المفرومة",
@@ -322,7 +394,10 @@
           "cal_serv": 180,
           "healthy": true,
           "source": "USDA zucchini mince",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "طاجن التورلي (خضار مشكل بالفرن)",
@@ -334,7 +409,10 @@
           "cal_serv": 137,
           "healthy": true,
           "source": "USDA mixed veg",
-          "notes": "بدون لحم أقل سعرات"
+          "notes": "بدون لحم أقل سعرات",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "طاجن البصل الصغيرة (القاورما)",
@@ -346,7 +424,10 @@
           "cal_serv": 220,
           "healthy": false,
           "source": "تقديري - بصل + لحمة + سمن",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "الكوارع المسلوقة والمحمصة أو بالفتة",
@@ -358,7 +439,10 @@
           "cal_serv": 437,
           "healthy": false,
           "source": "USDA trotters",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "الممبار المحشي بالرز والخلطة",
@@ -370,7 +454,10 @@
           "cal_serv": 370,
           "healthy": false,
           "source": "تقديري - ممبار + رز + قلي",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "الفشة والكرشة والمنبار (المسمط المصري)",
@@ -382,7 +469,10 @@
           "cal_serv": 250,
           "healthy": false,
           "source": "USDA offal",
-          "notes": "كبدة 130سعر/100"
+          "notes": "كبدة 130سعر/100",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "لسان العجل المسلوق والمحمر",
@@ -394,7 +484,10 @@
           "cal_serv": 247,
           "healthy": false,
           "source": "USDA beef tongue",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "الدماغ المقلي بالبيض والبقسماط",
@@ -406,7 +499,10 @@
           "cal_serv": 292,
           "healthy": false,
           "source": "USDA brain fried",
-          "notes": "عالي الكوليسترول"
+          "notes": "عالي الكوليسترول",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         }
       ]
     },
@@ -425,7 +521,10 @@
           "cal_serv": 330,
           "healthy": true,
           "source": "USDA roasted chicken",
-          "notes": "صدر أقل دهون"
+          "notes": "صدر أقل دهون",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "دجاج بانيه (شرائح الدجاج المقلي)",
@@ -437,7 +536,10 @@
           "cal_serv": 337,
           "healthy": false,
           "source": "USDA breaded chicken",
-          "notes": "مقلي يرفع السعرات 40%"
+          "notes": "مقلي يرفع السعرات 40%",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "دجاج مسلوق ومحمر",
@@ -449,7 +551,10 @@
           "cal_serv": 350,
           "healthy": true,
           "source": "USDA boiled chicken",
-          "notes": "مسلوق صحي محمر يزيد 20 سعر"
+          "notes": "مسلوق صحي محمر يزيد 20 سعر",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "حمام محشي أرز أو فريك",
@@ -461,7 +566,10 @@
           "cal_serv": 487,
           "healthy": false,
           "source": "تقديري - حمام + رز + تحمير",
-          "notes": "جوز حمام = 500جم"
+          "notes": "جوز حمام = 500جم",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "بط محشي أو مسلوق ومحمر",
@@ -473,7 +581,10 @@
           "cal_serv": 490,
           "healthy": false,
           "source": "USDA duck roasted 340cal/100 بالجلد",
-          "notes": "بط عالي الدهون جدا"
+          "notes": "بط عالي الدهون جدا",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "أوز مسلوق أو محمر",
@@ -485,7 +596,10 @@
           "cal_serv": 530,
           "healthy": false,
           "source": "USDA goose",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "أرانب مسلوقة ومحمرة (أو بالملوخية)",
@@ -497,7 +611,10 @@
           "cal_serv": 270,
           "healthy": true,
           "source": "USDA rabbit",
-          "notes": "أقل دهون من الدجاج"
+          "notes": "أقل دهون من الدجاج",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "الحمام الكداب (أوراك الدجاج المخلية والمحشية)",
@@ -509,7 +626,10 @@
           "cal_serv": 350,
           "healthy": false,
           "source": "تقديري - ورك مخلي محشي رز",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "الدجاج المشوي على الفحم أو الشواية",
@@ -521,7 +641,10 @@
           "cal_serv": 310,
           "healthy": true,
           "source": "USDA grilled chicken no skin",
-          "notes": "صحي - دهون قليلة"
+          "notes": "صحي - دهون قليلة",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         }
       ]
     },
@@ -540,7 +663,10 @@
           "cal_serv": 370,
           "healthy": false,
           "source": "USDA tilapia fried",
-          "notes": "مشوي 120سعر فقط"
+          "notes": "مشوي 120سعر فقط",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "سمك بوري مقلي",
@@ -552,7 +678,10 @@
           "cal_serv": 410,
           "healthy": false,
           "source": "USDA mullet",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "سمك بلطي أو بوري صينية بالفرن (بالبطاطس والليمون والطماطم)",
@@ -564,7 +693,10 @@
           "cal_serv": 287,
           "healthy": true,
           "source": "USDA baked fish with potato",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "سمك مشوي بالردة (بلطي وبوري)",
@@ -576,7 +708,10 @@
           "cal_serv": 236,
           "healthy": true,
           "source": "USDA grilled tilapia",
-          "notes": "أصح طريقة"
+          "notes": "أصح طريقة",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "سمك سنجاري بالفرن",
@@ -588,7 +723,10 @@
           "cal_serv": 312,
           "healthy": true,
           "source": "تقديري - سنجاري بصل طماطم",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "سمك صيادية (مع أرز الصيادية البني بالبصل المكرمل)",
@@ -600,7 +738,10 @@
           "cal_serv": 435,
           "healthy": false,
           "source": "تقديري - رز صيادية + سمك",
-          "notes": "الرز البني بالبصل يزيد"
+          "notes": "الرز البني بالبصل يزيد",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "سمك موسى مقلي",
@@ -612,7 +753,10 @@
           "cal_serv": 390,
           "healthy": false,
           "source": "USDA sole fried",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "جمبري مقلي بالبقسماط أو بالخلطة",
@@ -624,7 +768,10 @@
           "cal_serv": 315,
           "healthy": false,
           "source": "USDA shrimp breaded",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "صينية جمبري بالزبدة والثوم والكزبرة",
@@ -636,7 +783,10 @@
           "cal_serv": 290,
           "healthy": true,
           "source": "USDA shrimp butter",
-          "notes": "زبدة قليلة"
+          "notes": "زبدة قليلة",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "كابوريا مسلوقة بالبهارات",
@@ -648,7 +798,10 @@
           "cal_serv": 170,
           "healthy": true,
           "source": "USDA crab boiled",
-          "notes": "عالية البروتين قليلة دهون"
+          "notes": "عالية البروتين قليلة دهون",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "سبيط أو حبار مقلي (كاليماري)",
@@ -660,7 +813,10 @@
           "cal_serv": 262,
           "healthy": false,
           "source": "USDA calamari fried",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "طاجن سبيط أو سي فود بالفرن",
@@ -672,7 +828,10 @@
           "cal_serv": 237,
           "healthy": true,
           "source": "USDA seafood casserole",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "بطارخ الماكريل أو البوري المقلية",
@@ -684,7 +843,10 @@
           "cal_serv": 225,
           "healthy": false,
           "source": "USDA roe fried",
-          "notes": "عالية الكوليسترول"
+          "notes": "عالية الكوليسترول",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         }
       ]
     },
@@ -703,7 +865,10 @@
           "cal_serv": 330,
           "healthy": false,
           "source": "USDA rice + vermicelli",
-          "notes": "شعرية محمرة بزيت"
+          "notes": "شعرية محمرة بزيت",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "أرز أبيض عادي",
@@ -715,7 +880,10 @@
           "cal_serv": 260,
           "healthy": false,
           "source": "USDA white rice cooked",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "أرز حبة وحبة",
@@ -727,7 +895,10 @@
           "cal_serv": 290,
           "healthy": false,
           "source": "USDA - رز + شعرية",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "أرز مصري بالزبدة",
@@ -739,7 +910,10 @@
           "cal_serv": 350,
           "healthy": false,
           "source": "USDA rice + butter",
-          "notes": "زبدة تزيد 40سعر"
+          "notes": "زبدة تزيد 40سعر",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "أرز الصيادية البني (للأسماك)",
@@ -751,7 +925,10 @@
           "cal_serv": 310,
           "healthy": false,
           "source": "تقديري - رز ببصل مكرمل وزيت",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "أرز بالمعمر السكندري (بالحليب والقشطة واللحمة)",
@@ -763,7 +940,10 @@
           "cal_serv": 462,
           "healthy": false,
           "source": "تقديري - لبن قشطة سمن",
-          "notes": "عالي الدسم"
+          "notes": "عالي الدسم",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "محشي الكرنب (الملفوف)",
@@ -775,7 +955,10 @@
           "cal_serv": 212,
           "healthy": true,
           "source": "تقديري - كرنب رز طماطم زيت قليل",
-          "notes": "6 قطع ~250جم"
+          "notes": "6 قطع ~250جم",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "محشي ورق العنب",
@@ -787,7 +970,10 @@
           "cal_serv": 190,
           "healthy": true,
           "source": "USDA dolma 120cal/100",
-          "notes": "زيت زيتون"
+          "notes": "زيت زيتون",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "محشي الكوسة",
@@ -799,7 +985,10 @@
           "cal_serv": 155,
           "healthy": true,
           "source": "تقديري",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "محشي الباذنجان الأسود والأبيض",
@@ -811,7 +1000,10 @@
           "cal_serv": 170,
           "healthy": true,
           "source": "تقديري",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "محشي الفلفل الأخضر",
@@ -823,7 +1015,10 @@
           "cal_serv": 116,
           "healthy": true,
           "source": "تقديري",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "محشي الطماطم",
@@ -835,7 +1030,10 @@
           "cal_serv": 104,
           "healthy": true,
           "source": "تقديري",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "محشي البصل",
@@ -847,7 +1045,10 @@
           "cal_serv": 144,
           "healthy": true,
           "source": "تقديري",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "محشي الخس أو البنجر",
@@ -859,7 +1060,10 @@
           "cal_serv": 110,
           "healthy": true,
           "source": "تقديري",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "الملوخية الخضراء بالتقلية",
@@ -871,7 +1075,10 @@
           "cal_serv": 95,
           "healthy": true,
           "source": "USDA mulukhiyah + USDA تقلية بسيطة",
-          "notes": "بدون تقلية 25 سعر فقط"
+          "notes": "بدون تقلية 25 سعر فقط",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "الملوخية الناشفة",
@@ -883,7 +1090,10 @@
           "cal_serv": 112,
           "healthy": true,
           "source": "تقديري",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "الفتة المصرية بالخل والثوم والعيش المحمص",
@@ -895,7 +1105,10 @@
           "cal_serv": 533,
           "healthy": false,
           "source": "المعهد القومي للتغذية 533 سعر/300جم +2 قطعة لحم",
-          "notes": "مؤكد من الوزارة"
+          "notes": "مؤكد من الوزارة",
+          "confidence": 100,
+          "confidence_label": "✅ موثق 100% - المعهد القومي للتغذية",
+          "confidence_color": "green"
         },
         {
           "name": "مكرونة بالبشاميل (اللحمة المفرومة)",
@@ -907,7 +1120,10 @@
           "cal_serv": 412,
           "healthy": false,
           "source": "USDA baked pasta with meat sauce",
-          "notes": "بشاميل بلبن وزبدة"
+          "notes": "بشاميل بلبن وزبدة",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "رقاق باللحمة المفرومة (صينية الرقاق الطري أو المقرمش)",
@@ -919,7 +1135,10 @@
           "cal_serv": 390,
           "healthy": false,
           "source": "تقديري",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "جلاش باللحمة المفرومة",
@@ -931,7 +1150,10 @@
           "cal_serv": 410,
           "healthy": false,
           "source": "تقديري - جلاش سمن",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "مكرونة مسلوقة بالصلصة الحمراء أو بالزبدة",
@@ -943,7 +1165,10 @@
           "cal_serv": 250,
           "healthy": false,
           "source": "USDA pasta with tomato sauce",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "مكرونة محمرة بالمرقة",
@@ -955,7 +1180,10 @@
           "cal_serv": 290,
           "healthy": false,
           "source": "تقديري - محمرة بزيت + مرقة",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         }
       ]
     },
@@ -974,7 +1202,10 @@
           "cal_serv": 220,
           "healthy": true,
           "source": "المعهد القومي للتغذية 110 سعر/100جم فول نابت + ياسمينة 110 مسلوق",
-          "notes": "مؤكد"
+          "notes": "مؤكد",
+          "confidence": 100,
+          "confidence_label": "✅ موثق 100% - المعهد القومي للتغذية",
+          "confidence_color": "green"
         },
         {
           "name": "فول بالزيت والليمون والكمون",
@@ -986,7 +1217,10 @@
           "cal_serv": 270,
           "healthy": true,
           "source": "فول 110 + زيت زيتون 9سعر/جم",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "فول بالزبدة أو السمن البلدي",
@@ -998,7 +1232,10 @@
           "cal_serv": 330,
           "healthy": false,
           "source": "تقديري",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "فول بالطماطم والبصل",
@@ -1010,7 +1247,10 @@
           "cal_serv": 190,
           "healthy": true,
           "source": "تقديري",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "فول بالإسكندراني (بالطحينة والثوم والخل)",
@@ -1022,7 +1262,10 @@
           "cal_serv": 290,
           "healthy": false,
           "source": "فول + طحينة 90سعر/معلقة",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "فول بالبيض المسلوق أو المقلي",
@@ -1034,7 +1277,10 @@
           "cal_serv": 368,
           "healthy": true,
           "source": "المعهد القومي للتغذية 147.2سعر/100جم فول بالبيض + 368/250جم",
-          "notes": "مؤكد من المعهد"
+          "notes": "مؤكد من المعهد",
+          "confidence": 100,
+          "confidence_label": "✅ موثق 100% - المعهد القومي للتغذية",
+          "confidence_color": "green"
         },
         {
           "name": "الطعمية المصرية (الفلافل بالفول المدشوش والخضرة)",
@@ -1046,7 +1292,10 @@
           "cal_serv": 55,
           "healthy": false,
           "source": "USDA falafel 185/100",
-          "notes": "قرص متوسط 30جم =55سعر"
+          "notes": "قرص متوسط 30جم =55سعر",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "بيض عيون (مقلي بدون تقليب الصفار)",
@@ -1058,7 +1307,10 @@
           "cal_serv": 72,
           "healthy": false,
           "source": "USDA fried egg",
-          "notes": "بيضة واحدة"
+          "notes": "بيضة واحدة",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "أومليت بالخضار (طماطم، بصل، فلفل)",
@@ -1070,7 +1322,10 @@
           "cal_serv": 115,
           "healthy": true,
           "source": "USDA veg omelet",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "بيض مسلوق",
@@ -1082,7 +1337,10 @@
           "cal_serv": 70,
           "healthy": true,
           "source": "USDA boiled egg 68سعر/بيضة",
-          "notes": "بيضة 50جم"
+          "notes": "بيضة 50جم",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "بيض مدحرج (مسلوق ومحمر في السمن)",
@@ -1094,7 +1352,10 @@
           "cal_serv": 92,
           "healthy": false,
           "source": "تقديري - سمن",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "جبنة بيضاء بالطماطم والزيتون",
@@ -1106,7 +1367,10 @@
           "cal_serv": 145,
           "healthy": false,
           "source": "USDA white cheese",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "جبنة قريش بالزيت والزعتر أو الشطة",
@@ -1118,7 +1382,10 @@
           "cal_serv": 95,
           "healthy": true,
           "source": "USDA cottage cheese 95/100",
-          "notes": "قريش سادة 80"
+          "notes": "قريش سادة 80",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "جبنة مقلية بالبيض والبقسماط",
@@ -1130,7 +1397,10 @@
           "cal_serv": 285,
           "healthy": false,
           "source": "تقديري - مقلي",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "القشطة والزبادي واللبن الرائب",
@@ -1142,7 +1412,10 @@
           "cal_serv": 95,
           "healthy": false,
           "source": "USDA - قشطة 195/100 زبادي 60/100 متوسط",
-          "notes": "قشطة 195 زبادي 60 لبن رايب 45"
+          "notes": "قشطة 195 زبادي 60 لبن رايب 45",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "المخللات المنزلية (خيار، ليمون معصفر، زيتون، جزر، شلجم)",
@@ -1154,7 +1427,10 @@
           "cal_serv": 12,
           "healthy": false,
           "source": "USDA pickles",
-          "notes": "ملح عالي"
+          "notes": "ملح عالي",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "الطحينة البيضاء الخام والمخففة",
@@ -1166,7 +1442,10 @@
           "cal_serv": 88,
           "healthy": false,
           "source": "USDA tahini 590/100",
-          "notes": "معلقة 15جم=88سعر"
+          "notes": "معلقة 15جم=88سعر",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "بابا غنوج (سلطة الباذنجان المشوي بالطحينة)",
@@ -1178,7 +1457,10 @@
           "cal_serv": 65,
           "healthy": true,
           "source": "USDA baba ganoush",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "سلطة الحمص بالطحينة",
@@ -1190,7 +1472,10 @@
           "cal_serv": 165,
           "healthy": true,
           "source": "USDA hummus",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         }
       ]
     },
@@ -1209,7 +1494,10 @@
           "cal_serv": 33,
           "healthy": true,
           "source": "USDA mixed salad",
-          "notes": "بدون زيت"
+          "notes": "بدون زيت",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "سلطة الطماطم المتبلة بالثوم والكمون والخل",
@@ -1221,7 +1509,10 @@
           "cal_serv": 42,
           "healthy": true,
           "source": "تقديري",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "سلطة البنجر المسلوق بالثوم والكمون",
@@ -1233,7 +1524,10 @@
           "cal_serv": 48,
           "healthy": true,
           "source": "USDA beet salad",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "سلطة الكولسلو (الملفوف والجزر بالمايونيز)",
@@ -1245,7 +1539,10 @@
           "cal_serv": 125,
           "healthy": false,
           "source": "USDA coleslaw",
-          "notes": "مايونيز يرفع"
+          "notes": "مايونيز يرفع",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "سلطة البطاطس المسلوقة والمهروسة بالثوم والزيت",
@@ -1257,7 +1554,10 @@
           "cal_serv": 142,
           "healthy": true,
           "source": "USDA potato salad",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "سلطة الخيار باللبن الرائب (التزاتيكي)",
@@ -1269,7 +1569,10 @@
           "cal_serv": 38,
           "healthy": true,
           "source": "USDA tzatziki",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "سلطة الجرجير والبصل والسماق",
@@ -1281,7 +1584,10 @@
           "cal_serv": 28,
           "healthy": true,
           "source": "تقديري",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         }
       ]
     },
@@ -1300,7 +1606,10 @@
           "cal_serv": 245,
           "healthy": false,
           "source": "USDA baladi bread",
-          "notes": "رغيف 100جم"
+          "notes": "رغيف 100جم",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "عيش الشامي والكايزر",
@@ -1312,7 +1621,10 @@
           "cal_serv": 212,
           "healthy": false,
           "source": "USDA pita",
-          "notes": "رغيف 80جم"
+          "notes": "رغيف 80جم",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "القرص الفلاحي الطرية (السادة وبالقشطة)",
@@ -1324,7 +1636,10 @@
           "cal_serv": 228,
           "healthy": false,
           "source": "تقديري - دقيق سمن قشطة",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "القرص بالعجوة (الملبن أو التمر)",
@@ -1336,7 +1651,10 @@
           "cal_serv": 252,
           "healthy": false,
           "source": "تقديري - عجوة سكر",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "القراقيش الناشفة باليانسون والشمر",
@@ -1348,7 +1666,10 @@
           "cal_serv": 170,
           "healthy": false,
           "source": "تقديري - مقرمشات سمن",
-          "notes": "قطعة 40جم"
+          "notes": "قطعة 40جم",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "البقسماط المقرمش السادة وبالسمسم",
@@ -1360,7 +1681,10 @@
           "cal_serv": 118,
           "healthy": false,
           "source": "USDA rusk",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "كعك العيد الناعم (بالعجمية أو الملبن أو الجوز)",
@@ -1372,7 +1696,10 @@
           "cal_serv": 192,
           "healthy": false,
           "source": "المعهد القومي - كحك 200 سعر/قطعة + وزارة الصحة",
-          "notes": "مؤكد 200سعر/قطعة 40جم"
+          "notes": "مؤكد 200سعر/قطعة 40جم",
+          "confidence": 100,
+          "confidence_label": "✅ موثق 100% - المعهد القومي للتغذية",
+          "confidence_color": "green"
         },
         {
           "name": "بسكويت النشادر وبسكويت البرتقال",
@@ -1384,7 +1711,10 @@
           "cal_serv": 126,
           "healthy": false,
           "source": "USDA biscuits",
-          "notes": "قطعة 30جم"
+          "notes": "قطعة 30جم",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "البيتي فور المشكل بالمربي والشوكولاتة",
@@ -1396,7 +1726,10 @@
           "cal_serv": 93,
           "healthy": false,
           "source": "USDA petit four",
-          "notes": "قطعة 20جم"
+          "notes": "قطعة 20جم",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "الغريبة الناعمة بالبندق",
@@ -1408,7 +1741,10 @@
           "cal_serv": 99,
           "healthy": false,
           "source": "وزارة الصحة - غريبة 120سعر/قطعة",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "الميني فاي والبتي بان والكرواسون",
@@ -1420,7 +1756,10 @@
           "cal_serv": 219,
           "healthy": false,
           "source": "USDA croissant",
-          "notes": "كرواسون سادة 60جم"
+          "notes": "كرواسون سادة 60جم",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         }
       ]
     },
@@ -1439,7 +1778,10 @@
           "cal_serv": 285,
           "healthy": false,
           "source": "تقديري - سميد سكر سمن شربات",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "الكنافة النابلسية بالجبنة",
@@ -1451,7 +1793,10 @@
           "cal_serv": 315,
           "healthy": false,
           "source": "تقديري",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "الكنافة البلدي بالقشطة أو المهلبية",
@@ -1463,7 +1808,10 @@
           "cal_serv": 361,
           "healthy": false,
           "source": "المعهد القومي 361سعر/100جم كنافة كريمة مؤكد",
-          "notes": "مؤكد من المعهد"
+          "notes": "مؤكد من المعهد",
+          "confidence": 100,
+          "confidence_label": "✅ موثق 100% - المعهد القومي للتغذية",
+          "confidence_color": "green"
         },
         {
           "name": "الكنافة بالمانجو والمكسرات",
@@ -1475,7 +1823,10 @@
           "cal_serv": 285,
           "healthy": false,
           "source": "تقديري",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "القطايف العصافيري المحشية بالقشطة أو الجبنة",
@@ -1487,7 +1838,10 @@
           "cal_serv": 135,
           "healthy": false,
           "source": "تقديري",
-          "notes": "قطعة 60جم"
+          "notes": "قطعة 60جم",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "القطايف الكبيرة المحشية مكسرات ومقلية",
@@ -1499,7 +1853,10 @@
           "cal_serv": 252,
           "healthy": false,
           "source": "تقديري - مقلية + شربات",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "البقلاوة (الجلاش الحلو بالمكسرات والعسل)",
@@ -1511,7 +1868,10 @@
           "cal_serv": 158,
           "healthy": false,
           "source": "USDA baklava",
-          "notes": "قطعة 40جم"
+          "notes": "قطعة 40جم",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "بلح الشام المقرمش",
@@ -1523,7 +1883,10 @@
           "cal_serv": 162,
           "healthy": false,
           "source": "تقديري - مقلي + شربات",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "زلابيا (لقمة القاضي أو العوامة)",
@@ -1535,7 +1898,10 @@
           "cal_serv": 157,
           "healthy": false,
           "source": "تقديري",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "صوابع زينب",
@@ -1547,7 +1913,10 @@
           "cal_serv": 167,
           "healthy": false,
           "source": "تقديري",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "جلاش بالكريمة أو المهلبية",
@@ -1559,7 +1928,10 @@
           "cal_serv": 245,
           "healthy": false,
           "source": "تقديري",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "أم علي بالرقاق والحليب والمكسرات والزبيب",
@@ -1571,7 +1943,10 @@
           "cal_serv": 352,
           "healthy": false,
           "source": "تقديري - لبن مكسرات سكر",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "الأرز بلبن التقليدي والمحمر بالفرن",
@@ -1583,7 +1958,10 @@
           "cal_serv": 250,
           "healthy": false,
           "source": "USDA rice pudding",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "المهلبية بالحليب أو قمر الدين",
@@ -1595,7 +1973,10 @@
           "cal_serv": 142,
           "healthy": false,
           "source": "USDA milk pudding",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "الكشك المصري الصعيدي والفلاحي",
@@ -1607,7 +1988,10 @@
           "cal_serv": 172,
           "healthy": true,
           "source": "تقديري - قمح لبن",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "الكسكسي المصري بالسكر واللبن أو المكسرات",
@@ -1619,7 +2003,10 @@
           "cal_serv": 330,
           "healthy": false,
           "source": "USDA couscous sweet",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "البليلة باللبن والمكسرات",
@@ -1631,7 +2018,10 @@
           "cal_serv": 250,
           "healthy": true,
           "source": "تقديري - قمح بليلة لبن",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "التورتات والكيكات الإسفنجية الأساسية",
@@ -1643,7 +2033,10 @@
           "cal_serv": 236,
           "healthy": false,
           "source": "USDA sponge cake",
-          "notes": "قطعة 80جم"
+          "notes": "قطعة 80جم",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "السويسرول بالمربى أو الشوكولاتة",
@@ -1655,7 +2048,10 @@
           "cal_serv": 189,
           "healthy": false,
           "source": "USDA swiss roll",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "البودنج بأنواعه (الشوكولاتة والفانيليا)",
@@ -1667,7 +2063,10 @@
           "cal_serv": 138,
           "healthy": false,
           "source": "USDA pudding",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         }
       ]
     },
@@ -1686,7 +2085,10 @@
           "cal_serv": 70,
           "healthy": true,
           "source": "USDA lemonade - سكر خفيف",
-          "notes": "بدون سكر 15 سعر"
+          "notes": "بدون سكر 15 سعر",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "التمر الهندي المنقوع والمصفى",
@@ -1698,7 +2100,10 @@
           "cal_serv": 95,
           "healthy": true,
           "source": "تقديري - تمر هندي سكر",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "شراب الخروب الطبيعي",
@@ -1710,7 +2115,10 @@
           "cal_serv": 105,
           "healthy": true,
           "source": "تقديري",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "عصير العرقسوس التقليدي",
@@ -1722,7 +2130,10 @@
           "cal_serv": 80,
           "healthy": false,
           "source": "تقديري - عرقسوس سكر",
-          "notes": "يرفع الضغط"
+          "notes": "يرفع الضغط",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "مشروب السوبيا بالحليب وجوز الهند",
@@ -1734,7 +2145,10 @@
           "cal_serv": 170,
           "healthy": false,
           "source": "تقديري - لبن جوز هند سكر رز",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "قمر الدين (المصنوع من المشمش المجفف)",
@@ -1746,7 +2160,10 @@
           "cal_serv": 130,
           "healthy": false,
           "source": "تقديري",
-          "notes": ""
+          "notes": "",
+          "confidence": 70,
+          "confidence_label": "70% - تقديري",
+          "confidence_color": "orange"
         },
         {
           "name": "كركديه بارد (عناب) وكركديه ساخن",
@@ -1758,7 +2175,10 @@
           "cal_serv": 45,
           "healthy": true,
           "source": "USDA hibiscus - سكر خفيف",
-          "notes": "بدون سكر 5 سعر"
+          "notes": "بدون سكر 5 سعر",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "حلبة مسلوقة وحلبة حصى",
@@ -1770,7 +2190,10 @@
           "cal_serv": 87,
           "healthy": true,
           "source": "USDA fenugreek tea + عسل",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "شاي كشري ونعناع وأعشاب (ينسون، بابونج، قرفة)",
@@ -1782,7 +2205,10 @@
           "cal_serv": 5,
           "healthy": true,
           "source": "USDA tea unsweetened",
-          "notes": "بدون سكر - بمعلقة سكر 20 سعر"
+          "notes": "بدون سكر - بمعلقة سكر 20 سعر",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "عصير البرتقال البلدي الطازج",
@@ -1794,7 +2220,10 @@
           "cal_serv": 112,
           "healthy": true,
           "source": "USDA orange juice 45/100",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "عصير المانجو والجوافة والفراولة بالحليب",
@@ -1806,7 +2235,10 @@
           "cal_serv": 170,
           "healthy": true,
           "source": "USDA - مانجو 60 + لبن",
-          "notes": "جوافة 68 فراولة 32"
+          "notes": "جوافة 68 فراولة 32",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "عصير الموز بالحليب",
@@ -1818,7 +2250,10 @@
           "cal_serv": 212,
           "healthy": true,
           "source": "USDA banana milk",
-          "notes": ""
+          "notes": "",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         },
         {
           "name": "عصير قصب السكر الطبيعي",
@@ -1830,9 +2265,17 @@
           "cal_serv": 180,
           "healthy": false,
           "source": "USDA sugarcane juice 72/100",
-          "notes": "سكر عالي"
+          "notes": "سكر عالي",
+          "confidence": 85,
+          "confidence_label": "85% - USDA + وصفة تقليدية",
+          "confidence_color": "yellow"
         }
       ]
     }
-  ]
+  ],
+  "confidence_guide": {
+    "100": "المعهد القومي للتغذية - وزارة الصحة - تحليل معملي مؤكد",
+    "85": "USDA FoodData + وصفة تونسية/مصرية تقليدية - محسوب من المكونات - أغلب الملف",
+    "70": "تقديري - أطباق نادرة أو متغيرة جدا حسب البيت (عصبان مجفف، مخللات بيتية، حلويات بيتية)"
+  }
 }

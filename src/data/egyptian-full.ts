@@ -15,6 +15,12 @@ export interface EgyptianFullDish {
   servG: number;
   healthy: boolean;
   source: string;
+  p100: number;
+  c100: number;
+  f100: number;
+  confidence: number;
+  confidenceLabel: string;
+  confidenceColor: 'green' | 'yellow' | 'orange';
   cooking?: string;
   note?: string;
 }
@@ -34,6 +40,9 @@ type KitchenCategory = {
     healthy: boolean;
     source: string;
     notes: string;
+    confidence: number;
+    confidence_label: string;
+    confidence_color: 'green' | 'yellow' | 'orange';
   }>;
 };
 
@@ -71,6 +80,12 @@ export const EGYPTIAN_FULL: EgyptianFullDish[] = raw.flatMap((cat) =>
       servG: d.serv_g,
       healthy: d.healthy,
       source: d.source,
+      p100: d.p,
+      c100: d.c,
+      f100: d.f,
+      confidence: d.confidence,
+      confidenceLabel: d.confidence_label,
+      confidenceColor: d.confidence_color,
       note: d.notes || undefined,
     };
   }),
