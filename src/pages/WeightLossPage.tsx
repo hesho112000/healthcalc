@@ -41,7 +41,11 @@ const slotOf = (meal: MealPlan): 'breakfast' | 'lunch' | 'dinner' | 'snack' =>
 
 const shuffle = <T,>(arr: T[]): T[] => [...arr].sort(() => Math.random() - 0.5);
 
-interface SwapAlt { name: string; nameAr?: string; calories: number; protein: number; carbs: number; fat: number }
+interface SwapAlt { name: string; nameAr?: string; calories: number; protein: number; carbs: number; fat: number; best?: string }
+interface SwapItem extends SwapAlt { qty: number }
+
+const slotWordKey = (best?: string): '' | 'wlMealBreakfast' | 'wlMealLunch' | 'wlMealDinner' | 'wlMealSnack' =>
+  best === 'breakfast' ? 'wlMealBreakfast' : best === 'lunch' ? 'wlMealLunch' : best === 'dinner' ? 'wlMealDinner' : best === 'snack' ? 'wlMealSnack' : '';
 
 const buildAlternatives = (meal: MealPlan): SwapAlt[] => {
   const slot = slotOf(meal);
@@ -49,7 +53,7 @@ const buildAlternatives = (meal: MealPlan): SwapAlt[] => {
   let near = pool.filter((f) => Math.abs(f.calories - meal.calories) <= 50);
   if (near.length < 5) near = [...near, ...pool].filter((v, i, a) => a.findIndex((x) => x.name === v.name) === i);
   return shuffle(near).slice(0, 5).map((f) => ({
-    name: f.name, nameAr: f.name_ar, calories: f.calories, protein: f.protein, carbs: f.carbs, fat: f.fat,
+    name: f.name, nameAr: f.name_ar, calories: f.calories, protein: f.protein, carbs: f.carbs, fat: f.fat, best: (f.mealType ?? '') as string,
   }));
 };
 
@@ -102,6 +106,7 @@ const WeightLossPage: React.FC = () => {
   const [swapped, setSwapped] = useState<Record<number, MealPlan>>({});
   const [portions, setPortions] = useState<Record<number, number>>({});
   const [customSwap, setCustomSwap] = useState('');
+  const [selectedSwaps, setSelectedSwaps] = useState<Record<number, SwapItem[]>>({});
 
   const tdee = useMemo(() => {
     const base = calculateFullResults({ ...form, goal: 'maintain' }, undefined, language);
@@ -170,17 +175,61 @@ const WeightLossPage: React.FC = () => {
     return acc;
   }, { kcal: 0, protein: 0 }), [dayMeals, swapped, portions]);
 
-  const applySwap = (idx: number, alt: SwapAlt) => {
-    const base = swapped[idx] ?? dayMeals[idx];
-    setSwapped(prev => ({ ...prev, [idx]: { ...base, meal: alt.name, nameEn: alt.name, nameAr: alt.nameAr, calories: alt.calories, protein: alt.protein, carbs: alt.carbs, fat: alt.fat, items: [language === 'ar' ? (alt.nameAr ?? alt.name) : alt.name], description: '' } }));
-    setSwapOpen(null);
+  const toggleSwapSel = (idx: number, alt: SwapAlt) => {
+    setSelectedSwaps(prev => {
+      const cur = prev[idx] ?? [];
+      return cur.some(s => s.name === alt.name)
+        ? { ...prev, [idx]: cur.filter(s => s.name !== alt.name) }
+        : { ...prev, [idx]: [...cur, { ...alt, qty: 150 }] };
+    });
+  };
+
+  const setSwapQty = (idx: number, name: string, qty: number) => {
+    setSelectedSwaps(prev => ({ ...prev, [idx]: (prev[idx] ?? []).map(s => (s.name === name ? { ...s, qty } : s)) }));
+  };
+
+  const checkCustom = (idx: number) => {
+    const q = customSwap.trim();
+    if (!q) return;
+    const found = FOODS_DATABASE.find((f) => f.name.toLowerCase().includes(q.toLowerCase()) || (f.name_ar || '').includes(q));
+    toggleSwapSel(idx, found
+      ? { name: found.name, nameAr: found.name_ar, calories: found.calories, protein: found.protein, carbs: found.carbs, fat: found.fat, best: (found.mealType ?? '') as string }
+      : { name: q, calories: 200, protein: 10, carbs: 20, fat: 8 });
     setCustomSwap('');
   };
 
-  const applyCustomSwap = (idx: number) => {
-    const q = customSwap.trim().toLowerCase();
-    const found = FOODS_DATABASE.find((f) => f.name.toLowerCase().includes(q) || (f.name_ar || '').includes(customSwap.trim()));
-    applySwap(idx, found ? { name: found.name, nameAr: found.name_ar, calories: found.calories, protein: found.protein, carbs: found.carbs, fat: found.fat } : { name: customSwap.trim(), calories: 200, protein: 10, carbs: 20, fat: 8 });
+  const saveCombined = (idx: number) => {
+    const items = selectedSwaps[idx] ?? [];
+    if (!items.length) return;
+    const base = swapped[idx] ?? dayMeals[idx];
+    const totals = items.reduce((acc, s) => {
+      const scale = s.qty / 150;
+      acc.calories += Math.round(s.calories * scale);
+      acc.protein += Math.round(s.protein * scale);
+      acc.carbs += Math.round(s.carbs * scale);
+      acc.fat += Math.round(s.fat * scale);
+      return acc;
+    }, { calories: 0, protein: 0, carbs: 0, fat: 0 });
+    const label = items.map(i => i.name).join(' + ');
+    const arLabel = items.map(i => i.nameAr ?? i.name).join(' + ');
+    setSwapped(prev => ({
+      ...prev,
+      [idx]: {
+        ...base,
+        meal: base.meal,
+        nameEn: label,
+        nameAr: arLabel,
+        calories: totals.calories,
+        protein: totals.protein,
+        carbs: totals.carbs,
+        fat: totals.fat,
+        items: [language === 'ar' ? arLabel : label],
+        description: items.map(i => `${language === 'ar' ? (i.nameAr ?? i.name) : i.name} (${i.qty}g)`).join(', '),
+      },
+    }));
+    setSwapOpen(null);
+    setSelectedSwaps(prev => ({ ...prev, [idx]: [] }));
+    setCustomSwap('');
   };
 
   const handleAddMeal = useCallback((meal: MealPlan) => {
@@ -336,34 +385,59 @@ const WeightLossPage: React.FC = () => {
                           <span className="text-xs font-bold text-gray-700 shrink-0 whitespace-nowrap">{fmt(t('wlGrams'), { g: grams })} · {scaled.calories} kcal</span>
                         </div>
 
-                        {swapOpen === idx && (
-                          <div className="absolute z-10 p-3 bg-white border border-gray-200 rounded-xl shadow-xl w-72 right-0 -bottom-2 translate-y-full">
-                            <div className="text-sm font-bold text-gray-900">{t('wlSwapTitle')}</div>
-                            <div className="mt-2 space-y-1 max-h-60 overflow-y-auto scrollbar-thin">
-                              {alts.map((alt, i) => (
-                                <button
-                                  key={i}
-                                  type="button"
-                                  onClick={() => applySwap(idx, alt)}
-                                  className="w-full text-left px-3 py-2 rounded-lg hover:bg-emerald-50 border border-transparent hover:border-emerald-200 transition-all"
-                                >
-                                  <span className="text-xs font-semibold text-gray-800">{language === 'ar' ? (alt.nameAr ?? alt.name) : alt.name}</span>
-                                  <span className="block text-[11px] text-gray-500">{fmt(t('wlSwapAlt'), { kcal: alt.calories, protein: alt.protein })}</span>
-                                </button>
-                              ))}
+                        {swapOpen === idx && (() => {
+                          const sel = selectedSwaps[idx] ?? [];
+                          const selTotal = sel.reduce((a, s) => a + Math.round(s.calories * s.qty / 150), 0);
+                          return (
+                            <div className="absolute z-10 p-3 bg-white border border-gray-200 rounded-xl shadow-xl w-80 right-0 -bottom-2 translate-y-full max-h-[70vh] overflow-y-auto scrollbar-thin">
+                              <div className="text-sm font-bold text-gray-900">{t('wlSwapTitle')}</div>
+                              <div className="mt-1 text-[11px] font-semibold text-gray-600">{fmt(t('wlSwapSelected'), { n: sel.length, kcal: selTotal })}</div>
+                              <div className="mt-2 space-y-1">
+                                {alts.map((alt, i) => {
+                                  const checked = sel.some(s => s.name === alt.name);
+                                  const rowItem = sel.find(s => s.name === alt.name);
+                                  const slotKey = slotWordKey(alt.best);
+                                  return (
+                                    <label key={i} className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all ${checked ? 'bg-emerald-50 border-emerald-500 border-2' : 'bg-white border-gray-200 hover:border-gray-300 hover:bg-gray-50'}`}>
+                                      <div className={`w-5 h-5 rounded-md border-2 flex items-center justify-center flex-shrink-0 ${checked ? 'bg-emerald-600 border-emerald-600' : 'border-gray-300 bg-white'}`}>
+                                        {checked && <span className="text-white text-xs font-bold">✓</span>}
+                                      </div>
+                                      <input type="checkbox" className="hidden" checked={checked} onChange={() => toggleSwapSel(idx, alt)} />
+                                      <div className="flex-1 min-w-0">
+                                        <div className="text-sm font-medium text-gray-800">{language === 'ar' ? (alt.nameAr ?? alt.name) : alt.name}</div>
+                                        <div className="text-[11px] text-gray-500">{alt.calories} kcal • {alt.protein}g P{slotKey ? ` • ${t('commonBest')}: ${t(slotKey)}` : ''}</div>
+                                      </div>
+                                      {checked && (
+                                        <div className="flex items-center gap-2 flex-shrink-0">
+                                          <input type="range" min={50} max={300} step={25} value={rowItem?.qty ?? 150} onChange={(e) => setSwapQty(idx, alt.name, +e.target.value)} className="w-20 h-1 accent-emerald-600" />
+                                          <span className="text-xs font-bold text-gray-700 w-10 text-right">{rowItem?.qty ?? 150}g</span>
+                                        </div>
+                                      )}
+                                    </label>
+                                  );
+                                })}
+                              </div>
+                              <div className="mt-3 pt-3 border-t flex gap-2">
+                                <input
+                                  value={customSwap}
+                                  onChange={(e) => setCustomSwap(e.target.value)}
+                                  onKeyDown={(e) => e.key === 'Enter' && checkCustom(idx)}
+                                  placeholder={t('wlSwapCustomPlaceholder')}
+                                  className="flex-1 h-8 px-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:ring-1 focus:ring-emerald-300"
+                                />
+                                <button type="button" onClick={() => checkCustom(idx)} className="text-xs text-emerald-600 font-bold shrink-0">{t('wlcCheck')}</button>
+                              </div>
+                              <button
+                                type="button"
+                                disabled={sel.length === 0}
+                                onClick={() => saveCombined(idx)}
+                                className={`mt-3 w-full h-10 rounded-xl text-sm font-bold transition-all ${sel.length ? 'bg-emerald-600 text-white hover:bg-emerald-700' : 'bg-emerald-100 text-emerald-400 cursor-not-allowed'}`}
+                              >
+                                {sel.length ? fmt(t('wlSwapSaveBtn'), { n: sel.length, kcal: selTotal }) : t('wlSwapSaveDisabled')}
+                              </button>
                             </div>
-                            <div className="mt-2 pt-2 border-t flex gap-1.5">
-                              <input
-                                value={customSwap}
-                                onChange={(e) => setCustomSwap(e.target.value)}
-                                onKeyDown={(e) => e.key === 'Enter' && applyCustomSwap(idx)}
-                                placeholder={t('wlSwapCustomPlaceholder')}
-                                className="flex-1 h-8 px-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:ring-1 focus:ring-emerald-300"
-                              />
-                              <button type="button" onClick={() => applyCustomSwap(idx)} className="text-xs text-emerald-600 font-bold shrink-0">{t('wlcCheck')}</button>
-                            </div>
-                          </div>
-                        )}
+                          );
+                        })()}
                       </div>
                     );
                   })}

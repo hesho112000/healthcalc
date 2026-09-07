@@ -1019,6 +1019,13 @@ type TranslationKeys = {
   wlSwapAlt: string;
   wlSwapBtn: string;
   wlfClearCuisine: string;
+  wlSwapSelected: string;
+  wlSwapSaveBtn: string;
+  wlSwapSaveDisabled: string;
+  wlMealBreakfast: string;
+  wlMealLunch: string;
+  wlMealDinner: string;
+  wlMealSnack: string;
   dbLabInterpreter: string;
   dbLabsEmpty: string;
   dbBpClassification: string;
@@ -2294,6 +2301,13 @@ export const translations: Record<Language, TranslationKeys> = {
     wlSwapAlt: '{kcal} kcal | {protein} g P',
     wlSwapBtn: 'Swap',
     wlfClearCuisine: 'Remove cuisine',
+    wlSwapSelected: 'Selected: {n} meals - Total {kcal} kcal',
+    wlSwapSaveBtn: '✓ Save ({n} meals - {kcal} kcal)',
+    wlSwapSaveDisabled: 'Choose at least one meal',
+    wlMealBreakfast: 'Breakfast',
+    wlMealLunch: 'Lunch',
+    wlMealDinner: 'Dinner',
+    wlMealSnack: 'Snack',
     dbLabInterpreter: 'Lab Results Interpreter',
     dbLabsEmpty: 'Enter your lab values on the left panel to get instant interpretation based on ADA medical guidelines.',
     dbBpClassification: 'Blood Pressure Classification (AHA)',
@@ -3545,6 +3559,13 @@ mbFruits: 'Fruits',
     wlSwapAlt: '{kcal} kcal | {protein} g P',
     wlSwapBtn: 'Swap',
     wlfClearCuisine: 'Remove cuisine',
+    wlSwapSelected: 'Selected: {n} meals - Total {kcal} kcal',
+    wlSwapSaveBtn: '✓ Save ({n} meals - {kcal} kcal)',
+    wlSwapSaveDisabled: 'Choose at least one meal',
+    wlMealBreakfast: 'Breakfast',
+    wlMealLunch: 'Lunch',
+    wlMealDinner: 'Dinner',
+    wlMealSnack: 'Snack',
     dbLabInterpreter: 'Interpréteur de Résultats de Laboratoire',
     dbLabsEmpty: 'Entrez vos valeurs de laboratoire dans le panneau de gauche pour une interprétation instantanée basée sur les directives médicales de l\'ADA.',
     dbBpClassification: 'Classification de la Pression Artérielle (AHA)',
@@ -4766,6 +4787,13 @@ mbFruits: 'Fruits',
     wlSwapAlt: '{kcal} kcal | {protein} g P',
     wlSwapBtn: 'Swap',
     wlfClearCuisine: 'Remove cuisine',
+    wlSwapSelected: 'Selected: {n} meals - Total {kcal} kcal',
+    wlSwapSaveBtn: '✓ Save ({n} meals - {kcal} kcal)',
+    wlSwapSaveDisabled: 'Choose at least one meal',
+    wlMealBreakfast: 'Breakfast',
+    wlMealLunch: 'Lunch',
+    wlMealDinner: 'Dinner',
+    wlMealSnack: 'Snack',
     dbLabInterpreter: 'Interpretador de Resultados de Laboratorio',
     dbLabsEmpty: 'Introduce tus valores de laboratorio en el panel izquierdo para obtener una interpretación instantánea según las guías médicas de la ADA.',
     dbBpClassification: 'Clasificación de la Presión Arterial (AHA)',
@@ -5987,6 +6015,13 @@ mbFruits: 'Fruits',
     wlSwapAlt: '{kcal} سعرة | {protein} جم بروتين',
     wlSwapBtn: 'بدل',
     wlfClearCuisine: 'إزالة المطبخ',
+    wlSwapSelected: 'المحدد: {n} وجبات - إجمالي {kcal} سعرة',
+    wlSwapSaveBtn: '✓ حفظ ({n} وجبات - {kcal} سعرة)',
+    wlSwapSaveDisabled: 'اختار وجبة واحدة على الأقل',
+    wlMealBreakfast: 'فطار',
+    wlMealLunch: 'غدا',
+    wlMealDinner: 'عشاء',
+    wlMealSnack: 'سناك',
     dbLabInterpreter: 'مفسّر نتائج المختبر',
     dbLabsEmpty: 'أدخل قيم المختبر الخاصة بك في اللوحة اليسرى للحصول على تفسير فوري وفقًا للإرشادات الطبية لـ ADA.',
     dbBpClassification: 'تصنيف ضغط الدم (AHA)',
