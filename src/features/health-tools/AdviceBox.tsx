@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { calculateIdealWeight, calculateBMR } from '../../utils/calculations_expanded';
 import type { HealthGoal } from '../../types';
@@ -12,21 +12,12 @@ export interface AdviceBoxProps {
   goal: HealthGoal;
 }
 
-type ConditionKey = 'diabetes' | 'bp' | 'cholesterol';
-
-const CONDITIONS: Array<{ key: ConditionKey; emoji: string; nameKey: 'adviceCondDiabetes' | 'adviceCondBp' | 'adviceCondCholesterol'; tipKey: 'adviceCondDiabetesTip' | 'adviceCondBpTip' | 'adviceCondCholesterolTip' }> = [
-  { key: 'diabetes', emoji: '🍬', nameKey: 'adviceCondDiabetes', tipKey: 'adviceCondDiabetesTip' },
-  { key: 'bp', emoji: '❤️', nameKey: 'adviceCondBp', tipKey: 'adviceCondBpTip' },
-  { key: 'cholesterol', emoji: '🩸', nameKey: 'adviceCondCholesterol', tipKey: 'adviceCondCholesterolTip' },
-];
-
 const fmt = (template: string, vars: Record<string, string | number>): string =>
   template.replace(/\{(\w+)\}/g, (_, k) => (k in vars ? String(vars[k]) : `{${k}}`));
 
 const AdviceBox: React.FC<AdviceBoxProps> = ({ weight, height, age, gender, targetCalories, goal }) => {
   const { language, t } = useLanguage();
   const ar = language === 'ar';
-  const [conditions, setConditions] = useState<ConditionKey[]>([]);
 
   const advice = useMemo(() => {
     if (!weight || !height || height <= 0) return null;
@@ -52,13 +43,6 @@ const AdviceBox: React.FC<AdviceBoxProps> = ({ weight, height, age, gender, targ
   const pG = Math.round((targetCalories * 0.3) / 4);
   const cG = Math.round((targetCalories * 0.45) / 4);
   const fG = Math.round((targetCalories * 0.25) / 9);
-
-  const chip = (c: (typeof CONDITIONS)[number]) =>
-    conditions.includes(c.key)
-      ? conditions.filter((k) => k !== c.key)
-      : [...conditions, c.key];
-
-  const active = CONDITIONS.find((c) => conditions.includes(c.key));
 
   const goalLine = goal === 'lose_weight' ? t('adviceGoalDeficit') : goal === 'gain_muscle' ? t('adviceGoalSurplus') : t('adviceGoalMaintain');
 
@@ -118,30 +102,6 @@ const AdviceBox: React.FC<AdviceBoxProps> = ({ weight, height, age, gender, targ
           <div className="text-xs text-gray-400">P {pG} · C {cG} · F {fG}</div>
         </div>
       </div>
-
-      <div className="flex flex-wrap gap-2">
-        {CONDITIONS.map((c) => (
-          <button
-            key={c.key}
-            type="button"
-            onClick={() => setConditions(chip(c))}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-bold border-2 transition-all ${
-              conditions.includes(c.key)
-                ? 'border-primary-500 bg-primary-50 text-primary-700'
-                : 'border-gray-200 bg-white text-gray-500 hover:border-gray-300'
-            }`}
-          >
-            {c.emoji} {t(c.nameKey)}
-          </button>
-        ))}
-      </div>
-
-      {active && (
-        <p className="mt-3 text-sm text-gray-600 bg-white border border-primary-100 rounded-2xl px-4 py-3">
-          <span className="font-bold text-primary-700">{active.emoji} {t(active.nameKey)}: </span>
-          {t(active.tipKey)}
-        </p>
-      )}
     </div>
   );
 };
