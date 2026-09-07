@@ -1037,6 +1037,10 @@ type TranslationKeys = {
   wlEditMeal: string;
   wlResetMeal: string;
   wlResetAll: string;
+  wlSwapCuisineTitle: string;
+  wlSwapMixed: string;
+  wlSwapOptions: string;
+  wlSwapCuisineHint: string;
   dbLabInterpreter: string;
   dbLabsEmpty: string;
   dbBpClassification: string;
@@ -2330,6 +2334,10 @@ export const translations: Record<Language, TranslationKeys> = {
     wlEditMeal: 'Edit',
     wlResetMeal: 'Start over',
     wlResetAll: '🗑️ Start over - clear all',
+    wlSwapCuisineTitle: 'Swap with - from your cuisine:',
+    wlSwapMixed: 'Mixed',
+    wlSwapOptions: 'options',
+    wlSwapCuisineHint: '💡 Choose a cuisine above (Egyptian, Mediterranean...) so Swap brings meals from the same cuisine',
     dbLabInterpreter: 'Lab Results Interpreter',
     dbLabsEmpty: 'Enter your lab values on the left panel to get instant interpretation based on ADA medical guidelines.',
     dbBpClassification: 'Blood Pressure Classification (AHA)',
@@ -3599,6 +3607,10 @@ mbFruits: 'Fruits',
     wlEditMeal: 'Edit',
     wlResetMeal: 'Start over',
     wlResetAll: '🗑️ Start over - clear all',
+    wlSwapCuisineTitle: 'Swap with - from your cuisine:',
+    wlSwapMixed: 'Mixed',
+    wlSwapOptions: 'options',
+    wlSwapCuisineHint: '💡 Choose a cuisine above (Egyptian, Mediterranean...) so Swap brings meals from the same cuisine',
     dbLabInterpreter: 'Interpréteur de Résultats de Laboratoire',
     dbLabsEmpty: 'Entrez vos valeurs de laboratoire dans le panneau de gauche pour une interprétation instantanée basée sur les directives médicales de l\'ADA.',
     dbBpClassification: 'Classification de la Pression Artérielle (AHA)',
@@ -4838,6 +4850,10 @@ mbFruits: 'Fruits',
     wlEditMeal: 'Edit',
     wlResetMeal: 'Start over',
     wlResetAll: '🗑️ Start over - clear all',
+    wlSwapCuisineTitle: 'Swap with - from your cuisine:',
+    wlSwapMixed: 'Mixed',
+    wlSwapOptions: 'options',
+    wlSwapCuisineHint: '💡 Choose a cuisine above (Egyptian, Mediterranean...) so Swap brings meals from the same cuisine',
     dbLabInterpreter: 'Interpretador de Resultados de Laboratorio',
     dbLabsEmpty: 'Introduce tus valores de laboratorio en el panel izquierdo para obtener una interpretación instantánea según las guías médicas de la ADA.',
     dbBpClassification: 'Clasificación de la Presión Arterial (AHA)',
@@ -6077,6 +6093,10 @@ mbFruits: 'Fruits',
     wlEditMeal: 'تعديل',
     wlResetMeal: 'ابدأ من جديد',
     wlResetAll: '🗑️ ابدأ من جديد - مسح الكل',
+    wlSwapCuisineTitle: 'التبديل من نفس مطبخك:',
+    wlSwapMixed: 'متنوع',
+    wlSwapOptions: 'خيارات',
+    wlSwapCuisineHint: '💡 اختار مطبخ من فوق (Egyptian, Mediterranean...) عشان الـ Swap يجيبلك وجبات من نفس المطبخ',
     dbLabInterpreter: 'مفسّر نتائج المختبر',
     dbLabsEmpty: 'أدخل قيم المختبر الخاصة بك في اللوحة اليسرى للحصول على تفسير فوري وفقًا للإرشادات الطبية لـ ADA.',
     dbBpClassification: 'تصنيف ضغط الدم (AHA)',

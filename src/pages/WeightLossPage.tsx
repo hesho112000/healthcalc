@@ -18,6 +18,7 @@ import PlanTypeSelector, { PlanType } from '../features/weight-funnel/PlanTypeSe
 import HealthBlueprint, { ProteinSource, DietStyle, ExcludePref } from '../features/weight-funnel/HealthBlueprint';
 
 import { FOODS_DATABASE, CUISINE_META, Cuisine, CUISINE_OPTIONS, EXERCISE_TYPE_LABELS, EXERCISE_TYPE_OPTIONS, ExerciseType } from '../utils/calculations_expanded';
+import { getSwapOptions, addCustomToCuisineDB } from '../utils/cuisineSwapDB';
 import { getCuisineLabel } from '../utils/healthPlans';
 import { ClipboardList } from 'lucide-react';
 
@@ -38,8 +39,6 @@ const slotOf = (meal: MealPlan): 'breakfast' | 'lunch' | 'dinner' | 'snack' =>
   /breakfast/i.test(meal.meal) ? 'breakfast'
     : /lunch/i.test(meal.meal) ? 'lunch'
       : /dinner/i.test(meal.meal) ? 'dinner' : 'snack';
-
-const shuffle = <T,>(arr: T[]): T[] => [...arr].sort(() => Math.random() - 0.5);
 
 interface SwapAlt { name: string; nameAr?: string; calories: number; protein: number; carbs: number; fat: number; best?: string }
 interface SwapItem extends SwapAlt { qty: number }
@@ -67,15 +66,9 @@ const snapQty = (x: number) => Math.min(300, Math.max(50, Math.round(x / 25) * 2
 const slotWordKey = (best?: string): '' | 'wlMealBreakfast' | 'wlMealLunch' | 'wlMealDinner' | 'wlMealSnack' =>
   best === 'breakfast' ? 'wlMealBreakfast' : best === 'lunch' ? 'wlMealLunch' : best === 'dinner' ? 'wlMealDinner' : best === 'snack' ? 'wlMealSnack' : '';
 
-const buildAlternatives = (meal: MealPlan): SwapAlt[] => {
-  const slot = slotOf(meal);
-  const pool = FOODS_DATABASE.filter((f) => (f.mealType ?? '') === slot);
-  let near = pool.filter((f) => Math.abs(f.calories - meal.calories) <= 50);
-  if (near.length < 5) near = [...near, ...pool].filter((v, i, a) => a.findIndex((x) => x.name === v.name) === i);
-  return shuffle(near).slice(0, 5).map((f) => ({
-    name: f.name, nameAr: f.name_ar, calories: f.calories, protein: f.protein, carbs: f.carbs, fat: f.fat, best: (f.mealType ?? '') as string,
-  }));
-};
+const toSwapAlt = (o: { name: string; nameAr: string; calories: number; protein: number; carbs: number; fat: number }, slot: string): SwapAlt => ({
+  name: o.name, nameAr: o.nameAr, calories: o.calories, protein: o.protein, carbs: o.carbs, fat: o.fat, best: slot,
+});
 
 const WeightLossPage: React.FC = () => {
   const { t, language, dir } = useLanguage();
@@ -263,10 +256,13 @@ const WeightLossPage: React.FC = () => {
   const checkCustom = (idx: number) => {
     const q = customSwap.trim();
     if (!q) return;
+    const slot = slotOf(swapState[idx]?.original ?? dayMeals[idx]);
     const found = FOODS_DATABASE.find((f) => f.name.toLowerCase().includes(q.toLowerCase()) || (f.name_ar || '').includes(q));
-    toggleCustomSel(idx, found
-      ? { name: found.name, nameAr: found.name_ar, calories: found.calories, protein: found.protein, carbs: found.carbs, fat: found.fat, best: (found.mealType ?? '') as string }
-      : { name: q, calories: 200, protein: 10, carbs: 20, fat: 8 });
+    const alt: SwapAlt = found
+      ? { name: found.name, nameAr: found.name_ar, calories: found.calories, protein: found.protein, carbs: found.carbs, fat: found.fat, best: slot }
+      : { name: q, calories: 200, protein: 10, carbs: 20, fat: 8, best: slot };
+    addCustomToCuisineDB({ name: alt.name, nameAr: alt.nameAr, calories: alt.calories, protein: alt.protein, carbs: alt.carbs, fat: alt.fat }, selectedCuisine, slot);
+    toggleCustomSel(idx, alt);
   };
 
   const openEdit = (idx: number) => {
@@ -427,7 +423,8 @@ const WeightLossPage: React.FC = () => {
                       carbs: Math.round((base.carbs ?? 0) * scale),
                       fat: Math.round((base.fat ?? 0) * scale),
                     };
-                    const alts = buildAlternatives(base);
+                    const altSlot = slotOf(base);
+                    const alts: SwapAlt[] = getSwapOptions(selectedCuisine, altSlot).map((o) => toSwapAlt(o, altSlot));
                     return (
                       <div key={idx} className="relative space-y-2">
                         <MealCard meal={scaled} done={!!dayDone[idx]} onToggle={(done) => toggleMealDone(idx, done)} />
@@ -479,6 +476,9 @@ const WeightLossPage: React.FC = () => {
                           const goalLabel = t(autoGoal === 'lose_fat' ? 'wlfGoalLoseTitle' : autoGoal === 'gain_muscle' ? 'wlfGoalMuscleTitle' : autoGoal === 'gain_weight' ? 'wlfGoalGainTitle' : 'wlfGoalHealthTitle');
                           const slotKey = slotWordKey(slotName);
                           const mealLabel = slotKey ? t(slotKey) : t('wlMealSnack');
+                          const cuisineOption = selectedCuisine ? CUISINE_OPTIONS.find((c) => c.key === selectedCuisine) : null;
+                          const cuisineName = selectedCuisine ? (cuisineOption ? getCuisineLabel(cuisineOption, language) : selectedCuisine) : t('wlSwapMixed');
+                          const cuisineFlag = selectedCuisine === 'egyptian' ? '🇪🇬' : selectedCuisine === 'mediterranean' ? '🥗' : (cuisineOption?.flag ?? '🍽️');
                           const reasonText = sel.map(s => `${language === 'ar' ? (s.nameAr ?? s.name) : s.name} → ${s.qty}g (${t(autoReasonKey(autoGoal, s))})`).join('، ');
                           const applyAutoNow = () => {
                             setSelectedSwaps(prev => ({ ...prev, [idx]: applyAutoAdjust(idx, prev[idx] ?? []) }));
@@ -486,7 +486,14 @@ const WeightLossPage: React.FC = () => {
                           };
                           return (
                             <div className="absolute z-10 p-3 bg-white border border-gray-200 rounded-xl shadow-xl w-80 right-0 -bottom-2 translate-y-full max-h-[70vh] overflow-y-auto scrollbar-thin">
-                              <div className="text-sm font-bold text-gray-900">{t('wlSwapTitle')}</div>
+                              <div className="flex items-center gap-2 mb-1 flex-wrap">
+                                <span className="text-sm font-bold text-gray-900">{t('wlSwapCuisineTitle')}</span>
+                                <span className="px-2.5 py-0.5 rounded-full bg-teal-600 text-white text-[11px] font-bold">{cuisineName} {cuisineFlag}</span>
+                                <span className="text-[11px] text-gray-500">({mealLabel} - {alts.length} {t('wlSwapOptions')})</span>
+                              </div>
+                              {!selectedCuisine && (
+                                <div className="p-2 bg-amber-50 border border-amber-200 rounded-lg text-[11px] text-amber-800 mb-1">{t('wlSwapCuisineHint')}</div>
+                              )}
                               <div className="flex justify-between items-center mt-1 mb-2">
                                 <span className="text-[11px] font-semibold text-gray-600">{fmt(t('wlSwapSelected'), { n: sel.length, kcal: selTotal })}</span>
                                 {sel.length > 0 && (
