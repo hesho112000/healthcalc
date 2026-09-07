@@ -358,6 +358,52 @@ type TranslationKeys = {
   fcInfoOnly: string;
   fcCalories: string;
   fcYears: string;
+  fcRecalc: string;
+  fcBfTitle: string;
+  fcBfSub: string;
+  fcBfWaist: string;
+  fcBfNeck: string;
+  fcBfHip: string;
+  fcBfBtn: string;
+  fcBfLevelEssential: string;
+  fcBfLevelAthlete: string;
+  fcBfLevelFitness: string;
+  fcBfLevelAverage: string;
+  fcBfLevelObese: string;
+  fcWhrTitle: string;
+  fcWhrSub: string;
+  fcWhrWaist: string;
+  fcWhrHip: string;
+  fcWhrBtn: string;
+  fcWhrLevelLow: string;
+  fcWhrLevelModerate: string;
+  fcWhrLevelHigh: string;
+  fcWhrMsgLow: string;
+  fcWhrMsgModerate: string;
+  fcWhrMsgHigh: string;
+  fcTdeeTitle: string;
+  fcTdeeSub: string;
+  fcTdeeBmr: string;
+  fcTdeeMaintain: string;
+  fcTdeeLose: string;
+  fcTdeeBtn: string;
+  fcVo2Title: string;
+  fcVo2Sub: string;
+  fcVo2Dist: string;
+  fcVo2Btn: string;
+  fcVo2Unit: string;
+  fcVo2Poor: string;
+  fcVo2Fair: string;
+  fcVo2Good: string;
+  fcVo2Excellent: string;
+  fcVo2Superior: string;
+  fcHrTitle: string;
+  fcHrSub: string;
+  fcHrMax: string;
+  fcHrWarm: string;
+  fcHrFatBurn: string;
+  fcHrCardio: string;
+  fcHrPeak: string;
   fcPillHealthy: string;
   fcHeroCta: string;
   fcHeroLearn: string;
@@ -1618,6 +1664,52 @@ export const translations: Record<Language, TranslationKeys> = {
     fcInfoOnly: 'For information only',
     fcCalories: 'Daily Calories',
     fcYears: 'yrs',
+    fcRecalc: 'Recalculate',
+    fcBfTitle: 'Body Fat % — Navy Method',
+    fcBfSub: 'Neck, waist & hip · auto height from your profile',
+    fcBfWaist: 'Waist (cm)',
+    fcBfNeck: 'Neck (cm)',
+    fcBfHip: 'Hip (cm)',
+    fcBfBtn: 'Calculate Body Fat',
+    fcBfLevelEssential: 'Essential',
+    fcBfLevelAthlete: 'Athlete',
+    fcBfLevelFitness: 'Fitness',
+    fcBfLevelAverage: 'Average',
+    fcBfLevelObese: 'Obese',
+    fcWhrTitle: 'Waist-to-Hip Ratio',
+    fcWhrSub: 'Apple vs pear shape · visceral fat indicator',
+    fcWhrWaist: 'Waist (cm)',
+    fcWhrHip: 'Hip (cm)',
+    fcWhrBtn: 'Calculate WHR',
+    fcWhrLevelLow: 'Low',
+    fcWhrLevelModerate: 'Moderate',
+    fcWhrLevelHigh: 'High',
+    fcWhrMsgLow: 'Low health risk',
+    fcWhrMsgModerate: 'Moderate risk — keep an eye on it',
+    fcWhrMsgHigh: 'High risk — high visceral fat',
+    fcTdeeTitle: 'TDEE — Daily Calorie Burn',
+    fcTdeeSub: 'Mifflin-St Jeor · auto-updates from your profile',
+    fcTdeeBmr: 'BMR',
+    fcTdeeMaintain: 'Maintenance',
+    fcTdeeLose: 'Lose Weight',
+    fcTdeeBtn: 'Use {kcal} kcal in My Weight & Fitness Plan →',
+    fcVo2Title: 'VO₂ Max — Cooper 12-Min Test',
+    fcVo2Sub: 'Run the longest distance you can in 12 minutes',
+    fcVo2Dist: 'Distance in 12 min (meters)',
+    fcVo2Btn: 'Calculate VO₂ Max',
+    fcVo2Unit: 'ml/kg/min',
+    fcVo2Poor: 'Poor',
+    fcVo2Fair: 'Fair',
+    fcVo2Good: 'Good',
+    fcVo2Excellent: 'Excellent',
+    fcVo2Superior: 'Superior',
+    fcHrTitle: 'Target Heart Rate Zones',
+    fcHrSub: 'Max HR = 220 − age · auto-updates from your profile',
+    fcHrMax: 'Max HR',
+    fcHrWarm: 'Warm Up',
+    fcHrFatBurn: 'Fat Burn',
+    fcHrCardio: 'Cardio',
+    fcHrPeak: 'Peak',
     fcPillHealthy: 'Healthy',
     fcHeroCta: 'Start Calculator →',
     fcHeroLearn: 'Learn More',
@@ -2914,6 +3006,52 @@ export const translations: Record<Language, TranslationKeys> = {
     fcInfoOnly: 'Uniquement à titre informatif',
     fcCalories: 'Calories Quotidiennes',
     fcYears: 'ans',
+    fcRecalc: 'Recalculate',
+    fcBfTitle: 'Body Fat % — Navy Method',
+    fcBfSub: 'Neck, waist & hip · auto height from your profile',
+    fcBfWaist: 'Waist (cm)',
+    fcBfNeck: 'Neck (cm)',
+    fcBfHip: 'Hip (cm)',
+    fcBfBtn: 'Calculate Body Fat',
+    fcBfLevelEssential: 'Essential',
+    fcBfLevelAthlete: 'Athlete',
+    fcBfLevelFitness: 'Fitness',
+    fcBfLevelAverage: 'Average',
+    fcBfLevelObese: 'Obese',
+    fcWhrTitle: 'Waist-to-Hip Ratio',
+    fcWhrSub: 'Apple vs pear shape · visceral fat indicator',
+    fcWhrWaist: 'Waist (cm)',
+    fcWhrHip: 'Hip (cm)',
+    fcWhrBtn: 'Calculate WHR',
+    fcWhrLevelLow: 'Low',
+    fcWhrLevelModerate: 'Moderate',
+    fcWhrLevelHigh: 'High',
+    fcWhrMsgLow: 'Low health risk',
+    fcWhrMsgModerate: 'Moderate risk — keep an eye on it',
+    fcWhrMsgHigh: 'High risk — high visceral fat',
+    fcTdeeTitle: 'TDEE — Daily Calorie Burn',
+    fcTdeeSub: 'Mifflin-St Jeor · auto-updates from your profile',
+    fcTdeeBmr: 'BMR',
+    fcTdeeMaintain: 'Maintenance',
+    fcTdeeLose: 'Lose Weight',
+    fcTdeeBtn: 'Use {kcal} kcal in My Weight & Fitness Plan →',
+    fcVo2Title: 'VO₂ Max — Cooper 12-Min Test',
+    fcVo2Sub: 'Run the longest distance you can in 12 minutes',
+    fcVo2Dist: 'Distance in 12 min (meters)',
+    fcVo2Btn: 'Calculate VO₂ Max',
+    fcVo2Unit: 'ml/kg/min',
+    fcVo2Poor: 'Poor',
+    fcVo2Fair: 'Fair',
+    fcVo2Good: 'Good',
+    fcVo2Excellent: 'Excellent',
+    fcVo2Superior: 'Superior',
+    fcHrTitle: 'Target Heart Rate Zones',
+    fcHrSub: 'Max HR = 220 − age · auto-updates from your profile',
+    fcHrMax: 'Max HR',
+    fcHrWarm: 'Warm Up',
+    fcHrFatBurn: 'Fat Burn',
+    fcHrCardio: 'Cardio',
+    fcHrPeak: 'Peak',
     fcPillHealthy: 'Sain',
     fcHeroCta: 'Lancer le calculateur →',
     fcHeroLearn: 'En savoir plus',
@@ -4180,6 +4318,52 @@ mbFruits: 'Fruits',
     fcInfoOnly: 'Solo con fines informativos',
     fcCalories: 'Calorías Diarias',
     fcYears: 'años',
+    fcRecalc: 'Recalculate',
+    fcBfTitle: 'Body Fat % — Navy Method',
+    fcBfSub: 'Neck, waist & hip · auto height from your profile',
+    fcBfWaist: 'Waist (cm)',
+    fcBfNeck: 'Neck (cm)',
+    fcBfHip: 'Hip (cm)',
+    fcBfBtn: 'Calculate Body Fat',
+    fcBfLevelEssential: 'Essential',
+    fcBfLevelAthlete: 'Athlete',
+    fcBfLevelFitness: 'Fitness',
+    fcBfLevelAverage: 'Average',
+    fcBfLevelObese: 'Obese',
+    fcWhrTitle: 'Waist-to-Hip Ratio',
+    fcWhrSub: 'Apple vs pear shape · visceral fat indicator',
+    fcWhrWaist: 'Waist (cm)',
+    fcWhrHip: 'Hip (cm)',
+    fcWhrBtn: 'Calculate WHR',
+    fcWhrLevelLow: 'Low',
+    fcWhrLevelModerate: 'Moderate',
+    fcWhrLevelHigh: 'High',
+    fcWhrMsgLow: 'Low health risk',
+    fcWhrMsgModerate: 'Moderate risk — keep an eye on it',
+    fcWhrMsgHigh: 'High risk — high visceral fat',
+    fcTdeeTitle: 'TDEE — Daily Calorie Burn',
+    fcTdeeSub: 'Mifflin-St Jeor · auto-updates from your profile',
+    fcTdeeBmr: 'BMR',
+    fcTdeeMaintain: 'Maintenance',
+    fcTdeeLose: 'Lose Weight',
+    fcTdeeBtn: 'Use {kcal} kcal in My Weight & Fitness Plan →',
+    fcVo2Title: 'VO₂ Max — Cooper 12-Min Test',
+    fcVo2Sub: 'Run the longest distance you can in 12 minutes',
+    fcVo2Dist: 'Distance in 12 min (meters)',
+    fcVo2Btn: 'Calculate VO₂ Max',
+    fcVo2Unit: 'ml/kg/min',
+    fcVo2Poor: 'Poor',
+    fcVo2Fair: 'Fair',
+    fcVo2Good: 'Good',
+    fcVo2Excellent: 'Excellent',
+    fcVo2Superior: 'Superior',
+    fcHrTitle: 'Target Heart Rate Zones',
+    fcHrSub: 'Max HR = 220 − age · auto-updates from your profile',
+    fcHrMax: 'Max HR',
+    fcHrWarm: 'Warm Up',
+    fcHrFatBurn: 'Fat Burn',
+    fcHrCardio: 'Cardio',
+    fcHrPeak: 'Peak',
     fcPillHealthy: 'Saludable',
     fcHeroCta: 'Empezar →',
     fcHeroLearn: 'Más información',
@@ -5446,6 +5630,52 @@ mbFruits: 'Fruits',
     fcInfoOnly: 'للمعلومات فقط',
     fcCalories: 'السعرات اليومية',
     fcYears: 'سنة',
+    fcRecalc: 'أعد الحساب',
+    fcBfTitle: 'نسبة الدهون في الجسم — طريقة نافي',
+    fcBfSub: 'الرقبة والخصر والأرداف · الطول تلقائياً من ملفك',
+    fcBfWaist: 'الخصر (سم)',
+    fcBfNeck: 'الرقبة (سم)',
+    fcBfHip: 'الأرداف (سم)',
+    fcBfBtn: 'احسب نسبة الدهون',
+    fcBfLevelEssential: 'أساسي',
+    fcBfLevelAthlete: 'رياضي',
+    fcBfLevelFitness: 'لياقة',
+    fcBfLevelAverage: 'متوسط',
+    fcBfLevelObese: 'سمنة',
+    fcWhrTitle: 'نسبة الخصر إلى الأرداف',
+    fcWhrSub: 'شكل التفاحة مقابل الكمثرى · مؤشر الدهون الحشوية',
+    fcWhrWaist: 'الخصر (سم)',
+    fcWhrHip: 'الأرداف (سم)',
+    fcWhrBtn: 'احسب النسبة',
+    fcWhrLevelLow: 'منخفض',
+    fcWhrLevelModerate: 'متوسط',
+    fcWhrLevelHigh: 'مرتفع',
+    fcWhrMsgLow: 'خطر صحي منخفض',
+    fcWhrMsgModerate: 'خطر متوسط — انتبه له',
+    fcWhrMsgHigh: 'خطر مرتفع — دهون حشوية عالية',
+    fcTdeeTitle: 'TDEE — حرق السعرات اليومي',
+    fcTdeeSub: 'Mifflin-St Jeor · يتحدث تلقائياً من ملفك',
+    fcTdeeBmr: 'معدل الأيض الأساسي',
+    fcTdeeMaintain: 'الثبات',
+    fcTdeeLose: 'فقدان الوزن',
+    fcTdeeBtn: 'استخدم {kcal} سعرة في خطتي الصحية ←',
+    fcVo2Title: 'VO₂ Max — اختبار كوبر ١٢ دقيقة',
+    fcVo2Sub: 'اجرِ أقصى مسافة تقدر عليها خلال 12 دقيقة',
+    fcVo2Dist: 'المسافة في 12 دقيقة (أمتار)',
+    fcVo2Btn: 'احسب VO₂ Max',
+    fcVo2Unit: 'مل/كجم/دقيقة',
+    fcVo2Poor: 'ضعيف',
+    fcVo2Fair: 'مقبول',
+    fcVo2Good: 'جيد',
+    fcVo2Excellent: 'ممتاز',
+    fcVo2Superior: 'فائق',
+    fcHrTitle: 'مناطق معدل ضربات القلب',
+    fcHrSub: 'أقصى ضربات = 220 − العمر · يتحدث تلقائياً من ملفك',
+    fcHrMax: 'أقصى ضربات',
+    fcHrWarm: 'الإحماء',
+    fcHrFatBurn: 'حرق الدهون',
+    fcHrCardio: 'الكارديو',
+    fcHrPeak: 'الذروة',
     fcPillHealthy: 'صحي',
     fcHeroCta: 'ابدأ الحساب ←',
     fcHeroLearn: 'اعرف المزيد',

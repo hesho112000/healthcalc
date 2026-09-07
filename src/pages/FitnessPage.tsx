@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Calculator as CalculatorIcon, PersonStanding, Flame, HeartPulse, Target } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -23,18 +23,40 @@ const STATUS_KEY: Record<string, string> = { Underweight: 'fcBmiUnder', Healthy:
 function bmiCat(bmi: number) { return BMI_CATS.find(c => bmi >= c.min && bmi < c.max) || BMI_CATS[3]; }
 function idealRange(hCm: number) { const h = hCm / 100; return { min: Math.round(18.5 * h * h * 10) / 10, max: Math.round(24.9 * h * h * 10) / 10 }; }
 
-const GAUGE = { cx: 120, cy: 115, r: 92 };
-function pt(deg: number) { const a = (deg * Math.PI) / 180; return { x: GAUGE.cx + GAUGE.r * Math.cos(a), y: GAUGE.cy - GAUGE.r * Math.sin(a) }; }
-function arc(d1: number, d2: number) {
-  const p1 = pt(Math.max(d1, d2));
-  const p2 = pt(Math.min(d1, d2));
-  return `M ${p1.x.toFixed(2)} ${p1.y.toFixed(2)} A ${GAUGE.r} ${GAUGE.r} 0 0 1 ${p2.x.toFixed(2)} ${p2.y.toFixed(2)}`;
+function calcBodyFat(g: 'male' | 'female', h: number, waist: number, neck: number, hip: number) {
+  const d = g === 'male'
+    ? 1.0324 - 0.19077 * Math.log10(waist - neck) + 0.15456 * Math.log10(h)
+    : 1.29579 - 0.35004 * Math.log10(waist + hip - neck) + 0.221 * Math.log10(h);
+  return 495 / d - 450;
 }
-function bmiAngle(bmi: number) { return 180 - ((Math.min(Math.max(bmi, 10), 45) - 10) / 35) * 180; }
+function bfLevel(g: 'male' | 'female', bf: number): string {
+  const tiers: Array<[number, string]> = g === 'male'
+    ? [[5, 'fcBfLevelEssential'], [13, 'fcBfLevelAthlete'], [17, 'fcBfLevelFitness'], [24, 'fcBfLevelAverage'], [Infinity, 'fcBfLevelObese']]
+    : [[13, 'fcBfLevelEssential'], [20, 'fcBfLevelAthlete'], [24, 'fcBfLevelFitness'], [31, 'fcBfLevelAverage'], [Infinity, 'fcBfLevelObese']];
+  const hit = tiers.find(([max]) => bf <= max);
+  return hit ? hit[1] : 'fcBfLevelObese';
+}
+function whrRisk(g: 'male' | 'female', whr: number): string {
+  const [lo, hi] = g === 'male' ? [0.9, 1.0] : [0.8, 0.85];
+  if (whr < lo) return 'fcWhrLevelLow';
+  if (whr < hi) return 'fcWhrLevelModerate';
+  return 'fcWhrLevelHigh';
+}
+function calcVo2Max(distanceM: number) { return (distanceM - 504.9) / 44.73; }
+function vo2Level(v: number): string {
+  if (v < 35) return 'fcVo2Poor';
+  if (v <= 42) return 'fcVo2Fair';
+  if (v <= 50) return 'fcVo2Good';
+  if (v <= 58) return 'fcVo2Excellent';
+  return 'fcVo2Superior';
+}
 
 const glass: React.CSSProperties = { background: 'rgba(255,255,255,0.82)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' };
 const segBtn = (active: boolean): React.CSSProperties => ({ flex: 1, height: 32, borderRadius: 8, fontSize: 12, fontWeight: 600, transition: 'all .2s', background: active ? '#10b981' : 'transparent', color: active ? '#fff' : '#64748b' });
 const flexRow: React.CSSProperties = { display: 'flex', alignItems: 'center', gap: 12 };
+const calcCard: React.CSSProperties = { background: '#fff', borderRadius: 16, border: '1px solid #e2e8f0', boxShadow: '0 8px 32px rgba(15,23,42,0.04)', padding: 24 };
+const calcInput: React.CSSProperties = { width: '100%', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 12, padding: '0 12px', height: 44, fontSize: 15, fontWeight: 600, color: '#0f172a', outline: 'none' };
+const calcGridInputs: React.CSSProperties = { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 12 };
 
 interface FitnessPageProps {
   initialTab?: Tab;
@@ -47,6 +69,13 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
   const [bmiRes, setBmiRes] = useState<BmiResult | null>(null);
   const [live, setLive] = useState({ bmi: '--', bmiStatus: 'Healthy', bmiColor: '#10b981', cal: '--', rmr: '--', ideal: '--' });
   const [liveActive, setLiveActive] = useState(false);
+
+  const [bfInputs, setBfInputs] = useState({ waist: 82, neck: 38, hip: 98 });
+  const [bfRes, setBfRes] = useState<{ pct: number; level: string } | null>(null);
+  const [whrInputs, setWhrInputs] = useState({ waist: 82, hip: 98 });
+  const [whrRes, setWhrRes] = useState<{ ratio: number; risk: string } | null>(null);
+  const [vo2Dist, setVo2Dist] = useState(2230);
+  const [vo2Res, setVo2Res] = useState<{ v: number; level: string } | null>(null);
 
   const updateLive = useCallback((f: FormData) => {
     const h = f.heightCm / 100;
@@ -114,6 +143,53 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
     document.getElementById('details')?.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
+  const tdee = useMemo(() => {
+    const bmr = form.gender === 'male'
+      ? 10 * form.weightKg + 6.25 * form.heightCm - 5 * form.age + 5
+      : 10 * form.weightKg + 6.25 * form.heightCm - 5 * form.age - 161;
+    const mult = ACT[form.activityLevel] || 1.55;
+    const maintain = bmr * mult;
+    return { bmr: Math.round(bmr), maintain: Math.round(maintain), lose: Math.round(maintain - 500) };
+  }, [form]);
+
+  const hrZones = useMemo(() => {
+    const max = 220 - form.age;
+    const mk = (lo: number, hi: number) => `${Math.round((max * lo) / 100)}–${Math.round((max * hi) / 100)}`;
+    return [
+      { key: 'fcHrWarm', pct: '50–60%', bpm: mk(50, 60), color: '#A8E6CF' },
+      { key: 'fcHrFatBurn', pct: '60–70%', bpm: mk(60, 70), color: '#FFE082' },
+      { key: 'fcHrCardio', pct: '70–80%', bpm: mk(70, 80), color: '#FFAB91' },
+      { key: 'fcHrPeak', pct: '80–90%', bpm: mk(80, 90), color: '#ef4444' },
+    ];
+  }, [form.age]);
+
+  const handleTdeePlan = useCallback(() => {
+    localStorage.setItem('userTDEE', String(tdee.maintain));
+    localStorage.setItem('userBMR', String(tdee.bmr));
+    handleBridge();
+  }, [tdee, handleBridge]);
+
+  const calcBf = useCallback(() => {
+    const h = form.heightCm;
+    const { waist, neck, hip } = bfInputs;
+    if (!h || !waist || !neck || (form.gender === 'female' && !hip) || waist <= neck) return;
+    const pct = calcBodyFat(form.gender, h, waist, neck, hip);
+    setBfRes({ pct, level: bfLevel(form.gender, pct) });
+  }, [form, bfInputs]);
+
+  const calcWhr = useCallback(() => {
+    const { waist, hip } = whrInputs;
+    if (!waist || !hip) return;
+    const ratio = waist / hip;
+    setWhrRes({ ratio, risk: whrRisk(form.gender, ratio) });
+  }, [form.gender, whrInputs]);
+
+  const calcVo2 = useCallback(() => {
+    if (!vo2Dist) return;
+    const v = calcVo2Max(vo2Dist);
+    setVo2Res({ v, level: vo2Level(v) });
+  }, [vo2Dist]);
+
   const CalcDisclaimer: React.FC = () => (
     <div className="mixed-text" style={{ marginTop: 20, padding: 14, background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 12, fontSize: 11, color: '#92400e', lineHeight: 1.5 }}>
       <strong>{t('medicalDisclaimer')}: </strong>{t('disclaimer')}
@@ -132,6 +208,15 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
     { icon: '📊', title: t('fcAccMethod'), body: t('fcAccSourcesBody') },
     { icon: '⚠️', title: t('fcAccLimits'), body: t('fcAccLimitsBody') },
   ];
+
+  const riskColor = (k: string) => k === 'fcWhrLevelLow' ? '#10b981' : k === 'fcWhrLevelModerate' ? '#f59e0b' : '#ef4444';
+  const vo2Color = (k: string) => k === 'fcVo2Poor' ? '#ef4444' : k === 'fcVo2Fair' ? '#f59e0b' : k === 'fcVo2Good' ? '#10b981' : k === 'fcVo2Excellent' ? '#3b82f6' : '#8b5cf6';
+  const bfColor = (k: string) => k === 'fcBfLevelObese' ? '#ef4444' : k === 'fcBfLevelAverage' ? '#f59e0b' : '#10b981';
+  const markerPct = bmiRes ? Math.min(100, Math.max(0, ((bmiRes.bmi - 15) / 25) * 100)) : 0;
+
+  const cardHead: React.CSSProperties = { display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 };
+  const cardTitle: React.CSSProperties = { fontSize: 15, fontWeight: 700, color: '#0f172a' };
+  const tag: React.CSSProperties = { height: 42, padding: '0 22px', borderRadius: 999, background: '#10b981', color: '#fff', fontWeight: 600, fontSize: 13, cursor: 'pointer', boxShadow: '0 6px 16px rgba(16,185,129,0.2)' };
 
   return (
     <div className="tool-page min-h-screen bg-[#f8fafc]">
@@ -358,57 +443,228 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
           <section id="result" className="animate-fade-in">
             <div style={{ background: '#fff', borderRadius: 24, border: '1px solid #e2e8f0', boxShadow: '0 8px 32px rgba(15,23,42,0.04)', padding: '24px 32px' }}>
               <div className="flex flex-col lg:flex-row items-center" style={{ gap: 32 }}>
-                {/* Gauge */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <div style={{ position: 'relative', width: 240, height: 150 }}>
-                    <svg width={240} height={140} viewBox="0 0 240 130" style={{ overflow: 'visible' }}>
-                      <path d={arc(180, 0)} fill="none" stroke="#e2e8f0" strokeWidth="12" strokeLinecap="round" />
-                      <path d={arc(bmiAngle(18.5), bmiAngle(bmiRes.bmi))} fill="none" stroke={bmiRes.gauge} strokeWidth="12" strokeLinecap="round" />
-                      <circle cx={pt(bmiAngle(bmiRes.bmi)).x} cy={pt(bmiAngle(bmiRes.bmi)).y} r="7" fill="#fff" stroke={bmiRes.gauge} strokeWidth="3" />
-                      <circle cx={pt(bmiAngle(bmiRes.bmi)).x} cy={pt(bmiAngle(bmiRes.bmi)).y} r="3" fill={bmiRes.gauge} />
-                    </svg>
-                    <div style={{ position: 'absolute', left: '50%', top: '46%', transform: 'translate(-50%,-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                      <div style={{ fontSize: 32, fontWeight: 800, letterSpacing: '-0.02em', color: '#0f172a', lineHeight: 1 }}>{bmiRes.bmi}</div>
-                      <div style={{ marginTop: 4, fontSize: 12, fontWeight: 600, padding: '4px 10px', borderRadius: 999, background: `${bmiRes.gauge}15`, color: bmiRes.gauge }}>{t(bmiRes.category as any)}</div>
-                    </div>
-                  </div>
-                  <div style={{ marginTop: 8, display: 'flex', gap: 16, fontSize: 11, color: '#64748b', flexWrap: 'wrap', justifyContent: 'center' }}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><span style={{ width: 8, height: 8, borderRadius: '50%', background: '#60a5fa' }} /> {t('fcScaleUnder')}</span>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><span style={{ width: 8, height: 8, borderRadius: '50%', background: '#10b981' }} /> {t('fcScaleHealthy')}</span>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><span style={{ width: 8, height: 8, borderRadius: '50%', background: '#fbbf24' }} /> {t('fcScaleOver')}</span>
-                  </div>
+                {/* Big number */}
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: 190 }}>
+                  <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#94a3b8' }}>BMI</div>
+                  <div style={{ fontSize: 64, fontWeight: 800, letterSpacing: '-0.03em', color: '#10b981', lineHeight: 1.1, marginTop: 6 }}>{bmiRes.bmi}</div>
+                  <div style={{ marginTop: 10, fontSize: 12, fontWeight: 600, padding: '4px 12px', borderRadius: 999, background: `${bmiRes.gauge}15`, color: bmiRes.gauge }}>{t(bmiRes.category as any)}</div>
+                  <div style={{ marginTop: 8, fontSize: 11, color: '#94a3b8' }}>kg/m²</div>
                 </div>
 
-                {/* Breakdown */}
+                {/* 4-color bar + message */}
                 <div style={{ flex: 1, width: '100%' }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 16 }}>
-                    <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 12, padding: 16 }}>
-                      <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#64748b', fontWeight: 500 }}>{t('fcBmiRangeLabel')}</div>
-                      <div style={{ marginTop: 4, fontSize: 14, fontWeight: 600, color: '#0f172a' }}>18.5 – 24.9 kg/m²</div>
-                      <div style={{ marginTop: 4, fontSize: 11, color: '#64748b' }}>{t('fcBmiRangeRef')}</div>
-                    </div>
-                    <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 12, padding: 16 }}>
-                      <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#64748b', fontWeight: 500 }}>{t('fcIdealFor')}</div>
-                      <div style={{ marginTop: 4, fontSize: 14, fontWeight: 600, color: '#0f172a' }}>{idealRange(form.heightCm).min} – {idealRange(form.heightCm).max} kg</div>
-                      <div className="mixed-text" style={{ marginTop: 4, fontSize: 11, color: '#64748b' }}>{t('fcIdealAt').replace('{height}', String(form.heightCm))}</div>
-                    </div>
-                    <div style={{ background: '#ecfdf5', border: '1px solid #d1fae5', borderRadius: 12, padding: 16 }}>
-                      <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#047857', fontWeight: 500 }}>{t('fcPonderal')}</div>
-                      <div className="mixed-text" style={{ marginTop: 4, fontSize: 13, fontWeight: 500, color: '#065f46', lineHeight: 1.45 }}>{bmiRes.bmi < 18.5 ? t('fcInsightUnder') : bmiRes.bmi < 25 ? t('fcInsightOk') : t('fcInsightAbove')}</div>
-                    </div>
+                  <div style={{ display: 'flex', fontSize: 10, fontWeight: 600, color: '#64748b', height: 18 }}>
+                    <div style={{ width: '14%', textAlign: 'center' }}>{t('fcScaleUnder')}</div>
+                    <div style={{ width: '26%', textAlign: 'center' }}>{t('fcBmiNormal')}</div>
+                    <div style={{ width: '20%', textAlign: 'center' }}>{t('fcScaleOver')}</div>
+                    <div style={{ width: '40%', textAlign: 'center' }}>{t('fcBmiObese')}</div>
                   </div>
-                  <button onClick={handleBridge} className="mixed-text" style={{ marginTop: 24, width: '100%', height: 48, borderRadius: 12, background: '#059669', color: '#fff', fontWeight: 600, fontSize: 14, boxShadow: '0 1px 2px rgba(0,0,0,0.05)', cursor: 'pointer', transition: 'background .2s' }}>{t('fcCtaLaunch')} →</button>
-                  <div style={{ marginTop: 16, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                    <span style={{ padding: '4px 10px', borderRadius: 999, background: '#f8fafc', border: '1px solid #e2e8f0', fontSize: 11, color: '#475569' }}>{t('fcChipFormula')}</span>
-                    <span style={{ padding: '4px 10px', borderRadius: 999, background: '#f8fafc', border: '1px solid #e2e8f0', fontSize: 11, color: '#475569' }}>{t('fcChipRmr')}</span>
-                    <span style={{ padding: '4px 10px', borderRadius: 999, background: '#f8fafc', border: '1px solid #e2e8f0', fontSize: 11, color: '#475569' }}>{t('fcChipTdee')}</span>
+                  <div style={{ position: 'relative', height: 14, direction: 'ltr' }}>
+                    <div style={{ display: 'flex', height: 14, borderRadius: 8, overflow: 'hidden' }}>
+                      <div style={{ width: '14%', background: '#cbd5e1' }} />
+                      <div style={{ width: '26%', background: '#A8E6CF' }} />
+                      <div style={{ width: '20%', background: '#FFE082' }} />
+                      <div style={{ width: '40%', background: '#FFAB91' }} />
+                    </div>
+                    <div style={{ position: 'absolute', left: `${markerPct}%`, top: -6, transform: 'translateX(-50%)', zIndex: 5, width: 0, height: 0, borderLeft: '7px solid transparent', borderRight: '7px solid transparent', borderTop: '10px solid #0f172a' }} />
                   </div>
-                  <CalcDisclaimer />
+                  <div style={{ position: 'relative', height: 12, fontSize: 9, color: '#94a3b8', direction: 'ltr' }}>
+                    <span style={{ position: 'absolute', left: 0 }}>15</span>
+                    <span style={{ position: 'absolute', left: '14%' }}>18.5</span>
+                    <span style={{ position: 'absolute', left: '40%' }}>25</span>
+                    <span style={{ position: 'absolute', left: '60%' }}>30</span>
+                    <span style={{ position: 'absolute', right: 0 }}>40</span>
+                  </div>
+                  <div style={{ marginTop: 16, padding: 14, background: bmiRes.bg, border: `1px solid ${bmiRes.gauge}30`, borderRadius: 12, fontSize: 13, color: '#0f172a', lineHeight: 1.5 }}>
+                    <strong style={{ color: bmiRes.gauge }}>{t(bmiRes.category as any)} · {bmiRes.risk}:</strong>{' '}
+                    {bmiRes.bmi < 18.5 ? t('fcInsightUnder') : bmiRes.bmi < 25 ? t('fcInsightOk') : t('fcInsightAbove')}
+                  </div>
+                  <div style={{ marginTop: 16, display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+                    <button onClick={calcBmi} style={{ height: 42, padding: '0 24px', borderRadius: 999, background: '#10b981', color: '#fff', fontWeight: 600, fontSize: 13, cursor: 'pointer' }}>{t('fcRecalc')}</button>
+                    <button onClick={scrollDetails} style={{ height: 42, padding: '0 24px', borderRadius: 999, background: '#fff', border: '1px solid #ccfbf1', color: '#047857', fontWeight: 600, fontSize: 13, cursor: 'pointer' }}>{t('fcHeroLearn')}</button>
+                  </div>
                 </div>
+              </div>
+
+              <div style={{ marginTop: 28, borderTop: '1px solid #f1f5f9', paddingTop: 24 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 16 }}>
+                  <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 12, padding: 16 }}>
+                    <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#64748b', fontWeight: 500 }}>{t('fcBmiRangeLabel')}</div>
+                    <div style={{ marginTop: 4, fontSize: 14, fontWeight: 600, color: '#0f172a' }}>18.5 – 24.9 kg/m²</div>
+                    <div style={{ marginTop: 4, fontSize: 11, color: '#64748b' }}>{t('fcBmiRangeRef')}</div>
+                  </div>
+                  <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 12, padding: 16 }}>
+                    <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#64748b', fontWeight: 500 }}>{t('fcIdealFor')}</div>
+                    <div style={{ marginTop: 4, fontSize: 14, fontWeight: 600, color: '#0f172a' }}>{idealRange(form.heightCm).min} – {idealRange(form.heightCm).max} kg</div>
+                    <div className="mixed-text" style={{ marginTop: 4, fontSize: 11, color: '#64748b' }}>{t('fcIdealAt').replace('{height}', String(form.heightCm))}</div>
+                  </div>
+                  <div style={{ background: '#ecfdf5', border: '1px solid #d1fae5', borderRadius: 12, padding: 16 }}>
+                    <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#047857', fontWeight: 500 }}>{t('fcPonderal')}</div>
+                    <div className="mixed-text" style={{ marginTop: 4, fontSize: 13, fontWeight: 500, color: '#065f46', lineHeight: 1.45 }}>{bmiRes.bmi < 18.5 ? t('fcInsightUnder') : bmiRes.bmi < 25 ? t('fcInsightOk') : t('fcInsightAbove')}</div>
+                  </div>
+                </div>
+                <button onClick={handleBridge} className="mixed-text" style={{ marginTop: 24, width: '100%', height: 48, borderRadius: 12, background: '#059669', color: '#fff', fontWeight: 600, fontSize: 14, boxShadow: '0 1px 2px rgba(0,0,0,0.05)', cursor: 'pointer', transition: 'background .2s' }}>{t('fcCtaLaunch')} →</button>
+                <div style={{ marginTop: 16, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                  <span style={{ padding: '4px 10px', borderRadius: 999, background: '#f8fafc', border: '1px solid #e2e8f0', fontSize: 11, color: '#475569' }}>{t('fcChipFormula')}</span>
+                  <span style={{ padding: '4px 10px', borderRadius: 999, background: '#f8fafc', border: '1px solid #e2e8f0', fontSize: 11, color: '#475569' }}>{t('fcChipRmr')}</span>
+                  <span style={{ padding: '4px 10px', borderRadius: 999, background: '#f8fafc', border: '1px solid #e2e8f0', fontSize: 11, color: '#475569' }}>{t('fcChipTdee')}</span>
+                </div>
+                <CalcDisclaimer />
               </div>
             </div>
           </section>
         )}
+
+        {/* ═══════ Extra Calculators ═══════ */}
+        <div id="extra-calculators" className="max-w-5xl mx-auto mt-6 space-y-4">
+          {/* 2 · Body Fat % */}
+          <div style={calcCard}>
+            <div style={cardHead}>
+              <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#fce7f3', color: '#be185d', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>💪</div>
+              <div>
+                <div style={cardTitle}>{t('fcBfTitle')}</div>
+                <div className="mixed-text" style={{ fontSize: 11, color: '#64748b' }}>{t('fcBfSub')}</div>
+              </div>
+            </div>
+            <div style={calcGridInputs}>
+              <div>
+                <label style={{ fontSize: 11, fontWeight: 500, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t('fcBfWaist')}</label>
+                <input type="number" min={40} max={200} step={0.1} value={bfInputs.waist} onChange={e => setBfInputs(p => ({ ...p, waist: +e.target.value }))} style={{ ...calcInput, marginTop: 6 }} />
+              </div>
+              <div>
+                <label style={{ fontSize: 11, fontWeight: 500, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t('fcBfNeck')}</label>
+                <input type="number" min={20} max={80} step={0.1} value={bfInputs.neck} onChange={e => setBfInputs(p => ({ ...p, neck: +e.target.value }))} style={{ ...calcInput, marginTop: 6 }} />
+              </div>
+              {form.gender === 'female' && (
+                <div>
+                  <label style={{ fontSize: 11, fontWeight: 500, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t('fcBfHip')}</label>
+                  <input type="number" min={50} max={200} step={0.1} value={bfInputs.hip} onChange={e => setBfInputs(p => ({ ...p, hip: +e.target.value }))} style={{ ...calcInput, marginTop: 6 }} />
+                </div>
+              )}
+              <div>
+                <label className="mixed-text" style={{ fontSize: 11, fontWeight: 500, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t('height')} (cm)</label>
+                <input readOnly value={form.heightCm} style={{ ...calcInput, marginTop: 6, background: '#f1f5f9', color: '#475569', cursor: 'default' }} />
+              </div>
+            </div>
+            <button onClick={calcBf} style={{ ...tag, marginTop: 14 }}>{t('fcBfBtn')}</button>
+            {bfRes && (
+              <div style={{ marginTop: 16, padding: 14, background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
+                <div style={{ fontSize: 22, fontWeight: 800, color: '#0f172a' }}>{bfRes.pct.toFixed(1)}<span style={{ fontSize: 13, fontWeight: 600, color: '#64748b' }}>%</span></div>
+                <span style={{ fontSize: 12, fontWeight: 600, padding: '4px 12px', borderRadius: 999, background: `${bfColor(bfRes.level)}15`, color: bfColor(bfRes.level) }}>{t(bfRes.level as any)}</span>
+                <div style={{ flex: 1, minWidth: 140, height: 8, borderRadius: 999, overflow: 'hidden', background: '#e2e8f0' }}>
+                  <div style={{ height: '100%', width: `${Math.min(100, bfRes.pct)}%`, background: bfColor(bfRes.level), borderRadius: 999 }} />
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* 3 · Waist-to-Hip Ratio */}
+          <div style={calcCard}>
+            <div style={cardHead}>
+              <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#e0f2fe', color: '#0369a1', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>📏</div>
+              <div>
+                <div style={cardTitle}>{t('fcWhrTitle')}</div>
+                <div className="mixed-text" style={{ fontSize: 11, color: '#64748b' }}>{t('fcWhrSub')}</div>
+              </div>
+            </div>
+            <div style={calcGridInputs}>
+              <div>
+                <label style={{ fontSize: 11, fontWeight: 500, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t('fcWhrWaist')}</label>
+                <input type="number" min={40} max={200} step={0.1} value={whrInputs.waist} onChange={e => setWhrInputs(p => ({ ...p, waist: +e.target.value }))} style={{ ...calcInput, marginTop: 6 }} />
+              </div>
+              <div>
+                <label style={{ fontSize: 11, fontWeight: 500, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t('fcWhrHip')}</label>
+                <input type="number" min={50} max={200} step={0.1} value={whrInputs.hip} onChange={e => setWhrInputs(p => ({ ...p, hip: +e.target.value }))} style={{ ...calcInput, marginTop: 6 }} />
+              </div>
+            </div>
+            <button onClick={calcWhr} style={{ ...tag, marginTop: 14 }}>{t('fcWhrBtn')}</button>
+            {whrRes && (
+              <div style={{ marginTop: 16, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12, padding: 14, border: '1px solid #e2e8f0', backgroundColor: '#f8fafc', borderRadius: 12 }}>
+                <div style={{ fontSize: 22, fontWeight: 800, color: '#0f172a' }}>{whrRes.ratio.toFixed(2)}</div>
+                <span style={{ fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 999, color: '#fff', background: riskColor(whrRes.risk) }}>{t(whrRes.risk as any)}</span>
+                <div className="mixed-text" style={{ fontSize: 12, color: '#64748b', flexBasis: '100%' }}>{whrRes.ratio.toFixed(2)} — {t('fcWhrMsg' + whrRes.risk.replace('fcWhrLevel', '') as any)}</div>
+              </div>
+            )}
+          </div>
+
+          {/* 4 · TDEE */}
+          <div style={calcCard}>
+            <div style={cardHead}>
+              <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#fef3c7', color: '#b45309', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>🔥</div>
+              <div>
+                <div className="mixed-text" style={cardTitle}>{t('fcTdeeTitle')}</div>
+                <div className="mixed-text" style={{ fontSize: 11, color: '#64748b' }}>{t('fcTdeeSub')}</div>
+              </div>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 12 }}>
+              <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 12, padding: 14, textAlign: 'center' }}>
+                <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#64748b', fontWeight: 500 }}>{t('fcTdeeBmr')}</div>
+                <div style={{ marginTop: 4, fontSize: 22, fontWeight: 800, color: '#3b82f6' }}>{tdee.bmr} <span style={{ fontSize: 11, fontWeight: 500, color: '#64748b' }}>kcal</span></div>
+              </div>
+              <div style={{ background: '#ecfdf5', border: '1px solid #d1fae5', borderRadius: 12, padding: 14, textAlign: 'center' }}>
+                <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#047857', fontWeight: 500 }}>{t('fcTdeeMaintain')}</div>
+                <div style={{ marginTop: 4, fontSize: 22, fontWeight: 800, color: '#10b981' }}>{tdee.maintain} <span style={{ fontSize: 11, fontWeight: 500, color: '#64748b' }}>kcal</span></div>
+              </div>
+              <div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 12, padding: 14, textAlign: 'center' }}>
+                <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#b45309', fontWeight: 500 }}>{t('fcTdeeLose')}</div>
+                <div style={{ marginTop: 4, fontSize: 22, fontWeight: 800, color: '#f59e0b' }}>{tdee.lose} <span style={{ fontSize: 11, fontWeight: 500, color: '#64748b' }}>kcal</span></div>
+              </div>
+            </div>
+            <button onClick={handleTdeePlan} className="mixed-text" style={{ ...tag, width: '100%', marginTop: 16, height: 46, background: '#059669' }}>{t('fcTdeeBtn').replace('{kcal}', String(tdee.maintain))}</button>
+          </div>
+
+          {/* 5 · VO2 Max */}
+          <div style={calcCard}>
+            <div style={cardHead}>
+              <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#dcfce7', color: '#15803d', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>🏃</div>
+              <div>
+                <div style={cardTitle}>{t('fcVo2Title')}</div>
+                <div className="mixed-text" style={{ fontSize: 11, color: '#64748b' }}>{t('fcVo2Sub')}</div>
+              </div>
+            </div>
+            <div style={{ maxWidth: 260 }}>
+              <label style={{ fontSize: 11, fontWeight: 500, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t('fcVo2Dist')}</label>
+              <input type="number" min={100} max={6000} step={10} value={vo2Dist} onChange={e => setVo2Dist(+e.target.value)} style={{ ...calcInput, marginTop: 6 }} />
+            </div>
+            <button onClick={calcVo2} style={{ ...tag, marginTop: 14 }}>{t('fcVo2Btn')}</button>
+            {vo2Res && (
+              <div style={{ marginTop: 16, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12, padding: 14, border: '1px solid #e2e8f0', backgroundColor: '#f8fafc', borderRadius: 12 }}>
+                <div style={{ fontSize: 22, fontWeight: 800, color: '#0f172a' }}>{vo2Res.v.toFixed(1)} <span className="mixed-text" style={{ fontSize: 12, fontWeight: 500, color: '#64748b' }}>{t('fcVo2Unit')}</span></div>
+                <span style={{ fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 999, color: '#fff', background: vo2Color(vo2Res.level) }}>{t(vo2Res.level as any)}</span>
+              </div>
+            )}
+            <div style={{ marginTop: 14, display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              {['fcVo2Poor', 'fcVo2Fair', 'fcVo2Good', 'fcVo2Excellent', 'fcVo2Superior'].map(k => (
+                <span key={k} style={{ fontSize: 10, fontWeight: 600, padding: '3px 8px', borderRadius: 999, border: '1px solid #e2e8f0', background: vo2Res?.level === k ? vo2Color(k) : '#f8fafc', color: vo2Res?.level === k ? '#fff' : '#64748b', borderColor: vo2Res?.level === k ? vo2Color(k) : '#e2e8f0' }}>{t(k as any)}</span>
+              ))}
+            </div>
+          </div>
+
+          {/* 6 · Heart Rate Zones */}
+          <div style={calcCard}>
+            <div style={cardHead}>
+              <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#fee2e2', color: '#b91c1c', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>❤️</div>
+              <div>
+                <div style={cardTitle}>{t('fcHrTitle')}</div>
+                <div className="mixed-text" style={{ fontSize: 11, color: '#64748b' }}>{t('fcHrSub')}</div>
+              </div>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, padding: 16, background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 12, marginBottom: 16 }}>
+              <span style={{ fontSize: 12, fontWeight: 500, color: '#b91c1c' }}>{t('fcHrMax')}</span>
+              <span style={{ fontSize: 32, fontWeight: 800, color: '#b91c1c', letterSpacing: '-0.02em' }}>{220 - form.age}<span style={{ fontSize: 14, color: '#7f1d1d', fontWeight: 600 }}> bpm</span></span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {hrZones.map(z => (
+                <div key={z.key} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 14px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 12 }}>
+                  <span style={{ width: 10, height: 10, borderRadius: '50%', background: z.color }} />
+                  <span style={{ flex: 1, fontSize: 13, fontWeight: 600, color: '#0f172a' }}>{t(z.key as any)}</span>
+                  <span style={{ fontSize: 11, fontWeight: 700, color: '#475569', background: '#fff', border: '1px solid #e2e8f0', padding: '2px 8px', borderRadius: 999 }}>{z.pct}</span>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: '#0f172a', minWidth: 72, textAlign: 'end' }}>{z.bpm} <span style={{ fontSize: 10, fontWeight: 500, color: '#94a3b8' }}>bpm</span></span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
         {/* ═══════ Clinical Details (Progressive Disclosure) ═══════ */}
         <div id="details" className="space-y-3">
