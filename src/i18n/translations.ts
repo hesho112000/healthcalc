@@ -1026,6 +1026,17 @@ type TranslationKeys = {
   wlMealLunch: string;
   wlMealDinner: string;
   wlMealSnack: string;
+  wlAutoLine1: string;
+  wlAutoReasonFat: string;
+  wlAutoReasonProtein: string;
+  wlAutoReasonCarb: string;
+  wlAutoReasonBulking: string;
+  wlAutoReasonDefault: string;
+  wlManualEdit: string;
+  wlApplyAuto: string;
+  wlEditMeal: string;
+  wlResetMeal: string;
+  wlResetAll: string;
   dbLabInterpreter: string;
   dbLabsEmpty: string;
   dbBpClassification: string;
@@ -2308,6 +2319,17 @@ export const translations: Record<Language, TranslationKeys> = {
     wlMealLunch: 'Lunch',
     wlMealDinner: 'Dinner',
     wlMealSnack: 'Snack',
+    wlAutoLine1: '🤖 Quantities auto-adjusted for: {goal} · {kcal} kcal · {meal}',
+    wlAutoReasonFat: 'high fat → smaller portion',
+    wlAutoReasonProtein: 'high protein → bigger portion',
+    wlAutoReasonCarb: 'carbs reduced for fat loss',
+    wlAutoReasonBulking: 'bigger portion to gain weight',
+    wlAutoReasonDefault: 'balanced portion',
+    wlManualEdit: 'Edit manually',
+    wlApplyAuto: 'Apply auto adjust',
+    wlEditMeal: 'Edit',
+    wlResetMeal: 'Start over',
+    wlResetAll: '🗑️ Start over - clear all',
     dbLabInterpreter: 'Lab Results Interpreter',
     dbLabsEmpty: 'Enter your lab values on the left panel to get instant interpretation based on ADA medical guidelines.',
     dbBpClassification: 'Blood Pressure Classification (AHA)',
@@ -3566,6 +3588,17 @@ mbFruits: 'Fruits',
     wlMealLunch: 'Lunch',
     wlMealDinner: 'Dinner',
     wlMealSnack: 'Snack',
+    wlAutoLine1: '🤖 Quantities auto-adjusted for: {goal} · {kcal} kcal · {meal}',
+    wlAutoReasonFat: 'high fat → smaller portion',
+    wlAutoReasonProtein: 'high protein → bigger portion',
+    wlAutoReasonCarb: 'carbs reduced for fat loss',
+    wlAutoReasonBulking: 'bigger portion to gain weight',
+    wlAutoReasonDefault: 'balanced portion',
+    wlManualEdit: 'Edit manually',
+    wlApplyAuto: 'Apply auto adjust',
+    wlEditMeal: 'Edit',
+    wlResetMeal: 'Start over',
+    wlResetAll: '🗑️ Start over - clear all',
     dbLabInterpreter: 'Interpréteur de Résultats de Laboratoire',
     dbLabsEmpty: 'Entrez vos valeurs de laboratoire dans le panneau de gauche pour une interprétation instantanée basée sur les directives médicales de l\'ADA.',
     dbBpClassification: 'Classification de la Pression Artérielle (AHA)',
@@ -4794,6 +4827,17 @@ mbFruits: 'Fruits',
     wlMealLunch: 'Lunch',
     wlMealDinner: 'Dinner',
     wlMealSnack: 'Snack',
+    wlAutoLine1: '🤖 Quantities auto-adjusted for: {goal} · {kcal} kcal · {meal}',
+    wlAutoReasonFat: 'high fat → smaller portion',
+    wlAutoReasonProtein: 'high protein → bigger portion',
+    wlAutoReasonCarb: 'carbs reduced for fat loss',
+    wlAutoReasonBulking: 'bigger portion to gain weight',
+    wlAutoReasonDefault: 'balanced portion',
+    wlManualEdit: 'Edit manually',
+    wlApplyAuto: 'Apply auto adjust',
+    wlEditMeal: 'Edit',
+    wlResetMeal: 'Start over',
+    wlResetAll: '🗑️ Start over - clear all',
     dbLabInterpreter: 'Interpretador de Resultados de Laboratorio',
     dbLabsEmpty: 'Introduce tus valores de laboratorio en el panel izquierdo para obtener una interpretación instantánea según las guías médicas de la ADA.',
     dbBpClassification: 'Clasificación de la Presión Arterial (AHA)',
@@ -6022,6 +6066,17 @@ mbFruits: 'Fruits',
     wlMealLunch: 'غدا',
     wlMealDinner: 'عشاء',
     wlMealSnack: 'سناك',
+    wlAutoLine1: '🤖 الكميات اتظبطت تلقائي حسب خطتك: {goal} · {kcal} kcal · {meal}',
+    wlAutoReasonFat: 'دهون عالية → كمية أقل',
+    wlAutoReasonProtein: 'بروتين عالي → كمية أكبر',
+    wlAutoReasonCarb: 'كارب مضبوط لصالح التخسيس',
+    wlAutoReasonBulking: 'كمية أكبر لزيادة الوزن',
+    wlAutoReasonDefault: 'كمية متوازنة',
+    wlManualEdit: 'تعديل يدوي',
+    wlApplyAuto: 'تطبيق التعديل التلقائي',
+    wlEditMeal: 'تعديل',
+    wlResetMeal: 'ابدأ من جديد',
+    wlResetAll: '🗑️ ابدأ من جديد - مسح الكل',
     dbLabInterpreter: 'مفسّر نتائج المختبر',
     dbLabsEmpty: 'أدخل قيم المختبر الخاصة بك في اللوحة اليسرى للحصول على تفسير فوري وفقًا للإرشادات الطبية لـ ADA.',
     dbBpClassification: 'تصنيف ضغط الدم (AHA)',

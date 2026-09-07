@@ -43,6 +43,26 @@ const shuffle = <T,>(arr: T[]): T[] => [...arr].sort(() => Math.random() - 0.5);
 
 interface SwapAlt { name: string; nameAr?: string; calories: number; protein: number; carbs: number; fat: number; best?: string }
 interface SwapItem extends SwapAlt { qty: number }
+interface SwapState { foods: SwapItem[]; isAuto: boolean; original: MealPlan }
+type AutoGoal = 'lose_fat' | 'gain_muscle' | 'gain_weight' | 'overall';
+
+const SLOT_BUDGET: Record<'breakfast' | 'lunch' | 'dinner' | 'snack', number> = { breakfast: 0.25, lunch: 0.35, dinner: 0.25, snack: 0.15 };
+
+const autoRate = (goal: AutoGoal, food: SwapAlt): number => {
+  if (goal === 'lose_fat') return food.fat > 10 ? 0.3 : food.protein > 20 ? 0.6 : 0.7;
+  if (goal === 'gain_muscle') return food.protein > 20 ? 0.5 : food.carbs > 25 ? 0.4 : 0.5;
+  if (goal === 'gain_weight') return 0.7;
+  return 0.5;
+};
+
+const autoReasonKey = (goal: AutoGoal, food: SwapAlt): 'wlAutoReasonFat' | 'wlAutoReasonProtein' | 'wlAutoReasonCarb' | 'wlAutoReasonBulking' | 'wlAutoReasonDefault' => {
+  if (goal === 'lose_fat') return food.fat > 10 ? 'wlAutoReasonFat' : food.protein > 20 ? 'wlAutoReasonProtein' : 'wlAutoReasonCarb';
+  if (goal === 'gain_muscle') return food.protein > 20 ? 'wlAutoReasonProtein' : food.carbs > 25 ? 'wlAutoReasonCarb' : 'wlAutoReasonDefault';
+  if (goal === 'gain_weight') return 'wlAutoReasonBulking';
+  return 'wlAutoReasonDefault';
+};
+
+const snapQty = (x: number) => Math.min(300, Math.max(50, Math.round(x / 25) * 25));
 
 const slotWordKey = (best?: string): '' | 'wlMealBreakfast' | 'wlMealLunch' | 'wlMealDinner' | 'wlMealSnack' =>
   best === 'breakfast' ? 'wlMealBreakfast' : best === 'lunch' ? 'wlMealLunch' : best === 'dinner' ? 'wlMealDinner' : best === 'snack' ? 'wlMealSnack' : '';
@@ -103,7 +123,8 @@ const WeightLossPage: React.FC = () => {
   const [dayCompletions, setDayCompletions] = usePersistedState<Record<number, Record<number, boolean>>>({}, 'hc_wl_day_completions');
   const [streak, setStreak] = useState({ current: 0, longest: 0, daysCompleted: 0 });
   const [swapOpen, setSwapOpen] = useState<number | null>(null);
-  const [swapped, setSwapped] = useState<Record<number, MealPlan>>({});
+  const [swapState, setSwapState] = useState<Record<number, SwapState>>({});
+  const [swapIsAuto, setSwapIsAuto] = useState<Record<number, boolean>>({});
   const [portions, setPortions] = useState<Record<number, number>>({});
   const [customSwap, setCustomSwap] = useState('');
   const [selectedSwaps, setSelectedSwaps] = useState<Record<number, SwapItem[]>>({});
@@ -167,21 +188,72 @@ const WeightLossPage: React.FC = () => {
   const dayDoneCount = Object.values(dayDone).filter(Boolean).length;
   const activeGoal = getPrimaryGoal(selectedGoals);
 
-  const dayTotals = useMemo(() => dayMeals.reduce((acc, meal, idx) => {
-    const base = swapped[idx] ?? meal;
+  const autoGoal: AutoGoal = selectedGoals.includes('lose_fat') ? 'lose_fat'
+    : selectedGoals.includes('gain_muscle') ? 'gain_muscle'
+      : selectedGoals.includes('gain_weight') ? 'gain_weight' : 'overall';
+
+  const displayMeal = (idx: number): MealPlan => {
+    const st = swapState[idx];
+    const base = st?.original ?? dayMeals[idx];
+    if (!st || !st.foods.length) return base;
+    const totals = st.foods.reduce((acc, s) => {
+      acc.calories += Math.round(s.calories * s.qty / 100);
+      acc.protein += Math.round(s.protein * s.qty / 100);
+      acc.carbs += Math.round(s.carbs * s.qty / 100);
+      acc.fat += Math.round(s.fat * s.qty / 100);
+      return acc;
+    }, { calories: 0, protein: 0, carbs: 0, fat: 0 });
+    const join = (fmtG: (s: SwapItem) => string) => st.foods.map(fmtG).join(' + ');
+    const enLabel = join((s) => `${s.name} ${s.qty}g`);
+    const arLabel = join((s) => `${s.nameAr ?? s.name} ${s.qty}جم`);
+    return {
+      ...base,
+      nameEn: enLabel,
+      nameAr: arLabel,
+      calories: totals.calories,
+      protein: totals.protein,
+      carbs: totals.carbs,
+      fat: totals.fat,
+      items: st.foods.map((s) => (language === 'ar' ? `${s.nameAr ?? s.name} ${s.qty}جم` : `${s.name} ${s.qty}g`)),
+    };
+  };
+
+  const applyAutoAdjust = (idx: number, foods: SwapItem[]): SwapItem[] => {
+    if (!foods.length) return foods;
+    const slot = slotOf(swapState[idx]?.original ?? dayMeals[idx]);
+    const budget = SLOT_BUDGET[slot] * (result?.targetCalories ?? 0);
+    let remaining = budget;
+    return foods.map((s) => {
+      if (remaining <= 0) return { ...s, qty: 50 };
+      const rate = autoRate(autoGoal, s);
+      const qty = snapQty(remaining * rate / s.calories * 100);
+      remaining -= qty * s.calories / 100;
+      return { ...s, qty };
+    });
+  };
+
+  const dayTotals = useMemo(() => dayMeals.reduce((acc, _meal, idx) => {
+    const base = displayMeal(idx);
     const scale = (portions[idx] ?? 150) / 150;
     acc.kcal += Math.round(base.calories * scale);
     acc.protein += Math.round((base.protein ?? 0) * scale);
     return acc;
-  }, { kcal: 0, protein: 0 }), [dayMeals, swapped, portions]);
+  }, { kcal: 0, protein: 0 }), [dayMeals, swapState, portions, language]);
 
   const toggleSwapSel = (idx: number, alt: SwapAlt) => {
     setSelectedSwaps(prev => {
       const cur = prev[idx] ?? [];
-      return cur.some(s => s.name === alt.name)
-        ? { ...prev, [idx]: cur.filter(s => s.name !== alt.name) }
-        : { ...prev, [idx]: [...cur, { ...alt, qty: 150 }] };
+      const next = cur.some(s => s.name === alt.name)
+        ? cur.filter(s => s.name !== alt.name)
+        : [...cur, { ...alt, qty: 150 }];
+      const adjusted = (swapIsAuto[idx] ?? true) ? applyAutoAdjust(idx, next) : next;
+      return { ...prev, [idx]: adjusted };
     });
+  };
+
+  const toggleCustomSel = (idx: number, alt: SwapAlt) => {
+    toggleSwapSel(idx, alt);
+    setCustomSwap('');
   };
 
   const setSwapQty = (idx: number, name: string, qty: number) => {
@@ -192,43 +264,37 @@ const WeightLossPage: React.FC = () => {
     const q = customSwap.trim();
     if (!q) return;
     const found = FOODS_DATABASE.find((f) => f.name.toLowerCase().includes(q.toLowerCase()) || (f.name_ar || '').includes(q));
-    toggleSwapSel(idx, found
+    toggleCustomSel(idx, found
       ? { name: found.name, nameAr: found.name_ar, calories: found.calories, protein: found.protein, carbs: found.carbs, fat: found.fat, best: (found.mealType ?? '') as string }
       : { name: q, calories: 200, protein: 10, carbs: 20, fat: 8 });
+  };
+
+  const openEdit = (idx: number) => {
+    setSelectedSwaps(prev => prev[idx] ? prev : { ...prev, [idx]: (swapState[idx]?.foods ?? []).map(f => ({ ...f })) });
+    setSwapOpen(idx);
     setCustomSwap('');
   };
 
-  const saveCombined = (idx: number) => {
-    const items = selectedSwaps[idx] ?? [];
-    if (!items.length) return;
-    const base = swapped[idx] ?? dayMeals[idx];
-    const totals = items.reduce((acc, s) => {
-      const scale = s.qty / 150;
-      acc.calories += Math.round(s.calories * scale);
-      acc.protein += Math.round(s.protein * scale);
-      acc.carbs += Math.round(s.carbs * scale);
-      acc.fat += Math.round(s.fat * scale);
-      return acc;
-    }, { calories: 0, protein: 0, carbs: 0, fat: 0 });
-    const label = items.map(i => i.name).join(' + ');
-    const arLabel = items.map(i => i.nameAr ?? i.name).join(' + ');
-    setSwapped(prev => ({
-      ...prev,
-      [idx]: {
-        ...base,
-        meal: base.meal,
-        nameEn: label,
-        nameAr: arLabel,
-        calories: totals.calories,
-        protein: totals.protein,
-        carbs: totals.carbs,
-        fat: totals.fat,
-        items: [language === 'ar' ? arLabel : label],
-        description: items.map(i => `${language === 'ar' ? (i.nameAr ?? i.name) : i.name} (${i.qty}g)`).join(', '),
-      },
-    }));
+  const commitSave = (idx: number) => {
+    const foods = selectedSwaps[idx] ?? [];
+    if (!foods.length) return;
+    const original = swapState[idx]?.original ?? dayMeals[idx];
+    const isAuto = swapIsAuto[idx] ?? true;
+    setSwapState(prev => ({ ...prev, [idx]: { foods, isAuto, original } }));
     setSwapOpen(null);
+    setCustomSwap('');
+  };
+
+  const resetMeal = (idx: number) => {
+    setSwapState(prev => { const n = { ...prev }; delete n[idx]; return n; });
+    setSelectedSwaps(prev => { const n = { ...prev }; delete n[idx]; return n; });
+    setSwapOpen(null);
+    setCustomSwap('');
+  };
+
+  const resetAllSel = (idx: number) => {
     setSelectedSwaps(prev => ({ ...prev, [idx]: [] }));
+    setSwapIsAuto(prev => ({ ...prev, [idx]: true }));
     setCustomSwap('');
   };
 
@@ -350,7 +416,8 @@ const WeightLossPage: React.FC = () => {
 
                 <div className="grid gap-4">
                   {dayMeals.map((meal, idx) => {
-                    const base = swapped[idx] ?? meal;
+                    const st = swapState[idx];
+                    const base = displayMeal(idx);
                     const grams = portions[idx] ?? 150;
                     const scale = grams / 150;
                     const scaled: MealPlan = {
@@ -367,7 +434,7 @@ const WeightLossPage: React.FC = () => {
                         <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-2.5">
                           <button
                             type="button"
-                            onClick={() => { setSwapOpen(swapOpen === idx ? null : idx); setCustomSwap(''); }}
+                            onClick={() => { openEdit(idx); if (swapOpen === idx) setSwapOpen(null); }}
                             className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-bold border-2 transition-all ${
                               swapOpen === idx ? 'border-emerald-600 bg-emerald-50 text-emerald-700' : 'border-gray-200 hover:border-emerald-300'
                             }`}
@@ -385,13 +452,49 @@ const WeightLossPage: React.FC = () => {
                           <span className="text-xs font-bold text-gray-700 shrink-0 whitespace-nowrap">{fmt(t('wlGrams'), { g: grams })} · {scaled.calories} kcal</span>
                         </div>
 
+                        {st && (
+                          <div className="flex gap-2 justify-end">
+                            <button
+                              type="button"
+                              onClick={() => { openEdit(idx); }}
+                              className="text-[11px] px-2.5 py-1 bg-white border border-gray-200 rounded-full font-semibold text-gray-700 hover:border-emerald-300 transition-all"
+                            >
+                              ✏️ {t('wlEditMeal')}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => resetMeal(idx)}
+                              className="text-[11px] px-2.5 py-1 bg-white border border-red-200 rounded-full font-semibold text-red-600 hover:bg-red-50 transition-all"
+                            >
+                              🔄 {t('wlResetMeal')}
+                            </button>
+                          </div>
+                        )}
+
                         {swapOpen === idx && (() => {
                           const sel = selectedSwaps[idx] ?? [];
-                          const selTotal = sel.reduce((a, s) => a + Math.round(s.calories * s.qty / 150), 0);
+                          const selTotal = sel.reduce((a, s) => a + Math.round(s.calories * s.qty / 100), 0);
+                          const isAuto = swapIsAuto[idx] ?? true;
+                          const slotName = slotOf(swapState[idx]?.original ?? dayMeals[idx]);
+                          const goalLabel = t(autoGoal === 'lose_fat' ? 'wlfGoalLoseTitle' : autoGoal === 'gain_muscle' ? 'wlfGoalMuscleTitle' : autoGoal === 'gain_weight' ? 'wlfGoalGainTitle' : 'wlfGoalHealthTitle');
+                          const slotKey = slotWordKey(slotName);
+                          const mealLabel = slotKey ? t(slotKey) : t('wlMealSnack');
+                          const reasonText = sel.map(s => `${language === 'ar' ? (s.nameAr ?? s.name) : s.name} → ${s.qty}g (${t(autoReasonKey(autoGoal, s))})`).join('، ');
+                          const applyAutoNow = () => {
+                            setSelectedSwaps(prev => ({ ...prev, [idx]: applyAutoAdjust(idx, prev[idx] ?? []) }));
+                            setSwapIsAuto(prev => ({ ...prev, [idx]: true }));
+                          };
                           return (
                             <div className="absolute z-10 p-3 bg-white border border-gray-200 rounded-xl shadow-xl w-80 right-0 -bottom-2 translate-y-full max-h-[70vh] overflow-y-auto scrollbar-thin">
                               <div className="text-sm font-bold text-gray-900">{t('wlSwapTitle')}</div>
-                              <div className="mt-1 text-[11px] font-semibold text-gray-600">{fmt(t('wlSwapSelected'), { n: sel.length, kcal: selTotal })}</div>
+                              <div className="flex justify-between items-center mt-1 mb-2">
+                                <span className="text-[11px] font-semibold text-gray-600">{fmt(t('wlSwapSelected'), { n: sel.length, kcal: selTotal })}</span>
+                                {sel.length > 0 && (
+                                  <button type="button" onClick={() => resetAllSel(idx)} className="text-[11px] px-3 py-1 bg-red-50 text-red-600 border border-red-200 rounded-full hover:bg-red-100 transition-all shrink-0">
+                                    {t('wlResetAll')}
+                                  </button>
+                                )}
+                              </div>
                               <div className="mt-2 space-y-1">
                                 {alts.map((alt, i) => {
                                   const checked = sel.some(s => s.name === alt.name);
@@ -409,7 +512,7 @@ const WeightLossPage: React.FC = () => {
                                       </div>
                                       {checked && (
                                         <div className="flex items-center gap-2 flex-shrink-0">
-                                          <input type="range" min={50} max={300} step={25} value={rowItem?.qty ?? 150} onChange={(e) => setSwapQty(idx, alt.name, +e.target.value)} className="w-20 h-1 accent-emerald-600" />
+                                          <input type="range" min={50} max={300} step={25} value={rowItem?.qty ?? 150} disabled={isAuto} onChange={(e) => setSwapQty(idx, alt.name, +e.target.value)} className={`w-20 h-1 accent-emerald-600 ${isAuto ? 'opacity-50 cursor-not-allowed' : ''}`} />
                                           <span className="text-xs font-bold text-gray-700 w-10 text-right">{rowItem?.qty ?? 150}g</span>
                                         </div>
                                       )}
@@ -417,6 +520,17 @@ const WeightLossPage: React.FC = () => {
                                   );
                                 })}
                               </div>
+                              {sel.length > 0 && (
+                                <div className="p-2 bg-blue-50 border border-blue-100 rounded-lg text-[11px] text-blue-800 mt-2">
+                                  <div>🤖 {fmt(t('wlAutoLine1'), { goal: goalLabel, kcal: result?.targetCalories ?? 0, meal: mealLabel })}</div>
+                                  <div className="mt-0.5 leading-snug">{reasonText}</div>
+                                  <div className="mt-1.5 flex items-center gap-2">
+                                    <button type="button" disabled={!isAuto} onClick={() => setSwapIsAuto(prev => ({ ...prev, [idx]: false }))} className="underline font-bold disabled:opacity-40 disabled:cursor-not-allowed">{t('wlManualEdit')}</button>
+                                    <span className="text-blue-300">|</span>
+                                    <button type="button" disabled={isAuto} onClick={applyAutoNow} className="underline font-bold disabled:opacity-40 disabled:cursor-not-allowed">{t('wlApplyAuto')}</button>
+                                  </div>
+                                </div>
+                              )}
                               <div className="mt-3 pt-3 border-t flex gap-2">
                                 <input
                                   value={customSwap}
@@ -430,7 +544,7 @@ const WeightLossPage: React.FC = () => {
                               <button
                                 type="button"
                                 disabled={sel.length === 0}
-                                onClick={() => saveCombined(idx)}
+                                onClick={() => commitSave(idx)}
                                 className={`mt-3 w-full h-10 rounded-xl text-sm font-bold transition-all ${sel.length ? 'bg-emerald-600 text-white hover:bg-emerald-700' : 'bg-emerald-100 text-emerald-400 cursor-not-allowed'}`}
                               >
                                 {sel.length ? fmt(t('wlSwapSaveBtn'), { n: sel.length, kcal: selTotal }) : t('wlSwapSaveDisabled')}
