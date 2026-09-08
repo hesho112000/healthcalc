@@ -61,7 +61,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="site-header sticky top-0 z-50 bg-white border-b border-[#f1f5f9] backdrop-blur">
+    <header className="sticky top-0 z-[100] bg-white/90 backdrop-blur-xl border-b border-gray-100">
       <div className="px-6 py-3">
         <div className="flex items-center justify-between gap-4">
           <Link to="/" className="brand-mark flex items-center gap-2.5 shrink-0" aria-label="HealthCalc.ai home">
@@ -252,60 +252,36 @@ const Header: React.FC = () => {
       </div>
 
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[70] lg:hidden">
-          <div className="absolute inset-0 bg-slate-900/40 animate-fade-in" onClick={() => setMobileMenuOpen(false)} />
+        <>
+          <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[9998] lg:hidden" onClick={() => setMobileMenuOpen(false)} />
+
           <div
-            className={`absolute inset-y-0 ${dir === 'rtl' ? 'left-0' : 'right-0'} w-80 max-w-[85%] bg-white shadow-2xl flex flex-col`}
-            style={{ animation: 'careSlide .25s ease-out' }}
+            className="lg:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.15)] rounded-b-2xl z-[9999] overflow-hidden"
             role="dialog"
             aria-label="Navigation menu"
           >
-            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
-              <span className="flex items-center gap-2">
-                <span className="brand-icon w-8 h-8 bg-gradient-to-br from-primary-500 to-sage-500 rounded-xl flex items-center justify-center shadow-sm">
-                  <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
-                </span>
-                <span className="text-base font-extrabold text-gray-900">Health<span className="text-primary-600">Calc</span><span className="text-xs font-semibold text-sage-500">.ai</span></span>
-              </span>
-              <button
-                onClick={() => setMobileMenuOpen(false)}
-                aria-label="Close navigation menu"
-                className="p-2 rounded-xl hover:bg-gray-100 transition-all"
-              >
-                <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-
-            <nav className="flex-1 px-4 py-4 overflow-y-auto" aria-label="Mobile">
-              <div className="space-y-1">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`block px-4 py-3 rounded-xl text-sm font-medium transition-all ${
-                      location.pathname === link.path
-                        ? 'bg-primary-50 text-primary-700'
-                        : 'text-gray-600 hover:bg-gray-50'
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
+            <nav className="bg-white" aria-label="Mobile">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`block px-6 py-4 text-sm font-medium text-gray-800 border-b border-gray-50 last:border-0 transition-colors ${
+                    location.pathname === link.path ? 'bg-emerald-50 text-emerald-700' : 'hover:bg-emerald-50 hover:text-emerald-700'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
             </nav>
 
-            <div className="border-t border-gray-100 px-4 py-4">
+            <div className="border-t border-gray-100 bg-white px-6 py-4 space-y-2.5">
               {isAuthenticated ? (
-                <div className="space-y-2">
+                <>
                   <Link
                     to="/dashboard"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-800 hover:bg-emerald-50 hover:text-emerald-700 transition-colors"
                   >
                     <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
@@ -314,17 +290,17 @@ const Header: React.FC = () => {
                   </Link>
                   <button
                     onClick={() => { handleLogout(); setMobileMenuOpen(false); }}
-                    className="w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-red-500 hover:bg-red-50 transition-all"
+                    className="w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-red-500 hover:bg-red-50 transition-colors"
                   >
                     {t('headerSignOut')}
                   </button>
-                </div>
+                </>
               ) : (
-                <div className="space-y-2.5">
+                <>
                   <Link
                     to="/login"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block w-full text-center py-2.5 rounded-full border border-gray-200 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all"
+                    className="block w-full text-center py-2.5 rounded-full border border-gray-200 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors"
                   >
                     {t('headerSignIn')}
                   </Link>
@@ -335,11 +311,11 @@ const Header: React.FC = () => {
                   >
                     {t('heroCTA')}
                   </Link>
-                </div>
+                </>
               )}
             </div>
           </div>
-        </div>
+        </>
       )}
     </header>
   );
