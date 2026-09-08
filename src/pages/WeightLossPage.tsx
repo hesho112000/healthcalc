@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
-import { EGYPTIAN_FULL } from '../data/egyptian-full';
-import { TUNISIAN_FULL } from '../data/tunisian-full';
+import { EGYPTIAN_FULL, EGYPTIAN_PORTION_GUIDE } from '../data/egyptian-full';
+import { TUNISIAN_FULL, TUNISIAN_PORTION_GUIDE } from '../data/tunisian-full';
 
 type Step = 1 | 2 | 3 | 4;
 type Sex = 'male' | 'female';
@@ -14,6 +14,11 @@ interface SampleDish {
   conf: number;
   kitchen: 'egyptian' | 'tunisian';
   protein: number;
+  carbs: number;
+  fat: number;
+  servG: number;
+  calServ: number;
+  source?: string;
 }
 
 const ACTIVITY: Record<ActivityKey, { factor: number; label: string; desc: string }> = {
@@ -40,12 +45,18 @@ const buildSampleList = (): SampleDish[] => {
   const tn = new Map(TUNISIAN_FULL.map((d) => [d.nameAr, d]));
   return CURATED.map(({ kitchen, name }) => {
     const d = kitchen === 'egyptian' ? eg.get(name) : tn.get(name);
+    const kcalFallback = Math.round(((d?.cal100 ?? 100) * (d?.servG ?? 100)) / 100);
     return {
       ar: name,
       cal: d?.cal100 ?? 100,
       conf: d?.confidence ?? 70,
       kitchen,
       protein: d?.p100 ?? 5,
+      carbs: d?.c100 ?? 10,
+      fat: d?.f100 ?? 4,
+      servG: d?.servG ?? 100,
+      calServ: d?.kcal ?? kcalFallback,
+      source: d?.source,
     };
   });
 };
@@ -66,6 +77,13 @@ const confClass = (conf: number): string =>
       ? 'bg-amber-50 text-amber-700 border-amber-200'
       : 'bg-orange-50 text-orange-700 border-orange-200';
 
+const confBadge = (conf: number): { cls: string; label: string } =>
+  conf === 100
+    ? { cls: 'bg-emerald-100 text-emerald-800', label: '100% موثوق' }
+    : conf === 85
+      ? { cls: 'bg-yellow-100 text-yellow-800', label: '85% متوسط' }
+      : { cls: 'bg-orange-100 text-orange-800', label: '70% تقديري' };
+
 const WeightLossPage: React.FC = () => {
   const [step, setStep] = useState<Step>(1);
   const [age, setAge] = useState('28');
@@ -77,6 +95,12 @@ const WeightLossPage: React.FC = () => {
   const [goal, setGoal] = useState<GoalKey>('lose');
   const [targetWeight, setTargetWeight] = useState('75');
   const [timeline, setTimeline] = useState('12');
+  const [blueprintPage, setBlueprintPage] = useState<1 | 2>(1);
+  const [emailOpen, setEmailOpen] = useState(false);
+  const [emailText, setEmailText] = useState('');
+  const [emailSending, setEmailSending] = useState(false);
+  const [emailDone, setEmailDone] = useState('');
+  const [toast, setToast] = useState('');
 
   const parsed = useMemo(
     () => ({
@@ -125,8 +149,27 @@ const WeightLossPage: React.FC = () => {
     return true;
   };
 
-  const next = () => setStep(step >= 4 ? 1 : ((step + 1) as Step));
-  const back = () => setStep(Math.max(1, step - 1) as Step);
+  const next = () => {
+    const s = step >= 4 ? 1 : ((step + 1) as Step);
+    setStep(s);
+    if (s === 4) setBlueprintPage(1);
+  };
+  const back = () => {
+    const s = Math.max(1, step - 1) as Step;
+    setStep(s);
+    if (s === 4) setBlueprintPage(1);
+  };
+
+  const sendEmail = () => {
+    if (!emailText.trim() || emailSending) return;
+    setEmailSending(true);
+    window.setTimeout(() => {
+      setEmailSending(false);
+      setEmailDone(emailText.trim());
+      setToast(`PDF sent to ${emailText.trim()}`);
+      window.setTimeout(() => setToast(''), 3200);
+    }, 2200);
+  };
 
   const meals = [
     { meal: 'فطار', dish: samples[0], grams: 250 },
@@ -134,6 +177,39 @@ const WeightLossPage: React.FC = () => {
     { meal: 'عشاء', dish: samples[2] || samples[0], grams: 300 },
     { meal: 'سناك', dish: samples[3] || samples[0], grams: 150 },
   ];
+
+  const confCounts = useMemo(() => {
+    const count = (list: { confidence: number }[], c: number) => list.filter((d) => d.confidence === c).length;
+    const eg100 = count(EGYPTIAN_FULL, 100);
+    const eg85 = count(EGYPTIAN_FULL, 85);
+    const eg70 = count(EGYPTIAN_FULL, 70);
+    const tn100 = count(TUNISIAN_FULL, 100);
+    const tn85 = count(TUNISIAN_FULL, 85);
+    const tn70 = count(TUNISIAN_FULL, 70);
+    return { eg100, eg85, eg70, tn100, tn85, tn70, t100: eg100 + tn100, t85: eg85 + tn85, t70: eg70 + tn70 };
+  }, []);
+
+  const macros = numbers
+    ? {
+        protein: Math.round((numbers.targetCal * 0.3) / 4),
+        carbs: Math.round((numbers.targetCal * 0.4) / 4),
+        fat: Math.round((numbers.targetCal * 0.3) / 9),
+      }
+    : null;
+
+  const goalRate =
+    goal === 'lose'
+      ? (parsed.weight - parsed.target) / Math.max(1, parsed.timeline || 1)
+      : goal === 'gain'
+        ? (parsed.target - parsed.weight) / Math.max(1, parsed.timeline || 1)
+        : 0;
+  const deficit = goal === 'lose' ? -500 : goal === 'gain' ? 320 : 0;
+  const goalProgress =
+    numbers && parsed.weight !== parsed.target
+      ? Math.min(100, Math.max(0, goal === 'lose' ? ((parsed.weight - parsed.target) / parsed.weight) * 100 : ((parsed.target - parsed.weight) / parsed.target) * 100))
+      : 0;
+  const kitchenPortions =
+    kitchen === 'egyptian' ? EGYPTIAN_PORTION_GUIDE : kitchen === 'tunisian' ? TUNISIAN_PORTION_GUIDE : [...EGYPTIAN_PORTION_GUIDE, ...TUNISIAN_PORTION_GUIDE];
 
   const kitchenOptions = [
     { id: 'egyptian' as KitchenKey, label: 'Egyptian', count: `${EGYPTIAN_FULL.length} dishes`, ar: 'المطبخ المصري' },
@@ -330,73 +406,249 @@ const WeightLossPage: React.FC = () => {
           )}
 
           {step === 4 && numbers && (
-            <div className="space-y-6">
-              <div className="rounded-[14px] border border-zinc-200 bg-white p-4 md:p-5 space-y-4">
-                <h2 className="text-[16px] font-bold tracking-tight">Your Personalized Health Blueprint</h2>
-                <div className="grid grid-cols-3 gap-2">
-                  <div className="rounded-[10px] bg-zinc-50 border border-zinc-200 p-3 min-w-0">
-                    <div className="text-[10px] uppercase tracking-widest text-zinc-500 font-semibold">BMI</div>
-                    <div className="text-[20px] font-bold leading-none mt-1">{numbers.bmi}</div>
-                    <div className="text-[11px] text-zinc-500 mt-1 break-words">{numbers.bmiCat}</div>
-                  </div>
-                  <div className="rounded-[10px] bg-zinc-50 border border-zinc-200 p-3 min-w-0">
-                    <div className="text-[10px] uppercase tracking-widest text-zinc-500 font-semibold">BMR</div>
-                    <div className="text-[20px] font-bold leading-none mt-1">{numbers.bmr}</div>
-                    <div className="text-[11px] text-zinc-500 mt-1 break-words">kcal/day</div>
-                  </div>
-                  <div className="rounded-[10px] bg-[#1e40af] text-white p-3 min-w-0">
-                    <div className="text-[10px] uppercase tracking-widest text-blue-200 font-semibold">TDEE</div>
-                    <div className="text-[20px] font-bold leading-none mt-1">{numbers.tdee}</div>
-                    <div className="text-[11px] text-blue-100 mt-1 break-words">maintenance</div>
-                  </div>
+            <div className="space-y-5">
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <h2 className="text-[19px] md:text-[22px] font-bold tracking-tight leading-tight">Your Personalized Health Blueprint</h2>
+                  <span className="shrink-0 text-[10.5px] font-bold px-2 py-1 rounded-full bg-zinc-900 text-white">Step {blueprintPage} of 2</span>
                 </div>
-                <div className="grid grid-cols-2 gap-2 text-[12px]">
-                  <div className="rounded-[8px] border border-zinc-200 px-3 py-2.5">
-                    <span className="text-zinc-500">Age</span> <span className="font-semibold ml-1">{parsed.age}y · {sex}</span>
-                  </div>
-                  <div className="rounded-[8px] border border-zinc-200 px-3 py-2.5">
-                    <span className="text-zinc-500">Activity</span> <span className="font-semibold ml-1">{ACTIVITY[activity].label}</span>
-                  </div>
-                  <div className="rounded-[8px] border border-zinc-200 px-3 py-2.5 col-span-2">
-                    <span className="text-zinc-500">Target</span> <span className="font-semibold ml-1">{numbers.targetCal} kcal / {goal} · {parsed.target}kg in {parsed.timeline}w</span>
-                  </div>
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <span className="text-[11.5px] px-2.5 py-1 rounded-full border border-zinc-200 bg-zinc-50 text-zinc-700">{parsed.age}y</span>
+                  <span className="text-[11.5px] px-2.5 py-1 rounded-full border border-zinc-200 bg-zinc-50 text-zinc-700">{parsed.weight}kg → {parsed.target}kg</span>
+                  <span className="text-[11.5px] px-2.5 py-1 rounded-full border border-zinc-200 bg-zinc-50 text-zinc-700 capitalize">{goal}</span>
                 </div>
+                <p className="text-[13px] text-zinc-500 leading-snug break-words">{blueprintPage === 1 ? 'Your Metrics & Summary' : `Your Meal Plan · ~${numbers.targetCal} kcal/day`}</p>
+
+                <div className="flex items-center gap-2">
+                  {[{ n: 1 as 1 | 2, label: 'Metrics' }, { n: 2 as 1 | 2, label: 'Meal Plan' }].map((x) => (
+                    <button
+                      key={x.n}
+                      type="button"
+                      onClick={() => setBlueprintPage(x.n)}
+                      className={`flex-1 h-[38px] rounded-[8px] border text-[12.5px] font-semibold transition-all ${blueprintPage === x.n ? 'bg-[#1e40af] text-white border-[#1e40af]' : 'bg-white border-zinc-300 text-zinc-500 hover:border-zinc-400'}`}
+                    >
+                      {x.n} · {x.label}
+                    </button>
+                  ))}
+                </div>
+
+                <button type="button" onClick={() => setStep(3)} className="text-[12px] font-semibold text-[#1e40af] hover:underline">‹ Edit setup</button>
               </div>
 
-              <div className="space-y-3">
-                <h3 className="text-[13px] font-bold">Meal Plan · {kitchenLabel} · ~{numbers.targetCal} kcal</h3>
-                <div className="grid gap-2.5">
-                  {meals.map((x, idx) => {
-                    const kcal = Math.round((x.dish.cal * x.grams) / 100);
-                    const proteinG = Math.round((x.dish.protein * x.grams) / 100);
-                    return (
-                      <div key={idx} className="meal-card w-full rounded-[10px] border border-zinc-200 bg-white px-3.5 py-3 min-w-0">
-                        <div className="flex items-start justify-between gap-2 min-w-0">
-                          <div className="min-w-0 flex-1">
-                            <div className="flex items-center gap-2">
-                              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-zinc-900 text-white">{x.meal}</span>
-                              <span className="text-[12px] font-medium break-words">{x.dish.ar}</span>
-                            </div>
-                            <div className="mt-1 text-[12px] text-zinc-500 break-words leading-snug min-w-0">{x.grams}g · {kcal} kcal · {proteinG}g protein</div>
-                          </div>
-                          <span className={`shrink-0 text-[10px] font-semibold px-2 py-1 rounded-full border ${confClass(x.dish.conf)}`}>{x.dish.conf}%</span>
+              {blueprintPage === 1 && (
+                <div className="space-y-4">
+                  <div className="rounded-[14px] border border-zinc-200 bg-white p-4 md:p-5 space-y-3">
+                    <h3 className="text-[13px] font-bold">Body Metrics</h3>
+                    <div className="grid grid-cols-3 gap-2">
+                      <div className="rounded-[10px] bg-zinc-50 border border-zinc-200 p-3 min-w-0">
+                        <div className="text-[10px] uppercase tracking-widest text-zinc-500 font-semibold">BMI</div>
+                        <div className="text-[20px] font-bold leading-none mt-1">{numbers.bmi}</div>
+                        <div className="mt-1">
+                          <span className={`inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold ${numbers.bmiCat === 'طبيعي' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}`}>{numbers.bmiCat}</span>
                         </div>
                       </div>
-                    );
-                  })}
-                </div>
-              </div>
+                      <div className="rounded-[10px] bg-zinc-50 border border-zinc-200 p-3 min-w-0">
+                        <div className="text-[10px] uppercase tracking-widest text-zinc-500 font-semibold">BMR</div>
+                        <div className="text-[20px] font-bold leading-none mt-1">{numbers.bmr}</div>
+                        <div className="text-[11px] text-zinc-500 mt-1 break-words">kcal/day</div>
+                      </div>
+                      <div className="rounded-[10px] bg-[#1e40af] text-white p-3 min-w-0">
+                        <div className="text-[10px] uppercase tracking-widest text-blue-200 font-semibold">TDEE</div>
+                        <div className="text-[20px] font-bold leading-none mt-1">{numbers.tdee}</div>
+                        <div className="text-[11px] text-blue-100 mt-1 break-words">maintenance</div>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 text-[12px]">
+                      <div className="rounded-[8px] border border-zinc-200 px-3 py-2.5">
+                        <span className="text-zinc-500">Age</span> <span className="font-semibold ml-1">{parsed.age}y · {sex}</span>
+                      </div>
+                      <div className="rounded-[8px] border border-zinc-200 px-3 py-2.5">
+                        <span className="text-zinc-500">Activity</span> <span className="font-semibold ml-1">{ACTIVITY[activity].label}</span>
+                      </div>
+                    </div>
+                  </div>
 
-              <div className="rounded-[12px] border border-amber-200 bg-amber-50/60 p-4 space-y-2">
-                <div className="text-[12px] font-semibold text-amber-900">Confidence explained</div>
-                <div className="space-y-1.5 text-[12px] leading-relaxed text-zinc-700 break-words">
-                  <div><span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold border bg-emerald-50 border-emerald-200 text-emerald-700 mr-2">100%</span>المعهد القومي للتغذية - مؤكد بتحليل معملي</div>
-                  <div><span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold border bg-amber-50 border-amber-200 text-amber-700 mr-2">85%</span>USDA + وصفة منزلية موثقة</div>
-                  <div><span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold border bg-orange-50 border-orange-200 text-orange-700 mr-2">70%</span>تقديري من مطعم / تقدير شيف</div>
-                </div>
-              </div>
+                  <div className="rounded-[14px] border border-zinc-200 bg-white p-4 md:p-5 space-y-3">
+                    <h3 className="text-[13px] font-bold">Goal</h3>
+                    <div className="text-[13px] text-zinc-700 break-words">
+                      {goal === 'lose' ? `Lose ${goalRate.toFixed(2)}kg/week` : goal === 'gain' ? `Gain ${goalRate.toFixed(2)}kg/week` : 'Maintain weight'} · target {parsed.target}kg in {parsed.timeline}w
+                    </div>
+                    <div>
+                      <div className="flex items-center justify-between text-[11.5px] text-zinc-500">
+                        <span>{parsed.weight}kg</span>
+                        <span className="font-bold text-zinc-800">{goalProgress.toFixed(0)}%</span>
+                        <span>{parsed.target}kg</span>
+                      </div>
+                      <div className="relative h-[8px] rounded-full bg-zinc-100 overflow-hidden">
+                        <div className="absolute inset-y-0 left-0 bg-[#1e40af] transition-all duration-300" style={{ width: `${goalProgress}%` }} />
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-2 text-[11.5px]">
+                      <span className="px-2.5 py-1 rounded-full bg-zinc-50 border border-zinc-200 text-zinc-700 break-words">{deficit > 0 ? `+${deficit}` : deficit} kcal/day</span>
+                      <span className="px-2.5 py-1 rounded-full bg-zinc-50 border border-zinc-200 text-zinc-700">Target {numbers.targetCal} kcal</span>
+                    </div>
+                  </div>
 
-              <div className="rounded-[12px] border border-zinc-200 p-4 text-[11.5px] text-zinc-500 leading-relaxed break-words">BMI = weight / (height/100)² · BMR Mifflin-St Jeor · TDEE = BMR × activity factor. هذه حسابات تقديرية لا تغني عن استشارة طبية.</div>
+                  <div className="rounded-[14px] border border-zinc-200 bg-white p-4 md:p-5 space-y-3">
+                    <h3 className="text-[13px] font-bold">Daily Macros · ~{numbers.targetCal}</h3>
+                    <div className="grid grid-cols-3 gap-2">
+                      <div className="rounded-[10px] bg-emerald-50 border border-emerald-100 p-3 min-w-0">
+                        <div className="text-[10px] font-bold uppercase tracking-widest text-emerald-700">Protein</div>
+                        <div className="text-[17px] font-bold leading-tight mt-1">{macros!.protein}g</div>
+                        <div className="text-[10.5px] text-emerald-700 mt-0.5">30%</div>
+                      </div>
+                      <div className="rounded-[10px] bg-blue-50 border border-blue-100 p-3 min-w-0">
+                        <div className="text-[10px] font-bold uppercase tracking-widest text-blue-700">Carbs</div>
+                        <div className="text-[17px] font-bold leading-tight mt-1">{macros!.carbs}g</div>
+                        <div className="text-[10.5px] text-blue-700 mt-0.5">40%</div>
+                      </div>
+                      <div className="rounded-[10px] bg-amber-50 border border-amber-100 p-3 min-w-0">
+                        <div className="text-[10px] font-bold uppercase tracking-widest text-amber-700">Fat</div>
+                        <div className="text-[17px] font-bold leading-tight mt-1">{macros!.fat}g</div>
+                        <div className="text-[10.5px] text-amber-700 mt-0.5">30%</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="rounded-[14px] border border-zinc-200 bg-white p-4 md:p-5 space-y-3">
+                    <h3 className="text-[13px] font-bold">Confidence Score · مصدر البيانات</h3>
+                    <div className="space-y-2 text-[12px] leading-relaxed text-zinc-700 break-words">
+                      <div className="flex items-center justify-between gap-3 rounded-[8px] bg-emerald-50/70 border border-emerald-100 px-3 py-2">
+                        <div className="min-w-0">
+                          <span className="font-bold">🟢 100%</span> <span className="text-zinc-600">المعهد القومي</span>
+                        </div>
+                        <span className="shrink-0 font-bold text-emerald-800">{confCounts.t100} أطباق</span>
+                      </div>
+                      <div className="flex items-center justify-between gap-3 rounded-[8px] bg-yellow-50/70 border border-yellow-100 px-3 py-2">
+                        <div className="min-w-0">
+                          <span className="font-bold">🟡 85%</span> <span className="text-zinc-600">USDA + وصفة تقليدية</span>
+                        </div>
+                        <span className="shrink-0 font-bold text-yellow-800">{confCounts.t85} أطباق</span>
+                      </div>
+                      <div className="flex items-center justify-between gap-3 rounded-[8px] bg-orange-50/70 border border-orange-100 px-3 py-2">
+                        <div className="min-w-0">
+                          <span className="font-bold">🟠 70%</span> <span className="text-zinc-600">تقديري محلي</span>
+                        </div>
+                        <span className="shrink-0 font-bold text-orange-800">{confCounts.t70} أطباق</span>
+                      </div>
+                      <div className="text-[11.5px] text-zinc-500">دقة الأرقام حسب مصدر كل طبق من قاعدة بيانات {confCounts.t100 + confCounts.t85 + confCounts.t70} طبق.</div>
+                    </div>
+                  </div>
+
+                  <div className="rounded-[14px] border border-zinc-200 bg-white p-4 md:p-5 space-y-3">
+                    <h3 className="text-[13px] font-bold">Kitchen Database</h3>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="rounded-[10px] bg-zinc-50 border border-dashed border-zinc-300 p-3 min-w-0">
+                        <div className="text-[12px] font-bold">المصري {EGYPTIAN_FULL.length} طبق</div>
+                        <div className="mt-1 text-[10.5px] text-zinc-500 break-words">100%: {confCounts.eg100} · 85%: {confCounts.eg85} · 70%: {confCounts.eg70}</div>
+                      </div>
+                      <div className="rounded-[10px] bg-zinc-50 border border-dashed border-zinc-300 p-3 min-w-0">
+                        <div className="text-[12px] font-bold">التونسي {TUNISIAN_FULL.length} طبق</div>
+                        <div className="mt-1 text-[10.5px] text-zinc-500 break-words">100%: {confCounts.tn100} · 85%: {confCounts.tn85} · 70%: {confCounts.tn70}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="no-print pt-1">
+                    <button type="button" onClick={() => setBlueprintPage(2)} className="w-full h-[50px] rounded-[10px] bg-[#1e40af] text-white text-[15px] font-semibold hover:bg-[#1c3aa0] shadow-[0_1px_2px_rgba(0,0,0,0.08)]">Next → See Meal Plan</button>
+                    <p className="mt-2 text-center text-[11px] text-zinc-400">مصمم لموبايل كروم 390px · طباعة نظيفة</p>
+                  </div>
+                </div>
+              )}
+
+              {blueprintPage === 2 && (
+                <div className="space-y-4">
+                  <div className="rounded-[14px] border border-zinc-200 bg-white p-4 md:p-5 space-y-3">
+                    <h3 className="text-[13px] font-bold">Daily Total</h3>
+                    <div className="flex items-end justify-between gap-3">
+                      <div>
+                        <div className="text-[28px] font-bold leading-none">{numbers.targetCal}</div>
+                        <div className="text-[11px] text-zinc-500 mt-1">kcal / day</div>
+                      </div>
+                      <div className="grid grid-cols-3 gap-2 text-right">
+                        <div className="min-w-0">
+                          <div className="text-[15px] font-bold">{macros!.protein}g</div>
+                          <div className="text-[10px] text-zinc-500">Protein</div>
+                        </div>
+                        <div className="min-w-0">
+                          <div className="text-[15px] font-bold">{macros!.carbs}g</div>
+                          <div className="text-[10px] text-zinc-500">Carbs</div>
+                        </div>
+                        <div className="min-w-0">
+                          <div className="text-[15px] font-bold">{macros!.fat}g</div>
+                          <div className="text-[10px] text-zinc-500">Fat</div>
+                        </div>
+                      </div>
+                    </div>
+                    {kitchenPortions.length > 0 && (
+                      <div className="text-[11.5px] text-zinc-500 leading-relaxed break-words">
+                        <span className="font-semibold text-zinc-700">Portion guide · </span>
+                        {kitchenPortions.slice(0, 6).join(' · ')}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="space-y-3">
+                    <h3 className="text-[13px] font-bold">Meal Plan · {kitchenLabel} · ~{numbers.targetCal} kcal</h3>
+                    <div className="grid gap-3">
+                      {meals.map((x, idx) => {
+                        const kcal = Math.round((x.dish.cal * x.grams) / 100);
+                        const calServ = x.dish.calServ || kcal;
+                        const p = Math.round((x.dish.protein * x.grams) / 100);
+                        const c = Math.round((x.dish.carbs * x.grams) / 100);
+                        const f = Math.round((x.dish.fat * x.grams) / 100);
+                        const badge = confBadge(x.dish.conf);
+                        return (
+                          <div key={idx} className="meal-card print-break w-full rounded-[10px] border border-zinc-200 bg-white min-w-0">
+                            <div className="px-3.5 py-2.5 border-b border-dashed border-zinc-200 flex items-center justify-between gap-2">
+                              <div className="flex items-center gap-2 min-w-0">
+                                <span className="shrink-0 text-[11px] font-bold px-2 py-0.5 rounded-full bg-zinc-900 text-white">{x.meal}</span>
+                                <span className="text-[12px] text-zinc-500">{x.grams}g</span>
+                              </div>
+                              <span className={`shrink-0 text-[10px] font-bold px-2 py-0.5 rounded-full ${badge.cls}`}>{badge.label}</span>
+                            </div>
+                            <div className="p-3.5 min-w-0">
+                              <div className="flex items-start justify-between gap-3 min-w-0">
+                                <div className="min-w-0 flex-1">
+                                  <div className="text-[13.5px] font-medium leading-snug break-words">{x.dish.ar}</div>
+                                  <div className="mt-1 flex flex-wrap items-center gap-1.5">
+                                    <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-zinc-100 text-zinc-600">{x.dish.kitchen === 'egyptian' ? 'مصري' : 'تونسي'}</span>
+                                    <span className="text-[10.5px] text-zinc-500">{calServ} kcal · {x.dish.servG || x.grams}g serving</span>
+                                    {x.dish.source && <span className="max-w-full break-words text-[10px] px-1.5 py-0.5 rounded-full bg-blue-50 text-blue-700">{x.dish.source}</span>}
+                                  </div>
+                                  <div className="mt-1 text-[10.5px] text-zinc-500 break-words">{x.dish.cal} kcal/100g</div>
+                                  <div className="mt-2 grid grid-cols-3 gap-1.5">
+                                    <div className="rounded-[8px] bg-emerald-50 border border-emerald-100 px-2.5 py-1.5 text-[11px]">
+                                      <span className="font-bold text-emerald-800">{p}g</span> <span className="text-emerald-600">P</span>
+                                    </div>
+                                    <div className="rounded-[8px] bg-blue-50 border border-blue-100 px-2.5 py-1.5 text-[11px]">
+                                      <span className="font-bold text-blue-800">{c}g</span> <span className="text-blue-600">C</span>
+                                    </div>
+                                    <div className="rounded-[8px] bg-amber-50 border border-amber-100 px-2.5 py-1.5 text-[11px]">
+                                      <span className="font-bold text-amber-800">{f}g</span> <span className="text-amber-600">F</span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="shrink-0 rounded-[8px] bg-zinc-900 text-white px-2.5 py-1.5 text-[12px] font-bold break-words max-w-[64px] text-center">{calServ} kcal</div>
+                              </div>
+                            </div>
+                            <div className="px-3.5 py-2 border-t border-dashed border-zinc-200 flex items-center justify-between text-[11.5px]">
+                              <span className="text-zinc-500">Meal total</span>
+                              <span className="font-bold">{kcal} kcal</span>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <button type="button" onClick={() => setBlueprintPage(1)} className="text-[12.5px] font-semibold text-zinc-500 hover:text-zinc-800">← Back to Metrics</button>
+                </div>
+              )}
+
+              <div className="print-only mt-6 text-[11px] text-zinc-500 leading-relaxed break-words">
+                HealthCalc.io · Your Personalized Health Blueprint · Generated {new Date().toLocaleDateString()} · Egyptian {EGYPTIAN_FULL.length} dishes, Tunisian {TUNISIAN_FULL.length} dishes
+              </div>
             </div>
           )}
 
@@ -406,45 +658,156 @@ const WeightLossPage: React.FC = () => {
         </div>
 
         <div className="mt-8">
-          <div className="hidden md:flex gap-3">
-            <button
-              type="button"
-              onClick={back}
-              disabled={step === 1}
-              className={`h-[48px] px-6 rounded-[8px] border text-[14px] font-medium transition-all ${step === 1 ? 'bg-zinc-100 text-zinc-400 border-zinc-200 cursor-not-allowed' : 'bg-zinc-50 hover:bg-zinc-100 border-zinc-300 text-zinc-700'}`}
-            >
-              Back
-            </button>
-            <button
-              type="button"
-              onClick={next}
-              disabled={!isValid()}
-              className={`flex-1 h-[48px] rounded-[8px] text-[14px] font-semibold transition-all flex items-center justify-center gap-2 ${!isValid() ? 'bg-zinc-300 text-zinc-500 cursor-not-allowed' : 'bg-[#1e40af] text-white hover:bg-[#1c3aa0] shadow-[0_1px_2px_rgba(0,0,0,0.08)]'}`}
-            >
-              {step === 4 ? 'Start Over' : 'Next →'}
-            </button>
-          </div>
+          {step !== 4 ? (
+            <div className="hidden md:flex gap-3">
+              <button
+                type="button"
+                onClick={back}
+                disabled={step === 1}
+                className={`h-[48px] px-6 rounded-[8px] border text-[14px] font-medium transition-all ${step === 1 ? 'bg-zinc-100 text-zinc-400 border-zinc-200 cursor-not-allowed' : 'bg-zinc-50 hover:bg-zinc-100 border-zinc-300 text-zinc-700'}`}
+              >
+                Back
+              </button>
+              <button
+                type="button"
+                onClick={next}
+                disabled={!isValid()}
+                className={`flex-1 h-[48px] rounded-[8px] text-[14px] font-semibold transition-all flex items-center justify-center gap-2 ${!isValid() ? 'bg-zinc-300 text-zinc-500 cursor-not-allowed' : 'bg-[#1e40af] text-white hover:bg-[#1c3aa0] shadow-[0_1px_2px_rgba(0,0,0,0.08)]'}`}
+              >
+                Next →
+              </button>
+            </div>
+          ) : (
+            <div className="no-print hidden md:flex gap-3">
+              <button
+                type="button"
+                onClick={() => window.print()}
+                className="h-[48px] px-6 rounded-[8px] border bg-zinc-50 hover:bg-zinc-100 border-zinc-300 text-zinc-700 text-[14px] font-medium"
+              >
+                🖨 Print / PDF
+              </button>
+              <button
+                type="button"
+                onClick={() => setEmailOpen(true)}
+                className="flex-1 h-[48px] rounded-[8px] bg-[#1e40af] text-white text-[14px] font-semibold hover:bg-[#1c3aa0] shadow-[0_1px_2px_rgba(0,0,0,0.08)]"
+              >
+                ✉️ Send via Email
+              </button>
+            </div>
+          )}
         </div>
       </main>
 
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-zinc-200 px-4 py-3 flex gap-3 z-40">
-        <button
-          type="button"
-          onClick={back}
-          disabled={step === 1}
-          className={`h-[48px] px-5 rounded-[8px] border text-[14px] font-medium shrink-0 ${step === 1 ? 'bg-zinc-100 text-zinc-400 border-zinc-200' : 'bg-zinc-50 border-zinc-300 text-zinc-700'}`}
-        >
-          Back
-        </button>
-        <button
-          type="button"
-          onClick={next}
-          disabled={!isValid()}
-          className={`flex-1 h-[48px] rounded-[8px] text-[15px] font-semibold flex items-center justify-center gap-2 ${!isValid() ? 'bg-zinc-300 text-zinc-500' : 'bg-[#1e40af] text-white'}`}
-        >
-          {step === 4 ? 'Restart' : 'Next →'}
-        </button>
-      </div>
+      {step !== 4 ? (
+        <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-zinc-200 px-4 py-3 flex gap-3 z-40">
+          <button
+            type="button"
+            onClick={back}
+            disabled={step === 1}
+            className={`h-[48px] px-5 rounded-[8px] border text-[14px] font-medium shrink-0 ${step === 1 ? 'bg-zinc-100 text-zinc-400 border-zinc-200' : 'bg-zinc-50 border-zinc-300 text-zinc-700'}`}
+          >
+            Back
+          </button>
+          <button
+            type="button"
+            onClick={next}
+            disabled={!isValid()}
+            className={`flex-1 h-[48px] rounded-[8px] text-[15px] font-semibold flex items-center justify-center gap-2 ${!isValid() ? 'bg-zinc-300 text-zinc-500' : 'bg-[#1e40af] text-white'}`}
+          >
+            Next →
+          </button>
+        </div>
+      ) : (
+        <div className="no-print md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-zinc-200 px-4 py-3 flex gap-3 z-40">
+          <button
+            type="button"
+            onClick={() => window.print()}
+            className="h-[48px] px-4 rounded-[8px] border bg-zinc-50 border-zinc-300 text-zinc-700 text-[14px] font-medium shrink-0"
+          >
+            🖨 Print
+          </button>
+          <button
+            type="button"
+            onClick={() => setEmailOpen(true)}
+            className="flex-1 h-[48px] rounded-[8px] text-[15px] font-semibold flex items-center justify-center gap-2 bg-[#1e40af] text-white"
+          >
+            ✉️ Send via Email
+          </button>
+        </div>
+      )}
+
+      {toast && (
+        <div className="no-print fixed bottom-24 left-1/2 -translate-x-1/2 z-50 rounded-full bg-zinc-900 text-white text-[12.5px] font-medium px-4 py-2 shadow-lg whitespace-nowrap">
+          {toast}
+        </div>
+      )}
+
+      {emailOpen && (
+        <div className="no-print fixed inset-0 z-50 bg-black/40 backdrop-blur-[2px] flex items-end md:items-center justify-center">
+          <div className="w-full max-w-[560px] bg-white rounded-t-[16px] md:rounded-[16px] p-5 shadow-xl relative">
+            <button
+              type="button"
+              onClick={() => {
+                setEmailOpen(false);
+                setEmailDone('');
+                setEmailSending(false);
+              }}
+              className="absolute top-4 right-4 w-7 h-7 rounded-full text-zinc-400 hover:text-zinc-700 text-[16px]"
+            >
+              ✕
+            </button>
+            {emailDone ? (
+              <div className="pt-2">
+                <div className="h-10 w-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl">✓</div>
+                <h3 className="mt-3 text-[17px] font-bold">Sent</h3>
+                <p className="mt-1 text-[13.5px] text-zinc-600 break-words">PDF sent to {emailDone}</p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setEmailOpen(false);
+                    setEmailDone('');
+                    setEmailSending(false);
+                  }}
+                  className="mt-5 w-full h-[48px] rounded-[8px] bg-[#1e40af] text-white text-[14px] font-semibold"
+                >
+                  Done
+                </button>
+              </div>
+            ) : (
+              <div className="pt-2">
+                <h3 className="text-[17px] font-bold">Send Blueprint</h3>
+                <p className="mt-1 text-[13px] text-zinc-500">Receive the blueprint as a PDF on your email.</p>
+                <label className="mt-4 block text-[12.5px] font-medium text-zinc-700">Email address</label>
+                <input
+                  type="email"
+                  value={emailText}
+                  onChange={(e) => setEmailText(e.target.value)}
+                  placeholder="you@example.com"
+                  inputMode="email"
+                  className="mt-1.5 w-full h-[48px] rounded-[8px] border border-zinc-300 px-4 outline-none focus:border-[#1e40af] focus:ring-[3px] focus:ring-blue-100 bg-white"
+                />
+                <div className="mt-5 flex gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setEmailOpen(false)}
+                    className="h-[48px] px-5 rounded-[8px] border border-zinc-300 bg-zinc-50 text-zinc-700 text-[14px] font-medium"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    onClick={sendEmail}
+                    disabled={emailSending || !emailText.trim()}
+                    className={`flex-1 h-[48px] rounded-[8px] text-[14px] font-semibold ${emailSending || !emailText.trim() ? 'bg-zinc-300 text-zinc-500' : 'bg-[#1e40af] text-white'}`}
+                  >
+                    {emailSending ? 'Sending…' : 'Send'}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

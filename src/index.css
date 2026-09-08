@@ -520,3 +520,14 @@ html[lang='ar'] textarea {
   table { width: 100% !important; border-collapse: collapse !important; }
   th, td { border: 1px solid #e5e7eb !important; padding: 6px 10px !important; }
 }
+
+/* Wizard blueprint print helpers */
+.print-only { display: none; }
+@media print {
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+  .print-break { break-inside: avoid; page-break-inside: avoid; }
+  .wiz-page { background: white !important; color: #18181b !important; }
+  .wiz-page main { padding: 0 !important; margin: 0 !important; }
+  .wiz-page .meal-card { box-shadow: none !important; }
+}
