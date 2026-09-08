@@ -31,6 +31,7 @@ export interface KitchenInfo {
   id: string;
   kitchen: string;
   city: string;
+  country: string;
   flag: string;
   total: number;
   conf100: number;
@@ -100,6 +101,65 @@ const CITY_BY_ID: Record<string, string> = {
   venezuelan: 'كراكاس 🇻🇪',
 };
 
+const COUNTRY_BY_WORD: Record<string, string> = {
+  'مصري': 'مصر 🇪🇬',
+  'تونسي': 'تونس 🇹🇳',
+  'سوري': 'سوريا 🇸🇾',
+  'فلسطيني': 'فلسطين 🇵🇸',
+  'لبناني': 'لبنان 🇱🇧',
+  'أردني': 'الأردن 🇯🇴',
+  'مغربي': 'المغرب 🇲🇦',
+  'سعودي': 'السعودية 🇸🇦',
+};
+
+const COUNTRY_BY_ID: Record<string, string> = {
+  egyptian: 'مصر 🇪🇬',
+  tunisian: 'تونس 🇹🇳',
+  syrian: 'سوريا 🇸🇾',
+  palestinian: 'فلسطين 🇵🇸',
+  lebanese: 'لبنان 🇱🇧',
+  jordanian: 'الأردن 🇯🇴',
+  algerian: 'الجزائر 🇩🇿',
+  american: 'الولايات المتحدة 🇺🇸',
+  bahraini: 'البحرين 🇧🇭',
+  australian: 'أستراليا 🇦🇺',
+  chinese: 'الصين 🇨🇳',
+  british: 'بريطانيا 🇬🇧',
+  brazilian: 'البرازيل 🇧🇷',
+  chilean: 'تشيلي 🇨🇱',
+  colombian: 'كولومبيا 🇨🇴',
+  'costa-rican': 'كوستاريكا 🇨🇷',
+  cuban: 'كوبا 🇨🇺',
+  emirati: 'الإمارات 🇦🇪',
+  ethiopian: 'إثيوبيا 🇪🇹',
+  french: 'فرنسا 🇫🇷',
+  italian: 'إيطاليا 🇮🇹',
+  indian: 'الهند 🇮🇳',
+  japanese: 'اليابان 🇯🇵',
+  greek: 'اليونان 🇬🇷',
+  jamaican: 'جامايكا 🇯🇲',
+  kenyan: 'كينيا 🇰🇪',
+  korean: 'كوريا 🇰🇷',
+  kuwaiti: 'الكويت 🇰🇼',
+  mexican: 'المكسيك 🇲🇽',
+  libyan: 'ليبيا 🇱🇾',
+  moroccan: 'المغرب 🇲🇦',
+  'new-zealand': 'نيوزيلندا 🇳🇿',
+  omani: 'عمان 🇴🇲',
+  pakistani: 'باكستان 🇵🇰',
+  peruvian: 'بيرو 🇵🇪',
+  saudi: 'السعودية 🇸🇦',
+  nigerian: 'نيجيريا 🇳🇬',
+  qatar: 'قطر 🇶🇦',
+  rwandan: 'رواندا 🇷🇼',
+  swiss: 'سويسرا 🇨🇭',
+  thai: 'تايلاند 🇹🇭',
+  spanish: 'إسبانيا 🇪🇸',
+  'south-african': 'جنوب أفريقيا 🇿🇦',
+  turkish: 'تركيا 🇹🇷',
+  venezuelan: 'فنزويلا 🇻🇪',
+};
+
 const NAME_BY_ID: Record<string, string> = {
   egyptian: 'المطبخ المصري',
   tunisian: 'المطبخ التونسي',
@@ -153,6 +213,13 @@ function basenameId(path: string): string {
   return file.replace(/\.(json|ts)$/, '').replace(/-full(?:-100-USDA)?$/, '').replace(/-kitchen$/, '');
 }
 
+function matchCountry(name: string, id: string): string {
+  for (const [word, country] of Object.entries(COUNTRY_BY_WORD)) {
+    if (name.includes(word)) return country;
+  }
+  return COUNTRY_BY_ID[id] ?? CITY_BY_ID[id] ?? name;
+}
+
 function matchCity(name: string, id: string): string {
   for (const [word, city] of Object.entries(CITY_BY_WORD)) {
     if (name.includes(word)) return city;
@@ -183,7 +250,7 @@ function toKitchenDish(raw: any): KitchenDish | null {
   const kcal = raw.kcal ?? 0;
   const cal100 = Math.max(0, Math.round((kcal * 100) / grams));
   return {
-    name: raw.nameAr ?? raw.nameEn ?? '',
+    name: raw.name_ar ?? raw.nameAr ?? raw.name_en ?? raw.nameEn ?? '',
     cal_100: cal100,
     p: raw.protein ?? 0,
     c: raw.carbs ?? 0,
@@ -204,6 +271,57 @@ function toKitchenDish(raw: any): KitchenDish | null {
 const jsonModules = import.meta.glob('../*-full-100-USDA.json', { eager: true }) as Record<string, any>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const tsModules = import.meta.glob('../*-full.ts', { eager: true }) as Record<string, any>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const dietModules = import.meta.glob('../*-diet-100-medical.json', { eager: true }) as Record<string, any>;
+
+const DIET_NAME: Record<string, string> = {
+  keto: 'المطبخ الكيتو',
+  vegan: 'المطبخ النباتي الصرف',
+  vegetarian: 'المطبخ النباتي العام',
+  'high-protein': 'المطبخ عالي البروتين',
+  mediterranean: 'المطبخ المتوسطي',
+  'low-carb': 'الدايت قليل الكربوهيدرات',
+  dash: 'دايت DASH للضغط',
+  'gluten-free': 'دايت خالٍ من الغلوتين',
+  'intermittent-fasting': 'دايت الصيام المتقطع',
+  paleo: 'دايت باليو',
+};
+
+const DIET_COUNTRY: Record<string, string> = {
+  keto: 'أمريكا - كيتو 🇺🇸',
+  vegan: 'نباتي عالمي 🌱',
+  vegetarian: 'نباتي عام 🌿',
+  'high-protein': 'عالمي - بروتين 💪',
+  mediterranean: 'اليونان - متوسطي 🫒',
+  'low-carb': 'دايت - قليل الكربوهيدرات 🥬',
+  dash: 'أمريكا - DASH 🫀',
+  'gluten-free': 'عالمي - خالٍ من الغلوتين 🌾',
+  'intermittent-fasting': 'عالمي - صيام متقطع ⏱️',
+  paleo: 'عالمي - باليو 🏹',
+};
+
+function buildDiet(path: string, mod: any): KitchenInfo {
+  const list: any[] = Array.isArray(mod.default) ? mod.default : Array.isArray(mod) ? mod : [];
+  const dishes = list.map(toKitchenDish).filter((d: KitchenDish | null): d is KitchenDish => !!d);
+  const base = (path.split('/').pop() || '').replace(/\.json$/, '').replace(/-diet-100-medical$/, '');
+  const name = DIET_NAME[base] ?? `دايت ${base}`;
+  const country = DIET_COUNTRY[base] ?? 'عالمي دايت 🌍';
+  return {
+    id: `diet-${base}`,
+    kitchen: name,
+    city: name,
+    country,
+    flag: country.split(' ').pop() ?? '🏳️',
+    total: dishes.length,
+    conf100: 0,
+    conf85: 0,
+    conf70: dishes.length,
+    sample: dishes[0] ?? null,
+    dishes,
+    categories: [],
+    rich: false,
+  };
+}
 
 function buildRich(path: string, mod: any): KitchenInfo {
   const data = mod.default ?? mod;
@@ -217,11 +335,13 @@ function buildRich(path: string, mod: any): KitchenInfo {
   const id = basenameId(path);
   const name = typeof data.kitchen === 'string' ? data.kitchen : NAME_BY_ID[id] ?? id;
   const city = matchCity(name, id);
+  const country = matchCountry(name, id);
   return {
     id,
     kitchen: name,
     city,
-    flag: city.split(' ').pop() ?? '🏳️',
+    country,
+    flag: country.split(' ').pop() ?? '🏳️',
     total: data.total_dishes ?? dishes.length,
     conf100: dishes.filter((d) => d.confidence === 100).length,
     conf85: dishes.filter((d) => d.confidence === 85).length,
@@ -241,11 +361,13 @@ function buildBasic(path: string, mod: any): KitchenInfo {
   const dishes = rawList.map(toKitchenDish).filter((d: KitchenDish | null): d is KitchenDish => !!d);
   const name = NAME_BY_ID[id] ?? id;
   const city = CITY_BY_ID[id] ?? name;
+  const country = COUNTRY_BY_ID[id] ?? city;
   return {
     id,
     kitchen: name,
     city,
-    flag: city.split(' ').pop() ?? '🏳️',
+    country,
+    flag: country.split(' ').pop() ?? '🏳️',
     total: dishes.length,
     conf100: 0,
     conf85: 0,
@@ -267,6 +389,9 @@ function assemble(): KitchenInfo[] {
     const id = basenameId(path);
     if (richIds.has(id)) continue;
     out.push(buildBasic(path, mod));
+  }
+  for (const [path, mod] of Object.entries(dietModules)) {
+    out.push(buildDiet(path, mod));
   }
   return out;
 }

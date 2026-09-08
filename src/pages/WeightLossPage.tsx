@@ -5,7 +5,7 @@ import type { KitchenInfo, KitchenDish } from '../data/kitchens';
 type Step = 1 | 2 | 3 | 4;
 type Sex = 'male' | 'female';
 type ActivityKey = 'sedentary' | 'light' | 'moderate' | 'active' | 'very_active';
-type GoalKey = 'lose' | 'maintain' | 'gain';
+type GoalKey = 'lose' | 'gain_muscle' | 'gain_weight' | 'wellness' | 'athletic';
 type DietLevel = 'normal' | 'medium' | 'harsh';
 
 interface Workout {
@@ -21,6 +21,7 @@ interface Workout {
 interface DietIntensity {
   id: string;
   label: string;
+  short: string;
   emoji: string;
   deficit: number;
   surplus: number;
@@ -29,6 +30,7 @@ interface DietIntensity {
   workoutMod: number;
   proteinFactor: number;
   level: DietLevel;
+  healthyOnly: boolean;
   warning?: string;
 }
 
@@ -52,18 +54,47 @@ const WORKOUTS: Workout[] = [
 
 const DIETS: Record<GoalKey, DietIntensity[]> = {
   lose: [
-    { id: 'normal_lose', label: 'رجيم عادي - نزول صحي', emoji: '🟢', deficit: 300, surplus: 0, rate: '0.25 كجم/أسبوع', desc: 'نزول بطيء صحي - مناسب للمبتدئين - لا جوع', workoutMod: 1.0, proteinFactor: 1.2, level: 'normal' },
-    { id: 'medium_lose', label: 'رجيم متوسط - نزول متوسط', emoji: '🟡', deficit: 500, surplus: 0, rate: '0.5 كجم/أسبوع', desc: 'الأكثر شيوعاً - توازن بين النزول والطاقة', workoutMod: 1.1, proteinFactor: 1.6, level: 'medium' },
-    { id: 'harsh_lose', label: 'رجيم قاسي - نزول سريع', emoji: '🔴', deficit: 800, surplus: 0, rate: '0.8-1 كجم/أسبوع', desc: 'سريع لكن يحتاج متابعة - عالي البروتين - تمارين أكثر', workoutMod: 1.3, proteinFactor: 2.0, level: 'harsh', warning: 'استشر طبيب' },
+    { id: 'normal_lose', label: 'رجيم عادي - نزول صحي', short: 'عادي', emoji: '🟢', deficit: 300, surplus: 0, rate: '0.25 كجم/أسبوع', desc: 'نزول بطيء صحي - مناسب للمبتدئين - لا جوع', workoutMod: 1.0, proteinFactor: 1.2, level: 'normal', healthyOnly: false },
+    { id: 'medium_lose', label: 'رجيم متوسط - نزول متوسط', short: 'متوسط', emoji: '🟡', deficit: 500, surplus: 0, rate: '0.5 كجم/أسبوع', desc: 'الأكثر شيوعاً - توازن بين النزول والطاقة', workoutMod: 1.1, proteinFactor: 1.6, level: 'medium', healthyOnly: false },
+    { id: 'harsh_lose', label: 'رجيم قاسي - نزول سريع', short: 'قاسي', emoji: '🔴', deficit: 800, surplus: 0, rate: '0.8-1 كجم/أسبوع', desc: 'سريع لكن يحتاج متابعة - عالي البروتين - تمارين أكثر', workoutMod: 1.3, proteinFactor: 2.0, level: 'harsh', healthyOnly: true, warning: 'استشر طبيب' },
   ],
-  maintain: [
-    { id: 'maintain', label: 'ثبات الوزن - صيانة', emoji: '⚪', deficit: 0, surplus: 0, rate: '0 كجم/أسبوع', desc: 'الحفاظ على الوزن الحالي', workoutMod: 1.0, proteinFactor: 1.4, level: 'normal' },
+  gain_muscle: [
+    { id: 'lean_bulk', label: 'Lean Bulk - بناء نظيف', short: 'Lean', emoji: '🟢', deficit: 0, surplus: 250, rate: '+0.25 كجم/أسبوع', desc: 'زيادة عضل نظيفة - دهون قليلة', workoutMod: 1.2, proteinFactor: 2.0, level: 'normal', healthyOnly: false },
+    { id: 'moderate_bulk', label: 'Moderate Bulk - زيادة متوازنة', short: 'Moderate', emoji: '🟡', deficit: 0, surplus: 400, rate: '+0.4 كجم/أسبوع', desc: 'زيادة متوازنة عضل + وزن', workoutMod: 1.3, proteinFactor: 2.0, level: 'medium', healthyOnly: false },
+    { id: 'aggressive_bulk', label: 'Aggressive Bulk - تضخيم سريع', short: 'Aggressive', emoji: '🔴', deficit: 0, surplus: 600, rate: '+0.6 كجم/أسبوع', desc: 'تضخيم سريع - سعرات عالية + تمارين قوية', workoutMod: 1.5, proteinFactor: 2.2, level: 'harsh', healthyOnly: false },
   ],
-  gain: [
-    { id: 'normal_gain', label: 'زيادة عادية - نظيفة', emoji: '🟢', deficit: 0, surplus: 250, rate: '+0.25 كجم/أسبوع', desc: 'زيادة عضل نظيفة - دهون قليلة', workoutMod: 1.2, proteinFactor: 1.8, level: 'normal' },
-    { id: 'medium_gain', label: 'زيادة متوسطة', emoji: '🟡', deficit: 0, surplus: 400, rate: '+0.4 كجم/أسبوع', desc: 'زيادة متوازنة عضل + وزن', workoutMod: 1.3, proteinFactor: 2.0, level: 'medium' },
-    { id: 'harsh_gain', label: 'زيادة قاسية - تضخيم سريع', emoji: '🔴', deficit: 0, surplus: 600, rate: '+0.6 كجم/أسبوع', desc: 'تضخيم سريع - سعرات عالية + تمارين قوية', workoutMod: 1.5, proteinFactor: 2.2, level: 'harsh' },
+  gain_weight: [
+    { id: 'normal_gain', label: 'زيادة عادية - نظيفة', short: 'عادي', emoji: '🟢', deficit: 0, surplus: 250, rate: '+0.25 كجم/أسبوع', desc: 'زيادة وزن صحية - دهون قليلة', workoutMod: 1.2, proteinFactor: 1.8, level: 'normal', healthyOnly: false },
+    { id: 'medium_gain', label: 'زيادة متوسطة', short: 'متوسط', emoji: '🟡', deficit: 0, surplus: 400, rate: '+0.4 كجم/أسبوع', desc: 'زيادة متوازنة عضل + وزن', workoutMod: 1.3, proteinFactor: 2.0, level: 'medium', healthyOnly: false },
+    { id: 'harsh_gain', label: 'زيادة قاسية - تضخيم سريع', short: 'قاسي', emoji: '🔴', deficit: 0, surplus: 600, rate: '+0.6 كجم/أسبوع', desc: 'تضخيم سريع - سعرات عالية + تمارين قوية', workoutMod: 1.5, proteinFactor: 2.2, level: 'harsh', healthyOnly: false },
   ],
+  wellness: [
+    { id: 'well_balanced', label: 'Balanced - متوازن', short: 'Balanced', emoji: '🟢', deficit: 0, surplus: 0, rate: '0 كجم/أسبوع', desc: 'متوازن تماماً - طعام صحي فقط', workoutMod: 1.0, proteinFactor: 1.4, level: 'normal', healthyOnly: true },
+    { id: 'well_deficit', label: 'Slight Deficit - عجز خفيف', short: 'Deficit', emoji: '🟡', deficit: 200, surplus: 0, rate: '-0.2 كجم/أسبوع', desc: 'عجز خفيف - صحي - طعام صحي فقط', workoutMod: 1.1, proteinFactor: 1.6, level: 'medium', healthyOnly: true },
+    { id: 'well_surplus', label: 'Slight Surplus - فائض خفيف', short: 'Surplus', emoji: '🔵', deficit: 0, surplus: 200, rate: '+0.2 كجم/أسبوع', desc: 'فائض خفيف لزيادة الطاقة - طعام طاقة', workoutMod: 1.1, proteinFactor: 1.5, level: 'medium', healthyOnly: false },
+  ],
+  athletic: [
+    { id: 'ath_endurance', label: 'تحمّل Endurance', short: 'Endurance', emoji: '🟢', deficit: 0, surplus: 100, rate: 'أداء متوازن', desc: 'تغذية تحمّل - كربوهيدرات كافية', workoutMod: 1.2, proteinFactor: 1.6, level: 'normal', healthyOnly: false },
+    { id: 'ath_strength', label: 'قوة Strength', short: 'Strength', emoji: '🟡', deficit: 0, surplus: 200, rate: 'أداء قوة', desc: 'بروتين أعلى + سعرات للقوة', workoutMod: 1.3, proteinFactor: 1.8, level: 'medium', healthyOnly: false },
+    { id: 'ath_peak', label: 'أداء عالي Peak', short: 'Peak', emoji: '🔴', deficit: 0, surplus: 300, rate: 'أداء احترافي', desc: 'سعرات عالية + بروتين للأداء العالي', workoutMod: 1.5, proteinFactor: 2.0, level: 'harsh', healthyOnly: false },
+  ],
+};
+
+const GOAL_ICONS: Record<GoalKey, string> = { lose: '⚖️', gain_muscle: '💪', gain_weight: '📈', wellness: '✨', athletic: '🏃' };
+const GOAL_BTN: Record<GoalKey, string> = { lose: 'Lose ↓', gain_muscle: 'Build Muscle', gain_weight: 'Gain Weight', wellness: 'Wellness', athletic: 'Athletic' };
+const GOAL_LABELS: Record<GoalKey, string> = { lose: 'تخسيس', gain_muscle: 'بناء عضلات', gain_weight: 'زيادة وزن صحية', wellness: 'صحة وعافية', athletic: 'أداء رياضي' };
+const GOAL_INTENSITY_LABEL: Record<GoalKey, string> = {
+  lose: 'اختر شدة الرجيم للتخسيس',
+  gain_muscle: 'اختر شدة بناء العضلات',
+  gain_weight: 'اختر شدة زيادة الوزن',
+  wellness: 'اختر شدة الصحة والعافية',
+  athletic: 'اختر شدة الأداء الرياضي',
+};
+
+const signedDelta = (g: GoalKey, d: DietIntensity): string => {
+  if (g === 'wellness') return d.deficit ? `-${d.deficit}` : d.surplus ? `+${d.surplus}` : '0';
+  if (g === 'lose') return `-${d.deficit}`;
+  return d.surplus ? `+${d.surplus}` : '0';
 };
 
 const getDiet = (g: GoalKey, id: string): DietIntensity => DIETS[g].find((d) => d.id === id) ?? DIETS[g][0];
@@ -97,19 +128,29 @@ function filterDishes(kitchen: KitchenInfo, diet: DietIntensity, goal: GoalKey):
     const f = dishes.filter((x) => x.cal_100 <= 250);
     return f.length ? f : dishes;
   }
-  if (goal === 'gain') {
+  if (goal === 'gain_muscle' || goal === 'gain_weight') {
     const sorted = [...dishes].sort((a, b) => b.p - a.p || b.cal_100 - a.cal_100);
     if (diet.level === 'harsh') {
-      const f = sorted.filter((x) => x.cal_100 >= 120);
+      const f = sorted.filter((x) => x.p >= 5);
       return f.length ? f : sorted;
     }
     if (diet.level === 'medium') {
-      const f = sorted.filter((x) => x.cal_100 >= 100);
+      const f = sorted.filter((x) => x.p >= 4);
       return f.length ? f : sorted;
     }
     return sorted;
   }
-  return dishes;
+  if (goal === 'wellness') {
+    const sorted = [...dishes].sort((a, b) => b.p - a.p || b.cal_100 - a.cal_100);
+    if (diet.healthyOnly) {
+      const f = dishes.filter((x) => x.healthy);
+      return f.length ? f : sorted;
+    }
+    const f = dishes.filter((x) => x.cal_100 >= 120);
+    return f.length ? f : sorted;
+  }
+  const sorted = [...dishes].sort((a, b) => b.p - a.p || b.cal_100 - a.cal_100);
+  return sorted;
 }
 
 function portionGrams(diet: DietIntensity, goal: GoalKey): number {
@@ -118,7 +159,7 @@ function portionGrams(diet: DietIntensity, goal: GoalKey): number {
     if (diet.level === 'medium') return 175;
     return 200;
   }
-  if (goal === 'gain') {
+  if (goal === 'gain_muscle' || goal === 'gain_weight' || goal === 'athletic') {
     if (diet.level === 'harsh') return 300;
     if (diet.level === 'medium') return 280;
     return 250;
@@ -183,7 +224,8 @@ const WeightLossPage: React.FC = () => {
     const tdeeBase = bmr * ACTIVITY[activity].factor;
     const burnAvg = Math.round(((wk.burn * wk.days) / 7) * diet.workoutMod);
     const tdeeWorkout = Math.round(tdeeBase + burnAvg);
-    const delta = goal === 'lose' ? -diet.deficit : goal === 'gain' ? diet.surplus : 0;
+    const delta =
+      goal === 'lose' ? -diet.deficit : goal === 'wellness' ? (diet.deficit ? -diet.deficit : diet.surplus) : diet.surplus;
     const targetCal = Math.round(tdeeWorkout + delta);
     const protein = Math.round(w * diet.proteinFactor);
     const fat = Math.round(w * (diet.level === 'normal' ? 0.8 : 0.7));
@@ -271,11 +313,18 @@ const WeightLossPage: React.FC = () => {
   };
 
   const inputClass = 'w-full h-[48px] rounded-[8px] border border-zinc-300 px-4 outline-none focus:border-[#1e40af] focus:ring-[3px] focus:ring-blue-100 bg-white';
-  const goalProgress = numbers && parsed.weight !== parsed.target ? Math.min(100, Math.max(0, goal === 'lose' ? ((parsed.weight - parsed.target) / parsed.weight) * 100 : ((parsed.target - parsed.weight) / parsed.target) * 100)) : 0;
+  const goalProgress = numbers && parsed.weight !== parsed.target ? Math.min(100, Math.max(0, parsed.target < parsed.weight ? ((parsed.weight - parsed.target) / parsed.weight) * 100 : ((parsed.target - parsed.weight) / parsed.target) * 100)) : 0;
   const proteinPct = numbers ? Math.round((numbers.protein * 4 * 100) / numbers.targetCal) : 0;
   const carbsPct = numbers ? Math.round((numbers.carbs * 4 * 100) / numbers.targetCal) : 0;
   const fatPct = numbers ? Math.round((numbers.fat * 9 * 100) / numbers.targetCal) : 0;
   const portionGuideText = selectedKitchen.portion_guide || 'شوربة طبق 250مل · لحم قطعة 150جم · أرز طبق 200جم · خضار 200جم · فواكه 150جم';
+  const projectionText = !numbers
+    ? ''
+    : goal === 'wellness'
+      ? `الحفاظ على ${parsed.weight}kg وتحسين الصحة العامة · ${numbers.diet.rate} · نوم ونشاط أفضل.`
+      : `من ${parsed.weight}kg إلى ${parsed.target}kg خلال ${parsed.timeline} أسابيع · ${numbers.diet.rate} · ${
+          goal === 'lose' && parsed.weight > parsed.target ? 'معدل آمن.' : goal === 'gain_muscle' || goal === 'gain_weight' ? 'زيادة محسوبة.' : 'أداء محسوب.'
+        }`;
 
   return (
     <div className="wiz-page min-h-screen bg-[#f8fafc] text-zinc-900 overflow-x-hidden antialiased" dir="ltr">
@@ -351,7 +400,7 @@ const WeightLossPage: React.FC = () => {
             <div className="space-y-7">
               <div className="space-y-1.5">
                 <label className="text-[13px] font-medium text-zinc-700">Activity level</label>
-                <div className="grid gap-2">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                   {(Object.keys(ACTIVITY) as ActivityKey[]).map((x) => {
                     const opt = ACTIVITY[x];
                     const on = activity === x;
@@ -360,15 +409,10 @@ const WeightLossPage: React.FC = () => {
                         key={x}
                         type="button"
                         onClick={() => setActivity(x)}
-                        className={`w-full text-left rounded-[10px] border px-4 py-3 flex items-center justify-between transition-all min-w-0 ${on ? 'border-[#1e40af] bg-blue-50/60 ring-[3px] ring-blue-100' : 'border-zinc-200 bg-white hover:border-zinc-300'}`}
+                        className={`rounded-[10px] border px-3 py-2.5 text-left transition-all min-w-0 ${on ? 'border-[#1e40af] bg-blue-50/60 ring-2 ring-blue-100' : 'border-zinc-200 bg-white hover:border-zinc-300'}`}
                       >
-                        <div className="min-w-0">
-                          <div className="text-[13.5px] font-semibold">{opt.label}</div>
-                          <div className="text-[12px] text-zinc-500 break-words">{opt.desc} · x{opt.factor}</div>
-                        </div>
-                        <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${on ? 'border-[#1e40af]' : 'border-zinc-300'}`}>
-                          {on && <div className="w-2 h-2 rounded-full bg-[#1e40af]" />}
-                        </div>
+                        <div className="text-[12.5px] font-semibold leading-tight">{opt.label}</div>
+                        <div className="mt-0.5 text-[10.5px] text-zinc-500 leading-snug break-words">{opt.desc.split(' - ')[0]} · x{opt.factor}</div>
                       </button>
                     );
                   })}
@@ -376,36 +420,29 @@ const WeightLossPage: React.FC = () => {
               </div>
 
               <div className="space-y-3">
-                <label className="text-[13px] font-bold">📍 اختر مدينتك ومطبخها ({kitchensRegistry.length} مدينة - {totalDishesAll} طبق)</label>
-                <div className="kitchen-city-scroll-box h-[380px] overflow-y-auto border-2 border-zinc-200 rounded-[12px] p-3 bg-white shadow-sm space-y-3">
+                <label className="text-[13px] font-bold">📍 اختر الدولة ومطبخها ({kitchensRegistry.length} دولة - {totalDishesAll} طبق)</label>
+                <div className="kitchen-city-scroll-box h-[200px] overflow-y-auto border-2 border-zinc-200 rounded-[12px] p-2.5 bg-white shadow-sm grid grid-cols-1 md:grid-cols-2 gap-2">
                   {kitchensRegistry.map((k) => {
                     const on = selectedKitchenId === k.id;
                     return (
                       <div
                         key={k.id}
                         onClick={() => setSelectedKitchenId(k.id)}
-                        className={`p-4 rounded-xl border-2 cursor-pointer transition-all min-w-0 ${on ? 'border-emerald-500 bg-emerald-50 shadow-md' : 'border-zinc-200 hover:border-zinc-300'}`}
+                        className={`rounded-[10px] border-2 cursor-pointer p-2.5 flex flex-col gap-1.5 transition-all min-w-0 ${on ? 'border-emerald-500 bg-emerald-50 shadow-md' : 'border-zinc-200 hover:border-zinc-300'}`}
                       >
-                        <div className="flex justify-between items-center gap-2">
-                          <div className="flex items-center gap-2 min-w-0">
-                            <span className="text-[20px] shrink-0">{k.flag}</span>
-                            <div className="min-w-0">
-                              <div className="font-bold text-[14px]">{k.city}</div>
-                              <div className="text-[11.5px] text-zinc-500 break-words">{k.kitchen}</div>
-                            </div>
+                        <div className="flex items-center gap-2 min-w-0">
+                          <span className="text-[18px] leading-none shrink-0">{k.flag}</span>
+                          <div className="min-w-0 flex-1">
+                            <div className="truncate font-bold text-[12.5px] leading-tight">{k.country}</div>
+                            <div className="truncate text-[10.5px] text-zinc-500 leading-snug">{k.kitchen}</div>
                           </div>
-                          <span className="shrink-0 text-[11px] bg-zinc-900 text-white px-2.5 py-1 rounded-full">{k.total} طبق</span>
+                          <span className="shrink-0 text-[10px] bg-zinc-900 text-white px-2 py-0.5 rounded-full">{k.total}</span>
                         </div>
-                        <div className="flex flex-wrap gap-1.5 mt-2.5">
-                          <span className="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">{k.conf100} × 100%</span>
-                          <span className="text-[10px] bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full">{k.conf85} × 85%</span>
-                          <span className="text-[10px] bg-orange-100 text-orange-800 px-2 py-0.5 rounded-full">{k.conf70} × 70%</span>
+                        <div className="flex flex-wrap gap-1">
+                          <span className="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded-full">{k.conf100}×100%</span>
+                          <span className="text-[9px] bg-yellow-100 text-yellow-800 px-1.5 py-0.5 rounded-full">{k.conf85}×85%</span>
+                          <span className="text-[9px] bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded-full">{k.conf70}×70%</span>
                         </div>
-                        {k.sample && (
-                          <div className="text-[11px] text-zinc-600 mt-2 leading-[1.4] break-words bg-zinc-50 p-2 rounded-lg">
-                            مثال: {k.sample.name} - {k.sample.cal_100}/100جم - الطبق {k.sample.serv_g}جم ≈ {k.sample.cal_serv} سعر
-                          </div>
-                        )}
                       </div>
                     );
                   })}
@@ -414,17 +451,18 @@ const WeightLossPage: React.FC = () => {
 
               <div className="space-y-3">
                 <label className="text-[13px] font-bold">🏋️ اختر روتين التمرين</label>
-                <div className="workout-scroll-box h-[300px] overflow-y-auto border-2 border-zinc-200 rounded-[12px] p-3 bg-white space-y-2">
+                <div className="workout-scroll-box h-[180px] overflow-y-auto border-2 border-zinc-200 rounded-[12px] p-2.5 bg-white grid grid-cols-2 gap-2">
                   {WORKOUTS.map((w) => {
                     const on = workout === w.id;
                     return (
                       <div
                         key={w.id}
                         onClick={() => setWorkout(w.id)}
-                        className={`p-3 rounded-xl border-2 cursor-pointer min-w-0 ${on ? 'border-blue-500 bg-blue-50' : 'border-zinc-200'}`}
+                        className={`p-2.5 rounded-[10px] border-2 cursor-pointer min-w-0 ${on ? 'border-blue-500 bg-blue-50' : 'border-zinc-200'}`}
                       >
-                        <div className="font-bold text-[13px] break-words">{w.name}</div>
-                        <div className="text-[11.5px] text-zinc-500 break-words">{w.days}x/أسبوع · {w.dur} · {w.focus} · حرق +{w.burn} سعر/جلسة</div>
+                        <div className="text-[12px] font-bold leading-tight break-words">{w.name}</div>
+                        <div className="mt-0.5 text-[10px] text-zinc-500 leading-snug break-words">{w.days}x/أسبوع · {w.dur} · {w.focus}</div>
+                        <div className="mt-0.5 text-[10.5px] font-semibold text-blue-600">حرق +{w.burn} سعر</div>
                       </div>
                     );
                   })}
@@ -448,15 +486,15 @@ const WeightLossPage: React.FC = () => {
             <div className="space-y-6">
               <div className="space-y-1.5">
                 <label className="text-[13px] font-medium text-zinc-700">Goal type</label>
-                <div className="grid grid-cols-3 gap-2">
-                  {(['lose', 'maintain', 'gain'] as GoalKey[]).map((x) => (
+                <div className="grid grid-cols-2 gap-2">
+                  {(['lose', 'gain_muscle', 'gain_weight', 'wellness', 'athletic'] as GoalKey[]).map((x) => (
                     <button
                       key={x}
                       type="button"
                       onClick={() => changeGoal(x)}
-                      className={`h-[48px] rounded-[8px] border text-[13px] font-medium capitalize ${goal === x ? 'bg-[#1e40af] text-white border-[#1e40af]' : 'bg-white border-zinc-300 text-zinc-700'}`}
+                      className={`h-[44px] rounded-[8px] border text-[12px] font-semibold ${goal === x ? 'bg-[#1e40af] text-white border-[#1e40af]' : 'bg-white border-zinc-300 text-zinc-700 hover:border-zinc-400'}`}
                     >
-                      {x === 'lose' ? 'Lose ↓' : x === 'gain' ? 'Gain ↑' : 'Maintain →'}
+                      {GOAL_ICONS[x]} {GOAL_BTN[x]}
                     </button>
                   ))}
                 </div>
@@ -473,38 +511,37 @@ const WeightLossPage: React.FC = () => {
                 </div>
               </div>
 
-              {goal !== 'maintain' && (
-                <div className="space-y-3">
-                  <label className="text-[13px] font-bold">⚖️ {goal === 'lose' ? 'اختر شدة الرجيم للتخسيس' : 'اختر شدة الزيادة'}</label>
-                  <div className="diet-intensity-scroll-box h-[300px] overflow-y-auto border-2 border-zinc-200 rounded-[12px] p-3 bg-white space-y-2">
+              <div className="space-y-3">
+                  <label className="text-[13px] font-bold">{GOAL_ICONS[goal]} {GOAL_INTENSITY_LABEL[goal]}</label>
+                  {goal === 'wellness' && (
+                    <div className="rounded-[8px] bg-violet-50 border border-violet-100 px-3 py-2 text-[11px] text-zinc-600 leading-snug break-words">
+                      ✨ Recomposition &amp; Wellness = الحفاظ + تحسين الصحة العامة
+                    </div>
+                  )}
+                  <div className="diet-intensity-scroll-box h-[96px] overflow-y-auto border-2 border-zinc-200 rounded-[12px] p-1.5 bg-white grid grid-cols-3 gap-1.5">
                     {DIETS[goal].map((d) => {
                       const on = dietId === d.id;
                       return (
-                        <div
+                        <button
                           key={d.id}
+                          type="button"
                           onClick={() => setDietId(d.id)}
-                          className={`p-4 rounded-xl border-2 cursor-pointer min-w-0 ${on ? 'border-orange-500 bg-orange-50' : 'border-zinc-200'}`}
+                          className={`rounded-[8px] border-2 p-2 text-left transition-all min-w-0 ${on ? 'border-orange-500 bg-orange-50' : 'border-zinc-200'}`}
                         >
-                          <div className="flex justify-between items-start gap-2">
-                            <span className="font-bold text-[13px] break-words">{d.emoji} {d.label}</span>
-                            <span className="shrink-0 text-[11px] bg-red-100 text-red-700 px-2 py-1 rounded-full">{goal === 'lose' ? `-${d.deficit}` : `+${d.surplus}`} سعر</span>
-                          </div>
-                          <div className="text-[11.5px] text-zinc-600 mt-1 break-words">{d.rate} - {d.desc}</div>
-                          {d.warning && <div className="text-[11px] text-red-600 mt-1">⚠️ {d.warning}</div>}
-                        </div>
+                          <div className="text-[10.5px] font-bold leading-tight break-words">{d.emoji} {d.short}</div>
+                          <div className="mt-0.5 text-[10px] text-zinc-500 leading-snug break-words">{d.rate}</div>
+                          <div className="mt-0.5 text-[10.5px] font-semibold text-red-600">{signedDelta(goal, d)} سعر</div>
+                        </button>
                       );
                     })}
                   </div>
+                  {diet.warning && <div className="text-[11px] text-red-600">⚠️ {diet.warning}</div>}
                 </div>
-              )}
 
               {numbers && (
                 <div className="rounded-[12px] border border-zinc-200 bg-zinc-50/70 p-4 space-y-2">
                   <div className="text-[12px] font-semibold text-zinc-700">Projection</div>
-                  <div className="text-[13px] text-zinc-600 leading-relaxed break-words">
-                    من {parsed.weight}kg إلى {parsed.target}kg خلال {parsed.timeline} أسابيع · {numbers.diet.rate} ·{' '}
-                    {goal === 'lose' && parsed.weight > parsed.target ? 'معدل آمن.' : goal === 'gain' ? 'زيادة محسوبة.' : 'ثبات وزن.'}
-                  </div>
+                  <div className="text-[13px] text-zinc-600 leading-relaxed break-words">{projectionText}</div>
                   <div className="text-[12px] text-zinc-500">Target calories: ~{numbers.targetCal} kcal / day ({numbers.wk.name})</div>
                 </div>
               )}
@@ -521,7 +558,7 @@ const WeightLossPage: React.FC = () => {
                 <div className="flex flex-wrap items-center gap-1.5">
                   <span className="text-[11.5px] px-2.5 py-1 rounded-full border border-zinc-200 bg-zinc-50 text-zinc-700">{parsed.age}y</span>
                   <span className="text-[11.5px] px-2.5 py-1 rounded-full border border-zinc-200 bg-zinc-50 text-zinc-700">{parsed.weight}kg → {parsed.target}kg</span>
-                  <span className="text-[11.5px] px-2.5 py-1 rounded-full border border-zinc-200 bg-zinc-50 text-zinc-700 capitalize">{selectedKitchen.city}</span>
+                  <span className="text-[11.5px] px-2.5 py-1 rounded-full border border-zinc-200 bg-zinc-50 text-zinc-700 capitalize">{selectedKitchen.country}</span>
                 </div>
                 <p className="text-[13px] text-zinc-500 leading-snug break-words">{blueprintPage === 1 ? 'Your Metrics & Summary' : `Your Meal Plan · ~${numbers.targetCal} kcal/day`}</p>
 
@@ -572,7 +609,8 @@ const WeightLossPage: React.FC = () => {
                   </div>
 
                   <div className="rounded-[14px] border border-zinc-200 bg-white p-4 md:p-5 space-y-3">
-                    <h3 className="text-[13px] font-bold">Goal · {goal === 'lose' ? 'تخسيس' : goal === 'gain' ? 'زيادة' : 'ثبات'}</h3>
+                    <h3 className="text-[13px] font-bold">Goal · {GOAL_ICONS[goal]} {GOAL_LABELS[goal]}</h3>
+                    {goal === 'wellness' && <div className="text-[11px] text-violet-600 leading-snug break-words">✨ Recomposition &amp; Wellness = الحفاظ + تحسين الصحة العامة</div>}
                     <div className="text-[13px] text-zinc-700 break-words">
                       {numbers.diet.rate} · target {parsed.target}kg in {parsed.timeline}w · {numbers.wk.name}
                     </div>
@@ -621,7 +659,7 @@ const WeightLossPage: React.FC = () => {
                       <div className="flex items-center gap-2.5 rounded-[8px] bg-zinc-50 border border-zinc-200 px-3 py-2">
                         <span className="text-[16px] shrink-0">{selectedKitchen.flag}</span>
                         <div className="min-w-0 flex-1">
-                          <div className="font-semibold">{selectedKitchen.city} · {selectedKitchen.kitchen}</div>
+                          <div className="font-semibold">{selectedKitchen.country} · {selectedKitchen.kitchen}</div>
                           <div className="text-[11px] text-zinc-500">{selectedKitchen.total} طبق · {selectedKitchen.conf100}×100% · {selectedKitchen.conf85}×85% · {selectedKitchen.conf70}×70%</div>
                         </div>
                       </div>
@@ -663,14 +701,14 @@ const WeightLossPage: React.FC = () => {
                         </div>
                         <span className="shrink-0 font-bold text-orange-800">{registryTotals.t70} أطباق</span>
                       </div>
-                      <div className="text-[11.5px] text-zinc-500">دقة الأرقام حسب مصدر كل طبق من {kitchensRegistry.length} مدينة و {totalDishesAll} طبق.</div>
+                      <div className="text-[11.5px] text-zinc-500">دقة الأرقام حسب مصدر كل طبق من {kitchensRegistry.length} دولة و {totalDishesAll} طبق.</div>
                     </div>
                   </div>
 
                   <div className="rounded-[14px] border border-zinc-200 bg-white p-4 md:p-5 space-y-3">
                     <h3 className="text-[13px] font-bold">Kitchen Database</h3>
                     <div className="rounded-[10px] bg-zinc-50 border border-dashed border-zinc-300 p-3 min-w-0">
-                      <div className="text-[12px] font-bold break-words">{selectedKitchen.flag} {selectedKitchen.city} · {selectedKitchen.kitchen}</div>
+                      <div className="text-[12px] font-bold break-words">{selectedKitchen.flag} {selectedKitchen.country} · {selectedKitchen.kitchen}</div>
                       <div className="mt-1 text-[10.5px] text-zinc-500 break-words">{selectedKitchen.total} طبق · 100%: {selectedKitchen.conf100} · 85%: {selectedKitchen.conf85} · 70%: {selectedKitchen.conf70}</div>
                     </div>
                     <div className="flex gap-1.5 overflow-x-auto pb-1">
@@ -680,7 +718,7 @@ const WeightLossPage: React.FC = () => {
                           onClick={() => setSelectedKitchenId(k.id)}
                           className={`shrink-0 cursor-pointer text-[10px] px-2 py-1 rounded-full border ${selectedKitchenId === k.id ? 'border-[#1e40af] bg-[#1e40af] text-white' : 'border-zinc-200 bg-white text-zinc-600'}`}
                         >
-                          {k.flag} {k.city} · {k.total}
+                          {k.flag} {k.country} · {k.total}
                         </span>
                       ))}
                     </div>
@@ -781,7 +819,7 @@ const WeightLossPage: React.FC = () => {
               )}
 
               <div className="print-only mt-6 text-[11px] text-zinc-500 leading-relaxed break-words">
-                HealthCalc.io · Your Personalized Health Blueprint · Generated {new Date().toLocaleDateString()} · {kitchensRegistry.length} cities, {totalDishesAll} dishes · {selectedKitchen.kitchen}
+                HealthCalc.io · Your Personalized Health Blueprint · Generated {new Date().toLocaleDateString()} · {kitchensRegistry.length} countries, {totalDishesAll} dishes · {selectedKitchen.kitchen}
               </div>
             </div>
           )}
