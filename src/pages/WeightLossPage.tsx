@@ -368,26 +368,83 @@ const MEAL_MAP: Record<MealKey, MealDefinition> = {
 };
 
 const MEAL_NAMES: Record<MealKey, string> = { breakfast: 'فطار', lunch: 'غدا', dinner: 'عشاء', snacks: 'سناك' };
+
+const EGYPTIAN_MEAL: Record<MealKey, MealDefinition['filter']> = {
+  breakfast: (cat, dish) => {
+    const cn = cat.name_ar;
+    const dn = dish.name;
+    if (cn.includes('سادساً')) return true;
+    if (cn.includes('سابعاً') && dish.cal_serv <= 40) return true;
+    if (cn.includes('عاشراً') && (dn.includes('شاي') || dn.includes('حلبة') || dn.includes('عصير برتقال') || dn.includes('ليمون بالنعناع'))) return true;
+    if (cn.includes('ثامناً') && (dn.includes('الخبز البلدي') || dn.includes('عيش الشامي'))) return true;
+    return false;
+  },
+  lunch: (cat) => {
+    const cn = cat.name_ar;
+    return cn.includes('ثانياً') || cn.includes('ثالثاً') || cn.includes('رابعاً') || cn.includes('خامساً');
+  },
+  dinner: (cat) => {
+    const cn = cat.name_ar;
+    return cn.includes('أولاً') || cn.includes('سابعاً');
+  },
+  snacks: (cat, dish) => {
+    const cn = cat.name_ar;
+    return cn.includes('تاسعاً') || (cn.includes('عاشراً') && dish.cal_serv >= 100) || (cn.includes('ثامناً') && dish.serv_g <= 40);
+  },
+};
+
+const TUNISIAN_MEAL: Record<MealKey, MealDefinition['filter']> = {
+  breakfast: (cat, dish) => {
+    const cn = cat.name_ar;
+    const dn = dish.name;
+    if (cn.includes('ثانياً') && dish.cal_serv <= 60) return true;
+    if (cn.includes('ثانياً') && dn.includes('بسطرمة بالبيض')) return true;
+    if (cn.includes('ثالثاً') && dn.includes('بريك البيض والبطاطس')) return true;
+    if (cn.includes('ثامناً') && (dn.includes('الطابونة') || dn.includes('الشعير الصحي') || dn.includes('البذرات') || dn.includes('الدائري') || dn.includes('الباغات'))) return true;
+    if (cn.includes('عاشراً') && (dn.includes('قهوة') || dn.includes('شاي') || dn.includes('برتقال') || dn.includes('رمان') || dn.includes('تين شوكي'))) return true;
+    return false;
+  },
+  lunch: (cat) => {
+    const cn = cat.name_ar;
+    return cn.includes('أولاً') || cn.includes('رابعاً') || cn.includes('خامساً') || cn.includes('سادساً') || cn.includes('سابعاً');
+  },
+  dinner: (cat, dish) => {
+    const cn = cat.name_ar;
+    return (cn.includes('أولاً') && dish.cal_serv < 120) || (cn.includes('ثانياً') && dish.cal_serv < 60);
+  },
+  snacks: (cat, dish) => {
+    const cn = cat.name_ar;
+    return cn.includes('تاسعاً') || (cn.includes('عاشراً') && dish.cal_serv >= 100);
+  },
+};
+
+function getMealFilter(k: KitchenInfo, key: MealKey): MealDefinition['filter'] {
+  if (k.id === 'egyptian') return EGYPTIAN_MEAL[key];
+  if (k.id === 'tunisian') return TUNISIAN_MEAL[key];
+  return MEAL_MAP[key].filter;
+}
+
 const MEAL_TABS: { key: MealKey; label: string; emoji: string; active: string }[] = [
-  { key: 'breakfast', label: 'الفطار', emoji: '🌅', active: 'bg-orange-500 text-white border-orange-500' },
-  { key: 'lunch', label: 'الغداء', emoji: '🌞', active: 'bg-emerald-600 text-white border-emerald-600' },
-  { key: 'dinner', label: 'العشاء', emoji: '🌙', active: 'bg-blue-600 text-white border-blue-600' },
+  { key: 'breakfast', label: 'فطار', emoji: '🌅', active: 'bg-orange-500 text-white border-orange-500' },
+  { key: 'lunch', label: 'غداء', emoji: '🌞', active: 'bg-emerald-600 text-white border-emerald-600' },
+  { key: 'dinner', label: 'عشاء', emoji: '🌙', active: 'bg-blue-600 text-white border-blue-600' },
   { key: 'snacks', label: 'سناك', emoji: '🍪', active: 'bg-amber-500 text-white border-amber-500' },
 ];
 
-function getMealTypesForDish(cat: KitchenCategory, dish: KitchenDish): MealKey[] {
+function getMealTypesForDish(k: KitchenInfo, cat: KitchenCategory, dish: KitchenDish): MealKey[] {
   const types: MealKey[] = [];
   for (const key of ['breakfast', 'lunch', 'dinner', 'snacks'] as MealKey[]) {
-    if (MEAL_MAP[key].filter(cat, dish)) types.push(key);
+    if (getMealFilter(k, key)(cat, dish)) types.push(key);
   }
   return types.length ? types : ['lunch'];
 }
 
 function dishesForMeal(k: KitchenInfo, key: MealKey): KitchenDish[] {
+  const fn = getMealFilter(k, key);
   const out: KitchenDish[] = [];
   for (const cat of getKitchenCategories(k)) {
     for (const d of cat.dishes) {
-      if (MEAL_MAP[key].filter(cat, d)) out.push(d);
+      if (fn(cat, d)) out.push(d);
     }
   }
   return out.filter((d, i, a) => a.findIndex((x) => x.name === d.name) === i);
@@ -428,6 +485,7 @@ const WeightLossPage: React.FC = () => {
   const [mealTab, setMealTab] = useState<MealKey>('breakfast');
   const [expandedCat, setExpandedCat] = useState<string | null>(null);
   const [selectedDishKeys, setSelectedDishKeys] = useState<string[]>([]);
+  const [assignedDishes, setAssignedDishes] = useState<Record<string, MealKey[]>>({});
   const [dietId, setDietId] = useState('normal_lose');
   const [selectedDay, setSelectedDay] = useState(1);
   const [water, setWater] = useState(0);
@@ -460,6 +518,7 @@ const WeightLossPage: React.FC = () => {
       if (found.length >= FEATURED_KITCHEN_IDS.length) break;
       if (k.dishes.length && !found.some((f) => f.id === k.id)) found.push(k);
     }
+    console.log('Loaded:', found.length, 'total:', found.reduce((s, k) => s + k.total, 0));
     return found;
   }, []);
   const selectedKitchenCats = useMemo<KitchenCategory[]>(() => getKitchenCategories(selectedKitchen), [selectedKitchen]);
@@ -471,33 +530,59 @@ const WeightLossPage: React.FC = () => {
     const c: Record<MealKey, number> = { breakfast: 0, lunch: 0, dinner: 0, snacks: 0 };
     for (const cat of selectedKitchenCats) {
       for (const d of cat.dishes) {
-        for (const mm of getMealTypesForDish(cat, d)) c[mm]++;
+        for (const mm of getMealTypesForDish(selectedKitchen, cat, d)) c[mm]++;
       }
     }
     return c;
-  }, [selectedKitchenCats]);
+  }, [selectedKitchenCats, selectedKitchen]);
   const mealCategories = useMemo(() => {
+    const fn = getMealFilter(selectedKitchen, mealTab);
     return selectedKitchenCats
       .filter((cat) => cat.name_ar.includes(categorySearch))
-      .map((cat) => ({ cat, dishes: cat.dishes.filter((d) => MEAL_MAP[mealTab].filter(cat, d)) }))
+      .map((cat) => ({ cat, dishes: cat.dishes.filter((d) => fn(cat, d)) }))
       .filter((x) => x.dishes.length > 0);
-  }, [selectedKitchenCats, mealTab, categorySearch]);
+  }, [selectedKitchenCats, selectedKitchen, mealTab, categorySearch]);
   const dishMealOf = useMemo(() => {
     const m = new Map<string, MealKey[]>();
     for (const cat of selectedKitchenCats) {
       for (const d of cat.dishes) {
-        m.set(`${cat.id}::${d.name}`, getMealTypesForDish(cat, d));
+        m.set(`${cat.id}::${d.name}`, getMealTypesForDish(selectedKitchen, cat, d));
       }
     }
     return m;
-  }, [selectedKitchenCats]);
-  const mealCounts = useMemo(() => {
-    const c: Record<MealKey, number> = { breakfast: 0, lunch: 0, dinner: 0, snacks: 0 };
-    for (const key of selectedDishKeys) {
-      for (const mm of dishMealOf.get(key) ?? ['lunch']) c[mm]++;
+  }, [selectedKitchenCats, selectedKitchen]);
+  const selectedDishMap = useMemo(() => {
+    const m = new Map<string, KitchenDish>();
+    for (const cat of selectedKitchenCats) {
+      for (const d of cat.dishes) m.set(`${cat.id}::${d.name}`, d);
     }
-    return c;
-  }, [selectedDishKeys, dishMealOf]);
+    return m;
+  }, [selectedKitchenCats]);
+  const mealSummary = useMemo(() => {
+    const per: Record<MealKey, { key: string; dish: KitchenDish }[]> = { breakfast: [], lunch: [], dinner: [], snacks: [] };
+    for (const key of selectedDishKeys) {
+      const dish = selectedDishMap.get(key);
+      if (!dish) continue;
+      const meals = assignedDishes[key] ? assignedDishes[key] : (dishMealOf.get(key) ?? []);
+      for (const m of meals) {
+        if (per[m]) per[m].push({ key, dish });
+      }
+    }
+    return per;
+  }, [selectedDishKeys, selectedDishMap, assignedDishes, dishMealOf]);
+  const fmtMeal = (list: { key: string; dish: KitchenDish }[]): string => {
+    if (!list.length) return 'لم تختر أطباق لهذه الوجبة';
+    const parts = list.map((x) => `${x.dish.name} ${x.dish.cal_serv}`);
+    const cal = list.reduce((s, x) => s + x.dish.cal_serv, 0);
+    const p = list.reduce((s, x) => s + (x.dish.p || 0), 0);
+    const c = list.reduce((s, x) => s + (x.dish.c || 0), 0);
+    const f = list.reduce((s, x) => s + (x.dish.f || 0), 0);
+    return `${parts.join(' + ')} = ${cal} سعر | P:${p} C:${c} F:${f}`;
+  };
+  const totalCal = useMemo(
+    () => selectedDishKeys.reduce((s, k) => s + (selectedDishMap.get(k)?.cal_serv ?? 0), 0),
+    [selectedDishKeys, selectedDishMap],
+  );
   const filteredPlanned = useMemo(
     () => plannedExercises.filter((p) => p.name.includes(selectedExerciseSearch) || p.type.includes(selectedExerciseSearch.toLowerCase())),
     [plannedExercises, selectedExerciseSearch],
@@ -600,15 +685,21 @@ const WeightLossPage: React.FC = () => {
       pool.length ? [...pool].sort((a, b) => b.p - a.p || b.cal_100 - a.cal_100)[0] : undefined;
     const pickSmall = (pool: KitchenDish[]): KitchenDish | undefined =>
       pool.length ? [...pool].sort((a, b) => a.serv_g - b.serv_g || a.cal_100 - b.cal_100)[0] : undefined;
+    const pickAssigned = (key: MealKey): KitchenDish | undefined => {
+      const list = mealSummary[key];
+      if (!list.length) return undefined;
+      const sorted = [...list].sort((a, b) => (key === 'lunch' ? b.dish.p - a.dish.p : a.dish.cal_100 - b.dish.cal_100));
+      return sorted[0].dish;
+    };
     const fallback = pickPlate(filterDishes(selectedKitchen, diet, goal));
     const meals: { meal: string; dish: KitchenDish | undefined; grams: number }[] = [
-      { meal: MEAL_NAMES.breakfast, dish: pickLight(dishesForMeal(selectedKitchen, 'breakfast')), grams: Math.round(baseG * 0.85) },
-      { meal: MEAL_NAMES.lunch, dish: pickHeavy(dishesForMeal(selectedKitchen, 'lunch')), grams: Math.round(baseG * 1.4) },
-      { meal: MEAL_NAMES.dinner, dish: pickLight(dishesForMeal(selectedKitchen, 'dinner')), grams: Math.round(baseG * 1.25) },
-      { meal: MEAL_NAMES.snacks, dish: pickSmall(dishesForMeal(selectedKitchen, 'snacks')), grams: Math.round(baseG * 0.6) },
+      { meal: MEAL_NAMES.breakfast, dish: pickAssigned('breakfast') ?? pickLight(dishesForMeal(selectedKitchen, 'breakfast')), grams: Math.round(baseG * 0.85) },
+      { meal: MEAL_NAMES.lunch, dish: pickAssigned('lunch') ?? pickHeavy(dishesForMeal(selectedKitchen, 'lunch')), grams: Math.round(baseG * 1.4) },
+      { meal: MEAL_NAMES.dinner, dish: pickAssigned('dinner') ?? pickLight(dishesForMeal(selectedKitchen, 'dinner')), grams: Math.round(baseG * 1.25) },
+      { meal: MEAL_NAMES.snacks, dish: pickAssigned('snacks') ?? pickSmall(dishesForMeal(selectedKitchen, 'snacks')), grams: Math.round(baseG * 0.6) },
     ];
     return meals.map((m, i) => ({ meal: m.meal, dish: m.dish ?? fallback[i], grams: m.grams }));
-  }, [selectedKitchen, diet, goal]);
+  }, [selectedKitchen, diet, goal, mealSummary]);
 
   const isValid = (): boolean => {
     if (step === 1) {
@@ -690,15 +781,17 @@ const WeightLossPage: React.FC = () => {
     setCategorySearch('');
     setExpandedCat(null);
     setSelectedDishKeys([]);
+    setAssignedDishes({});
   };
 
   const autoPickDishes = () => {
     const keys: string[] = [];
     for (const mk of ['breakfast', 'lunch', 'dinner', 'snacks'] as MealKey[]) {
+      const fn = getMealFilter(selectedKitchen, mk);
       let n = 0;
       for (const cat of selectedKitchenCats) {
         for (const d of cat.dishes) {
-          if (MEAL_MAP[mk].filter(cat, d) && n < 2) {
+          if (fn(cat, d) && n < 2) {
             keys.push(`${cat.id}::${d.name}`);
             n++;
           }
@@ -706,12 +799,24 @@ const WeightLossPage: React.FC = () => {
       }
     }
     setSelectedDishKeys(keys);
+    setAssignedDishes({});
     setCategoryMode('auto');
     notify(`تم اختيار ${keys.length} طبق تلقائياً 🤖`);
   };
 
   const toggleDish = (key: string) => {
     setSelectedDishKeys((prev) => (prev.includes(key) ? prev.filter((x) => x !== key) : [...prev, key]));
+  };
+
+  const assignDishToMeal = (key: string, meal: MealKey) => {
+    setAssignedDishes((prev) => {
+      const cur = prev[key] ? prev[key] : (dishMealOf.get(key) ?? []);
+      const next = cur.includes(meal) ? cur.filter((x) => x !== meal) : [...cur, meal];
+      const cp = { ...prev };
+      if (next.length) cp[key] = next;
+      else delete cp[key];
+      return cp;
+    });
   };
 
   const toggleExpand = (id: string) => {
@@ -1009,13 +1114,9 @@ const WeightLossPage: React.FC = () => {
 
                 <div className="flex-1 flex flex-col border-2 border-zinc-200 rounded-[12px] overflow-hidden bg-white min-w-0">
                   <div className="px-2 py-2 bg-gray-50 border-b border-zinc-200 shrink-0">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-[12.5px] font-bold truncate">🍽️ أطباق {MEAL_MAP[mealTab].label}</span>
-                      <button type="button" onClick={autoPickDishes} className={`px-2.5 py-1 rounded-full text-[10.5px] font-semibold border transition-all ${categoryMode === 'auto' ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-zinc-600 border-zinc-300'}`}>🤖 تلقائي</button>
-                    </div>
-                    <div className="flex gap-1 overflow-x-auto mt-2">
+                    <div className="flex gap-1 overflow-x-auto">
                       {MEAL_TABS.map((t) => (
-                        <button key={t.key} type="button" onClick={() => setMealTab(t.key)} className={`px-3 py-1.5 rounded-full text-[11px] font-semibold whitespace-nowrap border transition-all ${mealTab === t.key ? t.active : 'bg-gray-100 text-zinc-600 border-transparent'}`}>
+                        <button key={t.key} type="button" onClick={() => setMealTab(t.key)} className={`px-3 py-1.5 rounded-full text-[11px] font-semibold whitespace-nowrap border transition-all ${mealTab === t.key ? t.active : 'bg-white text-zinc-600 border-zinc-200'}`}>
                           {t.emoji} {t.label} ({tabCounts[t.key]})
                         </button>
                       ))}
@@ -1023,6 +1124,10 @@ const WeightLossPage: React.FC = () => {
                     <div className="relative mt-2">
                       <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[12px] pointer-events-none">🔍</span>
                       <input value={categorySearch} onChange={(e) => setCategorySearch(e.target.value)} placeholder="ابحث عن صنف: شوربة، لحوم..." className="w-full h-9 rounded-[8px] border border-zinc-300 bg-white pl-8 pr-3 text-[12.5px] outline-none focus:border-emerald-500 focus:ring-[3px] focus:ring-emerald-100" />
+                    </div>
+                    <div className="flex gap-1.5 mt-2">
+                      <button type="button" onClick={() => setCategoryMode('manual')} className={`px-2.5 py-1 rounded-full text-[10.5px] font-semibold border transition-all ${categoryMode === 'manual' ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-zinc-600 border-zinc-300'}`}>✋ يدوي</button>
+                      <button type="button" onClick={autoPickDishes} className={`px-2.5 py-1 rounded-full text-[10.5px] font-semibold border transition-all ${categoryMode === 'auto' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-zinc-600 border-zinc-300'}`}>🤖 الموقع يختار</button>
                     </div>
                   </div>
                   <div className="flex-1 overflow-y-auto p-2 space-y-2">
@@ -1040,20 +1145,33 @@ const WeightLossPage: React.FC = () => {
                                 {dishes.map((dish) => {
                                   const dishKey = `${cat.id}::${dish.name}`;
                                   const checked = selectedDishKeys.includes(dishKey);
+                                  const assigned = assignedDishes[dishKey] ? assignedDishes[dishKey] : (dishMealOf.get(dishKey) ?? []);
                                   return (
-                                    <label key={dishKey} className={`p-2 bg-white rounded-lg border flex justify-between gap-2 items-start cursor-pointer min-w-0 ${checked ? 'border-emerald-400 bg-emerald-50/40' : 'border-zinc-200'}`}>
-                                      <div className="min-w-0">
-                                        <div className="text-[11.5px] font-bold leading-tight break-words">{dish.name}</div>
-                                        <div className="text-[10px] text-gray-600 leading-snug mt-0.5 break-words">{dish.cal_100} سعر/100جم · {dish.serv_g}جم = {dish.cal_serv} سعر | P:{dish.p} C:{dish.c} F:{dish.f}</div>
-                                        <div className="flex gap-1 mt-1 flex-wrap">
-                                          <span className="text-[9px] bg-yellow-100 text-yellow-800 px-1.5 py-0.5 rounded">{dish.confidence}%</span>
-                                          {dish.healthy && <span className="text-[9px] bg-green-100 text-green-800 px-1.5 py-0.5 rounded">صحي</span>}
-                                          {dish.source && <span className="text-[9px] bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded truncate max-w-[160px]">{dish.source}</span>}
+                                    <div key={dishKey} className={`p-2 bg-white rounded-lg border min-w-0 ${checked ? 'border-emerald-400 bg-emerald-50/40' : 'border-zinc-200'}`}>
+                                      <div className="flex justify-between gap-2 items-start">
+                                        <div className="min-w-0">
+                                          <div className="text-[11.5px] font-bold leading-tight break-words">{dish.name}</div>
+                                          <div className="text-[10px] text-gray-600 leading-snug mt-0.5 break-words">{dish.cal_100} سعر/100جم · {dish.serv_g}جم = {dish.cal_serv} سعر | P:{dish.p} C:{dish.c} F:{dish.f}</div>
+                                          <div className="flex gap-1 mt-1 flex-wrap">
+                                            <span className="text-[9px] bg-yellow-100 text-yellow-800 px-1.5 py-0.5 rounded">{dish.confidence}%</span>
+                                            {dish.healthy && <span className="text-[9px] bg-green-100 text-green-800 px-1.5 py-0.5 rounded">صحي</span>}
+                                            {dish.source && <span className="text-[9px] bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded truncate max-w-[160px]">{dish.source}</span>}
+                                          </div>
+                                          {dish.notes && <div className="text-[9px] text-gray-400 mt-0.5 truncate">{dish.notes}</div>}
                                         </div>
-                                        {dish.notes && <div className="text-[9px] text-gray-400 mt-0.5 truncate">{dish.notes}</div>}
+                                        <input type="checkbox" checked={checked} onChange={() => toggleDish(dishKey)} className="mt-1 shrink-0 w-4 h-4 accent-emerald-600" />
                                       </div>
-                                      <input type="checkbox" checked={checked} onChange={() => toggleDish(dishKey)} className="mt-1 shrink-0 w-4 h-4 accent-emerald-600" />
-                                    </label>
+                                      <div className="flex gap-1 mt-2 flex-wrap">
+                                        {MEAL_TABS.map((t) => {
+                                          const on = assigned.includes(t.key);
+                                          return (
+                                            <button key={t.key} type="button" onClick={() => assignDishToMeal(dishKey, t.key)} className={`px-2 py-0.5 rounded-full text-[10px] font-semibold border transition-all ${on ? t.active : 'bg-white text-zinc-500 border-zinc-200'}`}>
+                                              {t.emoji} {t.label}
+                                            </button>
+                                          );
+                                        })}
+                                      </div>
+                                    </div>
                                   );
                                 })}
                               </div>
@@ -1070,12 +1188,26 @@ const WeightLossPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="rounded-[12px] border border-emerald-200 bg-emerald-50/60 p-3.5">
-                <div className="text-[12.5px] text-emerald-900 font-semibold flex items-center gap-2">
-                  <span>✅</span> معاينة الأطباق المختارة
-                </div>
-                <div className="mt-1.5 text-[11px] text-zinc-600 leading-relaxed break-words">
-                  {selectedKitchen.country} · <span className="font-bold">{selectedDishKeys.length}</span> طبق مختار من {selectedKitchenCats.length} صنف · 🌅 {mealCounts.breakfast} · 🌞 {mealCounts.lunch} · 🌙 {mealCounts.dinner} · 🍪 {mealCounts.snacks} · <span className="font-bold">{selectedKitchen.total} طبق</span> في المطبخ
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                {MEAL_TABS.map((t) => (
+                  <div key={t.key} className="rounded-[10px] border border-zinc-200 bg-white p-2.5 min-w-0">
+                    <div className="text-[11.5px] font-bold flex items-center justify-between gap-1">
+                      <span className="truncate">{t.emoji} {t.label}</span>
+                      <span className={`shrink-0 text-[10px] px-1.5 py-0.5 rounded-full ${mealSummary[t.key].length ? 'bg-amber-50 border border-amber-100 text-amber-800' : 'bg-gray-50 text-gray-400'}`}>{mealSummary[t.key].length}</span>
+                    </div>
+                    <div className="mt-1 text-[10px] text-zinc-600 leading-snug break-words">{fmtMeal(mealSummary[t.key])}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="rounded-[12px] border border-emerald-200 bg-emerald-50/60 p-3">
+                <div className="flex items-center justify-between gap-2 flex-wrap">
+                  <div className="text-[11.5px] text-emerald-900 font-semibold min-w-0">
+                    ✅ المجموع: <span className="font-bold">{totalCal} سعر</span> · <span className="font-bold">{selectedDishKeys.length}</span> طبق من {selectedKitchenCats.length} صنف · {selectedKitchen.country}
+                  </div>
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <button type="button" onClick={() => setCategoryMode('manual')} className={`px-2.5 py-1 rounded-full text-[10.5px] font-semibold border transition-all ${categoryMode === 'manual' ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-zinc-600 border-zinc-300'}`}>✋ يدوي</button>
+                    <button type="button" onClick={autoPickDishes} className={`px-2.5 py-1 rounded-full text-[10.5px] font-semibold border transition-all ${categoryMode === 'auto' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-zinc-600 border-zinc-300'}`}>🤖 تلقائي</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1349,20 +1481,20 @@ const WeightLossPage: React.FC = () => {
                     </div>
                     <span className="shrink-0 text-[11px] font-semibold bg-amber-50 text-amber-700 px-2 py-1 rounded-full">{selectedKitchen.flag} {selectedKitchen.country} · {selectedDishKeys.length} طبق</span>
                   </div>
-                  <div className="flex items-center gap-1.5 flex-wrap">
+                  <div className="space-y-1.5">
                     {selectedDishKeys.length ? (
-                      <>
-                        <span className="text-[11px] font-semibold">الأطباق المختارة لكل وجبة:</span>
-                        {MEAL_TABS.map((t) => (
-                          <span key={t.key} className={`text-[10.5px] font-semibold px-2 py-0.5 rounded-full ${mealCounts[t.key] ? 'bg-amber-50 border border-amber-100 text-amber-800' : 'bg-gray-50 text-gray-400'}`}>
-                            {t.emoji} {Math.max(0, mealCounts[t.key])}
-                          </span>
-                        ))}
-                      </>
+                      MEAL_TABS.map((t) => (
+                        <div key={t.key} className="text-[11px] leading-relaxed break-words">
+                          <span className="font-bold">{t.emoji} {t.label}:</span> {fmtMeal(mealSummary[t.key])}
+                        </div>
+                      ))
                     ) : (
                       <span className="text-[11px] text-zinc-400">اختر الأطباق من خطوة Kitchen.</span>
                     )}
                   </div>
+                  {selectedDishKeys.length > 0 && (
+                    <div className="text-[12px] font-semibold text-emerald-700 pt-1 border-t border-gray-100">✅ المجموع: {totalCal} سعر · {selectedDishKeys.length} طبق</div>
+                  )}
                   <button type="button" onClick={() => setStep(3)} className="text-[11px] text-amber-700 underline decoration-dotted hover:text-amber-900">(تغيير المطبخ)</button>
                 </div>
               )}
