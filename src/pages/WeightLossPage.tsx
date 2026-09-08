@@ -1,933 +1,450 @@
-import React, { useState, useCallback, useEffect, useMemo, useRef } from 'react';
-import { useLanguage } from '../context/LanguageContext';
-import { UserProfile, CalorieResult, HealthGoal, MealPlan } from '../types';
-import { calculateFullResults, generateMealPlan, generateFullMealPlan } from '../utils/calculations';
-import AdviceBox from '../features/health-tools/AdviceBox';
-import { usePersistedState } from '../hooks/usePersistedState';
-import MedicalDisclaimer from '../components/MedicalDisclaimer';
-import Breadcrumbs from '../components/layout/Breadcrumbs';
-import SaveProgressButton from '../features/health-tools/SaveProgressButton';
-import MealPlanModal from '../features/plan-builder/MealPlanModal';
-import WorkoutBlueprintModal from '../features/plan-builder/WorkoutBlueprintModal';
-import {
-  StatsBar, DaySelectorBar,
-  MacroBreakdown, MealCard, DayProgressHeader, StreakBar,
-} from '../features/plan-builder/HealthPlanTemplate';
-import GoalSelector, { FunnelGoal } from '../features/weight-funnel/GoalSelector';
-import PlanTypeSelector, { PlanType } from '../features/weight-funnel/PlanTypeSelector';
-import HealthBlueprint, { ProteinSource, DietStyle, ExcludePref, MealCount } from '../features/weight-funnel/HealthBlueprint';
+import React, { useMemo, useState } from 'react';
+import { EGYPTIAN_FULL } from '../data/egyptian-full';
+import { TUNISIAN_FULL } from '../data/tunisian-full';
 
-import { FOODS_DATABASE, CUISINE_META, Cuisine, CUISINE_OPTIONS, EXERCISE_TYPE_LABELS, EXERCISE_TYPE_OPTIONS, ExerciseType } from '../utils/calculations_expanded';
-import { getSwapOptions, addCustomToCuisineDB } from '../utils/cuisineSwapDB';
-import { getCuisineLabel } from '../utils/healthPlans';
-import { EGYPTIAN_PORTION_GUIDE, EGYPTIAN_DISCLAIMER, isMinistryVerified } from '../data/egyptian-full';
-import { TUNISIAN_PORTION_GUIDE, TUNISIAN_DISCLAIMER } from '../data/tunisian-full';
-import { ClipboardList } from 'lucide-react';
+type Step = 1 | 2 | 3 | 4;
+type Sex = 'male' | 'female';
+type ActivityKey = 'sedentary' | 'light' | 'moderate' | 'active' | 'very_active';
+type KitchenKey = 'egyptian' | 'tunisian' | 'both';
+type GoalKey = 'lose' | 'maintain' | 'gain';
 
-const getPrimaryGoal = (goals: FunnelGoal[]): HealthGoal =>
-  goals.includes('lose_fat') ? 'lose_weight' : goals.includes('gain_muscle') ? 'gain_muscle' : 'maintain';
+interface SampleDish {
+  ar: string;
+  cal: number;
+  conf: number;
+  kitchen: 'egyptian' | 'tunisian';
+  protein: number;
+}
 
-const getTargetCalories = (tdee: number, goals: FunnelGoal[]): number => {
-  if (goals.includes('lose_fat')) return Math.round(tdee - 500);
-  if (goals.includes('gain_weight')) return Math.round(tdee + 450);
-  if (goals.includes('gain_muscle')) return Math.round(tdee + 300);
-  return Math.round(tdee);
+const ACTIVITY: Record<ActivityKey, { factor: number; label: string; desc: string }> = {
+  sedentary: { factor: 1.2, label: 'خامل', desc: 'مكتبي - بدون رياضة' },
+  light: { factor: 1.375, label: 'خفيف', desc: '1-3 أيام / أسبوع' },
+  moderate: { factor: 1.55, label: 'متوسط', desc: '3-5 أيام / أسبوع' },
+  active: { factor: 1.725, label: 'نشط', desc: '6-7 أيام / أسبوع' },
+  very_active: { factor: 1.9, label: 'نشط جدا', desc: 'عمل شاق + رياضة' },
 };
 
-const includesMeal = (planType: PlanType) => planType === 'meal' || planType === 'both';
-const includesWorkout = (planType: PlanType) => planType === 'workout' || planType === 'both';
+const CURATED: Array<{ kitchen: 'egyptian' | 'tunisian'; name: string }> = [
+  { kitchen: 'egyptian', name: 'الفول المدمس السادة' },
+  { kitchen: 'egyptian', name: 'الفتة المصرية بالخل والثوم والعيش المحمص' },
+  { kitchen: 'egyptian', name: 'بفتيك اللحم المقلي بالبقسماط' },
+  { kitchen: 'egyptian', name: 'ملوخية' },
+  { kitchen: 'tunisian', name: 'شوربة عدس بالكمون' },
+  { kitchen: 'tunisian', name: 'كسكسي تونسي باللحم الضاني (العلوش) والخضار' },
+  { kitchen: 'tunisian', name: 'علوش مشوي على الفحم (ضاني)' },
+  { kitchen: 'tunisian', name: 'بريك البيض والبطاطس التقليدي' },
+];
 
-const slotOf = (meal: MealPlan): 'breakfast' | 'lunch' | 'dinner' | 'snack' =>
-  /breakfast/i.test(meal.meal) ? 'breakfast'
-    : /lunch/i.test(meal.meal) ? 'lunch'
-      : /dinner/i.test(meal.meal) ? 'dinner' : 'snack';
-
-interface SwapAlt { name: string; nameAr?: string; calories: number; protein: number; carbs: number; fat: number; best?: string }
-interface SwapItem extends SwapAlt { qty: number }
-interface SwapState { foods: SwapItem[]; isAuto: boolean; original: MealPlan }
-type AutoGoal = 'lose_fat' | 'gain_muscle' | 'gain_weight' | 'overall';
-
-const SLOT_BUDGET: Record<'breakfast' | 'lunch' | 'dinner' | 'snack', number> = { breakfast: 0.25, lunch: 0.35, dinner: 0.25, snack: 0.1 };
-
-const MEAL_STRUCTURES: Record<MealCount, Array<{ slot: 'breakfast' | 'lunch' | 'dinner' | 'snack'; pct: number }>> = {
-  3: [{ slot: 'breakfast', pct: 0.3 }, { slot: 'lunch', pct: 0.4 }, { slot: 'dinner', pct: 0.3 }],
-  4: [{ slot: 'breakfast', pct: 0.25 }, { slot: 'snack', pct: 0.1 }, { slot: 'lunch', pct: 0.35 }, { slot: 'dinner', pct: 0.3 }],
-  5: [{ slot: 'breakfast', pct: 0.25 }, { slot: 'snack', pct: 0.1 }, { slot: 'lunch', pct: 0.3 }, { slot: 'snack', pct: 0.1 }, { slot: 'dinner', pct: 0.25 }],
-};
-
-const applyMealStructure = (source: MealPlan[], mealCount: MealCount, target: number): MealPlan[] => {
-  const structure = MEAL_STRUCTURES[mealCount];
-  const used = new Set<number>();
-  return structure.map(({ slot, pct }) => {
-    const idx = slot === 'snack'
-      ? source.findIndex((m, i) => !used.has(i) && slotOf(m) === 'snack')
-      : source.findIndex((m, i) => !used.has(i) && slotOf(m) === slot);
-    if (idx >= 0) used.add(idx);
-    const src = idx >= 0 ? source[idx] : undefined;
-    const fallback: MealPlan = {
-      meal: slot === 'snack' ? '🍎 Snack' : slot === 'breakfast' ? '🌅 Breakfast' : slot === 'lunch' ? '☀️ Lunch' : '🌙 Dinner',
-      icon: slot === 'snack' ? 'snack' : 'meal',
-      calories: 0, protein: 0, carbs: 0, fat: 0, items: [], description: '',
-    };
-    const base = src ?? fallback;
-    const kcal = Math.round(target * pct);
+const buildSampleList = (): SampleDish[] => {
+  const eg = new Map(EGYPTIAN_FULL.map((d) => [d.nameAr, d]));
+  const tn = new Map(TUNISIAN_FULL.map((d) => [d.nameAr, d]));
+  return CURATED.map(({ kitchen, name }) => {
+    const d = kitchen === 'egyptian' ? eg.get(name) : tn.get(name);
     return {
-      ...base,
-      calories: kcal,
-      protein: Math.round(kcal * 0.3 / 4),
-      carbs: Math.round(kcal * 0.45 / 4),
-      fat: Math.round(kcal * 0.25 / 9),
+      ar: name,
+      cal: d?.cal100 ?? 100,
+      conf: d?.confidence ?? 70,
+      kitchen,
+      protein: d?.p100 ?? 5,
     };
   });
 };
 
-const suggestMealCount = (goals: FunnelGoal[], target: number): MealCount => {
-  if (goals.includes('lose_fat') && target < 1800) return 3;
-  if (goals.includes('gain_muscle') || goals.includes('gain_weight') || target > 2200) return 5;
-  return 4;
+const ALL_SAMPLES = buildSampleList();
+
+const STEP_TITLES: Record<Step, string> = {
+  1: 'Basic Info',
+  2: 'Body & Kitchen',
+  3: 'Goals',
+  4: 'Review',
 };
 
-const autoRate = (goal: AutoGoal, food: SwapAlt): number => {
-  if (goal === 'lose_fat') return food.fat > 10 ? 0.3 : food.protein > 20 ? 0.6 : 0.7;
-  if (goal === 'gain_muscle') return food.protein > 20 ? 0.5 : food.carbs > 25 ? 0.4 : 0.5;
-  if (goal === 'gain_weight') return 0.7;
-  return 0.5;
-};
-
-const autoReasonKey = (goal: AutoGoal, food: SwapAlt): 'wlAutoReasonFat' | 'wlAutoReasonProtein' | 'wlAutoReasonCarb' | 'wlAutoReasonBulking' | 'wlAutoReasonDefault' => {
-  if (goal === 'lose_fat') return food.fat > 10 ? 'wlAutoReasonFat' : food.protein > 20 ? 'wlAutoReasonProtein' : 'wlAutoReasonCarb';
-  if (goal === 'gain_muscle') return food.protein > 20 ? 'wlAutoReasonProtein' : food.carbs > 25 ? 'wlAutoReasonCarb' : 'wlAutoReasonDefault';
-  if (goal === 'gain_weight') return 'wlAutoReasonBulking';
-  return 'wlAutoReasonDefault';
-};
-
-const snapQty = (x: number) => Math.min(300, Math.max(50, Math.round(x / 25) * 25));
-
-const slotWordKey = (best?: string): '' | 'wlMealBreakfast' | 'wlMealLunch' | 'wlMealDinner' | 'wlMealSnack' =>
-  best === 'breakfast' ? 'wlMealBreakfast' : best === 'lunch' ? 'wlMealLunch' : best === 'dinner' ? 'wlMealDinner' : best === 'snack' ? 'wlMealSnack' : '';
-
-const toSwapAlt = (o: { name: string; nameAr: string; calories: number; protein: number; carbs: number; fat: number }, slot: string): SwapAlt => ({
-  name: o.name, nameAr: o.nameAr, calories: o.calories, protein: o.protein, carbs: o.carbs, fat: o.fat, best: slot,
-});
+const confClass = (conf: number): string =>
+  conf === 100
+    ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+    : conf === 85
+      ? 'bg-amber-50 text-amber-700 border-amber-200'
+      : 'bg-orange-50 text-orange-700 border-orange-200';
 
 const WeightLossPage: React.FC = () => {
-  const { t, language, dir } = useLanguage();
-  const fmt = (tpl: string, vars: Record<string, string | number>) => tpl.replace(/\{(\w+)\}/g, (_, k) => (k in vars ? String(vars[k]) : `{${k}}`));
-  const resultsRef = useRef<HTMLDivElement>(null);
+  const [step, setStep] = useState<Step>(1);
+  const [age, setAge] = useState('28');
+  const [sex, setSex] = useState<Sex>('male');
+  const [height, setHeight] = useState('176');
+  const [weight, setWeight] = useState('82');
+  const [activity, setActivity] = useState<ActivityKey>('moderate');
+  const [kitchen, setKitchen] = useState<KitchenKey>('both');
+  const [goal, setGoal] = useState<GoalKey>('lose');
+  const [targetWeight, setTargetWeight] = useState('75');
+  const [timeline, setTimeline] = useState('12');
 
-  const [selectedGoals, setSelectedGoals] = useState<FunnelGoal[]>(() => {
-    const bridge = localStorage.getItem('hc_calculator_bridge');
-    if (bridge) {
-      try {
-        const data = JSON.parse(bridge);
-        if (data.goal === 'lose_weight') return ['lose_fat' as FunnelGoal];
-      } catch {}
-    }
-    return [];
-  });
-  const [planType, setPlanType] = useState<PlanType>('both');
-  const [mealCount, setMealCount] = useState<MealCount>(4);
-  const [goalError, setGoalError] = useState<string | null>(null);
-
-  const [form, setForm] = useState<UserProfile>(() => {
-    const bridge = localStorage.getItem('hc_calculator_bridge');
-    if (bridge) {
-      try {
-        const data = JSON.parse(bridge);
-        return {
-          age: data.age ?? 30, gender: data.gender ?? 'male', height: data.height ?? 175,
-          weight: data.weight ?? 75, activityLevel: data.activityLevel ?? 'moderate', goal: data.goal ?? 'lose_weight',
-          workoutDays: data.workoutDays ?? 3,
-        };
-      } catch {}
-    }
-    return { age: 30, gender: 'male', height: 175, weight: 75, activityLevel: 'moderate', goal: 'lose_weight', workoutDays: 3 };
-  });
-
-  const [selectedCuisine, setSelectedCuisine] = useState<Cuisine | null>(null);
-  const [healthyOnly, setHealthyOnly] = useState(false);
-  const [confidenceFilter, setConfidenceFilter] = useState<'all' | 100 | 85 | 70>('all');
-  const [exerciseType, setExerciseType] = useState<ExerciseType | 'auto'>('auto');
-  const [selectedProteins, setSelectedProteins] = useState<ProteinSource[]>(['chicken', 'eggs', 'fish']);
-  const [selectedStyle, setSelectedStyle] = useState<DietStyle[]>(['high_protein']);
-  const [selectedExcludes, setSelectedExcludes] = useState<ExcludePref[]>([]);
-  const [result, setResult] = useState<CalorieResult | null>(null);
-  const [showMealPlanModal, setShowMealPlanModal] = useState(false);
-  const [showWorkoutModal, setShowWorkoutModal] = useState(false);
-  const [selectedDay, setSelectedDay] = useState(() => (new Date().getDate() % 30));
-  const [workoutSelectedDay, setWorkoutSelectedDay] = useState(0);
-  const [dayCompletions, setDayCompletions] = usePersistedState<Record<number, Record<number, boolean>>>({}, 'hc_wl_day_completions');
-  const [streak, setStreak] = useState({ current: 0, longest: 0, daysCompleted: 0 });
-  const [swapOpen, setSwapOpen] = useState<number | null>(null);
-  const [swapState, setSwapState] = useState<Record<number, SwapState>>({});
-  const [swapIsAuto, setSwapIsAuto] = useState<Record<number, boolean>>({});
-  const [portions, setPortions] = useState<Record<number, number>>({});
-  const [customSwap, setCustomSwap] = useState('');
-  const [selectedSwaps, setSelectedSwaps] = useState<Record<number, SwapItem[]>>({});
-
-  const tdee = useMemo(() => {
-    const base = calculateFullResults({ ...form, goal: 'maintain' }, undefined, language);
-    return base.tdee;
-  }, [form, language]);
-
-  const suggestedMealCount = useMemo(
-    () => suggestMealCount(selectedGoals, getTargetCalories(tdee, selectedGoals)),
-    [selectedGoals, tdee],
+  const parsed = useMemo(
+    () => ({
+      age: parseInt(age, 10) || 0,
+      height: parseInt(height, 10) || 0,
+      weight: parseFloat(weight) || 0,
+      target: parseFloat(targetWeight) || 0,
+      timeline: parseInt(timeline, 10) || 0,
+    }),
+    [age, height, weight, targetWeight, timeline],
   );
 
-  useEffect(() => {
-    if (selectedGoals.length > 0) setMealCount(suggestedMealCount);
-  }, [suggestedMealCount, selectedGoals.length]);
-
-  const buildResult = useCallback(
-    (goals: FunnelGoal[], cuisine: Cuisine | null, lang: string, healthyOnly: boolean = false): CalorieResult => {
-      const primary = getPrimaryGoal(goals);
-      const base = calculateFullResults({ ...form, goal: primary }, cuisine ?? undefined, lang);
-      const target = getTargetCalories(base.tdee, goals);
-      const macros = {
-        protein: Math.round((target * 0.3) / 4),
-        carbs: Math.round((target * 0.45) / 4),
-        fat: Math.round((target * 0.25) / 9),
-        proteinGrams: Math.round((target * 0.3) / 4),
-        carbsGrams: Math.round((target * 0.45) / 4),
-        fatGrams: Math.round((target * 0.25) / 9),
-      };
-      return {
-        ...base,
-        targetCalories: target,
-        macros,
-        mealPlan: generateMealPlan(target, cuisine ?? undefined, lang, healthyOnly),
-        fullMealPlan: generateFullMealPlan(target, cuisine ?? undefined, lang, healthyOnly).map((d) => ({
-          ...d,
-          meals: applyMealStructure(d.meals, mealCount, target),
-        })),
-      };
-    },
-    [form, mealCount],
-  );
-
-  const handleGenerate = () => {
-    if (!selectedGoals.length) {
-      setGoalError(t('wlfSelectGoalError'));
-      return;
-    }
-    setGoalError(null);
-    setResult(buildResult(selectedGoals, selectedCuisine, language, healthyOnly));
-    requestAnimationFrame(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
-  };
-
-  useEffect(() => {
-    if (!result) return;
-    setResult(buildResult(selectedGoals, selectedCuisine, language, healthyOnly));
-  }, [selectedCuisine, language, mealCount, healthyOnly, buildResult]);
-
-  const handleCuisineChange = useCallback((cuisine: Cuisine | null) => {
-    setSelectedCuisine(cuisine);
-    if (cuisine) localStorage.setItem('hc_selectedCuisine', cuisine);
-    else localStorage.removeItem('hc_selectedCuisine');
-  }, []);
-
-  const toggleMealDone = useCallback((mealIdx: number, done: boolean) => {
-    setDayCompletions(prev => ({ ...prev, [selectedDay]: { ...prev[selectedDay], [mealIdx]: done } }));
-  }, [selectedDay]);
-
-  const dayMeals = result?.fullMealPlan[selectedDay]?.meals || [];
-  const dayDone = dayCompletions[selectedDay] || {};
-  const dayDoneCount = Object.values(dayDone).filter(Boolean).length;
-  const activeGoal = getPrimaryGoal(selectedGoals);
-
-  const autoGoal: AutoGoal = selectedGoals.includes('lose_fat') ? 'lose_fat'
-    : selectedGoals.includes('gain_muscle') ? 'gain_muscle'
-      : selectedGoals.includes('gain_weight') ? 'gain_weight' : 'overall';
-
-  const displayMeal = (idx: number): MealPlan => {
-    const st = swapState[idx];
-    const base = st?.original ?? dayMeals[idx];
-    if (!st || !st.foods.length) return base;
-    const totals = st.foods.reduce((acc, s) => {
-      acc.calories += Math.round(s.calories * s.qty / 100);
-      acc.protein += Math.round(s.protein * s.qty / 100);
-      acc.carbs += Math.round(s.carbs * s.qty / 100);
-      acc.fat += Math.round(s.fat * s.qty / 100);
-      return acc;
-    }, { calories: 0, protein: 0, carbs: 0, fat: 0 });
-    const join = (fmtG: (s: SwapItem) => string) => st.foods.map(fmtG).join(' + ');
-    const enLabel = join((s) => `${s.name} ${s.qty}g`);
-    const arLabel = join((s) => `${s.nameAr ?? s.name} ${s.qty}جم`);
+  const numbers = useMemo(() => {
+    const { age: a, height: h, weight: w } = parsed;
+    if (!a || !h || !w) return null;
+    const bmi = +(w / Math.pow(h / 100, 2)).toFixed(1);
+    const bmr = sex === 'male' ? 10 * w + 6.25 * h - 5 * a + 5 : 10 * w + 6.25 * h - 5 * a - 161;
+    const tdee = bmr * ACTIVITY[activity].factor;
+    let target = tdee;
+    if (goal === 'lose') target = tdee - 500;
+    if (goal === 'gain') target = tdee + 320;
     return {
-      ...base,
-      nameEn: enLabel,
-      nameAr: arLabel,
-      calories: totals.calories,
-      protein: totals.protein,
-      carbs: totals.carbs,
-      fat: totals.fat,
-      items: st.foods.map((s) => (language === 'ar' ? `${s.nameAr ?? s.name} ${s.qty}جم` : `${s.name} ${s.qty}g`)),
+      bmi,
+      bmr: Math.round(bmr),
+      tdee: Math.round(tdee),
+      targetCal: Math.round(target),
+      bmiCat: bmi < 18.5 ? 'نقص وزن' : bmi < 25 ? 'طبيعي' : bmi < 30 ? 'زيادة' : 'سمنة',
     };
+  }, [parsed, sex, activity, goal]);
+
+  const samples = useMemo(() => {
+    const eg = ALL_SAMPLES.filter((s) => s.kitchen === 'egyptian');
+    const tn = ALL_SAMPLES.filter((s) => s.kitchen === 'tunisian');
+    if (kitchen === 'egyptian') return eg;
+    if (kitchen === 'tunisian') return tn;
+    return [eg[0], tn[0], eg[1], tn[1], eg[2], tn[2], eg[3], tn[3]].filter((d): d is SampleDish => !!d);
+  }, [kitchen]);
+
+  const isValid = (): boolean => {
+    if (step === 1) {
+      return parsed.age >= 12 && parsed.age <= 80 && parsed.height >= 120 && parsed.height <= 220 && parsed.weight >= 30 && parsed.weight <= 250;
+    }
+    if (step === 3) {
+      return parsed.target >= 30 && parsed.target <= 250 && parsed.timeline >= 2 && parsed.timeline <= 52;
+    }
+    return true;
   };
 
-  const applyAutoAdjust = (idx: number, foods: SwapItem[]): SwapItem[] => {
-    if (!foods.length) return foods;
-    const slot = slotOf(swapState[idx]?.original ?? dayMeals[idx]);
-    const budget = SLOT_BUDGET[slot] * (result?.targetCalories ?? 0);
-    let remaining = budget;
-    return foods.map((s) => {
-      if (remaining <= 0) return { ...s, qty: 50 };
-      const rate = autoRate(autoGoal, s);
-      const qty = snapQty(remaining * rate / s.calories * 100);
-      remaining -= qty * s.calories / 100;
-      return { ...s, qty };
-    });
-  };
+  const next = () => setStep(step >= 4 ? 1 : ((step + 1) as Step));
+  const back = () => setStep(Math.max(1, step - 1) as Step);
 
-  const dayTotals = useMemo(() => dayMeals.reduce((acc, _meal, idx) => {
-    const base = displayMeal(idx);
-    const scale = (portions[idx] ?? 150) / 150;
-    acc.kcal += Math.round(base.calories * scale);
-    acc.protein += Math.round((base.protein ?? 0) * scale);
-    return acc;
-  }, { kcal: 0, protein: 0 }), [dayMeals, swapState, portions, language]);
+  const meals = [
+    { meal: 'فطار', dish: samples[0], grams: 250 },
+    { meal: 'غدا', dish: samples[1] || samples[0], grams: 350 },
+    { meal: 'عشاء', dish: samples[2] || samples[0], grams: 300 },
+    { meal: 'سناك', dish: samples[3] || samples[0], grams: 150 },
+  ];
 
-  const toggleSwapSel = (idx: number, alt: SwapAlt) => {
-    setSelectedSwaps(prev => {
-      const cur = prev[idx] ?? [];
-      const next = cur.some(s => s.name === alt.name)
-        ? cur.filter(s => s.name !== alt.name)
-        : [...cur, { ...alt, qty: 150 }];
-      const adjusted = (swapIsAuto[idx] ?? true) ? applyAutoAdjust(idx, next) : next;
-      return { ...prev, [idx]: adjusted };
-    });
-  };
+  const kitchenOptions = [
+    { id: 'egyptian' as KitchenKey, label: 'Egyptian', count: `${EGYPTIAN_FULL.length} dishes`, ar: 'المطبخ المصري' },
+    { id: 'tunisian' as KitchenKey, label: 'Tunisian', count: `${TUNISIAN_FULL.length} dishes`, ar: 'المطبخ التونسي' },
+    { id: 'both' as KitchenKey, label: 'Both', count: `${EGYPTIAN_FULL.length + TUNISIAN_FULL.length} dishes`, ar: 'الاثنين معا' },
+  ];
 
-  const toggleCustomSel = (idx: number, alt: SwapAlt) => {
-    toggleSwapSel(idx, alt);
-    setCustomSwap('');
-  };
+  const kitchenLabel = kitchen === 'both' ? 'Mixed kitchens' : kitchen;
 
-  const setSwapQty = (idx: number, name: string, qty: number) => {
-    setSelectedSwaps(prev => ({ ...prev, [idx]: (prev[idx] ?? []).map(s => (s.name === name ? { ...s, qty } : s)) }));
-  };
-
-  const checkCustom = (idx: number) => {
-    const q = customSwap.trim();
-    if (!q) return;
-    const slot = slotOf(swapState[idx]?.original ?? dayMeals[idx]);
-    const found = FOODS_DATABASE.find((f) => f.name.toLowerCase().includes(q.toLowerCase()) || (f.name_ar || '').includes(q));
-    const alt: SwapAlt = found
-      ? { name: found.name, nameAr: found.name_ar, calories: found.calories, protein: found.protein, carbs: found.carbs, fat: found.fat, best: slot }
-      : { name: q, calories: 200, protein: 10, carbs: 20, fat: 8, best: slot };
-    addCustomToCuisineDB({ name: alt.name, nameAr: alt.nameAr, calories: alt.calories, protein: alt.protein, carbs: alt.carbs, fat: alt.fat }, selectedCuisine, slot);
-    toggleCustomSel(idx, alt);
-  };
-
-  const openEdit = (idx: number) => {
-    setSelectedSwaps(prev => prev[idx] ? prev : { ...prev, [idx]: (swapState[idx]?.foods ?? []).map(f => ({ ...f })) });
-    setSwapOpen(idx);
-    setCustomSwap('');
-  };
-
-  const commitSave = (idx: number) => {
-    const foods = selectedSwaps[idx] ?? [];
-    if (!foods.length) return;
-    const original = swapState[idx]?.original ?? dayMeals[idx];
-    const isAuto = swapIsAuto[idx] ?? true;
-    setSwapState(prev => ({ ...prev, [idx]: { foods, isAuto, original } }));
-    setSwapOpen(null);
-    setCustomSwap('');
-  };
-
-  const resetMeal = (idx: number) => {
-    setSwapState(prev => { const n = { ...prev }; delete n[idx]; return n; });
-    setSelectedSwaps(prev => { const n = { ...prev }; delete n[idx]; return n; });
-    setSwapOpen(null);
-    setCustomSwap('');
-  };
-
-  const resetAllSel = (idx: number) => {
-    setSelectedSwaps(prev => ({ ...prev, [idx]: [] }));
-    setSwapIsAuto(prev => ({ ...prev, [idx]: true }));
-    setCustomSwap('');
-  };
-
-  const handleAddMeal = useCallback((meal: MealPlan) => {
-    setResult(prev => prev ? { ...prev, fullMealPlan: prev.fullMealPlan.map((d, i) => (i === selectedDay ? { ...d, meals: [...d.meals, meal] } : d)) } : prev);
-  }, [selectedDay]);
-
-  const filteredFoods = useMemo(() => {
-    const key = selectedCuisine ?? 'egyptian';
-    const base = FOODS_DATABASE.filter(f => f.cuisine.includes(key));
-    const list = healthyOnly ? base.filter(f => f.healthy === undefined || f.healthy === true) : base;
-    const confFiltered = confidenceFilter === 'all'
-      ? list
-      : list.filter(f => (f.confidence ?? 0) >= confidenceFilter);
-    return confFiltered.slice(0, 8);
-  }, [selectedCuisine, healthyOnly, confidenceFilter]);
-
-  const showMeals = includesMeal(planType);
-  const showWorkouts = includesWorkout(planType);
-  const effectiveCuisine = selectedCuisine ?? 'egyptian';
-  const activeCuisineLabel = selectedCuisine
-    ? `${getCuisineLabel(CUISINE_OPTIONS.find(c => c.key === selectedCuisine) || CUISINE_OPTIONS[0], language)} ${CUISINE_META[selectedCuisine].flag}`
-    : '';
-
-  const confBadgeClass = (c?: 'green' | 'yellow' | 'orange'): string =>
-    c === 'green'
-      ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
-      : c === 'yellow'
-        ? 'bg-yellow-100 text-yellow-800 border-yellow-300'
-        : 'bg-orange-100 text-orange-800 border-orange-300';
-  const isKitchenCuisine = effectiveCuisine === 'egyptian' || effectiveCuisine === 'tunisian';
-
-  const bmi = form.height > 0 ? +(form.weight / ((form.height / 100) ** 2)).toFixed(1) : 0;
-  const bmiCatKey = bmi < 18.5 ? 'adviceCatUnderweight' : bmi < 25 ? 'adviceCatNormal' : bmi < 30 ? 'adviceCatOverweight' : 'adviceCatObese';
-  const hM = form.height > 0 ? form.height / 100 : 1.75;
-  const wMin = 18.5 * hM * hM;
-  const wMax = 25 * hM * hM;
-  const weightPct = Math.min(100, Math.max(0, Math.round(((form.weight - wMin) / (wMax - wMin)) * 100)));
+  const inputClass = 'w-full h-[48px] rounded-[8px] border border-zinc-300 px-4 outline-none focus:border-[#1e40af] focus:ring-[3px] focus:ring-blue-100 bg-white';
 
   return (
-    <div className="blueprint-page tool-page min-h-screen bg-[#f8fafc] overflow-x-hidden" dir={dir}>
-      <Breadcrumbs />
-      <div className="max-w-4xl mx-auto px-4 md:px-6 py-4 space-y-6 overflow-x-hidden">
-        <div className="flex items-center justify-between gap-3 flex-wrap">
-          <div className="flex items-center gap-3 min-w-0">
-            <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0">
-              <ClipboardList size={20} className="text-emerald-600" />
-            </div>
-            <div className="min-w-0">
-              <h1 className="text-base md:text-lg font-bold leading-tight text-gray-900">{t('module1Title')}</h1>
-              <p className="text-[11px] md:text-xs text-gray-500">{t('module1Desc')}</p>
-            </div>
-          </div>
-          <span className="text-[11px] bg-sage-100 text-sage-700 px-3 py-1 rounded-full font-bold">{t('wlHeroPill')}</span>
+    <div className="wiz-page min-h-screen bg-white text-zinc-900 overflow-x-hidden antialiased" dir="ltr">
+      <main className="w-full max-w-[560px] mx-auto px-4 md:px-0 pb-[120px] md:pb-16 pt-8 md:pt-12 overflow-x-hidden">
+        <div className="mb-8">
+          <h1 className="text-[28px] md:text-[32px] font-bold tracking-tight leading-none">Weight &amp; Fitness</h1>
+          <p className="mt-2.5 text-[14px] text-zinc-500 leading-snug">Complete the 4-step setup to calculate your metrics &amp; recommendations</p>
         </div>
-        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center text-white text-sm">👤</div>
-            <div>
-              <div className="font-bold text-gray-900">{t('wlfBasicsTitle')}</div>
-              <div className="text-[11px] text-gray-500">{t('wlfBasicsSub')}</div>
-            </div>
+
+        <div className="mb-8">
+          <div className="flex items-center justify-between relative">
+            <div className="absolute top-[14px] left-[14px] right-[14px] h-[2px] bg-zinc-200" />
+            <div className="absolute top-[14px] left-[14px] h-[2px] bg-[#1e40af] transition-all duration-300" style={{ width: `${((step - 1) / 3) * 100}%`, maxWidth: 'calc(100% - 28px)' }} />
+            {[{ n: 1 as Step, label: 'Info' }, { n: 2 as Step, label: 'Body' }, { n: 3 as Step, label: 'Goals' }, { n: 4 as Step, label: 'Review' }].map((x) => {
+              const done = step > x.n;
+              const active = step === x.n;
+              return (
+                <div key={x.n} className="relative flex flex-col items-center gap-2 z-10">
+                  <div className={`w-7 h-7 rounded-full border-[2px] flex items-center justify-center text-[12px] font-bold bg-white transition-all ${done ? 'bg-[#1e40af] border-[#1e40af] text-white' : ''} ${active ? 'border-[#1e40af] text-[#1e40af] shadow-[0_0_0_4px_rgba(30,64,175,0.12)]' : 'border-zinc-300 text-zinc-400'}`}>
+                    {done ? '✓' : x.n}
+                  </div>
+                  <span className={`text-[11.5px] font-medium tracking-wide ${active ? 'text-[#1e40af]' : done ? 'text-zinc-700' : 'text-zinc-400'}`}>{x.label}</span>
+                </div>
+              );
+            })}
           </div>
+          <div className="mt-5 text-[12.5px] font-medium text-zinc-500">Step {step} · {STEP_TITLES[step]}</div>
+        </div>
 
-          <div className="grid grid-cols-2 gap-3">
-            <div className="col-span-1">
-              <label className="text-sm font-semibold text-gray-700 flex items-center gap-1">{t('wlAgeLabel')}</label>
-              <div className="relative mt-1.5">
-                <input
-                  type="number" min={14} max={100} placeholder="25"
-                  value={form.age}
-                  onChange={(e) => setForm({ ...form, age: +e.target.value })}
-                  className="w-full h-11 px-3 pr-10 border border-gray-200 rounded-xl text-sm focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 outline-none"
-                />
-                <span className="absolute right-3 top-3 text-xs text-gray-400">{t('wlAgeYears')}</span>
+        <div className="w-full min-w-0">
+          {step === 1 && (
+            <div className="space-y-6">
+              <div className="flex items-start gap-2 rounded-[10px] bg-blue-50/80 border border-blue-100 px-3.5 py-3">
+                <span className="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[11px] font-bold mt-0.5 shrink-0">i</span>
+                <p className="text-[12.5px] leading-[1.5] text-zinc-600 min-w-0 break-words">نستخدم معادلة Mifflin-St Jeor المعتمدة طبيا. كل الحسابات محلية بدون إرسال بيانات.</p>
               </div>
-            </div>
 
-            <div className="col-span-1">
-              <label className="text-sm font-semibold text-gray-700">{t('wlGenderLabel')}</label>
-              <div className="mt-1.5 flex gap-1.5 p-1 bg-gray-100 rounded-xl">
-                {[{ value: 'male' as const, icon: '👨', label: t('male') }, { value: 'female' as const, icon: '👩', label: t('female') }].map((g) => (
-                  <button
-                    key={g.value} type="button" onClick={() => setForm({ ...form, gender: g.value })}
-                    className={`flex-1 h-9 rounded-lg text-xs font-semibold transition-all ${
-                      form.gender === g.value ? 'bg-white shadow-sm border border-gray-200 text-gray-900' : 'text-gray-500 hover:text-gray-700'
-                    }`}
-                  >
-                    {g.icon} {g.label}
-                  </button>
-                ))}
+              <div className="space-y-1.5">
+                <label className="text-[13px] font-medium text-zinc-700">Age (years)</label>
+                <input value={age} onChange={(e) => setAge(e.target.value.replace(/\D/g, ''))} placeholder="e.g. 28" inputMode="numeric" className={inputClass} />
               </div>
-            </div>
 
-            <div className="col-span-1">
-              <label className="text-sm font-semibold text-gray-700">{t('wlWeightLabel')}</label>
-              <div className="relative mt-1.5">
-                <input
-                  type="number" min={30} max={300} placeholder="75"
-                  value={form.weight}
-                  onChange={(e) => setForm({ ...form, weight: +e.target.value })}
-                  className="w-full h-11 px-3 pr-10 border border-gray-200 rounded-xl text-sm focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 outline-none"
-                />
-                <span className="absolute right-3 top-3 text-xs text-gray-400">{t('kgUnit')}</span>
-              </div>
-              <div className="mt-1.5 h-1 bg-gray-100 rounded-full overflow-hidden">
-                <div className="h-full bg-gradient-to-r from-emerald-400 to-teal-500" style={{ width: `${weightPct}%` }} />
-              </div>
-            </div>
-
-            <div className="col-span-1">
-              <label className="text-sm font-semibold text-gray-700">{t('wlHeightLabel')}</label>
-              <div className="relative mt-1.5">
-                <input
-                  type="number" min={100} max={250} placeholder="175"
-                  value={form.height}
-                  onChange={(e) => setForm({ ...form, height: +e.target.value })}
-                  className="w-full h-11 px-3 pr-10 border border-gray-200 rounded-xl text-sm focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 outline-none"
-                />
-                <span className="absolute right-3 top-3 text-xs text-gray-400">{t('cmUnit')}</span>
-              </div>
-            </div>
-
-            <div className="col-span-2 mt-2">
-              <label className="text-sm font-semibold text-gray-700">{t('wlActivityTitle')}</label>
-              <div className="mt-1.5 grid grid-cols-3 gap-2">
-                {[
-                  { icon: '🛋️', labelKey: 'wlActivityLow' as const, subKey: 'wlActivityLowSub' as const, vals: ['sedentary', 'light'], apply: 'sedentary' as const },
-                  { icon: '🚶', labelKey: 'wlActivityMod' as const, subKey: 'wlActivityModSub' as const, vals: ['moderate'], apply: 'moderate' as const },
-                  { icon: '🏋️', labelKey: 'wlActivityHigh' as const, subKey: 'wlActivityHighSub' as const, vals: ['active', 'very_active'], apply: 'active' as const },
-                ].map((a) => {
-                  const isActive = a.vals.includes(form.activityLevel);
-                  return (
+              <div className="space-y-1.5">
+                <label className="text-[13px] font-medium text-zinc-700">Sex</label>
+                <div className="grid grid-cols-2 gap-2">
+                  {(['male', 'female'] as Sex[]).map((x) => (
                     <button
-                      key={a.labelKey} type="button"
-                      onClick={() => setForm({ ...form, activityLevel: a.apply })}
-                      className={`relative p-2.5 border-2 rounded-xl text-center transition-all ${isActive ? 'border-emerald-600 bg-emerald-50' : 'border-gray-200 bg-white hover:border-emerald-300'}`}
-                    >
-                      <div className="text-lg leading-none">{a.icon}</div>
-                      <div className={`text-xs font-semibold mt-1 ${isActive ? 'text-emerald-700' : 'text-gray-700'}`}>{t(a.labelKey)}</div>
-                      <div className={`text-[10px] ${isActive ? 'text-emerald-600' : 'text-gray-500'}`}>{t(a.subKey)}</div>
-                      {isActive && <span className="absolute top-1 right-1 w-4 h-4 bg-emerald-600 rounded-full flex items-center justify-center text-white text-[10px]">✓</span>}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-4 p-3 bg-gradient-to-r from-teal-50 to-emerald-50 border border-emerald-100 rounded-xl flex flex-wrap justify-between items-center gap-2">
-            <div>
-              <div className="text-[11px] text-gray-600">{t('wlBmiYour')}</div>
-              <div className="text-sm font-bold text-emerald-700">
-                {bmi} — {t(bmiCatKey)} {bmi > 0 ? (bmi < 18.5 || bmi >= 25 ? '⚠️' : '✅') : ''}
-              </div>
-            </div>
-            <div className="text-right">
-              <div className="text-[11px] text-gray-600">{t('wlCalsMaintain')}</div>
-              <div className="text-sm font-bold text-gray-900">~{Math.round(tdee)} kcal</div>
-            </div>
-          </div>
-        </section>
-
-        <GoalSelector selected={selectedGoals} onChange={setSelectedGoals} error={goalError} tdee={tdee} />
-
-        <PlanTypeSelector value={planType} onChange={setPlanType} />
-
-        <HealthBlueprint
-          planType={planType}
-          cuisine={selectedCuisine}
-          onCuisineChange={handleCuisineChange}
-          workoutDays={form.workoutDays ?? 3}
-          onWorkoutDaysChange={(days) => setForm((prev) => ({ ...prev, workoutDays: days }))}
-          exerciseType={exerciseType}
-          onExerciseTypeChange={setExerciseType}
-          selectedProteins={selectedProteins}
-          onProteinsChange={setSelectedProteins}
-          selectedStyle={selectedStyle}
-          onStyleChange={setSelectedStyle}
-          selectedExcludes={selectedExcludes}
-          onExcludesChange={setSelectedExcludes}
-          selectedGoals={selectedGoals}
-          onAddMeal={handleAddMeal}
-          tdee={tdee}
-          mealCount={mealCount}
-          onMealCountChange={setMealCount}
-          suggestedMealCount={suggestedMealCount}
-          onGenerate={handleGenerate}
-        />
-
-        {result && (
-          <div ref={resultsRef} className="space-y-6 scroll-mt-24">
-            <div className="pt-2">
-              <h2 className="text-lg md:text-2xl font-bold leading-tight text-gray-900">🚀 {t('wlfResultsTitle')}</h2>
-              <p className="text-xs md:text-sm text-gray-500">{t('wlfResultsSub')}</p>
-            </div>
-
-            <StatsBar stats={{ bmr: result.bmr, tdee: result.tdee, targetCalories: result.targetCalories }} />
-
-            {showMeals && <AdviceBox weight={form.weight} height={form.height} age={form.age} gender={form.gender} targetCalories={result.targetCalories} goal={activeGoal} />}
-
-            {showMeals && (
-              <section className="space-y-5">
-                <div className="pt-2 flex items-center gap-2 flex-wrap">
-                  <h3 className="text-base md:text-lg font-bold leading-tight text-gray-900">🍽️ {t('wlfMealSectionTitle')}</h3>
-                  <span className="text-xs bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full font-bold">{result.targetCalories} {t('wlfKcalDay')}</span>
-                  {(['egyptian', 'tunisian'] as Cuisine[]).includes(effectiveCuisine) && (
-                    <button
+                      key={x}
                       type="button"
-                      onClick={() => setHealthyOnly(v => !v)}
-                      className={`text-[11px] px-3 py-1.5 rounded-full font-bold border-2 transition-all ${
-                        healthyOnly
-                          ? 'bg-emerald-600 text-white border-emerald-600'
-                          : 'bg-white text-emerald-700 border-emerald-200 hover:border-emerald-400'
-                      }`}
+                      onClick={() => setSex(x)}
+                      className={`h-[48px] rounded-[8px] border text-[14px] font-medium capitalize transition-all ${sex === x ? 'bg-[#1e40af] text-white border-[#1e40af]' : 'bg-white border-zinc-300 text-zinc-700 hover:border-zinc-400'}`}
                     >
-                      🥗 {t('wlHealthyOnly')}
+                      {x === 'male' ? 'Male ♂' : 'Female ♀'}
                     </button>
-                  )}
+                  ))}
                 </div>
+              </div>
 
-                {effectiveCuisine === 'egyptian' && EGYPTIAN_PORTION_GUIDE.length > 0 && (
-                  <div className="card p-4 bg-white border border-amber-200 space-y-2">
-                    <div className="text-xs font-bold text-amber-800 flex items-center gap-1">⚖️ {t('wlPortionGuide')}</div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {EGYPTIAN_PORTION_GUIDE.map((g, i) => (
-                        <span key={i} className="bg-amber-50 border border-amber-200 px-2.5 py-1 rounded-full text-[11px] font-semibold text-amber-900">{g}</span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {effectiveCuisine === 'tunisian' && TUNISIAN_PORTION_GUIDE.length > 0 && (
-                  <div className="card p-4 bg-white border border-amber-200 space-y-2">
-                    <div className="text-xs font-bold text-amber-800 flex items-center gap-1">⚖️ {t('wlPortionGuide')}</div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {TUNISIAN_PORTION_GUIDE.map((g, i) => (
-                        <span key={i} className="bg-amber-50 border border-amber-200 px-2.5 py-1 rounded-full text-[11px] font-semibold text-amber-900">{g}</span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                <MacroBreakdown proteinG={result.macros.proteinGrams} proteinPct={result.macros.protein} carbsG={result.macros.carbsGrams} carbsPct={result.macros.carbs} fatG={result.macros.fatGrams} fatPct={result.macros.fat} />
-
-                <DaySelectorBar days={30} activeDay={selectedDay + 1} onSelect={(d) => setSelectedDay(d - 1)} />
-
-                <div className="card p-4 bg-white border border-emerald-200 flex flex-wrap items-center gap-x-6 gap-y-2">
-                  <span className="text-sm font-bold text-gray-900">{t('wlDayTotals')}</span>
-                  <span className="text-xs bg-primary-50 text-primary-700 px-3 py-1 rounded-full font-bold">🔥 {Math.round(dayTotals.kcal)} kcal</span>
-                  <span className="text-xs bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full font-bold">💪 {fmt(t('wlSwapAlt'), { kcal: 0, protein: dayTotals.protein }).split(' | ')[1]}</span>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1.5 min-w-0">
+                  <label className="text-[13px] font-medium text-zinc-700">Height (cm)</label>
+                  <input value={height} onChange={(e) => setHeight(e.target.value.replace(/\D/g, ''))} placeholder="176" inputMode="numeric" className={inputClass} />
                 </div>
+                <div className="space-y-1.5 min-w-0">
+                  <label className="text-[13px] font-medium text-zinc-700">Weight (kg)</label>
+                  <input value={weight} onChange={(e) => setWeight(e.target.value.replace(/[^0-9.]/g, ''))} placeholder="82" inputMode="decimal" className={inputClass} />
+                </div>
+              </div>
+            </div>
+          )}
 
-                <DayProgressHeader completed={dayDoneCount} total={dayMeals.length + 1} dailyGoal={t('wlCompleteAllMeals')} />
-                <button
-                  onClick={() => setShowMealPlanModal(true)}
-                  className="w-full btn-primary py-3 text-sm font-bold flex items-center justify-center gap-2"
-                >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
-                  </svg>
-                  {t('wlFullPlan')}
-                </button>
-
-                <div className="grid grid-cols-1 gap-3 md:gap-4">
-                  {dayMeals.map((meal, idx) => {
-                    const st = swapState[idx];
-                    const base = displayMeal(idx);
-                    const grams = portions[idx] ?? 150;
-                    const scale = grams / 150;
-                    const scaled: MealPlan = {
-                      ...base,
-                      calories: Math.round(base.calories * scale),
-                      protein: Math.round((base.protein ?? 0) * scale),
-                      carbs: Math.round((base.carbs ?? 0) * scale),
-                      fat: Math.round((base.fat ?? 0) * scale),
-                    };
-                    const altSlot = slotOf(base);
-                    const alts: SwapAlt[] = getSwapOptions(selectedCuisine, altSlot).map((o) => toSwapAlt(o, altSlot));
+          {step === 2 && (
+            <div className="space-y-7">
+              <div className="space-y-1.5">
+                <label className="text-[13px] font-medium text-zinc-700">Activity level</label>
+                <div className="grid gap-2">
+                  {(Object.keys(ACTIVITY) as ActivityKey[]).map((x) => {
+                    const opt = ACTIVITY[x];
+                    const on = activity === x;
                     return (
-                      <div key={idx} className="relative space-y-2">
-                        <MealCard meal={scaled} done={!!dayDone[idx]} onToggle={(done) => toggleMealDone(idx, done)} />
-                        <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-2.5">
-                          <button
-                            type="button"
-                            onClick={() => { openEdit(idx); if (swapOpen === idx) setSwapOpen(null); }}
-                            className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-bold border-2 transition-all ${
-                              swapOpen === idx ? 'border-emerald-600 bg-emerald-50 text-emerald-700' : 'border-gray-200 hover:border-emerald-300'
-                            }`}
-                          >
-                            🔄 {t('wlSwapBtn')}
-                          </button>
-                          <span className="text-[11px] font-medium text-gray-500 shrink-0">{t('wlPortion')}</span>
-                          <input
-                            type="range"
-                            min={50} max={300} step={50}
-                            value={grams}
-                            onChange={(e) => setPortions(prev => ({ ...prev, [idx]: +e.target.value }))}
-                            className="flex-1 accent-emerald-600 min-w-0"
-                          />
-                          <span className="text-xs font-bold text-gray-700 shrink-0 whitespace-nowrap">{fmt(t('wlGrams'), { g: grams })} · {scaled.calories} kcal</span>
+                      <button
+                        key={x}
+                        type="button"
+                        onClick={() => setActivity(x)}
+                        className={`w-full text-left rounded-[10px] border px-4 py-3 flex items-center justify-between transition-all min-w-0 ${on ? 'border-[#1e40af] bg-blue-50/60 ring-[3px] ring-blue-100' : 'border-zinc-200 bg-white hover:border-zinc-300'}`}
+                      >
+                        <div className="min-w-0">
+                          <div className="text-[13.5px] font-semibold">{opt.label}</div>
+                          <div className="text-[12px] text-zinc-500 break-words">{opt.desc} · x{opt.factor}</div>
                         </div>
+                        <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${on ? 'border-[#1e40af]' : 'border-zinc-300'}`}>
+                          {on && <div className="w-2 h-2 rounded-full bg-[#1e40af]" />}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
 
-                        {st && (
-                          <div className="flex gap-2 justify-end">
-                            <button
-                              type="button"
-                              onClick={() => { openEdit(idx); }}
-                              className="text-[11px] px-2.5 py-1 bg-white border border-gray-200 rounded-full font-semibold text-gray-700 hover:border-emerald-300 transition-all"
-                            >
-                              ✏️ {t('wlEditMeal')}
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => resetMeal(idx)}
-                              className="text-[11px] px-2.5 py-1 bg-white border border-red-200 rounded-full font-semibold text-red-600 hover:bg-red-50 transition-all"
-                            >
-                              🔄 {t('wlResetMeal')}
-                            </button>
-                          </div>
-                        )}
+              <div className="space-y-3">
+                <label className="text-[13px] font-medium text-zinc-700">Kitchen selector</label>
+                <div className="grid grid-cols-1 gap-2">
+                  {kitchenOptions.map((x) => (
+                    <button
+                      key={x.id}
+                      type="button"
+                      onClick={() => setKitchen(x.id)}
+                      className={`h-[56px] rounded-[10px] border px-4 flex items-center justify-between text-left transition-all ${kitchen === x.id ? 'border-[#1e40af] bg-blue-50/50 ring-[3px] ring-blue-100' : 'border-zinc-200 bg-white'}`}
+                    >
+                      <div>
+                        <div className="text-[13.5px] font-semibold">{x.label} <span className="font-normal text-zinc-500">· {x.count}</span></div>
+                        <div className="text-[11.5px] text-zinc-500">{x.ar}</div>
+                      </div>
+                      <div className="text-[12px]">{kitchen === x.id ? '●' : '○'}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-                        {swapOpen === idx && (() => {
-                          const sel = selectedSwaps[idx] ?? [];
-                          const selTotal = sel.reduce((a, s) => a + Math.round(s.calories * s.qty / 100), 0);
-                          const isAuto = swapIsAuto[idx] ?? true;
-                          const slotName = slotOf(swapState[idx]?.original ?? dayMeals[idx]);
-                          const goalLabel = t(autoGoal === 'lose_fat' ? 'wlfGoalLoseTitle' : autoGoal === 'gain_muscle' ? 'wlfGoalMuscleTitle' : autoGoal === 'gain_weight' ? 'wlfGoalGainTitle' : 'wlfGoalHealthTitle');
-                          const slotKey = slotWordKey(slotName);
-                          const mealLabel = slotKey ? t(slotKey) : t('wlMealSnack');
-                          const cuisineOption = selectedCuisine ? CUISINE_OPTIONS.find((c) => c.key === selectedCuisine) : null;
-                          const cuisineName = selectedCuisine ? (cuisineOption ? getCuisineLabel(cuisineOption, language) : selectedCuisine) : t('wlSwapMixed');
-                          const cuisineFlag = selectedCuisine === 'egyptian' ? '🇪🇬' : selectedCuisine === 'mediterranean' ? '🥗' : (cuisineOption?.flag ?? '🍽️');
-                          const reasonText = sel.map(s => `${language === 'ar' ? (s.nameAr ?? s.name) : s.name} → ${s.qty}g (${t(autoReasonKey(autoGoal, s))})`).join('، ');
-                          const applyAutoNow = () => {
-                            setSelectedSwaps(prev => ({ ...prev, [idx]: applyAutoAdjust(idx, prev[idx] ?? []) }));
-                            setSwapIsAuto(prev => ({ ...prev, [idx]: true }));
-                          };
-                          return (
-                            <div className="absolute z-10 p-3 bg-white border border-gray-200 rounded-xl shadow-xl w-full min-w-0 sm:w-80 right-0 -bottom-2 translate-y-full max-h-[70vh] overflow-y-auto scrollbar-thin">
-                              <div className="flex items-center gap-2 mb-1 flex-wrap">
-                                <span className="text-sm font-bold text-gray-900">{t('wlSwapCuisineTitle')}</span>
-                                <span className="px-2.5 py-0.5 rounded-full bg-teal-600 text-white text-[11px] font-bold">{cuisineName} {cuisineFlag}</span>
-                                <span className="text-[11px] text-gray-500">({mealLabel} - {alts.length} {t('wlSwapOptions')})</span>
-                              </div>
-                              {!selectedCuisine && (
-                                <div className="p-2 bg-amber-50 border border-amber-200 rounded-lg text-[11px] text-amber-800 mb-1">{t('wlSwapCuisineHint')}</div>
-                              )}
-                              <div className="flex justify-between items-center mt-1 mb-2">
-                                <span className="text-[11px] font-semibold text-gray-600">{fmt(t('wlSwapSelected'), { n: sel.length, kcal: selTotal })}</span>
-                                {sel.length > 0 && (
-                                  <button type="button" onClick={() => resetAllSel(idx)} className="text-[11px] px-3 py-1 bg-red-50 text-red-600 border border-red-200 rounded-full hover:bg-red-100 transition-all shrink-0">
-                                    {t('wlResetAll')}
-                                  </button>
-                                )}
-                              </div>
-                              <div className="mt-2 space-y-1">
-                                {alts.map((alt, i) => {
-                                  const checked = sel.some(s => s.name === alt.name);
-                                  const rowItem = sel.find(s => s.name === alt.name);
-                                  const slotKey = slotWordKey(alt.best);
-                                  return (
-                                    <label key={i} className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all ${checked ? 'bg-emerald-50 border-emerald-500 border-2' : 'bg-white border-gray-200 hover:border-gray-300 hover:bg-gray-50'}`}>
-                                      <div className={`w-5 h-5 rounded-md border-2 flex items-center justify-center flex-shrink-0 ${checked ? 'bg-emerald-600 border-emerald-600' : 'border-gray-300 bg-white'}`}>
-                                        {checked && <span className="text-white text-xs font-bold">✓</span>}
-                                      </div>
-                                      <input type="checkbox" className="hidden" checked={checked} onChange={() => toggleSwapSel(idx, alt)} />
-                                      <div className="flex-1 min-w-0">
-                                        <div className="text-sm font-medium text-gray-800">{language === 'ar' ? (alt.nameAr ?? alt.name) : alt.name}</div>
-                                        <div className="text-[11px] text-gray-500">{alt.calories} kcal • {alt.protein}g P{slotKey ? ` • ${t('commonBest')}: ${t(slotKey)}` : ''}</div>
-                                      </div>
-                                      {checked && (
-                                        <div className="flex items-center gap-2 flex-shrink-0">
-                                          <input type="range" min={50} max={300} step={25} value={rowItem?.qty ?? 150} disabled={isAuto} onChange={(e) => setSwapQty(idx, alt.name, +e.target.value)} className={`w-20 h-1 accent-emerald-600 ${isAuto ? 'opacity-50 cursor-not-allowed' : ''}`} />
-                                          <span className="text-xs font-bold text-gray-700 w-10 text-right">{rowItem?.qty ?? 150}g</span>
-                                        </div>
-                                      )}
-                                    </label>
-                                  );
-                                })}
-                              </div>
-                              {sel.length > 0 && (
-                                <div className="p-2 bg-blue-50 border border-blue-100 rounded-lg text-[11px] text-blue-800 mt-2">
-                                  <div>🤖 {fmt(t('wlAutoLine1'), { goal: goalLabel, kcal: result?.targetCalories ?? 0, meal: mealLabel })}</div>
-                                  <div className="mt-0.5 leading-snug">{reasonText}</div>
-                                  <div className="mt-1.5 flex items-center gap-2">
-                                    <button type="button" disabled={!isAuto} onClick={() => setSwapIsAuto(prev => ({ ...prev, [idx]: false }))} className="underline font-bold disabled:opacity-40 disabled:cursor-not-allowed">{t('wlManualEdit')}</button>
-                                    <span className="text-blue-300">|</span>
-                                    <button type="button" disabled={isAuto} onClick={applyAutoNow} className="underline font-bold disabled:opacity-40 disabled:cursor-not-allowed">{t('wlApplyAuto')}</button>
-                                  </div>
-                                </div>
-                              )}
-                              <div className="mt-3 pt-3 border-t flex gap-2">
-                                <input
-                                  value={customSwap}
-                                  onChange={(e) => setCustomSwap(e.target.value)}
-                                  onKeyDown={(e) => e.key === 'Enter' && checkCustom(idx)}
-                                  placeholder={t('wlSwapCustomPlaceholder')}
-                                  className="flex-1 h-8 px-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:ring-1 focus:ring-emerald-300"
-                                />
-                                <button type="button" onClick={() => checkCustom(idx)} className="text-xs text-emerald-600 font-bold shrink-0">{t('wlcCheck')}</button>
-                              </div>
-                              <button
-                                type="button"
-                                disabled={sel.length === 0}
-                                onClick={() => commitSave(idx)}
-                                className={`mt-3 w-full h-10 rounded-xl text-sm font-bold transition-all ${sel.length ? 'bg-emerald-600 text-white hover:bg-emerald-700' : 'bg-emerald-100 text-emerald-400 cursor-not-allowed'}`}
-                              >
-                                {sel.length ? fmt(t('wlSwapSaveBtn'), { n: sel.length, kcal: selTotal }) : t('wlSwapSaveDisabled')}
-                              </button>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-[13px] font-semibold">Sample dishes · {samples.length} shown</h3>
+                  <div className="flex gap-1.5">
+                    <span className="text-[10px] px-2 py-1 rounded-full border bg-emerald-50 border-emerald-200 text-emerald-700">100%</span>
+                    <span className="text-[10px] px-2 py-1 rounded-full border bg-amber-50 border-amber-200 text-amber-700">85%</span>
+                    <span className="text-[10px] px-2 py-1 rounded-full border bg-orange-50 border-orange-200 text-orange-700">70%</span>
+                  </div>
+                </div>
+                <div className="grid gap-2">
+                  {samples.map((x) => (
+                    <div key={x.ar} className="w-full rounded-[10px] border border-zinc-200 bg-white px-3.5 py-3 flex items-center justify-between gap-3 min-w-0">
+                      <div className="min-w-0">
+                        <div className="text-[13px] font-medium leading-tight break-words">{x.ar}</div>
+                        <div className="text-[11.5px] text-zinc-500 mt-0.5 break-words">{x.cal} cal / 100g · {x.protein}g protein</div>
+                      </div>
+                      <span className={`shrink-0 text-[10px] font-semibold px-2 py-1 rounded-full border ${confClass(x.conf)}`}>{x.conf}%</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {step === 3 && (
+            <div className="space-y-6">
+              <div className="space-y-1.5">
+                <label className="text-[13px] font-medium text-zinc-700">Goal type</label>
+                <div className="grid grid-cols-3 gap-2">
+                  {(['lose', 'maintain', 'gain'] as GoalKey[]).map((x) => (
+                    <button
+                      key={x}
+                      type="button"
+                      onClick={() => setGoal(x)}
+                      className={`h-[48px] rounded-[8px] border text-[13px] font-medium capitalize ${goal === x ? 'bg-[#1e40af] text-white border-[#1e40af]' : 'bg-white border-zinc-300 text-zinc-700'}`}
+                    >
+                      {x === 'lose' ? 'Lose ↓' : x === 'gain' ? 'Gain ↑' : 'Maintain →'}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1.5 min-w-0">
+                  <label className="text-[13px] font-medium text-zinc-700">Target weight (kg)</label>
+                  <input value={targetWeight} onChange={(e) => setTargetWeight(e.target.value.replace(/[^0-9.]/g, ''))} inputMode="decimal" className={inputClass} />
+                </div>
+                <div className="space-y-1.5 min-w-0">
+                  <label className="text-[13px] font-medium text-zinc-700">Timeline (weeks)</label>
+                  <input value={timeline} onChange={(e) => setTimeline(e.target.value.replace(/\D/g, ''))} inputMode="numeric" className={inputClass} />
+                </div>
+              </div>
+
+              {numbers && (
+                <div className="rounded-[12px] border border-zinc-200 bg-zinc-50/70 p-4 space-y-2">
+                  <div className="text-[12px] font-semibold text-zinc-700">Projection</div>
+                  <div className="text-[13px] text-zinc-600 leading-relaxed break-words">
+                    من {parsed.weight}kg إلى {parsed.target}kg خلال {parsed.timeline} أسابيع = {((parsed.weight - parsed.target > 0 ? parsed.weight - parsed.target : parsed.target - parsed.weight) / (parsed.timeline || 1)).toFixed(2)}kg / أسبوع.{' '}
+                    {goal === 'lose' && parsed.weight > parsed.target ? 'معدل آمن.' : goal === 'gain' ? 'زيادة محسوبة.' : 'ثبات وزن.'}
+                  </div>
+                  <div className="text-[12px] text-zinc-500">Target calories: ~{numbers.targetCal} kcal / day</div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {step === 4 && numbers && (
+            <div className="space-y-6">
+              <div className="rounded-[14px] border border-zinc-200 bg-white p-4 md:p-5 space-y-4">
+                <h2 className="text-[16px] font-bold tracking-tight">Your Personalized Health Blueprint</h2>
+                <div className="grid grid-cols-3 gap-2">
+                  <div className="rounded-[10px] bg-zinc-50 border border-zinc-200 p-3 min-w-0">
+                    <div className="text-[10px] uppercase tracking-widest text-zinc-500 font-semibold">BMI</div>
+                    <div className="text-[20px] font-bold leading-none mt-1">{numbers.bmi}</div>
+                    <div className="text-[11px] text-zinc-500 mt-1 break-words">{numbers.bmiCat}</div>
+                  </div>
+                  <div className="rounded-[10px] bg-zinc-50 border border-zinc-200 p-3 min-w-0">
+                    <div className="text-[10px] uppercase tracking-widest text-zinc-500 font-semibold">BMR</div>
+                    <div className="text-[20px] font-bold leading-none mt-1">{numbers.bmr}</div>
+                    <div className="text-[11px] text-zinc-500 mt-1 break-words">kcal/day</div>
+                  </div>
+                  <div className="rounded-[10px] bg-[#1e40af] text-white p-3 min-w-0">
+                    <div className="text-[10px] uppercase tracking-widest text-blue-200 font-semibold">TDEE</div>
+                    <div className="text-[20px] font-bold leading-none mt-1">{numbers.tdee}</div>
+                    <div className="text-[11px] text-blue-100 mt-1 break-words">maintenance</div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-[12px]">
+                  <div className="rounded-[8px] border border-zinc-200 px-3 py-2.5">
+                    <span className="text-zinc-500">Age</span> <span className="font-semibold ml-1">{parsed.age}y · {sex}</span>
+                  </div>
+                  <div className="rounded-[8px] border border-zinc-200 px-3 py-2.5">
+                    <span className="text-zinc-500">Activity</span> <span className="font-semibold ml-1">{ACTIVITY[activity].label}</span>
+                  </div>
+                  <div className="rounded-[8px] border border-zinc-200 px-3 py-2.5 col-span-2">
+                    <span className="text-zinc-500">Target</span> <span className="font-semibold ml-1">{numbers.targetCal} kcal / {goal} · {parsed.target}kg in {parsed.timeline}w</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="text-[13px] font-bold">Meal Plan · {kitchenLabel} · ~{numbers.targetCal} kcal</h3>
+                <div className="grid gap-2.5">
+                  {meals.map((x, idx) => {
+                    const kcal = Math.round((x.dish.cal * x.grams) / 100);
+                    const proteinG = Math.round((x.dish.protein * x.grams) / 100);
+                    return (
+                      <div key={idx} className="meal-card w-full rounded-[10px] border border-zinc-200 bg-white px-3.5 py-3 min-w-0">
+                        <div className="flex items-start justify-between gap-2 min-w-0">
+                          <div className="min-w-0 flex-1">
+                            <div className="flex items-center gap-2">
+                              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-zinc-900 text-white">{x.meal}</span>
+                              <span className="text-[12px] font-medium break-words">{x.dish.ar}</span>
                             </div>
-                          );
-                        })()}
+                            <div className="mt-1 text-[12px] text-zinc-500 break-words leading-snug min-w-0">{x.grams}g · {kcal} kcal · {proteinG}g protein</div>
+                          </div>
+                          <span className={`shrink-0 text-[10px] font-semibold px-2 py-1 rounded-full border ${confClass(x.dish.conf)}`}>{x.dish.conf}%</span>
+                        </div>
                       </div>
                     );
                   })}
                 </div>
+              </div>
 
-                <div className="card p-5 bg-gradient-to-r from-green-50 to-emerald-50 border-green-200">
-                  <h4 className="font-bold mb-3">💡 {fmt(t('wlSuggestions'), { cuisine: activeCuisineLabel || t('wlfMealPrefTitle') })}</h4>
-
-                  {isKitchenCuisine && (
-                    <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-3 space-y-1.5">
-                      <strong className="text-blue-900">دقة الأرقام:</strong>
-                      <div className="text-[11px] text-blue-800">
-                        ✅ <strong>100% موثق:</strong> {t('wlConfInfo100')}
-                      </div>
-                      <div className="text-[11px] text-blue-800">
-                        🟡 <strong>85% محسوب:</strong> {t('wlConfInfo85')}
-                      </div>
-                      <div className="text-[11px] text-blue-800">
-                        🟠 <strong>70% تقديري:</strong> {t('wlConfInfo70')}
-                      </div>
-                      <div className="mt-1.5 text-[11px] text-blue-700">{t('wlConfInfoNote')}</div>
-                    </div>
-                  )}
-
-                  {isKitchenCuisine && (
-                    <div className="flex items-center gap-2 mb-3">
-                      <label className="text-xs font-bold text-gray-700">{t('wlConfFilter')}</label>
-                      <select
-                        value={confidenceFilter}
-                        onChange={(e) => {
-                          const v = e.target.value;
-                          setConfidenceFilter(v === 'all' ? 'all' : (Number(v) as 100 | 85 | 70));
-                        }}
-                        className="h-9 px-2 rounded-xl border border-gray-200 bg-white text-xs font-semibold text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-300"
-                      >
-                        <option value="all">{t('wlConfAll')}</option>
-                        <option value="100">{t('wlConf100Only')}</option>
-                        <option value="85">{t('wlConf85Plus')}</option>
-                        <option value="70">{t('wlConf70Plus')}</option>
-                      </select>
-                    </div>
-                  )}
-
-                  {isKitchenCuisine ? (
-                    <div className="grid sm:grid-cols-2 gap-2.5">
-                      {filteredFoods.map((food, idx) => (
-                        <div key={idx} className="dish-card bg-white border border-gray-200 rounded-xl p-3 shadow-sm">
-                          <div className="flex justify-between gap-2 items-start">
-                            <h3 className="text-sm font-bold text-gray-900">{language === 'ar' ? (food.name_ar || food.name) : food.name}</h3>
-                            {food.confidence != null && (
-                              <span className={`shrink-0 px-2 py-0.5 rounded-full border-2 text-[10px] font-bold ${confBadgeClass(food.confidenceColor)}`}>
-                                {food.confidenceLabel ?? `${food.confidence}%`}
-                              </span>
-                            )}
-                          </div>
-                          <div className="mt-1 text-xs font-semibold text-gray-800">
-                            {fmt(t('wlDualCal'), { cal100: food.cal100 ?? 0, grams: food.servG ?? 0, calories: food.calories })}
-                          </div>
-                          <div className="text-[11px] text-gray-600">
-                            {fmt(t('wlDishMacros'), { p: food.p100 ?? 0, c: food.c100 ?? 0, f: food.f100 ?? 0 })}
-                          </div>
-                          <div className="text-[10px] text-gray-500 mt-1">
-                            {fmt(t('wlDishSource'), { source: food.source ?? '—', notes: food.note ?? '' })}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="flex flex-wrap gap-2">
-                      {filteredFoods.map((food, idx) => (
-                        <span key={idx} className="bg-white border px-3 py-1.5 rounded-full text-xs font-medium shadow-sm">
-                          {food.cal100 != null && food.servG
-                            ? `${fmt(t('wlCaloriesItem'), { name: food.name, kcal: food.calories })} (${fmt(t('wlDualCal'), { cal100: food.cal100, grams: food.servG, calories: food.calories })})`
-                            : fmt(t('wlCaloriesItem'), { name: food.name, kcal: food.calories })}
-                          {isMinistryVerified(food.source) && (
-                            <span className="ml-1 inline-flex items-center gap-0.5 text-emerald-700 font-bold">🛡️ {t('wlMinistryBadge')}</span>
-                          )}
-                        </span>
-                      ))}
-                    </div>
-                  )}
+              <div className="rounded-[12px] border border-amber-200 bg-amber-50/60 p-4 space-y-2">
+                <div className="text-[12px] font-semibold text-amber-900">Confidence explained</div>
+                <div className="space-y-1.5 text-[12px] leading-relaxed text-zinc-700 break-words">
+                  <div><span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold border bg-emerald-50 border-emerald-200 text-emerald-700 mr-2">100%</span>المعهد القومي للتغذية - مؤكد بتحليل معملي</div>
+                  <div><span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold border bg-amber-50 border-amber-200 text-amber-700 mr-2">85%</span>USDA + وصفة منزلية موثقة</div>
+                  <div><span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold border bg-orange-50 border-orange-200 text-orange-700 mr-2">70%</span>تقديري من مطعم / تقدير شيف</div>
                 </div>
+              </div>
 
-                {effectiveCuisine === 'egyptian' && (
-                  <div className="text-[11px] text-gray-500 text-center px-2">{EGYPTIAN_DISCLAIMER}</div>
-                )}
-                {effectiveCuisine === 'tunisian' && (
-                  <div className="text-[11px] text-gray-500 text-center px-2">{TUNISIAN_DISCLAIMER}</div>
-                )}
+              <div className="rounded-[12px] border border-zinc-200 p-4 text-[11.5px] text-zinc-500 leading-relaxed break-words">BMI = weight / (height/100)² · BMR Mifflin-St Jeor · TDEE = BMR × activity factor. هذه حسابات تقديرية لا تغني عن استشارة طبية.</div>
+            </div>
+          )}
 
-                <SaveProgressButton module="weightloss" inputs={form} results={result} />
-              </section>
-            )}
+          {step === 4 && !numbers && (
+            <div className="rounded-[12px] border border-zinc-200 p-4 text-[12.5px] text-zinc-500">Complete the previous steps to review your blueprint.</div>
+          )}
+        </div>
 
-            {showWorkouts && (
-              <section className="space-y-5">
-                <div className="pt-2">
-                  <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">🏋️ {t('wlfWorkoutSectionTitle')}</h3>
-                </div>
-
-                <StreakBar currentStreak={streak.current} longestStreak={streak.longest} todayChecked={false} daysCompleted={streak.daysCompleted} totalDays={30} />
-
-                <div className="card p-5">
-                  <h4 className="font-bold mb-3 flex items-center gap-2">💪 {t('wlExerciseType')}</h4>
-                  <div className="flex flex-wrap gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setExerciseType('auto')}
-                      className={`px-4 py-2 rounded-xl text-sm font-medium border-2 transition-all ${
-                        exerciseType === 'auto'
-                          ? 'border-rose-500 bg-rose-50 text-rose-700'
-                          : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
-                      }`}
-                    >
-                      🤖 {t('wlAutoRecommend')}
-                    </button>
-                    {EXERCISE_TYPE_OPTIONS.map((type) => (
-                      <button
-                        key={type}
-                        type="button"
-                        onClick={() => setExerciseType(type)}
-                        className={`px-4 py-2 rounded-xl text-sm font-medium border-2 transition-all ${
-                          exerciseType === type
-                            ? 'border-rose-500 bg-rose-50 text-rose-700'
-                            : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
-                        }`}
-                      >
-                        {EXERCISE_TYPE_LABELS[type][language]}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
-                  {result.workoutPlan.days.map((day, idx) => (
-                    <div key={idx} className="card p-3 text-center">
-                      <div className="text-[11px] font-bold text-gray-400 uppercase">{day.day}</div>
-                      <div className="mt-1 text-xs font-semibold text-gray-800 leading-snug">{day.focus}</div>
-                    </div>
-                  ))}
-                </div>
-
-                <button
-                  onClick={() => setShowWorkoutModal(true)}
-                  className="w-full btn-primary py-3 text-sm font-bold flex items-center justify-center gap-2 bg-gradient-to-r from-rose-600 to-orange-500 hover:from-rose-700 hover:to-orange-600"
-                >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
-                  </svg>
-                  {t('wlFullWorkout')}
-                </button>
-
-                <div className="text-center py-4 text-gray-400 text-sm">
-                  {t('wlWorkoutHint')}
-                </div>
-              </section>
-            )}
-
-            <MedicalDisclaimer />
+        <div className="mt-8">
+          <div className="hidden md:flex gap-3">
+            <button
+              type="button"
+              onClick={back}
+              disabled={step === 1}
+              className={`h-[48px] px-6 rounded-[8px] border text-[14px] font-medium transition-all ${step === 1 ? 'bg-zinc-100 text-zinc-400 border-zinc-200 cursor-not-allowed' : 'bg-zinc-50 hover:bg-zinc-100 border-zinc-300 text-zinc-700'}`}
+            >
+              Back
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              disabled={!isValid()}
+              className={`flex-1 h-[48px] rounded-[8px] text-[14px] font-semibold transition-all flex items-center justify-center gap-2 ${!isValid() ? 'bg-zinc-300 text-zinc-500 cursor-not-allowed' : 'bg-[#1e40af] text-white hover:bg-[#1c3aa0] shadow-[0_1px_2px_rgba(0,0,0,0.08)]'}`}
+            >
+              {step === 4 ? 'Start Over' : 'Next →'}
+            </button>
           </div>
-        )}
-      </div>
+        </div>
+      </main>
 
-      {result && (
-        <MealPlanModal isOpen={showMealPlanModal} onClose={() => setShowMealPlanModal(false)} targetCalories={result.targetCalories} mealPlan={result.mealPlan} fullMealPlan={result.fullMealPlan} selectedDay={selectedDay} onDayChange={setSelectedDay} weight={form.weight} onSave={() => setShowMealPlanModal(false)} cuisine={selectedCuisine ?? 'egyptian'} onCuisineChange={handleCuisineChange} />
-      )}
-      {result && (
-        <WorkoutBlueprintModal isOpen={showWorkoutModal} onClose={() => setShowWorkoutModal(false)} bmi={+(form.weight / ((form.height / 100) ** 2)).toFixed(1)} goal={activeGoal} fitnessLevel="beginner" weight={form.weight} selectedDay={workoutSelectedDay} onDayChange={setWorkoutSelectedDay} onSave={() => setShowWorkoutModal(false)} />
-      )}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-zinc-200 px-4 py-3 flex gap-3 z-40">
+        <button
+          type="button"
+          onClick={back}
+          disabled={step === 1}
+          className={`h-[48px] px-5 rounded-[8px] border text-[14px] font-medium shrink-0 ${step === 1 ? 'bg-zinc-100 text-zinc-400 border-zinc-200' : 'bg-zinc-50 border-zinc-300 text-zinc-700'}`}
+        >
+          Back
+        </button>
+        <button
+          type="button"
+          onClick={next}
+          disabled={!isValid()}
+          className={`flex-1 h-[48px] rounded-[8px] text-[15px] font-semibold flex items-center justify-center gap-2 ${!isValid() ? 'bg-zinc-300 text-zinc-500' : 'bg-[#1e40af] text-white'}`}
+        >
+          {step === 4 ? 'Restart' : 'Next →'}
+        </button>
+      </div>
     </div>
   );
 };
