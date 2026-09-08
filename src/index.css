@@ -535,7 +535,9 @@ html[lang='ar'] textarea {
 /* City/all scroll boxes - Chrome mobile touch */
 .kitchen-city-scroll-box,
 .workout-scroll-box,
-.diet-intensity-scroll-box {
+.diet-intensity-scroll-box,
+.exercise-scroll-box,
+.diet-scroll-box {
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y;
   overscroll-behavior: contain;

@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { kitchensRegistry, totalDishesAll } from '../data/kitchens';
 import type { KitchenInfo, KitchenDish } from '../data/kitchens';
 
-type Step = 1 | 2 | 3 | 4;
+type Step = 1 | 2 | 3 | 4 | 5;
 type Sex = 'male' | 'female';
 type ActivityKey = 'sedentary' | 'light' | 'moderate' | 'active' | 'very_active';
 type GoalKey = 'lose' | 'gain_muscle' | 'gain_weight' | 'wellness' | 'athletic';
@@ -16,6 +16,15 @@ interface Workout {
   focus: string;
   burn: number;
   level: string;
+}
+
+interface ExerciseType {
+  id: string;
+  name: string;
+  en: string;
+  emoji: string;
+  burn: string;
+  focus: string;
 }
 
 interface DietIntensity {
@@ -43,13 +52,28 @@ const ACTIVITY: Record<ActivityKey, { factor: number; label: string; desc: strin
 };
 
 const WORKOUTS: Workout[] = [
-  { id: 'none', name: 'بدون تمارين', days: 0, dur: '-', focus: 'راحة', burn: 0, level: 'none' },
-  { id: 'beginner', name: 'مبتدئ Full Body 3x', days: 3, dur: '30د', focus: 'كل الجسم', burn: 150, level: 'light' },
-  { id: 'hiit', name: 'حرق دهون HIIT 4x', days: 4, dur: '25د', focus: 'كارديو عالي', burn: 300, level: 'intense' },
-  { id: 'ppl', name: 'بناء عضل PPL 5x', days: 5, dur: '60د', focus: 'Push Pull Legs', burn: 400, level: 'intense' },
-  { id: 'bodyweight', name: 'منزلي بدون أدوات 3x', days: 3, dur: '30د', focus: 'وزن الجسم', burn: 200, level: 'moderate' },
-  { id: 'cardio_core', name: 'كارديو + بطن 4x', days: 4, dur: '35د', focus: 'جري + بطن', burn: 280, level: 'moderate' },
-  { id: 'strength', name: 'قوة Strength 5x5', days: 3, dur: '45د', focus: 'أوزان ثقيلة', burn: 250, level: 'heavy' },
+  { id: 'full_body', name: 'Full Body 3x', days: 3, dur: '45د', focus: 'كل الجسم', burn: 150, level: 'مبتدئ' },
+  { id: 'upper_lower', name: 'Upper/Lower 4x', days: 4, dur: '50د', focus: 'علوي/سفلي', burn: 200, level: 'متوسط' },
+  { id: 'ppl', name: 'PPL 5x', days: 5, dur: '60د', focus: 'Push Pull Legs', burn: 250, level: 'متقدم' },
+  { id: 'bodyweight_only', name: 'وزن الجسم فقط 3x', days: 3, dur: '30د', focus: 'بدون أدوات', burn: 160, level: 'مبتدئ' },
+  { id: 'bro_split', name: 'Bro Split 5x', days: 5, dur: '60د', focus: 'عضلة يومياً', burn: 220, level: 'متقدم' },
+  { id: 'custom', name: 'مخصص بحسب روتينك', days: 4, dur: '45د', focus: 'حسب اختيارك', burn: 180, level: 'مخصص' },
+];
+
+const EXERCISE_TYPES: ExerciseType[] = [
+  { id: 'cardio', name: 'كارديو', en: 'Cardio', emoji: '🏃', burn: '300-500', focus: 'حرق دهون' },
+  { id: 'strength', name: 'قوة وحديد', en: 'Strength', emoji: '🏋️', burn: '200-350', focus: 'بناء عضل' },
+  { id: 'hiit', name: 'هايت HIIT', en: 'HIIT', emoji: '⚡', burn: '400-600', focus: 'حرق سريع' },
+  { id: 'yoga', name: 'يوجا', en: 'Yoga', emoji: '🧘', burn: '150-250', focus: 'مرونة وتوازن' },
+  { id: 'pilates', name: 'بيلاتس', en: 'Pilates', emoji: '🤸', burn: '200-300', focus: 'قوة مركزية' },
+  { id: 'tai_chi', name: 'تاي تشي', en: 'Tai Chi', emoji: '☯️', burn: '150-200', focus: 'توازن وهدوء' },
+  { id: 'crossfit', name: 'كروس فيت', en: 'CrossFit', emoji: '💥', burn: '350-500', focus: 'لياقة وظيفية' },
+  { id: 'swimming', name: 'سباحة', en: 'Swimming', emoji: '🏊', burn: '300-450', focus: 'كل الجسم' },
+  { id: 'cycling', name: 'دراجة', en: 'Cycling', emoji: '🚴', burn: '250-400', focus: 'أرجل وكارديو' },
+  { id: 'running', name: 'جري', en: 'Running', emoji: '🏃‍♂️', burn: '350-500', focus: 'تحمل' },
+  { id: 'boxing', name: 'ملاكمة', en: 'Boxing', emoji: '🥊', burn: '400-600', focus: 'قوة ورد فعل' },
+  { id: 'dance', name: 'رقص زومبا', en: 'Dance', emoji: '💃', burn: '250-400', focus: 'حرق ومرح' },
+  { id: 'calisthenics', name: 'وزن الجسم', en: 'Calisthenics', emoji: '🤾', burn: '200-350', focus: 'قوة بدون معدات' },
 ];
 
 const DIETS: Record<GoalKey, DietIntensity[]> = {
@@ -81,7 +105,7 @@ const DIETS: Record<GoalKey, DietIntensity[]> = {
 };
 
 const GOAL_ICONS: Record<GoalKey, string> = { lose: '⚖️', gain_muscle: '💪', gain_weight: '📈', wellness: '✨', athletic: '🏃' };
-const GOAL_BTN: Record<GoalKey, string> = { lose: 'Lose ↓', gain_muscle: 'Build Muscle', gain_weight: 'Gain Weight', wellness: 'Wellness', athletic: 'Athletic' };
+const GOAL_BTN: Record<GoalKey, string> = { lose: 'Lose Weight', gain_muscle: 'Gain Muscle', gain_weight: 'Gain Weight', wellness: 'Wellness & Maint.', athletic: 'Athletic' };
 const GOAL_LABELS: Record<GoalKey, string> = { lose: 'تخسيس', gain_muscle: 'بناء عضلات', gain_weight: 'زيادة وزن صحية', wellness: 'صحة وعافية', athletic: 'أداء رياضي' };
 const GOAL_INTENSITY_LABEL: Record<GoalKey, string> = {
   lose: 'اختر شدة الرجيم للتخسيس',
@@ -101,9 +125,10 @@ const getDiet = (g: GoalKey, id: string): DietIntensity => DIETS[g].find((d) => 
 
 const STEP_TITLES: Record<Step, string> = {
   1: 'Basic Info',
-  2: 'Body & Kitchen',
-  3: 'Goals',
-  4: 'Review',
+  2: 'Body',
+  3: 'Kitchen & Food',
+  4: 'Goals',
+  5: 'Blueprint',
 };
 
 function filterDishes(kitchen: KitchenInfo, diet: DietIntensity, goal: GoalKey): KitchenDish[] {
@@ -171,6 +196,8 @@ function pickPlate(pool: KitchenDish[]): KitchenDish[] {
   return [breakfast, lunch, dinner, snack];
 }
 
+const FEATURED_KITCHEN_IDS = ['egyptian', 'tunisian', 'diet-keto', 'diet-vegan', 'diet-high-protein', 'diet-mediterranean', 'diet-low-carb'];
+
 const WeightLossPage: React.FC = () => {
   const [step, setStep] = useState<Step>(1);
   const [age, setAge] = useState('28');
@@ -181,8 +208,9 @@ const WeightLossPage: React.FC = () => {
   const [goal, setGoal] = useState<GoalKey>('lose');
   const [targetWeight, setTargetWeight] = useState('75');
   const [timeline, setTimeline] = useState('12');
-  const [selectedKitchenId, setSelectedKitchenId] = useState<string>('egyptian');
-  const [workout, setWorkout] = useState('none');
+  const [selectedKitchenId, setSelectedKitchenId] = useState<string>('tunisian');
+  const [workout, setWorkout] = useState('full_body');
+  const [exerciseTypes, setExerciseTypes] = useState<string[]>(['cardio', 'strength']);
   const [dietId, setDietId] = useState('normal_lose');
   const [selectedDay, setSelectedDay] = useState(1);
   const [water, setWater] = useState(0);
@@ -209,6 +237,44 @@ const WeightLossPage: React.FC = () => {
     [selectedKitchenId],
   );
 
+  const featuredKitchens = useMemo(
+    () => FEATURED_KITCHEN_IDS.map((id) => kitchensRegistry.find((k) => k.id === id)).filter((k): k is KitchenInfo => !!k),
+    [],
+  );
+  const regionalKitchens = featuredKitchens.filter((k) => k.rich);
+  const dietKitchens = featuredKitchens.filter((k) => !k.rich);
+
+  const kitchenCard = (k: KitchenInfo) => {
+    const on = selectedKitchenId === k.id;
+    return (
+      <div
+        key={k.id}
+        onClick={() => setSelectedKitchenId(k.id)}
+        className={`rounded-[10px] border-2 cursor-pointer p-2 flex flex-col gap-1.5 transition-all min-w-0 ${on ? 'border-emerald-500 bg-white shadow-md' : 'border-white/70 bg-white/80 hover:border-emerald-300'}`}
+      >
+        <div className="flex items-center gap-2 min-w-0">
+          <span className="w-8 h-8 rounded-full bg-white border border-zinc-200 shadow-sm flex items-center justify-center text-[18px] leading-none shrink-0">{k.flag}</span>
+          <div className="min-w-0 flex-1">
+            <div className="truncate font-bold text-[12px] leading-tight">{k.country}</div>
+            <div className="truncate text-[10.5px] text-zinc-500 leading-snug">{k.kitchen}</div>
+          </div>
+          <span className="shrink-0 text-[10px] bg-zinc-900 text-white px-2 py-0.5 rounded-full">{k.total}</span>
+        </div>
+        {k.sample && (
+          <div className="rounded-[8px] bg-zinc-50 px-2 py-1 min-w-0">
+            <div className="truncate text-[10px] text-zinc-600">🍽 {k.sample.name}</div>
+          </div>
+        )}
+        <div className="flex flex-wrap gap-1">
+          {k.conf100 > 0 && <span className="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded-full">{k.conf100}×100%</span>}
+          {k.conf85 > 0 && <span className="text-[9px] bg-yellow-100 text-yellow-800 px-1.5 py-0.5 rounded-full">{k.conf85}×85%</span>}
+          {k.conf70 > 0 && <span className="text-[9px] bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded-full">{k.conf70}×70%</span>}
+          {on && <span className="ml-auto text-[9px] font-semibold text-emerald-600">✓ مختار</span>}
+        </div>
+      </div>
+    );
+  };
+
   const numbers = useMemo(() => {
     const { age: a, height: h, weight: w } = parsed;
     if (!a || !h || !w) return null;
@@ -217,7 +283,12 @@ const WeightLossPage: React.FC = () => {
     const bmi = +(w / Math.pow(h / 100, 2)).toFixed(1);
     const bmr = sex === 'male' ? 10 * w + 6.25 * h - 5 * a + 5 : 10 * w + 6.25 * h - 5 * a - 161;
     const tdeeBase = bmr * ACTIVITY[activity].factor;
-    const burnAvg = Math.round(((wk.burn * wk.days) / 7) * diet.workoutMod);
+    const exBurnMid = EXERCISE_TYPES.filter((e) => exerciseTypes.includes(e.id)).map((e) => {
+      const [lo, hi] = e.burn.split('-').map(Number);
+      return (lo + hi) / 2;
+    });
+    const avgExBurn = exBurnMid.length ? exBurnMid.reduce((s, v) => s + v, 0) / exBurnMid.length : 0;
+    const burnAvg = Math.round(((avgExBurn * wk.days) / 7) * diet.workoutMod);
     const tdeeWorkout = Math.round(tdeeBase + burnAvg);
     const delta =
       goal === 'lose' ? -diet.deficit : goal === 'wellness' ? (diet.deficit ? -diet.deficit : diet.surplus) : diet.surplus;
@@ -230,6 +301,8 @@ const WeightLossPage: React.FC = () => {
       bmiCat: bmi < 18.5 ? 'نقص وزن' : bmi < 25 ? 'طبيعي' : bmi < 30 ? 'زيادة' : 'سمنة',
       bmr: Math.round(bmr),
       tdeeBase: Math.round(tdeeBase),
+      avgExBurn: Math.round(avgExBurn),
+      exCount: exBurnMid.length,
       burnAvg,
       tdeeWorkout,
       delta,
@@ -240,7 +313,7 @@ const WeightLossPage: React.FC = () => {
       diet,
       wk,
     };
-  }, [parsed, sex, activity, goal, dietId, workout]);
+  }, [parsed, sex, activity, goal, dietId, workout, exerciseTypes]);
 
   const diet = numbers ? numbers.diet : getDiet(goal, dietId);
 
@@ -260,19 +333,23 @@ const WeightLossPage: React.FC = () => {
     if (step === 1) {
       return parsed.age >= 12 && parsed.age <= 80 && parsed.height >= 120 && parsed.height <= 220 && parsed.weight >= 30 && parsed.weight <= 250;
     }
-    if (step === 3) {
+    if (step === 4) {
       return parsed.target >= 30 && parsed.target <= 250 && parsed.timeline >= 2 && parsed.timeline <= 52;
     }
     return true;
   };
 
   const next = () => {
-    const s = step >= 4 ? 1 : ((step + 1) as Step);
+    const s = step >= 5 ? 1 : ((step + 1) as Step);
     setStep(s);
   };
   const back = () => {
     const s = Math.max(1, step - 1) as Step;
     setStep(s);
+  };
+
+  const toggleExerciseType = (id: string) => {
+    setExerciseTypes((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
   };
 
   const changeGoal = (g: GoalKey) => {
@@ -310,18 +387,18 @@ const WeightLossPage: React.FC = () => {
   return (
     <div className="wiz-page min-h-screen bg-[#f8fafc] text-zinc-900 overflow-x-hidden antialiased" dir="ltr">
       <main className="w-full max-w-[560px] mx-auto px-4 md:px-0 pb-[120px] md:pb-16 pt-8 md:pt-12 overflow-x-hidden">
-        {step !== 4 && (
+        {step !== 5 && (
           <>
             <div className="mb-8">
               <h1 className="text-[28px] md:text-[32px] font-bold tracking-tight leading-none">Weight &amp; Fitness</h1>
-              <p className="mt-2.5 text-[14px] text-zinc-500 leading-snug">Complete the 4-step setup to calculate your metrics &amp; recommendations</p>
+              <p className="mt-2.5 text-[14px] text-zinc-500 leading-snug">Complete the 5-step setup to calculate your metrics &amp; recommendations</p>
             </div>
 
             <div className="mb-8">
               <div className="flex items-center justify-between relative">
                 <div className="absolute top-[14px] left-[14px] right-[14px] h-[2px] bg-zinc-200" />
-                <div className="absolute top-[14px] left-[14px] h-[2px] bg-[#1e40af] transition-all duration-300" style={{ width: `${((step - 1) / 3) * 100}%`, maxWidth: 'calc(100% - 28px)' }} />
-                {[{ n: 1 as Step, label: 'Info' }, { n: 2 as Step, label: 'Body' }, { n: 3 as Step, label: 'Goals' }, { n: 4 as Step, label: 'Review' }].map((x) => {
+                <div className="absolute top-[14px] left-[14px] h-[2px] bg-[#1e40af] transition-all duration-300" style={{ width: `${((step - 1) / 4) * 100}%`, maxWidth: 'calc(100% - 28px)' }} />
+                {[{ n: 1 as Step, label: 'Info' }, { n: 2 as Step, label: 'Body' }, { n: 3 as Step, label: 'Kitchen' }, { n: 4 as Step, label: 'Goals' }, { n: 5 as Step, label: 'Blueprint' }].map((x) => {
                   const done = step > x.n;
                   const active = step === x.n;
                   return (
@@ -394,10 +471,10 @@ const WeightLossPage: React.FC = () => {
                         key={x}
                         type="button"
                         onClick={() => setActivity(x)}
-                        className={`rounded-[10px] border px-3 py-2.5 text-left transition-all min-w-0 ${on ? 'border-[#1e40af] bg-blue-50/60 ring-2 ring-blue-100' : 'border-zinc-200 bg-white hover:border-zinc-300'}`}
+                        className={`h-[64px] rounded-[12px] border-2 px-3 py-2 text-left transition-all min-w-0 ${on ? 'border-emerald-500 bg-emerald-50/70 shadow-md' : 'border-zinc-200 bg-white hover:border-zinc-300'}`}
                       >
-                        <div className="text-[12.5px] font-semibold leading-tight">{opt.label}</div>
-                        <div className="mt-0.5 text-[10.5px] text-zinc-500 leading-snug break-words">{opt.desc.split(' - ')[0]} · x{opt.factor}</div>
+                        <div className="text-[12.5px] font-bold leading-tight">{opt.label}</div>
+                        <div className="mt-0.5 text-[10px] text-zinc-500 leading-snug break-words">{opt.desc.split(' - ')[0]} · x{opt.factor}</div>
                       </button>
                     );
                   })}
@@ -405,30 +482,28 @@ const WeightLossPage: React.FC = () => {
               </div>
 
               <div className="space-y-3">
-                <label className="text-[13px] font-bold">📍 اختر الدولة ومطبخها ({kitchensRegistry.length} دولة - {totalDishesAll} طبق)</label>
-                <div className="kitchen-city-scroll-box h-[200px] overflow-y-auto border-2 border-zinc-200 rounded-[12px] p-2.5 bg-white shadow-sm grid grid-cols-1 md:grid-cols-2 gap-2">
-                  {kitchensRegistry.map((k) => {
-                    const on = selectedKitchenId === k.id;
+                <div className="flex items-center justify-between gap-2">
+                  <label className="text-[13px] font-bold">🏋️ اختر أنواع التمارين ({exerciseTypes.length})</label>
+                  <span className="text-[10.5px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full shrink-0">{exerciseTypes.length} مختار</span>
+                </div>
+                <div className="exercise-scroll-box h-[220px] overflow-y-auto border-2 border-zinc-200 rounded-[12px] p-2.5 bg-white grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {EXERCISE_TYPES.map((t) => {
+                    const on = exerciseTypes.includes(t.id);
                     return (
-                      <div
-                        key={k.id}
-                        onClick={() => setSelectedKitchenId(k.id)}
-                        className={`rounded-[10px] border-2 cursor-pointer p-2.5 flex flex-col gap-1.5 transition-all min-w-0 ${on ? 'border-emerald-500 bg-emerald-50 shadow-md' : 'border-zinc-200 hover:border-zinc-300'}`}
+                      <button
+                        key={t.id}
+                        type="button"
+                        onClick={() => toggleExerciseType(t.id)}
+                        className={`relative rounded-[10px] border-2 cursor-pointer flex flex-col gap-1 p-2 transition-all min-w-0 ${on ? 'border-emerald-500 bg-emerald-50/70' : 'border-zinc-200 hover:border-zinc-300'}`}
                       >
-                        <div className="flex items-center gap-2 min-w-0">
-                          <span className="text-[18px] leading-none shrink-0">{k.flag}</span>
-                          <div className="min-w-0 flex-1">
-                            <div className="truncate font-bold text-[12.5px] leading-tight">{k.country}</div>
-                            <div className="truncate text-[10.5px] text-zinc-500 leading-snug">{k.kitchen}</div>
-                          </div>
-                          <span className="shrink-0 text-[10px] bg-zinc-900 text-white px-2 py-0.5 rounded-full">{k.total}</span>
+                        {on && <span className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-emerald-500 text-white text-[10px] flex items-center justify-center font-bold">✓</span>}
+                        <div className="flex items-center gap-1.5 min-w-0">
+                          <span className="text-[16px] leading-none shrink-0">{t.emoji}</span>
+                          <span className="truncate text-[11.5px] font-bold leading-tight">{t.en}</span>
                         </div>
-                        <div className="flex flex-wrap gap-1">
-                          <span className="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded-full">{k.conf100}×100%</span>
-                          <span className="text-[9px] bg-yellow-100 text-yellow-800 px-1.5 py-0.5 rounded-full">{k.conf85}×85%</span>
-                          <span className="text-[9px] bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded-full">{k.conf70}×70%</span>
-                        </div>
-                      </div>
+                        <div className="truncate text-[10px] text-zinc-500 leading-snug">{t.name} · حرق {t.burn}</div>
+                        <div className="truncate text-[9.5px] text-emerald-700 font-medium leading-snug">{t.focus}</div>
+                      </button>
                     );
                   })}
                 </div>
@@ -443,11 +518,11 @@ const WeightLossPage: React.FC = () => {
                       <div
                         key={w.id}
                         onClick={() => setWorkout(w.id)}
-                        className={`p-2.5 rounded-[10px] border-2 cursor-pointer min-w-0 ${on ? 'border-blue-500 bg-blue-50' : 'border-zinc-200'}`}
+                        className={`p-2.5 rounded-[10px] border-2 cursor-pointer min-w-0 flex flex-col gap-1 ${on ? 'border-blue-500 bg-blue-50' : 'border-zinc-200'}`}
                       >
                         <div className="text-[12px] font-bold leading-tight break-words">{w.name}</div>
                         <div className="mt-0.5 text-[10px] text-zinc-500 leading-snug break-words">{w.days}x/أسبوع · {w.dur} · {w.focus}</div>
-                        <div className="mt-0.5 text-[10.5px] font-semibold text-blue-600">حرق +{w.burn} سعر</div>
+                        <div className="mt-0.5 text-[10.5px] font-semibold text-blue-600 break-words">{w.level}</div>
                       </div>
                     );
                   })}
@@ -460,7 +535,7 @@ const WeightLossPage: React.FC = () => {
                   <div className="mt-1.5 text-[12.5px] text-zinc-700 leading-relaxed break-words">
                     BMR {numbers.bmr} × {ACTIVITY[activity].factor} = {numbers.tdeeBase} kcal
                     <br />
-                    + تمرين ({numbers.wk.name} +{numbers.burnAvg}) = <span className="font-bold text-[#1e40af]">{numbers.tdeeWorkout} kcal</span>
+                    + تمرين ({numbers.exCount} أنواع ~{numbers.avgExBurn} × {numbers.wk.name} {numbers.wk.days}x) = +{numbers.burnAvg} kcal · باشتراك خطة = <span className="font-bold text-[#1e40af]">{numbers.tdeeWorkout} kcal</span>
                   </div>
                 </div>
               )}
@@ -468,6 +543,42 @@ const WeightLossPage: React.FC = () => {
           )}
 
           {step === 3 && (
+            <div className="space-y-5">
+              <div className="rounded-[14px] bg-gradient-to-br from-emerald-50 via-teal-50 to-blue-50 border-2 border-emerald-100 p-4 shadow-sm">
+                <div className="flex items-center justify-between gap-2">
+                  <label className="text-[13px] font-bold text-emerald-900">🍽️ اختر المطبخ ونوع النظام ({featuredKitchens.length} مطابخ - {featuredKitchens.reduce((s, k) => s + k.total, 0)} طبق)</label>
+                  <span className="shrink-0 text-[10px] bg-white border border-emerald-200 text-emerald-700 px-2 py-0.5 rounded-full">{selectedKitchen.country}</span>
+                </div>
+
+                <div className="mt-3 flex items-center gap-2">
+                  <span className="text-[10.5px] font-extrabold text-emerald-700">🌍 المطابخ الإقليمية</span>
+                  <div className="flex-1 h-[2px] bg-gradient-to-r from-emerald-300 to-transparent rounded-full" />
+                </div>
+                <div className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-2">
+                  {regionalKitchens.map((k) => kitchenCard(k))}
+                </div>
+
+                <div className="mt-4 flex items-center gap-2">
+                  <span className="text-[10.5px] font-extrabold text-blue-700">🥗 مطابخ الدايت والأنظمة</span>
+                  <div className="flex-1 h-[2px] bg-gradient-to-r from-blue-300 to-transparent rounded-full" />
+                </div>
+                <div className="diet-scroll-box mt-2 max-h-[320px] overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-2 pr-1">
+                  {dietKitchens.map((k) => kitchenCard(k))}
+                </div>
+              </div>
+
+              <div className="rounded-[12px] border border-emerald-200 bg-emerald-50/60 p-3.5">
+                <div className="text-[12.5px] text-emerald-900 font-semibold flex items-center gap-2">
+                  <span>✅</span> سيتم بناء وجباتك من مطبخك
+                </div>
+                <div className="mt-1.5 text-[11px] text-zinc-600 leading-relaxed break-words">
+                  كل وصفة بها E (بروتين/كربوهيدرات/دهون) وصحة داخل بنك <span className="font-bold">{selectedKitchen.total} طبق</span> · {selectedKitchen.country}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {step === 4 && (
             <div className="space-y-6">
               <div className="space-y-1.5">
                 <label className="text-[13px] font-medium text-zinc-700">Goal type</label>
@@ -533,7 +644,7 @@ const WeightLossPage: React.FC = () => {
             </div>
           )}
 
-{step === 4 && numbers && (
+{step === 5 && numbers && (
             <div className="w-full max-w-[480px] mx-auto flex flex-col">
               <div className="bg-gradient-to-r from-[#0e9f6e] to-[#0a8a5e] px-4 pt-3 pb-3 flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-white font-extrabold text-[13px] tracking-wider border border-white/20 shrink-0">HC</div>
@@ -547,7 +658,7 @@ const WeightLossPage: React.FC = () => {
               </div>
 
               <div className="bg-white px-3 py-2 flex items-center justify-between border-b border-gray-100">
-                <button type="button" onClick={() => setStep(3)} className="rounded-full bg-white border border-gray-200 text-[12px] font-semibold text-gray-700 px-3 py-1.5 flex items-center gap-1 hover:bg-gray-50 min-w-0">
+                <button type="button" onClick={() => setStep(4)} className="rounded-full bg-white border border-gray-200 text-[12px] font-semibold text-gray-700 px-3 py-1.5 flex items-center gap-1 hover:bg-gray-50 min-w-0">
                   <span className="shrink-0">←</span> Back to Edit
                 </button>
                 <div className="text-[10px] text-gray-400 text-right pl-2 min-w-0 truncate">{numbers.targetCal} kcal • {selectedKitchen.kitchen}</div>
@@ -590,7 +701,7 @@ const WeightLossPage: React.FC = () => {
                   <span className="shrink-0">{selectedKitchen.flag}</span>
                   <span className="truncate">{selectedKitchen.id === 'tunisian' ? 'Tunisian' : selectedKitchen.kitchen}</span>
                 </span>
-                <button type="button" onClick={() => setStep(2)} className="ml-auto text-[11px] text-gray-500 underline decoration-dotted hover:text-gray-700 shrink-0">(Change from main page)</button>
+                <button type="button" onClick={() => setStep(3)} className="ml-auto text-[11px] text-gray-500 underline decoration-dotted hover:text-gray-700 shrink-0">(Change from main page)</button>
               </div>
 
               <div className="bg-[#f6fef9] px-4 py-4 space-y-5">
@@ -702,7 +813,7 @@ const WeightLossPage: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   <button type="button" onClick={() => notify('Closed')} className="text-[13px] font-semibold text-gray-500 px-3 py-2 rounded-xl hover:bg-gray-50">Close</button>
-                  <button type="button" onClick={() => setStep(3)} className="text-[12px] font-semibold text-gray-700 bg-white border border-gray-200 px-3 py-2 rounded-xl hover:bg-gray-50 flex items-center gap-1">
+                  <button type="button" onClick={() => setStep(4)} className="text-[12px] font-semibold text-gray-700 bg-white border border-gray-200 px-3 py-2 rounded-xl hover:bg-gray-50 flex items-center gap-1">
                     <span>←</span> Edit Previous Step
                   </button>
                   <button type="button" onClick={() => notify('Progress saved!')} className="bg-[#0e9f6e] text-white font-bold text-[13px] px-4 py-2.5 rounded-2xl flex items-center gap-1.5 shadow-[0_4px_14px_-2px_#0e9f6e]">
@@ -713,12 +824,12 @@ const WeightLossPage: React.FC = () => {
             </div>
           )}
 
-          {step === 4 && !numbers && (
+          {step === 5 && !numbers && (
             <div className="rounded-[12px] border border-zinc-200 p-4 text-[12.5px] text-zinc-500">Complete the previous steps to review your blueprint.</div>
           )}        </div>
 
         <div className="mt-8">
-          {step !== 4 && (
+          {step !== 5 && (
             <div className="hidden md:flex gap-3">
               <button
                 type="button"
@@ -741,7 +852,7 @@ const WeightLossPage: React.FC = () => {
         </div>
       </main>
 
-      {step !== 4 && (
+      {step !== 5 && (
         <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-zinc-200 px-4 py-3 flex gap-3 z-40">
           <button
             type="button"
