@@ -294,7 +294,7 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
         )}
 
         {/* Scrollable Meal Cards */}
-        <div className="overflow-y-auto flex-1 px-6 py-6" id="meal-plan-printable">
+        <div className="overflow-y-auto flex-1 px-3 md:px-6 py-4 md:py-6" id="meal-plan-printable">
           {activeMealPlan.length === 0 ? (
             <div className="min-h-[40vh] flex flex-col items-center justify-center text-center">
               <span className="text-5xl mb-4">📋</span>
@@ -302,9 +302,9 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
               <p className="text-xs text-gray-400 mt-1 max-w-xs">{t('noLabDataDesc')}</p>
             </div>
           ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
             {activeMealPlan.map((meal, i) => (
-              <div key={i} className="relative border rounded-2xl p-5 transition-all"
+              <div key={i} className="relative border rounded-2xl p-3 md:p-5 transition-all"
                 style={completed[i]
                   ? { background: '#f0fdf4', borderColor: '#86efac' }
                   : { background: '#fff', borderColor: '#e5e7eb' }}>

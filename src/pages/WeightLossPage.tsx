@@ -386,17 +386,17 @@ const WeightLossPage: React.FC = () => {
   const weightPct = Math.min(100, Math.max(0, Math.round(((form.weight - wMin) / (wMax - wMin)) * 100)));
 
   return (
-    <div className="tool-page min-h-screen bg-[#f8fafc]" dir={dir}>
+    <div className="blueprint-page tool-page min-h-screen bg-[#f8fafc] overflow-x-hidden" dir={dir}>
       <Breadcrumbs />
-      <div className="max-w-4xl mx-auto px-4 pt-4 pb-16 space-y-6">
+      <div className="max-w-4xl mx-auto px-4 md:px-6 py-4 space-y-6 overflow-x-hidden">
         <div className="flex items-center justify-between gap-3 flex-wrap">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0">
               <ClipboardList size={20} className="text-emerald-600" />
             </div>
-            <div>
-              <h1 className="text-lg font-bold text-gray-900">{t('module1Title')}</h1>
-              <p className="text-xs text-gray-500">{t('module1Desc')}</p>
+            <div className="min-w-0">
+              <h1 className="text-base md:text-lg font-bold leading-tight text-gray-900">{t('module1Title')}</h1>
+              <p className="text-[11px] md:text-xs text-gray-500">{t('module1Desc')}</p>
             </div>
           </div>
           <span className="text-[11px] bg-sage-100 text-sage-700 px-3 py-1 rounded-full font-bold">{t('wlHeroPill')}</span>
@@ -539,8 +539,8 @@ const WeightLossPage: React.FC = () => {
         {result && (
           <div ref={resultsRef} className="space-y-6 scroll-mt-24">
             <div className="pt-2">
-              <h2 className="text-xl font-bold text-gray-900">🚀 {t('wlfResultsTitle')}</h2>
-              <p className="text-sm text-gray-500">{t('wlfResultsSub')}</p>
+              <h2 className="text-lg md:text-2xl font-bold leading-tight text-gray-900">🚀 {t('wlfResultsTitle')}</h2>
+              <p className="text-xs md:text-sm text-gray-500">{t('wlfResultsSub')}</p>
             </div>
 
             <StatsBar stats={{ bmr: result.bmr, tdee: result.tdee, targetCalories: result.targetCalories }} />
@@ -550,7 +550,7 @@ const WeightLossPage: React.FC = () => {
             {showMeals && (
               <section className="space-y-5">
                 <div className="pt-2 flex items-center gap-2 flex-wrap">
-                  <h3 className="text-lg font-bold text-gray-900">🍽️ {t('wlfMealSectionTitle')}</h3>
+                  <h3 className="text-base md:text-lg font-bold leading-tight text-gray-900">🍽️ {t('wlfMealSectionTitle')}</h3>
                   <span className="text-xs bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full font-bold">{result.targetCalories} {t('wlfKcalDay')}</span>
                   {(['egyptian', 'tunisian'] as Cuisine[]).includes(effectiveCuisine) && (
                     <button
@@ -610,7 +610,7 @@ const WeightLossPage: React.FC = () => {
                   {t('wlFullPlan')}
                 </button>
 
-                <div className="grid gap-4">
+                <div className="grid grid-cols-1 gap-3 md:gap-4">
                   {dayMeals.map((meal, idx) => {
                     const st = swapState[idx];
                     const base = displayMeal(idx);
@@ -685,7 +685,7 @@ const WeightLossPage: React.FC = () => {
                             setSwapIsAuto(prev => ({ ...prev, [idx]: true }));
                           };
                           return (
-                            <div className="absolute z-10 p-3 bg-white border border-gray-200 rounded-xl shadow-xl w-80 right-0 -bottom-2 translate-y-full max-h-[70vh] overflow-y-auto scrollbar-thin">
+                            <div className="absolute z-10 p-3 bg-white border border-gray-200 rounded-xl shadow-xl w-full min-w-0 sm:w-80 right-0 -bottom-2 translate-y-full max-h-[70vh] overflow-y-auto scrollbar-thin">
                               <div className="flex items-center gap-2 mb-1 flex-wrap">
                                 <span className="text-sm font-bold text-gray-900">{t('wlSwapCuisineTitle')}</span>
                                 <span className="px-2.5 py-0.5 rounded-full bg-teal-600 text-white text-[11px] font-bold">{cuisineName} {cuisineFlag}</span>

@@ -198,12 +198,12 @@ export const MacroBreakdown: React.FC<{
     { label: t('fat'), grams: fatG, pct: fatPct, colorClass: 'text-amber-600 bg-amber-50', barColor: 'bg-amber-500', calories: fatG * 9 },
   ];
   return (
-    <div className="card animate-fade-in p-6">
+    <div className="card animate-fade-in p-3 md:p-6">
       <h3 className="font-bold text-gray-900 mb-5">{t('macros')}</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mb-6">
         {macros.map((m, i) => (
-          <div key={i} className="text-center p-5 rounded-2xl bg-gray-50/80">
-            <div className={`text-3xl font-black ${m.colorClass.split(' ')[0]} mb-1`}>{m.grams}g</div>
+          <div key={i} className="text-center p-3 md:p-5 rounded-2xl bg-gray-50/80">
+            <div className={`text-2xl md:text-3xl font-black ${m.colorClass.split(' ')[0]} mb-1`}>{m.grams}g</div>
             <p className="text-sm font-semibold text-gray-700 mb-1">{m.label}</p>
             <p className="text-xs text-gray-400">{m.pct}% · {m.calories} {t('kcal')}</p>
           </div>
@@ -255,9 +255,9 @@ export const MealCard: React.FC<{
   };
 
   return (
-    <div className={`card p-5 transition-all duration-300 ${isDone ? 'ring-2 ring-sage-400 bg-sage-50/50' : 'hover:shadow-md'}`}>
-      <div className="flex items-start justify-between mb-3">
-        <div className="flex items-center gap-3">
+    <div className={`card p-3 md:p-5 transition-all duration-300 ${isDone ? 'ring-2 ring-sage-400 bg-sage-50/50' : 'hover:shadow-md'}`}>
+      <div className="flex items-start justify-between gap-2 mb-3">
+        <div className="flex items-center gap-3 min-w-0">
           <button onClick={toggle}
             className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-all duration-200 active:scale-90 ${
               isDone ? 'bg-sage-500 text-white shadow-sm scale-110' : 'bg-gray-100 text-gray-400 hover:bg-sage-100 hover:text-sage-600'
@@ -268,14 +268,14 @@ export const MealCard: React.FC<{
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><circle cx="12" cy="12" r="9" /></svg>
             )}
           </button>
-          <div>
+          <div className="min-w-0">
             <div className="flex items-center gap-2">
-              <span className="text-base">{icon}</span>
-              <h4 className={`font-bold text-sm ${isDone ? 'text-sage-600 line-through' : 'text-gray-900'}`}>{getMealName(meal, language)}</h4>
+              <span className="text-base shrink-0">{icon}</span>
+              <h4 className={`font-bold text-sm truncate ${isDone ? 'text-sage-600 line-through' : 'text-gray-900'}`} title={getMealName(meal, language)}>{getMealName(meal, language)}</h4>
             </div>
           </div>
         </div>
-        <div className="text-right">
+        <div className="text-right shrink-0">
           <div className="flex items-center justify-end gap-1.5">
             {meal.verified && (
               <span className="px-1.5 py-0.5 rounded-md bg-emerald-600 text-[9px] font-bold text-white" title="USDA Database">USDA ✓</span>
@@ -283,7 +283,7 @@ export const MealCard: React.FC<{
             {heavy && (
               <span className="px-1.5 py-0.5 rounded-md bg-red-100 text-[9px] font-bold text-red-700" title="Heavy dish · best at lunch">⚠️ {t('mbHeavy')}</span>
             )}
-            <p className="text-2xl font-black text-primary-700 leading-none">{meal.calories}</p>
+            <p className="text-xl md:text-2xl font-black text-primary-700 leading-none">{meal.calories}</p>
           </div>
           <p className="text-[10px] font-semibold text-primary-400 uppercase">{t('kcal')}</p>
         </div>
