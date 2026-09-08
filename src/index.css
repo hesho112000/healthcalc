@@ -531,3 +531,13 @@ html[lang='ar'] textarea {
   .wiz-page main { padding: 0 !important; margin: 0 !important; }
   .wiz-page .meal-card { box-shadow: none !important; }
 }
+
+/* City/all scroll boxes - Chrome mobile touch */
+.kitchen-city-scroll-box,
+.workout-scroll-box,
+.diet-intensity-scroll-box {
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
