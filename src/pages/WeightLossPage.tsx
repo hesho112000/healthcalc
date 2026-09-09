@@ -453,10 +453,10 @@ function dishesForMeal(k: KitchenInfo, key: MealKey): KitchenDish[] {
 const WeightLossPage: React.FC = () => {
   const [step, setStep] = useState<Step>(1);
   const [planType, setPlanType] = useState<PlanType>('both');
-  const [age, setAge] = useState('28');
+  const [age, setAge] = useState('26');
   const [sex, setSex] = useState<Sex>('male');
-  const [height, setHeight] = useState('176');
-  const [weight, setWeight] = useState('82');
+  const [height, setHeight] = useState('175');
+  const [weight, setWeight] = useState('70');
   const [activity, setActivity] = useState<ActivityKey>('moderate');
   const [goal, setGoal] = useState<GoalKey>('lose');
   const [targetWeight, setTargetWeight] = useState('75');
@@ -486,6 +486,7 @@ const WeightLossPage: React.FC = () => {
   const [expandedCat, setExpandedCat] = useState<string | null>(null);
   const [selectedDishKeys, setSelectedDishKeys] = useState<string[]>([]);
   const [assignedDishes, setAssignedDishes] = useState<Record<string, MealKey[]>>({});
+  const [editField, setEditField] = useState<'age' | 'height' | 'weight' | null>(null);
   const [dietId, setDietId] = useState('normal_lose');
   const [selectedDay, setSelectedDay] = useState(1);
   const [water, setWater] = useState(0);
@@ -856,9 +857,9 @@ const WeightLossPage: React.FC = () => {
         }`;
 
   return (
-    <div className="wiz-page min-h-screen bg-[#f8fafc] text-zinc-900 overflow-x-hidden antialiased" dir="ltr">
-      <main className="w-full max-w-[760px] mx-auto px-4 md:px-0 pb-[120px] md:pb-16 pt-8 md:pt-12 overflow-x-hidden">
-        {step !== 5 && (
+    <div className={`wiz-page min-h-screen text-zinc-900 overflow-x-hidden antialiased ${step === 1 ? 'bg-gradient-to-b from-emerald-50 to-emerald-100' : 'bg-[#f8fafc]'}`} dir="ltr">
+      <main className={`w-full mx-auto overflow-x-hidden transition-all ${step === 1 ? 'max-w-[480px] px-5 pt-6 pb-[130px] md:pb-24' : 'max-w-[760px] px-4 md:px-0 pb-[120px] md:pb-16 pt-8 md:pt-12'}`}>
+        {step !== 1 && step !== 5 && (
           <>
             <div className="mb-8">
               <h1 className="text-[28px] md:text-[32px] font-bold tracking-tight leading-none">Weight &amp; Fitness</h1>
@@ -889,69 +890,132 @@ const WeightLossPage: React.FC = () => {
 
         <div className="w-full min-w-0">
           {step === 1 && (
-            <div className="space-y-6">
-              <div className="flex items-start gap-2 rounded-[10px] bg-blue-50/80 border border-blue-100 px-3.5 py-3">
-                <span className="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[11px] font-bold mt-0.5 shrink-0">i</span>
-                <p className="text-[12.5px] leading-[1.5] text-zinc-600 min-w-0 break-words">نستخدم معادلة Mifflin-St Jeor المعتمدة طبيا. كل الحسابات محلية بدون إرسال بيانات.</p>
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-[13px] font-medium text-zinc-700">Age (years)</label>
-                <input value={age} onChange={(e) => setAge(e.target.value.replace(/\D/g, ''))} placeholder="e.g. 28" inputMode="numeric" className={inputClass} />
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-[13px] font-medium text-zinc-700">Sex</label>
-                <div className="grid grid-cols-2 gap-2">
-                  {(['male', 'female'] as Sex[]).map((x) => (
-                    <button
-                      key={x}
-                      type="button"
-                      onClick={() => setSex(x)}
-                      className={`h-[48px] rounded-[8px] border text-[14px] font-medium capitalize transition-all ${sex === x ? 'bg-[#1e40af] text-white border-[#1e40af]' : 'bg-white border-zinc-300 text-zinc-700 hover:border-zinc-400'}`}
-                    >
-                      {x === 'male' ? 'Male ♂' : 'Female ♀'}
-                    </button>
-                  ))}
+            <div className="w-full bg-[#e8f5e9]/80 backdrop-blur rounded-[32px] p-6 shadow-xl min-w-0">
+              <div className="w-full bg-white/90 rounded-full h-12 flex items-center justify-between px-4 shadow-sm mb-6 min-w-0">
+                <span className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 text-[18px] shrink-0 select-none">‹</span>
+                <div className="text-[16px] font-bold text-emerald-800 whitespace-nowrap">Step 1 of 3</div>
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <span className="w-2 h-2 rounded-full bg-zinc-200" />
+                  <span className="w-2 h-2 rounded-full bg-zinc-200" />
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-1.5 min-w-0">
-                  <label className="text-[13px] font-medium text-zinc-700">Height (cm)</label>
-                  <input value={height} onChange={(e) => setHeight(e.target.value.replace(/\D/g, ''))} placeholder="176" inputMode="numeric" className={inputClass} />
-                </div>
-                <div className="space-y-1.5 min-w-0">
-                  <label className="text-[13px] font-medium text-zinc-700">Weight (kg)</label>
-                  <input value={weight} onChange={(e) => setWeight(e.target.value.replace(/[^0-9.]/g, ''))} placeholder="82" inputMode="decimal" className={inputClass} />
+              <h2 className="text-[26px] font-black leading-tight text-gray-900">Tell us about yourself</h2>
+              <p className="text-[13px] text-gray-600 mt-1">We'll use this to personalize your plan</p>
+
+              <div className="mt-5">
+                <div className="text-[14px] font-bold mb-2">Age</div>
+                <div
+                  onClick={() => setEditField((p) => (p === 'age' ? null : 'age'))}
+                  className={`rounded-[24px] bg-white shadow-md border flex items-center px-4 min-h-[88px] cursor-pointer transition-transform active:scale-[0.98] ${editField === 'age' ? 'border-emerald-400 ring-[3px] ring-emerald-100' : 'border-emerald-100'}`}
+                >
+                  <span className="w-14 h-14 rounded-full bg-emerald-600 flex items-center justify-center text-[24px] shrink-0">📅</span>
+                  <div className="flex-1 px-3 min-w-0">
+                    <div className="text-[14px] text-gray-500">Age</div>
+                    {editField === 'age' ? (
+                      <input autoFocus value={age} onChange={(e) => setAge(e.target.value.replace(/\D/g, ''))} inputMode="numeric" className="w-full bg-transparent text-[28px] font-bold text-gray-900 outline-none min-h-[44px]" />
+                    ) : (
+                      <div className="text-[28px] font-bold leading-none text-gray-900">{age} years</div>
+                    )}
+                  </div>
+                  <span className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 text-[16px] shrink-0">›</span>
                 </div>
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-[13px] font-bold">🎯 ماذا تريد؟ يحدد الخطوات التالية</label>
-                <div className="grid grid-cols-3 gap-2">
-                  {([['nutrition', '🍽️', 'Nutrition', 'تغذية ومطبخ فقط'], ['fitness', '🏋️', 'Fitness', 'تمارين وحرق فقط'], ['both', '⚡', 'Both', 'تغذية + تمارين']] as [PlanType, string, string, string][]).map(([pt, em, en, ar]) => {
+              <div className="mt-5">
+                <div className="text-[14px] font-bold mb-2">Gender</div>
+                <div className="grid grid-cols-2 gap-3">
+                  {(['male', 'female'] as Sex[]).map((x) => {
+                    const on = sex === x;
+                    return (
+                      <button
+                        key={x}
+                        type="button"
+                        onClick={() => setSex(x)}
+                        className={`relative flex flex-col items-center justify-center pt-5 pb-4 rounded-[24px] transition-all min-w-0 min-h-[160px] ${on ? 'bg-emerald-500 border-2 border-emerald-600 shadow-md scale-[1.03]' : 'bg-white border-2 border-gray-200'}`}
+                      >
+                        <span className="text-[72px] leading-none">{x === 'male' ? '🧍♂️' : '🧍♀️'}</span>
+                        <span className={`mt-2 text-[16px] font-bold ${on ? 'text-white' : 'text-gray-500'}`}>{x === 'male' ? 'Male' : 'Female'}</span>
+                        {on && <span className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[12px] font-bold shadow-sm">✓</span>}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="mt-5 grid grid-cols-2 gap-3">
+                <div
+                  onClick={() => setEditField((p) => (p === 'height' ? null : 'height'))}
+                  className={`rounded-[24px] bg-white shadow-sm border flex items-center px-4 min-h-[80px] cursor-pointer transition-transform active:scale-[0.98] ${editField === 'height' ? 'border-emerald-400 ring-[3px] ring-emerald-100' : 'border-zinc-200'}`}
+                >
+                  <span className="w-14 h-14 rounded-full bg-emerald-600 flex items-center justify-center text-[24px] shrink-0">📏</span>
+                  <div className="flex-1 px-3 min-w-0">
+                    <div className="text-[14px] text-emerald-700">Height</div>
+                    {editField === 'height' ? (
+                      <input autoFocus value={height} onChange={(e) => setHeight(e.target.value.replace(/\D/g, ''))} inputMode="numeric" className="w-full bg-transparent text-[24px] font-bold text-gray-900 outline-none min-h-[44px]" />
+                    ) : (
+                      <div className="text-[24px] font-bold leading-none text-gray-900">{height} cm</div>
+                    )}
+                  </div>
+                  <span className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 text-[16px] shrink-0">›</span>
+                </div>
+                <div
+                  onClick={() => setEditField((p) => (p === 'weight' ? null : 'weight'))}
+                  className={`rounded-[24px] bg-white shadow-sm border flex items-center px-4 min-h-[80px] cursor-pointer transition-transform active:scale-[0.98] ${editField === 'weight' ? 'border-emerald-400 ring-[3px] ring-emerald-100' : 'border-zinc-200'}`}
+                >
+                  <span className="w-14 h-14 rounded-full bg-emerald-600 flex items-center justify-center text-[24px] shrink-0">⚖️</span>
+                  <div className="flex-1 px-3 min-w-0">
+                    <div className="text-[14px] text-emerald-700">Weight</div>
+                    {editField === 'weight' ? (
+                      <input autoFocus value={weight} onChange={(e) => setWeight(e.target.value.replace(/[^0-9.]/g, ''))} inputMode="decimal" className="w-full bg-transparent text-[24px] font-bold text-gray-900 outline-none min-h-[44px]" />
+                    ) : (
+                      <div className="text-[24px] font-bold leading-none text-gray-900">{weight} kg</div>
+                    )}
+                  </div>
+                  <span className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 text-[16px] shrink-0">›</span>
+                </div>
+              </div>
+
+              <div className="mt-6">
+                <div className="text-[16px] font-black text-center mb-3">Plan type</div>
+                <div className="space-y-2">
+                  {([
+                    { pt: 'nutrition' as PlanType, emoji: '🍃', label: 'Nutrition only' },
+                    { pt: 'fitness' as PlanType, emoji: '🏋️', label: 'Fitness only' },
+                    { pt: 'both' as PlanType, emoji: '🎯', label: 'Both' },
+                  ]).map(({ pt, emoji, label }) => {
                     const on = planType === pt;
                     return (
                       <button
                         key={pt}
                         type="button"
                         onClick={() => setPlanType(pt)}
-                        className={`rounded-[10px] border-2 p-2.5 text-center transition-all min-w-0 ${on ? 'border-[#1e40af] bg-blue-50/70 shadow-sm' : 'border-zinc-200 bg-white hover:border-zinc-300'}`}
+                        className={`w-full rounded-full h-12 flex items-center px-4 gap-3 border shadow-sm transition-all min-w-0 ${on ? 'bg-emerald-700 text-white border-emerald-700' : 'bg-white text-zinc-700 border-zinc-200'}`}
                       >
-                        <div className="text-[18px] leading-none">{em}</div>
-                        <div className="mt-1 text-[11.5px] font-bold leading-tight break-words">{en}</div>
-                        <div className="mt-0.5 text-[9.5px] text-zinc-500 leading-snug break-words">{ar}</div>
+                        <span className={`w-8 h-8 rounded-full flex items-center justify-center text-[16px] shrink-0 ${on ? 'bg-white/20' : 'bg-emerald-100'}`}>{emoji}</span>
+                        <span className="flex-1 text-left text-[16px] font-semibold truncate">{label}</span>
+                        {on && <span className="w-6 h-6 rounded-full bg-white text-emerald-700 flex items-center justify-center text-[13px] font-bold shrink-0">✓</span>}
                       </button>
                     );
                   })}
                 </div>
                 {planType !== 'both' && (
-                  <div className="rounded-[8px] bg-emerald-50 border border-emerald-100 px-3 py-2 text-[11px] text-zinc-600 leading-snug break-words">
-                    {planType === 'nutrition' ? '🍽️ وضع التغذية فقط: سنخفي التمارين ونركز على المطبخ والأطباق.' : '🏋️ وضع اللياقة فقط: سنخفي المطبخ ونركز على التمارين والحرق.'}
+                  <div className="mt-3 rounded-[14px] bg-white/80 border border-emerald-100 px-3.5 py-2 text-[11.5px] text-zinc-600 leading-snug break-words">
+                    {planType === 'nutrition' ? '🍽️ Nutrition only: سنخفي التمارين ونركز على المطبخ والأطباق.' : '🏋️ Fitness only: سنخفي المطبخ ونركز على التمارين والحرق.'}
                   </div>
                 )}
               </div>
+
+              <button
+                type="button"
+                onClick={next}
+                disabled={!isValid()}
+                className={`w-full sticky bottom-[14px] mt-6 min-h-[56px] rounded-[16px] text-[18px] font-bold text-white bg-gradient-to-r from-emerald-600 to-emerald-700 shadow-lg transition-all active:scale-[0.95] ${!isValid() ? 'opacity-40 cursor-not-allowed' : ''}`}
+              >
+                Continue
+              </button>
             </div>
           )}
 
@@ -1522,13 +1586,13 @@ const WeightLossPage: React.FC = () => {
           )}        </div>
 
         <div className="mt-8">
-          {step !== 5 && (
+          {step !== 5 && step !== 1 && (
             <div className="hidden md:flex gap-3">
               <button
                 type="button"
                 onClick={back}
-                disabled={step === 1}
-                className={`h-[48px] px-6 rounded-[8px] border text-[14px] font-medium transition-all ${step === 1 ? 'bg-zinc-100 text-zinc-400 border-zinc-200 cursor-not-allowed' : 'bg-zinc-50 hover:bg-zinc-100 border-zinc-300 text-zinc-700'}`}
+                disabled={false}
+                className="h-[48px] px-6 rounded-[8px] border text-[14px] font-medium transition-all bg-zinc-50 hover:bg-zinc-100 border-zinc-300 text-zinc-700"
               >
                 Back
               </button>
@@ -1545,13 +1609,13 @@ const WeightLossPage: React.FC = () => {
         </div>
       </main>
 
-      {step !== 5 && (
+      {step !== 5 && step !== 1 && (
         <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-zinc-200 px-4 py-3 flex gap-3 z-40">
           <button
             type="button"
             onClick={back}
-            disabled={step === 1}
-            className={`h-[48px] px-5 rounded-[8px] border text-[14px] font-medium shrink-0 ${step === 1 ? 'bg-zinc-100 text-zinc-400 border-zinc-200' : 'bg-zinc-50 border-zinc-300 text-zinc-700'}`}
+            disabled={false}
+            className="h-[48px] px-5 rounded-[8px] border text-[14px] font-medium shrink-0 bg-zinc-50 border-zinc-300 text-zinc-700"
           >
             Back
           </button>
