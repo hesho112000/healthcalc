@@ -6,6 +6,7 @@ import HealthFingerprint from '../components/illustrations/HealthFingerprint';
 import FloatingStats from '../components/illustrations/FloatingStats';
 import TrustBar from '../components/sections/TrustBar';
 import TrustStats from '../components/sections/TrustStats';
+import HowItWorks from '../components/sections/HowItWorks';
 import StartFreeDropdown from '../components/layout/StartFreeDropdown';
 
 const conditions = [
@@ -94,6 +95,8 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <HowItWorks />
 
       <TrustStats />
 
