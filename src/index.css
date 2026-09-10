@@ -533,6 +533,13 @@ html[lang='ar'] textarea {
 }
 
 /* City/all scroll boxes - Chrome mobile touch */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 .kitchen-city-scroll-box,
 .workout-scroll-box,
 .diet-intensity-scroll-box,
