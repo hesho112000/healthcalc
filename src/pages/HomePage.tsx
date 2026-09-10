@@ -78,7 +78,7 @@ const HomePage: React.FC = () => {
         <div className="explainer-grid reverse">
           <div className="section-intro"><span className="step-pill pink">{t('homeStep2')}</span><h2>{t('homeStep2Title')}</h2><p>{t('homeStep2Desc')}</p>
             <div className="cuisine-grid">{cuisines.map(([flag, name]) => <span key={name}>{flag} {name}</span>)}</div>
-            <Link to="/weight-loss" className="btn-secondary">{t('homeSeePlan')} <span>→</span></Link>
+            <Link to="/weight-loss" className="btn-primary">{t('homeSeePlan')} <span>→</span></Link>
           </div>
           <SectionIllustration kind="plan" />
         </div>
