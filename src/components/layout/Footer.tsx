@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext';
 
 const Footer: React.FC = () => {
+  const { t, dir } = useLanguage();
   const [email, setEmail] = useState('');
   const [joined, setJoined] = useState(false);
 
@@ -13,55 +15,55 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="premium-footer">
+    <footer className="premium-footer" dir={dir}>
       <div className="footer-container">
         <div className="footer-grid">
           <div className="footer-col">
-            <Link to="/" className="footer-logo">بصمتك الحيوية <span>🌿</span></Link>
+            <Link to="/" className="footer-logo">{t('brandName')} <span>🌿</span></Link>
             <p className="footer-desc">
-              منصة التغذية العلاجية المتكاملة لمتابعة الضغط والسكري والكوليسترول وحساب عمرك الحيوي بدقة.
+              {t('footerTagline')}
             </p>
             <div className="footer-social">
-              <a href="#!" aria-label="فيسبوك">f</a>
-              <a href="#!" aria-label="انستجرام">ig</a>
-              <a href="#!" aria-label="إكس">x</a>
+              <a href="#!" aria-label={t('footerFb')}>f</a>
+              <a href="#!" aria-label={t('footerIg')}>ig</a>
+              <a href="#!" aria-label={t('footerX')}>x</a>
             </div>
           </div>
 
           <div className="footer-col">
-            <h4>المنصة</h4>
-            <Link to="/plan">خطتي الغذائية</Link>
-            <Link to="/tracking">تتبع الضغط</Link>
-            <Link to="/diabetes">تتبع السكري</Link>
-            <Link to="/bio-age">حساب العمر الحيوي</Link>
+            <h4>{t('footerPlatform')}</h4>
+            <Link to="/plan">{t('footerPlan')}</Link>
+            <Link to="/tracking">{t('footerTracking')}</Link>
+            <Link to="/diabetes">{t('footerDiabetes')}</Link>
+            <Link to="/bio-age">{t('footerBioAge')}</Link>
           </div>
 
           <div className="footer-col">
-            <h4>المساعدة</h4>
-            <Link to="/faq">الأسئلة الشائعة</Link>
-            <Link to="/contact">تواصل معنا</Link>
-            <Link to="/privacy">سياسة الخصوصية</Link>
-            <Link to="/terms">شروط الاستخدام</Link>
+            <h4>{t('footerHelp')}</h4>
+            <Link to="/faq">{t('footerFaq')}</Link>
+            <Link to="/contact">{t('footerContact')}</Link>
+            <Link to="/privacy">{t('footerPrivacy')}</Link>
+            <Link to="/terms">{t('footerTerms')}</Link>
           </div>
 
           <div className="footer-col">
-            <h4>النشرة البريدية</h4>
-            <p className="footer-news-text">احصل على نصائح تغذية علاجية أسبوعية.</p>
+            <h4>{t('footerNews')}</h4>
+            <p className="footer-news-text">{t('footerNewsText')}</p>
             <form className="footer-form" onSubmit={handleSubmit}>
               <input
                 type="email"
-                placeholder="بريدك الإلكتروني"
+                placeholder={t('footerEmailPlaceholder')}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <button type="submit">{joined ? 'تم الاشتراك' : 'اشترك'}</button>
+              <button type="submit">{joined ? t('footerSubscribed') : t('footerSubscribe')}</button>
             </form>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <span>© 2026 بصمتك الحيوية - جميع الحقوق محفوظة.</span>
-          <span>صنع بكل حب في مصر 🇪🇬</span>
+          <span>{t('footerRights')}</span>
+          <span>{t('footerMade')}</span>
         </div>
       </div>
     </footer>

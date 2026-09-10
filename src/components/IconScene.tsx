@@ -38,7 +38,11 @@ export const IconScene: React.FC<{
   chip?: SceneChip;
   chip2?: SceneChip;
 }> = ({ icon, color, large = false, chip, chip2 }) => (
-  <div className={`anime-scene soft-scene ${large ? 'anime-scene-lg' : ''}`} aria-hidden="true">
+  <div
+    className={`anime-scene soft-scene ${large ? 'anime-scene-lg' : ''}`}
+    aria-hidden="true"
+    style={{ background: `radial-gradient(58% 54% at 50% 46%, ${color}26 0%, transparent 72%)` }}
+  >
     <span className="sparkle sparkle-a">✦</span>
     <span className="sparkle sparkle-b">✧</span>
     <span className="sparkle sparkle-c">✨</span>

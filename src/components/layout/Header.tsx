@@ -18,7 +18,8 @@ const Header: React.FC = () => {
   const { t, language, setLanguage, dir } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const langRef = useRef<HTMLDivElement>(null);
+  const desktopLangRef = useRef<HTMLDivElement>(null);
+  const drawerLangRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -27,7 +28,10 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     const onMouseDown = (e: MouseEvent) => {
-      if (langRef.current && !langRef.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      const insideDesktop = desktopLangRef.current?.contains(target);
+      const insideDrawer = drawerLangRef.current?.contains(target);
+      if (!insideDesktop && !insideDrawer) {
         setLangOpen(false);
       }
     };
@@ -58,7 +62,7 @@ const Header: React.FC = () => {
             <span className="app-header-logo-icon">
               <Leaf size={20} />
             </span>
-            <span>بصمتك الحيوية</span>
+            <span>{t('brandName')}</span>
           </Link>
 
           <nav className="app-header-nav">
@@ -70,7 +74,7 @@ const Header: React.FC = () => {
           </nav>
 
           <div className="app-header-actions">
-            <div className="relative" ref={langRef}>
+            <div className="relative" ref={desktopLangRef}>
               <button
                 type="button"
                 className="app-header-lang"
@@ -122,7 +126,7 @@ const Header: React.FC = () => {
               <span className="app-header-logo-icon">
                 <Leaf size={20} />
               </span>
-              <span>بصمتك الحيوية</span>
+              <span>{t('brandName')}</span>
             </Link>
           </div>
 
@@ -140,7 +144,7 @@ const Header: React.FC = () => {
           </nav>
 
           <div className="app-header-drawer-actions">
-            <div className="relative" ref={langRef}>
+            <div className="relative" ref={drawerLangRef}>
               <button
                 type="button"
                 className="app-header-lang app-header-lang-full"

@@ -250,6 +250,7 @@ type TranslationKeys = {
   trustLanguages: string;
   trustLanguagesValue: string;
   // Footer
+  brandName: string;
   footerStatus: string;
   footerDisclaimer: string;
   footerTermsShort: string;
@@ -719,6 +720,26 @@ type TranslationKeys = {
   footerQuickLinks: string;
   footerLegal: string;
   footerHealthGuides: string;
+  footerPlatform: string;
+  footerPlan: string;
+  footerTracking: string;
+  footerDiabetes: string;
+  footerBioAge: string;
+  footerHelp: string;
+  footerFaq: string;
+  footerContact: string;
+  footerPrivacy: string;
+  footerTerms: string;
+  footerNews: string;
+  footerNewsText: string;
+  footerEmailPlaceholder: string;
+  footerSubscribe: string;
+  footerSubscribed: string;
+  footerRights: string;
+  footerMade: string;
+  footerFb: string;
+  footerIg: string;
+  footerX: string;
   // Home Page
   homeAIPill: string;
   homeHowItWorks: string;
@@ -2137,6 +2158,27 @@ export const translations: Record<Exclude<Language, 'de'>, TranslationKeys> & { 
     footerQuickLinks: 'Quick Links',
     footerLegal: 'Legal',
     footerHealthGuides: 'Health Guides',
+    brandName: 'Your Health Fingerprint',
+    footerPlatform: 'Platform',
+    footerPlan: 'Nutrition Plan',
+    footerTracking: 'BP Tracking',
+    footerDiabetes: 'Diabetes Tracking',
+    footerBioAge: 'Bio-Age Calculator',
+    footerHelp: 'Help',
+    footerFaq: 'FAQ',
+    footerContact: 'Contact Us',
+    footerPrivacy: 'Privacy Policy',
+    footerTerms: 'Terms of Use',
+    footerNews: 'Weekly Newsletter',
+    footerNewsText: 'Get practical nutrition tips every week.',
+    footerEmailPlaceholder: 'Your email',
+    footerSubscribe: 'Subscribe',
+    footerSubscribed: 'Subscribed',
+    footerRights: '© 2026 Your Health Fingerprint — All rights reserved.',
+    footerMade: 'Made with ❤️ in Egypt 🇪🇬',
+    footerFb: 'Facebook',
+    footerIg: 'Instagram',
+    footerX: 'X (Twitter)',
     // Home Page
     homeAIPill: 'AI-Powered',
     homeHowItWorks: 'How It Works',
@@ -3529,6 +3571,27 @@ export const translations: Record<Exclude<Language, 'de'>, TranslationKeys> & { 
     footerQuickLinks: 'Liens Rapides',
     footerLegal: 'Mentions Légales',
     footerHealthGuides: 'Guides Santé',
+    brandName: 'Votre empreinte santé',
+    footerPlatform: 'Plateforme',
+    footerPlan: 'Plan Nutritionnel',
+    footerTracking: 'Suivi Tension',
+    footerDiabetes: 'Suivi Diabète',
+    footerBioAge: 'Calcul Bio-Âge',
+    footerHelp: 'Aide',
+    footerFaq: 'FAQ',
+    footerContact: 'Contactez-nous',
+    footerPrivacy: 'Politique de Confidentialité',
+    footerTerms: "Conditions d'Utilisation",
+    footerNews: 'Newsletter Hebdomadaire',
+    footerNewsText: 'Recevez des conseils nutritionnels pratiques chaque semaine.',
+    footerEmailPlaceholder: 'Votre email',
+    footerSubscribe: "S'abonner",
+    footerSubscribed: 'Abonné',
+    footerRights: '© 2026 Votre empreinte santé — Tous droits réservés.',
+    footerMade: 'Fait avec ❤️ en Égypte 🇪🇬',
+    footerFb: 'Facebook',
+    footerIg: 'Instagram',
+    footerX: 'X (Twitter)',
     // Home Page
     homeAIPill: 'Propulsé par IA',
     homeHowItWorks: 'Comment Ça Marche',
@@ -4891,6 +4954,27 @@ mbFruits: 'Fruits',
     footerQuickLinks: 'Enlaces Rápidos',
     footerLegal: 'Legal',
     footerHealthGuides: 'Guías de Salud',
+    brandName: 'Tu huella de salud',
+    footerPlatform: 'Plataforma',
+    footerPlan: 'Plan Nutricional',
+    footerTracking: 'Seguimiento de Tensión',
+    footerDiabetes: 'Seguimiento de Diabetes',
+    footerBioAge: 'Calculadora de Bio-Edad',
+    footerHelp: 'Ayuda',
+    footerFaq: 'FAQ',
+    footerContact: 'Contáctanos',
+    footerPrivacy: 'Política de Privacidad',
+    footerTerms: 'Términos de Uso',
+    footerNews: 'Boletín Semanal',
+    footerNewsText: 'Recibe consejos nutricionales prácticos cada semana.',
+    footerEmailPlaceholder: 'Tu correo',
+    footerSubscribe: 'Suscribirse',
+    footerSubscribed: 'Suscrito',
+    footerRights: '© 2026 Tu huella de salud — Todos los derechos reservados.',
+    footerMade: 'Hecho con ❤️ en Egipto 🇪🇬',
+    footerFb: 'Facebook',
+    footerIg: 'Instagram',
+    footerX: 'X (Twitter)',
     // Home Page
     homeAIPill: 'Impulsado por IA',
     homeHowItWorks: 'Cómo Funciona',
@@ -6253,6 +6337,27 @@ mbFruits: 'Fruits',
     footerQuickLinks: 'روابط سريعة',
     footerLegal: 'قانوني',
     footerHealthGuides: 'أدلة صحية',
+    brandName: 'بصمتك الحيوية',
+    footerPlatform: 'المنصة',
+    footerPlan: 'خطتي الغذائية',
+    footerTracking: 'تتبع الضغط',
+    footerDiabetes: 'تتبع السكري',
+    footerBioAge: 'حساب العمر الحيوي',
+    footerHelp: 'المساعدة',
+    footerFaq: 'الأسئلة الشائعة',
+    footerContact: 'تواصل معنا',
+    footerPrivacy: 'سياسة الخصوصية',
+    footerTerms: 'شروط الاستخدام',
+    footerNews: 'النشرة الأسبوعية',
+    footerNewsText: 'احصل على نصائح تغذية عملية كل أسبوع.',
+    footerEmailPlaceholder: 'بريدك الإلكتروني',
+    footerSubscribe: 'اشترك',
+    footerSubscribed: 'تم الاشتراك',
+    footerRights: '© 2026 بصمتك الحيوية — جميع الحقوق محفوظة.',
+    footerMade: 'صنع بكل حب في مصر 🇪🇬',
+    footerFb: 'فيسبوك',
+    footerIg: 'انستجرام',
+    footerX: 'إكس',
     // Home Page
     homeAIPill: 'مدعوم بالذكاء الاصطناعي',
     homeHowItWorks: 'كيف يعمل',
@@ -6910,6 +7015,32 @@ mbFruits: 'Fruits',
     'homeHeroDailyTarget': 'Tägliches Ziel',
     'homeHeroStreak': 'Serie',
     'homeHeroStreakDays': '7 Tage',
+    brandName: 'Dein Gesundheits-Fingerabdruck',
+    homeProgressLabel: 'Planfortschritt · Schritt 1 von 5',
+    footerTagline: 'Dein KI-Gesundheitsbegleiter',
+    footerQuickLinks: 'Schnellzugriff',
+    footerLegal: 'Rechtliches',
+    footerHealthGuides: 'Gesundheitsratgeber',
+    footerPlatform: 'Plattform',
+    footerPlan: 'Ernährungsplan',
+    footerTracking: 'Blutdruck-Tracking',
+    footerDiabetes: 'Diabetes-Tracking',
+    footerBioAge: 'Bio-Alter-Rechner',
+    footerHelp: 'Hilfe',
+    footerFaq: 'FAQ',
+    footerContact: 'Kontakt',
+    footerPrivacy: 'Datenschutz',
+    footerTerms: 'Nutzungsbedingungen',
+    footerNews: 'Wöchentlicher Newsletter',
+    footerNewsText: 'Erhalte jede Woche praktische Ernährungstipps.',
+    footerEmailPlaceholder: 'Deine E-Mail',
+    footerSubscribe: 'Abonnieren',
+    footerSubscribed: 'Abonniert',
+    footerRights: '© 2026 Dein Gesundheits-Fingerabdruck — Alle Rechte vorbehalten.',
+    footerMade: 'Mit ❤️ in Ägypten 🇪🇬 gemacht',
+    footerFb: 'Facebook',
+    footerIg: 'Instagram',
+    footerX: 'X (Twitter)',
   },
 };
 
