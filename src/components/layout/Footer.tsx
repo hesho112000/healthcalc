@@ -56,7 +56,7 @@ const Footer: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <button type="submit">{joined ? t('footerSubscribed') : t('footerSubscribe')}</button>
+              <button type="submit" className="btn-primary">{joined ? t('footerSubscribed') : t('footerSubscribe')}</button>
             </form>
           </div>
         </div>

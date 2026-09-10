@@ -149,18 +149,32 @@ const scenes: Record<SectionIllustrationKind, React.FC> = {
 const SectionIllustration: React.FC<{ kind: SectionIllustrationKind }> = ({ kind }) => {
   const Scene = scenes[kind];
   return (
-    <svg
-      viewBox="0 0 400 400"
-      width="100%"
-      height="auto"
-      role="img"
-      aria-label={labels[kind]}
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      style={{
+        background: 'rgba(255, 255, 255, 0.5)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        border: '1px solid rgba(255, 255, 255, 0.8)',
+        borderRadius: 32,
+        boxShadow: '0 20px 40px rgba(15, 76, 58, 0.06)',
+        padding: 30,
+        width: '100%',
+        boxSizing: 'border-box',
+      }}
     >
-      <Background kind={kind} />
-      <Scene />
-    </svg>
+      <svg
+        viewBox="0 0 400 400"
+        width="100%"
+        height="auto"
+        role="img"
+        aria-label={labels[kind]}
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <Background kind={kind} />
+        <Scene />
+      </svg>
+    </div>
   );
 };
 
