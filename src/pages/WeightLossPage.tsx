@@ -1,5 +1,6 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import { kitchensRegistry, totalDishesAll } from '../data/kitchens';
 import type { KitchenInfo, KitchenDish, KitchenCategory } from '../data/kitchens';
 
@@ -63,6 +64,8 @@ const ACTIVITY: Record<ActivityKey, { factor: number; label: string; desc: strin
   very_active: { factor: 1.9, label: 'نشط جدا', desc: 'عمل شاق + رياضة', emoji: '🔥' },
 };
 
+const ACTIVITY_ORDER: ActivityKey[] = ['sedentary', 'light', 'moderate', 'active', 'very_active'];
+
 const WORKOUTS: Workout[] = [
   { id: 'full_body', name: 'Full Body 3x', days: 3, dur: '45د', focus: 'كل الجسم', burn: 150, level: 'مبتدئ' },
   { id: 'upper_lower', name: 'Upper/Lower 4x', days: 4, dur: '50د', focus: 'علوي/سفلي', burn: 200, level: 'متوسط' },
@@ -122,58 +125,42 @@ const EXERCISE_PRESETS: Record<string, PlannedExercise[]> = {
 
 const DIETS: Record<GoalKey, DietIntensity[]> = {
   lose: [
-    { id: 'normal_lose', label: 'رجيم عادي - نزول صحي', short: 'عادي', emoji: '🟢', deficit: 300, surplus: 0, rate: '0.25 كجم/أسبوع', desc: 'نزول بطيء صحي - مناسب للمبتدئين - لا جوع', workoutMod: 1.0, proteinFactor: 1.2, level: 'normal', healthyOnly: false },
-    { id: 'medium_lose', label: 'رجيم متوسط - نزول متوسط', short: 'متوسط', emoji: '🟡', deficit: 500, surplus: 0, rate: '0.5 كجم/أسبوع', desc: 'الأكثر شيوعاً - توازن بين النزول والطاقة', workoutMod: 1.1, proteinFactor: 1.6, level: 'medium', healthyOnly: false },
-    { id: 'harsh_lose', label: 'رجيم قاسي - نزول سريع', short: 'قاسي', emoji: '🔴', deficit: 800, surplus: 0, rate: '0.8-1 كجم/أسبوع', desc: 'سريع لكن يحتاج متابعة - عالي البروتين - تمارين أكثر', workoutMod: 1.3, proteinFactor: 2.0, level: 'harsh', healthyOnly: true, warning: 'استشر طبيب' },
+    { id: 'normal_lose', label: 'رجيم عادي - نزول صحي', short: 'عادي', emoji: '🟢', deficit: 300, surplus: 0, rate: '0.25 كجم/أسبوع', desc: 'نزول بطيء صحي', workoutMod: 1.0, proteinFactor: 1.2, level: 'normal', healthyOnly: false },
+    { id: 'medium_lose', label: 'متوسط - نزول متوسط', short: 'متوسط', emoji: '🟡', deficit: 500, surplus: 0, rate: '0.5 كجم/أسبوع', desc: 'الأكثر شيوعاً', workoutMod: 1.1, proteinFactor: 1.6, level: 'medium', healthyOnly: false },
+    { id: 'harsh_lose', label: 'قاسي - نزول سريع', short: 'قاسي', emoji: '🔴', deficit: 800, surplus: 0, rate: '0.8-1 كجم/أسبوع', desc: 'سريع لكن يحتاج متابعة', workoutMod: 1.3, proteinFactor: 2.0, level: 'harsh', healthyOnly: true, warning: 'استشر طبيب' },
   ],
   gain_muscle: [
-    { id: 'lean_bulk', label: 'Lean Bulk - بناء نظيف', short: 'Lean', emoji: '🟢', deficit: 0, surplus: 250, rate: '+0.25 كجم/أسبوع', desc: 'زيادة عضل نظيفة - دهون قليلة', workoutMod: 1.2, proteinFactor: 2.0, level: 'normal', healthyOnly: false },
-    { id: 'moderate_bulk', label: 'Moderate Bulk - زيادة متوازنة', short: 'Moderate', emoji: '🟡', deficit: 0, surplus: 400, rate: '+0.4 كجم/أسبوع', desc: 'زيادة متوازنة عضل + وزن', workoutMod: 1.3, proteinFactor: 2.0, level: 'medium', healthyOnly: false },
-    { id: 'aggressive_bulk', label: 'Aggressive Bulk - تضخيم سريع', short: 'Aggressive', emoji: '🔴', deficit: 0, surplus: 600, rate: '+0.6 كجم/أسبوع', desc: 'تضخيم سريع - سعرات عالية + تمارين قوية', workoutMod: 1.5, proteinFactor: 2.2, level: 'harsh', healthyOnly: false },
+    { id: 'lean_bulk', label: 'Lean Bulk - بناء نظيف', short: 'Lean', emoji: '🟢', deficit: 0, surplus: 250, rate: '+0.25 كجم/أسبوع', desc: 'زيادة عضل نظيفة', workoutMod: 1.2, proteinFactor: 2.0, level: 'normal', healthyOnly: false },
+    { id: 'moderate_bulk', label: 'Moderate Bulk - زيادة متوازنة', short: 'Moderate', emoji: '🟡', deficit: 0, surplus: 400, rate: '+0.4 كجم/أسبوع', desc: 'زيادة متوازنة', workoutMod: 1.3, proteinFactor: 2.0, level: 'medium', healthyOnly: false },
+    { id: 'aggressive_bulk', label: 'Aggressive Bulk - تضخيم سريع', short: 'Aggressive', emoji: '🔴', deficit: 0, surplus: 600, rate: '+0.6 كجم/أسبوع', desc: 'تضخيم سريع', workoutMod: 1.5, proteinFactor: 2.2, level: 'harsh', healthyOnly: false },
   ],
   gain_weight: [
-    { id: 'normal_gain', label: 'زيادة عادية - نظيفة', short: 'عادي', emoji: '🟢', deficit: 0, surplus: 250, rate: '+0.25 كجم/أسبوع', desc: 'زيادة وزن صحية - دهون قليلة', workoutMod: 1.2, proteinFactor: 1.8, level: 'normal', healthyOnly: false },
-    { id: 'medium_gain', label: 'زيادة متوسطة', short: 'متوسط', emoji: '🟡', deficit: 0, surplus: 400, rate: '+0.4 كجم/أسبوع', desc: 'زيادة متوازنة عضل + وزن', workoutMod: 1.3, proteinFactor: 2.0, level: 'medium', healthyOnly: false },
-    { id: 'harsh_gain', label: 'زيادة قاسية - تضخيم سريع', short: 'قاسي', emoji: '🔴', deficit: 0, surplus: 600, rate: '+0.6 كجم/أسبوع', desc: 'تضخيم سريع - سعرات عالية + تمارين قوية', workoutMod: 1.5, proteinFactor: 2.2, level: 'harsh', healthyOnly: false },
+    { id: 'normal_gain', label: 'زيادة عادية - نظيفة', short: 'عادي', emoji: '🟢', deficit: 0, surplus: 250, rate: '+0.25 كجم/أسبوع', desc: 'زيادة وزن صحية', workoutMod: 1.2, proteinFactor: 1.8, level: 'normal', healthyOnly: false },
+    { id: 'medium_gain', label: 'زيادة متوسطة', short: 'متوسط', emoji: '🟡', deficit: 0, surplus: 400, rate: '+0.4 كجم/أسبوع', desc: 'زيادة متوازنة', workoutMod: 1.3, proteinFactor: 2.0, level: 'medium', healthyOnly: false },
+    { id: 'harsh_gain', label: 'زيادة قاسية - تضخيم سريع', short: 'قاسي', emoji: '🔴', deficit: 0, surplus: 600, rate: '+0.6 كجم/أسبوع', desc: 'تضخيم سريع', workoutMod: 1.5, proteinFactor: 2.2, level: 'harsh', healthyOnly: false },
   ],
   wellness: [
-    { id: 'well_balanced', label: 'Balanced - متوازن', short: 'Balanced', emoji: '🟢', deficit: 0, surplus: 0, rate: '0 كجم/أسبوع', desc: 'متوازن تماماً - طعام صحي فقط', workoutMod: 1.0, proteinFactor: 1.4, level: 'normal', healthyOnly: true },
-    { id: 'well_deficit', label: 'Slight Deficit - عجز خفيف', short: 'Deficit', emoji: '🟡', deficit: 200, surplus: 0, rate: '-0.2 كجم/أسبوع', desc: 'عجز خفيف - صحي - طعام صحي فقط', workoutMod: 1.1, proteinFactor: 1.6, level: 'medium', healthyOnly: true },
-    { id: 'well_surplus', label: 'Slight Surplus - فائض خفيف', short: 'Surplus', emoji: '🔵', deficit: 0, surplus: 200, rate: '+0.2 كجم/أسبوع', desc: 'فائض خفيف لزيادة الطاقة - طعام طاقة', workoutMod: 1.1, proteinFactor: 1.5, level: 'medium', healthyOnly: false },
+    { id: 'well_balanced', label: 'Balanced - متوازن', short: 'Balanced', emoji: '🟢', deficit: 0, surplus: 0, rate: '0 كجم/أسبوع', desc: 'متوازن تماماً', workoutMod: 1.0, proteinFactor: 1.4, level: 'normal', healthyOnly: true },
+    { id: 'well_deficit', label: 'Slight Deficit - عجز خفيف', short: 'Deficit', emoji: '🟡', deficit: 200, surplus: 0, rate: '-0.2 كجم/أسبوع', desc: 'عجز خفيف صحي', workoutMod: 1.1, proteinFactor: 1.6, level: 'medium', healthyOnly: true },
+    { id: 'well_surplus', label: 'Slight Surplus - فائض خفيف', short: 'Surplus', emoji: '🔵', deficit: 0, surplus: 200, rate: '+0.2 كجم/أسبوع', desc: 'فائض خفيف', workoutMod: 1.1, proteinFactor: 1.5, level: 'medium', healthyOnly: false },
   ],
   athletic: [
-    { id: 'ath_endurance', label: 'تحمّل Endurance', short: 'Endurance', emoji: '🟢', deficit: 0, surplus: 100, rate: 'أداء متوازن', desc: 'تغذية تحمّل - كربوهيدرات كافية', workoutMod: 1.2, proteinFactor: 1.6, level: 'normal', healthyOnly: false },
-    { id: 'ath_strength', label: 'قوة Strength', short: 'Strength', emoji: '🟡', deficit: 0, surplus: 200, rate: 'أداء قوة', desc: 'بروتين أعلى + سعرات للقوة', workoutMod: 1.3, proteinFactor: 1.8, level: 'medium', healthyOnly: false },
-    { id: 'ath_peak', label: 'أداء عالي Peak', short: 'Peak', emoji: '🔴', deficit: 0, surplus: 300, rate: 'أداء احترافي', desc: 'سعرات عالية + بروتين للأداء العالي', workoutMod: 1.5, proteinFactor: 2.0, level: 'harsh', healthyOnly: false },
+    { id: 'ath_endurance', label: 'تحمّل Endurance', short: 'Endurance', emoji: '🟢', deficit: 0, surplus: 100, rate: 'أداء متوازن', desc: 'تغذية تحمّل', workoutMod: 1.2, proteinFactor: 1.6, level: 'normal', healthyOnly: false },
+    { id: 'ath_strength', label: 'قوة Strength', short: 'Strength', emoji: '🟡', deficit: 0, surplus: 200, rate: 'أداء قوة', desc: 'بروتين أعلى', workoutMod: 1.3, proteinFactor: 1.8, level: 'medium', healthyOnly: false },
+    { id: 'ath_peak', label: 'أداء عالي Peak', short: 'Peak', emoji: '🔴', deficit: 0, surplus: 300, rate: 'أداء احترافي', desc: 'سعرات عالية', workoutMod: 1.5, proteinFactor: 2.0, level: 'harsh', healthyOnly: false },
   ],
 };
 
 const GOAL_ICONS: Record<GoalKey, string> = { lose: '⚖️', gain_muscle: '💪', gain_weight: '📈', wellness: '✨', athletic: '🏃' };
-const GOAL_BTN: Record<GoalKey, string> = { lose: 'Lose Weight', gain_muscle: 'Gain Muscle', gain_weight: 'Gain Weight', wellness: 'Wellness & Maint.', athletic: 'Athletic' };
-const GOAL_LABELS: Record<GoalKey, string> = { lose: 'تخسيس', gain_muscle: 'بناء عضلات', gain_weight: 'زيادة وزن صحية', wellness: 'صحة وعافية', athletic: 'أداء رياضي' };
-const GOAL_INTENSITY_LABEL: Record<GoalKey, string> = {
-  lose: 'اختر شدة الرجيم للتخسيس',
-  gain_muscle: 'اختر شدة بناء العضلات',
-  gain_weight: 'اختر شدة زيادة الوزن',
-  wellness: 'اختر شدة الصحة والعافية',
-  athletic: 'اختر شدة الأداء الرياضي',
-};
+const GOAL_ORDER: GoalKey[] = ['lose', 'gain_muscle', 'gain_weight', 'wellness', 'athletic'];
 
-const signedDelta = (g: GoalKey, d: DietIntensity): string => {
-  if (g === 'wellness') return d.deficit ? `-${d.deficit}` : d.surplus ? `+${d.surplus}` : '0';
-  if (g === 'lose') return `-${d.deficit}`;
-  return d.surplus ? `+${d.surplus}` : '0';
+const signedDelta = (g: GoalKey, d: DietIntensity): number => {
+  if (g === 'wellness') return d.deficit ? -d.deficit : d.surplus ? d.surplus : 0;
+  if (g === 'lose') return -d.deficit;
+  return d.surplus || 0;
 };
 
 const getDiet = (g: GoalKey, id: string): DietIntensity => DIETS[g].find((d) => d.id === id) ?? DIETS[g][0];
-
-const STEP_TITLES: Record<Step, string> = {
-  1: 'Basic Info',
-  2: 'Body',
-  3: 'Kitchen & Food',
-  4: 'Goals',
-  5: 'Blueprint',
-};
 
 function filterDishes(kitchen: KitchenInfo, diet: DietIntensity, goal: GoalKey): KitchenDish[] {
   const dishes = kitchen.dishes;
@@ -425,16 +412,18 @@ function getMealFilter(k: KitchenInfo, key: MealKey): MealDefinition['filter'] {
   return MEAL_MAP[key].filter;
 }
 
-const MEAL_TABS: { key: MealKey; label: string; emoji: string; active: string }[] = [
-  { key: 'breakfast', label: 'فطار', emoji: '🍳', active: 'bg-emerald-600 text-white border-emerald-600' },
-  { key: 'lunch', label: 'غدا', emoji: '🍛', active: 'bg-emerald-600 text-white border-emerald-600' },
-  { key: 'dinner', label: 'عشا', emoji: '🌙', active: 'bg-emerald-600 text-white border-emerald-600' },
-  { key: 'snacks', label: 'سناك', emoji: '🍎', active: 'bg-emerald-600 text-white border-emerald-600' },
+const MEAL_TABS: { key: MealKey; label: string; emoji: string }[] = [
+  { key: 'breakfast', label: 'فطار', emoji: '🍳' },
+  { key: 'lunch', label: 'غدا', emoji: '🍛' },
+  { key: 'dinner', label: 'عشا', emoji: '🌙' },
+  { key: 'snacks', label: 'سناك', emoji: '🍎' },
 ];
+
+const MEAL_ORDER: MealKey[] = ['breakfast', 'lunch', 'dinner', 'snacks'];
 
 function getMealTypesForDish(k: KitchenInfo, cat: KitchenCategory, dish: KitchenDish): MealKey[] {
   const types: MealKey[] = [];
-  for (const key of ['breakfast', 'lunch', 'dinner', 'snacks'] as MealKey[]) {
+  for (const key of MEAL_ORDER) {
     if (getMealFilter(k, key)(cat, dish)) types.push(key);
   }
   return types.length ? types : ['lunch'];
@@ -452,12 +441,12 @@ function dishesForMeal(k: KitchenInfo, key: MealKey): KitchenDish[] {
 }
 
 const BodyFigure: React.FC<{ kind: Sex }> = ({ kind }) => (
-  <svg viewBox="0 0 100 160" className="h-[80px] w-[50px] shrink-0 overflow-visible" aria-hidden="true">
+  <svg viewBox="0 0 100 160" className="h-[70px] w-[46px] shrink-0 overflow-visible" aria-hidden="true">
     <defs>
       <linearGradient id={`gb${kind === 'male' ? 'M' : 'F'}`} x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stopColor="#6ee7b7" />
-        <stop offset="0.5" stopColor="#10b981" />
-        <stop offset="1" stopColor="#065f46" />
+        <stop offset="0" stopColor="#2a7a5d" />
+        <stop offset="0.5" stopColor="#0F4C3A" />
+        <stop offset="1" stopColor="#0b3a2c" />
       </linearGradient>
     </defs>
     {kind === 'male' ? (
@@ -493,6 +482,7 @@ const BodyFigure: React.FC<{ kind: Sex }> = ({ kind }) => (
 
 const WeightLossPage: React.FC = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [step, setStep] = useState<Step>(1);
   const [planType, setPlanType] = useState<PlanType>('both');
   const [age, setAge] = useState('26');
@@ -522,9 +512,9 @@ const WeightLossPage: React.FC = () => {
   });
   const [kitchenSearch, setKitchenSearch] = useState('');
   const [categorySearch, setCategorySearch] = useState('');
-  const [kitchenMode, setKitchenMode] = useState<'manual' | 'auto'>('manual');
+  const [kitchenMode, setKitchenMode] = useState<'manual' | 'auto'>('auto');
   const [categoryMode, setCategoryMode] = useState<'manual' | 'auto'>('manual');
-  const [exerciseMode, setExerciseMode] = useState<'manual' | 'auto'>('manual');
+  const [exerciseMode, setExerciseMode] = useState<'manual' | 'auto'>('auto');
   const [mealTab, setMealTab] = useState<MealKey>('breakfast');
   const [countryMode, setCountryMode] = useState<'egyptian' | 'tunisian' | 'both'>('egyptian');
   const [dishSearch, setDishSearch] = useState('');
@@ -542,7 +532,13 @@ const WeightLossPage: React.FC = () => {
   const [emailText, setEmailText] = useState('');
   const [emailSending, setEmailSending] = useState(false);
   const [emailDone, setEmailDone] = useState('');
+  const [autoBuilding, setAutoBuilding] = useState(false);
   const [toast, setToast] = useState('');
+
+  useEffect(() => {
+    autoPickExercises(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const parsed = useMemo(
     () => ({
@@ -566,35 +562,37 @@ const WeightLossPage: React.FC = () => {
       if (found.length >= FEATURED_KITCHEN_IDS.length) break;
       if (k.dishes.length && !found.some((f) => f.id === k.id)) found.push(k);
     }
-    console.log('Loaded:', found.length, 'total:', found.reduce((s, k) => s + k.total, 0));
     return found;
   }, []);
   const selectedKitchenCats = useMemo<KitchenCategory[]>(() => getKitchenCategories(selectedKitchen), [selectedKitchen]);
   const countryOptions = useMemo(() => {
     const e = kitchensRegistry.find((k) => k.id === 'egyptian');
-    const t = kitchensRegistry.find((k) => k.id === 'tunisian');
+    const tns = kitchensRegistry.find((k) => k.id === 'tunisian');
     const eTot = e?.total ?? 0;
-    const tTot = t?.total ?? 0;
+    const tTot = tns?.total ?? 0;
     return [
-      { m: 'egyptian' as const, flag: '🇪🇬', label: 'مصر', count: eTot },
-      { m: 'tunisian' as const, flag: '🇹🇳', label: 'تونس', count: tTot },
-      { m: 'both' as const, flag: '🌍', label: 'الاثنين', count: eTot + tTot },
+      { m: 'egyptian' as const, flag: '🇪🇬', label: t('wizard.step3.countryEgypt'), count: eTot },
+      { m: 'tunisian' as const, flag: '🇹🇳', label: t('wizard.step3.countryTunis'), count: tTot },
+      { m: 'both' as const, flag: '🌍', label: t('wizard.step3.countryBoth'), count: eTot + tTot },
     ];
-  }, []);
-  const searchPlaceholder = countryMode === 'egyptian' ? 'ابحث عن أكلة مصرية...' : countryMode === 'tunisian' ? 'ابحث عن أكلة تونسية...' : 'ابحث عن أكلة...';
+  }, [t]);
   const countryKitchens = useMemo<KitchenInfo[]>(() => {
     const e = kitchensRegistry.find((k) => k.id === 'egyptian');
-    const t = kitchensRegistry.find((k) => k.id === 'tunisian');
+    const tns = kitchensRegistry.find((k) => k.id === 'tunisian');
     const base: KitchenInfo[] = [];
     if (countryMode === 'both') {
       if (e) base.push(e);
-      if (t) base.push(t);
+      if (tns) base.push(tns);
     } else {
-      const k = countryMode === 'egyptian' ? e : t;
+      const k = countryMode === 'egyptian' ? e : tns;
       if (k) base.push(k);
     }
     return base.length ? base : [selectedKitchen];
   }, [countryMode, selectedKitchen]);
+  const planKitchens = useMemo<KitchenInfo[]>(() => {
+    if (kitchenMode === 'auto' && !countryKitchens.some((k) => k.id === selectedKitchen.id)) return [selectedKitchen];
+    return countryKitchens;
+  }, [countryKitchens, selectedKitchen, kitchenMode]);
   const dishRows = useMemo(() => {
     const rows: { key: string; kitchen: KitchenInfo; cat: KitchenCategory; dish: KitchenDish; meals: MealKey[] }[] = [];
     for (const k of countryKitchens) {
@@ -606,10 +604,6 @@ const WeightLossPage: React.FC = () => {
     }
     return rows;
   }, [countryKitchens]);
-  const filteredKitchens = useMemo(
-    () => featuredKitchens.filter((k) => k.country.includes(kitchenSearch) || k.kitchen.includes(kitchenSearch) || k.flag.includes(kitchenSearch)),
-    [featuredKitchens, kitchenSearch],
-  );
   const tabCounts = useMemo(() => {
     const c: Record<MealKey, number> = { breakfast: 0, lunch: 0, dinner: 0, snacks: 0 };
     for (const r of dishRows) for (const mm of r.meals) c[mm]++;
@@ -648,15 +642,6 @@ const WeightLossPage: React.FC = () => {
     }
     return per;
   }, [selectedDishKeys, selectedDishMap, assignedDishes, dishMealOf]);
-  const fmtMeal = (list: { key: string; dish: KitchenDish }[]): string => {
-    if (!list.length) return 'لم تختر أطباق لهذه الوجبة';
-    const parts = list.map((x) => `${x.dish.name} ${x.dish.cal_serv}`);
-    const cal = list.reduce((s, x) => s + x.dish.cal_serv, 0);
-    const p = list.reduce((s, x) => s + (x.dish.p || 0), 0);
-    const c = list.reduce((s, x) => s + (x.dish.c || 0), 0);
-    const f = list.reduce((s, x) => s + (x.dish.f || 0), 0);
-    return `${parts.join(' + ')} = ${cal} سعر | P:${p} C:${c} F:${f}`;
-  };
   const totalCal = useMemo(
     () => selectedDishKeys.reduce((s, k) => s + (selectedDishMap.get(k)?.cal_serv ?? 0), 0),
     [selectedDishKeys, selectedDishMap],
@@ -665,53 +650,38 @@ const WeightLossPage: React.FC = () => {
     () => plannedExercises.filter((p) => p.name.includes(selectedExerciseSearch) || p.type.includes(selectedExerciseSearch.toLowerCase())),
     [plannedExercises, selectedExerciseSearch],
   );
+
   const visibleSteps: { n: Step; label: string }[] =
     planType === 'fitness'
       ? [
-          { n: 1, label: 'Info' },
-          { n: 2, label: 'Body' },
-          { n: 4, label: 'Goals' },
-          { n: 5, label: 'Blueprint' },
+          { n: 1, label: t('wizard.steps.info') },
+          { n: 2, label: t('wizard.steps.body') },
+          { n: 4, label: t('wizard.steps.goals') },
+          { n: 5, label: t('wizard.steps.blueprint') },
         ]
       : [
-          { n: 1, label: 'Info' },
-          { n: 2, label: 'Body' },
-          { n: 3, label: 'Kitchen' },
-          { n: 4, label: 'Goals' },
-          { n: 5, label: 'Blueprint' },
+          { n: 1, label: t('wizard.steps.info') },
+          { n: 2, label: t('wizard.steps.body') },
+          { n: 3, label: t('wizard.steps.kitchen') },
+          { n: 4, label: t('wizard.steps.goals') },
+          { n: 5, label: t('wizard.steps.blueprint') },
         ];
   const visIdx = visibleSteps.findIndex((x) => x.n === step);
-
-  const kitchenCard = (k: KitchenInfo) => {
-    const on = selectedKitchenId === k.id;
-    return (
-      <div
-        key={k.id}
-        onClick={() => chooseKitchen(k)}
-        className={`rounded-[10px] border-2 cursor-pointer p-2 flex flex-col gap-1.5 transition-all min-w-0 ${on ? 'border-emerald-500 bg-white shadow-md' : 'border-white/70 bg-white/80 hover:border-emerald-300'}`}
-      >
-        <div className="flex items-center gap-2 min-w-0">
-          <span className="w-8 h-8 rounded-full bg-white border border-zinc-200 shadow-sm flex items-center justify-center text-[18px] leading-none shrink-0">{k.flag}</span>
-          <div className="min-w-0 flex-1">
-            <div className="truncate font-bold text-[12px] leading-tight">{k.country}</div>
-            <div className="truncate text-[10.5px] text-zinc-500 leading-snug">{k.kitchen}</div>
-          </div>
-          <span className="shrink-0 text-[10px] bg-zinc-900 text-white px-2 py-0.5 rounded-full">{k.total}</span>
-        </div>
-        {k.sample && (
-          <div className="rounded-[8px] bg-zinc-50 px-2 py-1 min-w-0">
-            <div className="truncate text-[10px] text-zinc-600">🍽 {k.sample.name}</div>
-          </div>
-        )}
-        <div className="flex flex-wrap gap-1">
-          {k.conf100 > 0 && <span className="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded-full">{k.conf100}×100%</span>}
-          {k.conf85 > 0 && <span className="text-[9px] bg-yellow-100 text-yellow-800 px-1.5 py-0.5 rounded-full">{k.conf85}×85%</span>}
-          {k.conf70 > 0 && <span className="text-[9px] bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded-full">{k.conf70}×70%</span>}
-          {on && <span className="ml-auto text-[9px] font-semibold text-emerald-600">✓ مختار</span>}
-        </div>
-      </div>
-    );
-  };
+  const progressPct = visibleSteps.length > 1 ? Math.max(0, Math.min(100, (visIdx / (visibleSteps.length - 1)) * 100)) : 0;
+  const stepTitle = (() => {
+    if (step === 1) return t('wizard.step1.title');
+    if (step === 2) return t('wizard.step2.title');
+    if (step === 3) return t('wizard.step3.title');
+    if (step === 4) return t('wizard.step4.title');
+    return t('wizard.step5.title');
+  })();
+  const stepEyebrow = (() => {
+    if (step === 1) return t('wizard.step1.eyebrow');
+    if (step === 2) return t('wizard.step2.eyebrow');
+    if (step === 3) return t('wizard.step3.eyebrow');
+    if (step === 4) return t('wizard.step4.eyebrow');
+    return t('wizard.step5.eyebrow');
+  })();
 
   const numbers = useMemo(() => {
     const { age: a, height: h, weight: w } = parsed;
@@ -766,7 +736,7 @@ const WeightLossPage: React.FC = () => {
     const poolFor = (key: MealKey): KitchenDish[] => {
       const seen = new Set<string>();
       const out: KitchenDish[] = [];
-      for (const k of countryKitchens) {
+      for (const k of planKitchens) {
         for (const d of dishesForMeal(k, key)) {
           if (!seen.has(d.name)) {
             seen.add(d.name);
@@ -782,7 +752,7 @@ const WeightLossPage: React.FC = () => {
       const sorted = [...list].sort((a, b) => (key === 'lunch' ? b.dish.p - a.dish.p : a.dish.cal_100 - b.dish.cal_100));
       return sorted[0].dish;
     };
-    const fallbackKitchen = countryKitchens[0] ?? selectedKitchen;
+    const fallbackKitchen = planKitchens[0] ?? selectedKitchen;
     const fallback = pickPlate(filterDishes(fallbackKitchen, diet, goal));
     const meals: { meal: string; dish: KitchenDish | undefined; grams: number }[] = [
       { meal: MEAL_NAMES.breakfast, dish: pickAssigned('breakfast') ?? pickLight(poolFor('breakfast')), grams: Math.round(baseG * 0.85) },
@@ -791,14 +761,36 @@ const WeightLossPage: React.FC = () => {
       { meal: MEAL_NAMES.snacks, dish: pickAssigned('snacks') ?? pickSmall(poolFor('snacks')), grams: Math.round(baseG * 0.6) },
     ];
     return meals.map((m, i) => ({ meal: m.meal, dish: m.dish ?? fallback[i], grams: m.grams }));
-  }, [countryKitchens, selectedKitchen, diet, goal, mealSummary]);
+  }, [planKitchens, selectedKitchen, diet, goal, mealSummary]);
+
+  const goalViolation = (): string => {
+    if (goal === 'lose') {
+      if (parsed.target && parsed.weight && parsed.target >= parsed.weight) return t('wizard.step4.hintLose');
+      return '';
+    }
+    if (goal === 'gain_muscle' || goal === 'gain_weight') {
+      if (parsed.target && parsed.weight && parsed.target <= parsed.weight) return t('wizard.step4.hintGain');
+      return '';
+    }
+    return '';
+  };
 
   const isValid = (): boolean => {
     if (step === 1) {
       return parsed.age >= 12 && parsed.age <= 80 && parsed.height >= 120 && parsed.height <= 220 && parsed.weight >= 30 && parsed.weight <= 250;
     }
     if (step === 4) {
-      return parsed.target >= 30 && parsed.target <= 250 && parsed.timeline >= 2 && parsed.timeline <= 52;
+      const base =
+        parsed.target >= 30 &&
+        parsed.target <= 250 &&
+        parsed.timeline >= 2 &&
+        parsed.timeline <= 52 &&
+        parsed.weight >= 30 &&
+        parsed.weight <= 250;
+      if (!base) return false;
+      if (goal === 'lose') return parsed.target < parsed.weight;
+      if (goal === 'gain_muscle' || goal === 'gain_weight') return parsed.target > parsed.weight;
+      return true;
     }
     return true;
   };
@@ -840,7 +832,7 @@ const WeightLossPage: React.FC = () => {
     });
   };
 
-  const autoPickExercises = () => {
+  const autoPickExercises = (silent = false) => {
     const picks: string[] =
       goal === 'gain_muscle'
         ? ['strength', 'calisthenics', 'swimming']
@@ -860,12 +852,12 @@ const WeightLossPage: React.FC = () => {
     setPlannedExercises((prev) => [...prev.filter((p) => !picks.includes(p.type)), ...picks.flatMap((p) => EXERCISE_PRESETS[p] ?? [])]);
     setWorkout(goal === 'lose' ? 'full_body' : goal === 'gain_muscle' || goal === 'gain_weight' ? 'ppl' : 'upper_lower');
     setExerciseMode('auto');
-    notify('تم الاختيار التلقائي حسب هدفك ونشاطك 🤖');
+    if (!silent) notify(t('wizard.toast.autoExercises'));
   };
 
   const saveExercises = () => {
     localStorage.setItem('hc_planned_exercises', JSON.stringify(plannedExercises));
-    notify(`تم حفظ ${plannedExercises.length} تمرين للـ Blueprint 💾`);
+    notify(t('wizard.toast.savedExercises').replace('{n}', String(plannedExercises.length)));
   };
 
   const removeExercise = (id: string) => {
@@ -892,6 +884,17 @@ const WeightLossPage: React.FC = () => {
     setExpandedCat(null);
     setSelectedDishKeys([]);
     setAssignedDishes({});
+  };
+
+  const runAutoKitchen = () => {
+    if (autoBuilding) return;
+    setAutoBuilding(true);
+    window.setTimeout(() => {
+      autoPickKitchen();
+      setAutoBuilding(false);
+      setStep(5);
+      notify(t('wizard.toast.autoKitchen'));
+    }, 1500);
   };
 
   const chooseCountry = (m: 'egyptian' | 'tunisian' | 'both') => {
@@ -948,11 +951,6 @@ const WeightLossPage: React.FC = () => {
     setSelectedDishKeys(keys);
     setAssignedDishes(assigned);
     setCategoryMode('auto');
-    notify(`تم اختيار ${keys.length} طبق تلقائياً 🤖`);
-  };
-
-  const toggleDish = (key: string) => {
-    setSelectedDishKeys((prev) => (prev.includes(key) ? prev.filter((x) => x !== key) : [...prev, key]));
   };
 
   const assignDishToMeal = (key: string, meal: MealKey) => {
@@ -991,87 +989,128 @@ const WeightLossPage: React.FC = () => {
     }, 2200);
   };
 
-  const inputClass = 'w-full h-[44px] rounded-[8px] border border-zinc-300 px-4 text-[16px] outline-none focus:border-[#1e40af] focus:ring-[3px] focus:ring-blue-100 bg-white';
+  const macrosT = (p: number, c: number, f: number): string =>
+    t('wizard.step3.macros').replace('{p}', String(Math.round(p))).replace('{c}', String(Math.round(c))).replace('{f}', String(Math.round(f)));
+  const calT = (n: number): string => t('wizard.step3.cal').replace('{n}', String(n));
+
   const waterGoal = numbers ? +Math.max(2, Math.min(3.5, parsed.weight * 0.033)).toFixed(1) : 2.3;
   const doneCount = mealsDone.filter(Boolean).length;
   const projectionText = !numbers
     ? ''
-    : goal === 'wellness'
-      ? `الحفاظ على ${parsed.weight}kg وتحسين الصحة العامة · ${numbers.diet.rate} · نوم ونشاط أفضل.`
-      : `من ${parsed.weight}kg إلى ${parsed.target}kg خلال ${parsed.timeline} أسابيع · ${numbers.diet.rate} · ${
-          goal === 'lose' && parsed.weight > parsed.target ? 'معدل آمن.' : goal === 'gain_muscle' || goal === 'gain_weight' ? 'زيادة محسوبة.' : 'أداء محسوب.'
-        }`;
+    : `${parsed.weight}${t('wizard.unit.kg')} → ${parsed.target}${t('wizard.unit.kg')} · ${parsed.timeline} ${t('wizard.unit.weeks')}`;
+  const GOAL_LABEL_KEY: Record<GoalKey, string> = {
+    lose: 'wizard.step4.goalTypes.lose',
+    gain_muscle: 'wizard.step4.goalTypes.gainMuscle',
+    gain_weight: 'wizard.step4.goalTypes.gainWeight',
+    wellness: 'wizard.step4.goalTypes.wellness',
+    athletic: 'wizard.step4.goalTypes.athletic',
+  };
+  const goalLabel = (g: GoalKey): string => t(GOAL_LABEL_KEY[g] as any);
+
+  const DELTA_KEYS: Record<GoalKey, 'lose' | 'gain'> = { lose: 'lose', gain_muscle: 'gain', gain_weight: 'gain', wellness: 'gain', athletic: 'gain' };
+  const deltaT = (g: GoalKey, d: DietIntensity): string => {
+    const v = signedDelta(g, d);
+    if (v === 0) return t('wizard.step4.delta.zero');
+    const key = DELTA_KEYS[g] ?? 'gain';
+    return t(v < 0 ? 'wizard.step4.delta.lose' : `wizard.step4.delta.${key}`).replace('{n}', String(Math.abs(v)));
+  };
+
+  const intensityLabel = (lv: DietLevel): string => t(('wizard.step4.intensity.' + lv) as any);
+  const intensityTag = (lv: DietLevel): string => t(('wizard.step4.intensityTag.' + lv) as any);
+  const mealLabel = (mk: MealKey): string => t(('wizard.step3.meals.' + mk) as any);
+  const mealTime = (mk: MealKey): string => t(('wizard.step5.mealTime.' + mk) as any);
+  const ACTIVITY_LABEL = (x: ActivityKey): string => t(('wizard.activity.' + x) as any);
+  const ACTIVITY_DESC = (x: ActivityKey): string => t(('wizard.activity.' + x + '.desc') as any);
+
+  const step5Meals: { key: MealKey; emoji: string }[] = [
+    { key: 'breakfast', emoji: '🌅' },
+    { key: 'lunch', emoji: '🌞' },
+    { key: 'dinner', emoji: '🌙' },
+    { key: 'snacks', emoji: '🍪' },
+  ];
+
+  const inputDefault = 'wiz-input';
+  const cardBase = 'rounded-[26px] bg-white border border-[#EFEBE4] shadow-[0_10px_30px_rgba(15,76,58,0.06)]';
 
   return (
-    <div className={`wiz-page min-h-screen text-zinc-900 overflow-x-hidden antialiased ${step === 1 || step === 3 ? 'bg-gradient-to-b from-[#a7f3d0] via-[#6ee7b7] to-[#34d399]' : 'bg-[#f8fafc]'}`} dir="ltr">
-      <main className={`w-full mx-auto transition-all ${step === 1 ? 'max-w-[400px] px-5 pt-6 pb-[150px] md:pb-24 overflow-x-hidden' : step === 2 ? 'max-w-[480px] px-4 md:px-5 pb-[120px] md:pb-16 pt-2 md:pt-4' : step === 3 ? 'max-w-[480px] px-4 md:px-5 pt-2 md:pt-4 pb-[120px] md:pb-16 overflow-x-hidden' : 'max-w-[760px] px-4 md:px-0 pb-[120px] md:pb-16 pt-8 md:pt-12 overflow-x-hidden'}`}>
-        {step !== 1 && step !== 2 && step !== 3 && step !== 5 && (
-          <>
-            <div className="mb-8">
-              <h1 className="text-[28px] md:text-[32px] font-bold tracking-tight leading-none">Weight &amp; Fitness</h1>
-              <p className="mt-2.5 text-[14px] text-zinc-500 leading-snug">Complete the 5-step setup to calculate your metrics &amp; recommendations</p>
+    <div className="wiz-page min-h-screen text-[#0F4C3A] overflow-x-hidden antialiased bg-[#FDFBF7]">
+      {step !== 5 && (
+        <header className="sticky top-0 z-40 bg-[#FDFBF7]/92 backdrop-blur-md border-b border-[#EFEBE4]">
+          <div className="max-w-[880px] mx-auto px-4 md:px-6 pt-4 pb-3">
+            <div className="flex items-center gap-3 min-w-0">
+              <button
+                type="button"
+                onClick={() => (step === 1 ? navigate('/') : back())}
+                aria-label={t('wizard.back')}
+                className="w-10 h-10 rounded-full bg-white border border-[#EFEBE4] shadow-sm flex items-center justify-center text-[#0F4C3A] text-[20px] shrink-0 hover:border-[#D4AF37] transition-all active:scale-95"
+              >
+                ‹
+              </button>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="wiz-progress-badge truncate">{stepEyebrow}</span>
+                  <span className="text-[12px] font-bold text-[#6B7A75] whitespace-nowrap shrink-0">
+                    {t('wizard.stepOf')} <span className="num">{step}</span> {t('wizard.of')} <span className="num">{visibleSteps.length}</span>
+                  </span>
+                </div>
+                <h1 className="mt-2 text-[22px] md:text-[26px] font-extrabold leading-tight text-[#0F4C3A]">{stepTitle}</h1>
+              </div>
             </div>
-
-            <div className="mb-8">
-              <div className="flex items-center justify-between relative">
-                <div className="absolute top-[14px] left-[14px] right-[14px] h-[2px] bg-zinc-200" />
-                <div className="absolute top-[14px] left-[14px] h-[2px] bg-[#1e40af] transition-all duration-300" style={{ width: `${(visIdx / (visibleSteps.length - 1)) * 100}%`, maxWidth: 'calc(100% - 28px)' }} />
+            <div className="mt-3">
+              <div className="wiz-progress">
+                <div className="wiz-progress-fill" style={{ width: `${progressPct}%` }} />
+              </div>
+              <div className="flex justify-between mt-2.5 px-1">
                 {visibleSteps.map((x) => {
                   const done = step > x.n;
                   const active = step === x.n;
                   return (
-                    <div key={x.n} className="relative flex flex-col items-center gap-2 z-10">
-                      <div className={`w-7 h-7 rounded-full border-[2px] flex items-center justify-center text-[12px] font-bold bg-white transition-all ${done ? 'bg-[#1e40af] border-[#1e40af] text-white' : ''} ${active ? 'border-[#1e40af] text-[#1e40af] shadow-[0_0_0_4px_rgba(30,64,175,0.12)]' : 'border-zinc-300 text-zinc-400'}`}>
+                    <div key={x.n} className="flex flex-col items-center gap-1.5">
+                      <div
+                        className={`w-7 h-7 rounded-full border-[2px] flex items-center justify-center text-[12px] font-bold transition-all ${
+                          done ? 'bg-[#D4AF37] border-[#D4AF37] text-[#0F4C3A]' : active ? 'border-[#0F4C3A] bg-white text-[#0F4C3A]' : 'border-[#E3E0D8] bg-white text-[#A0A8A4]'
+                        }`}
+                      >
                         {done ? '✓' : x.n}
                       </div>
-                      <span className={`text-[11.5px] font-medium tracking-wide ${active ? 'text-[#1e40af]' : done ? 'text-zinc-700' : 'text-zinc-400'}`}>{x.label}</span>
+                      <span className={`text-[10.5px] font-semibold tracking-wide ${active ? 'text-[#0F4C3A]' : done ? 'text-[#6B7A75]' : 'text-[#A0A8A4]'}`}>{x.label}</span>
                     </div>
                   );
                 })}
               </div>
-              <div className="mt-5 text-[12.5px] font-medium text-zinc-500">Step {step} · {STEP_TITLES[step]}</div>
             </div>
-          </>
-        )}
+          </div>
+        </header>
+      )}
 
-        <div className="w-full min-w-0">
-          {step === 1 && (
-            <div className="w-full bg-[#e8f5e9]/90 backdrop-blur rounded-[28px] p-5 shadow-2xl min-w-0">
-              <div className="w-full bg-white rounded-full h-12 flex items-center justify-between px-3 shadow-sm min-w-0">
-                <button type="button" onClick={() => navigate('/')} aria-label="Back" className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 text-[18px] shrink-0 select-none active:scale-95">‹</button>
-                <div className="text-[14px] font-bold text-emerald-900 whitespace-nowrap">Step 1 of 3</div>
-                <div className="flex items-center gap-1.5 shrink-0">
-                  <span className="w-3 h-3 rounded-full bg-emerald-600" />
-                  <span className="w-2 h-2 rounded-full bg-emerald-300" />
-                  <span className="w-2 h-2 rounded-full bg-gray-300" />
-                  <span className="w-2 h-2 rounded-full bg-gray-300" />
+      <main className="w-full mx-auto px-4 md:px-6 pb-32 md:pb-16 max-w-[880px]">
+        {step === 1 && (
+          <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-5 items-start">
+            <div className={`${cardBase} p-6`}>
+              <div className="flex items-center gap-3">
+                <span className="w-11 h-11 rounded-full bg-[#F4F1EB] flex items-center justify-center text-[22px] shrink-0">🧭</span>
+                <div>
+                  <h2 className="text-[18px] font-extrabold leading-none">{t('wizard.step1.profile')}</h2>
+                  <p className="mt-1 text-[12.5px] text-[#6B7A75]">{t('wizard.step1.profileSub')}</p>
                 </div>
               </div>
 
-              <h2 className="mt-4 text-[26px] font-black leading-tight text-black">Tell us about yourself</h2>
-              <p className="text-[14px] text-gray-600 mt-1">We'll use this to personalize your plan</p>
-
-              <div className="mt-5">
-                <div className="text-[14px] font-bold mb-2">Age</div>
-                <div
-                  onClick={() => setEditField((p) => (p === 'age' ? null : 'age'))}
-                  className={`rounded-[16px] bg-white shadow-sm border flex items-center px-4 min-h-[68px] cursor-pointer transition-transform active:scale-[0.98] ${editField === 'age' ? 'border-emerald-400 ring-[3px] ring-emerald-100' : 'border-gray-100'}`}
-                >
-                  <span className="w-12 h-12 rounded-full bg-emerald-600 flex items-center justify-center text-[22px] shrink-0">📅</span>
-                  <div className="flex-1 px-3 min-w-0">
-                    <div className="text-[11px] text-gray-500">Age</div>
-                    {editField === 'age' ? (
-                      <input autoFocus value={age} onChange={(e) => setAge(e.target.value.replace(/\D/g, ''))} inputMode="numeric" className="w-full bg-transparent text-[22px] font-bold text-black outline-none min-h-[44px]" />
-                    ) : (
-                      <div className="text-[22px] font-bold leading-none text-black">{age} years</div>
-                    )}
-                  </div>
-                  <span className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 text-[16px] shrink-0">›</span>
+              <div className="mt-6">
+                <label className="wiz-label" htmlFor="wz-age">{t('age')}</label>
+                <div className="relative">
+                  <input
+                    id="wz-age"
+                    inputMode="numeric"
+                    value={age}
+                    onChange={(e) => setAge(e.target.value.replace(/\D/g, ''))}
+                    className={`${inputDefault} pr-16`}
+                  />
+                  <span className="absolute inset-y-0 end-4 flex items-center text-[13px] font-bold text-[#A0A8A4]">{t('wizard.unit.years')}</span>
                 </div>
               </div>
 
               <div className="mt-5">
-                <div className="text-[14px] font-bold text-black mb-2">Gender</div>
+                <label className="wiz-label">{t('gender')}</label>
                 <div className="grid grid-cols-2 gap-3">
                   {(['male', 'female'] as Sex[]).map((x) => {
                     const on = sex === x;
@@ -1080,511 +1119,680 @@ const WeightLossPage: React.FC = () => {
                         key={x}
                         type="button"
                         onClick={() => setSex(x)}
-                        className={`relative flex flex-col items-center justify-center pt-5 pb-4 rounded-[16px] transition-all min-w-0 min-h-[160px] ${on ? 'bg-emerald-500 border-2 border-emerald-600 shadow-md scale-[1.03]' : 'bg-white border border-gray-200 shadow-sm'}`}
+                        className={`relative flex flex-col items-center justify-center pt-4 pb-3 rounded-[20px] border-2 transition-all min-w-0 ${on ? 'border-[#0F4C3A] bg-[#F4F1EB] shadow-[0_8px_18px_rgba(15,76,58,0.12)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
                       >
                         <BodyFigure kind={x} />
-                        <span className={`mt-2 text-[14px] font-bold leading-none ${on ? 'text-black' : 'text-gray-500'}`}>{x === 'male' ? 'Male' : 'Female'}</span>
-                        {on && <span className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-emerald-700 text-white flex items-center justify-center text-[12px] font-bold shadow-sm">✓</span>}
+                        <span className={`mt-2 text-[14px] font-bold leading-none ${on ? 'text-[#0F4C3A]' : 'text-[#6B7A75]'}`}>{t(x)}</span>
+                        {on && (
+                          <span className="absolute top-2.5 end-2.5 w-5 h-5 rounded-full bg-[#D4AF37] text-[#0F4C3A] flex items-center justify-center text-[12px] font-bold shadow-sm">✓</span>
+                        )}
                       </button>
                     );
                   })}
                 </div>
               </div>
 
-              <div className="mt-4 grid grid-cols-2 gap-3">
-                <div
-                  onClick={() => setEditField((p) => (p === 'height' ? null : 'height'))}
-                  className={`rounded-[16px] bg-white shadow-sm border flex items-center px-3 min-h-[68px] cursor-pointer transition-transform active:scale-[0.98] min-w-0 ${editField === 'height' ? 'border-emerald-400 ring-[3px] ring-emerald-100' : 'border-gray-200'}`}
-                >
-                  <span className="w-11 h-11 rounded-full bg-emerald-600 flex items-center justify-center text-[20px] shrink-0">📏</span>
-                  <div className="flex-1 px-2 min-w-0">
-                    <div className="text-[11px] text-emerald-700">Height</div>
-                    {editField === 'height' ? (
-                      <input autoFocus value={height} onChange={(e) => setHeight(e.target.value.replace(/\D/g, ''))} inputMode="numeric" className="w-full bg-transparent text-[20px] font-bold text-black outline-none min-h-[44px]" />
-                    ) : (
-                      <div className="text-[20px] font-bold leading-none text-black truncate">{height} cm</div>
-                    )}
-                  </div>
-                  <span className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 text-[16px] shrink-0">›</span>
-                </div>
-                <div
-                  onClick={() => setEditField((p) => (p === 'weight' ? null : 'weight'))}
-                  className={`rounded-[16px] bg-white shadow-sm border flex items-center px-3 min-h-[68px] cursor-pointer transition-transform active:scale-[0.98] min-w-0 ${editField === 'weight' ? 'border-emerald-400 ring-[3px] ring-emerald-100' : 'border-gray-200'}`}
-                >
-                  <span className="w-11 h-11 rounded-full bg-emerald-600 flex items-center justify-center text-[20px] shrink-0">⚖️</span>
-                  <div className="flex-1 px-2 min-w-0">
-                    <div className="text-[11px] text-emerald-700">Weight</div>
-                    {editField === 'weight' ? (
-                      <input autoFocus value={weight} onChange={(e) => setWeight(e.target.value.replace(/[^0-9.]/g, ''))} inputMode="decimal" className="w-full bg-transparent text-[20px] font-bold text-black outline-none min-h-[44px]" />
-                    ) : (
-                      <div className="text-[20px] font-bold leading-none text-black truncate">{weight} kg</div>
-                    )}
-                  </div>
-                  <span className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 text-[16px] shrink-0">›</span>
-                </div>
-              </div>
-
-              <div className="mt-5">
-                <div className="text-[15px] font-bold text-black text-center mb-2">Plan type</div>
-                <div className="space-y-2">
-                  {([
-                    { pt: 'nutrition' as PlanType, emoji: '🍃', label: 'Nutrition only' },
-                    { pt: 'fitness' as PlanType, emoji: '🏋️', label: 'Fitness only' },
-                    { pt: 'both' as PlanType, emoji: '🎯', label: 'Both' },
-                  ]).map(({ pt, emoji, label }) => {
-                    const on = planType === pt;
-                    return (
-                      <button
-                        key={pt}
-                        type="button"
-                        onClick={() => setPlanType(pt)}
-                        className={`w-full rounded-full h-10 min-h-[44px] flex items-center px-3 gap-3 border shadow-sm transition-all min-w-0 ${on ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-black border-gray-200'}`}
-                      >
-                        <span className={`w-7 h-7 rounded-full flex items-center justify-center text-[15px] shrink-0 ${on ? 'bg-white/20' : 'bg-emerald-100'}`}>{emoji}</span>
-                        <span className="flex-1 text-left text-[13px] font-bold truncate">{label}</span>
-                        {on && <span className="w-6 h-6 rounded-full bg-white text-emerald-600 flex items-center justify-center text-[13px] font-bold shrink-0">✓</span>}
-                      </button>
-                    );
-                  })}
-                </div>
-                {planType !== 'both' && (
-                  <div className="mt-3 rounded-[14px] bg-white/80 border border-emerald-100 px-3.5 py-2 text-[11.5px] text-zinc-600 leading-snug break-words">
-                    {planType === 'nutrition' ? '🍽️ Nutrition only: سنخفي التمارين ونركز على المطبخ والأطباق.' : '🏋️ Fitness only: سنخفي المطبخ ونركز على التمارين والحرق.'}
-                  </div>
-                )}
-              </div>
-
-              <div className="sticky bottom-[14px] mt-4 space-y-1 min-w-0">
-                <button
-                  type="button"
-                  onClick={next}
-                  disabled={!isValid()}
-                  className={`w-full min-h-[56px] rounded-[16px] text-[18px] font-bold text-white bg-gradient-to-r from-emerald-600 to-emerald-700 shadow-lg transition-all active:scale-[0.98] ${!isValid() ? 'opacity-40 cursor-not-allowed' : ''}`}
-                >
-                  Continue
-                </button>
-                <button type="button" onClick={() => navigate('/')} className="w-full h-10 min-h-[44px] text-[14px] text-gray-600 underline text-center">Back</button>
-              </div>
-            </div>
-          )}
-
-          {step === 2 && (
-            <div className="space-y-5 min-w-0">
-              <div className="sticky top-0 z-30 bg-emerald-700 h-14 rounded-t-[20px] flex items-center justify-between px-4 shadow-md min-w-0">
-                <div className="flex items-center gap-2 min-w-0">
-                  <button type="button" onClick={() => setStep(1)} className="w-9 h-9 rounded-full bg-emerald-600 flex items-center justify-center text-emerald-100 text-[18px] shrink-0 active:scale-95">‹</button>
-                  <span className="text-[20px] leading-none shrink-0">🏋️</span>
-                  <span className="text-white font-bold text-[20px] leading-none whitespace-nowrap">Fitness Body</span>
-                </div>
-                <div className="flex items-center gap-2 shrink-0">
-                  <span className="text-[18px] leading-none">🔔</span>
-                  <span className="w-8 h-8 rounded-full bg-emerald-600 border border-emerald-400 flex items-center justify-center text-[15px] leading-none">👤</span>
-                </div>
-              </div>
-
-              <div>
-                <div className="flex items-center justify-between gap-2">
-                  <div className="text-[18px] font-bold text-gray-900">Activity Level</div>
-                  <span className="w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[11px] font-bold shrink-0">i</span>
-                </div>
-                <div className="mt-3 flex gap-2 overflow-x-auto snap-x no-scrollbar">
-                  {(Object.keys(ACTIVITY) as ActivityKey[]).map((x) => {
-                    const opt = ACTIVITY[x];
-                    const on = activity === x;
-                    return (
-                      <button
-                        key={x}
-                        type="button"
-                        onClick={() => setActivity(x)}
-                        className={`shrink-0 snap-start h-10 min-w-[92px] rounded-full border-2 border-emerald-600 text-[12px] font-bold px-3 flex items-center justify-center gap-1 transition-all active:scale-95 ${on ? 'bg-emerald-600 text-white' : 'bg-white text-emerald-700'}`}
-                      >
-                        {opt.emoji} {opt.label} {on && '✓'}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {planType !== 'nutrition' && (
-              <>
+              <div className="mt-5 grid grid-cols-2 gap-3">
                 <div>
-                  <div className="h-12 bg-emerald-100 rounded-[14px] flex items-center px-4 mt-1 border-2 border-emerald-200 focus-within:border-emerald-500 transition-colors">
+                  <label className="wiz-label" htmlFor="wz-height">{t('height')}</label>
+                  <div className="relative">
                     <input
-                      value={exerciseSearch}
-                      onChange={(e) => setExerciseSearch(e.target.value)}
-                      placeholder="ابحث عن نوع تمرين..."
-                      dir="rtl"
-                      className="flex-1 bg-transparent outline-none text-[16px] text-gray-600 placeholder:text-gray-400 min-w-0"
+                      id="wz-height"
+                      inputMode="numeric"
+                      value={height}
+                      onChange={(e) => setHeight(e.target.value.replace(/\D/g, ''))}
+                      className={`${inputDefault} pr-16`}
                     />
-                    <span className="text-emerald-700 text-[20px] shrink-0">🔍</span>
-                  </div>
-                  <div className="flex gap-2 mt-3">
-                    <button type="button" onClick={() => setExerciseMode('manual')} className={`flex-1 h-12 rounded-[14px] text-[14px] font-bold border-2 transition-all ${exerciseMode === 'manual' ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-emerald-700 border-emerald-600'}`}>👆 يدوي</button>
-                    <button type="button" onClick={autoPickExercises} className={`flex-1 h-12 rounded-[14px] text-[14px] font-bold border-2 transition-all ${exerciseMode === 'auto' ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-emerald-700 border-emerald-600'}`}>🤖 الموقع يختار تلقائي</button>
+                    <span className="absolute inset-y-0 end-4 flex items-center text-[13px] font-bold text-[#A0A8A4]">{t('wizard.unit.cm')}</span>
                   </div>
                 </div>
-
                 <div>
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="text-[18px] font-bold text-gray-900">Exercise Types</div>
-                    <span className="text-[12px] font-semibold text-emerald-700 shrink-0">{EXERCISE_TYPES.length} نوع</span>
-                  </div>
-                  <div className="mt-3 grid grid-cols-3 gap-2">
-                    {EXERCISE_TYPES.filter((t) => t.name.includes(exerciseSearch) || t.en.toLowerCase().includes(exerciseSearch.toLowerCase()) || t.focus.includes(exerciseSearch)).map((t) => {
-                      const on = exerciseTypes.includes(t.id);
-                      return (
-                        <button
-                          key={t.id}
-                          type="button"
-                          onClick={() => toggleExerciseType(t.id)}
-                          className={`relative rounded-[12px] flex flex-col items-center justify-center gap-1.5 py-2 min-h-[80px] cursor-pointer transition-all min-w-0 ${on ? 'border-2 border-emerald-600 bg-emerald-100 shadow-sm' : 'border border-emerald-100 bg-emerald-50 active:scale-95 active:bg-emerald-100 shadow-sm'}`}
-                        >
-                          {on && <span className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-emerald-600 text-white text-[11px] flex items-center justify-center font-bold">✓</span>}
-                          <span className="w-10 h-10 rounded-full bg-white border border-emerald-100 flex items-center justify-center text-[20px] shadow-sm shrink-0">{t.emoji}</span>
-                          <span className="text-[12px] font-bold text-gray-900 leading-none truncate max-w-full">{t.en}</span>
-                        </button>
-                      );
-                    })}
-                    {EXERCISE_TYPES.filter((t) => t.name.includes(exerciseSearch) || t.en.toLowerCase().includes(exerciseSearch.toLowerCase()) || t.focus.includes(exerciseSearch)).length === 0 && (
-                      <div className="col-span-3 text-[12px] text-gray-400 text-center py-4">لا يوجد نوع تمرين مطابق</div>
-                    )}
+                  <label className="wiz-label" htmlFor="wz-weight">{t('weightLabel')}</label>
+                  <div className="relative">
+                    <input
+                      id="wz-weight"
+                      inputMode="decimal"
+                      value={weight}
+                      onChange={(e) => setWeight(e.target.value.replace(/[^0-9.]/g, ''))}
+                      className={`${inputDefault} pr-16`}
+                    />
+                    <span className="absolute inset-y-0 end-4 flex items-center text-[13px] font-bold text-[#A0A8A4]">{t('wizard.unit.kg')}</span>
                   </div>
                 </div>
-
-                <div className="border-2 border-dashed border-emerald-400 rounded-[18px] bg-emerald-50/20 p-4">
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="text-[16px] font-bold text-gray-900">🔖 Saved Exercises</div>
-                    <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full shrink-0">{plannedExercises.length} تمرين</span>
-                  </div>
-                  <p className="mt-1 text-[10px] text-gray-500 leading-snug">اختر من الأعلى أو اضغط 🤖 تلقائي · المحفوظات تنتقل للـ Blueprint تلقائياً</p>
-                  <div className="h-10 bg-white border border-emerald-200 rounded-lg flex items-center px-3 mt-2 focus-within:border-emerald-500">
-                    <input value={selectedExerciseSearch} onChange={(e) => setSelectedExerciseSearch(e.target.value)} placeholder="ابحث في المحفوظة..." dir="rtl" className="flex-1 bg-transparent outline-none text-[16px] text-gray-600 placeholder:text-gray-400 min-w-0" />
-                    <span className="text-emerald-700 text-[16px] shrink-0">🔍</span>
-                  </div>
-                  <div className="mt-3 min-h-[40px] flex flex-wrap gap-2">
-                    {filteredPlanned.length ? (
-                      filteredPlanned.map((ex) => (
-                        <span key={ex.id} className="inline-flex items-center gap-1.5 bg-white border border-emerald-200 rounded-full h-8 px-3 text-[12px] font-medium text-gray-700 max-w-full">
-                          <span className="shrink-0">{ex.emoji}</span>
-                          <span className="truncate max-w-[130px]">{ex.name}</span>
-                          <button type="button" onClick={() => removeExercise(ex.id)} className="text-zinc-400 hover:text-red-500 text-[11px] shrink-0">✕</button>
-                        </span>
-                      ))
-                    ) : (
-                      <span className="text-[11.5px] text-gray-400">لا تمارين محفوظة بعد — اضغط 🤖 الموقع يختار تلقائي</span>
-                    )}
-                  </div>
-
-                  <div className="mt-4">
-                    <div className="text-[13px] font-bold text-gray-900 mb-2">Workout Routine</div>
-                    <div className="grid grid-cols-2 gap-2">
-                      {WORKOUTS.map((w) => {
-                        const on = workout === w.id;
-                        return (
-                          <div
-                            key={w.id}
-                            onClick={() => setWorkout(w.id)}
-                            className={`rounded-[12px] p-2.5 cursor-pointer min-w-0 transition-all active:scale-95 ${on ? 'bg-emerald-600 text-white shadow-sm' : 'bg-emerald-100 text-gray-700'}`}
-                          >
-                            <div className="text-[12px] font-bold leading-tight break-words">{w.name}</div>
-                            <div className={`text-[10px] mt-0.5 leading-snug break-words ${on ? 'text-emerald-50' : 'text-gray-500'}`}>{w.dur} · {w.focus}</div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {numbers && (
-                    <div className="mt-3 rounded-[12px] bg-emerald-100 p-3 text-[11px] leading-relaxed">
-                      <div className="font-bold text-emerald-800">🔥 TDEE Preview</div>
-                      <div className="mt-1 text-emerald-900">
-                        Maintenance: <b>{numbers.tdeeBase} kcal/day</b> •{' '}
-                        {goal === 'lose' ? 'Target for fat loss' : goal === 'gain_muscle' || goal === 'gain_weight' ? 'Target for muscle gain' : 'Maintenance target'}:{' '}
-                        <b>{goal === 'lose' ? numbers.tdeeBase - 500 : goal === 'gain_muscle' || goal === 'gain_weight' ? numbers.tdeeBase + 300 : numbers.tdeeBase} kcal/day</b>
-                      </div>
-                      <div className="mt-0.5 text-emerald-900">Protein {numbers.protein}g · Carbs {numbers.carbs}g · Fats {numbers.fat}g</div>
-                    </div>
-                  )}
-
-                  <button type="button" onClick={saveExercises} className="w-full h-11 rounded-[12px] bg-emerald-600 text-white text-[13px] font-bold mt-3 transition-all active:scale-[0.97]">حفظ للـ Blueprint 💾</button>
-                </div>
-              </>
-              )}
-
-              {planType === 'nutrition' && numbers && (
-                <div className="rounded-[12px] bg-emerald-100 p-3 text-[11px] leading-relaxed">
-                  <div className="font-bold text-emerald-800">🔥 TDEE Preview</div>
-                  <div className="mt-1 text-emerald-900">
-                    Maintenance: <b>{numbers.tdeeBase} kcal/day</b> •{' '}
-                    {goal === 'lose' ? 'Target for fat loss' : goal === 'gain_muscle' || goal === 'gain_weight' ? 'Target for muscle gain' : 'Maintenance target'}:{' '}
-                    <b>{goal === 'lose' ? numbers.tdeeBase - 500 : goal === 'gain_muscle' || goal === 'gain_weight' ? numbers.tdeeBase + 300 : numbers.tdeeBase} kcal/day</b>
-                  </div>
-                  <div className="mt-0.5 text-emerald-900">Protein {numbers.protein}g · Carbs {numbers.carbs}g · Fats {numbers.fat}g</div>
-                </div>
-              )}
-
-              <div className="flex gap-3 mt-6 mb-4">
-                <button type="button" onClick={() => setStep(1)} className="flex-1 h-14 rounded-[14px] bg-white border-2 border-gray-300 text-gray-700 text-[16px] font-bold flex items-center justify-center gap-2 transition-all active:bg-gray-100 active:scale-[0.98] min-w-0">
-                  <span className="shrink-0">←</span> رجوع
-                </button>
-                <button type="button" onClick={next} className="flex-1 h-14 rounded-[14px] bg-emerald-600 text-white text-[16px] font-bold flex items-center justify-center gap-2 shadow-lg transition-all active:scale-95 min-w-0">
-                  Continue →
-                </button>
               </div>
+
+              {numbers && (
+                <div className="mt-5 rounded-[16px] bg-[#F4F1EB] border border-[#EFEBE4] px-4 py-3 text-[12px] text-[#6B7A75] leading-snug">
+                  BMI <span className="num font-bold text-[#0F4C3A]">{numbers.bmi}</span> · {numbers.bmiCat} ·{' '}
+                  {t('wizard.step2.maintenance')} <span className="num font-bold text-[#0F4C3A]">{numbers.tdeeBase}</span> kcal
+                </div>
+              )}
             </div>
-          )}
 
-          {step === 3 && (
-            <div className="w-full bg-[#e8f5e9]/90 backdrop-blur rounded-[28px] p-5 shadow-2xl min-w-0">
-              <div className="w-full bg-white rounded-full h-12 flex items-center justify-between px-3 shadow-sm min-w-0">
-                <button type="button" onClick={() => setStep(2)} aria-label="Back" className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 text-[18px] shrink-0 select-none active:scale-95">‹</button>
-                <div className="text-[14px] font-bold text-emerald-900 whitespace-nowrap">Step 3 of 3</div>
-                <div className="flex items-center gap-1.5 shrink-0">
-                  <span className="w-3 h-3 rounded-full bg-emerald-600" />
-                  <span className="w-2 h-2 rounded-full bg-emerald-600" />
-                  <span className="w-2 h-2 rounded-full bg-gray-300" />
+            <div className={`${cardBase} p-6`}>
+              <div className="flex items-center gap-3">
+                <span className="w-11 h-11 rounded-full bg-[#0F4C3A] flex items-center justify-center text-[20px] shrink-0">🎯</span>
+                <div>
+                  <h2 className="text-[18px] font-extrabold leading-none">{t('wizard.step1.planType')}</h2>
+                  <p className="mt-1 text-[12.5px] text-[#6B7A75]">{t('wizard.step1.planTypeSub')}</p>
                 </div>
               </div>
 
-              <h2 className="mt-4 text-[22px] font-black leading-tight text-black">اختر مطبخك 🌍</h2>
-
-              <div className="mt-3 grid grid-cols-3 gap-2">
-                {countryOptions.map((o) => {
-                  const on = countryMode === o.m;
+              <div className="mt-5 space-y-3">
+                {(['nutrition', 'fitness', 'both'] as PlanType[]).map((pt) => {
+                  const on = planType === pt;
                   return (
                     <button
-                      key={o.m}
+                      key={pt}
                       type="button"
-                      onClick={() => chooseCountry(o.m)}
-                      className={`relative flex flex-col items-center justify-center gap-1.5 min-h-[88px] rounded-[16px] border-2 shadow-sm transition-all min-w-0 active:scale-95 ${on ? 'bg-emerald-600 border-emerald-600 text-white' : 'bg-white border-gray-200 text-gray-700'}`}
+                      onClick={() => setPlanType(pt)}
+                      className={`w-full rounded-[18px] border-2 px-4 py-3.5 text-start transition-all min-w-0 ${on ? 'border-[#D4AF37] bg-[#FFFBEF] shadow-[0_8px_18px_rgba(212,175,55,0.18)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
                     >
-                      <span className="text-[24px] leading-none shrink-0">{o.flag}</span>
-                      <span className="text-[14px] font-bold leading-none">{o.label}</span>
-                      <span className={`text-[11px] font-semibold leading-none ${on ? 'text-white/80' : 'text-gray-500'}`}>{o.count} طبق</span>
-                      {on && <span className="absolute top-2 right-2 w-5 h-5 rounded-full bg-white text-emerald-700 flex items-center justify-center text-[11px] font-bold">✓</span>}
+                      <div className="flex items-center gap-2.5">
+                        <span className="text-[16px]" style={{ flexShrink: 0 }}>{pt === 'nutrition' ? '🍃' : pt === 'fitness' ? '🏋️' : '🎯'}</span>
+                        <span className={`flex-1 text-[14px] font-extrabold ${on ? 'text-[#0F4C3A]' : 'text-[#6B7A75]'}`}>
+                          {t(pt === 'nutrition' ? 'wizard.step1.plan.nutrition.title' : pt === 'fitness' ? 'wizard.step1.plan.fitness.title' : 'wizard.step1.plan.both.title')}
+                        </span>
+                        {on && <span className="w-6 h-6 rounded-full bg-[#D4AF37] text-[#0F4C3A] flex items-center justify-center text-[12px] font-bold shrink-0">✓</span>}
+                      </div>
+                      <p className="mt-1.5 text-[12px] text-[#6B7A75] leading-snug">
+                        {t(pt === 'nutrition' ? 'wizard.step1.plan.nutrition.desc' : pt === 'fitness' ? 'wizard.step1.plan.fitness.desc' : 'wizard.step1.plan.both.desc')}
+                      </p>
                     </button>
                   );
                 })}
               </div>
-
-              <div className="mt-4">
-                <div className="h-10 bg-emerald-100 rounded-full px-4 flex items-center justify-center gap-2 shadow-sm w-fit min-w-0">
-                  <span className="text-[16px] leading-none">🔥</span>
-                  <span className="text-[14px] font-bold text-emerald-700 whitespace-nowrap">{totalCal} سعرة اليوم</span>
-                </div>
-              </div>
-
-              <div className="mt-4 flex gap-1.5 overflow-x-auto no-scrollbar">
-                {MEAL_TABS.map((t) => (
-                  <button
-                    key={t.key}
-                    type="button"
-                    onClick={() => setMealTab(t.key)}
-                    className={`h-11 min-w-[96px] shrink-0 rounded-full border-2 px-3 text-[14px] font-bold flex items-center justify-center gap-1 transition-all active:scale-95 ${mealTab === t.key ? t.active : 'bg-white text-gray-700 border-gray-200'}`}
-                  >
-                    {t.emoji} {t.label} <span className="text-[11px] opacity-80">({tabCounts[t.key]})</span>
-                  </button>
-                ))}
-              </div>
-
-              <div className="mt-4 space-y-2">
-                <div className="h-12 bg-white border-2 border-gray-200 rounded-[14px] flex items-center px-4 focus-within:border-emerald-500 transition-colors min-w-0">
-                  <input
-                    value={dishSearch}
-                    onChange={(e) => setDishSearch(e.target.value)}
-                    placeholder={searchPlaceholder}
-                    dir="rtl"
-                    className="flex-1 bg-transparent outline-none text-[16px] text-gray-700 placeholder:text-gray-400 min-w-0"
-                  />
-                  <span className="text-[20px] text-emerald-700 shrink-0">🔍</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setHealthyOnly((p) => !p)}
-                    className={`h-10 rounded-full px-4 text-[13px] font-semibold border-2 transition-all flex items-center gap-1.5 ${healthyOnly ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-gray-600 border-gray-200'}`}
-                  >
-                    ✅ صحي فقط
-                  </button>
-                  <div className="flex gap-1.5 shrink-0 ml-auto">
-                    <button type="button" onClick={() => setCategoryMode('manual')} className={`px-3 h-9 rounded-full text-[11px] font-semibold border transition-all ${categoryMode === 'manual' ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-gray-600 border-gray-200'}`}>✋ يدوي</button>
-                    <button type="button" onClick={autoPickDishes} className={`px-3 h-9 rounded-full text-[11px] font-semibold border transition-all ${categoryMode === 'auto' ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-gray-600 border-gray-200'}`}>🤖 تلقائي</button>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-3 space-y-2 max-h-[360px] overflow-y-auto">
-                {displayedRows.length ? (
-                  displayedRows.map((r) => {
-                    const checked = selectedDishKeys.includes(r.key);
-                    const dot = r.dish.confidence_color;
-                    return (
-                      <div key={r.key} className={`flex items-center gap-3 min-h-[88px] p-2.5 bg-white rounded-[14px] border shadow-sm transition-all min-w-0 ${checked ? 'border-emerald-400 bg-emerald-50/30' : 'border-gray-200'}`}>
-                        <span className="w-16 h-16 rounded-[14px] bg-emerald-50 flex items-center justify-center text-[28px] shrink-0">🍲</span>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-1.5 min-w-0">
-                            <span className="font-bold text-[14px] text-black truncate">{r.dish.name}</span>
-                            <span className={`w-2 h-2 rounded-full shrink-0 ${dot === 'green' ? 'bg-green-500' : dot === 'yellow' ? 'bg-yellow-500' : 'bg-orange-500'}`} />
-                          </div>
-                          <div className="text-[11px] text-gray-500 truncate mt-0.5">{r.cat.name_ar}{r.dish.healthy ? ' · صحي ✅' : ''}</div>
-                          <div className="text-[12px] text-gray-500 mt-0.5">P {r.dish.p}g · C {r.dish.c}g · F {r.dish.f}g</div>
-                        </div>
-                        <div className="flex flex-col items-end gap-1.5 shrink-0">
-                          <span className="text-[14px] font-bold text-emerald-700 whitespace-nowrap">{r.dish.cal_serv} سعر</span>
-                          <button type="button" onClick={() => addDish(r.key)} className={`w-9 h-9 rounded-full flex items-center justify-center text-[18px] text-white shadow-sm transition-all active:scale-95 ${checked ? 'bg-gray-400' : 'bg-emerald-600'}`}>
-                            {checked ? '✓' : '+'}
-                          </button>
-                        </div>
-                      </div>
-                    );
-                  })
-                ) : (
-                  <div className="text-center text-[13px] text-gray-400 py-6">لا توجد أطباق مطابقة</div>
-                )}
-              </div>
-
-              <div className="mt-4 border-2 border-dashed border-emerald-400 rounded-[18px] bg-emerald-50/20 p-4 min-w-0">
-                <div className="flex items-center justify-between gap-2 min-w-0">
-                  <div className="text-[15px] font-bold text-gray-900 min-w-0 truncate">🍱 الوجبات المحفوظة للـ Blueprint</div>
-                  {!selectedDishKeys.length && <span className="text-[10px] text-gray-400 shrink-0">لا يوجد محفوظات بعد</span>}
-                </div>
-                <div className="h-10 bg-white border border-emerald-200 rounded-[10px] flex items-center px-3 mt-2 focus-within:border-emerald-500 transition-colors min-w-0">
-                  <input value={savedSearch} onChange={(e) => setSavedSearch(e.target.value)} placeholder="ابحث في المحفوظة..." dir="rtl" className="flex-1 bg-transparent outline-none text-[16px] text-gray-600 placeholder:text-gray-400 min-w-0" />
-                  <span className="text-emerald-700 text-[16px] shrink-0">🔍</span>
-                </div>
-                <div className="mt-3 space-y-3">
-                  {MEAL_TABS.map((t) => {
-                    const list = mealSummary[t.key].filter((x) => !savedSearch.trim() || x.dish.name.includes(savedSearch.trim()));
-                    if (!list.length) return null;
-                    return (
-                      <div key={t.key} className="min-w-0">
-                        <div className="text-[12px] font-bold text-gray-700 mb-1">{t.emoji} {t.label} محفوظ ({list.length})</div>
-                        <div className="flex flex-wrap gap-1.5">
-                          {list.map((x) => (
-                            <span key={x.key} className="inline-flex items-center gap-1.5 bg-white border border-emerald-200 rounded-full h-8 px-3 text-[12px] font-medium text-gray-700 max-w-full">
-                              <span className="truncate max-w-[140px]">{x.dish.name} {x.dish.cal_serv}</span>
-                              <button type="button" onClick={() => removeChip(x.key, t.key)} className="text-gray-400 hover:text-red-500 text-[11px] shrink-0">✕</button>
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    );
-                  })}
-                  {!selectedDishKeys.length && <div className="text-[11px] text-gray-400">اضغط + بجانب أي طبق لإضافته هنا وحفظه في الـ Blueprint</div>}
-                </div>
-                <div className="mt-3 rounded-[12px] border border-emerald-200 bg-white p-2.5">
-                  <div className="text-[12px] text-emerald-900 font-semibold">✅ المجموع: <b>{totalCal}</b> سعر · <b>{selectedDishKeys.length}</b> طبق · {countryMode === 'both' ? 'مصر + تونس' : countryMode === 'egyptian' ? 'مصر 🇪🇬' : 'تونس 🇹🇳'}</div>
-                </div>
-              </div>
-
-              <div className="flex gap-3 mt-5">
-                <button type="button" onClick={() => setStep(2)} className="flex-1 h-14 rounded-[14px] bg-white border-2 border-gray-300 text-gray-700 text-[16px] font-bold flex items-center justify-center gap-2 transition-all active:bg-gray-100 active:scale-[0.98] min-w-0">
-                  <span className="shrink-0">←</span> Back
-                </button>
-                <button type="button" onClick={() => setStep(4)} className="flex-1 h-14 rounded-[14px] bg-emerald-600 text-white text-[16px] font-bold flex items-center justify-center gap-2 shadow-lg transition-all active:scale-95 min-w-0">
-                  Next →
-                </button>
-              </div>
+              <p className="mt-3.5 text-[11.5px] text-[#A0A8A4] leading-snug">{t('fcProfileNote')}</p>
             </div>
-          )}
 
-          {step === 4 && (
-            <div className="space-y-6">
-              <div className="space-y-1.5">
-                <label className="text-[13px] font-medium text-zinc-700">Goal type</label>
-                <div className="grid grid-cols-2 gap-2">
-                  {(['lose', 'gain_muscle', 'gain_weight', 'wellness', 'athletic'] as GoalKey[]).map((x) => (
+            <div className="lg:col-span-2">
+              <button type="button" onClick={next} disabled={!isValid()} className="cta-calc disabled:opacity-50 disabled:cursor-not-allowed">
+                {t('wizard.step1.cta')}
+              </button>
+            </div>
+          </div>
+        )}
+
+        {step === 2 && (
+          <div className="mt-6 space-y-5">
+            <div className={`${cardBase} p-6`}>
+              <div className="flex items-center justify-between gap-2">
+                <div>
+                  <h2 className="text-[18px] font-extrabold">{t('wizard.step2.activity')}</h2>
+                  <p className="mt-1 text-[12.5px] text-[#6B7A75]">{t('wizard.step2.activitySub')}</p>
+                </div>
+                <span className="text-[30px] leading-none shrink-0">{ACTIVITY[activity].emoji}</span>
+              </div>
+
+              <div className="mt-4 flex gap-2 overflow-x-auto no-scrollbar snap-x pb-1">
+                {ACTIVITY_ORDER.map((x) => {
+                  const opt = ACTIVITY[x];
+                  const on = activity === x;
+                  return (
                     <button
                       key={x}
                       type="button"
-                      onClick={() => changeGoal(x)}
-                      className={`h-[44px] rounded-[8px] border text-[12px] font-semibold ${goal === x ? 'bg-[#1e40af] text-white border-[#1e40af]' : 'bg-white border-zinc-300 text-zinc-700 hover:border-zinc-400'}`}
+                      onClick={() => setActivity(x)}
+                      className={`shrink-0 snap-start rounded-full border-2 px-4 h-[46px] text-[13px] font-bold flex items-center gap-1.5 transition-all active:scale-95 ${on ? 'bg-[#0F4C3A] border-[#0F4C3A] text-white shadow-[0_8px_18px_rgba(15,76,58,0.25)]' : 'bg-white border-[#EFEBE4] text-[#0F4C3A] hover:border-[#D4AF37]'}`}
                     >
-                      {GOAL_ICONS[x]} {GOAL_BTN[x]}
+                      <span className="shrink-0">{opt.emoji}</span>
+                      {ACTIVITY_LABEL(x)}
                     </button>
+                  );
+                })}
+              </div>
+              <p className="mt-3 text-[12.5px] font-medium text-[#6B7A75]">💬 {ACTIVITY_DESC(activity)}</p>
+            </div>
+
+            {planType === 'nutrition' ? (
+              <div className={`${cardBase} p-6`}>
+                <p className="text-[13px] text-[#6B7A75] leading-relaxed">{t('wizard.step2.onlyNutrition')}</p>
+                {numbers && (
+                  <div className="mt-4 rounded-[14px] bg-[#F4F1EB] p-3.5 text-[12px] text-[#6B7A75] leading-relaxed">
+                    <div className="font-bold text-[#0F4C3A]">{t('wizard.step2.tdeePreview')}</div>
+                    <div className="mt-1">
+                      {t('wizard.step2.maintenance')}: <b className="num">{numbers.tdeeBase}</b> kcal/day
+                    </div>
+                    <div className="mt-0.5">{macrosT(numbers.protein, numbers.carbs, numbers.fat)}</div>
+                  </div>
+                )}
+              </div>
+            ) : exerciseMode === 'auto' ? (
+              <div
+                className="rounded-[26px] p-6 md:p-7 relative overflow-hidden text-white"
+                style={{ background: 'linear-gradient(135deg,#0F4C3A,#14532D 55%,#1f6b52)' }}
+              >
+                <div className="absolute -top-8 -end-8 text-[120px] leading-none opacity-15 select-none">🤖</div>
+                <div className="flex items-center gap-2">
+                  <span className="wiz-progress-badge">{t('wizard.step2.autoTitle')}</span>
+                  <span className="text-[12px] font-semibold text-white/70">{t('wizard.step2.autoResult').replace('{n}', String(exerciseTypes.length))}</span>
+                </div>
+                <p className="mt-3 text-[13.5px] text-white/85 leading-relaxed max-w-[520px]">{t('wizard.step2.autoDesc')}</p>
+
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {plannedExercises.map((ex) => (
+                    <span key={ex.id} className="inline-flex items-center gap-1.5 bg-white/12 border border-white/15 rounded-full h-9 px-3.5 text-[12.5px] font-bold text-white">
+                      <span className="shrink-0">{ex.emoji}</span>
+                      <span className="truncate max-w-[150px]">{ex.name}</span>
+                    </span>
                   ))}
                 </div>
-              </div>
 
-              <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-1.5 min-w-0">
-                  <label className="text-[13px] font-medium text-zinc-700">Target weight (kg)</label>
-                  <input value={targetWeight} onChange={(e) => setTargetWeight(e.target.value.replace(/[^0-9.]/g, ''))} inputMode="decimal" className={inputClass} />
-                </div>
-                <div className="space-y-1.5 min-w-0">
-                  <label className="text-[13px] font-medium text-zinc-700">Timeline (weeks)</label>
-                  <input value={timeline} onChange={(e) => setTimeline(e.target.value.replace(/\D/g, ''))} inputMode="numeric" className={inputClass} />
+                <div className="mt-5 flex flex-wrap gap-2.5">
+                  <button
+                    type="button"
+                    onClick={() => autoPickExercises()}
+                    className="h-[46px] px-6 rounded-full bg-[#D4AF37] text-[#0F4C3A] font-extrabold text-[14px] flex items-center gap-2 shadow-[0_8px_20px_rgba(212,175,55,0.4)] hover:translate-y-[-1px] transition-all active:scale-95"
+                  >
+                    {t('wizard.step2.regenerate')}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setExerciseMode('manual')}
+                    className="h-[46px] px-5 rounded-full bg-white/10 border border-white/25 text-white font-bold text-[13.5px] hover:bg-white/20 transition-all active:scale-95"
+                  >
+                    {t('wizard.step2.switchManual')}
+                  </button>
                 </div>
               </div>
+            ) : null}
 
-              <div className="space-y-3">
-                  <label className="text-[13px] font-bold">{GOAL_ICONS[goal]} {GOAL_INTENSITY_LABEL[goal]}</label>
-                  {goal === 'wellness' && (
-                    <div className="rounded-[8px] bg-violet-50 border border-violet-100 px-3 py-2 text-[11px] text-zinc-600 leading-snug break-words">
-                      ✨ Recomposition &amp; Wellness = الحفاظ + تحسين الصحة العامة
-                    </div>
-                  )}
-                  <div className="diet-intensity-scroll-box h-[96px] overflow-y-auto border-2 border-zinc-200 rounded-[12px] p-1.5 bg-white grid grid-cols-3 gap-1.5">
-                    {DIETS[goal].map((d) => {
-                      const on = dietId === d.id;
+            {planType !== 'nutrition' && exerciseMode === 'manual' && (
+              <div className="space-y-5">
+                <div className={`${cardBase} p-6`}>
+                  <div className="flex items-center gap-2">
+                    <span className="wiz-progress-badge">{t('wizard.step2.manual')}</span>
+                    <span className="text-[12px] font-semibold text-[#6B7A75] shrink-0">{t('wizard.step2.exerciseTypes')}</span>
+                    <span className="ms-auto text-[12px] font-semibold text-[#D4AF37] bg-[#FFF8E7] px-3 py-1 rounded-full shrink-0">
+                      {t('wizard.step2.typesCount').replace('{n}', String(EXERCISE_TYPES.length))}
+                    </span>
+                  </div>
+                  <div className="mt-4 h-[46px] bg-[#F4F1EB] rounded-[14px] flex items-center px-4 border-2 border-transparent focus-within:border-[#D4AF37] transition-colors">
+                    <input
+                      value={exerciseSearch}
+                      onChange={(e) => setExerciseSearch(e.target.value)}
+                      placeholder={t('wizard.step2.search')}
+                      className="flex-1 bg-transparent outline-none text-[15px] text-[#0F4C3A] placeholder:text-[#A0A8A4] min-w-0"
+                    />
+                    <span className="text-[#0F4C3A] text-[18px] shrink-0">🔍</span>
+                  </div>
+                  <div className="mt-3 grid grid-cols-3 sm:grid-cols-4 gap-2.5">
+                    {EXERCISE_TYPES.filter((ty) => ty.name.includes(exerciseSearch) || ty.en.toLowerCase().includes(exerciseSearch.toLowerCase()) || ty.focus.includes(exerciseSearch)).map((ty) => {
+                      const on = exerciseTypes.includes(ty.id);
                       return (
                         <button
-                          key={d.id}
+                          key={ty.id}
                           type="button"
-                          onClick={() => setDietId(d.id)}
-                          className={`rounded-[8px] border-2 p-2 text-left transition-all min-w-0 ${on ? 'border-orange-500 bg-orange-50' : 'border-zinc-200'}`}
+                          onClick={() => toggleExerciseType(ty.id)}
+                          className={`relative rounded-[16px] flex flex-col items-center justify-center gap-1.5 py-2.5 min-h-[84px] cursor-pointer transition-all min-w-0 ${on ? 'border-2 border-[#0F4C3A] bg-[#0F4C3A] shadow-[0_8px_16px_rgba(15,76,58,0.2)]' : 'border border-[#E3E0D8] bg-white hover:border-[#D4AF37]'}`}
                         >
-                          <div className="text-[10.5px] font-bold leading-tight break-words">{d.emoji} {d.short}</div>
-                          <div className="mt-0.5 text-[10px] text-zinc-500 leading-snug break-words">{d.rate}</div>
-                          <div className="mt-0.5 text-[10.5px] font-semibold text-red-600">{signedDelta(goal, d)} سعر</div>
+                          {on && (
+                            <span className="absolute top-1.5 end-1.5 w-5 h-5 rounded-full bg-[#D4AF37] text-[#0F4C3A] text-[11px] flex items-center justify-center font-bold">✓</span>
+                          )}
+                          <span className={`w-10 h-10 rounded-full flex items-center justify-center text-[20px] shadow-sm shrink-0 ${on ? 'bg-white/15' : 'bg-[#F4F1EB]'}`}>{ty.emoji}</span>
+                          <span className={`text-[12px] font-bold leading-none truncate max-w-full ${on ? 'text-white' : 'text-[#0F4C3A]'}`}>{ty.en}</span>
                         </button>
                       );
                     })}
+                    {EXERCISE_TYPES.filter((ty) => ty.name.includes(exerciseSearch) || ty.en.toLowerCase().includes(exerciseSearch.toLowerCase()) || ty.focus.includes(exerciseSearch)).length === 0 && (
+                      <div className="col-span-full text-[12.5px] text-[#A0A8A4] text-center py-4">{t('wizard.step2.noMatches')}</div>
+                    )}
                   </div>
-                  {diet.warning && <div className="text-[11px] text-red-600">⚠️ {diet.warning}</div>}
                 </div>
 
-              {numbers && (
-                <div className="rounded-[12px] border border-zinc-200 bg-zinc-50/70 p-4 space-y-2">
-                  <div className="text-[12px] font-semibold text-zinc-700">Projection</div>
-                  <div className="text-[13px] text-zinc-600 leading-relaxed break-words">{projectionText}</div>
-                  <div className="text-[12px] text-zinc-500">Target calories: ~{numbers.targetCal} kcal / day ({numbers.wk.name})</div>
+                <div className={`${cardBase} p-6`}>
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[16px] shrink-0">🔖</span>
+                      <h3 className="text-[15px] font-extrabold">{t('wizard.step2.saved')}</h3>
+                    </div>
+                    <span className="text-[12px] font-semibold bg-[#FFF8E7] text-[#B8860B] px-3 py-1 rounded-full shrink-0">
+                      {t('wizard.step5.exercisesCount').replace('{n}', String(plannedExercises.length))}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-[11.5px] text-[#6B7A75]">{t('wizard.step2.savedSub')}</p>
+
+                  <div className="grid grid-cols-2 gap-2.5 mt-3">
+                    {WORKOUTS.map((w) => {
+                      const on = workout === w.id;
+                      return (
+                        <div
+                          key={w.id}
+                          onClick={() => setWorkout(w.id)}
+                          className={`rounded-[14px] p-3 cursor-pointer min-w-0 transition-all active:scale-95 ${on ? 'bg-[#0F4C3A] text-white shadow-[0_8px_16px_rgba(15,76,58,0.2)]' : 'bg-[#F4F1EB] text-[#0F4C3A] hover:border hover:border-[#D4AF37]'}`}
+                        >
+                          <div className="text-[12.5px] font-bold leading-tight break-words">{w.name}</div>
+                          <div className={`text-[10.5px] mt-0.5 leading-snug break-words ${on ? 'text-white/70' : 'text-[#6B7A75]'}`}>
+                            {w.dur} · {w.focus}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <div className="mt-4 h-[44px] bg-[#F4F1EB] rounded-[12px] flex items-center px-3 border-2 border-transparent focus-within:border-[#D4AF37]">
+                    <input value={selectedExerciseSearch} onChange={(e) => setSelectedExerciseSearch(e.target.value)} placeholder={t('wizard.step3.savedSearch')} className="flex-1 bg-transparent outline-none text-[14px] text-[#0F4C3A] placeholder:text-[#A0A8A4] min-w-0" />
+                    <span className="text-[#0F4C3A] text-[15px] shrink-0">🔍</span>
+                  </div>
+                  <div className="mt-3 min-h-[40px] flex flex-wrap gap-2">
+                    {filteredPlanned.length ? (
+                      filteredPlanned.map((ex) => (
+                        <span key={ex.id} className="inline-flex items-center gap-1.5 bg-[#F4F1EB] border border-[#EFEBE4] rounded-full h-9 px-3.5 text-[12.5px] font-semibold text-[#0F4C3A] max-w-full">
+                          <span className="shrink-0">{ex.emoji}</span>
+                          <span className="truncate max-w-[140px]">{ex.name}</span>
+                          <button type="button" onClick={() => removeExercise(ex.id)} className="text-[#9AA19D] hover:text-red-500 text-[11px] shrink-0">✕</button>
+                        </span>
+                      ))
+                    ) : (
+                      <span className="text-[12px] text-[#A0A8A4]">{t('wizard.step2.savedEmpty')}</span>
+                    )}
+                  </div>
+
+                  {numbers && (
+                    <div className="mt-4 rounded-[14px] bg-[#F4F1EB] p-3.5 text-[12px] text-[#6B7A75] leading-relaxed">
+                      <div className="font-bold text-[#0F4C3A]">{t('wizard.step2.tdeePreview')}</div>
+                      <div className="mt-1">
+                        {t('wizard.step2.maintenance')}: <b className="num">{numbers.tdeeBase}</b> kcal/day ·{' '}
+                        {goal === 'lose' ? t('wizard.step2.targetLose') : goal === 'gain_muscle' || goal === 'gain_weight' ? t('wizard.step2.targetGain') : t('wizard.step2.targetMaintain')}:{' '}
+                        <b className="num">{goal === 'lose' ? numbers.tdeeBase - 500 : goal === 'gain_muscle' || goal === 'gain_weight' ? numbers.tdeeBase + 300 : numbers.tdeeBase}</b> kcal/day
+                      </div>
+                      <div className="mt-0.5">{macrosT(numbers.protein, numbers.carbs, numbers.fat)}</div>
+                    </div>
+                  )}
+
+                  <button type="button" onClick={saveExercises} className="btn-primary w-full mt-4 rounded-[14px]">
+                    {t('wizard.step2.saveBlueprint')}
+                  </button>
                 </div>
+              </div>
+            )}
+
+            <div className="flex gap-3">
+              <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
+                {t('wizard.back')}
+              </button>
+              <button type="button" onClick={next} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
+                {t('wizard.continue')}
+              </button>
+            </div>
+          </div>
+        )}
+
+        {step === 3 && (
+          <div className="mt-6 space-y-5">
+            <div
+              className="rounded-[26px] p-6 md:p-7 relative overflow-hidden text-white"
+              style={{ background: 'linear-gradient(135deg,#0F4C3A,#14532D 55%,#1f6b52)' }}
+            >
+              <div className="absolute -top-6 -end-6 text-[110px] leading-none opacity-15 select-none">✨</div>
+              <div className="flex items-center gap-2">
+                <span className="wiz-progress-badge">{t('wizard.step3.autoTitle')}</span>
+              </div>
+              <p className="mt-3 text-[13.5px] text-white/85 leading-relaxed max-w-[560px]">{t('wizard.step3.autoDesc')}</p>
+
+              {autoBuilding ? (
+                <div className="mt-5 flex items-center gap-3 rounded-[18px] bg-white/10 border border-white/15 px-5 py-4">
+                  <span className="w-9 h-9 rounded-full border-[3px] border-[#D4AF37] border-t-transparent animate-spin shrink-0" />
+                  <span className="text-[15px] font-bold">{t('wizard.step3.loading')}</span>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={runAutoKitchen}
+                  className="mt-5 h-[54px] px-7 rounded-full bg-[#D4AF37] text-[#0F4C3A] font-extrabold text-[15px] flex items-center gap-2 shadow-[0_10px_24px_rgba(212,175,55,0.45)] hover:translate-y-[-1px] transition-all active:scale-95"
+                >
+                  {t('wizard.step3.autoBtn')}
+                </button>
               )}
             </div>
-          )}
 
-{step === 5 && numbers && (
-            <div className="w-full max-w-[480px] mx-auto flex flex-col">
-              <div className="bg-gradient-to-r from-[#0e9f6e] to-[#0a8a5e] px-4 pt-3 pb-3 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-white font-extrabold text-[13px] tracking-wider border border-white/20 shrink-0">HC</div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-white text-[18px] font-bold leading-[18px] truncate">Your Personalized Health Blueprint</div>
-                  <div className="text-white/80 text-[12px] leading-[14px] mt-0.5 truncate">HealthCalc.ai — Science-Based Nutrition Planning</div>
+            <div className="flex items-center gap-3">
+              <span className="h-px flex-1 bg-[#E9E5DB]" />
+              <span className="px-4 py-1.5 rounded-full bg-white border border-[#E9E5DB] text-[12px] font-extrabold tracking-[0.2em] text-[#6B7A75]">{t('wizard.step3.or')}</span>
+              <span className="h-px flex-1 bg-[#E9E5DB]" />
+            </div>
+
+            <div className={`${cardBase} p-6`}>
+              <div className="flex items-center justify-between gap-2 flex-wrap">
+                <div>
+                  <h2 className="text-[18px] font-extrabold">{t('wizard.step3.chooseCuisine')}</h2>
+                  <p className="mt-0.5 text-[12px] text-[#6B7A75]">✨ {t('wizard.step3.manualBtn')}</p>
                 </div>
-                <button type="button" onClick={() => notify('Close preview')} className="w-8 h-8 rounded-xl bg-white/15 flex items-center justify-center text-white/90 hover:bg-white/25 shrink-0">
-                  <span className="text-[18px] leading-none">×</span>
+                <button
+                  type="button"
+                  onClick={() => setHealthyOnly((p) => !p)}
+                  className={`h-10 rounded-full px-4 text-[13px] font-bold border-2 transition-all ${healthyOnly ? 'bg-[#0F4C3A] text-white border-[#0F4C3A]' : 'bg-white text-[#0F4C3A] border-[#E3E0D8] hover:border-[#D4AF37]'}`}
+                >
+                  {t('wizard.step3.healthyOnly')}
                 </button>
               </div>
 
-              <div className="bg-white px-3 py-2 flex items-center justify-between border-b border-gray-100">
-                <button type="button" onClick={() => setStep(4)} className="rounded-full bg-white border border-gray-200 text-[12px] font-semibold text-gray-700 px-3 py-1.5 flex items-center gap-1 hover:bg-gray-50 min-w-0">
-                  <span className="shrink-0">←</span> Back to Edit
-                </button>
-                <div className="text-[10px] text-gray-400 text-right pl-2 min-w-0 truncate">{numbers.targetCal} kcal • {selectedKitchen.kitchen}</div>
+              <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {featuredKitchens.map((k) => {
+                  const on = selectedKitchenId === k.id;
+                  return (
+                    <div
+                      key={k.id}
+                      onClick={() => chooseKitchen(k)}
+                      className={`rounded-[20px] border-2 p-4 flex flex-col items-center text-center cursor-pointer min-w-0 transition-all active:scale-95 ${on ? 'border-[#D4AF37] bg-[#FFFBEF] shadow-[0_0_0_4px_rgba(212,175,55,0.15)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
+                    >
+                      <span className="text-[34px] leading-none">{k.flag}</span>
+                      <span className={`mt-2 text-[14px] font-extrabold leading-none truncate max-w-full ${on ? 'text-[#0F4C3A]' : 'text-[#0F4C3A]'}`}>{k.country}</span>
+                      <span className="mt-1 text-[11px] text-[#6B7A75] leading-tight truncate max-w-full">{k.kitchen}</span>
+                      {k.sample && <span className="mt-1.5 text-[10.5px] text-[#8A938E] truncate max-w-full">🍽 {k.sample.name}</span>}
+                      <span className={`mt-2 text-[11px] font-bold px-2.5 py-1 rounded-full ${on ? 'bg-[#D4AF37] text-[#0F4C3A]' : 'bg-[#F4F1EB] text-[#6B7A75]'}`}>
+                        {t('wizard.step3.dishCount').replace('{n}', String(k.total))}
+                      </span>
+                      {on && <span className="mt-1.5 text-[11px] font-bold text-[#B8860B]">✓ {t('wizard.step2.auto')}</span>}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {planType !== 'fitness' && (
+              <div className={`${cardBase} p-6`}>
+                <div className="flex items-center justify-between gap-2 flex-wrap">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[16px] shrink-0">🌍</span>
+                    <h3 className="text-[15px] font-extrabold">{t('wizard.step3.country')}</h3>
+                  </div>
+                  <span className="text-[12px] font-bold bg-[#FFF8E7] text-[#B8860B] px-3 py-1 rounded-full shrink-0">
+                    {t('wizard.step3.totalToday').replace('{n}', String(totalCal))}
+                  </span>
+                </div>
+
+                <div className="mt-3 flex gap-2 overflow-x-auto no-scrollbar">
+                  {countryOptions.map((o) => {
+                    const on = countryMode === o.m;
+                    return (
+                      <button
+                        key={o.m}
+                        type="button"
+                        onClick={() => chooseCountry(o.m)}
+                        className={`shrink-0 h-[46px] rounded-full px-5 text-[13px] font-bold border-2 transition-all active:scale-95 ${on ? 'bg-[#0F4C3A] border-[#0F4C3A] text-white' : 'bg-white border-[#E3E0D8] text-[#0F4C3A] hover:border-[#D4AF37]'}`}
+                      >
+                        {o.label} <span className={`num text-[11px] ${on ? 'text-white/70' : 'text-[#6B7A75]'}`}>{o.count}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <div className="mt-4 flex gap-1.5 overflow-x-auto no-scrollbar">
+                  {MEAL_TABS.map((tab) => {
+                    const on = mealTab === tab.key;
+                    return (
+                      <button
+                        key={tab.key}
+                        type="button"
+                        onClick={() => setMealTab(tab.key)}
+                        className={`shrink-0 h-11 rounded-full px-4 text-[13.5px] font-bold flex items-center gap-1.5 border-2 transition-all active:scale-95 ${on ? 'bg-[#0F4C3A] border-[#0F4C3A] text-white' : 'bg-white text-[#0F4C3A] border-[#E3E0D8] hover:border-[#D4AF37]'}`}
+                      >
+                        <span className="shrink-0">{tab.emoji}</span>
+                        {mealLabel(tab.key)}
+                        <span className={`text-[11px] ${on ? 'text-white/70' : 'text-[#6B7A75]'}`}>({tabCounts[tab.key]})</span>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <div className="mt-3 h-[46px] bg-[#F4F1EB] rounded-[14px] flex items-center px-4 border-2 border-transparent focus-within:border-[#D4AF37]">
+                  <input value={dishSearch} onChange={(e) => setDishSearch(e.target.value)} placeholder={t('wizard.step3.searchPlaceholder')} className="flex-1 bg-transparent outline-none text-[15px] text-[#0F4C3A] placeholder:text-[#A0A8A4] min-w-0" />
+                  <span className="text-[#0F4C3A] text-[18px] shrink-0">🔍</span>
+                </div>
+
+                <div className="mt-3 space-y-2.5 max-h-[420px] overflow-y-auto pr-1">
+                  {displayedRows.length ? (
+                    displayedRows.map((r) => {
+                      const checked = selectedDishKeys.includes(r.key);
+                      const dot = r.dish.confidence_color;
+                      return (
+                        <div
+                          key={r.key}
+                          className={`flex items-center gap-3 min-h-[84px] p-3 bg-white rounded-[18px] border-2 transition-all min-w-0 ${checked ? 'border-[#D4AF37] bg-[#FFFBEF]' : 'border-[#EFEBE4] hover:border-[#D4AF37]'}`}
+                        >
+                          <span className="w-14 h-14 rounded-[14px] bg-[#F4F1EB] flex items-center justify-center text-[26px] shrink-0">🍲</span>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-1.5 min-w-0">
+                              <span className="font-extrabold text-[13.5px] text-[#0F4C3A] truncate">{r.dish.name}</span>
+                              <span className={`w-2 h-2 rounded-full shrink-0 ${dot === 'green' ? 'bg-green-500' : dot === 'yellow' ? 'bg-yellow-500' : 'bg-orange-500'}`} />
+                            </div>
+                            <div className="text-[11px] text-[#6B7A75] truncate mt-0.5">
+                              {r.cat.name_ar}
+                              {r.dish.healthy ? ` · ${t('wizard.step3.healthyTag')}` : ''}
+                            </div>
+                            <div className="text-[11px] text-[#8A938E] mt-0.5">{macrosT(r.dish.p, r.dish.c, r.dish.f)}</div>
+                          </div>
+                          <div className="flex flex-col items-end gap-1.5 shrink-0">
+                            <span className="text-[13.5px] font-extrabold text-[#B8860B] whitespace-nowrap">{calT(r.dish.cal_serv)}</span>
+                            <button
+                              type="button"
+                              onClick={() => addDish(r.key)}
+                              className={`w-9 h-9 rounded-full flex items-center justify-center text-[18px] text-white shadow-sm transition-all active:scale-95 ${checked ? 'bg-[#9AA19D]' : 'bg-[#D4AF37]'}`}
+                            >
+                              {checked ? '✓' : '+'}
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div className="text-center text-[13px] text-[#A0A8A4] py-6">{t('wizard.step3.noDishes')}</div>
+                  )}
+                </div>
+
+                <div className="mt-4 border-2 border-dashed border-[#E3E0D8] rounded-[18px] bg-[#FAF8F3] p-4 min-w-0">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="text-[15px] font-extrabold text-[#0F4C3A] truncate">{t('wizard.step3.savedTitle')}</div>
+                    {!selectedDishKeys.length && <span className="text-[10.5px] text-[#A0A8A4] shrink-0">—</span>}
+                  </div>
+                  <div className="h-[42px] bg-white border border-[#E9E5DB] rounded-[12px] flex items-center px-3 mt-2.5 focus-within:border-[#D4AF37]">
+                    <input value={savedSearch} onChange={(e) => setSavedSearch(e.target.value)} placeholder={t('wizard.step3.savedSearch')} className="flex-1 bg-transparent outline-none text-[14px] text-[#0F4C3A] placeholder:text-[#A0A8A4] min-w-0" />
+                    <span className="text-[#0F4C3A] text-[15px] shrink-0">🔍</span>
+                  </div>
+                  <div className="mt-3 space-y-3">
+                    {MEAL_ORDER.map((mk) => {
+                      const list = mealSummary[mk].filter((x) => !savedSearch.trim() || x.dish.name.includes(savedSearch.trim()));
+                      if (!list.length) return null;
+                      return (
+                        <div key={mk} className="min-w-0">
+                          <div className="text-[12px] font-bold text-[#6B7A75] mb-1">{t('wizard.step3.savedArea').replace('{meal}', mealLabel(mk)).replace('{n}', String(list.length))}</div>
+                          <div className="flex flex-wrap gap-1.5">
+                            {list.map((x) => (
+                              <span key={x.key} className="inline-flex items-center gap-1.5 bg-white border border-[#E9E5DB] rounded-full h-9 px-3.5 text-[12px] font-semibold text-[#0F4C3A] max-w-full">
+                                <span className="truncate max-w-[150px]">{x.dish.name} <span className="num">{x.dish.cal_serv}</span></span>
+                                <button type="button" onClick={() => removeChip(x.key, mk)} className="text-[#9AA19D] hover:text-red-500 text-[11px] shrink-0">✕</button>
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })}
+                    {!selectedDishKeys.length && <div className="text-[11.5px] text-[#A0A8A4]">{t('wizard.step3.addHint')}</div>}
+                  </div>
+                  {selectedDishKeys.length > 0 && (
+                    <div className="mt-3 rounded-[12px] border border-[#D4AF37]/50 bg-[#FFF8E7] p-2.5">
+                      <div className="text-[12px] text-[#0F4C3A] font-semibold">
+                        {t('wizard.step3.total').replace('{cal}', String(totalCal)).replace('{n}', String(selectedDishKeys.length))}
+                      </div>
+                    </div>
+                  )}
+                  {planType !== 'nutrition' && (
+                    <button type="button" onClick={autoPickDishes} className="mt-3 w-full h-11 rounded-[14px] bg-[#F4F1EB] text-[#0F4C3A] text-[13px] font-bold border border-[#E3E0D8] hover:border-[#D4AF37] transition-all active:scale-[0.98]">
+                      {t('wizard.step2.autoBtn')} 🍽️
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
+
+            <div className="flex gap-3">
+              <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
+                {t('wizard.back')}
+              </button>
+              <button type="button" onClick={next} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
+                {t('wizard.step3.continue')}
+              </button>
+            </div>
+          </div>
+        )}
+
+        {step === 4 && (
+          <div className="mt-6 space-y-5">
+            <div className={`${cardBase} p-6`}>
+              <h2 className="text-[18px] font-extrabold">{t('wizard.step4.goal')}</h2>
+              <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
+                {GOAL_ORDER.map((g) => {
+                  const on = goal === g;
+                  return (
+                    <button
+                      key={g}
+                      type="button"
+                      onClick={() => changeGoal(g)}
+                      className={`relative rounded-[18px] border-2 px-2 py-4 flex flex-col items-center justify-center gap-2 transition-all active:scale-95 ${on ? 'border-[#0F4C3A] bg-[#0F4C3A] text-white shadow-[0_8px_18px_rgba(15,76,58,0.22)]' : 'border-[#EFEBE4] bg-white text-[#0F4C3A] hover:border-[#D4AF37]'}`}
+                    >
+                      <span className="text-[24px] leading-none">{GOAL_ICONS[g]}</span>
+                      <span className={`text-[12px] font-bold text-center leading-tight ${on ? 'text-white' : 'text-[#0F4C3A]'}`}>{goalLabel(g)}</span>
+                      {on && <span className="absolute top-2 end-2 w-5 h-5 rounded-full bg-[#D4AF37] text-[#0F4C3A] flex items-center justify-center text-[11px] font-bold">✓</span>}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className={`${cardBase} p-6`}>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="wiz-label" htmlFor="wz-target">{t('wizard.step4.targetWeight')}</label>
+                  <div className="relative">
+                    <input
+                      id="wz-target"
+                      value={targetWeight}
+                      onChange={(e) => setTargetWeight(e.target.value.replace(/[^0-9.]/g, ''))}
+                      inputMode="decimal"
+                      className={`${inputDefault} pr-14`}
+                    />
+                    <span className="absolute inset-y-0 end-4 flex items-center text-[13px] font-bold text-[#A0A8A4]">{t('wizard.unit.kg')}</span>
+                  </div>
+                </div>
+                <div>
+                  <label className="wiz-label" htmlFor="wz-timeline">{t('wizard.step4.timeline')}</label>
+                  <div className="relative">
+                    <input
+                      id="wz-timeline"
+                      value={timeline}
+                      onChange={(e) => setTimeline(e.target.value.replace(/\D/g, ''))}
+                      inputMode="numeric"
+                      className={`${inputDefault} pr-14`}
+                    />
+                    <span className="absolute inset-y-0 end-4 flex items-center text-[13px] font-bold text-[#A0A8A4]">{t('wizard.unit.weeks')}</span>
+                  </div>
+                </div>
+              </div>
+              {(() => {
+                const v = goalViolation();
+                return v ? (
+                  <div className="mt-3 rounded-[12px] bg-red-50 border border-red-200 px-3.5 py-2 text-[12px] font-semibold text-red-600 leading-snug">⚠️ {v}</div>
+                ) : null;
+              })()}
+              {!numbers && <div className="mt-3 text-[12px] text-[#A0A8A4]">{t('fcProfileNote')}</div>}
+            </div>
+
+            <div className={`${cardBase} p-6`}>
+              <div className="flex items-center justify-between gap-2 flex-wrap">
+                <div>
+                  <h2 className="text-[18px] font-extrabold">
+                    {GOAL_ICONS[goal]} {t('wizard.step4.intensity')}
+                  </h2>
+                  <p className="mt-1 text-[12.5px] text-[#6B7A75]">{t('wizard.step4.intensitySub')}</p>
+                </div>
               </div>
 
-              <div className="bg-white px-4 pt-3 pb-3">
+              <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {DIETS[goal].map((d, idx) => {
+                  const on = dietId === d.id;
+                  return (
+                    <button
+                      key={d.id}
+                      type="button"
+                      onClick={() => setDietId(d.id)}
+                      className={`relative rounded-[18px] border-2 p-4 text-start transition-all min-w-0 ${on ? 'border-[#D4AF37] bg-[#FFFBEF] shadow-[0_0_0_4px_rgba(212,175,55,0.15)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
+                    >
+                      {idx === 1 && (
+                        <span className="absolute -top-2.5 end-3 text-[9.5px] font-extrabold tracking-wide bg-[#0F4C3A] text-white px-2.5 py-0.5 rounded-full">
+                          {t('wizard.step4.recommended')}
+                        </span>
+                      )}
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-[18px] leading-none">{d.emoji}</span>
+                        {on && <span className="w-5 h-5 rounded-full bg-[#D4AF37] text-[#0F4C3A] flex items-center justify-center text-[11px] font-bold">✓</span>}
+                      </div>
+                      <div className="mt-2 text-[14px] font-extrabold leading-tight">{intensityLabel(d.level)}</div>
+                      <div className="mt-0.5 text-[11px] text-[#6B7A75] leading-snug">{intensityTag(d.level)}</div>
+                      <div className="mt-2 inline-flex items-center text-[12px] font-bold text-[#B8860B] bg-[#FFF8E7] px-2.5 py-1 rounded-full">
+                        {deltaT(goal, d)}
+                      </div>
+                      {d.warning && <div className="mt-2 text-[10.5px] font-semibold text-red-600 leading-snug">⚠️ {t('wizard.step4.consultDoctor')}</div>}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {numbers && (
+              <div className={`${cardBase} p-6`}>
+                <h2 className="text-[16px] font-extrabold">📈 {t('wizard.step4.projection')}</h2>
+                <p className="mt-2 text-[14px] text-[#6B7A75] leading-relaxed break-words">{projectionText}</p>
+                <div className="mt-2 text-[13px] font-semibold text-[#0F4C3A]">
+                  {t('wizard.step4.targetCal').replace('{n}', String(numbers.targetCal))}
+                </div>
+                <div className="mt-2 text-[12px] text-[#8A938E]">{numbers.wk.name} · {ACTIVITY_LABEL(activity)}</div>
+              </div>
+            )}
+
+            <div className="flex gap-3">
+              <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
+                {t('wizard.back')}
+              </button>
+              <button type="button" onClick={next} disabled={!isValid()} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold disabled:opacity-40 disabled:cursor-not-allowed">
+                {t('wizard.next')}
+              </button>
+            </div>
+          </div>
+        )}
+
+        {step === 5 && (
+          <div className="mt-6 max-w-[940px] mx-auto flex flex-col gap-5">
+            <div className="rounded-[26px] overflow-hidden border border-[#EFEBE4] shadow-[0_14px_40px_rgba(15,76,58,0.1)]">
+              <div className="px-5 md:px-6 py-4 text-white flex items-center gap-3" style={{ background: 'linear-gradient(135deg,#0F4C3A,#14532D 60%,#1f6b52)' }}>
+                <span className="w-11 h-11 rounded-full bg-white/15 border border-white/20 flex items-center justify-center text-white font-extrabold text-[15px] tracking-wider shrink-0">HC</span>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[17px] md:text-[19px] font-extrabold leading-tight truncate">{t('wizard.step5.title')}</div>
+                  <div className="text-white/75 text-[12px] leading-[14px] mt-0.5 truncate">{t('wizard.step5.subtitle')}</div>
+                </div>
+                <span className="wiz-progress-badge shrink-0 hidden sm:inline-flex">{t('wizard.step5.eyebrow')}</span>
+              </div>
+
+              <div className="bg-white px-4 md:px-6 py-3 flex items-center justify-between gap-2 border-b border-[#F0ECE2]">
+                <button type="button" onClick={() => setStep(4)} className="rounded-full bg-[#F4F1EB] text-[#0F4C3A] text-[12px] font-bold px-4 py-2 flex items-center gap-1 hover:bg-[#ECE8DD] min-w-0">
+                  <span className="shrink-0">←</span> {t('wizard.step5.backToEdit')}
+                </button>
+                <div className="text-[11.5px] text-[#8A938E] min-w-0 truncate text-end">
+                  <span className="num">{numbers!.targetCal}</span> kcal · {selectedKitchen.flag} {selectedKitchen.kitchen}
+                </div>
+              </div>
+
+              <div className="bg-[#FDFBF7] border-b border-[#F0ECE2] px-4 md:px-6 py-4">
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2 min-w-0">
-                    <span className="text-[18px] font-bold text-gray-900 shrink-0">Day {selectedDay}</span>
-                    <span className="text-[12px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0">Protein Focus</span>
+                    <span className="text-[16px] font-extrabold text-[#0F4C3A] shrink-0">{t('wizard.step5.day').replace('{n}', String(selectedDay))}</span>
+                    <span className="text-[11px] font-bold bg-[#FFF8E7] text-[#B8860B] px-2.5 py-1 rounded-full shrink-0">{t('wizard.step5.dayHeader')}</span>
                   </div>
-                  <div className="text-[11px] text-gray-400 font-medium shrink-0">Day {selectedDay} of 8</div>
+                  <div className="text-[11px] text-[#8A938E] font-semibold shrink-0">{t('wizard.step5.dayOf').replace('{n}', String(selectedDay))}</div>
                 </div>
                 <div className="mt-3 flex items-center gap-2">
-                  <button type="button" onClick={() => setSelectedDay((s) => Math.max(1, s - 1))} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 shrink-0">‹</button>
-                  <div className="flex-1 flex gap-2 overflow-x-auto justify-between min-w-0">
+                  <button type="button" onClick={() => setSelectedDay((s) => Math.max(1, s - 1))} className="w-9 h-9 rounded-full bg-white border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] hover:border-[#D4AF37] shrink-0">‹</button>
+                  <div className="flex-1 flex gap-2 overflow-x-auto no-scrollbar justify-between min-w-0">
                     {[1, 2, 3, 4, 5, 6, 7, 8].map((d) => {
                       const ad = d === selectedDay;
                       return (
@@ -1592,264 +1800,234 @@ const WeightLossPage: React.FC = () => {
                           key={d}
                           type="button"
                           onClick={() => setSelectedDay(d)}
-                          className={`relative w-9 h-9 min-w-[36px] rounded-xl flex items-center justify-center text-[13px] font-bold transition-all ${ad ? 'bg-white border border-gray-900 text-gray-900 shadow-sm' : 'bg-gray-100 text-gray-600'}`}
+                          className={`relative w-9 h-9 min-w-[36px] rounded-xl flex items-center justify-center text-[13px] font-bold transition-all ${ad ? 'bg-[#D4AF37] text-[#0F4C3A] shadow-[0_4px_10px_rgba(212,175,55,0.4)]' : 'bg-white border border-[#E9E5DB] text-[#6B7A75] hover:border-[#D4AF37]'}`}
                         >
-                          {d}
-                          {ad && <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-6 h-[2px] bg-gray-900 rounded-full" />}
+                          <span className="num">{d}</span>
                         </button>
                       );
                     })}
                   </div>
-                  <button type="button" onClick={() => setSelectedDay((s) => Math.min(8, s + 1))} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 shrink-0">›</button>
+                  <button type="button" onClick={() => setSelectedDay((s) => Math.min(8, s + 1))} className="w-9 h-9 rounded-full bg-white border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] hover:border-[#D4AF37] shrink-0">›</button>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="rounded-[22px] p-5 text-white relative overflow-hidden" style={{ background: 'linear-gradient(135deg,#D4AF37,#C9A032 70%,#b3922c)' }}>
+                <div className="text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#3a2f05]/80">{t('wizard.step5.statCalories')}</div>
+                <div className="mt-2 flex items-baseline gap-1">
+                  <span className="num text-[34px] font-black text-[#0F4C3A] leading-none">{numbers!.targetCal}</span>
+                  <span className="text-[15px] font-bold text-[#0F4C3A]">kcal</span>
+                </div>
+                <div className="mt-1 text-[11.5px] font-semibold text-[#3a2f05]/80">
+                  {t('wizard.step2.maintenance')} <span className="num">{numbers!.tdeeWorkout}</span> + <span className="num">{numbers!.delta}</span>
                 </div>
               </div>
 
-              <div className="bg-[#f0fdf9] border-y border-[#e6f4ef] px-4 py-3 flex items-center gap-2">
-                <div className="w-7 h-7 rounded-full bg-white border border-emerald-100 flex items-center justify-center text-[12px] shrink-0">🍽️</div>
-                <span className="text-[13px] font-medium text-gray-700 shrink-0">Cuisine:</span>
-                <span className="bg-blue-50 text-[#1e40af] px-3 py-1 rounded-lg text-[13px] font-semibold flex items-center gap-1.5 border border-blue-100 min-w-0">
-                  <span className="shrink-0">{selectedKitchen.flag}</span>
-                  <span className="truncate">{selectedKitchen.country}</span>
+              <div className="rounded-[22px] p-5 border border-[#E8E2D4] bg-white">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#6B7A75]">💧 {t('wizard.step5.statWater')}</div>
+                  <span className="num text-[17px] font-extrabold text-[#0F4C3A]">{t('wizard.step5.water').replace('{cur}', water.toFixed(1)).replace('{goal}', waterGoal.toFixed(1))}</span>
+                </div>
+                <div className="mt-3 flex items-center gap-2">
+                  <button type="button" onClick={() => setWater((s) => Math.max(0, +(s - 0.25).toFixed(2)))} className="w-7 h-7 rounded-full bg-[#F4F1EB] border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] text-[14px] font-bold">−</button>
+                  <div className="flex-1 h-2.5 rounded-full bg-[#E9E5DB] overflow-hidden">
+                    <div className="h-full rounded-full transition-all" style={{ width: `${Math.min(100, (water / waterGoal) * 100)}%`, background: 'linear-gradient(90deg,#2ba17f,#0F4C3A)' }} />
+                  </div>
+                  <button type="button" onClick={() => setWater((s) => Math.min(waterGoal, +(s + 0.25).toFixed(2)))} className="w-7 h-7 rounded-full bg-[#F4F1EB] border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] text-[14px] font-bold">+</button>
+                </div>
+                <div className="mt-1.5 text-[11px] font-bold text-[#2ba17f]">+250ml</div>
+              </div>
+
+              <div className="rounded-[22px] p-5 border border-[#E8E2D4] bg-white">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#6B7A75]">🍽️ {t('wizard.step5.statMealsDone')}</div>
+                  <span className="num w-9 h-9 rounded-full bg-[#FFF8E7] border border-[#E9D9A8] text-[#B8860B] flex items-center justify-center text-[14px] font-extrabold">{doneCount}/3</span>
+                </div>
+                <div className="mt-3 h-2.5 rounded-full bg-[#E9E5DB] overflow-hidden">
+                  <div className="h-full rounded-full transition-all" style={{ width: `${(doneCount / 3) * 100}%`, background: 'linear-gradient(90deg,#D4AF37,#C9A032)' }} />
+                </div>
+                <div className="mt-2 text-[12px] font-semibold text-[#6B7A75]">
+                  {t('wizard.step5.completed').replace('{n}', String(doneCount))}
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-[26px] bg-white border border-[#EFEBE4] shadow-[0_10px_30px_rgba(15,76,58,0.06)] p-5 md:p-6">
+              <div className="flex items-center justify-between gap-2 mb-4">
+                <h3 className="text-[16px] font-extrabold">🍱 {t('wizard.step5.statMealsDone')}</h3>
+                <span className="text-[11px] font-bold bg-[#FFF8E7] text-[#B8860B] px-3 py-1 rounded-full">
+                  {t('wizard.step5.day').replace('{n}', String(selectedDay))} · {calT(numbers!.targetCal)}
                 </span>
-                <button type="button" onClick={() => setStep(3)} className="ml-auto text-[11px] text-gray-500 underline decoration-dotted hover:text-gray-700 shrink-0">(Change from main page)</button>
               </div>
-
-              <div className="bg-[#f6fef9] px-4 py-4 space-y-5">
-                <div className="flex items-start justify-between gap-3">
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-[#dcfce7] flex items-center justify-center text-[12px] shrink-0">🔥</div>
-                      <span className="text-[11px] font-bold text-emerald-800 uppercase tracking-wider">Daily Caloric Target</span>
-                    </div>
-                    <div className="mt-2 flex items-baseline gap-1">
-                      <span className="text-[24px] font-extrabold text-gray-900 leading-none">{numbers.targetCal}</span>
-                      <span className="text-[14px] font-bold text-gray-700">kcal</span>
-                    </div>
-                    <div className="text-[11px] text-gray-500 mt-1">TDEE {numbers.tdeeWorkout} + {numbers.delta}</div>
-                  </div>
-                  <div className="text-right shrink-0">
-                    <div className="text-[11px] text-gray-500">Goal • {GOAL_LABELS[goal]}</div>
-                    <div className="mt-1 inline-flex text-[10px] bg-white border px-2 py-1 rounded-full">{ACTIVITY[activity].label} • {numbers.wk.name}</div>
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-[12px] shrink-0">💧</div>
-                      <span className="text-[11px] font-bold text-blue-700 uppercase tracking-wider">Water Goal</span>
-                    </div>
-                    <span className="text-[16px] font-extrabold text-gray-900 shrink-0">{water.toFixed(1)} / {waterGoal.toFixed(1)} L</span>
-                  </div>
-                  <div className="mt-3 flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-2 shrink-0">
-                      <button type="button" onClick={() => setWater((s) => Math.max(0, +(s - 0.25).toFixed(2)))} className="w-7 h-7 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-700 text-[14px] font-bold">−</button>
-                      <button type="button" onClick={() => setWater((s) => Math.min(waterGoal, +(s + 0.25).toFixed(2)))} className="w-7 h-7 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-700 text-[14px] font-bold">+</button>
-                      <span className="text-[11px] font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded-full">+250ml</span>
-                    </div>
-                    <div className="flex-1 mx-3 h-2 rounded-full bg-blue-100 overflow-hidden">
-                      <div className="h-full bg-blue-500 rounded-full transition-all" style={{ width: `${Math.min(100, (water / waterGoal) * 100)}%` }} />
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-bold text-amber-800 uppercase tracking-wider">Meals Done</span>
-                    <div className="flex items-center gap-2">
-                      <span className="w-8 h-8 rounded-full bg-[#fef3c7] text-amber-700 flex items-center justify-center text-[14px] font-extrabold border border-amber-200">{doneCount}/3</span>
-                    </div>
-                  </div>
-                  <div className="mt-2 h-2 rounded-full bg-amber-100 overflow-hidden">
-                    <div className="h-full bg-amber-400 rounded-full transition-all" style={{ width: `${(doneCount / 3) * 100}%` }} />
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white px-3 py-3 flex flex-wrap gap-2 border-y border-gray-100">
-                <button type="button" onClick={() => window.print()} className="rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 px-4 py-2 text-[13px] font-semibold flex items-center gap-1.5">
-                  <span>⬇️</span> Download PDF
-                </button>
-                <button type="button" onClick={() => setEmailOpen(true)} className="rounded-full bg-green-50 text-green-700 border border-green-100 px-4 py-2 text-[13px] font-semibold flex items-center gap-1.5">
-                  <span>✉️</span> Email Plan
-                </button>
-                <button type="button" onClick={() => notify('Progress tracker preview')} className="rounded-full bg-gray-100 text-gray-700 px-4 py-2 text-[13px] font-semibold flex items-center gap-1.5">
-                  <span>📊</span> Progress Tracker
-                </button>
-                {planType !== 'nutrition' && (
-                  <button type="button" onClick={() => setStep(2)} className="rounded-full bg-violet-50 text-violet-700 border border-violet-100 px-4 py-2 text-[13px] font-semibold flex items-center gap-1.5">
-                    <span>🏋️</span> Exercise Change
-                  </button>
-                )}
-              </div>
-
-              <div className="bg-[#f6fef9] px-3 py-3 space-y-3 pb-6">
-                {[
-                  { name: 'Breakfast', time: '8:00 AM', icon: '🍳' },
-                  { name: 'Lunch', time: '1:30 PM', icon: '🥗' },
-                  { name: 'Dinner', time: '7:30 PM', icon: '🍽️' },
-                ].map((m, idx) => {
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {step5Meals.map((m, idx) => {
                   const plan = mealPlan[idx];
-                  const calServ = plan && plan.dish ? Math.round((plan.dish.cal_100 * plan.grams) / 100) : 420;
-                  const done = mealsDone[idx];
+                  const calServ = plan && plan.dish ? Math.round((plan.dish.cal_100 * plan.grams) / 100) : 380;
+                  const p = plan && plan.dish ? Math.round((plan.dish.p * plan.grams) / 100) : 0;
+                  const c = plan && plan.dish ? Math.round((plan.dish.c * plan.grams) / 100) : 0;
+                  const f = plan && plan.dish ? Math.round((plan.dish.f * plan.grams) / 100) : 0;
+                  const done = idx < 3 ? mealsDone[idx] : false;
                   return (
-                    <div key={m.name} className={`bg-white rounded-2xl border p-3 flex items-center justify-between shadow-[0_1px_3px_rgba(0,0,0,0.04)] transition-colors ${done ? 'border-emerald-200 bg-emerald-50/50' : 'border-gray-100'}`}>
+                    <div
+                      key={m.key}
+                      className={`rounded-[18px] border-2 p-4 flex items-center justify-between transition-colors ${done ? 'border-[#0F4C3A] bg-[#F2F8F4]' : 'border-[#EFEBE4] bg-white'}`}
+                    >
                       <div className="flex items-center gap-3 min-w-0 flex-1">
-                        <div className="w-10 h-10 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center text-[16px] shrink-0">{m.icon}</div>
+                        <span className="w-11 h-11 rounded-[14px] bg-[#F4F1EB] flex items-center justify-center text-[18px] shrink-0">{m.emoji}</span>
                         <div className="min-w-0">
                           <div className="flex items-center gap-2 flex-wrap">
-                            <span className="text-[12px] md:text-[13px] font-bold text-gray-900">{m.name}</span>
-                            <span className="text-[11px] text-gray-500">{m.time}</span>
-                            <span className="text-[11px] font-semibold bg-gray-100 px-2 py-0.5 rounded-full">{calServ} kcal</span>
+                            <span className="text-[13px] font-extrabold text-[#0F4C3A]">{mealLabel(m.key)}</span>
+                            <span className="text-[11px] text-[#8A938E]">{mealTime(m.key)}</span>
                           </div>
-                          <div className="text-[12px] text-gray-600 truncate break-words min-w-0 mt-0.5">{plan && plan.dish ? plan.dish.name : ''}</div>
+                          <div className="text-[12px] text-[#6B7A75] truncate break-words min-w-0 mt-0.5">{plan && plan.dish ? plan.dish.name : ''}</div>
+                          <div className="mt-1 text-[10.5px] text-[#8A938E]">
+                            <span className="num font-bold text-[#B8860B]">{calServ}</span> kcal · {macrosT(p, c, f)}
+                          </div>
                         </div>
                       </div>
-                      <div className="flex items-center gap-2 shrink-0 ml-2">
-                        <button type="button" onClick={() => notify(`${m.name} details`)} className="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-500 text-[13px]">🔍</button>
+                      {idx < 3 && (
                         <button
                           type="button"
                           onClick={() => setMealsDone((prev) => prev.map((v, i) => (i === idx ? !v : v)))}
-                          className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${done ? 'bg-[#0e9f6e] border-[#0e9f6e] text-white' : 'border-gray-300 bg-white'}`}
+                          className={`w-7 h-7 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ml-2 ${done ? 'bg-[#0F4C3A] border-[#0F4C3A] text-white' : 'border-[#C8C4B8] bg-white'}`}
                         >
                           {done ? '✓' : ''}
                         </button>
-                      </div>
+                      )}
                     </div>
                   );
                 })}
-                <div className="text-[11px] text-gray-400 text-center pt-2">Day {selectedDay} • {selectedKitchen.flag} {selectedKitchen.kitchen} • {numbers.targetCal} kcal • {totalDishesAll} dishes pool</div>
               </div>
+            </div>
 
+            <div className="flex flex-wrap gap-2.5">
+              <button type="button" onClick={() => window.print()} className="rounded-full bg-white border border-[#E9E5DB] text-[#0F4C3A] px-5 py-2.5 text-[13px] font-bold flex items-center gap-1.5 hover:border-[#D4AF37] transition-all">
+                <span>⬇️</span> {t('wizard.step5.downloadPdf')}
+              </button>
+              <button type="button" onClick={() => setEmailOpen(true)} className="rounded-full bg-white border border-[#E9E5DB] text-[#0F4C3A] px-5 py-2.5 text-[13px] font-bold flex items-center gap-1.5 hover:border-[#D4AF37] transition-all">
+                <span>✉️</span> {t('wizard.step5.emailPlan')}
+              </button>
+              <button type="button" onClick={() => notify(t('wizard.toast.progress'))} className="rounded-full bg-white border border-[#E9E5DB] text-[#0F4C3A] px-5 py-2.5 text-[13px] font-bold flex items-center gap-1.5 hover:border-[#D4AF37] transition-all">
+                <span>📊</span> {t('wizard.step5.progressTracker')}
+              </button>
               {planType !== 'nutrition' && (
-                <div className="bg-white px-4 py-4 space-y-3 border-t border-gray-100">
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-2 min-w-0">
-                      <div className="w-6 h-6 rounded-full bg-violet-100 flex items-center justify-center text-[12px] shrink-0">🏋️</div>
-                      <span className="text-[11px] font-bold text-violet-800 uppercase tracking-wider">Fitness Plan</span>
+                <button type="button" onClick={() => setStep(2)} className="rounded-full bg-white border border-[#E9E5DB] text-[#0F4C3A] px-5 py-2.5 text-[13px] font-bold flex items-center gap-1.5 hover:border-[#D4AF37] transition-all">
+                  <span>🏋️</span> {t('wizard.step5.exerciseChange')}
+                </button>
+              )}
+            </div>
+
+            {planType !== 'nutrition' && (
+              <div className="rounded-[26px] bg-white border border-[#EFEBE4] shadow-[0_10px_30px_rgba(15,76,58,0.06)] p-5 md:p-6">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="w-9 h-9 rounded-[12px] bg-[#F4F1EB] flex items-center justify-center text-[16px] shrink-0">🏋️</span>
+                    <div>
+                      <div className="text-[15px] font-extrabold">{t('wizard.step5.fitnessPlan')}</div>
+                      <div className="text-[11px] text-[#8A938E]">{numbers!.wk.name}</div>
                     </div>
-                    <span className="text-[11px] font-semibold bg-violet-50 text-violet-700 px-2 py-1 rounded-full shrink-0">{plannedExercises.length} تمارين</span>
                   </div>
-                  {plannedExercises.length ? (
-                    <div className="space-y-1.5">
-                      {plannedExercises.map((ex) => (
-                        <div key={ex.id} className="flex items-center gap-2 rounded-[10px] border border-zinc-100 bg-zinc-50/60 px-2.5 py-2 min-w-0">
-                          <span className="text-[14px] leading-none shrink-0">{ex.emoji}</span>
-                          <span className="truncate text-[11.5px] font-semibold flex-1 min-w-0">{ex.name}</span>
-                          <span className="shrink-0 text-[10px] font-semibold bg-white border border-zinc-200 px-2 py-0.5 rounded-full">{ex.sets !== '1' ? `${ex.sets} × ${ex.reps}` : ex.reps} • {ex.dur}</span>
-                        </div>
-                      ))}
+                  <span className="text-[11px] font-bold bg-[#FFF8E7] text-[#B8860B] px-3 py-1 rounded-full shrink-0">
+                    {t('wizard.step5.exercisesCount').replace('{n}', String(plannedExercises.length))}
+                  </span>
+                </div>
+                {plannedExercises.length ? (
+                  <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {plannedExercises.map((ex) => (
+                      <div key={ex.id} className="flex items-center gap-2.5 rounded-[14px] border border-[#EFEBE4] bg-[#FDFBF7] px-3 py-2.5 min-w-0">
+                        <span className="text-[15px] leading-none shrink-0">{ex.emoji}</span>
+                        <span className="truncate text-[12px] font-bold flex-1 min-w-0">{ex.name}</span>
+                        <span className="shrink-0 text-[10.5px] font-bold bg-white border border-[#E9E5DB] px-2 py-0.5 rounded-full">{ex.sets !== '1' ? `${ex.sets} × ${ex.reps}` : ex.reps} · {ex.dur}</span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="mt-3 text-[12px] text-[#8A938E]">{t('wizard.step5.noExercises')}</div>
+                )}
+                <button type="button" onClick={() => setStep(2)} className="mt-3 text-[11.5px] text-[#B8860B] underline decoration-dotted">{t('wizard.step5.editExercises')}</button>
+              </div>
+            )}
+
+            {planType !== 'fitness' && (
+              <div className="rounded-[26px] bg-white border border-[#EFEBE4] shadow-[0_10px_30px_rgba(15,76,58,0.06)] p-5 md:p-6">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="w-9 h-9 rounded-[12px] bg-[#F4F1EB] flex items-center justify-center text-[16px] shrink-0">🍽️</span>
+                    <div>
+                      <div className="text-[15px] font-extrabold">{t('wizard.step5.nutritionPlan')}</div>
+                      <div className="text-[11px] text-[#8A938E]">{selectedKitchen.flag} {selectedKitchen.country}</div>
                     </div>
+                  </div>
+                  <span className="text-[11px] font-bold bg-[#FFF8E7] text-[#B8860B] px-3 py-1 rounded-full shrink-0">
+                    {selectedDishKeys.length ? t('wizard.step5.dishesCount').replace('{n}', String(selectedDishKeys.length)) : calT(numbers!.targetCal)}
+                  </span>
+                </div>
+                <div className="mt-3 space-y-1.5">
+                  {selectedDishKeys.length ? (
+                    MEAL_ORDER.map((mk) => {
+                      const list = mealSummary[mk];
+                      if (!list.length) return null;
+                      return (
+                        <div key={mk} className="text-[11.5px] leading-relaxed break-words text-[#6B7A75]">
+                          <span className="font-extrabold text-[#0F4C3A]">{mealLabel(mk)}:</span>{' '}
+                          {list.map((x, i) => (
+                            <span key={x.key}>
+                              {i > 0 && ' + '}
+                              {x.dish.name} <span className="num">({x.dish.cal_serv})</span>
+                            </span>
+                          ))}
+                        </div>
+                      );
+                    })
                   ) : (
-                    <div className="text-[11px] text-zinc-400">لم تحدد تمارين بعد — أضفها من خطوة Body.</div>
-                  )}
-                  <button type="button" onClick={() => setStep(2)} className="text-[11px] text-violet-600 underline decoration-dotted hover:text-violet-800">(تعديل التمارين)</button>
-                </div>
-              )}
-
-              {planType !== 'fitness' && (
-                <div className="bg-white px-4 py-4 space-y-3 border-t border-gray-100 pb-28">
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-2 min-w-0">
-                      <div className="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center text-[12px] shrink-0">🍽️</div>
-                      <span className="text-[11px] font-bold text-amber-800 uppercase tracking-wider">Nutrition Plan</span>
+                    <div className="text-[12px] text-[#8A938E]">
+                      {t('wizard.step5.noDishes')} — {t('wizard.step3.autoTitle')} ✨
                     </div>
-                    <span className="shrink-0 text-[11px] font-semibold bg-amber-50 text-amber-700 px-2 py-1 rounded-full">{selectedKitchen.flag} {selectedKitchen.country} · {selectedDishKeys.length} طبق</span>
-                  </div>
-                  <div className="space-y-1.5">
-                    {selectedDishKeys.length ? (
-                      MEAL_TABS.map((t) => (
-                        <div key={t.key} className="text-[11px] leading-relaxed break-words">
-                          <span className="font-bold">{t.emoji} {t.label}:</span> {fmtMeal(mealSummary[t.key])}
-                        </div>
-                      ))
-                    ) : (
-                      <span className="text-[11px] text-zinc-400">اختر الأطباق من خطوة Kitchen.</span>
-                    )}
-                  </div>
-                  {selectedDishKeys.length > 0 && (
-                    <div className="text-[12px] font-semibold text-emerald-700 pt-1 border-t border-gray-100">✅ المجموع: {totalCal} سعر · {selectedDishKeys.length} طبق</div>
                   )}
-                  <button type="button" onClick={() => setStep(3)} className="text-[11px] text-amber-700 underline decoration-dotted hover:text-amber-900">(تغيير المطبخ)</button>
                 </div>
-              )}
-
-              <div className="no-print fixed bottom-0 left-0 right-0 max-w-[480px] mx-auto bg-white border-t border-gray-200 px-3 py-3 flex items-center justify-between gap-2 shadow-[0_-8px_24px_rgba(0,0,0,0.06)] rounded-t-2xl z-40">
-                <div className="flex items-center gap-2 min-w-0">
-                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                  <span className="text-[12px] font-semibold text-gray-700 truncate">{doneCount}/3 meals completed</span>
-                </div>
-                <div className="flex items-center gap-2 shrink-0">
-                  <button type="button" onClick={() => notify('Closed')} className="text-[13px] font-semibold text-gray-500 px-3 py-2 rounded-xl hover:bg-gray-50">Close</button>
-                  <button type="button" onClick={() => setStep(4)} className="text-[12px] font-semibold text-gray-700 bg-white border border-gray-200 px-3 py-2 rounded-xl hover:bg-gray-50 flex items-center gap-1">
-                    <span>←</span> Edit Previous Step
-                  </button>
-                  <button type="button" onClick={() => notify('Progress saved!')} className="bg-[#0e9f6e] text-white font-bold text-[13px] px-4 py-2.5 rounded-2xl flex items-center gap-1.5 shadow-[0_4px_14px_-2px_#0e9f6e]">
-                    <span>✓</span> Save Progress
-                  </button>
+                <div className="mt-3 flex flex-wrap gap-3">
+                  <button type="button" onClick={() => setStep(3)} className="text-[11.5px] text-[#B8860B] underline decoration-dotted">{t('wizard.step5.changeCuisine')}</button>
+                  {selectedDishKeys.length > 0 && (
+                    <span className="text-[12px] font-bold text-[#0F4C3A]">
+                      {t('wizard.step3.total').replace('{cal}', String(totalCal)).replace('{n}', String(selectedDishKeys.length))}
+                    </span>
+                  )}
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {step === 5 && !numbers && (
-            <div className="rounded-[12px] border border-zinc-200 p-4 text-[12.5px] text-zinc-500">Complete the previous steps to review your blueprint.</div>
-          )}        </div>
-
-        <div className="mt-8">
-          {step !== 5 && step !== 1 && step !== 2 && step !== 3 && (
-            <div className="hidden md:flex gap-3">
-              <button
-                type="button"
-                onClick={back}
-                disabled={false}
-                className="h-[48px] px-6 rounded-[8px] border text-[14px] font-medium transition-all bg-zinc-50 hover:bg-zinc-100 border-zinc-300 text-zinc-700"
-              >
-                Back
-              </button>
-              <button
-                type="button"
-                onClick={next}
-                disabled={!isValid()}
-                className={`flex-1 h-[48px] rounded-[8px] text-[14px] font-semibold transition-all flex items-center justify-center gap-2 ${!isValid() ? 'bg-zinc-300 text-zinc-500 cursor-not-allowed' : 'bg-[#1e40af] text-white hover:bg-[#1c3aa0] shadow-[0_1px_2px_rgba(0,0,0,0.08)]'}`}
-              >
-                Next →
-              </button>
+            <div className="no-print fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur border-t border-[#EFEBE4] px-4 py-3 flex items-center justify-between gap-2 max-w-[940px] mx-auto rounded-t-[20px] shadow-[0_-8px_24px_rgba(15,76,58,0.08)]">
+              <div className="flex items-center gap-2 min-w-0">
+                <span className="w-2 h-2 rounded-full bg-[#2ba17f] animate-pulse shrink-0" />
+                <span className="text-[12px] font-bold text-[#6B7A75] truncate">{t('wizard.step5.completed').replace('{n}', String(doneCount))}</span>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <button type="button" onClick={() => notify(t('wizard.toast.closePreview'))} className="text-[12.5px] font-bold text-[#6B7A75] px-3 py-2 rounded-xl hover:bg-[#F4F1EB]">
+                  {t('wizard.step5.close')}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => notify(t('wizard.step5.savedToast'))}
+                  className="h-[46px] px-5 rounded-[16px] bg-[#D4AF37] text-[#0F4C3A] font-extrabold text-[14px] flex items-center gap-2 shadow-[0_8px_20px_rgba(212,175,55,0.4)] hover:translate-y-[-1px] transition-all active:scale-95"
+                >
+                  <span>✓</span> {t('wizard.step5.saveProgress')}
+                </button>
+              </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </main>
 
-      {step !== 5 && step !== 1 && step !== 2 && step !== 3 && (
-        <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-zinc-200 px-4 py-3 flex gap-3 z-40">
-          <button
-            type="button"
-            onClick={back}
-            disabled={false}
-            className="h-[48px] px-5 rounded-[8px] border text-[14px] font-medium shrink-0 bg-zinc-50 border-zinc-300 text-zinc-700"
-          >
-            Back
-          </button>
-          <button
-            type="button"
-            onClick={next}
-            disabled={!isValid()}
-            className={`flex-1 h-[48px] rounded-[8px] text-[15px] font-semibold flex items-center justify-center gap-2 ${!isValid() ? 'bg-zinc-300 text-zinc-500' : 'bg-[#1e40af] text-white'}`}
-          >
-            Next →
-          </button>
-        </div>
-      )}
-
       {toast && (
-        <div className="no-print fixed bottom-24 left-1/2 -translate-x-1/2 z-50 rounded-full bg-zinc-900 text-white text-[12.5px] font-medium px-4 py-2 shadow-lg whitespace-nowrap">
+        <div className="no-print fixed bottom-24 left-1/2 -translate-x-1/2 z-50 rounded-full bg-[#0F4C3A] text-white text-[12.5px] font-semibold px-5 py-2.5 shadow-lg whitespace-nowrap">
           {toast}
         </div>
       )}
 
       {emailOpen && (
         <div className="no-print fixed inset-0 z-50 bg-black/40 backdrop-blur-[2px] flex items-end md:items-center justify-center">
-          <div className="w-full max-w-[560px] bg-white rounded-t-[16px] md:rounded-[16px] p-5 shadow-xl relative">
+          <div className="w-full max-w-[520px] bg-white rounded-t-[20px] md:rounded-[20px] p-5 shadow-xl relative">
             <button
               type="button"
               onClick={() => {
@@ -1857,13 +2035,13 @@ const WeightLossPage: React.FC = () => {
                 setEmailDone('');
                 setEmailSending(false);
               }}
-              className="absolute top-4 right-4 w-7 h-7 rounded-full text-zinc-400 hover:text-zinc-700 text-[16px]"
+              className="absolute top-4 end-4 w-7 h-7 rounded-full text-zinc-400 hover:text-zinc-700 text-[16px]"
             >
               ✕
             </button>
             {emailDone ? (
               <div className="pt-2">
-                <div className="h-10 w-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl">✓</div>
+                <div className="h-10 w-10 rounded-full bg-[#FFF8E7] border border-[#E9D9A8] text-[#B8860B] flex items-center justify-center text-xl">✓</div>
                 <h3 className="mt-3 text-[17px] font-bold">Sent</h3>
                 <p className="mt-1 text-[13.5px] text-zinc-600 break-words">PDF sent to {emailDone}</p>
                 <button
@@ -1873,7 +2051,7 @@ const WeightLossPage: React.FC = () => {
                     setEmailDone('');
                     setEmailSending(false);
                   }}
-                  className="mt-5 w-full h-[48px] rounded-[8px] bg-[#1e40af] text-white text-[14px] font-semibold"
+                  className="mt-5 w-full h-[48px] rounded-[14px] bg-[#D4AF37] text-[#0F4C3A] text-[14px] font-extrabold"
                 >
                   Done
                 </button>
@@ -1889,13 +2067,13 @@ const WeightLossPage: React.FC = () => {
                   onChange={(e) => setEmailText(e.target.value)}
                   placeholder="you@example.com"
                   inputMode="email"
-                  className="mt-1.5 w-full h-[48px] rounded-[8px] border border-zinc-300 px-4 outline-none focus:border-[#1e40af] focus:ring-[3px] focus:ring-blue-100 bg-white"
+                  className="mt-1.5 w-full h-[48px] rounded-[14px] border border-[#E9E5DB] px-4 outline-none focus:border-[#D4AF37] focus:ring-[3px] focus:ring-[#D4AF37]/20 bg-white"
                 />
                 <div className="mt-5 flex gap-3">
                   <button
                     type="button"
                     onClick={() => setEmailOpen(false)}
-                    className="h-[48px] px-5 rounded-[8px] border border-zinc-300 bg-zinc-50 text-zinc-700 text-[14px] font-medium"
+                    className="h-[48px] px-5 rounded-[14px] border border-[#E9E5DB] bg-[#F4F1EB] text-[#0F4C3A] text-[14px] font-bold"
                   >
                     Cancel
                   </button>
@@ -1903,7 +2081,7 @@ const WeightLossPage: React.FC = () => {
                     type="button"
                     onClick={sendEmail}
                     disabled={emailSending || !emailText.trim()}
-                    className={`flex-1 h-[48px] rounded-[8px] text-[14px] font-semibold ${emailSending || !emailText.trim() ? 'bg-zinc-300 text-zinc-500' : 'bg-[#1e40af] text-white'}`}
+                    className={`flex-1 h-[48px] rounded-[14px] text-[14px] font-extrabold ${emailSending || !emailText.trim() ? 'bg-[#E9E5DB] text-[#A0A8A4]' : 'bg-[#D4AF37] text-[#0F4C3A]'}`}
                   >
                     {emailSending ? 'Sending…' : 'Send'}
                   </button>
