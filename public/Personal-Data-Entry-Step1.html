@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>بياناتك • الخطوة ١ من ٣</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap');
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --bg: #FDFBF7;
+      --ink: #0F4C3A;
+      --ink-2: #143D32;
+      --gold: #D4AF37;
+      --gold-dark: #C9A732;
+      --gold-soft: #FFF6D5;
+      --gold-bg: #FFFBEB;
+      --input: #F4F1EB;
+      --border-soft: #E9E3D6;
+      --muted: #6B8A7E;
+      --faint: #A8BDB4;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Tajawal", "Inter", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    button:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px var(--gold);
+    }
+
+    ::selection {
+      background: rgba(212, 175, 55, 0.3);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    @media (min-width: 768px) {
+      .container { padding: 64px 40px; }
+    }
+    @media (min-width: 1024px) {
+      .container { padding: 80px 56px; }
+    }
+
+    /* ── Top bar (progress) ─────────────────────────── */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+    .track {
+      flex: 1;
+      max-width: 80%;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--input);
+      overflow: hidden;
+    }
+    .track-fill {
+      height: 100%;
+      width: 33%;
+      border-radius: 999px;
+      background: var(--gold);
+      transition: width 0.7s ease-out;
+    }
+    .step-badge {
+      flex-shrink: 0;
+      border-radius: 999px;
+      background: var(--gold-soft);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      padding: 10px 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    @media (min-width: 768px) {
+      .topbar { margin-bottom: 80px; }
+      .track { height: 7px; }
+      .step-badge { font-size: 13px; }
+    }
+
+    /* ── Header ─────────────────────────────────────── */
+    .heading {
+      margin-bottom: 56px;
+    }
+    .heading h1 {
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+    .heading p {
+      max-width: 580px;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.9;
+      color: var(--muted);
+      padding: 4px 0;
+      border-right: 3px solid var(--gold);
+      padding-right: 24px;
+    }
+    @media (min-width: 768px) {
+      .heading { margin-bottom: 80px; }
+      .heading h1 { font-size: 52px; }
+      .heading p { font-size: 18px; padding-right: 32px; }
+    }
+    @media (min-width: 1024px) {
+      .heading h1 { font-size: 56px; }
+    }
+
+    /* ── Layout grid ─────────────────────────────────── */
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 56px;
+    }
+    @media (min-width: 768px) {
+      .layout {
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .layout { gap: 56px; }
+    }
+
+    .col {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .card {
+      border-radius: 24px;
+      background: #fff;
+      border: 1px solid var(--input);
+      padding: 40px;
+      box-shadow: 0 16px 48px rgba(15, 76, 58, 0.06), 0 4px 12px rgba(15, 76, 58, 0.03);
+    }
+    @media (min-width: 768px) {
+      .card { padding: 48px; }
+    }
+
+    .field-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+    .field-label span {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+    }
+    .field-note {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--faint);
+      background: var(--input);
+      padding: 6px 14px;
+      border-radius: 999px;
+    }
+
+    /* ── Age wheel ───────────────────────────────────── */
+    .stepper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .step-btn {
+      height: 56px;
+      width: 56px;
+      min-height: 48px;
+      min-width: 48px;
+      flex-shrink: 0;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 22px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 8px 22px rgba(15, 76, 58, 0.2);
+    }
+    .step-btn:hover { background: var(--ink-2); }
+    .step-btn:active { transform: scale(0.95); }
+
+    .age-display {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      background: #fff;
+      border: 1px solid var(--input);
+      box-shadow: 0 12px 32px rgba(15, 76, 58, 0.06), 0 2px 8px rgba(15, 76, 58, 0.04);
+      padding: 32px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .age-display::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, #fff, rgba(253, 251, 247, 0.6));
+      pointer-events: none;
+    }
+    .age-value {
+      position: relative;
+      font-family: "Inter", "Tajawal", sans-serif;
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--gold);
+      transition: transform 0.15s;
+    }
+    .age-value.pop { transform: scale(1.1); }
+    .age-unit {
+      position: relative;
+      margin-top: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--faint);
+      text-transform: uppercase;
+    }
+
+    /* ── Gender ──────────────────────────────────────── */
+    .gender-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .gender-card {
+      position: relative;
+      border-radius: 22px;
+      border: 2px solid var(--input);
+      background: var(--bg);
+      padding: 28px 24px;
+      text-align: right;
+      transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+    }
+    .gender-card:hover {
+      border-color: var(--border-soft);
+      background: #fff;
+    }
+    .gender-card.active {
+      border-color: var(--gold);
+      background: var(--gold-bg);
+      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15), 0 8px 24px rgba(212, 175, 55, 0.12);
+    }
+    .gender-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    .gender-icon {
+      height: 44px;
+      width: 44px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      background: var(--input);
+      color: var(--ink);
+      transition: background-color 0.2s, color 0.2s;
+    }
+    .gender-card.active .gender-icon {
+      background: var(--ink);
+      color: #fff;
+    }
+    .gender-check {
+      height: 24px;
+      width: 24px;
+      border-radius: 999px;
+      background: var(--gold);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .gender-card.active .gender-check { display: flex; }
+    .gender-check i {
+      height: 10px;
+      width: 10px;
+      border-radius: 999px;
+      background: #fff;
+    }
+    .gender-title {
+      margin-top: 32px;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .gender-sub {
+      margin-top: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--faint);
+    }
+
+    /* ── Plan type toggle ────────────────────────────── */
+    .plan-switch {
+      display: flex;
+      gap: 8px;
+      border-radius: 100px;
+      background: var(--input);
+      padding: 6px;
+    }
+    .plan-opt {
+      flex: 1;
+      border-radius: 100px;
+      padding: 16px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--muted);
+      transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, opacity 0.3s;
+      overflow: hidden;
+    }
+    .plan-opt span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .plan-opt:hover { color: var(--ink); }
+    .plan-opt.active {
+      background: var(--ink);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(15, 76, 58, 0.25);
+    }
+    @media (min-width: 768px) {
+      .plan-opt { font-size: 14px; padding: 18px 20px; }
+    }
+    .plan-note {
+      margin-top: 32px;
+      display: flex;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--faint);
+      line-height: 1.7;
+    }
+    .plan-note .dot {
+      height: 20px;
+      width: 20px;
+      border-radius: 999px;
+      background: var(--input);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: 10px;
+      font-style: normal;
+    }
+
+    /* ── Breathing space (desktop only) ──────────────── */
+    .space-card {
+      display: none;
+      flex: 1;
+      border-radius: 24px;
+      border: 1px dashed rgba(233, 227, 214, 0.8);
+      background: rgba(255, 254, 251, 0.6);
+      padding: 48px;
+      min-height: 180px;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (min-width: 768px) {
+      .space-card { display: flex; }
+    }
+    .space-card .inner { text-align: center; }
+    .space-star {
+      height: 40px;
+      width: 40px;
+      border-radius: 999px;
+      background: var(--input);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      color: rgba(15, 76, 58, 0.4);
+    }
+    .space-card p {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--faint);
+      line-height: 1.6;
+    }
+
+    /* ── CTA ─────────────────────────────────────────── */
+    .cta-wrap {
+      margin-top: 32px;
+      padding-bottom: 24px;
+    }
+    @media (min-width: 768px) {
+      .cta-wrap { margin-top: 48px; }
+    }
+    .cta {
+      position: sticky;
+      bottom: 24px;
+      width: 100%;
+      border-radius: 16px;
+      background: var(--gold);
+      padding: 18px 32px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      box-shadow: 0 14px 36px rgba(212, 175, 55, 0.35), 0 2px 8px rgba(212, 175, 55, 0.25);
+      transition: background 0.3s, box-shadow 0.3s, transform 0.4s;
+      overflow: hidden;
+      position: -webkit-sticky;
+    }
+    .cta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+      opacity: 0.6;
+      pointer-events: none;
+      border-radius: 16px;
+    }
+    .cta:hover {
+      background: var(--gold-dark);
+      box-shadow: 0 18px 44px rgba(212, 175, 55, 0.45);
+    }
+    .cta:active { transform: scale(0.99); }
+    .cta:not(:active) { transform: scale(1); }
+    .cta .label {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .cta .fire {
+      font-size: 20px;
+      transition: transform 0.2s;
+    }
+    .cta:active .fire { transform: rotate(12deg); }
+    .cta.pulse { transform: scale(0.98); }
+    @media (min-width: 768px) {
+      .cta { padding-top: 20px; padding-bottom: 20px; }
+    }
+
+    .trust {
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--faint);
+    }
+    .trust .dot {
+      height: 4px;
+      width: 4px;
+      border-radius: 999px;
+      background: var(--faint);
+    }
+
+    /* ── Footer note ─────────────────────────────────── */
+    .legal {
+      margin-top: 64px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(168, 189, 180, 0.7);
+      padding-bottom: 40px;
+    }
+    @media (min-width: 768px) {
+      .legal { margin-top: 96px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+
+    <!-- Top progress bar -->
+    <header class="topbar">
+      <div class="track" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" aria-label="تقدم الخطوات">
+        <div class="track-fill"></div>
+      </div>
+      <div class="step-badge">الخطوة ١ من ٣</div>
+    </header>
+
+    <!-- Heading -->
+    <section class="heading">
+      <h1>لنصنع بصمتك الحيوية</h1>
+      <p>بضع ثوانٍ لنفهم جسدك بشكل أعمق ونصمم خطة تناسبك تماماً</p>
+    </section>
+
+    <!-- Two-column layout -->
+    <section class="layout">
+
+      <!-- Left column: Age + Gender -->
+      <div class="col">
+
+        <!-- Age -->
+        <div class="card">
+          <div class="field-label">
+            <span>العمر</span>
+            <span class="field-note">١٠ — ٩٩</span>
+          </div>
+          <div class="stepper">
+            <button type="button" id="ageMinus" class="step-btn" aria-label="إنقاص العمر">−</button>
+            <div class="age-display">
+              <div id="ageValue" class="age-value">26</div>
+              <div class="age-unit">سنة</div>
+            </div>
+            <button type="button" id="agePlus" class="step-btn" aria-label="زيادة العمر">+</button>
+          </div>
+        </div>
+
+        <!-- Gender -->
+        <div class="card">
+          <div class="field-label"><span>الجنس</span></div>
+          <div class="gender-grid">
+            <button type="button" class="gender-card active" data-gender="male">
+              <div class="gender-top">
+                <span class="gender-icon">♂</span>
+                <span class="gender-check"><i></i></span>
+              </div>
+              <div class="gender-title">ذكر</div>
+              <div class="gender-sub">Male</div>
+            </button>
+            <button type="button" class="gender-card" data-gender="female">
+              <div class="gender-top">
+                <span class="gender-icon">♀</span>
+                <span class="gender-check"><i></i></span>
+              </div>
+              <div class="gender-title">أنثى</div>
+              <div class="gender-sub">Female</div>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right column: Plan type -->
+      <div class="col">
+
+        <!-- Plan type -->
+        <div class="card">
+          <div class="field-label"><span>نوع الخطة</span></div>
+          <div class="plan-switch" id="planSwitch">
+            <button type="button" class="plan-opt active" data-plan="nutrition">🌿 <span>العلاج الغذائي</span></button>
+            <button type="button" class="plan-opt" data-plan="fitness">🏃 <span>اللياقة والوقاية</span></button>
+          </div>
+          <div class="plan-note">
+            <span class="dot">i</span>
+            <span id="planNote">تركيز على تحسين المؤشرات الحيوية عبر التغذية العلاجية المخصصة.</span>
+          </div>
+        </div>
+
+        <!-- Breathing space (desktop) -->
+        <div class="space-card">
+          <div class="inner">
+            <div class="space-star">✦</div>
+            <p>مساحة تنفس بصرية<br>لتجربة عيادة فاخرة</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-wrap">
+      <button type="button" id="cta" class="cta">
+        <span class="label">احسب عمرى الحيوي <span class="fire">🔥</span></span>
+      </button>
+      <div class="trust">
+        <span class="dot"></span>
+        آمن • مشفر • بدون التزام
+        <span class="dot"></span>
+        يستغرق أقل من دقيقة
+      </div>
+    </section>
+
+    <div class="legal">البيانات محمية وفق أعلى معايير الخصوصية الصحية</div>
+  </main>
+
+  <script>
+    (function () {
+      var MIN = 10, MAX = 99;
+
+      var age = 26;
+      var gender = 'male';      // 'male' | 'female'
+      var planType = 'nutrition'; // 'nutrition' | 'fitness'
+
+      var ageEl = document.getElementById('ageValue');
+      var cta = document.getElementById('cta');
+
+      /* Age stepper */
+      function updateAge(next) {
+        var clamped = Math.min(MAX, Math.max(MIN, next));
+        if (clamped !== age) {
+          age = clamped;
+        }
+        ageEl.textContent = age;
+        ageEl.classList.remove('pop');
+        void ageEl.offsetWidth; /* restart transition */
+        ageEl.classList.add('pop');
+      }
+      document.getElementById('ageMinus').addEventListener('click', function () { updateAge(age - 1); });
+      document.getElementById('agePlus').addEventListener('click', function () { updateAge(age + 1); });
+
+      /* Gender: toggle .active among sibling cards */
+      document.querySelectorAll('.gender-card').forEach(function (card) {
+        card.addEventListener('click', function () {
+          document.querySelectorAll('.gender-card').forEach(function (c) { c.classList.remove('active'); });
+          card.classList.add('active');
+          gender = card.getAttribute('data-gender');
+        });
+      });
+
+      /* Plan type: toggle .active among options */
+      var noteEl = document.getElementById('planNote');
+      var notes = {
+        nutrition: 'تركيز على تحسين المؤشرات الحيوية عبر التغذية العلاجية المخصصة.',
+        fitness: 'برنامج وقائي متكامل يجمع بين الحركة والتغذية للصحة طويلة المدى.'
+      };
+      document.querySelectorAll('.plan-opt').forEach(function (opt) {
+        opt.addEventListener('click', function () {
+          document.querySelectorAll('.plan-opt').forEach(function (o) { o.classList.remove('active'); });
+          opt.classList.add('active');
+          planType = opt.getAttribute('data-plan');
+          noteEl.textContent = notes[planType] || '';
+        });
+      });
+
+      /* CTA: log + alert collected data */
+      cta.addEventListener('click', function () {
+        var data = {
+          Age: age,
+          Gender: gender === 'male' ? 'ذكر' : 'أنثى',
+          GenderEn: gender,
+          PlanType: planType === 'nutrition' ? 'العلاج الغذائي' : 'اللياقة والوقاية',
+          PlanTypeEn: planType
+        };
+        console.log('Collected Data:', data);
+        alert('تم جمع بياناتك:\n\n' +
+          'العمر: ' + age + '\n' +
+          'الجنس: ' + data.Gender + '\n' +
+          'نوع الخطة: ' + data.PlanType + '\n\n' +
+          'جاري حساب عمرك الحيوي...');
+      });
+
+      /* Micro-interaction: gentle pulse every 4 seconds */
+      setInterval(function () {
+        cta.classList.add('pulse');
+        setTimeout(function () { cta.classList.remove('pulse'); }, 200);
+      }, 4000);
+    })();
+  </script>
+</body>
+</html>
