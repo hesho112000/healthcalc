@@ -30,10 +30,10 @@ body{font-family:var(--font-ar);background:var(--bg-primary);color:var(--text-pr
 h1,h2,h3,h4{font-family:var(--font-ar);font-weight:800;color:var(--primary)}
 .container{max-width:1280px;margin:0 auto;padding:0 32px}
 .btn-primary{background:var(--gold);color:var(--primary);padding:14px 32px;border-radius:var(--radius-full);font-weight:700;border:none;transition:.2s;display:inline-block;box-shadow:0 8px 20px rgba(212,175,55,.30)}
-.btn-primary:hover{background:#C4A02F;transform:translateY(-1px);box-shadow:0 10px 26px rgba(212,175,55,.42)}
+.btn-primary:hover{background:#C9A032;transform:translateY(-2px);box-shadow:0 10px 26px rgba(212,175,55,.42)}
 .btn-gold{background:var(--gold);color:var(--primary);padding:14px 32px;border-radius:var(--radius-full);font-weight:700;border:none;transition:.2s;box-shadow:0 8px 20px rgba(212,175,55,.30)}
-.btn-gold:hover{background:#C4A02F;transform:translateY(-1px)}
-.btn-secondary{background:transparent;color:var(--primary);border:1.5px solid var(--primary);padding:14px 32px;border-radius:var(--radius-full);font-weight:700;transition:.2s;display:inline-block}
+.btn-gold:hover{background:#C9A032;transform:translateY(-2px)}
+.btn-secondary{background:transparent;color:var(--primary);border:1.5px solid var(--primary);padding:14px 32px;border-radius:var(--radius-full);font-weight:600;transition:.2s;display:inline-block}
 .btn-secondary:hover{background:rgba(15,76,58,.05)}
 .card{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-soft);padding:24px}
 

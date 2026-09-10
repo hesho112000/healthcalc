@@ -15,7 +15,6 @@ import PrivacyPolicy from '../pages/PrivacyPolicy';
 import TermsOfService from '../pages/TermsOfService';
 import MedicalDisclaimerPage from '../pages/MedicalDisclaimerPage';
 import ContactUs from '../pages/ContactUs';
-import LabToPlanPage from '../pages/LabToPlanPage';
 import FitnessPage from '../pages/FitnessPage';
 import WorkoutPlanPage from '../pages/WorkoutPlanPage';
 import SmartwatchSyncPage from '../pages/SmartwatchSyncPage';
@@ -113,7 +112,6 @@ export const AppRoutes: React.FC = () => (
     <Route path="/weight-loss" element={<WeightLossPage />} />
     <Route path="/diabetes" element={<DiabetesPage />} />
     <Route path="/premium" element={<PremiumPage />} />
-    <Route path="/lab-to-plan" element={<LabToPlanPage />} />
     <Route path="/fitness" element={<FitnessPage />} />
     <Route path="/bmi" element={<FitnessPage initialTab="bmi" />} />
     <Route path="/bmr" element={<FitnessPage initialTab="bmr" />} />

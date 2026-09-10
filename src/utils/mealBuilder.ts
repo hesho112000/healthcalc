@@ -5,7 +5,7 @@ import { usdaEnrich } from './usda-meals-database';
 import { getPortionMeasure, type Portion } from './cuisineCatalog';
 import { matchesWhitelist, isTimeSuitable, isHeavyMeal, type MealSlot } from '../data/cuisine-allowed';
 
-export type MealBuilderSection = 'weight-loss' | 'diabetes' | 'hypertension' | 'lab-to-plan' | 'advanced-care';
+export type MealBuilderSection = 'weight-loss' | 'diabetes' | 'hypertension' | 'advanced-care';
 
 export interface MealBuilderFilters {
   lowSugar?: boolean;
@@ -25,7 +25,6 @@ export const SECTION_MACROS: Record<MealBuilderSection, MealMacros> = {
   'weight-loss': DEFAULT_MACROS,
   'diabetes': { proteinRatio: 0.3, carbsRatio: 0.4, fatRatio: 0.3 },
   'hypertension': { proteinRatio: 0.25, carbsRatio: 0.5, fatRatio: 0.25 },
-  'lab-to-plan': DEFAULT_MACROS,
   'advanced-care': DEFAULT_MACROS,
 };
 

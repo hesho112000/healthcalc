@@ -142,7 +142,7 @@ const ITEM_AR: Record<string, string> = {
   'Salsa': 'صلصة سالسا',
   'Lettuce': 'خس',
 
-  // LabToPlanPage.tsx conditionContent (diabetes / hypertension)
+  // condition-specific meal labels (diabetes / hypertension)
   'Steel-cut oatmeal (50g)': 'شوفان مقطع (50 جم)',
   'Chopped walnuts (15g)': 'جوز مفروم (15 جم)',
   'Blueberries (80g)': 'توت أزرق (80 جم)',

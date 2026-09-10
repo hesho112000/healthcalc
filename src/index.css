@@ -44,16 +44,16 @@ html[lang='ar'] textarea {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #D4AF37; color: #0F4C3A; font-weight: 700; padding: 14px 32px; border: none; border-radius: 999px; font-size: 15px; line-height: 1; cursor: pointer; box-shadow: 0 8px 20px rgba(212,175,55,.30); transition: all .2s ease;
   }
   .btn-primary:hover {
-    background: #C4A02F; box-shadow: 0 10px 26px rgba(212,175,55,.42); transform: translateY(-1px);
+    background: #C9A032; box-shadow: 0 10px 26px rgba(212,175,55,.42); transform: translateY(-2px);
   }
   .btn-secondary {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: transparent; color: #0F4C3A; font-weight: 700; padding: 14px 32px; border: 1.5px solid #0F4C3A; border-radius: 999px; font-size: 15px; line-height: 1; cursor: pointer; transition: all .2s ease;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: transparent; color: #0F4C3A; font-weight: 600; padding: 14px 32px; border: 1.5px solid #0F4C3A; border-radius: 999px; font-size: 15px; line-height: 1; cursor: pointer; transition: all .2s ease;
   }
   .btn-secondary:hover {
     background: rgba(15,76,58,.05);
   }
   .btn-outline {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: transparent; color: #0F4C3A; font-weight: 700; padding: 14px 32px; border: 1.5px solid #0F4C3A; border-radius: 999px; font-size: 15px; line-height: 1; cursor: pointer; transition: all .2s ease;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: transparent; color: #0F4C3A; font-weight: 600; padding: 14px 32px; border: 1.5px solid #0F4C3A; border-radius: 999px; font-size: 15px; line-height: 1; cursor: pointer; transition: all .2s ease;
   }
   .btn-outline:hover {
     background: rgba(15,76,58,.05);
@@ -532,7 +532,7 @@ html[lang='ar'] textarea {
   .print\:font-bold { font-weight: 700 !important; }
   .print\:text-gray-900 { color: #111827 !important; }
 
-  /* Lab-to-Plan specific print overrides */
+  /* Print overrides */
   header, footer, nav, .sticky { display: none !important; }
   main { padding: 0 !important; margin: 0 !important; }
   .bg-gradient-to-r.from-primary-600,

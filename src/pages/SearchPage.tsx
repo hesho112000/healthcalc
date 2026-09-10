@@ -7,7 +7,6 @@ const pages: { path: string; icon: string; title: string; keywords: string }[] =
   { path: '/smartwatch-sync', icon: '⌚', title: 'Smartwatch Sync', keywords: 'smartwatch apple health google health connect watch wearable tracker' },
   { path: '/weight-loss', icon: '🏋️', title: 'Weight & Fitness', keywords: 'weight loss meal plan workout calorie deficit plan' },
   { path: '/advanced-care', icon: '✨', title: 'Advanced Care', keywords: 'advanced care plans ibs gout kidney liver thyroid hypertension cholesterol care' },
-  { path: '/lab-to-plan', icon: '🔬', title: 'Lab Interpretation', keywords: 'lab results blood work interpretation labs cholesterol thyroid blood sugar' },
   { path: '/diabetes', icon: '🩸', title: 'Diabetes Management', keywords: 'diabetes glucose hba1c blood sugar lab interpreter diabetes care' },
   { path: '/workout-plan', icon: '💪', title: 'Workout Plan Builder', keywords: 'workout exercise trainer gym strength cardio routine weekly plan' },
   { path: '/food-library', icon: '🍽️', title: 'Food Library', keywords: 'food library recipes calories meals food' },
