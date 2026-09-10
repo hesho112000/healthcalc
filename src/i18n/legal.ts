@@ -79,6 +79,22 @@ export const privacyPolicyDocs: Record<Language, LegalDocument> = {
       { heading: '8. اتصل بنا', body: 'إذا كانت لديك أي أسئلة حول سياسة الخصوصية هذه، فيرجى الاتصال بنا على privacy@healthcalc.ai.' },
     ],
   },
+  de: {
+    badge: 'Rechtliches',
+    updated: 'Zuletzt aktualisiert: 1. Januar 2026',
+    intro: null,
+    sections: [
+      { heading: '1. Informationen, die wir erfassen', body: 'HealthCalc.ai ist mit Blick auf den Datenschutz konzipiert. Alle Gesundheitsberechnungen werden lokal in Ihrem Browser durchgeführt. Wir erfassen, speichern oder übertragen keine persönlichen Gesundheitsdaten, die Sie in unsere Rechner eingeben.' },
+      { heading: '1. Nicht personenbezogene Informationen', body: 'Wir können nicht personenbezogene Informationen erfassen, wie: Browsertyp und -version; Betriebssystem; besuchte Seiten und Verweildauer; Adressen verweisender Websites.' },
+      { heading: '2. Wie wir Informationen verwenden', body: 'Nicht personenbezogene Informationen dienen ausschließlich: der Verbesserung unserer Website und der Nutzererfahrung; Analysen zum Verständnis von Nutzungsmustern; der Anzeige relevanter Werbeanzeigen über Google AdSense.' },
+      { heading: '3. Cookies und Werbung', body: 'Wir verwenden Cookies für die Funktionalität und für die Anzeige personalisierter Werbung über Google AdSense. Die Verwendung von Werbe-Cookies durch Google ermöglicht es Google und seinen Partnern, Anzeigen anhand Ihres Besuchs auf unserer Website und/oder anderen Websites im Internet zu schalten. Sie können personalisierte Werbung über die Google-Einstellungen für Anzeigen deaktivieren.' },
+      { heading: '4. Datensicherheit', body: 'Wir ergreifen angemessene Sicherheitsmaßnahmen, um die von uns erfassten nicht personenbezogenen Informationen zu schützen. Allerdings ist keine Übertragungsmethode über das Internet zu 100 % sicher.' },
+      { heading: '5. Dienste Dritter', body: 'Wir verwenden Google AdSense für Werbung. Google kann Cookies verwenden, um Anzeigen anhand Ihrer früheren Besuche auf unserer Website oder anderen Websites zu schalten. Sie können personalisierte Werbung über die Seite der Google-Anzeigeneinstellungen deaktivieren.' },
+      { heading: '6. Datenschutz für Kinder', body: 'Unsere Dienste richten sich nicht an Personen unter 13 Jahren. Wir erfassen wissentlich keine personenbezogenen Daten von Kindern unter 13 Jahren.' },
+      { heading: '7. Änderungen dieser Richtlinie', body: 'Wir können diese Datenschutzrichtlinie von Zeit zu Zeit aktualisieren. Wir informieren Sie über Änderungen, indem wir die neue Datenschutzrichtlinie mit einem aktualisierten Datum auf dieser Seite veröffentlichen.' },
+      { heading: '8. Kontakt', body: 'Wenn Sie Fragen zu dieser Datenschutzrichtlinie haben, kontaktieren Sie uns bitte unter privacy@healthcalc.ai.' },
+    ],
+  },
 };
 
 export const termsOfServiceDocs: Record<Language, LegalDocument> = {
@@ -154,6 +170,24 @@ export const termsOfServiceDocs: Record<Language, LegalDocument> = {
       { heading: '11. العلامات التجارية', body: 'العلامات التجارية: أسماء وشعارات منظمة الصحة العالمية ومراكز مكافحة الأمراض والمعاهد الوطنية للصحة وعيادة مايو كلينيك هي علامات تجارية لأصحابها المعنيين. استخدام أسمائها هنا هو لأغراض مرجعية معلوماتية فقط (استخدام عادل) ولا يعني الانتماء أو التأييد أو الرعاية.' },
     ],
   },
+  de: {
+    badge: 'Bedingungen',
+    updated: 'Zuletzt aktualisiert: 1. Januar 2026',
+    intro: null,
+    sections: [
+      { heading: '1. Annahme der Bedingungen', body: 'Durch den Zugriff auf und die Nutzung von HealthCalc.ai akzeptieren Sie diese Nutzungsbedingungen und erklären sich mit ihnen einverstanden. Wenn Sie diesen Bedingungen nicht zustimmen, nutzen Sie unseren Dienst bitte nicht.' },
+      { heading: '2. Medizinischer Haftungsausschluss', body: 'HealthCalc.ai stellt Informationen ausschließlich zu Bildungszwecken bereit. Es ersetzt keine professionelle medizinische Beratung, Diagnose oder Behandlung. Konsultieren Sie vor Beginn eines Ernährungs- oder Trainingsprogramms stets Ihren Arzt. Die bereitgestellten Berechnungen und Empfehlungen basieren auf allgemeinen Richtlinien (ADA, DASH, USDA, ACSM) und sind möglicherweise nicht für alle Personen geeignet.' },
+      { heading: '3. Nutzung des Dienstes', body: 'Sie stimmen zu, HealthCalc.ai nur für rechtmäßige Zwecke und in Übereinstimmung mit diesen Bedingungen zu nutzen. Sie sind dafür verantwortlich, dass Ihre Nutzung des Dienstes keine geltenden Gesetze oder Vorschriften verletzt.' },
+      { heading: '4. Geistiges Eigentum', body: 'Alle Inhalte, Funktionen und Merkmale von HealthCalc.ai, einschließlich, aber nicht beschränkt auf Texte, Grafiken, Logos, Symbole, Bilder, Datensammlungen und Software, sind das ausschließliche Eigentum von HealthCalc.ai und durch internationale Urheberrechts-, Marken- und andere Gesetze zum geistigen Eigentum geschützt.' },
+      { heading: '5. Haftungsbeschränkung', body: 'HealthCalc.ai haftet in keinem Fall für indirekte, zufällige, besondere, Folge- oder Strafschäden, die aus Ihrer Nutzung oder der Unmöglichkeit der Nutzung des Dienstes entstehen. Wir sind nicht verantwortlich für gesundheitliche Entscheidungen, die auf Grundlage der von unseren Rechnern bereitgestellten Informationen getroffen werden.' },
+      { heading: '6. Genauigkeit der Informationen', body: 'Wir bemühen uns, genaue Berechnungen auf der Grundlage anerkannter medizinischer Richtlinien bereitzustellen, übernehmen jedoch keine Gewähr für Vollständigkeit, Zuverlässigkeit oder Genauigkeit dieser Informationen. Die Ergebnisse sollten nur als allgemeine Richtwerte verwendet werden.' },
+      { heading: '7. Links Dritter', body: 'Unser Dienst kann Links zu Websites oder Diensten Dritter (einschließlich Werbung) enthalten. Wir sind nicht verantwortlich für den Inhalt, die Datenschutzrichtlinien oder die Praktiken von Websites oder Diensten Dritter.' },
+      { heading: '8. Änderungen der Bedingungen', body: 'Wir behalten uns das Recht vor, diese Bedingungen jederzeit zu ändern. Änderungen werden mit ihrer Veröffentlichung wirksam. Die fortgesetzte Nutzung des Dienstes nach Veröffentlichung von Änderungen gilt als Annahme der geänderten Bedingungen.' },
+      { heading: '9. Anwendbares Recht', body: 'Diese Bedingungen unterliegen dem anwendbaren Recht und werden entsprechend ausgelegt, ohne Berücksichtigung von Kollisionsnormen.' },
+      { heading: '10. Kontakt', body: 'Bei Fragen zu diesen Bedingungen kontaktieren Sie uns unter legal@healthcalc.ai.' },
+      { heading: '11. Marken', body: 'Marken: Namen und Logos von WHO, CDC, NIH und Mayo Clinic sind Marken ihrer jeweiligen Inhaber. Ihre Nennung dient hier nur der informativen Referenz (nominative faire Nutzung) und impliziert keine Zugehörigkeit, Billigung oder Förderung.' },
+    ],
+  },
 };
 
 export const medicalDisclaimerDocs: Record<Language, LegalDocument> = {
@@ -211,6 +245,20 @@ export const medicalDisclaimerDocs: Record<Language, LegalDocument> = {
       { heading: 'الإرشادات الطبية المرجعية', body: 'ADA — الجمعية الأمريكية للسكري: حسابات متعلقة بالسكري وتفسيرات المختبر. DASH — الأساليب الغذائية لوقف ارتفاع ضغط الدم: ضغط الدم والتوصيات الغذائية. USDA — وزارة الزراعة الأمريكية: الإرشادات الغذائية وحسابات المغذيات الكبرى. ACSM — الكلية الأمريكية للطب الرياضي: توصيات التمارين واللياقة البدنية.' },
       { heading: 'حالات الطوارئ', body: 'إذا كنت تعتقد أن لديك حالة طارئة، فاتصل بطبيبك أو بخدمات الطوارئ فوراً. HealthCalc.ai غير مصمم للتعامل مع حالات الطوارئ ولا ينبغي أبداً استخدامه كمصدر لنصائح طبية طارئة.' },
       { heading: 'تحمل المخاطر', body: 'أنت تقر بأن أي استخدام للمعلومات من HealthCalc.ai يكون على مسؤوليتك الخاصة. أنت مسؤول عن استشارة أخصائي رعاية صحية مؤهل قبل اتخاذ أي قرارات متعلقة بالصحة بناءً على المحتوى المقدم من خدماتنا.' },
+    ],
+  },
+  de: {
+    badge: 'Wichtiger Hinweis',
+    updated: 'Inkrafttreten: 1. Januar 2026',
+    intro: 'HealthCalc.ai stellt Informationen ausschließlich zu Bildungszwecken bereit. Es ersetzt keine professionelle medizinische Beratung, Diagnose oder Behandlung. Konsultieren Sie vor Beginn eines Ernährungs- oder Trainingsprogramms stets Ihren Arzt.',
+    sections: [
+      { heading: 'Allgemeine Informationen', body: 'Die auf HealthCalc.ai bereitgestellten Inhalte, einschließlich, aber nicht beschränkt auf Rechner, Ernährungspläne, Trainingsabläufe, Interpretationen von Laborergebnissen und Gesundheitsempfehlungen, dienen ausschließlich allgemeinen Informations- und Bildungszwecken. Diese Inhalte sind nicht dazu bestimmt, professionelle medizinische Beratung, Diagnose oder Behandlung zu ersetzen.' },
+      { heading: 'Keine medizinische Beratung', body: 'Die von HealthCalc.ai bereitgestellten Informationen sollten nicht als Ersatz für die Konsultation eines qualifizierten Gesundheitsfachmanns verwendet werden. Die Berechnungen basieren auf allgemeinen Formeln und veröffentlichten medizinischen Richtlinien (ADA, DASH, USDA, ACSM) und berücksichtigen möglicherweise keine individuellen Gesundheitszustände, Medikamente, Allergien oder andere Faktoren, die Ihre spezifischen Bedürfnisse beeinflussen können.' },
+      { heading: 'Kein Arzt-Patienten-Verhältnis', body: 'Die Nutzung von HealthCalc.ai begründet kein Arzt-Patienten-Verhältnis zwischen Ihnen und HealthCalc.ai oder seinen Betreibern. Die von unseren Tools erzeugten Ergebnisse und Empfehlungen sollten vor der Umsetzung von einem qualifizierten Gesundheitsdienstleister geprüft werden.' },
+      { heading: 'Interpretation von Laborergebnissen', body: 'Unser Interpretationsprogramm für Laborergebnisse liefert allgemeine Auswertungen auf der Grundlage veröffentlichter medizinischer Richtlinien. Diese Auswertungen sind vorläufig und ersetzen nicht die Prüfung durch Ihren Arzt oder einen Laborarzt. Auffällige Ergebnisse sollten stets mit Ihrem Gesundheitsdienstleister besprochen werden.' },
+      { heading: 'Referenzierte medizinische Richtlinien', body: 'ADA — American Diabetes Association: diabetesbezogene Berechnungen und Laborauswertungen. DASH — Dietary Approaches to Stop Hypertension: Blutdruck- und Ernährungsempfehlungen. USDA — United States Department of Agriculture: Ernährungsrichtlinien und Makroberechnungen. ACSM — American College of Sports Medicine: Trainings- und Fitnessempfehlungen.' },
+      { heading: 'Notfallsituationen', body: 'Wenn Sie vermuten, dass ein medizinischer Notfall vorliegt, rufen Sie sofort Ihren Arzt oder den Notdienst an. HealthCalc.ai ist nicht für die Bewältigung von Notfallsituationen ausgelegt und sollte niemals als Quelle für medizinische Notfallberatung verwendet werden.' },
+      { heading: 'Risikoübernahme', body: 'Sie bestätigen, dass jede Nutzung von Informationen von HealthCalc.ai auf eigene Gefahr erfolgt. Sie sind dafür verantwortlich, vor gesundheitsbezogenen Entscheidungen, die auf Grundlage der von unserem Dienst bereitgestellten Inhalte getroffen werden, einen qualifizierten Gesundheitsfachmann zu konsultieren.' },
     ],
   },
 };

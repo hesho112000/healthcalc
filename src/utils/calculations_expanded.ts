@@ -18,6 +18,7 @@ export { FOODS_DATABASE, CUISINE_META, CUISINE_OPTIONS, getFoodsByCuisine, gener
 export type { Cuisine, FoodItem } from './calculations';
 
 import type { Exercise, ExerciseType } from '../data/exercises';
+import type { Language } from '../types';
 import {
   EXERCISES_DATABASE,
   EXERCISES_BY_TYPE,
@@ -50,24 +51,24 @@ export type {
   ExerciseGoal,
 } from '../data/exercises';
 
-export const EXERCISE_TYPE_LABELS: Record<ExerciseType, { en: string; fr: string; es: string; ar: string }> = {
-  strength: { en: 'Strength', fr: 'Force', es: 'Fuerza', ar: 'مقاومة وقوة' },
-  cardio: { en: 'Cardio', fr: 'Cardio', es: 'Cardio', ar: 'هوائية' },
-  hiit: { en: 'HIIT', fr: 'HIIT', es: 'HIIT', ar: 'كثافة عالية' },
-  flexibility: { en: 'Flexibility', fr: 'Souplesse', es: 'Flexibilidad', ar: 'مرونة وإطالة' },
-  balance: { en: 'Balance', fr: 'Équilibre', es: 'Equilibrio', ar: 'توازن وثبات' },
-  functional: { en: 'Functional', fr: 'Fonctionnel', es: 'Funcional', ar: 'وظيفية' },
-  mindbody: { en: 'Mind-Body', fr: 'Corps-esprit', es: 'Mente-cuerpo', ar: 'عقل وجسد' },
+export const EXERCISE_TYPE_LABELS: Record<ExerciseType, Record<Language, string>> = {
+  strength: { en: 'Strength', fr: 'Force', es: 'Fuerza', ar: 'مقاومة وقوة', de: 'Kraft' },
+  cardio: { en: 'Cardio', fr: 'Cardio', es: 'Cardio', ar: 'هوائية', de: 'Cardio' },
+  hiit: { en: 'HIIT', fr: 'HIIT', es: 'HIIT', ar: 'كثافة عالية', de: 'HIIT' },
+  flexibility: { en: 'Flexibility', fr: 'Souplesse', es: 'Flexibilidad', ar: 'مرونة وإطالة', de: 'Flexibilität' },
+  balance: { en: 'Balance', fr: 'Équilibre', es: 'Equilibrio', ar: 'توازن وثبات', de: 'Balance' },
+  functional: { en: 'Functional', fr: 'Fonctionnel', es: 'Funcional', ar: 'وظيفية', de: 'Funktionell' },
+  mindbody: { en: 'Mind-Body', fr: 'Corps-esprit', es: 'Mente-cuerpo', ar: 'عقل وجسد', de: 'Mind-Body' },
 };
 
-export const EXERCISE_GOAL_LABELS: Record<ExerciseType, { en: string; fr: string; es: string; ar: string }> = {
-  strength: { en: 'Muscle & Strength', fr: 'Muscle et force', es: 'Músculo y fuerza', ar: 'عضلات وقوة' },
-  cardio: { en: 'Heart Health', fr: 'Santé du cœur', es: 'Salud del corazón', ar: 'صحة القلب' },
-  hiit: { en: 'Fat Burn & Power', fr: 'Perte de graisse et puissance', es: 'Quema grasa y potencia', ar: 'حرق الدهون والقوة' },
-  flexibility: { en: 'Mobility & Recovery', fr: 'Mobilité et récupération', es: 'Movilidad y recuperación', ar: 'مرونة وتعافٍ' },
-  balance: { en: 'Stability & Falls Prevention', fr: 'Stabilité et prévention des chutes', es: 'Estabilidad y prevención de caídas', ar: 'ثبات ووقاية من السقوط' },
-  functional: { en: 'Everyday Strength', fr: 'Force quotidienne', es: 'Fuerza diaria', ar: 'قوة يومية' },
-  mindbody: { en: 'Stress Relief & Calm', fr: 'Anti-stress et sérénité', es: 'Alivio del estrés', ar: 'تخفيف التوتر والسكينة' },
+export const EXERCISE_GOAL_LABELS: Record<ExerciseType, Record<Language, string>> = {
+  strength: { en: 'Muscle & Strength', fr: 'Muscle et force', es: 'Músculo y fuerza', ar: 'عضلات وقوة', de: 'Muskel & Kraft' },
+  cardio: { en: 'Heart Health', fr: 'Santé du cœur', es: 'Salud del corazón', ar: 'صحة القلب', de: 'Herzgesundheit' },
+  hiit: { en: 'Fat Burn & Power', fr: 'Perte de graisse et puissance', es: 'Quema grasa y potencia', ar: 'حرق الدهون والقوة', de: 'Fettverbrennung & Power' },
+  flexibility: { en: 'Mobility & Recovery', fr: 'Mobilité et récupération', es: 'Movilidad y recuperación', ar: 'مرونة وتعافٍ', de: 'Mobilität & Regeneration' },
+  balance: { en: 'Stability & Falls Prevention', fr: 'Stabilité et prévention des chutes', es: 'Estabilidad y prevención de caídas', ar: 'ثبات ووقاية من السقوط', de: 'Stabilität & Sturzprävention' },
+  functional: { en: 'Everyday Strength', fr: 'Force quotidienne', es: 'Fuerza diaria', ar: 'قوة يومية', de: 'Alltagskraft' },
+  mindbody: { en: 'Stress Relief & Calm', fr: 'Anti-stress et sérénité', es: 'Alivio del estrés', ar: 'تخفيف التوتر والسكينة', de: 'Stressabbau & Ruhe' },
 };
 
 export const EXERCISE_TYPE_OPTIONS: ExerciseType[] = ['strength', 'cardio', 'hiit', 'flexibility', 'balance', 'functional', 'mindbody'];

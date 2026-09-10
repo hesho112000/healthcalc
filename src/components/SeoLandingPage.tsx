@@ -37,6 +37,7 @@ const dirMap: Record<Language, 'ltr' | 'rtl'> = {
   fr: 'ltr',
   es: 'ltr',
   ar: 'rtl',
+  de: 'ltr',
 };
 
 const SeoLandingPage: React.FC<SeoLandingPageProps> = ({ data, pageLang }) => {
@@ -53,7 +54,8 @@ const SeoLandingPage: React.FC<SeoLandingPageProps> = ({ data, pageLang }) => {
     };
   }, [language, dir, ctxDir, ctxLanguage]);
 
-  const L = (obj: { en: string; fr: string; es: string; ar: string }) => obj[language] || obj.en;
+  const L = (obj: Record<string, string>): string => obj[language] || obj.en;
+  const A = (arr: Record<string, string[]>): string[] => (arr[language] as string[] | undefined) || arr.en;
 
   const sectionLabel = {
     overview: { en: 'Overview', fr: 'Description', es: 'Descripcion', ar: 'الوصف' },
@@ -102,7 +104,7 @@ const SeoLandingPage: React.FC<SeoLandingPageProps> = ({ data, pageLang }) => {
             <div className="card">
               <h2 className="text-lg font-bold text-gray-900 mb-4">{L(sectionLabel.overview)}</h2>
               <div className="space-y-3">
-                {data.description[language].map((p, i) => (
+                {A(data.description).map((p, i) => (
                   <p key={i} className="text-sm text-gray-600 leading-relaxed">{p}</p>
                 ))}
               </div>
@@ -152,7 +154,7 @@ const SeoLandingPage: React.FC<SeoLandingPageProps> = ({ data, pageLang }) => {
                 {L(sectionLabel.healthTips)}
               </h3>
               <ul className="space-y-2">
-                {data.samplePlan.tips[language].map((tip, i) => (
+                {A(data.samplePlan.tips).map((tip, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
                     <span className="text-sage-500 mt-0.5">&#10003;</span>
                     {tip}

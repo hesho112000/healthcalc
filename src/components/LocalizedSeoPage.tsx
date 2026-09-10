@@ -11,6 +11,7 @@ const langLabels: Record<Language, { native: string; flag: string }> = {
   fr: { native: 'Français', flag: '🇫🇷' },
   es: { native: 'Español', flag: '🇪🇸' },
   ar: { native: 'العربية', flag: '🇸🇦' },
+  de: { native: 'Deutsch', flag: '🇩🇪' },
 };
 
 const LocalizedSeoPage: React.FC = () => {
