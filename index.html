@@ -15,10 +15,21 @@
     <meta name="theme-color" content="#0F4C3A">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="stylesheet" href="style.css">
+    <script>
+      (function () {
+        var r = sessionStorage.getItem('hc:redirect');
+        if (!r) return;
+        sessionStorage.removeItem('hc:redirect');
+        var base = location.href.split('#')[0];
+        var path = r.replace(base, '').replace(/^\/+/, '').replace(/index\.html$/, '');
+        var target = path ? '#/' + path + location.hash : '#/';
+        location.replace(base + target);
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

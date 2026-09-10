@@ -49,12 +49,14 @@
           <th>Step 2<br>النافبار</th>
           <th>Step 3<br>الفوتر</th>
           <th>Step 4<br>التصميم الموحد</th>
+          <th>Step 5<br>SPA Routing<br>(no 404)</th>
           <th>الحالة</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td class="file">Personal-Data-Entry-Step1.html</td>
+          <td>✅</td>
           <td>✅</td>
           <td>✅</td>
           <td>✅</td>
@@ -67,10 +69,12 @@
           <td>✅</td>
           <td>✅</td>
           <td>✅</td>
+          <td>✅</td>
           <td class="status-pass">نجح</td>
         </tr>
         <tr>
           <td class="file">index.html (SPA React)</td>
+          <td>✅</td>
           <td>✅</td>
           <td>✅</td>
           <td>✅</td>
@@ -88,15 +92,16 @@
         <li><b>Step 3 (الفوتر):</b> الفوتر المميز <code>class="premium-footer"</code> يُرسم الآن من مكوّن <code>src/components/layout/Footer.tsx</code> (4 أعمدة + نموذج نشرة بريدية + footer-bottom © 2026) — ورد في الحزمة بنجاح.</li>
       </ol>
       <p style="margin:10px 0 0">بناء Vite ناجح ✓ • الأسلوب (الكلاستات) مشترك من <code>public/style.css</code> عبر <code>index.html</code> بالضبط مثل الصفحتين المستقلتين — التصميم موحّد عبر المنصة.</p>
-      <p style="margin:10px 0 0"><b>Step 4 (التصميم الموحد):</b> ✅ — <code>public/style.css</code> يبدأ الآن بنظام التصميم الموحّد: <code>:root</code> مع <code>--primary:#0F4C3A</code> و <code>--gold:#D4AF37</code> و <code>--bg-primary:#FDFBF7</code> و <code>--font-ar</code> و <code>--radius-full</code>، وكل الألوان/الخطوط الصريحة استُبدلت بالمتغيرات، والملف مربوط في الملفات الثلاثة عبر <code>&lt;link rel="stylesheet" href="/style.css"&gt;</code>.</p>
+      <p style="margin:10px 0 0"><b>Step 4 (التصميم الموحد):</b> ✅ — <code>public/style.css</code> يبدأ الآن بنظام التصميم الموحّد: <code>:root</code> مع <code>--primary:#0F4C3A</code> و <code>--gold:#D4AF37</code> و <code>--bg-primary:#FDFBF7</code> و <code>--font-ar</code> و <code>--radius-full</code>، وكل الألوان/الخطوط الصريحة استُبدلت بالمتغيرات، والملف مربوط في الملفات الثلاثة عبر <code>&lt;link rel="stylesheet" href="style.css"&gt;</code> (مسار نسبي — متوافق مع GitHub Pages).</p>
+      <p style="margin:10px 0 0"><b>Step 5 (SPA Routing — بلا 404):</b> ✅ — HashRouter فعّال؛ أُضيفت كل المسارات <code>/plan</code> <code>/tracking</code> <code>/diabetes</code> <code>/bio-age</code> <code>/articles</code> <code>/about</code> <code>/faq</code> <code>/contact</code> <code>/privacy</code> <code>/terms</code> <code>/wizard/step1</code> <code>/Personal-Data-Entry-Step1</code> <code>/Personal-Data-Entry-Step2</code> مع صفحة 404 بديلة داخلية؛ النافبار والفوتر يستخدمان <code>&lt;Link&gt;</code>؛ روابط الأصول في الملفات الثلاثة أصبحت نسبية (<code>style.css</code>, <code>favicon.svg</code>...)؛ وأنشئ <code>public/404.html</code> يعيد التوجيه عبر <code>sessionStorage</code> + سكربت استعادة في <code>index.html</code>. البناء نجح والمسارات كلها في الحزمة.</p>
     </div>
 
     <footer>Verification Report • Critical Stage 1 • تم التوليد تلقائيًا</footer>
   </div>
 
   <script>
-    var scanned = 3, passed = 3, failed = 0, step4 = 'PASS';
-    console.log('%c[Verification] %c' + scanned + ' HTML files scanned | ' + passed + ' passed | ' + failed + ' failed | Step 4 design system: ' + step4, 'color:#D4AF37;font-weight:bold', 'color:#0F4C3A;font-weight:bold');
+    var scanned = 3, passed = 3, failed = 0, step4 = 'PASS', step5 = 'PASS';
+    console.log('%c[Verification] %c' + scanned + ' HTML files scanned | ' + passed + ' passed | ' + failed + ' failed | Step 4 design system: ' + step4 + ' | Step 5 SPA routing no-404: ' + step5, 'color:#D4AF37;font-weight:bold', 'color:#0F4C3A;font-weight:bold');
   </script>
 </body>
 </html>

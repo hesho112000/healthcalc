@@ -48,6 +48,27 @@ const NotFoundPage: React.FC = () => {
   );
 };
 
+const SimplePage: React.FC<{ emoji: string; title: string; desc: string }> = ({ emoji, title, desc }) => (
+  <div className="px-4" style={{ padding: '120px 24px 80px', background: 'var(--bg-primary)', minHeight: '70vh' }}>
+    <div className="container text-center" style={{ maxWidth: 760 }}>
+      <div style={{ width: 88, height: 88, margin: '0 auto 20px', background: 'var(--primary)', color: 'var(--bg-primary)', borderRadius: 'var(--radius-lg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 40 }}>{emoji}</div>
+      <h1 style={{ color: 'var(--primary)', fontSize: 30, marginBottom: 12 }}>{title}</h1>
+      <p style={{ color: 'var(--text-secondary)', lineHeight: 1.9, marginBottom: 28 }}>{desc}</p>
+      <Link to="/" className="btn-gold" style={{ textDecoration: 'none' }}>العودة للرئيسية</Link>
+    </div>
+  </div>
+);
+
+const StaticStepPage: React.FC<{ step: number }> = ({ step }) => (
+  <div style={{ position: 'fixed', inset: 0, background: 'var(--bg-primary)' }}>
+    <iframe
+      src={`${import.meta.env.BASE_URL}Personal-Data-Entry-Step${step}.html`}
+      style={{ width: '100%', height: '100%', border: 'none' }}
+      title={`Personal Data Entry Step ${step}`}
+    />
+  </div>
+);
+
 const AdminPage: React.FC = () => {
   const { t } = useLanguage();
   const active = isAdmin();
@@ -117,6 +138,17 @@ export const AppRoutes: React.FC = () => (
     <Route path="/terms" element={<TermsOfService />} />
     <Route path="/disclaimer" element={<MedicalDisclaimerPage />} />
     <Route path="/contact" element={<ContactUs />} />
+
+    <Route path="/plan" element={<SimplePage emoji="📋" title="خطتي" desc="تابع خطتك الغذائية والحركية اليومية، وجدول وجباتك وأهدافك الأسبوعية في مكان واحد." />} />
+    <Route path="/tracking" element={<SimplePage emoji="📈" title="تتبع الأمراض" desc="سجّل وتابع قياساتك يوميًا: ضغط الدم، السكري، الكوليسترول، وراقب اتجاهاتك الصحية بوضوح." />} />
+    <Route path="/bio-age" element={<SimplePage emoji="🫀" title="حساب العمر الحيوي" desc="اكتشف عمرك الحيوي الحقيقي من بياناتك الصحية وأسلوب حياتك، واحصل على توصيات لتقليله." />} />
+    <Route path="/articles" element={<SimplePage emoji="📰" title="المقالات" desc="مقالات التغذية العلاجية والصحة العامة، تحديثات أسبوعية من فريق بصمتك الحيوية." />} />
+    <Route path="/about" element={<SimplePage emoji="🌿" title="عن المنصة" desc="بصمتك الحيوية منصة تغذية علاجية متكاملة لمتابعة الضغط والسكري والكوليسترول وتخصيص خطتك الصحية." />} />
+    <Route path="/faq" element={<SimplePage emoji="💬" title="الأسئلة الشائعة" desc="إجابات واضحة على أكثر الأسئلة شيوعًا حول المنصة، والتتبع، والخصوصية، والاشتراك." />} />
+    <Route path="/wizard/step1" element={<StaticStepPage step={1} />} />
+    <Route path="/wizard/step2" element={<StaticStepPage step={2} />} />
+    <Route path="/Personal-Data-Entry-Step1" element={<StaticStepPage step={1} />} />
+    <Route path="/Personal-Data-Entry-Step2" element={<StaticStepPage step={2} />} />
 
     <Route path="/admin" element={<AdminPage />} />
 
