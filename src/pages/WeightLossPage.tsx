@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { kitchensRegistry, totalDishesAll } from '../data/kitchens';
 import type { KitchenInfo, KitchenDish, KitchenCategory } from '../data/kitchens';
 
@@ -450,7 +451,48 @@ function dishesForMeal(k: KitchenInfo, key: MealKey): KitchenDish[] {
   return out.filter((d, i, a) => a.findIndex((x) => x.name === d.name) === i);
 }
 
+const BodyFigure: React.FC<{ kind: Sex }> = ({ kind }) => (
+  <svg viewBox="0 0 100 160" className="h-[80px] w-[50px] shrink-0 overflow-visible" aria-hidden="true">
+    <defs>
+      <linearGradient id={`gb${kind === 'male' ? 'M' : 'F'}`} x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stopColor="#6ee7b7" />
+        <stop offset="0.5" stopColor="#10b981" />
+        <stop offset="1" stopColor="#065f46" />
+      </linearGradient>
+    </defs>
+    {kind === 'male' ? (
+      <g fill="url(#gbM)">
+        <circle cx="50" cy="20" r="15" />
+        <rect x="44" y="32" width="12" height="9" rx="4.5" />
+        <rect x="36" y="40" width="28" height="54" rx="13" />
+        <rect x="25" y="46" width="9" height="52" rx="4.5" />
+        <rect x="66" y="46" width="9" height="52" rx="4.5" />
+        <rect x="42" y="94" width="9" height="52" rx="4.5" />
+        <rect x="49" y="94" width="9" height="52" rx="4.5" />
+        <ellipse cx="46.5" cy="146" rx="7" ry="4" />
+        <ellipse cx="53.5" cy="146" rx="7" ry="4" />
+      </g>
+    ) : (
+      <g fill="url(#gbF)">
+        <circle cx="50" cy="20" r="14" />
+        <rect x="45" y="32" width="10" height="8" rx="4" />
+        <rect x="40" y="39" width="20" height="26" rx="10" />
+        <rect x="45" y="62" width="10" height="9" rx="4" />
+        <path d="M45 71 L55 71 L70 128 L30 128 Z" />
+        <rect x="27" y="46" width="8" height="44" rx="4" />
+        <rect x="65" y="46" width="8" height="44" rx="4" />
+        <rect x="42" y="128" width="7" height="18" rx="3.5" />
+        <rect x="51" y="128" width="7" height="18" rx="3.5" />
+        <ellipse cx="45.5" cy="146" rx="7" ry="4" />
+        <ellipse cx="54.5" cy="146" rx="7" ry="4" />
+      </g>
+    )}
+    <ellipse cx="50" cy={kind === 'male' ? 58 : 55} rx="5" ry={kind === 'male' ? 14 : 10} fill="#ffffff" opacity="0.28" />
+  </svg>
+);
+
 const WeightLossPage: React.FC = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState<Step>(1);
   const [planType, setPlanType] = useState<PlanType>('both');
   const [age, setAge] = useState('26');
@@ -876,8 +918,8 @@ const WeightLossPage: React.FC = () => {
         }`;
 
   return (
-    <div className={`wiz-page min-h-screen text-zinc-900 overflow-x-hidden antialiased ${step === 1 ? 'bg-gradient-to-b from-emerald-50 to-emerald-100' : 'bg-[#f8fafc]'}`} dir="ltr">
-      <main className={`w-full mx-auto transition-all ${step === 1 ? 'max-w-[480px] px-5 pt-6 pb-[130px] md:pb-24 overflow-x-hidden' : step === 2 ? 'max-w-[480px] px-4 md:px-5 pb-[120px] md:pb-16 pt-2 md:pt-4' : 'max-w-[760px] px-4 md:px-0 pb-[120px] md:pb-16 pt-8 md:pt-12 overflow-x-hidden'}`}>
+    <div className={`wiz-page min-h-screen text-zinc-900 overflow-x-hidden antialiased ${step === 1 ? 'bg-gradient-to-b from-[#a7f3d0] via-[#6ee7b7] to-[#34d399]' : 'bg-[#f8fafc]'}`} dir="ltr">
+      <main className={`w-full mx-auto transition-all ${step === 1 ? 'max-w-[400px] px-5 pt-6 pb-[150px] md:pb-24 overflow-x-hidden' : step === 2 ? 'max-w-[480px] px-4 md:px-5 pb-[120px] md:pb-16 pt-2 md:pt-4' : 'max-w-[760px] px-4 md:px-0 pb-[120px] md:pb-16 pt-8 md:pt-12 overflow-x-hidden'}`}>
         {step !== 1 && step !== 2 && step !== 5 && (
           <>
             <div className="mb-8">
@@ -909,42 +951,42 @@ const WeightLossPage: React.FC = () => {
 
         <div className="w-full min-w-0">
           {step === 1 && (
-            <div className="w-full bg-[#e8f5e9]/80 backdrop-blur rounded-[32px] p-6 shadow-xl min-w-0">
-              <div className="w-full bg-white/90 rounded-full h-12 flex items-center justify-between px-4 shadow-sm mb-6 min-w-0">
-                <span className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 text-[18px] shrink-0 select-none">‹</span>
-                <div className="text-[16px] font-bold text-emerald-800 whitespace-nowrap">Step 1 of 3</div>
+            <div className="w-full bg-[#e8f5e9]/90 backdrop-blur rounded-[28px] p-5 shadow-2xl min-w-0">
+              <div className="w-full bg-white rounded-full h-12 flex items-center justify-between px-3 shadow-sm min-w-0">
+                <button type="button" onClick={() => navigate('/')} aria-label="Back" className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 text-[18px] shrink-0 select-none active:scale-95">‹</button>
+                <div className="text-[14px] font-bold text-emerald-900 whitespace-nowrap">Step 1 of 3</div>
                 <div className="flex items-center gap-1.5 shrink-0">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                  <span className="w-2 h-2 rounded-full bg-zinc-200" />
-                  <span className="w-2 h-2 rounded-full bg-zinc-200" />
+                  <span className="w-3 h-3 rounded-full bg-emerald-600" />
+                  <span className="w-2 h-2 rounded-full bg-emerald-300" />
+                  <span className="w-2 h-2 rounded-full bg-gray-300" />
+                  <span className="w-2 h-2 rounded-full bg-gray-300" />
                 </div>
               </div>
 
-              <h2 className="text-[26px] font-black leading-tight text-gray-900">Tell us about yourself</h2>
-              <p className="text-[13px] text-gray-600 mt-1">We'll use this to personalize your plan</p>
+              <h2 className="mt-4 text-[26px] font-black leading-tight text-black">Tell us about yourself</h2>
+              <p className="text-[14px] text-gray-600 mt-1">We'll use this to personalize your plan</p>
 
               <div className="mt-5">
                 <div className="text-[14px] font-bold mb-2">Age</div>
                 <div
                   onClick={() => setEditField((p) => (p === 'age' ? null : 'age'))}
-                  className={`rounded-[24px] bg-white shadow-md border flex items-center px-4 min-h-[88px] cursor-pointer transition-transform active:scale-[0.98] ${editField === 'age' ? 'border-emerald-400 ring-[3px] ring-emerald-100' : 'border-emerald-100'}`}
+                  className={`rounded-[16px] bg-white shadow-sm border flex items-center px-4 min-h-[68px] cursor-pointer transition-transform active:scale-[0.98] ${editField === 'age' ? 'border-emerald-400 ring-[3px] ring-emerald-100' : 'border-gray-100'}`}
                 >
-                  <span className="w-14 h-14 rounded-full bg-emerald-600 flex items-center justify-center text-[24px] shrink-0">📅</span>
+                  <span className="w-12 h-12 rounded-full bg-emerald-600 flex items-center justify-center text-[22px] shrink-0">📅</span>
                   <div className="flex-1 px-3 min-w-0">
-                    <div className="text-[14px] text-gray-500">Age</div>
+                    <div className="text-[11px] text-gray-500">Age</div>
                     {editField === 'age' ? (
-                      <input autoFocus value={age} onChange={(e) => setAge(e.target.value.replace(/\D/g, ''))} inputMode="numeric" className="w-full bg-transparent text-[28px] font-bold text-gray-900 outline-none min-h-[44px]" />
+                      <input autoFocus value={age} onChange={(e) => setAge(e.target.value.replace(/\D/g, ''))} inputMode="numeric" className="w-full bg-transparent text-[22px] font-bold text-black outline-none min-h-[44px]" />
                     ) : (
-                      <div className="text-[28px] font-bold leading-none text-gray-900">{age} years</div>
+                      <div className="text-[22px] font-bold leading-none text-black">{age} years</div>
                     )}
                   </div>
-                  <span className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 text-[16px] shrink-0">›</span>
+                  <span className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 text-[16px] shrink-0">›</span>
                 </div>
               </div>
 
               <div className="mt-5">
-                <div className="text-[14px] font-bold mb-2">Gender</div>
+                <div className="text-[14px] font-bold text-black mb-2">Gender</div>
                 <div className="grid grid-cols-2 gap-3">
                   {(['male', 'female'] as Sex[]).map((x) => {
                     const on = sex === x;
@@ -953,52 +995,52 @@ const WeightLossPage: React.FC = () => {
                         key={x}
                         type="button"
                         onClick={() => setSex(x)}
-                        className={`relative flex flex-col items-center justify-center pt-5 pb-4 rounded-[24px] transition-all min-w-0 min-h-[160px] ${on ? 'bg-emerald-500 border-2 border-emerald-600 shadow-md scale-[1.03]' : 'bg-white border-2 border-gray-200'}`}
+                        className={`relative flex flex-col items-center justify-center pt-5 pb-4 rounded-[16px] transition-all min-w-0 min-h-[160px] ${on ? 'bg-emerald-500 border-2 border-emerald-600 shadow-md scale-[1.03]' : 'bg-white border border-gray-200 shadow-sm'}`}
                       >
-                        <span className="text-[72px] leading-none">{x === 'male' ? '🧍♂️' : '🧍♀️'}</span>
-                        <span className={`mt-2 text-[16px] font-bold ${on ? 'text-white' : 'text-gray-500'}`}>{x === 'male' ? 'Male' : 'Female'}</span>
-                        {on && <span className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[12px] font-bold shadow-sm">✓</span>}
+                        <BodyFigure kind={x} />
+                        <span className={`mt-2 text-[14px] font-bold leading-none ${on ? 'text-black' : 'text-gray-500'}`}>{x === 'male' ? 'Male' : 'Female'}</span>
+                        {on && <span className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-emerald-700 text-white flex items-center justify-center text-[12px] font-bold shadow-sm">✓</span>}
                       </button>
                     );
                   })}
                 </div>
               </div>
 
-              <div className="mt-5 grid grid-cols-2 gap-3">
+              <div className="mt-4 grid grid-cols-2 gap-3">
                 <div
                   onClick={() => setEditField((p) => (p === 'height' ? null : 'height'))}
-                  className={`rounded-[24px] bg-white shadow-sm border flex items-center px-4 min-h-[80px] cursor-pointer transition-transform active:scale-[0.98] ${editField === 'height' ? 'border-emerald-400 ring-[3px] ring-emerald-100' : 'border-zinc-200'}`}
+                  className={`rounded-[16px] bg-white shadow-sm border flex items-center px-3 min-h-[68px] cursor-pointer transition-transform active:scale-[0.98] min-w-0 ${editField === 'height' ? 'border-emerald-400 ring-[3px] ring-emerald-100' : 'border-gray-200'}`}
                 >
-                  <span className="w-14 h-14 rounded-full bg-emerald-600 flex items-center justify-center text-[24px] shrink-0">📏</span>
-                  <div className="flex-1 px-3 min-w-0">
-                    <div className="text-[14px] text-emerald-700">Height</div>
+                  <span className="w-11 h-11 rounded-full bg-emerald-600 flex items-center justify-center text-[20px] shrink-0">📏</span>
+                  <div className="flex-1 px-2 min-w-0">
+                    <div className="text-[11px] text-emerald-700">Height</div>
                     {editField === 'height' ? (
-                      <input autoFocus value={height} onChange={(e) => setHeight(e.target.value.replace(/\D/g, ''))} inputMode="numeric" className="w-full bg-transparent text-[24px] font-bold text-gray-900 outline-none min-h-[44px]" />
+                      <input autoFocus value={height} onChange={(e) => setHeight(e.target.value.replace(/\D/g, ''))} inputMode="numeric" className="w-full bg-transparent text-[20px] font-bold text-black outline-none min-h-[44px]" />
                     ) : (
-                      <div className="text-[24px] font-bold leading-none text-gray-900">{height} cm</div>
+                      <div className="text-[20px] font-bold leading-none text-black truncate">{height} cm</div>
                     )}
                   </div>
-                  <span className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 text-[16px] shrink-0">›</span>
+                  <span className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 text-[16px] shrink-0">›</span>
                 </div>
                 <div
                   onClick={() => setEditField((p) => (p === 'weight' ? null : 'weight'))}
-                  className={`rounded-[24px] bg-white shadow-sm border flex items-center px-4 min-h-[80px] cursor-pointer transition-transform active:scale-[0.98] ${editField === 'weight' ? 'border-emerald-400 ring-[3px] ring-emerald-100' : 'border-zinc-200'}`}
+                  className={`rounded-[16px] bg-white shadow-sm border flex items-center px-3 min-h-[68px] cursor-pointer transition-transform active:scale-[0.98] min-w-0 ${editField === 'weight' ? 'border-emerald-400 ring-[3px] ring-emerald-100' : 'border-gray-200'}`}
                 >
-                  <span className="w-14 h-14 rounded-full bg-emerald-600 flex items-center justify-center text-[24px] shrink-0">⚖️</span>
-                  <div className="flex-1 px-3 min-w-0">
-                    <div className="text-[14px] text-emerald-700">Weight</div>
+                  <span className="w-11 h-11 rounded-full bg-emerald-600 flex items-center justify-center text-[20px] shrink-0">⚖️</span>
+                  <div className="flex-1 px-2 min-w-0">
+                    <div className="text-[11px] text-emerald-700">Weight</div>
                     {editField === 'weight' ? (
-                      <input autoFocus value={weight} onChange={(e) => setWeight(e.target.value.replace(/[^0-9.]/g, ''))} inputMode="decimal" className="w-full bg-transparent text-[24px] font-bold text-gray-900 outline-none min-h-[44px]" />
+                      <input autoFocus value={weight} onChange={(e) => setWeight(e.target.value.replace(/[^0-9.]/g, ''))} inputMode="decimal" className="w-full bg-transparent text-[20px] font-bold text-black outline-none min-h-[44px]" />
                     ) : (
-                      <div className="text-[24px] font-bold leading-none text-gray-900">{weight} kg</div>
+                      <div className="text-[20px] font-bold leading-none text-black truncate">{weight} kg</div>
                     )}
                   </div>
-                  <span className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 text-[16px] shrink-0">›</span>
+                  <span className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 text-[16px] shrink-0">›</span>
                 </div>
               </div>
 
-              <div className="mt-6">
-                <div className="text-[16px] font-black text-center mb-3">Plan type</div>
+              <div className="mt-5">
+                <div className="text-[15px] font-bold text-black text-center mb-2">Plan type</div>
                 <div className="space-y-2">
                   {([
                     { pt: 'nutrition' as PlanType, emoji: '🍃', label: 'Nutrition only' },
@@ -1011,11 +1053,11 @@ const WeightLossPage: React.FC = () => {
                         key={pt}
                         type="button"
                         onClick={() => setPlanType(pt)}
-                        className={`w-full rounded-full h-12 flex items-center px-4 gap-3 border shadow-sm transition-all min-w-0 ${on ? 'bg-emerald-700 text-white border-emerald-700' : 'bg-white text-zinc-700 border-zinc-200'}`}
+                        className={`w-full rounded-full h-10 min-h-[44px] flex items-center px-3 gap-3 border shadow-sm transition-all min-w-0 ${on ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-black border-gray-200'}`}
                       >
-                        <span className={`w-8 h-8 rounded-full flex items-center justify-center text-[16px] shrink-0 ${on ? 'bg-white/20' : 'bg-emerald-100'}`}>{emoji}</span>
-                        <span className="flex-1 text-left text-[16px] font-semibold truncate">{label}</span>
-                        {on && <span className="w-6 h-6 rounded-full bg-white text-emerald-700 flex items-center justify-center text-[13px] font-bold shrink-0">✓</span>}
+                        <span className={`w-7 h-7 rounded-full flex items-center justify-center text-[15px] shrink-0 ${on ? 'bg-white/20' : 'bg-emerald-100'}`}>{emoji}</span>
+                        <span className="flex-1 text-left text-[13px] font-bold truncate">{label}</span>
+                        {on && <span className="w-6 h-6 rounded-full bg-white text-emerald-600 flex items-center justify-center text-[13px] font-bold shrink-0">✓</span>}
                       </button>
                     );
                   })}
@@ -1027,14 +1069,17 @@ const WeightLossPage: React.FC = () => {
                 )}
               </div>
 
-              <button
-                type="button"
-                onClick={next}
-                disabled={!isValid()}
-                className={`w-full sticky bottom-[14px] mt-6 min-h-[56px] rounded-[16px] text-[18px] font-bold text-white bg-gradient-to-r from-emerald-600 to-emerald-700 shadow-lg transition-all active:scale-[0.95] ${!isValid() ? 'opacity-40 cursor-not-allowed' : ''}`}
-              >
-                Continue
-              </button>
+              <div className="sticky bottom-[14px] mt-4 space-y-1 min-w-0">
+                <button
+                  type="button"
+                  onClick={next}
+                  disabled={!isValid()}
+                  className={`w-full min-h-[56px] rounded-[16px] text-[18px] font-bold text-white bg-gradient-to-r from-emerald-600 to-emerald-700 shadow-lg transition-all active:scale-[0.98] ${!isValid() ? 'opacity-40 cursor-not-allowed' : ''}`}
+                >
+                  Continue
+                </button>
+                <button type="button" onClick={() => navigate('/')} className="w-full h-10 min-h-[44px] text-[14px] text-gray-600 underline text-center">Back</button>
+              </div>
             </div>
           )}
 
