@@ -259,6 +259,9 @@ type TranslationKeys = {
   homeHeroHealthy: string;
   homeHeroTargetCard: string;
   homeHeroKcalDay: string;
+  homeHeroDailyTarget: string;
+  homeHeroStreak: string;
+  homeHeroStreakDays: string;
   homeTrustScience: string;
   homeProgressLabel: string;
   homeStep1: string;
@@ -2054,6 +2057,9 @@ export const translations: Record<Exclude<Language, 'de'>, TranslationKeys> & { 
     homeHeroHealthy: 'Healthy',
     homeHeroTargetCard: 'Target',
     homeHeroKcalDay: 'kcal/day',
+    homeHeroDailyTarget: 'Daily Target',
+    homeHeroStreak: 'Streak',
+    homeHeroStreakDays: '7 days',
     homeTrustScience: 'Science-backed',
     homeProgressLabel: 'Plan Progress · Step 1 of 5',
     homeStep1: 'STEP 1 · ASSESS',
@@ -3431,6 +3437,9 @@ export const translations: Record<Exclude<Language, 'de'>, TranslationKeys> & { 
     homeHeroHealthy: 'Healthy',
     homeHeroTargetCard: 'Target',
     homeHeroKcalDay: 'kcal/day',
+    homeHeroDailyTarget: 'Daily Target',
+    homeHeroStreak: 'Streak',
+    homeHeroStreakDays: '7 days',
     homeTrustScience: 'Science-backed',
     homeProgressLabel: 'Plan Progress · Step 1 of 5',
     homeStep1: 'STEP 1 · ASSESS',
@@ -4778,6 +4787,9 @@ mbFruits: 'Fruits',
     homeHeroHealthy: 'Healthy',
     homeHeroTargetCard: 'Target',
     homeHeroKcalDay: 'kcal/day',
+    homeHeroDailyTarget: 'Daily Target',
+    homeHeroStreak: 'Streak',
+    homeHeroStreakDays: '7 days',
     homeTrustScience: 'Science-backed',
     homeProgressLabel: 'Plan Progress · Step 1 of 5',
     homeStep1: 'STEP 1 · ASSESS',
@@ -6125,6 +6137,9 @@ mbFruits: 'Fruits',
     homeHeroHealthy: 'صحي',
     homeHeroTargetCard: 'الهدف',
     homeHeroKcalDay: 'سعرة/يوم',
+    homeHeroDailyTarget: 'الهدف اليومي',
+    homeHeroStreak: 'أيام متتالية',
+    homeHeroStreakDays: '7 أيام',
     homeTrustScience: 'مدعوم بالعلم',
     homeProgressLabel: 'تقدم الخطة · الخطوة 1 من 5',
     homeStep1: 'الخطوة 1 · تقييم',
@@ -6819,6 +6834,9 @@ mbFruits: 'Fruits',
     'nav.contact': 'Kontakt',
     'nav.login': 'Anmelden',
     'nav.startNow': 'Jetzt starten',
+    'homeHeroDailyTarget': 'Tägliches Ziel',
+    'homeHeroStreak': 'Serie',
+    'homeHeroStreakDays': '7 Tage',
   },
 };
 

@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BadgeCheck, Calculator, CheckCircle2, ClipboardList, HeartPulse, Microscope, ShieldCheck, Star, Target, Users, Watch } from 'lucide-react';
+import { BadgeCheck, Calculator, ClipboardList, HeartPulse, Microscope, ShieldCheck, Star, Users, Watch } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { IconScene } from '../components/IconScene';
+import HealthFingerprint from '../components/illustrations/HealthFingerprint';
+import FloatingStats from '../components/illustrations/FloatingStats';
 import StartFreeDropdown from '../components/layout/StartFreeDropdown';
 
 type IllustrationKind = 'calculator' | 'plan' | 'care' | 'lab' | 'watch';
@@ -76,15 +78,8 @@ const HomePage: React.FC = () => {
               </div>
             </div>
             <div className="hero-visual">
-              <Illustration kind="calculator" large hideChips />
-              <div className="hero-float-card hero-float-bmi">
-                <span className="hero-float-check"><CheckCircle2 size={18} /></span>
-                <div><b>22.5</b><small>{t('homeHeroBmiCard')} · {t('homeHeroHealthy')}</small></div>
-              </div>
-              <div className="hero-float-card hero-float-target">
-                <span className="hero-float-target-icon"><Target size={18} /></span>
-                <div><b>2,087</b><small>{t('homeHeroTargetCard')} · {t('homeHeroKcalDay')}</small></div>
-              </div>
+              <HealthFingerprint />
+              <FloatingStats />
             </div>
           </div>
         </div>
