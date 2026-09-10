@@ -426,10 +426,10 @@ function getMealFilter(k: KitchenInfo, key: MealKey): MealDefinition['filter'] {
 }
 
 const MEAL_TABS: { key: MealKey; label: string; emoji: string; active: string }[] = [
-  { key: 'breakfast', label: 'فطار', emoji: '🌅', active: 'bg-orange-500 text-white border-orange-500' },
-  { key: 'lunch', label: 'غداء', emoji: '🌞', active: 'bg-emerald-600 text-white border-emerald-600' },
-  { key: 'dinner', label: 'عشاء', emoji: '🌙', active: 'bg-blue-600 text-white border-blue-600' },
-  { key: 'snacks', label: 'سناك', emoji: '🍪', active: 'bg-amber-500 text-white border-amber-500' },
+  { key: 'breakfast', label: 'فطار', emoji: '🍳', active: 'bg-emerald-600 text-white border-emerald-600' },
+  { key: 'lunch', label: 'غدا', emoji: '🍛', active: 'bg-emerald-600 text-white border-emerald-600' },
+  { key: 'dinner', label: 'عشا', emoji: '🌙', active: 'bg-emerald-600 text-white border-emerald-600' },
+  { key: 'snacks', label: 'سناك', emoji: '🍎', active: 'bg-emerald-600 text-white border-emerald-600' },
 ];
 
 function getMealTypesForDish(k: KitchenInfo, cat: KitchenCategory, dish: KitchenDish): MealKey[] {
@@ -503,7 +503,7 @@ const WeightLossPage: React.FC = () => {
   const [goal, setGoal] = useState<GoalKey>('lose');
   const [targetWeight, setTargetWeight] = useState('75');
   const [timeline, setTimeline] = useState('12');
-  const [selectedKitchenId, setSelectedKitchenId] = useState<string>('tunisian');
+  const [selectedKitchenId, setSelectedKitchenId] = useState<string>('egyptian');
   const [workout, setWorkout] = useState('full_body');
   const [exerciseTypes, setExerciseTypes] = useState<string[]>(['cardio', 'strength']);
   const [exerciseSearch, setExerciseSearch] = useState('');
@@ -526,6 +526,10 @@ const WeightLossPage: React.FC = () => {
   const [categoryMode, setCategoryMode] = useState<'manual' | 'auto'>('manual');
   const [exerciseMode, setExerciseMode] = useState<'manual' | 'auto'>('manual');
   const [mealTab, setMealTab] = useState<MealKey>('breakfast');
+  const [countryMode, setCountryMode] = useState<'egyptian' | 'tunisian' | 'both'>('egyptian');
+  const [dishSearch, setDishSearch] = useState('');
+  const [savedSearch, setSavedSearch] = useState('');
+  const [healthyOnly, setHealthyOnly] = useState(false);
   const [expandedCat, setExpandedCat] = useState<string | null>(null);
   const [selectedDishKeys, setSelectedDishKeys] = useState<string[]>([]);
   const [assignedDishes, setAssignedDishes] = useState<Record<string, MealKey[]>>({});
@@ -566,42 +570,72 @@ const WeightLossPage: React.FC = () => {
     return found;
   }, []);
   const selectedKitchenCats = useMemo<KitchenCategory[]>(() => getKitchenCategories(selectedKitchen), [selectedKitchen]);
+  const countryOptions = useMemo(() => {
+    const e = kitchensRegistry.find((k) => k.id === 'egyptian');
+    const t = kitchensRegistry.find((k) => k.id === 'tunisian');
+    const eTot = e?.total ?? 0;
+    const tTot = t?.total ?? 0;
+    return [
+      { m: 'egyptian' as const, flag: '🇪🇬', label: 'مصر', count: eTot },
+      { m: 'tunisian' as const, flag: '🇹🇳', label: 'تونس', count: tTot },
+      { m: 'both' as const, flag: '🌍', label: 'الاثنين', count: eTot + tTot },
+    ];
+  }, []);
+  const searchPlaceholder = countryMode === 'egyptian' ? 'ابحث عن أكلة مصرية...' : countryMode === 'tunisian' ? 'ابحث عن أكلة تونسية...' : 'ابحث عن أكلة...';
+  const countryKitchens = useMemo<KitchenInfo[]>(() => {
+    const e = kitchensRegistry.find((k) => k.id === 'egyptian');
+    const t = kitchensRegistry.find((k) => k.id === 'tunisian');
+    const base: KitchenInfo[] = [];
+    if (countryMode === 'both') {
+      if (e) base.push(e);
+      if (t) base.push(t);
+    } else {
+      const k = countryMode === 'egyptian' ? e : t;
+      if (k) base.push(k);
+    }
+    return base.length ? base : [selectedKitchen];
+  }, [countryMode, selectedKitchen]);
+  const dishRows = useMemo(() => {
+    const rows: { key: string; kitchen: KitchenInfo; cat: KitchenCategory; dish: KitchenDish; meals: MealKey[] }[] = [];
+    for (const k of countryKitchens) {
+      for (const cat of getKitchenCategories(k)) {
+        for (const d of cat.dishes) {
+          rows.push({ key: `${k.id}::${cat.id}::${d.name}`, kitchen: k, cat, dish: d, meals: getMealTypesForDish(k, cat, d) });
+        }
+      }
+    }
+    return rows;
+  }, [countryKitchens]);
   const filteredKitchens = useMemo(
     () => featuredKitchens.filter((k) => k.country.includes(kitchenSearch) || k.kitchen.includes(kitchenSearch) || k.flag.includes(kitchenSearch)),
     [featuredKitchens, kitchenSearch],
   );
   const tabCounts = useMemo(() => {
     const c: Record<MealKey, number> = { breakfast: 0, lunch: 0, dinner: 0, snacks: 0 };
-    for (const cat of selectedKitchenCats) {
-      for (const d of cat.dishes) {
-        for (const mm of getMealTypesForDish(selectedKitchen, cat, d)) c[mm]++;
-      }
-    }
+    for (const r of dishRows) for (const mm of r.meals) c[mm]++;
     return c;
-  }, [selectedKitchenCats, selectedKitchen]);
-  const mealCategories = useMemo(() => {
-    const fn = getMealFilter(selectedKitchen, mealTab);
-    return selectedKitchenCats
-      .filter((cat) => cat.name_ar.includes(categorySearch))
-      .map((cat) => ({ cat, dishes: cat.dishes.filter((d) => fn(cat, d)) }))
-      .filter((x) => x.dishes.length > 0);
-  }, [selectedKitchenCats, selectedKitchen, mealTab, categorySearch]);
+  }, [dishRows]);
+  const displayedRows = useMemo(
+    () =>
+      dishRows.filter((r) => {
+        if (healthyOnly && !r.dish.healthy) return false;
+        if (!r.meals.includes(mealTab)) return false;
+        const q = dishSearch.trim();
+        if (q && !r.dish.name.includes(q) && !r.cat.name_ar.includes(q)) return false;
+        return true;
+      }),
+    [dishRows, healthyOnly, mealTab, dishSearch],
+  );
   const dishMealOf = useMemo(() => {
     const m = new Map<string, MealKey[]>();
-    for (const cat of selectedKitchenCats) {
-      for (const d of cat.dishes) {
-        m.set(`${cat.id}::${d.name}`, getMealTypesForDish(selectedKitchen, cat, d));
-      }
-    }
+    for (const r of dishRows) m.set(r.key, r.meals);
     return m;
-  }, [selectedKitchenCats, selectedKitchen]);
+  }, [dishRows]);
   const selectedDishMap = useMemo(() => {
     const m = new Map<string, KitchenDish>();
-    for (const cat of selectedKitchenCats) {
-      for (const d of cat.dishes) m.set(`${cat.id}::${d.name}`, d);
-    }
+    for (const r of dishRows) m.set(r.key, r.dish);
     return m;
-  }, [selectedKitchenCats]);
+  }, [dishRows]);
   const mealSummary = useMemo(() => {
     const per: Record<MealKey, { key: string; dish: KitchenDish }[]> = { breakfast: [], lunch: [], dinner: [], snacks: [] };
     for (const key of selectedDishKeys) {
@@ -729,21 +763,35 @@ const WeightLossPage: React.FC = () => {
       pool.length ? [...pool].sort((a, b) => b.p - a.p || b.cal_100 - a.cal_100)[0] : undefined;
     const pickSmall = (pool: KitchenDish[]): KitchenDish | undefined =>
       pool.length ? [...pool].sort((a, b) => a.serv_g - b.serv_g || a.cal_100 - b.cal_100)[0] : undefined;
+    const poolFor = (key: MealKey): KitchenDish[] => {
+      const seen = new Set<string>();
+      const out: KitchenDish[] = [];
+      for (const k of countryKitchens) {
+        for (const d of dishesForMeal(k, key)) {
+          if (!seen.has(d.name)) {
+            seen.add(d.name);
+            out.push(d);
+          }
+        }
+      }
+      return out;
+    };
     const pickAssigned = (key: MealKey): KitchenDish | undefined => {
       const list = mealSummary[key];
       if (!list.length) return undefined;
       const sorted = [...list].sort((a, b) => (key === 'lunch' ? b.dish.p - a.dish.p : a.dish.cal_100 - b.dish.cal_100));
       return sorted[0].dish;
     };
-    const fallback = pickPlate(filterDishes(selectedKitchen, diet, goal));
+    const fallbackKitchen = countryKitchens[0] ?? selectedKitchen;
+    const fallback = pickPlate(filterDishes(fallbackKitchen, diet, goal));
     const meals: { meal: string; dish: KitchenDish | undefined; grams: number }[] = [
-      { meal: MEAL_NAMES.breakfast, dish: pickAssigned('breakfast') ?? pickLight(dishesForMeal(selectedKitchen, 'breakfast')), grams: Math.round(baseG * 0.85) },
-      { meal: MEAL_NAMES.lunch, dish: pickAssigned('lunch') ?? pickHeavy(dishesForMeal(selectedKitchen, 'lunch')), grams: Math.round(baseG * 1.4) },
-      { meal: MEAL_NAMES.dinner, dish: pickAssigned('dinner') ?? pickLight(dishesForMeal(selectedKitchen, 'dinner')), grams: Math.round(baseG * 1.25) },
-      { meal: MEAL_NAMES.snacks, dish: pickAssigned('snacks') ?? pickSmall(dishesForMeal(selectedKitchen, 'snacks')), grams: Math.round(baseG * 0.6) },
+      { meal: MEAL_NAMES.breakfast, dish: pickAssigned('breakfast') ?? pickLight(poolFor('breakfast')), grams: Math.round(baseG * 0.85) },
+      { meal: MEAL_NAMES.lunch, dish: pickAssigned('lunch') ?? pickHeavy(poolFor('lunch')), grams: Math.round(baseG * 1.4) },
+      { meal: MEAL_NAMES.dinner, dish: pickAssigned('dinner') ?? pickLight(poolFor('dinner')), grams: Math.round(baseG * 1.25) },
+      { meal: MEAL_NAMES.snacks, dish: pickAssigned('snacks') ?? pickSmall(poolFor('snacks')), grams: Math.round(baseG * 0.6) },
     ];
     return meals.map((m, i) => ({ meal: m.meal, dish: m.dish ?? fallback[i], grams: m.grams }));
-  }, [selectedKitchen, diet, goal, mealSummary]);
+  }, [countryKitchens, selectedKitchen, diet, goal, mealSummary]);
 
   const isValid = (): boolean => {
     if (step === 1) {
@@ -846,22 +894,59 @@ const WeightLossPage: React.FC = () => {
     setAssignedDishes({});
   };
 
+  const chooseCountry = (m: 'egyptian' | 'tunisian' | 'both') => {
+    setCountryMode(m);
+    const id = m === 'both' ? 'egyptian' : m;
+    const k = kitchensRegistry.find((x) => x.id === id);
+    if (k) setSelectedKitchenId(k.id);
+    setDishSearch('');
+    setSelectedDishKeys([]);
+    setAssignedDishes({});
+  };
+
+  const addDish = (key: string) => {
+    const on = selectedDishKeys.includes(key);
+    const dm = dishMealOf.get(key) ?? ['lunch'];
+    if (on) {
+      setSelectedDishKeys((prev) => prev.filter((k) => k !== key));
+      setAssignedDishes((prev) => {
+        const cp = { ...prev };
+        delete cp[key];
+        return cp;
+      });
+    } else {
+      setSelectedDishKeys((prev) => [...prev, key]);
+      setAssignedDishes((prev) => ({ ...prev, [key]: dm }));
+    }
+  };
+
+  const removeChip = (key: string, meal: MealKey) => {
+    const dm = dishMealOf.get(key) ?? ['lunch'];
+    const cur = assignedDishes[key] ? assignedDishes[key] : dm;
+    const next = cur.filter((m) => m !== meal);
+    setAssignedDishes((prev) => {
+      const cp = { ...prev };
+      if (next.length) cp[key] = next;
+      else delete cp[key];
+      return cp;
+    });
+    if (!next.length) setSelectedDishKeys((prev) => prev.filter((k) => k !== key));
+  };
+
   const autoPickDishes = () => {
     const keys: string[] = [];
-    for (const mk of ['breakfast', 'lunch', 'dinner', 'snacks'] as MealKey[]) {
-      const fn = getMealFilter(selectedKitchen, mk);
-      let n = 0;
-      for (const cat of selectedKitchenCats) {
+    const assigned: Record<string, MealKey[]> = {};
+    for (const k of countryKitchens) {
+      for (const cat of getKitchenCategories(k)) {
         for (const d of cat.dishes) {
-          if (fn(cat, d) && n < 2) {
-            keys.push(`${cat.id}::${d.name}`);
-            n++;
-          }
+          const mk = `${k.id}::${cat.id}::${d.name}`;
+          keys.push(mk);
+          assigned[mk] = getMealTypesForDish(k, cat, d);
         }
       }
     }
     setSelectedDishKeys(keys);
-    setAssignedDishes({});
+    setAssignedDishes(assigned);
     setCategoryMode('auto');
     notify(`تم اختيار ${keys.length} طبق تلقائياً 🤖`);
   };
@@ -918,9 +1003,9 @@ const WeightLossPage: React.FC = () => {
         }`;
 
   return (
-    <div className={`wiz-page min-h-screen text-zinc-900 overflow-x-hidden antialiased ${step === 1 ? 'bg-gradient-to-b from-[#a7f3d0] via-[#6ee7b7] to-[#34d399]' : 'bg-[#f8fafc]'}`} dir="ltr">
-      <main className={`w-full mx-auto transition-all ${step === 1 ? 'max-w-[400px] px-5 pt-6 pb-[150px] md:pb-24 overflow-x-hidden' : step === 2 ? 'max-w-[480px] px-4 md:px-5 pb-[120px] md:pb-16 pt-2 md:pt-4' : 'max-w-[760px] px-4 md:px-0 pb-[120px] md:pb-16 pt-8 md:pt-12 overflow-x-hidden'}`}>
-        {step !== 1 && step !== 2 && step !== 5 && (
+    <div className={`wiz-page min-h-screen text-zinc-900 overflow-x-hidden antialiased ${step === 1 || step === 3 ? 'bg-gradient-to-b from-[#a7f3d0] via-[#6ee7b7] to-[#34d399]' : 'bg-[#f8fafc]'}`} dir="ltr">
+      <main className={`w-full mx-auto transition-all ${step === 1 ? 'max-w-[400px] px-5 pt-6 pb-[150px] md:pb-24 overflow-x-hidden' : step === 2 ? 'max-w-[480px] px-4 md:px-5 pb-[120px] md:pb-16 pt-2 md:pt-4' : step === 3 ? 'max-w-[480px] px-4 md:px-5 pt-2 md:pt-4 pb-[120px] md:pb-16 overflow-x-hidden' : 'max-w-[760px] px-4 md:px-0 pb-[120px] md:pb-16 pt-8 md:pt-12 overflow-x-hidden'}`}>
+        {step !== 1 && step !== 2 && step !== 3 && step !== 5 && (
           <>
             <div className="mb-8">
               <h1 className="text-[28px] md:text-[32px] font-bold tracking-tight leading-none">Weight &amp; Fitness</h1>
@@ -1250,130 +1335,155 @@ const WeightLossPage: React.FC = () => {
           )}
 
           {step === 3 && (
-            <div className="space-y-4">
-              <div className="flex items-center justify-between gap-2">
-                <label className="text-[14px] font-bold min-w-0 truncate">🍽️ {planType === 'nutrition' ? 'اختر مطبخك' : 'اختر المطبخ والأنظمة'} ({featuredKitchens.length} مطابخ · {featuredKitchens.reduce((s, k) => s + k.total, 0)} طبق)</label>
-                <span className="shrink-0 text-[10px] bg-white border border-emerald-200 text-emerald-700 px-2 py-0.5 rounded-full">{selectedKitchen.flag} {selectedKitchen.country}</span>
-              </div>
-
-              <div className="flex flex-col md:flex-row gap-3 h-auto md:h-[420px]">
-                <div className="flex-1 flex flex-col border-2 border-zinc-200 rounded-[12px] overflow-hidden bg-white min-w-0">
-                  <div className="px-3 py-2.5 bg-gray-50 border-b border-zinc-200 shrink-0">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-[12.5px] font-bold truncate">🌍 كل المطابخ ({featuredKitchens.length}) · {featuredKitchens.reduce((s, k) => s + k.total, 0)} طبق</span>
-                      <div className="flex items-center gap-1 shrink-0">
-                        <button type="button" onClick={() => setKitchenMode('manual')} className={`px-2.5 py-1 rounded-full text-[10.5px] font-semibold border transition-all ${kitchenMode === 'manual' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-zinc-600 border-zinc-300'}`}>✋ يدوي</button>
-                        <button type="button" onClick={autoPickKitchen} className={`px-2.5 py-1 rounded-full text-[10.5px] font-semibold border transition-all ${kitchenMode === 'auto' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-zinc-600 border-zinc-300'}`}>🤖 الموقع يختار</button>
-                      </div>
-                    </div>
-                    <div className="relative mt-2">
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[12px] pointer-events-none">🔍</span>
-                      <input value={kitchenSearch} onChange={(e) => setKitchenSearch(e.target.value)} placeholder="ابحث عن مطبخ: مصري، تونسي، كيتو..." className="w-full h-9 rounded-[8px] border border-zinc-300 bg-white pl-8 pr-3 text-[12.5px] outline-none focus:border-emerald-500 focus:ring-[3px] focus:ring-emerald-100" />
-                    </div>
-                  </div>
-                  <div className="kitchen-scroll-box flex-1 overflow-y-auto p-2.5 space-y-2">
-                    {filteredKitchens.map((k) => kitchenCard(k))}
-                    {!filteredKitchens.length && <div className="text-[11.5px] text-zinc-400 text-center pt-6">لا توجد مطابخ مطابقة</div>}
-                  </div>
-                </div>
-
-                <div className="flex-1 flex flex-col border-2 border-zinc-200 rounded-[12px] overflow-hidden bg-white min-w-0">
-                  <div className="px-2 py-2 bg-gray-50 border-b border-zinc-200 shrink-0">
-                    <div className="flex gap-1 overflow-x-auto">
-                      {MEAL_TABS.map((t) => (
-                        <button key={t.key} type="button" onClick={() => setMealTab(t.key)} className={`px-3 py-1.5 rounded-full text-[11px] font-semibold whitespace-nowrap border transition-all ${mealTab === t.key ? t.active : 'bg-white text-zinc-600 border-zinc-200'}`}>
-                          {t.emoji} {t.label} ({tabCounts[t.key]})
-                        </button>
-                      ))}
-                    </div>
-                    <div className="relative mt-2">
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[12px] pointer-events-none">🔍</span>
-                      <input value={categorySearch} onChange={(e) => setCategorySearch(e.target.value)} placeholder="ابحث عن صنف: شوربة، لحوم..." className="w-full h-9 rounded-[8px] border border-zinc-300 bg-white pl-8 pr-3 text-[12.5px] outline-none focus:border-emerald-500 focus:ring-[3px] focus:ring-emerald-100" />
-                    </div>
-                    <div className="flex gap-1.5 mt-2">
-                      <button type="button" onClick={() => setCategoryMode('manual')} className={`px-2.5 py-1 rounded-full text-[10.5px] font-semibold border transition-all ${categoryMode === 'manual' ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-zinc-600 border-zinc-300'}`}>✋ يدوي</button>
-                      <button type="button" onClick={autoPickDishes} className={`px-2.5 py-1 rounded-full text-[10.5px] font-semibold border transition-all ${categoryMode === 'auto' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-zinc-600 border-zinc-300'}`}>🤖 الموقع يختار</button>
-                    </div>
-                  </div>
-                  <div className="flex-1 overflow-y-auto p-2 space-y-2">
-                    {mealCategories.length ? (
-                      mealCategories.map(({ cat, dishes }) => {
-                        const open = expandedCat === cat.id;
-                        return (
-                          <div key={cat.id} className={`border rounded-xl bg-white overflow-hidden ${open ? 'border-emerald-300' : 'border-zinc-200'}`}>
-                            <div onClick={() => toggleExpand(cat.id)} className="p-2.5 flex justify-between items-center cursor-pointer hover:bg-gray-50">
-                              <span className="font-bold text-[12px] min-w-0 truncate">{cat.name_ar} ({dishes.length})</span>
-                              <span className={`shrink-0 text-[11px] text-zinc-500 transform transition-transform ${open ? 'rotate-180' : ''}`}>▼</span>
-                            </div>
-                            {open && (
-                              <div className="border-t bg-gray-50 p-2 space-y-1.5 max-h-[240px] overflow-y-auto">
-                                {dishes.map((dish) => {
-                                  const dishKey = `${cat.id}::${dish.name}`;
-                                  const checked = selectedDishKeys.includes(dishKey);
-                                  const assigned = assignedDishes[dishKey] ? assignedDishes[dishKey] : (dishMealOf.get(dishKey) ?? []);
-                                  return (
-                                    <div key={dishKey} className={`p-2 bg-white rounded-lg border min-w-0 ${checked ? 'border-emerald-400 bg-emerald-50/40' : 'border-zinc-200'}`}>
-                                      <div className="flex justify-between gap-2 items-start">
-                                        <div className="min-w-0">
-                                          <div className="text-[11.5px] font-bold leading-tight break-words">{dish.name}</div>
-                                          <div className="text-[10px] text-gray-600 leading-snug mt-0.5 break-words">{dish.cal_100} سعر/100جم · {dish.serv_g}جم = {dish.cal_serv} سعر | P:{dish.p} C:{dish.c} F:{dish.f}</div>
-                                          <div className="flex gap-1 mt-1 flex-wrap">
-                                            <span className="text-[9px] bg-yellow-100 text-yellow-800 px-1.5 py-0.5 rounded">{dish.confidence}%</span>
-                                            {dish.healthy && <span className="text-[9px] bg-green-100 text-green-800 px-1.5 py-0.5 rounded">صحي</span>}
-                                            {dish.source && <span className="text-[9px] bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded truncate max-w-[160px]">{dish.source}</span>}
-                                          </div>
-                                          {dish.notes && <div className="text-[9px] text-gray-400 mt-0.5 truncate">{dish.notes}</div>}
-                                        </div>
-                                        <input type="checkbox" checked={checked} onChange={() => toggleDish(dishKey)} className="mt-1 shrink-0 w-4 h-4 accent-emerald-600" />
-                                      </div>
-                                      <div className="flex gap-1 mt-2 flex-wrap">
-                                        {MEAL_TABS.map((t) => {
-                                          const on = assigned.includes(t.key);
-                                          return (
-                                            <button key={t.key} type="button" onClick={() => assignDishToMeal(dishKey, t.key)} className={`px-2 py-0.5 rounded-full text-[10px] font-semibold border transition-all ${on ? t.active : 'bg-white text-zinc-500 border-zinc-200'}`}>
-                                              {t.emoji} {t.label}
-                                            </button>
-                                          );
-                                        })}
-                                      </div>
-                                    </div>
-                                  );
-                                })}
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })
-                    ) : (
-                      <div className="h-full flex items-center justify-center text-[11.5px] text-zinc-400 text-center px-4">
-                        {selectedKitchenCats.length ? 'لا توجد أطباق في هذا التصنيف' : 'اختر مطبخ من اليمين لعرض الأصناف'}
-                      </div>
-                    )}
-                  </div>
+            <div className="w-full bg-[#e8f5e9]/90 backdrop-blur rounded-[28px] p-5 shadow-2xl min-w-0">
+              <div className="w-full bg-white rounded-full h-12 flex items-center justify-between px-3 shadow-sm min-w-0">
+                <button type="button" onClick={() => setStep(2)} aria-label="Back" className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 text-[18px] shrink-0 select-none active:scale-95">‹</button>
+                <div className="text-[14px] font-bold text-emerald-900 whitespace-nowrap">Step 3 of 3</div>
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <span className="w-3 h-3 rounded-full bg-emerald-600" />
+                  <span className="w-2 h-2 rounded-full bg-emerald-600" />
+                  <span className="w-2 h-2 rounded-full bg-gray-300" />
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+              <h2 className="mt-4 text-[22px] font-black leading-tight text-black">اختر مطبخك 🌍</h2>
+
+              <div className="mt-3 grid grid-cols-3 gap-2">
+                {countryOptions.map((o) => {
+                  const on = countryMode === o.m;
+                  return (
+                    <button
+                      key={o.m}
+                      type="button"
+                      onClick={() => chooseCountry(o.m)}
+                      className={`relative flex flex-col items-center justify-center gap-1.5 min-h-[88px] rounded-[16px] border-2 shadow-sm transition-all min-w-0 active:scale-95 ${on ? 'bg-emerald-600 border-emerald-600 text-white' : 'bg-white border-gray-200 text-gray-700'}`}
+                    >
+                      <span className="text-[24px] leading-none shrink-0">{o.flag}</span>
+                      <span className="text-[14px] font-bold leading-none">{o.label}</span>
+                      <span className={`text-[11px] font-semibold leading-none ${on ? 'text-white/80' : 'text-gray-500'}`}>{o.count} طبق</span>
+                      {on && <span className="absolute top-2 right-2 w-5 h-5 rounded-full bg-white text-emerald-700 flex items-center justify-center text-[11px] font-bold">✓</span>}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="mt-4">
+                <div className="h-10 bg-emerald-100 rounded-full px-4 flex items-center justify-center gap-2 shadow-sm w-fit min-w-0">
+                  <span className="text-[16px] leading-none">🔥</span>
+                  <span className="text-[14px] font-bold text-emerald-700 whitespace-nowrap">{totalCal} سعرة اليوم</span>
+                </div>
+              </div>
+
+              <div className="mt-4 flex gap-1.5 overflow-x-auto no-scrollbar">
                 {MEAL_TABS.map((t) => (
-                  <div key={t.key} className="rounded-[10px] border border-zinc-200 bg-white p-2.5 min-w-0">
-                    <div className="text-[11.5px] font-bold flex items-center justify-between gap-1">
-                      <span className="truncate">{t.emoji} {t.label}</span>
-                      <span className={`shrink-0 text-[10px] px-1.5 py-0.5 rounded-full ${mealSummary[t.key].length ? 'bg-amber-50 border border-amber-100 text-amber-800' : 'bg-gray-50 text-gray-400'}`}>{mealSummary[t.key].length}</span>
-                    </div>
-                    <div className="mt-1 text-[10px] text-zinc-600 leading-snug break-words">{fmtMeal(mealSummary[t.key])}</div>
-                  </div>
+                  <button
+                    key={t.key}
+                    type="button"
+                    onClick={() => setMealTab(t.key)}
+                    className={`h-11 min-w-[96px] shrink-0 rounded-full border-2 px-3 text-[14px] font-bold flex items-center justify-center gap-1 transition-all active:scale-95 ${mealTab === t.key ? t.active : 'bg-white text-gray-700 border-gray-200'}`}
+                  >
+                    {t.emoji} {t.label} <span className="text-[11px] opacity-80">({tabCounts[t.key]})</span>
+                  </button>
                 ))}
               </div>
-              <div className="rounded-[12px] border border-emerald-200 bg-emerald-50/60 p-3">
-                <div className="flex items-center justify-between gap-2 flex-wrap">
-                  <div className="text-[11.5px] text-emerald-900 font-semibold min-w-0">
-                    ✅ المجموع: <span className="font-bold">{totalCal} سعر</span> · <span className="font-bold">{selectedDishKeys.length}</span> طبق من {selectedKitchenCats.length} صنف · {selectedKitchen.country}
-                  </div>
-                  <div className="flex items-center gap-1.5 shrink-0">
-                    <button type="button" onClick={() => setCategoryMode('manual')} className={`px-2.5 py-1 rounded-full text-[10.5px] font-semibold border transition-all ${categoryMode === 'manual' ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-zinc-600 border-zinc-300'}`}>✋ يدوي</button>
-                    <button type="button" onClick={autoPickDishes} className={`px-2.5 py-1 rounded-full text-[10.5px] font-semibold border transition-all ${categoryMode === 'auto' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-zinc-600 border-zinc-300'}`}>🤖 تلقائي</button>
+
+              <div className="mt-4 space-y-2">
+                <div className="h-12 bg-white border-2 border-gray-200 rounded-[14px] flex items-center px-4 focus-within:border-emerald-500 transition-colors min-w-0">
+                  <input
+                    value={dishSearch}
+                    onChange={(e) => setDishSearch(e.target.value)}
+                    placeholder={searchPlaceholder}
+                    dir="rtl"
+                    className="flex-1 bg-transparent outline-none text-[16px] text-gray-700 placeholder:text-gray-400 min-w-0"
+                  />
+                  <span className="text-[20px] text-emerald-700 shrink-0">🔍</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setHealthyOnly((p) => !p)}
+                    className={`h-10 rounded-full px-4 text-[13px] font-semibold border-2 transition-all flex items-center gap-1.5 ${healthyOnly ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-gray-600 border-gray-200'}`}
+                  >
+                    ✅ صحي فقط
+                  </button>
+                  <div className="flex gap-1.5 shrink-0 ml-auto">
+                    <button type="button" onClick={() => setCategoryMode('manual')} className={`px-3 h-9 rounded-full text-[11px] font-semibold border transition-all ${categoryMode === 'manual' ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-gray-600 border-gray-200'}`}>✋ يدوي</button>
+                    <button type="button" onClick={autoPickDishes} className={`px-3 h-9 rounded-full text-[11px] font-semibold border transition-all ${categoryMode === 'auto' ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-gray-600 border-gray-200'}`}>🤖 تلقائي</button>
                   </div>
                 </div>
+              </div>
+
+              <div className="mt-3 space-y-2 max-h-[360px] overflow-y-auto">
+                {displayedRows.length ? (
+                  displayedRows.map((r) => {
+                    const checked = selectedDishKeys.includes(r.key);
+                    const dot = r.dish.confidence_color;
+                    return (
+                      <div key={r.key} className={`flex items-center gap-3 min-h-[88px] p-2.5 bg-white rounded-[14px] border shadow-sm transition-all min-w-0 ${checked ? 'border-emerald-400 bg-emerald-50/30' : 'border-gray-200'}`}>
+                        <span className="w-16 h-16 rounded-[14px] bg-emerald-50 flex items-center justify-center text-[28px] shrink-0">🍲</span>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-1.5 min-w-0">
+                            <span className="font-bold text-[14px] text-black truncate">{r.dish.name}</span>
+                            <span className={`w-2 h-2 rounded-full shrink-0 ${dot === 'green' ? 'bg-green-500' : dot === 'yellow' ? 'bg-yellow-500' : 'bg-orange-500'}`} />
+                          </div>
+                          <div className="text-[11px] text-gray-500 truncate mt-0.5">{r.cat.name_ar}{r.dish.healthy ? ' · صحي ✅' : ''}</div>
+                          <div className="text-[12px] text-gray-500 mt-0.5">P {r.dish.p}g · C {r.dish.c}g · F {r.dish.f}g</div>
+                        </div>
+                        <div className="flex flex-col items-end gap-1.5 shrink-0">
+                          <span className="text-[14px] font-bold text-emerald-700 whitespace-nowrap">{r.dish.cal_serv} سعر</span>
+                          <button type="button" onClick={() => addDish(r.key)} className={`w-9 h-9 rounded-full flex items-center justify-center text-[18px] text-white shadow-sm transition-all active:scale-95 ${checked ? 'bg-gray-400' : 'bg-emerald-600'}`}>
+                            {checked ? '✓' : '+'}
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div className="text-center text-[13px] text-gray-400 py-6">لا توجد أطباق مطابقة</div>
+                )}
+              </div>
+
+              <div className="mt-4 border-2 border-dashed border-emerald-400 rounded-[18px] bg-emerald-50/20 p-4 min-w-0">
+                <div className="flex items-center justify-between gap-2 min-w-0">
+                  <div className="text-[15px] font-bold text-gray-900 min-w-0 truncate">🍱 الوجبات المحفوظة للـ Blueprint</div>
+                  {!selectedDishKeys.length && <span className="text-[10px] text-gray-400 shrink-0">لا يوجد محفوظات بعد</span>}
+                </div>
+                <div className="h-10 bg-white border border-emerald-200 rounded-[10px] flex items-center px-3 mt-2 focus-within:border-emerald-500 transition-colors min-w-0">
+                  <input value={savedSearch} onChange={(e) => setSavedSearch(e.target.value)} placeholder="ابحث في المحفوظة..." dir="rtl" className="flex-1 bg-transparent outline-none text-[16px] text-gray-600 placeholder:text-gray-400 min-w-0" />
+                  <span className="text-emerald-700 text-[16px] shrink-0">🔍</span>
+                </div>
+                <div className="mt-3 space-y-3">
+                  {MEAL_TABS.map((t) => {
+                    const list = mealSummary[t.key].filter((x) => !savedSearch.trim() || x.dish.name.includes(savedSearch.trim()));
+                    if (!list.length) return null;
+                    return (
+                      <div key={t.key} className="min-w-0">
+                        <div className="text-[12px] font-bold text-gray-700 mb-1">{t.emoji} {t.label} محفوظ ({list.length})</div>
+                        <div className="flex flex-wrap gap-1.5">
+                          {list.map((x) => (
+                            <span key={x.key} className="inline-flex items-center gap-1.5 bg-white border border-emerald-200 rounded-full h-8 px-3 text-[12px] font-medium text-gray-700 max-w-full">
+                              <span className="truncate max-w-[140px]">{x.dish.name} {x.dish.cal_serv}</span>
+                              <button type="button" onClick={() => removeChip(x.key, t.key)} className="text-gray-400 hover:text-red-500 text-[11px] shrink-0">✕</button>
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                  {!selectedDishKeys.length && <div className="text-[11px] text-gray-400">اضغط + بجانب أي طبق لإضافته هنا وحفظه في الـ Blueprint</div>}
+                </div>
+                <div className="mt-3 rounded-[12px] border border-emerald-200 bg-white p-2.5">
+                  <div className="text-[12px] text-emerald-900 font-semibold">✅ المجموع: <b>{totalCal}</b> سعر · <b>{selectedDishKeys.length}</b> طبق · {countryMode === 'both' ? 'مصر + تونس' : countryMode === 'egyptian' ? 'مصر 🇪🇬' : 'تونس 🇹🇳'}</div>
+                </div>
+              </div>
+
+              <div className="flex gap-3 mt-5">
+                <button type="button" onClick={() => setStep(2)} className="flex-1 h-14 rounded-[14px] bg-white border-2 border-gray-300 text-gray-700 text-[16px] font-bold flex items-center justify-center gap-2 transition-all active:bg-gray-100 active:scale-[0.98] min-w-0">
+                  <span className="shrink-0">←</span> Back
+                </button>
+                <button type="button" onClick={() => setStep(4)} className="flex-1 h-14 rounded-[14px] bg-emerald-600 text-white text-[16px] font-bold flex items-center justify-center gap-2 shadow-lg transition-all active:scale-95 min-w-0">
+                  Next →
+                </button>
               </div>
             </div>
           )}
@@ -1687,7 +1797,7 @@ const WeightLossPage: React.FC = () => {
           )}        </div>
 
         <div className="mt-8">
-          {step !== 5 && step !== 1 && step !== 2 && (
+          {step !== 5 && step !== 1 && step !== 2 && step !== 3 && (
             <div className="hidden md:flex gap-3">
               <button
                 type="button"
@@ -1710,7 +1820,7 @@ const WeightLossPage: React.FC = () => {
         </div>
       </main>
 
-      {step !== 5 && step !== 1 && step !== 2 && (
+      {step !== 5 && step !== 1 && step !== 2 && step !== 3 && (
         <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-zinc-200 px-4 py-3 flex gap-3 z-40">
           <button
             type="button"
