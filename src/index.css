@@ -647,3 +647,9 @@ html[lang='ar'] textarea {
 .trust-bar-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(212,175,55,.12); color: #D4AF37; flex-shrink: 0; }
 .trust-bar b { display: block; font-size: 15px; font-weight: 800; color: #0F4C3A; line-height: 1.2; }
 .trust-bar small { display: block; font-size: 11px; color: #6B7A75; margin-top: 2px; white-space: nowrap; }
+
+/* ---------- Trust Stats section ---------- */
+.trust2-eyebrow { display: inline-flex; align-items: center; gap: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; font-size: 12px; color: #D4AF37; }
+.trust2-eyebrow::before, .trust2-eyebrow::after { content: ''; width: 26px; height: 2px; background: #D4AF37; border-radius: 2px; opacity: .7; }
+.pulse-dot { width: 12px; height: 12px; border-radius: 9999px; background: #10b981; box-shadow: 0 0 0 5px rgba(16,185,129,.18); animation: livePulse 2.4s ease-in-out infinite; }
+@keyframes livePulse { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }

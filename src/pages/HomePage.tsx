@@ -5,6 +5,7 @@ import SectionIllustration from '../components/illustrations/SectionIllustration
 import HealthFingerprint from '../components/illustrations/HealthFingerprint';
 import FloatingStats from '../components/illustrations/FloatingStats';
 import TrustBar from '../components/sections/TrustBar';
+import TrustStats from '../components/sections/TrustStats';
 import StartFreeDropdown from '../components/layout/StartFreeDropdown';
 
 const conditions = [
@@ -93,6 +94,8 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <TrustStats />
 
       <section className="section-wrap">
         <div className="watch-banner"><SectionIllustration kind="smartwatch" /><div><span className="step-pill blue">{t('homeWatchPill')}</span><h2>{t('homeWatchTitle')}</h2><p>{t('homeWatchDesc')}</p><div className="watch-steps"><span className="num">{t('homeWatch1')}</span><span className="num">{t('homeWatch2')}</span><span className="num">{t('homeWatch3')}</span></div><Link to="/smartwatch-sync" className="btn-primary">{t('homeConnectWatch')}</Link></div></div>
