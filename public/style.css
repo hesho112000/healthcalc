@@ -41,3 +41,24 @@ body {
 .nav-overlay{position:fixed;inset:0;top:72px;background:rgba(0,0,0,.2);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;z-index:999}
 .nav-overlay.open{opacity:1;visibility:visible}
 @media(max-width:768px){.nav-links,.nav-login{display:none}.nav-hamburger{display:flex}}
+
+/* ---------- Premium Footer (Critical Stage 1 - Task 3) ---------- */
+.premium-footer{background:#0F4C3A;color:#FDFBF7;border-radius:32px 32px 0 0;margin-top:80px}
+.footer-container{max-width:1280px;margin:0 auto;padding:64px 32px 0}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:48px}
+.footer-logo{font-family:'Tajawal';font-weight:800;font-size:22px;color:#FDFBF7;text-decoration:none;display:inline-block;margin-bottom:16px}
+.footer-logo span{color:#D4AF37}
+.footer-desc{color:rgba(253,251,247,.7);font-family:'Tajawal';line-height:1.7;font-size:14px;margin-bottom:20px}
+.footer-social{display:flex;gap:12px}
+.footer-social a{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:#FDFBF7;text-decoration:none;transition:.2s}
+.footer-social a:hover{background:#D4AF37;border-color:#D4AF37;color:#0F4C3A}
+.footer-col h4{font-family:'Tajawal';font-weight:800;font-size:16px;margin-bottom:20px;color:#FDFBF7}
+.footer-col a{display:block;color:rgba(253,251,247,.7);text-decoration:none;font-family:'Tajawal';font-size:14px;margin-bottom:12px;transition:.2s}
+.footer-col a:hover{color:#D4AF37}
+.footer-news-text{color:rgba(253,251,247,.7);font-size:13px;margin-bottom:12px;font-family:'Tajawal'}
+.footer-form{display:flex;gap:8px}
+.footer-form input{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:12px 16px;color:#fff;font-family:'Tajawal';outline:none}
+.footer-form input::placeholder{color:rgba(255,255,255,.5)}
+.footer-form button{background:#D4AF37;color:#0F4C3A;border:none;border-radius:999px;padding:12px 20px;font-family:'Tajawal';font-weight:800;cursor:pointer}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:48px;padding:24px 0;display:flex;justify-content:space-between;color:rgba(253,251,247,.5);font-family:'Tajawal';font-size:13px}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr;gap:32px}.footer-container{padding:32px 24px 0}.footer-bottom{flex-direction:column;gap:8px;text-align:center}}
