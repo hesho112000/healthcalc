@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BadgeCheck, Calculator, ClipboardList, HeartPulse, Microscope, ShieldCheck, Star, Users, Watch } from 'lucide-react';
+import { Calculator, ClipboardList, HeartPulse, Microscope, Watch } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { IconScene } from '../components/IconScene';
 import HealthFingerprint from '../components/illustrations/HealthFingerprint';
 import FloatingStats from '../components/illustrations/FloatingStats';
+import TrustBar from '../components/sections/TrustBar';
 import StartFreeDropdown from '../components/layout/StartFreeDropdown';
 
 type IllustrationKind = 'calculator' | 'plan' | 'care' | 'lab' | 'watch';
@@ -57,24 +58,22 @@ const HomePage: React.FC = () => {
     <div className="home-shell" dir={dir}>
 <section className="hero-section">
         <div className="hero-mesh" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-14 pb-16 sm:py-24 lg:py-28 relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-6 py-12 lg:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-16 items-center">
             <div className="hero-copy">
-              <div className="hero-progress">
-                <div className="hero-progress-label"><span>{t('homeProgressLabel')}</span><b>20%</b></div>
-                <div className="hero-progress-track"><span className="hero-progress-fill" /></div>
-              </div>
-              <span className="hero-eyebrow">{t('homeHeroEyebrow')}</span>
-              <h1>{t('homeHeroA')} <span className="hero-highlight">{t('homeHeroB')}</span></h1>
-              <p>{t('homeHeroSub')}</p>
-              <div className="flex flex-wrap gap-3">
-                <Link to="/fitness" className="hero-cta">{t('homeCta')}</Link>
-              </div>
+              <span className="hero-eyebrow">{t('heroEyebrow')}</span>
+              <h1 className="hero-title">
+                <span className="hero-title-line1">{t('heroTitleLine1')}</span>
+                <span className="hero-title-line2">{t('heroTitleLine2')}</span>
+              </h1>
+              <p>{t('heroSubtitle')}</p>
+              <Link to="/fitness" className="hero-cta">{t('heroCta')} 🔥</Link>
               <div className="hero-trust">
-                <span><Star size={18} /> {t('homeTrustStars')}</span>
-                <span><Users size={18} /> {t('homeTrustUsers')}</span>
-                <span><ShieldCheck size={18} /> {t('homeTrustDoctor')}</span>
-                <span><BadgeCheck size={18} /> {t('homeTrustScience')}</span>
+                <span>⭐ {t('trustRatingValue')}</span>
+                <span className="hero-trust-sep">·</span>
+                <span>👥 {t('trustUsersValue')} · {t('trustUsers')}</span>
+                <span className="hero-trust-sep">·</span>
+                <span>🛡️ {t('trustDoctor')}</span>
               </div>
             </div>
             <div className="hero-visual">
@@ -84,6 +83,8 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <TrustBar />
 
       <section className="section-wrap" id="calculator">
         <div className="section-intro"><span className="step-pill">{t('homeStep1')}</span><h2>{t('homeStep1Title')}</h2><p>{t('homeStep1Desc')}</p></div>

@@ -11,7 +11,7 @@ const HealthFingerprint: React.FC = () => (
   >
     <defs>
       <radialGradient id="fp-glow" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stopColor="rgba(15,76,58,0.08)" />
+        <stop offset="0%" stopColor="rgba(15,76,58,0.03)" />
         <stop offset="100%" stopColor="rgba(15,76,58,0)" />
       </radialGradient>
     </defs>
@@ -26,7 +26,7 @@ const HealthFingerprint: React.FC = () => (
     </g>
 
     <path
-      className="pulse-line"
+      className="animate-pulse-line"
       d="M118 236 C 158 146, 214 150, 250 236 C 286 322, 342 326, 382 236"
       fill="none"
       stroke="#D4AF37"
@@ -42,23 +42,23 @@ const HealthFingerprint: React.FC = () => (
       strokeLinejoin="round"
     />
 
-    <g className="orbit-slow" style={{ animationDelay: '0s' }}>
-      <circle cx="110" cy="92" r="27" fill="#FFFFFF" stroke="#0F4C3A" strokeOpacity="0.35" strokeWidth="2" />
+    <g className="animate-float-slow" style={{ animationDelay: '0s' }}>
+      <circle cx="110" cy="92" r="22" fill="#FFFFFF" stroke="#D4AF37" strokeWidth="2" />
       <text x="110" y="100" textAnchor="middle" fontSize="26">🩸</text>
     </g>
 
-    <g className="orbit-slow" style={{ animationDelay: '1.2s' }}>
-      <circle cx="390" cy="92" r="27" fill="#FFFFFF" stroke="#0F4C3A" strokeOpacity="0.35" strokeWidth="2" />
+    <g className="animate-float-slow" style={{ animationDelay: '1.2s' }}>
+      <circle cx="390" cy="92" r="22" fill="#FFFFFF" stroke="#D4AF37" strokeWidth="2" />
       <text x="390" y="100" textAnchor="middle" fontSize="26">❤️</text>
     </g>
 
-    <g className="orbit-slow" style={{ animationDelay: '2.1s' }}>
-      <circle cx="110" cy="408" r="27" fill="#FFFFFF" stroke="#0F4C3A" strokeOpacity="0.35" strokeWidth="2" />
+    <g className="animate-float-slow" style={{ animationDelay: '2.1s' }}>
+      <circle cx="110" cy="408" r="22" fill="#FFFFFF" stroke="#D4AF37" strokeWidth="2" />
       <text x="110" y="416" textAnchor="middle" fontSize="26">⚖️</text>
     </g>
 
-    <g className="orbit-slow" style={{ animationDelay: '0.9s' }}>
-      <circle cx="390" cy="408" r="27" fill="#FFFFFF" stroke="#0F4C3A" strokeOpacity="0.35" strokeWidth="2" />
+    <g className="animate-float-slow" style={{ animationDelay: '0.9s' }}>
+      <circle cx="390" cy="408" r="22" fill="#FFFFFF" stroke="#D4AF37" strokeWidth="2" />
       <text x="390" y="416" textAnchor="middle" fontSize="26">🦶</text>
     </g>
   </svg>

@@ -6,11 +6,8 @@ const FloatingStats: React.FC = () => {
   const { t } = useLanguage();
   return (
     <div className="floating-stats" aria-hidden="true">
-      <div
-        className="stat-floating absolute right-6 top-6 flex items-center gap-3 rounded-2xl border border-white/80 bg-white/60 p-4 shadow-[0_15px_40px_rgba(15,76,58,0.08)] backdrop-blur-xl"
-        style={{ animationDelay: '0s' }}
-      >
-        <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-700">
+      <div className="fs-card fs-card1 animate-float-card" style={{ animationDelay: '0s' }}>
+        <span className="fs-card-icon">
           <CheckCircle2 size={17} />
         </span>
         <div>
@@ -19,24 +16,18 @@ const FloatingStats: React.FC = () => {
         </div>
       </div>
 
-      <div
-        className="stat-floating absolute left-6 top-[40%] flex items-center gap-3 rounded-2xl border border-white/80 bg-white/60 p-4 shadow-[0_15px_40px_rgba(15,76,58,0.08)] backdrop-blur-xl"
-        style={{ animationDelay: '1.2s' }}
-      >
-        <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-amber-400/25 text-emerald-800">
+      <div className="fs-card fs-card2 animate-float-card" style={{ animationDelay: '1.2s' }}>
+        <span className="fs-card-icon gold">
           <Target size={17} />
         </span>
         <div>
           <b>2,087</b>
-          <small>{t('homeHeroDailyTarget')}</small>
+          <small>{t('homeHeroDailyTarget')} · {t('homeHeroKcalDay')}</small>
         </div>
       </div>
 
-      <div
-        className="stat-floating absolute bottom-6 right-6 flex items-center gap-3 rounded-2xl border border-white/80 bg-white/60 p-4 shadow-[0_15px_40px_rgba(15,76,58,0.08)] backdrop-blur-xl"
-        style={{ animationDelay: '2.1s' }}
-      >
-        <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-amber-400/25 text-emerald-800">
+      <div className="fs-card fs-card3 animate-float-card" style={{ animationDelay: '2.1s' }}>
+        <span className="fs-card-icon gold">
           <Flame size={17} />
         </span>
         <div>
