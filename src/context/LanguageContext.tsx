@@ -16,6 +16,7 @@ const languageConfig: Record<Language, { dir: 'ltr' | 'rtl' }> = {
   fr: { dir: 'ltr' },
   es: { dir: 'ltr' },
   ar: { dir: 'rtl' },
+  de: { dir: 'ltr' },
 };
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {

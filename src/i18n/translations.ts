@@ -229,6 +229,14 @@ type TranslationKeys = {
   navWeight: string;
   navAdvanced: string;
   navLabs: string;
+  'nav.home': string;
+  'nav.calculators': string;
+  'nav.advancedCare': string;
+  'nav.resources': string;
+  'nav.about': string;
+  'nav.contact': string;
+  'nav.login': string;
+  'nav.startNow': string;
   // Footer
   footerStatus: string;
   footerDisclaimer: string;
@@ -1372,7 +1380,7 @@ type TranslationKeys = {
   };
 };
 
-export const translations: Record<Language, TranslationKeys> = {
+export const translations: Record<Exclude<Language, 'de'>, TranslationKeys> & { de: Partial<TranslationKeys> } = {
   en: {
     appName: 'HealthCalc.ai',
     mealBreakfast: 'Breakfast',
@@ -2018,6 +2026,14 @@ export const translations: Record<Language, TranslationKeys> = {
     navWeight: 'Weight & Fitness',
     navAdvanced: 'Advanced Care',
     navLabs: 'Lab Interpretation',
+    'nav.home': 'Home',
+    'nav.calculators': 'Calculators & Fitness',
+    'nav.advancedCare': 'Advanced Care',
+    'nav.resources': 'Resources',
+    'nav.about': 'About',
+    'nav.contact': 'Contact',
+    'nav.login': 'Login',
+    'nav.startNow': 'Start Now',
     footerStatus: 'Built for small, consistent wins',
     footerDisclaimer: '© 2026 HealthCalc.ai • Not affiliated with WHO, CDC, NIH, or Mayo Clinic • Information only, not medical advice',
     footerTermsShort: 'Terms & Privacy',
@@ -3387,6 +3403,14 @@ export const translations: Record<Language, TranslationKeys> = {
     navWeight: 'Poids & Fitness',
     navAdvanced: 'Soins Avancés',
     navLabs: 'Analyse Labo',
+    'nav.home': 'Accueil',
+    'nav.calculators': 'Calculatrices & Fitness',
+    'nav.advancedCare': 'Soins Avancés',
+    'nav.resources': 'Ressources',
+    'nav.about': 'À propos',
+    'nav.contact': 'Contact',
+    'nav.login': 'Connexion',
+    'nav.startNow': 'Commencer',
     footerStatus: 'Built for small, consistent wins',
     footerDisclaimer: '© 2026 HealthCalc.ai • Not affiliated with WHO, CDC, NIH, or Mayo Clinic • Information only, not medical advice',
     footerTermsShort: 'Terms & Privacy',
@@ -4726,6 +4750,14 @@ mbFruits: 'Fruits',
     navWeight: 'Peso y Fitness',
     navAdvanced: 'Cuidado Avanzado',
     navLabs: 'Análisis Lab',
+    'nav.home': 'Inicio',
+    'nav.calculators': 'Calculadoras & Fitness',
+    'nav.advancedCare': 'Cuidado Avanzado',
+    'nav.resources': 'Recursos',
+    'nav.about': 'Acerca de',
+    'nav.contact': 'Contacto',
+    'nav.login': 'Iniciar sesión',
+    'nav.startNow': 'Empezar ahora',
     footerStatus: 'Built for small, consistent wins',
     footerDisclaimer: '© 2026 HealthCalc.ai • Not affiliated with WHO, CDC, NIH, or Mayo Clinic • Information only, not medical advice',
     footerTermsShort: 'Terms & Privacy',
@@ -6065,6 +6097,14 @@ mbFruits: 'Fruits',
     navWeight: 'الوزن واللياقة',
     navAdvanced: 'الرعاية المتقدمة',
     navLabs: 'تفسير التحاليل',
+    'nav.home': 'الرئيسية',
+    'nav.calculators': 'الحاسبات واللياقة',
+    'nav.advancedCare': 'الرعاية المتقدمة',
+    'nav.resources': 'المصادر',
+    'nav.about': 'عن المنصة',
+    'nav.contact': 'اتصل بنا',
+    'nav.login': 'تسجيل الدخول',
+    'nav.startNow': 'ابدأ الآن',
     footerStatus: 'صُمم لتحقيق مكاسب صغيرة ومستمرة',
     footerDisclaimer: '© 2026 HealthCalc.ai • غير تابع لمنظمة الصحة العالمية أو CDC أو NIH أو Mayo Clinic • معلومات فقط وليست نصيحة طبية',
     footerTermsShort: 'الشروط والخصوصية',
@@ -6768,6 +6808,17 @@ mbFruits: 'Fruits',
 
 
 
+  },
+
+  de: {
+    'nav.home': 'Startseite',
+    'nav.calculators': 'Rechner & Fitness',
+    'nav.advancedCare': 'Erweiterte Pflege',
+    'nav.resources': 'Ressourcen',
+    'nav.about': 'Über uns',
+    'nav.contact': 'Kontakt',
+    'nav.login': 'Anmelden',
+    'nav.startNow': 'Jetzt starten',
   },
 };
 
