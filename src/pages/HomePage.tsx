@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calculator, ClipboardList, HeartPulse, Microscope, Watch } from 'lucide-react';
+import { Calculator, CheckCircle2, ClipboardList, HeartPulse, Microscope, ShieldCheck, Star, Target, Users, Watch } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { IconScene } from '../components/IconScene';
@@ -53,23 +53,33 @@ const HomePage: React.FC = () => {
   const { t, dir, language } = useLanguage();
   return (
     <div className="home-shell" dir={dir}>
-      <section className="hero-section">
+<section className="hero-section">
         <div className="hero-mesh" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-24 relative">
-          <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="hero-copy">
-              <span className="eyebrow"><span className="status-dot" /> {t('homeEyebrow')}</span>
-              <h1>{t('homeHeroA')} <span>{t('homeHeroB')}</span> {t('homeHeroC')}</h1>
+              <span className="hero-eyebrow">{t('homeHeroEyebrow')}</span>
+              <h1>{t('homeHeroA')} <span className="hero-highlight">{t('homeHeroB')}</span></h1>
               <p>{t('homeHeroSub')}</p>
               <div className="flex flex-wrap gap-3">
-                <StartFreeDropdown />
+                <Link to="/fitness" className="hero-cta">{t('homeCta')}</Link>
               </div>
-              <div className="trust-row"><span>{t('homeTrust')}</span>{['ADA', 'DASH', 'USDA', 'ACSM'].map((x) => <b key={x}>{x}</b>)}</div>
+              <div className="hero-trust">
+                <span><Star size={18} /> {t('homeTrustStars')}</span>
+                <span><Users size={18} /> {t('homeTrustUsers')}</span>
+                <span><ShieldCheck size={18} /> {t('homeTrustDoctor')}</span>
+              </div>
             </div>
-            <div className="relative">
+            <div className="hero-visual">
               <Illustration kind="calculator" large />
-              <div className="floating-stat stat-bmi"><strong className="num">22.4</strong><small className="mixed-text">{t('homeStatBmi')}</small></div>
-              <div className="floating-stat stat-bmr"><strong className="num">1,680</strong><small className="num">{t('homeStatBmr')}</small></div>
+              <div className="hero-float-card hero-float-bmi">
+                <span className="hero-float-check"><CheckCircle2 size={18} /></span>
+                <div><b>22.5</b><small>{t('homeHeroBmiCard')} · {t('homeHeroHealthy')}</small></div>
+              </div>
+              <div className="hero-float-card hero-float-target">
+                <span className="hero-float-target-icon"><Target size={18} /></span>
+                <div><b>2,087</b><small>{t('homeHeroTargetCard')} · {t('homeHeroKcalDay')}</small></div>
+              </div>
             </div>
           </div>
         </div>
