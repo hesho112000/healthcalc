@@ -52,7 +52,7 @@ function vo2Level(v: number): string {
 }
 
 const glass: React.CSSProperties = { background: 'rgba(255,255,255,0.82)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' };
-const segBtn = (active: boolean): React.CSSProperties => ({ flex: 1, height: 32, borderRadius: 8, fontSize: 12, fontWeight: 600, transition: 'all .2s', background: active ? '#10b981' : 'transparent', color: active ? '#fff' : '#64748b' });
+const segBtn = (active: boolean): React.CSSProperties => ({ flex: 1, height: 32, borderRadius: 8, fontSize: 12, fontWeight: 600, transition: 'all .2s', background: active ? '#0F4C3A' : 'transparent', color: active ? '#fff' : '#64748b' });
 const flexRow: React.CSSProperties = { display: 'flex', alignItems: 'center', gap: 12 };
 const calcCard: React.CSSProperties = { background: '#fff', borderRadius: 16, border: '1px solid #e2e8f0', boxShadow: '0 8px 32px rgba(15,23,42,0.04)', padding: 24 };
 const calcInput: React.CSSProperties = { width: '100%', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 12, padding: '0 12px', height: 44, fontSize: 15, fontWeight: 600, color: '#0f172a', outline: 'none' };
@@ -216,7 +216,7 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
 
   const cardHead: React.CSSProperties = { display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 };
   const cardTitle: React.CSSProperties = { fontSize: 15, fontWeight: 700, color: '#0f172a' };
-  const tag: React.CSSProperties = { height: 42, padding: '0 22px', borderRadius: 999, background: '#10b981', color: '#fff', fontWeight: 600, fontSize: 13, cursor: 'pointer', boxShadow: '0 6px 16px rgba(16,185,129,0.2)' };
+  const tag: React.CSSProperties = { height: 42, padding: '0 22px', borderRadius: 999, background: '#D4AF37', color: '#0F4C3A', fontWeight: 800, fontSize: 13, cursor: 'pointer', boxShadow: '0 6px 16px rgba(212,175,55,0.35)' };
 
   return (
     <div className="tool-page min-h-screen bg-[#f8fafc]">
@@ -235,7 +235,7 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
                 <span style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 20, padding: '6px 14px', fontSize: 12, color: '#475569', fontWeight: 600 }}>{t('fcInfoOnly')}</span>
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 24 }}>
-                <button onClick={scrollProfile} style={{ height: 46, padding: '0 28px', borderRadius: 999, background: 'linear-gradient(90deg,#10b981,#14b8a6)', color: '#fff', fontWeight: 600, fontSize: 14, boxShadow: '0 8px 20px rgba(16,185,129,0.25)', cursor: 'pointer' }}>{t('fcHeroCta')}</button>
+                <button onClick={scrollProfile} style={{ height: 46, padding: '0 28px', borderRadius: 999, background: '#D4AF37', color: '#0F4C3A', fontWeight: 800, fontSize: 14, boxShadow: '0 8px 20px rgba(212,175,55,0.3)', cursor: 'pointer' }}>{t('fcHeroCta')}</button>
                 <button onClick={scrollDetails} style={{ height: 46, padding: '0 28px', borderRadius: 999, background: '#fff', border: '1px solid #99f6e4', color: '#047857', fontWeight: 600, fontSize: 14, cursor: 'pointer' }}>{t('fcHeroLearn')}</button>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 32, fontSize: 12, color: '#94a3b8' }}>
@@ -434,7 +434,7 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
           </div>
 
           <div style={{ marginTop: 32, display: 'flex', justifyContent: 'center' }}>
-            <button onClick={calcBmi} style={{ width: '100%', maxWidth: 600, height: 52, borderRadius: 999, background: 'linear-gradient(90deg,#10b981,#14b8a6)', color: '#fff', fontWeight: 600, fontSize: 15, boxShadow: '0 12px 24px rgba(16,185,129,0.28)', cursor: 'pointer', transition: 'all .2s' }}>{t('fcCalcBmi')}</button>
+            <button onClick={calcBmi} style={{ width: '100%', maxWidth: 600, height: 52, borderRadius: 999, background: '#D4AF37', color: '#0F4C3A', fontWeight: 800, fontSize: 15, boxShadow: '0 12px 24px rgba(212,175,55,0.3)', cursor: 'pointer', transition: 'all .2s' }}>{t('fcCalcBmi')}</button>
           </div>
         </section>
 
@@ -480,7 +480,7 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
                     {bmiRes.bmi < 18.5 ? t('fcInsightUnder') : bmiRes.bmi < 25 ? t('fcInsightOk') : t('fcInsightAbove')}
                   </div>
                   <div style={{ marginTop: 16, display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-                    <button onClick={calcBmi} style={{ height: 42, padding: '0 24px', borderRadius: 999, background: '#10b981', color: '#fff', fontWeight: 600, fontSize: 13, cursor: 'pointer' }}>{t('fcRecalc')}</button>
+                    <button onClick={calcBmi} style={{ height: 42, padding: '0 24px', borderRadius: 999, background: '#D4AF37', color: '#0F4C3A', fontWeight: 800, fontSize: 13, cursor: 'pointer' }}>{t('fcRecalc')}</button>
                     <button onClick={scrollDetails} style={{ height: 42, padding: '0 24px', borderRadius: 999, background: '#fff', border: '1px solid #ccfbf1', color: '#047857', fontWeight: 600, fontSize: 13, cursor: 'pointer' }}>{t('fcHeroLearn')}</button>
                   </div>
                 </div>
@@ -503,7 +503,7 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
                     <div className="mixed-text" style={{ marginTop: 4, fontSize: 13, fontWeight: 500, color: '#065f46', lineHeight: 1.45 }}>{bmiRes.bmi < 18.5 ? t('fcInsightUnder') : bmiRes.bmi < 25 ? t('fcInsightOk') : t('fcInsightAbove')}</div>
                   </div>
                 </div>
-                <button onClick={handleBridge} className="mixed-text" style={{ marginTop: 24, width: '100%', height: 48, borderRadius: 12, background: '#059669', color: '#fff', fontWeight: 600, fontSize: 14, boxShadow: '0 1px 2px rgba(0,0,0,0.05)', cursor: 'pointer', transition: 'background .2s' }}>{t('fcCtaLaunch')} →</button>
+                <button onClick={handleBridge} className="mixed-text" style={{ marginTop: 24, width: '100%', height: 48, borderRadius: 12, background: '#D4AF37', color: '#0F4C3A', fontWeight: 800, fontSize: 14, boxShadow: '0 1px 2px rgba(0,0,0,0.05)', cursor: 'pointer', transition: 'background .2s' }}>{t('fcCtaLaunch')} →</button>
                 <div style={{ marginTop: 16, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                   <span style={{ padding: '4px 10px', borderRadius: 999, background: '#f8fafc', border: '1px solid #e2e8f0', fontSize: 11, color: '#475569' }}>{t('fcChipFormula')}</span>
                   <span style={{ padding: '4px 10px', borderRadius: 999, background: '#f8fafc', border: '1px solid #e2e8f0', fontSize: 11, color: '#475569' }}>{t('fcChipRmr')}</span>
@@ -610,7 +610,7 @@ const FitnessPage: React.FC<FitnessPageProps> = () => {
                 <div style={{ marginTop: 4, fontSize: 22, fontWeight: 800, color: '#f59e0b' }}>{tdee.lose} <span style={{ fontSize: 11, fontWeight: 500, color: '#64748b' }}>kcal</span></div>
               </div>
             </div>
-            <button onClick={handleTdeePlan} className="mixed-text" style={{ ...tag, width: '100%', marginTop: 16, height: 46, background: '#059669' }}>{t('fcTdeeBtn').replace('{kcal}', String(tdee.maintain))}</button>
+            <button onClick={handleTdeePlan} className="mixed-text" style={{ ...tag, width: '100%', marginTop: 16, height: 46, background: '#D4AF37', color: '#0F4C3A' }}>{t('fcTdeeBtn').replace('{kcal}', String(tdee.maintain))}</button>
           </div>
 
           {/* 5 · VO2 Max */}

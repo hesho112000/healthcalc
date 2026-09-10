@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calculator, CheckCircle2, ClipboardList, HeartPulse, Microscope, ShieldCheck, Star, Target, Users, Watch } from 'lucide-react';
+import { BadgeCheck, Calculator, CheckCircle2, ClipboardList, HeartPulse, Microscope, ShieldCheck, Star, Target, Users, Watch } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { IconScene } from '../components/IconScene';
@@ -32,7 +32,7 @@ const cuisines = [
   ['🌏', 'Asian'], ['🇺🇸', 'American'], ['🥗', 'Vegetarian'], ['🥑', 'Keto'],
 ];
 
-const Illustration: React.FC<{ kind: IllustrationKind; large?: boolean }> = ({ kind, large = false }) => {
+const Illustration: React.FC<{ kind: IllustrationKind; large?: boolean; hideChips?: boolean }> = ({ kind, large = false, hideChips = false }) => {
   const { t } = useLanguage();
   const item = illustrations[kind];
   const stat = kind === 'calculator' ? 'BMI 22.4' : kind === 'watch' ? t('homeCardSteps') : t('homeCardComplete');
@@ -43,8 +43,8 @@ const Illustration: React.FC<{ kind: IllustrationKind; large?: boolean }> = ({ k
       icon={item.icon}
       color={item.color}
       large={large}
-      chip={{ value: stat, sub: labelTop }}
-      chip2={{ value: bottom }}
+      chip={hideChips ? undefined : { value: stat, sub: labelTop }}
+      chip2={hideChips ? undefined : { value: bottom }}
     />
   );
 };
@@ -55,9 +55,13 @@ const HomePage: React.FC = () => {
     <div className="home-shell" dir={dir}>
 <section className="hero-section">
         <div className="hero-mesh" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-24 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-14 pb-16 sm:py-24 lg:py-28 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="hero-copy">
+              <div className="hero-progress">
+                <div className="hero-progress-label"><span>{t('homeProgressLabel')}</span><b>20%</b></div>
+                <div className="hero-progress-track"><span className="hero-progress-fill" /></div>
+              </div>
               <span className="hero-eyebrow">{t('homeHeroEyebrow')}</span>
               <h1>{t('homeHeroA')} <span className="hero-highlight">{t('homeHeroB')}</span></h1>
               <p>{t('homeHeroSub')}</p>
@@ -68,10 +72,11 @@ const HomePage: React.FC = () => {
                 <span><Star size={18} /> {t('homeTrustStars')}</span>
                 <span><Users size={18} /> {t('homeTrustUsers')}</span>
                 <span><ShieldCheck size={18} /> {t('homeTrustDoctor')}</span>
+                <span><BadgeCheck size={18} /> {t('homeTrustScience')}</span>
               </div>
             </div>
             <div className="hero-visual">
-              <Illustration kind="calculator" large />
+              <Illustration kind="calculator" large hideChips />
               <div className="hero-float-card hero-float-bmi">
                 <span className="hero-float-check"><CheckCircle2 size={18} /></span>
                 <div><b>22.5</b><small>{t('homeHeroBmiCard')} · {t('homeHeroHealthy')}</small></div>

@@ -251,6 +251,8 @@ type TranslationKeys = {
   homeHeroHealthy: string;
   homeHeroTargetCard: string;
   homeHeroKcalDay: string;
+  homeTrustScience: string;
+  homeProgressLabel: string;
   homeStep1: string;
   homeStep1Title: string;
   homeStep1Desc: string;
@@ -2036,6 +2038,8 @@ export const translations: Record<Language, TranslationKeys> = {
     homeHeroHealthy: 'Healthy',
     homeHeroTargetCard: 'Target',
     homeHeroKcalDay: 'kcal/day',
+    homeTrustScience: 'Science-backed',
+    homeProgressLabel: 'Plan Progress · Step 1 of 5',
     homeStep1: 'STEP 1 · ASSESS',
     homeStep1Title: '1. Health & Fitness Calculator',
     homeStep1Desc: 'Enter your profile once and get instant BMI, BMR, daily calories, water, and protein targets with transparent formulas.',
@@ -3403,6 +3407,8 @@ export const translations: Record<Language, TranslationKeys> = {
     homeHeroHealthy: 'Healthy',
     homeHeroTargetCard: 'Target',
     homeHeroKcalDay: 'kcal/day',
+    homeTrustScience: 'Science-backed',
+    homeProgressLabel: 'Plan Progress · Step 1 of 5',
     homeStep1: 'STEP 1 · ASSESS',
     homeStep1Title: '1. Health & Fitness Calculator',
     homeStep1Desc: 'Enter your profile once and get instant BMI, BMR, daily calories, water, and protein targets with transparent formulas.',
@@ -4740,6 +4746,8 @@ mbFruits: 'Fruits',
     homeHeroHealthy: 'Healthy',
     homeHeroTargetCard: 'Target',
     homeHeroKcalDay: 'kcal/day',
+    homeTrustScience: 'Science-backed',
+    homeProgressLabel: 'Plan Progress · Step 1 of 5',
     homeStep1: 'STEP 1 · ASSESS',
     homeStep1Title: '1. Health & Fitness Calculator',
     homeStep1Desc: 'Enter your profile once and get instant BMI, BMR, daily calories, water, and protein targets with transparent formulas.',
@@ -6077,6 +6085,8 @@ mbFruits: 'Fruits',
     homeHeroHealthy: 'صحي',
     homeHeroTargetCard: 'الهدف',
     homeHeroKcalDay: 'سعرة/يوم',
+    homeTrustScience: 'مدعوم بالعلم',
+    homeProgressLabel: 'تقدم الخطة · الخطوة 1 من 5',
     homeStep1: 'الخطوة 1 · تقييم',
     homeStep1Title: '1. حاسبة اللياقة الصحية والتمارين',
     homeStep1Desc: 'أدخل بياناتك مرة واحدة واحصل فوراً على BMI وBMR وسعراتك اليومية وأهداف الماء والبروتين بمعادلات واضحة.',
