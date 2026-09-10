@@ -653,3 +653,19 @@ html[lang='ar'] textarea {
 .trust2-eyebrow::before, .trust2-eyebrow::after { content: ''; width: 26px; height: 2px; background: #D4AF37; border-radius: 2px; opacity: .7; }
 .pulse-dot { width: 12px; height: 12px; border-radius: 9999px; background: #10b981; box-shadow: 0 0 0 5px rgba(16,185,129,.18); animation: livePulse 2.4s ease-in-out infinite; }
 @keyframes livePulse { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+
+/* ---------- Fitness wizard (Step 1 of 5) ---------- */
+.wiz-progress { height: 10px; border-radius: 999px; background: #F4F1EB; overflow: hidden; }
+.wiz-progress-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #D4AF37, #C9A032); transition: width .6s ease; }
+.wiz-progress-badge { display: inline-flex; align-items: center; justify-content: center; background: #D4AF37; color: #0F4C3A; font-weight: 800; font-size: 11px; letter-spacing: .12em; padding: 6px 14px; border-radius: 999px; white-space: nowrap; box-shadow: 0 6px 14px rgba(212,175,55,.3); }
+.wiz-label { display: block; font-size: 12px; font-weight: 700; color: #6B7A75; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.wiz-input { width: 100%; background: #F4F1EB; border: 1.5px solid transparent; border-radius: 12px; padding: 14px 16px; font-size: 15px; font-weight: 700; color: #0F4C3A; outline: none; transition: border-color .2s ease, background .2s ease; }
+.wiz-input:focus, .wiz-input:hover { border-color: #D4AF37; background: #fff; }
+.wiz-input::placeholder { color: #A0A8A4; font-weight: 500; }
+select.wiz-input { -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%230F4C3A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 18px center; padding-inline-end: 44px; cursor: pointer; }
+.glass-soft { background: rgba(255,255,255,.65); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(15,76,58,.08); }
+.cta-calc { width: 100%; max-width: 768px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 10px; background: #D4AF37; color: #0F4C3A; font-weight: 800; font-size: 22px; line-height: 1; border: none; border-radius: 34px; padding: 20px 32px; box-shadow: 0 10px 30px rgba(212,175,55,.4); cursor: pointer; transition: transform .2s ease, box-shadow .2s ease; animation: ctaPulse 4s ease-in-out infinite; }
+.cta-calc:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(212,175,55,.5); }
+@keyframes ctaPulse { 0%, 84%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(212,175,55,.4); } 92% { transform: scale(0.985); box-shadow: 0 8px 22px rgba(212,175,55,.55); } }
+.cta-continue { width: 100%; max-width: 768px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 10px; background: #0F4C3A; color: #fff; font-weight: 800; font-size: 20px; line-height: 1; border: none; border-radius: 30px; padding: 20px 32px; box-shadow: 0 10px 26px rgba(15,76,58,.35); cursor: pointer; text-decoration: none; transition: transform .2s ease, background .2s ease, box-shadow .2s ease; }
+.cta-continue:hover { transform: translateY(-2px); background: #0b3a2c; box-shadow: 0 14px 34px rgba(15,76,58,.42); }
