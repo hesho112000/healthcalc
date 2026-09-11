@@ -398,6 +398,8 @@ type TranslationKeys = {
   'wizard.exerciseList.diffEasy': string;
   'wizard.exerciseList.diffMed': string;
   'wizard.exerciseList.diffHard': string;
+  'wizard.exerciseList.showAll': string;
+  'wizard.exerciseList.showLess': string;
   'wizard.step3.eyebrow': string;
   'wizard.step3.title': string;
   'wizard.step3.subtitle': string;
@@ -2020,6 +2022,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.exerciseList.diffEasy': 'Easy',
     'wizard.exerciseList.diffMed': 'Med',
     'wizard.exerciseList.diffHard': 'Hard',
+    'wizard.exerciseList.showAll': 'Show all {n} more',
+    'wizard.exerciseList.showLess': 'Show less',
     'wizard.step3.eyebrow': 'STEP 3 · GOALS',
     'wizard.step3.title': 'Your Goal',
     'wizard.step3.subtitle': 'Pick a target and intensity — we will do the math.',
@@ -3295,6 +3299,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.exerciseList.diffEasy': 'Facile',
     'wizard.exerciseList.diffMed': 'Moyen',
     'wizard.exerciseList.diffHard': 'Difficile',
+    'wizard.exerciseList.showAll': 'Voir {n} de plus',
+    'wizard.exerciseList.showLess': 'Voir moins',
     'wizard.step3.eyebrow': 'ÉTAPE 3 · OBJECTIFS',
     'wizard.step3.title': 'Votre objectif',
     'wizard.step3.subtitle': 'Choisissez une cible et une intensité — nous faisons les calculs.',
@@ -4540,6 +4546,8 @@ mbFruits: 'Fruits',
     'wizard.exerciseList.diffEasy': 'Fácil',
     'wizard.exerciseList.diffMed': 'Medio',
     'wizard.exerciseList.diffHard': 'Difícil',
+    'wizard.exerciseList.showAll': 'Ver {n} más',
+    'wizard.exerciseList.showLess': 'Ver menos',
     'wizard.step3.eyebrow': 'PASO 3 · METAS',
     'wizard.step3.title': 'Tu meta',
     'wizard.step3.subtitle': 'Elige un objetivo y una intensidad: nosotros hacemos los cálculos.',
@@ -5785,6 +5793,8 @@ mbFruits: 'Fruits',
     'wizard.exerciseList.diffEasy': 'سهل',
     'wizard.exerciseList.diffMed': 'متوسط',
     'wizard.exerciseList.diffHard': 'صعب',
+    'wizard.exerciseList.showAll': 'عرض {n} المزيد',
+    'wizard.exerciseList.showLess': 'عرض أقل',
     'wizard.step3.eyebrow': 'الخطوة 3 · الأهداف',
     'wizard.step3.title': 'هدفك',
     'wizard.step3.subtitle': 'اختر الهدف والشدة — ونحن نتكفل بالحسابات.',
@@ -7041,6 +7051,8 @@ mbFruits: 'Fruits',
     'wizard.exerciseList.diffEasy': 'Leicht',
     'wizard.exerciseList.diffMed': 'Mittel',
     'wizard.exerciseList.diffHard': 'Schwer',
+    'wizard.exerciseList.showAll': 'Noch {n} anzeigen',
+    'wizard.exerciseList.showLess': 'Weniger anzeigen',
     'wizard.step3.eyebrow': 'SCHRITT 3 · ZIELE',
     'wizard.step3.title': 'Dein Ziel',
     'wizard.step3.subtitle': 'Wähle ein Ziel und eine Intensität — wir rechnen.',

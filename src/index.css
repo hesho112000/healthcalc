@@ -730,3 +730,67 @@ select.wiz-input { -webkit-appearance: none; appearance: none; background-image:
 }
 .save-bar .save-btn:hover { transform: translateY(-1px); background: #C9A032; box-shadow: 0 12px 26px rgba(212,175,55,0.5); }
 .save-bar .save-btn:active { transform: scale(0.98); }
+
+/* ---------- Exercise type horizontal scroll rail ---------- */
+.ex-type-rail {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 4px 2px 10px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+}
+.ex-type-rail::-webkit-scrollbar { display: none; }
+.ex-type-card {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border-radius: 18px;
+  border: 2px solid #EFEBE4;
+  background: #fff;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.ex-type-card:hover { border-color: #D4AF37; transform: translateY(-2px); }
+.ex-type-card.on {
+  border-color: #D4AF37;
+  background: #FFF8E7;
+  box-shadow: 0 0 0 4px rgba(212,175,55,0.18), 0 8px 22px rgba(212,175,55,0.22);
+}
+
+/* ---------- Step 2 sticky footer ---------- */
+.step2-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 50;
+  background: #FDFBF7;
+  border-top: 1px solid rgba(15,76,58,0.08);
+  box-shadow: 0 -4px 12px rgba(15,76,58,0.05);
+  padding: 14px 16px;
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* ---------- Auto-build indeterminate loading bar ---------- */
+.wiz-loading-bar {
+  animation: wizLoadingBar 1.6s ease-in-out infinite;
+}
+@keyframes wizLoadingBar {
+  0%   { width: 8%;  }
+  50%  { width: 80%; }
+  100% { width: 95%; }
+}

@@ -493,7 +493,6 @@ const WeightLossPage: React.FC = () => {
   const [sex, setSex] = useState<Sex>('male');
   const [height, setHeight] = useState('175');
   const [weight, setWeight] = useState('70');
-  const [activity, setActivity] = useState<ActivityKey>('moderate');
   const [goal, setGoal] = useState<GoalKey>('lose');
   const [targetWeight, setTargetWeight] = useState('75');
   const [timeline, setTimeline] = useState('12');
@@ -519,10 +518,12 @@ const WeightLossPage: React.FC = () => {
   const [kitchenMode, setKitchenMode] = useState<'manual' | 'auto'>('auto');
   const [categoryMode, setCategoryMode] = useState<'manual' | 'auto'>('manual');
   const [exerciseMode, setExerciseMode] = useState<'manual' | 'auto'>('auto');
-  const [selectedExerciseType, setSelectedExerciseType] = useState<string | null>(null);
-  const [selectedExercises, setSelectedExercises] = useState<string[]>([]);
+  const [step2Data, setStep2Data] = useState<{ activityLevel: ActivityKey; exerciseType: string | null; selectedExercises: string[] }>({
+    activityLevel: 'moderate',
+    exerciseType: null,
+    selectedExercises: [],
+  });
   const [autoBuildMode, setAutoBuildMode] = useState(false);
-  const [step2Phase, setStep2Phase] = useState<'activity' | 'types' | 'list'>('activity');
   const [mealTab, setMealTab] = useState<MealKey>('breakfast');
   const [countryMode, setCountryMode] = useState<'egyptian' | 'tunisian' | 'both'>('egyptian');
   const [dishSearch, setDishSearch] = useState('');
@@ -553,7 +554,7 @@ const WeightLossPage: React.FC = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [step, step2Phase]);
+  }, [step]);
 
   const parsed = useMemo(
     () => ({
@@ -706,7 +707,7 @@ const WeightLossPage: React.FC = () => {
     const wk = WORKOUTS.find((x) => x.id === workout) ?? WORKOUTS[0];
     const bmi = +(w / Math.pow(h / 100, 2)).toFixed(1);
     const bmr = sex === 'male' ? 10 * w + 6.25 * h - 5 * a + 5 : 10 * w + 6.25 * h - 5 * a - 161;
-    const tdeeBase = bmr * ACTIVITY[activity].factor;
+    const tdeeBase = bmr * ACTIVITY[step2Data.activityLevel].factor;
     const exBurnMid = EXERCISE_TYPES.filter((e) => exerciseTypes.includes(e.id)).map((e) => {
       const [lo, hi] = e.burn.split('-').map(Number);
       return (lo + hi) / 2;
@@ -737,7 +738,7 @@ const WeightLossPage: React.FC = () => {
       diet,
       wk,
     };
-  }, [parsed, sex, activity, goal, dietId, workout, exerciseTypes]);
+  }, [parsed, sex, step2Data.activityLevel, goal, dietId, workout, exerciseTypes]);
 
   const diet = numbers ? numbers.diet : getDiet(goal, dietId);
 
@@ -815,38 +816,16 @@ const WeightLossPage: React.FC = () => {
     if (!isValid()) return;
     if (step === 1) {
       setStep(2);
-      setStep2Phase('activity');
       return;
     }
-    if (step === 2 && planType === 'nutrition') {
+    if (step === 2) {
       setStep(3);
-      return;
-    }
-    if (step === 2 && (planType === 'fitness' || planType === 'both')) {
-      if (step2Phase === 'activity') {
-        setStep2Phase('types');
-        return;
-      }
-      if (step2Phase === 'list') {
-        setStep(3);
-        return;
-      }
       return;
     }
     const s = step >= 5 ? 1 : ((step + 1) as Step);
     setStep(s);
   };
   const back = () => {
-    if (step === 2 && (planType === 'fitness' || planType === 'both')) {
-      if (step2Phase === 'list') {
-        setStep2Phase('types');
-        return;
-      }
-      if (step2Phase === 'types') {
-        setStep2Phase('activity');
-        return;
-      }
-    }
     if (step === 4 && planType === 'fitness') {
       setStep(3);
       return;
@@ -855,15 +834,9 @@ const WeightLossPage: React.FC = () => {
     setStep(s);
   };
 
-  const toggleExerciseType = (id: string) => {
-    setExerciseMode('manual');
-    const on = exerciseTypes.includes(id);
-    setExerciseTypes((prev) => (on ? prev.filter((x) => x !== id) : [...prev, id]));
-    const presets = EXERCISE_PRESETS[id] ?? [];
-    setPlannedExercises((prev) => {
-      const others = prev.filter((p) => p.type !== id);
-      return on ? others : [...others, ...presets];
-    });
+  const selectExerciseType = (typeId: string) => {
+    setStep2Data((d) => ({ ...d, exerciseType: typeId }));
+    setExerciseTypes((prev) => (prev.includes(typeId) ? prev : [...prev, typeId]));
   };
 
   const autoPickExercises = (silent = false) => {
@@ -877,7 +850,7 @@ const WeightLossPage: React.FC = () => {
             : goal === 'athletic'
               ? ['strength', 'running', 'boxing', 'swimming']
               : ['cardio', 'hiit', 'strength'];
-    if (activity === 'sedentary' || activity === 'light') {
+    if (step2Data.activityLevel === 'sedentary' || step2Data.activityLevel === 'light') {
       const trimmed = picks.filter((p) => !['hiit', 'boxing'].includes(p));
       setExerciseTypes(trimmed.length >= 3 ? trimmed.slice(0, 3) : picks.slice(0, 3));
     } else {
@@ -908,15 +881,9 @@ const WeightLossPage: React.FC = () => {
     emoji: ex.emoji,
   });
 
-  const selectExerciseType = (typeId: string) => {
-    setSelectedExerciseType(typeId);
-    setExerciseTypes((prev) => (prev.includes(typeId) ? prev : [...prev, typeId]));
-    setStep2Phase('list');
-  };
-
   const toggleWizardExercise = (ex: ExerciseItem) => {
-    const on = selectedExercises.includes(ex.id);
-    setSelectedExercises((prev) => (on ? prev.filter((id) => id !== ex.id) : [...prev, ex.id]));
+    const on = step2Data.selectedExercises.includes(ex.id);
+    setStep2Data((d) => ({ ...d, selectedExercises: on ? d.selectedExercises.filter((id) => id !== ex.id) : [...d.selectedExercises, ex.id] }));
     setPlannedExercises((prev) => {
       const others = prev.filter((p) => p.id !== ex.id);
       return on ? others : [...others, toPlannedShape(ex)];
@@ -937,7 +904,7 @@ const WeightLossPage: React.FC = () => {
       };
       const all = map[goal];
       const typePicks =
-        activity === 'sedentary' || activity === 'light'
+        step2Data.activityLevel === 'sedentary' || step2Data.activityLevel === 'light'
           ? all.filter((p) => !['hiit', 'boxing', 'crossfit'].includes(p)).slice(0, 3)
           : all;
       const picked: ExerciseItem[] = [];
@@ -945,18 +912,15 @@ const WeightLossPage: React.FC = () => {
         picked.push(...getWizardExercisesByType(tid).filter((e) => e.difficulty !== 'hard').slice(0, 2));
       }
       const ids = picked.map((e) => e.id);
-      setSelectedExercises(ids);
+      setStep2Data((d) => ({ ...d, selectedExercises: ids, exerciseType: typePicks[0] }));
       setPlannedExercises(picked.map(toPlannedShape));
-      setSelectedExerciseType(typePicks[0]);
       setExerciseTypes(typePicks);
       setAutoBuildMode(false);
-      setStep2Phase('list');
       notify(t('wizard.toast.autoExercises'));
     }, 2000);
   };
 
   const goEditExercises = () => {
-    setStep2Phase(selectedExerciseType ? 'list' : 'types');
     setStep(2);
   };
 
@@ -1311,104 +1275,142 @@ const WeightLossPage: React.FC = () => {
           </div>
         )}
 
-        {step === 2 && (
+        {step === 2 && planType === 'nutrition' && (
           <div className="mt-6 space-y-5">
-            {step2Phase === 'activity' && (
-              <>
-                <div className={`${cardBase} p-6`}>
-                  <div className="flex items-center justify-between gap-2">
-                    <div>
-                      <h2 className="text-[18px] font-extrabold">{t('wizard.step2.activity')}</h2>
-                      <p className="mt-1 text-[12.5px] text-[#6B7A75]">{t('wizard.step2.activitySub')}</p>
-                    </div>
-                    <span className="text-[30px] leading-none shrink-0">{ACTIVITY[activity].emoji}</span>
-                  </div>
-
-                  <div className="mt-4 flex gap-2 overflow-x-auto no-scrollbar snap-x pb-1">
-                    {ACTIVITY_ORDER.map((x) => {
-                      const opt = ACTIVITY[x];
-                      const on = activity === x;
-                      return (
-                        <button
-                          key={x}
-                          type="button"
-                          onClick={() => setActivity(x)}
-                          className={`shrink-0 snap-start rounded-full border-2 px-4 h-[46px] text-[13px] font-bold flex items-center gap-1.5 transition-all active:scale-95 ${on ? 'bg-[#0F4C3A] border-[#0F4C3A] text-white shadow-[0_8px_18px_rgba(15,76,58,0.25)]' : 'bg-white border-[#EFEBE4] text-[#0F4C3A] hover:border-[#D4AF37]'}`}
-                        >
-                          <span className="shrink-0">{opt.emoji}</span>
-                          {ACTIVITY_LABEL(x)}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  <p className="mt-3 text-[12.5px] font-medium text-[#6B7A75]">💬 {ACTIVITY_DESC(activity)}</p>
+            <div className={`${cardBase} p-6`}>
+              <div className="flex items-center justify-between gap-2">
+                <div>
+                  <h2 className="text-[18px] font-extrabold">{t('wizard.step2.activity')}</h2>
+                  <p className="mt-1 text-[13px] text-[#6B7A75]">{t('wizard.step2.activitySub')}</p>
                 </div>
+                <span className="text-[30px] leading-none shrink-0">{ACTIVITY[step2Data.activityLevel].emoji}</span>
+              </div>
 
-                {planType === 'nutrition' && numbers && (
-                  <div className={`${cardBase} p-6`}>
-                    <p className="text-[13px] text-[#6B7A75] leading-relaxed">{t('wizard.step2.onlyNutrition')}</p>
-                    <div className="mt-4 rounded-[14px] bg-[#F4F1EB] p-3.5 text-[12px] text-[#6B7A75] leading-relaxed">
-                      <div className="font-bold text-[#0F4C3A]">{t('wizard.step2.tdeePreview')}</div>
-                      <div className="mt-1">
-                        {t('wizard.step2.maintenance')}: <b className="num">{numbers.tdeeBase}</b> kcal/day
-                      </div>
-                      <div className="mt-0.5">{macrosT(numbers.protein, numbers.carbs, numbers.fat)}</div>
-                    </div>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {ACTIVITY_ORDER.map((x) => {
+                  const opt = ACTIVITY[x];
+                  const on = step2Data.activityLevel === x;
+                  return (
+                    <button
+                      key={x}
+                      type="button"
+                      onClick={() => setStep2Data((d) => ({ ...d, activityLevel: x }))}
+                      className={`px-[18px] py-2 rounded-full text-[13px] font-bold flex items-center gap-1.5 transition-all active:scale-95 ${on ? 'bg-[#0F4C3A] text-white shadow-[0_6px_14px_rgba(15,76,58,0.25)]' : 'bg-[#F4F1EB] text-[#6B7A75] hover:bg-[#ECE8DD]'}`}
+                    >
+                      <span className="shrink-0">{opt.emoji}</span>
+                      {ACTIVITY_LABEL(x)}
+                    </button>
+                  );
+                })}
+              </div>
+              <p className="mt-3 text-[12.5px] font-medium text-[#6B7A75]">💬 {ACTIVITY_DESC(step2Data.activityLevel)}</p>
+            </div>
+
+            {numbers && (
+              <div className={`${cardBase} p-6`}>
+                <p className="text-[13px] text-[#6B7A75] leading-relaxed">{t('wizard.step2.onlyNutrition')}</p>
+                <div className="mt-4 rounded-[14px] bg-[#F4F1EB] p-3.5 text-[12px] text-[#6B7A75] leading-relaxed">
+                  <div className="font-bold text-[#0F4C3A]">{t('wizard.step2.tdeePreview')}</div>
+                  <div className="mt-1">
+                    {t('wizard.step2.maintenance')}: <b className="num">{numbers.tdeeBase}</b> kcal/day
                   </div>
-                )}
-
-                <div className="flex gap-3">
-                  <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
-                    {t('wizard.back')}
-                  </button>
-                  <button type="button" onClick={next} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
-                    {t('wizard.continue')}
-                  </button>
-                </div>
-              </>
-            )}
-
-            {step2Phase === 'types' && (
-              <div className="space-y-5">
-                <ExerciseTypeSelector
-                  selectedType={selectedExerciseType}
-                  isAutoLoading={autoBuildMode}
-                  onSelectType={selectExerciseType}
-                  onAutoBuild={runAutoBuild}
-                />
-                <div className="flex justify-center">
-                  <button type="button" onClick={back} className="btn-secondary w-full sm:w-auto sm:min-w-[220px] h-[54px] rounded-[16px] text-[15px] font-bold">
-                    {t('wizard.back')}
-                  </button>
+                  <div className="mt-0.5">{macrosT(numbers.protein, numbers.carbs, numbers.fat)}</div>
                 </div>
               </div>
             )}
 
-            {step2Phase === 'list' && selectedExerciseType && (
-              <div className="space-y-5">
-                <ExerciseList
-                  selectedType={selectedExerciseType}
-                  selectedExerciseIds={selectedExercises}
-                  onToggleExercise={toggleWizardExercise}
-                />
-                <div className="space-y-3">
-                  <button
-                    type="button"
-                    onClick={next}
-                    className="w-full h-[54px] rounded-[30px] bg-[#0F4C3A] text-white text-[15px] font-bold flex items-center justify-center gap-2 shadow-[0_10px_24px_rgba(15,76,58,0.28)] hover:translate-y-[-1px] hover:bg-[#0b3a2c] transition-all active:scale-95"
-                  >
-                    {t('wizard.exerciseList.cta')}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={back}
-                    className="block mx-auto text-[12.5px] font-bold text-[#6B7A75] underline decoration-dotted hover:text-[#0F4C3A] transition-colors px-3 py-1.5"
-                  >
-                    ← {t('wizard.exerciseList.backToTypes')}
-                  </button>
-                </div>
+            <div className="flex gap-3">
+              <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
+                {t('wizard.back')}
+              </button>
+              <button type="button" onClick={next} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
+                {t('wizard.continue')}
+              </button>
+            </div>
+          </div>
+        )}
+
+        {step === 2 && (planType === 'fitness' || planType === 'both') && (
+          <div className="mt-6 flex flex-col gap-5">
+            {/* SECTION 1: ACTIVITY LEVEL (Compact Row) */}
+            <div className={`${cardBase} p-5`}>
+              <h2 className="text-[18px] font-extrabold text-[#0F4C3A]">{t('wizard.step2.activity')}</h2>
+              <p className="mt-1 text-[13px] text-[#6B7A75]">{t('wizard.step2.activitySub')}</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {ACTIVITY_ORDER.map((x) => {
+                  const opt = ACTIVITY[x];
+                  const on = step2Data.activityLevel === x;
+                  return (
+                    <button
+                      key={x}
+                      type="button"
+                      onClick={() => setStep2Data((d) => ({ ...d, activityLevel: x }))}
+                      className={`px-[18px] py-2 rounded-full text-[13px] font-bold flex items-center gap-1.5 transition-all active:scale-95 ${on ? 'bg-[#0F4C3A] text-white shadow-[0_6px_14px_rgba(15,76,58,0.25)]' : 'bg-[#F4F1EB] text-[#6B7A75] hover:bg-[#ECE8DD]'}`}
+                    >
+                      <span className="shrink-0">{opt.emoji}</span>
+                      {ACTIVITY_LABEL(x)}
+                    </button>
+                  );
+                })}
               </div>
+              <p className="mt-3 text-[12.5px] font-medium text-[#6B7A75]">💬 {ACTIVITY_DESC(step2Data.activityLevel)}</p>
+            </div>
+
+            {/* SECTION 2: EXERCISE TYPE (Horizontal Scroll) */}
+            <ExerciseTypeSelector selectedType={step2Data.exerciseType} onSelectType={selectExerciseType} />
+
+            {/* SECTION 3: EXERCISE LIST (Inline) */}
+            {step2Data.exerciseType && (
+              <ExerciseList
+                key={step2Data.exerciseType}
+                selectedType={step2Data.exerciseType}
+                selectedExerciseIds={step2Data.selectedExercises}
+                onToggleExercise={toggleWizardExercise}
+              />
             )}
+
+            {/* SECTION 4: AUTO-BUILD BANNER */}
+            <div
+              className="rounded-[20px] p-6 relative overflow-hidden text-white border-2 border-[#D4AF37]"
+              style={{ background: 'linear-gradient(135deg,#0F4C3A 0%,#1a6b53 100%)', boxShadow: '0 8px 20px rgba(212,175,55,0.35)' }}
+            >
+              <div className="absolute -top-10 -end-10 text-[110px] leading-none opacity-[0.08] select-none pointer-events-none">✨</div>
+              <h3 className="text-[17px] font-extrabold text-[#D4AF37]">✨ {t('wizard.exerciseType.autoBuild.title')}</h3>
+              <p className="mt-2 text-[13px] text-white/85 leading-relaxed max-w-[520px]">{t('wizard.exerciseType.autoBuild.desc')}</p>
+              {autoBuildMode ? (
+                <div className="mt-5 flex items-center gap-3 rounded-[18px] bg-white/10 border border-white/15 px-5 py-4">
+                  <span className="text-[20px] animate-bounce select-none">🤖</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[13px] font-bold">{t('wizard.exerciseType.autoBuild.loading')}</p>
+                    <div className="mt-2 h-[6px] bg-white/20 rounded-full overflow-hidden">
+                      <div className="wiz-loading-bar h-full bg-[#D4AF37] rounded-full" />
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={runAutoBuild}
+                  className="mt-5 h-[52px] px-8 rounded-full bg-[#D4AF37] text-[#0F4C3A] font-extrabold text-[15px] flex items-center gap-2 shadow-[0_8px_20px_rgba(212,175,55,0.4)] hover:translate-y-[-1px] transition-all active:scale-95"
+                >
+                  {t('wizard.exerciseType.autoBuild.cta')}
+                </button>
+              )}
+            </div>
+
+            {/* SECTION 5: STICKY FOOTER */}
+            <div className="no-print step2-footer">
+              <button type="button" onClick={back} className="h-[52px] px-6 rounded-full border-2 border-[#0F4C3A] text-[#0F4C3A] text-[15px] font-bold bg-transparent hover:bg-[#F4F1EB] transition-all active:scale-95">
+                {t('wizard.back')}
+              </button>
+              <button
+                type="button"
+                onClick={next}
+                className="h-[52px] px-8 rounded-full bg-[#D4AF37] text-[#0F4C3A] font-extrabold text-[15px] flex items-center gap-2 shadow-[0_10px_24px_rgba(212,175,55,0.45)] hover:translate-y-[-1px] transition-all active:scale-95"
+              >
+                {t('wizard.exerciseList.cta')}
+              </button>
+            </div>
           </div>
         )}
 
@@ -1768,7 +1770,7 @@ const WeightLossPage: React.FC = () => {
                 <div className="mt-2 text-[13px] font-semibold text-[#0F4C3A]">
                   {t('wizard.step4.targetCal').replace('{n}', String(numbers.targetCal))}
                 </div>
-                <div className="mt-2 text-[12px] text-[#8A938E]">{numbers.wk.name} · {ACTIVITY_LABEL(activity)}</div>
+                <div className="mt-2 text-[12px] text-[#8A938E]">{numbers.wk.name} · {ACTIVITY_LABEL(step2Data.activityLevel)}</div>
               </div>
             )}
 
