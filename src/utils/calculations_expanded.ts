@@ -17,7 +17,7 @@ export const calculateWaterIntake = (weight: number): number => Math.round(weigh
 export { FOODS_DATABASE, CUISINE_META, CUISINE_OPTIONS, getFoodsByCuisine, generateMealWithCuisine } from './calculations';
 export type { Cuisine, FoodItem } from './calculations';
 
-import type { Exercise, ExerciseType } from '../data/exercises';
+import type { Exercise, ExerciseType } from '../data/exercises/index';
 import type { Language } from '../types';
 import {
   EXERCISES_DATABASE,
@@ -29,7 +29,7 @@ import {
   balanceExercises,
   functionalExercises,
   mindbodyExercises,
-} from '../data/exercises';
+} from '../data/exercises/index';
 
 export {
   EXERCISES_DATABASE,
@@ -41,7 +41,7 @@ export {
   balanceExercises,
   functionalExercises,
   mindbodyExercises,
-} from '../data/exercises';
+} from '../data/exercises/index';
 export type {
   Exercise,
   ExerciseType,
@@ -49,7 +49,7 @@ export type {
   ExerciseEquipment,
   MuscleGroup,
   ExerciseGoal,
-} from '../data/exercises';
+} from '../data/exercises/index';
 
 export const EXERCISE_TYPE_LABELS: Record<ExerciseType, Record<Language, string>> = {
   strength: { en: 'Strength', fr: 'Force', es: 'Fuerza', ar: 'مقاومة وقوة', de: 'Kraft' },

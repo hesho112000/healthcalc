@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HeartPulse, ClipboardList, Calculator, Microscope, Target } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
-import { EXERCISES_DATABASE } from '../data/exercises';
+import { EXERCISES_DATABASE } from '../data/exercises/index';
 import { FOODS_DATABASE, type FoodItem } from '../utils/calculations';
 import { IconScene } from '../components/IconScene';
 import { useLanguage } from '../context/LanguageContext';

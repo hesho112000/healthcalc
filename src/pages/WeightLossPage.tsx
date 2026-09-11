@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { kitchensRegistry, totalDishesAll } from '../data/kitchens';
 import type { KitchenInfo, KitchenDish, KitchenCategory } from '../data/kitchens';
+import { getWizardExercisesByType } from '../data/exercises';
+import type { ExerciseItem } from '../data/exercises';
+import { ExerciseTypeSelector } from '../components/wizard/ExerciseTypeSelector';
+import { ExerciseList } from '../components/wizard/ExerciseList';
 
 type Step = 1 | 2 | 3 | 4 | 5;
 type Sex = 'male' | 'female';
@@ -515,6 +519,10 @@ const WeightLossPage: React.FC = () => {
   const [kitchenMode, setKitchenMode] = useState<'manual' | 'auto'>('auto');
   const [categoryMode, setCategoryMode] = useState<'manual' | 'auto'>('manual');
   const [exerciseMode, setExerciseMode] = useState<'manual' | 'auto'>('auto');
+  const [selectedExerciseType, setSelectedExerciseType] = useState<string | null>(null);
+  const [selectedExercises, setSelectedExercises] = useState<string[]>([]);
+  const [autoBuildMode, setAutoBuildMode] = useState(false);
+  const [step2Phase, setStep2Phase] = useState<'activity' | 'types' | 'list'>('activity');
   const [mealTab, setMealTab] = useState<MealKey>('breakfast');
   const [countryMode, setCountryMode] = useState<'egyptian' | 'tunisian' | 'both'>('egyptian');
   const [dishSearch, setDishSearch] = useState('');
@@ -539,6 +547,10 @@ const WeightLossPage: React.FC = () => {
     autoPickExercises(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [step, step2Phase]);
 
   const parsed = useMemo(
     () => ({
@@ -656,6 +668,7 @@ const WeightLossPage: React.FC = () => {
       ? [
           { n: 1, label: t('wizard.steps.info') },
           { n: 2, label: t('wizard.steps.body') },
+          { n: 3, label: t('wizard.steps.kitchen') },
           { n: 4, label: t('wizard.steps.goals') },
           { n: 5, label: t('wizard.steps.blueprint') },
         ]
@@ -799,22 +812,40 @@ const WeightLossPage: React.FC = () => {
     if (!isValid()) return;
     if (step === 1) {
       setStep(2);
-      return;
-    }
-    if (step === 2 && planType === 'fitness') {
-      setStep(4);
+      setStep2Phase('activity');
       return;
     }
     if (step === 2 && planType === 'nutrition') {
       setStep(3);
       return;
     }
+    if (step === 2 && (planType === 'fitness' || planType === 'both')) {
+      if (step2Phase === 'activity') {
+        setStep2Phase('types');
+        return;
+      }
+      if (step2Phase === 'list') {
+        setStep(3);
+        return;
+      }
+      return;
+    }
     const s = step >= 5 ? 1 : ((step + 1) as Step);
     setStep(s);
   };
   const back = () => {
+    if (step === 2 && (planType === 'fitness' || planType === 'both')) {
+      if (step2Phase === 'list') {
+        setStep2Phase('types');
+        return;
+      }
+      if (step2Phase === 'types') {
+        setStep2Phase('activity');
+        return;
+      }
+    }
     if (step === 4 && planType === 'fitness') {
-      setStep(2);
+      setStep(3);
       return;
     }
     const s = Math.max(1, step - 1) as Step;
@@ -862,6 +893,68 @@ const WeightLossPage: React.FC = () => {
 
   const removeExercise = (id: string) => {
     setPlannedExercises((prev) => prev.filter((p) => p.id !== id));
+  };
+
+  const toPlannedShape = (ex: ExerciseItem): PlannedExercise => ({
+    id: ex.id,
+    type: ex.typeId,
+    name: ex.name,
+    sets: '3',
+    reps: '12',
+    dur: `${ex.minutes} min`,
+    emoji: ex.emoji,
+  });
+
+  const selectExerciseType = (typeId: string) => {
+    setSelectedExerciseType(typeId);
+    setExerciseTypes((prev) => (prev.includes(typeId) ? prev : [...prev, typeId]));
+    setStep2Phase('list');
+  };
+
+  const toggleWizardExercise = (ex: ExerciseItem) => {
+    const on = selectedExercises.includes(ex.id);
+    setSelectedExercises((prev) => (on ? prev.filter((id) => id !== ex.id) : [...prev, ex.id]));
+    setPlannedExercises((prev) => {
+      const others = prev.filter((p) => p.id !== ex.id);
+      return on ? others : [...others, toPlannedShape(ex)];
+    });
+    if (!on) notify(t('wizard.exerciseList.added'));
+  };
+
+  const runAutoBuild = () => {
+    if (autoBuildMode) return;
+    setAutoBuildMode(true);
+    window.setTimeout(() => {
+      const map: Record<GoalKey, string[]> = {
+        lose: ['cardio', 'hiit', 'running'],
+        gain_muscle: ['strength', 'crossfit', 'swimming'],
+        gain_weight: ['strength', 'yoga', 'swimming'],
+        wellness: ['yoga', 'pilates', 'tai_chi', 'dance'],
+        athletic: ['strength', 'running', 'boxing', 'swimming'],
+      };
+      const all = map[goal];
+      const typePicks =
+        activity === 'sedentary' || activity === 'light'
+          ? all.filter((p) => !['hiit', 'boxing', 'crossfit'].includes(p)).slice(0, 3)
+          : all;
+      const picked: ExerciseItem[] = [];
+      for (const tid of typePicks) {
+        picked.push(...getWizardExercisesByType(tid).filter((e) => e.difficulty !== 'hard').slice(0, 2));
+      }
+      const ids = picked.map((e) => e.id);
+      setSelectedExercises(ids);
+      setPlannedExercises(picked.map(toPlannedShape));
+      setSelectedExerciseType(typePicks[0]);
+      setExerciseTypes(typePicks);
+      setAutoBuildMode(false);
+      setStep2Phase('list');
+      notify(t('wizard.toast.autoExercises'));
+    }, 2000);
+  };
+
+  const goEditExercises = () => {
+    setStep2Phase(selectedExerciseType ? 'list' : 'types');
+    setStep(2);
   };
 
   const autoPickKitchen = () => {
@@ -1215,206 +1308,94 @@ const WeightLossPage: React.FC = () => {
 
         {step === 2 && (
           <div className="mt-6 space-y-5">
-            <div className={`${cardBase} p-6`}>
-              <div className="flex items-center justify-between gap-2">
-                <div>
-                  <h2 className="text-[18px] font-extrabold">{t('wizard.step2.activity')}</h2>
-                  <p className="mt-1 text-[12.5px] text-[#6B7A75]">{t('wizard.step2.activitySub')}</p>
-                </div>
-                <span className="text-[30px] leading-none shrink-0">{ACTIVITY[activity].emoji}</span>
-              </div>
-
-              <div className="mt-4 flex gap-2 overflow-x-auto no-scrollbar snap-x pb-1">
-                {ACTIVITY_ORDER.map((x) => {
-                  const opt = ACTIVITY[x];
-                  const on = activity === x;
-                  return (
-                    <button
-                      key={x}
-                      type="button"
-                      onClick={() => setActivity(x)}
-                      className={`shrink-0 snap-start rounded-full border-2 px-4 h-[46px] text-[13px] font-bold flex items-center gap-1.5 transition-all active:scale-95 ${on ? 'bg-[#0F4C3A] border-[#0F4C3A] text-white shadow-[0_8px_18px_rgba(15,76,58,0.25)]' : 'bg-white border-[#EFEBE4] text-[#0F4C3A] hover:border-[#D4AF37]'}`}
-                    >
-                      <span className="shrink-0">{opt.emoji}</span>
-                      {ACTIVITY_LABEL(x)}
-                    </button>
-                  );
-                })}
-              </div>
-              <p className="mt-3 text-[12.5px] font-medium text-[#6B7A75]">💬 {ACTIVITY_DESC(activity)}</p>
-            </div>
-
-            {planType === 'nutrition' ? (
-              <div className={`${cardBase} p-6`}>
-                <p className="text-[13px] text-[#6B7A75] leading-relaxed">{t('wizard.step2.onlyNutrition')}</p>
-                {numbers && (
-                  <div className="mt-4 rounded-[14px] bg-[#F4F1EB] p-3.5 text-[12px] text-[#6B7A75] leading-relaxed">
-                    <div className="font-bold text-[#0F4C3A]">{t('wizard.step2.tdeePreview')}</div>
-                    <div className="mt-1">
-                      {t('wizard.step2.maintenance')}: <b className="num">{numbers.tdeeBase}</b> kcal/day
-                    </div>
-                    <div className="mt-0.5">{macrosT(numbers.protein, numbers.carbs, numbers.fat)}</div>
-                  </div>
-                )}
-              </div>
-            ) : exerciseMode === 'auto' ? (
-              <div
-                className="rounded-[26px] p-6 md:p-7 relative overflow-hidden text-white"
-                style={{ background: 'linear-gradient(135deg,#0F4C3A,#14532D 55%,#1f6b52)' }}
-              >
-                <div className="absolute -top-8 -end-8 text-[120px] leading-none opacity-15 select-none">🤖</div>
-                <div className="flex items-center gap-2">
-                  <span className="wiz-progress-badge">{t('wizard.step2.autoTitle')}</span>
-                  <span className="text-[12px] font-semibold text-white/70">{t('wizard.step2.autoResult').replace('{n}', String(exerciseTypes.length))}</span>
-                </div>
-                <p className="mt-3 text-[13.5px] text-white/85 leading-relaxed max-w-[520px]">{t('wizard.step2.autoDesc')}</p>
-
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {plannedExercises.map((ex) => (
-                    <span key={ex.id} className="inline-flex items-center gap-1.5 bg-white/12 border border-white/15 rounded-full h-9 px-3.5 text-[12.5px] font-bold text-white">
-                      <span className="shrink-0">{ex.emoji}</span>
-                      <span className="truncate max-w-[150px]">{ex.name}</span>
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-5 flex flex-wrap gap-2.5">
-                  <button
-                    type="button"
-                    onClick={() => autoPickExercises()}
-                    className="h-[46px] px-6 rounded-full bg-[#D4AF37] text-[#0F4C3A] font-extrabold text-[14px] flex items-center gap-2 shadow-[0_8px_20px_rgba(212,175,55,0.4)] hover:translate-y-[-1px] transition-all active:scale-95"
-                  >
-                    {t('wizard.step2.regenerate')}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setExerciseMode('manual')}
-                    className="h-[46px] px-5 rounded-full bg-white/10 border border-white/25 text-white font-bold text-[13.5px] hover:bg-white/20 transition-all active:scale-95"
-                  >
-                    {t('wizard.step2.switchManual')}
-                  </button>
-                </div>
-              </div>
-            ) : null}
-
-            {planType !== 'nutrition' && exerciseMode === 'manual' && (
-              <div className="space-y-5">
+            {step2Phase === 'activity' && (
+              <>
                 <div className={`${cardBase} p-6`}>
-                  <div className="flex items-center gap-2">
-                    <span className="wiz-progress-badge">{t('wizard.step2.manual')}</span>
-                    <span className="text-[12px] font-semibold text-[#6B7A75] shrink-0">{t('wizard.step2.exerciseTypes')}</span>
-                    <span className="ms-auto text-[12px] font-semibold text-[#D4AF37] bg-[#FFF8E7] px-3 py-1 rounded-full shrink-0">
-                      {t('wizard.step2.typesCount').replace('{n}', String(EXERCISE_TYPES.length))}
-                    </span>
+                  <div className="flex items-center justify-between gap-2">
+                    <div>
+                      <h2 className="text-[18px] font-extrabold">{t('wizard.step2.activity')}</h2>
+                      <p className="mt-1 text-[12.5px] text-[#6B7A75]">{t('wizard.step2.activitySub')}</p>
+                    </div>
+                    <span className="text-[30px] leading-none shrink-0">{ACTIVITY[activity].emoji}</span>
                   </div>
-                  <div className="mt-4 h-[46px] bg-[#F4F1EB] rounded-[14px] flex items-center px-4 border-2 border-transparent focus-within:border-[#D4AF37] transition-colors">
-                    <input
-                      value={exerciseSearch}
-                      onChange={(e) => setExerciseSearch(e.target.value)}
-                      placeholder={t('wizard.step2.search')}
-                      className="flex-1 bg-transparent outline-none text-[15px] text-[#0F4C3A] placeholder:text-[#A0A8A4] min-w-0"
-                    />
-                    <span className="text-[#0F4C3A] text-[18px] shrink-0">🔍</span>
-                  </div>
-                  <div className="mt-3 grid grid-cols-3 sm:grid-cols-4 gap-2.5">
-                    {EXERCISE_TYPES.filter((ty) => ty.name.includes(exerciseSearch) || ty.en.toLowerCase().includes(exerciseSearch.toLowerCase()) || ty.focus.includes(exerciseSearch)).map((ty) => {
-                      const on = exerciseTypes.includes(ty.id);
+
+                  <div className="mt-4 flex gap-2 overflow-x-auto no-scrollbar snap-x pb-1">
+                    {ACTIVITY_ORDER.map((x) => {
+                      const opt = ACTIVITY[x];
+                      const on = activity === x;
                       return (
                         <button
-                          key={ty.id}
+                          key={x}
                           type="button"
-                          onClick={() => toggleExerciseType(ty.id)}
-                          className={`relative rounded-[16px] flex flex-col items-center justify-center gap-1.5 py-2.5 min-h-[84px] cursor-pointer transition-all min-w-0 ${on ? 'border-2 border-[#0F4C3A] bg-[#0F4C3A] shadow-[0_8px_16px_rgba(15,76,58,0.2)]' : 'border border-[#E3E0D8] bg-white hover:border-[#D4AF37]'}`}
+                          onClick={() => setActivity(x)}
+                          className={`shrink-0 snap-start rounded-full border-2 px-4 h-[46px] text-[13px] font-bold flex items-center gap-1.5 transition-all active:scale-95 ${on ? 'bg-[#0F4C3A] border-[#0F4C3A] text-white shadow-[0_8px_18px_rgba(15,76,58,0.25)]' : 'bg-white border-[#EFEBE4] text-[#0F4C3A] hover:border-[#D4AF37]'}`}
                         >
-                          {on && (
-                            <span className="absolute top-1.5 end-1.5 w-5 h-5 rounded-full bg-[#D4AF37] text-[#0F4C3A] text-[11px] flex items-center justify-center font-bold">✓</span>
-                          )}
-                          <span className={`w-10 h-10 rounded-full flex items-center justify-center text-[20px] shadow-sm shrink-0 ${on ? 'bg-white/15' : 'bg-[#F4F1EB]'}`}>{ty.emoji}</span>
-                          <span className={`text-[12px] font-bold leading-none truncate max-w-full ${on ? 'text-white' : 'text-[#0F4C3A]'}`}>{ty.en}</span>
+                          <span className="shrink-0">{opt.emoji}</span>
+                          {ACTIVITY_LABEL(x)}
                         </button>
                       );
                     })}
-                    {EXERCISE_TYPES.filter((ty) => ty.name.includes(exerciseSearch) || ty.en.toLowerCase().includes(exerciseSearch.toLowerCase()) || ty.focus.includes(exerciseSearch)).length === 0 && (
-                      <div className="col-span-full text-[12.5px] text-[#A0A8A4] text-center py-4">{t('wizard.step2.noMatches')}</div>
-                    )}
                   </div>
+                  <p className="mt-3 text-[12.5px] font-medium text-[#6B7A75]">💬 {ACTIVITY_DESC(activity)}</p>
                 </div>
 
-                <div className={`${cardBase} p-6`}>
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-2">
-                      <span className="text-[16px] shrink-0">🔖</span>
-                      <h3 className="text-[15px] font-extrabold">{t('wizard.step2.saved')}</h3>
-                    </div>
-                    <span className="text-[12px] font-semibold bg-[#FFF8E7] text-[#B8860B] px-3 py-1 rounded-full shrink-0">
-                      {t('wizard.step5.exercisesCount').replace('{n}', String(plannedExercises.length))}
-                    </span>
-                  </div>
-                  <p className="mt-1 text-[11.5px] text-[#6B7A75]">{t('wizard.step2.savedSub')}</p>
-
-                  <div className="grid grid-cols-2 gap-2.5 mt-3">
-                    {WORKOUTS.map((w) => {
-                      const on = workout === w.id;
-                      return (
-                        <div
-                          key={w.id}
-                          onClick={() => setWorkout(w.id)}
-                          className={`rounded-[14px] p-3 cursor-pointer min-w-0 transition-all active:scale-95 ${on ? 'bg-[#0F4C3A] text-white shadow-[0_8px_16px_rgba(15,76,58,0.2)]' : 'bg-[#F4F1EB] text-[#0F4C3A] hover:border hover:border-[#D4AF37]'}`}
-                        >
-                          <div className="text-[12.5px] font-bold leading-tight break-words">{w.name}</div>
-                          <div className={`text-[10.5px] mt-0.5 leading-snug break-words ${on ? 'text-white/70' : 'text-[#6B7A75]'}`}>
-                            {w.dur} · {w.focus}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  <div className="mt-4 h-[44px] bg-[#F4F1EB] rounded-[12px] flex items-center px-3 border-2 border-transparent focus-within:border-[#D4AF37]">
-                    <input value={selectedExerciseSearch} onChange={(e) => setSelectedExerciseSearch(e.target.value)} placeholder={t('wizard.step3.savedSearch')} className="flex-1 bg-transparent outline-none text-[14px] text-[#0F4C3A] placeholder:text-[#A0A8A4] min-w-0" />
-                    <span className="text-[#0F4C3A] text-[15px] shrink-0">🔍</span>
-                  </div>
-                  <div className="mt-3 min-h-[40px] flex flex-wrap gap-2">
-                    {filteredPlanned.length ? (
-                      filteredPlanned.map((ex) => (
-                        <span key={ex.id} className="inline-flex items-center gap-1.5 bg-[#F4F1EB] border border-[#EFEBE4] rounded-full h-9 px-3.5 text-[12.5px] font-semibold text-[#0F4C3A] max-w-full">
-                          <span className="shrink-0">{ex.emoji}</span>
-                          <span className="truncate max-w-[140px]">{ex.name}</span>
-                          <button type="button" onClick={() => removeExercise(ex.id)} className="text-[#9AA19D] hover:text-red-500 text-[11px] shrink-0">✕</button>
-                        </span>
-                      ))
-                    ) : (
-                      <span className="text-[12px] text-[#A0A8A4]">{t('wizard.step2.savedEmpty')}</span>
-                    )}
-                  </div>
-
-                  {numbers && (
+                {planType === 'nutrition' && numbers && (
+                  <div className={`${cardBase} p-6`}>
+                    <p className="text-[13px] text-[#6B7A75] leading-relaxed">{t('wizard.step2.onlyNutrition')}</p>
                     <div className="mt-4 rounded-[14px] bg-[#F4F1EB] p-3.5 text-[12px] text-[#6B7A75] leading-relaxed">
                       <div className="font-bold text-[#0F4C3A]">{t('wizard.step2.tdeePreview')}</div>
                       <div className="mt-1">
-                        {t('wizard.step2.maintenance')}: <b className="num">{numbers.tdeeBase}</b> kcal/day ·{' '}
-                        {goal === 'lose' ? t('wizard.step2.targetLose') : goal === 'gain_muscle' || goal === 'gain_weight' ? t('wizard.step2.targetGain') : t('wizard.step2.targetMaintain')}:{' '}
-                        <b className="num">{goal === 'lose' ? numbers.tdeeBase - 500 : goal === 'gain_muscle' || goal === 'gain_weight' ? numbers.tdeeBase + 300 : numbers.tdeeBase}</b> kcal/day
+                        {t('wizard.step2.maintenance')}: <b className="num">{numbers.tdeeBase}</b> kcal/day
                       </div>
                       <div className="mt-0.5">{macrosT(numbers.protein, numbers.carbs, numbers.fat)}</div>
                     </div>
-                  )}
+                  </div>
+                )}
 
-                  <button type="button" onClick={saveExercises} className="btn-primary w-full mt-4 rounded-[14px]">
-                    {t('wizard.step2.saveBlueprint')}
+                <div className="flex gap-3">
+                  <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
+                    {t('wizard.back')}
+                  </button>
+                  <button type="button" onClick={next} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
+                    {t('wizard.continue')}
+                  </button>
+                </div>
+              </>
+            )}
+
+            {step2Phase === 'types' && (
+              <div className="space-y-5">
+                <ExerciseTypeSelector
+                  selectedType={selectedExerciseType}
+                  isAutoLoading={autoBuildMode}
+                  onSelectType={selectExerciseType}
+                  onAutoBuild={runAutoBuild}
+                />
+                <div className="flex justify-center">
+                  <button type="button" onClick={back} className="btn-secondary w-full sm:w-auto sm:min-w-[220px] h-[54px] rounded-[16px] text-[15px] font-bold">
+                    {t('wizard.back')}
                   </button>
                 </div>
               </div>
             )}
 
-            <div className="flex gap-3">
-              <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
-                {t('wizard.back')}
-              </button>
-              <button type="button" onClick={next} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
-                {t('wizard.continue')}
-              </button>
-            </div>
+            {step2Phase === 'list' && selectedExerciseType && (
+              <div className="space-y-5">
+                <ExerciseList
+                  selectedType={selectedExerciseType}
+                  selectedExerciseIds={selectedExercises}
+                  onToggleExercise={toggleWizardExercise}
+                />
+                <div className="flex gap-3">
+                  <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
+                    {t('wizard.back')}
+                  </button>
+                  <button type="button" onClick={next} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
+                    {t('wizard.exerciseList.cta')}
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         )}
 
@@ -1912,7 +1893,7 @@ const WeightLossPage: React.FC = () => {
                 <span>📊</span> {t('wizard.step5.progressTracker')}
               </button>
               {planType !== 'nutrition' && (
-                <button type="button" onClick={() => setStep(2)} className="rounded-full bg-white border border-[#E9E5DB] text-[#0F4C3A] px-5 py-2.5 text-[13px] font-bold flex items-center gap-1.5 hover:border-[#D4AF37] transition-all">
+                <button type="button" onClick={goEditExercises} className="rounded-full bg-white border border-[#E9E5DB] text-[#0F4C3A] px-5 py-2.5 text-[13px] font-bold flex items-center gap-1.5 hover:border-[#D4AF37] transition-all">
                   <span>🏋️</span> {t('wizard.step5.exerciseChange')}
                 </button>
               )}
@@ -1945,7 +1926,7 @@ const WeightLossPage: React.FC = () => {
                 ) : (
                   <div className="mt-3 text-[12px] text-[#8A938E]">{t('wizard.step5.noExercises')}</div>
                 )}
-                <button type="button" onClick={() => setStep(2)} className="mt-3 text-[11.5px] text-[#B8860B] underline decoration-dotted">{t('wizard.step5.editExercises')}</button>
+                <button type="button" onClick={goEditExercises} className="mt-3 text-[11.5px] text-[#B8860B] underline decoration-dotted">{t('wizard.step5.editExercises')}</button>
               </div>
             )}
 
