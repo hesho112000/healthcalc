@@ -457,38 +457,6 @@ html[lang='ar'] textarea {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
-/* Advanced care wizard */
-.advanced-care-page { overflow: hidden; }
-.care-progress { position: sticky; top: 64px; z-index: 20; height: 4px; background: #E9E5DB; }
-.care-progress span { display: block; height: 100%; background: linear-gradient(90deg, #0F4C3A, #D4AF37); transition: width .35s ease; }
-.care-illustration { position: sticky; top: 110px; min-height: 460px; background: transparent; overflow: hidden; }
-.care-step { animation: careSlide .4s ease-out both; }
-.condition-choice, .choice-card { position: relative; display: grid; gap: .25rem; text-align: right; padding: 1rem; border: 1px solid #e2e8f0; border-radius: 1.25rem; background: #fff; transition: .2s ease; }
-.condition-choice:hover, .choice-card:hover { border-color: #D4AF37; transform: translateY(-2px); }
-.condition-choice.selected, .choice-card.selected { border-color: #0F4C3A; background: #F4F1EB; box-shadow: 0 8px 20px rgba(15,76,58,0.12); }
-.condition-choice > span, .choice-card > span { font-size: 1.7rem; }
-.condition-choice strong, .choice-card strong { color: #0f172a; font-size: .85rem; }
-.condition-choice small, .choice-card small { color: #94a3b8; font-size: .7rem; }
-.choice-check { position: absolute; top: .55rem; left: .65rem; color: #0F4C3A; }
-.choice-card { min-height: 130px; align-content: center; text-align: center; }
-.choice-card.compact { min-height: 90px; text-align: right; }
-.care-label { display: grid; gap: .45rem; color: #475569; font-size: .8rem; font-weight: 700; }
-.care-label output, .care-label > span { color: #0F4C3A; font-weight: 800; }
-.care-label input:not([type="range"]) { width: 100%; padding: .8rem 1rem; border: 1px solid #e2e8f0; border-radius: 1rem; background: #f8fafc; outline: none; }
-.care-label input:focus { border-color: #0F4C3A; box-shadow: 0 0 0 3px rgba(15,76,58,0.12); }
-.care-label small { color: #94a3b8; font-size: .68rem; font-weight: 500; }
-.summary-strip { padding: .9rem 1rem; border-radius: 1rem; background: #F4F1EB; color: #0F4C3A; font-size: .82rem; font-weight: 800; }
-.mini-select { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .8rem 1rem; border: 1px solid #e2e8f0; border-radius: 1rem; background: #fff; text-align: right; transition: .2s; }
-.mini-select:hover, .mini-select.selected { border-color: #0F4C3A; background: #F4F1EB; }
-.mini-select b { color: #334155; font-size: .78rem; }
-.mini-select span { color: #94a3b8; font-size: .68rem; white-space: nowrap; }
-.cuisine-choice { display: grid; gap: .15rem; justify-items: center; padding: .5rem .2rem; border: 1px solid #e2e8f0; border-radius: .75rem; background: #fff; font-size: 1.2rem; }
-.cuisine-choice small { color: #64748b; font-size: .55rem; }
-.cuisine-choice.selected, .meal-tab.active { border-color: #0F4C3A; background: #F4F1EB; color: #0F4C3A; }
-.meal-tab { padding: .45rem .65rem; border: 1px solid #e2e8f0; border-radius: .65rem; color: #64748b; font-size: .65rem; }
-@keyframes careSlide { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: translateX(0); } }
-@media (max-width: 1024px) { .care-illustration { position: relative; top: auto; min-height: 280px; }.care-illustration img { min-height: 280px; } }
-
 /* Inline Weight & Fitness wizard - Chrome mobile 390px optimized */
 .wiz-page input,
 .wiz-page select {
