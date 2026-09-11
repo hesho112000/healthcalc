@@ -17,7 +17,7 @@ function bmrValue(g: 'male' | 'female', age: number, hCm: number, wKg: number) {
 }
 function bmiStatus(bmi: number) {
   if (bmi < 18.5) return { key: 'fcBmiUnder', color: '#3b82f6' };
-  if (bmi < 25) return { key: 'fcPillHealthy', color: '#10b981' };
+  if (bmi < 25) return { key: 'fcPillHealthy', color: '#0F4C3A' };
   if (bmi < 30) return { key: 'fcBmiOver', color: '#f59e0b' };
   return { key: 'fcBmiObese', color: '#ef4444' };
 }
@@ -55,10 +55,10 @@ function whrRisk(g: 'male' | 'female', whr: number): string {
   return 'fcWhrLevelHigh';
 }
 
-const HR_COLORS = ['#10b981', '#D4AF37', '#fb923c', '#ef4444'];
-const riskColor = (k: string) => (k === 'fcWhrLevelLow' ? '#10b981' : k === 'fcWhrLevelModerate' ? '#f59e0b' : '#ef4444');
-const vo2Color = (k: string) => (k === 'fcVo2Poor' ? '#ef4444' : k === 'fcVo2Fair' ? '#f59e0b' : k === 'fcVo2Good' ? '#10b981' : k === 'fcVo2Excellent' ? '#3b82f6' : '#8b5cf6');
-const bfColor = (k: string) => (k === 'fcBfLevelObese' ? '#ef4444' : k === 'fcBfLevelAverage' ? '#f59e0b' : '#10b981');
+const HR_COLORS = ['#0F4C3A', '#D4AF37', '#fb923c', '#ef4444'];
+const riskColor = (k: string) => (k === 'fcWhrLevelLow' ? '#0F4C3A' : k === 'fcWhrLevelModerate' ? '#f59e0b' : '#ef4444');
+const vo2Color = (k: string) => (k === 'fcVo2Poor' ? '#ef4444' : k === 'fcVo2Fair' ? '#f59e0b' : k === 'fcVo2Good' ? '#0F4C3A' : k === 'fcVo2Excellent' ? '#3b82f6' : '#8b5cf6');
+const bfColor = (k: string) => (k === 'fcBfLevelObese' ? '#ef4444' : k === 'fcBfLevelAverage' ? '#f59e0b' : '#0F4C3A');
 
 const FitnessPage: React.FC = () => {
   const { t } = useLanguage();
@@ -191,7 +191,7 @@ const FitnessPage: React.FC = () => {
                 <div className="flex gap-2">
                   {(['male', 'female'] as const).map((g) => (
                     <button key={g} type="button" onClick={() => patch({ gender: g })}
-                      className={`flex-1 rounded-xl px-3 py-[14px] text-[14px] font-bold transition-all duration-200 ${form.gender === g ? 'bg-[#0F4C3A] text-white shadow-[0_6px_14px_rgba(15,76,58,0.3)]' : 'bg-[#F4F1EB] text-[#0F4C3A] hover:bg-[#ECE5D6]'}`}>
+                      className={`flex-1 rounded-xl px-3 py-[14px] text-[14px] font-bold transition-all duration-200 ${form.gender === g ? 'bg-[#0F4C3A] text-white shadow-[0_6px_14px_rgba(15,76,58,0.3)]' : 'bg-[#F4F1EB] text-[#6B7A75] hover:bg-[#ECE5D6] hover:text-[#0F4C3A]'}`}>
                       {t(g)}
                     </button>
                   ))}
@@ -364,12 +364,14 @@ const FitnessPage: React.FC = () => {
           </div>
         )}
 
-        <div className="max-w-3xl mx-auto pt-4">
-          <button type="button" className="cta-continue" onClick={handleBridge}>
-            {t('fitnessPage.cta.continue')}
-          </button>
-          <p className="mt-4 text-center text-[12px] text-[#A0A8A4]">{t('fcProfileNote')}</p>
-        </div>
+        {calculated && (
+          <div className="max-w-3xl mx-auto pt-4">
+            <button type="button" className="cta-continue" onClick={handleBridge}>
+              {t('fitnessPage.cta.continue')}
+            </button>
+            <p className="mt-4 text-center text-[12px] text-[#A0A8A4]">{t('fcProfileNote')}</p>
+          </div>
+        )}
 
         <MedicalDisclaimer />
       </div>
