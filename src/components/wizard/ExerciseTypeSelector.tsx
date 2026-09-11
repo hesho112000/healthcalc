@@ -55,7 +55,7 @@ export const ExerciseTypeSelector: React.FC<Props> = ({ onSelectType, onAutoBuil
               key={ty.id}
               type="button"
               onClick={() => onSelectType(ty.id)}
-              className={`${CARD_BASE} min-h-[140px] sm:min-h-[150px] px-3 py-4 ${isActive ? 'border-[#D4AF37] shadow-[0_4px_24px_rgba(212,175,55,0.25)]' : ''}`}
+              className={`${CARD_BASE} min-h-[140px] sm:min-h-[150px] px-3 py-4 ${isActive ? 'border-[2.5px] border-[#D4AF37] shadow-[0_4px_24px_rgba(212,175,55,0.25)]' : ''}`}
               dir={dir}
             >
               {isActive && (
@@ -73,7 +73,7 @@ export const ExerciseTypeSelector: React.FC<Props> = ({ onSelectType, onAutoBuil
 
       {/* auto-build banner */}
       <div
-        className="rounded-[24px] p-7 md:p-8 relative overflow-hidden text-white w-full"
+        className="rounded-[24px] p-8 relative overflow-hidden text-white w-full border-2 border-[#D4AF37]"
         style={{ background: 'linear-gradient(135deg,#0F4C3A 0%,#1a6b53 100%)', boxShadow: '0 8px 20px rgba(212,175,55,0.35)' }}
         dir={dir}
       >

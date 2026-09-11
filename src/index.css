@@ -41,7 +41,7 @@ html[lang='ar'] textarea {
 
 @layer components {
   .btn-primary {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #D4AF37 !important; color: #0F4C3A !important; font-weight: 700; padding: 14px 32px; border: none; border-radius: 999px; font-size: 15px; line-height: 1; cursor: pointer; box-shadow: 0 4px 12px rgba(212,175,55,.25); transition: all .2s ease;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #D4AF37 !important; color: #0F4C3A !important; font-weight: 800; padding: 14px 32px; border: none; border-radius: 999px; font-size: 15px; line-height: 1; cursor: pointer; box-shadow: 0 4px 12px rgba(212,175,55,.25); transition: all .2s ease;
   }
   .btn-primary:hover {
     background: #C9A032 !important; box-shadow: 0 10px 26px rgba(212,175,55,.42); transform: translateY(-2px);
@@ -667,5 +667,5 @@ select.wiz-input { -webkit-appearance: none; appearance: none; background-image:
 .cta-calc { width: 100%; max-width: 768px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 10px; background: #D4AF37; color: #0F4C3A; font-weight: 800; font-size: 22px; line-height: 1; border: none; border-radius: 34px; padding: 20px 32px; box-shadow: 0 10px 30px rgba(212,175,55,.4); cursor: pointer; transition: transform .2s ease, box-shadow .2s ease; animation: ctaPulse 4s ease-in-out infinite; }
 .cta-calc:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(212,175,55,.5); }
 @keyframes ctaPulse { 0%, 84%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(212,175,55,.4); } 92% { transform: scale(0.985); box-shadow: 0 8px 22px rgba(212,175,55,.55); } }
-.cta-continue { width: 100%; max-width: 768px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 10px; background: #0F4C3A; color: #fff; font-weight: 800; font-size: 20px; line-height: 1; border: none; border-radius: 30px; padding: 20px 32px; box-shadow: 0 10px 26px rgba(15,76,58,.35); cursor: pointer; text-decoration: none; transition: transform .2s ease, background .2s ease, box-shadow .2s ease; }
-.cta-continue:hover { transform: translateY(-2px); background: #0b3a2c; box-shadow: 0 14px 34px rgba(15,76,58,.42); }
+.cta-continue { width: 100%; max-width: 768px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 10px; background: #D4AF37; color: #0F4C3A; font-weight: 800; font-size: 20px; line-height: 1; border: none; border-radius: 30px; padding: 20px 32px; box-shadow: 0 10px 26px rgba(212,175,55,.4); cursor: pointer; text-decoration: none; transition: transform .2s ease, background .2s ease, box-shadow .2s ease; }
+  .cta-continue:hover { transform: translateY(-2px); background: #C9A032; box-shadow: 0 14px 34px rgba(212,175,55,.5); }

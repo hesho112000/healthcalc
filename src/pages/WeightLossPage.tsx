@@ -541,6 +541,9 @@ const WeightLossPage: React.FC = () => {
   const [emailSending, setEmailSending] = useState(false);
   const [emailDone, setEmailDone] = useState('');
   const [autoBuilding, setAutoBuilding] = useState(false);
+  const [expandedMealPlan, setExpandedMealPlan] = useState<MealKey | null>(null);
+  const [collapsedSaved, setCollapsedSaved] = useState<Set<MealKey>>(new Set());
+  const [showAllSaved, setShowAllSaved] = useState<Set<MealKey>>(new Set());
   const [toast, setToast] = useState('');
 
   useEffect(() => {
@@ -668,15 +671,15 @@ const WeightLossPage: React.FC = () => {
       ? [
           { n: 1, label: t('wizard.steps.info') },
           { n: 2, label: t('wizard.steps.body') },
-          { n: 3, label: t('wizard.steps.kitchen') },
-          { n: 4, label: t('wizard.steps.goals') },
+          { n: 3, label: t('wizard.steps.goals') },
+          { n: 4, label: t('wizard.steps.kitchen') },
           { n: 5, label: t('wizard.steps.blueprint') },
         ]
       : [
           { n: 1, label: t('wizard.steps.info') },
           { n: 2, label: t('wizard.steps.body') },
-          { n: 3, label: t('wizard.steps.kitchen') },
-          { n: 4, label: t('wizard.steps.goals') },
+          { n: 3, label: t('wizard.steps.goals') },
+          { n: 4, label: t('wizard.steps.kitchen') },
           { n: 5, label: t('wizard.steps.blueprint') },
         ];
   const visIdx = visibleSteps.findIndex((x) => x.n === step);
@@ -1399,17 +1402,18 @@ const WeightLossPage: React.FC = () => {
           </div>
         )}
 
-        {step === 3 && (
+        {step === 4 && (
           <div className="mt-6 space-y-5">
             <div
-              className="rounded-[26px] p-6 md:p-7 relative overflow-hidden text-white"
-              style={{ background: 'linear-gradient(135deg,#0F4C3A,#14532D 55%,#1f6b52)' }}
+              className="rounded-[24px] p-8 relative overflow-hidden text-white border-2 border-[#D4AF37]"
+              style={{ background: 'linear-gradient(135deg,#0F4C3A,#14532D 55%,#1f6b52)', boxShadow: '0 8px 20px rgba(212,175,55,0.35)' }}
             >
               <div className="absolute -top-6 -end-6 text-[110px] leading-none opacity-15 select-none">✨</div>
-              <div className="flex items-center gap-2">
-                <span className="wiz-progress-badge">{t('wizard.step3.autoTitle')}</span>
-              </div>
-              <p className="mt-3 text-[13.5px] text-white/85 leading-relaxed max-w-[560px]">{t('wizard.step3.autoDesc')}</p>
+              <h3 className="text-[20px] font-extrabold text-[#D4AF37] flex items-center gap-2">
+                <span className="shrink-0">✨</span>
+                <span>{t('wizard.step3.autoTitle')}</span>
+              </h3>
+              <p className="mt-2.5 text-[13.5px] text-white/85 leading-relaxed max-w-[560px]">{t('wizard.step3.autoDesc')}</p>
 
               {autoBuilding ? (
                 <div className="mt-5 flex items-center gap-3 rounded-[18px] bg-white/10 border border-white/15 px-5 py-4">
@@ -1536,7 +1540,7 @@ const WeightLossPage: React.FC = () => {
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-1.5 min-w-0">
                               <span className="font-extrabold text-[13.5px] text-[#0F4C3A] truncate">{r.dish.name}</span>
-                              <span className={`w-2 h-2 rounded-full shrink-0 ${dot === 'green' ? 'bg-green-500' : dot === 'yellow' ? 'bg-yellow-500' : 'bg-orange-500'}`} />
+                              <span className={`w-2 h-2 rounded-full shrink-0 ${dot === 'green' ? 'bg-[#0F4C3A]' : dot === 'yellow' ? 'bg-yellow-500' : 'bg-orange-500'}`} />
                             </div>
                             <div className="text-[11px] text-[#6B7A75] truncate mt-0.5">
                               {r.cat.name_ar}
@@ -1562,42 +1566,67 @@ const WeightLossPage: React.FC = () => {
                   )}
                 </div>
 
-                <div className="mt-4 border-2 border-dashed border-[#E3E0D8] rounded-[18px] bg-[#FAF8F3] p-4 min-w-0">
-                  <div className="flex items-center justify-between gap-2">
+                <div className="mt-4 border-2 border-[#E9E5DB] rounded-[20px] bg-[#FAF8F3] p-4 min-w-0">
+                  <div className="flex items-center justify-between gap-2 flex-wrap">
                     <div className="text-[15px] font-extrabold text-[#0F4C3A] truncate">{t('wizard.step3.savedTitle')}</div>
-                    {!selectedDishKeys.length && <span className="text-[10.5px] text-[#A0A8A4] shrink-0">—</span>}
+                    {selectedDishKeys.length > 0 && (
+                      <span className="num text-[11.5px] font-bold bg-[#FFF8E7] text-[#B8860B] px-3 py-1.5 rounded-full shrink-0 whitespace-nowrap">
+                        🔥 {totalCal} kcal · {selectedDishKeys.length} {t('wizard.step3.dishCount').replace('{n}', String(selectedDishKeys.length))}
+                      </span>
+                    )}
                   </div>
-                  <div className="h-[42px] bg-white border border-[#E9E5DB] rounded-[12px] flex items-center px-3 mt-2.5 focus-within:border-[#D4AF37]">
-                    <input value={savedSearch} onChange={(e) => setSavedSearch(e.target.value)} placeholder={t('wizard.step3.savedSearch')} className="flex-1 bg-transparent outline-none text-[14px] text-[#0F4C3A] placeholder:text-[#A0A8A4] min-w-0" />
-                    <span className="text-[#0F4C3A] text-[15px] shrink-0">🔍</span>
-                  </div>
-                  <div className="mt-3 space-y-3">
+                  {selectedDishKeys.length > 0 && (
+                    <div className="h-[42px] bg-white border border-[#E9E5DB] rounded-[12px] flex items-center px-3 mt-2.5 focus-within:border-[#D4AF37]">
+                      <input value={savedSearch} onChange={(e) => setSavedSearch(e.target.value)} placeholder={t('wizard.step3.savedSearch')} className="flex-1 bg-transparent outline-none text-[14px] text-[#0F4C3A] placeholder:text-[#A0A8A4] min-w-0" />
+                      <span className="text-[#0F4C3A] text-[15px] shrink-0">🔍</span>
+                    </div>
+                  )}
+                  <div className="mt-3 space-y-2.5">
                     {MEAL_ORDER.map((mk) => {
-                      const list = mealSummary[mk].filter((x) => !savedSearch.trim() || x.dish.name.includes(savedSearch.trim()));
-                      if (!list.length) return null;
+                      const all = mealSummary[mk].filter((x) => !savedSearch.trim() || x.dish.name.includes(savedSearch.trim()));
+                      if (!all.length) return null;
+                      const isCollapsed = collapsedSaved.has(mk);
+                      const isShowAll = showAllSaved.has(mk);
+                      const visible = isShowAll ? all : all.slice(0, 5);
+                      const groupTotal = all.reduce((s, x) => s + x.dish.cal_serv, 0);
                       return (
-                        <div key={mk} className="min-w-0">
-                          <div className="text-[12px] font-bold text-[#6B7A75] mb-1">{t('wizard.step3.savedArea').replace('{meal}', mealLabel(mk)).replace('{n}', String(list.length))}</div>
-                          <div className="flex flex-wrap gap-1.5">
-                            {list.map((x) => (
-                              <span key={x.key} className="inline-flex items-center gap-1.5 bg-white border border-[#E9E5DB] rounded-full h-9 px-3.5 text-[12px] font-semibold text-[#0F4C3A] max-w-full">
-                                <span className="truncate max-w-[150px]">{x.dish.name} <span className="num">{x.dish.cal_serv}</span></span>
-                                <button type="button" onClick={() => removeChip(x.key, mk)} className="text-[#9AA19D] hover:text-red-500 text-[11px] shrink-0">✕</button>
-                              </span>
-                            ))}
-                          </div>
+                        <div key={mk} className="rounded-[16px] bg-white border border-[#EFEBE4] overflow-hidden min-w-0">
+                          <button
+                            type="button"
+                            onClick={() => setCollapsedSaved((p) => { const cp = new Set(p); if (cp.has(mk)) cp.delete(mk); else cp.add(mk); return cp; })}
+                            className="w-full px-4 py-3 flex items-center justify-between gap-2 text-start bg-white hover:bg-[#FAF8F3] transition-all"
+                          >
+                            <span className="text-[13px] font-extrabold text-[#0F4C3A]">{mealLabel(mk)}</span>
+                            <span className="flex items-center gap-2 shrink-0">
+                              <span className="num text-[11.5px] font-bold text-[#B8860B]">{groupTotal} kcal</span>
+                              <span className={`text-[#B8860B] text-[11px] transition-transform ${isCollapsed ? '' : 'rotate-180'}`}>▾</span>
+                            </span>
+                          </button>
+                          {!isCollapsed && (
+                            <div className="px-2 pb-2 space-y-1">
+                              {visible.map((x) => (
+                                <div key={x.key} className="flex items-center justify-between gap-2 rounded-[12px] bg-[#FAF8F3] px-3 py-2 min-w-0">
+                                  <span className="flex-1 min-w-0 text-[12.5px] font-semibold text-[#0F4C3A] truncate">{x.dish.name}</span>
+                                  <span className="num text-[12px] font-extrabold text-[#0F4C3A] shrink-0">{x.dish.cal_serv} <span className="text-[10px] font-semibold text-[#8A938E]">kcal</span></span>
+                                  <button type="button" onClick={() => removeChip(x.key, mk)} className="w-7 h-7 shrink-0 rounded-full flex items-center justify-center text-[#9AA19D] hover:text-red-500 hover:bg-red-50 text-[13px] transition-all">✕</button>
+                                </div>
+                              ))}
+                              {all.length > 5 && (
+                                <button
+                                  type="button"
+                                  onClick={() => setShowAllSaved((p) => { const cp = new Set(p); if (cp.has(mk)) cp.delete(mk); else cp.add(mk); return cp; })}
+                                  className="w-full h-9 rounded-[12px] text-[12px] font-extrabold text-[#B8860B] hover:text-[#0F4C3A] hover:bg-[#FFF8E7] transition-all"
+                                >
+                                  {isShowAll ? t('wizard.step3.showLess') : t('wizard.step3.showAll').replace('{n}', String(all.length - 5))}
+                                </button>
+                              )}
+                            </div>
+                          )}
                         </div>
                       );
                     })}
                     {!selectedDishKeys.length && <div className="text-[11.5px] text-[#A0A8A4]">{t('wizard.step3.addHint')}</div>}
                   </div>
-                  {selectedDishKeys.length > 0 && (
-                    <div className="mt-3 rounded-[12px] border border-[#D4AF37]/50 bg-[#FFF8E7] p-2.5">
-                      <div className="text-[12px] text-[#0F4C3A] font-semibold">
-                        {t('wizard.step3.total').replace('{cal}', String(totalCal)).replace('{n}', String(selectedDishKeys.length))}
-                      </div>
-                    </div>
-                  )}
                   {planType !== 'nutrition' && (
                     <button type="button" onClick={autoPickDishes} className="mt-3 w-full h-11 rounded-[14px] bg-[#F4F1EB] text-[#0F4C3A] text-[13px] font-bold border border-[#E3E0D8] hover:border-[#D4AF37] transition-all active:scale-[0.98]">
                       {t('wizard.step2.autoBtn')} 🍽️
@@ -1618,7 +1647,7 @@ const WeightLossPage: React.FC = () => {
           </div>
         )}
 
-        {step === 4 && (
+        {step === 3 && (
           <div className="mt-6 space-y-5">
             <div className={`${cardBase} p-6`}>
               <h2 className="text-[18px] font-extrabold">{t('wizard.step4.goal')}</h2>
@@ -1813,11 +1842,11 @@ const WeightLossPage: React.FC = () => {
                 <div className="mt-3 flex items-center gap-2">
                   <button type="button" onClick={() => setWater((s) => Math.max(0, +(s - 0.25).toFixed(2)))} className="w-7 h-7 rounded-full bg-[#F4F1EB] border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] text-[14px] font-bold">−</button>
                   <div className="flex-1 h-2.5 rounded-full bg-[#E9E5DB] overflow-hidden">
-                    <div className="h-full rounded-full transition-all" style={{ width: `${Math.min(100, (water / waterGoal) * 100)}%`, background: 'linear-gradient(90deg,#2ba17f,#0F4C3A)' }} />
+                    <div className="h-full rounded-full transition-all" style={{ width: `${Math.min(100, (water / waterGoal) * 100)}%`, background: 'linear-gradient(90deg,#1a6b53,#0F4C3A)' }} />
                   </div>
                   <button type="button" onClick={() => setWater((s) => Math.min(waterGoal, +(s + 0.25).toFixed(2)))} className="w-7 h-7 rounded-full bg-[#F4F1EB] border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] text-[14px] font-bold">+</button>
                 </div>
-                <div className="mt-1.5 text-[11px] font-bold text-[#2ba17f]">+250ml</div>
+                <div className="mt-1.5 text-[11px] font-bold text-[#D4AF37]">+250ml</div>
               </div>
 
               <div className="rounded-[22px] p-5 border border-[#E8E2D4] bg-white">
@@ -1944,20 +1973,53 @@ const WeightLossPage: React.FC = () => {
                     {selectedDishKeys.length ? t('wizard.step5.dishesCount').replace('{n}', String(selectedDishKeys.length)) : calT(numbers!.targetCal)}
                   </span>
                 </div>
-                <div className="mt-3 space-y-1.5">
+                <div className="mt-4 space-y-3">
                   {selectedDishKeys.length ? (
                     MEAL_ORDER.map((mk) => {
                       const list = mealSummary[mk];
                       if (!list.length) return null;
+                      const mealTotal = list.reduce((s, x) => s + x.dish.cal_serv, 0);
+                      const open = expandedMealPlan === mk;
                       return (
-                        <div key={mk} className="text-[11.5px] leading-relaxed break-words text-[#6B7A75]">
-                          <span className="font-extrabold text-[#0F4C3A]">{mealLabel(mk)}:</span>{' '}
-                          {list.map((x, i) => (
-                            <span key={x.key}>
-                              {i > 0 && ' + '}
-                              {x.dish.name} <span className="num">({x.dish.cal_serv})</span>
-                            </span>
-                          ))}
+                        <div key={mk} className={`rounded-[18px] border-2 transition-all ${open ? 'border-[#D4AF37] shadow-[0_0_0_4px_rgba(212,175,55,0.12)]' : 'border-[#EFEBE4]'}`}>
+                          <div className="bg-[#F4F1EB] px-4 py-3 flex items-center justify-between gap-2 rounded-t-[16px]">
+                            <span className="text-[13.5px] font-extrabold text-[#0F4C3A]">{mealLabel(mk)}</span>
+                            <span className="num text-[12px] font-bold text-[#B8860B]">{t('wizard.step3.cal').replace('{n}', String(mealTotal))}</span>
+                          </div>
+                          <div className="p-3 space-y-2">
+                            {list.map((x) => (
+                              <div key={x.key} className="flex items-center justify-between gap-2 rounded-[12px] bg-[#FAF8F3] px-3 py-2.5 min-w-0">
+                                <div className="min-w-0">
+                                  <div className="text-[13px] font-bold text-[#0F4C3A] truncate">
+                                    {x.dish.name}
+                                    {x.dish.healthy && <span className="text-[10px] font-semibold text-[#0F4C3A] bg-[#E4F2EC] px-1.5 py-0.5 rounded-full ms-1.5 align-middle">✅ {t('wizard.step3.healthyTag')}</span>}
+                                  </div>
+                                  <div className="text-[11px] text-[#8A938E] mt-0.5">{macrosT(x.dish.p, x.dish.c, x.dish.f)}</div>
+                                </div>
+                                <div className="text-end shrink-0">
+                                  <div className="num text-[12.5px] font-extrabold text-[#0F4C3A]">{x.dish.cal_serv} <span className="text-[10px] font-semibold text-[#8A938E]">kcal</span></div>
+                                  <div className="num text-[10.5px] text-[#A0A8A4]">{x.dish.serv_g} g</div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                          <div className="px-3 pb-3">
+                            <button
+                              type="button"
+                              onClick={() => setExpandedMealPlan(open ? null : mk)}
+                              className="w-full h-9 rounded-[12px] text-[12px] font-bold text-[#0F4C3A] bg-white border border-[#E3E0D8] hover:border-[#D4AF37] transition-all"
+                            >
+                              {open ? t('wizard.step5.hideDetails') : t('wizard.step5.showDetails')}
+                            </button>
+                            {open && (
+                              <ul className="mt-2.5 space-y-1.5 px-1">
+                                <li className="text-[11.5px] text-[#6B7A75] leading-snug">🧮 {t('wizard.step3.macros').replace('{p}', String(list.reduce((s, x) => s + x.dish.p, 0))).replace('{c}', String(list.reduce((s, x) => s + x.dish.c, 0))).replace('{f}', String(list.reduce((s, x) => s + x.dish.f, 0)))}</li>
+                                <li className="text-[11.5px] text-[#6B7A75] leading-snug">⚖️ {list.reduce((s, x) => s + x.dish.serv_g, 0)} g</li>
+                                <li className="text-[11.5px] text-[#6B7A75] leading-snug">🍽 {t('wizard.step3.dishCount').replace('{n}', String(list.length))}</li>
+                                {list.some((x) => x.dish.healthy) && <li className="text-[11.5px] text-[#0F4C3A] leading-snug">✅ {t('wizard.step3.healthyTag')}</li>}
+                              </ul>
+                            )}
+                          </div>
                         </div>
                       );
                     })
@@ -1967,8 +2029,8 @@ const WeightLossPage: React.FC = () => {
                     </div>
                   )}
                 </div>
-                <div className="mt-3 flex flex-wrap gap-3">
-                  <button type="button" onClick={() => setStep(3)} className="text-[11.5px] text-[#B8860B] underline decoration-dotted">{t('wizard.step5.changeCuisine')}</button>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <button type="button" onClick={() => setStep(4)} className="text-[11.5px] text-[#B8860B] underline decoration-dotted">{t('wizard.step5.changeCuisine')}</button>
                   {selectedDishKeys.length > 0 && (
                     <span className="text-[12px] font-bold text-[#0F4C3A]">
                       {t('wizard.step3.total').replace('{cal}', String(totalCal)).replace('{n}', String(selectedDishKeys.length))}
@@ -1980,7 +2042,7 @@ const WeightLossPage: React.FC = () => {
 
             <div className="no-print fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur border-t border-[#EFEBE4] px-4 py-3 flex items-center justify-between gap-2 max-w-[940px] mx-auto rounded-t-[20px] shadow-[0_-8px_24px_rgba(15,76,58,0.08)]">
               <div className="flex items-center gap-2 min-w-0">
-                <span className="w-2 h-2 rounded-full bg-[#2ba17f] animate-pulse shrink-0" />
+                <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse shrink-0" />
                 <span className="text-[12px] font-bold text-[#6B7A75] truncate">{t('wizard.step5.completed').replace('{n}', String(doneCount))}</span>
               </div>
               <div className="flex items-center gap-2 shrink-0">
