@@ -101,7 +101,7 @@ const FoodChecker: React.FC<FoodCheckerProps> = ({ selectedGoals, onAddMeal }) =
   };
 
   const bag = (active: boolean, key: TKey) => (
-    <span key={key} className={`px-2 py-1 rounded-full text-[11px] font-semibold ${active ? 'bg-emerald-600 text-white' : 'bg-white border'}`}>{t(key)}</span>
+    <span key={key} className={`px-2 py-1 rounded-full text-[11px] font-semibold ${active ? 'bg-[#0F4C3A] text-white' : 'bg-white border'}`}>{t(key)}</span>
   );
 
   const suitLabel = (s: Suitability) => (s === 'yes' ? t('wlcYes') : s === 'moderate' ? t('wlcModerate') : t('wlcNo'));
@@ -142,25 +142,25 @@ const FoodChecker: React.FC<FoodCheckerProps> = ({ selectedGoals, onAddMeal }) =
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleCheck()}
           placeholder={t('wlcPlaceholder')}
-          className="flex-1 h-11 px-4 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200"
+          className="flex-1 h-11 px-4 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/40"
         />
         <button
           type="button"
           onClick={handleCheck}
-          className="h-11 px-6 bg-emerald-600 text-white rounded-xl font-semibold text-sm hover:bg-emerald-700 transition-colors"
+          className="h-11 px-6 bg-[#0F4C3A] text-white rounded-xl font-semibold text-sm hover:bg-[#0b3a2c] transition-colors"
         >
           {t('wlcCheck')}
         </button>
       </div>
 
       {result && (
-        <div className="mt-4 p-4 bg-white rounded-xl border-2 border-emerald-200 shadow-sm">
+        <div className="mt-4 p-4 bg-white rounded-xl border-2 border-[#E3E0D8] shadow-sm">
           <div className="flex justify-between items-start">
             <div>
               <div className="font-bold text-gray-900">{FALLBACK.en === result.data.en ? result.query : `${result.data.en} - ${result.query}`}</div>
               <div className="mt-1.5 flex flex-wrap gap-2">
                 <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                  result.suitability === 'yes' ? 'bg-emerald-100 text-emerald-700' : result.suitability === 'moderate' ? 'bg-amber-100 text-amber-700' : 'bg-rose-100 text-rose-700'
+                  result.suitability === 'yes' ? 'bg-[#EAF2EE] text-[#0F4C3A]' : result.suitability === 'moderate' ? 'bg-amber-100 text-amber-700' : 'bg-rose-100 text-rose-700'
                 }`}>{suitLabel(result.suitability)}</span>
               </div>
             </div>
@@ -169,21 +169,21 @@ const FoodChecker: React.FC<FoodCheckerProps> = ({ selectedGoals, onAddMeal }) =
 
           <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-2">
             <div className="p-2.5 bg-gray-50 rounded-lg text-center"><div className="text-[10px] text-gray-500">{t('wlcCalories')}</div><div className="font-bold text-gray-900 text-sm">{result.data.kcal} kcal</div></div>
-            <div className="p-2.5 bg-emerald-50 rounded-lg text-center"><div className="text-[10px] text-gray-500">{t('wlcProtein')}</div><div className="font-bold text-emerald-700 text-sm">{result.data.protein}g</div></div>
+            <div className="p-2.5 bg-[#F4F1EB] rounded-lg text-center"><div className="text-[10px] text-gray-500">{t('wlcProtein')}</div><div className="font-bold text-[#0F4C3A] text-sm">{result.data.protein}g</div></div>
             <div className="p-2.5 bg-blue-50 rounded-lg text-center"><div className="text-[10px] text-gray-500">{t('wlcCarbs')}</div><div className="font-bold text-blue-700 text-sm">{result.data.carbs}g</div></div>
             <div className="p-2.5 bg-amber-50 rounded-lg text-center"><div className="text-[10px] text-gray-500">{t('wlcFat')}</div><div className="font-bold text-amber-700 text-sm">{result.data.fat}g</div></div>
           </div>
 
-          <div className="mt-3 p-3 bg-emerald-50 rounded-lg border border-emerald-100">
-            <div className="text-sm font-bold text-emerald-800">🕐 {t('wlcBestTime')} <span>{language === 'ar' ? result.data.best.ar : result.data.best.en}</span></div>
-            <div className="text-xs text-emerald-700 mt-1">{language === 'ar' ? result.data.reason.ar : result.data.reason.en}</div>
+          <div className="mt-3 p-3 bg-[#F4F1EB] rounded-lg border border-[#E3E0D8]">
+            <div className="text-sm font-bold text-[#0F4C3A]">🕐 {t('wlcBestTime')} <span>{language === 'ar' ? result.data.best.ar : result.data.best.en}</span></div>
+            <div className="text-xs text-[#0F4C3A] mt-1">{language === 'ar' ? result.data.reason.ar : result.data.reason.en}</div>
             <div className="mt-2 flex flex-wrap gap-2">
               {bag(!!result.data.tags.breakfast, 'wlcBadgeBreakfast')}
               {bag(!!result.data.tags.lunch, 'wlcBadgeLunch')}
               {bag(!!result.data.tags.dinner, 'wlcBadgeDinner')}
               {bag(!!result.data.tags.snack, 'wlcBadgeSnack')}
             </div>
-            <div className="mt-2 text-xs font-semibold text-emerald-800">
+            <div className="mt-2 text-xs font-semibold text-[#0F4C3A]">
               💡 {t('wlcPortionLabel')} <span>{result.portion} = {Math.round(result.data.kcal * result.grams / 100)} kcal</span>
             </div>
           </div>
@@ -191,7 +191,7 @@ const FoodChecker: React.FC<FoodCheckerProps> = ({ selectedGoals, onAddMeal }) =
           <button
             type="button"
             onClick={addMeal}
-            className="mt-3 w-full h-10 bg-white border-2 border-emerald-600 text-emerald-600 rounded-xl text-sm font-bold hover:bg-emerald-50 transition-colors"
+            className="mt-3 w-full h-10 bg-white border-2 border-[#0F4C3A] text-[#0F4C3A] rounded-xl text-sm font-bold hover:bg-[#F4F1EB] transition-colors"
           >
             {t('wlcAdd').replace('{time}', addTimeLabel)}
           </button>

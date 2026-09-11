@@ -1215,10 +1215,12 @@ const WeightLossPage: React.FC = () => {
                         key={x}
                         type="button"
                         onClick={() => setSex(x)}
-                        className={`relative flex flex-col items-center justify-center pt-4 pb-3 rounded-[20px] border-2 transition-all min-w-0 ${on ? 'border-[#0F4C3A] bg-[#F4F1EB] shadow-[0_8px_18px_rgba(15,76,58,0.12)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
+                        className={`relative flex flex-col items-center justify-center pt-4 pb-3 rounded-[20px] border-2 transition-all min-w-0 ${on ? 'border-[#0F4C3A] bg-[#0F4C3A] shadow-[0_8px_18px_rgba(15,76,58,0.25)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
                       >
-                        <BodyFigure kind={x} />
-                        <span className={`mt-2 text-[14px] font-bold leading-none ${on ? 'text-[#0F4C3A]' : 'text-[#6B7A75]'}`}>{t(x)}</span>
+                        <span className={`flex items-center justify-center w-[72px] h-[72px] rounded-full transition-colors ${on ? 'bg-white/15 border border-white/25' : 'bg-[#F4F1EB]'}`}>
+                          <BodyFigure kind={x} />
+                        </span>
+                        <span className={`mt-2 text-[14px] font-bold leading-none ${on ? 'text-white' : 'text-[#6B7A75]'}`}>{t(x)}</span>
                         {on && (
                           <span className="absolute top-2.5 end-2.5 w-5 h-5 rounded-full bg-[#D4AF37] text-[#0F4C3A] flex items-center justify-center text-[12px] font-bold shadow-sm">✓</span>
                         )}
@@ -1389,12 +1391,20 @@ const WeightLossPage: React.FC = () => {
                   selectedExerciseIds={selectedExercises}
                   onToggleExercise={toggleWizardExercise}
                 />
-                <div className="flex gap-3">
-                  <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
-                    {t('wizard.back')}
-                  </button>
-                  <button type="button" onClick={next} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
+                <div className="space-y-3">
+                  <button
+                    type="button"
+                    onClick={next}
+                    className="w-full h-[54px] rounded-[30px] bg-[#0F4C3A] text-white text-[15px] font-bold flex items-center justify-center gap-2 shadow-[0_10px_24px_rgba(15,76,58,0.28)] hover:translate-y-[-1px] hover:bg-[#0b3a2c] transition-all active:scale-95"
+                  >
                     {t('wizard.exerciseList.cta')}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={back}
+                    className="block mx-auto text-[12.5px] font-bold text-[#6B7A75] underline decoration-dotted hover:text-[#0F4C3A] transition-colors px-3 py-1.5"
+                  >
+                    ← {t('wizard.exerciseList.backToTypes')}
                   </button>
                 </div>
               </div>
@@ -1702,7 +1712,9 @@ const WeightLossPage: React.FC = () => {
               {(() => {
                 const v = goalViolation();
                 return v ? (
-                  <div className="mt-3 rounded-[12px] bg-red-50 border border-red-200 px-3.5 py-2 text-[12px] font-semibold text-red-600 leading-snug">⚠️ {v}</div>
+                  <div className="mt-3 rounded-[12px] bg-red-50 border border-red-200 px-3.5 py-2 text-[12px] font-semibold text-red-600 leading-snug">
+                    ⚠️ {v} ({parsed.weight} {t('wizard.unit.kg')}).
+                  </div>
                 ) : null;
               })()}
               {!numbers && <div className="mt-3 text-[12px] text-[#A0A8A4]">{t('fcProfileNote')}</div>}
@@ -2040,23 +2052,21 @@ const WeightLossPage: React.FC = () => {
               </div>
             )}
 
-            <div className="no-print fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur border-t border-[#EFEBE4] px-4 py-3 flex items-center justify-between gap-2 max-w-[940px] mx-auto rounded-t-[20px] shadow-[0_-8px_24px_rgba(15,76,58,0.08)]">
-              <div className="flex items-center gap-2 min-w-0">
+            <div className="no-print save-bar rounded-t-[20px]">
+              <div className="flex items-center gap-2 min-w-0 flex-1">
                 <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse shrink-0" />
                 <span className="text-[12px] font-bold text-[#6B7A75] truncate">{t('wizard.step5.completed').replace('{n}', String(doneCount))}</span>
               </div>
-              <div className="flex items-center gap-2 shrink-0">
-                <button type="button" onClick={() => notify(t('wizard.toast.closePreview'))} className="text-[12.5px] font-bold text-[#6B7A75] px-3 py-2 rounded-xl hover:bg-[#F4F1EB]">
-                  {t('wizard.step5.close')}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => notify(t('wizard.step5.savedToast'))}
-                  className="h-[46px] px-5 rounded-[16px] bg-[#D4AF37] text-[#0F4C3A] font-extrabold text-[14px] flex items-center gap-2 shadow-[0_8px_20px_rgba(212,175,55,0.4)] hover:translate-y-[-1px] transition-all active:scale-95"
-                >
-                  <span>✓</span> {t('wizard.step5.saveProgress')}
-                </button>
-              </div>
+              <button type="button" onClick={() => notify(t('wizard.toast.closePreview'))} className="text-[12.5px] font-bold text-[#6B7A75] px-3 py-2 rounded-xl hover:bg-[#F4F1EB] shrink-0">
+                {t('wizard.step5.close')}
+              </button>
+              <button
+                type="button"
+                onClick={() => notify(t('wizard.step5.savedToast'))}
+                className="save-btn"
+              >
+                <span>✓</span> {t('wizard.step5.saveProgress')}
+              </button>
             </div>
           </div>
         )}

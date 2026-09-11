@@ -27,7 +27,7 @@ const PlanTypeSelector: React.FC<PlanTypeSelectorProps> = ({ value, onChange }) 
       <div className="flex items-start justify-between gap-3">
         <div>
           <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-            <span className="w-8 h-8 inline-flex items-center justify-center rounded-xl bg-emerald-600 text-white text-sm font-bold">2</span>
+            <span className="w-8 h-8 inline-flex items-center justify-center rounded-xl bg-[#0F4C3A] text-white text-sm font-bold">2</span>
             {t('wlfStepPlanTitle')}
           </h2>
           <p className="text-sm text-gray-500 mt-1">{t('wlfStepPlanSub')}</p>
@@ -44,16 +44,16 @@ const PlanTypeSelector: React.FC<PlanTypeSelectorProps> = ({ value, onChange }) 
               onClick={() => onChange(plan.key)}
               className={`text-left rounded-2xl border-2 p-4 transition-all ${
                 isSelected
-                  ? 'border-emerald-600 bg-emerald-50'
-                  : 'border-gray-200 bg-white hover:border-emerald-300'
+                  ? 'border-[#0F4C3A] bg-[#EAF2EE]'
+                  : 'border-gray-200 bg-white hover:border-[#D4AF37]'
               }`}
             >
               <span className="flex items-center justify-between">
                 <span className="text-xl">{plan.emoji}</span>
                 <span className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                  isSelected ? 'border-emerald-600' : 'border-gray-300'
+                  isSelected ? 'border-[#0F4C3A]' : 'border-gray-300'
                 }`}>
-                  {isSelected && <span className="w-2.5 h-2.5 rounded-full bg-emerald-600" />}
+                  {isSelected && <span className="w-2.5 h-2.5 rounded-full bg-[#0F4C3A]" />}
                 </span>
               </span>
               <span className="mt-1.5 block font-bold text-gray-900">{t(plan.nameKey)}</span>

@@ -131,7 +131,7 @@ const MealPreferencesSelector: React.FC<MealPreferencesSelectorProps> = ({
       type="button"
       onClick={onClick}
       className={`w-full text-left flex items-center justify-between gap-2 px-2.5 py-2 rounded-lg border transition-all ${
-        active ? 'border-emerald-600 bg-emerald-50' : 'border-transparent hover:bg-gray-50 hover:border-gray-200'
+        active ? 'border-[#0F4C3A] bg-[#EAF2EE]' : 'border-transparent hover:bg-gray-50 hover:border-gray-200'
       }`}
     >
       <span className="flex items-center gap-2 text-sm font-medium text-gray-800">
@@ -139,7 +139,7 @@ const MealPreferencesSelector: React.FC<MealPreferencesSelectorProps> = ({
         {label}
       </span>
       <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 ${
-        active ? 'bg-emerald-600 text-white' : 'border-2 border-gray-300 text-transparent'
+        active ? 'bg-[#0F4C3A] text-white' : 'border-2 border-gray-300 text-transparent'
       }`}>✓</span>
     </button>
   );
@@ -177,7 +177,7 @@ const MealPreferencesSelector: React.FC<MealPreferencesSelectorProps> = ({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={t('wlfSearchFoods')}
-          className="w-full h-10 px-3.5 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200"
+          className="w-full h-10 px-3.5 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/40"
         />
       </div>
       <div className="mt-3 h-80 overflow-y-auto border border-gray-200 rounded-xl p-2 space-y-2 scrollbar-thin">

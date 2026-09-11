@@ -132,9 +132,9 @@ const HealthBlueprint: React.FC<HealthBlueprintProps> = ({
                   onClick={() => toggleCuisine(opt.key as Cuisine)}
                   className={`w-full text-left p-3 rounded-lg flex justify-between items-center gap-2 transition-all ${
                     isSelected
-                      ? 'bg-emerald-600 text-white'
+                      ? 'bg-[#0F4C3A] text-white'
                       : isRecommended
-                        ? 'bg-white border-2 border-emerald-300 text-gray-900'
+                        ? 'bg-white border-2 border-[#D4AF37] text-gray-900'
                         : 'hover:bg-gray-50 border border-transparent hover:border-gray-200 text-gray-900'
                   }`}
                 >
@@ -142,7 +142,7 @@ const HealthBlueprint: React.FC<HealthBlueprintProps> = ({
                     <div className="font-semibold flex items-center gap-1.5">
                       <span>{opt.flag}</span>
                       {getCuisineLabel({ label_ar: opt.label_ar, label_en: opt.label_en }, language)}
-                      {isRecommended && <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${isSelected ? 'bg-white/20 text-white' : 'bg-emerald-100 text-emerald-700'}`}>✨ {t('wlfRecommended')}</span>}
+                      {isRecommended && <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${isSelected ? 'bg-white/20 text-white' : 'bg-[#EAF2EE] text-[#0F4C3A]'}`}>✨ {t('wlfRecommended')}</span>}
                     </div>
                     <div className={`text-xs ${isSelected ? 'text-white/90' : 'text-gray-500'}`}>{blurb(opt.key)}</div>
                   </div>
@@ -150,12 +150,12 @@ const HealthBlueprint: React.FC<HealthBlueprintProps> = ({
                     <span
                       onClick={(e) => { e.stopPropagation(); onCuisineChange(null); }}
                       title={t('wlfClearCuisine')}
-                      className="w-6 h-6 rounded-full bg-white text-emerald-600 flex items-center justify-center text-sm font-bold shrink-0 hover:bg-emerald-50"
+                      className="w-6 h-6 rounded-full bg-white text-[#0F4C3A] flex items-center justify-center text-sm font-bold shrink-0 hover:bg-[#EAF2EE]"
                     >
                       ✕
                     </span>
                   ) : isRecommended ? (
-                    <span className="w-5 h-5 rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 border-2 border-emerald-300 text-emerald-600">✨</span>
+                    <span className="w-5 h-5 rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 border-2 border-[#D4AF37] text-[#0F4C3A]">✨</span>
                   ) : (
                     <span className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 border-2 border-gray-200" />
                   )}
@@ -181,7 +181,7 @@ const HealthBlueprint: React.FC<HealthBlueprintProps> = ({
         <div className="mt-6 p-4 bg-white border border-gray-200 rounded-xl">
           <div className="font-bold text-gray-900">🍽️ {t('wlMealCountTitle')}</div>
           {tdee > 0 && (
-            <p className="text-[11px] text-emerald-700 mt-0.5">{fmt(t('wlMealCountAuto'), { n: suggestedMealCount })}</p>
+            <p className="text-[11px] text-[#0F4C3A] mt-0.5">{fmt(t('wlMealCountAuto'), { n: suggestedMealCount })}</p>
           )}
           <div className="mt-3 flex gap-2">
             {([3, 4, 5] as MealCount[]).map((n) => {
@@ -192,19 +192,19 @@ const HealthBlueprint: React.FC<HealthBlueprintProps> = ({
                   type="button"
                   onClick={() => onMealCountChange(n)}
                   className={`flex-1 rounded-xl border-2 p-3 text-center transition-all ${
-                    active ? 'border-emerald-600 bg-emerald-50' : 'border-gray-200 hover:border-gray-300 bg-white'
+                    active ? 'border-[#0F4C3A] bg-[#EAF2EE]' : 'border-gray-200 hover:border-gray-300 bg-white'
                   }`}
                 >
-                  <span className={`text-sm font-bold ${active ? 'text-emerald-700' : 'text-gray-800'}`}>
+                  <span className={`text-sm font-bold ${active ? 'text-[#0F4C3A]' : 'text-gray-800'}`}>
                     {fmt(t('wlMealCountN'), { n })}
                   </span>
                   {n === 4 && (
-                    <span className={`ml-1 text-[9px] font-bold px-1.5 py-0.5 rounded-full align-middle ${active ? 'bg-emerald-600 text-white' : 'bg-gray-100 text-gray-500'}`}>
+                    <span className={`ml-1 text-[9px] font-bold px-1.5 py-0.5 rounded-full align-middle ${active ? 'bg-[#0F4C3A] text-white' : 'bg-gray-100 text-gray-500'}`}>
                       ✨ {t('wlMealCountRecommended')}
                     </span>
                   )}
                   <span className="block text-[11px] font-medium text-gray-500 mt-1">{t(n === 3 ? 'wlMealCount3Sub' : n === 4 ? 'wlMealCount4Sub' : 'wlMealCount5Sub')}</span>
-                  <span className={`block text-[10px] mt-0.5 font-semibold ${active ? 'text-emerald-600' : 'text-gray-400'}`}>{t(n === 3 ? 'wlMealCount3Tag' : n === 4 ? 'wlMealCount4Tag' : 'wlMealCount5Tag')}</span>
+                  <span className={`block text-[10px] mt-0.5 font-semibold ${active ? 'text-[#0F4C3A]' : 'text-gray-400'}`}>{t(n === 3 ? 'wlMealCount3Tag' : n === 4 ? 'wlMealCount4Tag' : 'wlMealCount5Tag')}</span>
                 </button>
               );
             })}
@@ -223,10 +223,10 @@ const HealthBlueprint: React.FC<HealthBlueprintProps> = ({
                 min="0" max="7"
                 value={workoutDays}
                 onChange={(e) => onWorkoutDaysChange(+e.target.value)}
-                className="flex-1 accent-emerald-600"
+                className="flex-1 accent-[#0F4C3A]"
               />
-              <div className="bg-emerald-50 border border-emerald-200 px-4 py-2 rounded-lg min-w-[76px] text-center">
-                <span className="font-bold text-emerald-700">{fmt(t('wlDays'), { n: workoutDays })}</span>
+              <div className="bg-[#F4F1EB] border border-[#E3E0D8] px-4 py-2 rounded-lg min-w-[76px] text-center">
+                <span className="font-bold text-[#0F4C3A]">{fmt(t('wlDays'), { n: workoutDays })}</span>
               </div>
             </div>
             <div className="flex justify-between text-xs text-gray-400 mt-1">
@@ -243,7 +243,7 @@ const HealthBlueprint: React.FC<HealthBlueprintProps> = ({
                 type="button"
                 onClick={() => onExerciseTypeChange('auto')}
                 className={`px-4 py-2 rounded-xl text-sm font-medium border-2 transition-all ${
-                  exerciseType === 'auto' ? 'border-emerald-600 bg-emerald-50 text-emerald-700' : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
+                  exerciseType === 'auto' ? 'border-[#0F4C3A] bg-[#EAF2EE] text-[#0F4C3A]' : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
                 }`}
               >
                 🤖 {t('wlAutoRecommend')}
@@ -254,7 +254,7 @@ const HealthBlueprint: React.FC<HealthBlueprintProps> = ({
                   type="button"
                   onClick={() => onExerciseTypeChange(type)}
                   className={`px-4 py-2 rounded-xl text-sm font-medium border-2 transition-all ${
-                    exerciseType === type ? 'border-emerald-600 bg-emerald-50 text-emerald-700' : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
+                    exerciseType === type ? 'border-[#0F4C3A] bg-[#EAF2EE] text-[#0F4C3A]' : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
                   }`}
                 >
                   {EXERCISE_TYPE_LABELS[type][language]}

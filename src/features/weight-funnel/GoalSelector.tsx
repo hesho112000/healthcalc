@@ -63,7 +63,7 @@ const GoalSelector: React.FC<GoalSelectorProps> = ({ selected, onChange, error, 
       <div className="flex items-start justify-between gap-3">
         <div>
           <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-            <span className="w-8 h-8 inline-flex items-center justify-center rounded-xl bg-emerald-600 text-white text-sm font-bold">1</span>
+            <span className="w-8 h-8 inline-flex items-center justify-center rounded-xl bg-[#0F4C3A] text-white text-sm font-bold">1</span>
             {t('wlfStepGoalTitle')}
           </h2>
           <p className="text-sm text-gray-500 mt-1">{t('wlfStepGoalSub')}</p>
@@ -84,14 +84,14 @@ const GoalSelector: React.FC<GoalSelectorProps> = ({ selected, onChange, error, 
               title={conflict ? t('wlfCannotCombine').replace('{a}', name(goal.key)).replace('{b}', name(conflict)) : undefined}
               className={`relative text-left rounded-2xl border-2 p-4 transition-all ${
                 isSelected
-                  ? 'border-emerald-600 bg-emerald-50'
+                  ? 'border-[#0F4C3A] bg-[#EAF2EE]'
                   : disabled
                     ? 'border-gray-200 bg-gray-50 opacity-60 cursor-not-allowed'
-                    : 'border-gray-200 bg-white hover:border-emerald-300'
+                    : 'border-gray-200 bg-white hover:border-[#D4AF37]'
               }`}
             >
               {isSelected && (
-                <span className="absolute top-2 right-2 w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center shadow-sm">
+                <span className="absolute top-2 right-2 w-5 h-5 rounded-full bg-[#0F4C3A] text-white flex items-center justify-center shadow-sm">
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
@@ -107,7 +107,7 @@ const GoalSelector: React.FC<GoalSelectorProps> = ({ selected, onChange, error, 
                     <span className="text-[11px] text-gray-500">{t('wlfKcalDay')}</span>
                   </span>
                 ) : (
-                  <span className="inline-flex items-center gap-1 bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-lg text-[11px] font-semibold">
+                  <span className="inline-flex items-center gap-1 bg-[#EAF2EE] text-[#0F4C3A] px-2.5 py-1 rounded-lg text-[11px] font-semibold">
                     <span>{t('wlfGoalNoTargetDesc')}</span>
                   </span>
                 )}

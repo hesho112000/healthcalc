@@ -14,7 +14,7 @@ export const page5: SeoPageData = {
     es: 'Un plan alimentario keto adaptado para el manejo de la diabetes tipo 2, con guias de monitoreo de glucosa y ejercicio seguro.',
     ar: 'خطة غذائية كيتو مكيّفة لإدارة داء السكري من النوع الثاني، مع إرشادات مراقبة السكر وتوصيات تمارين آمنة.',
   },
-  heroGradient: 'from-emerald-500 to-teal-600',
+  heroGradient: 'from-[#0F4C3A] to-[#1a6b53]',
   icon: '🥗',
   profile: {
     title: { en: 'Patient Profile', fr: 'Profil du Patient', es: 'Perfil del Paciente', ar: 'الملف الشخصي للمريض' },
