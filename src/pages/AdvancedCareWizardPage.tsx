@@ -418,7 +418,7 @@ const AdvancedCareWizardPage: React.FC = () => {
                   <span>{t(tk('wizard.age'))}: <b>{profile.age}</b></span>
                   <span>{t(tk('wizard.height'))}: <b>{profile.height} cm</b></span>
                   <span>{t(tk('wizard.weight'))}: <b>{profile.weight} kg</b></span>
-                  <span>{selected.length} {t(tk('wizard.preview.exercises')).replace('{count}', '')?.trim() || ''}</span>
+                  <span>{conditionList || '—'}</span>
                 </div>
 
                 <div className="mt-4 space-y-2">
