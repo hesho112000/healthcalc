@@ -22,6 +22,8 @@ import FoodLibraryPage from '../pages/FoodLibraryPage';
 import AdvancedCarePage from '../pages/AdvancedCarePage';
 import AdvancedLabPage from '../pages/AdvancedLabPage';
 import AdvancedCareWizardPage from '../pages/AdvancedCareWizardPage';
+import SignupPage from '../pages/SignupPage';
+import PlanDashboardPage from '../pages/PlanDashboardPage';
 import SearchPage from '../pages/SearchPage';
 
 const LegacySeoRedirect: React.FC = () => {
@@ -125,6 +127,8 @@ export const AppRoutes: React.FC = () => (
     <Route path="/advanced-care" element={<AdvancedCarePage />} />
     <Route path="/advanced-care/lab" element={<AdvancedLabPage />} />
     <Route path="/advanced-care/wizard" element={<AdvancedCareWizardPage />} />
+    <Route path="/advanced-care/wizard/signup" element={<SignupPage />} />
+    <Route path="/dashboard/plan" element={<PlanDashboardPage />} />
     <Route path="/search" element={<SearchPage />} />
     <Route path="/login" element={<LoginPage />} />
     <Route path="/register" element={<RegisterPage />} />

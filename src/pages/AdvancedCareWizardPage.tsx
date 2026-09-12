@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import {
   HeartPulse,
   ClipboardList,
@@ -20,10 +20,12 @@ import {
   isConditionId,
   exercisePoolFor,
   foodPoolFor,
+  resolveConflicts,
 } from '../data/conditions';
 import type { ConditionId, FoodScore, ScoredExercise, ScoredFood } from '../data/conditions';
 import { IconScene } from '../components/IconScene';
 import { useLanguage } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
 import { translations } from '../i18n/translations';
 
 type LabValues = Record<string, string>;
@@ -102,6 +104,8 @@ const badgeStyle: Record<FoodScore, { bg: string; label: FoodScore }> = {
 
 const AdvancedCareWizardPage: React.FC = () => {
   const { t, language, dir } = useLanguage();
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const [searchParams] = useSearchParams();
   const queryCondition = searchParams.get('condition');
   const initialConditions: ConditionId[] =
@@ -118,7 +122,7 @@ const AdvancedCareWizardPage: React.FC = () => {
   const [pickedExercises, setPickedExercises] = useState<string[]>([]);
   const [pickedFoods, setPickedFoods] = useState<string[]>([]);
   const [whyOpen, setWhyOpen] = useState(false);
-  const [savedFlash, setSavedFlash] = useState(false);
+  const [toast, setToast] = useState('');
 
   useEffect(() => {
     const saved = localStorage.getItem('hc_advanced_care');
@@ -183,9 +187,18 @@ const AdvancedCareWizardPage: React.FC = () => {
   const pool: ScoredExercise[] = useMemo(() => exercisePoolFor(selected), [selected]);
   const foodPool: ScoredFood[] = useMemo(() => foodPoolFor(selected), [selected]);
 
+  const foodById = useMemo(() => new Map(FOODS_DATABASE.map((food) => [food.name_en, food])), []);
+
   const recommendedExercises = useMemo(() => pool.filter((item) => item.score !== 'avoid').slice(0, 7), [pool]);
 
-  const recommendedFoods = useMemo(() => {
+  const bmr = useMemo(() => {
+    const base = 10 * profile.weight + 6.25 * profile.height - 5 * profile.age;
+    return Math.round(base + (profile.gender === 'female' ? -161 : 5));
+  }, [profile]);
+
+  const calorieFloor = useMemo(() => Math.max(1200, Math.round(bmr * 1.1)), [bmr]);
+
+  const recommendation = useMemo(() => {
     const slots: Array<FoodItem['mealType']> = ['breakfast', 'lunch', 'dinner', 'snack', 'snack'];
     const out: string[] = [];
     const taken = new Set<string>();
@@ -197,12 +210,27 @@ const AdvancedCareWizardPage: React.FC = () => {
       taken.add(pick.food.name_en);
       out.push(pick.food.name_en);
     }
-    return out;
-  }, [foodPool]);
+    const sum = () => out.reduce((total, name) => total + (foodById.get(name)?.calories ?? 0), 0);
+    let extended = false;
+    if (sum() < calorieFloor) {
+      extended = true;
+      const extras = safe
+        .filter((item) => !taken.has(item.food.name_en))
+        .sort((a, b) => (b.food.calories ?? 0) - (a.food.calories ?? 0));
+      for (const item of extras) {
+        if (sum() >= calorieFloor) break;
+        taken.add(item.food.name_en);
+        out.push(item.food.name_en);
+      }
+    }
+    return { foods: out, extended };
+  }, [foodPool, foodById, calorieFloor]);
+
+  const recommendedFoods = recommendation.foods;
+  const kcalExtended = recommendation.extended;
 
   const exerciseName = (exercise: Exercise) =>
     (({ en: 'nameEn', fr: 'nameFr', es: 'nameEs', ar: 'nameAr', de: 'nameEn' } as const)[language]) as keyof Exercise;
-  const foodById = useMemo(() => new Map(FOODS_DATABASE.map((food) => [food.name_en, food])), []);
   const poolById = useMemo(() => new Map(pool.map((item) => [item.exercise.id, item])), [pool]);
   const foodScoreById = useMemo(() => new Map(foodPool.map((item) => [item.food.name_en, item.score])), [foodPool]);
 
@@ -227,6 +255,50 @@ const AdvancedCareWizardPage: React.FC = () => {
     return Math.round(kcal);
   }, [currentFoodNames, foodById]);
 
+  const kcalBreakdown = useMemo(() => {
+    const buckets: Record<string, number> = { breakfast: 0, lunch: 0, dinner: 0, snack: 0 };
+    currentFoodNames.forEach((name) => {
+      const food = foodById.get(name);
+      if (!food) return;
+      const slot: 'breakfast' | 'lunch' | 'dinner' | 'snack' =
+        food.mealType === 'breakfast' || food.mealType === 'lunch' || food.mealType === 'dinner'
+          ? food.mealType
+          : 'snack';
+      buckets[slot] += food.calories || 0;
+    });
+    return buckets as Record<'breakfast' | 'lunch' | 'dinner' | 'snack', number>;
+  }, [currentFoodNames, foodById]);
+
+  const mealCount = useMemo(
+    () =>
+      currentFoodNames.filter((name) =>
+        ['breakfast', 'lunch', 'dinner'].includes(foodById.get(name)?.mealType ?? ''),
+      ).length,
+    [currentFoodNames, foodById],
+  );
+  const snackCount = currentFoodNames.length - mealCount;
+
+  const resolution = useMemo(() => resolveConflicts(selected), [selected]);
+  const focusCondition: ConditionId | null = resolution
+    ? (resolution.prioritized[0] as ConditionId)
+    : primary;
+  const focusConditionName = focusCondition ? condName(focusCondition) : '';
+  const focusLine = focusCondition
+    ? `${t(tk(`wizard.condition.${focusCondition}.focus`))} · ${t(tk(`wizard.condition.${focusCondition}.nutritionRules`))}`
+    : '';
+
+  const mealBreakdownPairs: Array<[string, 'breakfast' | 'lunch' | 'dinner' | 'snack']> = [
+    ['wizard.step6.mealBreakfast', 'breakfast'],
+    ['wizard.step6.mealLunch', 'lunch'],
+    ['wizard.step6.mealDinner', 'dinner'],
+    ['wizard.step6.mealSnack', 'snack'],
+  ];
+  const breakdownLine = mealBreakdownPairs
+    .map(([i18n, slot]) => `${t(tk(i18n))}: ${kcalBreakdown[slot]} kcal`)
+    .join(' + ');
+
+  const calorieFloorAdjusted = dailyKcal < calorieFloor;
+
   const mealSlotLabel = (name: string) => {
     const food = foodById.get(name);
     const kind = food?.mealType;
@@ -243,16 +315,90 @@ const AdvancedCareWizardPage: React.FC = () => {
     return t(tk('wizard.badge.avoid'));
   };
 
-  const estimateDailySnacks = recommendedFoods.length;
-
   const togglePickExercise = (id: string) =>
     setPickedExercises((items) => (items.includes(id) ? items.filter((item) => item !== id) : [...items, id]));
   const togglePickFood = (name: string) =>
     setPickedFoods((items) => (items.includes(name) ? items.filter((item) => item !== name) : [...items, name]));
 
-  const handleSavePlan = () => {
-    setSavedFlash(true);
-    setTimeout(() => setSavedFlash(false), 1600);
+  const handleSaveAccount = () => {
+    if (user) navigate('/premium');
+    else navigate('/advanced-care/wizard/signup');
+  };
+
+  const exerciseById = useMemo(
+    () => new Map(EXERCISES_DATABASE.map((exercise) => [exercise.id, exercise])),
+    [],
+  );
+
+  const buildPlanPdfHtml = (): string => {
+    const foodRows = currentFoodNames
+      .map((name) => foodById.get(name))
+      .filter((food): food is FoodItem => Boolean(food))
+      .map(
+        (food) =>
+          `<tr><td>${food.name_en}</td><td>${mealSlotLabel(food.name_en)}</td><td>${food.calories} kcal</td></tr>`,
+      )
+      .join('');
+    const exerciseRows = currentExerciseIds
+      .map((id) => exerciseById.get(id))
+      .filter((ex): ex is Exercise => Boolean(ex))
+      .map(
+        (ex) =>
+          `<tr><td>${ex[exerciseName(ex)]}</td><td>${ex.duration}</td><td>${ex.calories} kcal</td></tr>`,
+      )
+      .join('');
+    const dirAttr = dir === 'rtl' ? ' dir="rtl" lang="ar"' : '';
+    const conditionTags = selected
+      .map((id) => `<span class="tag">${CONDITION_DATA[id].icon} ${condName(id)}</span>`)
+      .join('\n');
+    return `<!doctype html>
+<html${dirAttr}>
+<head>
+<meta charset="utf-8" />
+<title>HealthCalc Plan</title>
+<style>
+  @page { margin: 24px; }
+  body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; color: #0F4C3A; margin: 0; padding: 32px; background: #FDFBF7; }
+  h1 { font-size: 24px; color: #0F4C3A; margin: 0 0 4px; }
+  .muted { color: #6B7A75; font-size: 13px; }
+  .card { background: #ffffff; border: 1px solid #EFEBE4; border-radius: 16px; padding: 20px; margin-top: 20px; }
+  .h { color: #D4AF37; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 10px; }
+  th { text-align: start; color: #0F4C3A; border-bottom: 2px solid #D4AF37; padding: 8px; }
+  td { padding: 8px; border-bottom: 1px solid #EFEBE4; text-align: start; }
+  .total { margin-top: 20px; background: #0F4C3A; color: #FDFBF7; border-radius: 12px; padding: 12px 16px; font-weight: 700; display: flex; justify-content: space-between; }
+  .tag { display: inline-block; background: #D4AF37; color: #0F4C3A; border-radius: 9999px; padding: 4px 12px; font-size: 12px; font-weight: 700; margin: 2px 4px 2px 0; }
+</style>
+</head>
+<body>
+  <h1>HealthCalc — Personalized Plan</h1>
+  <p class="muted">${focusLine}</p>
+  <div>
+${conditionTags}
+  </div>
+  <div class="card">
+    <div class="h">${t(tk('wizard.step6.planHeader'))} · ${t(tk('wizard.step6.nutritionHeader'))}</div>
+    <table><thead><tr><th>Food</th><th>Meal</th><th>Calories</th></tr></thead><tbody>${foodRows}</tbody></table>
+  </div>
+  <div class="card">
+    <div class="h">${t(tk('wizard.step6.exercisesHeader'))}</div>
+    <table><thead><tr><th>Exercise</th><th>Duration</th><th>Calories</th></tr></thead><tbody>${exerciseRows}</tbody></table>
+  </div>
+  <div class="total"><span>${t(tk('wizard.step6.summary.calories')).replace('{kcal}', String(dailyKcal))}</span><span>${dailyKcal} kcal</span></div>
+</body>
+</html>`;
+  };
+
+  const handleDownloadPdf = () => {
+    const win = window.open('', '_blank', 'width=960,height=760');
+    if (!win) return;
+    win.document.open();
+    win.document.write(buildPlanPdfHtml());
+    win.document.close();
+    win.focus();
+    win.print();
+    setToast(t(tk('wizard.step6.toastPdf')));
+    window.setTimeout(() => setToast(''), 2800);
   };
 
   const stepTitle = [
@@ -263,6 +409,29 @@ const AdvancedCareWizardPage: React.FC = () => {
     t(tk('wizard.care.step5.title')),
     t(tk('wizard.care.step6.title')),
   ][step - 1];
+
+  useEffect(() => {
+    if (step !== 6) return;
+    const plan = {
+      version: 2,
+      savedAt: Date.now(),
+      conditions: selected,
+      profile,
+      exerciseMode,
+      nutritionMode,
+      cuisine,
+      foodNames: currentFoodNames,
+      exerciseIds: currentExerciseIds,
+      calories: dailyKcal,
+      calorieFloor,
+      kcalExtended,
+      kcalBreakdown,
+      meals: mealCount,
+      snacks: snackCount,
+      focusCondition,
+    };
+    localStorage.setItem('hc_advanced_care_plan', JSON.stringify(plan));
+  }, [step, selected, profile, exerciseMode, nutritionMode, cuisine, currentFoodNames, currentExerciseIds, dailyKcal, calorieFloor, kcalExtended, mealCount, snackCount, focusCondition]);
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] pb-24" dir={dir}>
@@ -546,9 +715,99 @@ const AdvancedCareWizardPage: React.FC = () => {
             )}
 
             {step === 6 && (
-              <>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="bg-[#0F4C3A] text-[#FDFBF7] text-xs font-bold rounded-full px-3 py-1.5">{t(tk('wizard.step6.planHeader'))} · {selected.length} {t(tk('wizard.preview.exercises')).replace('{count}', '').trim() || ''}</span>
+              <div className="space-y-6">
+                {resolution && resolution.conflictDetected && selected.length > 1 && (
+                  <div className="rounded-2xl border border-[#D4AF37]/60 bg-[#D4AF37]/10 p-4 text-sm text-[#0F4C3A] font-semibold leading-relaxed">
+                    {t(tk('wizard.conflict.banner')).replace('{condition}', focusConditionName)}
+                  </div>
+                )}
+
+                <div className="sticky top-4 z-10 rounded-[20px] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] border-2 border-[#D4AF37] p-6 text-[#FDFBF7] shadow-lg">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="rounded-2xl bg-[#FDFBF7]/10 p-3 text-center">
+                      <div className="text-2xl">🏃</div>
+                      <div className="text-2xl font-extrabold text-[#D4AF37] mt-1">{currentExerciseIds.length}</div>
+                      <div className="text-xs text-[#FDFBF7]/80 mt-0.5">{t(tk('wizard.step6.summary.exercises')).replace('{count}', String(currentExerciseIds.length))}</div>
+                    </div>
+                    <div className="rounded-2xl bg-[#FDFBF7]/10 p-3 text-center">
+                      <div className="text-2xl">🍽️</div>
+                      <div className="text-2xl font-extrabold text-[#D4AF37] mt-1">{mealCount}</div>
+                      <div className="text-xs text-[#FDFBF7]/80 mt-0.5">{t(tk('wizard.step6.summary.meals')).replace('{count}', String(mealCount))}</div>
+                    </div>
+                    <div className="rounded-2xl bg-[#FDFBF7]/10 p-3 text-center">
+                      <div className="text-2xl">🍎</div>
+                      <div className="text-2xl font-extrabold text-[#D4AF37] mt-1">{snackCount}</div>
+                      <div className="text-xs text-[#FDFBF7]/80 mt-0.5">{t(tk('wizard.step6.summary.snacks')).replace('{count}', String(snackCount))}</div>
+                    </div>
+                    <div className="rounded-2xl bg-[#FDFBF7]/10 p-3 text-center">
+                      <div className="text-2xl">🔥</div>
+                      <div className="text-2xl font-extrabold text-[#D4AF37] mt-1">{dailyKcal}</div>
+                      <div className="text-xs text-[#FDFBF7]/80 mt-0.5">{t(tk('wizard.step6.summary.calories')).replace('{kcal}', String(dailyKcal))}</div>
+                    </div>
+                  </div>
+
+                  <p className="mt-4 text-sm text-[#FDFBF7]">
+                    <b>{t(tk('wizard.step6.summary.focus')).replace('{focus}', '')}</b>{' '}
+                    <span className="text-[#D4AF37] font-semibold">{focusLine}</span>
+                  </p>
+
+                  <p className="mt-2 text-xs text-[#FDFBF7]/85 leading-relaxed">
+                    {breakdownLine} <b className="text-[#D4AF37]">= {dailyKcal} kcal</b>
+                  </p>
+
+                  {kcalExtended && (
+                    <p className="mt-2 text-xs text-[#D4AF37] font-semibold">{t(tk('wizard.step6.calAdjusted'))}</p>
+                  )}
+                  {kcalExtended && (
+                    <p className="mt-1 text-[11px] text-[#FDFBF7]/70">{t(tk('wizard.step6.minKcal')).replace('{kcal}', String(calorieFloor))}</p>
+                  )}
+                  {calorieFloorAdjusted && (
+                    <p className="mt-2 text-xs text-[#D4AF37] font-semibold">{t(tk('wizard.step6.lowCalWarning'))}</p>
+                  )}
+
+                  <div className="mt-4 border-t border-[#FDFBF7]/15 pt-3">
+                    <button type="button" onClick={() => setWhyOpen((open) => !open)} className="flex items-center justify-between w-full text-sm font-bold text-[#D4AF37]">
+                      {t(tk('wizard.preview.whyTitle'))}
+                      <ChevronDown size={16} className={`transition-transform ${whyOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    {whyOpen && focusCondition && (
+                      <p className="mt-2 text-xs text-[#FDFBF7]/80 leading-relaxed">
+                        {t(tk('wizard.preview.whyBody'))
+                          .replace('{condition}', focusConditionName)
+                          .replace('{source}', CONDITION_DATA[focusCondition].source)}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {resolution && selected.length > 1 && (
+                  <div className="rounded-2xl bg-white border border-[#EFEBE4] p-4 text-sm">
+                    <h4 className="font-extrabold text-[#0F4C3A] text-base mb-2">⚖️ {t(tk('wizard.conflict.title'))}</h4>
+                    <div className="flex flex-wrap gap-x-8 gap-y-3">
+                      <div>
+                        <span className="text-xs font-bold text-[#6B7A75] uppercase tracking-wide">{t(tk('wizard.conflict.prioritized'))}</span>
+                        <div className="flex flex-wrap gap-2 mt-1.5">
+                          {resolution.prioritized.map((id) => (
+                            <span key={id} className="bg-[#0F4C3A] text-[#FDFBF7] text-xs font-bold rounded-full px-3 py-1.5">{CONDITION_DATA[id].icon} {condName(id as ConditionId)}</span>
+                          ))}
+                        </div>
+                      </div>
+                      {resolution.compromised.length > 0 && (
+                        <div>
+                          <span className="text-xs font-bold text-[#6B7A75] uppercase tracking-wide">{t(tk('wizard.conflict.compromised'))}</span>
+                          <div className="flex flex-wrap gap-2 mt-1.5">
+                            {resolution.compromised.map((id) => (
+                              <span key={id} className="bg-[#D4AF37] text-[#0F4C3A] text-xs font-bold rounded-full px-3 py-1.5">{CONDITION_DATA[id].icon} {condName(id as ConditionId)}</span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex flex-wrap gap-2">
+                  <span className="bg-[#0F4C3A] text-[#FDFBF7] text-xs font-bold rounded-full px-3 py-1.5">{t(tk('wizard.step6.planHeader'))}</span>
                   {selected.map((id) => (
                     <span key={id} className="bg-[#D4AF37] text-[#0F4C3A] text-xs font-bold rounded-full px-3 py-1.5">
                       {CONDITION_DATA[id].icon} {condName(id)}
@@ -618,7 +877,7 @@ const AdvancedCareWizardPage: React.FC = () => {
 
                     {nutritionMode === 'recommend' ? (
                       <div className="rounded-2xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 p-4 text-sm text-[#0F4C3A] leading-relaxed">
-                        <p className="font-semibold">{t(tk('wizard.preview.meals')).replace('{count}', '5')}</p>
+                        <p className="font-semibold">{t(tk('wizard.preview.meals')).replace('{count}', String(currentFoodNames.length))}</p>
                         <div className="mt-3 space-y-2">
                           {recommendedFoods.map((name) => {
                             const food = foodById.get(name);
@@ -673,50 +932,36 @@ const AdvancedCareWizardPage: React.FC = () => {
                     )}
                   </div>
                 </div>
-              </>
+              </div>
             )}
           </div>
-
-          {step === 6 && (
-            <aside className="lg:sticky lg:top-6 rounded-3xl bg-[#0F4C3A] text-[#FDFBF7] p-6 shadow-lg">
-              <h2 className="font-extrabold text-lg flex items-center gap-2"><Sparkles size={18} className="text-[#D4AF37]" /> {t(tk('wizard.preview.title'))}</h2>
-              <div className="mt-4 space-y-2 text-sm">
-                <div className="flex justify-between gap-2"><span className="text-[#FDFBF7]/70">{t(tk('wizard.preview.exercises')).replace('{count}', String(currentExerciseIds.length))}</span><b>{currentExerciseIds.length}</b></div>
-                <div className="flex justify-between gap-2"><span className="text-[#FDFBF7]/70">{t(tk('wizard.preview.meals')).replace('{count}', String(Math.min(currentFoodNames.length, 3)))}</span><b>{Math.min(currentFoodNames.length, 3)}</b></div>
-                <div className="flex justify-between gap-2"><span className="text-[#FDFBF7]/70">{t(tk('wizard.preview.snacks')).replace('{count}', String(estimateDailySnacks))}</span><b>{estimateDailySnacks}</b></div>
-                <div className="flex justify-between gap-2"><span className="text-[#FDFBF7]/70">{t(tk('wizard.preview.calories')).replace('{kcal}', String(dailyKcal)).split(':')[0].trim()}</span><b className="text-[#D4AF37]">{dailyKcal} kcal</b></div>
-              </div>
-              <div className="mt-4 border-t border-[#FDFBF7]/15 pt-3 text-sm">
-                <span className="text-[#FDFBF7]/70">{t(tk('wizard.preview.focus')).replace('{focus}', '')}</span>
-                <p className="font-semibold mt-1 text-[#D4AF37]">{primary ? t(tk(`wizard.condition.${primary}.focus`)) : ''}</p>
-              </div>
-              <div className="mt-4 border-t border-[#FDFBF7]/15 pt-3">
-                <button onClick={() => setWhyOpen((open) => !open)} className="flex items-center justify-between w-full text-sm font-bold text-[#D4AF37]">
-                  {t(tk('wizard.preview.whyTitle'))}
-                  <ChevronDown size={16} className={`transition-transform ${whyOpen ? 'rotate-180' : ''}`} />
-                </button>
-                {whyOpen && primary && (
-                  <p className="mt-2 text-xs text-[#FDFBF7]/80 leading-relaxed">
-                    {t(tk('wizard.preview.whyBody'))
-                      .replace('{condition}', conditionLabel)
-                      .replace('{source}', CONDITION_DATA[primary].source)}
-                  </p>
-                )}
-              </div>
-            </aside>
-          )}
         </div>
       </section>
 
       {step === 6 && (
-        <div className="fixed bottom-0 inset-x-0 bg-[#FDFBF7]/95 backdrop-blur border-t border-[#EFEBE4] px-4 py-3">
-          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-            <p className="text-sm text-[#6B7A75] truncate">
-              {conditionList} · {currentExerciseIds.length} · {Math.min(currentFoodNames.length, 3)} · {dailyKcal} kcal
-            </p>
-            <button onClick={handleSavePlan} className="shrink-0 bg-[#D4AF37] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#c9a52e] transition">
-              {savedFlash ? t(tk('wizard.step6.saved')) : t(tk('wizard.step6.save'))}
-            </button>
+        <div className="fixed bottom-0 inset-x-0 bg-[#FDFBF7]/95 backdrop-blur border-t border-[#EFEBE4] px-4 py-3 z-20">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+              <p className="text-sm text-[#6B7A75] truncate">
+                {focusConditionName ? `${focusConditionName} · ` : ''}{dailyKcal} kcal
+              </p>
+              <div className="flex flex-wrap items-center justify-end gap-3">
+                <button onClick={handleDownloadPdf} className="shrink-0 bg-[#FDFBF7] border-2 border-[#0F4C3A] text-[#0F4C3A] font-bold rounded-full px-5 py-2.5 text-sm hover:bg-[#0F4C3A]/5 transition">
+                  {t(tk('wizard.step6.downloadPdf'))}
+                </button>
+                <button onClick={handleSaveAccount} className="shrink-0 bg-[#D4AF37] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#c9a52e] transition">
+                  {t(tk('wizard.step6.saveAccount'))}
+                </button>
+              </div>
+            </div>
+            <p className="text-[11px] text-[#6B7A75] mt-1.5">{t(tk('wizard.step6.privacyNote'))}</p>
+          </div>
+        </div>
+      )}
+      {toast && (
+        <div className="fixed bottom-24 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+          <div className="rounded-full bg-[#0F4C3A] text-[#FDFBF7] text-sm font-bold px-6 py-3 shadow-lg">
+            {toast}
           </div>
         </div>
       )}

@@ -17,8 +17,10 @@ import { liverCondition } from './liver';
 import { kidneyCondition } from './kidney';
 import { thyroidCondition } from './thyroid';
 import { ibsCondition } from './ibs';
+import { priorityOf } from './priority';
 
 export * from './types';
+export { CONDITION_PRIORITY, priorityOf, sortByRestrictiveness } from './priority';
 
 export const CONDITION_IDS: ConditionId[] = [
   'diabetes',
@@ -170,6 +172,43 @@ export const foodPoolFor = (ids: ConditionId[]): ScoredFood[] => {
 
 export const isFoodAvoid = (score: FoodScore): boolean => score === 'avoid';
 export const isFoodSafe = (score: FoodScore): boolean => score === 'safe';
+
+export interface ConflictPair {
+  a: string;
+  b: string;
+}
+
+export interface ConflictResolution {
+  prioritized: string[];
+  compromised: string[];
+  conflictDetected: boolean;
+  pairs: ConflictPair[];
+}
+
+export const resolveConflicts = (ids: string[]): ConflictResolution | null => {
+  if (ids.length < 2) return null;
+  const prioritized = [...ids].sort((a, b) => priorityOf(a) - priorityOf(b));
+  const pairs: ConflictPair[] = [];
+  let conflictDetected = false;
+  for (let i = 0; i < ids.length; i++) {
+    for (let j = i + 1; j < ids.length; j++) {
+      const A = CONDITION_DATA[ids[i]];
+      const B = CONDITION_DATA[ids[j]];
+      if (!A || !B) continue;
+      const aAvoid = new Set(A.avoidKeywords.map((k) => k.toLowerCase()));
+      const bAvoid = new Set(B.avoidKeywords.map((k) => k.toLowerCase()));
+      const aPref = new Set(A.preferKeywords.map((k) => k.toLowerCase()));
+      const bPref = new Set(B.preferKeywords.map((k) => k.toLowerCase()));
+      const aConflictsB = [...bPref].some((k) => aAvoid.has(k));
+      const bConflictsA = [...aPref].some((k) => bAvoid.has(k));
+      if (aConflictsB || bConflictsA) {
+        conflictDetected = true;
+        pairs.push({ a: ids[i], b: ids[j] });
+      }
+    }
+  }
+  return { prioritized, compromised: prioritized.slice(1), conflictDetected, pairs };
+};
 
 export const filterExercisesByCondition = (
   exercises: Exercise[],
