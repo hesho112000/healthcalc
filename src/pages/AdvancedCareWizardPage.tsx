@@ -36,6 +36,10 @@ import WhyChooseUs from '../components/wizard/WhyChooseUs';
 import EmbeddedPricing from '../components/wizard/EmbeddedPricing';
 import EmbeddedFAQ from '../components/wizard/EmbeddedFAQ';
 import StickyPlanBar from '../components/wizard/StickyPlanBar';
+import CheckoutModal from '../components/CheckoutModal';
+import PaywallModal from '../components/health-universe/PaywallModal';
+import { TIER_PRICE, useSubscription } from '../context/SubscriptionContext';
+import type { FeatureId, Tier } from '../context/SubscriptionContext';
 
 type LabValues = Record<string, string>;
 
@@ -126,6 +130,10 @@ const AdvancedCareWizardPage: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { isAdmin } = useAdmin();
+  const { hasFeature, upgrade } = useSubscription();
+  const [paywallFeature, setPaywallFeature] = useState<FeatureId | null>(null);
+  const [upgradeTier, setUpgradeTier] = useState<Tier>('pro');
+  const [showCheckout, setShowCheckout] = useState(false);
   const [searchParams] = useSearchParams();
   const queryCondition = searchParams.get('condition');
   const initialConditions: ConditionId[] =
@@ -184,6 +192,14 @@ const AdvancedCareWizardPage: React.FC = () => {
     );
     setStep(nextStep);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const goToPlan = () => {
+    if (hasFeature('fullPlan')) {
+      save(6);
+    } else {
+      setPaywallFeature('fullPlan');
+    }
   };
 
   const toggleCondition = (id: ConditionId) =>
@@ -462,6 +478,10 @@ ${conditionTags}
   };
 
   const handleDownloadPdf = () => {
+    if (!hasFeature('pdf')) {
+      setPaywallFeature('pdf');
+      return;
+    }
     const win = window.open('', '_blank', 'width=960,height=760');
     if (!win) return;
     win.document.open();
@@ -865,7 +885,7 @@ ${conditionTags}
                   </div>
                 </div>
 
-                <button onClick={() => save(6)} className="w-full mt-8 bg-[#D4AF37] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#c9a52e] transition">{t(tk('wizard.care.next'))}</button>
+                <button onClick={goToPlan} className="w-full mt-8 bg-[#D4AF37] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#c9a52e] transition">{t(tk('wizard.care.next'))}</button>
               </>
             )}
 
@@ -882,6 +902,26 @@ ${conditionTags}
           </div>
         </div>
       )}
+
+      <CheckoutModal
+        isOpen={showCheckout}
+        onClose={() => setShowCheckout(false)}
+        onSuccess={() => {
+          upgrade(upgradeTier);
+          setShowCheckout(false);
+        }}
+        price={TIER_PRICE[upgradeTier]}
+      />
+      <PaywallModal
+        open={!!paywallFeature}
+        feature={paywallFeature}
+        onClose={() => setPaywallFeature(null)}
+        onUpgrade={(tier) => {
+          setUpgradeTier(tier);
+          setPaywallFeature(null);
+          setShowCheckout(true);
+        }}
+      />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { HashRouter as Router } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import { AdminProvider } from './context/AdminContext';
 import { AuthProvider } from './context/AuthContext';
+import { SubscriptionProvider } from './context/SubscriptionContext';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import InstallBanner from './components/layout/InstallBanner';
@@ -13,7 +14,8 @@ const App: React.FC = () => {
     <LanguageProvider>
       <AdminProvider>
         <AuthProvider>
-          <Router>
+          <SubscriptionProvider>
+            <Router>
             <div className="min-h-screen flex flex-col">
               <Header />
               <main className="flex-1">
@@ -23,6 +25,7 @@ const App: React.FC = () => {
               <InstallBanner />
             </div>
           </Router>
+        </SubscriptionProvider>
         </AuthProvider>
       </AdminProvider>
     </LanguageProvider>

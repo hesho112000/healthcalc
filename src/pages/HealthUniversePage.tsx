@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Check, LayoutDashboard, Sparkles, X } from 'lucide-react';
+import { ArrowRight, LayoutDashboard, X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
 import BodyMap, {
@@ -11,7 +11,12 @@ import BodyMap, {
   organScore,
 } from '../components/health-universe/BodyMap';
 import HealthCard from '../components/health-universe/HealthCard';
-import { exercisePoolFor, foodPoolFor, mostRestrictiveCondition } from '../data/conditions';
+import HealthDashboard from '../components/health-universe/HealthDashboard';
+import PaywallModal from '../components/health-universe/PaywallModal';
+import CheckoutModal from '../components/CheckoutModal';
+import { TIER_PRICE, useSubscription } from '../context/SubscriptionContext';
+import type { FeatureId, Tier } from '../context/SubscriptionContext';
+import { mostRestrictiveCondition } from '../data/conditions';
 import type { ConditionId } from '../data/conditions';
 import type { OrganId } from '../components/health-universe/BodyMap';
 
@@ -22,6 +27,10 @@ const STORAGE_KEY = 'hc_health_universe';
 const HealthUniversePage: React.FC = () => {
   const { t, dir } = useLanguage();
   const navigate = useNavigate();
+  const { hasFeature, upgrade } = useSubscription();
+  const [paywallFeature, setPaywallFeature] = useState<FeatureId | null>(null);
+  const [upgradeTier, setUpgradeTier] = useState<Tier>('pro');
+  const [showCheckout, setShowCheckout] = useState(false);
   const [activeOrgan, setActiveOrgan] = useState<OrganId | null>(null);
   const [plan, setPlan] = useState<OrganId[]>(() => {
     try {
@@ -61,17 +70,13 @@ const HealthUniversePage: React.FC = () => {
     [unionConditions],
   );
 
-  const foodCount = useMemo(
-    () => foodPoolFor(unionConditions).filter((f) => f.score !== 'avoid').length,
-    [unionConditions],
-  );
-  const exerciseCount = useMemo(
-    () => exercisePoolFor(unionConditions).filter((e) => e.score !== 'avoid').length,
-    [unionConditions],
-  );
-
-  const handleContinue = () =>
+  const handleContinue = () => {
+    if (!hasFeature('fullPlan')) {
+      setPaywallFeature('fullPlan');
+      return;
+    }
     navigate(primary ? `/advanced-care/wizard?condition=${primary}` : '/advanced-care/wizard');
+  };
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] pb-32" dir={dir}>
@@ -125,8 +130,7 @@ const HealthUniversePage: React.FC = () => {
         </div>
       </section>
 
-      {activeOrgan && (
-        <section className="max-w-7xl mx-auto px-6 mt-14">
+      <section className="max-w-7xl mx-auto px-6 mt-14">
           <div className="rounded-[32px] border border-[#EFEBE4] bg-white p-6 sm:p-10 shadow-[0_18px_50px_rgba(15,76,58,0.08)]">
             <div className="flex items-center gap-4">
               <span className="w-12 h-12 shrink-0 rounded-full bg-[#F4F1EB] text-[#0F4C3A] flex items-center justify-center">
@@ -136,79 +140,47 @@ const HealthUniversePage: React.FC = () => {
                 <h2 className="text-xl font-extrabold text-[#0F4C3A] leading-tight">
                   {t('universe.dash.title')}
                 </h2>
-                <p className="mt-0.5 text-sm text-[#4A5A55]">{t('universe.dash.subtitle')}</p>
+                <p className="mt-0.5 text-sm text-[#6B7A75]">{t('universe.hd.subtitle')}</p>
               </div>
             </div>
 
-            <div className="mt-7 rounded-2xl bg-[#FDFBF7] border border-[#EFEBE4] p-5">
-              <span className="text-sm font-extrabold text-[#0F4C3A]">
-                {t('universe.dash.myPlan')}
-              </span>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {selection.map((id) => (
-                  <span
-                    key={id}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-white border border-[#EFEBE4] px-3 py-1.5 text-xs font-bold text-[#0F4C3A]"
-                  >
-                    <span>{ORGAN_CONFIG[id].emoji}</span>
-                    {t(organNameKey(id))}
-                    <button
-                      type="button"
-                      onClick={() => {
-                        togglePlan(id);
-                        if (activeOrgan === id) setActiveOrgan(null);
-                      }}
-                      aria-label={t('universe.tools.back')}
-                      className="text-[#4A5A55] hover:text-[#B91C1C] transition-colors"
-                    >
-                      <X size={13} strokeWidth={2.5} />
-                    </button>
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-5 grid grid-cols-2 lg:grid-cols-4 gap-4">
-              {[
-                { label: t('universe.dash.organs'), value: selection.length },
-                { label: t('universe.dash.conditions'), value: unionConditions.length },
-                { label: t('universe.dash.foods'), value: foodCount },
-                { label: t('universe.dash.exercises'), value: exerciseCount },
-              ].map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-2xl bg-[#FDFBF7] border border-[#EFEBE4] p-5 text-center"
-                >
-                  <div className="text-3xl font-extrabold text-[#0F4C3A] tabular-nums">
-                    {stat.value}
-                  </div>
-                  <div className="mt-1 text-xs font-bold text-[#4A5A55]">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-7 flex flex-col sm:flex-row sm:items-center gap-4 justify-between rounded-2xl bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] p-6 text-white">
-              <div className="flex items-center gap-3">
-                <span className="w-10 h-10 shrink-0 rounded-full bg-[#D4AF37]/20 text-[#D4AF37] flex items-center justify-center">
-                  <Sparkles size={18} strokeWidth={2.2} />
+            {selection.length > 0 && (
+              <div className="mt-7 rounded-2xl bg-[#FDFBF7] border border-[#EFEBE4] p-5">
+                <span className="text-sm font-extrabold text-[#0F4C3A]">
+                  {t('universe.dash.myPlan')}
                 </span>
-                <div>
-                  <h3 className="text-sm font-extrabold">{t('universe.dash.subtitle')}</h3>
-                  <p className="mt-0.5 text-xs text-white/80">{t('universe.dash.myPlan')}</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {selection.map((id) => (
+                    <span
+                      key={id}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-white border border-[#EFEBE4] px-3 py-1.5 text-xs font-bold text-[#0F4C3A]"
+                    >
+                      <span>{ORGAN_CONFIG[id].emoji}</span>
+                      {t(organNameKey(id))}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          togglePlan(id);
+                          if (activeOrgan === id) setActiveOrgan(null);
+                        }}
+                        aria-label={t('universe.tools.back')}
+                        className="text-[#4A5A55] hover:text-[#B91C1C] transition-colors"
+                      >
+                        <X size={13} strokeWidth={2.5} />
+                      </button>
+                    </span>
+                  ))}
                 </div>
               </div>
-              <button
-                type="button"
-                onClick={handleContinue}
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#D4AF37] px-6 py-3.5 text-sm font-extrabold text-[#0F4C3A] hover:bg-[#c9a12f] shadow-[0_10px_26px_rgba(212,175,55,0.35)] transition-all"
-              >
-                {t('universe.cta.continue')}
-                <ArrowRight size={18} strokeWidth={2.5} className="rtl:rotate-180" />
-              </button>
-            </div>
+            )}
+
+            <HealthDashboard
+              organs={selection}
+              onViewOrgan={setActiveOrgan}
+              onContinue={handleContinue}
+            />
           </div>
         </section>
-      )}
 
       {activeOrgan && (
         <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#EFEBE4] bg-[#FDFBF7]/95 backdrop-blur">
@@ -228,6 +200,26 @@ const HealthUniversePage: React.FC = () => {
           </div>
         </div>
       )}
+
+      <CheckoutModal
+        isOpen={showCheckout}
+        onClose={() => setShowCheckout(false)}
+        onSuccess={() => {
+          upgrade(upgradeTier);
+          setShowCheckout(false);
+        }}
+        price={TIER_PRICE[upgradeTier]}
+      />
+      <PaywallModal
+        open={!!paywallFeature}
+        feature={paywallFeature}
+        onClose={() => setPaywallFeature(null)}
+        onUpgrade={(tier) => {
+          setUpgradeTier(tier);
+          setPaywallFeature(null);
+          setShowCheckout(true);
+        }}
+      />
     </div>
   );
 };
