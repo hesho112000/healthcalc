@@ -156,12 +156,14 @@ const AdvancedCarePage: React.FC = () => {
 
       {/* TRUST BAR */}
       <section className="border-y border-[#EFEBE4] bg-[#F4F1EB]">
-        <div className="max-w-7xl mx-auto px-6 py-6 grid grid-cols-2 lg:grid-cols-4 gap-4 items-center">
+        <div className="max-w-7xl mx-auto px-6 py-6 grid grid-cols-2 lg:grid-cols-6 gap-4 items-center">
           {[
-            ['🛡️', 'advanced.trust.badge1'],
-            ['🧪', 'advanced.trust.badge2'],
-            ['📈', 'advanced.trust.badge3'],
-            ['🌍', 'advanced.trust.badge4'],
+            ['📚', 'advanced.trust.badge1'],
+            ['🏛️', 'advanced.trust.badge2'],
+            ['🔬', 'advanced.trust.badge3'],
+            ['📊', 'advanced.trust.badge4'],
+            ['🌍', 'advanced.trust.badge5'],
+            ['🔒', 'advanced.trust.badge6'],
           ].map(([icon, key]) => (
             <span key={String(key)} className="flex items-center justify-center gap-2.5 text-sm font-extrabold text-[#0F4C3A]">
               <span className="text-lg">{icon}</span>

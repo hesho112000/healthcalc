@@ -662,6 +662,7 @@ select.wiz-input { -webkit-appearance: none; appearance: none; background-image:
 .footer-form input:focus { border-color: #D4AF37; background: rgba(255,255,255,.14); }
 .footer-form .btn-primary { padding: 12px 22px; font-size: 14px; font-weight: 800; }
 .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 44px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.12); font-size: 12.5px; color: rgba(255,255,255,.55); }
+  .footer-disclaimer { margin-top: 36px; padding: 18px 20px; border: 1px solid rgba(255,255,255,.14); border-radius: 14px; background: rgba(255,255,255,.06); font-size: 12px; line-height: 1.65; color: rgba(255,255,255,.62); }
 @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; } }
 @media (max-width: 520px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } .footer-form { flex-direction: column; } .footer-form .btn-primary { width: 100%; } }
 

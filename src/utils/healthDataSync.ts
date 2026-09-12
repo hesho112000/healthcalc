@@ -86,11 +86,11 @@ export const syncHealthData = async (data?: Partial<HealthMetrics>): Promise<Hea
 export const getHealthAdvice = (m: HealthMetrics, _condition?: string): string[] => {
   const tips: string[] = [];
   if (m.heartRate > 100) tips.push('Heart rate is elevated — consider resting.');
-  if (m.heartRate < 50) tips.push('Heart rate is low — consult a doctor if you feel dizzy.');
+  if (m.heartRate < 50) tips.push('Heart rate is low — consult a healthcare professional if you feel dizzy.');
   if (m.steps < 5000) tips.push('Try to reach 8000+ steps today.');
   if (m.sleepHours < 6) tips.push('Sleep less than 6h — aim for 7-9 hours.');
   if (m.stress === 'high') tips.push('Stress is high — try deep breathing or meditation.');
-  if (m.bloodOxygen < 95) tips.push('Blood oxygen is low — seek medical advice.');
+  if (m.bloodOxygen < 95) tips.push('Blood oxygen is low — seek professional care.');
   if (m.waterIntake < 1.5) tips.push('Drink more water — aim for 2-3 liters.');
   if (m.calories < 1200) tips.push('Calorie intake is very low — ensure adequate nutrition.');
   if (tips.length === 0) tips.push('Everything looks great — keep it up!');

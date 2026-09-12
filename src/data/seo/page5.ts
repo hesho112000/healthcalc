@@ -29,22 +29,22 @@ export const page5: SeoPageData = {
   },
   description: {
     en: [
-      'Robert is a 55-year-old man with Type 2 diabetes (HbA1c 8.1%) currently on Metformin. At 175 cm and 90 kg (BMI 29.4), his doctor suggested that a low-carbohydrate or ketogenic approach could help improve his blood sugar control alongside medication.',
+      'Robert is a 55-year-old man with Type 2 diabetes (HbA1c 8.1%) currently on Metformin. At 175 cm and 90 kg (BMI 29.4), his healthcare professional suggested that a low-carbohydrate or ketogenic approach could help improve his blood sugar control alongside medication.',
       'Using HealthCalc.ai, Robert explored the Diabetes Suite. His fasting glucose was 156 mg/dL and post-prandial was 218 mg/dL. The AI recommended a modified keto approach: 50-80g net carbs/day (not strict 20g) to maintain nutritional balance while still achieving significant blood sugar improvement.',
       'The plan emphasizes healthy fats (avocado, olive oil, nuts), moderate protein (1.2g/kg bodyweight), and non-starchy vegetables. Meal timing is synchronized with Metformin dosing for optimal glucose management. Regular blood glucose monitoring is included as part of the plan.',
     ],
     fr: [
-      'Robert est un homme de 55 ans atteint de diabete de type 2 (HbA1c 8,1%) sous Metformine. A 175 cm et 90 kg (IMC 29,4), son medecin a suggere une approche faible en glucides.',
+      'Robert est un homme de 55 ans atteint de diabete de type 2 (HbA1c 8,1%) sous Metformine. A 175 cm et 90 kg (IMC 29,4), son professionnel de sante a suggere une approche faible en glucides.',
       'En utilisant HealthCalc.ai, Robert a explore la Suite Diabete. Son glucose a jeun etait de 156 mg/dL. L\'IA a recommande un approche keto modifiee: 50-80g de glucides nets par jour.',
       'Le plan privilegie les graisses saines (avocat, huile d\'olive, noix), des proteines moderees et des legumes sans amidon. La surveillance reguliere de la glycemie est incluse.',
     ],
     es: [
-      'Robert es un hombre de 55 anos con diabetes tipo 2 (HbA1c 8.1%) bajo Metformina. Con 175 cm y 90 kg (IMC 29.4), su medico sugirio un enfoque bajo en carbohidratos.',
+      'Robert es un hombre de 55 anos con diabetes tipo 2 (HbA1c 8.1%) bajo Metformina. Con 175 cm y 90 kg (IMC 29.4), su profesional de la salud sugirio un enfoque bajo en carbohidratos.',
       'Usando HealthCalc.ai, Robert exploro la Suite de Diabetes. Su glucosa en ayunas fue 156 mg/dL. La IA recomendo un enfoque keto modificado: 50-80g de carbohidratos netos por dia.',
       'El plan enfatiza grasas saludables (aguacate, aceite de oliva, nueces), proteina moderada y verduras sin almidon. El monitoreo regular de glucosa esta incluido.',
     ],
     ar: [
-      'روبرت رجل في 55 سنة مصاب بداء السكري من النوع الثاني (HbA1c 8.1%) تحت الميتفورمين. بطول 175 سم ووزن 90 كجم (BMI 29.4)، اقترح طبيبه نهجاً منخفض الكربوهيدرات.',
+      'روبرت رجل في 55 سنة مصاب بداء السكري من النوع الثاني (HbA1c 8.1%) تحت الميتفورمين. بطول 175 سم ووزن 90 كجم (BMI 29.4)، اقترح مقدم الرعاية الصحية الخاص به نهجاً منخفض الكربوهيدرات.',
       'باستخدام HealthCalc.ai، استكشف روبرت مجموعة السكري. سكره الترشحي كان 156 ملغ/ديسيلتر. أوصى الذكاء الاصطناعي بنهج كيتو معدل: 50-80 جرام كربوهيدرات صافية يومياً.',
       'الخطة تؤكد على الدهون الصحية (الأفوكادو، زيت الزيتون، المكسرات)، البروتين المعتدل، والخضروات غير النشوية. مراقبة السكر المنتظمة مضمنة.',
     ],

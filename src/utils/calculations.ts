@@ -300,7 +300,7 @@ export const interpretLabResults = (inputs: DiabetesInputs | Record<string, numb
     let status: 'normal' | 'warning' | 'critical' = 'normal';
     if (value < min * 0.8 || value > max * 1.5) status = 'critical';
     else if (value < min || value > max) status = 'warning';
-    const interpretation = status === 'normal' ? 'Within normal range' : status === 'warning' ? 'Outside normal range — consult doctor' : 'Critical — seek medical attention';
+    const interpretation = status === 'normal' ? 'Within normal range' : status === 'warning' ? 'Outside normal range — consult a healthcare professional' : 'Critical — seek medical attention';
     return { parameter: param, value, unit, normalRange: `${min}–${max} ${unit}`, status, interpretation };
   });
 };
@@ -308,7 +308,7 @@ export const interpretLabResults = (inputs: DiabetesInputs | Record<string, numb
 export const classifyBloodPressure = (systolic: number, diastolic: number): BPResult => {
   if (systolic < 120 && diastolic < 80) return { category: 'Normal', systolicRange: '90-119', diastolicRange: '60-79', color: 'green', recommendations: ['Maintain healthy lifestyle', 'Continue regular exercise'] };
   if (systolic < 130 && diastolic < 80) return { category: 'Elevated', systolicRange: '120-129', diastolicRange: '60-79', color: 'yellow', recommendations: ['Reduce sodium intake', 'Increase physical activity', 'Monitor regularly'] };
-  if (systolic < 140 || diastolic < 90) return { category: 'High Blood Pressure Stage 1', systolicRange: '130-139', diastolicRange: '80-89', color: 'orange', recommendations: ['Consult a physician', 'Reduce sodium', 'Regular monitoring', 'Medication may be needed'] };
+  if (systolic < 140 || diastolic < 90) return { category: 'High Blood Pressure Stage 1', systolicRange: '130-139', diastolicRange: '80-89', color: 'orange', recommendations: ['Consult a healthcare professional', 'Reduce sodium', 'Regular monitoring', 'Medication may be needed'] };
   return { category: 'High Blood Pressure Stage 2', systolicRange: '≥140', diastolicRange: '≥90', color: 'red', recommendations: ['Seek medical attention', 'Medication likely required', 'Lifestyle changes essential', 'Regular monitoring critical'] };
 };
 

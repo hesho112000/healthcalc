@@ -29,22 +29,22 @@ export const page7: SeoPageData = {
   },
   description: {
     en: [
-      'Emma is a 30-year-old new mother, 6 months postpartum, currently breastfeeding. She gained 13 kg during pregnancy (from 65 kg to 78 kg at 163 cm). Her OB-GYN recommended a gradual approach: losing no more than 0.5 kg per week while maintaining milk supply.',
+      'Emma is a 30-year-old new mother, 6 months postpartum, currently breastfeeding. She gained 13 kg during pregnancy (from 65 kg to 78 kg at 163 cm). Her healthcare provider recommended a gradual approach: losing no more than 0.5 kg per week while maintaining milk supply.',
       'Using HealthCalc.ai, Emma entered her current stats. Her BMR was calculated at 1,520 kcal/day (elevated due to breastfeeding, which burns approximately 500 extra kcal/day). Her TDEE was 1,900 kcal/day. A safe deficit of 300-500 kcal was recommended, targeting 1,400-1,600 calories daily.',
       'The plan prioritizes nutrient density: iron-rich foods for postpartum recovery, calcium and vitamin D for bone health, DHA omega-3 for brain development (passed through breast milk), and adequate protein (1.1g/kg) for tissue repair. Gentle progressive exercise begins after the 6-week clearance.',
     ],
     fr: [
-      'Emma est une jeune mere de 30 ans, 6 mois apres l\'accouchement, allaitant. Elle a pris 13 kg pendant la grossesse (de 65 kg a 78 kg a 163 cm). Son gynecologue a recommande une approche graduelle.',
+      'Emma est une jeune mere de 30 ans, 6 mois apres l\'accouchement, allaitant. Elle a pris 13 kg pendant la grossesse (de 65 kg a 78 kg a 163 cm). Son professionnel de sante a recommande une approche graduelle.',
       'En utilisant HealthCalc.ai, Emma a entre ses statistiques. Son MB est de 1 520 kcal/jour (eleve en raison de l\'allaitement). Son TDEE est de 1 900 kcal/jour. Un deficit de 300-500 kcal a ete recommande.',
       'Le plan priorise la densite nutritive: aliments riches en fer, calcium, vitamine D, DHA omega-3 et proteines adequates pour la reparation tissulaire.',
     ],
     es: [
-      'Emma es una nueva madre de 30 anos, 6 meses despues del parto, amamantando. Gano 13 kg durante el embarazo (de 65 a 78 kg con 163 cm). Su ginecologo recomendo un enfoque gradual.',
+      'Emma es una nueva madre de 30 anos, 6 meses despues del parto, amamantando. Gano 13 kg durante el embarazo (de 65 a 78 kg con 163 cm). Su profesional de la salud recomendo un enfoque gradual.',
       'Usando HealthCalc.ai, Emma ingreso sus estadisticas. Su TMB es 1,320 kcal/dia (elevado por la lactancia). Su TDEE es 1,650 kcal/dia. Se recomendo un deficit de 300-500 kcal.',
       'El plan prioriza la densidad nutritiva: alimentos ricos en hierro, calcio, vitamina D, DHA omega-3 y proteinas adecuadas para la reparacion de tejidos.',
     ],
     ar: [
-      'إيما أم حديثة في 30 سنة، منذ 6 أشهر من الولادة، ترضع رضاعة طبيعية. زاد وزنها 13 كجم أثناء الحمل (من 65 إلى 78 كجم بطول 163 سم). أوصى طبيبها بنهج تدريجي.',
+      'إيما أم حديثة في 30 سنة، منذ 6 أشهر من الولادة، ترضع رضاعة طبيعية. زاد وزنها 13 كجم أثناء الحمل (من 65 إلى 78 كجم بطول 163 سم). أوصى مقدم الرعاية الصحية الخاص بها بنهج تدريجي.',
       'باستخدام HealthCalc.ai، أدخلت إيما إحصائياتها. معدل الأيض 1,520 سعرة/يوم (مرتفع بسبب الرضاعة). إجمالي الإنفاق 1,900 سعرة/يوم. أُوصي بعجز 300-500 سعرة.',
       'الخطة تركز على الكثافة المغذية: أطعمة غنية بالحديد للتعافي، الكالسيوم وفيتامين D، أوميغا 3 DHA لتطور الدماغ، والبروتين الكافي لإصلاح الأنسجة.',
     ],
@@ -68,10 +68,10 @@ export const page7: SeoPageData = {
       { day: 'Sunday', activity: 'Rest day with gentle stretching' },
     ],
     tips: {
-      en: ['Do NOT restrict calories below 1,500 while breastfeeding', 'Eat nutrient-dense foods, not just low-calorie foods', 'Pelvic floor exercises should start within first 6 weeks', 'Stay hydrated - drink a glass of water each time you nurse', 'Sleep when the baby sleeps - rest is critical for recovery', 'Consult your OB-GYN before starting any exercise program'],
-      fr: ['NE RESTREIGNEZ PAS les calories en dessous de 1 500 pendant l\'allaitement', 'Mangez des aliments nutritifs, pas seulement faibles en calories', 'Les exercices du plancher pelvien doivent commencer dans les 6 premieres semaines', 'Buvez un verre d\'eau a chaque session d\'allaitement', 'Dormez quand le bebe dort - le repos est essentiel', 'Consultez votre gynecologue avant de commencer l\'exercice'],
-      es: ['NO restrinja calorias por debajo de 1,500 durante la lactancia', 'Come alimentos nutritivos, no solo bajos en calorias', 'Los ejercicios del suelo pelvico deben empezar en las primeras 6 semanas', 'Bebe un vaso de agua cada vez que amamantes', 'Duerme cuando el bebe duerma - el descanso es critico', 'Consulta a tu ginecologo antes de iniciar ejercicio'],
-      ar: ['لا تقلي السعرات عن 1,500 أثناء الرضاعة الطبيعية', 'تناولي أطعمة مغذية وليست فقط منخفضة السعرات', 'تمارين قاع الحوض يجب أن تبدأ خلال 6 أسابيع', 'اشربي كوب ماء في كل مرة ترضعين فيها', 'نامي عندما ينام الطفل - الراحة بالغة الأهمية', 'استشيري طبيبتك قبل بدء أي برنامج رياضي'],
+      en: ['Do NOT restrict calories below 1,500 while breastfeeding', 'Eat nutrient-dense foods, not just low-calorie foods', 'Pelvic floor exercises should start within first 6 weeks', 'Stay hydrated - drink a glass of water each time you nurse', 'Sleep when the baby sleeps - rest is critical for recovery', 'Consult your healthcare provider before starting any exercise program'],
+      fr: ['NE RESTREIGNEZ PAS les calories en dessous de 1 500 pendant l\'allaitement', 'Mangez des aliments nutritifs, pas seulement faibles en calories', 'Les exercices du plancher pelvien doivent commencer dans les 6 premieres semaines', 'Buvez un verre d\'eau a chaque session d\'allaitement', 'Dormez quand le bebe dort - le repos est essentiel', 'Consultez votre professionnel de sante avant de commencer l\'exercice'],
+      es: ['NO restrinja calorias por debajo de 1,500 durante la lactancia', 'Come alimentos nutritivos, no solo bajos en calorias', 'Los ejercicios del suelo pelvico deben empezar en las primeras 6 semanas', 'Bebe un vaso de agua cada vez que amamantes', 'Duerme cuando el bebe duerma - el descanso es critico', 'Consulta a tu profesional de la salud antes de iniciar ejercicio'],
+      ar: ['لا تقلي السعرات عن 1,500 أثناء الرضاعة الطبيعية', 'تناولي أطعمة مغذية وليست فقط منخفضة السعرات', 'تمارين قاع الحوض يجب أن تبدأ خلال 6 أسابيع', 'اشربي كوب ماء في كل مرة ترضعين فيها', 'نامي عندما ينام الطفل - الراحة بالغة الأهمية', 'استشيري مقدم الرعاية الصحية الخاص بك قبل بدء أي برنامج رياضي'],
     },
   },
   ctaText: { en: 'Get Your Custom Postpartum Plan', fr: 'Obtenez Votre Plan Post-partum', es: 'Obten Tu Plan Postparto', ar: 'احصل على خطتك المخصصة ما بعد الولادة' },

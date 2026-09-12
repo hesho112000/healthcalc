@@ -131,7 +131,7 @@ const DIETS: Record<GoalKey, DietIntensity[]> = {
   lose: [
     { id: 'normal_lose', label: 'رجيم عادي - نزول صحي', short: 'عادي', emoji: '🟢', deficit: 300, surplus: 0, rate: '0.25 كجم/أسبوع', desc: 'نزول بطيء صحي', workoutMod: 1.0, proteinFactor: 1.2, level: 'normal', healthyOnly: false },
     { id: 'medium_lose', label: 'متوسط - نزول متوسط', short: 'متوسط', emoji: '🟡', deficit: 500, surplus: 0, rate: '0.5 كجم/أسبوع', desc: 'الأكثر شيوعاً', workoutMod: 1.1, proteinFactor: 1.6, level: 'medium', healthyOnly: false },
-    { id: 'harsh_lose', label: 'قاسي - نزول سريع', short: 'قاسي', emoji: '🔴', deficit: 800, surplus: 0, rate: '0.8-1 كجم/أسبوع', desc: 'سريع لكن يحتاج متابعة', workoutMod: 1.3, proteinFactor: 2.0, level: 'harsh', healthyOnly: true, warning: 'استشر طبيب' },
+    { id: 'harsh_lose', label: 'قاسي - نزول سريع', short: 'قاسي', emoji: '🔴', deficit: 800, surplus: 0, rate: '0.8-1 كجم/أسبوع', desc: 'سريع لكن يحتاج متابعة', workoutMod: 1.3, proteinFactor: 2.0, level: 'harsh', healthyOnly: true, warning: 'استشر مختصاً' },
   ],
   gain_muscle: [
     { id: 'lean_bulk', label: 'Lean Bulk - بناء نظيف', short: 'Lean', emoji: '🟢', deficit: 0, surplus: 250, rate: '+0.25 كجم/أسبوع', desc: 'زيادة عضل نظيفة', workoutMod: 1.2, proteinFactor: 2.0, level: 'normal', healthyOnly: false },

@@ -61,6 +61,10 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
+        <div className="footer-disclaimer">
+          {t('disclaimer')}
+        </div>
+
         <div className="footer-bottom">
           <span>{t('footerRights')}</span>
           <span>{t('footerMade')}</span>

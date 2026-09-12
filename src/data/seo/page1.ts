@@ -29,7 +29,7 @@ export const page1: SeoPageData = {
   },
   description: {
     en: [
-      'Ahmad is a 35-year-old office worker recently diagnosed with Stage 1 hypertension (138/88 mmHg). At 178 cm and 95 kg, his BMI is 30.0, placing him in the obese category. His doctor recommended weight loss and dietary changes following the DASH eating plan.',
+      'Ahmad is a 35-year-old office worker recently diagnosed with Stage 1 hypertension (138/88 mmHg). At 178 cm and 95 kg, his BMI is 30.0, placing him in the obese category. His healthcare professional recommended weight loss and dietary changes following the DASH eating plan.',
       'Using HealthCalc.ai, Ahmad entered his age, gender, height, weight, and activity level (sedentary). The platform calculated his BMR at 1,842 kcal/day and his TDEE at 2,210 kcal/day. For safe weight loss of 0.5-1 kg per week, the calculator recommended approximately 1,710 calories daily.',
       'The AI-generated plan combines DASH diet principles (low sodium under 2,300mg/day, rich in potassium, magnesium, and calcium) with a moderate caloric deficit. The protein target is set at 30% to preserve lean mass during weight loss.',
     ],

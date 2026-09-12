@@ -29,7 +29,7 @@ export const page4: SeoPageData = {
   },
   description: {
     en: [
-      'Sarah is a 32-year-old woman diagnosed with Polycystic Ovary Syndrome (PCOS) with insulin resistance. At 168 cm and 88 kg (BMI 31.1), she struggles with weight management, irregular periods, and fatigue. Her gynecologist recommended a combination of low-glycemic nutrition and regular moderate exercise.',
+      'Sarah is a 32-year-old woman diagnosed with Polycystic Ovary Syndrome (PCOS) with insulin resistance. At 168 cm and 88 kg (BMI 31.1), she struggles with weight management, irregular periods, and fatigue. Her healthcare professional recommended a combination of low-glycemic nutrition and regular moderate exercise.',
       'Using HealthCalc.ai, Sarah entered her profile data. The platform calculated her BMR at 1,656 kcal/day and TDEE at 2,070 kcal/day. For safe and sustainable weight loss (0.5 kg/week), the target was set at approximately 1,570 calories daily with an emphasis on anti-inflammatory foods.',
       'The PCOS-focused plan prioritizes low glycemic index carbohydrates, omega-3 rich foods, chromium and magnesium supplementation through food sources, and regular strength training to improve insulin sensitivity. The macro split is 30% protein, 40% low-GI carbs, and 30% healthy fats.',
     ],
@@ -68,10 +68,10 @@ export const page4: SeoPageData = {
       { day: 'Sunday', activity: 'Rest day with gentle stretching (15 min)' },
     ],
     tips: {
-      en: ['Eat low-glycemic foods to stabilize insulin levels', 'Include omega-3 fatty acids daily (salmon, walnuts, flaxseeds)', 'Strength training 3x/week improves insulin sensitivity', 'Manage stress - cortisol worsens PCOS symptoms', 'Limit processed sugar and refined carbohydrates', 'Consider inositol supplementation (consult your doctor)'],
-      fr: ['Mangez des aliments a faible index glycemique', 'Incluez des omega-3 quotidiennement (saumon, noix, graines de lin)', 'L\'entrainement en resistance 3x/semaine ameliore la sensibilite a l\'insuline', 'Gerez le stress - le cortisol aggrave les symptomes SOPK', 'Limitez le sucre raffine et les glucides raffines', 'Envisagez la supplementation en inositol (consultez votre medecin)'],
-      es: ['Come alimentos de bajo indice glucemico para estabilizar la insulina', 'Incluye omega-3 diariamente (salmon, nueces, linaza)', 'Entrenamiento de resistencia 3x/semana mejora sensibilidad a insulina', 'Maneja el estrés - el cortisol empeora sintomas del SOP', 'Limita azucar procesada y carbohidratos refinados', 'Considera suplementacion de inositol (consulta tu medico)'],
-      ar: ['تناول أطعمة منخفضة المؤشر الجلايسيمي لمستقرة الأنسولين', 'أضف أوميغا 3 يومياً (سلمون، جوز، بذور الكتان)', 'التدريب على المقاومة 3 مرات أسبوعياً يحسن حساسية الأنسولين', 'تحكم في التوتر - الكورتيزول يزيد أعراض تكيس المبايض', 'تجنب السكر المعالج والكربوهيدرات المكررة', 'فكر في مكمل إينوزيتول (استشر طبيبك)'],
+      en: ['Eat low-glycemic foods to stabilize insulin levels', 'Include omega-3 fatty acids daily (salmon, walnuts, flaxseeds)', 'Strength training 3x/week improves insulin sensitivity', 'Manage stress - cortisol worsens PCOS symptoms', 'Limit processed sugar and refined carbohydrates', 'Consider inositol supplementation (consult your healthcare professional)'],
+      fr: ['Mangez des aliments a faible index glycemique', 'Incluez des omega-3 quotidiennement (saumon, noix, graines de lin)', 'L\'entrainement en resistance 3x/semaine ameliore la sensibilite a l\'insuline', 'Gerez le stress - le cortisol aggrave les symptomes SOPK', 'Limitez le sucre raffine et les glucides raffines', 'Envisagez la supplementation en inositol (consultez votre professionnel de sante)'],
+      es: ['Come alimentos de bajo indice glucemico para estabilizar la insulina', 'Incluye omega-3 diariamente (salmon, nueces, linaza)', 'Entrenamiento de resistencia 3x/semana mejora sensibilidad a insulina', 'Maneja el estrés - el cortisol empeora sintomas del SOP', 'Limita azucar procesada y carbohidratos refinados', 'Considera suplementacion de inositol (consulta a tu profesional de la salud)'],
+      ar: ['تناول أطعمة منخفضة المؤشر الجلايسيمي لمستقرة الأنسولين', 'أضف أوميغا 3 يومياً (سلمون، جوز، بذور الكتان)', 'التدريب على المقاومة 3 مرات أسبوعياً يحسن حساسية الأنسولين', 'تحكم في التوتر - الكورتيزول يزيد أعراض تكيس المبايض', 'تجنب السكر المعالج والكربوهيدرات المكررة', 'فكر في مكمل إينوزيتول (استشر أخصائي الرعاية الصحية)'],
     },
   },
   ctaText: { en: 'Get Your Custom PCOS Plan', fr: 'Obtenez Votre Plan SOPK', es: 'Obten Tu Plan de SOP', ar: 'احصل على خطتك المخصصة لـ PCOS' },

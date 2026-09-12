@@ -50,7 +50,7 @@ const HomePage: React.FC = () => {
                 <span className="hero-trust-sep">·</span>
                 <span>👥 {t('trustUsersValue')} · {t('trustUsers')}</span>
                 <span className="hero-trust-sep">·</span>
-                <span>🛡️ {t('trustDoctor')}</span>
+                <span>📚 {t('trustDoctor')}</span>
               </div>
             </div>
             <div className="hero-visual">
