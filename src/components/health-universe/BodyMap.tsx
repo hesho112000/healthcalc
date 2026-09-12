@@ -193,6 +193,8 @@ export const organHasLabData = (id: OrganId): boolean =>
 export const organStatus = (score: number): OrganStatus =>
   score >= 80 ? 'healthy' : score >= 60 ? 'warning' : 'critical';
 
+const BODY_MAP_SRC = `${import.meta.env.BASE_URL}assets/body-map.png`;
+
 interface BodyMapProps {
   activeOrgan: OrganId | null;
   onSelect: (id: OrganId) => void;
@@ -209,7 +211,7 @@ const BodyMap: React.FC<BodyMapProps> = ({ activeOrgan, onSelect }) => {
         .hu-active { animation: hu-pulse 1.6s ease-in-out infinite; }
       `}</style>
       <img
-        src="/assets/body-map.png"
+        src={BODY_MAP_SRC}
         alt={t('universe.title')}
         className="w-full h-auto select-none"
         draggable={false}
