@@ -21,8 +21,8 @@ export type ToolKey = 'lab' | 'nutrition' | 'exercise';
 export interface OrganConfig {
   id: OrganId;
   emoji: string;
-  x: number;
-  y: number;
+  top: number;
+  left: number;
   conditionIds: ConditionId[];
 }
 
@@ -38,20 +38,20 @@ export const ORGAN_IDS: readonly OrganId[] = [
 ];
 
 export const ORGAN_CONFIG: Record<OrganId, OrganConfig> = {
-  brain: { id: 'brain', emoji: '🧠', x: 200, y: 70, conditionIds: [] },
-  thyroid: { id: 'thyroid', emoji: '🦋', x: 200, y: 150, conditionIds: ['thyroid'] },
+  brain: { id: 'brain', emoji: '🧠', top: 8, left: 50, conditionIds: [] },
+  thyroid: { id: 'thyroid', emoji: '🦋', top: 21, left: 50, conditionIds: ['thyroid'] },
   heart: {
     id: 'heart',
     emoji: '💗',
-    x: 165,
-    y: 250,
+    top: 31,
+    left: 56,
     conditionIds: ['hypertension', 'cholesterol'],
   },
-  pancreas: { id: 'pancreas', emoji: '🩸', x: 200, y: 360, conditionIds: ['diabetes'] },
-  liver: { id: 'liver', emoji: '🧡', x: 235, y: 320, conditionIds: ['liver'] },
-  kidneys: { id: 'kidneys', emoji: '🫘', x: 175, y: 400, conditionIds: ['kidney'] },
-  gut: { id: 'gut', emoji: '🥦', x: 200, y: 480, conditionIds: ['ibs'] },
-  joints: { id: 'joints', emoji: '🦶', x: 255, y: 650, conditionIds: ['gout'] },
+  pancreas: { id: 'pancreas', emoji: '🩸', top: 44, left: 50, conditionIds: ['diabetes'] },
+  liver: { id: 'liver', emoji: '🧡', top: 38, left: 44, conditionIds: ['liver'] },
+  kidneys: { id: 'kidneys', emoji: '🫘', top: 55, left: 42, conditionIds: ['kidney'] },
+  gut: { id: 'gut', emoji: '🥦', top: 57, left: 50, conditionIds: ['ibs'] },
+  joints: { id: 'joints', emoji: '🦶', top: 85, left: 42, conditionIds: ['gout'] },
 };
 
 export const organNameKey = (id: OrganId): TKey => `universe.organ.${id}.name` as TKey;
@@ -202,141 +202,50 @@ const BodyMap: React.FC<BodyMapProps> = ({ activeOrgan, onSelect }) => {
   const { t, dir } = useLanguage();
   const [hovered, setHovered] = useState<OrganId | null>(null);
 
-  const limbs = [
-    'M120,196 C96,226 82,296 86,370 C88,416 98,452 110,474',
-    'M280,196 C304,226 318,296 314,370 C312,416 302,452 290,474',
-    'M162,452 C155,540 152,638 153,736',
-    'M238,452 C245,540 248,638 247,736',
-  ];
-
   return (
-    <div className="relative" dir={dir}>
+    <div className="relative mx-auto w-full max-w-[300px] sm:max-w-[420px]" dir={dir}>
       <style>{`
-        .hu-fig path, .hu-fig circle, .hu-fig rect { vector-effect: non-scaling-stroke; }
-        .hu-solid { fill: url(#hu-fill); stroke: #0F4C3A; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
-        .hu-limb { fill: none; stroke: rgba(15,76,58,0.06); stroke-width: 30; stroke-linecap: round; }
-        .hu-limb-outer { fill: none; stroke: #0F4C3A; stroke-width: 2; stroke-linecap: round; }
-        .hu-detail { fill: none; stroke: #0F4C3A; stroke-width: 2; stroke-linecap: round; stroke-opacity: 0.35; }
-        .hu-dot { transition: transform .2s ease; cursor: pointer; filter: drop-shadow(0 4px 10px rgba(212,175,55,0.45)); }
-        .hu-dot:hover { transform: scale(1.2); }
-        .hu-active { animation: hu-pulse 1.6s ease-in-out infinite; }
         @keyframes hu-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-        .hu-tooltip { position:absolute; transform: translate(-50%, -135%); white-space: nowrap; pointer-events: none; }
+        .hu-active { animation: hu-pulse 1.6s ease-in-out infinite; }
       `}</style>
-      <svg
-        viewBox="0 0 400 800"
-        className="w-full max-w-[300px] sm:max-w-[360px] mx-auto block select-none"
-        fill="none"
-        aria-label={t('universe.title')}
-      >
-        <defs>
-          <radialGradient id="hu-bg" cx="50%" cy="38%" r="68%">
-            <stop offset="0%" stopColor="rgba(15,76,58,0.07)" />
-            <stop offset="100%" stopColor="rgba(15,76,58,0)" />
-          </radialGradient>
-          <linearGradient id="hu-fill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="rgba(15,76,58,0.045)" />
-            <stop offset="55%" stopColor="rgba(15,76,58,0.075)" />
-            <stop offset="100%" stopColor="rgba(15,76,58,0.045)" />
-          </linearGradient>
-        </defs>
+      <img
+        src="/assets/body-map.png"
+        alt={t('universe.title')}
+        className="w-full h-auto select-none"
+        draggable={false}
+      />
 
-        <rect width="400" height="800" rx="44" fill="url(#hu-bg)" />
-        <rect
-          x="14"
-          y="14"
-          width="372"
-          height="772"
-          rx="30"
-          fill="none"
-          stroke="#0F4C3A"
-          strokeOpacity="0.10"
-          strokeWidth="1.5"
-          strokeDasharray="2 8"
-        />
-
-        <g className="hu-fig">
-          {limbs.map((d) => (
-            <path key={`${d}-body`} d={d} className="hu-limb" />
-          ))}
-          {limbs.map((d) => (
-            <path key={d} d={d} className="hu-limb-outer" />
-          ))}
-
-          <path
-            d="M150,730 Q122,730 110,744 Q101,756 116,760 Q138,764 151,748 Z"
-            className="hu-solid"
-          />
-          <path
-            d="M250,730 Q278,730 290,744 Q299,756 284,760 Q262,764 249,748 Z"
-            className="hu-solid"
-          />
-
-          <rect x="100" y="480" width="22" height="34" rx="11" className="hu-solid" />
-          <rect x="278" y="480" width="22" height="34" rx="11" className="hu-solid" />
-
-          <path
-            d="M200,130 L187,133 C154,141 126,160 114,190 C105,214 108,248 112,282 C117,310 122,338 134,370 C146,401 152,424 152,446 C152,462 158,468 164,471 C179,480 221,480 236,471 C242,468 248,462 248,446 C248,424 254,401 266,370 C278,338 283,310 288,282 C292,248 295,214 286,190 C274,160 246,141 213,133 Z"
-            className="hu-solid"
-          />
-
-          <path
-            d="M191,124 h18 a8,8 0 0 1 8,8 v20 a8,8 0 0 1 -8,8 h-18 a8,8 0 0 1 -8,-8 v-20 a8,8 0 0 1 8,-8 Z"
-            className="hu-solid"
-          />
-          <circle cx="200" cy="86" r="38" className="hu-solid" />
-
-          <path d="M162,84 a7,7 0 0 0 0,10" className="hu-detail" />
-          <path d="M238,84 a7,7 0 0 1 0,10" className="hu-detail" />
-          <path d="M192,110 Q200,117 208,110" className="hu-detail" strokeOpacity="0.3" />
-
-          <path d="M160,198 Q200,182 240,198" className="hu-detail" />
-          <path d="M150,372 Q200,382 250,372" className="hu-detail" />
-        </g>
-
-        {ORGAN_IDS.map((id) => {
-          const { x, y, emoji } = ORGAN_CONFIG[id];
-          const active = id === activeOrgan;
-          return (
-            <g
-              key={id}
-              className={`hu-dot ${active ? 'hu-active' : ''}`}
-              role="button"
-              aria-pressed={active}
-              aria-label={t(organNameKey(id))}
+      {ORGAN_IDS.map((id) => {
+        const cfg = ORGAN_CONFIG[id];
+        const active = id === activeOrgan;
+        return (
+          <div
+            key={id}
+            className="absolute -translate-x-1/2 -translate-y-1/2"
+            style={{ top: `${cfg.top}%`, left: `${cfg.left}%` }}
+          >
+            <button
+              type="button"
               onClick={() => onSelect(id)}
               onMouseEnter={() => setHovered(id)}
               onMouseLeave={() => setHovered(null)}
-              style={{ cursor: 'pointer' }}
+              aria-pressed={active}
+              aria-label={`${t(organNameKey(id))} · ${t(organConditionKey(id))}`}
+              className={`relative flex h-[18px] w-[18px] items-center justify-center rounded-full border-2 border-white bg-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.45)] transition-transform duration-200 hover:scale-110 active:scale-95 sm:h-6 sm:w-6 ${
+                active ? 'hu-active' : ''
+              }`}
             >
-              <circle cx={x} cy={y} r="14" fill="#D4AF37" stroke="#FFFFFF" strokeWidth="2" />
-              <text
-                x={x}
-                y={y + 1}
-                textAnchor="middle"
-                dominantBaseline="central"
-                fontSize="15"
-              >
-                {emoji}
-              </text>
-            </g>
-          );
-        })}
-      </svg>
+              <span className="select-none text-[10px]">{cfg.emoji}</span>
+            </button>
 
-      {hovered && (
-        <div
-          className="hu-tooltip z-20"
-          style={{
-            left: `${(ORGAN_CONFIG[hovered].x / 400) * 100}%`,
-            top: `${(ORGAN_CONFIG[hovered].y / 800) * 100}%`,
-          }}
-        >
-          <span className="block rounded-full bg-[#0F4C3A] text-[#FDFBF7] border border-[#D4AF37]/40 text-xs font-bold px-3 py-1.5 shadow-[0_6px_18px_rgba(15,76,58,0.28)]">
-            {t(organNameKey(hovered))}
-          </span>
-        </div>
-      )}
+            {hovered === id && (
+              <span className="absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 whitespace-nowrap rounded-full border border-[#D4AF37]/40 bg-[#0F4C3A] px-3 py-1.5 text-xs font-bold text-[#FDFBF7] shadow-[0_6px_18px_rgba(15,76,58,0.28)]">
+                {t(organNameKey(id))}
+              </span>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 };
