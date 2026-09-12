@@ -40,26 +40,41 @@ html[lang='ar'] textarea {
 }
 
 @layer components {
+  /* ===== HealthCalc tone tokens ===== */
+  :root {
+    --hc-emerald: #0F4C3A;
+    --hc-gold: #D4AF37;
+    --hc-gold-dark: #C9A032;
+    --hc-cream: #FDFBF7;
+    --hc-beige: #F4F1EB;
+    --hc-muted: #6B7A75;
+    --hc-body: #4A5A55;
+  }
+
+  .text-heading { color: var(--hc-emerald); }
+  .text-body { color: var(--hc-body); }
+  .text-secondary { color: var(--hc-body) !important; }
+
   .btn-primary {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #D4AF37 !important; color: #0F4C3A !important; font-weight: 800; padding: 14px 32px; border: none; border-radius: 999px; font-size: 15px; line-height: 1; cursor: pointer; box-shadow: 0 4px 12px rgba(212,175,55,.25); transition: all .2s ease;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--hc-gold) !important; color: var(--hc-emerald) !important; font-weight: 800 !important; padding: 14px 32px; border: none !important; border-radius: 999px !important; font-size: 15px; line-height: 1; cursor: pointer; box-shadow: 0 4px 12px rgba(212,175,55,.25); transition: all .2s ease;
   }
   .btn-primary:hover {
-    background: #C9A032 !important; box-shadow: 0 10px 26px rgba(212,175,55,.42); transform: translateY(-2px);
+    background: var(--hc-gold-dark) !important; box-shadow: 0 10px 26px rgba(212,175,55,.42); transform: translateY(-2px);
   }
   .btn-secondary {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: transparent !important; color: #0F4C3A !important; font-weight: 600; padding: 14px 32px; border: 1.5px solid #0F4C3A !important; border-radius: 999px; font-size: 15px; line-height: 1; cursor: pointer; transition: all .2s ease;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: transparent !important; color: var(--hc-emerald) !important; font-weight: 600; padding: 14px 32px; border: 1.5px solid var(--hc-emerald) !important; border-radius: 999px !important; font-size: 15px; line-height: 1; cursor: pointer; transition: all .2s ease;
   }
   .btn-secondary:hover {
     background: rgba(15,76,58,.05) !important;
   }
   .btn-outline {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: transparent !important; color: #0F4C3A !important; font-weight: 600; padding: 14px 32px; border: 1.5px solid #0F4C3A !important; border-radius: 999px; font-size: 15px; line-height: 1; cursor: pointer; transition: all .2s ease;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: transparent !important; color: var(--hc-emerald) !important; font-weight: 600; padding: 14px 32px; border: 1.5px solid var(--hc-emerald) !important; border-radius: 999px !important; font-size: 15px; line-height: 1; cursor: pointer; transition: all .2s ease;
   }
   .btn-outline:hover {
     background: rgba(15,76,58,.05) !important;
   }
   .btn-ghost {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: transparent !important; color: #0F4C3A !important; font-weight: 700; padding: 12px 24px; border-radius: 999px; font-size: 15px; line-height: 1; cursor: pointer; transition: all .2s ease;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: transparent !important; color: var(--hc-emerald) !important; font-weight: 700; padding: 12px 24px; border-radius: 999px !important; font-size: 15px; line-height: 1; cursor: pointer; transition: all .2s ease;
   }
   .btn-ghost:hover {
     background: rgba(15,76,58,.08) !important;

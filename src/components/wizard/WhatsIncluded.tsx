@@ -88,7 +88,7 @@ const WhatsIncluded: React.FC<WhatsIncludedProps> = ({ exerciseCount, mealCount,
         <h2 className="mt-3 text-3xl md:text-[36px] font-extrabold tracking-tight text-[#0F4C3A]">
           {t(tk('wizard.blueprint.included.title'))}
         </h2>
-        <p className="mt-2 text-sm leading-relaxed text-[#6B7A75]">{t(tk('wizard.blueprint.included.subtitle'))}</p>
+        <p className="mt-2 text-sm leading-relaxed text-[#4A5A55]">{t(tk('wizard.blueprint.included.subtitle'))}</p>
       </div>
 
       <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -98,7 +98,7 @@ const WhatsIncluded: React.FC<WhatsIncludedProps> = ({ exerciseCount, mealCount,
               {card.emoji}
             </span>
             <h3 className="mt-4 text-[17px] font-extrabold text-[#0F4C3A]">{card.title}</h3>
-            <p className="mt-2 flex-1 text-[13px] leading-relaxed text-[#6B7A75]">{card.desc}</p>
+            <p className="mt-2 flex-1 text-[13px] leading-relaxed text-[#4A5A55]">{card.desc}</p>
             <div className="mt-4 flex items-center justify-between">
               <span className="rounded-full bg-[#0F4C3A] px-3 py-1 text-[11px] font-bold text-[#FDFBF7]">{card.chip}</span>
               <button
@@ -134,25 +134,25 @@ const WhatsIncluded: React.FC<WhatsIncludedProps> = ({ exerciseCount, mealCount,
             <div className="mt-5 space-y-2.5">
               {preview === 'exercise' &&
                 (exercises.length === 0 ? (
-                  <p className="text-sm text-[#6B7A75]">{t(tk('wizard.blueprint.journey.empty'))}</p>
+                  <p className="text-sm text-[#4A5A55]">{t(tk('wizard.blueprint.journey.empty'))}</p>
                 ) : (
                   exercises.map((item) => (
                     <div key={item.name} className="flex items-center justify-between gap-3 rounded-2xl border border-[#EFEBE4] bg-white p-3.5">
                       <b className="text-sm text-slate-900">{item.name}</b>
-                      <span className="shrink-0 text-xs font-semibold text-[#6B7A75]">{item.meta}</span>
+                      <span className="shrink-0 text-xs font-semibold text-[#4A5A55]">{item.meta}</span>
                     </div>
                   ))
                 ))}
 
               {preview === 'food' &&
                 (foods.length === 0 ? (
-                  <p className="text-sm text-[#6B7A75]">{t(tk('wizard.blueprint.journey.empty'))}</p>
+                  <p className="text-sm text-[#4A5A55]">{t(tk('wizard.blueprint.journey.empty'))}</p>
                 ) : (
                   foods.map((item) => (
                     <div key={item.name} className="flex items-center justify-between gap-3 rounded-2xl border border-[#EFEBE4] bg-white p-3.5">
                       <div>
                         <b className="block text-sm text-slate-900">{item.name}</b>
-                        <small className="text-xs text-[#6B7A75]">{t(tk(slotKey(item.slot)))} · {item.kcal} kcal</small>
+                        <small className="text-xs text-[#4A5A55]">{t(tk(slotKey(item.slot)))} · {item.kcal} kcal</small>
                       </div>
                       <span className="shrink-0 rounded-full bg-[#D4AF37] px-2.5 py-1 text-[11px] font-bold text-[#0F4C3A]">
                         {item.kcal} kcal
@@ -169,7 +169,7 @@ const WhatsIncluded: React.FC<WhatsIncludedProps> = ({ exerciseCount, mealCount,
                         <span className="font-bold text-[#0F4C3A]">
                           {row.emoji} {row.label}
                         </span>
-                        <span className="text-xs font-bold text-[#6B7A75]">
+                        <span className="text-xs font-bold text-[#4A5A55]">
                           {Math.min(row.value, row.max)} / {row.max}
                         </span>
                       </div>
@@ -181,7 +181,7 @@ const WhatsIncluded: React.FC<WhatsIncludedProps> = ({ exerciseCount, mealCount,
                       </div>
                     </div>
                   ))}
-                  <p className="pt-2 text-xs leading-relaxed text-[#6B7A75]">
+                  <p className="pt-2 text-xs leading-relaxed text-[#4A5A55]">
                     {t(tk('wizard.blueprint.included.card3.desc'))}
                   </p>
                 </div>

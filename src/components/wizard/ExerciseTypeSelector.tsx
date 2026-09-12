@@ -13,7 +13,7 @@ export const ExerciseTypeSelector: React.FC<Props> = ({ onSelectType, selectedTy
   return (
     <div className="rounded-[20px] bg-white border border-[#EFEBE4] shadow-[0_2px_10px_rgba(15,76,58,0.05)] p-5">
       <h2 className="text-[18px] font-extrabold text-[#0F4C3A]">{t('wizard.exerciseType.title')}</h2>
-      <p className="mt-1 text-[13px] text-[#6B7A75]">{t('wizard.exerciseType.subtitle')}</p>
+      <p className="mt-1 text-[13px] text-[#4A5A55]">{t('wizard.exerciseType.subtitle')}</p>
 
       <div className="ex-type-rail mt-4" dir={dir}>
         {WIZARD_EXERCISE_TYPES.map((ty) => {
@@ -29,7 +29,7 @@ export const ExerciseTypeSelector: React.FC<Props> = ({ onSelectType, selectedTy
             >
               <span className="text-[28px] leading-none select-none">{ty.emoji}</span>
               <span className="text-[13px] font-bold text-[#0F4C3A] leading-tight mt-1">{t(`wizard.exerciseType.name.${ty.id}` as any)}</span>
-              <span className="text-[10px] text-[#6B7A75] font-medium">{t('wizard.exerciseType.count').replace('{n}', String(exercises.length))}</span>
+              <span className="text-[10px] text-[#4A5A55] font-medium">{t('wizard.exerciseType.count').replace('{n}', String(exercises.length))}</span>
             </button>
           );
         })}

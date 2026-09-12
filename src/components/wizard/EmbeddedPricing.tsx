@@ -70,7 +70,7 @@ const EmbeddedPricing: React.FC<EmbeddedPricingProps> = ({ onCta }) => {
         <h2 className="mt-3 text-3xl md:text-[36px] font-extrabold tracking-tight text-[#0F4C3A]">
           {t(tk('wizard.blueprint.pricing.title'))}
         </h2>
-        <p className="mt-2 text-sm leading-relaxed text-[#6B7A75]">{t(tk('wizard.blueprint.pricing.subtitle'))}</p>
+        <p className="mt-2 text-sm leading-relaxed text-[#4A5A55]">{t(tk('wizard.blueprint.pricing.subtitle'))}</p>
       </div>
 
       <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3 items-stretch">
@@ -95,11 +95,11 @@ const EmbeddedPricing: React.FC<EmbeddedPricingProps> = ({ onCta }) => {
 
             <div className="mt-5 flex items-end gap-1.5">
               <span className="text-4xl font-extrabold text-[#D4AF37]">{t(tk(plan.priceKey))}</span>
-              <span className={`mb-1 text-sm font-bold ${plan.featured ? 'text-[#A7C4B8]' : 'text-[#6B7A75]'}`}>
+              <span className={`mb-1 text-sm font-bold ${plan.featured ? 'text-[#A7C4B8]' : 'text-[#4A5A55]'}`}>
                 {t(tk(plan.periodKey))}
               </span>
             </div>
-            <span className={`mt-1 text-[11px] font-bold ${plan.featured ? 'text-[#FDFBF7]/60' : 'text-[#6B7A75]'}`}>
+            <span className={`mt-1 text-[11px] font-bold ${plan.featured ? 'text-[#FDFBF7]/60' : 'text-[#4A5A55]'}`}>
               {t(tk(plan.perMonthKey))}
             </span>
             <span className={`mt-2 inline-flex w-fit rounded-full bg-[#D4AF37]/15 px-3 py-1 text-[11px] font-extrabold text-[#D4AF37]`}>
@@ -120,11 +120,7 @@ const EmbeddedPricing: React.FC<EmbeddedPricingProps> = ({ onCta }) => {
             <button
               type="button"
               onClick={onCta}
-              className={`mt-8 w-full rounded-full px-6 py-3.5 text-sm font-extrabold transition ${
-                plan.featured
-                  ? 'bg-[#D4AF37] text-[#0F4C3A] hover:bg-[#c9a52e]'
-                  : 'bg-[#0F4C3A] text-[#FDFBF7] hover:bg-[#0b3a2c]'
-              }`}
+              className="mt-8 w-full rounded-full bg-[#D4AF37] px-6 py-3.5 text-sm font-extrabold text-[#0F4C3A] shadow-[0_12px_28px_-10px_rgba(212,175,55,0.55)] transition hover:bg-[#C9A032]"
             >
               {t(tk(plan.ctaKey))}
             </button>
@@ -132,7 +128,7 @@ const EmbeddedPricing: React.FC<EmbeddedPricingProps> = ({ onCta }) => {
         ))}
       </div>
 
-      <p className="mt-6 text-center text-xs font-bold text-[#6B7A75]">{t(tk('advanced.pricing.note'))}</p>
+      <p className="mt-6 text-center text-xs font-bold text-[#4A5A55]">{t(tk('advanced.pricing.note'))}</p>
     </section>
   );
 };

@@ -71,7 +71,7 @@ const SevenDayJourney: React.FC<SevenDayJourneyProps> = ({ foods, exercises }) =
         <h2 className="mt-3 text-3xl md:text-[36px] font-extrabold tracking-tight text-[#0F4C3A]">
           {t(tk('wizard.blueprint.journey.title'))}
         </h2>
-        <p className="mt-2 text-sm leading-relaxed text-[#6B7A75]">{t(tk('wizard.blueprint.journey.subtitle'))}</p>
+        <p className="mt-2 text-sm leading-relaxed text-[#4A5A55]">{t(tk('wizard.blueprint.journey.subtitle'))}</p>
       </div>
 
       <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
@@ -81,7 +81,7 @@ const SevenDayJourney: React.FC<SevenDayJourneyProps> = ({ foods, exercises }) =
             type="button"
             onClick={() => setActiveDay(day)}
             className={`rounded-full px-4 py-2 text-xs font-bold transition ${
-              activeDay === day ? 'bg-[#0F4C3A] text-[#FDFBF7] shadow' : 'bg-[#F4F1EB] text-[#6B7A75] hover:bg-[#EFEBE4]'
+              activeDay === day ? 'bg-[#0F4C3A] text-[#FDFBF7] shadow' : 'bg-[#F4F1EB] text-[#4A5A55] hover:bg-[#EFEBE4]'
             }`}
           >
             {t(tk('wizard.blueprint.journey.tab')).replace('{n}', String(day))}
@@ -91,7 +91,7 @@ const SevenDayJourney: React.FC<SevenDayJourneyProps> = ({ foods, exercises }) =
 
       <div className="mt-6 rounded-[24px] border border-[#EFEBE4] bg-white p-6">
         {isEmpty ? (
-          <p className="text-sm text-[#6B7A75]">{t(tk('wizard.blueprint.journey.empty'))}</p>
+          <p className="text-sm text-[#4A5A55]">{t(tk('wizard.blueprint.journey.empty'))}</p>
         ) : (
           <div className="grid gap-6 md:grid-cols-2">
             {dayPlan.meals.length > 0 && (
@@ -108,7 +108,7 @@ const SevenDayJourney: React.FC<SevenDayJourneyProps> = ({ foods, exercises }) =
                         </span>
                         <b className="text-sm text-slate-900">{meal.name}</b>
                       </div>
-                      <span className="shrink-0 text-xs font-bold text-[#6B7A75]">{meal.kcal} kcal</span>
+                      <span className="shrink-0 text-xs font-bold text-[#4A5A55]">{meal.kcal} kcal</span>
                     </div>
                   ))}
                 </div>
@@ -124,7 +124,7 @@ const SevenDayJourney: React.FC<SevenDayJourneyProps> = ({ foods, exercises }) =
                   {dayPlan.exercises.map((exercise) => (
                     <div key={exercise.name} className="flex items-center justify-between gap-3 rounded-2xl border border-[#EFEBE4] bg-[#FDFBF7] p-3">
                       <b className="text-sm text-slate-900">{exercise.name}</b>
-                      <span className="shrink-0 text-xs font-bold text-[#6B7A75]">{exercise.meta}</span>
+                      <span className="shrink-0 text-xs font-bold text-[#4A5A55]">{exercise.meta}</span>
                     </div>
                   ))}
                 </div>

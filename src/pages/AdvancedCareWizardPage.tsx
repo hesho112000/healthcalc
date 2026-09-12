@@ -2,10 +2,11 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import {
   HeartPulse,
-  ClipboardList,
-  Calculator,
+  FlaskConical,
+  PersonStanding,
   Microscope,
   Target,
+  UtensilsCrossed,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { EXERCISES_DATABASE } from '../data/exercises/index';
@@ -97,12 +98,22 @@ const MEAL_TABS: Array<{ key: FoodItem['mealType']; i18n: string }> = [
 
 const stepScene: Record<number, { icon: LucideIcon; color: string }> = {
   1: { icon: HeartPulse, color: GOLD },
-  2: { icon: ClipboardList, color: EMERALD },
-  3: { icon: Calculator, color: GOLD },
+  2: { icon: FlaskConical, color: EMERALD },
+  3: { icon: PersonStanding, color: GOLD },
   4: { icon: Microscope, color: EMERALD },
-  5: { icon: ClipboardList, color: GOLD },
+  5: { icon: UtensilsCrossed, color: GOLD },
   6: { icon: Target, color: EMERALD },
 };
+
+const railChip = (s: number): { value: string; sub?: string } | undefined => {
+  if (s === 2) return { value: '🧪' };
+  if (s === 3) return { value: '⚖️', sub: 'BMI' };
+  if (s === 4) return { value: '🩸' };
+  if (s === 5) return { value: '🍽️' };
+  return undefined;
+};
+const railChip2 = (s: number): { value: string; sub?: string } | undefined =>
+  s === 5 ? { value: '🏋️' } : undefined;
 
 const badgeStyle: Record<FoodScore, { bg: string; label: FoodScore }> = {
   safe: { bg: `bg-[#0F4C3A] text-[#FDFBF7]`, label: 'safe' },
@@ -505,7 +516,7 @@ ${conditionTags}
           <div>
             <span className="step-pill">{t(tk('wizard.eyebrow'))} · {step}/6</span>
             <h1 className="text-3xl md:text-5xl font-extrabold text-[#0F4C3A] mt-3">{stepTitle}</h1>
-            <p className="text-[#6B7A75] mt-2">{t(tk('wizard.subtitle'))}</p>
+            <p className="text-[#4A5A55] mt-2">{t(tk('wizard.subtitle'))}</p>
           </div>
           <div className="flex items-center gap-3">
             {step > 1 && (
@@ -552,8 +563,8 @@ ${conditionTags}
 
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 rounded-[24px] border border-[#EFEBE4] bg-white px-6 py-5">
               <span className="text-sm font-extrabold text-[#0F4C3A]">{t(tk('wizard.blueprint.social.rating'))}</span>
-              <span className="text-sm font-bold text-[#6B7A75]">{t(tk('wizard.blueprint.social.users'))}</span>
-              <span className="text-sm font-bold text-[#6B7A75]">{t(tk('wizard.blueprint.social.secure'))}</span>
+              <span className="text-sm font-bold text-[#4A5A55]">{t(tk('wizard.blueprint.social.users'))}</span>
+              <span className="text-sm font-bold text-[#4A5A55]">{t(tk('wizard.blueprint.social.secure'))}</span>
             </div>
 
             <EmbeddedPricing onCta={handleSaveAccount} />
@@ -575,14 +586,42 @@ ${conditionTags}
           </div>
         ) : (
           <div className="grid lg:grid-cols-[.8fr_1.2fr] gap-8 items-start">
-            <div className="hidden lg:block">
-              <IconScene icon={stepScene[step].icon} color={stepScene[step].color} large />
+            <div className="hidden lg:block space-y-5 sticky top-24">
+              <IconScene
+                icon={stepScene[step].icon}
+                color={stepScene[step].color}
+                large
+                chip={step >= 2 ? railChip(step) : undefined}
+                chip2={railChip2(step)}
+              />
+
+              {step >= 2 && step <= 5 && (
+                <>
+                  <div className="rounded-[24px] bg-[#0F4C3A] text-[#FDFBF7] p-5 shadow-[0_18px_44px_-18px_rgba(15,76,58,0.5)]">
+                    <span className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">
+                      ✨ {t(tk('wizard.rail.hdr'))}
+                    </span>
+                    <p className="mt-3 text-[13px] leading-relaxed text-[#FDFBF7]/90">
+                      {t(tk(`wizard.rail.step${step}.fact`))}
+                    </p>
+                  </div>
+
+                  <div className="rounded-[24px] border border-[#D4AF37]/50 bg-[#D4AF37]/10 p-5">
+                    <span className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[2px] text-[#6b4f0c]">
+                      💡 {t(tk('wizard.rail.tipHdr'))}
+                    </span>
+                    <p className="mt-2 text-[13px] leading-relaxed text-[#4A5A55]">
+                      {t(tk(`wizard.rail.step${step}.tip`))}
+                    </p>
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="bg-white border border-[#EFEBE4] rounded-[28px] p-6 md:p-10 shadow-[0_10px_40px_-20px_rgba(15,76,58,0.15)] min-h-[430px]" key={step}>
             {step === 1 && (
               <>
-                <p className="text-[#6B7A75] mb-6">{t(tk('wizard.chooseMultiple'))}</p>
+                <p className="text-[#4A5A55] mb-6">{t(tk('wizard.chooseMultiple'))}</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {CONDITION_IDS.map((id) => {
                     const active = selected.includes(id);
@@ -610,7 +649,7 @@ ${conditionTags}
                 {selected.length > 0 && (
                   <div className="mt-5 space-y-2">
                     {selected.map((id) => (
-                      <div key={id} className="rounded-2xl bg-[#F4F1EB]/60 border border-[#EFEBE4] p-4 text-sm text-[#6B7A75] flex gap-3">
+                      <div key={id} className="rounded-2xl bg-[#F4F1EB]/60 border border-[#EFEBE4] p-4 text-sm text-[#4A5A55] flex gap-3">
                         <span className="text-xl shrink-0">{CONDITION_DATA[id].icon}</span>
                         <div>
                           <b className="text-[#0F4C3A]">{condName(id)}</b>
@@ -634,7 +673,7 @@ ${conditionTags}
 
             {step === 2 && (
               <div className="space-y-4">
-                <p className="text-[#6B7A75] mb-6">{t(tk('wizard.labsIntro'))}</p>
+                <p className="text-[#4A5A55] mb-6">{t(tk('wizard.labsIntro'))}</p>
                 <div className="grid md:grid-cols-2 gap-4">
                   {([['true', t(tk('wizard.labsYes')), '📋'], ['false', t(tk('wizard.labsNo')), '🌱']] as const).map(([value, label, icon]) => {
                     const active = hasLabs === (value === 'true');
@@ -648,13 +687,13 @@ ${conditionTags}
                       >
                         <span className="text-2xl">{icon}</span>
                         <strong className="block mt-2 text-slate-900">{label}</strong>
-                        <small className="block mt-1 text-[#6B7A75]">{value === 'true' ? t(tk('wizard.labsYesSub')) : t(tk('wizard.labsNoSub'))}</small>
+                        <small className="block mt-1 text-[#4A5A55]">{value === 'true' ? t(tk('wizard.labsYesSub')) : t(tk('wizard.labsNoSub'))}</small>
                       </button>
                     );
                   })}
                 </div>
                 {hasLabs === true && (
-                  <p className="text-xs text-[#6B7A75] bg-[#F4F1EB]/60 rounded-xl p-3">{t(tk('wizard.labsNote'))}</p>
+                  <p className="text-xs text-[#4A5A55] bg-[#F4F1EB]/60 rounded-xl p-3">{t(tk('wizard.labsNote'))}</p>
                 )}
                 <button
                   type="button"
@@ -693,8 +732,8 @@ ${conditionTags}
                   <div className="text-sm font-semibold text-slate-900">
                     {t(tk('wizard.gender'))}
                     <div className="flex gap-2 mt-2">
-                      <button className={`flex-1 rounded-xl border px-4 py-3 text-sm font-bold transition ${profile.gender === 'male' ? 'border-[#D4AF37] bg-[#D4AF37]/10 text-[#0F4C3A]' : 'border-[#EFEBE4] text-[#6B7A75]'}`} onClick={() => setProfile({ ...profile, gender: 'male' })}>{t(tk('wizard.male'))}</button>
-                      <button className={`flex-1 rounded-xl border px-4 py-3 text-sm font-bold transition ${profile.gender === 'female' ? 'border-[#D4AF37] bg-[#D4AF37]/10 text-[#0F4C3A]' : 'border-[#EFEBE4] text-[#6B7A75]'}`} onClick={() => setProfile({ ...profile, gender: 'female' })}>{t(tk('wizard.female'))}</button>
+                      <button className={`flex-1 rounded-xl border px-4 py-3 text-sm font-bold transition ${profile.gender === 'male' ? 'border-[#D4AF37] bg-[#D4AF37]/10 text-[#0F4C3A]' : 'border-[#EFEBE4] text-[#4A5A55]'}`} onClick={() => setProfile({ ...profile, gender: 'male' })}>{t(tk('wizard.male'))}</button>
+                      <button className={`flex-1 rounded-xl border px-4 py-3 text-sm font-bold transition ${profile.gender === 'female' ? 'border-[#D4AF37] bg-[#D4AF37]/10 text-[#0F4C3A]' : 'border-[#EFEBE4] text-[#4A5A55]'}`} onClick={() => setProfile({ ...profile, gender: 'female' })}>{t(tk('wizard.female'))}</button>
                     </div>
                   </div>
                 </div>
@@ -717,7 +756,7 @@ ${conditionTags}
                       <b className="flex items-center gap-1.5 text-[#0F4C3A]">{CONDITION_DATA[id].icon} {condName(id)}</b>
                       {id !== 'ibs' && <p className="mt-1 leading-relaxed">{t(tk(`advanced.lab.interp.${id}`))}</p>}
                       {id === 'ibs' && <p className="mt-1 leading-relaxed">{t(tk('wizard.labExclusions'))}</p>}
-                      <p className="mt-1 text-[#6B7A75]">{t(tk(`wizard.condition.${id}.focus`))}</p>
+                      <p className="mt-1 text-[#4A5A55]">{t(tk(`wizard.condition.${id}.focus`))}</p>
                     </div>
                   ))}
                 </div>
@@ -725,7 +764,7 @@ ${conditionTags}
                 <div className="grid sm:grid-cols-2 gap-4 mt-5">
                   {activeFields.map((key) => (
                     <label key={key} className="block text-sm font-semibold text-slate-900">
-                      {t(tk(`wizard.lab.${key}`))} <span className="text-[#6B7A75] font-normal">({LAB_FIELD_UNITS[key]})</span>
+                      {t(tk(`wizard.lab.${key}`))} <span className="text-[#4A5A55] font-normal">({LAB_FIELD_UNITS[key]})</span>
                       <input
                         required
                         type="number"
@@ -734,12 +773,12 @@ ${conditionTags}
                         placeholder={t(tk(`advanced.lab.field.${key}.hint`))}
                         className="w-full mt-2 rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4AF37] bg-[#F4F1EB]/40 text-slate-900"
                       />
-                      <small className="text-[#6B7A75] font-normal">{t(tk(`advanced.lab.field.${key}.hint`))}</small>
+                      <small className="text-[#4A5A55] font-normal">{t(tk(`advanced.lab.field.${key}.hint`))}</small>
                     </label>
                   ))}
                 </div>
 
-                <p className="text-xs text-[#6B7A75] bg-[#F4F1EB]/60 rounded-xl p-3 mt-4">{t(tk('wizard.labNote'))}</p>
+                <p className="text-xs text-[#4A5A55] bg-[#F4F1EB]/60 rounded-xl p-3 mt-4">{t(tk('wizard.labNote'))}</p>
 
                 <div className={`mt-5 p-4 rounded-2xl text-sm font-bold ${labReady ? 'bg-emerald-50 text-emerald-800' : 'bg-[#D4AF37]/15 text-[#0F4C3A]'}`}>
                   {labReady ? '✓ ' + t(tk('wizard.step6.planHeader')) : t(tk('wizard.step6.empty'))}
@@ -761,7 +800,7 @@ ${conditionTags}
                         <span className="text-2xl">{data.icon}</span>
                         <div>
                           <b className="text-[#0F4C3A] text-lg block">{condName(id)}</b>
-                          <p className="text-xs text-[#6B7A75]">{t(tk(`wizard.condition.${id}.focus`))}</p>
+                          <p className="text-xs text-[#4A5A55]">{t(tk(`wizard.condition.${id}.focus`))}</p>
                         </div>
                         <span className="ml-auto text-xs font-semibold bg-[#0F4C3A] text-[#FDFBF7] rounded-full px-3 py-1">{t(tk(`wizard.condition.${id}.nutritionRules`))}</span>
                       </div>
@@ -769,11 +808,11 @@ ${conditionTags}
                       <div className="grid sm:grid-cols-2 gap-4 mt-4">
                         <div className="rounded-2xl bg-white border border-[#EFEBE4] p-4">
                           <h4 className="text-sm font-bold text-[#0F4C3A] mb-2">{t(tk('wizard.step5.exerciseHeader'))}</h4>
-                          <p className="text-sm text-[#6B7A75] leading-relaxed">{t(tk(`wizard.condition.${id}.exercisePref`))}</p>
+                          <p className="text-sm text-[#4A5A55] leading-relaxed">{t(tk(`wizard.condition.${id}.exercisePref`))}</p>
                         </div>
                         <div className="rounded-2xl bg-white border border-[#EFEBE4] p-4">
                           <h4 className="text-sm font-bold text-[#0F4C3A] mb-2">{t(tk('wizard.step5.rulesLabel'))}</h4>
-                          <p className="text-sm text-[#6B7A75] leading-relaxed">{t(tk(`wizard.condition.${id}.nutritionRules`))}</p>
+                          <p className="text-sm text-[#4A5A55] leading-relaxed">{t(tk(`wizard.condition.${id}.nutritionRules`))}</p>
                         </div>
                         <div className="rounded-2xl bg-[#B91C1C]/5 border border-[#B91C1C]/20 p-4">
                           <h4 className="text-sm font-bold text-[#B91C1C] mb-2">{t(tk('wizard.step5.avoidHeader'))}</h4>
@@ -785,7 +824,7 @@ ${conditionTags}
                         </div>
                       </div>
 
-                      <p className="text-xs font-semibold text-[#6B7A75] uppercase tracking-wide mt-4 mb-2">{t(tk('wizard.step5.exampleMeals'))} ({cuisine})</p>
+                      <p className="text-xs font-semibold text-[#4A5A55] uppercase tracking-wide mt-4 mb-2">{t(tk('wizard.step5.exampleMeals'))} ({cuisine})</p>
                       <div className="flex flex-wrap gap-2">
                         {(data.sampleMeals[cuisine] ?? data.sampleMeals.Egyptian ?? []).map((meal) => (
                           <span key={meal} className="inline-block rounded-full border border-[#D4AF37]/50 bg-[#D4AF37]/10 text-[#0F4C3A] text-xs px-3 py-1.5">{meal}</span>
@@ -805,7 +844,7 @@ ${conditionTags}
                       ] as const).map(([value, title, desc]) => (
                         <button key={value} onClick={() => setExerciseMode(value)} className={`rounded-2xl border bg-white p-4 text-left w-full transition ${exerciseMode === value ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]' : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'}`}>
                           <strong className="block text-slate-900 text-sm">{title}</strong>
-                          <small className="block mt-1 text-[#6B7A75]">{desc}</small>
+                          <small className="block mt-1 text-[#4A5A55]">{desc}</small>
                         </button>
                       ))}
                     </div>
@@ -819,7 +858,7 @@ ${conditionTags}
                       ] as const).map(([value, title, desc]) => (
                         <button key={value} onClick={() => setNutritionMode(value)} className={`rounded-2xl border bg-white p-4 text-left w-full transition ${nutritionMode === value ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]' : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'}`}>
                           <strong className="block text-slate-900 text-sm">{title}</strong>
-                          <small className="block mt-1 text-[#6B7A75]">{desc}</small>
+                          <small className="block mt-1 text-[#4A5A55]">{desc}</small>
                         </button>
                       ))}
                     </div>

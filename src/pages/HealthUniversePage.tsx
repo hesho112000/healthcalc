@@ -93,7 +93,7 @@ const HealthUniversePage: React.FC = () => {
               <BodyMap activeOrgan={activeOrgan} onSelect={setActiveOrgan} />
             </div>
             {!activeOrgan && (
-              <p className="mt-6 text-center text-sm font-bold text-[#6B7A75] bg-[#F4F1EB] rounded-2xl px-5 py-3">
+              <p className="mt-6 text-center text-sm font-bold text-[#4A5A55] bg-[#F4F1EB] rounded-2xl px-5 py-3">
                 {t('universe.hint')}
               </p>
             )}
@@ -116,7 +116,7 @@ const HealthUniversePage: React.FC = () => {
                 <h3 className="mt-5 text-lg font-extrabold text-[#0F4C3A]">
                   {t('universe.title')}
                 </h3>
-                <p className="mt-2 text-sm text-[#6B7A75] leading-relaxed">
+                <p className="mt-2 text-sm text-[#4A5A55] leading-relaxed">
                   {t('universe.hint')}
                 </p>
               </div>
@@ -136,7 +136,7 @@ const HealthUniversePage: React.FC = () => {
                 <h2 className="text-xl font-extrabold text-[#0F4C3A] leading-tight">
                   {t('universe.dash.title')}
                 </h2>
-                <p className="mt-0.5 text-sm text-[#6B7A75]">{t('universe.dash.subtitle')}</p>
+                <p className="mt-0.5 text-sm text-[#4A5A55]">{t('universe.dash.subtitle')}</p>
               </div>
             </div>
 
@@ -159,7 +159,7 @@ const HealthUniversePage: React.FC = () => {
                         if (activeOrgan === id) setActiveOrgan(null);
                       }}
                       aria-label={t('universe.tools.back')}
-                      className="text-[#6B7A75] hover:text-[#B91C1C] transition-colors"
+                      className="text-[#4A5A55] hover:text-[#B91C1C] transition-colors"
                     >
                       <X size={13} strokeWidth={2.5} />
                     </button>
@@ -182,7 +182,7 @@ const HealthUniversePage: React.FC = () => {
                   <div className="text-3xl font-extrabold text-[#0F4C3A] tabular-nums">
                     {stat.value}
                   </div>
-                  <div className="mt-1 text-xs font-bold text-[#6B7A75]">{stat.label}</div>
+                  <div className="mt-1 text-xs font-bold text-[#4A5A55]">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -213,7 +213,7 @@ const HealthUniversePage: React.FC = () => {
       {activeOrgan && (
         <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#EFEBE4] bg-[#FDFBF7]/95 backdrop-blur">
           <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
-            <div className="hidden sm:flex sm:items-center gap-2 text-xs font-bold text-[#6B7A75]">
+            <div className="hidden sm:flex sm:items-center gap-2 text-xs font-bold text-[#4A5A55]">
               <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
               {t('universe.dash.title')}
             </div>

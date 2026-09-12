@@ -39,19 +39,19 @@ export const ORGAN_IDS: readonly OrganId[] = [
 
 export const ORGAN_CONFIG: Record<OrganId, OrganConfig> = {
   brain: { id: 'brain', emoji: '🧠', x: 200, y: 80, conditionIds: [] },
-  thyroid: { id: 'thyroid', emoji: '🦋', x: 200, y: 136, conditionIds: ['thyroid'] },
+  thyroid: { id: 'thyroid', emoji: '🦋', x: 200, y: 150, conditionIds: ['thyroid'] },
   heart: {
     id: 'heart',
     emoji: '💗',
     x: 168,
-    y: 252,
+    y: 250,
     conditionIds: ['hypertension', 'cholesterol'],
   },
-  pancreas: { id: 'pancreas', emoji: '🩸', x: 208, y: 306, conditionIds: ['diabetes'] },
-  liver: { id: 'liver', emoji: '🧡', x: 230, y: 342, conditionIds: ['liver'] },
-  kidneys: { id: 'kidneys', emoji: '🫘', x: 172, y: 396, conditionIds: ['kidney'] },
-  gut: { id: 'gut', emoji: '🥦', x: 200, y: 452, conditionIds: ['ibs'] },
-  joints: { id: 'joints', emoji: '🦶', x: 168, y: 596, conditionIds: ['gout'] },
+  pancreas: { id: 'pancreas', emoji: '🩸', x: 200, y: 360, conditionIds: ['diabetes'] },
+  liver: { id: 'liver', emoji: '🧡', x: 232, y: 320, conditionIds: ['liver'] },
+  kidneys: { id: 'kidneys', emoji: '🫘', x: 180, y: 400, conditionIds: ['kidney'] },
+  gut: { id: 'gut', emoji: '🥦', x: 200, y: 470, conditionIds: ['ibs'] },
+  joints: { id: 'joints', emoji: '🦶', x: 180, y: 650, conditionIds: ['gout'] },
 };
 
 export const organNameKey = (id: OrganId): TKey => `universe.organ.${id}.name` as TKey;
@@ -90,12 +90,17 @@ const BodyMap: React.FC<BodyMapProps> = ({ activeOrgan, onSelect }) => {
   return (
     <div className="relative" dir={dir}>
       <style>{`
-        .hu-dot { transform-box: fill-box; transform-origin: center; transition: transform .2s ease; }
+        .hu-dot { transform-box: fill-box; transform-origin: center; transition: transform .2s ease; cursor: pointer; }
         .hu-dot:hover { transform: scale(1.2); }
         .hu-active { transform: scale(1.15); }
         .hu-glow { transform-box: fill-box; transform-origin: center; }
-        .hu-active .hu-glow { animation: hu-glow-pulse 1.6s ease-in-out infinite; }
-        @keyframes hu-glow-pulse { 0%,100% { transform: scale(1); opacity:.25; } 50% { transform: scale(1.6); opacity:.06; } }
+        .hu-active .hu-glow { animation: hu-glow-pulse 1.5s ease-in-out infinite; }
+        @keyframes hu-glow-pulse { 0%,100% { transform: scale(1); opacity:.35; } 50% { transform: scale(1.75); opacity:.08; } }
+        .hu-dot-ring { animation: hu-ring-dim 3s ease-in-out infinite; }
+        .hu-active .hu-dot-ring { animation: hu-ring-pulse 1.5s ease-in-out infinite; }
+        @keyframes hu-ring-dim { 0%,100% { opacity:.55; } 50% { opacity:.9; } }
+        @keyframes hu-ring-pulse { 0%,100% { opacity:1; } 50% { opacity:.55; } }
+        .hu-bodyline { stroke: #0F4C3A; stroke-linecap: round; stroke-linejoin: round; fill: none; }
         .hu-tooltip { position:absolute; transform: translate(-50%, -135%); white-space: nowrap; pointer-events: none; }
       `}</style>
       <svg
@@ -105,17 +110,52 @@ const BodyMap: React.FC<BodyMapProps> = ({ activeOrgan, onSelect }) => {
         aria-label={t('universe.title')}
       >
         <rect width="400" height="800" rx="40" fill="#F4F1EB" />
-        <g>
-          <circle cx="200" cy="78" r="44" fill="#0F4C3A" />
-          <rect x="188" y="118" width="24" height="24" rx="9" fill="#0F4C3A" />
-          <path d="M158 162 Q151 260 158 428 L242 428 Q249 260 242 162 Q200 148 158 162 Z" fill="#0F4C3A" />
-          <path d="M160 176 Q124 206 114 332" stroke="#0F4C3A" strokeWidth="22" strokeLinecap="round" />
-          <path d="M240 176 Q276 206 286 332" stroke="#0F4C3A" strokeWidth="22" strokeLinecap="round" />
-          <path d="M168 424 Q166 522 170 644" stroke="#0F4C3A" strokeWidth="24" strokeLinecap="round" />
-          <path d="M232 424 Q234 522 230 644" stroke="#0F4C3A" strokeWidth="24" strokeLinecap="round" />
-          <path d="M170 636 Q156 656 142 652" stroke="#0F4C3A" strokeWidth="20" strokeLinecap="round" />
-          <path d="M230 636 Q244 656 258 652" stroke="#0F4C3A" strokeWidth="20" strokeLinecap="round" />
+        <rect x="16" y="16" width="368" height="768" rx="30" stroke="#0F4C3A" strokeOpacity="0.10" strokeWidth="1.5" strokeDasharray="3 7" fill="none" />
+
+        <circle cx="200" cy="40" r="64" fill="#D4AF37" opacity="0.10" />
+        <circle cx="200" cy="740" r="70" fill="#0F4C3A" opacity="0.06" />
+
+        <line x1="200" y1="176" x2="200" y2="720" stroke="#0F4C3A" strokeOpacity="0.10" strokeWidth="1.5" strokeDasharray="2 8" />
+
+        <g className="hu-bodyline" strokeWidth="3.5">
+          <circle cx="200" cy="80" r="46" fill="#FDFBF7" />
+          <path d="M156,72 a14,14 0 0 0 0,20" fill="none" />
+          <path d="M244,72 a14,14 0 0 1 0,20" fill="none" />
+
+          <g strokeWidth="2" strokeOpacity="0.55">
+            <path d="M182,78 q3,5 7,0" fill="none" />
+            <path d="M211,78 q3,5 7,0" fill="none" />
+            <path d="M200,84 v8" fill="none" />
+            <path d="M193,99 q7,6 14,0" fill="none" />
+          </g>
+
+          <path
+            d="M186,122 h28 a7,7 0 0 1 7,7 v22 a7,7 0 0 1 -7,7 h-28 a7,7 0 0 1 -7,-7 v-22 a7,7 0 0 1 7,-7 Z"
+            fill="#FDFBF7"
+          />
+
+          <path
+            d="M188,158 C156,166 146,196 148,224 C149,254 161,292 168,330 C177,368 160,410 163,448 C166,482 196,492 200,492 C204,492 234,482 237,448 C240,410 223,368 232,330 C239,292 251,254 252,224 C254,196 244,166 212,158 C208,156 192,156 188,158 Z"
+            fill="#FDFBF7"
+          />
+
+          <path d="M172,212 Q200,198 228,212" stroke="#D4AF37" strokeOpacity="0.75" strokeWidth="2" fill="none" />
+          <path d="M200,344 v10" strokeOpacity="0.5" strokeWidth="2" fill="none" />
+
+          <path d="M152,188 C140,252 137,390 146,512" />
+          <path d="M248,188 C260,252 263,390 254,512" />
+          <path d="M143,506 q-6,24 1,44" />
+          <path d="M257,506 q6,24 -1,44" />
+
+          <path d="M164,444 C155,548 158,652 161,748" />
+          <path d="M236,444 C245,548 242,652 239,748" />
+          <path d="M160,626 q0,8 0,16" strokeOpacity="0.4" strokeWidth="2" />
+          <path d="M240,626 q0,8 0,16" strokeOpacity="0.4" strokeWidth="2" />
+
+          <rect x="118" y="746" width="52" height="16" rx="8" transform="rotate(8 144 754)" fill="#FDFBF7" />
+          <rect x="230" y="746" width="52" height="16" rx="8" transform="rotate(-8 256 754)" fill="#FDFBF7" />
         </g>
+
         {ORGAN_IDS.map((id) => {
           const { x, y, emoji } = ORGAN_CONFIG[id];
           const active = id === activeOrgan;
@@ -131,6 +171,7 @@ const BodyMap: React.FC<BodyMapProps> = ({ activeOrgan, onSelect }) => {
               onMouseLeave={() => setHovered(null)}
               style={{ cursor: 'pointer' }}
             >
+              <circle className="hu-dot-ring" cx={x} cy={y} r="9" fill="none" stroke="#D4AF37" strokeWidth="2" />
               <circle className="hu-glow" cx={x} cy={y} r="20" fill="#D4AF37" opacity="0.22" />
               <circle cx={x} cy={y} r="14" fill="#D4AF37" stroke="#FDFBF7" strokeWidth="2" />
               <text x={x} y={y + 1} textAnchor="middle" dominantBaseline="central" fontSize="15">

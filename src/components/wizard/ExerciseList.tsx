@@ -45,7 +45,7 @@ export const ExerciseList: React.FC<Props> = ({ selectedType, selectedExerciseId
           </span>
         )}
       </div>
-      <p className="mt-1 text-[12px] text-[#6B7A75]">{t('wizard.exerciseList.subtitle')}</p>
+      <p className="mt-1 text-[12px] text-[#4A5A55]">{t('wizard.exerciseList.subtitle')}</p>
 
       <div className="mt-4 space-y-2">
         {visible.map((ex) => {
@@ -64,7 +64,7 @@ export const ExerciseList: React.FC<Props> = ({ selectedType, selectedExerciseId
 
               <div className="flex-1 min-w-0">
                 <div className="text-[13.5px] font-bold text-[#0F4C3A] leading-tight truncate">{ex.name}</div>
-                <div className="text-[11px] text-[#6B7A75] leading-snug mt-0.5 whitespace-nowrap overflow-hidden text-ellipsis">
+                <div className="text-[11px] text-[#4A5A55] leading-snug mt-0.5 whitespace-nowrap overflow-hidden text-ellipsis">
                   {t('wizard.exerciseList.duration').replace('{n}', String(ex.minutes))} ·{' '}
                   {t('wizard.exerciseList.calories').replace('{n}', String(ex.kcal))}
                 </div>

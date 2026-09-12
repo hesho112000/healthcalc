@@ -20,7 +20,7 @@ const WhyChooseUs: React.FC = () => {
         <h2 className="mt-3 text-3xl md:text-[36px] font-extrabold tracking-tight text-[#0F4C3A]">
           {t(tk('wizard.blueprint.why.title'))}
         </h2>
-        <p className="mt-2 text-sm leading-relaxed text-[#6B7A75]">{t(tk('wizard.blueprint.why.subtitle'))}</p>
+        <p className="mt-2 text-sm leading-relaxed text-[#4A5A55]">{t(tk('wizard.blueprint.why.subtitle'))}</p>
       </div>
 
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -30,7 +30,7 @@ const WhyChooseUs: React.FC = () => {
               {card.emoji}
             </span>
             <h3 className="mt-4 text-[17px] font-extrabold text-[#0F4C3A]">{t(tk(card.titleKey))}</h3>
-            <p className="mt-2 text-[13px] leading-relaxed text-[#6B7A75]">{t(tk(card.descKey))}</p>
+            <p className="mt-2 text-[13px] leading-relaxed text-[#4A5A55]">{t(tk(card.descKey))}</p>
           </div>
         ))}
       </div>

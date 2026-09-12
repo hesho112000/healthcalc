@@ -39,7 +39,7 @@ const EmbeddedFAQ: React.FC = () => {
                 <ChevronDown size={18} className={`shrink-0 text-[#B8860B] transition-transform ${open ? 'rotate-180' : ''}`} />
               </button>
               {open && (
-                <p className="px-5 pb-5 text-sm leading-relaxed text-[#6B7A75]">{t(tk(item.a))}</p>
+                <p className="px-5 pb-5 text-sm leading-relaxed text-[#4A5A55]">{t(tk(item.a))}</p>
               )}
             </div>
           );

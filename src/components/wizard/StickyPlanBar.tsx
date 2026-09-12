@@ -18,7 +18,7 @@ const StickyPlanBar: React.FC<StickyPlanBarProps> = ({ subtitle, onSave, onDownl
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-4 sm:flex-row sm:px-6">
         <div className="text-center sm:text-start">
           <p className="text-sm font-extrabold text-[#0F4C3A]">{t(tk('wizard.blueprint.bar.ready'))}</p>
-          <p className="mt-0.5 text-[11px] font-semibold text-[#6B7A75]">{subtitle}</p>
+          <p className="mt-0.5 text-[11px] font-semibold text-[#4A5A55]">{subtitle}</p>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <button

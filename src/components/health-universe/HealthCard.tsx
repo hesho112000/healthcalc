@@ -27,8 +27,8 @@ const scoreMeta: Record<OrganStatus, { bar: string; text: string; chip: string }
   },
   warning: {
     bar: '#D4AF37',
-    text: 'text-[#9c7c1e]',
-    chip: 'bg-[#D4AF37]/15 text-[#8a6d1c]',
+    text: 'text-[#7a5a10]',
+    chip: 'bg-[#D4AF37]/15 text-[#6a4f0e]',
   },
   critical: {
     bar: '#B91C1C',
@@ -95,7 +95,7 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
 
   const BadgeDot: React.FC<{ score: FoodScore }> = ({ score }) =>
     score === 'limit' ? (
-      <span className="shrink-0 rounded-full bg-[#D4AF37]/15 text-[#8a6d1c] text-[10px] font-extrabold px-2 py-0.5">
+      <span className="shrink-0 rounded-full bg-[#D4AF37]/15 text-[#6a4f0e] text-[10px] font-extrabold px-2 py-0.5">
         {t('wizard.badge.limit')}
       </span>
     ) : (
@@ -117,7 +117,7 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
             <h2 className="text-xl font-extrabold text-[#0F4C3A] leading-tight">
               {t(organNameKey(organ))}
             </h2>
-            <span className="inline-block mt-1.5 rounded-full bg-[#D4AF37]/15 text-[#8a6d1c] text-[11px] font-bold px-3 py-1">
+            <span className="inline-block mt-1.5 rounded-full bg-[#D4AF37]/15 text-[#6a4f0e] text-[11px] font-bold px-3 py-1">
               {t(organConditionKey(organ))}
             </span>
           </div>
@@ -136,8 +136,8 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
           onClick={onTogglePlan}
           className={`mt-5 w-full inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3.5 text-sm font-extrabold transition-all ${
             inPlan
-              ? 'bg-[#0F4C3A] text-[#FDFBF7] shadow-[0_10px_26px_rgba(15,76,58,0.25)]'
-              : 'bg-[#D4AF37] text-[#0F4C3A] hover:bg-[#c9a12f] shadow-[0_10px_26px_rgba(212,175,55,0.35)]'
+              ? 'bg-transparent border border-[#0F4C3A] text-[#0F4C3A]'
+              : 'bg-[#D4AF37] text-[#0F4C3A] hover:bg-[#C9A032] shadow-[0_10px_26px_rgba(212,175,55,0.35)]'
           }`}
         >
           {inPlan ? <Check size={18} strokeWidth={2.5} /> : <Plus size={18} strokeWidth={2.5} />}
@@ -146,7 +146,7 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
 
         {!tool && (
           <>
-            <p className="mt-5 text-sm text-[#6B7A75] leading-relaxed">
+            <p className="mt-5 text-sm text-[#4A5A55] leading-relaxed">
               {t(organDescKey(organ))}
             </p>
 
@@ -185,7 +185,7 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
                     <span className="mt-3 block text-sm font-extrabold text-[#0F4C3A]">
                       {t(toolMeta[tk].labelKey)}
                     </span>
-                    <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-bold text-[#6B7A75]">
+                    <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-bold text-[#4A5A55]">
                       <ArrowRight size={12} strokeWidth={2.5} className="rtl:rotate-180" />
                     </span>
                   </button>
@@ -200,13 +200,13 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
             <button
               type="button"
               onClick={() => setTool(null)}
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#6B7A75] hover:text-[#0F4C3A] transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#4A5A55] hover:text-[#0F4C3A] transition-colors"
             >
               <ArrowRight size={14} strokeWidth={2.5} className="rtl:rotate-180" />
               {t('universe.tools.back')}
             </button>
             <div className="mt-3 flex items-center gap-3">
-              <span className="w-10 h-10 rounded-xl bg-[#D4AF37]/15 text-[#8a6d1c] flex items-center justify-center">
+              <span className="w-10 h-10 rounded-xl bg-[#D4AF37]/15 text-[#6a4f0e] flex items-center justify-center">
                 {toolMeta[tool].icon}
               </span>
               <h3 className="text-base font-extrabold text-[#0F4C3A]">
@@ -216,21 +216,21 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
 
             <div className="mt-4">
               {conditionIds.length === 0 ? (
-                <p className="text-sm text-[#6B7A75] leading-relaxed rounded-2xl bg-[#F4F1EB] p-4">
+                <p className="text-sm text-[#4A5A55] leading-relaxed rounded-2xl bg-[#F4F1EB] p-4">
                   {t('universe.comingSoon')}
                 </p>
               ) : tool === 'lab' ? (
                 labConditionIds.length > 0 ? (
                   <LabInterpreter conditions={labConditionIds} />
                 ) : (
-                  <p className="text-sm text-[#6B7A75] leading-relaxed rounded-2xl bg-[#F4F1EB] p-4">
+                  <p className="text-sm text-[#4A5A55] leading-relaxed rounded-2xl bg-[#F4F1EB] p-4">
                     {t('universe.tools.labNone')}
                   </p>
                 )
               ) : tool === 'nutrition' ? (
                 <div className="space-y-2.5">
                   {foods.length === 0 && (
-                    <p className="text-sm text-[#6B7A75] leading-relaxed rounded-2xl bg-[#F4F1EB] p-4">
+                    <p className="text-sm text-[#4A5A55] leading-relaxed rounded-2xl bg-[#F4F1EB] p-4">
                       {t('universe.comingSoon')}
                     </p>
                   )}
@@ -243,7 +243,7 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
                         {foodName(food)}
                       </span>
                       <span className="flex items-center gap-2 shrink-0">
-                        <span className="text-[11px] text-[#6B7A75] font-bold">
+                        <span className="text-[11px] text-[#4A5A55] font-bold">
                           {food.calories} kcal
                         </span>
                         <BadgeDot score={score} />
@@ -254,7 +254,7 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
               ) : (
                 <div className="space-y-2.5">
                   {exercises.length === 0 && (
-                    <p className="text-sm text-[#6B7A75] leading-relaxed rounded-2xl bg-[#F4F1EB] p-4">
+                    <p className="text-sm text-[#4A5A55] leading-relaxed rounded-2xl bg-[#F4F1EB] p-4">
                       {t('universe.comingSoon')}
                     </p>
                   )}
@@ -267,7 +267,7 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
                         {exerciseName(exercise)}
                       </span>
                       <span className="flex items-center gap-2 shrink-0">
-                        <span className="text-[11px] text-[#6B7A75] font-bold">
+                        <span className="text-[11px] text-[#4A5A55] font-bold">
                           {exercise.duration}
                         </span>
                         <BadgeDot score={score} />
