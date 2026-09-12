@@ -1,8 +1,16 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { api, User, ensureBackend } from '../utils/api';
+import { ADMIN_SECRET_KEY, ADMIN_STORAGE_KEY } from './AdminContext';
 
 export const isAdmin = (): boolean => {
-  return localStorage.getItem('dev_mode') === 'ADMIN_2026';
+  try {
+    return (
+      localStorage.getItem('dev_mode') === 'ADMIN_2026' ||
+      localStorage.getItem(ADMIN_STORAGE_KEY) === ADMIN_SECRET_KEY
+    );
+  } catch {
+    return false;
+  }
 };
 
 export const activateAdmin = (): void => {

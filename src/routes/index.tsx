@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route, Navigate, Link, useParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import { activateAdmin, deactivateAdmin, isAdmin } from '../context/AuthContext';
+import { useAdmin } from '../context/AdminContext';
 import ProtectedRoute from '../components/ProtectedRoute';
 import LocalizedSeoPage from '../components/LocalizedSeoPage';
 import HomePage from '../pages/HomePage';
+import AdminLoginPage from '../pages/AdminLoginPage';
 import WeightLossPage from '../pages/WeightLossPage';
 import DiabetesPage from '../pages/DiabetesPage';
 import PremiumPage from '../pages/PremiumPage';
@@ -74,15 +75,14 @@ const StaticStepPage: React.FC<{ step: number }> = ({ step }) => (
 
 const AdminPage: React.FC = () => {
   const { t } = useLanguage();
-  const active = isAdmin();
+  const { isAdmin, enableAdmin, disableAdmin } = useAdmin();
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
 
-  const handleToggle = () => {
-    if (active) {
-      deactivateAdmin();
-    } else {
-      activateAdmin();
-    }
-    window.location.reload();
+  const handleEnable = () => {
+    const ok = enableAdmin(password);
+    setError(!ok);
+    if (ok) setPassword('');
   };
 
   return (
@@ -93,18 +93,47 @@ const AdminPage: React.FC = () => {
         </div>
         <h1 className="text-xl font-extrabold text-gray-900 mb-2">Admin Panel</h1>
         <p className="text-sm text-gray-500 mb-6">Developer mode bypass for premium features.</p>
-        <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold mb-6 ${active ? 'bg-sage-100 text-sage-700' : 'bg-gray-100 text-gray-500'}`}>
-          <span className={`w-2 h-2 rounded-full ${active ? 'bg-sage-500' : 'bg-gray-400'}`} />
-          {active ? 'Admin Mode: ON' : 'Admin Mode: OFF'}
+        <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold mb-6 ${isAdmin ? 'bg-sage-100 text-sage-700' : 'bg-gray-100 text-gray-500'}`}>
+          <span className={`w-2 h-2 rounded-full ${isAdmin ? 'bg-sage-500' : 'bg-gray-400'}`} />
+          {isAdmin ? 'Admin Mode: ON' : 'Admin Mode: OFF'}
         </div>
         <br />
-        <button
-          onClick={handleToggle}
-          className={`px-6 py-3 rounded-2xl text-sm font-bold transition-all ${active ? 'bg-red-500 text-white hover:bg-red-600' : 'bg-primary-600 text-white hover:bg-primary-700'}`}
-        >
-          {active ? 'Deactivate Admin' : 'Activate Admin'}
-        </button>
-        <p className="text-[10px] text-gray-400 mt-4">dev_mode = ADMIN_2026</p>
+        {isAdmin ? (
+          <button
+            onClick={() => {
+              disableAdmin();
+              setPassword('');
+              setError(false);
+            }}
+            className="px-6 py-3 rounded-2xl text-sm font-bold transition-all bg-red-500 text-white hover:bg-red-600"
+          >
+            Deactivate Admin
+          </button>
+        ) : (
+          <>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setError(false);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') handleEnable();
+              }}
+              placeholder="Admin password"
+              className="w-full max-w-[260px] px-4 py-3 rounded-2xl border border-gray-200 text-sm font-semibold text-gray-900 outline-none focus:border-[#D4AF37] focus:ring-2 focus:ring-[rgba(212,175,55,0.4)] mb-3"
+            />
+            <button
+              onClick={handleEnable}
+              className="px-6 py-3 rounded-2xl text-sm font-bold transition-all bg-primary-600 text-white hover:bg-primary-700"
+            >
+              Activate Admin
+            </button>
+          </>
+        )}
+        {error && <p className="text-xs font-bold text-red-500 mt-4">Incorrect password.</p>}
+        <p className="text-[10px] text-gray-400 mt-4">persisted via localStorage key: adminToken</p>
       </div>
     </div>
   );
@@ -132,6 +161,7 @@ export const AppRoutes: React.FC = () => (
     <Route path="/search" element={<SearchPage />} />
     <Route path="/login" element={<LoginPage />} />
     <Route path="/register" element={<RegisterPage />} />
+    <Route path="/admin-login" element={<AdminLoginPage />} />
     <Route
       path="/dashboard"
       element={

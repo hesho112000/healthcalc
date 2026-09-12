@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, Globe, Leaf, Menu, X } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
+import { useAdmin } from '../../context/AdminContext';
 import { translations } from '../../i18n/translations';
 import type { Language } from '../../types';
 
@@ -16,14 +17,18 @@ const languageOptions: { code: Language; flag: string; label: string }[] = [
 const Header: React.FC = () => {
   const location = useLocation();
   const { t, language, setLanguage, dir } = useLanguage();
+  const { isAdmin, disableAdmin } = useAdmin();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const [adminOpen, setAdminOpen] = useState(false);
   const desktopLangRef = useRef<HTMLDivElement>(null);
   const drawerLangRef = useRef<HTMLDivElement>(null);
+  const adminRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMobileOpen(false);
     setLangOpen(false);
+    setAdminOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -31,8 +36,10 @@ const Header: React.FC = () => {
       const target = e.target as Node;
       const insideDesktop = desktopLangRef.current?.contains(target);
       const insideDrawer = drawerLangRef.current?.contains(target);
-      if (!insideDesktop && !insideDrawer) {
+      const insideAdmin = adminRef.current?.contains(target);
+      if (!insideDesktop && !insideDrawer && !insideAdmin) {
         setLangOpen(false);
+        setAdminOpen(false);
       }
     };
     document.addEventListener('mousedown', onMouseDown);
@@ -58,12 +65,42 @@ const Header: React.FC = () => {
     <>
       <header className="app-header" dir={dir}>
         <div className="app-header-inner">
+          <div className="flex items-center gap-3">
           <Link to="/" className="app-header-logo">
             <span className="app-header-logo-icon">
               <Leaf size={20} />
             </span>
             <span>{t('brandName')}</span>
           </Link>
+
+          {isAdmin && (
+            <div className="relative" ref={adminRef}>
+              <button
+                type="button"
+                aria-haspopup="menu"
+                aria-expanded={adminOpen}
+                onClick={() => setAdminOpen((o) => !o)}
+                className="inline-flex items-center gap-1 rounded-full bg-[#D4AF37] text-[#0F4C3A] px-2.5 py-1 text-[10px] font-extrabold tracking-wide whitespace-nowrap hover:shadow-[0_4px_14px_rgba(212,175,55,0.45)] transition-shadow"
+              >
+                🔑 {t('admin.badge.label')}
+              </button>
+              {adminOpen && (
+                <div className="absolute top-full mt-2 end-0 z-50 min-w-[200px] rounded-2xl bg-white border border-[#EFEBE4] shadow-[0_12px_32px_rgba(15,76,58,0.12)] p-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      disableAdmin();
+                      setAdminOpen(false);
+                    }}
+                    className="w-full flex items-center gap-2 rounded-xl px-3 py-2.5 text-start text-sm font-bold text-[#B91C1C] hover:bg-[#FDFBF7] transition-colors"
+                  >
+                    🔓 {t('admin.badge.disable')}
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
 
           <nav className="app-header-nav">
             {links.map((link) => (
