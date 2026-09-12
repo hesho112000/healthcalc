@@ -2,6 +2,9 @@ import React, { useMemo, useState } from 'react';
 import { ArrowRight, Check, Dumbbell, Microscope, Plus, UtensilsCrossed, X } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { translations } from '../../i18n/translations';
+import { useSubscription } from '../../context/SubscriptionContext';
+import type { FeatureId } from '../../context/SubscriptionContext';
+import PaywallModal from './PaywallModal';
 import LabInterpreter, { isLabCondition } from '../lab/LabInterpreter';
 import { exercisePoolFor, foodPoolFor } from '../../data/conditions';
 import type { FoodScore } from '../../data/conditions';
@@ -58,7 +61,17 @@ interface HealthCardProps {
 
 const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, onClose }) => {
   const { t, dir, language } = useLanguage();
+  const { hasFeature, upgrade } = useSubscription();
   const [tool, setTool] = useState<ToolKey | null>(null);
+  const [paywallFeature, setPaywallFeature] = useState<FeatureId | null>(null);
+
+  const handleToolClick = (toolKey: ToolKey) => {
+    if (toolKey === 'lab' && !hasFeature('labSave')) {
+      setPaywallFeature('labSave');
+      return;
+    }
+    setTool(toolKey);
+};
 
   const config = ORGAN_CONFIG[organ];
   const conditionIds = config.conditionIds;
@@ -176,7 +189,7 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
                   <button
                     key={tk}
                     type="button"
-                    onClick={() => setTool(tk)}
+                    onClick={() => handleToolClick(tk)}
                     className="group rounded-2xl border border-[#EFEBE4] bg-white p-4 text-start hover:border-[#D4AF37]/60 hover:shadow-[0_12px_28px_rgba(15,76,58,0.08)] transition-all"
                   >
                     <span className="w-10 h-10 rounded-xl bg-[#F4F1EB] text-[#0F4C3A] flex items-center justify-center group-hover:bg-[#D4AF37]/15 transition-colors">
@@ -280,6 +293,15 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
           </div>
         )}
       </div>
+      <PaywallModal
+        open={!!paywallFeature}
+        feature={paywallFeature}
+        onClose={() => setPaywallFeature(null)}
+        onUpgrade={(tier) => {
+          upgrade(tier);
+          setPaywallFeature(null);
+        }}
+      />
     </div>
   );
 };

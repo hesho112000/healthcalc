@@ -6,6 +6,7 @@ import { translations } from '../i18n/translations';
 import BodyMap, {
   ORGAN_CONFIG,
   ORGAN_IDS,
+  organConditionKey,
   organNameKey,
   organStatus,
   organScore,
@@ -13,14 +14,22 @@ import BodyMap, {
 import HealthCard from '../components/health-universe/HealthCard';
 import HealthDashboard from '../components/health-universe/HealthDashboard';
 import PaywallModal from '../components/health-universe/PaywallModal';
-import CheckoutModal from '../components/CheckoutModal';
-import { TIER_PRICE, useSubscription } from '../context/SubscriptionContext';
-import type { FeatureId, Tier } from '../context/SubscriptionContext';
-import { mostRestrictiveCondition } from '../data/conditions';
+import { useSubscription } from '../context/SubscriptionContext';
+import type { FeatureId } from '../context/SubscriptionContext';
 import type { ConditionId } from '../data/conditions';
 import type { OrganId } from '../components/health-universe/BodyMap';
 
 type TKey = keyof typeof translations.en;
+
+const tt = (t: (key: TKey) => string, key: TKey, params?: Record<string, string>): string => {
+  let text = t(key);
+  if (params) {
+    Object.entries(params).forEach(([k, v]) => {
+      text = text.split(`{${k}}`).join(v);
+    });
+  }
+  return text;
+};
 
 const STORAGE_KEY = 'hc_health_universe';
 
@@ -29,8 +38,7 @@ const HealthUniversePage: React.FC = () => {
   const navigate = useNavigate();
   const { hasFeature, upgrade } = useSubscription();
   const [paywallFeature, setPaywallFeature] = useState<FeatureId | null>(null);
-  const [upgradeTier, setUpgradeTier] = useState<Tier>('pro');
-  const [showCheckout, setShowCheckout] = useState(false);
+  const [toast, setToast] = useState('');
   const [activeOrgan, setActiveOrgan] = useState<OrganId | null>(null);
   const [plan, setPlan] = useState<OrganId[]>(() => {
     try {
@@ -54,6 +62,24 @@ const HealthUniversePage: React.FC = () => {
   const togglePlan = (id: OrganId) =>
     setPlan((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
 
+  const showToast = (message: string) => {
+    setToast(message);
+    window.setTimeout(() => setToast(''), 2600);
+  };
+
+  const handleTogglePlan = (id: OrganId) => {
+    const adding = !plan.includes(id);
+    togglePlan(id);
+    if (adding) {
+      showToast(tt(t, 'universe.toast.added', { condition: t(organConditionKey(id)) }));
+    }
+  };
+
+  const handleRemoveFromPlan = (id: OrganId) => {
+    togglePlan(id);
+    if (activeOrgan === id) setActiveOrgan(null);
+  };
+
   const selection = useMemo(
     () => (activeOrgan && !plan.includes(activeOrgan) ? [...plan, activeOrgan] : plan),
     [plan, activeOrgan],
@@ -65,17 +91,16 @@ const HealthUniversePage: React.FC = () => {
     return [...set] as ConditionId[];
   }, [selection]);
 
-  const primary = useMemo(
-    () => mostRestrictiveCondition(unionConditions),
-    [unionConditions],
-  );
-
   const handleContinue = () => {
     if (!hasFeature('fullPlan')) {
       setPaywallFeature('fullPlan');
       return;
     }
-    navigate(primary ? `/advanced-care/wizard?condition=${primary}` : '/advanced-care/wizard');
+    if (unionConditions.length > 0) {
+      navigate(`/advanced-care/wizard?conditions=${unionConditions.join(',')}`);
+    } else {
+      navigate('/advanced-care/wizard');
+    }
   };
 
   return (
@@ -110,7 +135,7 @@ const HealthUniversePage: React.FC = () => {
                 key={activeOrgan}
                 organ={activeOrgan}
                 inPlan={plan.includes(activeOrgan)}
-                onTogglePlan={() => togglePlan(activeOrgan)}
+                onTogglePlan={() => handleTogglePlan(activeOrgan)}
                 onClose={() => setActiveOrgan(null)}
               />
             ) : (
@@ -138,9 +163,9 @@ const HealthUniversePage: React.FC = () => {
               </span>
               <div>
                 <h2 className="text-xl font-extrabold text-[#0F4C3A] leading-tight">
-                  {t('universe.dash.title')}
+                  {t('dashboard.title')}
                 </h2>
-                <p className="mt-0.5 text-sm text-[#6B7A75]">{t('universe.hd.subtitle')}</p>
+                <p className="mt-0.5 text-sm text-[#6B7A75]">{t('dashboard.subtitle')}</p>
               </div>
             </div>
 
@@ -160,8 +185,7 @@ const HealthUniversePage: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => {
-                          togglePlan(id);
-                          if (activeOrgan === id) setActiveOrgan(null);
+                          handleRemoveFromPlan(id);
                         }}
                         aria-label={t('universe.tools.back')}
                         className="text-[#4A5A55] hover:text-[#B91C1C] transition-colors"
@@ -187,37 +211,34 @@ const HealthUniversePage: React.FC = () => {
           <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
             <div className="hidden sm:flex sm:items-center gap-2 text-xs font-bold text-[#4A5A55]">
               <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
-              {t('universe.dash.title')}
+              {t('dashboard.title')}
             </div>
             <button
               type="button"
               onClick={handleContinue}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-2xl bg-[#D4AF37] px-7 py-3.5 text-sm font-extrabold text-[#0F4C3A] hover:bg-[#c9a12f] shadow-[0_10px_26px_rgba(212,175,55,0.35)] transition-all"
             >
-              {t('universe.cta.continue')}
+              {t('dashboard.cta.continue')}
               <ArrowRight size={18} strokeWidth={2.5} className="rtl:rotate-180" />
             </button>
           </div>
         </div>
       )}
 
-      <CheckoutModal
-        isOpen={showCheckout}
-        onClose={() => setShowCheckout(false)}
-        onSuccess={() => {
-          upgrade(upgradeTier);
-          setShowCheckout(false);
-        }}
-        price={TIER_PRICE[upgradeTier]}
-      />
+      {toast && (
+        <div className="fixed bottom-24 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+          <div className="rounded-full bg-[#0F4C3A] text-[#FDFBF7] text-sm font-bold px-6 py-3 shadow-lg">
+            {toast}
+          </div>
+        </div>
+      )}
       <PaywallModal
         open={!!paywallFeature}
         feature={paywallFeature}
         onClose={() => setPaywallFeature(null)}
         onUpgrade={(tier) => {
-          setUpgradeTier(tier);
+          upgrade(tier);
           setPaywallFeature(null);
-          setShowCheckout(true);
         }}
       />
     </div>

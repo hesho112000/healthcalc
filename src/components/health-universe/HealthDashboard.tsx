@@ -83,10 +83,10 @@ const HealthDashboard: React.FC<HealthDashboardProps> = ({ organs, onViewOrgan, 
 
   const overallStatus: TKey =
     overall >= 75
-      ? 'universe.hd.statusGood'
+      ? 'dashboard.status.healthy'
       : overall >= 50
-        ? 'universe.hd.statusAttention'
-        : 'universe.hd.statusCritical';
+        ? 'dashboard.status.warning'
+        : 'dashboard.status.critical';
 
   const overallChip =
     overall >= 75
@@ -160,7 +160,7 @@ const HealthDashboard: React.FC<HealthDashboardProps> = ({ organs, onViewOrgan, 
                     </span>
                     <span className="text-xs font-bold text-[#6B7A75] mb-0.5">/100</span>
                     <span className="ms-auto text-[10px] font-extrabold uppercase tracking-wide text-[#6B7A75]">
-                      {t('universe.hd.score')}
+                      {t('dashboard.organScore')}
                     </span>
                   </div>
 
@@ -200,7 +200,7 @@ const HealthDashboard: React.FC<HealthDashboardProps> = ({ organs, onViewOrgan, 
               <span className="w-10 h-10 rounded-full bg-[#D4AF37]/20 text-[#D4AF37] flex items-center justify-center">
                 <Sparkles size={18} strokeWidth={2.2} />
               </span>
-              <h3 className="mt-3 text-lg font-extrabold">{t('universe.hd.overall')}</h3>
+              <h3 className="mt-3 text-lg font-extrabold">{t('dashboard.overallScore')}</h3>
               <p className="mt-1 max-w-xs text-xs leading-relaxed text-white/75">
                 {t('universe.hd.overallSub')}
               </p>
@@ -242,12 +242,12 @@ const HealthDashboard: React.FC<HealthDashboardProps> = ({ organs, onViewOrgan, 
           </div>
 
           <div className="mt-8">
-            <h3 className="text-lg font-extrabold text-[#0F4C3A]">{t('universe.hd.todaysPlan')}</h3>
+            <h3 className="text-lg font-extrabold text-[#0F4C3A]">{t('dashboard.todayPlan.title')}</h3>
             <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div className="rounded-[24px] border border-[#EFEBE4] bg-white p-5">
                 <div className="flex items-center gap-2">
                   <Utensils size={16} strokeWidth={2.2} className="text-[#0F4C3A]" />
-                  <span className="text-sm font-extrabold text-[#0F4C3A]">{t('universe.hd.meals')}</span>
+                  <span className="text-sm font-extrabold text-[#0F4C3A]">{t('dashboard.todayPlan.meals')}</span>
                 </div>
                 <ul className="mt-2 divide-y divide-[#EFEBE4]">
                   {meals.length === 0 && (
@@ -292,7 +292,7 @@ const HealthDashboard: React.FC<HealthDashboardProps> = ({ organs, onViewOrgan, 
                 <div className="flex items-center gap-2">
                   <Dumbbell size={16} strokeWidth={2.2} className="text-[#0F4C3A]" />
                   <span className="text-sm font-extrabold text-[#0F4C3A]">
-                    {t('universe.hd.exercises')}
+                    {t('dashboard.todayPlan.exercises')}
                   </span>
                 </div>
                 <ul className="mt-2 divide-y divide-[#EFEBE4]">
@@ -350,7 +350,7 @@ const HealthDashboard: React.FC<HealthDashboardProps> = ({ organs, onViewOrgan, 
               onClick={onContinue}
               className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#D4AF37] px-8 py-4 text-base font-extrabold text-[#0F4C3A] hover:bg-[#c9a12f] shadow-[0_10px_26px_rgba(212,175,55,0.35)] transition-all"
             >
-              {t('universe.cta.continue')}
+              {t('dashboard.cta.continue')}
               <ArrowRight size={20} strokeWidth={2.5} className="rtl:rotate-180" />
             </button>
           </div>

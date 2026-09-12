@@ -9,6 +9,7 @@ export type Tier = 'free' | 'basic' | 'pro' | 'elite';
 export type FeatureId =
   | 'bodyMap'
   | 'dashboard'
+  | 'labSave'
   | 'lab'
   | 'meals'
   | 'exercises'
@@ -21,9 +22,9 @@ export const TIER_ORDER: Record<Tier, number> = { free: 0, basic: 1, pro: 2, eli
 
 export const TIER_PRICE: Record<Tier, string> = {
   free: '$0',
-  basic: '$4.99',
-  pro: '$9.99',
-  elite: '$19.99',
+  basic: '$9',
+  pro: '$19',
+  elite: '$49',
 };
 
 export const tierPlanKey = (tier: Tier): TKey => `plan.${tier}` as TKey;
@@ -36,6 +37,7 @@ export interface FeatureDef {
 export const FEATURES: Record<FeatureId, FeatureDef> = {
   bodyMap: { minTier: 'free', labelKey: 'feat.bodyMap' },
   dashboard: { minTier: 'free', labelKey: 'feat.dashboard' },
+  labSave: { minTier: 'basic', labelKey: 'feat.lab' },
   lab: { minTier: 'basic', labelKey: 'feat.lab' },
   meals: { minTier: 'basic', labelKey: 'feat.meals' },
   exercises: { minTier: 'basic', labelKey: 'feat.exercises' },

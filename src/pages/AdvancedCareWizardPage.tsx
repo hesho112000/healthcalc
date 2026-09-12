@@ -36,10 +36,9 @@ import WhyChooseUs from '../components/wizard/WhyChooseUs';
 import EmbeddedPricing from '../components/wizard/EmbeddedPricing';
 import EmbeddedFAQ from '../components/wizard/EmbeddedFAQ';
 import StickyPlanBar from '../components/wizard/StickyPlanBar';
-import CheckoutModal from '../components/CheckoutModal';
 import PaywallModal from '../components/health-universe/PaywallModal';
-import { TIER_PRICE, useSubscription } from '../context/SubscriptionContext';
-import type { FeatureId, Tier } from '../context/SubscriptionContext';
+import { useSubscription } from '../context/SubscriptionContext';
+import type { FeatureId } from '../context/SubscriptionContext';
 
 type LabValues = Record<string, string>;
 
@@ -132,12 +131,17 @@ const AdvancedCareWizardPage: React.FC = () => {
   const { isAdmin } = useAdmin();
   const { hasFeature, upgrade } = useSubscription();
   const [paywallFeature, setPaywallFeature] = useState<FeatureId | null>(null);
-  const [upgradeTier, setUpgradeTier] = useState<Tier>('pro');
-  const [showCheckout, setShowCheckout] = useState(false);
   const [searchParams] = useSearchParams();
-  const queryCondition = searchParams.get('condition');
-  const initialConditions: ConditionId[] =
-    queryCondition && isConditionId(queryCondition) ? [queryCondition] : [];
+  const fromUrlConditions: ConditionId[] = (() => {
+    const raw = searchParams.get('conditions') || searchParams.get('condition');
+    if (!raw) return [];
+    return raw
+      .split(',')
+      .map((id) => id.trim())
+      .filter(isConditionId);
+  })();
+  const preselectedFromUrl = fromUrlConditions.length > 0;
+  const initialConditions: ConditionId[] = fromUrlConditions;
   const [step, setStep] = useState(1);
   const [selected, setSelected] = useState<ConditionId[]>(initialConditions);
   const [hasLabs, setHasLabs] = useState<boolean | null>(null);
@@ -152,6 +156,7 @@ const AdvancedCareWizardPage: React.FC = () => {
   const [toast, setToast] = useState('');
 
   useEffect(() => {
+    if (preselectedFromUrl) return;
     const saved = localStorage.getItem('hc_advanced_care');
     if (!saved) return;
     try {
@@ -550,6 +555,12 @@ ${conditionTags}
           </div>
         </div>
 
+        {preselectedFromUrl && step === 1 && (
+          <div className="mb-8 rounded-2xl border border-[#D4AF37]/60 bg-[#D4AF37]/10 p-4 text-sm text-[#0F4C3A] font-semibold leading-relaxed">
+            {t(tk('wizard.preselect.banner'))}
+          </div>
+        )}
+
         {step === 6 ? (
           <div className="space-y-12">
             {resolution && resolution.conflictDetected && selected.length > 1 && (
@@ -903,23 +914,13 @@ ${conditionTags}
         </div>
       )}
 
-      <CheckoutModal
-        isOpen={showCheckout}
-        onClose={() => setShowCheckout(false)}
-        onSuccess={() => {
-          upgrade(upgradeTier);
-          setShowCheckout(false);
-        }}
-        price={TIER_PRICE[upgradeTier]}
-      />
       <PaywallModal
         open={!!paywallFeature}
         feature={paywallFeature}
         onClose={() => setPaywallFeature(null)}
         onUpgrade={(tier) => {
-          setUpgradeTier(tier);
+          upgrade(tier);
           setPaywallFeature(null);
-          setShowCheckout(true);
         }}
       />
     </div>
