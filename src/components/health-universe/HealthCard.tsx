@@ -17,6 +17,8 @@ import {
   organNameKey,
   organScore,
   organStatus,
+  organHasLabData,
+  writeStoredLabs,
 } from './BodyMap';
 import type { OrganId, OrganStatus, ToolKey } from './BodyMap';
 
@@ -41,14 +43,14 @@ const scoreMeta: Record<OrganStatus, { bar: string; text: string; chip: string }
 };
 
 const toolMeta: Record<ToolKey, { icon: React.ReactNode; labelKey: TKey }> = {
-  lab: { icon: <Microscope size={20} strokeWidth={2.2} />, labelKey: 'universe.tool.lab' },
+  lab: { icon: <Microscope size={20} strokeWidth={2.2} />, labelKey: 'universe.tools.lab' },
   nutrition: {
     icon: <UtensilsCrossed size={20} strokeWidth={2.2} />,
-    labelKey: 'universe.tool.nutrition',
+    labelKey: 'universe.tools.nutrition',
   },
   exercise: {
     icon: <Dumbbell size={20} strokeWidth={2.2} />,
-    labelKey: 'universe.tool.exercise',
+    labelKey: 'universe.tools.exercise',
   },
 };
 
@@ -64,6 +66,7 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
   const { hasFeature, upgrade } = useSubscription();
   const [tool, setTool] = useState<ToolKey | null>(null);
   const [paywallFeature, setPaywallFeature] = useState<FeatureId | null>(null);
+  const [labVersion, setLabVersion] = useState(0);
 
   const handleToolClick = (toolKey: ToolKey) => {
     if (toolKey === 'lab' && !hasFeature('labSave')) {
@@ -71,12 +74,18 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
       return;
     }
     setTool(toolKey);
-};
+  };
+
+  const handleLabSubmit = (condition: string, values: Record<string, number>) => {
+    writeStoredLabs(condition, values);
+    setLabVersion((prev) => prev + 1);
+  };
 
   const config = ORGAN_CONFIG[organ];
   const conditionIds = config.conditionIds;
   const score = organScore(organ);
-  const status = organStatus(score);
+  const hasLabData = organHasLabData(organ);
+  const status: OrganStatus = score === null ? 'healthy' : organStatus(score);
   const meta = scoreMeta[status];
 
   const labConditionIds = useMemo(
@@ -168,19 +177,43 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
                 <span className="text-sm font-extrabold text-[#0F4C3A]">
                   {t('universe.score.title')}
                 </span>
-                <span className={`rounded-full px-3 py-1 text-[11px] font-bold ${meta.chip}`}>
-                  {t(scoreLabelKey)}
+                <span
+                  className={`rounded-full px-3 py-1 text-[11px] font-bold ${
+                    score === null ? 'bg-[#F4F1EB] text-[#6B7A75]' : meta.chip
+                  }`}
+                >
+                  {score === null ? '—' : t(scoreLabelKey)}
                 </span>
               </div>
-              <div className="mt-3 flex items-center gap-3">
-                <div className="flex-1 h-2.5 rounded-full bg-[#F4F1EB] overflow-hidden">
-                  <div
-                    className="h-full rounded-full transition-all duration-700"
-                    style={{ width: `${score}%`, background: meta.bar }}
-                  />
+              {score === null ? (
+                <div className="mt-3 flex items-center gap-3">
+                  <span className="text-xl font-extrabold text-[#6B7A75] tabular-nums">—</span>
+                  <span className="text-xs font-semibold text-[#6B7A75]">
+                    {t('universe.score.basedOnGeneral')}
+                  </span>
                 </div>
-                <span className={`text-xl font-extrabold tabular-nums ${meta.text}`}>{score}</span>
-              </div>
+              ) : (
+                <>
+                  <div className="mt-3 flex items-center gap-3">
+                    <div className="flex-1 h-2.5 rounded-full bg-[#F4F1EB] overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all duration-700"
+                        style={{ width: `${score}%`, background: meta.bar }}
+                      />
+                    </div>
+                    <span className={`text-xl font-extrabold tabular-nums ${meta.text}`}>
+                      {score}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-[11px] font-bold text-[#6B7A75]">
+                    {t(
+                      hasLabData
+                        ? 'universe.score.basedOnLabs'
+                        : 'universe.score.basedOnGeneral',
+                    )}
+                  </p>
+                </>
+              )}
             </div>
 
             <div className="mt-6">
@@ -234,7 +267,7 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
                 </p>
               ) : tool === 'lab' ? (
                 labConditionIds.length > 0 ? (
-                  <LabInterpreter conditions={labConditionIds} />
+                  <LabInterpreter conditions={labConditionIds} onSubmit={handleLabSubmit} />
                 ) : (
                   <p className="text-sm text-[#4A5A55] leading-relaxed rounded-2xl bg-[#F4F1EB] p-4">
                     {t('universe.tools.labNone')}

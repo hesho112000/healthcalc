@@ -11,6 +11,7 @@ export const nutritionRules: NutritionRules = {
 export const kidneyCondition: ConditionData = {
   id: 'kidney',
   icon: '🫘',
+  defaultHealthScore: 68,
   focus: 'Controlled protein, sodium & potassium',
   source: 'NKF KDIGO CKD guidelines',
   suitableExercises: ['Walking', 'Light Cycling', 'Swimming', 'Stretching'],

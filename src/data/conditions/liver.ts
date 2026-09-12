@@ -10,6 +10,7 @@ export const nutritionRules: NutritionRules = {
 export const liverCondition: ConditionData = {
   id: 'liver',
   icon: '🧡',
+  defaultHealthScore: 70,
   focus: 'Low-fat, antioxidant-rich nutrition',
   source: 'AASLD & EASL liver health guidelines',
   suitableExercises: ['Walking', 'Swimming', 'Light Strength', 'Yoga'],

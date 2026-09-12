@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, LayoutDashboard, X } from 'lucide-react';
+import { ArrowRight, LayoutDashboard, Plus, X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
 import BodyMap, {
@@ -8,8 +8,6 @@ import BodyMap, {
   ORGAN_IDS,
   organConditionKey,
   organNameKey,
-  organStatus,
-  organScore,
 } from '../components/health-universe/BodyMap';
 import HealthCard from '../components/health-universe/HealthCard';
 import HealthDashboard from '../components/health-universe/HealthDashboard';
@@ -40,6 +38,7 @@ const HealthUniversePage: React.FC = () => {
   const [paywallFeature, setPaywallFeature] = useState<FeatureId | null>(null);
   const [toast, setToast] = useState('');
   const [activeOrgan, setActiveOrgan] = useState<OrganId | null>(null);
+  const mapRef = useRef<HTMLDivElement>(null);
   const [plan, setPlan] = useState<OrganId[]>(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -107,7 +106,7 @@ const HealthUniversePage: React.FC = () => {
     <div className="min-h-screen bg-[#FDFBF7] pb-32" dir={dir}>
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(60%_120%_at_50%_0%,rgba(212,175,55,0.10),rgba(255,255,255,0)_60%)]" />
-        <div className="relative max-w-7xl mx-auto px-6 py-14 lg:py-20 text-center">
+        <div className="relative max-w-7xl mx-auto px-6 py-12 text-center">
           <span className="hero-eyebrow" aria-hidden="true" />
           <h1 className="hero-title">
             <span className="hero-title-line1">{t('universe.title')}</span>
@@ -117,11 +116,24 @@ const HealthUniversePage: React.FC = () => {
       </section>
 
       <section className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] gap-10 lg:gap-14 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12">
           <div>
-            <div className="rounded-[32px] border border-[#EFEBE4] bg-white p-6 sm:p-10 shadow-[0_18px_50px_rgba(15,76,58,0.08)]">
+            <div
+              ref={mapRef}
+              className="max-w-md mx-auto rounded-[32px] border border-[#EFEBE4] bg-white/80 p-4 sm:p-6 shadow-[0_18px_50px_rgba(15,76,58,0.06)]"
+            >
               <BodyMap activeOrgan={activeOrgan} onSelect={setActiveOrgan} />
             </div>
+
+            {activeOrgan && (
+              <div className="hidden lg:flex justify-center mt-8 pointer-events-none">
+                <div className="flex items-center gap-2 text-[#D4AF37]">
+                  <span className="h-px w-24 border-t border-dashed border-[#D4AF37]/60" />
+                  <ArrowRight size={18} strokeWidth={2.5} className="rtl:rotate-180 text-[#D4AF37]" />
+                </div>
+              </div>
+            )}
+
             {!activeOrgan && (
               <p className="mt-6 text-center text-sm font-bold text-[#4A5A55] bg-[#F4F1EB] rounded-2xl px-5 py-3">
                 {t('universe.hint')}
@@ -131,15 +143,17 @@ const HealthUniversePage: React.FC = () => {
 
           <div>
             {activeOrgan ? (
-              <HealthCard
-                key={activeOrgan}
-                organ={activeOrgan}
-                inPlan={plan.includes(activeOrgan)}
-                onTogglePlan={() => handleTogglePlan(activeOrgan)}
-                onClose={() => setActiveOrgan(null)}
-              />
+              <div className="lg:sticky lg:top-8">
+                <HealthCard
+                  key={activeOrgan}
+                  organ={activeOrgan}
+                  inPlan={plan.includes(activeOrgan)}
+                  onTogglePlan={() => handleTogglePlan(activeOrgan)}
+                  onClose={() => setActiveOrgan(null)}
+                />
+              </div>
             ) : (
-              <div className="rounded-[32px] border border-dashed border-[#E3DCC9] bg-[#FDFBF7] p-10 text-center max-w-xl mx-auto">
+              <div className="rounded-[32px] border border-dashed border-[#E3DCC9] bg-[#FDFBF7] p-10 text-center max-w-xl mx-auto lg:mx-0">
                 <span className="mx-auto w-16 h-16 rounded-full bg-[#F4F1EB] flex items-center justify-center text-3xl">
                   🫀
                 </span>
@@ -171,9 +185,22 @@ const HealthUniversePage: React.FC = () => {
 
             {selection.length > 0 && (
               <div className="mt-7 rounded-2xl bg-[#FDFBF7] border border-[#EFEBE4] p-5">
-                <span className="text-sm font-extrabold text-[#0F4C3A]">
-                  {t('universe.dash.myPlan')}
-                </span>
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-sm font-extrabold text-[#0F4C3A]">
+                    {t('universe.selectedOrgans')}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setActiveOrgan(null);
+                      mapRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-[#D4AF37]/15 text-[#6a4f0e] px-3 py-1.5 text-xs font-extrabold hover:bg-[#D4AF37]/25 transition-colors"
+                  >
+                    <Plus size={13} strokeWidth={2.5} />
+                    {t('universe.addMore')}
+                  </button>
+                </div>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {selection.map((id) => (
                     <span

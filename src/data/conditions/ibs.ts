@@ -9,6 +9,7 @@ export const nutritionRules: NutritionRules = {
 export const ibsCondition: ConditionData = {
   id: 'ibs',
   icon: '🍃',
+  defaultHealthScore: 62,
   focus: 'Low-FODMAP gut-friendly nutrition',
   source: 'Monash FODMAP & NICE guidelines',
   suitableExercises: ['Walking', 'Yoga', 'Pilates', 'Tai Chi', 'Light Cycling'],

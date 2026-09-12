@@ -6,12 +6,20 @@ import { ORGAN_CONFIG, organConditionKey, organNameKey, organScore, organStatus 
 import type { OrganId } from './BodyMap';
 import { exercisePoolFor, foodPoolFor } from '../../data/conditions';
 import type { ConditionId } from '../../data/conditions';
-import type { FoodItem } from '../../utils/calculations';
+import type { Cuisine, FoodItem } from '../../utils/calculations';
 import type { Exercise } from '../../data/exercises/types';
 
 type TKey = keyof typeof translations.en;
 
 const MEAL_SLOTS: Array<NonNullable<FoodItem['mealType']>> = ['breakfast', 'lunch', 'dinner', 'snack'];
+
+const HEALTH_CUISINES: Array<{ id: Cuisine; en: string; ar: string }> = [
+  { id: 'egyptian', en: 'Egyptian', ar: 'مصري' },
+  { id: 'tunisian', en: 'Tunisian', ar: 'تونسي' },
+  { id: 'saudi', en: 'Saudi', ar: 'سعودي' },
+  { id: 'lebanese', en: 'Lebanese', ar: 'لبناني' },
+  { id: 'american', en: 'American', ar: 'أمريكي' },
+];
 
 const RING_RADIUS = 52;
 const RING_CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS;
@@ -36,6 +44,7 @@ const HealthDashboard: React.FC<HealthDashboardProps> = ({ organs, onViewOrgan, 
   const { t, dir, language } = useLanguage();
   const [checkedMeals, setCheckedMeals] = useState<Set<number>>(new Set());
   const [startedExercises, setStartedExercises] = useState<Set<number>>(new Set());
+  const [cuisine, setCuisine] = useState<Cuisine>('egyptian');
 
   const conditions = useMemo(() => {
     const set = new Set<string>();
@@ -57,43 +66,52 @@ const HealthDashboard: React.FC<HealthDashboardProps> = ({ organs, onViewOrgan, 
   const meals = useMemo(() => {
     const taken = new Set<string>();
     const out: FoodItem[] = [];
+    const pool = safeFoods.filter(
+      (item) =>
+        item.food.cuisine.includes(cuisine) || item.food.cuisine.includes('all'),
+    );
     for (const slot of MEAL_SLOTS) {
       const pick =
-        safeFoods.find((item) => (item.food.mealType ?? undefined) === slot && !taken.has(item.food.name_en)) ??
-        safeFoods.find((item) => !taken.has(item.food.name_en));
+        pool.find(
+          (item) => (item.food.mealType ?? undefined) === slot && !taken.has(item.food.name_en),
+        ) ?? pool.find((item) => !taken.has(item.food.name_en));
       if (!pick) break;
       taken.add(pick.food.name_en);
       out.push(pick.food);
     }
     return out;
-  }, [safeFoods]);
+  }, [safeFoods, cuisine]);
 
   const exercises = useMemo(
     () => safeExercises.map((item) => item.exercise).slice(0, 4),
     [safeExercises],
   );
 
-  const overall = useMemo(
-    () =>
-      organs.length > 0
-        ? Math.round(organs.reduce((sum, id) => sum + organScore(id), 0) / organs.length)
-        : 0,
-    [organs],
-  );
+  const overall = useMemo(() => {
+    const scores = organs
+      .map((id) => organScore(id))
+      .filter((s): s is number => s !== null);
+    if (scores.length === 0) return null;
+    return Math.round(scores.reduce((sum, s) => sum + s, 0) / scores.length);
+  }, [organs]);
 
   const overallStatus: TKey =
-    overall >= 75
+    overall === null
       ? 'dashboard.status.healthy'
-      : overall >= 50
-        ? 'dashboard.status.warning'
-        : 'dashboard.status.critical';
+      : overall >= 80
+        ? 'dashboard.status.healthy'
+        : overall >= 60
+          ? 'dashboard.status.warning'
+          : 'dashboard.status.critical';
 
   const overallChip =
-    overall >= 75
-      ? 'bg-[#0F4C3A]/15 text-white'
-      : overall >= 50
-        ? 'bg-[#D4AF37] text-[#0F4C3A]'
-        : 'bg-[#B91C1C] text-white';
+    overall === null
+      ? 'bg-[#F4F1EB] text-[#6B7A75]'
+      : overall >= 80
+        ? 'bg-[#0F4C3A]/15 text-white'
+        : overall >= 60
+          ? 'bg-[#D4AF37] text-[#0F4C3A]'
+          : 'bg-[#B91C1C] text-white';
 
   const exNameKey = (({ en: 'nameEn', fr: 'nameFr', es: 'nameEs', ar: 'nameAr', de: 'nameEn' }) as const)[
     language
@@ -118,7 +136,7 @@ const HealthDashboard: React.FC<HealthDashboardProps> = ({ organs, onViewOrgan, 
       return next;
     });
 
-  const ringOffset = RING_CIRCUMFERENCE * (1 - overall / 100);
+  const ringOffset = RING_CIRCUMFERENCE * (1 - (overall ?? 0) / 100);
 
   return (
     <div className="mt-7" dir={dir}>
@@ -134,7 +152,7 @@ const HealthDashboard: React.FC<HealthDashboardProps> = ({ organs, onViewOrgan, 
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
             {organs.map((id) => {
               const score = organScore(id);
-              const status = organStatus(score);
+              const status = score === null ? 'healthy' : organStatus(score);
               return (
                 <div
                   key={id}
@@ -155,8 +173,12 @@ const HealthDashboard: React.FC<HealthDashboardProps> = ({ organs, onViewOrgan, 
                   </div>
 
                   <div className="mt-4 flex items-end gap-1">
-                    <span className="text-3xl font-extrabold text-[#0F4C3A] tabular-nums leading-none">
-                      {score}
+                    <span
+                      className={`text-3xl font-extrabold tabular-nums leading-none ${
+                        score === null ? 'text-[#6B7A75]' : 'text-[#0F4C3A]'
+                      }`}
+                    >
+                      {score === null ? '—' : score}
                     </span>
                     <span className="text-xs font-bold text-[#6B7A75] mb-0.5">/100</span>
                     <span className="ms-auto text-[10px] font-extrabold uppercase tracking-wide text-[#6B7A75]">
@@ -166,20 +188,24 @@ const HealthDashboard: React.FC<HealthDashboardProps> = ({ organs, onViewOrgan, 
 
                   <div className="mt-3 h-2.5 rounded-full bg-[#F4F1EB] overflow-hidden">
                     <div
-                      className={`h-full rounded-full ${barColor(score)} transition-all duration-700`}
-                      style={{ width: `${score}%` }}
+                      className={`h-full rounded-full ${barColor(score ?? 0)} transition-all duration-700`}
+                      style={{ width: `${score ?? 0}%` }}
                     />
                   </div>
 
                   <div className="mt-4 flex items-center justify-between gap-2">
                     <span
-                      className={`rounded-full px-3 py-1 text-[11px] font-extrabold ${statusChip(status)}`}
+                      className={`rounded-full px-3 py-1 text-[11px] font-extrabold ${
+                        score === null ? 'bg-[#F4F1EB] text-[#6B7A75]' : statusChip(status)
+                      }`}
                     >
-                      {status === 'healthy'
-                        ? t('universe.score.healthy')
-                        : status === 'warning'
-                          ? t('universe.score.warning')
-                          : t('universe.score.critical')}
+                      {score === null
+                        ? '—'
+                        : status === 'healthy'
+                          ? t('universe.score.healthy')
+                          : status === 'warning'
+                            ? t('universe.score.warning')
+                            : t('universe.score.critical')}
                     </span>
                     <button
                       type="button"
@@ -231,18 +257,44 @@ const HealthDashboard: React.FC<HealthDashboardProps> = ({ organs, onViewOrgan, 
                 />
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className="text-4xl font-extrabold tabular-nums leading-none">{overall}</span>
-                <span className="mt-1 text-[11px] font-bold text-white/70">/100</span>
+                <span className="text-4xl font-extrabold tabular-nums leading-none">
+                  {overall === null ? '—' : overall}
+                </span>
+                <span className="mt-1 text-[11px] font-bold text-white/70">
+                  {overall === null ? '' : '/100'}
+                </span>
               </div>
             </div>
 
             <span className={`rounded-full px-4 py-2 text-xs font-extrabold ${overallChip}`}>
-              {t(overallStatus)}
+              {overall === null ? '—' : t(overallStatus)}
             </span>
           </div>
 
           <div className="mt-8">
             <h3 className="text-lg font-extrabold text-[#0F4C3A]">{t('dashboard.todayPlan.title')}</h3>
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              <span className="text-xs font-extrabold text-[#6B7A75]">
+                {t('universe.selectCuisine')}
+              </span>
+              {HEALTH_CUISINES.map((c) => {
+                const active = cuisine === c.id;
+                return (
+                  <button
+                    key={c.id}
+                    type="button"
+                    onClick={() => setCuisine(c.id)}
+                    className={`rounded-full px-3.5 py-1.5 text-xs font-extrabold transition-colors ${
+                      active
+                        ? 'bg-[#0F4C3A] text-[#FDFBF7] shadow-[0_6px_16px_rgba(15,76,58,0.25)]'
+                        : 'bg-[#F4F1EB] text-[#4A5A55] hover:bg-[#EFEBE4]'
+                    }`}
+                  >
+                    {language === 'ar' ? c.ar : c.en}
+                  </button>
+                );
+              })}
+            </div>
             <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div className="rounded-[24px] border border-[#EFEBE4] bg-white p-5">
                 <div className="flex items-center gap-2">

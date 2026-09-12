@@ -9,6 +9,7 @@ export const nutritionRules: NutritionRules = {
 export const thyroidCondition: ConditionData = {
   id: 'thyroid',
   icon: '🦋',
+  defaultHealthScore: 75,
   focus: 'Iodine-aware, nutrient-dense nutrition',
   source: 'ATA & ESE thyroid guidelines',
   suitableExercises: ['Walking', 'Yoga', 'Light Strength', 'Swimming'],

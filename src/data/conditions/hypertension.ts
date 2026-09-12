@@ -11,6 +11,7 @@ export const nutritionRules: NutritionRules = {
 export const hypertensionCondition: ConditionData = {
   id: 'hypertension',
   icon: '💗',
+  defaultHealthScore: 72,
   focus: 'Blood pressure control',
   source: 'DASH diet & WHO guidelines',
   suitableExercises: ['Walking', 'Yoga', 'Deep Breathing', 'Light Cycling', 'Swimming'],

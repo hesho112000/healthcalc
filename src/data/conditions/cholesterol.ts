@@ -10,6 +10,7 @@ export const nutritionRules: NutritionRules = {
 export const cholesterolCondition: ConditionData = {
   id: 'cholesterol',
   icon: '🫀',
+  defaultHealthScore: 78,
   focus: 'Heart-healthy fats & cholesterol',
   source: 'AHA & NCEP ATP III guidelines',
   suitableExercises: ['Brisk Walking', 'Cycling', 'Swimming', 'Resistance Training'],

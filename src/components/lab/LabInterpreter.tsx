@@ -101,9 +101,10 @@ const conditionTitleKeys: Record<LabCondition, TKey> = {
 
 interface LabCardProps {
   condition: LabCondition;
+  onSubmit?: (condition: LabCondition, values: Record<string, number>) => void;
 }
 
-const LabCard: React.FC<LabCardProps> = ({ condition }) => {
+const LabCard: React.FC<LabCardProps> = ({ condition, onSubmit }) => {
   const { t, dir } = useLanguage();
   const [values, setValues] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
@@ -155,7 +156,17 @@ const LabCard: React.FC<LabCardProps> = ({ condition }) => {
         <button
           type="button"
           disabled={!valid}
-          onClick={() => setSubmitted(true)}
+          onClick={() => {
+            setSubmitted(true);
+            if (onSubmit) {
+              const parsed: Record<string, number> = {};
+              fields.forEach((field) => {
+                const v = Number(values[field.key]);
+                if (Number.isFinite(v)) parsed[field.key] = v;
+              });
+              onSubmit(condition, parsed);
+            }
+          }}
           className="btn-primary disabled:opacity-40 disabled:pointer-events-none"
         >
           <Microscope size={18} strokeWidth={2.2} />
@@ -182,13 +193,18 @@ const LabCard: React.FC<LabCardProps> = ({ condition }) => {
 
 interface LabInterpreterProps {
   conditions: LabCondition[];
+  onSubmit?: (condition: LabCondition, values: Record<string, number>) => void;
 }
 
-const LabInterpreter: React.FC<LabInterpreterProps> = ({ conditions }) => {
+const LabInterpreter: React.FC<LabInterpreterProps> = ({ conditions, onSubmit }) => {
   return (
     <div className="space-y-6">
       {conditions.map((condition) => (
-        <LabCard key={condition} condition={condition} />
+        <LabCard
+          key={condition}
+          condition={condition}
+          onSubmit={onSubmit}
+        />
       ))}
     </div>
   );

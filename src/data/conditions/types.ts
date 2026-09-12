@@ -36,6 +36,7 @@ export interface NutritionRules extends NutritionRuleFlags {
 export interface ConditionData {
   id: ConditionId;
   icon: string;
+  defaultHealthScore: number;
   suitableExercises: string[];
   avoidExercises?: string[];
   exerciseAvoidKeywords: string[];

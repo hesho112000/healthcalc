@@ -10,6 +10,7 @@ export const nutritionRules: NutritionRules = {
 export const diabetesCondition: ConditionData = {
   id: 'diabetes',
   icon: '🩸',
+  defaultHealthScore: 65,
   focus: 'Blood sugar control',
   source: 'ADA & NHS guidelines',
   suitableExercises: ['Walking', 'Swimming', 'Light Strength', 'Cycling', 'Yoga'],

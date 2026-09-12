@@ -9,6 +9,7 @@ export const nutritionRules: NutritionRules = {
 export const goutCondition: ConditionData = {
   id: 'gout',
   icon: '🦶',
+  defaultHealthScore: 60,
   focus: 'Low purine, uric acid control',
   source: 'ACR 2020 gout guidelines',
   suitableExercises: ['Swimming', 'Cycling', 'Walking', 'Low-impact yoga'],
