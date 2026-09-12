@@ -24,6 +24,7 @@ import type { ConditionId, FoodScore, ScoredExercise, ScoredFood } from '../data
 import { IconScene } from '../components/IconScene';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
+import { useAdmin } from '../context/AdminContext';
 import { translations } from '../i18n/translations';
 import HealthBlueprintHero from '../components/wizard/HealthBlueprintHero';
 import WhatsIncluded from '../components/wizard/WhatsIncluded';
@@ -113,6 +114,7 @@ const AdvancedCareWizardPage: React.FC = () => {
   const { t, language, dir } = useLanguage();
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { isAdmin } = useAdmin();
   const [searchParams] = useSearchParams();
   const queryCondition = searchParams.get('condition');
   const initialConditions: ConditionId[] =
@@ -327,6 +329,10 @@ const AdvancedCareWizardPage: React.FC = () => {
     setPickedFoods((items) => (items.includes(name) ? items.filter((item) => item !== name) : [...items, name]));
 
   const handleSaveAccount = () => {
+    if (isAdmin) {
+      navigate('/advanced-care');
+      return;
+    }
     if (user) navigate('/premium');
     else navigate('/advanced-care/wizard/signup');
   };
