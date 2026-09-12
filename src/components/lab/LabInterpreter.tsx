@@ -99,11 +99,11 @@ const conditionTitleKeys: Record<LabCondition, TKey> = {
   thyroid: 'advanced.condition.thyroid.title',
 };
 
-interface LabInterpreterProps {
+interface LabCardProps {
   condition: LabCondition;
 }
 
-const LabInterpreter: React.FC<LabInterpreterProps> = ({ condition }) => {
+const LabCard: React.FC<LabCardProps> = ({ condition }) => {
   const { t, dir } = useLanguage();
   const [values, setValues] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
@@ -176,6 +176,20 @@ const LabInterpreter: React.FC<LabInterpreterProps> = ({ condition }) => {
           <p className="mt-3 text-[15px] leading-relaxed">{t(interpKeys[condition])}</p>
         </div>
       )}
+    </div>
+  );
+};
+
+interface LabInterpreterProps {
+  conditions: LabCondition[];
+}
+
+const LabInterpreter: React.FC<LabInterpreterProps> = ({ conditions }) => {
+  return (
+    <div className="space-y-6">
+      {conditions.map((condition) => (
+        <LabCard key={condition} condition={condition} />
+      ))}
     </div>
   );
 };

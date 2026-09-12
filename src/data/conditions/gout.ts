@@ -9,10 +9,10 @@ export const nutritionRules: NutritionRules = {
 export const goutCondition: ConditionData = {
   id: 'gout',
   icon: '🦶',
-  mealFocus: 'Low purine, uric acid control',
+  focus: 'Low purine, uric acid control',
   source: 'ACR 2020 gout guidelines',
-  exercisePreferences: ['Swimming', 'Cycling', 'Walking', 'Low-impact yoga'],
-  exerciseAvoid: ['High-impact running', 'Jumping', 'Heavy lifting'],
+  suitableExercises: ['Swimming', 'Cycling', 'Walking', 'Low-impact yoga'],
+  avoidExercises: ['High-impact running', 'Jumping', 'Heavy lifting'],
   exerciseAvoidKeywords: [
     'sprint',
     'burpee',
@@ -93,4 +93,5 @@ export const goutCondition: ConditionData = {
     Vegetarian: ['Rice & vegetable bowl', 'Carrot & potato soup'],
     Keto: ['Grilled chicken & olive oil salad'],
   },
+  dailyCalorieAdjustment: 0,
 };

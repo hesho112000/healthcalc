@@ -11,10 +11,10 @@ export const nutritionRules: NutritionRules = {
 export const kidneyCondition: ConditionData = {
   id: 'kidney',
   icon: '🫘',
-  mealFocus: 'Controlled protein, sodium & potassium',
+  focus: 'Controlled protein, sodium & potassium',
   source: 'NKF KDIGO CKD guidelines',
-  exercisePreferences: ['Walking', 'Light Cycling', 'Swimming', 'Stretching'],
-  exerciseAvoid: [
+  suitableExercises: ['Walking', 'Light Cycling', 'Swimming', 'Stretching'],
+  avoidExercises: [
     'High-intensity intervals',
     'Heavy lifting without medical clearance',
   ],
@@ -86,4 +86,5 @@ export const kidneyCondition: ConditionData = {
     Vegetarian: ['Rice & green bean bowl', 'Egg-white & apple snack'],
     Keto: ['Eggs & olive oil salad', 'Grilled chicken with cabbage'],
   },
+  dailyCalorieAdjustment: 0,
 };

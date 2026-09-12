@@ -120,7 +120,7 @@ const AdvancedLabPage: React.FC = () => {
                 ))}
               </div>
             </div>
-            <LabInterpreter condition={condition} />
+            <LabInterpreter conditions={[condition]} />
           </>
         )}
       </section>

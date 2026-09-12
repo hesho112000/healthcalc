@@ -9,10 +9,10 @@ export const nutritionRules: NutritionRules = {
 export const thyroidCondition: ConditionData = {
   id: 'thyroid',
   icon: '🦋',
-  mealFocus: 'Iodine-aware, nutrient-dense nutrition',
+  focus: 'Iodine-aware, nutrient-dense nutrition',
   source: 'ATA & ESE thyroid guidelines',
-  exercisePreferences: ['Walking', 'Yoga', 'Light Strength', 'Swimming'],
-  exerciseAvoid: ['High-intensity without clearance'],
+  suitableExercises: ['Walking', 'Yoga', 'Light Strength', 'Swimming'],
+  avoidExercises: ['High-intensity without clearance'],
   exerciseAvoidKeywords: [
     'sprint',
     'burpee',
@@ -64,4 +64,5 @@ export const thyroidCondition: ConditionData = {
     Vegetarian: ['Eggs & dairy plate', 'Seaweed salad, cooked veg'],
     Keto: ['Eggs with cheese', 'Grilled salmon & avocado'],
   },
+  dailyCalorieAdjustment: 0,
 };

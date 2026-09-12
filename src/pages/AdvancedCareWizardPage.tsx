@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import {
   HeartPulse,
   ClipboardList,
@@ -102,8 +102,12 @@ const badgeStyle: Record<FoodScore, { bg: string; label: FoodScore }> = {
 
 const AdvancedCareWizardPage: React.FC = () => {
   const { t, language, dir } = useLanguage();
+  const [searchParams] = useSearchParams();
+  const queryCondition = searchParams.get('condition');
+  const initialConditions: ConditionId[] =
+    queryCondition && isConditionId(queryCondition) ? [queryCondition] : [];
   const [step, setStep] = useState(1);
-  const [selected, setSelected] = useState<ConditionId[]>([]);
+  const [selected, setSelected] = useState<ConditionId[]>(initialConditions);
   const [hasLabs, setHasLabs] = useState<boolean | null>(null);
   const [profile, setProfile] = useState({ age: 35, height: 170, weight: 70, gender: 'male' });
   const [labs, setLabs] = useState<LabValues>({});
@@ -132,8 +136,9 @@ const AdvancedCareWizardPage: React.FC = () => {
         pickedExercises: string[];
         pickedFoods: string[];
       }>;
-      if (Array.isArray(parsed.selected)) {
-        setSelected(parsed.selected.filter((id) => isConditionId(id)));
+      const savedSelected = Array.isArray(parsed.selected) ? parsed.selected.filter((id) => isConditionId(id)) : [];
+      if (savedSelected.length > 0) {
+        setSelected(savedSelected);
       }
       if (typeof parsed.hasLabs === 'boolean' || parsed.hasLabs === null) setHasLabs(parsed.hasLabs);
       if (parsed.profile) setProfile(parsed.profile);
@@ -435,7 +440,7 @@ const AdvancedCareWizardPage: React.FC = () => {
                 <div className="grid sm:grid-cols-2 gap-4 mt-5">
                   {activeFields.map((key) => (
                     <label key={key} className="block text-sm font-semibold text-slate-900">
-                      {t(tk(`advanced.lab.field.${key}.label`))} <span className="text-[#6B7A75] font-normal">({LAB_FIELD_UNITS[key]})</span>
+                      {t(tk(`wizard.lab.${key}`))} <span className="text-[#6B7A75] font-normal">({LAB_FIELD_UNITS[key]})</span>
                       <input
                         required
                         type="number"
@@ -507,7 +512,7 @@ const AdvancedCareWizardPage: React.FC = () => {
 
                 <div className="grid md:grid-cols-2 gap-5 mt-6">
                   <div>
-                    <h3 className="font-extrabold text-lg text-[#0F4C3A] mb-3">{t(tk('wizard.step5.exerciseHeader'))}</h3>
+                    <h3 className="font-extrabold text-lg text-[#0F4C3A] mb-3">{t(tk('wizard.plan.exercise'))}</h3>
                     <div className="space-y-3">
                       {([
                         ['choose', t(tk('wizard.step5.choose')), t(tk('wizard.step5.chooseDesc'))],
@@ -521,7 +526,7 @@ const AdvancedCareWizardPage: React.FC = () => {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-extrabold text-lg text-[#0F4C3A] mb-3">{t(tk('wizard.step5.nutritionHeader'))}</h3>
+                    <h3 className="font-extrabold text-lg text-[#0F4C3A] mb-3">{t(tk('wizard.plan.nutrition'))}</h3>
                     <div className="space-y-3">
                       {([
                         ['choose', t(tk('wizard.step5.choose')), t(tk('wizard.step5.chooseDesc'))],

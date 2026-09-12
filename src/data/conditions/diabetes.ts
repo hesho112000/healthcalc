@@ -1,7 +1,7 @@
 import type { ConditionData, NutritionRules } from './types';
 
 export const nutritionRules: NutritionRules = {
-  lowGlycemicIndex: true,
+  lowGI: true,
   highFiber: true,
   avoid: ['Sugary drinks', 'White bread', 'Candy', 'Fruit juices'],
   prefer: ['Whole grains', 'Leafy greens', 'Lean protein', 'Nuts'],
@@ -10,10 +10,10 @@ export const nutritionRules: NutritionRules = {
 export const diabetesCondition: ConditionData = {
   id: 'diabetes',
   icon: '🩸',
-  mealFocus: 'Blood sugar control',
+  focus: 'Blood sugar control',
   source: 'ADA & NHS guidelines',
-  exercisePreferences: ['Walking', 'Swimming', 'Light Strength', 'Cycling', 'Yoga'],
-  exerciseAvoid: ['High-intensity sprints', 'Heavy lifting without supervision'],
+  suitableExercises: ['Walking', 'Swimming', 'Light Strength', 'Cycling', 'Yoga'],
+  avoidExercises: ['High-intensity sprints', 'Heavy lifting without supervision'],
   exerciseAvoidKeywords: [
     'sprint',
     'burpee',
@@ -93,4 +93,5 @@ export const diabetesCondition: ConditionData = {
     Vegetarian: ['Lentil soup & salad', 'Chickpea stir-fry'],
     Keto: ['Grilled chicken & avocado salad'],
   },
+  dailyCalorieAdjustment: 0,
 };

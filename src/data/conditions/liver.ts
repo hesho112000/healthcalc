@@ -10,10 +10,10 @@ export const nutritionRules: NutritionRules = {
 export const liverCondition: ConditionData = {
   id: 'liver',
   icon: '🧡',
-  mealFocus: 'Low-fat, antioxidant-rich nutrition',
+  focus: 'Low-fat, antioxidant-rich nutrition',
   source: 'AASLD & EASL liver health guidelines',
-  exercisePreferences: ['Walking', 'Swimming', 'Light Strength', 'Yoga'],
-  exerciseAvoid: [],
+  suitableExercises: ['Walking', 'Swimming', 'Light Strength', 'Yoga'],
+  avoidExercises: [],
   exerciseAvoidKeywords: [
     'sprint',
     'burpee',
@@ -83,4 +83,5 @@ export const liverCondition: ConditionData = {
     Vegetarian: ['Broccoli & bean salad', 'Green tea smoothie bowl'],
     Keto: ['Grilled chicken & broccoli', 'Avocado & walnut salad'],
   },
+  dailyCalorieAdjustment: -100,
 };

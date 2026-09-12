@@ -12,9 +12,9 @@ export type ConditionId =
   | 'ibs';
 
 export interface NutritionRuleFlags {
-  lowGlycemicIndex?: boolean;
+  lowGI?: boolean;
   highFiber?: boolean;
-  dashDiet?: boolean;
+  DASH?: boolean;
   lowSodium?: boolean;
   highPotassium?: boolean;
   highOmega3?: boolean;
@@ -36,15 +36,17 @@ export interface NutritionRules extends NutritionRuleFlags {
 export interface ConditionData {
   id: ConditionId;
   icon: string;
-  exercisePreferences: string[];
-  exerciseAvoid?: string[];
+  suitableExercises: string[];
+  avoidExercises?: string[];
   exerciseAvoidKeywords: string[];
   nutritionRules: NutritionRules;
   avoidKeywords: string[];
   preferKeywords: string[];
-  mealFocus: string;
+  focus: string;
   source: string;
   sampleMeals: Record<string, string[]>;
+  dailyCalorieAdjustment: number;
+  note?: string;
 }
 
 export type FoodScore = 'safe' | 'limit' | 'avoid';

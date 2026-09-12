@@ -1,7 +1,7 @@
 import type { ConditionData, NutritionRules } from './types';
 
 export const nutritionRules: NutritionRules = {
-  dashDiet: true,
+  DASH: true,
   lowSodium: true,
   highPotassium: true,
   avoid: ['Processed meats', 'Canned soups', 'Pickles', 'Fast food'],
@@ -11,10 +11,10 @@ export const nutritionRules: NutritionRules = {
 export const hypertensionCondition: ConditionData = {
   id: 'hypertension',
   icon: '💗',
-  mealFocus: 'Blood pressure control',
+  focus: 'Blood pressure control',
   source: 'DASH diet & WHO guidelines',
-  exercisePreferences: ['Walking', 'Yoga', 'Deep Breathing', 'Light Cycling', 'Swimming'],
-  exerciseAvoid: ['Heavy lifting', 'High-intensity cardio without clearance'],
+  suitableExercises: ['Walking', 'Yoga', 'Deep Breathing', 'Light Cycling', 'Swimming'],
+  avoidExercises: ['Heavy lifting', 'High-intensity cardio without clearance'],
   exerciseAvoidKeywords: [
     'sprint',
     'burpee',
@@ -80,4 +80,5 @@ export const hypertensionCondition: ConditionData = {
     Vegetarian: ['Beet & chickpea salad', 'Oats with banana & nuts'],
     Keto: ['Grilled salmon & avocado', 'Spinach omelette'],
   },
+  dailyCalorieAdjustment: 0,
 };

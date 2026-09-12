@@ -111,7 +111,7 @@ const AdvancedCarePage: React.FC = () => {
               </h1>
               <p>{t('advanced.hero.subtitle')}</p>
               <div className="flex flex-wrap items-center gap-4 mt-8">
-                <Link to="/register" className="btn-primary">{t('advanced.hero.ctaPrimary')}</Link>
+                <Link to="/advanced-care/wizard" className="btn-primary">{t('advanced.hero.ctaPrimary')}</Link>
                 <a href="#advanced-conditions" className="btn-outline">{t('advanced.hero.ctaSecondary')}</a>
               </div>
               <div className="hero-trust">
@@ -184,7 +184,7 @@ const AdvancedCarePage: React.FC = () => {
           {conditions.map(({ id, icon, titleKey, descKey }) => (
             <Link
               key={id}
-              to={`/advanced-care/lab?condition=${id}`}
+              to={`/advanced-care/wizard?condition=${id}`}
               className="group rounded-[24px] border border-[#EFEBE4] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D4AF37] hover:shadow-[0_18px_50px_rgba(15,76,58,0.1)]"
             >
               <span className="inline-flex w-12 h-12 items-center justify-center rounded-2xl bg-[#F4F1EB] text-2xl transition-transform duration-300 group-hover:scale-110">

@@ -159,7 +159,7 @@ html[lang='ar'] textarea {
 
 /* RTL Support */
 [dir="rtl"] {
-  text-align: right;
+  text-align: start;
 }
 [dir="rtl"] .select-field {
   background-position: left 0.75rem center;

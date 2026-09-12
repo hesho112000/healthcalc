@@ -9,10 +9,10 @@ export const nutritionRules: NutritionRules = {
 export const ibsCondition: ConditionData = {
   id: 'ibs',
   icon: '🍃',
-  mealFocus: 'Low-FODMAP gut-friendly nutrition',
+  focus: 'Low-FODMAP gut-friendly nutrition',
   source: 'Monash FODMAP & NICE guidelines',
-  exercisePreferences: ['Walking', 'Yoga', 'Pilates', 'Tai Chi', 'Light Cycling'],
-  exerciseAvoid: ['High-intensity stress-inducing workouts'],
+  suitableExercises: ['Walking', 'Yoga', 'Pilates', 'Tai Chi', 'Light Cycling'],
+  avoidExercises: ['High-intensity stress-inducing workouts'],
   exerciseAvoidKeywords: [
     'sprint',
     'burpee',
@@ -88,4 +88,6 @@ export const ibsCondition: ConditionData = {
     Vegetarian: ['Rice & carrot stir-fry', 'Banana & rice pudding'],
     Keto: ['Grilled chicken & carrot salad (symptom-dependent)'],
   },
+  dailyCalorieAdjustment: 0,
+  note: 'IBS is symptom-based — no lab fields.',
 };

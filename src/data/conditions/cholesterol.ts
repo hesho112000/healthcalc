@@ -10,10 +10,10 @@ export const nutritionRules: NutritionRules = {
 export const cholesterolCondition: ConditionData = {
   id: 'cholesterol',
   icon: '🫀',
-  mealFocus: 'Heart-healthy fats & cholesterol',
+  focus: 'Heart-healthy fats & cholesterol',
   source: 'AHA & NCEP ATP III guidelines',
-  exercisePreferences: ['Brisk Walking', 'Cycling', 'Swimming', 'Resistance Training'],
-  exerciseAvoid: [],
+  suitableExercises: ['Brisk Walking', 'Cycling', 'Swimming', 'Resistance Training'],
+  avoidExercises: [],
   exerciseAvoidKeywords: [
     'sprint',
     'burpee',
@@ -82,4 +82,5 @@ export const cholesterolCondition: ConditionData = {
     Vegetarian: ['Oat porridge with almonds', 'Chickpea & avocado salad'],
     Keto: ['Grilled salmon & avocado salad', 'Olive oil salad dressing'],
   },
+  dailyCalorieAdjustment: 0,
 };

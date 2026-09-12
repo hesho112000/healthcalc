@@ -31,7 +31,7 @@ export const CONDITION_IDS: ConditionId[] = [
   'ibs',
 ];
 
-export const CONDITION_DATA: Record<ConditionId, ConditionData> = {
+export const CONDITION_DATA: Record<string, ConditionData> = {
   diabetes: diabetesCondition,
   hypertension: hypertensionCondition,
   cholesterol: cholesterolCondition,
@@ -41,6 +41,8 @@ export const CONDITION_DATA: Record<ConditionId, ConditionData> = {
   thyroid: thyroidCondition,
   ibs: ibsCondition,
 };
+
+export const getConditionData = (id: string): ConditionData | undefined => CONDITION_DATA[id];
 
 export const isConditionId = (v: string): v is ConditionId =>
   (CONDITION_IDS as readonly string[]).includes(v);
@@ -87,7 +89,7 @@ const scoreOrder: Record<FoodScore, number> = { safe: 0, limit: 1, avoid: 2 };
 export const scoreExercise = (ex: Exercise, ids: ConditionId[]): FoodScore => {
   const conds = ids.map((id) => CONDITION_DATA[id]);
   const avoidKws = dedupe(conds.flatMap((c) => c.exerciseAvoidKeywords));
-  const prefers = dedupe(conds.flatMap((c) => c.exercisePreferences));
+  const prefers = dedupe(conds.flatMap((c) => c.suitableExercises));
   const lower = ex.nameEn.toLowerCase();
   if (avoidKws.some((k) => lower.includes(k.toLowerCase()))) return 'avoid';
   if (prefers.some((p) => matchesPreference(ex, p))) return 'safe';
@@ -97,7 +99,7 @@ export const scoreExercise = (ex: Exercise, ids: ConditionId[]): FoodScore => {
 export const exercisePoolFor = (ids: ConditionId[]): ScoredExercise[] => {
   if (ids.length === 0) return [];
   const conds = ids.map((id) => CONDITION_DATA[id]);
-  const prefs = dedupe(conds.flatMap((c) => c.exercisePreferences));
+  const prefs = dedupe(conds.flatMap((c) => c.suitableExercises));
   if (prefs.length === 0) return [];
   return EXERCISES_DATABASE.filter((ex) => prefs.some((p) => matchesPreference(ex, p)))
     .map((ex) => ({ exercise: ex, score: scoreExercise(ex, ids) }))
@@ -128,7 +130,7 @@ export const scoreFood = (food: FoodItem, ids: ConditionId[]): FoodScore => {
   if (foodMatchesKws(food, preferKws)) return 'safe';
 
   const anyLowSodium = conds.some(
-    (c) => c.nutritionRules.lowSodium || c.nutritionRules.dashDiet,
+    (c) => c.nutritionRules.lowSodium || c.nutritionRules.DASH,
   );
   if (anyLowSodium && food.sodium != null && food.sodium > 900) return 'avoid';
   if (conds.some((c) => c.nutritionRules.lowProtein) && food.protein > 35) return 'avoid';
@@ -138,7 +140,7 @@ export const scoreFood = (food: FoodItem, ids: ConditionId[]): FoodScore => {
   ) {
     return 'avoid';
   }
-  if (conds.some((c) => c.nutritionRules.lowGlycemicIndex) && (food.sugar ?? 0) > 18) {
+  if (conds.some((c) => c.nutritionRules.lowGI) && (food.sugar ?? 0) > 18) {
     return 'avoid';
   }
   if (
@@ -168,3 +170,26 @@ export const foodPoolFor = (ids: ConditionId[]): ScoredFood[] => {
 
 export const isFoodAvoid = (score: FoodScore): boolean => score === 'avoid';
 export const isFoodSafe = (score: FoodScore): boolean => score === 'safe';
+
+export const filterExercisesByCondition = (
+  exercises: Exercise[],
+  condition: ConditionData,
+): ScoredExercise[] =>
+  exercises
+    .map((exercise) => ({ exercise, score: scoreExercise(exercise, [condition.id]) }))
+    .sort(
+      (a, b) =>
+        scoreOrder[a.score] - scoreOrder[b.score] ||
+        a.exercise.nameEn.localeCompare(b.exercise.nameEn),
+    );
+
+export const filterFoodsByCondition = (
+  foods: FoodItem[],
+  condition: ConditionData,
+): ScoredFood[] =>
+  foods
+    .map((food) => ({ food, score: scoreFood(food, [condition.id]) }))
+    .sort(
+      (a, b) =>
+        scoreOrder[a.score] - scoreOrder[b.score] || a.food.calories - b.food.calories,
+    );
