@@ -210,6 +210,11 @@ export const resolveConflicts = (ids: string[]): ConflictResolution | null => {
   return { prioritized, compromised: prioritized.slice(1), conflictDetected, pairs };
 };
 
+export const mostRestrictiveCondition = (ids: string[]): ConditionId | null => {
+  if (ids.length === 0) return null;
+  return [...ids].sort((a, b) => priorityOf(a) - priorityOf(b))[0] as ConditionId;
+};
+
 export const filterExercisesByCondition = (
   exercises: Exercise[],
   condition: ConditionData,

@@ -6,8 +6,6 @@ import {
   Calculator,
   Microscope,
   Target,
-  ChevronDown,
-  Sparkles,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { EXERCISES_DATABASE } from '../data/exercises/index';
@@ -27,6 +25,15 @@ import { IconScene } from '../components/IconScene';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
 import { translations } from '../i18n/translations';
+import HealthBlueprintHero from '../components/wizard/HealthBlueprintHero';
+import WhatsIncluded from '../components/wizard/WhatsIncluded';
+import type { BlueprintExerciseItem, BlueprintFoodItem } from '../components/wizard/WhatsIncluded';
+import SevenDayJourney from '../components/wizard/SevenDayJourney';
+import type { JourneyExerciseItem, JourneyFoodItem } from '../components/wizard/SevenDayJourney';
+import WhyChooseUs from '../components/wizard/WhyChooseUs';
+import EmbeddedPricing from '../components/wizard/EmbeddedPricing';
+import EmbeddedFAQ from '../components/wizard/EmbeddedFAQ';
+import StickyPlanBar from '../components/wizard/StickyPlanBar';
 
 type LabValues = Record<string, string>;
 
@@ -121,7 +128,6 @@ const AdvancedCareWizardPage: React.FC = () => {
   const [mealType, setMealType] = useState<FoodItem['mealType']>('lunch');
   const [pickedExercises, setPickedExercises] = useState<string[]>([]);
   const [pickedFoods, setPickedFoods] = useState<string[]>([]);
-  const [whyOpen, setWhyOpen] = useState(false);
   const [toast, setToast] = useState('');
 
   useEffect(() => {
@@ -330,6 +336,55 @@ const AdvancedCareWizardPage: React.FC = () => {
     [],
   );
 
+  const firstName = useMemo(() => {
+    try {
+      const account = localStorage.getItem('hc_advanced_care_account');
+      if (account) {
+        const parsed = JSON.parse(account) as { name?: string };
+        const parsedName = parsed.name?.trim().split(/\s+/)[0] ?? '';
+        if (parsedName) return parsedName;
+      }
+    } catch {
+      /* ignore */
+    }
+    if (user && user.name && user.name !== 'Guest') {
+      const userName = user.name.trim().split(/\s+/)[0] ?? '';
+      if (userName) return userName;
+    }
+    return '';
+  }, [user]);
+
+  const exerciseItems: BlueprintExerciseItem[] = currentExerciseIds
+    .map((id) => exerciseById.get(id))
+    .filter((ex): ex is Exercise => Boolean(ex))
+    .map((ex) => ({ name: String(ex[exerciseName(ex)]), meta: `${ex.duration} · ${ex.calories} kcal` }));
+
+  const foodItems: BlueprintFoodItem[] = currentFoodNames
+    .map((name) => foodById.get(name))
+    .filter((food): food is FoodItem => Boolean(food))
+    .map((food) => {
+      const slot: BlueprintFoodItem['slot'] =
+        food.mealType === 'breakfast' || food.mealType === 'lunch' || food.mealType === 'dinner'
+          ? food.mealType
+          : 'snack';
+      return {
+        name: food.name_en,
+        slot,
+        kcal: food.calories || 0,
+        meta: `${mealSlotLabel(food.name_en)} · ${food.calories} kcal`,
+      };
+    });
+
+  const journeyFoods: JourneyFoodItem[] = foodItems.map(({ name, slot, kcal }) => ({ name, slot, kcal }));
+  const journeyExercises: JourneyExerciseItem[] = exerciseItems;
+
+  const stickySubtitle =
+    step === 6
+      ? focusConditionName
+        ? `${focusConditionName} · ${dailyKcal} kcal`
+        : `${dailyKcal} kcal`
+      : `${step} / 6`;
+
   const buildPlanPdfHtml = (): string => {
     const foodRows = currentFoodNames
       .map((name) => foodById.get(name))
@@ -434,7 +489,7 @@ ${conditionTags}
   }, [step, selected, profile, exerciseMode, nutritionMode, cuisine, currentFoodNames, currentExerciseIds, dailyKcal, calorieFloor, kcalExtended, mealCount, snackCount, focusCondition]);
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] pb-24" dir={dir}>
+    <div className="min-h-screen bg-[#FDFBF7] pb-28" dir={dir}>
       <div className="h-1.5 bg-[#EFEBE4]">
         <div className="h-full bg-[#0F4C3A] transition-all duration-500" style={{ width: `${(step / 6) * 100}%` }} />
       </div>
@@ -458,12 +513,67 @@ ${conditionTags}
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-[.8fr_1.2fr] gap-8 items-start">
-          <div className="hidden lg:block">
-            <IconScene icon={stepScene[step].icon} color={stepScene[step].color} large />
-          </div>
+        {step === 6 ? (
+          <div className="space-y-12">
+            {resolution && resolution.conflictDetected && selected.length > 1 && (
+              <div className="rounded-2xl border border-[#D4AF37]/60 bg-[#D4AF37]/10 p-4 text-sm text-[#0F4C3A] font-semibold leading-relaxed">
+                {t(tk('wizard.conflict.banner')).replace('{condition}', focusConditionName)}
+              </div>
+            )}
 
-          <div className="bg-white border border-[#EFEBE4] rounded-[28px] p-6 md:p-10 shadow-[0_10px_40px_-20px_rgba(15,76,58,0.15)] min-h-[430px]" key={step}>
+            <HealthBlueprintHero
+              name={firstName}
+              dailyKcal={dailyKcal}
+              exerciseCount={currentExerciseIds.length}
+              mealCount={mealCount}
+              snackCount={snackCount}
+              focusTags={selected.map(condName)}
+              lowCal={calorieFloorAdjusted}
+              onCta={handleSaveAccount}
+            />
+
+            <WhatsIncluded
+              exerciseCount={currentExerciseIds.length}
+              mealCount={mealCount}
+              snackCount={snackCount}
+              exercises={exerciseItems}
+              foods={foodItems}
+            />
+
+            <SevenDayJourney foods={journeyFoods} exercises={journeyExercises} />
+
+            <WhyChooseUs />
+
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 rounded-[24px] border border-[#EFEBE4] bg-white px-6 py-5">
+              <span className="text-sm font-extrabold text-[#0F4C3A]">{t(tk('wizard.blueprint.social.rating'))}</span>
+              <span className="text-sm font-bold text-[#6B7A75]">{t(tk('wizard.blueprint.social.users'))}</span>
+              <span className="text-sm font-bold text-[#6B7A75]">{t(tk('wizard.blueprint.social.secure'))}</span>
+            </div>
+
+            <EmbeddedPricing onCta={handleSaveAccount} />
+
+            <EmbeddedFAQ />
+
+            <section className="rounded-[32px] border-2 border-[#D4AF37] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] p-8 text-center md:p-14">
+              <h2 className="text-2xl font-extrabold tracking-tight text-[#FDFBF7] md:text-[36px]">{t(tk('wizard.blueprint.cta.title'))}</h2>
+              <p className="mt-3 text-sm text-[#A7C4B8] md:text-[15px]">{t(tk('wizard.blueprint.cta.subtitle'))}</p>
+              <button
+                type="button"
+                onClick={handleSaveAccount}
+                className="mt-7 rounded-full bg-[#D4AF37] px-8 py-4 font-extrabold text-[#0F4C3A] shadow-[0_14px_34px_-10px_rgba(212,175,55,0.7)] transition hover:bg-[#c9a52e]"
+              >
+                {t(tk('advanced.finalCta.cta'))}
+              </button>
+              <p className="mt-3 text-xs font-bold text-[#A7C4B8]">{t(tk('wizard.blueprint.cta.secondary'))}</p>
+            </section>
+          </div>
+        ) : (
+          <div className="grid lg:grid-cols-[.8fr_1.2fr] gap-8 items-start">
+            <div className="hidden lg:block">
+              <IconScene icon={stepScene[step].icon} color={stepScene[step].color} large />
+            </div>
+
+            <div className="bg-white border border-[#EFEBE4] rounded-[28px] p-6 md:p-10 shadow-[0_10px_40px_-20px_rgba(15,76,58,0.15)] min-h-[430px]" key={step}>
             {step === 1 && (
               <>
                 <p className="text-[#6B7A75] mb-6">{t(tk('wizard.chooseMultiple'))}</p>
@@ -714,250 +824,12 @@ ${conditionTags}
               </>
             )}
 
-            {step === 6 && (
-              <div className="space-y-6">
-                {resolution && resolution.conflictDetected && selected.length > 1 && (
-                  <div className="rounded-2xl border border-[#D4AF37]/60 bg-[#D4AF37]/10 p-4 text-sm text-[#0F4C3A] font-semibold leading-relaxed">
-                    {t(tk('wizard.conflict.banner')).replace('{condition}', focusConditionName)}
-                  </div>
-                )}
-
-                <div className="sticky top-4 z-10 rounded-[20px] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] border-2 border-[#D4AF37] p-6 text-[#FDFBF7] shadow-lg">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div className="rounded-2xl bg-[#FDFBF7]/10 p-3 text-center">
-                      <div className="text-2xl">🏃</div>
-                      <div className="text-2xl font-extrabold text-[#D4AF37] mt-1">{currentExerciseIds.length}</div>
-                      <div className="text-xs text-[#FDFBF7]/80 mt-0.5">{t(tk('wizard.step6.summary.exercises')).replace('{count}', String(currentExerciseIds.length))}</div>
-                    </div>
-                    <div className="rounded-2xl bg-[#FDFBF7]/10 p-3 text-center">
-                      <div className="text-2xl">🍽️</div>
-                      <div className="text-2xl font-extrabold text-[#D4AF37] mt-1">{mealCount}</div>
-                      <div className="text-xs text-[#FDFBF7]/80 mt-0.5">{t(tk('wizard.step6.summary.meals')).replace('{count}', String(mealCount))}</div>
-                    </div>
-                    <div className="rounded-2xl bg-[#FDFBF7]/10 p-3 text-center">
-                      <div className="text-2xl">🍎</div>
-                      <div className="text-2xl font-extrabold text-[#D4AF37] mt-1">{snackCount}</div>
-                      <div className="text-xs text-[#FDFBF7]/80 mt-0.5">{t(tk('wizard.step6.summary.snacks')).replace('{count}', String(snackCount))}</div>
-                    </div>
-                    <div className="rounded-2xl bg-[#FDFBF7]/10 p-3 text-center">
-                      <div className="text-2xl">🔥</div>
-                      <div className="text-2xl font-extrabold text-[#D4AF37] mt-1">{dailyKcal}</div>
-                      <div className="text-xs text-[#FDFBF7]/80 mt-0.5">{t(tk('wizard.step6.summary.calories')).replace('{kcal}', String(dailyKcal))}</div>
-                    </div>
-                  </div>
-
-                  <p className="mt-4 text-sm text-[#FDFBF7]">
-                    <b>{t(tk('wizard.step6.summary.focus')).replace('{focus}', '')}</b>{' '}
-                    <span className="text-[#D4AF37] font-semibold">{focusLine}</span>
-                  </p>
-
-                  <p className="mt-2 text-xs text-[#FDFBF7]/85 leading-relaxed">
-                    {breakdownLine} <b className="text-[#D4AF37]">= {dailyKcal} kcal</b>
-                  </p>
-
-                  {kcalExtended && (
-                    <p className="mt-2 text-xs text-[#D4AF37] font-semibold">{t(tk('wizard.step6.calAdjusted'))}</p>
-                  )}
-                  {kcalExtended && (
-                    <p className="mt-1 text-[11px] text-[#FDFBF7]/70">{t(tk('wizard.step6.minKcal')).replace('{kcal}', String(calorieFloor))}</p>
-                  )}
-                  {calorieFloorAdjusted && (
-                    <p className="mt-2 text-xs text-[#D4AF37] font-semibold">{t(tk('wizard.step6.lowCalWarning'))}</p>
-                  )}
-
-                  <div className="mt-4 border-t border-[#FDFBF7]/15 pt-3">
-                    <button type="button" onClick={() => setWhyOpen((open) => !open)} className="flex items-center justify-between w-full text-sm font-bold text-[#D4AF37]">
-                      {t(tk('wizard.preview.whyTitle'))}
-                      <ChevronDown size={16} className={`transition-transform ${whyOpen ? 'rotate-180' : ''}`} />
-                    </button>
-                    {whyOpen && focusCondition && (
-                      <p className="mt-2 text-xs text-[#FDFBF7]/80 leading-relaxed">
-                        {t(tk('wizard.preview.whyBody'))
-                          .replace('{condition}', focusConditionName)
-                          .replace('{source}', CONDITION_DATA[focusCondition].source)}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                {resolution && selected.length > 1 && (
-                  <div className="rounded-2xl bg-white border border-[#EFEBE4] p-4 text-sm">
-                    <h4 className="font-extrabold text-[#0F4C3A] text-base mb-2">⚖️ {t(tk('wizard.conflict.title'))}</h4>
-                    <div className="flex flex-wrap gap-x-8 gap-y-3">
-                      <div>
-                        <span className="text-xs font-bold text-[#6B7A75] uppercase tracking-wide">{t(tk('wizard.conflict.prioritized'))}</span>
-                        <div className="flex flex-wrap gap-2 mt-1.5">
-                          {resolution.prioritized.map((id) => (
-                            <span key={id} className="bg-[#0F4C3A] text-[#FDFBF7] text-xs font-bold rounded-full px-3 py-1.5">{CONDITION_DATA[id].icon} {condName(id as ConditionId)}</span>
-                          ))}
-                        </div>
-                      </div>
-                      {resolution.compromised.length > 0 && (
-                        <div>
-                          <span className="text-xs font-bold text-[#6B7A75] uppercase tracking-wide">{t(tk('wizard.conflict.compromised'))}</span>
-                          <div className="flex flex-wrap gap-2 mt-1.5">
-                            {resolution.compromised.map((id) => (
-                              <span key={id} className="bg-[#D4AF37] text-[#0F4C3A] text-xs font-bold rounded-full px-3 py-1.5">{CONDITION_DATA[id].icon} {condName(id as ConditionId)}</span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-
-                <div className="flex flex-wrap gap-2">
-                  <span className="bg-[#0F4C3A] text-[#FDFBF7] text-xs font-bold rounded-full px-3 py-1.5">{t(tk('wizard.step6.planHeader'))}</span>
-                  {selected.map((id) => (
-                    <span key={id} className="bg-[#D4AF37] text-[#0F4C3A] text-xs font-bold rounded-full px-3 py-1.5">
-                      {CONDITION_DATA[id].icon} {condName(id)}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="font-extrabold text-lg text-[#0F4C3A]">
-                        {t(tk('wizard.step6.exercisesHeader'))}
-                        {exerciseMode === 'recommend' && <span className="ml-2 text-xs bg-[#0F4C3A] text-[#FDFBF7] rounded-full px-2 py-0.5 align-middle">{t(tk('wizard.step6.recommend'))}</span>}
-                      </h3>
-                      {exerciseMode === 'recommend' && (
-                        <button onClick={() => setExerciseMode('choose')} className="text-xs text-[#0F4C3A] underline">{t(tk('wizard.step6.choose'))}</button>
-                      )}
-                    </div>
-
-                    {exerciseMode === 'recommend' ? (
-                      <div className="rounded-2xl bg-[#0F4C3A]/5 border border-[#0F4C3A]/15 p-4 text-sm text-[#0F4C3A] leading-relaxed">
-                        <p className="font-semibold flex items-center gap-1.5"><Sparkles size={15} /> {selected.length} {t(tk('wizard.preview.exercises')).replace('{count}', String(recommendedExercises.length))}</p>
-                        <div className="mt-3 space-y-2">
-                          {recommendedExercises.map(({ exercise, score }) => (
-                            <div key={exercise.id} className="flex items-start justify-between gap-2 bg-white rounded-xl border border-[#EFEBE4] p-3">
-                              <div>
-                                <b className="block text-slate-900">{exercise[exerciseName(exercise)]}</b>
-                                <small className="text-[#6B7A75]">{exercise.duration} · {exercise.calories} kcal</small>
-                              </div>
-                              <span className={`shrink-0 text-[10px] font-bold rounded-full px-2 py-1 ${badgeStyle[score].bg}`}>{badgeLabel(score)}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="space-y-2">
-                        {pool.length === 0 && <p className="text-sm text-[#6B7A75]">{t(tk('wizard.step6.empty'))}</p>}
-                        {pool.map(({ exercise, score }) => {
-                          const active = pickedExercises.includes(exercise.id);
-                          return (
-                            <button key={exercise.id} onClick={() => togglePickExercise(exercise.id)} className={`w-full flex items-start justify-between gap-2 rounded-xl border p-3 transition ${active ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]' : 'border-[#EFEBE4] bg-white'} ${score === 'avoid' ? 'opacity-60' : ''}`}>
-                              <span className="text-left">
-                                <b className={`block text-sm ${score === 'avoid' ? 'text-[#6B7A75] line-through' : 'text-slate-900'}`}>{exercise[exerciseName(exercise)]}</b>
-                                <small className="text-[#6B7A75]">{exercise.duration} · {exercise.calories} kcal</small>
-                              </span>
-                              <span className="flex items-center gap-2">
-                                <span className={`shrink-0 text-[10px] font-bold rounded-full px-2 py-1 ${badgeStyle[score].bg}`}>{badgeLabel(score)}</span>
-                                {active && <span className="h-5 w-5 rounded-full bg-[#D4AF37] text-[#0F4C3A] text-xs font-bold flex items-center justify-center">✓</span>}
-                              </span>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
-
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="font-extrabold text-lg text-[#0F4C3A]">
-                        {t(tk('wizard.step6.nutritionHeader'))}
-                        {nutritionMode === 'recommend' && <span className="ml-2 text-xs bg-[#D4AF37] text-[#0F4C3A] rounded-full px-2 py-0.5 align-middle">{t(tk('wizard.step6.recommend'))}</span>}
-                      </h3>
-                      {nutritionMode === 'recommend' && (
-                        <button onClick={() => setNutritionMode('choose')} className="text-xs text-[#0F4C3A] underline">{t(tk('wizard.step6.choose'))}</button>
-                      )}
-                    </div>
-
-                    {nutritionMode === 'recommend' ? (
-                      <div className="rounded-2xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 p-4 text-sm text-[#0F4C3A] leading-relaxed">
-                        <p className="font-semibold">{t(tk('wizard.preview.meals')).replace('{count}', String(currentFoodNames.length))}</p>
-                        <div className="mt-3 space-y-2">
-                          {recommendedFoods.map((name) => {
-                            const food = foodById.get(name);
-                            if (!food) return null;
-                            const score = foodScoreById.get(name) ?? 'limit';
-                            return (
-                              <div key={name} className="flex items-start justify-between gap-2 bg-white rounded-xl border border-[#EFEBE4] p-3">
-                                <div>
-                                  <b className="block text-slate-900">{food.name_en}</b>
-                                  <small className="text-[#6B7A75]">{mealSlotLabel(name)} · {food.calories} kcal</small>
-                                </div>
-                                <span className={`shrink-0 text-[10px] font-bold rounded-full px-2 py-1 ${badgeStyle[score].bg}`}>{badgeLabel(score)}</span>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    ) : (
-                      <>
-                        <div className="grid grid-cols-4 gap-2 mb-3">
-                          {CUISINES.map(([flag, name]) => (
-                            <button key={name} onClick={() => setCuisine(name)} className={`rounded-xl border px-2 py-2 text-xs transition ${cuisine === name ? 'border-[#D4AF37] bg-[#D4AF37]/10 text-[#0F4C3A] font-bold' : 'border-[#EFEBE4] bg-white text-[#6B7A75]'}`}>
-                              {flag}<br />{name}
-                            </button>
-                          ))}
-                        </div>
-                        <div className="flex gap-2 mb-3">
-                          {MEAL_TABS.map(({ key, i18n }) => (
-                            <button key={key} onClick={() => setMealType(key)} className={`flex-1 rounded-full border px-3 py-2 text-xs transition ${mealType === key ? 'bg-[#0F4C3A] text-[#FDFBF7] border-[#0F4C3A]' : 'border-[#EFEBE4] bg-white text-[#6B7A75]'}`}>
-                              {t(tk(i18n))}
-                            </button>
-                          ))}
-                        </div>
-                        <div className="space-y-2">
-                          {filteredFoods.map(({ food, score }) => {
-                            const active = pickedFoods.includes(food.name_en);
-                            return (
-                              <button key={food.name_en} onClick={() => togglePickFood(food.name_en)} className={`w-full flex items-start justify-between gap-2 rounded-xl border p-3 transition ${active ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]' : 'border-[#EFEBE4] bg-white'} ${score === 'avoid' ? 'opacity-60' : ''}`}>
-                                <span className="text-left">
-                                  <b className={`block text-sm ${score === 'avoid' ? 'text-[#6B7A75] line-through' : 'text-slate-900'}`}>{food.name_en}</b>
-                                  <small className="text-[#6B7A75]">{food.calories} kcal{food.protein ? ` · ${food.protein} g protein` : ''}</small>
-                                </span>
-                                <span className="flex items-center gap-2">
-                                  <span className={`shrink-0 text-[10px] font-bold rounded-full px-2 py-1 ${badgeStyle[score].bg}`}>{badgeLabel(score)}</span>
-                                  {active && <span className="h-5 w-5 rounded-full bg-[#D4AF37] text-[#0F4C3A] text-xs font-bold flex items-center justify-center">✓</span>}
-                                </span>
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
+            </div>
           </div>
-        </div>
+        )}
       </section>
 
-      {step === 6 && (
-        <div className="fixed bottom-0 inset-x-0 bg-[#FDFBF7]/95 backdrop-blur border-t border-[#EFEBE4] px-4 py-3 z-20">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-              <p className="text-sm text-[#6B7A75] truncate">
-                {focusConditionName ? `${focusConditionName} · ` : ''}{dailyKcal} kcal
-              </p>
-              <div className="flex flex-wrap items-center justify-end gap-3">
-                <button onClick={handleDownloadPdf} className="shrink-0 bg-[#FDFBF7] border-2 border-[#0F4C3A] text-[#0F4C3A] font-bold rounded-full px-5 py-2.5 text-sm hover:bg-[#0F4C3A]/5 transition">
-                  {t(tk('wizard.step6.downloadPdf'))}
-                </button>
-                <button onClick={handleSaveAccount} className="shrink-0 bg-[#D4AF37] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#c9a52e] transition">
-                  {t(tk('wizard.step6.saveAccount'))}
-                </button>
-              </div>
-            </div>
-            <p className="text-[11px] text-[#6B7A75] mt-1.5">{t(tk('wizard.step6.privacyNote'))}</p>
-          </div>
-        </div>
-      )}
+      <StickyPlanBar subtitle={stickySubtitle} onSave={handleSaveAccount} onDownload={handleDownloadPdf} />
       {toast && (
         <div className="fixed bottom-24 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
           <div className="rounded-full bg-[#0F4C3A] text-[#FDFBF7] text-sm font-bold px-6 py-3 shadow-lg">
