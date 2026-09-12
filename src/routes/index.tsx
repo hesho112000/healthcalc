@@ -19,7 +19,7 @@ import FitnessPage from '../pages/FitnessPage';
 import WorkoutPlanPage from '../pages/WorkoutPlanPage';
 import SmartwatchSyncPage from '../pages/SmartwatchSyncPage';
 import FoodLibraryPage from '../pages/FoodLibraryPage';
-import AdvancedCarePage from '../pages/AdvancedCarePage';
+import HealthUniversePage from '../pages/HealthUniversePage';
 import AdvancedLabPage from '../pages/AdvancedLabPage';
 import AdvancedCareWizardPage from '../pages/AdvancedCareWizardPage';
 import SignupPage from '../pages/SignupPage';
@@ -124,7 +124,7 @@ export const AppRoutes: React.FC = () => (
     <Route path="/workout-plan" element={<WorkoutPlanPage />} />
     <Route path="/smartwatch-sync" element={<SmartwatchSyncPage />} />
     <Route path="/food-library" element={<FoodLibraryPage />} />
-    <Route path="/advanced-care" element={<AdvancedCarePage />} />
+    <Route path="/advanced-care" element={<HealthUniversePage />} />
     <Route path="/advanced-care/lab" element={<AdvancedLabPage />} />
     <Route path="/advanced-care/wizard" element={<AdvancedCareWizardPage />} />
     <Route path="/advanced-care/wizard/signup" element={<SignupPage />} />
