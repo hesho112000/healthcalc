@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { HeartPulse, FlaskConical, PersonStanding, Activity, Target, UtensilsCrossed, ClipboardCheck, Rocket } from 'lucide-react';
 import { CONDITION_DATA, CONDITION_IDS } from '../data/conditions';
@@ -35,9 +35,9 @@ import EmbeddedFAQ from '../components/wizard/EmbeddedFAQ';
 import PaywallModal from '../components/health-universe/PaywallModal';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
-import { useAdmin } from '../context/AdminContext';
 import { useSubscription } from '../context/SubscriptionContext';
-import type { FeatureId } from '../context/SubscriptionContext';
+import type { FeatureId, Tier } from '../context/SubscriptionContext';
+import { savePlanToStorage } from '../utils/planStorage';
 import { translations } from '../i18n/translations';
 import type { LucideIcon } from 'lucide-react';
 import type { TKey, LabValues, WizardGoal, WizardLifestyle } from '../components/wizard/stepTypes';
@@ -147,8 +147,7 @@ const AdvancedCareWizardPage: React.FC = () => {
   const { t, language, dir } = useLanguage();
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { isAdmin } = useAdmin();
-  const { hasFeature, upgrade } = useSubscription();
+  const { hasFeature, upgrade, setTier } = useSubscription();
   const [paywallFeature, setPaywallFeature] = useState<FeatureId | null>(null);
   const [searchParams] = useSearchParams();
   const fromUrlConditions: ConditionId[] = (() => {
@@ -491,12 +490,54 @@ const AdvancedCareWizardPage: React.FC = () => {
     (lifestyle.activity && lifestyle.activity !== 'sedentary' ? 2 : 0);
   const projected = overall !== null ? Math.min(95, Math.round(overall + boost)) : null;
 
-  const handleSaveAccount = () => {
-    if (isAdmin) {
-      navigate('/advanced-care');
-      return;
-    }
-    navigate('/my-health-hub');
+  const numericLabsByCondition = useMemo(() => {
+    const map: Record<string, Record<string, number>> = {};
+    selected.forEach((id) => {
+      if (id === 'ibs') return;
+      const markers = LAB_FIELD_KEYS[id] ?? [];
+      markers.forEach((marker) => {
+        const value = parseFloat(labs[marker] ?? '');
+        if (Number.isFinite(value)) {
+          map[id] = { ...(map[id] ?? {}), [marker]: value };
+        }
+      });
+    });
+    return map;
+  }, [selected, labs]);
+
+  const persistPlan = useCallback(() => {
+    savePlanToStorage({
+      version: 3,
+      conditions: selected,
+      profile,
+      labs: numericLabsByCondition,
+      lifestyle,
+      goal,
+      cuisine,
+      exerciseTypes,
+      foodNames: currentFoodNames,
+      exerciseIds: currentExerciseIds,
+      calories: calorieTarget,
+      dailyKcal,
+      calorieFloor,
+      kcalExtended,
+      kcalBreakdown,
+      meals: mealCount,
+      snacks: snackCount,
+      focusCondition,
+      overall,
+      projected,
+    });
+  }, [
+    selected, profile, numericLabsByCondition, lifestyle, goal, cuisine, exerciseTypes,
+    currentFoodNames, currentExerciseIds, calorieTarget, dailyKcal, calorieFloor,
+    kcalExtended, kcalBreakdown, mealCount, snackCount, focusCondition, overall, projected,
+  ]);
+
+  const finishWizard = (tier: Tier) => {
+    persistPlan();
+    setTier(tier);
+    navigate('/my-health-hub', { state: { planReady: true } });
   };
 
   const buildPlanPdfHtml = (): string => {
@@ -563,6 +604,7 @@ ${conditionTags}
       setPaywallFeature('pdfDownload');
       return;
     }
+    persistPlan();
     const win = window.open('', '_blank', 'width=960,height=760');
     if (!win) return;
     win.document.open();
@@ -584,11 +626,8 @@ ${conditionTags}
 
   const goToResults = () => save(7);
   const goToSubscription = () => save(8);
-  const startTrial = () => {
-    upgrade('pro');
-    handleSaveAccount();
-  };
-  const continueFree = () => handleSaveAccount();
+  const startTrial = () => finishWizard('pro');
+  const continueFree = () => finishWizard('free');
 
   const stepTitle = [
     t(tk('wizard.care.step1.title')),
@@ -621,63 +660,8 @@ ${conditionTags}
 
   useEffect(() => {
     if (step < 7) return;
-    const plan = {
-      version: 3,
-      savedAt: Date.now(),
-      conditions: selected,
-      profile,
-      lifestyle,
-      goal,
-      cuisine,
-      foodNames: currentFoodNames,
-      exerciseIds: currentExerciseIds,
-      exerciseTypes,
-      calories: calorieTarget,
-      dailyKcal,
-      calorieFloor,
-      kcalExtended,
-      kcalBreakdown,
-      meals: mealCount,
-      snacks: snackCount,
-      focusCondition,
-      overall,
-      projected,
-    };
-    localStorage.setItem('hc_advanced_care_plan', JSON.stringify(plan));
-    try {
-      const numericLabsByCondition: Record<string, Record<string, number>> = {};
-      selected.forEach((id) => {
-        if (id === 'ibs') return;
-        const markers = LAB_FIELD_KEYS[id] ?? [];
-        markers.forEach((marker) => {
-          const value = parseFloat(labs[marker] ?? '');
-          if (Number.isFinite(value)) {
-            numericLabsByCondition[id] = { ...(numericLabsByCondition[id] ?? {}), [marker]: value };
-          }
-        });
-      });
-      localStorage.setItem('healthcalc_conditions', JSON.stringify(selected));
-      localStorage.setItem('healthcalc_user_profile', JSON.stringify(profile));
-      localStorage.setItem(
-        'healthcalc_plan',
-        JSON.stringify({
-          conditions: selected,
-          profile,
-          foodNames: currentFoodNames,
-          exerciseIds: currentExerciseIds,
-          calories: dailyKcal,
-        }),
-      );
-      if (Object.keys(numericLabsByCondition).length > 0) {
-        localStorage.setItem('healthcalc_labs', JSON.stringify(numericLabsByCondition));
-      }
-    } catch {
-      /* ignore */
-    }
-  }, [
-    step, selected, profile, lifestyle, goal, cuisine, currentFoodNames, currentExerciseIds, exerciseTypes,
-    calorieTarget, dailyKcal, calorieFloor, kcalExtended, mealCount, snackCount, focusCondition, overall, projected, labs,
-  ]);
+    persistPlan();
+  }, [step, persistPlan]);
 
   const stickySubtitle =
     step === 7 ? (focusConditionName ? `${focusConditionName} · ${calorieTarget} kcal` : `${calorieTarget} kcal`) : `${step} / 8`;

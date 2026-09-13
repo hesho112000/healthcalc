@@ -1721,6 +1721,7 @@ type TranslationKeys = {
   'hub.markAllDone': string;
   'hub.mood': string;
   'hub.noData': string;
+  'hub.planReady': string;
   'hub.nutrition.dayCalories': string;
   'hub.nutritionPlan': string;
   'hub.pdf.pageTitle': string;
@@ -2130,6 +2131,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'hub.markAllDone': 'Mark All Done',
     'hub.mood': 'Mood',
     'hub.noData': 'No health data yet',
+    'hub.planReady': 'Your personalized plan is ready!',
     'hub.nutrition.dayCalories': '{cal} kcal total',
     'hub.nutritionPlan': 'Nutrition Plan',
     'hub.pdf.pageTitle': 'My Health Hub',
@@ -4053,6 +4055,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'hub.markAllDone': 'Tout marquer terminé',
     'hub.mood': 'Humeur',
     'hub.noData': 'Aucune donnée de santé pour le moment',
+    'hub.planReady': 'Votre plan personnalisé est prêt !',
     'hub.nutrition.dayCalories': '{cal} kcal au total',
     'hub.nutritionPlan': 'Plan nutritionnel',
     'hub.pdf.pageTitle': 'Mon Hub Santé',
@@ -5946,6 +5949,7 @@ mbFruits: 'Fruits',
     'hub.markAllDone': 'Marcar todo como hecho',
     'hub.mood': 'Estado de ánimo',
     'hub.noData': 'Aún no hay datos de salud',
+    'hub.planReady': '¡Tu plan personalizado está listo!',
     'hub.nutrition.dayCalories': '{cal} kcal en total',
     'hub.nutritionPlan': 'Plan de nutrición',
     'hub.pdf.pageTitle': 'Mi Centro de Salud',
@@ -7839,6 +7843,7 @@ mbFruits: 'Fruits',
     'hub.markAllDone': 'تحديد الكل كمنجز',
     'hub.mood': 'الحالة المزاجية',
     'hub.noData': 'لا توجد بيانات صحية بعد',
+    'hub.planReady': 'خطتك المخصصة جاهزة!',
     'hub.nutrition.dayCalories': 'إجمالي {cal} سعرة',
     'hub.nutritionPlan': 'خطة التغذية',
     'hub.pdf.pageTitle': 'مركز صحتي',
@@ -9743,6 +9748,7 @@ mbFruits: 'Fruits',
     'hub.markAllDone': 'Alle als erledigt markieren',
     'hub.mood': 'Stimmung',
     'hub.noData': 'Noch keine Gesundheitsdaten',
+    'hub.planReady': 'Ihr persönlicher Plan ist bereit!',
     'hub.nutrition.dayCalories': '{cal} kcal gesamt',
     'hub.nutritionPlan': 'Ernährungsplan',
     'hub.pdf.pageTitle': 'Mein Gesundheits-Hub',

@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight, FileDown, Lock, Play, Sparkles } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useSubscription } from '../context/SubscriptionContext';
@@ -13,6 +13,7 @@ import NutritionDayWizard from '../components/hub/NutritionDayWizard';
 import ProgressTracker from '../components/hub/ProgressTracker';
 import SubscriptionFeatures from '../components/hub/SubscriptionFeatures';
 import HealthChat from '../components/hub/HealthChat';
+import ConfettiBurst from '../components/hub/ConfettiBurst';
 import {
   coveredOrgans,
   dayExercises,
@@ -41,6 +42,20 @@ const MyHealthHubPage: React.FC = () => {
   const { t, dir, language: lang } = useLanguage();
   const { hasFeature, upgrade } = useSubscription();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const planReady =
+    (location.state as { planReady?: boolean } | null)?.planReady === true;
+
+  const [confetti, setConfetti] = useState(false);
+  useEffect(() => {
+    if (!planReady) return;
+    setConfetti(true);
+    note(t('hub.planReady'));
+    const timeout = window.setTimeout(() => setConfetti(false), 2500);
+    return () => window.clearTimeout(timeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const [name, setName] = useState(() => {
     try {
@@ -64,7 +79,16 @@ const MyHealthHubPage: React.FC = () => {
   const plan = useMemo(() => readHubPlan(), []);
   const conditions = useMemo(() => readHubConditions(), []);
   const profile = plan?.profile ?? readHubProfile();
-  const hasData = Boolean(plan) || conditions.length > 0;
+  const hasData =
+    Boolean(plan) ||
+    conditions.length > 0 ||
+    (() => {
+      try {
+        return Boolean(localStorage.getItem('healthcalc_plan'));
+      } catch {
+        return false;
+      }
+    })();
 
   const gate = (feature: FeatureId) => {
     if (!hasFeature(feature)) setPaywall(feature);
@@ -224,6 +248,7 @@ const MyHealthHubPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] pb-16" dir={dir}>
+      {confetti && <ConfettiBurst />}
       <header className="max-w-6xl mx-auto px-4 sm:px-6 pt-12">
         <Link
           to="/advanced-care"
