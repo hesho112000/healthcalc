@@ -18,7 +18,6 @@ import {
   organNameKey,
   organScore,
   organStatus,
-  organHasLabData,
   writeStoredLabs,
   getOrganDetail,
 } from './BodyMap';
@@ -96,7 +95,6 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
   const config = ORGAN_CONFIG[organ];
   const conditionIds = config.conditionIds;
   const score = organScore(organ);
-  const hasLabData = organHasLabData(organ);
   const status: OrganStatus = score === null ? 'healthy' : organStatus(score);
   const meta = scoreMeta[status];
   const detail = useMemo(() => getOrganDetail(organ), [organ, labVersion]);
@@ -230,7 +228,7 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
                   <div className="flex items-center gap-3">
                     <span className="text-xl font-extrabold text-[#6B7A75] tabular-nums">—</span>
                     <span className="text-xs font-semibold text-[#6B7A75]">
-                      {t('universe.score.enterLabs')}
+                      {t('universe.score.noData')}
                     </span>
                   </div>
                   <button
@@ -257,18 +255,14 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
                   </div>
                   <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
                     <p className="text-[11px] font-bold text-[#6B7A75]">
-                      {t(
-                        hasLabData
-                          ? 'universe.score.basedOnLabs'
-                          : 'universe.score.basedOnGeneral',
-                      )}
+                      {t('universe.score.basedOnData')}
                     </p>
                     <button
                       type="button"
                       onClick={() => setShowCalc((v) => !v)}
                       className="text-[11px] font-extrabold text-[#0F4C3A] underline decoration-[#D4AF37]/60 decoration-2 underline-offset-2 hover:text-[#1a6b53] transition-colors"
                     >
-                      {t('universe.score.calcLink')}
+                      {t('universe.score.howCalculated')}
                     </button>
                   </div>
                   {showCalc && detail && (

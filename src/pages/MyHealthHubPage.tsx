@@ -222,6 +222,13 @@ const MyHealthHubPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#FDFBF7] pb-16" dir={dir}>
       <header className="max-w-6xl mx-auto px-4 sm:px-6 pt-12">
+        <Link
+          to="/advanced-care"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F4C3A] hover:text-[#D4AF37] transition-colors mb-4"
+        >
+          <ArrowRight size={14} strokeWidth={2.5} className="rtl:rotate-180" />
+          {t('hub.backToUniverse')}
+        </Link>
         <span className="inline-flex items-center gap-2 text-xs font-bold text-[#0F4C3A] bg-[#D4AF37]/15 rounded-full px-3 py-1.5">
           <Sparkles size={13} />
           {paid ? t('hub.badge.premium') : t('hub.badge.free')}
