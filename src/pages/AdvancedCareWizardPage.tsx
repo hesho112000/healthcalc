@@ -369,8 +369,7 @@ const AdvancedCareWizardPage: React.FC = () => {
       navigate('/advanced-care');
       return;
     }
-    if (user) navigate('/premium');
-    else navigate('/advanced-care/wizard/signup');
+    navigate('/my-health-hub');
   };
 
   const exerciseById = useMemo(
@@ -532,7 +531,37 @@ ${conditionTags}
       focusCondition,
     };
     localStorage.setItem('hc_advanced_care_plan', JSON.stringify(plan));
-  }, [step, selected, profile, exerciseMode, nutritionMode, cuisine, currentFoodNames, currentExerciseIds, dailyKcal, calorieFloor, kcalExtended, mealCount, snackCount, focusCondition]);
+    try {
+      const numericLabs: Record<string, Record<string, number>> = {};
+      selected.forEach((id) => {
+        if (id === 'ibs') return;
+        const markers = LAB_FIELD_KEYS[id] ?? [];
+        markers.forEach((marker) => {
+          const value = parseFloat(labs[marker] ?? '');
+          if (Number.isFinite(value)) {
+            numericLabs[id] = { ...(numericLabs[id] ?? {}), [marker]: value };
+          }
+        });
+      });
+      localStorage.setItem('healthcalc_conditions', JSON.stringify(selected));
+      localStorage.setItem('healthcalc_user_profile', JSON.stringify(profile));
+      localStorage.setItem(
+        'healthcalc_plan',
+        JSON.stringify({
+          conditions: selected,
+          profile,
+          foodNames: currentFoodNames,
+          exerciseIds: currentExerciseIds,
+          calories: dailyKcal,
+        }),
+      );
+      if (Object.keys(numericLabs).length > 0) {
+        localStorage.setItem('healthcalc_labs', JSON.stringify(numericLabs));
+      }
+    } catch {
+      /* ignore */
+    }
+  }, [step, selected, profile, exerciseMode, nutritionMode, cuisine, currentFoodNames, currentExerciseIds, dailyKcal, calorieFloor, kcalExtended, mealCount, snackCount, focusCondition, labs]);
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] pb-28" dir={dir}>

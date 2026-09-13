@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, Globe, Leaf, Menu, X } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useAdmin } from '../../context/AdminContext';
+import { hasPlanData } from '../hub/data';
 import { translations } from '../../i18n/translations';
 import type { Language } from '../../types';
 
@@ -21,6 +22,7 @@ const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const [adminOpen, setAdminOpen] = useState(false);
+  const [hubReady, setHubReady] = useState(false);
   const desktopLangRef = useRef<HTMLDivElement>(null);
   const drawerLangRef = useRef<HTMLDivElement>(null);
   const adminRef = useRef<HTMLDivElement>(null);
@@ -29,6 +31,7 @@ const Header: React.FC = () => {
     setMobileOpen(false);
     setLangOpen(false);
     setAdminOpen(false);
+    setHubReady(hasPlanData());
   }, [location.pathname]);
 
   useEffect(() => {
@@ -50,7 +53,7 @@ const Header: React.FC = () => {
     { to: '/', key: 'nav.home', exact: true },
     { to: '/fitness', key: 'nav.calculators' },
     { to: '/advanced-care', key: 'nav.advancedCare' },
-    { to: '/my-health-hub', key: 'nav.myHealthHub' },
+    ...(hubReady ? [{ to: '/my-health-hub', key: 'nav.myHealthHub' }] : []),
     { to: '/articles', key: 'nav.resources' },
     { to: '/about', key: 'nav.about' },
     { to: '/contact', key: 'nav.contact' },

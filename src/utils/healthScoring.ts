@@ -126,14 +126,26 @@ const metricScore = (value: number, metric: LabMetric): number => {
 };
 
 export const readStoredLabs = (): Record<string, Record<string, number>> => {
+  const out: Record<string, Record<string, number>> = {};
+  const merge = (source: unknown): void => {
+    if (!source || typeof source !== 'object' || Array.isArray(source)) return;
+    Object.entries(source as Record<string, unknown>).forEach(([cid, values]) => {
+      if (values && typeof values === 'object' && !Array.isArray(values)) {
+        out[cid] = { ...(out[cid] ?? {}), ...(values as Record<string, number>) };
+      }
+    });
+  };
   try {
-    const raw = localStorage.getItem(LAB_STORAGE_KEY);
-    if (!raw) return {};
-    const parsed = JSON.parse(raw) as Record<string, Record<string, number>>;
-    return parsed && typeof parsed === 'object' ? parsed : {};
+    merge(JSON.parse(localStorage.getItem(LAB_STORAGE_KEY) || 'null'));
   } catch {
-    return {};
+    /* ignore */
   }
+  try {
+    merge(JSON.parse(localStorage.getItem('healthcalc_labs') || 'null'));
+  } catch {
+    /* ignore */
+  }
+  return out;
 };
 
 export const writeStoredLabs = (
@@ -194,6 +206,7 @@ export const readUserProfile = (): UserProfileData => {
     mergeProfile(out, parse('healthcalc-metrics'));
     mergeProfile(out, parse('hc_calc_profile'));
     mergeProfile(out, parse('hc_calculator_bridge'));
+    mergeProfile(out, parse('healthcalc_user_profile'));
     mergeProfile(out, parse('hc_advanced_care'));
     mergeProfile(out, parse('hc_advanced_care_plan'));
   } catch {
