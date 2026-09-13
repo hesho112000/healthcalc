@@ -142,7 +142,11 @@ const AdvancedCareWizardPage: React.FC = () => {
   })();
   const preselectedFromUrl = fromUrlConditions.length > 0;
   const initialConditions: ConditionId[] = fromUrlConditions;
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState<number>(() => {
+    const raw = searchParams.get('step');
+    const s = Number(raw);
+    return s >= 1 && s <= 6 ? s : 1;
+  });
   const [selected, setSelected] = useState<ConditionId[]>(initialConditions);
   const [hasLabs, setHasLabs] = useState<boolean | null>(null);
   const [profile, setProfile] = useState({ age: 35, height: 170, weight: 70, gender: 'male' });

@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Check, Dumbbell, Microscope, Plus, UtensilsCrossed, X } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { translations } from '../../i18n/translations';
@@ -19,10 +20,19 @@ import {
   organStatus,
   organHasLabData,
   writeStoredLabs,
+  getOrganDetail,
 } from './BodyMap';
 import type { OrganId, OrganStatus, ToolKey } from './BodyMap';
 
 type TKey = keyof typeof translations.en;
+
+const tt = (text: string, params: Record<string, string>): string => {
+  let out = text;
+  Object.entries(params).forEach(([k, v]) => {
+    out = out.split(`{${k}}`).join(v);
+  });
+  return out;
+};
 
 const scoreMeta: Record<OrganStatus, { bar: string; text: string; chip: string }> = {
   healthy: {
@@ -63,10 +73,12 @@ interface HealthCardProps {
 
 const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, onClose }) => {
   const { t, dir, language } = useLanguage();
+  const navigate = useNavigate();
   const { hasFeature, upgrade } = useSubscription();
   const [tool, setTool] = useState<ToolKey | null>(null);
   const [paywallFeature, setPaywallFeature] = useState<FeatureId | null>(null);
   const [labVersion, setLabVersion] = useState(0);
+  const [showCalc, setShowCalc] = useState(false);
 
   const handleToolClick = (toolKey: ToolKey) => {
     if (toolKey === 'lab' && !hasFeature('labSave')) {
@@ -87,6 +99,34 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
   const hasLabData = organHasLabData(organ);
   const status: OrganStatus = score === null ? 'healthy' : organStatus(score);
   const meta = scoreMeta[status];
+  const detail = useMemo(() => getOrganDetail(organ), [organ, labVersion]);
+
+  const wizardTarget = useMemo(() => {
+    const labIds = conditionIds.filter((id) => id !== 'ibs');
+    if (labIds.length > 0) {
+      return `/advanced-care/wizard?conditions=${labIds.join(',')}&step=4`;
+    }
+    if (conditionIds.length === 0) {
+      return '/advanced-care/wizard?step=3';
+    }
+    return '/advanced-care/wizard?conditions=ibs&step=4';
+  }, [conditionIds]);
+
+  const factorsSentence =
+    detail?.score !== undefined && detail && score !== null
+      ? tt(t('universe.score.transparency'), {
+          organ: t(organNameKey(organ)),
+          score: String(score),
+          factors: detail.factors
+            .map((f) => {
+              const label = t(f.labelKey);
+              const unit = f.unit ?? (f.unitKey ? t(f.unitKey) : '');
+              const value = f.value ? ` ${f.value}` : '';
+              return [label + value, unit].filter((x) => x).join(' ');
+            })
+            .join(', '),
+        })
+      : '';
 
   const labConditionIds = useMemo(
     () => conditionIds.filter((id) => isLabCondition(id)),
@@ -186,11 +226,21 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
                 </span>
               </div>
               {score === null ? (
-                <div className="mt-3 flex items-center gap-3">
-                  <span className="text-xl font-extrabold text-[#6B7A75] tabular-nums">—</span>
-                  <span className="text-xs font-semibold text-[#6B7A75]">
-                    {t('universe.score.basedOnGeneral')}
-                  </span>
+                <div className="mt-3">
+                  <div className="flex items-center gap-3">
+                    <span className="text-xl font-extrabold text-[#6B7A75] tabular-nums">—</span>
+                    <span className="text-xs font-semibold text-[#6B7A75]">
+                      {t('universe.score.enterLabs')}
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => navigate(wizardTarget)}
+                    className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-[#D4AF37]/15 text-[#6a4f0e] px-4 py-2 text-xs font-extrabold hover:bg-[#D4AF37]/25 transition-colors"
+                  >
+                    {t('universe.score.addLabs')}
+                    <ArrowRight size={13} strokeWidth={2.5} className="rtl:rotate-180" />
+                  </button>
                 </div>
               ) : (
                 <>
@@ -205,13 +255,42 @@ const HealthCard: React.FC<HealthCardProps> = ({ organ, inPlan, onTogglePlan, on
                       {score}
                     </span>
                   </div>
-                  <p className="mt-3 text-[11px] font-bold text-[#6B7A75]">
-                    {t(
-                      hasLabData
-                        ? 'universe.score.basedOnLabs'
-                        : 'universe.score.basedOnGeneral',
-                    )}
-                  </p>
+                  <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+                    <p className="text-[11px] font-bold text-[#6B7A75]">
+                      {t(
+                        hasLabData
+                          ? 'universe.score.basedOnLabs'
+                          : 'universe.score.basedOnGeneral',
+                      )}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setShowCalc((v) => !v)}
+                      className="text-[11px] font-extrabold text-[#0F4C3A] underline decoration-[#D4AF37]/60 decoration-2 underline-offset-2 hover:text-[#1a6b53] transition-colors"
+                    >
+                      {t('universe.score.calcLink')}
+                    </button>
+                  </div>
+                  {showCalc && detail && (
+                    <div className="mt-3 rounded-2xl bg-[#0F4C3A] p-4 text-[#FDFBF7]">
+                      <p className="text-xs font-extrabold uppercase tracking-[1.2px] text-[#D4AF37]">
+                        {t('universe.score.transparencyTitle')}
+                      </p>
+                      <p className="mt-2 text-xs leading-relaxed">{factorsSentence}</p>
+                      <ul className="mt-2 space-y-1 text-[11px] leading-relaxed text-white/85">
+                        {detail.factors.map((f) => (
+                          <li key={f.labelKey + f.value}>
+                            {t(f.labelKey)}
+                            {f.value ? ` ${f.value}` : ''}
+                            {f.unit ? ` ${f.unit}` : f.unitKey ? ` ${t(f.unitKey)}` : ''}
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="mt-3 border-t border-white/15 pt-2 text-[10px] leading-relaxed text-white/60">
+                        {t('universe.score.disclaimer')}
+                      </p>
+                    </div>
+                  )}
                 </>
               )}
             </div>

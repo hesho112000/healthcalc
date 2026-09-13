@@ -4,6 +4,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import { translations } from '../../i18n/translations';
 import { ORGAN_CONFIG, organConditionKey, organNameKey, organScore, organStatus } from './BodyMap';
 import type { OrganId } from './BodyMap';
+import { calculateOverallScore } from '../../utils/healthScoring';
 import { exercisePoolFor, foodPoolFor } from '../../data/conditions';
 import type { ConditionId } from '../../data/conditions';
 import type { Cuisine, FoodItem } from '../../utils/calculations';
@@ -91,8 +92,7 @@ const HealthDashboard: React.FC<HealthDashboardProps> = ({ organs, onViewOrgan, 
     const scores = organs
       .map((id) => organScore(id))
       .filter((s): s is number => s !== null);
-    if (scores.length === 0) return null;
-    return Math.round(scores.reduce((sum, s) => sum + s, 0) / scores.length);
+    return calculateOverallScore(scores);
   }, [organs]);
 
   const overallStatus: TKey =
@@ -230,6 +230,11 @@ const HealthDashboard: React.FC<HealthDashboardProps> = ({ organs, onViewOrgan, 
               <p className="mt-1 max-w-xs text-xs leading-relaxed text-white/75">
                 {t('universe.hd.overallSub')}
               </p>
+              {overall === null && (
+                <p className="mt-2 max-w-xs text-xs leading-relaxed text-[#D4AF37]">
+                  {t('universe.score.overallMissing')}
+                </p>
+              )}
             </div>
 
             <div className="relative shrink-0">
