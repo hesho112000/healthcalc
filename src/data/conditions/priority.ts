@@ -9,6 +9,7 @@ export const CONDITION_PRIORITY: Record<ConditionId, number> = {
   cholesterol: 50,
   thyroid: 60,
   ibs: 70,
+  'mental-wellness': 80,
 };
 
 export const priorityOf = (id: string): number =>

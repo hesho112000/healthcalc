@@ -12,6 +12,7 @@ const LAB_FIELD_UNITS: Record<string, string> = {
   total: 'mg/dL', ldl: 'mg/dL', hdl: 'mg/dL', triglycerides: 'mg/dL',
   alt: 'U/L', ast: 'U/L', bilirubin: 'mg/dL', creatinine: 'mg/dL',
   egfr: 'mL/min', potassium: 'mmol/L', tsh: 'mIU/L', t3: 'ng/dL', t4: 'µg/dL',
+  vitaminD: 'ng/mL', b12: 'pg/mL', iron: 'µg/L',
 };
 
 const LAB_FIELD_KEYS: Record<Exclude<ConditionId, 'ibs'>, string[]> = {
@@ -22,11 +23,13 @@ const LAB_FIELD_KEYS: Record<Exclude<ConditionId, 'ibs'>, string[]> = {
   liver: ['alt', 'ast', 'bilirubin'],
   kidney: ['creatinine', 'egfr', 'potassium'],
   thyroid: ['tsh', 't3', 't4'],
+  'mental-wellness': ['vitaminD', 'b12', 'iron', 'tsh'],
 };
 
 const LAB_FIELD_HINTS = new Set([
   'fasting', 'hba1c', 'systolic', 'diastolic', 'uricAcid', 'total', 'ldl', 'hdl',
   'triglycerides', 'alt', 'ast', 'bilirubin', 'creatinine', 'egfr', 'potassium', 'tsh',
+  'vitaminD', 'b12', 'iron',
 ]);
 
 interface LabsStepProps {

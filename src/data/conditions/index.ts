@@ -17,6 +17,7 @@ import { liverCondition } from './liver';
 import { kidneyCondition } from './kidney';
 import { thyroidCondition } from './thyroid';
 import { ibsCondition } from './ibs';
+import { mentalWellnessData } from './mental-wellness';
 import { priorityOf } from './priority';
 
 export * from './types';
@@ -31,6 +32,7 @@ export const CONDITION_IDS: ConditionId[] = [
   'kidney',
   'thyroid',
   'ibs',
+  'mental-wellness',
 ];
 
 export const CONDITION_DATA: Record<string, ConditionData> = {
@@ -42,6 +44,7 @@ export const CONDITION_DATA: Record<string, ConditionData> = {
   kidney: kidneyCondition,
   thyroid: thyroidCondition,
   ibs: ibsCondition,
+  'mental-wellness': mentalWellnessData,
 };
 
 export const getConditionData = (id: string): ConditionData | undefined => CONDITION_DATA[id];

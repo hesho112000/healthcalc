@@ -1426,6 +1426,26 @@ type TranslationKeys = {
   'organHub.status.healthy': string;
   'organHub.status.warning': string;
   'organHub.status.critical': string;
+  'organHub.emptyTitle': string;
+  'organHub.emptyDesc': string;
+  'organHub.emptyCta': string;
+  'organHub.addLabs': string;
+  'organHub.addProgress': string;
+  'organHub.mentalWellness.title': string;
+  'organHub.mentalWellness.subtitle': string;
+  'organHub.mentalWellness.exercises': string;
+  'organHub.mentalWellness.nutrition': string;
+  'organHub.mentalWellness.labs': string;
+  'condition.mentalWellness.name': string;
+  'condition.mentalWellness.desc': string;
+  'condition.mentalWellness.focus': string;
+  'condition.mentalWellness.avoid': string;
+  'condition.mentalWellness.prefer': string;
+  'universe.factor.stress': string;
+  'universe.factor.mood': string;
+  'universe.level.low': string;
+  'universe.level.medium': string;
+  'universe.level.high': string;
   'paywall.title': string;
   'paywall.subtitle': string;
   'paywall.tier.basic': string;
@@ -1529,6 +1549,12 @@ type TranslationKeys = {
   'advanced.lab.field.potassium.hint': string;
   'advanced.lab.field.tsh.label': string;
   'advanced.lab.field.tsh.hint': string;
+  'advanced.lab.field.vitaminD.label': string;
+  'advanced.lab.field.vitaminD.hint': string;
+  'advanced.lab.field.b12.label': string;
+  'advanced.lab.field.b12.hint': string;
+  'advanced.lab.field.iron.label': string;
+  'advanced.lab.field.iron.hint': string;
   'advanced.lab.field.t3.label': string;
   'advanced.lab.field.t3.hint': string;
   'advanced.lab.field.t4.label': string;
@@ -1587,6 +1613,9 @@ type TranslationKeys = {
   'wizard.lab.tsh': string;
   'wizard.lab.t3': string;
   'wizard.lab.t4': string;
+  'wizard.lab.vitaminD': string;
+  'wizard.lab.b12': string;
+  'wizard.lab.iron': string;
   'wizard.step5.conditionHeader': string;
   'wizard.step5.exerciseHeader': string;
   'wizard.step5.nutritionHeader': string;
@@ -1812,6 +1841,13 @@ type TranslationKeys = {
   'wizard.condition.ibs.focus': string;
   'wizard.condition.ibs.exercisePref': string;
   'wizard.condition.ibs.nutritionRules': string;
+  'wizard.condition.mental-wellness.name': string;
+  'wizard.condition.mental-wellness.desc': string;
+  'wizard.condition.mental-wellness.focus': string;
+  'wizard.condition.mental-wellness.exercisePref': string;
+  'wizard.condition.mental-wellness.nutritionRules': string;
+  'wizard.condition.mental-wellness.avoid': string;
+  'wizard.condition.mental-wellness.prefer': string;
   'wizard.condition.ibs.avoid': string;
   'wizard.condition.ibs.prefer': string;
   // Nutrition & Fitness Wizard (8 steps)
@@ -2002,6 +2038,9 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.lab.tsh': 'TSH',
     'wizard.lab.t3': 'T3',
     'wizard.lab.t4': 'T4',
+    'wizard.lab.vitaminD': 'Vitamin D',
+    'wizard.lab.b12': 'Vitamin B12',
+    'wizard.lab.iron': 'Iron (Ferritin)',
     'wizard.step5.conditionHeader': 'Condition-specific rules',
     'wizard.step5.exerciseHeader': 'Exercise plan',
     'wizard.step5.nutritionHeader': 'Nutrition plan',
@@ -2227,6 +2266,13 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.condition.ibs.focus': 'Low-FODMAP · gut-friendly',
     'wizard.condition.ibs.exercisePref': 'Walking, Yoga, Pilates, Tai Chi, Light cycling',
     'wizard.condition.ibs.nutritionRules': 'Low FODMAP',
+    'wizard.condition.mental-wellness.name': 'Mental Wellness',
+    'wizard.condition.mental-wellness.desc': 'Support your brain with nutrition, sleep, and stress management.',
+    'wizard.condition.mental-wellness.focus': 'Mental clarity, sleep quality, stress reduction',
+    'wizard.condition.mental-wellness.exercisePref': 'Walking, Yoga, Meditation, Tai Chi',
+    'wizard.condition.mental-wellness.nutritionRules': 'Omega-3, antioxidants, low caffeine',
+    'wizard.condition.mental-wellness.avoid': 'Excessive caffeine, Alcohol, Processed sugar, Trans fats',
+    'wizard.condition.mental-wellness.prefer': 'Fatty fish, Walnuts, Berries, Dark chocolate, Leafy greens, Turmeric',
     'wizard.condition.ibs.avoid': 'Onions, Garlic, Beans, Wheat, Lactose, Honey',
     'wizard.condition.ibs.prefer': 'Rice, Unripe bananas, Carrots, Zucchini, Chicken',
     // Advanced Care
@@ -2312,7 +2358,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'universe.continueCta': 'Continue to Personalized Plan',
     'universe.organ.brain.name': 'Brain',
     'universe.organ.brain.condition': 'Mental Wellness',
-    'universe.organ.brain.desc': 'Your brain runs on steady glucose, hydration, and deep sleep. Brain support tools are coming soon.',
+    'universe.organ.brain.desc': 'Your brain runs on steady glucose, hydration, and deep sleep. Explore nutrition, sleep, and stress tools for mental wellness.',
     'universe.organ.heart.name': 'Heart',
     'universe.organ.heart.condition': 'Hypertension · Cholesterol',
     'universe.organ.heart.desc': 'Heart health begins with blood pressure and cholesterol. Low-sodium, heart-friendly choices keep it strong.',
@@ -2365,6 +2411,26 @@ export const translations: Record<Language, TranslationKeys> = {
     'organHub.status.healthy': 'Healthy',
     'organHub.status.warning': 'Needs attention',
     'organHub.status.critical': 'High priority',
+    'organHub.emptyTitle': 'Complete Your Profile First',
+    'organHub.emptyDesc': 'Add your health info and labs to get a real score — no guesses.',
+    'organHub.emptyCta': 'Start the Wizard',
+    'organHub.addLabs': 'Add your lab values',
+    'organHub.addProgress': 'Track sleep, mood & stress',
+    'organHub.mentalWellness.title': 'Mental Wellness Hub',
+    'organHub.mentalWellness.subtitle': 'Nutrition, sleep & stress management for a sharper mind.',
+    'organHub.mentalWellness.exercises': 'Calming Exercises',
+    'organHub.mentalWellness.nutrition': 'Brain Foods',
+    'organHub.mentalWellness.labs': 'Labs to Watch',
+    'condition.mentalWellness.name': 'Mental Wellness',
+    'condition.mentalWellness.desc': 'Support your brain with nutrition, sleep, and stress management.',
+    'condition.mentalWellness.focus': 'Mental clarity, sleep quality, stress reduction',
+    'condition.mentalWellness.avoid': 'Excessive caffeine, Alcohol, Processed sugar, Trans fats',
+    'condition.mentalWellness.prefer': 'Fatty fish, Walnuts, Berries, Dark chocolate, Leafy greens, Turmeric',
+    'universe.factor.stress': 'Stress',
+    'universe.factor.mood': 'Mood',
+    'universe.level.low': 'Low',
+    'universe.level.medium': 'Medium',
+    'universe.level.high': 'High',
     'paywall.title': 'Unlock Full Access',
     'paywall.subtitle': 'Get all 7 days, progress tracking, and PDF downloads.',
     'paywall.tier.basic': 'Basic',
@@ -2606,6 +2672,12 @@ export const translations: Record<Language, TranslationKeys> = {
     'advanced.lab.field.potassium.hint': 'Normal 3.5–5.0',
     'advanced.lab.field.tsh.label': 'TSH',
     'advanced.lab.field.tsh.hint': 'Normal 0.4–4.0',
+    'advanced.lab.field.vitaminD.label': 'Vitamin D',
+    'advanced.lab.field.vitaminD.hint': 'Normal 30-100 ng/mL',
+    'advanced.lab.field.b12.label': 'Vitamin B12',
+    'advanced.lab.field.b12.hint': 'Normal 300-900 pg/mL',
+    'advanced.lab.field.iron.label': 'Iron (Ferritin)',
+    'advanced.lab.field.iron.hint': 'Normal 30-300 µg/L',
     'advanced.lab.field.t3.label': 'T3',
     'advanced.lab.field.t3.hint': 'Per lab reference',
     'advanced.lab.field.t4.label': 'T4',
@@ -3952,6 +4024,9 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.lab.tsh': 'TSH',
     'wizard.lab.t3': 'T3',
     'wizard.lab.t4': 'T4',
+    'wizard.lab.vitaminD': 'Vitamine D',
+    'wizard.lab.b12': 'Vitamine B12',
+    'wizard.lab.iron': 'Fer (Ferritine)',
     'wizard.step5.conditionHeader': 'Règles spécifiques par pathologie',
     'wizard.step5.exerciseHeader': 'Plan d\'exercice',
     'wizard.step5.nutritionHeader': 'Plan nutritionnel',
@@ -4177,6 +4252,13 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.condition.ibs.focus': 'Bas FODMAP · intestin apaisé',
     'wizard.condition.ibs.exercisePref': 'Marche, Yoga, Pilates, Tai Chi, Vélo léger',
     'wizard.condition.ibs.nutritionRules': 'Faible FODMAP',
+    'wizard.condition.mental-wellness.name': 'Bien-être Mental',
+    'wizard.condition.mental-wellness.desc': 'Soutenez votre cerveau avec nutrition, sommeil et gestion du stress.',
+    'wizard.condition.mental-wellness.focus': 'Clarté mentale, qualité du sommeil, réduction du stress',
+    'wizard.condition.mental-wellness.exercisePref': 'Marche, Yoga, Méditation, Tai Chi',
+    'wizard.condition.mental-wellness.nutritionRules': 'Oméga-3, antioxydants, faible caféine',
+    'wizard.condition.mental-wellness.avoid': 'Caféine excessive, Alcool, Sucres transformés, Gras trans',
+    'wizard.condition.mental-wellness.prefer': 'Poissons gras, Noix, Baies, Chocolat noir, Légumes verts, Curcuma',
     'wizard.condition.ibs.avoid': 'Oignons, Ail, Haricots, Blé, Lactose, Miel',
     'wizard.condition.ibs.prefer': 'Riz, Bananes vertes, Carottes, Courgettes, Poulet',
     // Advanced Care
@@ -4315,6 +4397,26 @@ export const translations: Record<Language, TranslationKeys> = {
     'organHub.status.healthy': 'Bon',
     'organHub.status.warning': 'À surveiller',
     'organHub.status.critical': 'Priorité élevée',
+    'organHub.emptyTitle': 'Complétez votre profil en premier',
+    'organHub.emptyDesc': 'Ajoutez vos informations de santé et vos analyses pour obtenir un vrai score, sans suppositions.',
+    'organHub.emptyCta': 'Démarrer le parcours',
+    'organHub.addLabs': 'Ajouter vos analyses',
+    'organHub.addProgress': 'Suivre sommeil, humeur et stress',
+    'organHub.mentalWellness.title': 'Centre Bien-être Mental',
+    'organHub.mentalWellness.subtitle': 'Nutrition, sommeil et gestion du stress pour un esprit plus vif.',
+    'organHub.mentalWellness.exercises': 'Exercices apaisants',
+    'organHub.mentalWellness.nutrition': 'Aliments pour le cerveau',
+    'organHub.mentalWellness.labs': 'Analyses à surveiller',
+    'condition.mentalWellness.name': 'Bien-être Mental',
+    'condition.mentalWellness.desc': 'Soutenez votre cerveau avec nutrition, sommeil et gestion du stress.',
+    'condition.mentalWellness.focus': 'Clarté mentale, qualité du sommeil, réduction du stress',
+    'condition.mentalWellness.avoid': 'Caféine excessive, Alcool, Sucres transformés, Gras trans',
+    'condition.mentalWellness.prefer': 'Poissons gras, Noix, Baies, Chocolat noir, Légumes verts, Curcuma',
+    'universe.factor.stress': 'Stress',
+    'universe.factor.mood': 'Humeur',
+    'universe.level.low': 'Faible',
+    'universe.level.medium': 'Moyen',
+    'universe.level.high': 'Élevé',
     'paywall.title': 'Débloquer l\'accès complet',
     'paywall.subtitle': 'Accédez aux 7 jours, au suivi de progression et aux téléchargements PDF.',
     'paywall.tier.basic': 'Basique',
@@ -4556,6 +4658,12 @@ export const translations: Record<Language, TranslationKeys> = {
     'advanced.lab.field.potassium.hint': 'Normal 3,5–5,0',
     'advanced.lab.field.tsh.label': 'TSH',
     'advanced.lab.field.tsh.hint': 'Normal 0,4–4,0',
+    'advanced.lab.field.vitaminD.label': 'Vitamine D',
+    'advanced.lab.field.vitaminD.hint': 'Normal 30-100 ng/mL',
+    'advanced.lab.field.b12.label': 'Vitamine B12',
+    'advanced.lab.field.b12.hint': 'Normal 300-900 pg/mL',
+    'advanced.lab.field.iron.label': 'Fer (Ferritine)',
+    'advanced.lab.field.iron.hint': 'Normal 30-300 µg/L',
     'advanced.lab.field.t3.label': 'T3',
     'advanced.lab.field.t3.hint': 'Selon la référence du laboratoire',
     'advanced.lab.field.t4.label': 'T4',
@@ -5872,6 +5980,9 @@ mbFruits: 'Fruits',
     'wizard.lab.tsh': 'TSH',
     'wizard.lab.t3': 'T3',
     'wizard.lab.t4': 'T4',
+    'wizard.lab.vitaminD': 'Vitamina D',
+    'wizard.lab.b12': 'Vitamina B12',
+    'wizard.lab.iron': 'Hierro (Ferritina)',
     'wizard.step5.conditionHeader': 'Reglas por condición',
     'wizard.step5.exerciseHeader': 'Plan de ejercicio',
     'wizard.step5.nutritionHeader': 'Plan de nutrición',
@@ -6097,6 +6208,13 @@ mbFruits: 'Fruits',
     'wizard.condition.ibs.focus': 'Bajo FODMAP · salud intestinal',
     'wizard.condition.ibs.exercisePref': 'Caminar, Yoga, Pilates, Tai Chi, Ciclismo ligero',
     'wizard.condition.ibs.nutritionRules': 'Bajo FODMAP',
+    'wizard.condition.mental-wellness.name': 'Bienestar Mental',
+    'wizard.condition.mental-wellness.desc': 'Apoya tu cerebro con nutrición, sueño y manejo del estrés.',
+    'wizard.condition.mental-wellness.focus': 'Claridad mental, calidad del sueño, reducción del estrés',
+    'wizard.condition.mental-wellness.exercisePref': 'Caminar, Yoga, Meditación, Tai Chi',
+    'wizard.condition.mental-wellness.nutritionRules': 'Omega-3, antioxidantes, bajo en cafeína',
+    'wizard.condition.mental-wellness.avoid': 'Cafeína excesiva, Alcohol, Azúcar procesado, Grasas trans',
+    'wizard.condition.mental-wellness.prefer': 'Pescado graso, Nueces, Bayas, Chocolate negro, Verduras de hoja, Cúrcuma',
     'wizard.condition.ibs.avoid': 'Cebollas, Ajo, Legumbres, Trigo, Lactosa, Miel',
     'wizard.condition.ibs.prefer': 'Arroz, Plátanos verdes, Zanahorias, Calabacín, Pollo',
     // Advanced Care
@@ -6235,6 +6353,26 @@ mbFruits: 'Fruits',
     'organHub.status.healthy': 'Saludable',
     'organHub.status.warning': 'Requiere atención',
     'organHub.status.critical': 'Prioridad alta',
+    'organHub.emptyTitle': 'Completa tu perfil primero',
+    'organHub.emptyDesc': 'Añade tu información de salud y análisis para obtener una puntuación real, sin suposiciones.',
+    'organHub.emptyCta': 'Iniciar el asistente',
+    'organHub.addLabs': 'Añadir tus análisis',
+    'organHub.addProgress': 'Seguir sueño, estado de ánimo y estrés',
+    'organHub.mentalWellness.title': 'Centro de Bienestar Mental',
+    'organHub.mentalWellness.subtitle': 'Nutrición, sueño y manejo del estrés para una mente más aguda.',
+    'organHub.mentalWellness.exercises': 'Ejercicios relajantes',
+    'organHub.mentalWellness.nutrition': 'Alimentos para el cerebro',
+    'organHub.mentalWellness.labs': 'Análisis a vigilar',
+    'condition.mentalWellness.name': 'Bienestar Mental',
+    'condition.mentalWellness.desc': 'Apoya tu cerebro con nutrición, sueño y manejo del estrés.',
+    'condition.mentalWellness.focus': 'Claridad mental, calidad del sueño, reducción del estrés',
+    'condition.mentalWellness.avoid': 'Cafeína excesiva, Alcohol, Azúcar procesado, Grasas trans',
+    'condition.mentalWellness.prefer': 'Pescado graso, Nueces, Bayas, Chocolate negro, Verduras de hoja, Cúrcuma',
+    'universe.factor.stress': 'Estrés',
+    'universe.factor.mood': 'Estado de ánimo',
+    'universe.level.low': 'Baja',
+    'universe.level.medium': 'Media',
+    'universe.level.high': 'Alta',
     'paywall.title': 'Desbloquear acceso completo',
     'paywall.subtitle': 'Obtén los 7 días, el seguimiento de progreso y las descargas en PDF.',
     'paywall.tier.basic': 'Básico',
@@ -6476,6 +6614,12 @@ mbFruits: 'Fruits',
     'advanced.lab.field.potassium.hint': 'Normal 3,5–5,0',
     'advanced.lab.field.tsh.label': 'TSH',
     'advanced.lab.field.tsh.hint': 'Normal 0,4–4,0',
+    'advanced.lab.field.vitaminD.label': 'Vitamina D',
+    'advanced.lab.field.vitaminD.hint': 'Normal 30-100 ng/mL',
+    'advanced.lab.field.b12.label': 'Vitamina B12',
+    'advanced.lab.field.b12.hint': 'Normal 300-900 pg/mL',
+    'advanced.lab.field.iron.label': 'Hierro (Ferritina)',
+    'advanced.lab.field.iron.hint': 'Normal 30-300 µg/L',
     'advanced.lab.field.t3.label': 'T3',
     'advanced.lab.field.t3.hint': 'Según la referencia del laboratorio',
     'advanced.lab.field.t4.label': 'T4',
@@ -7792,6 +7936,9 @@ mbFruits: 'Fruits',
     'wizard.lab.tsh': 'TSH',
     'wizard.lab.t3': 'T3',
     'wizard.lab.t4': 'T4',
+    'wizard.lab.vitaminD': 'فيتامين د',
+    'wizard.lab.b12': 'فيتامين ب12',
+    'wizard.lab.iron': 'الحديد (فيريتين)',
     'wizard.step5.conditionHeader': 'قواعد خاصة بكل حالة',
     'wizard.step5.exerciseHeader': 'خطة التمارين',
     'wizard.step5.nutritionHeader': 'خطة التغذية',
@@ -8017,6 +8164,13 @@ mbFruits: 'Fruits',
     'wizard.condition.ibs.focus': 'فودماب منخفض · صحة الأمعاء',
     'wizard.condition.ibs.exercisePref': 'المشي، اليوجا، البيلاتس، تاي تشي، ركوب الدراجة الخفيف',
     'wizard.condition.ibs.nutritionRules': 'فودماب منخفض',
+    'wizard.condition.mental-wellness.name': 'الصحة النفسية',
+    'wizard.condition.mental-wellness.desc': 'ادعم دماغك بالتغذية والنوم وإدارة التوتر.',
+    'wizard.condition.mental-wellness.focus': 'صفاء ذهني وجودة النوم وتقليل التوتر',
+    'wizard.condition.mental-wellness.exercisePref': 'المشي، اليوغا، التأمل، تاي تشي',
+    'wizard.condition.mental-wellness.nutritionRules': 'أوميغا-3، مضادات الأكسدة، قليل الكافيين',
+    'wizard.condition.mental-wellness.avoid': 'الكافيين المفرط، الكحول، السكر المصنع، الدهون المتحولة',
+    'wizard.condition.mental-wellness.prefer': 'الأسماك الدهنية، الجوز، التوت، الشوكولاتة الداكنة، الخضروات الورقية، الكركم',
     'wizard.condition.ibs.avoid': 'البصل، الثوم، الفول، القمح، اللاكتوز، العسل',
     'wizard.condition.ibs.prefer': 'الأرز، الموز الأخضر، الجزر، الكوسة، الدجاج',
     // Advanced Care
@@ -8155,6 +8309,26 @@ mbFruits: 'Fruits',
     'organHub.status.healthy': 'جيد',
     'organHub.status.warning': 'يحتاج إلى متابعة',
     'organHub.status.critical': 'أولوية عالية',
+    'organHub.emptyTitle': 'أكمل ملفك الشخصي أولاً',
+    'organHub.emptyDesc': 'أضف معلوماتك الصحية وتحاليلك للحصول على نتيجة حقيقية دون تخمين.',
+    'organHub.emptyCta': 'ابدأ المعالج',
+    'organHub.addLabs': 'أضف قيم تحاليلك',
+    'organHub.addProgress': 'تتبع النوم والمزاج والتوتر',
+    'organHub.mentalWellness.title': 'مركز الصحة النفسية',
+    'organHub.mentalWellness.subtitle': 'التغذية والنوم وإدارة التوتر لعقل أكثر صفاءً.',
+    'organHub.mentalWellness.exercises': 'تمارين مهدئة',
+    'organHub.mentalWellness.nutrition': 'أطعمة الدماغ',
+    'organHub.mentalWellness.labs': 'تحاليل تستحق المتابعة',
+    'condition.mentalWellness.name': 'الصحة النفسية',
+    'condition.mentalWellness.desc': 'ادعم دماغك بالتغذية والنوم وإدارة التوتر.',
+    'condition.mentalWellness.focus': 'صفاء ذهني وجودة النوم وتقليل التوتر',
+    'condition.mentalWellness.avoid': 'الكافيين المفرط، الكحول، السكر المصنع، الدهون المتحولة',
+    'condition.mentalWellness.prefer': 'الأسماك الدهنية، الجوز، التوت، الشوكولاتة الداكنة، الخضروات الورقية، الكركم',
+    'universe.factor.stress': 'التوتر',
+    'universe.factor.mood': 'المزاج',
+    'universe.level.low': 'منخفض',
+    'universe.level.medium': 'متوسط',
+    'universe.level.high': 'مرتفع',
     'paywall.title': 'افتح الوصول الكامل',
     'paywall.subtitle': 'احصل على 7 أيام كاملة وتتبع التقدم وتنزيلات PDF.',
     'paywall.tier.basic': 'الأساسية',
@@ -8396,6 +8570,12 @@ mbFruits: 'Fruits',
     'advanced.lab.field.potassium.hint': 'الطبيعي 3.5–5.0',
     'advanced.lab.field.tsh.label': 'TSH',
     'advanced.lab.field.tsh.hint': 'الطبيعي 0.4–4.0',
+    'advanced.lab.field.vitaminD.label': 'فيتامين د',
+    'advanced.lab.field.vitaminD.hint': 'الطبيعي 30-100 نانوغرام/مل',
+    'advanced.lab.field.b12.label': 'فيتامين ب12',
+    'advanced.lab.field.b12.hint': 'الطبيعي 300-900 بيكوغرام/مل',
+    'advanced.lab.field.iron.label': 'الحديد (فيريتين)',
+    'advanced.lab.field.iron.hint': 'الطبيعي 30-300 ميكروغرام/لتر',
     'advanced.lab.field.t3.label': 'T3',
     'advanced.lab.field.t3.hint': 'حسب مرجع المختبر',
     'advanced.lab.field.t4.label': 'T4',
@@ -9723,6 +9903,9 @@ mbFruits: 'Fruits',
     'wizard.lab.tsh': 'TSH',
     'wizard.lab.t3': 'T3',
     'wizard.lab.t4': 'T4',
+    'wizard.lab.vitaminD': 'Vitamin D',
+    'wizard.lab.b12': 'Vitamin B12',
+    'wizard.lab.iron': 'Eisen (Ferritin)',
     'wizard.step5.conditionHeader': 'Erkrankungsspezifische Regeln',
     'wizard.step5.exerciseHeader': 'Bewegungsplan',
     'wizard.step5.nutritionHeader': 'Ernährungsplan',
@@ -9948,6 +10131,13 @@ mbFruits: 'Fruits',
     'wizard.condition.ibs.focus': 'Niedrig-FODMAP · darmfreundlich',
     'wizard.condition.ibs.exercisePref': 'Gehen, Yoga, Pilates, Tai Chi, leichtes Radfahren',
     'wizard.condition.ibs.nutritionRules': 'Niedrig-FODMAP',
+    'wizard.condition.mental-wellness.name': 'Psychisches Wohlbefinden',
+    'wizard.condition.mental-wellness.desc': 'Unterstützen Sie Ihr Gehirn mit Ernährung, Schlaf und Stressmanagement.',
+    'wizard.condition.mental-wellness.focus': 'Geistige Klarheit, Schlafqualität, Stressreduktion',
+    'wizard.condition.mental-wellness.exercisePref': 'Gehen, Yoga, Meditation, Tai Chi',
+    'wizard.condition.mental-wellness.nutritionRules': 'Omega-3, Antioxidantien, wenig Koffein',
+    'wizard.condition.mental-wellness.avoid': 'Übermäßiges Koffein, Alkohol, verarbeiteter Zucker, Transfette',
+    'wizard.condition.mental-wellness.prefer': 'Fetter Fisch, Walnüsse, Beeren, Dunkle Schokolade, Blattgemüse, Kurkuma',
     'wizard.condition.ibs.avoid': 'Zwiebeln, Knoblauch, Bohnen, Weizen, Laktose, Honig',
     'wizard.condition.ibs.prefer': 'Reis, unreife Bananen, Karotten, Zucchini, Hühnchen',
     // Advanced Care
@@ -10086,6 +10276,26 @@ mbFruits: 'Fruits',
     'organHub.status.healthy': 'Gut',
     'organHub.status.warning': 'Beobachtung nötig',
     'organHub.status.critical': 'Hohe Priorität',
+    'organHub.emptyTitle': 'Vervollständigen Sie zuerst Ihr Profil',
+    'organHub.emptyDesc': 'Fügen Sie Ihre Gesundheitsdaten und Laborwerte hinzu, um einen echten Score zu erhalten – ohne Vermutungen.',
+    'organHub.emptyCta': 'Assistent starten',
+    'organHub.addLabs': 'Laborwerte hinzufügen',
+    'organHub.addProgress': 'Schlaf, Stimmung & Stress verfolgen',
+    'organHub.mentalWellness.title': 'Zentrum für psychisches Wohlbefinden',
+    'organHub.mentalWellness.subtitle': 'Ernährung, Schlaf und Stressmanagement für einen schärferen Geist.',
+    'organHub.mentalWellness.exercises': 'Beruhigende Übungen',
+    'organHub.mentalWellness.nutrition': 'Gehirnnahrung',
+    'organHub.mentalWellness.labs': 'Beobachtenswerte Laborwerte',
+    'condition.mentalWellness.name': 'Psychisches Wohlbefinden',
+    'condition.mentalWellness.desc': 'Unterstützen Sie Ihr Gehirn mit Ernährung, Schlaf und Stressmanagement.',
+    'condition.mentalWellness.focus': 'Geistige Klarheit, Schlafqualität, Stressreduktion',
+    'condition.mentalWellness.avoid': 'Übermäßiges Koffein, Alkohol, verarbeiteter Zucker, Transfette',
+    'condition.mentalWellness.prefer': 'Fetter Fisch, Walnüsse, Beeren, Dunkle Schokolade, Blattgemüse, Kurkuma',
+    'universe.factor.stress': 'Stress',
+    'universe.factor.mood': 'Stimmung',
+    'universe.level.low': 'Niedrig',
+    'universe.level.medium': 'Mittel',
+    'universe.level.high': 'Hoch',
     'paywall.title': 'Vollzugriff freischalten',
     'paywall.subtitle': 'Erhalten Sie alle 7 Tage, Fortschritts-Tracking und PDF-Downloads.',
     'paywall.tier.basic': 'Basic',
@@ -10327,6 +10537,12 @@ mbFruits: 'Fruits',
     'advanced.lab.field.potassium.hint': 'Normal 3,5–5,0',
     'advanced.lab.field.tsh.label': 'TSH',
     'advanced.lab.field.tsh.hint': 'Normal 0,4–4,0',
+    'advanced.lab.field.vitaminD.label': 'Vitamin D',
+    'advanced.lab.field.vitaminD.hint': 'Normal 30-100 ng/mL',
+    'advanced.lab.field.b12.label': 'Vitamin B12',
+    'advanced.lab.field.b12.hint': 'Normal 300-900 pg/mL',
+    'advanced.lab.field.iron.label': 'Eisen (Ferritin)',
+    'advanced.lab.field.iron.hint': 'Normal 30-300 µg/L',
     'advanced.lab.field.t3.label': 'T3',
     'advanced.lab.field.t3.hint': 'Laut Laborreferenz',
     'advanced.lab.field.t4.label': 'T4',

@@ -13,6 +13,7 @@ import {
   calculateHeartScore,
   calculateKidneyScore,
   calculateLiverScore,
+  calculateMentalWellnessScore,
   calculatePancreasScore,
   calculateThyroidScore,
 } from '../utils/healthScoring';
@@ -69,6 +70,9 @@ const LAB_FIELD_UNITS: Record<string, string> = {
   tsh: 'mIU/L',
   t3: 'ng/dL',
   t4: 'µg/dL',
+  vitaminD: 'ng/mL',
+  b12: 'pg/mL',
+  iron: 'µg/L',
 };
 
 const LAB_FIELD_KEYS: Record<Exclude<ConditionId, 'ibs'>, string[]> = {
@@ -79,6 +83,7 @@ const LAB_FIELD_KEYS: Record<Exclude<ConditionId, 'ibs'>, string[]> = {
   liver: ['alt', 'ast', 'bilirubin'],
   kidney: ['creatinine', 'egfr', 'potassium'],
   thyroid: ['tsh', 't3', 't4'],
+  'mental-wellness': ['vitaminD', 'b12', 'iron', 'tsh'],
 };
 
 const CUISINE_LOOKUP: Record<string, string> = {
@@ -436,6 +441,8 @@ const AdvancedCareWizardPage: React.FC = () => {
         return calculateKidneyScore(numericLabs);
       case 'thyroid':
         return calculateThyroidScore(numericLabs);
+      case 'mental-wellness':
+        return calculateMentalWellnessScore(profile, numericLabs);
       default:
         return null;
     }

@@ -16,7 +16,7 @@ export type HealthOrganId =
 export type OrganStatus = 'critical' | 'warning' | 'healthy';
 
 export const HEALTH_ORGAN_CONDITIONS: Record<HealthOrganId, readonly ConditionId[]> = {
-  brain: [],
+  brain: ['mental-wellness'],
   thyroid: ['thyroid'],
   heart: ['hypertension', 'cholesterol'],
   pancreas: ['diabetes'],
@@ -47,6 +47,9 @@ const LAB_UNITS: Record<string, string> = {
   tsh: 'mIU/L',
   t3: 'ng/dL',
   t4: 'µg/dL',
+  vitaminD: 'ng/mL',
+  b12: 'pg/mL',
+  iron: 'µg/L',
 };
 
 interface LabMetric {
@@ -87,6 +90,11 @@ const LAB_METRICS: Record<string, readonly LabMetric[]> = {
     { key: 'tsh', idealLo: 0.4, idealHi: 4.0, riskHi: 10 },
     { key: 't3', idealLo: 80, idealHi: 200, riskHi: 240 },
     { key: 't4', idealLo: 4.5, idealHi: 12.5, riskHi: 14 },
+  ],
+  'mental-wellness': [
+    { key: 'vitaminD', idealLo: 30, idealHi: 60, riskHi: 100 },
+    { key: 'b12', idealLo: 300, idealHi: 900, riskHi: 1200 },
+    { key: 'iron', idealLo: 30, idealHi: 300, riskHi: 500 },
   ],
 };
 
@@ -175,6 +183,8 @@ export interface UserProfileData {
   weight?: number;
   activityLevel?: string;
   sleepHours?: number;
+  stress?: string;
+  mood?: string;
 }
 
 const mergeProfile = (out: UserProfileData, src: unknown): void => {
@@ -187,6 +197,9 @@ const mergeProfile = (out: UserProfileData, src: unknown): void => {
     out.sleepHours = s.sleepHours;
   }
   if (typeof s.sleep === 'number' && Number.isFinite(s.sleep)) out.sleepHours = s.sleep;
+  const stressVal = typeof s.stress === 'string' ? s.stress : typeof s.stressLevel === 'string' ? s.stressLevel : undefined;
+  if (stressVal) out.stress = stressVal;
+  if (typeof s.mood === 'string') out.mood = s.mood;
   const h = typeof s.height === 'number' ? s.height : s.heightCm;
   if (typeof h === 'number' && Number.isFinite(h)) out.height = h;
   const w = typeof s.weight === 'number' ? s.weight : s.weightKg;
@@ -246,6 +259,50 @@ export const calculateBrainScore = (userData: BrainInput | null | undefined): nu
     score -= (7 - userData.sleepHours) * 2;
   }
   return Math.round(clamp(score, 0, 100));
+};
+
+export const calculateMentalWellnessScore = (
+  profile: UserProfileData | null | undefined,
+  labs: Record<string, number> | null | undefined,
+): number | null => {
+  if (!profile || typeof profile !== 'object') return null;
+  const l = labs ?? {};
+  const sleep = typeof profile.sleepHours === 'number' ? profile.sleepHours : undefined;
+  const stress = profile.stress;
+  const activity = profile.activityLevel;
+  const vitD = typeof l.vitaminD === 'number' ? l.vitaminD : undefined;
+  const b12 = typeof l.b12 === 'number' ? l.b12 : undefined;
+  const hasAny =
+    typeof sleep === 'number' ||
+    Boolean(stress) ||
+    Boolean(activity) ||
+    typeof vitD === 'number' ||
+    typeof b12 === 'number';
+  if (!hasAny) return null;
+
+  let score = 85;
+  if (typeof sleep === 'number' && sleep < 7) {
+    score -= (7 - sleep) * 2;
+  }
+  switch (activity) {
+    case 'sedentary': score -= 12; break;
+    case 'light': score -= 4; break;
+    default: break;
+  }
+  switch (stress) {
+    case 'high': score -= 16; break;
+    case 'medium': score -= 8; break;
+    default: break;
+  }
+  if (typeof vitD === 'number') {
+    if (vitD < 20) score -= 18;
+    else if (vitD < 30) score -= 8;
+  }
+  if (typeof b12 === 'number') {
+    if (b12 < 200) score -= 15;
+    else if (b12 < 300) score -= 6;
+  }
+  return Math.round(clamp(score, 15, 100));
 };
 
 const scoreFromMetrics = (
@@ -322,7 +379,7 @@ export const calculateOverallScore = (scores: readonly number[]): number | null 
 export const organScore = (id: HealthOrganId): number | null => {
   switch (id) {
     case 'brain':
-      return calculateBrainScore(readUserProfile());
+      return calculateMentalWellnessScore(readUserProfile(), labsFor(HEALTH_ORGAN_CONDITIONS.brain));
     case 'gut':
       return calculateGutScore(readIbsSymptoms());
     case 'heart':
@@ -386,15 +443,10 @@ export const getOrganDetail = (id: HealthOrganId): OrganScoreDetail | null => {
   switch (id) {
     case 'brain': {
       const profile = readUserProfile();
-      const score = calculateBrainScore(profile);
+      const labs = labsFor(HEALTH_ORGAN_CONDITIONS.brain);
+      const score = calculateMentalWellnessScore(profile, labs);
       if (score === null) return null;
       const factors: ScoreFactor[] = [];
-      if (typeof profile.age === 'number') {
-        factors.push({ labelKey: 'age', value: num(profile.age), unitKey: 'years' });
-      }
-      if (profile.activityLevel) {
-        factors.push({ labelKey: profile.activityLevel as TKey, value: '' });
-      }
       if (typeof profile.sleepHours === 'number') {
         factors.push({
           labelKey: 'universe.factor.sleepHours',
@@ -402,6 +454,13 @@ export const getOrganDetail = (id: HealthOrganId): OrganScoreDetail | null => {
           unitKey: 'universe.factor.hours',
         });
       }
+      if (profile.stress) {
+        factors.push({ labelKey: 'universe.factor.stress', value: profile.stress });
+      }
+      if (profile.activityLevel) {
+        factors.push({ labelKey: profile.activityLevel as TKey, value: '' });
+      }
+      factors.push(...labFactors(LAB_METRICS['mental-wellness'], labs));
       return { score, factors };
     }
     case 'gut': {

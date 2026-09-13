@@ -9,7 +9,8 @@ export type ConditionId =
   | 'liver'
   | 'kidney'
   | 'thyroid'
-  | 'ibs';
+  | 'ibs'
+  | 'mental-wellness';
 
 export interface NutritionRuleFlags {
   lowGI?: boolean;
@@ -26,6 +27,8 @@ export interface NutritionRuleFlags {
   lowPotassium?: boolean;
   iodineAware?: boolean;
   lowFODMAP?: boolean;
+  brainFoods?: boolean;
+  omega3?: boolean;
 }
 
 export interface NutritionRules extends NutritionRuleFlags {
@@ -47,6 +50,7 @@ export interface ConditionData {
   source: string;
   sampleMeals: Record<string, string[]>;
   dailyCalorieAdjustment: number;
+  labs?: string[];
   note?: string;
 }
 

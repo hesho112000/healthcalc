@@ -17,6 +17,7 @@ export interface OrganConfig {
   top: number;
   left: number;
   conditionIds: ConditionId[];
+  route?: string;
 }
 
 export const ORGAN_IDS: readonly OrganId[] = [
@@ -31,7 +32,14 @@ export const ORGAN_IDS: readonly OrganId[] = [
 ];
 
 export const ORGAN_CONFIG: Record<OrganId, OrganConfig> = {
-  brain: { id: 'brain', emoji: '🧠', top: 8, left: 50, conditionIds: [] },
+  brain: {
+    id: 'brain',
+    emoji: '🧠',
+    top: 8,
+    left: 50,
+    conditionIds: ['mental-wellness'],
+    route: 'mental-wellness',
+  },
   thyroid: { id: 'thyroid', emoji: '🦋', top: 21, left: 50, conditionIds: ['thyroid'] },
   heart: {
     id: 'heart',
@@ -93,7 +101,7 @@ const BodyMap: React.FC = () => {
           >
             <button
               type="button"
-              onClick={() => navigate(`/advanced-care/${id}`)}
+              onClick={() => navigate(`/advanced-care/${cfg.route ?? cfg.id}`)}
               onMouseEnter={() => setHovered(id)}
               onMouseLeave={() => setHovered(null)}
               aria-label={`${t(organNameKey(id))} · ${t(organConditionKey(id))}`}

@@ -20,7 +20,7 @@ const ConditionStep: React.FC<ConditionStepProps> = ({ t, selected, onToggle, on
   return (
     <div>
       <p className="text-[#4A5A55] mb-6">{t(tk('wizard.chooseMultiple'))}</p>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-3 gap-3">
         {CONDITION_IDS.map((id) => {
           const active = selected.includes(id);
           return (

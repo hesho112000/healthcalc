@@ -111,7 +111,7 @@ const HealthUniversePage: React.FC = () => {
               <button
                 key={id}
                 type="button"
-                onClick={() => navigate(`/advanced-care/${id}`)}
+                onClick={() => navigate(`/advanced-care/${ORGAN_CONFIG[id].route ?? id}`)}
                 className="group flex flex-col rounded-[24px] border border-[#EFEBE4] bg-white p-5 text-start shadow-[0_8px_24px_rgba(15,76,58,0.04)] hover:border-[#D4AF37]/70 hover:shadow-[0_14px_34px_rgba(15,76,58,0.10)] transition-all"
               >
                 <span className="flex items-start justify-between">
