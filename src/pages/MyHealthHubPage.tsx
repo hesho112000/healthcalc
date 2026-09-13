@@ -11,6 +11,8 @@ import LabSummary from '../components/hub/LabSummary';
 import ExerciseDayWizard from '../components/hub/ExerciseDayWizard';
 import NutritionDayWizard from '../components/hub/NutritionDayWizard';
 import ProgressTracker from '../components/hub/ProgressTracker';
+import SubscriptionFeatures from '../components/hub/SubscriptionFeatures';
+import HealthChat from '../components/hub/HealthChat';
 import {
   coveredOrgans,
   dayExercises,
@@ -194,7 +196,7 @@ const MyHealthHubPage: React.FC = () => {
   };
 
   const adjustPlan = () => {
-    const qs = sourceConditions.length > 0 ? `?conditions=${sourceConditions.join(',')}&step=5` : '?step=5';
+    const qs = sourceConditions.length > 0 ? `?conditions=${sourceConditions.join(',')}&step=6` : '?step=6';
     navigate(`/advanced-care/wizard${qs}`);
   };
 
@@ -249,6 +251,14 @@ const MyHealthHubPage: React.FC = () => {
         />
 
         <HealthScoreCards conditions={sourceConditions} />
+
+        <SubscriptionFeatures
+          hasFullHub={hasFeature('fullHub')}
+          hasPdf={hasFeature('pdf')}
+          hasSupport={hasFeature('support')}
+          onUnlock={gate}
+          onNote={note}
+        />
 
         <LabSummary paid={paid} onUnlock={() => gate('fullHub')} />
 
@@ -323,6 +333,8 @@ const MyHealthHubPage: React.FC = () => {
       </main>
 
       <PaywallModal open={paywall !== null} feature={paywall} onClose={() => setPaywall(null)} onUpgrade={handleUpgrade} />
+
+      <HealthChat paid={paid} onUnlock={() => gate('fullHub')} name={name} />
 
       {toast && (
         <div className="fixed bottom-8 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">

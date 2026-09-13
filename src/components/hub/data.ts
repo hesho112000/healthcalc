@@ -126,6 +126,12 @@ export interface HubStoredPlan {
   foodNames?: string[];
   exerciseIds?: string[];
   calories?: number;
+  cuisine?: string;
+  lifestyle?: { activity?: string; sleep?: string; stress?: string };
+  goal?: { type?: string; targetWeight?: string; timelineMonths?: number; intensity?: string };
+  exerciseTypes?: string[];
+  overall?: number | null;
+  projected?: number | null;
 }
 
 export const readHubPlan = (): HubStoredPlan | null => {
