@@ -146,7 +146,7 @@ const PlanResultsStep: React.FC<PlanResultsStepProps> = ({
         <section className="rounded-[32px] border-2 border-[#D4AF37] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] p-8 text-center md:p-10">
           <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">{t(tk('wizard.results.projectionTitle'))}</span>
           <p className="mt-3 text-sm text-[#A7C4B8] md:text-[15px]">
-            {t(tk('wizard.results.projectionBody')).replace('{from}', String(overall)).replace('{to}', String(projected))}
+            {t(tk('wizard.results.projectionBody'))}
           </p>
           <div className="mt-6 flex items-center justify-center gap-6">
             <div>
@@ -159,6 +159,30 @@ const PlanResultsStep: React.FC<PlanResultsStepProps> = ({
               <span className="block text-2xl font-extrabold text-[#D4AF37] tabular-nums">{projected}</span>
             </div>
           </div>
+
+          <div className="mx-auto mt-7 max-w-lg rounded-2xl bg-[#FDFBF7]/10 p-5 text-center">
+            <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">
+              {t(tk('wizard.results.projectionAdherence'))}
+            </span>
+            <ul className="mt-3 space-y-2 text-sm text-[#FDFBF7]/90">
+              <li className="flex items-center justify-between gap-3">
+                <span className="text-start">{t(tk('wizard.results.projectionAdherenceHigh'))}</span>
+                <b className="shrink-0 text-[#D4AF37] tabular-nums">+6</b>
+              </li>
+              <li className="flex items-center justify-between gap-3">
+                <span className="text-start">{t(tk('wizard.results.projectionAdherenceMid'))}</span>
+                <b className="shrink-0 text-[#D4AF37] tabular-nums">+3</b>
+              </li>
+              <li className="flex items-center justify-between gap-3">
+                <span className="text-start">{t(tk('wizard.results.projectionAdherenceLow'))}</span>
+                <b className="shrink-0 text-[#D4AF37] tabular-nums">+1</b>
+              </li>
+            </ul>
+          </div>
+
+          <p className="mx-auto mt-6 max-w-lg text-xs leading-relaxed text-[#A7C4B8]/80">
+            {t(tk('wizard.results.projectionDisclaimer'))}
+          </p>
         </section>
       )}
 

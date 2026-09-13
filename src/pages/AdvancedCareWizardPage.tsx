@@ -484,10 +484,7 @@ const AdvancedCareWizardPage: React.FC = () => {
       : null;
 
   const intensityIndex = goal.intensity === 'light' ? 0 : goal.intensity === 'intense' ? 2 : 1;
-  const boost =
-    8 +
-    (goal.intensity ? intensityIndex * 4 : 0) +
-    (lifestyle.activity && lifestyle.activity !== 'sedentary' ? 2 : 0);
+  const boost = 4 + (goal.intensity ? intensityIndex : 0);
   const projected = overall !== null ? Math.min(95, Math.round(overall + boost)) : null;
 
   const numericLabsByCondition = useMemo(() => {
