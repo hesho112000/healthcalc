@@ -347,7 +347,7 @@ const MyHealthHubPage: React.FC = () => {
                 </button>
               ) : (
                 <Link
-                  to="/premium"
+                  to="/subscription"
                   className="inline-flex items-center gap-2 rounded-full bg-[#FDFBF7]/10 text-[#FDFBF7] px-6 py-3 text-sm font-extrabold hover:bg-[#FDFBF7]/20 transition"
                 >
                   {t('hub.cta.manage')}

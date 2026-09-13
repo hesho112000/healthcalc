@@ -8,7 +8,7 @@ import HomePage from '../pages/HomePage';
 import AdminLoginPage from '../pages/AdminLoginPage';
 import WeightLossPage from '../pages/WeightLossPage';
 import DiabetesPage from '../pages/DiabetesPage';
-import PremiumPage from '../pages/PremiumPage';
+import LegacyAdvancedCarePage from '../pages/LegacyAdvancedCarePage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import DashboardPage from '../pages/DashboardPage';
@@ -26,6 +26,7 @@ import AdvancedCareWizardPage from '../pages/AdvancedCareWizardPage';
 import SignupPage from '../pages/SignupPage';
 import PlanDashboardPage from '../pages/PlanDashboardPage';
 import MyHealthHubPage from '../pages/MyHealthHubPage';
+import SubscriptionPage from '../pages/SubscriptionPage';
 import OrganHubPage from '../pages/OrganHubPage';
 import SearchPage from '../pages/SearchPage';
 
@@ -146,7 +147,7 @@ export const AppRoutes: React.FC = () => (
     <Route path="/" element={<HomePage />} />
     <Route path="/weight-loss" element={<WeightLossPage />} />
     <Route path="/diabetes" element={<DiabetesPage />} />
-    <Route path="/premium" element={<PremiumPage />} />
+    <Route path="/premium" element={<LegacyAdvancedCarePage />} />
     <Route path="/fitness" element={<FitnessPage />} />
     <Route path="/bmi" element={<FitnessPage />} />
     <Route path="/bmr" element={<FitnessPage />} />
@@ -162,6 +163,7 @@ export const AppRoutes: React.FC = () => (
     <Route path="/advanced-care/wizard/signup" element={<SignupPage />} />
     <Route path="/dashboard/plan" element={<PlanDashboardPage />} />
     <Route path="/my-health-hub" element={<MyHealthHubPage />} />
+    <Route path="/subscription" element={<SubscriptionPage />} />
     <Route path="/search" element={<SearchPage />} />
     <Route path="/login" element={<LoginPage />} />
     <Route path="/register" element={<RegisterPage />} />

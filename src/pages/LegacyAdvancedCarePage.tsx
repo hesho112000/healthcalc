@@ -1,3 +1,4 @@
+// Legacy — replaced by HealthUniversePage (advanced-care) + wizard. Kept for /premium entry points (HomePage, StartFreeDropdown, CalculatorsPage).
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth, hasPremiumAccess } from '../context/AuthContext';
@@ -137,7 +138,7 @@ const saveJSON = (key: string, val: unknown) => localStorage.setItem(key, JSON.s
 /* ═══════════════════════════════════════════════════════════════════
    MAIN COMPONENT
    ═══════════════════════════════════════════════════════════════════ */
-const PremiumPage: React.FC = () => {
+const LegacyAdvancedCarePage: React.FC = () => {
   const { t, language } = useLanguage();
   const fmt = (tpl: string, vars: Record<string, string | number>) => tpl.replace(/\{(\w+)\}/g, (_, k) => (k in vars ? String(vars[k]) : `{${k}}`));
   const { user } = useAuth();
@@ -919,4 +920,4 @@ function generateDefaultMilestones(conditionId: string, profile: PatientProfile,
   return ms;
 }
 
-export default PremiumPage;
+export default LegacyAdvancedCarePage;
