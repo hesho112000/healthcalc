@@ -50,6 +50,7 @@ const Header: React.FC = () => {
     { to: '/', key: 'nav.home', exact: true },
     { to: '/fitness', key: 'nav.calculators' },
     { to: '/advanced-care', key: 'nav.advancedCare' },
+    { to: '/my-health-hub', key: 'nav.myHealthHub' },
     { to: '/articles', key: 'nav.resources' },
     { to: '/about', key: 'nav.about' },
     { to: '/contact', key: 'nav.contact' },

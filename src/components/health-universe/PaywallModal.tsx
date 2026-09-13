@@ -37,7 +37,7 @@ const TIERS: Array<{ tier: Tier; items: TKey[] }> = [
   { tier: 'basic', items: ['feat.dashboard', 'feat.meals', 'feat.exercises'] },
   {
     tier: 'pro',
-    items: ['feat.dashboard', 'feat.meals', 'feat.exercises', 'feat.lab', 'feat.fullPlan', 'feat.pdf'],
+    items: ['feat.dashboard', 'feat.meals', 'feat.exercises', 'feat.lab', 'feat.fullPlan', 'feat.pdf', 'feat.fullHub'],
   },
   {
     tier: 'elite',
@@ -48,6 +48,7 @@ const TIERS: Array<{ tier: Tier; items: TKey[] }> = [
       'feat.lab',
       'feat.fullPlan',
       'feat.pdf',
+      'feat.fullHub',
       'feat.sync',
       'feat.support',
     ],

@@ -14,6 +14,7 @@ export type FeatureId =
   | 'meals'
   | 'exercises'
   | 'fullPlan'
+  | 'fullHub'
   | 'pdf'
   | 'sync'
   | 'support';
@@ -42,6 +43,7 @@ export const FEATURES: Record<FeatureId, FeatureDef> = {
   meals: { minTier: 'basic', labelKey: 'feat.meals' },
   exercises: { minTier: 'basic', labelKey: 'feat.exercises' },
   fullPlan: { minTier: 'pro', labelKey: 'feat.fullPlan' },
+  fullHub: { minTier: 'pro', labelKey: 'feat.fullHub' },
   pdf: { minTier: 'pro', labelKey: 'feat.pdf' },
   sync: { minTier: 'pro', labelKey: 'feat.sync' },
   support: { minTier: 'elite', labelKey: 'feat.support' },
