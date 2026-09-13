@@ -15,6 +15,7 @@ const CUISINES: Array<{ id: string; flag: string }> = [
   { id: 'Saudi', flag: '🇸🇦' },
   { id: 'Lebanese', flag: '🇱🇧' },
   { id: 'American', flag: '🇺🇸' },
+  { id: 'Italian', flag: '🇮🇹' },
 ];
 
 const readStoredCuisine = (): string => {

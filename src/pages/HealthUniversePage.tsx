@@ -9,10 +9,6 @@ import BodyMap, {
   organConditionKey,
   organNameKey,
 } from '../components/health-universe/BodyMap';
-import HealthCard from '../components/health-universe/HealthCard';
-import PaywallModal from '../components/health-universe/PaywallModal';
-import { useSubscription } from '../context/SubscriptionContext';
-import type { FeatureId } from '../context/SubscriptionContext';
 import type { ConditionId } from '../data/conditions';
 import type { OrganId } from '../components/health-universe/BodyMap';
 
@@ -33,10 +29,7 @@ const STORAGE_KEY = 'hc_health_universe';
 const HealthUniversePage: React.FC = () => {
   const { t, dir } = useLanguage();
   const navigate = useNavigate();
-  const { hasFeature, upgrade } = useSubscription();
-  const [paywallFeature, setPaywallFeature] = useState<FeatureId | null>(null);
   const [toast, setToast] = useState('');
-  const [activeOrgan, setActiveOrgan] = useState<OrganId | null>(null);
   const [plan, setPlan] = useState<OrganId[]>(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -56,15 +49,6 @@ const HealthUniversePage: React.FC = () => {
     }
   }, [plan]);
 
-  useEffect(() => {
-    if (!activeOrgan) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setActiveOrgan(null);
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [activeOrgan]);
-
   const togglePlan = (id: OrganId) =>
     setPlan((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
 
@@ -81,22 +65,13 @@ const HealthUniversePage: React.FC = () => {
     }
   };
 
-  const selection = useMemo(
-    () => (activeOrgan && !plan.includes(activeOrgan) ? [...plan, activeOrgan] : plan),
-    [plan, activeOrgan],
-  );
-
   const unionConditions = useMemo(() => {
     const set = new Set<string>();
-    selection.forEach((id) => ORGAN_CONFIG[id].conditionIds.forEach((cid) => set.add(cid)));
+    plan.forEach((id) => ORGAN_CONFIG[id].conditionIds.forEach((cid) => set.add(cid)));
     return [...set] as ConditionId[];
-  }, [selection]);
+  }, [plan]);
 
   const handleContinue = () => {
-    if (!hasFeature('fullPlan')) {
-      setPaywallFeature('fullPlan');
-      return;
-    }
     if (unionConditions.length > 0) {
       navigate(`/advanced-care/wizard?conditions=${unionConditions.join(',')}`);
     } else {
@@ -104,17 +79,8 @@ const HealthUniversePage: React.FC = () => {
     }
   };
 
-  const openDrawer = (id: OrganId) => setActiveOrgan(id);
-  const closeDrawer = () => setActiveOrgan(null);
-
   return (
     <div className="min-h-screen bg-[#FDFBF7]" dir={dir}>
-      <style>{`
-        .hu-drawer { animation: hu-drawer-in .32s cubic-bezier(.2,.7,.3,1); }
-        [dir="rtl"] .hu-drawer { animation-name: hu-drawer-in-rtl; }
-        @keyframes hu-drawer-in { from { transform: translateX(40px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        @keyframes hu-drawer-in-rtl { from { transform: translateX(-40px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-      `}</style>
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(60%_120%_at_50%_0%,rgba(212,175,55,0.10),rgba(255,255,255,0)_60%)]" />
         <div className="relative max-w-6xl mx-auto px-6 py-12 text-center">
@@ -130,22 +96,22 @@ const HealthUniversePage: React.FC = () => {
         <div
           className="max-w-2xl mx-auto rounded-[32px] border border-[#EFEBE4] bg-white/80 p-6 sm:p-8 shadow-[0_18px_50px_rgba(15,76,58,0.06)]"
         >
-          <BodyMap activeOrgan={activeOrgan} onSelect={openDrawer} />
+          <BodyMap />
         </div>
         <p className="mx-auto mt-6 max-w-xl text-center text-sm font-bold text-[#4A5A55] bg-[#F4F1EB] rounded-2xl px-5 py-3">
           {t('universe.hint')}
         </p>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 mt-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <section className="max-w-6xl mx-auto px-6 mt-12 pb-28">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {ORGAN_IDS.map((id) => {
             const inPlan = plan.includes(id);
             return (
               <button
                 key={id}
                 type="button"
-                onClick={() => openDrawer(id)}
+                onClick={() => navigate(`/advanced-care/${id}`)}
                 className="group flex flex-col rounded-[24px] border border-[#EFEBE4] bg-white p-5 text-start shadow-[0_8px_24px_rgba(15,76,58,0.04)] hover:border-[#D4AF37]/70 hover:shadow-[0_14px_34px_rgba(15,76,58,0.10)] transition-all"
               >
                 <span className="flex items-start justify-between">
@@ -189,10 +155,10 @@ const HealthUniversePage: React.FC = () => {
           })}
         </div>
 
-        <div className="mt-10 flex flex-col items-center gap-4 pb-28">
-          {selection.length > 0 && (
+        <div className="mt-10 flex flex-col items-center gap-4">
+          {plan.length > 0 && (
             <div className="flex flex-wrap justify-center gap-2">
-              {selection.map((id) => (
+              {plan.map((id) => (
                 <span
                   key={id}
                   className="inline-flex items-center gap-1.5 rounded-full bg-white border border-[#EFEBE4] px-3 py-1.5 text-xs font-bold text-[#0F4C3A]"
@@ -222,43 +188,6 @@ const HealthUniversePage: React.FC = () => {
         </div>
       </section>
 
-      {activeOrgan && (
-        <div className="fixed inset-0 z-50">
-          <div
-            className="absolute inset-0 bg-[#0F4C3A]/30 backdrop-blur-sm"
-            onClick={closeDrawer}
-          />
-          <aside
-            className={`hu-drawer absolute inset-y-0 flex w-full max-w-md flex-col bg-[#FDFBF7] shadow-[0_0_60px_rgba(15,76,58,0.2)] ${
-              dir === 'rtl' ? 'left-0' : 'right-0'
-            }`}
-          >
-            <div className="flex items-center justify-between p-4 pb-0 border-b border-[#EFEBE4]">
-              <span className="inline-flex items-center gap-2 text-xs font-extrabold text-[#0F4C3A]">
-                <span className="text-lg">{ORGAN_CONFIG[activeOrgan].emoji}</span>
-                {t(organNameKey(activeOrgan))}
-              </span>
-              <button
-                type="button"
-                onClick={closeDrawer}
-                className="shrink-0 w-9 h-9 rounded-full bg-[#F4F1EB] text-[#0F4C3A] hover:bg-[#EFEBE4] flex items-center justify-center transition-colors"
-              >
-                <X size={18} strokeWidth={2.2} />
-              </button>
-            </div>
-            <div className="flex-1 overflow-y-auto p-4 sm:p-5">
-              <HealthCard
-                key={activeOrgan}
-                organ={activeOrgan}
-                inPlan={plan.includes(activeOrgan)}
-                onTogglePlan={() => handleTogglePlan(activeOrgan)}
-                onClose={closeDrawer}
-              />
-            </div>
-          </aside>
-        </div>
-      )}
-
       {toast && (
         <div className="fixed bottom-24 inset-x-0 z-[60] flex justify-center px-4 pointer-events-none">
           <div className="rounded-full bg-[#0F4C3A] text-[#FDFBF7] text-sm font-bold px-6 py-3 shadow-lg">
@@ -266,16 +195,6 @@ const HealthUniversePage: React.FC = () => {
           </div>
         </div>
       )}
-
-      <PaywallModal
-        open={!!paywallFeature}
-        feature={paywallFeature}
-        onClose={() => setPaywallFeature(null)}
-        onUpgrade={(tier) => {
-          upgrade(tier);
-          setPaywallFeature(null);
-        }}
-      />
     </div>
   );
 };

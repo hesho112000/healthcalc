@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 import { translations } from '../../i18n/translations';
 import type { ConditionId } from '../../data/conditions';
@@ -64,13 +65,9 @@ export {
 
 const BODY_MAP_SRC = `${import.meta.env.BASE_URL}assets/body-map.png`;
 
-interface BodyMapProps {
-  activeOrgan: OrganId | null;
-  onSelect: (id: OrganId) => void;
-}
-
-const BodyMap: React.FC<BodyMapProps> = ({ activeOrgan, onSelect }) => {
+const BodyMap: React.FC = () => {
   const { t, dir } = useLanguage();
+  const navigate = useNavigate();
   const [hovered, setHovered] = useState<OrganId | null>(null);
 
   return (
@@ -88,7 +85,6 @@ const BodyMap: React.FC<BodyMapProps> = ({ activeOrgan, onSelect }) => {
 
       {ORGAN_IDS.map((id) => {
         const cfg = ORGAN_CONFIG[id];
-        const active = id === activeOrgan;
         return (
           <div
             key={id}
@@ -97,13 +93,12 @@ const BodyMap: React.FC<BodyMapProps> = ({ activeOrgan, onSelect }) => {
           >
             <button
               type="button"
-              onClick={() => onSelect(id)}
+              onClick={() => navigate(`/advanced-care/${id}`)}
               onMouseEnter={() => setHovered(id)}
               onMouseLeave={() => setHovered(null)}
-              aria-pressed={active}
               aria-label={`${t(organNameKey(id))} · ${t(organConditionKey(id))}`}
               className={`relative flex h-[18px] w-[18px] items-center justify-center rounded-full border-2 border-white bg-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.45)] transition-transform duration-200 hover:scale-110 active:scale-95 sm:h-6 sm:w-6 ${
-                active ? 'hu-active' : ''
+                hovered === id ? 'hu-active' : ''
               }`}
             >
               <span className="select-none text-[10px]">{cfg.emoji}</span>

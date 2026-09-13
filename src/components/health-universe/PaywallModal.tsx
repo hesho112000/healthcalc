@@ -34,23 +34,24 @@ const TTS = (
 };
 
 const TIERS: Array<{ tier: Tier; items: TKey[] }> = [
-  { tier: 'basic', items: ['feat.dashboard', 'feat.meals', 'feat.exercises'] },
+  {
+    tier: 'basic',
+    items: ['feat.labSave', 'feat.hubDay2', 'feat.hubDay3', 'feat.progressTracker', 'feat.pdfDownload'],
+  },
   {
     tier: 'pro',
-    items: ['feat.dashboard', 'feat.meals', 'feat.exercises', 'feat.lab', 'feat.fullPlan', 'feat.pdf', 'feat.fullHub'],
+    items: ['feat.labSave', 'feat.hubAllDays', 'feat.progressTracker', 'feat.pdfDownload', 'feat.aiChat', 'feat.watchSync'],
   },
   {
     tier: 'elite',
     items: [
-      'feat.dashboard',
-      'feat.meals',
-      'feat.exercises',
-      'feat.lab',
-      'feat.fullPlan',
-      'feat.pdf',
-      'feat.fullHub',
-      'feat.sync',
-      'feat.support',
+      'feat.labSave',
+      'feat.hubAllDays',
+      'feat.progressTracker',
+      'feat.pdfDownload',
+      'feat.aiChat',
+      'feat.watchSync',
+      'feat.familySharing',
     ],
   },
 ];

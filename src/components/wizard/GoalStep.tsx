@@ -12,6 +12,7 @@ interface GoalStepProps {
   onChange: (patch: Partial<WizardGoal>) => void;
   calorieTarget: number;
   timelineStep: number;
+  deficits?: Record<string, number>;
   onContinue: () => void;
 }
 
@@ -28,11 +29,25 @@ const GOAL_OPTIONS: Array<{ id: Exclude<WizardGoal['type'], ''>; emoji: string; 
   { id: 'maintain', emoji: '🛡️', key: 'wizard.goal.maintain' },
 ];
 
-const GoalStep: React.FC<GoalStepProps> = ({ t, goal, profile, onChange, calorieTarget, timelineStep, onContinue }) => {
+const GoalStep: React.FC<GoalStepProps> = ({
+  t,
+  goal,
+  profile,
+  onChange,
+  calorieTarget,
+  timelineStep,
+  deficits = {},
+  onContinue,
+}) => {
+  const currentWeight = Number(profile.weight) || 0;
+  const targetWeight = Number(goal.targetWeight);
   const targetIsValid =
-    !goal.targetWeight || (Number(goal.targetWeight) > 0 && Number(goal.targetWeight) < 300);
+    !goal.targetWeight ||
+    (targetWeight > 0 &&
+      targetWeight < 300 &&
+      (goal.type === 'lose' ? targetWeight < currentWeight : goal.type === 'gain' ? targetWeight > currentWeight : true));
   const ready = Boolean(
-    goal.type && goal.intensity && targetIsValid && (goal.type === 'general' ? true : Number(goal.targetWeight) > 0),
+    goal.type && goal.intensity && targetIsValid && (goal.type === 'general' ? true : targetWeight > 0),
   );
 
   return (
@@ -73,6 +88,9 @@ const GoalStep: React.FC<GoalStepProps> = ({ t, goal, profile, onChange, calorie
               onChange={(e) => onChange({ targetWeight: e.target.value })}
               className="w-full mt-2 rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4AF37] bg-[#F4F1EB]/40 text-slate-900"
             />
+            {goal.targetWeight && targetWeight > 0 && !targetIsValid && (
+              <span className="mt-1.5 block text-[11px] font-bold text-[#B91C1C]">{t(tk('wizard.targetError'))}</span>
+            )}
           </label>
           <label className="block text-sm font-semibold text-slate-900">
             {t(tk('wizard.timeline'))} <output className="ml-2 text-[#D4AF37] font-bold">{goal.timelineMonths} {t(tk('wizard.months'))}</output>
@@ -105,7 +123,9 @@ const GoalStep: React.FC<GoalStepProps> = ({ t, goal, profile, onChange, calorie
               >
                 <span className="text-xl block">{emoji}</span>
                 <span className="text-sm font-bold text-slate-900 mt-1 block">{t(tk(`wizard.intensity.${id}`))}</span>
-                <span className="text-[11px] text-[#4A5A55] block mt-0.5">{t(tk(`wizard.intensity.${id}.desc`))}</span>
+                <span className="text-[11px] text-[#4A5A55] block mt-0.5">
+                  {t(tk(`wizard.intensity.${id}.desc`))} · −{deficits[id] ?? 0} kcal
+                </span>
               </button>
             );
           })}

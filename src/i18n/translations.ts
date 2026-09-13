@@ -1420,6 +1420,12 @@ type TranslationKeys = {
   'universe.cta.addToPlan': string;
   'universe.cta.added': string;
   'universe.toast.added': string;
+  'organHub.addToPlan': string;
+  'organHub.continueWizard': string;
+  'organHub.generalData': string;
+  'organHub.status.healthy': string;
+  'organHub.status.warning': string;
+  'organHub.status.critical': string;
   'paywall.title': string;
   'paywall.subtitle': string;
   'paywall.tier.basic': string;
@@ -1443,6 +1449,17 @@ type TranslationKeys = {
   'feat.pdf': string;
   'feat.sync': string;
   'feat.support': string;
+  'feat.labReadOnly': string;
+  'feat.labSave': string;
+  'feat.hubDay1': string;
+  'feat.hubDay2': string;
+  'feat.hubDay3': string;
+  'feat.progressTracker': string;
+  'feat.pdfDownload': string;
+  'feat.hubAllDays': string;
+  'feat.aiChat': string;
+  'feat.watchSync': string;
+  'feat.familySharing': string;
   'admin.login.title': string;
   'admin.login.subtitle': string;
   'admin.login.password': string;
@@ -1820,6 +1837,7 @@ type TranslationKeys = {
   'wizard.intensity.medium.desc': string;
   'wizard.intensity.intense': string;
   'wizard.intensity.intense.desc': string;
+  'wizard.targetError': string;
   'wizard.calorieTarget': string;
   'wizard.cuisine': string;
   'wizard.exercises': string;
@@ -1829,6 +1847,8 @@ type TranslationKeys = {
   'wizard.exercise.yoga': string;
   'wizard.exercise.swimming': string;
   'wizard.exercise.walking': string;
+  'wizard.exercise.pilates': string;
+  'wizard.exercise.cycling': string;
   'wizard.autoSelect': string;
   'wizard.autoSelect.done': string;
   'wizard.buildPlan': string;
@@ -1911,7 +1931,7 @@ export const translations: Record<Language, TranslationKeys> = {
     // Advanced Care Wizard
     'wizard.eyebrow': 'ADVANCED CARE',
     'wizard.subtitle': 'Build a personalized condition-specific plan in 6 simple steps.',
-    'wizard.care.step1.title': 'Choose your health conditions',
+    'wizard.care.step1.title': 'What brings you here today?',
     'wizard.care.step2.title': 'Recent lab tests?',
     'wizard.care.step3.title': 'Basic information',
     'wizard.care.step4.title': 'Enter your lab results',
@@ -1920,7 +1940,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.care.back': 'Back',
     'wizard.care.next': 'Continue →',
     'wizard.home': 'Home',
-    'wizard.chooseMultiple': 'Pick one or more — your plan adapts to every condition.',
+    'wizard.chooseMultiple': 'Select one or more conditions.',
     'wizard.labsIntro': 'Do you have recent blood test results?',
     'wizard.labsYes': 'Yes, I have my results',
     'wizard.labsNo': 'No, not yet',
@@ -2260,7 +2280,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'advanced.finalCta.cta': 'Start 7-Day Free Trial →',
     'universe.title': 'Your Health Universe',
     'universe.subtitle': 'Explore how your body connects with the science of nutrition — tap an organ to see its care toolkit.',
-    'universe.hint': 'Tap any organ to explore its health toolkit.',
+    'universe.hint': 'Tap any organ to open its health hub.',
     'universe.continueCta': 'Continue to Personalized Plan',
     'universe.organ.brain.name': 'Brain',
     'universe.organ.brain.condition': 'Mental Wellness',
@@ -2311,6 +2331,12 @@ export const translations: Record<Language, TranslationKeys> = {
     'universe.cta.addToPlan': 'Add to My Plan',
     'universe.cta.added': 'Added to My Plan',
     'universe.toast.added': 'Added {condition} to your plan.',
+    'organHub.addToPlan': 'Add to My Plan',
+    'organHub.continueWizard': 'Continue to Wizard',
+    'organHub.generalData': 'Based on general data',
+    'organHub.status.healthy': 'Healthy',
+    'organHub.status.warning': 'Needs attention',
+    'organHub.status.critical': 'High priority',
     'paywall.title': 'Unlock Full Access',
     'paywall.subtitle': 'Get all 7 days, progress tracking, and PDF downloads.',
     'paywall.tier.basic': 'Basic',
@@ -2334,6 +2360,17 @@ export const translations: Record<Language, TranslationKeys> = {
     'feat.pdf': 'Printable PDF plan',
     'feat.sync': 'Smartwatch sync',
     'feat.support': 'Priority support',
+    'feat.labReadOnly': 'View lab results (read-only)',
+    'feat.labSave': 'Save & interpret your lab results',
+    'feat.hubDay1': 'Health Hub — Day 1',
+    'feat.hubDay2': 'Health Hub — Days 2–3',
+    'feat.hubDay3': 'Health Hub — Days 4–7',
+    'feat.progressTracker': 'Progress tracker',
+    'feat.pdfDownload': 'Download report PDF',
+    'feat.hubAllDays': 'Health Hub — full access',
+    'feat.aiChat': 'AI health chat',
+    'feat.watchSync': 'Smartwatch sync',
+    'feat.familySharing': 'Family sharing',
 
     // Nutrition & Fitness Wizard (8 steps)
     'wizard.care.step7.title': 'Your personalized plan',
@@ -2380,6 +2417,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.intensity.medium.desc': 'Balanced for steady results',
     'wizard.intensity.intense': 'Intense',
     'wizard.intensity.intense.desc': 'Maximum progress, more discipline',
+    'wizard.targetError': 'Target must be below your current weight (lose) or above it (gain).',
     'wizard.calorieTarget': 'Recommended target: {kcal} kcal/day',
     'wizard.cuisine': 'Choose your cuisine',
     'wizard.exercises': 'Which activities do you enjoy?',
@@ -2389,6 +2427,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.exercise.yoga': 'Yoga',
     'wizard.exercise.swimming': 'Swimming',
     'wizard.exercise.walking': 'Walking',
+    'wizard.exercise.pilates': 'Pilates',
+    'wizard.exercise.cycling': 'Cycling',
     'wizard.autoSelect': 'Auto-Select',
     'wizard.autoSelect.done': 'Auto-selected the best options for you',
     'wizard.buildPlan': 'Build My Plan →',
@@ -4163,7 +4203,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'advanced.finalCta.cta': 'Commencer l\'essai gratuit de 7 jours →',
     'universe.title': 'Votre Univers Santé',
     'universe.subtitle': 'Découvrez comment votre corps se connecte à la science de la nutrition — touchez un organe pour voir sa boîte à outils de soins.',
-    'universe.hint': 'Touchez un organe pour explorer sa boîte à outils santé.',
+    'universe.hint': 'Touchez un organe pour ouvrir son hub santé.',
     'universe.continueCta': 'Continuer vers le plan personnalisé',
     'universe.organ.brain.name': 'Cerveau',
     'universe.organ.brain.condition': 'Bien-être mental',
@@ -4214,6 +4254,12 @@ export const translations: Record<Language, TranslationKeys> = {
     'universe.cta.addToPlan': 'Ajouter à mon plan',
     'universe.cta.added': 'Ajouté à mon plan',
     'universe.toast.added': '{condition} a été ajouté à votre plan.',
+    'organHub.addToPlan': 'Ajouter à mon plan',
+    'organHub.continueWizard': 'Continuer vers l\'assistant',
+    'organHub.generalData': 'Basé sur des données générales',
+    'organHub.status.healthy': 'Bon',
+    'organHub.status.warning': 'À surveiller',
+    'organHub.status.critical': 'Priorité élevée',
     'paywall.title': 'Débloquer l\'accès complet',
     'paywall.subtitle': 'Accédez aux 7 jours, au suivi de progression et aux téléchargements PDF.',
     'paywall.tier.basic': 'Basique',
@@ -4237,6 +4283,17 @@ export const translations: Record<Language, TranslationKeys> = {
     'feat.pdf': 'Plan PDF imprimable',
     'feat.sync': 'Synchronisation montre connectée',
     'feat.support': 'Assistance prioritaire',
+    'feat.labReadOnly': 'Consulter les résultats de laboratoire (lecture seule)',
+    'feat.labSave': 'Enregistrer et interpréter vos résultats de laboratoire',
+    'feat.hubDay1': 'Hub Santé — Jour 1',
+    'feat.hubDay2': 'Hub Santé — Jours 2–3',
+    'feat.hubDay3': 'Hub Santé — Jours 4–7',
+    'feat.progressTracker': 'Suivi des progrès',
+    'feat.pdfDownload': 'Télécharger le rapport PDF',
+    'feat.hubAllDays': 'Hub Santé — accès complet',
+    'feat.aiChat': 'Chat santé IA',
+    'feat.watchSync': 'Synchronisation montre connectée',
+    'feat.familySharing': 'Partage familial',
 
     // Nutrition & Fitness Wizard (8 steps)
     'wizard.care.step7.title': 'Votre plan personnalisé',
@@ -4283,6 +4340,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.intensity.medium.desc': 'Équilibrée pour des résultats réguliers',
     'wizard.intensity.intense': 'Intense',
     'wizard.intensity.intense.desc': 'Progrès maximal, plus de discipline',
+    'wizard.targetError': 'L\'objectif doit être inférieur à votre poids actuel (perte) ou supérieur (prise).',
     'wizard.calorieTarget': 'Objectif recommandé : {kcal} kcal/jour',
     'wizard.cuisine': 'Choisissez votre cuisine',
     'wizard.exercises': 'Quelles activités aimez-vous ?',
@@ -4292,6 +4350,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.exercise.yoga': 'Yoga',
     'wizard.exercise.swimming': 'Natation',
     'wizard.exercise.walking': 'Marche',
+    'wizard.exercise.pilates': 'Pilates',
+    'wizard.exercise.cycling': 'Cyclisme',
     'wizard.autoSelect': 'Sélection auto',
     'wizard.autoSelect.done': 'Meilleures options sélectionnées pour vous',
     'wizard.buildPlan': 'Créer mon plan →',
@@ -6036,7 +6096,7 @@ mbFruits: 'Fruits',
     'advanced.finalCta.cta': 'Iniciar prueba gratis de 7 días →',
     'universe.title': 'Tu Universo de Salud',
     'universe.subtitle': 'Descubre cómo tu cuerpo se conecta con la ciencia de la nutrición: toca un órgano para ver su kit de herramientas de cuidado.',
-    'universe.hint': 'Toca cualquier órgano para explorar su kit de salud.',
+    'universe.hint': 'Toca cualquier órgano para abrir su centro de salud.',
     'universe.continueCta': 'Continuar al plan personalizado',
     'universe.organ.brain.name': 'Cerebro',
     'universe.organ.brain.condition': 'Bienestar mental',
@@ -6087,6 +6147,12 @@ mbFruits: 'Fruits',
     'universe.cta.addToPlan': 'Añadir a mi plan',
     'universe.cta.added': 'Añadido a mi plan',
     'universe.toast.added': '{condition} añadido a tu plan.',
+    'organHub.addToPlan': 'Añadir a mi plan',
+    'organHub.continueWizard': 'Continuar al asistente',
+    'organHub.generalData': 'Basado en datos generales',
+    'organHub.status.healthy': 'Saludable',
+    'organHub.status.warning': 'Requiere atención',
+    'organHub.status.critical': 'Prioridad alta',
     'paywall.title': 'Desbloquear acceso completo',
     'paywall.subtitle': 'Obtén los 7 días, el seguimiento de progreso y las descargas en PDF.',
     'paywall.tier.basic': 'Básico',
@@ -6110,6 +6176,17 @@ mbFruits: 'Fruits',
     'feat.pdf': 'Plan PDF imprimible',
     'feat.sync': 'Sincronización con smartwatch',
     'feat.support': 'Soporte prioritario',
+    'feat.labReadOnly': 'Ver resultados de laboratorio (solo lectura)',
+    'feat.labSave': 'Guardar e interpretar tus análisis de laboratorio',
+    'feat.hubDay1': 'Centro de Salud — Día 1',
+    'feat.hubDay2': 'Centro de Salud — Días 2-3',
+    'feat.hubDay3': 'Centro de Salud — Días 4-7',
+    'feat.progressTracker': 'Seguimiento del progreso',
+    'feat.pdfDownload': 'Descargar informe en PDF',
+    'feat.hubAllDays': 'Centro de Salud — acceso completo',
+    'feat.aiChat': 'Chat de salud con IA',
+    'feat.watchSync': 'Sincronización con smartwatch',
+    'feat.familySharing': 'Compartir en familia',
 
     // Nutrition & Fitness Wizard (8 steps)
     'wizard.care.step7.title': 'Tu plan personalizado',
@@ -6156,6 +6233,7 @@ mbFruits: 'Fruits',
     'wizard.intensity.medium.desc': 'Equilibrada para resultados constantes',
     'wizard.intensity.intense': 'Intensa',
     'wizard.intensity.intense.desc': 'Máximo progreso, más disciplina',
+    'wizard.targetError': 'El objetivo debe ser inferior a tu peso actual (perder) o superior (subir).',
     'wizard.calorieTarget': 'Objetivo recomendado: {kcal} kcal/día',
     'wizard.cuisine': 'Elige tu cocina',
     'wizard.exercises': '¿Qué actividades disfrutas?',
@@ -6165,6 +6243,8 @@ mbFruits: 'Fruits',
     'wizard.exercise.yoga': 'Yoga',
     'wizard.exercise.swimming': 'Natación',
     'wizard.exercise.walking': 'Caminar',
+    'wizard.exercise.pilates': 'Pilates',
+    'wizard.exercise.cycling': 'Ciclismo',
     'wizard.autoSelect': 'Selección automática',
     'wizard.autoSelect.done': 'Seleccionamos las mejores opciones para ti',
     'wizard.buildPlan': 'Crear mi plan →',
@@ -7909,7 +7989,7 @@ mbFruits: 'Fruits',
     'advanced.finalCta.cta': 'ابدأ تجربة مجانية لمدة 7 أيام ←',
     'universe.title': 'عالمك الصحي',
     'universe.subtitle': 'اكتشف كيف يرتبط جسمك بعلم التغذية — اضغط على أي عضو لترى مجموعة أدوات العناية به.',
-    'universe.hint': 'اضغط على أي عضو لاستكشاف أدواته الصحية.',
+    'universe.hint': 'اضغط على أي عضو لفتح مركزه الصحي.',
     'universe.continueCta': 'متابعة إلى الخطة المخصصة',
     'universe.organ.brain.name': 'الدماغ',
     'universe.organ.brain.condition': 'الصحة النفسية',
@@ -7960,6 +8040,12 @@ mbFruits: 'Fruits',
     'universe.cta.addToPlan': 'أضف إلى خطتي',
     'universe.cta.added': 'أُضيف إلى خطتي',
     'universe.toast.added': 'تمت إضافة {condition} إلى خطتك.',
+    'organHub.addToPlan': 'إضافة إلى خطتي',
+    'organHub.continueWizard': 'متابعة إلى المعالج',
+    'organHub.generalData': 'استناداً إلى بيانات عامة',
+    'organHub.status.healthy': 'جيد',
+    'organHub.status.warning': 'يحتاج إلى متابعة',
+    'organHub.status.critical': 'أولوية عالية',
     'paywall.title': 'افتح الوصول الكامل',
     'paywall.subtitle': 'احصل على 7 أيام كاملة وتتبع التقدم وتنزيلات PDF.',
     'paywall.tier.basic': 'الأساسية',
@@ -7983,6 +8069,17 @@ mbFruits: 'Fruits',
     'feat.pdf': 'خطة PDF قابلة للطباعة',
     'feat.sync': 'مزامنة الساعة الذكية',
     'feat.support': 'دعم ذو أولوية',
+    'feat.labReadOnly': 'عرض نتائج التحاليل (قراءة فقط)',
+    'feat.labSave': 'حفظ وتفسير نتائج التحاليل',
+    'feat.hubDay1': 'مركز الصحة — اليوم 1',
+    'feat.hubDay2': 'مركز الصحة — الأيام 2-3',
+    'feat.hubDay3': 'مركز الصحة — الأيام 4-7',
+    'feat.progressTracker': 'متابعة التقدم',
+    'feat.pdfDownload': 'تنزيل التقرير PDF',
+    'feat.hubAllDays': 'مركز الصحة — وصول كامل',
+    'feat.aiChat': 'محادثة صحية بالذكاء الاصطناعي',
+    'feat.watchSync': 'مزامنة الساعة الذكية',
+    'feat.familySharing': 'المشاركة العائلية',
 
     // Nutrition & Fitness Wizard (8 steps)
     'wizard.care.step7.title': 'خطتك الشخصية',
@@ -8029,6 +8126,7 @@ mbFruits: 'Fruits',
     'wizard.intensity.medium.desc': 'متوازنة لنتائج ثابتة',
     'wizard.intensity.intense': 'مكثفة',
     'wizard.intensity.intense.desc': 'أقصى تقدم مع التزام أكبر',
+    'wizard.targetError': 'يجب أن يكون الوزن المستهدف أقل من وزنك الحالي (خسارة) أو أعلى (زيادة).',
     'wizard.calorieTarget': 'الهدف الموصى به: {kcal} سعرة/يوم',
     'wizard.cuisine': 'اختر أطباقك المفضلة',
     'wizard.exercises': 'ما الأنشطة التي تحبها؟',
@@ -8038,6 +8136,8 @@ mbFruits: 'Fruits',
     'wizard.exercise.yoga': 'يوغا',
     'wizard.exercise.swimming': 'سباحة',
     'wizard.exercise.walking': 'مشي',
+    'wizard.exercise.pilates': 'بيلاتس',
+    'wizard.exercise.cycling': 'دراجات',
     'wizard.autoSelect': 'اختيار تلقائي',
     'wizard.autoSelect.done': 'تم اختيار أفضل الخيارات لك',
     'wizard.buildPlan': 'أنشئ خطتي ←',
@@ -9793,7 +9893,7 @@ mbFruits: 'Fruits',
     'advanced.finalCta.cta': '7-Tage-Kostenlostest starten →',
     'universe.title': 'Dein Gesundheits-Universum',
     'universe.subtitle': 'Entdecke, wie dein Körper mit der Wissenschaft der Ernährung verbunden ist — tippe auf ein Organ, um sein Pflege-Toolkit zu sehen.',
-    'universe.hint': 'Tippe auf ein Organ, um seine Gesundheits-Toolbox zu erkunden.',
+    'universe.hint': 'Tippe auf ein Organ, um seinen Gesundheits-Hub zu öffnen.',
     'universe.continueCta': 'Weiter zum personalisierten Plan',
     'universe.organ.brain.name': 'Gehirn',
     'universe.organ.brain.condition': 'Psychisches Wohlbefinden',
@@ -9844,6 +9944,12 @@ mbFruits: 'Fruits',
     'universe.cta.addToPlan': 'Zu meinem Plan hinzufügen',
     'universe.cta.added': 'Zu meinem Plan hinzugefügt',
     'universe.toast.added': '{condition} wurde zu Ihrem Plan hinzugefügt.',
+    'organHub.addToPlan': 'Zu meinem Plan hinzufügen',
+    'organHub.continueWizard': 'Weiter zum Assistenten',
+    'organHub.generalData': 'Basierend auf allgemeinen Daten',
+    'organHub.status.healthy': 'Gut',
+    'organHub.status.warning': 'Beobachtung nötig',
+    'organHub.status.critical': 'Hohe Priorität',
     'paywall.title': 'Vollzugriff freischalten',
     'paywall.subtitle': 'Erhalten Sie alle 7 Tage, Fortschritts-Tracking und PDF-Downloads.',
     'paywall.tier.basic': 'Basic',
@@ -9867,6 +9973,17 @@ mbFruits: 'Fruits',
     'feat.pdf': 'Druckbarer PDF-Plan',
     'feat.sync': 'Smartwatch-Synchronisierung',
     'feat.support': 'Priorisierter Support',
+    'feat.labReadOnly': 'Laborergebnisse ansehen (nur Lesen)',
+    'feat.labSave': 'Laborergebnisse speichern und interpretieren',
+    'feat.hubDay1': 'Gesundheits-Hub — Tag 1',
+    'feat.hubDay2': 'Gesundheits-Hub — Tage 2–3',
+    'feat.hubDay3': 'Gesundheits-Hub — Tage 4–7',
+    'feat.progressTracker': 'Fortschritts-Tracker',
+    'feat.pdfDownload': 'Bericht als PDF herunterladen',
+    'feat.hubAllDays': 'Gesundheits-Hub — voller Zugriff',
+    'feat.aiChat': 'KI-Gesundheitschats',
+    'feat.watchSync': 'Smartwatch-Synchronisierung',
+    'feat.familySharing': 'Familien-Freigabe',
 
     // Nutrition & Fitness Wizard (8 steps)
     'wizard.care.step7.title': 'Dein persönlicher Plan',
@@ -9913,6 +10030,7 @@ mbFruits: 'Fruits',
     'wizard.intensity.medium.desc': 'Ausgewogen für stetige Ergebnisse',
     'wizard.intensity.intense': 'Intensiv',
     'wizard.intensity.intense.desc': 'Maximaler Fortschritt, mehr Disziplin',
+    'wizard.targetError': 'Das Ziel muss unter Ihrem aktuellen Gewicht liegen (Abnehmen) oder darüber (Zunehmen).',
     'wizard.calorieTarget': 'Empfohlenes Ziel: {kcal} kcal/Tag',
     'wizard.cuisine': 'Wählen Sie Ihre Küche',
     'wizard.exercises': 'Welche Aktivitäten mögen Sie?',
@@ -9922,6 +10040,8 @@ mbFruits: 'Fruits',
     'wizard.exercise.yoga': 'Yoga',
     'wizard.exercise.swimming': 'Schwimmen',
     'wizard.exercise.walking': 'Gehen',
+    'wizard.exercise.pilates': 'Pilates',
+    'wizard.exercise.cycling': 'Radfahren',
     'wizard.autoSelect': 'Auto-Auswahl',
     'wizard.autoSelect.done': 'Die besten Optionen für Sie ausgewählt',
     'wizard.buildPlan': 'Meinen Plan erstellen →',

@@ -37,6 +37,7 @@ export const CUISINE_CARDS: Array<{ id: string; flag: string; label: string }> =
   { id: 'Saudi', flag: '🇸🇦', label: 'Saudi' },
   { id: 'Lebanese', flag: '🇱🇧', label: 'Lebanese' },
   { id: 'American', flag: '🇺🇸', label: 'American' },
+  { id: 'Italian', flag: '🇮🇹', label: 'Italian' },
 ];
 
 export const EXERCISE_TYPE_CATEGORIES: Array<{ id: string; key: TKey; emoji: string }> = [
@@ -46,6 +47,8 @@ export const EXERCISE_TYPE_CATEGORIES: Array<{ id: string; key: TKey; emoji: str
   { id: 'yoga', key: 'wizard.exercise.yoga' as TKey, emoji: '🧘' },
   { id: 'swimming', key: 'wizard.exercise.swimming' as TKey, emoji: '🏊' },
   { id: 'walking', key: 'wizard.exercise.walking' as TKey, emoji: '🚶' },
+  { id: 'pilates', key: 'wizard.exercise.pilates' as TKey, emoji: '🤸' },
+  { id: 'cycling', key: 'wizard.exercise.cycling' as TKey, emoji: '🚴' },
 ];
 
 export interface ConditionScoreRow {

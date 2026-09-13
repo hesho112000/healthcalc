@@ -26,6 +26,7 @@ import AdvancedCareWizardPage from '../pages/AdvancedCareWizardPage';
 import SignupPage from '../pages/SignupPage';
 import PlanDashboardPage from '../pages/PlanDashboardPage';
 import MyHealthHubPage from '../pages/MyHealthHubPage';
+import OrganHubPage from '../pages/OrganHubPage';
 import SearchPage from '../pages/SearchPage';
 
 const LegacySeoRedirect: React.FC = () => {
@@ -155,6 +156,7 @@ export const AppRoutes: React.FC = () => (
     <Route path="/smartwatch-sync" element={<SmartwatchSyncPage />} />
     <Route path="/food-library" element={<FoodLibraryPage />} />
     <Route path="/advanced-care" element={<HealthUniversePage />} />
+    <Route path="/advanced-care/:organId" element={<OrganHubPage />} />
     <Route path="/advanced-care/lab" element={<AdvancedLabPage />} />
     <Route path="/advanced-care/wizard" element={<AdvancedCareWizardPage />} />
     <Route path="/advanced-care/wizard/signup" element={<SignupPage />} />

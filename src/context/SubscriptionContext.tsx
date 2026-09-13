@@ -8,16 +8,17 @@ export type Tier = 'free' | 'basic' | 'pro' | 'elite';
 
 export type FeatureId =
   | 'bodyMap'
-  | 'dashboard'
+  | 'labReadOnly'
   | 'labSave'
-  | 'lab'
-  | 'meals'
-  | 'exercises'
-  | 'fullPlan'
-  | 'fullHub'
-  | 'pdf'
-  | 'sync'
-  | 'support';
+  | 'hubDay1'
+  | 'hubDay2'
+  | 'hubDay3'
+  | 'progressTracker'
+  | 'pdfDownload'
+  | 'hubAllDays'
+  | 'aiChat'
+  | 'watchSync'
+  | 'familySharing';
 
 export const TIER_ORDER: Record<Tier, number> = { free: 0, basic: 1, pro: 2, elite: 3 };
 
@@ -37,16 +38,17 @@ export interface FeatureDef {
 
 export const FEATURES: Record<FeatureId, FeatureDef> = {
   bodyMap: { minTier: 'free', labelKey: 'feat.bodyMap' },
-  dashboard: { minTier: 'free', labelKey: 'feat.dashboard' },
-  labSave: { minTier: 'basic', labelKey: 'feat.lab' },
-  lab: { minTier: 'basic', labelKey: 'feat.lab' },
-  meals: { minTier: 'basic', labelKey: 'feat.meals' },
-  exercises: { minTier: 'basic', labelKey: 'feat.exercises' },
-  fullPlan: { minTier: 'pro', labelKey: 'feat.fullPlan' },
-  fullHub: { minTier: 'pro', labelKey: 'feat.fullHub' },
-  pdf: { minTier: 'pro', labelKey: 'feat.pdf' },
-  sync: { minTier: 'pro', labelKey: 'feat.sync' },
-  support: { minTier: 'elite', labelKey: 'feat.support' },
+  labReadOnly: { minTier: 'free', labelKey: 'feat.labReadOnly' },
+  hubDay1: { minTier: 'free', labelKey: 'feat.hubDay1' },
+  labSave: { minTier: 'basic', labelKey: 'feat.labSave' },
+  hubDay2: { minTier: 'basic', labelKey: 'feat.hubDay2' },
+  hubDay3: { minTier: 'basic', labelKey: 'feat.hubDay3' },
+  progressTracker: { minTier: 'basic', labelKey: 'feat.progressTracker' },
+  pdfDownload: { minTier: 'basic', labelKey: 'feat.pdfDownload' },
+  hubAllDays: { minTier: 'pro', labelKey: 'feat.hubAllDays' },
+  aiChat: { minTier: 'pro', labelKey: 'feat.aiChat' },
+  watchSync: { minTier: 'pro', labelKey: 'feat.watchSync' },
+  familySharing: { minTier: 'elite', labelKey: 'feat.familySharing' },
 };
 
 interface SubscriptionContextType {

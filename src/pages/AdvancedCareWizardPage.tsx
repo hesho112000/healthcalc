@@ -87,6 +87,7 @@ const CUISINE_LOOKUP: Record<string, string> = {
   Saudi: 'saudi',
   Lebanese: 'lebanese',
   American: 'american',
+  Italian: 'italian',
 };
 
 const MEAL_TABS: Array<{ key: FoodItem['mealType']; i18n: string }> = [
@@ -104,7 +105,7 @@ const ACTIVITY_MULTIPLIER: Record<string, number> = {
   veryActive: 1.9,
 };
 
-const DEFICIT_BY_INTENSITY: Record<string, number> = { light: 200, medium: 400, intense: 600 };
+const DEFICIT_BY_INTENSITY: Record<string, number> = { light: 300, medium: 500, intense: 800 };
 
 const stepScene: Record<number, { icon: LucideIcon; color: string }> = {
   1: { icon: HeartPulse, color: GOLD },
@@ -134,6 +135,8 @@ const exerciseCategoryOf = (ex: Exercise): string => {
   if (ex.type === 'strength') return 'strength';
   if (/swim|aqua/.test(name)) return 'swimming';
   if (/walk|treadmill|stair|hike/.test(name)) return 'walking';
+  if (/cycl|bike|spin/.test(name)) return 'cycling';
+  if (/pilates/.test(name)) return 'pilates';
   if (ex.type === 'mindbody' || ex.type === 'flexibility' || /yoga|pilates|stretch|meditat|breath/.test(name)) {
     return 'yoga';
   }
@@ -556,8 +559,8 @@ ${conditionTags}
   };
 
   const handleDownloadPdf = () => {
-    if (!hasFeature('pdf')) {
-      setPaywallFeature('pdf');
+    if (!hasFeature('pdfDownload')) {
+      setPaywallFeature('pdfDownload');
       return;
     }
     const win = window.open('', '_blank', 'width=960,height=760');
@@ -691,7 +694,7 @@ ${conditionTags}
         <div className="h-full bg-[#0F4C3A] transition-all duration-500" style={{ width: `${(step / 8) * 100}%` }} />
       </div>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 md:pt-16">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 md:pt-10">
         <div className="flex items-center justify-between gap-4 mb-8">
           <div>
             <span className="step-pill">{t(tk('wizard.eyebrow'))} · {step}/8</span>
@@ -717,7 +720,7 @@ ${conditionTags}
         )}
 
         {step === 7 ? (
-          <div className="space-y-12" key={step}>
+          <div className="space-y-8" key={step}>
             {resolution && resolution.conflictDetected && selected.length > 1 && (
               <div className="rounded-2xl border border-[#D4AF37]/60 bg-[#D4AF37]/10 p-4 text-sm text-[#0F4C3A] font-semibold leading-relaxed">
                 {t(tk('wizard.conflict.banner')).replace('{condition}', focusConditionName)}
@@ -753,10 +756,10 @@ ${conditionTags}
             <EmbeddedFAQ />
           </div>
         ) : step === 8 ? (
-          <div className="space-y-12" key={step}>
+          <div className="space-y-8" key={step}>
             <SubscriptionStep
               t={t}
-              hasFull={hasFeature('fullHub')}
+              hasFull={hasFeature('hubAllDays')}
               onTrial={startTrial}
               onPreview={handleDownloadPdf}
               onFree={continueFree}
@@ -825,6 +828,7 @@ ${conditionTags}
                   profile={profile}
                   calorieTarget={calorieTarget}
                   timelineStep={1}
+                  deficits={DEFICIT_BY_INTENSITY}
                   onChange={(patch) => setGoal((prev) => ({ ...prev, ...patch }))}
                   onContinue={() => save(6)}
                 />

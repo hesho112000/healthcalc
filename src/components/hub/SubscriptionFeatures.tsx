@@ -25,14 +25,14 @@ const SubscriptionFeatures: React.FC<SubscriptionFeaturesProps> = ({
   onNote,
 }) => (
   <section className="grid lg:grid-cols-2 gap-6">
-    <ProjectionCard paid={hasFullHub} onUnlock={() => onUnlock('fullHub')} />
-    <CuisineSelector paid={hasFullHub} onUnlock={() => onUnlock('fullHub')} onNote={onNote} />
-    <SubstitutionHint paid={hasFullHub} onUnlock={() => onUnlock('fullHub')} />
-    <WeeklyReport paid={hasPdf} onUnlock={() => onUnlock('pdf')} onNote={onNote} />
-    <SmartReminders paid={hasFullHub} onUnlock={() => onUnlock('fullHub')} onNote={onNote} />
-    <Achievements paid={hasFullHub} onUnlock={() => onUnlock('fullHub')} onNote={onNote} />
-    <CommunityCard paid={hasFullHub} onUnlock={() => onUnlock('fullHub')} onNote={onNote} />
-    <FamilySharing paid={hasSupport} onUnlock={() => onUnlock('support')} onNote={onNote} />
+    <ProjectionCard paid={hasFullHub} onUnlock={() => onUnlock('hubAllDays')} />
+    <CuisineSelector paid={hasFullHub} onUnlock={() => onUnlock('hubAllDays')} onNote={onNote} />
+    <SubstitutionHint paid={hasFullHub} onUnlock={() => onUnlock('hubAllDays')} />
+    <WeeklyReport paid={hasPdf} onUnlock={() => onUnlock('pdfDownload')} onNote={onNote} />
+    <SmartReminders paid={hasFullHub} onUnlock={() => onUnlock('hubAllDays')} onNote={onNote} />
+    <Achievements paid={hasFullHub} onUnlock={() => onUnlock('hubAllDays')} onNote={onNote} />
+    <CommunityCard paid={hasFullHub} onUnlock={() => onUnlock('hubAllDays')} onNote={onNote} />
+    <FamilySharing paid={hasSupport} onUnlock={() => onUnlock('familySharing')} onNote={onNote} />
   </section>
 );
 

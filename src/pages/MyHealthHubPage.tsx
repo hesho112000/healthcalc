@@ -58,7 +58,8 @@ const MyHealthHubPage: React.FC = () => {
   const [toast, setToast] = useState('');
   const [day, setDay] = useState(1);
 
-  const paid = hasFeature('fullHub');
+  const paid = hasFeature('hubAllDays');
+  const dayLimit = paid ? 7 : hasFeature('hubDay3') ? 3 : hasFeature('hubDay2') ? 2 : 1;
 
   const plan = useMemo(() => readHubPlan(), []);
   const conditions = useMemo(() => readHubConditions(), []);
@@ -181,8 +182,8 @@ const MyHealthHubPage: React.FC = () => {
   };
 
   const handleDownloadPdf = () => {
-    if (!paid) {
-      gate('fullHub');
+    if (!hasFeature('pdfDownload')) {
+      gate('pdfDownload');
       return;
     }
     const win = window.open('', '_blank', 'width=960,height=760');
@@ -253,36 +254,36 @@ const MyHealthHubPage: React.FC = () => {
         <HealthScoreCards conditions={sourceConditions} />
 
         <SubscriptionFeatures
-          hasFullHub={hasFeature('fullHub')}
-          hasPdf={hasFeature('pdf')}
-          hasSupport={hasFeature('support')}
+          hasFullHub={hasFeature('hubAllDays')}
+          hasPdf={hasFeature('pdfDownload')}
+          hasSupport={hasFeature('familySharing')}
           onUnlock={gate}
           onNote={note}
         />
 
-        <LabSummary paid={paid} onUnlock={() => gate('fullHub')} />
+        <LabSummary paid={hasFeature('labSave')} onUnlock={() => gate('labSave')} />
 
         <div className="grid lg:grid-cols-2 gap-6">
           <ExerciseDayWizard
             conditions={sourceConditions}
-            paid={paid}
+            paid={day <= dayLimit}
             day={day}
             onDayChange={setDay}
-            onUnlock={() => gate('fullHub')}
+            onUnlock={() => gate('hubAllDays')}
             onAdjust={adjustPlan}
           />
           <NutritionDayWizard
             conditions={sourceConditions}
-            paid={paid}
+            paid={day <= dayLimit}
             day={day}
             onDayChange={setDay}
-            onUnlock={() => gate('fullHub')}
+            onUnlock={() => gate('hubAllDays')}
           />
         </div>
 
         <ProgressTracker
-          paid={paid}
-          onUnlock={() => gate('fullHub')}
+          paid={hasFeature('progressTracker')}
+          onUnlock={() => gate('progressTracker')}
           initialWeight={profile?.weight}
         />
 
@@ -295,7 +296,7 @@ const MyHealthHubPage: React.FC = () => {
             <div className="flex flex-wrap gap-3">
               <button
                 type="button"
-                onClick={() => (paid ? adjustPlan() : gate('fullHub'))}
+                onClick={() => (paid ? adjustPlan() : gate('hubAllDays'))}
                 className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-extrabold transition ${paid ? 'bg-[#0F4C3A] text-[#FDFBF7] ring-2 ring-[#FDFBF7]/30 hover:ring-[#D4AF37]' : 'bg-white/10 text-[#FDFBF7]'}`}
               >
                 {!paid && <Lock size={15} />}
@@ -313,7 +314,7 @@ const MyHealthHubPage: React.FC = () => {
               {!paid ? (
                 <button
                   type="button"
-                  onClick={() => gate('fullHub')}
+                  onClick={() => gate('hubAllDays')}
                   className="inline-flex items-center gap-2 rounded-full bg-[#D4AF37] text-[#0F4C3A] px-6 py-3 text-sm font-extrabold hover:bg-[#c9a52e] shadow-[0_10px_26px_rgba(212,175,55,0.35)] transition"
                 >
                   <Play size={16} fill="currentColor" />
@@ -334,7 +335,7 @@ const MyHealthHubPage: React.FC = () => {
 
       <PaywallModal open={paywall !== null} feature={paywall} onClose={() => setPaywall(null)} onUpgrade={handleUpgrade} />
 
-      <HealthChat paid={paid} onUnlock={() => gate('fullHub')} name={name} />
+      <HealthChat paid={hasFeature('aiChat')} onUnlock={() => gate('aiChat')} name={name} />
 
       {toast && (
         <div className="fixed bottom-8 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
