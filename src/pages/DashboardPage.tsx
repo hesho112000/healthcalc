@@ -14,7 +14,7 @@ const getModuleLabels = (t: (k: any) => string): Record<string, { label: string;
   'premium-kidney': { label: `${t('homeKidney')} ${t('plan')}`, color: 'bg-green-100 text-green-700', icon: '🫘' },
   'premium-liver': { label: `${t('homeLiver')} ${t('plan')}`, color: 'bg-amber-100 text-amber-700', icon: '🫁' },
   'premium-cholesterol': { label: `${t('homeCholesterol')} ${t('plan')}`, color: 'bg-pink-100 text-pink-700', icon: '🫀' },
-  'premium-thyroid': { label: `${t('homeThyroid')} ${t('plan')}`, color: 'bg-teal-100 text-teal-700', icon: '🦋' },
+  'premium-thyroid': { label: `${t('homeThyroid')} ${t('plan')}`, color: 'bg-emerald-100 text-emerald-700', icon: '🦋' },
 });
 
 const DashboardPage: React.FC = () => {

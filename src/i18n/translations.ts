@@ -852,9 +852,20 @@ type TranslationKeys = {
   footerSubscribed: string;
   footerRights: string;
   footerMade: string;
-  footerFb: string;
-  footerIg: string;
-  footerX: string;
+  // Placeholder Pages
+  spPlanTitle: string;
+  spPlanDesc: string;
+  spTrackingTitle: string;
+  spTrackingDesc: string;
+  spBioAgeTitle: string;
+  spBioAgeDesc: string;
+  spArticlesTitle: string;
+  spArticlesDesc: string;
+  spAboutTitle: string;
+  spAboutDesc: string;
+  spFaqTitle: string;
+  spFaqDesc: string;
+  spBackHome: string;
   // Home Page
   homeStep: string;
   // Medical Disclaimer
@@ -3561,9 +3572,19 @@ export const translations: Record<Language, TranslationKeys> = {
     footerSubscribed: 'Subscribed',
     footerRights: '© 2026 Your Health Fingerprint — All rights reserved.',
     footerMade: 'Made with ❤️ in Egypt 🇪🇬',
-    footerFb: 'Facebook',
-    footerIg: 'Instagram',
-    footerX: 'X (Twitter)',
+    spPlanTitle: 'My Plan',
+    spPlanDesc: 'Track your daily nutrition and movement plan, your meals, and your weekly goals all in one place.',
+    spTrackingTitle: 'Condition Tracking',
+    spTrackingDesc: 'Record and track your measurements daily: blood pressure, diabetes, cholesterol. Watch your health trends clearly.',
+    spBioAgeTitle: 'Bio-Age Calculator',
+    spBioAgeDesc: 'Discover your true biological age from your health data and lifestyle, with recommendations to reduce it.',
+    spArticlesTitle: 'Articles',
+    spArticlesDesc: 'Therapeutic nutrition and general health articles, updated weekly by the HealthCalc team.',
+    spAboutTitle: 'About the Platform',
+    spAboutDesc: 'HealthCalc is a complete therapeutic nutrition platform for tracking blood pressure, diabetes, and cholesterol, and personalizing your health plan.',
+    spFaqTitle: 'FAQ',
+    spFaqDesc: 'Clear answers to the most common questions about the platform, tracking, privacy, and subscription.',
+    spBackHome: 'Back to Home',
     // Home Page
     homeStep: 'Step',
     // Medical Disclaimer
@@ -5547,9 +5568,19 @@ export const translations: Record<Language, TranslationKeys> = {
     footerSubscribed: 'Abonné',
     footerRights: '© 2026 Votre empreinte santé — Tous droits réservés.',
     footerMade: 'Fait avec ❤️ en Égypte 🇪🇬',
-    footerFb: 'Facebook',
-    footerIg: 'Instagram',
-    footerX: 'X (Twitter)',
+    spPlanTitle: 'Mon Plan',
+    spPlanDesc: "Suivez votre plan de nutrition et d'activité quotidien, vos repas et vos objectifs hebdomadaires au même endroit.",
+    spTrackingTitle: 'Suivi des Conditions',
+    spTrackingDesc: "Consignez vos mesures chaque jour : tension, diabète, cholestérol. Observez clairement vos tendances de santé.",
+    spBioAgeTitle: 'Calculateur de Bio-Âge',
+    spBioAgeDesc: "Découvrez votre véritable âge biologique à partir de vos données de santé et de votre mode de vie, avec des recommandations pour le réduire.",
+    spArticlesTitle: 'Articles',
+    spArticlesDesc: "Des articles sur la nutrition thérapeutique et la santé générale, mis à jour chaque semaine par l'équipe HealthCalc.",
+    spAboutTitle: 'À propos de la plateforme',
+    spAboutDesc: "HealthCalc est une plateforme complète de nutrition thérapeutique pour suivre la tension, le diabète et le cholestérol, et personnaliser votre plan de santé.",
+    spFaqTitle: 'Questions fréquentes',
+    spFaqDesc: "Des réponses claires aux questions les plus courantes sur la plateforme, le suivi, la confidentialité et l'abonnement.",
+    spBackHome: "Retour à l'accueil",
     // Home Page
     homeStep: 'Étape',
     // Medical Disclaimer
@@ -5736,7 +5767,7 @@ export const translations: Record<Language, TranslationKeys> = {
     mbSalads: 'Salades',
     mbSides: 'Accompagnements',
     mbDrinks: 'Boissons',
-mbFruits: 'Fruits',
+    mbFruits: 'Fruits',
     mbFilterAll: 'Tous',
     mbSuitableFilter: 'Autorisés',
     mbNotSuitableFilter: 'Non autorisés',
@@ -7503,9 +7534,19 @@ mbFruits: 'Fruits',
     footerSubscribed: 'Suscrito',
     footerRights: '© 2026 Tu huella de salud — Todos los derechos reservados.',
     footerMade: 'Hecho con ❤️ en Egipto 🇪🇬',
-    footerFb: 'Facebook',
-    footerIg: 'Instagram',
-    footerX: 'X (Twitter)',
+    spPlanTitle: 'Mi Plan',
+    spPlanDesc: 'Sigue tu plan diario de nutrición y actividad, tus comidas y tus objetivos semanales en un solo lugar.',
+    spTrackingTitle: 'Seguimiento de Condiciones',
+    spTrackingDesc: 'Registra y sigue tus mediciones a diario: presión arterial, diabetes, colesterol. Observa tus tendencias de salud con claridad.',
+    spBioAgeTitle: 'Calculadora de Bio-Edad',
+    spBioAgeDesc: 'Descubre tu edad biológica real a partir de tus datos de salud y tu estilo de vida, con recomendaciones para reducirla.',
+    spArticlesTitle: 'Artículos',
+    spArticlesDesc: 'Artículos sobre nutrición terapéutica y salud general, actualizados cada semana por el equipo de HealthCalc.',
+    spAboutTitle: 'Acerca de la plataforma',
+    spAboutDesc: 'HealthCalc es una plataforma completa de nutrición terapéutica para el seguimiento de la presión arterial, la diabetes y el colesterol, y la personalización de tu plan de salud.',
+    spFaqTitle: 'Preguntas frecuentes',
+    spFaqDesc: 'Respuestas claras a las preguntas más comunes sobre la plataforma, el seguimiento, la privacidad y la suscripción.',
+    spBackHome: 'Volver al inicio',
     // Home Page
     homeStep: 'Paso',
     // Medical Disclaimer
@@ -9459,9 +9500,19 @@ mbFruits: 'Fruits',
     footerSubscribed: 'تم الاشتراك',
     footerRights: '© 2026 بصمتك الحيوية — جميع الحقوق محفوظة.',
     footerMade: 'صنع بكل حب في مصر 🇪🇬',
-    footerFb: 'فيسبوك',
-    footerIg: 'انستجرام',
-    footerX: 'إكس',
+    spPlanTitle: 'خطتي',
+    spPlanDesc: 'تابع خطتك الغذائية والحركية اليومية، وجدول وجباتك وأهدافك الأسبوعية في مكان واحد.',
+    spTrackingTitle: 'تتبع الحالات',
+    spTrackingDesc: 'سجّل وتابع قياساتك يوميًا: ضغط الدم، السكري، الكوليسترول، وراقب اتجاهاتك الصحية بوضوح.',
+    spBioAgeTitle: 'حساب العمر الحيوي',
+    spBioAgeDesc: 'اكتشف عمرك الحيوي الحقيقي من بياناتك الصحية وأسلوب حياتك، واحصل على توصيات لتقليله.',
+    spArticlesTitle: 'المقالات',
+    spArticlesDesc: 'مقالات التغذية العلاجية والصحة العامة، تحديثات أسبوعية من فريق هيلث كالك.',
+    spAboutTitle: 'عن المنصة',
+    spAboutDesc: 'هيلث كالك منصة تغذية علاجية متكاملة لمتابعة الضغط والسكري والكوليسترول وتخصيص خطتك الصحية.',
+    spFaqTitle: 'الأسئلة الشائعة',
+    spFaqDesc: 'إجابات واضحة على أكثر الأسئلة شيوعًا حول المنصة، والتتبع، والخصوصية، والاشتراك.',
+    spBackHome: 'العودة للرئيسية',
     // Home Page
     homeStep: 'الخطوة',
     // Medical Disclaimer
@@ -11426,9 +11477,19 @@ mbFruits: 'Fruits',
     footerSubscribed: 'Abonniert',
     footerRights: '© 2026 Your Health Fingerprint — Alle Rechte vorbehalten.',
     footerMade: 'Mit ❤️ in Ägypten gemacht 🇪🇬',
-    footerFb: 'Facebook',
-    footerIg: 'Instagram',
-    footerX: 'X (Twitter)',
+    spPlanTitle: 'Mein Plan',
+    spPlanDesc: 'Verfolge deinen täglichen Ernährungs- und Bewegungsplan, deine Mahlzeiten und deine Wochenziele an einem Ort.',
+    spTrackingTitle: 'Konditionen-Tracking',
+    spTrackingDesc: 'Erfasse deine Messwerte täglich: Blutdruck, Diabetes, Cholesterin. Beobachte deine Gesundheitstrends klar und deutlich.',
+    spBioAgeTitle: 'Bio-Alter-Rechner',
+    spBioAgeDesc: 'Entdecke dein wahres biologisches Alter anhand deiner Gesundheitsdaten und deines Lebensstils, mit Empfehlungen zur Senkung.',
+    spArticlesTitle: 'Artikel',
+    spArticlesDesc: 'Artikel zu therapeutischer Ernährung und allgemeiner Gesundheit, wöchentlich aktualisiert vom HealthCalc-Team.',
+    spAboutTitle: 'Über die Plattform',
+    spAboutDesc: 'HealthCalc ist eine vollständige Plattform für therapeutische Ernährung zur Überwachung von Blutdruck, Diabetes und Cholesterin und zur Personalisierung deines Gesundheitsplans.',
+    spFaqTitle: 'Häufig gestellte Fragen',
+    spFaqDesc: 'Klare Antworten auf die häufigsten Fragen zur Plattform, zum Tracking, zur Privatsphäre und zum Abonnement.',
+    spBackHome: 'Zurück zur Startseite',
     // Home Page
     homeStep: 'Schritt',
     // Medical Disclaimer

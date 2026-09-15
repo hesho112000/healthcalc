@@ -12,7 +12,7 @@ const REGION_META: Array<{ icon: string; accent: string }> = [
   { icon: '🗽', accent: 'border-t-indigo-400' },
   { icon: '🏜️', accent: 'border-t-orange-400' },
   { icon: '🦘', accent: 'border-t-green-400' },
-  { icon: '🧆', accent: 'border-t-teal-400' },
+  { icon: '🧆', accent: 'border-t-emerald-400' },
   { icon: '🌍', accent: 'border-t-lime-400' },
   { icon: '🥗', accent: 'border-t-purple-400' },
 ];

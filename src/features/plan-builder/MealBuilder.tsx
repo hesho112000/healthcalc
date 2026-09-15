@@ -215,12 +215,12 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
           )}
           {showGl && <span className="px-1.5 py-0.5 rounded-md bg-rose-50 text-[10px] font-semibold text-rose-600">GL≈{gl}</span>}
           {showLowSodium && sodium !== undefined && (
-            <span className={`px-1.5 py-0.5 rounded-md text-[10px] font-semibold ${sodium <= 180 ? 'bg-teal-50 text-teal-700' : 'bg-gray-100 text-gray-500'}`}>
+            <span className={`px-1.5 py-0.5 rounded-md text-[10px] font-semibold ${sodium <= 180 ? 'bg-emerald-50 text-emerald-700' : 'bg-gray-100 text-gray-500'}`}>
               Na {sodium}mg
             </span>
           )}
           {showLowSodium && sodium === undefined && isLowSodiumOption(item) && (
-            <span className="px-1.5 py-0.5 rounded-md bg-teal-50 text-[10px] font-semibold text-teal-700">Low-Na ✓</span>
+            <span className="px-1.5 py-0.5 rounded-md bg-emerald-50 text-[10px] font-semibold text-emerald-700">Low-Na ✓</span>
           )}
         </div>
       </button>
@@ -442,7 +442,7 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
       {activeTab === 'extras' && renderExtras()}
 
       <div className="flex items-center gap-2 pt-1">
-        <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 text-white text-xs font-extrabold flex items-center justify-center">3</span>
+        <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-700 text-white text-xs font-extrabold flex items-center justify-center">3</span>
         <button
           type="button"
           onClick={handleGenerate}

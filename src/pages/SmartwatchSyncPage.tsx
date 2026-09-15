@@ -312,8 +312,8 @@ const SmartwatchSyncPage: React.FC = () => {
                   <MetricCard icon="👟" label={t('swSteps')} value={metrics.steps.toLocaleString()} unit={t('swStepsUnit')} color="bg-blue-50" sub={`${metrics.distanceKm} ${t('swKm')}`} />
                   <MetricCard icon="🔥" label={t('swActiveCalories')} value={String(metrics.activeCalories)} unit={t('swKcal')} color="bg-orange-50" sub={`${metrics.cardioMinutes} ${t('swMinCardio')}`} />
                   <MetricCard icon="😴" label={t('swSleep')} value={String(metrics.sleepHours)} unit={t('swHrs')} color="bg-indigo-50" sub={`${t('swDeep')}: ${metrics.sleepDeepHours} ${t('swHrs')}`} />
-                  <MetricCard icon="⚖️" label={t('swWeight')} value={String(metrics.weight)} unit={t('kgUnit')} color="bg-teal-50" />
-                  <MetricCard icon="🫁" label={t('swSpO2')} value={String(metrics.bloodOxygen)} unit="%" color="bg-cyan-50" />
+                  <MetricCard icon="⚖️" label={t('swWeight')} value={String(metrics.weight)} unit={t('kgUnit')} color="bg-emerald-50" />
+                  <MetricCard icon="🫁" label={t('swSpO2')} value={String(metrics.bloodOxygen)} unit="%" color="bg-sage-50" />
                   <MetricCard icon="🧠" label={t('swStress')} value={typeof metrics.stressLevel === 'string' ? (metrics.stressLevel === 'high' ? t('swStressHigh') : metrics.stressLevel === 'moderate' ? t('swStressModerate') : t('swStressLow')) : String(metrics.stressLevel)} unit="" color="bg-amber-50" />
                   <MetricCard icon="🏔️" label={t('swFloors')} value={String(metrics.floorsClimbed)} unit={t('swFloorsUnit')} color="bg-emerald-50" />
                 </div>
@@ -349,10 +349,10 @@ const SmartwatchSyncPage: React.FC = () => {
                         <p className="text-lg font-extrabold text-green-700">{adjustments.activityGoal.toLocaleString()}</p>
                         <p className="text-[10px] text-green-400">{t('swStepsPerDay')}</p>
                       </div>
-                      <div className="bg-cyan-50 rounded-xl p-3 text-center">
-                        <p className="text-[10px] text-cyan-400 font-semibold uppercase">{t('swHydration')}</p>
-                        <p className="text-lg font-extrabold text-cyan-700">{adjustments.hydrationGoal}</p>
-                        <p className="text-[10px] text-cyan-400">{t('swLitersPerDay')}</p>
+                      <div className="bg-emerald-50 rounded-xl p-3 text-center">
+                        <p className="text-[10px] text-emerald-500 font-semibold uppercase">{t('swHydration')}</p>
+                        <p className="text-lg font-extrabold text-emerald-700">{adjustments.hydrationGoal}</p>
+                        <p className="text-[10px] text-emerald-500">{t('swLitersPerDay')}</p>
                       </div>
                       <div className={`rounded-xl p-3 text-center ${adjustments.restDay ? 'bg-amber-50' : 'bg-gray-50'}`}>
                         <p className="text-[10px] text-gray-400 font-semibold uppercase">{t('swRestDay')}</p>

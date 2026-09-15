@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Routes, Route, Navigate, Link, useParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import { useAdmin } from '../context/AdminContext';
+import { translations } from '../i18n/translations';
 import ProtectedRoute from '../components/ProtectedRoute';
 import LocalizedSeoPage from '../components/LocalizedSeoPage';
 import HomePage from '../pages/HomePage';
@@ -55,16 +55,19 @@ const NotFoundPage: React.FC = () => {
   );
 };
 
-const SimplePage: React.FC<{ emoji: string; title: string; desc: string }> = ({ emoji, title, desc }) => (
-  <div className="px-4" style={{ padding: '120px 24px 80px', background: 'var(--bg-primary)', minHeight: '70vh' }}>
-    <div className="container text-center" style={{ maxWidth: 760 }}>
-      <div style={{ width: 88, height: 88, margin: '0 auto 20px', background: 'var(--primary)', color: 'var(--bg-primary)', borderRadius: 'var(--radius-lg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 40 }}>{emoji}</div>
-      <h1 style={{ color: 'var(--primary)', fontSize: 30, marginBottom: 12 }}>{title}</h1>
-      <p style={{ color: 'var(--text-secondary)', lineHeight: 1.9, marginBottom: 28 }}>{desc}</p>
-      <Link to="/" className="btn-gold" style={{ textDecoration: 'none' }}>العودة للرئيسية</Link>
+const SimplePage: React.FC<{ emoji: string; titleKey: keyof typeof translations.en; descKey: keyof typeof translations.en }> = ({ emoji, titleKey, descKey }) => {
+  const { t } = useLanguage();
+  return (
+    <div className="px-4" style={{ padding: '120px 24px 80px', background: 'var(--bg-primary)', minHeight: '70vh' }}>
+      <div className="container text-center" style={{ maxWidth: 760 }}>
+        <div style={{ width: 88, height: 88, margin: '0 auto 20px', background: 'var(--primary)', color: 'var(--bg-primary)', borderRadius: 'var(--radius-lg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 40 }}>{emoji}</div>
+        <h1 style={{ color: 'var(--primary)', fontSize: 30, marginBottom: 12 }}>{t(titleKey)}</h1>
+        <p style={{ color: 'var(--text-secondary)', lineHeight: 1.9, marginBottom: 28 }}>{t(descKey)}</p>
+        <Link to="/" className="btn-gold" style={{ textDecoration: 'none' }}>{t('spBackHome')}</Link>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const StaticStepPage: React.FC<{ step: number }> = ({ step }) => (
   <div style={{ position: 'fixed', inset: 0, background: 'var(--bg-primary)' }}>
@@ -75,72 +78,6 @@ const StaticStepPage: React.FC<{ step: number }> = ({ step }) => (
     />
   </div>
 );
-
-const AdminPage: React.FC = () => {
-  const { t } = useLanguage();
-  const { isAdmin, enableAdmin, disableAdmin } = useAdmin();
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(false);
-
-  const handleEnable = () => {
-    const ok = enableAdmin(password);
-    setError(!ok);
-    if (ok) setPassword('');
-  };
-
-  return (
-    <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center px-4">
-      <div className="text-center max-w-sm animate-fade-in">
-        <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-          <span className="text-3xl">🛡️</span>
-        </div>
-        <h1 className="text-xl font-extrabold text-gray-900 mb-2">Admin Panel</h1>
-        <p className="text-sm text-gray-500 mb-6">Developer mode bypass for premium features.</p>
-        <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold mb-6 ${isAdmin ? 'bg-sage-100 text-sage-700' : 'bg-gray-100 text-gray-500'}`}>
-          <span className={`w-2 h-2 rounded-full ${isAdmin ? 'bg-sage-500' : 'bg-gray-400'}`} />
-          {isAdmin ? 'Admin Mode: ON' : 'Admin Mode: OFF'}
-        </div>
-        <br />
-        {isAdmin ? (
-          <button
-            onClick={() => {
-              disableAdmin();
-              setPassword('');
-              setError(false);
-            }}
-            className="px-6 py-3 rounded-2xl text-sm font-bold transition-all bg-red-500 text-white hover:bg-red-600"
-          >
-            Deactivate Admin
-          </button>
-        ) : (
-          <>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setError(false);
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') handleEnable();
-              }}
-              placeholder="Admin password"
-              className="w-full max-w-[260px] px-4 py-3 rounded-2xl border border-gray-200 text-sm font-semibold text-gray-900 outline-none focus:border-[#D4AF37] focus:ring-2 focus:ring-[rgba(212,175,55,0.4)] mb-3"
-            />
-            <button
-              onClick={handleEnable}
-              className="px-6 py-3 rounded-2xl text-sm font-bold transition-all bg-primary-600 text-white hover:bg-primary-700"
-            >
-              Activate Admin
-            </button>
-          </>
-        )}
-        {error && <p className="text-xs font-bold text-red-500 mt-4">Incorrect password.</p>}
-        <p className="text-[10px] text-gray-400 mt-4">persisted via localStorage key: adminToken</p>
-      </div>
-    </div>
-  );
-};
 
 export const AppRoutes: React.FC = () => (
   <Routes>
@@ -181,18 +118,18 @@ export const AppRoutes: React.FC = () => (
     <Route path="/disclaimer" element={<MedicalDisclaimerPage />} />
     <Route path="/contact" element={<ContactUs />} />
 
-    <Route path="/plan" element={<SimplePage emoji="📋" title="خطتي" desc="تابع خطتك الغذائية والحركية اليومية، وجدول وجباتك وأهدافك الأسبوعية في مكان واحد." />} />
-    <Route path="/tracking" element={<SimplePage emoji="📈" title="تتبع الأمراض" desc="سجّل وتابع قياساتك يوميًا: ضغط الدم، السكري، الكوليسترول، وراقب اتجاهاتك الصحية بوضوح." />} />
-    <Route path="/bio-age" element={<SimplePage emoji="🫀" title="حساب العمر الحيوي" desc="اكتشف عمرك الحيوي الحقيقي من بياناتك الصحية وأسلوب حياتك، واحصل على توصيات لتقليله." />} />
-    <Route path="/articles" element={<SimplePage emoji="📰" title="المقالات" desc="مقالات التغذية العلاجية والصحة العامة، تحديثات أسبوعية من فريق بصمتك الحيوية." />} />
-    <Route path="/about" element={<SimplePage emoji="🌿" title="عن المنصة" desc="بصمتك الحيوية منصة تغذية علاجية متكاملة لمتابعة الضغط والسكري والكوليسترول وتخصيص خطتك الصحية." />} />
-    <Route path="/faq" element={<SimplePage emoji="💬" title="الأسئلة الشائعة" desc="إجابات واضحة على أكثر الأسئلة شيوعًا حول المنصة، والتتبع، والخصوصية، والاشتراك." />} />
+    <Route path="/plan" element={<SimplePage emoji="📋" titleKey="spPlanTitle" descKey="spPlanDesc" />} />
+    <Route path="/tracking" element={<SimplePage emoji="📈" titleKey="spTrackingTitle" descKey="spTrackingDesc" />} />
+    <Route path="/bio-age" element={<SimplePage emoji="🫀" titleKey="spBioAgeTitle" descKey="spBioAgeDesc" />} />
+    <Route path="/articles" element={<SimplePage emoji="📰" titleKey="spArticlesTitle" descKey="spArticlesDesc" />} />
+    <Route path="/about" element={<SimplePage emoji="🌿" titleKey="spAboutTitle" descKey="spAboutDesc" />} />
+    <Route path="/faq" element={<SimplePage emoji="💬" titleKey="spFaqTitle" descKey="spFaqDesc" />} />
     <Route path="/wizard/step1" element={<StaticStepPage step={1} />} />
     <Route path="/wizard/step2" element={<StaticStepPage step={2} />} />
     <Route path="/Personal-Data-Entry-Step1" element={<StaticStepPage step={1} />} />
     <Route path="/Personal-Data-Entry-Step2" element={<StaticStepPage step={2} />} />
 
-    <Route path="/admin" element={<AdminPage />} />
+    <Route path="/admin" element={<Navigate to="/admin-login" replace />} />
 
     <Route path="/:lang/landing/:slug" element={<LocalizedSeoPage />} />
     <Route path="/health-guide/:slug" element={<LegacySeoRedirect />} />

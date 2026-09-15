@@ -37,7 +37,7 @@ const typeColors: Record<ExerciseType, string> = {
   cardio: 'bg-rose-50 text-rose-700 border-rose-200',
   hiit: 'bg-orange-50 text-orange-700 border-orange-200',
   flexibility: 'bg-purple-50 text-purple-700 border-purple-200',
-  balance: 'bg-teal-50 text-teal-700 border-teal-200',
+  balance: 'bg-sage-50 text-sage-700 border-sage-200',
   functional: 'bg-indigo-50 text-indigo-700 border-indigo-200',
   mindbody: 'bg-emerald-50 text-emerald-700 border-emerald-200',
 };

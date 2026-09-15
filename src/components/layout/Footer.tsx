@@ -23,11 +23,6 @@ const Footer: React.FC = () => {
             <p className="footer-desc">
               {t('footerTagline')}
             </p>
-            <div className="footer-social">
-              <a href="#!" aria-label={t('footerFb')}>f</a>
-              <a href="#!" aria-label={t('footerIg')}>ig</a>
-              <a href="#!" aria-label={t('footerX')}>x</a>
-            </div>
           </div>
 
           <div className="footer-col">

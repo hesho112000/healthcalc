@@ -97,7 +97,7 @@ const DiabetesPage: React.FC = () => {
               <h1 className="text-2xl md:text-4xl font-extrabold mb-3 tracking-tight">{t('module2Title')}</h1>
               <p className="text-sm md:text-base leading-relaxed">{t('module2Desc')}</p>
             </div>
-            <div className="page-anime"><IconScene icon={Microscope} color="#14b8a6" large /></div>
+            <div className="page-anime"><IconScene icon={Microscope} color="#10b981" large /></div>
           </div>
         </div>
       </div>
