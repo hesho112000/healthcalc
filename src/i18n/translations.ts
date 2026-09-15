@@ -1445,7 +1445,7 @@ type TranslationKeys = {
   'score.formula.liver': string;
   'score.formula.thyroid': string;
   'score.formula.ibs': string;
-  'score.formula.mentalWellness': string;
+  'score.formula.mental-wellness': string;
   'score.source.diabetes': string;
   'score.source.hypertension': string;
   'score.source.cholesterol': string;
@@ -1454,7 +1454,7 @@ type TranslationKeys = {
   'score.source.liver': string;
   'score.source.thyroid': string;
   'score.source.ibs': string;
-  'score.source.mentalWellness': string;
+  'score.source.mental-wellness': string;
   'universe.factor.sleepHours': string;
   'universe.factor.hours': string;
   'universe.factor.symptomCount': string;
@@ -2463,7 +2463,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'score.formula.liver': 'ALT <40 = 100; 40–80 = 100→70; ≥80 = 70→40. AST uses the same bands.',
     'score.formula.thyroid': 'TSH 0.4–4.0 = 100; 4.0–10 = 100→70; >10 = 70→40. T3 and T4 adjust the score.',
     'score.formula.ibs': 'Score from reported symptoms: 0 = 100; 1–2 = 100–80; 3–4 = 80–50; 5+ = 50–30.',
-    'score.formula.mentalWellness': 'Weighted average: sleep 40%, stress 30%, vitamin D 20%, activity 10%.',
+    'score.formula.mental-wellness': 'Weighted average: sleep 40%, stress 30%, vitamin D 20%, activity 10%.',
     'score.source.diabetes': 'WHO and ADA diagnostic criteria',
     'score.source.hypertension': 'AHA / ACC 2017 guidelines',
     'score.source.cholesterol': 'AHA / ATP-III cholesterol guidelines',
@@ -2472,7 +2472,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'score.source.liver': 'AASLD reference ranges',
     'score.source.thyroid': 'ATA TSH reference range',
     'score.source.ibs': 'Rome IV criteria',
-    'score.source.mentalWellness': 'NIH sleep guidance and AACE vitamin D reference',
+    'score.source.mental-wellness': 'NIH sleep guidance and AACE vitamin D reference',
     'universe.factor.sleepHours': 'Sleep hours',
     'universe.factor.hours': 'hours',
     'universe.factor.symptomCount': 'Reported symptoms',
@@ -4492,7 +4492,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'score.formula.liver': 'ALT <40 = 100 ; 40–80 = 100→70 ; ≥80 = 70→40. AST utilise les mêmes plages.',
     'score.formula.thyroid': 'TSH 0,4–4,0 = 100 ; 4,0–10 = 100→70 ; >10 = 70→40. T3 et T4 ajustent le score.',
     'score.formula.ibs': 'Score basé sur les symptômes déclarés : 0 = 100 ; 1–2 = 100–80 ; 3–4 = 80–50 ; 5+ = 50–30.',
-    'score.formula.mentalWellness': 'Moyenne pondérée : sommeil 40 %, stress 30 %, vitamine D 20 %, activité 10 %.',
+    'score.formula.mental-wellness': 'Moyenne pondérée : sommeil 40 %, stress 30 %, vitamine D 20 %, activité 10 %.',
     'score.source.diabetes': 'Critères diagnostiques de l\u2019OMS et de l\u2019ADA',
     'score.source.hypertension': 'Lignes directrices AHA / ACC 2017',
     'score.source.cholesterol': 'Lignes directrices sur le cholestérol AHA / ATP-III',
@@ -4501,7 +4501,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'score.source.liver': 'Plages de référence AASLD',
     'score.source.thyroid': 'Plage de référence de TSH de l\u2019ATA',
     'score.source.ibs': 'Critères de Rome IV',
-    'score.source.mentalWellness': 'Recommandations sur le sommeil des NIH et référence de vitamine D de l\u2019AACE',
+    'score.source.mental-wellness': 'Recommandations sur le sommeil des NIH et référence de vitamine D de l\u2019AACE',
     'universe.factor.sleepHours': 'Heures de sommeil',
     'universe.factor.hours': 'heures',
     'universe.factor.symptomCount': 'Symptômes signalés',
@@ -6491,7 +6491,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'score.formula.liver': 'ALT <40 = 100; 40–80 = 100→70; ≥80 = 70→40. AST usa los mismos rangos.',
     'score.formula.thyroid': 'TSH 0,4–4,0 = 100; 4,0–10 = 100→70; >10 = 70→40. T3 y T4 ajustan la puntuación.',
     'score.formula.ibs': 'Puntuación según síntomas declarados: 0 = 100; 1–2 = 100–80; 3–4 = 80–50; 5+ = 50–30.',
-    'score.formula.mentalWellness': 'Media ponderada: sueño 40 %, estrés 30 %, vitamina D 20 %, actividad 10 %.',
+    'score.formula.mental-wellness': 'Media ponderada: sueño 40 %, estrés 30 %, vitamina D 20 %, actividad 10 %.',
     'score.source.diabetes': 'Criterios diagnósticos de la OMS y la ADA',
     'score.source.hypertension': 'Guías AHA / ACC 2017',
     'score.source.cholesterol': 'Guías de colesterol AHA / ATP-III',
@@ -6500,7 +6500,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'score.source.liver': 'Rangos de referencia AASLD',
     'score.source.thyroid': 'Rango de TSH de la ATA',
     'score.source.ibs': 'Criterios de Roma IV',
-    'score.source.mentalWellness': 'Guía de sueño de los NIH y referencia de vitamina D de la AACE',
+    'score.source.mental-wellness': 'Guía de sueño de los NIH y referencia de vitamina D de la AACE',
     'universe.factor.sleepHours': 'Horas de sueño',
     'universe.factor.hours': 'horas',
     'universe.factor.symptomCount': 'Síntomas notificados',
@@ -8490,7 +8490,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'score.formula.liver': 'ALT <40 = 100؛ 40–80 = 100→70؛ ≥80 = 70→40. AST بنفس النطاقات.',
     'score.formula.thyroid': 'TSH 0.4–4.0 = 100؛ 4.0–10 = 100→70؛ >10 = 70→40. يعدّل T3 وT4 الدرجة.',
     'score.formula.ibs': 'الدرجة حسب الأعراض المسجلة: 0 = 100؛ 1–2 = 100–80؛ 3–4 = 80–50؛ 5+ = 50–30.',
-    'score.formula.mentalWellness': 'متوسط مرجّح: النوم 40%، الإجهاد 30%، فيتامين د 20%، النشاط 10%.',
+    'score.formula.mental-wellness': 'متوسط مرجّح: النوم 40%، الإجهاد 30%، فيتامين د 20%، النشاط 10%.',
     'score.source.diabetes': 'معايير التشخيص لمنظمة الصحة العالمية وADA',
     'score.source.hypertension': 'إرشادات AHA / ACC 2017',
     'score.source.cholesterol': 'إرشادات الكوليسترول AHA / ATP-III',
@@ -8499,7 +8499,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'score.source.liver': 'نطاقات مرجعية لـAASLD',
     'score.source.thyroid': 'النطاق المرجعي لـTSH حسب ATA',
     'score.source.ibs': 'معايير روما الرابعة',
-    'score.source.mentalWellness': 'إرشادات النوم NIH ومرجع فيتامين د لـAACE',
+    'score.source.mental-wellness': 'إرشادات النوم NIH ومرجع فيتامين د لـAACE',
     'universe.factor.sleepHours': 'ساعات النوم',
     'universe.factor.hours': 'ساعات',
     'universe.factor.symptomCount': 'الأعراض المسجلة',
@@ -10500,7 +10500,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'score.formula.liver': 'ALT <40 = 100; 40–80 = 100→70; ≥80 = 70→40. AST verwendet dieselben Bereiche.',
     'score.formula.thyroid': 'TSH 0,4–4,0 = 100; 4,0–10 = 100→70; >10 = 70→40. T3 und T4 passen den Score an.',
     'score.formula.ibs': 'Score anhand der gemeldeten Symptome: 0 = 100; 1–2 = 100–80; 3–4 = 80–50; 5+ = 50–30.',
-    'score.formula.mentalWellness': 'Gewichteter Mittelwert: Schlaf 40 %, Stress 30 %, Vitamin D 20 %, Aktivität 10 %.',
+    'score.formula.mental-wellness': 'Gewichteter Mittelwert: Schlaf 40 %, Stress 30 %, Vitamin D 20 %, Aktivität 10 %.',
     'score.source.diabetes': 'Diagnosekriterien von WHO und ADA',
     'score.source.hypertension': 'AHA / ACC 2017 Leitlinien',
     'score.source.cholesterol': 'AHA / ATP-III Cholesterin-Leitlinien',
@@ -10509,7 +10509,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'score.source.liver': 'AASLD-Referenzbereiche',
     'score.source.thyroid': 'ATA TSH-Referenzbereich',
     'score.source.ibs': 'Rom-IV-Kriterien',
-    'score.source.mentalWellness': 'NIH-Schlafempfehlungen und AACE Vitamin-D-Referenz',
+    'score.source.mental-wellness': 'NIH-Schlafempfehlungen und AACE Vitamin-D-Referenz',
     'universe.factor.sleepHours': 'Schlafstunden',
     'universe.factor.hours': 'Stunden',
     'universe.factor.symptomCount': 'Gemeldete Symptome',
