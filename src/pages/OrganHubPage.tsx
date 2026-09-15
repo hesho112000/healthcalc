@@ -125,6 +125,11 @@ const OrganHubPage: React.FC = () => {
     navigate(`/advanced-care/wizard${qs}`);
   };
 
+  const goAddData = () => {
+    const qs = conditions.length > 0 ? `?conditions=${conditions.join(',')}&step=3` : '?step=3';
+    navigate(`/advanced-care/wizard${qs}`);
+  };
+
   const headerTitle = isMental ? t(tk('condition.mentalWellness.name')) : t(organNameKey(id));
   const headerKicker = isMental ? t(tk('organHub.mentalWellness.title')) : t(organConditionKey(id));
   const headerDesc = isMental ? t(tk('condition.mentalWellness.desc')) : t(organDescKey(id));
@@ -263,9 +268,19 @@ const OrganHubPage: React.FC = () => {
                     </div>
                   </>
                 ) : (
-                  <p className="text-sm text-[#6B7A75]">
-                    — {t(tk('organHub.generalData'))}
-                  </p>
+                  <div className="space-y-3">
+                    <p className="text-sm text-[#6B7A75]">
+                      — {t(tk('score.noData'))}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={goAddData}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-[#D4AF37] text-[#0F4C3A] px-5 py-2.5 text-xs font-extrabold shadow-[0_8px_18px_rgba(212,175,55,0.35)] transition hover:bg-[#c9a52e]"
+                    >
+                      {t(tk('score.addData'))}
+                      <ArrowRight size={14} strokeWidth={2.5} className="rtl:rotate-180" />
+                    </button>
+                  </div>
                 )}
               </div>
               <p className="mt-4 text-xs text-[#6B7A75] bg-[#F4F1EB]/70 rounded-xl px-3 py-2">

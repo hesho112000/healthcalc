@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Activity, ChevronDown, Sparkles } from 'lucide-react';
+import { Activity, ArrowRight, Sparkles } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import {
   calculateOverallScore,
@@ -8,24 +8,41 @@ import {
   organScore,
   organStatus,
 } from '../../utils/healthScoring';
-import { coveredOrgans } from './data';
+import { coveredOrgans, tk, tt } from './data';
+import type { HubOrgan } from './data';
+import ScoreTransparencyModal from './ScoreTransparencyModal';
 
 interface HealthScoreCardsProps {
   conditions: string[];
 }
 
+const wizardStep3 = (organ: HubOrgan): string => {
+  const conds = organ.id === 'brain' ? ['mental-wellness'] : organ.conditions;
+  const qs = conds.length > 0 ? `?conditions=${conds.join(',')}&step=3` : '?step=3';
+  return `/advanced-care/wizard${qs}`;
+};
+
 const HealthScoreCards: React.FC<HealthScoreCardsProps> = ({ conditions }) => {
   const { t } = useLanguage();
-  const [openScore, setOpenScore] = useState<string | null>(null);
+  const [openModal, setOpenModal] = useState<HubOrgan | null>(null);
 
   const covered = useMemo(() => coveredOrgans(conditions), [conditions]);
 
-  const overallScore = useMemo(() => {
-    const scores = covered
-      .map((o) => organScore(o.id))
-      .filter((v): v is number => typeof v === 'number');
-    return calculateOverallScore(scores);
-  }, [covered]);
+  const rows = useMemo(
+    () =>
+      covered.map((organ) => {
+        const score = organScore(organ.id);
+        return { organ, score, detail: score === null ? null : getOrganDetail(organ.id) };
+      }),
+    [covered],
+  );
+
+  const presentCount = rows.filter((row) => row.score !== null).length;
+  const overallScore = calculateOverallScore(
+    rows.map((row) => row.score).filter((value): value is number => value !== null),
+  );
+  const openRow =
+    openModal === null ? null : rows.find((row) => row.organ.id === openModal.id) ?? null;
 
   const barColor = (score: number): string => {
     if (score < 50) return '#B91C1C';
@@ -73,10 +90,18 @@ const HealthScoreCards: React.FC<HealthScoreCardsProps> = ({ conditions }) => {
             {overallScore === null ? '—' : overallScore}
           </div>
           {overallScore === null ? (
-            <p className="mt-2 text-xs text-[#FDFBF7]/70">{t('universe.score.enterLabs')}</p>
+            <p className="mt-2 text-xs text-[#FDFBF7]/70">{t('score.completeData')}</p>
           ) : (
             <>
               <p className="mt-1 text-xs font-bold text-[#FDFBF7]/90">{statusLabel(overallScore)}</p>
+              <p className="mt-1 text-[11px] text-[#FDFBF7]/70">
+                {presentCount < covered.length
+                  ? tt(t, 'score.basedOnXofY', {
+                      x: String(presentCount),
+                      y: String(covered.length),
+                    })
+                  : t('score.basedOnData')}
+              </p>
               <div className="mt-4 h-2.5 rounded-full bg-[#FDFBF7]/15 overflow-hidden">
                 <div
                   className="h-full rounded-full bg-[#D4AF37] transition-all duration-500"
@@ -86,13 +111,10 @@ const HealthScoreCards: React.FC<HealthScoreCardsProps> = ({ conditions }) => {
             </>
           )}
         </div>
-        {covered.map((organ) => {
-          const score = organScore(organ.id);
+        {rows.map(({ organ, score, detail }) => {
           const color = score === null ? '#D4AF37' : barColor(score);
-          const detail = score === null ? null : getOrganDetail(organ.id);
-          const expanded = openScore === organ.id;
           return (
-            <div key={organ.id} className="rounded-3xl bg-white border border-[#EFEBE4] p-6">
+            <div key={organ.id} className="rounded-3xl bg-white border border-[#EFEBE4] p-6 flex flex-col">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-bold text-[#0F4C3A]">{t(organ.nameKey)}</span>
                 <span className="text-xl">{organ.icon}</span>
@@ -101,7 +123,16 @@ const HealthScoreCards: React.FC<HealthScoreCardsProps> = ({ conditions }) => {
                 {score === null ? '—' : score}
               </div>
               {score === null ? (
-                <p className="mt-1.5 text-xs text-[#6B7A75]">{t('universe.score.enterLabs')}</p>
+                <div className="mt-1.5 flex flex-col gap-3">
+                  <p className="text-xs text-[#6B7A75]">{t('score.noData')}</p>
+                  <Link
+                    to={wizardStep3(organ)}
+                    className="mt-1 inline-flex w-fit items-center gap-1 rounded-full bg-[#D4AF37] px-4 py-2 text-xs font-extrabold text-[#0F4C3A] transition hover:bg-[#c9a52e]"
+                  >
+                    {t('score.addData')}
+                    <ArrowRight size={13} strokeWidth={2.5} className="rtl:rotate-180" />
+                  </Link>
+                </div>
               ) : (
                 <>
                   <p className="mt-1 text-xs font-bold" style={{ color: statusColor(score) }}>
@@ -115,31 +146,25 @@ const HealthScoreCards: React.FC<HealthScoreCardsProps> = ({ conditions }) => {
                   </div>
                   <button
                     type="button"
-                    onClick={() => setOpenScore(expanded ? null : organ.id)}
-                    className="mt-4 flex items-center gap-1 text-xs font-bold text-[#0F4C3A] underline decoration-[#D4AF37] underline-offset-4"
+                    onClick={() => setOpenModal(organ)}
+                    className="mt-auto pt-4 text-start text-xs font-bold text-[#0F4C3A] underline decoration-[#D4AF37] underline-offset-4"
                   >
                     {t('universe.score.calcLink')}
-                    <ChevronDown size={13} className={`transition-transform ${expanded ? 'rotate-180' : ''}`} />
                   </button>
-                  {expanded && detail && (
-                    <div className="mt-3 space-y-1.5 rounded-xl bg-[#F4F1EB]/50 p-3">
-                      {detail.factors.map((f, fi) => (
-                        <div key={fi} className="flex items-center justify-between text-xs">
-                          <span className="text-[#6B7A75]">{t(f.labelKey)}</span>
-                          <b className="text-[#0F4C3A]">
-                            {f.value}
-                            {f.unit ? ` ${f.unit}` : f.unitKey ? ` ${t(f.unitKey)}` : ''}
-                          </b>
-                        </div>
-                      ))}
-                    </div>
-                  )}
                 </>
               )}
             </div>
           );
         })}
       </div>
+      {openRow && openRow.detail && openRow.score !== null && (
+        <ScoreTransparencyModal
+          organ={openRow.organ}
+          score={openRow.score}
+          factors={openRow.detail.factors}
+          onClose={() => setOpenModal(null)}
+        />
+      )}
     </section>
   );
 };

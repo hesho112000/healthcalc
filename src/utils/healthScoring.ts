@@ -58,6 +58,7 @@ interface LabMetric {
   idealHi: number;
   riskHi: number;
   invert?: boolean;
+  weight?: number;
 }
 
 const LAB_METRICS: Record<string, readonly LabMetric[]> = {
@@ -83,11 +84,11 @@ const LAB_METRICS: Record<string, readonly LabMetric[]> = {
   ],
   kidney: [
     { key: 'creatinine', idealLo: 0.6, idealHi: 1.3, riskHi: 1.8 },
-    { key: 'egfr', idealLo: 60, idealHi: 90, riskHi: 90, invert: true },
+    { key: 'egfr', idealLo: 60, idealHi: 90, riskHi: 90, invert: true, weight: 2 },
     { key: 'potassium', idealLo: 3.5, idealHi: 5.0, riskHi: 5.5 },
   ],
   thyroid: [
-    { key: 'tsh', idealLo: 0.4, idealHi: 4.0, riskHi: 10 },
+    { key: 'tsh', idealLo: 0.4, idealHi: 4.0, riskHi: 10, weight: 2 },
     { key: 't3', idealLo: 80, idealHi: 200, riskHi: 240 },
     { key: 't4', idealLo: 4.5, idealHi: 12.5, riskHi: 14 },
   ],
@@ -101,36 +102,56 @@ const LAB_METRICS: Record<string, readonly LabMetric[]> = {
 const clamp = (v: number, lo: number, hi: number): number =>
   Math.min(hi, Math.max(lo, v));
 
-const metricScore = (value: number, metric: LabMetric): number => {
-  if (metric.invert) {
-    if (value >= metric.idealLo) {
-      if (value >= metric.idealHi) {
-        const span = (metric.idealHi - metric.idealLo) || 1;
-        return Math.round(Math.min(97, 88 + ((value - metric.idealLo) / span) * 9));
+const piecewise = (points: readonly { x: number; y: number }[]) => {
+  const graph = points.length === 0 ? [{ x: 0, y: 100 }] : points;
+  return (value: number): number => {
+    if (value <= graph[0].x) return graph[0].y;
+    for (let i = 0; i < graph.length - 1; i += 1) {
+      const a = graph[i];
+      const b = graph[i + 1];
+      if (value <= b.x) {
+        const span = b.x - a.x || 1;
+        const t = clamp((value - a.x) / span, 0, 1);
+        return Math.round(a.y + (b.y - a.y) * t);
       }
-      const span = (metric.idealHi - metric.idealLo) || 1;
-      const t = clamp((value - metric.idealLo) / span, 0, 1);
-      return Math.round(88 + (1 - Math.abs(t - 0.5) * 2) * 9);
     }
-    const below = metric.idealLo - value;
-    return Math.round(Math.max(20, 88 - (below / metric.idealLo) * 55));
-  }
-  if (value < metric.idealLo) {
-    const low = (metric.idealLo - value) / metric.idealLo;
-    return Math.round(Math.max(40, 88 - low * 30));
-  }
-  if (value <= metric.idealHi) {
-    const span = (metric.idealHi - metric.idealLo) || 1;
-    const t = clamp((value - metric.idealLo) / span, 0, 1);
-    return Math.round(88 + (1 - Math.abs(t - 0.5) * 2) * 9);
-  }
-  if (value <= metric.riskHi) {
-    const span = (metric.riskHi - metric.idealHi) || 1;
-    const t = clamp((value - metric.idealHi) / span, 0, 1);
-    return Math.round(87 - t * 27);
-  }
-  const excess = (value - metric.riskHi) / metric.riskHi;
-  return Math.round(Math.max(20, 60 - excess * 40));
+    return graph[graph.length - 1].y;
+  };
+};
+
+const band = (points: readonly [number, number][]): ((v: number) => number) =>
+  piecewise(points.map(([x, y]) => ({ x, y })));
+
+const BANDS: Record<string, (v: number) => number> = {
+  fasting: band([[70, 100], [99, 100], [125, 70], [250, 40]]),
+  hba1c: band([[4, 100], [5.6, 100], [6.4, 70], [8, 40]]),
+  systolic: band([[90, 100], [119, 100], [129, 80], [139, 60], [180, 40]]),
+  diastolic: band([[60, 100], [79, 100], [89, 80], [99, 60], [120, 40]]),
+  total: band([[125, 100], [199, 100], [239, 70], [350, 40]]),
+  ldl: band([[40, 100], [99, 100], [129, 70], [190, 40]]),
+  hdl: band([[20, 40], [40, 70], [60, 100], [90, 100]]),
+  triglycerides: band([[50, 100], [149, 100], [199, 70], [350, 40]]),
+  uricAcid: band([[2, 100], [5.9, 100], [7, 70], [8, 50], [10, 30]]),
+  alt: band([[5, 100], [39, 100], [80, 70], [160, 40]]),
+  ast: band([[5, 100], [39, 100], [80, 70], [160, 40]]),
+  bilirubin: band([[0.1, 100], [1.2, 100], [2.4, 70], [5, 40]]),
+  creatinine: band([[0.5, 100], [1.3, 100], [1.8, 70], [3, 45]]),
+  egfr: band([[20, 30], [45, 50], [60, 70], [90, 100], [120, 100]]),
+  potassium: band([[2.8, 40], [3.5, 100], [5, 100], [5.5, 70], [6.5, 40]]),
+  tsh: band([[0.05, 35], [0.4, 100], [4, 100], [10, 70], [30, 40]]),
+  t3: band([[50, 70], [80, 100], [200, 100], [240, 70], [300, 50]]),
+  t4: band([[3, 60], [4.5, 100], [12.5, 100], [14, 70], [20, 50]]),
+  vitaminD: band([[10, 50], [20, 70], [30, 100], [60, 100]]),
+};
+
+const sleepBand = band([[3, 40], [5, 70], [7, 100], [9, 100], [12, 70]]);
+
+const ACTIVITY_SCORE: Record<string, number> = {
+  sedentary: 45,
+  light: 70,
+  moderate: 85,
+  active: 100,
+  veryActive: 100,
 };
 
 export const readStoredLabs = (): Record<string, Record<string, number>> => {
@@ -267,57 +288,55 @@ export const calculateMentalWellnessScore = (
 ): number | null => {
   if (!profile || typeof profile !== 'object') return null;
   const l = labs ?? {};
-  const sleep = typeof profile.sleepHours === 'number' ? profile.sleepHours : undefined;
-  const stress = profile.stress;
-  const activity = profile.activityLevel;
-  const vitD = typeof l.vitaminD === 'number' ? l.vitaminD : undefined;
-  const b12 = typeof l.b12 === 'number' ? l.b12 : undefined;
-  const hasAny =
-    typeof sleep === 'number' ||
-    Boolean(stress) ||
-    Boolean(activity) ||
-    typeof vitD === 'number' ||
-    typeof b12 === 'number';
-  if (!hasAny) return null;
+  const sleep =
+    typeof profile.sleepHours === 'number' && Number.isFinite(profile.sleepHours)
+      ? profile.sleepHours
+      : undefined;
+  const stress =
+    profile.stress === 'low' || profile.stress === 'medium' || profile.stress === 'high'
+      ? profile.stress
+      : undefined;
+  const vitD =
+    typeof l.vitaminD === 'number' && Number.isFinite(l.vitaminD) ? l.vitaminD : undefined;
+  const activity =
+    profile.activityLevel && ACTIVITY_SCORE[profile.activityLevel] !== undefined
+      ? profile.activityLevel
+      : undefined;
 
-  let score = 85;
-  if (typeof sleep === 'number' && sleep < 7) {
-    score -= (7 - sleep) * 2;
+  const parts: Array<{ score: number; weight: number }> = [];
+  if (typeof sleep === 'number') parts.push({ score: sleepBand(sleep), weight: 4 });
+  if (stress) {
+    parts.push({
+      score: stress === 'low' ? 100 : stress === 'medium' ? 70 : 50,
+      weight: 3,
+    });
   }
-  switch (activity) {
-    case 'sedentary': score -= 12; break;
-    case 'light': score -= 4; break;
-    default: break;
-  }
-  switch (stress) {
-    case 'high': score -= 16; break;
-    case 'medium': score -= 8; break;
-    default: break;
-  }
-  if (typeof vitD === 'number') {
-    if (vitD < 20) score -= 18;
-    else if (vitD < 30) score -= 8;
-  }
-  if (typeof b12 === 'number') {
-    if (b12 < 200) score -= 15;
-    else if (b12 < 300) score -= 6;
-  }
-  return Math.round(clamp(score, 15, 100));
+  if (typeof vitD === 'number') parts.push({ score: BANDS.vitaminD(vitD), weight: 2 });
+  if (activity) parts.push({ score: ACTIVITY_SCORE[activity], weight: 1 });
+
+  if (parts.length === 0) return null;
+  const weight = parts.reduce((acc, part) => acc + part.weight, 0);
+  const total = parts.reduce((acc, part) => acc + part.score * part.weight, 0);
+  return Math.round(total / weight);
 };
 
 const scoreFromMetrics = (
   metrics: readonly LabMetric[],
   labs: Record<string, number>,
 ): { score: number | null } => {
-  const parts: number[] = [];
+  let total = 0;
+  let weight = 0;
   metrics.forEach((metric) => {
     const v = labs[metric.key];
-    if (typeof v === 'number' && Number.isFinite(v)) {
-      parts.push(metricScore(v, metric));
-    }
+    if (typeof v !== 'number' || !Number.isFinite(v)) return;
+    const fn = BANDS[metric.key];
+    if (!fn) return;
+    const w = metric.weight ?? 1;
+    total += fn(v) * w;
+    weight += w;
   });
-  if (parts.length === 0) return { score: null };
-  return { score: Math.round(parts.reduce((a, b) => a + b, 0) / parts.length) };
+  if (weight === 0) return { score: null };
+  return { score: Math.round(total / weight) };
 };
 
 export const calculateHeartScore = (
@@ -356,18 +375,8 @@ export const calculateGutScore = (
   if (symptoms === null || symptoms === undefined) return null;
   const count = typeof symptoms === 'number' ? symptoms : symptoms.length;
   if (!Number.isFinite(count) || count <= 0) return null;
-  let severityPenalty = 0;
-  if (Array.isArray(symptoms)) {
-    const severities = symptoms
-      .map((s) => s.severity)
-      .filter((v): v is number => typeof v === 'number' && Number.isFinite(v) && v >= 0);
-    if (severities.length > 0) {
-      severityPenalty = Math.round(
-        severities.reduce((a, b) => a + b, 0) / severities.length,
-      );
-    }
-  }
-  return Math.round(clamp(100 - count * 10 - severityPenalty, 20, 100));
+  const byCount: Record<number, number> = { 1: 90, 2: 80, 3: 70, 4: 60, 5: 50, 6: 40, 7: 30 };
+  return byCount[count] ?? 30;
 };
 
 export const calculateOverallScore = (scores: readonly number[]): number | null => {
@@ -458,7 +467,12 @@ export const getOrganDetail = (id: HealthOrganId): OrganScoreDetail | null => {
         factors.push({ labelKey: 'universe.factor.stress', value: profile.stress });
       }
       if (profile.activityLevel) {
-        factors.push({ labelKey: profile.activityLevel as TKey, value: '' });
+        const activityKey =
+          profile.activityLevel === 'veryActive' ? 'very_active' : profile.activityLevel;
+        factors.push({
+          labelKey: `wizard.activity.${activityKey}` as TKey,
+          value: '',
+        });
       }
       factors.push(...labFactors(LAB_METRICS['mental-wellness'], labs));
       return { score, factors };
@@ -516,4 +530,26 @@ export const getOrganDetail = (id: HealthOrganId): OrganScoreDetail | null => {
       return { score, factors: labFactors(LAB_METRICS.thyroid, labs) };
     }
   }
+};
+
+export interface ReferenceRangeItem {
+  labelKey: TKey;
+  value: string;
+}
+
+export const referenceRangesFor = (organ: HealthOrganId): ReferenceRangeItem[] => {
+  const out: ReferenceRangeItem[] = [];
+  HEALTH_ORGAN_CONDITIONS[organ].forEach((cid) => {
+    (LAB_METRICS[cid] ?? []).forEach((metric) => {
+      const unit = LAB_UNITS[metric.key] ?? '';
+      out.push({
+        labelKey: `advanced.lab.field.${metric.key}.label` as TKey,
+        value: `${num(metric.idealLo)}–${num(metric.idealHi)}${unit ? ` ${unit}` : ''}`,
+      });
+    });
+  });
+  if (out.length === 0) {
+    out.push({ labelKey: 'universe.factor.symptomCount', value: '0–5+' });
+  }
+  return out;
 };
