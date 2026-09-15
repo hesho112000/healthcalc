@@ -157,7 +157,7 @@ const OrganHubPage: React.FC = () => {
 
         <div className="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] p-8 md:p-12 text-[#FDFBF7]">
           <div className="absolute inset-0 pointer-events-none opacity-10">
-            <BodyMap />
+            <BodyMap selectedOrgans={[]} onToggle={() => {}} />
           </div>
           <div className="relative">
             <span className="w-16 h-16 rounded-3xl bg-[#FDFBF7]/10 flex items-center justify-center text-4xl">

@@ -96,7 +96,7 @@ const HealthUniversePage: React.FC = () => {
         <div
           className="max-w-2xl mx-auto rounded-[32px] border border-[#EFEBE4] bg-white/80 p-6 sm:p-8 shadow-[0_18px_50px_rgba(15,76,58,0.06)]"
         >
-          <BodyMap />
+          <BodyMap selectedOrgans={plan} onToggle={handleTogglePlan} />
         </div>
         <p className="mx-auto mt-6 max-w-xl text-center text-sm font-bold text-[#4A5A55] bg-[#F4F1EB] rounded-2xl px-5 py-3">
           {t('universe.hint')}
@@ -156,7 +156,10 @@ const HealthUniversePage: React.FC = () => {
         </div>
 
         <div className="mt-10 flex flex-col items-center gap-4">
-          {plan.length > 0 && (
+          <h2 className="text-center text-lg font-extrabold text-[#0F4C3A]">
+            {t('universe.selectedConditions' as TKey)}
+          </h2>
+          {plan.length > 0 ? (
             <div className="flex flex-wrap justify-center gap-2">
               {plan.map((id) => (
                 <span
@@ -164,11 +167,11 @@ const HealthUniversePage: React.FC = () => {
                   className="inline-flex items-center gap-1.5 rounded-full bg-white border border-[#EFEBE4] px-3 py-1.5 text-xs font-bold text-[#0F4C3A]"
                 >
                   <span>{ORGAN_CONFIG[id].emoji}</span>
-                  {t(organNameKey(id))}
+                  {t(organConditionKey(id))} ✓
                   <button
                     type="button"
                     onClick={() => handleTogglePlan(id)}
-                    aria-label={t('universe.tools.back')}
+                    aria-label={`${t('universe.cta.addToPlan')} ${t(organConditionKey(id))}`}
                     className="text-[#4A5A55] hover:text-[#B91C1C] transition-colors"
                   >
                     <X size={13} strokeWidth={2.5} />
@@ -176,11 +179,20 @@ const HealthUniversePage: React.FC = () => {
                 </span>
               ))}
             </div>
+          ) : (
+            <p className="text-sm font-bold text-[#6B7A75] bg-[#F4F1EB] rounded-2xl px-5 py-3">
+              {t('universe.noConditions' as TKey)}
+            </p>
           )}
           <button
             type="button"
             onClick={handleContinue}
-            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#D4AF37] px-8 py-4 text-sm font-extrabold text-[#0F4C3A] hover:bg-[#c9a12f] shadow-[0_10px_26px_rgba(212,175,55,0.35)] transition-all"
+            disabled={plan.length === 0}
+            className={`inline-flex items-center justify-center gap-2 rounded-2xl px-8 py-4 text-sm font-extrabold transition-all ${
+              plan.length > 0
+                ? 'bg-[#D4AF37] text-[#0F4C3A] hover:bg-[#c9a12f] shadow-[0_10px_26px_rgba(212,175,55,0.35)]'
+                : 'bg-[#EFEBE4] text-[#6B7A75] cursor-not-allowed'
+            }`}
           >
             {t('universe.continueCta')}
             <ArrowRight size={18} strokeWidth={2.5} className="rtl:rotate-180" />

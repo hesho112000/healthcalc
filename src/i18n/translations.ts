@@ -1464,6 +1464,8 @@ type TranslationKeys = {
   'universe.cta.addToPlan': string;
   'universe.cta.added': string;
   'universe.toast.added': string;
+  'universe.selectedConditions': string;
+  'universe.noConditions': string;
   'organHub.addToPlan': string;
   'organHub.continueWizard': string;
   'organHub.generalData': string;
@@ -2482,6 +2484,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'universe.cta.addToPlan': 'Add to My Plan',
     'universe.cta.added': 'Added to My Plan',
     'universe.toast.added': 'Added {condition} to your plan.',
+    'universe.selectedConditions': 'Your Selected Conditions',
+    'universe.noConditions': 'Select conditions to build your plan.',
     'organHub.addToPlan': 'Add to My Plan',
     'organHub.continueWizard': 'Continue to Wizard',
     'organHub.generalData': 'Based on general data',
@@ -4511,6 +4515,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'universe.cta.addToPlan': 'Ajouter à mon plan',
     'universe.cta.added': 'Ajouté à mon plan',
     'universe.toast.added': '{condition} a été ajouté à votre plan.',
+    'universe.selectedConditions': 'Vos conditions sélectionnées',
+    'universe.noConditions': 'Sélectionnez des conditions pour créer votre plan.',
     'organHub.addToPlan': 'Ajouter à mon plan',
     'organHub.continueWizard': 'Continuer vers l\'assistant',
     'organHub.generalData': 'Basé sur des données générales',
@@ -6510,6 +6516,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'universe.cta.addToPlan': 'Añadir a mi plan',
     'universe.cta.added': 'Añadido a mi plan',
     'universe.toast.added': '{condition} añadido a tu plan.',
+    'universe.selectedConditions': 'Tus condiciones seleccionadas',
+    'universe.noConditions': 'Selecciona condiciones para crear tu plan.',
     'organHub.addToPlan': 'Añadir a mi plan',
     'organHub.continueWizard': 'Continuar al asistente',
     'organHub.generalData': 'Basado en datos generales',
@@ -8509,6 +8517,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'universe.cta.addToPlan': 'أضف إلى خطتي',
     'universe.cta.added': 'أُضيف إلى خطتي',
     'universe.toast.added': 'تمت إضافة {condition} إلى خطتك.',
+    'universe.selectedConditions': 'الحالات المحددة',
+    'universe.noConditions': 'اختر الحالات لبناء خطتك.',
     'organHub.addToPlan': 'إضافة إلى خطتي',
     'organHub.continueWizard': 'متابعة إلى المعالج',
     'organHub.generalData': 'استناداً إلى بيانات عامة',
@@ -10519,6 +10529,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'universe.cta.addToPlan': 'Zu meinem Plan hinzufügen',
     'universe.cta.added': 'Zu meinem Plan hinzugefügt',
     'universe.toast.added': '{condition} wurde zu Ihrem Plan hinzugefügt.',
+    'universe.selectedConditions': 'Ihre ausgewählten Bedingungen',
+    'universe.noConditions': 'Wählen Sie Bedingungen aus, um Ihren Plan zu erstellen.',
     'organHub.addToPlan': 'Zu meinem Plan hinzufügen',
     'organHub.continueWizard': 'Weiter zum Assistenten',
     'organHub.generalData': 'Basierend auf allgemeinen Daten',
