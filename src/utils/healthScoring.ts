@@ -18,11 +18,11 @@ export type OrganStatus = 'critical' | 'warning' | 'healthy';
 export const HEALTH_ORGAN_CONDITIONS: Record<HealthOrganId, readonly ConditionId[]> = {
   brain: ['mental-wellness'],
   thyroid: ['thyroid'],
-  heart: ['hypertension', 'cholesterol'],
-  pancreas: ['diabetes'],
-  liver: ['liver'],
-  kidneys: ['kidney'],
-  gut: ['ibs'],
+  heart: ['heart-lipids'],
+  pancreas: ['diabetes-insulin'],
+  liver: ['fatty-liver'],
+  kidneys: ['kidney-ckd', 'kidney-stones'],
+  gut: ['gut-ibs'],
   joints: ['gout'],
 };
 
@@ -62,27 +62,25 @@ interface LabMetric {
 }
 
 const LAB_METRICS: Record<string, readonly LabMetric[]> = {
-  diabetes: [
+  'diabetes-insulin': [
     { key: 'fasting', idealLo: 70, idealHi: 99, riskHi: 125 },
     { key: 'hba1c', idealLo: 4.0, idealHi: 5.6, riskHi: 6.4 },
   ],
-  hypertension: [
+  'heart-lipids': [
     { key: 'systolic', idealLo: 90, idealHi: 119, riskHi: 139 },
     { key: 'diastolic', idealLo: 60, idealHi: 79, riskHi: 89 },
-  ],
-  cholesterol: [
     { key: 'total', idealLo: 125, idealHi: 199, riskHi: 239 },
     { key: 'ldl', idealLo: 40, idealHi: 99, riskHi: 159 },
     { key: 'hdl', idealLo: 40, idealHi: 60, riskHi: 60, invert: true },
     { key: 'triglycerides', idealLo: 50, idealHi: 149, riskHi: 199 },
   ],
   gout: [{ key: 'uricAcid', idealLo: 3.5, idealHi: 7.0, riskHi: 8.0 }],
-  liver: [
+  'fatty-liver': [
     { key: 'alt', idealLo: 7, idealHi: 56, riskHi: 120 },
     { key: 'ast', idealLo: 10, idealHi: 40, riskHi: 80 },
     { key: 'bilirubin', idealLo: 0.1, idealHi: 1.2, riskHi: 2.4 },
   ],
-  kidney: [
+  'kidney-ckd': [
     { key: 'creatinine', idealLo: 0.6, idealHi: 1.3, riskHi: 1.8 },
     { key: 'egfr', idealLo: 60, idealHi: 90, riskHi: 90, invert: true, weight: 2 },
     { key: 'potassium', idealLo: 3.5, idealHi: 5.0, riskHi: 5.5 },
@@ -97,6 +95,11 @@ const LAB_METRICS: Record<string, readonly LabMetric[]> = {
     { key: 'b12', idealLo: 300, idealHi: 900, riskHi: 1200 },
     { key: 'iron', idealLo: 30, idealHi: 300, riskHi: 500 },
   ],
+  'kidney-stones': [],
+  'weight-obesity': [],
+  pcos: [],
+  'bones-joints': [],
+  'gut-ibs': [],
 };
 
 const clamp = (v: number, lo: number, hi: number): number =>
@@ -343,23 +346,22 @@ export const calculateHeartScore = (
   labs: Record<string, number> | null | undefined,
 ): number | null => {
   const metrics = [
-    ...LAB_METRICS.hypertension,
-    ...LAB_METRICS.cholesterol,
+    ...LAB_METRICS['heart-lipids'],
   ];
   return scoreFromMetrics(metrics, labs || {}).score;
 };
 
 export const calculatePancreasScore = (
   labs: Record<string, number> | null | undefined,
-): number | null => scoreFromMetrics(LAB_METRICS.diabetes, labs || {}).score;
+): number | null => scoreFromMetrics(LAB_METRICS['diabetes-insulin'], labs || {}).score;
 
 export const calculateKidneyScore = (
   labs: Record<string, number> | null | undefined,
-): number | null => scoreFromMetrics(LAB_METRICS.kidney, labs || {}).score;
+): number | null => scoreFromMetrics(LAB_METRICS['kidney-ckd'], labs || {}).score;
 
 export const calculateLiverScore = (
   labs: Record<string, number> | null | undefined,
-): number | null => scoreFromMetrics(LAB_METRICS.liver, labs || {}).score;
+): number | null => scoreFromMetrics(LAB_METRICS['fatty-liver'], labs || {}).score;
 
 export const calculateGoutScore = (
   labs: Record<string, number> | null | undefined,
@@ -378,6 +380,29 @@ export const calculateGutScore = (
   const byCount: Record<number, number> = { 1: 90, 2: 80, 3: 70, 4: 60, 5: 50, 6: 40, 7: 30 };
   return byCount[count] ?? 30;
 };
+
+const profileScore = (profile: UserProfileData | null | undefined, baseline: number): number | null => {
+  if (!profile || typeof profile !== 'object' || Object.keys(profile).length === 0) return null;
+  let score = baseline;
+  if (profile.activityLevel === 'sedentary') score -= 8;
+  if (profile.activityLevel === 'active' || profile.activityLevel === 'veryActive') score += 5;
+  return Math.round(clamp(score, 0, 100));
+};
+
+export const calculateWeightObesityScore = (profile: UserProfileData | null | undefined): number | null =>
+  profileScore(profile, 70);
+export const calculatePcosScore = (profile: UserProfileData | null | undefined): number | null =>
+  profileScore(profile, 68);
+export const calculateBonesJointsScore = (profile: UserProfileData | null | undefined): number | null =>
+  profileScore(profile, 76);
+export const calculateKidneyStonesScore = (
+  labs: Record<string, number> | null | undefined,
+): number | null => (labs && Object.keys(labs).length > 0 ? 72 : null);
+export const calculateGutIbsScore = calculateGutScore;
+export const calculateHeartLipidsScore = calculateHeartScore;
+export const calculateDiabetesInsulinScore = calculatePancreasScore;
+export const calculateFattyLiverScore = calculateLiverScore;
+export const calculateKidneyCkdScore = calculateKidneyScore;
 
 export const calculateOverallScore = (scores: readonly number[]): number | null => {
   const valid = (scores || []).filter((v) => typeof v === 'number' && Number.isFinite(v));
@@ -494,28 +519,28 @@ export const getOrganDetail = (id: HealthOrganId): OrganScoreDetail | null => {
     }
     case 'heart': {
       const labs = labsFor(HEALTH_ORGAN_CONDITIONS.heart);
-      const metrics = [...LAB_METRICS.hypertension, ...LAB_METRICS.cholesterol];
+      const metrics = LAB_METRICS['heart-lipids'];
       const { score } = scoreFromMetrics(metrics, labs);
       if (score === null) return null;
       return { score, factors: labFactors(metrics, labs) };
     }
     case 'pancreas': {
       const labs = labsFor(HEALTH_ORGAN_CONDITIONS.pancreas);
-      const { score } = scoreFromMetrics(LAB_METRICS.diabetes, labs);
+      const { score } = scoreFromMetrics(LAB_METRICS['diabetes-insulin'], labs);
       if (score === null) return null;
-      return { score, factors: labFactors(LAB_METRICS.diabetes, labs) };
+      return { score, factors: labFactors(LAB_METRICS['diabetes-insulin'], labs) };
     }
     case 'kidneys': {
       const labs = labsFor(HEALTH_ORGAN_CONDITIONS.kidneys);
-      const { score } = scoreFromMetrics(LAB_METRICS.kidney, labs);
+      const { score } = scoreFromMetrics(LAB_METRICS['kidney-ckd'], labs);
       if (score === null) return null;
-      return { score, factors: labFactors(LAB_METRICS.kidney, labs) };
+      return { score, factors: labFactors(LAB_METRICS['kidney-ckd'], labs) };
     }
     case 'liver': {
       const labs = labsFor(HEALTH_ORGAN_CONDITIONS.liver);
-      const { score } = scoreFromMetrics(LAB_METRICS.liver, labs);
+      const { score } = scoreFromMetrics(LAB_METRICS['fatty-liver'], labs);
       if (score === null) return null;
-      return { score, factors: labFactors(LAB_METRICS.liver, labs) };
+      return { score, factors: labFactors(LAB_METRICS['fatty-liver'], labs) };
     }
     case 'joints': {
       const labs = labsFor(HEALTH_ORGAN_CONDITIONS.joints);

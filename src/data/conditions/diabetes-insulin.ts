@@ -8,7 +8,7 @@ export const nutritionRules: NutritionRules = {
 };
 
 export const diabetesCondition: ConditionData = {
-  id: 'diabetes',
+  id: 'diabetes-insulin',
   icon: '🩸',
   defaultHealthScore: 65,
   focus: 'Blood sugar control',

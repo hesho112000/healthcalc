@@ -15,7 +15,10 @@ interface ConditionStepProps {
 }
 
 const ConditionStep: React.FC<ConditionStepProps> = ({ t, selected, onToggle, onContinue }) => {
-  const condName = (id: ConditionId): string => t(tk(`wizard.condition.${id}.name`));
+  const condName = (id: ConditionId): string =>
+    t(tk(id === 'mental-wellness'
+      ? 'condition.mentalWellness.name'
+      : `condition.${id.replace(/-([a-z])/g, (_, letter: string) => letter.toUpperCase())}.name`));
 
   return (
     <div>
@@ -59,7 +62,9 @@ const ConditionStep: React.FC<ConditionStepProps> = ({ t, selected, onToggle, on
               <span className="text-xl shrink-0">{CONDITION_DATA[id].icon}</span>
               <div>
                 <b className="text-[#0F4C3A]">{condName(id)}</b>
-                <p className="mt-0.5 leading-relaxed">{t(tk(`wizard.condition.${id}.desc`))}</p>
+                <p className="mt-0.5 leading-relaxed">{t(tk(id === 'mental-wellness'
+                  ? 'condition.mentalWellness.desc'
+                  : `condition.${id.replace(/-([a-z])/g, (_, letter: string) => letter.toUpperCase())}.desc`))}</p>
               </div>
             </div>
           ))}

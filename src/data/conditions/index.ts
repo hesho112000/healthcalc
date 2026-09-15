@@ -9,14 +9,17 @@ import type {
   ScoredExercise,
   ScoredFood,
 } from './types';
-import { diabetesCondition } from './diabetes';
-import { hypertensionCondition } from './hypertension';
-import { cholesterolCondition } from './cholesterol';
+import { diabetesCondition } from './diabetes-insulin';
+import { heartLipidsCondition } from './heart-lipids';
+import { weightObesityCondition } from './weight-obesity';
+import { pcosCondition } from './pcos';
+import { bonesJointsCondition } from './bones-joints';
+import { kidneyStonesCondition } from './kidney-stones';
 import { goutCondition } from './gout';
-import { liverCondition } from './liver';
-import { kidneyCondition } from './kidney';
+import { liverCondition } from './fatty-liver';
+import { kidneyCondition } from './kidney-ckd';
 import { thyroidCondition } from './thyroid';
-import { ibsCondition } from './ibs';
+import { ibsCondition } from './gut-ibs';
 import { mentalWellnessData } from './mental-wellness';
 import { priorityOf } from './priority';
 
@@ -24,26 +27,32 @@ export * from './types';
 export { CONDITION_PRIORITY, priorityOf, sortByRestrictiveness } from './priority';
 
 export const CONDITION_IDS: ConditionId[] = [
-  'diabetes',
-  'hypertension',
-  'cholesterol',
+  'weight-obesity',
+  'diabetes-insulin',
+  'heart-lipids',
+  'pcos',
+  'fatty-liver',
+  'bones-joints',
+  'gut-ibs',
   'gout',
-  'liver',
-  'kidney',
+  'kidney-stones',
+  'kidney-ckd',
   'thyroid',
-  'ibs',
   'mental-wellness',
 ];
 
 export const CONDITION_DATA: Record<string, ConditionData> = {
-  diabetes: diabetesCondition,
-  hypertension: hypertensionCondition,
-  cholesterol: cholesterolCondition,
+  'weight-obesity': weightObesityCondition,
+  'diabetes-insulin': diabetesCondition,
+  'heart-lipids': heartLipidsCondition,
+  pcos: pcosCondition,
+  'fatty-liver': liverCondition,
+  'bones-joints': bonesJointsCondition,
+  'gut-ibs': ibsCondition,
   gout: goutCondition,
-  liver: liverCondition,
-  kidney: kidneyCondition,
+  'kidney-stones': kidneyStonesCondition,
+  'kidney-ckd': kidneyCondition,
   thyroid: thyroidCondition,
-  ibs: ibsCondition,
   'mental-wellness': mentalWellnessData,
 };
 

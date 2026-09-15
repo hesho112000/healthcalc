@@ -1,15 +1,18 @@
 import type { ConditionId } from './types';
 
 export const CONDITION_PRIORITY: Record<ConditionId, number> = {
-  kidney: 0,
-  diabetes: 10,
+  'kidney-ckd': 0,
+  'kidney-stones': 5,
+  'diabetes-insulin': 10,
   gout: 20,
-  liver: 30,
-  hypertension: 40,
-  cholesterol: 50,
-  thyroid: 60,
-  ibs: 70,
-  'mental-wellness': 80,
+  'fatty-liver': 30,
+  'heart-lipids': 40,
+  pcos: 50,
+  'weight-obesity': 60,
+  thyroid: 70,
+  'gut-ibs': 80,
+  'bones-joints': 90,
+  'mental-wellness': 100,
 };
 
 export const priorityOf = (id: string): number =>

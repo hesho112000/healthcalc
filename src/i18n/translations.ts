@@ -1382,6 +1382,11 @@ type TranslationKeys = {
   'universe.subtitle': string;
   'universe.hint': string;
   'universe.continueCta': string;
+  'universe.conditionsTitle': string;
+  'universe.viewDetails': string;
+  'universe.addToPlan': string;
+  'universe.added': string;
+  'universe.continue': string;
   'universe.organ.brain.name': string;
   'universe.organ.brain.condition': string;
   'universe.organ.brain.desc': string;
@@ -1487,6 +1492,22 @@ type TranslationKeys = {
   'condition.mentalWellness.focus': string;
   'condition.mentalWellness.avoid': string;
   'condition.mentalWellness.prefer': string;
+  'condition.weightObesity.name': string;
+  'condition.weightObesity.desc': string;
+  'condition.pcos.name': string;
+  'condition.pcos.desc': string;
+  'condition.bonesJoints.name': string;
+  'condition.bonesJoints.desc': string;
+  'condition.kidneyStones.name': string;
+  'condition.kidneyStones.desc': string;
+  'condition.heartLipids.name': string;
+  'condition.heartLipids.desc': string;
+  'condition.diabetesInsulin.name': string;
+  'condition.diabetesInsulin.desc': string;
+  'condition.fattyLiver.name': string;
+  'condition.fattyLiver.desc': string;
+  'condition.gutIbs.name': string;
+  'condition.gutIbs.desc': string;
   'universe.factor.stress': string;
   'universe.factor.mood': string;
   'universe.level.low': string;
@@ -2401,7 +2422,28 @@ export const translations: Record<Language, TranslationKeys> = {
     'universe.title': 'Your Health Universe',
     'universe.subtitle': 'Explore how your body connects with the science of nutrition — tap an organ to see its care toolkit.',
     'universe.hint': 'Tap any organ to open its health hub.',
+    'condition.weightObesity.name': 'Weight & Obesity',
+    'condition.weightObesity.desc': 'Sustainable nutrition and activity support for healthy weight.',
+    'condition.pcos.name': 'PCOS',
+    'condition.pcos.desc': 'Insulin-aware nutrition and lifestyle support for hormone health.',
+    'condition.bonesJoints.name': 'Bones & Joints',
+    'condition.bonesJoints.desc': 'Nutrition and movement guidance for bone and joint health.',
+    'condition.kidneyStones.name': 'Kidney Stones',
+    'condition.kidneyStones.desc': 'Hydration and nutrition guidance to help prevent stones.',
+    'condition.heartLipids.name': 'Heart & Lipids',
+    'condition.heartLipids.desc': 'Heart-healthy guidance for blood pressure and cholesterol.',
+    'condition.diabetesInsulin.name': 'Diabetes & Insulin',
+    'condition.diabetesInsulin.desc': 'Blood sugar support with balanced, low-glycemic plans.',
+    'condition.fattyLiver.name': 'Fatty Liver',
+    'condition.fattyLiver.desc': 'Low-fat, antioxidant-rich support for liver health.',
+    'condition.gutIbs.name': 'Gut & IBS',
+    'condition.gutIbs.desc': 'Gentle low-FODMAP guidance to calm the gut.',
     'universe.continueCta': 'Continue to Personalized Plan',
+    'universe.conditionsTitle': 'Conditions We Care For',
+    'universe.viewDetails': 'View Details',
+    'universe.addToPlan': 'Add to My Plan',
+    'universe.added': 'Added',
+    'universe.continue': 'Continue to Personalized Plan',
     'universe.organ.brain.name': 'Brain',
     'universe.organ.brain.condition': 'Mental Wellness',
     'universe.organ.brain.desc': 'Your brain runs on steady glucose, hydration, and deep sleep. Explore nutrition, sleep, and stress tools for mental wellness.',
@@ -4432,7 +4474,28 @@ export const translations: Record<Language, TranslationKeys> = {
     'universe.title': 'Votre Univers Santé',
     'universe.subtitle': 'Découvrez comment votre corps se connecte à la science de la nutrition — touchez un organe pour voir sa boîte à outils de soins.',
     'universe.hint': 'Touchez un organe pour ouvrir son hub santé.',
+    'condition.weightObesity.name': 'Poids et obésité',
+    'condition.weightObesity.desc': 'Nutrition et activité durables pour un poids sain.',
+    'condition.pcos.name': 'SOPK',
+    'condition.pcos.desc': 'Nutrition adaptée à l’insuline pour la santé hormonale.',
+    'condition.bonesJoints.name': 'Os et articulations',
+    'condition.bonesJoints.desc': 'Conseils de nutrition et de mouvement.',
+    'condition.kidneyStones.name': 'Calculs rénaux',
+    'condition.kidneyStones.desc': 'Hydratation et nutrition pour prévenir les calculs.',
+    'condition.heartLipids.name': 'Cœur et lipides',
+    'condition.heartLipids.desc': 'Conseils pour la tension et le cholestérol.',
+    'condition.diabetesInsulin.name': 'Diabète et insuline',
+    'condition.diabetesInsulin.desc': 'Soutien de la glycémie avec un plan équilibré.',
+    'condition.fattyLiver.name': 'Stéatose hépatique',
+    'condition.fattyLiver.desc': 'Soutien pauvre en graisses pour le foie.',
+    'condition.gutIbs.name': 'Intestin et SII',
+    'condition.gutIbs.desc': 'Conseils doux pauvres en FODMAP.',
     'universe.continueCta': 'Continuer vers le plan personnalisé',
+    'universe.conditionsTitle': 'Affections que nous accompagnons',
+    'universe.viewDetails': 'Voir les détails',
+    'universe.addToPlan': 'Ajouter à mon plan',
+    'universe.added': 'Ajouté',
+    'universe.continue': 'Continuer vers le plan personnalisé',
     'universe.organ.brain.name': 'Cerveau',
     'universe.organ.brain.condition': 'Bien-être mental',
     'universe.organ.brain.desc': 'Votre cerveau fonctionne grâce à un glucose stable, une bonne hydratation et un sommeil profond. Les outils de soutien cérébral arrivent bientôt.',
@@ -6433,7 +6496,28 @@ export const translations: Record<Language, TranslationKeys> = {
     'universe.title': 'Tu Universo de Salud',
     'universe.subtitle': 'Descubre cómo tu cuerpo se conecta con la ciencia de la nutrición: toca un órgano para ver su kit de herramientas de cuidado.',
     'universe.hint': 'Toca cualquier órgano para abrir su centro de salud.',
+    'condition.weightObesity.name': 'Peso y obesidad',
+    'condition.weightObesity.desc': 'Nutrición y actividad sostenibles para un peso saludable.',
+    'condition.pcos.name': 'SOP',
+    'condition.pcos.desc': 'Nutrición adaptada a la insulina para la salud hormonal.',
+    'condition.bonesJoints.name': 'Huesos y articulaciones',
+    'condition.bonesJoints.desc': 'Guía de nutrición y movimiento.',
+    'condition.kidneyStones.name': 'Cálculos renales',
+    'condition.kidneyStones.desc': 'Hidratación y nutrición para prevenir cálculos.',
+    'condition.heartLipids.name': 'Corazón y lípidos',
+    'condition.heartLipids.desc': 'Guía saludable para la presión y el colesterol.',
+    'condition.diabetesInsulin.name': 'Diabetes e insulina',
+    'condition.diabetesInsulin.desc': 'Apoyo para el azúcar en sangre con un plan equilibrado.',
+    'condition.fattyLiver.name': 'Hígado graso',
+    'condition.fattyLiver.desc': 'Apoyo bajo en grasa para la salud hepática.',
+    'condition.gutIbs.name': 'Intestino y SII',
+    'condition.gutIbs.desc': 'Guía suave baja en FODMAP para el intestino.',
     'universe.continueCta': 'Continuar al plan personalizado',
+    'universe.conditionsTitle': 'Condiciones que cuidamos',
+    'universe.viewDetails': 'Ver detalles',
+    'universe.addToPlan': 'Añadir a mi plan',
+    'universe.added': 'Añadido',
+    'universe.continue': 'Continuar al plan personalizado',
     'universe.organ.brain.name': 'Cerebro',
     'universe.organ.brain.condition': 'Bienestar mental',
     'universe.organ.brain.desc': 'Tu cerebro funciona con glucosa estable, hidratación y sueño profundo. Las herramientas de apoyo cerebral llegarán pronto.',
@@ -8434,7 +8518,28 @@ export const translations: Record<Language, TranslationKeys> = {
     'universe.title': 'عالمك الصحي',
     'universe.subtitle': 'اكتشف كيف يرتبط جسمك بعلم التغذية — اضغط على أي عضو لترى مجموعة أدوات العناية به.',
     'universe.hint': 'اضغط على أي عضو لفتح مركزه الصحي.',
+    'condition.weightObesity.name': 'الوزن والسمنة',
+    'condition.weightObesity.desc': 'دعم مستدام للتغذية والنشاط والوزن الصحي.',
+    'condition.pcos.name': 'تكيس المبايض',
+    'condition.pcos.desc': 'تغذية تراعي الإنسولين لدعم الصحة الهرمونية.',
+    'condition.bonesJoints.name': 'العظام والمفاصل',
+    'condition.bonesJoints.desc': 'إرشادات للتغذية والحركة وصحة العظام.',
+    'condition.kidneyStones.name': 'حصوات الكلى',
+    'condition.kidneyStones.desc': 'إرشادات للترطيب والتغذية للوقاية من الحصوات.',
+    'condition.heartLipids.name': 'القلب والدهون',
+    'condition.heartLipids.desc': 'إرشادات لصحة القلب وضغط الدم والكوليسترول.',
+    'condition.diabetesInsulin.name': 'السكري والإنسولين',
+    'condition.diabetesInsulin.desc': 'دعم سكر الدم بخطة متوازنة منخفضة المؤشر السكري.',
+    'condition.fattyLiver.name': 'الكبد الدهني',
+    'condition.fattyLiver.desc': 'دعم قليل الدهون وغني بمضادات الأكسدة للكبد.',
+    'condition.gutIbs.name': 'الأمعاء والقولون العصبي',
+    'condition.gutIbs.desc': 'إرشادات لطيفة منخفضة الفودماب لتهدئة الأمعاء.',
     'universe.continueCta': 'متابعة إلى الخطة المخصصة',
+    'universe.conditionsTitle': 'الحالات التي نهتم بها',
+    'universe.viewDetails': 'عرض التفاصيل',
+    'universe.addToPlan': 'إضافة إلى خطتي',
+    'universe.added': 'تمت الإضافة',
+    'universe.continue': 'متابعة إلى الخطة المخصصة',
     'universe.organ.brain.name': 'الدماغ',
     'universe.organ.brain.condition': 'الصحة النفسية',
     'universe.organ.brain.desc': 'يعمل دماغك على سكر مستقر وترطيب جيد ونوم عميق. أدوات دعم الدماغ قريباً.',
@@ -10446,7 +10551,28 @@ export const translations: Record<Language, TranslationKeys> = {
     'universe.title': 'Dein Gesundheits-Universum',
     'universe.subtitle': 'Entdecke, wie dein Körper mit der Wissenschaft der Ernährung verbunden ist — tippe auf ein Organ, um sein Pflege-Toolkit zu sehen.',
     'universe.hint': 'Tippe auf ein Organ, um seinen Gesundheits-Hub zu öffnen.',
+    'condition.weightObesity.name': 'Gewicht und Adipositas',
+    'condition.weightObesity.desc': 'Nachhaltige Ernährung und Bewegung für ein gesundes Gewicht.',
+    'condition.pcos.name': 'PCOS',
+    'condition.pcos.desc': 'Insulinbewusste Ernährung für die hormonelle Gesundheit.',
+    'condition.bonesJoints.name': 'Knochen und Gelenke',
+    'condition.bonesJoints.desc': 'Ernährungs- und Bewegungstipps für Knochen und Gelenke.',
+    'condition.kidneyStones.name': 'Nierensteine',
+    'condition.kidneyStones.desc': 'Trink- und Ernährungstipps zur Vorbeugung.',
+    'condition.heartLipids.name': 'Herz und Blutfette',
+    'condition.heartLipids.desc': 'Herzgesunde Hilfe für Blutdruck und Cholesterin.',
+    'condition.diabetesInsulin.name': 'Diabetes und Insulin',
+    'condition.diabetesInsulin.desc': 'Blutzuckerhilfe mit ausgewogenen, niedrig-glykämischen Plänen.',
+    'condition.fattyLiver.name': 'Fettleber',
+    'condition.fattyLiver.desc': 'Fettarme, antioxidantienreiche Unterstützung für die Leber.',
+    'condition.gutIbs.name': 'Darm und Reizdarm',
+    'condition.gutIbs.desc': 'Sanfte FODMAP-arme Unterstützung für den Darm.',
     'universe.continueCta': 'Weiter zum personalisierten Plan',
+    'universe.conditionsTitle': 'Erkrankungen, um die wir uns kümmern',
+    'universe.viewDetails': 'Details ansehen',
+    'universe.addToPlan': 'Zu meinem Plan hinzufügen',
+    'universe.added': 'Hinzugefügt',
+    'universe.continue': 'Weiter zum personalisierten Plan',
     'universe.organ.brain.name': 'Gehirn',
     'universe.organ.brain.condition': 'Psychisches Wohlbefinden',
     'universe.organ.brain.desc': 'Dein Gehirn braucht stabilen Blutzucker, ausreichend Flüssigkeit und tiefen Schlaf. Tools zur Unterstützung des Gehirns folgen bald.',

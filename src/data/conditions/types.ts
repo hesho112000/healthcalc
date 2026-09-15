@@ -2,14 +2,17 @@ import type { Exercise } from '../exercises/types';
 import type { FoodItem } from '../../utils/calculations';
 
 export type ConditionId =
-  | 'diabetes'
-  | 'hypertension'
-  | 'cholesterol'
+  | 'weight-obesity'
+  | 'diabetes-insulin'
+  | 'heart-lipids'
+  | 'pcos'
+  | 'fatty-liver'
+  | 'bones-joints'
+  | 'gut-ibs'
   | 'gout'
-  | 'liver'
-  | 'kidney'
+  | 'kidney-stones'
+  | 'kidney-ckd'
   | 'thyroid'
-  | 'ibs'
   | 'mental-wellness';
 
 export interface NutritionRuleFlags {

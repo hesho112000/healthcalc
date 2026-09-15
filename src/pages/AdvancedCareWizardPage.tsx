@@ -75,13 +75,12 @@ const LAB_FIELD_UNITS: Record<string, string> = {
   iron: 'µg/L',
 };
 
-const LAB_FIELD_KEYS: Record<Exclude<ConditionId, 'ibs'>, string[]> = {
-  diabetes: ['fasting', 'hba1c'],
-  hypertension: ['systolic', 'diastolic'],
-  cholesterol: ['total', 'ldl', 'hdl', 'triglycerides'],
+const LAB_FIELD_KEYS: Partial<Record<ConditionId, string[]>> = {
+  'diabetes-insulin': ['fasting', 'hba1c'],
+  'heart-lipids': ['systolic', 'diastolic', 'total', 'ldl', 'hdl', 'triglycerides'],
   gout: ['uricAcid'],
-  liver: ['alt', 'ast', 'bilirubin'],
-  kidney: ['creatinine', 'egfr', 'potassium'],
+  'fatty-liver': ['alt', 'ast', 'bilirubin'],
+  'kidney-ckd': ['creatinine', 'egfr', 'potassium'],
   thyroid: ['tsh', 't3', 't4'],
   'mental-wellness': ['vitaminD', 'b12', 'iron', 'tsh'],
 };
@@ -223,13 +222,15 @@ const AdvancedCareWizardPage: React.FC = () => {
     setSelected((current) => (current.includes(id) ? current.filter((item) => item !== id) : [...current, id]));
 
   const tk = (key: string): TKey => key as TKey;
-  const condName = (id: ConditionId) => t(tk(`wizard.condition.${id}.name`));
+  const condName = (id: ConditionId) => t(tk(id === 'mental-wellness'
+    ? 'condition.mentalWellness.name'
+    : `condition.${id.replace(/-([a-z])/g, (_, letter: string) => letter.toUpperCase())}.name`));
   const primary = selected[0] ?? null;
   const conditionLabel = primary ? condName(primary) : '';
   const conditionList = selected.map(condName).filter(Boolean).join(', ');
 
   const activeFields = useMemo(
-    () => selected.flatMap((id) => (id === 'ibs' ? [] : LAB_FIELD_KEYS[id])),
+    () => selected.flatMap((id) => LAB_FIELD_KEYS[id] ?? []),
     [selected],
   );
 
@@ -426,18 +427,17 @@ const AdvancedCareWizardPage: React.FC = () => {
   }, [labs]);
 
   const labsScoreFor = (id: ConditionId): number | null => {
-    if (id === 'ibs') return null;
+    if (id === 'gut-ibs') return null;
     switch (id) {
-      case 'diabetes':
+      case 'diabetes-insulin':
         return calculatePancreasScore(numericLabs);
-      case 'hypertension':
-      case 'cholesterol':
+      case 'heart-lipids':
         return calculateHeartScore(numericLabs);
       case 'gout':
         return calculateGoutScore(numericLabs);
-      case 'liver':
+      case 'fatty-liver':
         return calculateLiverScore(numericLabs);
-      case 'kidney':
+      case 'kidney-ckd':
         return calculateKidneyScore(numericLabs);
       case 'thyroid':
         return calculateThyroidScore(numericLabs);
@@ -497,7 +497,7 @@ const AdvancedCareWizardPage: React.FC = () => {
   const numericLabsByCondition = useMemo(() => {
     const map: Record<string, Record<string, number>> = {};
     selected.forEach((id) => {
-      if (id === 'ibs') return;
+      if (id === 'gut-ibs') return;
       const markers = LAB_FIELD_KEYS[id] ?? [];
       markers.forEach((marker) => {
         const value = parseFloat(labs[marker] ?? '');

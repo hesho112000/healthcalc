@@ -7,7 +7,7 @@ export const nutritionRules: NutritionRules = {
 };
 
 export const ibsCondition: ConditionData = {
-  id: 'ibs',
+  id: 'gut-ibs',
   icon: '🍃',
   defaultHealthScore: 62,
   focus: 'Low-FODMAP gut-friendly nutrition',

@@ -9,7 +9,7 @@ export const nutritionRules: NutritionRules = {
 };
 
 export const kidneyCondition: ConditionData = {
-  id: 'kidney',
+  id: 'kidney-ckd',
   icon: '🫘',
   defaultHealthScore: 68,
   focus: 'Controlled protein, sodium & potassium',

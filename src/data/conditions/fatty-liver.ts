@@ -8,7 +8,7 @@ export const nutritionRules: NutritionRules = {
 };
 
 export const liverCondition: ConditionData = {
-  id: 'liver',
+  id: 'fatty-liver',
   icon: '🧡',
   defaultHealthScore: 70,
   focus: 'Low-fat, antioxidant-rich nutrition',

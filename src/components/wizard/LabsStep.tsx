@@ -15,13 +15,12 @@ const LAB_FIELD_UNITS: Record<string, string> = {
   vitaminD: 'ng/mL', b12: 'pg/mL', iron: 'µg/L',
 };
 
-const LAB_FIELD_KEYS: Record<Exclude<ConditionId, 'ibs'>, string[]> = {
-  diabetes: ['fasting', 'hba1c'],
-  hypertension: ['systolic', 'diastolic'],
-  cholesterol: ['total', 'ldl', 'hdl', 'triglycerides'],
+const LAB_FIELD_KEYS: Partial<Record<ConditionId, string[]>> = {
+  'diabetes-insulin': ['fasting', 'hba1c'],
+  'heart-lipids': ['systolic', 'diastolic', 'total', 'ldl', 'hdl', 'triglycerides'],
   gout: ['uricAcid'],
-  liver: ['alt', 'ast', 'bilirubin'],
-  kidney: ['creatinine', 'egfr', 'potassium'],
+  'fatty-liver': ['alt', 'ast', 'bilirubin'],
+  'kidney-ckd': ['creatinine', 'egfr', 'potassium'],
   thyroid: ['tsh', 't3', 't4'],
   'mental-wellness': ['vitaminD', 'b12', 'iron', 'tsh'],
 };
@@ -43,10 +42,10 @@ interface LabsStepProps {
 }
 
 const LabsStep: React.FC<LabsStepProps> = ({ t, selected, hasLabs, setHasLabs, labs, setLabs, onContinue }) => {
-  const activeFields = selected.flatMap((id) => (id === 'ibs' ? [] : LAB_FIELD_KEYS[id] ?? []));
+  const activeFields = selected.flatMap((id) => (id === 'gut-ibs' ? [] : LAB_FIELD_KEYS[id] ?? []));
   const labReady =
     hasLabs === false ||
-    (hasLabs === true && selected.every((id) => id === 'ibs' || (LAB_FIELD_KEYS[id] ?? []).every((key) => labs[key]?.trim())));
+    (hasLabs === true && selected.every((id) => id === 'gut-ibs' || (LAB_FIELD_KEYS[id] ?? []).every((key) => labs[key]?.trim())));
 
   return (
     <div className="space-y-5">

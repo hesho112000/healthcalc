@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Check } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 import { translations } from '../../i18n/translations';
 import type { ConditionId } from '../../data/conditions';
@@ -41,19 +41,36 @@ export const ORGAN_CONFIG: Record<OrganId, OrganConfig> = {
     route: 'mental-wellness',
   },
   thyroid: { id: 'thyroid', emoji: '🦋', top: 21, left: 50, conditionIds: ['thyroid'] },
-  heart: {
-    id: 'heart',
-    emoji: '💗',
-    top: 31,
-    left: 56,
-    conditionIds: ['hypertension', 'cholesterol'],
-  },
-  pancreas: { id: 'pancreas', emoji: '🩸', top: 44, left: 50, conditionIds: ['diabetes'] },
-  liver: { id: 'liver', emoji: '🧡', top: 38, left: 44, conditionIds: ['liver'] },
-  kidneys: { id: 'kidneys', emoji: '🫘', top: 55, left: 42, conditionIds: ['kidney'] },
-  gut: { id: 'gut', emoji: '🥦', top: 57, left: 50, conditionIds: ['ibs'] },
-  joints: { id: 'joints', emoji: '🦶', top: 85, left: 42, conditionIds: ['gout'] },
+  heart: { id: 'heart', emoji: '❤️', top: 31, left: 56, conditionIds: ['heart-lipids'] },
+  pancreas: { id: 'pancreas', emoji: '🩸', top: 44, left: 50, conditionIds: ['diabetes-insulin'] },
+  liver: { id: 'liver', emoji: '🧡', top: 38, left: 44, conditionIds: ['fatty-liver'] },
+  kidneys: { id: 'kidneys', emoji: '🫘', top: 55, left: 42, conditionIds: ['kidney-ckd', 'kidney-stones'] },
+  gut: { id: 'gut', emoji: '🥦', top: 57, left: 50, conditionIds: ['gut-ibs'] },
+  joints: { id: 'joints', emoji: '🦶', top: 85, left: 42, conditionIds: ['gout', 'pcos', 'weight-obesity', 'bones-joints'] },
 };
+
+export interface ConditionDotConfig {
+  id: ConditionId;
+  emoji: string;
+  top: number;
+  left: number;
+  organId: OrganId;
+}
+
+export const CONDITION_DOT_CONFIG: readonly ConditionDotConfig[] = [
+  { id: 'mental-wellness', emoji: '🧠', top: 8, left: 50, organId: 'brain' },
+  { id: 'thyroid', emoji: '🦋', top: 19, left: 50, organId: 'thyroid' },
+  { id: 'heart-lipids', emoji: '❤️', top: 28, left: 56, organId: 'heart' },
+  { id: 'fatty-liver', emoji: '🫀', top: 35, left: 44, organId: 'liver' },
+  { id: 'diabetes-insulin', emoji: '🩸', top: 40, left: 50, organId: 'pancreas' },
+  { id: 'kidney-ckd', emoji: '🫘', top: 47, left: 43, organId: 'kidneys' },
+  { id: 'kidney-stones', emoji: '💧', top: 49, left: 57, organId: 'kidneys' },
+  { id: 'gut-ibs', emoji: '🍽️', top: 52, left: 50, organId: 'gut' },
+  { id: 'pcos', emoji: '🌸', top: 56, left: 50, organId: 'joints' },
+  { id: 'weight-obesity', emoji: '⚖️', top: 44, left: 50, organId: 'joints' },
+  { id: 'bones-joints', emoji: '🦴', top: 68, left: 42, organId: 'joints' },
+  { id: 'gout', emoji: '🦶', top: 88, left: 50, organId: 'joints' },
+];
 
 export const organNameKey = (id: OrganId): TKey => `universe.organ.${id}.name` as TKey;
 export const organConditionKey = (id: OrganId): TKey =>
@@ -71,19 +88,21 @@ export {
   getOrganDetail,
 } from '../../utils/healthScoring';
 
-const BODY_MAP_SRC = `${import.meta.env.BASE_URL}assets/body-map.png`;
+const BODY_MAP_SRC = '/assets/body-map.png';
 
 interface BodyMapProps {
-  selectedOrgans: readonly OrganId[];
-  onToggle: (id: OrganId) => void;
+  selectedConditions?: readonly ConditionId[];
+  selectedOrgans?: readonly OrganId[];
+  onToggle?: (id: OrganId) => void;
 }
 
-const BodyMap: React.FC<BodyMapProps> = ({ selectedOrgans, onToggle }) => {
+const BodyMap: React.FC<BodyMapProps> = ({ selectedConditions = [] }) => {
   const { t, dir } = useLanguage();
+  const navigate = useNavigate();
   const [hovered, setHovered] = useState<OrganId | null>(null);
 
   return (
-    <div className="relative mx-auto w-full max-w-[300px] sm:max-w-[420px]" dir={dir}>
+    <div className="relative mx-auto w-full max-w-[500px]" dir={dir}>
       <style>{`
         @keyframes hu-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.15); } }
         .hu-active { animation: hu-pulse 1.6s ease-in-out infinite; }
@@ -96,41 +115,33 @@ const BodyMap: React.FC<BodyMapProps> = ({ selectedOrgans, onToggle }) => {
         draggable={false}
       />
 
-      {ORGAN_IDS.map((id) => {
-        const cfg = ORGAN_CONFIG[id];
-        const selected = selectedOrgans.includes(id);
+      {CONDITION_DOT_CONFIG.map((cfg) => {
+        const selected = selectedConditions.includes(cfg.id);
         return (
           <div
-            key={id}
+            key={cfg.id}
             className="absolute -translate-x-1/2 -translate-y-1/2"
             style={{ top: `${cfg.top}%`, left: `${cfg.left}%` }}
           >
             <button
               type="button"
-              onClick={() => onToggle(id)}
+              onClick={() => navigate(`/advanced-care/${cfg.organId}`)}
               aria-pressed={selected}
-              aria-label={`${t(organNameKey(id))} · ${t(organConditionKey(id))}`}
-              onMouseEnter={() => setHovered(id)}
+              aria-label={cfg.id}
+              onMouseEnter={() => setHovered(cfg.organId)}
               onMouseLeave={() => setHovered(null)}
-              className={`group relative flex h-[18px] w-[18px] items-center justify-center rounded-full before:absolute before:rounded-full before:inset-[-13px] before:content-[''] sm:h-6 sm:w-6 sm:before:inset-[-10px] transition-all duration-200 active:scale-95 ${
+              className={`group relative flex h-6 w-6 items-center justify-center rounded-full border-[3px] border-white transition-transform duration-200 hover:scale-125 active:scale-95 ${
                 selected
-                  ? 'border-[3px] border-[#D4AF37] bg-[#0F4C3A] shadow-[0_4px_14px_rgba(212,175,55,0.55)]'
-                  : 'border-2 border-white bg-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.45)] hover:scale-110'
-              } ${selected ? 'hu-selected' : ''} ${hovered === id && !selected ? 'hu-active' : ''}`}
+                  ? 'bg-[#0F4C3A] ring-4 ring-[#D4AF37] hu-selected'
+                  : 'bg-[#D4AF37] shadow-[0_0_14px_rgba(212,175,55,0.7)]'
+              }`}
             >
-              <span className="select-none text-[10px]">{cfg.emoji}</span>
-
-              {selected && (
-                <span className="absolute -bottom-1 -end-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#D4AF37] shadow-[0_2px_6px_rgba(212,175,55,0.6)] sm:h-[18px] sm:w-[18px]">
-                  <Check size={10} strokeWidth={3.5} className="text-[#FDFBF7]" />
-                </span>
-              )}
+              <span className="sr-only">{cfg.emoji}</span>
             </button>
 
-            {hovered === id && (
+            {hovered === cfg.organId && (
               <span className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 whitespace-nowrap rounded-full border border-[#D4AF37]/40 bg-[#0F4C3A] px-3 py-1.5 text-xs font-bold text-[#FDFBF7] shadow-[0_6px_18px_rgba(15,76,58,0.28)]">
-                {t(organNameKey(id))}
-                {selected ? ` · ${t('universe.cta.added')}` : ''}
+                {cfg.emoji}
               </span>
             )}
           </div>
