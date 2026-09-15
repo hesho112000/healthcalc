@@ -165,7 +165,6 @@ const SectionIllustration: React.FC<{ kind: SectionIllustrationKind }> = ({ kind
       <svg
         viewBox="0 0 400 400"
         width="100%"
-        height="auto"
         role="img"
         aria-label={labels[kind]}
         fill="none"

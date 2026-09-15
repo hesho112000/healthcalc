@@ -5,7 +5,6 @@ const HealthFingerprint: React.FC = () => (
     className="health-fingerprint"
     viewBox="0 0 500 500"
     width="100%"
-    height="auto"
     role="img"
     aria-label="Health fingerprint illustration"
   >
