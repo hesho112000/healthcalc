@@ -3,14 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Check, Plus, X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
-import BodyMap, {
-  ORGAN_CONFIG,
-  ORGAN_IDS,
-  organConditionKey,
-  organNameKey,
-} from '../components/health-universe/BodyMap';
+import { CONDITION_DATA, UNIVERSE_CONDITION_IDS } from '../data/conditions';
 import type { ConditionId } from '../data/conditions';
-import type { OrganId } from '../components/health-universe/BodyMap';
+import BodyMap, { BODY_DOTS, dotNameKey } from '../components/health-universe/BodyMap';
 
 type TKey = keyof typeof translations.en;
 
@@ -24,18 +19,47 @@ const tt = (t: (key: TKey) => string, key: TKey, params?: Record<string, string>
   return text;
 };
 
-const STORAGE_KEY = 'hc_health_universe';
+const STORAGE_KEY = 'healthcalc_conditions';
+const LEGACY_STORAGE_KEY = 'hc_health_universe';
+
+const LEGACY_ORGAN_CONDITION: Record<string, ConditionId> = {
+  brain: 'mental-wellness',
+  thyroid: 'thyroid',
+  heart: 'heart-lipids',
+  pancreas: 'diabetes',
+  liver: 'liver',
+  kidneys: 'kidney',
+  gut: 'ibs',
+  joints: 'gout',
+};
+
+const CONDITION_ROUTE: Record<ConditionId, string> = BODY_DOTS.reduce(
+  (map, dot) => ({ ...map, [dot.id]: dot.route }),
+  {} as Record<ConditionId, string>,
+);
+
+const wkey = (id: ConditionId, suffix: 'name' | 'desc'): TKey =>
+  `wizard.condition.${id}.${suffix}` as TKey;
 
 const HealthUniversePage: React.FC = () => {
   const { t, dir } = useLanguage();
   const navigate = useNavigate();
   const [toast, setToast] = useState('');
-  const [plan, setPlan] = useState<OrganId[]>(() => {
+
+  const [selected, setSelected] = useState<ConditionId[]>(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      return raw
-        ? (JSON.parse(raw) as OrganId[]).filter((id) => (ORGAN_IDS as readonly string[]).includes(id))
-        : [];
+      if (raw) {
+        return (JSON.parse(raw) as ConditionId[]).filter((id) =>
+          (UNIVERSE_CONDITION_IDS as readonly string[]).includes(id),
+        );
+      }
+      const legacyRaw = localStorage.getItem(LEGACY_STORAGE_KEY);
+      if (legacyRaw) {
+        const legacyIds = JSON.parse(legacyRaw) as string[];
+        return [...new Set(legacyIds.map((id) => LEGACY_ORGAN_CONDITION[id]).filter(Boolean))] as ConditionId[];
+      }
+      return [];
     } catch {
       return [];
     }
@@ -43,37 +67,31 @@ const HealthUniversePage: React.FC = () => {
 
   useEffect(() => {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(plan));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(selected));
     } catch {
       /* ignore */
     }
-  }, [plan]);
+  }, [selected]);
 
-  const togglePlan = (id: OrganId) =>
-    setPlan((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
+  const toggleCondition = (id: ConditionId) =>
+    setSelected((current) => (current.includes(id) ? current.filter((item) => item !== id) : [...current, id]));
+
+  const handleToggleCondition = (id: ConditionId) => {
+    const adding = !selected.includes(id);
+    toggleCondition(id);
+    if (adding) {
+      showToast(tt(t, 'universe.toast.added', { condition: t(dotNameKey(id)) }));
+    }
+  };
 
   const showToast = (message: string) => {
     setToast(message);
     window.setTimeout(() => setToast(''), 2600);
   };
 
-  const handleTogglePlan = (id: OrganId) => {
-    const adding = !plan.includes(id);
-    togglePlan(id);
-    if (adding) {
-      showToast(tt(t, 'universe.toast.added', { condition: t(organConditionKey(id)) }));
-    }
-  };
-
-  const unionConditions = useMemo(() => {
-    const set = new Set<string>();
-    plan.forEach((id) => ORGAN_CONFIG[id].conditionIds.forEach((cid) => set.add(cid)));
-    return [...set] as ConditionId[];
-  }, [plan]);
-
   const handleContinue = () => {
-    if (unionConditions.length > 0) {
-      navigate(`/advanced-care/wizard?conditions=${unionConditions.join(',')}`);
+    if (selected.length > 0) {
+      navigate(`/advanced-care/wizard?conditions=${selected.join(',')}`);
     } else {
       navigate('/advanced-care/wizard');
     }
@@ -96,7 +114,7 @@ const HealthUniversePage: React.FC = () => {
         <div
           className="max-w-2xl mx-auto rounded-[32px] border border-[#EFEBE4] bg-white/80 p-6 sm:p-8 shadow-[0_18px_50px_rgba(15,76,58,0.06)]"
         >
-          <BodyMap selectedOrgans={plan} onToggle={handleTogglePlan} />
+          <BodyMap selectedConditions={selected} />
         </div>
         <p className="mx-auto mt-6 max-w-xl text-center text-sm font-bold text-[#4A5A55] bg-[#F4F1EB] rounded-2xl px-5 py-3">
           {t('universe.hint')}
@@ -104,39 +122,41 @@ const HealthUniversePage: React.FC = () => {
       </section>
 
       <section className="max-w-6xl mx-auto px-6 mt-12 pb-28">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {ORGAN_IDS.map((id) => {
-            const inPlan = plan.includes(id);
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {UNIVERSE_CONDITION_IDS.map((id) => {
+            const inPlan = selected.includes(id);
+            const data = CONDITION_DATA[id];
             return (
-              <button
+              <div
                 key={id}
-                type="button"
-                onClick={() => navigate(`/advanced-care/${ORGAN_CONFIG[id].route ?? id}`)}
-                className="group flex flex-col rounded-[24px] border border-[#EFEBE4] bg-white p-5 text-start shadow-[0_8px_24px_rgba(15,76,58,0.04)] hover:border-[#D4AF37]/70 hover:shadow-[0_14px_34px_rgba(15,76,58,0.10)] transition-all"
+                className="group flex flex-col rounded-[24px] border border-[#EFEBE4] bg-white p-5 shadow-[0_8px_24px_rgba(15,76,58,0.04)] hover:border-[#D4AF37]/70 hover:shadow-[0_14px_34px_rgba(15,76,58,0.10)] transition-all"
               >
-                <span className="flex items-start justify-between">
-                  <span className="w-11 h-11 rounded-2xl bg-[#F4F1EB] flex items-center justify-center text-xl group-hover:bg-[#D4AF37]/15 transition-colors">
-                    {ORGAN_CONFIG[id].emoji}
+                <div className="flex items-start justify-between gap-2">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#F4F1EB] text-xl group-hover:bg-[#D4AF37]/15 transition-colors">
+                    {data.icon}
                   </span>
-                </span>
+                  <button
+                    type="button"
+                    onClick={() => navigate(`/advanced-care/${CONDITION_ROUTE[id]}`)}
+                    className="text-[11px] font-bold text-[#0F4C3A] underline decoration-[#D4AF37] underline-offset-4 hover:text-[#D4AF37] transition-colors"
+                  >
+                    {t('universe.viewDetails' as TKey)}
+                  </button>
+                </div>
                 <span className="mt-3 block text-base font-extrabold text-[#0F4C3A] leading-tight">
-                  {t(organNameKey(id))}
+                  {t(wkey(id, 'name'))}
                 </span>
-                <span className="mt-1 block text-[11px] font-bold text-[#6B7A75]">
-                  {t(organConditionKey(id))}
+                <span className="mt-1 block text-[12px] font-semibold text-[#6B7A75] leading-relaxed">
+                  {t(wkey(id, 'desc'))}
                 </span>
                 <span
                   role="button"
                   tabIndex={0}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleTogglePlan(id);
-                  }}
+                  onClick={() => handleToggleCondition(id)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
-                      e.stopPropagation();
-                      handleTogglePlan(id);
+                      handleToggleCondition(id);
                     }
                   }}
                   className={`mt-4 inline-flex items-center justify-center gap-1.5 rounded-full px-3.5 py-2 text-xs font-extrabold transition-colors ${
@@ -150,7 +170,7 @@ const HealthUniversePage: React.FC = () => {
                     {inPlan ? t('universe.cta.added') : t('universe.cta.addToPlan')}
                   </span>
                 </span>
-              </button>
+              </div>
             );
           })}
         </div>
@@ -159,19 +179,19 @@ const HealthUniversePage: React.FC = () => {
           <h2 className="text-center text-lg font-extrabold text-[#0F4C3A]">
             {t('universe.selectedConditions' as TKey)}
           </h2>
-          {plan.length > 0 ? (
+          {selected.length > 0 ? (
             <div className="flex flex-wrap justify-center gap-2">
-              {plan.map((id) => (
+              {selected.map((id) => (
                 <span
                   key={id}
                   className="inline-flex items-center gap-1.5 rounded-full bg-white border border-[#EFEBE4] px-3 py-1.5 text-xs font-bold text-[#0F4C3A]"
                 >
-                  <span>{ORGAN_CONFIG[id].emoji}</span>
-                  {t(organConditionKey(id))} ✓
+                  <span>{CONDITION_DATA[id].icon}</span>
+                  {t(dotNameKey(id))} ✓
                   <button
                     type="button"
-                    onClick={() => handleTogglePlan(id)}
-                    aria-label={`${t('universe.cta.addToPlan')} ${t(organConditionKey(id))}`}
+                    onClick={() => handleToggleCondition(id)}
+                    aria-label={`${t('universe.cta.addToPlan')} ${t(dotNameKey(id))}`}
                     className="text-[#4A5A55] hover:text-[#B91C1C] transition-colors"
                   >
                     <X size={13} strokeWidth={2.5} />
@@ -187,9 +207,9 @@ const HealthUniversePage: React.FC = () => {
           <button
             type="button"
             onClick={handleContinue}
-            disabled={plan.length === 0}
+            disabled={selected.length === 0}
             className={`inline-flex items-center justify-center gap-2 rounded-2xl px-8 py-4 text-sm font-extrabold transition-all ${
-              plan.length > 0
+              selected.length > 0
                 ? 'bg-[#D4AF37] text-[#0F4C3A] hover:bg-[#c9a12f] shadow-[0_10px_26px_rgba(212,175,55,0.35)]'
                 : 'bg-[#EFEBE4] text-[#6B7A75] cursor-not-allowed'
             }`}

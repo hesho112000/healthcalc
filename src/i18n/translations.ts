@@ -1324,6 +1324,16 @@ type TranslationKeys = {
   'advanced.condition.thyroid.desc': string;
   'advanced.condition.ibs.title': string;
   'advanced.condition.ibs.desc': string;
+  'advanced.condition.heart-lipids.title': string;
+  'advanced.condition.heart-lipids.desc': string;
+  'advanced.condition.kidney-stones.title': string;
+  'advanced.condition.kidney-stones.desc': string;
+  'advanced.condition.pcos.title': string;
+  'advanced.condition.pcos.desc': string;
+  'advanced.condition.weight-obesity.title': string;
+  'advanced.condition.weight-obesity.desc': string;
+  'advanced.condition.bones-joints.title': string;
+  'advanced.condition.bones-joints.desc': string;
   'advanced.why.feature1.title': string;
   'advanced.why.feature1.desc': string;
   'advanced.why.feature2.title': string;
@@ -1406,6 +1416,19 @@ type TranslationKeys = {
   'universe.organ.joints.name': string;
   'universe.organ.joints.condition': string;
   'universe.organ.joints.desc': string;
+  'universe.organ.stones.name': string;
+  'universe.organ.stones.condition': string;
+  'universe.organ.stones.desc': string;
+  'universe.organ.pcos.name': string;
+  'universe.organ.pcos.condition': string;
+  'universe.organ.pcos.desc': string;
+  'universe.organ.weight.name': string;
+  'universe.organ.weight.condition': string;
+  'universe.organ.weight.desc': string;
+  'universe.organ.bones.name': string;
+  'universe.organ.bones.condition': string;
+  'universe.organ.bones.desc': string;
+  'universe.viewDetails': string;
   'universe.score.title': string;
   'universe.score.critical': string;
   'universe.score.warning': string;
@@ -1455,6 +1478,16 @@ type TranslationKeys = {
   'score.source.thyroid': string;
   'score.source.ibs': string;
   'score.source.mental-wellness': string;
+  'score.formula.heart-lipids': string;
+  'score.formula.kidney-stones': string;
+  'score.formula.pcos': string;
+  'score.formula.weight-obesity': string;
+  'score.formula.bones-joints': string;
+  'score.source.heart-lipids': string;
+  'score.source.kidney-stones': string;
+  'score.source.pcos': string;
+  'score.source.weight-obesity': string;
+  'score.source.bones-joints': string;
   'universe.factor.sleepHours': string;
   'universe.factor.hours': string;
   'universe.factor.symptomCount': string;
@@ -1896,6 +1929,41 @@ type TranslationKeys = {
   'wizard.condition.mental-wellness.prefer': string;
   'wizard.condition.ibs.avoid': string;
   'wizard.condition.ibs.prefer': string;
+  'wizard.condition.heart-lipids.name': string;
+  'wizard.condition.heart-lipids.desc': string;
+  'wizard.condition.heart-lipids.focus': string;
+  'wizard.condition.heart-lipids.exercisePref': string;
+  'wizard.condition.heart-lipids.nutritionRules': string;
+  'wizard.condition.heart-lipids.avoid': string;
+  'wizard.condition.heart-lipids.prefer': string;
+  'wizard.condition.kidney-stones.name': string;
+  'wizard.condition.kidney-stones.desc': string;
+  'wizard.condition.kidney-stones.focus': string;
+  'wizard.condition.kidney-stones.exercisePref': string;
+  'wizard.condition.kidney-stones.nutritionRules': string;
+  'wizard.condition.kidney-stones.avoid': string;
+  'wizard.condition.kidney-stones.prefer': string;
+  'wizard.condition.pcos.name': string;
+  'wizard.condition.pcos.desc': string;
+  'wizard.condition.pcos.focus': string;
+  'wizard.condition.pcos.exercisePref': string;
+  'wizard.condition.pcos.nutritionRules': string;
+  'wizard.condition.pcos.avoid': string;
+  'wizard.condition.pcos.prefer': string;
+  'wizard.condition.weight-obesity.name': string;
+  'wizard.condition.weight-obesity.desc': string;
+  'wizard.condition.weight-obesity.focus': string;
+  'wizard.condition.weight-obesity.exercisePref': string;
+  'wizard.condition.weight-obesity.nutritionRules': string;
+  'wizard.condition.weight-obesity.avoid': string;
+  'wizard.condition.weight-obesity.prefer': string;
+  'wizard.condition.bones-joints.name': string;
+  'wizard.condition.bones-joints.desc': string;
+  'wizard.condition.bones-joints.focus': string;
+  'wizard.condition.bones-joints.exercisePref': string;
+  'wizard.condition.bones-joints.nutritionRules': string;
+  'wizard.condition.bones-joints.avoid': string;
+  'wizard.condition.bones-joints.prefer': string;
   // Nutrition & Fitness Wizard (8 steps)
   'wizard.care.step7.title': string;
   'wizard.care.step8.title': string;
@@ -2321,6 +2389,41 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.condition.mental-wellness.prefer': 'Fatty fish, Walnuts, Berries, Dark chocolate, Leafy greens, Turmeric',
     'wizard.condition.ibs.avoid': 'Onions, Garlic, Beans, Wheat, Lactose, Honey',
     'wizard.condition.ibs.prefer': 'Rice, Unripe bananas, Carrots, Zucchini, Chicken',
+    'wizard.condition.heart-lipids.name': 'Heart & Lipids',
+    'wizard.condition.heart-lipids.desc': 'Manage blood pressure and cholesterol with heart-friendly eating.',
+    'wizard.condition.heart-lipids.focus': 'Blood pressure and cholesterol control',
+    'wizard.condition.heart-lipids.exercisePref': 'Brisk walking, Cycling, Swimming, Moderate strength',
+    'wizard.condition.heart-lipids.nutritionRules': 'Low sodium · heart-healthy fats',
+    'wizard.condition.heart-lipids.avoid': 'Salt-heavy foods, Fried foods, Trans fats, Sugary drinks, Processed meats',
+    'wizard.condition.heart-lipids.prefer': 'Oats, Salmon, Olive oil, Berries, Nuts, Leafy greens, Whole grains',
+    'wizard.condition.kidney-stones.name': 'Kidney Stones',
+    'wizard.condition.kidney-stones.desc': 'Prevent stone formation with hydration and balanced mineral intake.',
+    'wizard.condition.kidney-stones.focus': 'Hydration and oxalate balance',
+    'wizard.condition.kidney-stones.exercisePref': 'Walking, Swimming, Light cycling',
+    'wizard.condition.kidney-stones.nutritionRules': 'Hydration · low oxalate',
+    'wizard.condition.kidney-stones.avoid': 'Spinach, Rhubarb, Beets, Nuts, Chocolate, Excess salt',
+    'wizard.condition.kidney-stones.prefer': 'Water, Citrus fruits, Apples, Cucumbers, Berries, Lean poultry',
+    'wizard.condition.pcos.name': 'PCOS',
+    'wizard.condition.pcos.desc': 'Balance hormones with low-glycemic, nutrient-rich meals.',
+    'wizard.condition.pcos.focus': 'Hormone balance and insulin sensitivity',
+    'wizard.condition.pcos.exercisePref': 'Strength training, Yoga, Brisk walking, Pilates',
+    'wizard.condition.pcos.nutritionRules': 'Low glycemic index · balanced meals',
+    'wizard.condition.pcos.avoid': 'Refined sugar, White bread, Sugary drinks, Fried foods, Excess dairy',
+    'wizard.condition.pcos.prefer': 'Oats, Quinoa, Chickpeas, Leafy greens, Berries, Flaxseed, Eggs',
+    'wizard.condition.weight-obesity.name': 'Weight & Obesity',
+    'wizard.condition.weight-obesity.desc': 'Reach a healthy weight with balanced, satisfying meals.',
+    'wizard.condition.weight-obesity.focus': 'Calorie balance and sustainable habits',
+    'wizard.condition.weight-obesity.exercisePref': 'Brisk walking, Cycling, Swimming, Strength training',
+    'wizard.condition.weight-obesity.nutritionRules': 'Modest calorie deficit · high protein',
+    'wizard.condition.weight-obesity.avoid': 'Sugary drinks, Fried foods, Refined carbs, Excessive snacks',
+    'wizard.condition.weight-obesity.prefer': 'Lean protein, Vegetables, Whole grains, Legumes, Fruit, Water',
+    'wizard.condition.bones-joints.name': 'Bones & Joints',
+    'wizard.condition.bones-joints.desc': 'Protect bone and joint health with calcium, vitamin D, and movement.',
+    'wizard.condition.bones-joints.focus': 'Bone density and joint comfort',
+    'wizard.condition.bones-joints.exercisePref': 'Walking, Swimming, Yoga, Light strength',
+    'wizard.condition.bones-joints.nutritionRules': 'Calcium · vitamin D',
+    'wizard.condition.bones-joints.avoid': 'Excess alcohol, High-salt foods, Sedentary behavior',
+    'wizard.condition.bones-joints.prefer': 'Dairy, Fortified milk, Sardines, Leafy greens, Almonds, Sun exposure',
     // Advanced Care
     'advanced.trust.badge1': 'Evidence-Based',
     'advanced.trust.badge2': 'WHO · ADA · NHS',
@@ -2344,6 +2447,16 @@ export const translations: Record<Language, TranslationKeys> = {
     'advanced.condition.thyroid.desc': 'Balance thyroid function with iodine-aware, nutrient-dense plans.',
     'advanced.condition.ibs.title': 'IBS Care',
     'advanced.condition.ibs.desc': 'Relieve symptoms with gentle, low-FODMAP-friendly guidance.',
+    'advanced.condition.heart-lipids.title': 'Heart & Lipids Care',
+    'advanced.condition.heart-lipids.desc': 'Lower blood pressure and keep cholesterol in check with heart-friendly plans.',
+    'advanced.condition.kidney-stones.title': 'Kidney Stones Care',
+    'advanced.condition.kidney-stones.desc': 'Reduce stone risk with hydration and mineral-aware nutrition.',
+    'advanced.condition.pcos.title': 'PCOS Care',
+    'advanced.condition.pcos.desc': 'Support hormone balance with low-glycemic, nutrient-rich meal plans.',
+    'advanced.condition.weight-obesity.title': 'Weight Management',
+    'advanced.condition.weight-obesity.desc': 'Achieve a stable, healthy weight with balanced and sustainable meals.',
+    'advanced.condition.bones-joints.title': 'Bones & Joints Care',
+    'advanced.condition.bones-joints.desc': 'Support bone density and joint comfort with calcium, vitamin D, and movement.',
     'advanced.why.feature1.title': 'Evidence-Based Plans',
     'advanced.why.feature1.desc': 'All plans follow WHO, ADA, and NHS guidelines.',
     'advanced.why.feature2.title': 'Lab Interpretation',
@@ -2426,6 +2539,29 @@ export const translations: Record<Language, TranslationKeys> = {
     'universe.organ.joints.name': 'Joints',
     'universe.organ.joints.condition': 'Gout',
     'universe.organ.joints.desc': 'Limit purine-rich foods and keep uric acid in a healthy range to prevent flare-ups.',
+    'universe.organ.stones.name': 'Kidney Stones',
+    'universe.organ.stones.condition': 'Kidney Stones',
+    'universe.organ.stones.desc': 'Hydration and mineral-aware choices reduce the risk of new stones.',
+    'universe.organ.pcos.name': 'Women’s Health',
+    'universe.organ.pcos.condition': 'PCOS',
+    'universe.organ.pcos.desc': 'Hormone-balancing nutrition helps regulate cycles and insulin sensitivity.',
+    'universe.organ.weight.name': 'Weight',
+    'universe.organ.weight.condition': 'Weight & Obesity',
+    'universe.organ.weight.desc': 'Sustainable, calorie-aware meals help you reach and keep a healthy weight.',
+    'universe.organ.bones.name': 'Bones',
+    'universe.organ.bones.condition': 'Bones & Joints',
+    'universe.organ.bones.desc': 'Calcium, vitamin D, and gentle movement keep bones and joints strong.',
+    'universe.viewDetails': 'View details',
+    'score.formula.heart-lipids': 'Systolic 90–119 = 100; 120–139 = 100→70; ≥140 = 70→50. Diastolic 60–79 = 100; 80–89 = 100→70; ≥90 = 70→50. Total cholesterol <200 = 100; 200–239 = 100→70; ≥240 = 70→40. LDL <100 = 100; 100–159 = 100→70; ≥160 = 70→40. HDL ≥60 = 100; 40–59 = 100→70; <40 = 70→50. Triglycerides <150 = 100; 150–199 = 100→70; ≥200 = 70→40. Average of present markers.',
+    'score.formula.kidney-stones': 'Uric acid <7 = 100; 7–8 = 100→70; ≥8 = 70→40.',
+    'score.formula.pcos': 'Fasting glucose <100 = 100; 100–125 = 100→70; ≥126 = 70→40. HbA1c <5.7 = 100; 5.7–6.4 = 100→70; ≥6.5 = 70→40. Average of present markers.',
+    'score.formula.weight-obesity': 'BMI 18.5–24.9 = 100; 25–29.9 = 100→72; 30–34.9 = 72→55; ≥35 = 55→38.',
+    'score.formula.bones-joints': 'Vitamin D 30–60 = 100; 20–29 = 100→70; <20 = 70→40.',
+    'score.source.heart-lipids': 'AHA / ACC 2017 and ATP-III guidelines',
+    'score.source.kidney-stones': 'AUA kidney stone guidance',
+    'score.source.pcos': 'AACE / Endocrine Society PCOS guidance',
+    'score.source.weight-obesity': 'WHO BMI classification',
+    'score.source.bones-joints': 'Endocrine Society vitamin D reference',
     'universe.score.title': 'Health Score',
     'universe.score.critical': 'Critical',
     'universe.score.warning': 'Warning',
@@ -4352,6 +4488,41 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.condition.mental-wellness.prefer': 'Poissons gras, Noix, Baies, Chocolat noir, Légumes verts, Curcuma',
     'wizard.condition.ibs.avoid': 'Oignons, Ail, Haricots, Blé, Lactose, Miel',
     'wizard.condition.ibs.prefer': 'Riz, Bananes vertes, Carottes, Courgettes, Poulet',
+    'wizard.condition.heart-lipids.name': 'Cœur et Lipides',
+    'wizard.condition.heart-lipids.desc': 'Contrôlez votre tension et votre cholestérol avec une alimentation saine pour le cœur.',
+    'wizard.condition.heart-lipids.focus': 'Contrôle de la tension et du cholestérol',
+    'wizard.condition.heart-lipids.exercisePref': 'Marche rapide, Vélo, Natation, Musculation modérée',
+    'wizard.condition.heart-lipids.nutritionRules': 'Pauvre en sodium · graisses saines',
+    'wizard.condition.heart-lipids.avoid': 'Aliments salés, Fritures, Graisses trans, Boissons sucrées, Viandes transformées',
+    'wizard.condition.heart-lipids.prefer': 'Avoine, Saumon, Huile d’olive, Fruits rouges, Noix, Légumes verts, Céréales complètes',
+    'wizard.condition.kidney-stones.name': 'Calculs rénaux',
+    'wizard.condition.kidney-stones.desc': 'Prévenez la formation de calculs avec une bonne hydratation et des minéraux équilibrés.',
+    'wizard.condition.kidney-stones.focus': 'Hydratation et équilibre des oxalates',
+    'wizard.condition.kidney-stones.exercisePref': 'Marche, Natation, Vélo léger',
+    'wizard.condition.kidney-stones.nutritionRules': 'Hydratation · faible en oxalates',
+    'wizard.condition.kidney-stones.avoid': 'Épinards, Rhubarbe, Betteraves, Noix, Chocolat, Excès de sel',
+    'wizard.condition.kidney-stones.prefer': 'Eau, Agrumes, Pommes, Concombres, Fruits rouges, Volaille maigre',
+    'wizard.condition.pcos.name': 'SOPK',
+    'wizard.condition.pcos.desc': 'Équilibrez vos hormones avec des repas à faible index glycémique et riches en nutriments.',
+    'wizard.condition.pcos.focus': 'Équilibre hormonal et sensibilité à l’insuline',
+    'wizard.condition.pcos.exercisePref': 'Musculation, Yoga, Marche rapide, Pilates',
+    'wizard.condition.pcos.nutritionRules': 'Index glycémique bas · repas équilibrés',
+    'wizard.condition.pcos.avoid': 'Sucre raffiné, Pain blanc, Boissons sucrées, Fritures, Excès de produits laitiers',
+    'wizard.condition.pcos.prefer': 'Avoine, Quinoa, Pois chiches, Légumes verts, Fruits rouges, Graines de lin, Œufs',
+    'wizard.condition.weight-obesity.name': 'Poids et Obésité',
+    'wizard.condition.weight-obesity.desc': 'Atteignez un poids sain avec des repas équilibrés et rassasiants.',
+    'wizard.condition.weight-obesity.focus': 'Équilibre calorique et habitudes durables',
+    'wizard.condition.weight-obesity.exercisePref': 'Marche rapide, Vélo, Natation, Musculation',
+    'wizard.condition.weight-obesity.nutritionRules': 'Déficit calorique modéré · riche en protéines',
+    'wizard.condition.weight-obesity.avoid': 'Boissons sucrées, Fritures, Glucides raffinés, Grignotage excessif',
+    'wizard.condition.weight-obesity.prefer': 'Protéines maigres, Légumes, Céréales complètes, Légumineuses, Fruits, Eau',
+    'wizard.condition.bones-joints.name': 'Os et Articulations',
+    'wizard.condition.bones-joints.desc': 'Protégez vos os et articulations avec calcium, vitamine D et mouvement.',
+    'wizard.condition.bones-joints.focus': 'Densité osseuse et confort articulaire',
+    'wizard.condition.bones-joints.exercisePref': 'Marche, Natation, Yoga, Musculation légère',
+    'wizard.condition.bones-joints.nutritionRules': 'Calcium · vitamine D',
+    'wizard.condition.bones-joints.avoid': 'Excès d’alcool, Aliments salés, Sédentarité',
+    'wizard.condition.bones-joints.prefer': 'Produits laitiers, Lait enrichi, Sardines, Légumes verts, Amandes, Exposition au soleil',
     // Advanced Care
     'advanced.trust.badge1': 'Basé sur des preuves',
     'advanced.trust.badge2': 'OMS · ADA · NHS',
@@ -4375,6 +4546,16 @@ export const translations: Record<Language, TranslationKeys> = {
     'advanced.condition.thyroid.desc': 'Équilibrez votre thyroïde avec des plans riches en nutriments, adaptés à l\'iode.',
     'advanced.condition.ibs.title': 'Soins du syndrome du côlon irritable',
     'advanced.condition.ibs.desc': 'Soulagez vos symptômes avec des conseils doux adaptés au régime pauvre en FODMAP.',
+    'advanced.condition.heart-lipids.title': 'Soins du cœur et des lipides',
+    'advanced.condition.heart-lipids.desc': 'Baissez votre tension et maîtrisez votre cholestérol avec des plans bons pour le cœur.',
+    'advanced.condition.kidney-stones.title': 'Soins des calculs rénaux',
+    'advanced.condition.kidney-stones.desc': 'Réduisez le risque de calculs grâce à l’hydratation et à une nutrition attentive aux minéraux.',
+    'advanced.condition.pcos.title': 'Soins du SOPK',
+    'advanced.condition.pcos.desc': 'Soutenez l’équilibre hormonal avec des repas à faible index glycémique et riches en nutriments.',
+    'advanced.condition.weight-obesity.title': 'Gestion du poids',
+    'advanced.condition.weight-obesity.desc': 'Atteignez un poids stable et sain avec des repas équilibrés et durables.',
+    'advanced.condition.bones-joints.title': 'Soins des os et des articulations',
+    'advanced.condition.bones-joints.desc': 'Soutenez la densité osseuse et le confort articulaire avec calcium, vitamine D et mouvement.',
     'advanced.why.feature1.title': 'Plans fondés sur des preuves',
     'advanced.why.feature1.desc': 'Tous les plans suivent les directives de l\'OMS, de l\'ADA et du NHS.',
     'advanced.why.feature2.title': 'Interprétation des analyses',
@@ -4457,6 +4638,29 @@ export const translations: Record<Language, TranslationKeys> = {
     'universe.organ.joints.name': 'Articulations',
     'universe.organ.joints.condition': 'Goutte',
     'universe.organ.joints.desc': 'Limitez les aliments riches en purines et gardez l\'acide urique dans une plage saine pour éviter les crises.',
+    'universe.organ.stones.name': 'Calculs rénaux',
+    'universe.organ.stones.condition': 'Calculs rénaux',
+    'universe.organ.stones.desc': 'L’hydratation et des choix attentifs aux minéraux réduisent le risque de nouveaux calculs.',
+    'universe.organ.pcos.name': 'Santé des femmes',
+    'universe.organ.pcos.condition': 'SOPK',
+    'universe.organ.pcos.desc': 'Une nutrition équilibrant les hormones aide à réguler les cycles et la sensibilité à l’insuline.',
+    'universe.organ.weight.name': 'Poids',
+    'universe.organ.weight.condition': 'Poids et Obésité',
+    'universe.organ.weight.desc': 'Des repas durables et attentifs aux calories vous aident à atteindre et garder un poids sain.',
+    'universe.organ.bones.name': 'Os',
+    'universe.organ.bones.condition': 'Os et Articulations',
+    'universe.organ.bones.desc': 'Calcium, vitamine D et mouvement doux gardent os et articulations solides.',
+    'universe.viewDetails': 'Voir les détails',
+    'score.formula.heart-lipids': 'Systolique 90–119 = 100 ; 120–139 = 100→70 ; ≥140 = 70→50. Diastolique 60–79 = 100 ; 80–89 = 100→70 ; ≥90 = 70→50. Cholestérol total <200 = 100 ; 200–239 = 100→70 ; ≥240 = 70→40. LDL <100 = 100 ; 100–159 = 100→70 ; ≥160 = 70→40. HDL ≥60 = 100 ; 40–59 = 100→70 ; <40 = 70→50. Triglycérides <150 = 100 ; 150–199 = 100→70 ; ≥200 = 70→40. Moyenne des marqueurs disponibles.',
+    'score.formula.kidney-stones': 'Acide urique <7 = 100 ; 7–8 = 100→70 ; ≥8 = 70→40.',
+    'score.formula.pcos': 'Glycémie à jeun <100 = 100 ; 100–125 = 100→70 ; ≥126 = 70→40. HbA1c <5,7 = 100 ; 5,7–6,4 = 100→70 ; ≥6,5 = 70→40. Moyenne des marqueurs disponibles.',
+    'score.formula.weight-obesity': 'IMC 18,5–24,9 = 100 ; 25–29,9 = 100→72 ; 30–34,9 = 72→55 ; ≥35 = 55→38.',
+    'score.formula.bones-joints': 'Vitamine D 30–60 = 100 ; 20–29 = 100→70 ; <20 = 70→40.',
+    'score.source.heart-lipids': 'Directives AHA / ACC 2017 et ATP-III',
+    'score.source.kidney-stones': 'Recommandations AUA sur les calculs rénaux',
+    'score.source.pcos': 'Recommandations AACE / Société d’endocrinologie sur le SOPK',
+    'score.source.weight-obesity': 'Classification IMC de l’OMS',
+    'score.source.bones-joints': 'Référence vitamine D de la Société d’endocrinologie',
     'universe.score.title': 'Score de santé',
     'universe.score.critical': 'Critique',
     'universe.score.warning': 'Attention',
@@ -6353,6 +6557,41 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.condition.mental-wellness.prefer': 'Pescado graso, Nueces, Bayas, Chocolate negro, Verduras de hoja, Cúrcuma',
     'wizard.condition.ibs.avoid': 'Cebollas, Ajo, Legumbres, Trigo, Lactosa, Miel',
     'wizard.condition.ibs.prefer': 'Arroz, Plátanos verdes, Zanahorias, Calabacín, Pollo',
+    'wizard.condition.heart-lipids.name': 'Corazón y Lípidos',
+    'wizard.condition.heart-lipids.desc': 'Controla la presión arterial y el colesterol con una alimentación saludable para el corazón.',
+    'wizard.condition.heart-lipids.focus': 'Control de la presión y el colesterol',
+    'wizard.condition.heart-lipids.exercisePref': 'Caminata rápida, Bicicleta, Natación, Fuerza moderada',
+    'wizard.condition.heart-lipids.nutritionRules': 'Bajo en sodio · grasas saludables',
+    'wizard.condition.heart-lipids.avoid': 'Alimentos salados, Frituras, Grasas trans, Bebidas azucaradas, Carnes procesadas',
+    'wizard.condition.heart-lipids.prefer': 'Avena, Salmón, Aceite de oliva, Bayas, Frutos secos, Hojas verdes, Cereales integrales',
+    'wizard.condition.kidney-stones.name': 'Cálculos renales',
+    'wizard.condition.kidney-stones.desc': 'Evita la formación de cálculos con hidratación y minerales equilibrados.',
+    'wizard.condition.kidney-stones.focus': 'Hidratación y equilibrio de oxalatos',
+    'wizard.condition.kidney-stones.exercisePref': 'Caminata, Natación, Bicicleta ligera',
+    'wizard.condition.kidney-stones.nutritionRules': 'Hidratación · bajo en oxalatos',
+    'wizard.condition.kidney-stones.avoid': 'Espinacas, Ruibarbo, Remolacha, Frutos secos, Chocolate, Exceso de sal',
+    'wizard.condition.kidney-stones.prefer': 'Agua, Cítricos, Manzanas, Pepinos, Bayas, Aves magras',
+    'wizard.condition.pcos.name': 'SOP',
+    'wizard.condition.pcos.desc': 'Equilibra las hormonas con comidas de bajo índice glucémico y ricas en nutrientes.',
+    'wizard.condition.pcos.focus': 'Equilibrio hormonal y sensibilidad a la insulina',
+    'wizard.condition.pcos.exercisePref': 'Entrenamiento de fuerza, Yoga, Caminata rápida, Pilates',
+    'wizard.condition.pcos.nutritionRules': 'Índice glucémico bajo · comidas equilibradas',
+    'wizard.condition.pcos.avoid': 'Azúcar refinado, Pan blanco, Bebidas azucaradas, Frituras, Exceso de lácteos',
+    'wizard.condition.pcos.prefer': 'Avena, Quinoa, Garbanzos, Hojas verdes, Bayas, Linaza, Huevos',
+    'wizard.condition.weight-obesity.name': 'Peso y Obesidad',
+    'wizard.condition.weight-obesity.desc': 'Alcanza un peso saludable con comidas equilibradas y saciantes.',
+    'wizard.condition.weight-obesity.focus': 'Balance calórico y hábitos sostenibles',
+    'wizard.condition.weight-obesity.exercisePref': 'Caminata rápida, Bicicleta, Natación, Entrenamiento de fuerza',
+    'wizard.condition.weight-obesity.nutritionRules': 'Déficit calórico moderado · alto en proteínas',
+    'wizard.condition.weight-obesity.avoid': 'Bebidas azucaradas, Frituras, Carbohidratos refinados, Aperitivos excesivos',
+    'wizard.condition.weight-obesity.prefer': 'Proteínas magras, Verduras, Cereales integrales, Legumbres, Frutas, Agua',
+    'wizard.condition.bones-joints.name': 'Huesos y Articulaciones',
+    'wizard.condition.bones-joints.desc': 'Protege la salud de huesos y articulaciones con calcio, vitamina D y movimiento.',
+    'wizard.condition.bones-joints.focus': 'Densidad ósea y comodidad articular',
+    'wizard.condition.bones-joints.exercisePref': 'Caminata, Natación, Yoga, Fuerza ligera',
+    'wizard.condition.bones-joints.nutritionRules': 'Calcio · vitamina D',
+    'wizard.condition.bones-joints.avoid': 'Exceso de alcohol, Alimentos salados, Sedentarismo',
+    'wizard.condition.bones-joints.prefer': 'Lácteos, Leche fortificada, Sardinas, Hojas verdes, Almendras, Exposición solar',
     // Advanced Care
     'advanced.trust.badge1': 'Basado en evidencia',
     'advanced.trust.badge2': 'OMS · ADA · NHS',
@@ -6376,6 +6615,16 @@ export const translations: Record<Language, TranslationKeys> = {
     'advanced.condition.thyroid.desc': 'Equilibra la tiroides con planes ricos en nutrientes y que cuidan el consumo de yodo.',
     'advanced.condition.ibs.title': 'Cuidado del SII',
     'advanced.condition.ibs.desc': 'Alivia los síntomas con una guía suave adecuada para la dieta baja en FODMAP.',
+    'advanced.condition.heart-lipids.title': 'Cuidado del corazón y los lípidos',
+    'advanced.condition.heart-lipids.desc': 'Baja la presión arterial y controla el colesterol con planes saludables para el corazón.',
+    'advanced.condition.kidney-stones.title': 'Cuidado de los cálculos renales',
+    'advanced.condition.kidney-stones.desc': 'Reduce el riesgo de cálculos con hidratación y una nutrición consciente de los minerales.',
+    'advanced.condition.pcos.title': 'Cuidado del SOP',
+    'advanced.condition.pcos.desc': 'Apoya el equilibrio hormonal con planes de comidas de bajo índice glucémico y ricos en nutrientes.',
+    'advanced.condition.weight-obesity.title': 'Manejo del peso',
+    'advanced.condition.weight-obesity.desc': 'Logra un peso estable y saludable con comidas equilibradas y sostenibles.',
+    'advanced.condition.bones-joints.title': 'Cuidado de huesos y articulaciones',
+    'advanced.condition.bones-joints.desc': 'Apoya la densidad ósea y la comodidad articular con calcio, vitamina D y movimiento.',
     'advanced.why.feature1.title': 'Planes basados en evidencia',
     'advanced.why.feature1.desc': 'Todos los planes siguen las pautas de la OMS, la ADA y el NHS.',
     'advanced.why.feature2.title': 'Interpretación de laboratorio',
@@ -6458,6 +6707,29 @@ export const translations: Record<Language, TranslationKeys> = {
     'universe.organ.joints.name': 'Articulaciones',
     'universe.organ.joints.condition': 'Gota',
     'universe.organ.joints.desc': 'Limita los alimentos ricos en purinas y mantén el ácido úrico en un rango sano para prevenir brotes.',
+    'universe.organ.stones.name': 'Cálculos renales',
+    'universe.organ.stones.condition': 'Cálculos renales',
+    'universe.organ.stones.desc': 'La hidratación y las elecciones conscientes de minerales reducen el riesgo de nuevos cálculos.',
+    'universe.organ.pcos.name': 'Salud de la mujer',
+    'universe.organ.pcos.condition': 'SOP',
+    'universe.organ.pcos.desc': 'Una nutrición que equilibra las hormonas ayuda a regular los ciclos y la sensibilidad a la insulina.',
+    'universe.organ.weight.name': 'Peso',
+    'universe.organ.weight.condition': 'Peso y Obesidad',
+    'universe.organ.weight.desc': 'Comidas sostenibles y conscientes de las calorías te ayudan a alcanzar y mantener un peso saludable.',
+    'universe.organ.bones.name': 'Huesos',
+    'universe.organ.bones.condition': 'Huesos y Articulaciones',
+    'universe.organ.bones.desc': 'El calcio, la vitamina D y el movimiento suave mantienen fuertes huesos y articulaciones.',
+    'universe.viewDetails': 'Ver detalles',
+    'score.formula.heart-lipids': 'Sistólica 90–119 = 100; 120–139 = 100→70; ≥140 = 70→50. Diastólica 60–79 = 100; 80–89 = 100→70; ≥90 = 70→50. Colesterol total <200 = 100; 200–239 = 100→70; ≥240 = 70→40. LDL <100 = 100; 100–159 = 100→70; ≥160 = 70→40. HDL ≥60 = 100; 40–59 = 100→70; <40 = 70→50. Triglicéridos <150 = 100; 150–199 = 100→70; ≥200 = 70→40. Media de los marcadores presentes.',
+    'score.formula.kidney-stones': 'Ácido úrico <7 = 100; 7–8 = 100→70; ≥8 = 70→40.',
+    'score.formula.pcos': 'Glucosa en ayunas <100 = 100; 100–125 = 100→70; ≥126 = 70→40. HbA1c <5,7 = 100; 5,7–6,4 = 100→70; ≥6,5 = 70→40. Media de los marcadores presentes.',
+    'score.formula.weight-obesity': 'IMC 18,5–24,9 = 100; 25–29,9 = 100→72; 30–34,9 = 72→55; ≥35 = 55→38.',
+    'score.formula.bones-joints': 'Vitamina D 30–60 = 100; 20–29 = 100→70; <20 = 70→40.',
+    'score.source.heart-lipids': 'Directrices AHA / ACC 2017 y ATP-III',
+    'score.source.kidney-stones': 'Guía de AUA sobre cálculos renales',
+    'score.source.pcos': 'Guía de AACE / Sociedad de Endocrinología sobre SOP',
+    'score.source.weight-obesity': 'Clasificación IMC de la OMS',
+    'score.source.bones-joints': 'Referencia de vitamina D de la Sociedad de Endocrinología',
     'universe.score.title': 'Puntuación de salud',
     'universe.score.critical': 'Crítico',
     'universe.score.warning': 'Precaución',
@@ -8354,6 +8626,41 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.condition.mental-wellness.prefer': 'الأسماك الدهنية، الجوز، التوت، الشوكولاتة الداكنة، الخضروات الورقية، الكركم',
     'wizard.condition.ibs.avoid': 'البصل، الثوم، الفول، القمح، اللاكتوز، العسل',
     'wizard.condition.ibs.prefer': 'الأرز، الموز الأخضر، الجزر، الكوسة، الدجاج',
+    'wizard.condition.heart-lipids.name': 'القلب والدهون',
+    'wizard.condition.heart-lipids.desc': 'تحكم في ضغط الدم والكوليسترول بتغذية صديقة للقلب.',
+    'wizard.condition.heart-lipids.focus': 'ضبط ضغط الدم والكوليسترول',
+    'wizard.condition.heart-lipids.exercisePref': 'المشي السريع، ركوب الدراجة، السباحة، تمارين قوة معتدلة',
+    'wizard.condition.heart-lipids.nutritionRules': 'منخفض الصوديوم · دهون صحية',
+    'wizard.condition.heart-lipids.avoid': 'الأطعمة المالحة، المقالي، الدهون المتحولة، المشروبات السكرية، اللحوم المصنعة',
+    'wizard.condition.heart-lipids.prefer': 'الشوفان، السلمون، زيت الزيتون، التوت، المكسرات، الخضروات الورقية، الحبوب الكاملة',
+    'wizard.condition.kidney-stones.name': 'حصوات الكلى',
+    'wizard.condition.kidney-stones.desc': 'منع تكوّن الحصوات بترطيب الجسم وتوازن المعادن.',
+    'wizard.condition.kidney-stones.focus': 'الترطيب وتوازن الأوكسالات',
+    'wizard.condition.kidney-stones.exercisePref': 'المشي، السباحة، ركوب دراجة خفيف',
+    'wizard.condition.kidney-stones.nutritionRules': 'ترطيب · منخفض الأوكسالات',
+    'wizard.condition.kidney-stones.avoid': 'السبانخ، الراوند، البنجر، المكسرات، الشوكولاتة، الإفراط في الملح',
+    'wizard.condition.kidney-stones.prefer': 'الماء، الحمضيات، التفاح، الخيار، التوت، الدواجن منزوعة الدهن',
+    'wizard.condition.pcos.name': 'متلازمة تكيس المبايض',
+    'wizard.condition.pcos.desc': 'وازن هرموناتك بوجبات منخفضة المؤشر الجلايسيمي وغنية بالعناصر.',
+    'wizard.condition.pcos.focus': 'توازن الهرمونات وحساسية الأنسولين',
+    'wizard.condition.pcos.exercisePref': 'تمارين القوة، اليوغا، المشي السريع، البيلاتس',
+    'wizard.condition.pcos.nutritionRules': 'مؤشر جلايسيمي منخفض · وجبات متوازنة',
+    'wizard.condition.pcos.avoid': 'السكر المكرر، الخبز الأبيض، المشروبات السكرية، المقالي، الإفراط في الألبان',
+    'wizard.condition.pcos.prefer': 'الشوفان، الكينوا، الحمص، الخضروات الورقية، التوت، بذور الكتان، البيض',
+    'wizard.condition.weight-obesity.name': 'الوزن والسمنة',
+    'wizard.condition.weight-obesity.desc': 'حقق وزنًا صحيًا بوجبات متوازنة ومشبعة.',
+    'wizard.condition.weight-obesity.focus': 'توازن السعرات وعادات مستدامة',
+    'wizard.condition.weight-obesity.exercisePref': 'المشي السريع، ركوب الدراجة، السباحة، تمارين القوة',
+    'wizard.condition.weight-obesity.nutritionRules': 'عجز حراري معتدل · غني بالبروتين',
+    'wizard.condition.weight-obesity.avoid': 'المشروبات السكرية، المقالي، الكربوهيدرات المكررة، الإفراط في الوجبات الخفيفة',
+    'wizard.condition.weight-obesity.prefer': 'البروتين الخالي من الدهون، الخضروات، الحبوب الكاملة، البقوليات، الفواكه، الماء',
+    'wizard.condition.bones-joints.name': 'العظام والمفاصل',
+    'wizard.condition.bones-joints.desc': 'احمِ صحة عظامك ومفاصلك بالكالسيوم وفيتامين د والحركة.',
+    'wizard.condition.bones-joints.focus': 'كثافة العظام وراحة المفاصل',
+    'wizard.condition.bones-joints.exercisePref': 'المشي، السباحة، اليوغا، تمارين قوة خفيفة',
+    'wizard.condition.bones-joints.nutritionRules': 'كالسيوم · فيتامين د',
+    'wizard.condition.bones-joints.avoid': 'الإفراط في الكحول، الأطعمة المالحة، قلة الحركة',
+    'wizard.condition.bones-joints.prefer': 'الألبان، الحليب المدعّم، السردين، الخضروات الورقية، اللوز، التعرض للشمس',
     // Advanced Care
     'advanced.trust.badge1': 'مبني على الأدلة',
     'advanced.trust.badge2': 'WHO · ADA · NHS',
@@ -8377,6 +8684,16 @@ export const translations: Record<Language, TranslationKeys> = {
     'advanced.condition.thyroid.desc': 'وازن الغدة الدرقية بخطط غنية بالعناصر الغذائية ومراعية لليود.',
     'advanced.condition.ibs.title': 'العناية بالقولون العصبي',
     'advanced.condition.ibs.desc': 'خفف الأعراض بإرشادات لطيفة منخفضة الفودماب.',
+    'advanced.condition.heart-lipids.title': 'العناية بالقلب والدهون',
+    'advanced.condition.heart-lipids.desc': 'اخفض ضغط الدم وحافظ على الكوليسترول ضمن الحدود بخطط صديقة للقلب.',
+    'advanced.condition.kidney-stones.title': 'العناية بحصوات الكلى',
+    'advanced.condition.kidney-stones.desc': 'قلل خطر الحصوات بالترطيب وتغذية واعية بالمعادن.',
+    'advanced.condition.pcos.title': 'العناية بتكيس المبايض',
+    'advanced.condition.pcos.desc': 'ادعم توازن الهرمونات بخطط وجبات منخفضة المؤشر الجلايسيمي وغنية بالعناصر.',
+    'advanced.condition.weight-obesity.title': 'إدارة الوزن',
+    'advanced.condition.weight-obesity.desc': 'حقق وزنًا ثابتًا وصحيًا بوجبات متوازنة ومستدامة.',
+    'advanced.condition.bones-joints.title': 'العناية بالعظام والمفاصل',
+    'advanced.condition.bones-joints.desc': 'ادعم كثافة العظام وراحة المفاصل بالكالسيوم وفيتامين د والحركة.',
     'advanced.why.feature1.title': 'خطط مبنية على الأدلة',
     'advanced.why.feature1.desc': 'جميع الخطط تتبع إرشادات منظمة الصحة العالمية وجمعية السكري الأمريكية وهيئة الصحة البريطانية.',
     'advanced.why.feature2.title': 'تفسير التحاليل',
@@ -8459,6 +8776,29 @@ export const translations: Record<Language, TranslationKeys> = {
     'universe.organ.joints.name': 'المفاصل',
     'universe.organ.joints.condition': 'النقرس',
     'universe.organ.joints.desc': 'قلّل الأطعمة الغنية بالبيورين وحافظ على حمض البول ضمن نطاق صحي لمنع النوبات.',
+    'universe.organ.stones.name': 'حصوات الكلى',
+    'universe.organ.stones.condition': 'حصوات الكلى',
+    'universe.organ.stones.desc': 'الترطيب والاختيارات الواعية بالمعادن تقلل خطر تكوّن حصوات جديدة.',
+    'universe.organ.pcos.name': 'صحة المرأة',
+    'universe.organ.pcos.condition': 'متلازمة تكيس المبايض',
+    'universe.organ.pcos.desc': 'تغذية موازنة للهرمونات تساعد على انتظام الدورة وحساسية الأنسولين.',
+    'universe.organ.weight.name': 'الوزن',
+    'universe.organ.weight.condition': 'الوزن والسمنة',
+    'universe.organ.weight.desc': 'وجبات مستدامة وواعية بالسعرات تساعدك على بلوغ وزن صحي والحفاظ عليه.',
+    'universe.organ.bones.name': 'العظام',
+    'universe.organ.bones.condition': 'العظام والمفاصل',
+    'universe.organ.bones.desc': 'الكالسيوم وفيتامين د والحركة اللطيفة تحافظ على قوة العظام والمفاصل.',
+    'universe.viewDetails': 'عرض التفاصيل',
+    'score.formula.heart-lipids': 'الانقباضي 90–119 = 100؛ 120–139 = 100→70؛ ≥140 = 70→50. الانبساطي 60–79 = 100؛ 80–89 = 100→70؛ ≥90 = 70→50. الكوليسترول الكلي <200 = 100؛ 200–239 = 100→70؛ ≥240 = 70→40. LDL <100 = 100؛ 100–159 = 100→70؛ ≥160 = 70→40. HDL ≥60 = 100؛ 40–59 = 100→70؛ <40 = 70→50. الدهون الثلاثية <150 = 100؛ 150–199 = 100→70؛ ≥200 = 70→40. متوسط المؤشرات المتوفرة.',
+    'score.formula.kidney-stones': 'حمض اليوريك <7 = 100؛ 7–8 = 100→70؛ ≥8 = 70→40.',
+    'score.formula.pcos': 'السكر الصائم <100 = 100؛ 100–125 = 100→70؛ ≥126 = 70→40. HbA1c <5.7 = 100؛ 5.7–6.4 = 100→70؛ ≥6.5 = 70→40. متوسط المؤشرات المتوفرة.',
+    'score.formula.weight-obesity': 'مؤشر الكتلة 18.5–24.9 = 100؛ 25–29.9 = 100→72؛ 30–34.9 = 72→55؛ ≥35 = 55→38.',
+    'score.formula.bones-joints': 'فيتامين د 30–60 = 100؛ 20–29 = 100→70؛ <20 = 70→40.',
+    'score.source.heart-lipids': 'مبادئ AHA / ACC 2017 وATP-III',
+    'score.source.kidney-stones': 'إرشادات AUA لحصوات الكلى',
+    'score.source.pcos': 'إرشادات AACE / جمعية الغدد الصماء لتكيس المبايض',
+    'score.source.weight-obesity': 'تصنيف منظمة الصحة العالمية لمؤشر الكتلة',
+    'score.source.bones-joints': 'مرجع فيتامين د لجمعية الغدد الصماء',
     'universe.score.title': 'درجة الصحة',
     'universe.score.critical': 'حرجة',
     'universe.score.warning': 'تنبيه',
@@ -10366,6 +10706,41 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.condition.mental-wellness.prefer': 'Fetter Fisch, Walnüsse, Beeren, Dunkle Schokolade, Blattgemüse, Kurkuma',
     'wizard.condition.ibs.avoid': 'Zwiebeln, Knoblauch, Bohnen, Weizen, Laktose, Honig',
     'wizard.condition.ibs.prefer': 'Reis, unreife Bananen, Karotten, Zucchini, Hühnchen',
+    'wizard.condition.heart-lipids.name': 'Herz und Blutfette',
+    'wizard.condition.heart-lipids.desc': 'Bringen Sie Blutdruck und Cholesterin mit herzfreundlicher Ernährung in den Griff.',
+    'wizard.condition.heart-lipids.focus': 'Blutdruck- und Cholesterinkontrolle',
+    'wizard.condition.heart-lipids.exercisePref': 'Zügiges Gehen, Radfahren, Schwimmen, moderates Krafttraining',
+    'wizard.condition.heart-lipids.nutritionRules': 'Natriumarm · herzgesunde Fette',
+    'wizard.condition.heart-lipids.avoid': 'Salzige Speisen, Frittiertes, Transfette, zuckerhaltige Getränke, verarbeitetes Fleisch',
+    'wizard.condition.heart-lipids.prefer': 'Hafer, Lachs, Olivenöl, Beeren, Nüsse, Blattgemüse, Vollkorn',
+    'wizard.condition.kidney-stones.name': 'Nierensteine',
+    'wizard.condition.kidney-stones.desc': 'Beugen Sie Steinbildung durch ausreichend Flüssigkeit und ausgewogene Mineralien vor.',
+    'wizard.condition.kidney-stones.focus': 'Hydration und Oxalat-Gleichgewicht',
+    'wizard.condition.kidney-stones.exercisePref': 'Gehen, Schwimmen, leichtes Radfahren',
+    'wizard.condition.kidney-stones.nutritionRules': 'Hydration · oxalatarm',
+    'wizard.condition.kidney-stones.avoid': 'Spinat, Rhabarber, Rote Bete, Nüsse, Schokolade, zu viel Salz',
+    'wizard.condition.kidney-stones.prefer': 'Wasser, Zitrusfrüchte, Äpfel, Gurken, Beeren, mageres Geflügel',
+    'wizard.condition.pcos.name': 'PCOS',
+    'wizard.condition.pcos.desc': 'Bringen Sie Ihre Hormone mit Mahlzeiten mit niedrigem glykämischen Index in Balance.',
+    'wizard.condition.pcos.focus': 'Hormongleichgewicht und Insulinsensitivität',
+    'wizard.condition.pcos.exercisePref': 'Krafttraining, Yoga, zügiges Gehen, Pilates',
+    'wizard.condition.pcos.nutritionRules': 'Niedriger glykämischer Index · ausgewogene Mahlzeiten',
+    'wizard.condition.pcos.avoid': 'Raffinierter Zucker, Weißbrot, zuckerhaltige Getränke, Frittiertes, übermäßige Milchprodukte',
+    'wizard.condition.pcos.prefer': 'Hafer, Quinoa, Kichererbsen, Blattgemüse, Beeren, Leinsamen, Eier',
+    'wizard.condition.weight-obesity.name': 'Gewicht und Adipositas',
+    'wizard.condition.weight-obesity.desc': 'Erreichen Sie ein gesundes Gewicht mit ausgewogenen, sättigenden Mahlzeiten.',
+    'wizard.condition.weight-obesity.focus': 'Kalorienbilanz und nachhaltige Gewohnheiten',
+    'wizard.condition.weight-obesity.exercisePref': 'Zügiges Gehen, Radfahren, Schwimmen, Krafttraining',
+    'wizard.condition.weight-obesity.nutritionRules': 'Moderates Kaloriendefizit · proteinreich',
+    'wizard.condition.weight-obesity.avoid': 'Zuckerhaltige Getränke, Frittiertes, raffinierte Kohlenhydrate, übermäßige Snacks',
+    'wizard.condition.weight-obesity.prefer': 'Mageres Protein, Gemüse, Vollkorn, Hülsenfrüchte, Obst, Wasser',
+    'wizard.condition.bones-joints.name': 'Knochen und Gelenke',
+    'wizard.condition.bones-joints.desc': 'Schützen Sie Knochen und Gelenke mit Kalzium, Vitamin D und Bewegung.',
+    'wizard.condition.bones-joints.focus': 'Knochendichte und Gelenkkomfort',
+    'wizard.condition.bones-joints.exercisePref': 'Gehen, Schwimmen, Yoga, leichtes Krafttraining',
+    'wizard.condition.bones-joints.nutritionRules': 'Kalzium · Vitamin D',
+    'wizard.condition.bones-joints.avoid': 'Übermäßiger Alkohol, salzige Speisen, Bewegungsmangel',
+    'wizard.condition.bones-joints.prefer': 'Milchprodukte, angereicherte Milch, Sardinen, Blattgemüse, Mandeln, Sonnenlicht',
     // Advanced Care
     'advanced.trust.badge1': 'Evidenzbasiert',
     'advanced.trust.badge2': 'WHO · ADA · NHS',
@@ -10389,6 +10764,16 @@ export const translations: Record<Language, TranslationKeys> = {
     'advanced.condition.thyroid.desc': 'Balancieren Sie die Schilddrüse mit nährstoffreichen, jodbewussten Plänen.',
     'advanced.condition.ibs.title': 'RDS-Betreuung',
     'advanced.condition.ibs.desc': 'Symptome lindern mit sanfter, FODMAP-armer Beratung.',
+    'advanced.condition.heart-lipids.title': 'Herz- und Blutfett-Betreuung',
+    'advanced.condition.heart-lipids.desc': 'Senken Sie Ihren Blutdruck und halten Sie Cholesterin mit herzfreundlichen Plänen im Griff.',
+    'advanced.condition.kidney-stones.title': 'Nierenstein-Betreuung',
+    'advanced.condition.kidney-stones.desc': 'Reduzieren Sie das Steinrisiko durch Hydration und mineralbewusste Ernährung.',
+    'advanced.condition.pcos.title': 'PCOS-Betreuung',
+    'advanced.condition.pcos.desc': 'Unterstützen Sie das Hormongleichgewicht mit Mahlzeitenplänen mit niedrigem glykämischen Index.',
+    'advanced.condition.weight-obesity.title': 'Gewichtsmanagement',
+    'advanced.condition.weight-obesity.desc': 'Erreichen Sie ein stabiles, gesundes Gewicht mit ausgewogenen und nachhaltigen Mahlzeiten.',
+    'advanced.condition.bones-joints.title': 'Knochen- und Gelenkbetreuung',
+    'advanced.condition.bones-joints.desc': 'Unterstützen Sie Knochendichte und Gelenkkomfort mit Kalzium, Vitamin D und Bewegung.',
     'advanced.why.feature1.title': 'Evidenzbasierte Pläne',
     'advanced.why.feature1.desc': 'Alle Pläne folgen den Richtlinien von WHO, ADA und NHS.',
     'advanced.why.feature2.title': 'Laborbefund-Interpretation',
@@ -10471,6 +10856,29 @@ export const translations: Record<Language, TranslationKeys> = {
     'universe.organ.joints.name': 'Gelenke',
     'universe.organ.joints.condition': 'Gicht',
     'universe.organ.joints.desc': 'Begrenze purinreiche Lebensmittel und halte die Harnsäure in einem gesunden Bereich, um Schübe zu vermeiden.',
+    'universe.organ.stones.name': 'Nierensteine',
+    'universe.organ.stones.condition': 'Nierensteine',
+    'universe.organ.stones.desc': 'Hydration und mineralbewusste Entscheidungen verringern das Risiko neuer Steine.',
+    'universe.organ.pcos.name': 'Frauengesundheit',
+    'universe.organ.pcos.condition': 'PCOS',
+    'universe.organ.pcos.desc': 'Hormonausgleichende Ernährung hilft, Zyklus und Insulinsensitivität zu regulieren.',
+    'universe.organ.weight.name': 'Gewicht',
+    'universe.organ.weight.condition': 'Gewicht und Adipositas',
+    'universe.organ.weight.desc': 'Nachhaltige, kalorienbewusste Mahlzeiten helfen Ihnen, ein gesundes Gewicht zu erreichen und zu halten.',
+    'universe.organ.bones.name': 'Knochen',
+    'universe.organ.bones.condition': 'Knochen und Gelenke',
+    'universe.organ.bones.desc': 'Kalzium, Vitamin D und sanfte Bewegung halten Knochen und Gelenke stark.',
+    'universe.viewDetails': 'Details ansehen',
+    'score.formula.heart-lipids': 'Systolisch 90–119 = 100; 120–139 = 100→70; ≥140 = 70→50. Diastolisch 60–79 = 100; 80–89 = 100→70; ≥90 = 70→50. Gesamtcholesterin <200 = 100; 200–239 = 100→70; ≥240 = 70→40. LDL <100 = 100; 100–159 = 100→70; ≥160 = 70→40. HDL ≥60 = 100; 40–59 = 100→70; <40 = 70→50. Triglyceride <150 = 100; 150–199 = 100→70; ≥200 = 70→40. Mittelwert der vorhandenen Marker.',
+    'score.formula.kidney-stones': 'Harnsäure <7 = 100; 7–8 = 100→70; ≥8 = 70→40.',
+    'score.formula.pcos': 'Nüchternblutzucker <100 = 100; 100–125 = 100→70; ≥126 = 70→40. HbA1c <5,7 = 100; 5,7–6,4 = 100→70; ≥6,5 = 70→40. Mittelwert der vorhandenen Marker.',
+    'score.formula.weight-obesity': 'BMI 18,5–24,9 = 100; 25–29,9 = 100→72; 30–34,9 = 72→55; ≥35 = 55→38.',
+    'score.formula.bones-joints': 'Vitamin D 30–60 = 100; 20–29 = 100→70; <20 = 70→40.',
+    'score.source.heart-lipids': 'AHA / ACC 2017 und ATP-III-Leitlinien',
+    'score.source.kidney-stones': 'AUA-Leitlinie zu Nierensteinen',
+    'score.source.pcos': 'AACE / Endocrine Society PCOS-Leitlinie',
+    'score.source.weight-obesity': 'WHO-BMI-Klassifikation',
+    'score.source.bones-joints': 'Vitamin-D-Referenz der Endocrine Society',
     'universe.score.title': 'Gesundheits-Score',
     'universe.score.critical': 'Kritisch',
     'universe.score.warning': 'Achtung',

@@ -24,6 +24,11 @@ const LAB_FIELD_KEYS: Record<Exclude<ConditionId, 'ibs'>, string[]> = {
   kidney: ['creatinine', 'egfr', 'potassium'],
   thyroid: ['tsh', 't3', 't4'],
   'mental-wellness': ['vitaminD', 'b12', 'iron', 'tsh'],
+  'heart-lipids': ['systolic', 'diastolic', 'total', 'ldl', 'hdl', 'triglycerides'],
+  'kidney-stones': ['uricAcid'],
+  pcos: ['fasting', 'hba1c'],
+  'weight-obesity': [],
+  'bones-joints': ['vitaminD'],
 };
 
 const LAB_FIELD_HINTS = new Set([

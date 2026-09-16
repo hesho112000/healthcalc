@@ -30,7 +30,7 @@ export interface HubOrgan {
 
 export const HUB_ORGANS: HubOrgan[] = [
   { id: 'brain', nameKey: tk('universe.organ.brain.name'), icon: '🧠', conditions: [] },
-  { id: 'heart', nameKey: tk('universe.organ.heart.name'), icon: '❤️', conditions: ['hypertension', 'cholesterol'] },
+  { id: 'heart', nameKey: tk('universe.organ.heart.name'), icon: '❤️', conditions: ['heart-lipids', 'hypertension', 'cholesterol'] },
   { id: 'pancreas', nameKey: tk('universe.organ.pancreas.name'), icon: '🍬', conditions: ['diabetes'] },
   { id: 'liver', nameKey: tk('universe.organ.liver.name'), icon: '🫁', conditions: ['liver'] },
   { id: 'kidneys', nameKey: tk('universe.organ.kidneys.name'), icon: '🫘', conditions: ['kidney'] },

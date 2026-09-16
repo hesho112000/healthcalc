@@ -3,13 +3,11 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { ArrowRight, Plus, Check } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import BodyMap, {
-  ORGAN_CONFIG,
-  ORGAN_IDS,
+  ORGAN_META,
   organConditionKey,
   organDescKey,
   organNameKey,
 } from '../components/health-universe/BodyMap';
-import type { OrganId } from '../components/health-universe/BodyMap';
 import {
   getOrganDetail,
   HEALTH_ORGAN_CONDITIONS,
@@ -18,6 +16,8 @@ import {
   readStoredLabs,
   readUserProfile,
 } from '../utils/healthScoring';
+import type { HealthOrganId } from '../utils/healthScoring';
+import type { ConditionId } from '../data/conditions';
 import {
   dayExercises,
   dayMeals,
@@ -38,7 +38,7 @@ const SLOT_KEY: Record<string, TKey> = {
   snack: tk('wizard.step6.mealSnack'),
 };
 
-const STORAGE_KEY = 'hc_health_universe';
+const STORAGE_KEY = 'healthcalc_conditions';
 
 const MENTAL_LABS: Array<{ key: string; unit: string }> = [
   { key: 'vitaminD', unit: 'ng/mL' },
@@ -55,11 +55,10 @@ const OrganHubPage: React.FC = () => {
 
   const normId = organId ?? '';
   const isMental = normId === 'mental-wellness';
-  const id: OrganId | null = isMental
+  const ORGAN_IDS = Object.keys(HEALTH_ORGAN_CONDITIONS) as HealthOrganId[];
+  const id: HealthOrganId | null = isMental
     ? 'brain'
-    : ORGAN_IDS.includes(normId as OrganId)
-      ? (normId as OrganId)
-      : null;
+    : (ORGAN_IDS.includes(normId as HealthOrganId) ? (normId as HealthOrganId) : null);
 
   const conditions = useMemo(
     () => (id ? [...HEALTH_ORGAN_CONDITIONS[id]] : []),
@@ -79,11 +78,15 @@ const OrganHubPage: React.FC = () => {
     }) ||
     hasPlanData();
 
-  const [plan, setPlan] = useState<OrganId[]>(() => {
+  const [plan, setPlan] = useState<ConditionId[]>(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       return raw
-        ? (JSON.parse(raw) as OrganId[]).filter((entry) => (ORGAN_IDS as readonly string[]).includes(entry))
+        ? (JSON.parse(raw) as ConditionId[]).filter((entry) =>
+            (Object.keys(HEALTH_ORGAN_CONDITIONS) as HealthOrganId[]).some((o) =>
+              HEALTH_ORGAN_CONDITIONS[o].includes(entry),
+            ),
+          )
         : [];
     } catch {
       return [];
@@ -102,15 +105,17 @@ const OrganHubPage: React.FC = () => {
   const status = score === null ? null : organStatus(score);
   const statusKey =
     status === 'critical' ? 'organHub.status.critical' : status === 'warning' ? 'organHub.status.warning' : 'organHub.status.healthy';
-  const inPlan = plan.includes(id);
-  const emoji = ORGAN_CONFIG[id].emoji;
+  const inPlan = HEALTH_ORGAN_CONDITIONS[id].some((cid) => plan.includes(cid));
+  const emoji = ORGAN_META[id].emoji;
 
   const dayFitness = dayExercises(exPool, 1);
   const dayMealsList = dayMeals(foodPool, 1);
 
   const addToPlan = () => {
-    if (inPlan) return;
-    const next = [...plan, id];
+    const organConditions = [...HEALTH_ORGAN_CONDITIONS[id]];
+    const next = inPlan
+      ? plan.filter((cid) => !organConditions.includes(cid))
+      : [...new Set([...plan, ...organConditions])];
     setPlan(next);
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
@@ -157,7 +162,7 @@ const OrganHubPage: React.FC = () => {
 
         <div className="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] p-8 md:p-12 text-[#FDFBF7]">
           <div className="absolute inset-0 pointer-events-none opacity-10">
-            <BodyMap selectedOrgans={[]} onToggle={() => {}} />
+            <BodyMap selectedConditions={[]} interactive={false} />
           </div>
           <div className="relative">
             <span className="w-16 h-16 rounded-3xl bg-[#FDFBF7]/10 flex items-center justify-center text-4xl">

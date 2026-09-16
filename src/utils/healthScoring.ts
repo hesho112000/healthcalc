@@ -9,21 +9,29 @@ export type HealthOrganId =
   | 'pancreas'
   | 'liver'
   | 'kidneys'
+  | 'stones'
   | 'thyroid'
   | 'gut'
-  | 'joints';
+  | 'joints'
+  | 'pcos'
+  | 'weight'
+  | 'bones';
 
 export type OrganStatus = 'critical' | 'warning' | 'healthy';
 
 export const HEALTH_ORGAN_CONDITIONS: Record<HealthOrganId, readonly ConditionId[]> = {
   brain: ['mental-wellness'],
   thyroid: ['thyroid'],
-  heart: ['hypertension', 'cholesterol'],
+  heart: ['heart-lipids'],
   pancreas: ['diabetes'],
   liver: ['liver'],
   kidneys: ['kidney'],
+  stones: ['kidney-stones'],
   gut: ['ibs'],
   joints: ['gout'],
+  pcos: ['pcos'],
+  weight: ['weight-obesity'],
+  bones: ['bones-joints'],
 };
 
 export const LAB_STORAGE_KEY = 'hc_health_universe_labs';
@@ -97,6 +105,21 @@ const LAB_METRICS: Record<string, readonly LabMetric[]> = {
     { key: 'b12', idealLo: 300, idealHi: 900, riskHi: 1200 },
     { key: 'iron', idealLo: 30, idealHi: 300, riskHi: 500 },
   ],
+  'heart-lipids': [
+    { key: 'systolic', idealLo: 90, idealHi: 119, riskHi: 139 },
+    { key: 'diastolic', idealLo: 60, idealHi: 79, riskHi: 89 },
+    { key: 'total', idealLo: 125, idealHi: 199, riskHi: 239 },
+    { key: 'ldl', idealLo: 40, idealHi: 99, riskHi: 159 },
+    { key: 'hdl', idealLo: 40, idealHi: 60, riskHi: 60, invert: true },
+    { key: 'triglycerides', idealLo: 50, idealHi: 149, riskHi: 199 },
+  ],
+  pcos: [
+    { key: 'fasting', idealLo: 70, idealHi: 99, riskHi: 125 },
+    { key: 'hba1c', idealLo: 4.0, idealHi: 5.6, riskHi: 6.4 },
+  ],
+  'kidney-stones': [{ key: 'uricAcid', idealLo: 3.5, idealHi: 7.0, riskHi: 8.0 }],
+  'weight-obesity': [],
+  'bones-joints': [{ key: 'vitaminD', idealLo: 30, idealHi: 60, riskHi: 100 }],
 };
 
 const clamp = (v: number, lo: number, hi: number): number =>
@@ -190,10 +213,17 @@ export const writeStoredLabs = (
   }
 };
 
+const CONDITION_LAB_ALIASES: Record<string, readonly string[]> = {
+  'heart-lipids': ['hypertension', 'cholesterol'],
+};
+
 const labsFor = (conditions: readonly string[]): Record<string, number> => {
   const stored = readStoredLabs();
   const out: Record<string, number> = {};
-  conditions.forEach((cid) => Object.assign(out, stored[cid] || {}));
+  conditions.forEach((cid) => {
+    Object.assign(out, stored[cid] || {});
+    (CONDITION_LAB_ALIASES[cid] ?? []).forEach((alias) => Object.assign(out, stored[alias] || {}));
+  });
   return out;
 };
 
@@ -342,11 +372,43 @@ const scoreFromMetrics = (
 export const calculateHeartScore = (
   labs: Record<string, number> | null | undefined,
 ): number | null => {
-  const metrics = [
-    ...LAB_METRICS.hypertension,
-    ...LAB_METRICS.cholesterol,
-  ];
+  const metrics = [...LAB_METRICS['heart-lipids']];
   return scoreFromMetrics(metrics, labs || {}).score;
+};
+
+export const calculateHeartLipidsScore = calculateHeartScore;
+
+export const calculatePcosScore = (
+  labs: Record<string, number> | null | undefined,
+): number | null => scoreFromMetrics(LAB_METRICS.pcos, labs || {}).score;
+
+export const calculateKidneyStonesScore = (
+  labs: Record<string, number> | null | undefined,
+): number | null => scoreFromMetrics(LAB_METRICS['kidney-stones'], labs || {}).score;
+
+export const calculateBonesJointsScore = (
+  labs: Record<string, number> | null | undefined,
+): number | null => scoreFromMetrics(LAB_METRICS['bones-joints'], labs || {}).score;
+
+export const calculateWeightScore = (
+  userData: { weight?: number; height?: number } | null | undefined,
+): number | null => {
+  if (!userData || typeof userData !== 'object') return null;
+  const { weight, height } = userData;
+  const isNum = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
+  if (!isNum(weight) || !isNum(height) || height <= 0) return null;
+  const m = height / 100;
+  const bmi = weight / (m * m);
+  const clampBmi = clamp(bmi, 14, 45);
+  const points = [
+    { x: 14, y: 100 },
+    { x: 18.5, y: 90 },
+    { x: 24.9, y: 100 },
+    { x: 29.9, y: 72 },
+    { x: 34.9, y: 55 },
+    { x: 45, y: 38 },
+  ];
+  return Math.round(piecewise(points)(clampBmi));
 };
 
 export const calculatePancreasScore = (
@@ -403,6 +465,14 @@ export const organScore = (id: HealthOrganId): number | null => {
       return calculateGoutScore(labsFor(HEALTH_ORGAN_CONDITIONS.joints));
     case 'thyroid':
       return calculateThyroidScore(labsFor(HEALTH_ORGAN_CONDITIONS.thyroid));
+    case 'stones':
+      return calculateKidneyStonesScore(labsFor(HEALTH_ORGAN_CONDITIONS.stones));
+    case 'pcos':
+      return calculatePcosScore(labsFor(HEALTH_ORGAN_CONDITIONS.pcos));
+    case 'weight':
+      return calculateWeightScore(readUserProfile());
+    case 'bones':
+      return calculateBonesJointsScore(labsFor(HEALTH_ORGAN_CONDITIONS.bones));
   }
 };
 
@@ -494,7 +564,7 @@ export const getOrganDetail = (id: HealthOrganId): OrganScoreDetail | null => {
     }
     case 'heart': {
       const labs = labsFor(HEALTH_ORGAN_CONDITIONS.heart);
-      const metrics = [...LAB_METRICS.hypertension, ...LAB_METRICS.cholesterol];
+      const metrics = [...LAB_METRICS['heart-lipids']];
       const { score } = scoreFromMetrics(metrics, labs);
       if (score === null) return null;
       return { score, factors: labFactors(metrics, labs) };
@@ -528,6 +598,29 @@ export const getOrganDetail = (id: HealthOrganId): OrganScoreDetail | null => {
       const { score } = scoreFromMetrics(LAB_METRICS.thyroid, labs);
       if (score === null) return null;
       return { score, factors: labFactors(LAB_METRICS.thyroid, labs) };
+    }
+    case 'stones': {
+      const labs = labsFor(HEALTH_ORGAN_CONDITIONS.stones);
+      const { score } = scoreFromMetrics(LAB_METRICS['kidney-stones'], labs);
+      if (score === null) return null;
+      return { score, factors: labFactors(LAB_METRICS['kidney-stones'], labs) };
+    }
+    case 'pcos': {
+      const labs = labsFor(HEALTH_ORGAN_CONDITIONS.pcos);
+      const { score } = scoreFromMetrics(LAB_METRICS.pcos, labs);
+      if (score === null) return null;
+      return { score, factors: labFactors(LAB_METRICS.pcos, labs) };
+    }
+    case 'weight': {
+      const score = calculateWeightScore(readUserProfile());
+      if (score === null) return null;
+      return { score, factors: [] };
+    }
+    case 'bones': {
+      const labs = labsFor(HEALTH_ORGAN_CONDITIONS.bones);
+      const { score } = scoreFromMetrics(LAB_METRICS['bones-joints'], labs);
+      if (score === null) return null;
+      return { score, factors: labFactors(LAB_METRICS['bones-joints'], labs) };
     }
   }
 };

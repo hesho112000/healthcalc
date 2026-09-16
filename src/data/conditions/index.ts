@@ -18,6 +18,11 @@ import { kidneyCondition } from './kidney';
 import { thyroidCondition } from './thyroid';
 import { ibsCondition } from './ibs';
 import { mentalWellnessData } from './mental-wellness';
+import { heartLipidsCondition } from './heart-lipids';
+import { kidneyStonesCondition } from './kidney-stones';
+import { pcosCondition } from './pcos';
+import { weightObesityCondition } from './weight-obesity';
+import { bonesJointsCondition } from './bones-joints';
 import { priorityOf } from './priority';
 
 export * from './types';
@@ -30,9 +35,29 @@ export const CONDITION_IDS: ConditionId[] = [
   'gout',
   'liver',
   'kidney',
+  'kidney-stones',
   'thyroid',
   'ibs',
   'mental-wellness',
+  'heart-lipids',
+  'pcos',
+  'weight-obesity',
+  'bones-joints',
+];
+
+export const UNIVERSE_CONDITION_IDS: readonly ConditionId[] = [
+  'mental-wellness',
+  'thyroid',
+  'heart-lipids',
+  'diabetes',
+  'liver',
+  'kidney',
+  'kidney-stones',
+  'ibs',
+  'pcos',
+  'weight-obesity',
+  'bones-joints',
+  'gout',
 ];
 
 export const CONDITION_DATA: Record<string, ConditionData> = {
@@ -42,9 +67,14 @@ export const CONDITION_DATA: Record<string, ConditionData> = {
   gout: goutCondition,
   liver: liverCondition,
   kidney: kidneyCondition,
+  'kidney-stones': kidneyStonesCondition,
   thyroid: thyroidCondition,
   ibs: ibsCondition,
   'mental-wellness': mentalWellnessData,
+  'heart-lipids': heartLipidsCondition,
+  pcos: pcosCondition,
+  'weight-obesity': weightObesityCondition,
+  'bones-joints': bonesJointsCondition,
 };
 
 export const getConditionData = (id: string): ConditionData | undefined => CONDITION_DATA[id];

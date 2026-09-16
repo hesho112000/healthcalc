@@ -1,5 +1,5 @@
 import React from 'react';
-import { CONDITION_DATA, CONDITION_IDS } from '../../data/conditions';
+import { CONDITION_DATA, UNIVERSE_CONDITION_IDS } from '../../data/conditions';
 import type { ConditionId } from '../../data/conditions';
 import type { TKey } from './stepTypes';
 
@@ -21,7 +21,7 @@ const ConditionStep: React.FC<ConditionStepProps> = ({ t, selected, onToggle, on
     <div>
       <p className="text-[#4A5A55] mb-6">{t(tk('wizard.chooseMultiple'))}</p>
       <div className="grid grid-cols-3 gap-3">
-        {CONDITION_IDS.map((id) => {
+        {UNIVERSE_CONDITION_IDS.map((id) => {
           const active = selected.includes(id);
           return (
             <button

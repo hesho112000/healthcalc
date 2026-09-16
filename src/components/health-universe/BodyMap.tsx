@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Check } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { translations } from '../../i18n/translations';
@@ -7,58 +8,51 @@ import type { HealthOrganId } from '../../utils/healthScoring';
 
 type TKey = keyof typeof translations.en;
 
-export type OrganId = HealthOrganId;
-
-export type ToolKey = 'lab' | 'nutrition' | 'exercise';
-
-export interface OrganConfig {
-  id: OrganId;
+export interface BodyDot {
+  id: ConditionId;
+  key: string;
   emoji: string;
   top: number;
   left: number;
-  conditionIds: ConditionId[];
-  route?: string;
+  route: string;
 }
 
-export const ORGAN_IDS: readonly OrganId[] = [
-  'brain',
-  'thyroid',
-  'heart',
-  'pancreas',
-  'liver',
-  'kidneys',
-  'gut',
-  'joints',
+export const BODY_DOTS: readonly BodyDot[] = [
+  { id: 'mental-wellness', key: 'brain', emoji: '🧠', top: 8, left: 50, route: 'mental-wellness' },
+  { id: 'thyroid', key: 'thyroid', emoji: '🦋', top: 19, left: 50, route: 'thyroid' },
+  { id: 'heart-lipids', key: 'heart', emoji: '❤️', top: 28, left: 56, route: 'heart' },
+  { id: 'liver', key: 'liver', emoji: '🫀', top: 35, left: 44, route: 'liver' },
+  { id: 'diabetes', key: 'pancreas', emoji: '🩸', top: 40, left: 50, route: 'pancreas' },
+  { id: 'kidney', key: 'kidneys', emoji: '🫘', top: 47, left: 43, route: 'kidneys' },
+  { id: 'kidney-stones', key: 'stones', emoji: '💧', top: 49, left: 57, route: 'stones' },
+  { id: 'ibs', key: 'gut', emoji: '🥦', top: 52, left: 50, route: 'gut' },
+  { id: 'pcos', key: 'pcos', emoji: '🌸', top: 56, left: 50, route: 'pcos' },
+  { id: 'weight-obesity', key: 'weight', emoji: '⚖️', top: 44, left: 50, route: 'weight' },
+  { id: 'bones-joints', key: 'bones', emoji: '🦴', top: 68, left: 42, route: 'bones' },
+  { id: 'gout', key: 'joints', emoji: '🦶', top: 88, left: 50, route: 'joints' },
 ];
 
-export const ORGAN_CONFIG: Record<OrganId, OrganConfig> = {
-  brain: {
-    id: 'brain',
-    emoji: '🧠',
-    top: 8,
-    left: 50,
-    conditionIds: ['mental-wellness'],
-    route: 'mental-wellness',
-  },
-  thyroid: { id: 'thyroid', emoji: '🦋', top: 21, left: 50, conditionIds: ['thyroid'] },
-  heart: {
-    id: 'heart',
-    emoji: '💗',
-    top: 31,
-    left: 56,
-    conditionIds: ['hypertension', 'cholesterol'],
-  },
-  pancreas: { id: 'pancreas', emoji: '🩸', top: 44, left: 50, conditionIds: ['diabetes'] },
-  liver: { id: 'liver', emoji: '🧡', top: 38, left: 44, conditionIds: ['liver'] },
-  kidneys: { id: 'kidneys', emoji: '🫘', top: 55, left: 42, conditionIds: ['kidney'] },
-  gut: { id: 'gut', emoji: '🥦', top: 57, left: 50, conditionIds: ['ibs'] },
-  joints: { id: 'joints', emoji: '🦶', top: 85, left: 42, conditionIds: ['gout'] },
+export const dotNameKey = (id: ConditionId): TKey => `wizard.condition.${id}.name` as TKey;
+
+export const ORGAN_META: Record<HealthOrganId, { emoji: string }> = {
+  brain: { emoji: '🧠' },
+  thyroid: { emoji: '🦋' },
+  heart: { emoji: '❤️' },
+  pancreas: { emoji: '🩸' },
+  liver: { emoji: '🫀' },
+  kidneys: { emoji: '🫘' },
+  stones: { emoji: '💧' },
+  gut: { emoji: '🥦' },
+  joints: { emoji: '🦶' },
+  pcos: { emoji: '🌸' },
+  weight: { emoji: '⚖️' },
+  bones: { emoji: '🦴' },
 };
 
-export const organNameKey = (id: OrganId): TKey => `universe.organ.${id}.name` as TKey;
-export const organConditionKey = (id: OrganId): TKey =>
+export const organNameKey = (id: HealthOrganId): TKey => `universe.organ.${id}.name` as TKey;
+export const organConditionKey = (id: HealthOrganId): TKey =>
   `universe.organ.${id}.condition` as TKey;
-export const organDescKey = (id: OrganId): TKey => `universe.organ.${id}.desc` as TKey;
+export const organDescKey = (id: HealthOrganId): TKey => `universe.organ.${id}.desc` as TKey;
 
 export type { OrganStatus } from '../../utils/healthScoring';
 export {
@@ -74,13 +68,14 @@ export {
 const BODY_MAP_SRC = `${import.meta.env.BASE_URL}assets/body-map.png`;
 
 interface BodyMapProps {
-  selectedOrgans: readonly OrganId[];
-  onToggle: (id: OrganId) => void;
+  selectedConditions?: readonly ConditionId[];
+  interactive?: boolean;
 }
 
-const BodyMap: React.FC<BodyMapProps> = ({ selectedOrgans, onToggle }) => {
+const BodyMap: React.FC<BodyMapProps> = ({ selectedConditions = [], interactive = true }) => {
   const { t, dir } = useLanguage();
-  const [hovered, setHovered] = useState<OrganId | null>(null);
+  const navigate = useNavigate();
+  const [hovered, setHovered] = useState<string | null>(null);
 
   return (
     <div className="relative mx-auto w-full max-w-[300px] sm:max-w-[420px]" dir={dir}>
@@ -96,46 +91,47 @@ const BodyMap: React.FC<BodyMapProps> = ({ selectedOrgans, onToggle }) => {
         draggable={false}
       />
 
-      {ORGAN_IDS.map((id) => {
-        const cfg = ORGAN_CONFIG[id];
-        const selected = selectedOrgans.includes(id);
-        return (
-          <div
-            key={id}
-            className="absolute -translate-x-1/2 -translate-y-1/2"
-            style={{ top: `${cfg.top}%`, left: `${cfg.left}%` }}
-          >
-            <button
-              type="button"
-              onClick={() => onToggle(id)}
-              aria-pressed={selected}
-              aria-label={`${t(organNameKey(id))} · ${t(organConditionKey(id))}`}
-              onMouseEnter={() => setHovered(id)}
-              onMouseLeave={() => setHovered(null)}
-              className={`group relative flex h-[18px] w-[18px] items-center justify-center rounded-full before:absolute before:rounded-full before:inset-[-13px] before:content-[''] sm:h-6 sm:w-6 sm:before:inset-[-10px] transition-all duration-200 active:scale-95 ${
-                selected
-                  ? 'border-[3px] border-[#D4AF37] bg-[#0F4C3A] shadow-[0_4px_14px_rgba(212,175,55,0.55)]'
-                  : 'border-2 border-white bg-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.45)] hover:scale-110'
-              } ${selected ? 'hu-selected' : ''} ${hovered === id && !selected ? 'hu-active' : ''}`}
+      <div className={interactive ? '' : 'pointer-events-none'}>
+        {BODY_DOTS.map((dot) => {
+          const selected = selectedConditions.includes(dot.id);
+          return (
+            <div
+              key={dot.key}
+              className="absolute -translate-x-1/2 -translate-y-1/2"
+              style={{ top: `${dot.top}%`, left: `${dot.left}%` }}
             >
-              <span className="select-none text-[10px]">{cfg.emoji}</span>
+              <button
+                type="button"
+                onClick={() => navigate(`/advanced-care/${dot.route}`)}
+                aria-pressed={selected}
+                aria-label={t(dotNameKey(dot.id))}
+                onMouseEnter={() => setHovered(dot.key)}
+                onMouseLeave={() => setHovered(null)}
+                className={`group relative flex h-[18px] w-[18px] items-center justify-center rounded-full before:absolute before:rounded-full before:inset-[-13px] before:content-[''] sm:h-6 sm:w-6 sm:before:inset-[-10px] transition-all duration-200 active:scale-95 ${
+                  selected
+                    ? 'border-[3px] border-[#D4AF37] bg-[#0F4C3A] shadow-[0_4px_14px_rgba(212,175,55,0.55)]'
+                    : 'border-2 border-white bg-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.45)] hover:scale-110'
+                } ${selected ? 'hu-selected' : ''} ${hovered === dot.key && !selected ? 'hu-active' : ''}`}
+              >
+                <span className="select-none text-[10px]">{dot.emoji}</span>
 
-              {selected && (
-                <span className="absolute -bottom-1 -end-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#D4AF37] shadow-[0_2px_6px_rgba(212,175,55,0.6)] sm:h-[18px] sm:w-[18px]">
-                  <Check size={10} strokeWidth={3.5} className="text-[#FDFBF7]" />
+                {selected && (
+                  <span className="absolute -bottom-1 -end-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#D4AF37] shadow-[0_2px_6px_rgba(212,175,55,0.6)] sm:h-[18px] sm:w-[18px]">
+                    <Check size={10} strokeWidth={3.5} className="text-[#FDFBF7]" />
+                  </span>
+                )}
+              </button>
+
+              {hovered === dot.key && (
+                <span className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 whitespace-nowrap rounded-full border border-[#D4AF37]/40 bg-[#0F4C3A] px-3 py-1.5 text-xs font-bold text-[#FDFBF7] shadow-[0_6px_18px_rgba(15,76,58,0.28)]">
+                  {t(dotNameKey(dot.id))}
+                  {selected ? ` · ${t('universe.cta.added')}` : ''}
                 </span>
               )}
-            </button>
-
-            {hovered === id && (
-              <span className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 whitespace-nowrap rounded-full border border-[#D4AF37]/40 bg-[#0F4C3A] px-3 py-1.5 text-xs font-bold text-[#FDFBF7] shadow-[0_6px_18px_rgba(15,76,58,0.28)]">
-                {t(organNameKey(id))}
-                {selected ? ` · ${t('universe.cta.added')}` : ''}
-              </span>
-            )}
-          </div>
-        );
-      })}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

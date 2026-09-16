@@ -8,9 +8,14 @@ export type ConditionId =
   | 'gout'
   | 'liver'
   | 'kidney'
+  | 'kidney-stones'
   | 'thyroid'
   | 'ibs'
-  | 'mental-wellness';
+  | 'mental-wellness'
+  | 'heart-lipids'
+  | 'pcos'
+  | 'weight-obesity'
+  | 'bones-joints';
 
 export interface NutritionRuleFlags {
   lowGI?: boolean;

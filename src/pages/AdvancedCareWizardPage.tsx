@@ -9,13 +9,17 @@ import { EXERCISES_DATABASE } from '../data/exercises/index';
 import { FOODS_DATABASE } from '../utils/calculations';
 import type { FoodItem } from '../utils/calculations';
 import {
+  calculateBonesJointsScore,
   calculateGoutScore,
   calculateHeartScore,
   calculateKidneyScore,
+  calculateKidneyStonesScore,
   calculateLiverScore,
   calculateMentalWellnessScore,
   calculatePancreasScore,
+  calculatePcosScore,
   calculateThyroidScore,
+  calculateWeightScore,
 } from '../utils/healthScoring';
 import { IconScene } from '../components/IconScene';
 import StickyPlanBar from '../components/wizard/StickyPlanBar';
@@ -84,6 +88,11 @@ const LAB_FIELD_KEYS: Record<Exclude<ConditionId, 'ibs'>, string[]> = {
   kidney: ['creatinine', 'egfr', 'potassium'],
   thyroid: ['tsh', 't3', 't4'],
   'mental-wellness': ['vitaminD', 'b12', 'iron', 'tsh'],
+  'heart-lipids': ['systolic', 'diastolic', 'total', 'ldl', 'hdl', 'triglycerides'],
+  'kidney-stones': ['uricAcid'],
+  pcos: ['fasting', 'hba1c'],
+  'weight-obesity': [],
+  'bones-joints': ['vitaminD'],
 };
 
 const CUISINE_LOOKUP: Record<string, string> = {
@@ -432,9 +441,18 @@ const AdvancedCareWizardPage: React.FC = () => {
         return calculatePancreasScore(numericLabs);
       case 'hypertension':
       case 'cholesterol':
+      case 'heart-lipids':
         return calculateHeartScore(numericLabs);
       case 'gout':
         return calculateGoutScore(numericLabs);
+      case 'kidney-stones':
+        return calculateKidneyStonesScore(numericLabs);
+      case 'pcos':
+        return calculatePcosScore(numericLabs);
+      case 'bones-joints':
+        return calculateBonesJointsScore(numericLabs);
+      case 'weight-obesity':
+        return calculateWeightScore(profile);
       case 'liver':
         return calculateLiverScore(numericLabs);
       case 'kidney':
