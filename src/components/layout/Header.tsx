@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ChevronDown, Globe, Leaf, Menu, X } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useAdmin } from '../../context/AdminContext';
+import { useAuth } from '../../context/AuthContext';
 import { hasPlanData } from '../hub/data';
 import { translations } from '../../i18n/translations';
 import type { Language } from '../../types';
@@ -17,20 +18,25 @@ const languageOptions: { code: Language; flag: string; label: string }[] = [
 
 const Header: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { t, language, setLanguage, dir } = useLanguage();
   const { isAdmin, disableAdmin } = useAdmin();
+  const { user, signOut } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const [adminOpen, setAdminOpen] = useState(false);
+  const [userOpen, setUserOpen] = useState(false);
   const [hubReady, setHubReady] = useState(false);
   const desktopLangRef = useRef<HTMLDivElement>(null);
   const drawerLangRef = useRef<HTMLDivElement>(null);
   const adminRef = useRef<HTMLDivElement>(null);
+  const userRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMobileOpen(false);
     setLangOpen(false);
     setAdminOpen(false);
+    setUserOpen(false);
     setHubReady(hasPlanData());
   }, [location.pathname]);
 
@@ -40,14 +46,25 @@ const Header: React.FC = () => {
       const insideDesktop = desktopLangRef.current?.contains(target);
       const insideDrawer = drawerLangRef.current?.contains(target);
       const insideAdmin = adminRef.current?.contains(target);
-      if (!insideDesktop && !insideDrawer && !insideAdmin) {
+      const insideUser = userRef.current?.contains(target);
+      if (!insideDesktop && !insideDrawer && !insideAdmin && !insideUser) {
         setLangOpen(false);
         setAdminOpen(false);
+        setUserOpen(false);
       }
     };
     document.addEventListener('mousedown', onMouseDown);
     return () => document.removeEventListener('mousedown', onMouseDown);
   }, []);
+
+  const handleSignOut = async () => {
+    setUserOpen(false);
+    setMobileOpen(false);
+    await signOut();
+    navigate('/');
+  };
+
+  const displayName = user?.name || user?.email || '';
 
   const links: { to: string; exact?: boolean; key: string }[] = [
     { to: '/', key: 'nav.home', exact: true },
@@ -147,8 +164,54 @@ const Header: React.FC = () => {
               )}
             </div>
 
-            <Link to="/login" className="app-header-login">{t('nav.login')}</Link>
-            <Link to="/wizard/step1" className="app-header-start">{t('nav.startNow')}</Link>
+            {user ? (
+              <div className="relative" ref={userRef}>
+                <button
+                  type="button"
+                  aria-haspopup="menu"
+                  aria-expanded={userOpen}
+                  onClick={() => setUserOpen((o) => !o)}
+                  className="inline-flex items-center gap-2 rounded-full bg-[#F4F1EB] text-[#0F4C3A] px-2 py-1 text-xs font-bold border border-[#EFEBE4] hover:border-[#D4AF37] transition-colors whitespace-nowrap"
+                >
+                  <span className="w-6 h-6 rounded-full bg-[#D4AF37] text-[#0F4C3A] text-[10px] font-extrabold flex items-center justify-center shrink-0">
+                    {displayName.charAt(0)?.toUpperCase() || '🩺'}
+                  </span>
+                  <span className="max-w-[110px] truncate">{displayName}</span>
+                  <ChevronDown size={14} className={`app-header-lang-caret${userOpen ? ' open' : ''}`} />
+                </button>
+                {userOpen && (
+                  <div className="absolute top-full mt-2 end-0 z-50 min-w-[200px] rounded-2xl bg-white border border-[#EFEBE4] shadow-[0_12px_32px_rgba(15,76,58,0.12)] p-2">
+                    <Link
+                      to="/my-health-hub"
+                      onClick={() => setUserOpen(false)}
+                      className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-start text-sm font-bold text-[#0F4C3A] hover:bg-[#FDFBF7] transition-colors"
+                    >
+                      🫀 {t('nav.myHealthHub')}
+                    </Link>
+                    <Link
+                      to="/dashboard"
+                      onClick={() => setUserOpen(false)}
+                      className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-start text-sm font-bold text-[#0F4C3A] hover:bg-[#FDFBF7] transition-colors"
+                    >
+                      👤 {t('nav.profile')}
+                    </Link>
+                    <div className="h-px bg-[#EFEBE4] my-1" />
+                    <button
+                      type="button"
+                      onClick={handleSignOut}
+                      className="w-full flex items-center gap-2 rounded-xl px-3 py-2.5 text-start text-sm font-bold text-[#B91C1C] hover:bg-[#FDFBF7] transition-colors"
+                    >
+                      ↩ {t('nav.signOut')}
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <>
+                <Link to="/login" className="app-header-login">{t('nav.login')}</Link>
+                <Link to="/wizard/step1" className="app-header-start">{t('nav.startNow')}</Link>
+              </>
+            )}
           </div>
 
           <button
@@ -217,12 +280,28 @@ const Header: React.FC = () => {
               )}
             </div>
 
-            <Link to="/login" className="app-header-login" onClick={() => setMobileOpen(false)}>
-              {t('nav.login')}
-            </Link>
-            <Link to="/wizard/step1" className="app-header-start" onClick={() => setMobileOpen(false)}>
-              {t('nav.startNow')}
-            </Link>
+            {user ? (
+              <div className="flex flex-col gap-1 border-t border-[#EFEBE4] pt-3">
+                <Link to="/my-health-hub" className="app-header-login" onClick={() => setMobileOpen(false)}>
+                  🫀 {t('nav.myHealthHub')}
+                </Link>
+                <Link to="/dashboard" className="app-header-login" onClick={() => setMobileOpen(false)}>
+                  👤 {t('nav.profile')}
+                </Link>
+                <button type="button" onClick={handleSignOut} className="app-header-login text-start">
+                  ↩ {t('nav.signOut')}
+                </button>
+              </div>
+            ) : (
+              <>
+                <Link to="/login" className="app-header-login" onClick={() => setMobileOpen(false)}>
+                  {t('nav.login')}
+                </Link>
+                <Link to="/wizard/step1" className="app-header-start" onClick={() => setMobileOpen(false)}>
+                  {t('nav.startNow')}
+                </Link>
+              </>
+            )}
           </div>
         </div>
 

@@ -175,6 +175,8 @@ type TranslationKeys = {
   'nav.contact': string;
   'nav.login': string;
   'nav.startNow': string;
+  'nav.profile': string;
+  'nav.signOut': string;
   heroEyebrow: string;
   heroTitleLine1: string;
   heroTitleLine2: string;
@@ -3457,6 +3459,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'nav.contact': 'Contact',
     'nav.login': 'Login',
     'nav.startNow': 'Start Now',
+    'nav.profile': 'Profile',
+    'nav.signOut': 'Sign out',
     heroEyebrow: 'Your Biological Fingerprint',
     heroTitleLine1: 'Understand Your Body.',
     heroTitleLine2: 'Transform Your Health.',
@@ -5572,6 +5576,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'nav.contact': 'Contact',
     'nav.login': 'Connexion',
     'nav.startNow': 'Commencer',
+    'nav.profile': 'Profil',
+    'nav.signOut': 'Se déconnecter',
     heroEyebrow: 'Votre empreinte biologique',
     heroTitleLine1: 'Comprenez votre corps.',
     heroTitleLine2: 'Transformez votre santé.',
@@ -7657,6 +7663,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'nav.contact': 'Contacto',
     'nav.login': 'Iniciar sesión',
     'nav.startNow': 'Empezar ahora',
+    'nav.profile': 'Perfil',
+    'nav.signOut': 'Cerrar sesión',
     heroEyebrow: 'Tu huella biológica',
     heroTitleLine1: 'Entiende tu cuerpo.',
     heroTitleLine2: 'Transforma tu salud.',
@@ -9742,6 +9750,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'nav.contact': 'اتصل بنا',
     'nav.login': 'تسجيل الدخول',
     'nav.startNow': 'ابدأ الآن',
+    'nav.profile': 'الملف الشخصي',
+    'nav.signOut': 'تسجيل الخروج',
     heroEyebrow: 'بصمتك الحيوية',
     heroTitleLine1: 'افهم جسدك.',
     heroTitleLine2: 'غيّر صحتك.',
@@ -11838,6 +11848,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'nav.contact': 'Kontakt',
     'nav.login': 'Anmelden',
     'nav.startNow': 'Jetzt starten',
+    'nav.profile': 'Profil',
+    'nav.signOut': 'Abmelden',
     heroEyebrow: 'Ihr biologischer Fingerabdruck',
     heroTitleLine1: 'Verstehen Sie Ihren Körper.',
     heroTitleLine2: 'Verwandeln Sie Ihre Gesundheit.',

@@ -2,7 +2,11 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight, FileDown, Lock, Play, Sparkles } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
 import { useSubscription } from '../context/SubscriptionContext';
+import { supabase } from '../lib/supabase';
+import { savePlanToStorage } from '../utils/planStorage';
+import type { PlanStoragePayload } from '../utils/planStorage';
 import type { FeatureId, Tier } from '../context/SubscriptionContext';
 import PaywallModal from '../components/health-universe/PaywallModal';
 import ProfileHeader from '../components/hub/ProfileHeader';
@@ -40,6 +44,7 @@ const SLOT_KEY: Record<string, TKey> = {
 
 const MyHealthHubPage: React.FC = () => {
   const { t, dir, language: lang } = useLanguage();
+  const { user } = useAuth();
   const { hasFeature, upgrade } = useSubscription();
   const navigate = useNavigate();
   const location = useLocation();
@@ -72,12 +77,37 @@ const MyHealthHubPage: React.FC = () => {
   const [paywall, setPaywall] = useState<FeatureId | null>(null);
   const [toast, setToast] = useState('');
   const [day, setDay] = useState(1);
+  const [synced, setSynced] = useState(false);
+
+  useEffect(() => {
+    if (!user) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const { data } = await supabase
+          .from('plans')
+          .select('plan_data, created_at')
+          .eq('user_id', user.id)
+          .order('created_at', { ascending: false })
+          .limit(1)
+          .maybeSingle();
+        if (cancelled || !data?.plan_data || typeof data.plan_data !== 'object') return;
+        savePlanToStorage(data.plan_data as PlanStoragePayload);
+        if (!cancelled) setSynced(true);
+      } catch {
+        /* ignore */
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [user]);
 
   const paid = hasFeature('hubAllDays');
   const dayLimit = paid ? 7 : hasFeature('hubDay3') ? 3 : hasFeature('hubDay2') ? 2 : 1;
 
-  const plan = useMemo(() => readHubPlan(), []);
-  const conditions = useMemo(() => readHubConditions(), []);
+  const plan = useMemo(() => readHubPlan(), [synced]);
+  const conditions = useMemo(() => readHubConditions(), [synced]);
   const profile = plan?.profile ?? readHubProfile();
   const hasData =
     Boolean(plan) ||

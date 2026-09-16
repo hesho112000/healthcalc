@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
-import { api } from '../../utils/api';
+import { supabase } from '../../lib/supabase';
 
 interface SaveProgressButtonProps {
   module: string;
@@ -12,7 +12,7 @@ interface SaveProgressButtonProps {
 }
 
 const SaveProgressButton: React.FC<SaveProgressButtonProps> = ({ module, inputs, results, className = '' }) => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const { t } = useLanguage();
   const [status, setStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
@@ -35,7 +35,13 @@ const SaveProgressButton: React.FC<SaveProgressButtonProps> = ({ module, inputs,
     setStatus('saving');
     setErrorMsg('');
     try {
-      await api.saveHealthData(module, inputs, results);
+      const rawWeight = Number(inputs?.weight);
+      const { error } = await supabase.from('progress').insert({
+        user_id: user?.id,
+        date: new Date().toISOString().slice(0, 10),
+        weight_kg: Number.isFinite(rawWeight) && rawWeight > 0 ? rawWeight : null,
+      });
+      if (error) throw error;
       setStatus('saved');
       setTimeout(() => setStatus('idle'), 3000);
     } catch (err: any) {

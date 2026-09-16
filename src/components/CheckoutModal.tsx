@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
-import { api } from '../utils/api';
+import { supabase } from '../lib/supabase';
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -67,9 +67,22 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, onSucces
     setStep('processing');
     setErrorMsg('');
     try {
-      await api.subscribe();
-      const profile = await api.getProfile();
-      updateUser(profile.user);
+      const startedAt = new Date();
+      const expiresAt = new Date(startedAt);
+      expiresAt.setFullYear(expiresAt.getFullYear() + 1);
+      const { error } = await supabase.from('subscriptions').insert({
+        user_id: user.id,
+        tier: 'pro',
+        status: 'active',
+        started_at: startedAt.toISOString(),
+        expires_at: expiresAt.toISOString(),
+      });
+      if (error) throw error;
+      updateUser({
+        ...user,
+        subscription_status: 'pro',
+        subscription_end_date: expiresAt.toISOString(),
+      });
       setStep('success');
       setTimeout(() => { onSuccess(); }, 2000);
     } catch (err: any) {

@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 
 const RegisterPage: React.FC = () => {
-  const { register } = useAuth();
+  const { signUp } = useAuth();
   const { t, dir } = useLanguage();
   const navigate = useNavigate();
   const [form, setForm] = useState({ name: '', email: '', password: '', confirmPassword: '' });
@@ -26,8 +26,8 @@ const RegisterPage: React.FC = () => {
 
     setLoading(true);
     try {
-      await register(form.name, form.email, form.password);
-      navigate('/dashboard');
+      await signUp(form.name, form.email, form.password);
+      navigate('/my-health-hub');
     } catch (err: any) {
       setError(err.message || t('authRegisterFailed'));
     } finally {

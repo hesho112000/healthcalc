@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 
 const LoginPage: React.FC = () => {
-  const { login } = useAuth();
+  const { signIn } = useAuth();
   const { t } = useLanguage();
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', password: '' });
@@ -16,8 +16,8 @@ const LoginPage: React.FC = () => {
     setError('');
     setLoading(true);
     try {
-      await login(form.email, form.password);
-      navigate('/dashboard');
+      await signIn(form.email, form.password);
+      navigate('/my-health-hub');
     } catch (err: any) {
       setError(err.message || t('authLoginFailed'));
     } finally {
