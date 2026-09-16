@@ -3,6 +3,8 @@ import { supabase } from '../lib/supabase';
 import type { Session, User as SupabaseUser } from '@supabase/supabase-js';
 import { ADMIN_SECRET_KEY, ADMIN_STORAGE_KEY } from './AdminContext';
 
+export const ENABLE_PHONE_AUTH = false;
+
 export const isAdmin = (): boolean => {
   try {
     return (
@@ -45,6 +47,9 @@ interface AuthContextType {
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (name: string, email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
+  signInWithPhone: (phone: string) => Promise<void>;
+  verifyOtp: (phone: string, token: string) => Promise<void>;
   login: (email: string, password: string) => Promise<void>;
   register: (name: string, email: string, password: string) => Promise<void>;
   logout: () => void;
@@ -183,6 +188,31 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setSession(null);
   }, []);
 
+  const signInWithGoogle = useCallback(async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}${import.meta.env.BASE_URL}`,
+      },
+    });
+    if (error) throw error;
+  }, []);
+
+  const signInWithPhone = useCallback(async (phone: string) => {
+    const { error } = await supabase.auth.signInWithOtp({ phone });
+    if (error) throw error;
+  }, []);
+
+  const verifyOtp = useCallback(async (phone: string, token: string) => {
+    const { data, error } = await supabase.auth.verifyOtp({ phone, token, type: 'sms' });
+    if (error) throw error;
+    setSession(data.session);
+    if (data.user) {
+      setUser(await buildAuthUser(data.user));
+      void ensureProfile(data.user.id, (data.user.user_metadata?.name as string | undefined) ?? null);
+    }
+  }, []);
+
   const login = signIn;
   const register = signUp;
   const logout = useCallback(() => {
@@ -202,6 +232,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         signIn,
         signUp,
         signOut,
+        signInWithGoogle,
+        signInWithPhone,
+        verifyOtp,
         login,
         register,
         logout,

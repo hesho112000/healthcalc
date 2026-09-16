@@ -74,6 +74,13 @@ const MyHealthHubPage: React.FC = () => {
     }
     return 'there';
   });
+
+  useEffect(() => {
+    if (!user) return;
+    const fallbackName = user.name || (user.email ? user.email.split('@')[0] : '') || '';
+    if (fallbackName) setName(fallbackName);
+  }, [user]);
+
   const [paywall, setPaywall] = useState<FeatureId | null>(null);
   const [toast, setToast] = useState('');
   const [day, setDay] = useState(1);

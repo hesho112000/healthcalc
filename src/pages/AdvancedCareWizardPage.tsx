@@ -610,7 +610,7 @@ const AdvancedCareWizardPage: React.FC = () => {
       const { error } = await supabase.from('profiles').upsert(
         {
           id: user.id,
-          full_name: user.name ?? null,
+          ...(user.name ? { full_name: user.name } : {}),
           age,
           gender,
           height_cm: heightCm,

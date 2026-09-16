@@ -830,6 +830,14 @@ type TranslationKeys = {
   authPasswordMin6: string;
   authRegisterFailed: string;
   authLoginFailed: string;
+  'auth.continueWithGoogle': string;
+  'auth.orContinueWith': string;
+  'auth.signInWithPhone': string;
+  'auth.enterPhone': string;
+  'auth.enterOtp': string;
+  'auth.verifyOtp': string;
+  'auth.tabEmail': string;
+  'auth.tabPhone': string;
   // Header
   headerDashboard: string;
   headerSignIn: string;
@@ -3443,6 +3451,14 @@ export const translations: Record<Language, TranslationKeys> = {
     authPasswordMin6: 'At least 6 characters',
     authRegisterFailed: 'Registration failed. Please try again.',
     authLoginFailed: 'Invalid email or password.',
+    'auth.continueWithGoogle': 'Continue with Google',
+    'auth.orContinueWith': 'Or continue with',
+    'auth.signInWithPhone': 'Sign in with Phone',
+    'auth.enterPhone': 'Enter your phone number',
+    'auth.enterOtp': 'Enter the code sent to your phone',
+    'auth.verifyOtp': 'Verify Code',
+    'auth.tabEmail': 'Email',
+    'auth.tabPhone': 'Phone',
     // Header
     headerDashboard: 'Dashboard',
     headerSignIn: 'Sign In',
@@ -5560,6 +5576,14 @@ export const translations: Record<Language, TranslationKeys> = {
     authPasswordMin6: 'Au moins 6 caractères',
     authRegisterFailed: 'Échec de l\'inscription. Veuillez réessayer.',
     authLoginFailed: 'Email ou mot de passe invalide.',
+    'auth.continueWithGoogle': 'Continuer avec Google',
+    'auth.orContinueWith': 'Ou continuer avec',
+    'auth.signInWithPhone': 'Se connecter avec le téléphone',
+    'auth.enterPhone': 'Entrez votre numéro de téléphone',
+    'auth.enterOtp': 'Entrez le code envoyé sur votre téléphone',
+    'auth.verifyOtp': 'Vérifier le code',
+    'auth.tabEmail': 'E-mail',
+    'auth.tabPhone': 'Téléphone',
     // Header
     headerDashboard: 'Tableau de Bord',
     headerSignIn: 'Connexion',
@@ -7647,6 +7671,14 @@ export const translations: Record<Language, TranslationKeys> = {
     authPasswordMin6: 'Al menos 6 caracteres',
     authRegisterFailed: 'Error al registrarse. Inténtalo de nuevo.',
     authLoginFailed: 'Correo o contraseña incorrectos.',
+    'auth.continueWithGoogle': 'Continuar con Google',
+    'auth.orContinueWith': 'O continuar con',
+    'auth.signInWithPhone': 'Iniciar sesión con teléfono',
+    'auth.enterPhone': 'Introduce tu número de teléfono',
+    'auth.enterOtp': 'Introduce el código enviado a tu teléfono',
+    'auth.verifyOtp': 'Verificar código',
+    'auth.tabEmail': 'Correo electrónico',
+    'auth.tabPhone': 'Teléfono',
     // Header
     headerDashboard: 'Panel',
     headerSignIn: 'Iniciar Sesión',
@@ -9734,6 +9766,14 @@ export const translations: Record<Language, TranslationKeys> = {
     authPasswordMin6: '6 أحرف على الأقل',
     authRegisterFailed: 'فشل التسجيل. يرجى المحاولة مرة أخرى.',
     authLoginFailed: 'البريد الإلكتروني أو كلمة المرور غير صحيحة.',
+    'auth.continueWithGoogle': 'المتابعة عبر Google',
+    'auth.orContinueWith': 'أو المتابعة عبر',
+    'auth.signInWithPhone': 'تسجيل الدخول بالهاتف',
+    'auth.enterPhone': 'أدخل رقم هاتفك',
+    'auth.enterOtp': 'أدخل الرمز المرسل إلى هاتفك',
+    'auth.verifyOtp': 'تحقق من الرمز',
+    'auth.tabEmail': 'البريد الإلكتروني',
+    'auth.tabPhone': 'الهاتف',
     // Header
     headerDashboard: 'لوحة التحكم',
     headerSignIn: 'تسجيل الدخول',
@@ -11832,6 +11872,14 @@ export const translations: Record<Language, TranslationKeys> = {
     authPasswordMin6: 'Mindestens 6 Zeichen',
     authRegisterFailed: 'Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.',
     authLoginFailed: 'Ungültige E-Mail oder ungültiges Passwort.',
+    'auth.continueWithGoogle': 'Mit Google fortfahren',
+    'auth.orContinueWith': 'Oder fortfahren mit',
+    'auth.signInWithPhone': 'Mit Telefon anmelden',
+    'auth.enterPhone': 'Gib deine Telefonnummer ein',
+    'auth.enterOtp': 'Gib den an dein Telefon gesendeten Code ein',
+    'auth.verifyOtp': 'Code verifizieren',
+    'auth.tabEmail': 'E-Mail',
+    'auth.tabPhone': 'Telefon',
     // Header
     headerDashboard: 'Dashboard',
     headerSignIn: 'Anmelden',
