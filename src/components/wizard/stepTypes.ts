@@ -7,8 +7,10 @@ export type ActivityLevel = 'sedentary' | 'light' | 'moderate' | 'active' | 'ver
 export type SleepHours = 'less6' | '6to7' | '7to8' | 'more8';
 export type StressLevel = 'low' | 'medium' | 'high';
 export type GoalType = 'lose' | 'maintain' | 'gain' | 'general';
-export type GoalKey = 'lose' | 'gain' | 'maintain' | 'general' | 'athletic';
-export const GOAL_ORDER: GoalKey[] = ['lose', 'gain', 'maintain', 'general', 'athletic'];
+export type WeightGoalKey = 'lose' | 'gain' | 'maintain';
+export type LifestyleGoalKey = 'general' | 'athletic' | 'sleep' | 'stress';
+export const WEIGHT_GOALS: WeightGoalKey[] = ['lose', 'gain', 'maintain'];
+export const LIFESTYLE_GOALS: LifestyleGoalKey[] = ['general', 'athletic', 'sleep', 'stress'];
 export type PlanIntensity = 'light' | 'medium' | 'intense';
 
 export interface WizardProfile {
@@ -25,7 +27,8 @@ export interface WizardLifestyle {
 }
 
 export interface WizardGoal {
-  goals: GoalKey[];
+  weightGoal: WeightGoalKey | null;
+  lifestyleGoals: LifestyleGoalKey[];
   targetWeight: string;
   timelineMonths: number;
   intensity: PlanIntensity | '';

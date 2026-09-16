@@ -45,8 +45,8 @@ import type { FeatureId, Tier } from '../context/SubscriptionContext';
 import { savePlanToStorage } from '../utils/planStorage';
 import { translations } from '../i18n/translations';
 import type { LucideIcon } from 'lucide-react';
-import type { TKey, LabValues, WizardGoal, WizardLifestyle, GoalKey, PlanIntensity } from '../components/wizard/stepTypes';
-import { GOAL_ORDER } from '../components/wizard/stepTypes';
+import type { TKey, LabValues, WizardGoal, WizardLifestyle, WeightGoalKey, LifestyleGoalKey, PlanIntensity } from '../components/wizard/stepTypes';
+import { WEIGHT_GOALS, LIFESTYLE_GOALS } from '../components/wizard/stepTypes';
 
 const EMERALD = '#0F4C3A';
 const GOLD = '#D4AF37';
@@ -159,14 +159,20 @@ const exerciseCategoryOf = (ex: Exercise): string => {
 };
 
 const normalizeGoal = (raw: unknown): WizardGoal => {
-  if (!raw || typeof raw !== 'object') return { goals: [], targetWeight: '', timelineMonths: 3, intensity: '' };
-  const legacy = raw as Partial<WizardGoal> & { type?: string };
+  if (!raw || typeof raw !== 'object') return { weightGoal: null, lifestyleGoals: [], targetWeight: '', timelineMonths: 3, intensity: '' };
+  const legacy = raw as Partial<WizardGoal> & { goals?: string[]; type?: string };
+  const legacyGoals = Array.isArray(legacy.goals) ? legacy.goals : [];
+  const legacyType = typeof legacy.type === 'string' ? legacy.type : '';
+  const weightFromLegacy = (): WeightGoalKey | null => {
+    if (legacy.weightGoal !== null && legacy.weightGoal !== undefined) return legacy.weightGoal;
+    for (const id of WEIGHT_GOALS) if (legacyGoals.includes(id) || legacyType === id) return id;
+    return null;
+  };
   return {
-    goals: Array.isArray(legacy.goals)
-      ? legacy.goals.filter((g): g is GoalKey => GOAL_ORDER.includes(g as GoalKey))
-      : typeof legacy.type === 'string' && GOAL_ORDER.includes(legacy.type as GoalKey)
-        ? [legacy.type as GoalKey]
-        : [],
+    weightGoal: weightFromLegacy(),
+    lifestyleGoals: Array.isArray(legacy.lifestyleGoals)
+      ? legacy.lifestyleGoals.filter((g): g is LifestyleGoalKey => LIFESTYLE_GOALS.includes(g as LifestyleGoalKey))
+      : legacyGoals.filter((g): g is LifestyleGoalKey => LIFESTYLE_GOALS.includes(g as LifestyleGoalKey)),
     targetWeight: typeof legacy.targetWeight === 'string' ? legacy.targetWeight : '',
     timelineMonths: typeof legacy.timelineMonths === 'number' ? legacy.timelineMonths : 3,
     intensity: legacy.intensity as PlanIntensity | '' || '',
@@ -212,7 +218,7 @@ const AdvancedCareWizardPage: React.FC = () => {
   const [profile, setProfile] = useState({ age: 35, height: 170, weight: 70, gender: 'male' as 'male' | 'female' });
   const [labs, setLabs] = useState<LabValues>({});
   const [lifestyle, setLifestyle] = useState<WizardLifestyle>({ activity: '', sleep: '', stress: '' });
-  const [goal, setGoal] = useState<WizardGoal>({ goals: [], targetWeight: '', timelineMonths: 3, intensity: '' });
+  const [goal, setGoal] = useState<WizardGoal>({ weightGoal: null, lifestyleGoals: [], targetWeight: '', timelineMonths: 3, intensity: '' });
   const [cuisine, setCuisine] = useState('Egyptian');
   const [exerciseTypes, setExerciseTypes] = useState<string[]>([]);
   const [toast, setToast] = useState('');
@@ -289,10 +295,10 @@ const AdvancedCareWizardPage: React.FC = () => {
   const calorieTarget = useMemo(() => {
     const tdee = Math.round(bmr * (ACTIVITY_MULTIPLIER[lifestyle.activity] ?? 1.375));
     let target = tdee;
-    if (goal.goals.includes('lose')) target -= DEFICIT_BY_INTENSITY[goal.intensity] ?? 0;
-    else if (goal.goals.includes('gain')) target += 250;
+    if (goal.weightGoal === 'lose') target -= DEFICIT_BY_INTENSITY[goal.intensity] ?? 0;
+    else if (goal.weightGoal === 'gain') target += 250;
     return Math.max(1400, target);
-  }, [bmr, lifestyle.activity, goal.goals, goal.intensity]);
+  }, [bmr, lifestyle.activity, goal.weightGoal, goal.intensity]);
 
   const planFoodPool = useMemo(() => {
     const safe = foodPool.filter((item) => item.score !== 'avoid');

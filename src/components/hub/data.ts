@@ -128,7 +128,7 @@ export interface HubStoredPlan {
   calories?: number;
   cuisine?: string;
   lifestyle?: { activity?: string; sleep?: string; stress?: string };
-  goal?: { type?: string; goals?: string[]; targetWeight?: string; timelineMonths?: number; intensity?: string };
+  goal?: { type?: string; goals?: string[]; weightGoal?: string | null; lifestyleGoals?: string[]; targetWeight?: string; timelineMonths?: number; intensity?: string };
   exerciseTypes?: string[];
   overall?: number | null;
   projected?: number | null;

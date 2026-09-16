@@ -1,5 +1,5 @@
 import React from 'react';
-import type { TKey, WizardGoal, WizardProfile, PlanIntensity, GoalKey } from './stepTypes';
+import type { TKey, WizardGoal, WizardProfile, PlanIntensity, WeightGoalKey, LifestyleGoalKey } from './stepTypes';
 
 type T = (key: TKey) => string;
 
@@ -22,12 +22,17 @@ const INTENSITY_OPTIONS: Array<{ id: PlanIntensity; emoji: string }> = [
   { id: 'intense', emoji: '🔥' },
 ];
 
-const GOAL_OPTIONS: Array<{ id: GoalKey; emoji: string; key: string; requiresTarget: boolean }> = [
+const WEIGHT_GOAL_OPTIONS: Array<{ id: WeightGoalKey; emoji: string; key: string; requiresTarget: boolean }> = [
   { id: 'lose', emoji: '⚖️', key: 'wizard.goal.loseWeight', requiresTarget: true },
   { id: 'gain', emoji: '💪', key: 'wizard.goal.gainMuscle', requiresTarget: true },
   { id: 'maintain', emoji: '⚖️', key: 'wizard.goal.maintain', requiresTarget: false },
-  { id: 'general', emoji: '🌿', key: 'wizard.goal.generalHealth', requiresTarget: false },
-  { id: 'athletic', emoji: '🏃', key: 'wizard.goal.athletic', requiresTarget: false },
+];
+
+const LIFESTYLE_GOAL_OPTIONS: Array<{ id: LifestyleGoalKey; emoji: string; key: string }> = [
+  { id: 'general', emoji: '🌿', key: 'wizard.goal.generalHealth' },
+  { id: 'athletic', emoji: '🏃', key: 'wizard.goal.athletic' },
+  { id: 'sleep', emoji: '😴', key: 'wizard.goal.sleep' },
+  { id: 'stress', emoji: '🧘', key: 'wizard.goal.stress' },
 ];
 
 const GoalStep: React.FC<GoalStepProps> = ({
@@ -40,41 +45,48 @@ const GoalStep: React.FC<GoalStepProps> = ({
   deficits = {},
   onContinue,
 }) => {
-  const goals = goal.goals ?? [];
-  const requiresTarget = goals.includes('lose') || goals.includes('gain');
+  const weightGoal = goal.weightGoal ?? null;
+  const lifestyleGoals = goal.lifestyleGoals ?? [];
+
   const currentWeight = Number(profile.weight) || 0;
   const targetWeight = Number(goal.targetWeight);
+  const needsTarget = weightGoal === 'lose' || weightGoal === 'gain';
   const targetIsValid =
     !goal.targetWeight ||
     (targetWeight > 0 &&
       targetWeight < 300 &&
-      (goals.includes('lose')
+      (weightGoal === 'lose'
         ? targetWeight < currentWeight
-        : goals.includes('gain')
+        : weightGoal === 'gain'
           ? targetWeight > currentWeight
           : true));
-  const ready = Boolean(goals.length > 0 && goal.intensity && targetIsValid && (!requiresTarget || targetWeight > 0));
+  const ready = Boolean(
+    goal.intensity &&
+      (weightGoal !== null || lifestyleGoals.length > 0) &&
+      targetIsValid &&
+      (!needsTarget || targetWeight > 0),
+  );
 
-  const toggleGoal = (id: GoalKey) => {
-    const next = goals.includes(id) ? goals.filter((g) => g !== id) : [...goals, id];
-    onChange({ goals: next });
+  const toggleWeightGoal = (id: WeightGoalKey) => onChange({ weightGoal: id });
+  const toggleLifestyleGoal = (id: LifestyleGoalKey) => {
+    const next = lifestyleGoals.includes(id) ? lifestyleGoals.filter((g) => g !== id) : [...lifestyleGoals, id];
+    onChange({ lifestyleGoals: next });
   };
 
   return (
     <div className="space-y-6">
       <div>
-        <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-          <h3 className="text-sm font-bold text-[#0F4C3A]">{t(tk('wizard.goal.title'))}</h3>
-          <span className="text-[11px] font-semibold text-[#6B7A75]">{t(tk('wizard.goal.multiSelectHint'))}</span>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-          {GOAL_OPTIONS.map(({ id, emoji, key, requiresTarget: needsTarget }) => {
-            const active = goals.includes(id);
+        <h3 className="text-sm font-bold text-[#0F4C3A] mb-2">{t(tk('wizard.goal.weightGoalLabel'))}</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          {WEIGHT_GOAL_OPTIONS.map(({ id, emoji, key }) => {
+            const active = weightGoal === id;
             return (
               <button
                 key={id}
                 type="button"
-                onClick={() => toggleGoal(id)}
+                role="radio"
+                aria-checked={active}
+                onClick={() => toggleWeightGoal(id)}
                 className={`rounded-2xl border bg-white p-3.5 text-left transition ${
                   active
                     ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]'
@@ -83,16 +95,19 @@ const GoalStep: React.FC<GoalStepProps> = ({
               >
                 <span className="text-xl block">{emoji}</span>
                 <span className="text-sm font-bold text-slate-900 mt-1 block">{t(tk(key))}</span>
-                {needsTarget && (
-                  <span className="text-[11px] text-[#4A5A55] block mt-0.5">{t(tk('wizard.goal.targetHint'))}</span>
-                )}
               </button>
             );
           })}
         </div>
       </div>
 
-      {requiresTarget && (
+      {weightGoal === 'maintain' && (
+        <div className="rounded-2xl border border-[#EFEBE4] bg-[#F4F1EB] p-4 text-sm font-semibold text-[#0F4C3A]">
+          {t(tk('wizard.goal.maintainHint'))}
+        </div>
+      )}
+
+      {needsTarget && (
         <div className="grid sm:grid-cols-2 gap-4">
           <label className="block text-sm font-semibold text-slate-900">
             {t(tk('wizard.targetWeight'))}
@@ -106,7 +121,9 @@ const GoalStep: React.FC<GoalStepProps> = ({
               className="w-full mt-2 rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4AF37] bg-[#F4F1EB]/40 text-slate-900"
             />
             {goal.targetWeight && targetWeight > 0 && !targetIsValid && (
-              <span className="mt-1.5 block text-[11px] font-bold text-[#B91C1C]">{t(tk('wizard.targetError'))}</span>
+              <span className="mt-1.5 block text-[11px] font-bold text-[#B91C1C]">
+                {t(tk(weightGoal === 'lose' ? 'wizard.goal.validation.lose' : 'wizard.goal.validation.gain'))}
+              </span>
             )}
           </label>
           <label className="block text-sm font-semibold text-slate-900">
@@ -123,6 +140,32 @@ const GoalStep: React.FC<GoalStepProps> = ({
           </label>
         </div>
       )}
+
+      <div>
+        <h3 className="text-sm font-bold text-[#0F4C3A] mb-2">{t(tk('wizard.goal.lifestyleGoalsLabel'))}</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          {LIFESTYLE_GOAL_OPTIONS.map(({ id, emoji, key }) => {
+            const active = lifestyleGoals.includes(id);
+            return (
+              <button
+                key={id}
+                type="button"
+                role="checkbox"
+                aria-checked={active}
+                onClick={() => toggleLifestyleGoal(id)}
+                className={`rounded-2xl border bg-white p-3.5 text-left transition ${
+                  active
+                    ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]'
+                    : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'
+                }`}
+              >
+                <span className="text-xl block">{emoji}</span>
+                <span className="text-sm font-bold text-slate-900 mt-1 block">{t(tk(key))}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
       <div>
         <h3 className="text-sm font-bold text-[#0F4C3A] mb-2">{t(tk('wizard.intensity'))}</h3>

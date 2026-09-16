@@ -2008,6 +2008,13 @@ type TranslationKeys = {
   'wizard.goal.athletic': string;
   'wizard.goal.multiSelectHint': string;
   'wizard.goal.targetHint': string;
+  'wizard.goal.weightGoalLabel': string;
+  'wizard.goal.lifestyleGoalsLabel': string;
+  'wizard.goal.maintainHint': string;
+  'wizard.goal.validation.lose': string;
+  'wizard.goal.validation.gain': string;
+  'wizard.goal.sleep': string;
+  'wizard.goal.stress': string;
   'wizard.targetWeight': string;
   'wizard.timeline': string;
   'wizard.months': string;
@@ -2757,6 +2764,13 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.goal.athletic': 'Athletic Performance',
     'wizard.goal.multiSelectHint': 'Select all that apply',
     'wizard.goal.targetHint': 'Set target weight',
+    'wizard.goal.weightGoalLabel': 'Weight Goal (pick one)',
+    'wizard.goal.lifestyleGoalsLabel': 'Lifestyle Goals (pick all that apply)',
+    'wizard.goal.maintainHint': 'Focus on consistency and healthy habits.',
+    'wizard.goal.validation.lose': 'Target must be less than your current weight.',
+    'wizard.goal.validation.gain': 'Target must be more than your current weight.',
+    'wizard.goal.sleep': 'Better Sleep',
+    'wizard.goal.stress': 'Stress Reduction',
     'wizard.targetWeight': 'Target weight (kg)',
     'wizard.timeline': 'Timeline',
     'wizard.months': 'months',
@@ -4865,6 +4879,13 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.goal.athletic': 'Performance sportive',
     'wizard.goal.multiSelectHint': 'Sélectionnez tout ce qui s\'applique',
     'wizard.goal.targetHint': 'Définir le poids cible',
+    'wizard.goal.weightGoalLabel': 'Objectif de poids (choisir un)',
+    'wizard.goal.lifestyleGoalsLabel': 'Objectifs de mode de vie (choisissez toutes les options)',
+    'wizard.goal.maintainHint': 'Concentrez-vous sur la régularité et de bonnes habitudes.',
+    'wizard.goal.validation.lose': 'Le poids cible doit être inférieur à votre poids actuel.',
+    'wizard.goal.validation.gain': 'Le poids cible doit être supérieur à votre poids actuel.',
+    'wizard.goal.sleep': 'Mieux dormir',
+    'wizard.goal.stress': 'Réduction du stress',
     'wizard.targetWeight': 'Poids cible (kg)',
     'wizard.timeline': 'Délai',
     'wizard.months': 'mois',
@@ -6943,6 +6964,13 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.goal.athletic': 'Rendimiento deportivo',
     'wizard.goal.multiSelectHint': 'Selecciona todas las que apliquen',
     'wizard.goal.targetHint': 'Establecer peso objetivo',
+    'wizard.goal.weightGoalLabel': 'Meta de peso (elige una)',
+    'wizard.goal.lifestyleGoalsLabel': 'Metas de estilo de vida (elige todas las que apliquen)',
+    'wizard.goal.maintainHint': 'Concéntrate en la constancia y los hábitos saludables.',
+    'wizard.goal.validation.lose': 'El peso objetivo debe ser menor que tu peso actual.',
+    'wizard.goal.validation.gain': 'El peso objetivo debe ser mayor que tu peso actual.',
+    'wizard.goal.sleep': 'Dormir mejor',
+    'wizard.goal.stress': 'Reducción del estrés',
     'wizard.targetWeight': 'Peso objetivo (kg)',
     'wizard.timeline': 'Plazo',
     'wizard.months': 'meses',
@@ -9021,6 +9049,13 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.goal.athletic': 'الأداء الرياضي',
     'wizard.goal.multiSelectHint': 'اختر كل ما ينطبق',
     'wizard.goal.targetHint': 'تحديد الوزن المستهدف',
+    'wizard.goal.weightGoalLabel': 'هدف الوزن (اختر واحدًا)',
+    'wizard.goal.lifestyleGoalsLabel': 'أهداف نمط الحياة (اختر كل ما ينطبق)',
+    'wizard.goal.maintainHint': 'ركّز على الاستمرارية والعادات الصحية.',
+    'wizard.goal.validation.lose': 'يجب أن يكون الوزن المستهدف أقل من وزنك الحالي.',
+    'wizard.goal.validation.gain': 'يجب أن يكون الوزن المستهدف أكثر من وزنك الحالي.',
+    'wizard.goal.sleep': 'نوم أفضل',
+    'wizard.goal.stress': 'تقليل التوتر',
     'wizard.targetWeight': 'الوزن المستهدف (كجم)',
     'wizard.timeline': 'المدة الزمنية',
     'wizard.months': 'أشهر',
@@ -11110,6 +11145,13 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.goal.athletic': 'Sportliche Leistung',
     'wizard.goal.multiSelectHint': 'Wählen Sie alle zutreffenden',
     'wizard.goal.targetHint': 'Zielgewicht festlegen',
+    'wizard.goal.weightGoalLabel': 'Gewichtsziel (eines auswählen)',
+    'wizard.goal.lifestyleGoalsLabel': 'Lebensziele (alle zutreffenden auswählen)',
+    'wizard.goal.maintainHint': 'Konzentrieren Sie sich auf Beständigkeit und gesunde Gewohnheiten.',
+    'wizard.goal.validation.lose': 'Das Zielgewicht muss unter Ihrem aktuellen Gewicht liegen.',
+    'wizard.goal.validation.gain': 'Das Zielgewicht muss über Ihrem aktuellen Gewicht liegen.',
+    'wizard.goal.sleep': 'Besserer Schlaf',
+    'wizard.goal.stress': 'Stressreduktion',
     'wizard.targetWeight': 'Zielgewicht (kg)',
     'wizard.timeline': 'Zeitraum',
     'wizard.months': 'Monate',
