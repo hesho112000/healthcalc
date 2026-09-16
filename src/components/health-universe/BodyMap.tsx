@@ -87,7 +87,7 @@ const BodyMap: React.FC<BodyMapProps> = ({ selectedConditions = [], interactive 
       <img
         src={BODY_MAP_SRC}
         alt={t('universe.title')}
-        className="w-full h-auto select-none"
+        className="w-full h-auto select-none mix-blend-multiply"
         draggable={false}
       />
 

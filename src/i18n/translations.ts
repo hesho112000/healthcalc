@@ -2002,6 +2002,12 @@ type TranslationKeys = {
   'wizard.goal.general.desc': string;
   'wizard.goal.maintain': string;
   'wizard.goal.maintain.desc': string;
+  'wizard.goal.loseWeight': string;
+  'wizard.goal.gainMuscle': string;
+  'wizard.goal.generalHealth': string;
+  'wizard.goal.athletic': string;
+  'wizard.goal.multiSelectHint': string;
+  'wizard.goal.targetHint': string;
   'wizard.targetWeight': string;
   'wizard.timeline': string;
   'wizard.months': string;
@@ -2745,6 +2751,12 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.goal.general.desc': 'Feel better and stay balanced',
     'wizard.goal.maintain': 'Maintain weight',
     'wizard.goal.maintain.desc': 'Keep your current weight',
+    'wizard.goal.loseWeight': 'Lose Weight',
+    'wizard.goal.gainMuscle': 'Gain Muscle',
+    'wizard.goal.generalHealth': 'General Health',
+    'wizard.goal.athletic': 'Athletic Performance',
+    'wizard.goal.multiSelectHint': 'Select all that apply',
+    'wizard.goal.targetHint': 'Set target weight',
     'wizard.targetWeight': 'Target weight (kg)',
     'wizard.timeline': 'Timeline',
     'wizard.months': 'months',
@@ -4847,6 +4859,12 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.goal.general.desc': 'Se sentir mieux et rester équilibré',
     'wizard.goal.maintain': 'Maintenir le poids',
     'wizard.goal.maintain.desc': 'Garder votre poids actuel',
+    'wizard.goal.loseWeight': 'Perdre du poids',
+    'wizard.goal.gainMuscle': 'Gagner du muscle',
+    'wizard.goal.generalHealth': 'Santé générale',
+    'wizard.goal.athletic': 'Performance sportive',
+    'wizard.goal.multiSelectHint': 'Sélectionnez tout ce qui s\'applique',
+    'wizard.goal.targetHint': 'Définir le poids cible',
     'wizard.targetWeight': 'Poids cible (kg)',
     'wizard.timeline': 'Délai',
     'wizard.months': 'mois',
@@ -6919,6 +6937,12 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.goal.general.desc': 'Sentirte mejor y mantenerte equilibrado',
     'wizard.goal.maintain': 'Mantener peso',
     'wizard.goal.maintain.desc': 'Mantener tu peso actual',
+    'wizard.goal.loseWeight': 'Perder peso',
+    'wizard.goal.gainMuscle': 'Ganar músculo',
+    'wizard.goal.generalHealth': 'Salud general',
+    'wizard.goal.athletic': 'Rendimiento deportivo',
+    'wizard.goal.multiSelectHint': 'Selecciona todas las que apliquen',
+    'wizard.goal.targetHint': 'Establecer peso objetivo',
     'wizard.targetWeight': 'Peso objetivo (kg)',
     'wizard.timeline': 'Plazo',
     'wizard.months': 'meses',
@@ -8991,6 +9015,12 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.goal.general.desc': 'شعور أفضل وتوازن أوضح',
     'wizard.goal.maintain': 'الحفاظ على الوزن',
     'wizard.goal.maintain.desc': 'الحفاظ على وزنك الحالي',
+    'wizard.goal.loseWeight': 'إنقاص الوزن',
+    'wizard.goal.gainMuscle': 'بناء العضلات',
+    'wizard.goal.generalHealth': 'صحة عامة',
+    'wizard.goal.athletic': 'الأداء الرياضي',
+    'wizard.goal.multiSelectHint': 'اختر كل ما ينطبق',
+    'wizard.goal.targetHint': 'تحديد الوزن المستهدف',
     'wizard.targetWeight': 'الوزن المستهدف (كجم)',
     'wizard.timeline': 'المدة الزمنية',
     'wizard.months': 'أشهر',
@@ -11074,6 +11104,12 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.goal.general.desc': 'Besser fühlen und ausgeglichen bleiben',
     'wizard.goal.maintain': 'Gewicht halten',
     'wizard.goal.maintain.desc': 'Aktuelles Gewicht halten',
+    'wizard.goal.loseWeight': 'Abnehmen',
+    'wizard.goal.gainMuscle': 'Muskeln aufbauen',
+    'wizard.goal.generalHealth': 'Allgemeine Gesundheit',
+    'wizard.goal.athletic': 'Sportliche Leistung',
+    'wizard.goal.multiSelectHint': 'Wählen Sie alle zutreffenden',
+    'wizard.goal.targetHint': 'Zielgewicht festlegen',
     'wizard.targetWeight': 'Zielgewicht (kg)',
     'wizard.timeline': 'Zeitraum',
     'wizard.months': 'Monate',

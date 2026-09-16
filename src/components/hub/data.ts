@@ -29,7 +29,7 @@ export interface HubOrgan {
 }
 
 export const HUB_ORGANS: HubOrgan[] = [
-  { id: 'brain', nameKey: tk('universe.organ.brain.name'), icon: '🧠', conditions: [] },
+  { id: 'brain', nameKey: tk('universe.organ.brain.name'), icon: '🧠', conditions: ['mental-wellness'] },
   { id: 'heart', nameKey: tk('universe.organ.heart.name'), icon: '❤️', conditions: ['heart-lipids', 'hypertension', 'cholesterol'] },
   { id: 'pancreas', nameKey: tk('universe.organ.pancreas.name'), icon: '🍬', conditions: ['diabetes'] },
   { id: 'liver', nameKey: tk('universe.organ.liver.name'), icon: '🫁', conditions: ['liver'] },
@@ -40,7 +40,7 @@ export const HUB_ORGANS: HubOrgan[] = [
 ];
 
 export const coveredOrgans = (conditions: string[]): HubOrgan[] =>
-  HUB_ORGANS.filter((o) => o.conditions.length === 0 || o.conditions.some((c) => conditions.includes(c)));
+  HUB_ORGANS.filter((o) => o.conditions.some((c) => conditions.includes(c)));
 
 export type MealSlot = 'breakfast' | 'lunch' | 'dinner' | 'snack';
 
@@ -128,7 +128,7 @@ export interface HubStoredPlan {
   calories?: number;
   cuisine?: string;
   lifestyle?: { activity?: string; sleep?: string; stress?: string };
-  goal?: { type?: string; targetWeight?: string; timelineMonths?: number; intensity?: string };
+  goal?: { type?: string; goals?: string[]; targetWeight?: string; timelineMonths?: number; intensity?: string };
   exerciseTypes?: string[];
   overall?: number | null;
   projected?: number | null;

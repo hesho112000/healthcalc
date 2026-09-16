@@ -1,5 +1,5 @@
 import React from 'react';
-import type { TKey, WizardGoal, WizardProfile, PlanIntensity } from './stepTypes';
+import type { TKey, WizardGoal, WizardProfile, PlanIntensity, GoalKey } from './stepTypes';
 
 type T = (key: TKey) => string;
 
@@ -22,11 +22,12 @@ const INTENSITY_OPTIONS: Array<{ id: PlanIntensity; emoji: string }> = [
   { id: 'intense', emoji: '🔥' },
 ];
 
-const GOAL_OPTIONS: Array<{ id: Exclude<WizardGoal['type'], ''>; emoji: string; key: string }> = [
-  { id: 'lose', emoji: '⚖️', key: 'wizard.goal.lose' },
-  { id: 'gain', emoji: '💪', key: 'wizard.goal.gain' },
-  { id: 'general', emoji: '🌿', key: 'wizard.goal.general' },
-  { id: 'maintain', emoji: '🛡️', key: 'wizard.goal.maintain' },
+const GOAL_OPTIONS: Array<{ id: GoalKey; emoji: string; key: string; requiresTarget: boolean }> = [
+  { id: 'lose', emoji: '⚖️', key: 'wizard.goal.loseWeight', requiresTarget: true },
+  { id: 'gain', emoji: '💪', key: 'wizard.goal.gainMuscle', requiresTarget: true },
+  { id: 'maintain', emoji: '⚖️', key: 'wizard.goal.maintain', requiresTarget: false },
+  { id: 'general', emoji: '🌿', key: 'wizard.goal.generalHealth', requiresTarget: false },
+  { id: 'athletic', emoji: '🏃', key: 'wizard.goal.athletic', requiresTarget: false },
 ];
 
 const GoalStep: React.FC<GoalStepProps> = ({
@@ -39,43 +40,59 @@ const GoalStep: React.FC<GoalStepProps> = ({
   deficits = {},
   onContinue,
 }) => {
+  const goals = goal.goals ?? [];
+  const requiresTarget = goals.includes('lose') || goals.includes('gain');
   const currentWeight = Number(profile.weight) || 0;
   const targetWeight = Number(goal.targetWeight);
   const targetIsValid =
     !goal.targetWeight ||
     (targetWeight > 0 &&
       targetWeight < 300 &&
-      (goal.type === 'lose' ? targetWeight < currentWeight : goal.type === 'gain' ? targetWeight > currentWeight : true));
-  const ready = Boolean(
-    goal.type && goal.intensity && targetIsValid && (goal.type === 'general' ? true : targetWeight > 0),
-  );
+      (goals.includes('lose')
+        ? targetWeight < currentWeight
+        : goals.includes('gain')
+          ? targetWeight > currentWeight
+          : true));
+  const ready = Boolean(goals.length > 0 && goal.intensity && targetIsValid && (!requiresTarget || targetWeight > 0));
+
+  const toggleGoal = (id: GoalKey) => {
+    const next = goals.includes(id) ? goals.filter((g) => g !== id) : [...goals, id];
+    onChange({ goals: next });
+  };
 
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="text-sm font-bold text-[#0F4C3A] mb-2">{t(tk('wizard.goal.title'))}</h3>
-        <div className="grid grid-cols-2 gap-2">
-          {GOAL_OPTIONS.map(({ id, emoji, key }) => {
-            const active = goal.type === id;
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+          <h3 className="text-sm font-bold text-[#0F4C3A]">{t(tk('wizard.goal.title'))}</h3>
+          <span className="text-[11px] font-semibold text-[#6B7A75]">{t(tk('wizard.goal.multiSelectHint'))}</span>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          {GOAL_OPTIONS.map(({ id, emoji, key, requiresTarget: needsTarget }) => {
+            const active = goals.includes(id);
             return (
               <button
                 key={id}
                 type="button"
-                onClick={() => onChange({ type: id })}
+                onClick={() => toggleGoal(id)}
                 className={`rounded-2xl border bg-white p-3.5 text-left transition ${
-                  active ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]' : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'
+                  active
+                    ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]'
+                    : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'
                 }`}
               >
                 <span className="text-xl block">{emoji}</span>
                 <span className="text-sm font-bold text-slate-900 mt-1 block">{t(tk(key))}</span>
-                <span className="text-[11px] text-[#4A5A55] block mt-0.5">{t(tk(`${key}.desc`))}</span>
+                {needsTarget && (
+                  <span className="text-[11px] text-[#4A5A55] block mt-0.5">{t(tk('wizard.goal.targetHint'))}</span>
+                )}
               </button>
             );
           })}
         </div>
       </div>
 
-      {goal.type && goal.type !== 'general' && (
+      {requiresTarget && (
         <div className="grid sm:grid-cols-2 gap-4">
           <label className="block text-sm font-semibold text-slate-900">
             {t(tk('wizard.targetWeight'))}

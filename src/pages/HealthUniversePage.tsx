@@ -111,7 +111,7 @@ const HealthUniversePage: React.FC = () => {
       </section>
 
       <section className="max-w-6xl mx-auto px-6">
-        <div className="max-w-md mx-auto rounded-[32px] border border-[#EFEBE4] bg-white/80 p-6 sm:p-8 shadow-[0_18px_50px_rgba(15,76,58,0.06)]">
+        <div className="max-w-md mx-auto rounded-[32px] border border-[#EFEBE4] bg-[#FDFBF7] p-6 sm:p-8 shadow-[0_18px_50px_rgba(15,76,58,0.06)]">
           <BodyMap selectedConditions={selected} />
         </div>
         <p className="mx-auto mt-6 max-w-xl text-center text-sm font-bold text-[#4A5A55] bg-[#F4F1EB] rounded-2xl px-5 py-3">

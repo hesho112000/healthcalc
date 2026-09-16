@@ -17,7 +17,7 @@ interface HealthScoreCardsProps {
 }
 
 const wizardStep3 = (organ: HubOrgan): string => {
-  let conds = organ.id === 'brain' ? ['mental-wellness'] : organ.conditions;
+  let conds = organ.conditions;
   if (conds.includes('heart-lipids')) conds = ['heart-lipids'];
   const qs = conds.length > 0 ? `?conditions=${conds.join(',')}&step=3` : '?step=3';
   return `/advanced-care/wizard${qs}`;
