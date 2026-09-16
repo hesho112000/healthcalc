@@ -111,9 +111,7 @@ const HealthUniversePage: React.FC = () => {
       </section>
 
       <section className="max-w-6xl mx-auto px-6">
-        <div
-          className="max-w-2xl mx-auto rounded-[32px] border border-[#EFEBE4] bg-white/80 p-6 sm:p-8 shadow-[0_18px_50px_rgba(15,76,58,0.06)]"
-        >
+        <div className="max-w-md mx-auto rounded-[32px] border border-[#EFEBE4] bg-white/80 p-6 sm:p-8 shadow-[0_18px_50px_rgba(15,76,58,0.06)]">
           <BodyMap selectedConditions={selected} />
         </div>
         <p className="mx-auto mt-6 max-w-xl text-center text-sm font-bold text-[#4A5A55] bg-[#F4F1EB] rounded-2xl px-5 py-3">
@@ -121,8 +119,11 @@ const HealthUniversePage: React.FC = () => {
         </p>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 mt-12 pb-28">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <section className="max-w-6xl mx-auto px-6 mt-14 pb-28">
+        <h2 className="text-center text-2xl font-extrabold text-[#0F4C3A]">
+          {t('universe.conditionsTitle' as TKey)}
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
           {UNIVERSE_CONDITION_IDS.map((id) => {
             const inPlan = selected.includes(id);
             const data = CONDITION_DATA[id];

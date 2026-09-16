@@ -172,13 +172,26 @@ const AdvancedCareWizardPage: React.FC = () => {
       .map((id) => id.trim())
       .filter(isConditionId);
   })();
-  const preselectedFromUrl = fromUrlConditions.length > 0;
+  const storageConditions: ConditionId[] = (() => {
+    try {
+      const raw = localStorage.getItem('healthcalc_conditions');
+      if (!raw) return [];
+      const parsed = JSON.parse(raw) as unknown;
+      if (!Array.isArray(parsed)) return [];
+      return parsed.filter((id): id is ConditionId => typeof id === 'string' && isConditionId(id));
+    } catch {
+      return [];
+    }
+  })();
+  const preSelectedConditions = fromUrlConditions.length > 0 ? fromUrlConditions : storageConditions;
+  const hasPreSelected = preSelectedConditions.length > 0;
   const [step, setStep] = useState<number>(() => {
     const raw = searchParams.get('step');
     const s = Number(raw);
-    return s >= 1 && s <= 8 ? s : 1;
+    if (s >= 1 && s <= 8) return s;
+    return hasPreSelected ? 2 : 1;
   });
-  const [selected, setSelected] = useState<ConditionId[]>(fromUrlConditions);
+  const [selected, setSelected] = useState<ConditionId[]>(preSelectedConditions);
   const [hasLabs, setHasLabs] = useState<boolean | null>(null);
   const [profile, setProfile] = useState({ age: 35, height: 170, weight: 70, gender: 'male' as 'male' | 'female' });
   const [labs, setLabs] = useState<LabValues>({});
@@ -189,7 +202,7 @@ const AdvancedCareWizardPage: React.FC = () => {
   const [toast, setToast] = useState('');
 
   useEffect(() => {
-    if (preselectedFromUrl) return;
+    if (hasPreSelected) return;
     const saved = localStorage.getItem('hc_advanced_care');
     if (!saved) return;
     try {
@@ -719,9 +732,18 @@ ${conditionTags}
           </div>
         </div>
 
-        {preselectedFromUrl && step === 1 && (
-          <div className="mb-8 rounded-2xl border border-[#D4AF37]/60 bg-[#D4AF37]/10 p-4 text-sm text-[#0F4C3A] font-semibold leading-relaxed">
-            {t(tk('wizard.preselect.banner'))}
+        {hasPreSelected && (
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#D4AF37]/60 bg-[#D4AF37]/10 p-4 text-sm text-[#0F4C3A] font-semibold leading-relaxed">
+            <span>{t(tk('wizard.preSelectedBanner'))}</span>
+            {step !== 1 && (
+              <button
+                type="button"
+                onClick={() => save(1)}
+                className="rounded-full bg-[#0F4C3A] px-4 py-1.5 text-xs font-bold text-[#FDFBF7] transition hover:bg-[#1a6b53]"
+              >
+                {t(tk('wizard.editConditions'))}
+              </button>
+            )}
           </div>
         )}
 

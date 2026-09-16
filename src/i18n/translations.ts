@@ -1390,6 +1390,7 @@ type TranslationKeys = {
   'advanced.finalCta.cta': string;
   'universe.title': string;
   'universe.subtitle': string;
+  'universe.conditionsTitle': string;
   'universe.hint': string;
   'universe.continueCta': string;
   'universe.organ.brain.name': string;
@@ -1534,6 +1535,8 @@ type TranslationKeys = {
   'paywall.trust': string;
   'paywall.perMonth': string;
   'wizard.preselect.banner': string;
+  'wizard.preSelectedBanner': string;
+  'wizard.editConditions': string;
   'plan.free': string;
   'plan.basic': string;
   'plan.pro': string;
@@ -2513,6 +2516,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'advanced.finalCta.cta': 'Start 7-Day Free Trial →',
     'universe.title': 'Your Health Universe',
     'universe.subtitle': 'Explore how your body connects with the science of nutrition — tap an organ to see its care toolkit.',
+    'universe.conditionsTitle': 'Conditions We Care For',
     'universe.hint': 'Tap any organ to open its health hub.',
     'universe.continueCta': 'Continue to Personalized Plan',
     'universe.organ.brain.name': 'Brain',
@@ -2657,6 +2661,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'paywall.trust': 'No credit card · Cancel anytime.',
     'paywall.perMonth': 'per month',
     'wizard.preselect.banner': 'We pre-selected your conditions from the Health Universe. You can change them anytime.',
+    'wizard.preSelectedBanner': 'Conditions pre-selected from your Health Universe. You can change them anytime.',
+    'wizard.editConditions': 'Edit Conditions',
     'plan.free': 'Free',
     'plan.basic': 'Basic',
     'plan.pro': 'Pro',
@@ -4612,6 +4618,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'advanced.finalCta.cta': 'Commencer l\'essai gratuit de 7 jours →',
     'universe.title': 'Votre Univers Santé',
     'universe.subtitle': 'Découvrez comment votre corps se connecte à la science de la nutrition — touchez un organe pour voir sa boîte à outils de soins.',
+    'universe.conditionsTitle': 'Les conditions dont nous prenons soin',
     'universe.hint': 'Touchez un organe pour ouvrir son hub santé.',
     'universe.continueCta': 'Continuer vers le plan personnalisé',
     'universe.organ.brain.name': 'Cerveau',
@@ -4756,6 +4763,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'paywall.trust': 'Aucune carte bancaire · Annulable à tout moment.',
     'paywall.perMonth': 'par mois',
     'wizard.preselect.banner': 'Nous avons présélectionné vos conditions depuis l\'Univers Santé. Vous pouvez les modifier à tout moment.',
+    'wizard.preSelectedBanner': 'Conditions présélectionnées depuis votre univers santé. Vous pouvez les modifier à tout moment.',
+    'wizard.editConditions': 'Modifier les conditions',
     'plan.free': 'Gratuit',
     'plan.basic': 'Basique',
     'plan.pro': 'Pro',
@@ -6681,6 +6690,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'advanced.finalCta.cta': 'Iniciar prueba gratis de 7 días →',
     'universe.title': 'Tu Universo de Salud',
     'universe.subtitle': 'Descubre cómo tu cuerpo se conecta con la ciencia de la nutrición: toca un órgano para ver su kit de herramientas de cuidado.',
+    'universe.conditionsTitle': 'Condiciones que cuidamos',
     'universe.hint': 'Toca cualquier órgano para abrir su centro de salud.',
     'universe.continueCta': 'Continuar al plan personalizado',
     'universe.organ.brain.name': 'Cerebro',
@@ -6825,6 +6835,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'paywall.trust': 'Sin tarjeta de crédito · Cancele cuando quiera.',
     'paywall.perMonth': 'por mes',
     'wizard.preselect.banner': 'Preseleccionamos tus condiciones desde el Universo de Salud. Puedes cambiarlas en cualquier momento.',
+    'wizard.preSelectedBanner': 'Condiciones preseleccionadas desde tu Universo de Salud. Puedes cambiarlas en cualquier momento.',
+    'wizard.editConditions': 'Editar condiciones',
     'plan.free': 'Gratis',
     'plan.basic': 'Básico',
     'plan.pro': 'Pro',
@@ -8750,6 +8762,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'advanced.finalCta.cta': 'ابدأ تجربة مجانية لمدة 7 أيام ←',
     'universe.title': 'عالمك الصحي',
     'universe.subtitle': 'اكتشف كيف يرتبط جسمك بعلم التغذية — اضغط على أي عضو لترى مجموعة أدوات العناية به.',
+    'universe.conditionsTitle': 'الحالات التي نعتني بها',
     'universe.hint': 'اضغط على أي عضو لفتح مركزه الصحي.',
     'universe.continueCta': 'متابعة إلى الخطة المخصصة',
     'universe.organ.brain.name': 'الدماغ',
@@ -8894,6 +8907,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'paywall.trust': 'لا حاجة لبطاقة ائتمان · ألغِ في أي وقت.',
     'paywall.perMonth': 'شهريًا',
     'wizard.preselect.banner': 'اخترنا حالاتك مسبقًا من العالم الصحي. يمكنك تغييرها في أي وقت.',
+    'wizard.preSelectedBanner': 'تم اختيار الحالات مسبقًا من عالمك الصحي. يمكنك تغييرها في أي وقت.',
+    'wizard.editConditions': 'تعديل الحالات',
     'plan.free': 'مجانية',
     'plan.basic': 'الأساسية',
     'plan.pro': 'الاحترافية',
@@ -10830,6 +10845,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'advanced.finalCta.cta': '7-Tage-Kostenlostest starten →',
     'universe.title': 'Dein Gesundheits-Universum',
     'universe.subtitle': 'Entdecke, wie dein Körper mit der Wissenschaft der Ernährung verbunden ist — tippe auf ein Organ, um sein Pflege-Toolkit zu sehen.',
+    'universe.conditionsTitle': 'Zustände, um die wir uns kümmern',
     'universe.hint': 'Tippe auf ein Organ, um seinen Gesundheits-Hub zu öffnen.',
     'universe.continueCta': 'Weiter zum personalisierten Plan',
     'universe.organ.brain.name': 'Gehirn',
@@ -10974,6 +10990,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'paywall.trust': 'Keine Kreditkarte nötig · Jederzeit kündbar.',
     'paywall.perMonth': 'pro Monat',
     'wizard.preselect.banner': 'Wir haben Ihre Zustände aus dem Health Universe vorausgewählt. Sie können sie jederzeit ändern.',
+    'wizard.preSelectedBanner': 'Zustände wurden aus Ihrem Health Universe vorausgewählt. Sie können sie jederzeit ändern.',
+    'wizard.editConditions': 'Bedingungen bearbeiten',
     'plan.free': 'Kostenlos',
     'plan.basic': 'Basic',
     'plan.pro': 'Pro',
