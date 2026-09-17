@@ -7,6 +7,8 @@ import { getWizardExercisesByType } from '../data/exercises';
 import type { ExerciseItem } from '../data/exercises';
 import { ExerciseTypeSelector } from '../components/wizard/ExerciseTypeSelector';
 import { ExerciseList } from '../components/wizard/ExerciseList';
+import { useAuth } from '../context/AuthContext';
+import { savePlan, saveProfile } from '../services/supabaseData';
 
 type Step = 1 | 2 | 3 | 4 | 5;
 type Sex = 'male' | 'female';
@@ -487,6 +489,7 @@ const BodyFigure: React.FC<{ kind: Sex }> = ({ kind }) => (
 const WeightLossPage: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useLanguage();
+  const { user } = useAuth();
   const [step, setStep] = useState<Step>(1);
   const [planType, setPlanType] = useState<PlanType>('both');
   const [age, setAge] = useState('26');
@@ -1047,6 +1050,42 @@ const WeightLossPage: React.FC = () => {
       setToast(`PDF sent to ${emailText.trim()}`);
       window.setTimeout(() => setToast(''), 3200);
     }, 2200);
+  };
+
+  const handleSaveProgress = () => {
+    notify(t('wizard.step5.savedToast'));
+    if (!user) return;
+    void (async () => {
+      try {
+        await saveProfile(user.id, {
+          full_name: user.name ?? undefined,
+          age: parsed.age || undefined,
+          gender: sex,
+          height_cm: parsed.height || undefined,
+          weight_kg: parsed.weight || undefined,
+        });
+        await savePlan(user.id, {
+          kind: 'weight-loss',
+          profile: { age: parsed.age, height: parsed.height, weight: parsed.weight, gender: sex },
+          goal,
+          targetWeightKg: parsed.target,
+          timelineWeeks: parsed.timeline,
+          activityLevel: step2Data.activityLevel,
+          workout: numbers ? numbers.wk.id : WORKOUTS.find((w) => w.id === workout)?.id,
+          calories: numbers ? numbers.targetCal : 0,
+          macros: numbers ? { protein: numbers.protein, carbs: numbers.carbs, fat: numbers.fat } : null,
+          exerciseTypes,
+          exercises: plannedExercises,
+          dishes: selectedDishKeys,
+          kitchen: selectedKitchenId,
+          diet: dietId,
+          mealLines: mealPlan.map((m) => ({ meal: m.meal, dish: m.dish?.name, grams: m.grams })),
+          savedAt: Date.now(),
+        });
+      } catch {
+        /* ignore */
+      }
+    })();
   };
 
   const macrosT = (p: number, c: number, f: number): string =>
@@ -2064,7 +2103,7 @@ const WeightLossPage: React.FC = () => {
               </button>
               <button
                 type="button"
-                onClick={() => notify(t('wizard.step5.savedToast'))}
+                onClick={handleSaveProgress}
                 className="save-btn"
               >
                 <span>✓</span> {t('wizard.step5.saveProgress')}

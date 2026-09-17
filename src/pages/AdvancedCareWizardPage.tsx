@@ -44,7 +44,7 @@ import { useSubscription } from '../context/SubscriptionContext';
 import type { FeatureId, Tier } from '../context/SubscriptionContext';
 import { savePlanToStorage } from '../utils/planStorage';
 import type { PlanStoragePayload } from '../utils/planStorage';
-import { supabase } from '../lib/supabase';
+import { saveConditions, saveLabs, savePlan, saveProfile } from '../services/supabaseData';
 import { translations } from '../i18n/translations';
 import type { LucideIcon } from 'lucide-react';
 import type { TKey, LabValues, WizardGoal, WizardLifestyle, WeightGoalKey, LifestyleGoalKey, PlanIntensity } from '../components/wizard/stepTypes';
@@ -603,57 +603,31 @@ const AdvancedCareWizardPage: React.FC = () => {
     const payload = buildPlanPayload();
 
     try {
-      const age = typeof payload.profile.age === 'number' ? payload.profile.age : null;
-      const gender = payload.profile.gender === 'male' || payload.profile.gender === 'female' ? payload.profile.gender : null;
-      const heightCm = typeof payload.profile.height === 'number' ? payload.profile.height : null;
-      const weightKg = typeof payload.profile.weight === 'number' ? payload.profile.weight : null;
-      const { error } = await supabase.from('profiles').upsert(
-        {
-          id: user.id,
-          ...(user.name ? { full_name: user.name } : {}),
-          age,
-          gender,
-          height_cm: heightCm,
-          weight_kg: weightKg,
-          updated_at: new Date().toISOString(),
-        },
-        { onConflict: 'id' },
-      );
-      if (error) throw error;
-    } catch {
-      /* ignore */
-    }
-
-    try {
-      await supabase.from('user_conditions').delete().eq('user_id', user.id);
-      if (payload.conditions.length > 0) {
-        const conditions = payload.conditions.map((conditionId) => ({ user_id: user.id, condition_id: conditionId }));
-        const { error } = await supabase.from('user_conditions').insert(conditions);
-        if (error) throw error;
-      }
-    } catch {
-      /* ignore */
-    }
-
-    try {
-      await supabase.from('labs').delete().eq('user_id', user.id);
-      const rows: { user_id: string; marker: string; value: number; unit: string | null }[] = [];
-      Object.entries(payload.labs ?? {}).forEach(([, markers]) => {
-        Object.entries(markers).forEach(([marker, value]) => {
-          rows.push({ user_id: user.id, marker, value, unit: LAB_FIELD_UNITS[marker] ?? null });
-        });
+      await saveProfile(user.id, {
+        full_name: user.name ?? undefined,
+        age: typeof payload.profile.age === 'number' ? payload.profile.age : undefined,
+        gender: payload.profile.gender === 'male' || payload.profile.gender === 'female' ? payload.profile.gender : undefined,
+        height_cm: typeof payload.profile.height === 'number' ? payload.profile.height : undefined,
+        weight_kg: typeof payload.profile.weight === 'number' ? payload.profile.weight : undefined,
       });
-      if (rows.length > 0) {
-        const { error } = await supabase.from('labs').insert(rows);
-        if (error) throw error;
-      }
     } catch {
       /* ignore */
     }
 
     try {
-      const { error } = await supabase.from('plans').insert({ user_id: user.id, plan_data: payload });
-      if (error) throw error;
+      await saveConditions(user.id, payload.conditions);
+    } catch {
+      /* ignore */
+    }
+
+    try {
+      await saveLabs(user.id, payload.labs ?? {}, LAB_FIELD_UNITS);
+    } catch {
+      /* ignore */
+    }
+
+    try {
+      await savePlan(user.id, payload);
     } catch {
       /* ignore */
     }

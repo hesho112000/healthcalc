@@ -1,6 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Lock, TrendingUp } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
+import { useAuth } from '../../context/AuthContext';
+import { getProgress, saveProgress } from '../../services/supabaseData';
+import type { SyncProgressRow } from '../../services/supabaseData';
 import { MOODS } from './data';
 
 interface ProgressTrackerProps {
@@ -24,6 +27,9 @@ const dateKey = (offset: number): string => {
 
 const ProgressTracker: React.FC<ProgressTrackerProps> = ({ paid, onUnlock, initialWeight }) => {
   const { t } = useLanguage();
+  const { user } = useAuth();
+  const [syncStatus, setSyncStatus] = useState<'idle' | 'loading' | 'saving' | 'saved' | 'error'>('idle');
+  const hydratedRef = useRef(false);
 
   const [progress, setProgress] = useState<Record<string, ProgressDay>>(() => {
     try {
@@ -39,6 +45,65 @@ const ProgressTracker: React.FC<ProgressTrackerProps> = ({ paid, onUnlock, initi
   useEffect(() => {
     localStorage.setItem('hc_hub_progress', JSON.stringify(progress));
   }, [progress]);
+
+  useEffect(() => {
+    if (!user) return;
+    let cancelled = false;
+    (async () => {
+      setSyncStatus('loading');
+      const { data, error } = await getProgress(user.id).catch(() => ({ data: null as SyncProgressRow[] | null, error: null }));
+      if (cancelled) return;
+      if (error) {
+        setSyncStatus('error');
+        return;
+      }
+      if (data && data.length) {
+        setProgress((prev) => {
+          const merged: Record<string, ProgressDay> = {};
+          Object.values(prev).forEach((d) => {
+            if (d.date) merged[d.date] = { ...d, date: d.date };
+          });
+          data.forEach((row) => {
+            const key = row.date;
+            const existing = merged[key];
+            merged[key] = {
+              date: key,
+              water: row.water_liters !== null && row.water_liters !== undefined ? row.water_liters : existing?.water ?? 0,
+              weight: row.weight_kg !== null && row.weight_kg !== undefined ? row.weight_kg : existing?.weight,
+              mood: row.mood ?? existing?.mood,
+            };
+          });
+          return merged;
+        });
+      }
+      hydratedRef.current = true;
+      setSyncStatus('idle');
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [user]);
+
+  useEffect(() => {
+    if (!user || !hydratedRef.current) return;
+    const day = progress[todayKey];
+    if (!day || !day.date) return;
+    setSyncStatus('saving');
+    let cancelled = false;
+    (async () => {
+      const { error } = await saveProgress(user.id, {
+        date: day.date,
+        water_liters: day.water,
+        weight_kg: day.weight,
+        mood: day.mood,
+      }).catch(() => ({ error: { message: 'Network error' } as { message: string } }));
+      if (cancelled) return;
+      setSyncStatus(error ? 'error' : 'saved');
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [user, progress, todayKey]);
 
   const setDay = (key: string, patch: Partial<ProgressDay>) =>
     setProgress((prev) => ({ ...prev, [key]: { ...(prev[key] ?? {}), date: key, ...patch } }));
@@ -82,6 +147,7 @@ const ProgressTracker: React.FC<ProgressTrackerProps> = ({ paid, onUnlock, initi
         {t('hub.progressTracker')}
       </h2>
       {paid ? (
+        <>
         <div className="grid md:grid-cols-2 gap-6">
           <div className="space-y-4">
             <div>
@@ -148,6 +214,18 @@ const ProgressTracker: React.FC<ProgressTrackerProps> = ({ paid, onUnlock, initi
             </div>
           </div>
         </div>
+        {syncStatus !== 'idle' && (
+          <p className="mt-4 text-xs font-semibold text-[#6B7A75]">
+            {syncStatus === 'loading'
+              ? t('sync.loading')
+              : syncStatus === 'saving'
+                ? t('sync.saving')
+                : syncStatus === 'error'
+                  ? t('sync.error')
+                  : t('sync.saved')}
+          </p>
+        )}
+        </>
       ) : (
         <div className="relative rounded-2xl border border-[#D4AF37]/40 bg-[#D4AF37]/5 p-6 overflow-hidden">
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center">

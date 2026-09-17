@@ -838,6 +838,10 @@ type TranslationKeys = {
   'auth.verifyOtp': string;
   'auth.tabEmail': string;
   'auth.tabPhone': string;
+  'sync.loading': string;
+  'sync.saving': string;
+  'sync.saved': string;
+  'sync.error': string;
   // Header
   headerDashboard: string;
   headerSignIn: string;
@@ -3452,6 +3456,10 @@ export const translations: Record<Language, TranslationKeys> = {
     authRegisterFailed: 'Registration failed. Please try again.',
     authLoginFailed: 'Invalid email or password.',
     'auth.continueWithGoogle': 'Continue with Google',
+    'sync.loading': 'Loading your saved data…',
+    'sync.saving': 'Saving to your account…',
+    'sync.saved': 'Saved to your account',
+    'sync.error': 'Sync unavailable — please try again.',
     'auth.orContinueWith': 'Or continue with',
     'auth.signInWithPhone': 'Sign in with Phone',
     'auth.enterPhone': 'Enter your phone number',
@@ -5577,6 +5585,10 @@ export const translations: Record<Language, TranslationKeys> = {
     authRegisterFailed: 'Échec de l\'inscription. Veuillez réessayer.',
     authLoginFailed: 'Email ou mot de passe invalide.',
     'auth.continueWithGoogle': 'Continuer avec Google',
+    'sync.loading': 'Chargement de vos données sauvegardées…',
+    'sync.saving': 'Enregistrement sur votre compte…',
+    'sync.saved': 'Enregistré sur votre compte',
+    'sync.error': 'Synchronisation impossible — veuillez réessayer.',
     'auth.orContinueWith': 'Ou continuer avec',
     'auth.signInWithPhone': 'Se connecter avec le téléphone',
     'auth.enterPhone': 'Entrez votre numéro de téléphone',
@@ -7672,6 +7684,10 @@ export const translations: Record<Language, TranslationKeys> = {
     authRegisterFailed: 'Error al registrarse. Inténtalo de nuevo.',
     authLoginFailed: 'Correo o contraseña incorrectos.',
     'auth.continueWithGoogle': 'Continuar con Google',
+    'sync.loading': 'Cargando tus datos guardados…',
+    'sync.saving': 'Guardando en tu cuenta…',
+    'sync.saved': 'Guardado en tu cuenta',
+    'sync.error': 'Sincronización no disponible — inténtalo de nuevo.',
     'auth.orContinueWith': 'O continuar con',
     'auth.signInWithPhone': 'Iniciar sesión con teléfono',
     'auth.enterPhone': 'Introduce tu número de teléfono',
@@ -9767,6 +9783,10 @@ export const translations: Record<Language, TranslationKeys> = {
     authRegisterFailed: 'فشل التسجيل. يرجى المحاولة مرة أخرى.',
     authLoginFailed: 'البريد الإلكتروني أو كلمة المرور غير صحيحة.',
     'auth.continueWithGoogle': 'المتابعة عبر Google',
+    'sync.loading': 'جارٍ تحميل بياناتك المحفوظة…',
+    'sync.saving': 'جارٍ الحفظ في حسابك…',
+    'sync.saved': 'تم الحفظ في حسابك',
+    'sync.error': 'تعذرت المزامنة — حاول مجدداً.',
     'auth.orContinueWith': 'أو المتابعة عبر',
     'auth.signInWithPhone': 'تسجيل الدخول بالهاتف',
     'auth.enterPhone': 'أدخل رقم هاتفك',
@@ -11873,6 +11893,10 @@ export const translations: Record<Language, TranslationKeys> = {
     authRegisterFailed: 'Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.',
     authLoginFailed: 'Ungültige E-Mail oder ungültiges Passwort.',
     'auth.continueWithGoogle': 'Mit Google fortfahren',
+    'sync.loading': 'Gespeicherte Daten werden geladen…',
+    'sync.saving': 'Wird auf dein Konto gespeichert…',
+    'sync.saved': 'Auf dein Konto gespeichert',
+    'sync.error': 'Synchronisierung fehlgeschlagen — bitte erneut versuchen.',
     'auth.orContinueWith': 'Oder fortfahren mit',
     'auth.signInWithPhone': 'Mit Telefon anmelden',
     'auth.enterPhone': 'Gib deine Telefonnummer ein',

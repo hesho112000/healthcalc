@@ -4,7 +4,8 @@ import { ArrowRight, FileDown, Lock, Play, Sparkles } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
 import { useSubscription } from '../context/SubscriptionContext';
-import { supabase } from '../lib/supabase';
+import { useUserData } from '../hooks/useUserData';
+import { migrateLocalData } from '../services/migrateLocalData';
 import { savePlanToStorage } from '../utils/planStorage';
 import type { PlanStoragePayload } from '../utils/planStorage';
 import type { FeatureId, Tier } from '../context/SubscriptionContext';
@@ -42,12 +43,19 @@ const SLOT_KEY: Record<string, TKey> = {
   snack: tk('wizard.step6.mealSnack'),
 };
 
+const migratedUsers = new Set<string>();
+
 const MyHealthHubPage: React.FC = () => {
   const { t, dir, language: lang } = useLanguage();
   const { user } = useAuth();
   const { hasFeature, upgrade } = useSubscription();
   const navigate = useNavigate();
   const location = useLocation();
+  const userData = useUserData();
+  const dbProfile = userData.profile;
+  const dbConditions = userData.conditions;
+  const dbPlan = userData.plan;
+  const dbLoading = userData.loading;
 
   const planReady =
     (location.state as { planReady?: boolean } | null)?.planReady === true;
@@ -76,9 +84,19 @@ const MyHealthHubPage: React.FC = () => {
   });
 
   useEffect(() => {
+    const dbName = dbProfile?.full_name;
+    if (dbName) {
+      setName(dbName);
+      return;
+    }
     if (!user) return;
     const fallbackName = user.name || (user.email ? user.email.split('@')[0] : '') || '';
     if (fallbackName) setName(fallbackName);
+  }, [user, dbProfile]);
+
+  useEffect(() => {
+    if (!user) return;
+    void migrateLocalData(user.id).catch(() => undefined);
   }, [user]);
 
   const [paywall, setPaywall] = useState<FeatureId | null>(null);
@@ -87,45 +105,63 @@ const MyHealthHubPage: React.FC = () => {
   const [synced, setSynced] = useState(false);
 
   useEffect(() => {
-    if (!user) return;
-    let cancelled = false;
-    (async () => {
-      try {
-        const { data } = await supabase
-          .from('plans')
-          .select('plan_data, created_at')
-          .eq('user_id', user.id)
-          .order('created_at', { ascending: false })
-          .limit(1)
-          .maybeSingle();
-        if (cancelled || !data?.plan_data || typeof data.plan_data !== 'object') return;
-        savePlanToStorage(data.plan_data as PlanStoragePayload);
-        if (!cancelled) setSynced(true);
-      } catch {
-        /* ignore */
+    if (!user || !dbPlan?.plan_data || typeof dbPlan.plan_data !== 'object') return;
+    const pd = dbPlan.plan_data as unknown as PlanStoragePayload & { kind?: string; savedAt?: number };
+    if (pd.kind === 'weight-loss') return;
+    try {
+      const raw = localStorage.getItem('hc_advanced_care_plan');
+      if (raw) {
+        const local = JSON.parse(raw) as { savedAt?: number } | null;
+        if (local?.savedAt && dbPlan.created_at) {
+          const dbMs = new Date(dbPlan.created_at).getTime();
+          if (Number.isFinite(dbMs) && dbMs <= local.savedAt) return;
+        }
       }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [user]);
+    } catch {
+      /* ignore */
+    }
+    savePlanToStorage(pd);
+    setSynced(true);
+  }, [user, dbPlan]);
 
   const paid = hasFeature('hubAllDays');
   const dayLimit = paid ? 7 : hasFeature('hubDay3') ? 3 : hasFeature('hubDay2') ? 2 : 1;
 
   const plan = useMemo(() => readHubPlan(), [synced]);
-  const conditions = useMemo(() => readHubConditions(), [synced]);
-  const profile = plan?.profile ?? readHubProfile();
+  const conditions = useMemo(() => {
+    const local = readHubConditions();
+    return local.length > 0 ? local : dbConditions;
+  }, [synced, dbConditions]);
+  const dbProfileView = useMemo(
+    () =>
+      dbProfile
+        ? {
+            age: Number.isFinite(Number(dbProfile.age)) ? Number(dbProfile.age) : undefined,
+            height: Number.isFinite(Number(dbProfile.height_cm)) ? Number(dbProfile.height_cm) : undefined,
+            weight: Number.isFinite(Number(dbProfile.weight_kg)) ? Number(dbProfile.weight_kg) : undefined,
+            gender: (dbProfile.gender ?? undefined) as 'male' | 'female' | undefined,
+          }
+        : undefined,
+    [dbProfile],
+  );
+  const profile =
+    (plan?.profile as { age?: number; height?: number; weight?: number; gender?: string } | undefined) ??
+    dbProfileView ??
+    readHubProfile();
   const hasData =
     Boolean(plan) ||
     conditions.length > 0 ||
+    Boolean(dbPlan) ||
+    Boolean(dbProfile) ||
+    dbConditions.length > 0 ||
     (() => {
       try {
         return Boolean(localStorage.getItem('healthcalc_plan'));
       } catch {
         return false;
       }
-    })();
+    })() ||
+    dbLoading;
 
   const gate = (feature: FeatureId) => {
     if (!hasFeature(feature)) setPaywall(feature);
