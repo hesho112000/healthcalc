@@ -4,9 +4,17 @@ import { ChevronDown, Globe, Leaf, Menu, X } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useAdmin } from '../../context/AdminContext';
 import { useAuth } from '../../context/AuthContext';
-import { hasPlanData } from '../hub/data';
 import { translations } from '../../i18n/translations';
 import type { Language } from '../../types';
+
+const hasPlanData = (): boolean => {
+  try {
+    const keys = ['hc_advanced_care_plan', 'healthcalc_plan', 'healthcalc_conditions'];
+    return keys.some((k) => Boolean(localStorage.getItem(k)));
+  } catch {
+    return false;
+  }
+};
 
 const languageOptions: { code: Language; flag: string; label: string }[] = [
   { code: 'en', flag: '🇬🇧', label: 'English' },

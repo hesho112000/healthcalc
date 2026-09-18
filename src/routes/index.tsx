@@ -1,63 +1,46 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate, Link, useParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
 import ProtectedRoute from '../components/ProtectedRoute';
-import LocalizedSeoPage from '../components/LocalizedSeoPage';
-import HomePage from '../pages/HomePage';
-import AdminLoginPage from '../pages/AdminLoginPage';
-import WeightLossPage from '../pages/WeightLossPage';
-import DiabetesPage from '../pages/DiabetesPage';
-import LegacyAdvancedCarePage from '../pages/LegacyAdvancedCarePage';
-import LoginPage from '../pages/LoginPage';
-import RegisterPage from '../pages/RegisterPage';
-import DashboardPage from '../pages/DashboardPage';
-import PrivacyPolicy from '../pages/PrivacyPolicy';
-import TermsOfService from '../pages/TermsOfService';
-import MedicalDisclaimerPage from '../pages/MedicalDisclaimerPage';
-import ContactUs from '../pages/ContactUs';
-import FitnessPage from '../pages/FitnessPage';
-import WorkoutPlanPage from '../pages/WorkoutPlanPage';
-import SmartwatchSyncPage from '../pages/SmartwatchSyncPage';
-import FoodLibraryPage from '../pages/FoodLibraryPage';
-import HealthUniversePage from '../pages/HealthUniversePage';
-import AdvancedLabPage from '../pages/AdvancedLabPage';
-import AdvancedCareWizardPage from '../pages/AdvancedCareWizardPage';
-import SignupPage from '../pages/SignupPage';
-import PlanDashboardPage from '../pages/PlanDashboardPage';
-import MyHealthHubPage from '../pages/MyHealthHubPage';
-import SubscriptionPage from '../pages/SubscriptionPage';
-import OrganHubPage from '../pages/OrganHubPage';
-import SearchPage from '../pages/SearchPage';
-import AboutPage from '../pages/AboutPage';
-import ResourcesPage from '../pages/ResourcesPage';
-import ArticlePage from '../pages/ArticlePage';
-import RecipePage from '../pages/RecipePage';
-import ExerciseGuidePage from '../pages/ExerciseGuidePage';
+import LoadingFallback from '../components/LoadingFallback';
+
+const HomePage = lazy(() => import('../pages/HomePage'));
+const AdminLoginPage = lazy(() => import('../pages/AdminLoginPage'));
+const WeightLossPage = lazy(() => import('../pages/WeightLossPage'));
+const DiabetesPage = lazy(() => import('../pages/DiabetesPage'));
+const LegacyAdvancedCarePage = lazy(() => import('../pages/LegacyAdvancedCarePage'));
+const LoginPage = lazy(() => import('../pages/LoginPage'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage'));
+const DashboardPage = lazy(() => import('../pages/DashboardPage'));
+const PrivacyPolicy = lazy(() => import('../pages/PrivacyPolicy'));
+const TermsOfService = lazy(() => import('../pages/TermsOfService'));
+const MedicalDisclaimerPage = lazy(() => import('../pages/MedicalDisclaimerPage'));
+const ContactUs = lazy(() => import('../pages/ContactUs'));
+const FitnessPage = lazy(() => import('../pages/FitnessPage'));
+const WorkoutPlanPage = lazy(() => import('../pages/WorkoutPlanPage'));
+const SmartwatchSyncPage = lazy(() => import('../pages/SmartwatchSyncPage'));
+const FoodLibraryPage = lazy(() => import('../pages/FoodLibraryPage'));
+const HealthUniversePage = lazy(() => import('../pages/HealthUniversePage'));
+const AdvancedLabPage = lazy(() => import('../pages/AdvancedLabPage'));
+const AdvancedCareWizardPage = lazy(() => import('../pages/AdvancedCareWizardPage'));
+const SignupPage = lazy(() => import('../pages/SignupPage'));
+const PlanDashboardPage = lazy(() => import('../pages/PlanDashboardPage'));
+const MyHealthHubPage = lazy(() => import('../pages/MyHealthHubPage'));
+const SubscriptionPage = lazy(() => import('../pages/SubscriptionPage'));
+const OrganHubPage = lazy(() => import('../pages/OrganHubPage'));
+const SearchPage = lazy(() => import('../pages/SearchPage'));
+const AboutPage = lazy(() => import('../pages/AboutPage'));
+const ResourcesPage = lazy(() => import('../pages/ResourcesPage'));
+const ArticlePage = lazy(() => import('../pages/ArticlePage'));
+const RecipePage = lazy(() => import('../pages/RecipePage'));
+const ExerciseGuidePage = lazy(() => import('../pages/ExerciseGuidePage'));
+const LocalizedSeoPage = lazy(() => import('../components/LocalizedSeoPage'));
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
 const LegacySeoRedirect: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   return <Navigate to={`/en/landing/${slug}`} replace />;
-};
-
-const NotFoundPage: React.FC = () => {
-  const { t } = useLanguage();
-  return (
-    <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center px-4">
-      <div className="text-center max-w-md animate-fade-in">
-        <div className="w-24 h-24 bg-gray-100 rounded-3xl flex items-center justify-center mx-auto mb-6">
-          <span className="text-5xl">🔍</span>
-        </div>
-        <h1 className="text-6xl font-extrabold text-gray-200 mb-2">404</h1>
-        <h2 className="text-xl font-bold text-gray-900 mb-3">{t('notFoundTitle')}</h2>
-        <p className="text-sm text-gray-500 mb-8 leading-relaxed">{t('notFoundDesc')}</p>
-        <Link to="/" className="btn-primary text-base py-3.5 px-8">
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
-          {t('backToHome')}
-        </Link>
-      </div>
-    </div>
-  );
 };
 
 const SimplePage: React.FC<{ emoji: string; titleKey: keyof typeof translations.en; descKey: keyof typeof translations.en }> = ({ emoji, titleKey, descKey }) => {
@@ -85,63 +68,65 @@ const StaticStepPage: React.FC<{ step: number }> = ({ step }) => (
 );
 
 export const AppRoutes: React.FC = () => (
-  <Routes>
-    <Route path="/" element={<HomePage />} />
-    <Route path="/weight-loss" element={<WeightLossPage />} />
-    <Route path="/diabetes" element={<DiabetesPage />} />
-    <Route path="/premium" element={<LegacyAdvancedCarePage />} />
-    <Route path="/fitness" element={<FitnessPage />} />
-    <Route path="/bmi" element={<FitnessPage />} />
-    <Route path="/bmr" element={<FitnessPage />} />
-    <Route path="/ideal-weight" element={<FitnessPage />} />
-    <Route path="/calories" element={<FitnessPage />} />
-    <Route path="/workout-plan" element={<WorkoutPlanPage />} />
-    <Route path="/smartwatch-sync" element={<SmartwatchSyncPage />} />
-    <Route path="/food-library" element={<FoodLibraryPage />} />
-    <Route path="/advanced-care" element={<HealthUniversePage />} />
-    <Route path="/advanced-care/:organId" element={<OrganHubPage />} />
-    <Route path="/advanced-care/lab" element={<AdvancedLabPage />} />
-    <Route path="/advanced-care/wizard" element={<AdvancedCareWizardPage />} />
-    <Route path="/advanced-care/wizard/signup" element={<SignupPage />} />
-    <Route path="/dashboard/plan" element={<PlanDashboardPage />} />
-    <Route path="/my-health-hub" element={<MyHealthHubPage />} />
-    <Route path="/subscription" element={<SubscriptionPage />} />
-    <Route path="/search" element={<SearchPage />} />
-    <Route path="/login" element={<LoginPage />} />
-    <Route path="/register" element={<RegisterPage />} />
-    <Route path="/admin-login" element={<AdminLoginPage />} />
-    <Route
-      path="/dashboard"
-      element={
-        <ProtectedRoute>
-          <DashboardPage />
-        </ProtectedRoute>
-      }
-    />
-    <Route path="/privacy" element={<PrivacyPolicy />} />
-    <Route path="/terms" element={<TermsOfService />} />
-    <Route path="/disclaimer" element={<MedicalDisclaimerPage />} />
-    <Route path="/contact" element={<ContactUs />} />
+  <Suspense fallback={<LoadingFallback />}>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/weight-loss" element={<WeightLossPage />} />
+      <Route path="/diabetes" element={<DiabetesPage />} />
+      <Route path="/premium" element={<LegacyAdvancedCarePage />} />
+      <Route path="/fitness" element={<FitnessPage />} />
+      <Route path="/bmi" element={<FitnessPage />} />
+      <Route path="/bmr" element={<FitnessPage />} />
+      <Route path="/ideal-weight" element={<FitnessPage />} />
+      <Route path="/calories" element={<FitnessPage />} />
+      <Route path="/workout-plan" element={<WorkoutPlanPage />} />
+      <Route path="/smartwatch-sync" element={<SmartwatchSyncPage />} />
+      <Route path="/food-library" element={<FoodLibraryPage />} />
+      <Route path="/advanced-care" element={<HealthUniversePage />} />
+      <Route path="/advanced-care/:organId" element={<OrganHubPage />} />
+      <Route path="/advanced-care/lab" element={<AdvancedLabPage />} />
+      <Route path="/advanced-care/wizard" element={<AdvancedCareWizardPage />} />
+      <Route path="/advanced-care/wizard/signup" element={<SignupPage />} />
+      <Route path="/dashboard/plan" element={<PlanDashboardPage />} />
+      <Route path="/my-health-hub" element={<MyHealthHubPage />} />
+      <Route path="/subscription" element={<SubscriptionPage />} />
+      <Route path="/search" element={<SearchPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/admin-login" element={<AdminLoginPage />} />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <DashboardPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route path="/privacy" element={<PrivacyPolicy />} />
+      <Route path="/terms" element={<TermsOfService />} />
+      <Route path="/disclaimer" element={<MedicalDisclaimerPage />} />
+      <Route path="/contact" element={<ContactUs />} />
 
-    <Route path="/plan" element={<SimplePage emoji="📋" titleKey="spPlanTitle" descKey="spPlanDesc" />} />
-    <Route path="/tracking" element={<SimplePage emoji="📈" titleKey="spTrackingTitle" descKey="spTrackingDesc" />} />
-    <Route path="/bio-age" element={<SimplePage emoji="🫀" titleKey="spBioAgeTitle" descKey="spBioAgeDesc" />} />
-    <Route path="/resources" element={<ResourcesPage />} />
-    <Route path="/resources/article/:slug" element={<ArticlePage />} />
-    <Route path="/resources/recipe/:slug" element={<RecipePage />} />
-    <Route path="/resources/exercise/:slug" element={<ExerciseGuidePage />} />
-    <Route path="/about" element={<AboutPage />} />
-    <Route path="/faq" element={<SimplePage emoji="💬" titleKey="spFaqTitle" descKey="spFaqDesc" />} />
-    <Route path="/wizard/step1" element={<StaticStepPage step={1} />} />
-    <Route path="/wizard/step2" element={<StaticStepPage step={2} />} />
-    <Route path="/Personal-Data-Entry-Step1" element={<StaticStepPage step={1} />} />
-    <Route path="/Personal-Data-Entry-Step2" element={<StaticStepPage step={2} />} />
+      <Route path="/plan" element={<SimplePage emoji="📋" titleKey="spPlanTitle" descKey="spPlanDesc" />} />
+      <Route path="/tracking" element={<SimplePage emoji="📈" titleKey="spTrackingTitle" descKey="spTrackingDesc" />} />
+      <Route path="/bio-age" element={<SimplePage emoji="🫀" titleKey="spBioAgeTitle" descKey="spBioAgeDesc" />} />
+      <Route path="/resources" element={<ResourcesPage />} />
+      <Route path="/resources/article/:slug" element={<ArticlePage />} />
+      <Route path="/resources/recipe/:slug" element={<RecipePage />} />
+      <Route path="/resources/exercise/:slug" element={<ExerciseGuidePage />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/faq" element={<SimplePage emoji="💬" titleKey="spFaqTitle" descKey="spFaqDesc" />} />
+      <Route path="/wizard/step1" element={<StaticStepPage step={1} />} />
+      <Route path="/wizard/step2" element={<StaticStepPage step={2} />} />
+      <Route path="/Personal-Data-Entry-Step1" element={<StaticStepPage step={1} />} />
+      <Route path="/Personal-Data-Entry-Step2" element={<StaticStepPage step={2} />} />
 
-    <Route path="/admin" element={<Navigate to="/admin-login" replace />} />
+      <Route path="/admin" element={<Navigate to="/admin-login" replace />} />
 
-    <Route path="/:lang/landing/:slug" element={<LocalizedSeoPage />} />
-    <Route path="/health-guide/:slug" element={<LegacySeoRedirect />} />
+      <Route path="/:lang/landing/:slug" element={<LocalizedSeoPage />} />
+      <Route path="/health-guide/:slug" element={<LegacySeoRedirect />} />
 
-    <Route path="*" element={<NotFoundPage />} />
-  </Routes>
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  </Suspense>
 );

@@ -1,10 +1,11 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { lazy, Suspense, useEffect, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
 import { ArrowLeft, ArrowRight, Check, Clock, TrendingUp } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { ARTICLES, getArticleBySlug, lt } from '../data/articles';
 import { translations } from '../i18n/translations';
+
+const ReactMarkdown = lazy(() => import('react-markdown'));
 
 type TKey = keyof typeof translations.en;
 
@@ -88,7 +89,14 @@ const ArticlePage: React.FC = () => {
         </header>
 
         <article className="mt-10 space-y-5">
-          <ReactMarkdown
+          <Suspense
+            fallback={
+              <div className="h-40 flex items-center justify-center">
+                <div className="w-8 h-8 border-4 border-[#0F4C3A] border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            }
+          >
+            <ReactMarkdown
             components={{
               h2: ({ children }) => (
                 <h2 className="mt-10 mb-4 text-2xl font-extrabold text-[#0F4C3A] tracking-tight">{children}</h2>
@@ -112,6 +120,7 @@ const ArticlePage: React.FC = () => {
           >
             {lt(article.content, language)}
           </ReactMarkdown>
+          </Suspense>
         </article>
 
         <aside className="mt-12 rounded-[28px] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] p-7 sm:p-8 shadow-[0_18px_44px_rgba(15,76,58,0.18)]">
