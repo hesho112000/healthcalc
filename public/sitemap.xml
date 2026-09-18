@@ -25,25 +25,73 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://hesho112000.github.io/healthcalc/advanced-care/diabetes</loc>
+    <loc>https://hesho112000.github.io/healthcalc/advanced-care/mental-wellness</loc>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hesho112000.github.io/healthcalc/advanced-care/hypertension</loc>
+    <loc>https://hesho112000.github.io/healthcalc/advanced-care/thyroid</loc>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hesho112000.github.io/healthcalc/advanced-care/cholesterol</loc>
+    <loc>https://hesho112000.github.io/healthcalc/advanced-care/heart</loc>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hesho112000.github.io/healthcalc/advanced-care/gout</loc>
+    <loc>https://hesho112000.github.io/healthcalc/advanced-care/liver</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hesho112000.github.io/healthcalc/advanced-care/pancreas</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hesho112000.github.io/healthcalc/advanced-care/kidneys</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hesho112000.github.io/healthcalc/advanced-care/stones</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hesho112000.github.io/healthcalc/advanced-care/gut</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hesho112000.github.io/healthcalc/advanced-care/pcos</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hesho112000.github.io/healthcalc/advanced-care/weight</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hesho112000.github.io/healthcalc/advanced-care/bones</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hesho112000.github.io/healthcalc/advanced-care/joints</loc>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
