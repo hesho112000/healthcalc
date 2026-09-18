@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin-login
+Disallow: /dashboard
+
+Sitemap: https://hesho112000.github.io/healthcalc/sitemap.xml

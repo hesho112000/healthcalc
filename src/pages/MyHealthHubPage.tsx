@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight, FileDown, FlaskConical, Lock, Play, Share2, Sparkles } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/seo/SEO';
 import { useAuth } from '../context/AuthContext';
 import { useSubscription } from '../context/SubscriptionContext';
 import { useUserData } from '../hooks/useUserData';
@@ -337,6 +338,7 @@ const MyHealthHubPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] pb-16" dir={dir}>
+      <SEO title={t('seo.hub.title')} description={t('seo.hub.description')} url="/my-health-hub" />
       {confetti && <ConfettiBurst />}
       <header className="max-w-6xl mx-auto px-4 sm:px-6 pt-12">
         <Link

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/seo/SEO';
 import { privacyPolicyDocs, getLegalDoc } from '../i18n/legal';
 
 const PrivacyPolicy: React.FC = () => {
@@ -8,6 +9,7 @@ const PrivacyPolicy: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#f8fafc]" dir={dir}>
+      <SEO title={t('seo.privacy.title')} description={t('seo.privacy.description')} url="/privacy" />
       <div className="bg-gradient-to-r from-gray-700 to-gray-800 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 md:py-14">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full mb-4">

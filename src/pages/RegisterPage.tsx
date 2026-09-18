@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth, ENABLE_PHONE_AUTH } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/seo/SEO';
 
 const GoogleIcon: React.FC = () => (
   <svg className="w-5 h-5" viewBox="0 0 48 48" aria-hidden="true">
@@ -89,6 +90,7 @@ const RegisterPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50/50 via-white to-sage-50/30 flex items-center justify-center px-4 py-12" dir={dir}>
+      <SEO title={t('seo.register.title')} description={t('seo.register.description')} url="/register" />
       <div className="w-full max-w-md animate-fade-in">
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-2.5 mb-6">

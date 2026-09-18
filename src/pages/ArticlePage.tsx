@@ -1,7 +1,9 @@
 import React, { lazy, Suspense, useEffect, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, ArrowRight, Check, Clock, TrendingUp } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/seo/SEO';
 import { ARTICLES, getArticleBySlug, lt } from '../data/articles';
 import { translations } from '../i18n/translations';
 
@@ -44,11 +46,27 @@ const ArticlePage: React.FC = () => {
   }
 
   const title = lt(article.title, language);
+  const description = lt(article.excerpt, language);
   const takeaways = article.takeaways[language as 'en' | 'ar'] ?? article.takeaways.en;
   const categoryKey = `article.category.${article.category}` as TKey;
 
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description,
+    datePublished: article.publishedAt,
+    author: { '@type': 'Organization', name: 'HealthCalc' },
+    publisher: { '@type': 'Organization', name: 'HealthCalc', url: 'https://hesho112000.github.io/healthcalc/' },
+    mainEntityOfPage: `https://hesho112000.github.io/healthcalc/#/resources/article/${article.slug}`,
+  };
+
   return (
     <div className="min-h-screen bg-[#FDFBF7]" dir={dir}>
+      <SEO type="article" title={title} description={description} url={`/resources/article/${article.slug}`} />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
+      </Helmet>
       <div className="max-w-[720px] mx-auto px-6 pt-16 pb-20">
         <div className="flex flex-wrap items-center gap-2 text-sm text-[#6B7A75]">
           <Link to="/resources" className="font-bold text-[#0F4C3A] hover:text-[#D4AF37] transition-colors">

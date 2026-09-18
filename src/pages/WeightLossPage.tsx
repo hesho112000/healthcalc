@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/seo/SEO';
 import { kitchensRegistry, totalDishesAll } from '../data/kitchens';
 import type { KitchenInfo, KitchenDish, KitchenCategory } from '../data/kitchens';
 import { getWizardExercisesByType } from '../data/exercises';
@@ -1133,6 +1134,7 @@ const WeightLossPage: React.FC = () => {
 
   return (
     <div className="wiz-page min-h-screen text-[#0F4C3A] overflow-x-hidden antialiased bg-[#FDFBF7]">
+      <SEO title={t('seo.weightLoss.title')} description={t('seo.weightLoss.description')} url="/weight-loss" />
       {step !== 5 && (
         <header className="sticky top-0 z-40 bg-[#FDFBF7]/92 backdrop-blur-md border-b border-[#EFEBE4]">
           <div className="max-w-[880px] mx-auto px-4 md:px-6 pt-4 pb-3">

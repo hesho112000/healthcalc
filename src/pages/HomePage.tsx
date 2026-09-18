@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/seo/SEO';
 import SectionIllustration from '../components/illustrations/SectionIllustration';
 import HealthFingerprint from '../components/illustrations/HealthFingerprint';
 import FloatingStats from '../components/illustrations/FloatingStats';
@@ -29,7 +30,8 @@ const HomePage: React.FC = () => {
   const { t, dir, language } = useLanguage();
   return (
     <div className="home-shell" dir={dir}>
-<section className="hero-section">
+      <SEO title={t('seo.home.title')} description={t('seo.home.description')} url="/" />
+      <section className="hero-section">
         <div className="hero-mesh" />
         <div className="max-w-7xl mx-auto px-6 py-12 lg:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-16 items-center">

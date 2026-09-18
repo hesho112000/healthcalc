@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, ArrowRight, Check, ChefHat, Clock, Flame } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/seo/SEO';
 import { getRecipeBySlug, lt } from '../data/recipes';
 
 const RecipePage: React.FC = () => {
@@ -33,6 +35,26 @@ const RecipePage: React.FC = () => {
 
   const ingredients = recipe.ingredients[language as 'en' | 'ar'] ?? recipe.ingredients.en;
   const instructions = recipe.instructions[language as 'en' | 'ar'] ?? recipe.instructions.en;
+  const name = lt(recipe.title, language);
+  const descriptionRecipe = lt(recipe.description, language);
+
+  const recipeJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Recipe',
+    name,
+    description: descriptionRecipe,
+    prepTime: `PT${recipe.prepTime.en.replace(/\D/g, '')}M`,
+    recipeCategory: lt(recipe.cuisine, language),
+    recipeIngredient: ingredients,
+    recipeInstructions: instructions.map((step, i) => ({ '@type': 'HowToStep', position: i + 1, text: step })),
+    nutrition: {
+      '@type': 'NutritionInformation',
+      calories: `${recipe.nutrition.calories} calories`,
+      proteinContent: `${recipe.nutrition.protein} g`,
+      carbohydrateContent: `${recipe.nutrition.carbs} g`,
+      fatContent: `${recipe.nutrition.fat} g`,
+    },
+  };
 
   const nutritionRows = [
     { label: t('recipe.calories'), value: `${recipe.nutrition.calories} kcal` },
@@ -43,6 +65,10 @@ const RecipePage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFBF7]" dir={dir}>
+      <SEO type="article" title={name} description={descriptionRecipe} url={`/resources/recipe/${recipe.slug}`} />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(recipeJsonLd)}</script>
+      </Helmet>
       <div className="max-w-[720px] mx-auto px-6 pt-16 pb-20">
         <div className="flex items-center justify-between gap-3">
           <Link

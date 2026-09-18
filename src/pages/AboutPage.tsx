@@ -11,6 +11,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/seo/SEO';
 
 const SPLIT = (title: string) => {
   const words = title.split(' ');
@@ -37,6 +38,7 @@ const AboutPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFBF7]" dir={dir}>
+      <SEO title={t('seo.about.title')} description={t('seo.about.description')} url="/about" />
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(60%_120%_at_50%_0%,rgba(212,175,55,0.12),rgba(255,255,255,0)_60%)]" />
         <div className="relative max-w-4xl mx-auto px-6 pt-20 pb-12 text-center">

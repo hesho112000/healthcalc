@@ -1,7 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Check, Plus, X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/seo/SEO';
 import { translations } from '../i18n/translations';
 import { CONDITION_DATA, UNIVERSE_CONDITION_IDS } from '../data/conditions';
 import type { ConditionId } from '../data/conditions';
@@ -99,6 +101,18 @@ const HealthUniversePage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFBF7]" dir={dir}>
+      <SEO title={t('seo.universe.title')} description={t('seo.universe.description')} url="/advanced-care" />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'MedicalWebPage',
+          name: t('seo.universe.title'),
+          description: t('seo.universe.description'),
+          url: 'https://hesho112000.github.io/healthcalc/#/advanced-care',
+          about: { '@type': 'MedicalCondition' },
+          audience: { '@type': 'MedicalAudience' },
+        })}</script>
+      </Helmet>
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(60%_120%_at_50%_0%,rgba(212,175,55,0.10),rgba(255,255,255,0)_60%)]" />
         <div className="relative max-w-6xl mx-auto px-6 py-12 text-center">

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/seo/SEO';
 
 const ContactUs: React.FC = () => {
   const { t, dir } = useLanguage();
@@ -14,6 +15,7 @@ const ContactUs: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#f8fafc]">
+      <SEO title={t('seo.contact.title')} description={t('seo.contact.description')} url="/contact" />
       <div className="bg-gradient-to-r from-primary-600 to-primary-700 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 md:py-14">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full mb-4">

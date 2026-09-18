@@ -2,6 +2,7 @@ import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Dumbbell, Flame, Gauge, HeartPulse, Ruler, Wind } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/seo/SEO';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import FitnessHeroVisual from '../components/illustrations/FitnessHeroVisual';
 
@@ -135,6 +136,7 @@ const FitnessPage: React.FC = () => {
 
   return (
     <div className="tool-page min-h-screen bg-[#FDFBF7]">
+      <SEO title={t('seo.fitness.title')} description={t('seo.fitness.description')} url="/fitness" />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8">
         <div className="flex items-center gap-4">
           <div className="wiz-progress flex-1">

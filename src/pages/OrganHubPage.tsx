@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { ArrowRight, Plus, Check } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/seo/SEO';
 import BodyMap, {
   ORGAN_META,
   organConditionKey,
@@ -150,6 +151,7 @@ const OrganHubPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] pb-16" dir={dir}>
+      <SEO title={t('seo.organHub.title')} description={t('seo.organHub.description')} url={`/advanced-care/${normId}`} />
       <header className="max-w-6xl mx-auto px-4 sm:px-6 pt-10">
         <button
           type="button"

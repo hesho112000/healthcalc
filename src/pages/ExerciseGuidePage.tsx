@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Check, Clock, Dumbbell, Flame, Lightbulb, TrendingUp } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/seo/SEO';
 import { EXERCISE_GUIDES, getExerciseGuideBySlug, pickText } from '../data/exerciseGuides';
 import { translations } from '../i18n/translations';
 
@@ -74,6 +75,7 @@ const ExerciseGuidePage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFBF7]" dir={dir}>
+      <SEO type="article" title={title} description={description} url={`/resources/exercise/${guide.slug}`} />
       <div className="max-w-[760px] mx-auto px-6 pt-16 pb-20">
         <div className="flex flex-wrap items-center gap-2 text-sm text-[#6B7A75]">
           <Link to="/resources" className="font-bold text-[#0F4C3A] hover:text-[#D4AF37] transition-colors">
