@@ -961,6 +961,31 @@ type TranslationKeys = {
   'resources.newsletter.placeholder': string;
   'resources.newsletter.cta': string;
   'resources.newsletter.done': string;
+  // Article page
+  'article.notFound': string;
+  'article.backToResources': string;
+  'article.readTime': string;
+  'article.byTeam': string;
+  'article.keyTakeaways': string;
+  'article.related': string;
+  'article.cta.title': string;
+  'article.cta.button': string;
+  'article.category.diabetes': string;
+  'article.category.heart': string;
+  'article.category.nutrition': string;
+  'article.category.lifestyle': string;
+  'article.category.fitness': string;
+  // Recipe page
+  'recipe.notFound': string;
+  'recipe.backToResources': string;
+  'recipe.ingredients': string;
+  'recipe.instructions': string;
+  'recipe.nutrition': string;
+  'recipe.prepTime': string;
+  'recipe.calories': string;
+  'recipe.protein': string;
+  'recipe.carbs': string;
+  'recipe.fat': string;
   'auth.continueWithGoogle': string;
   'auth.orContinueWith': string;
   'auth.signInWithPhone': string;
@@ -3717,6 +3742,31 @@ export const translations: Record<Language, TranslationKeys> = {
     'resources.newsletter.placeholder': 'Enter your email',
     'resources.newsletter.cta': 'Subscribe',
     'resources.newsletter.done': 'Subscribed! Check your inbox to confirm.',
+    // Article page
+    'article.notFound': 'Article not found',
+    'article.backToResources': 'Back to Resources',
+    'article.readTime': 'min read',
+    'article.byTeam': 'By HealthCalc Team',
+    'article.keyTakeaways': 'Key Takeaways',
+    'article.related': 'You might also like...',
+    'article.cta.title': 'Want a personalized plan?',
+    'article.cta.button': 'Start Your Health Journey',
+    'article.category.diabetes': 'Diabetes',
+    'article.category.heart': 'Heart Health',
+    'article.category.nutrition': 'Nutrition',
+    'article.category.lifestyle': 'Lifestyle',
+    'article.category.fitness': 'Fitness',
+    // Recipe page
+    'recipe.notFound': 'Recipe not found',
+    'recipe.backToResources': 'Back to Resources',
+    'recipe.ingredients': 'Ingredients',
+    'recipe.instructions': 'Instructions',
+    'recipe.nutrition': 'Nutrition Facts',
+    'recipe.prepTime': 'Prep time',
+    'recipe.calories': 'Calories',
+    'recipe.protein': 'Protein',
+    'recipe.carbs': 'Carbohydrates',
+    'recipe.fat': 'Fat',
     'auth.continueWithGoogle': 'Continue with Google',
     'sync.loading': 'Loading your saved data…',
     'sync.saving': 'Saving to your account…',
@@ -5977,6 +6027,31 @@ export const translations: Record<Language, TranslationKeys> = {
     'resources.newsletter.placeholder': 'Entrez votre e-mail',
     'resources.newsletter.cta': 'S\'abonner',
     'resources.newsletter.done': 'Abonné ! Vérifiez votre boîte de réception pour confirmer.',
+    // Article page
+    'article.notFound': 'Article introuvable',
+    'article.backToResources': 'Retour aux Ressources',
+    'article.readTime': 'min de lecture',
+    'article.byTeam': 'Par l\'équipe HealthCalc',
+    'article.keyTakeaways': 'Points Clés',
+    'article.related': 'Vous aimerez aussi...',
+    'article.cta.title': 'Un plan personnalisé ?',
+    'article.cta.button': 'Commencez votre parcours santé',
+    'article.category.diabetes': 'Diabète',
+    'article.category.heart': 'Santé du Cœur',
+    'article.category.nutrition': 'Nutrition',
+    'article.category.lifestyle': 'Mode de Vie',
+    'article.category.fitness': 'Forme',
+    // Recipe page
+    'recipe.notFound': 'Recette introuvable',
+    'recipe.backToResources': 'Retour aux Ressources',
+    'recipe.ingredients': 'Ingrédients',
+    'recipe.instructions': 'Instructions',
+    'recipe.nutrition': 'Valeurs Nutritionnelles',
+    'recipe.prepTime': 'Temps de préparation',
+    'recipe.calories': 'Calories',
+    'recipe.protein': 'Protéines',
+    'recipe.carbs': 'Glucides',
+    'recipe.fat': 'Lipides',
     'auth.continueWithGoogle': 'Continuer avec Google',
     'sync.loading': 'Chargement de vos données sauvegardées…',
     'sync.saving': 'Enregistrement sur votre compte…',
@@ -8207,6 +8282,31 @@ export const translations: Record<Language, TranslationKeys> = {
     'resources.newsletter.placeholder': 'Introduce tu correo',
     'resources.newsletter.cta': 'Suscribirse',
     'resources.newsletter.done': '¡Suscrito! Revisa tu bandeja de entrada para confirmar.',
+    // Article page
+    'article.notFound': 'Artículo no encontrado',
+    'article.backToResources': 'Volver a Recursos',
+    'article.readTime': 'min de lectura',
+    'article.byTeam': 'Por el equipo de HealthCalc',
+    'article.keyTakeaways': 'Puntos Clave',
+    'article.related': 'También te puede gustar...',
+    'article.cta.title': '¿Quieres un plan personalizado?',
+    'article.cta.button': 'Comienza tu viaje de salud',
+    'article.category.diabetes': 'Diabetes',
+    'article.category.heart': 'Salud del Corazón',
+    'article.category.nutrition': 'Nutrición',
+    'article.category.lifestyle': 'Estilo de Vida',
+    'article.category.fitness': 'Fitness',
+    // Recipe page
+    'recipe.notFound': 'Receta no encontrada',
+    'recipe.backToResources': 'Volver a Recursos',
+    'recipe.ingredients': 'Ingredientes',
+    'recipe.instructions': 'Instrucciones',
+    'recipe.nutrition': 'Información Nutricional',
+    'recipe.prepTime': 'Tiempo de preparación',
+    'recipe.calories': 'Calorías',
+    'recipe.protein': 'Proteínas',
+    'recipe.carbs': 'Carbohidratos',
+    'recipe.fat': 'Grasas',
     'auth.continueWithGoogle': 'Continuar con Google',
     'sync.loading': 'Cargando tus datos guardados…',
     'sync.saving': 'Guardando en tu cuenta…',
@@ -10437,6 +10537,31 @@ export const translations: Record<Language, TranslationKeys> = {
     'resources.newsletter.placeholder': 'أدخل بريدك الإلكتروني',
     'resources.newsletter.cta': 'اشترك',
     'resources.newsletter.done': 'تم الاشتراك! تحقق من بريدك الوارد للتأكيد.',
+    // Article page
+    'article.notFound': 'المقال غير موجود',
+    'article.backToResources': 'العودة إلى المصادر',
+    'article.readTime': 'دقائق قراءة',
+    'article.byTeam': 'بواسطة فريق HealthCalc',
+    'article.keyTakeaways': 'أهم النقاط',
+    'article.related': 'قد يعجبك أيضًا...',
+    'article.cta.title': 'هل تريد خطة مخصصة؟',
+    'article.cta.button': 'ابدأ رحلتك الصحية',
+    'article.category.diabetes': 'السكري',
+    'article.category.heart': 'صحة القلب',
+    'article.category.nutrition': 'التغذية',
+    'article.category.lifestyle': 'نمط الحياة',
+    'article.category.fitness': 'اللياقة',
+    // Recipe page
+    'recipe.notFound': 'الوصفة غير موجودة',
+    'recipe.backToResources': 'العودة إلى المصادر',
+    'recipe.ingredients': 'المكونات',
+    'recipe.instructions': 'طريقة التحضير',
+    'recipe.nutrition': 'القيم الغذائية',
+    'recipe.prepTime': 'وقت التحضير',
+    'recipe.calories': 'السعرات',
+    'recipe.protein': 'البروتين',
+    'recipe.carbs': 'الكربوهيدرات',
+    'recipe.fat': 'الدهون',
     'auth.continueWithGoogle': 'المتابعة عبر Google',
     'sync.loading': 'جارٍ تحميل بياناتك المحفوظة…',
     'sync.saving': 'جارٍ الحفظ في حسابك…',
@@ -12678,6 +12803,31 @@ export const translations: Record<Language, TranslationKeys> = {
     'resources.newsletter.placeholder': 'E-Mail eingeben',
     'resources.newsletter.cta': 'Abonnieren',
     'resources.newsletter.done': 'Abonniert! Bestätige die E-Mail in deinem Postfach.',
+    // Article page
+    'article.notFound': 'Artikel nicht gefunden',
+    'article.backToResources': 'Zurück zu den Ressourcen',
+    'article.readTime': 'Min. Lesezeit',
+    'article.byTeam': 'Vom HealthCalc-Team',
+    'article.keyTakeaways': 'Wichtige Erkenntnisse',
+    'article.related': 'Das könnte dir auch gefallen...',
+    'article.cta.title': 'Möchtest du einen persönlichen Plan?',
+    'article.cta.button': 'Starte deine Gesundheitsreise',
+    'article.category.diabetes': 'Diabetes',
+    'article.category.heart': 'Herzgesundheit',
+    'article.category.nutrition': 'Ernährung',
+    'article.category.lifestyle': 'Lebensstil',
+    'article.category.fitness': 'Fitness',
+    // Recipe page
+    'recipe.notFound': 'Rezept nicht gefunden',
+    'recipe.backToResources': 'Zurück zu den Ressourcen',
+    'recipe.ingredients': 'Zutaten',
+    'recipe.instructions': 'Zubereitung',
+    'recipe.nutrition': 'Nährwerte',
+    'recipe.prepTime': 'Vorbereitungszeit',
+    'recipe.calories': 'Kalorien',
+    'recipe.protein': 'Protein',
+    'recipe.carbs': 'Kohlenhydrate',
+    'recipe.fat': 'Fett',
     'auth.continueWithGoogle': 'Mit Google fortfahren',
     'sync.loading': 'Gespeicherte Daten werden geladen…',
     'sync.saving': 'Wird auf dein Konto gespeichert…',

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Activity,
   ArrowRight,
@@ -19,6 +20,8 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
+import { ARTICLES } from '../data/articles';
+import { RECIPES } from '../data/recipes';
 
 type TKey = keyof typeof translations.en;
 
@@ -120,14 +123,16 @@ const ResourcesPage: React.FC = () => {
           <section>
             <SectionHeading title={t('resources.articles.title')} />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {Array.from({ length: 9 }, (_, i) => i + 1).map((id) => {
-                const Icon = ART_ICONS[id - 1];
+              {ARTICLES.map((article, i) => {
+                const id = i + 1;
+                const Icon = ART_ICONS[i];
                 return (
-                  <article
-                    key={id}
+                  <Link
+                    key={article.slug}
+                    to={`/resources/article/${article.slug}`}
                     className="group rounded-3xl border border-[#EFEBE4] bg-white overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(15,76,58,0.10)]"
                   >
-                    <div className={`h-36 bg-gradient-to-br ${ART_GRADIENTS[id - 1]} relative flex items-center justify-center`}>
+                    <div className={`h-36 bg-gradient-to-br ${ART_GRADIENTS[i]} relative flex items-center justify-center`}>
                       <Icon size={44} className="text-white/85" />
                       <span className="absolute top-3 start-3 rounded-full bg-[#FDFBF7]/90 px-3 py-1 text-[10px] font-extrabold tracking-wide uppercase text-[#0F4C3A]">
                         {t('resources.tag.article')}
@@ -150,7 +155,7 @@ const ResourcesPage: React.FC = () => {
                         </span>
                       </div>
                     </div>
-                  </article>
+                  </Link>
                 );
               })}
             </div>
@@ -161,41 +166,45 @@ const ResourcesPage: React.FC = () => {
           <section>
             <SectionHeading title={t('resources.recipes.title')} />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {Array.from({ length: 6 }, (_, i) => i + 1).map((id) => (
-                <article
-                  key={id}
-                  className="group rounded-3xl border border-[#EFEBE4] bg-white overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(15,76,58,0.10)]"
-                >
-                  <div className="h-32 bg-gradient-to-br from-[#F4F1EB] to-[#E9E5DB] relative flex items-center justify-center">
-                    <span className="text-5xl drop-shadow-sm">{RECIPE_EMOJIS[id - 1]}</span>
-                    <span className="absolute top-3 start-3 rounded-full bg-[#D4AF37] px-3 py-1 text-[10px] font-extrabold tracking-wide uppercase text-[#0F4C3A]">
-                      {t('resources.tag.recipe')}
-                    </span>
-                  </div>
-                  <div className="p-6">
-                    <p className="text-[10px] font-extrabold tracking-[0.18em] uppercase text-[#D4AF37]">
-                      {t(k(`resources.recipe.${id}.cuisine`))}
-                    </p>
-                    <h3 className="mt-1 text-base font-extrabold text-[#0F4C3A] leading-snug">
-                      {t(k(`resources.recipe.${id}.name`))}
-                    </h3>
-                    <div className="mt-3 flex items-center gap-4 text-xs font-bold text-[#6B7A75]">
-                      <span className="inline-flex items-center gap-1">
-                        <Flame size={14} className="text-[#D4AF37]" />
-                        {t(k(`resources.recipe.${id}.calories`))}
-                      </span>
-                      <span className="inline-flex items-center gap-1">
-                        <Clock size={14} className="text-[#0F4C3A]" />
-                        {t(k(`resources.recipe.${id}.prepTime`))}
+              {RECIPES.map((recipe, i) => {
+                const id = i + 1;
+                return (
+                  <Link
+                    key={recipe.slug}
+                    to={`/resources/recipe/${recipe.slug}`}
+                    className="group rounded-3xl border border-[#EFEBE4] bg-white overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(15,76,58,0.10)]"
+                  >
+                    <div className="h-32 bg-gradient-to-br from-[#F4F1EB] to-[#E9E5DB] relative flex items-center justify-center">
+                      <span className="text-5xl drop-shadow-sm">{RECIPE_EMOJIS[i]}</span>
+                      <span className="absolute top-3 start-3 rounded-full bg-[#D4AF37] px-3 py-1 text-[10px] font-extrabold tracking-wide uppercase text-[#0F4C3A]">
+                        {t('resources.tag.recipe')}
                       </span>
                     </div>
-                    <div className="mt-4 inline-flex items-center gap-1 text-sm font-extrabold text-[#0F4C3A]">
-                      {t('common.viewRecipe')}
-                      <ArrowRight size={15} className="rtl:rotate-180" />
+                    <div className="p-6">
+                      <p className="text-[10px] font-extrabold tracking-[0.18em] uppercase text-[#D4AF37]">
+                        {t(k(`resources.recipe.${id}.cuisine`))}
+                      </p>
+                      <h3 className="mt-1 text-base font-extrabold text-[#0F4C3A] leading-snug">
+                        {t(k(`resources.recipe.${id}.name`))}
+                      </h3>
+                      <div className="mt-3 flex items-center gap-4 text-xs font-bold text-[#6B7A75]">
+                        <span className="inline-flex items-center gap-1">
+                          <Flame size={14} className="text-[#D4AF37]" />
+                          {t(k(`resources.recipe.${id}.calories`))}
+                        </span>
+                        <span className="inline-flex items-center gap-1">
+                          <Clock size={14} className="text-[#0F4C3A]" />
+                          {t(k(`resources.recipe.${id}.prepTime`))}
+                        </span>
+                      </div>
+                      <div className="mt-4 inline-flex items-center gap-1 text-sm font-extrabold text-[#0F4C3A]">
+                        {t('common.viewRecipe')}
+                        <ArrowRight size={15} className="rtl:rotate-180" />
+                      </div>
                     </div>
-                  </div>
-                </article>
-              ))}
+                  </Link>
+                );
+              })}
             </div>
           </section>
         )}
