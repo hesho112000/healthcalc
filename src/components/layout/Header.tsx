@@ -114,7 +114,15 @@ const Header: React.FC = () => {
                 🔑 {t('admin.badge.label')}
               </button>
               {adminOpen && (
-                <div className="absolute top-full mt-2 end-0 z-50 min-w-[200px] rounded-2xl bg-white border border-[#EFEBE4] shadow-[0_12px_32px_rgba(15,76,58,0.12)] p-2">
+                <div className="absolute top-full mt-2 end-0 z-50 min-w-[220px] rounded-2xl bg-white border border-[#EFEBE4] shadow-[0_12px_32px_rgba(15,76,58,0.12)] p-2">
+                  <Link
+                    to="/admin/dashboard"
+                    onClick={() => setAdminOpen(false)}
+                    className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-start text-sm font-bold text-[#0F4C3A] hover:bg-[#F4F1EB] transition-colors"
+                  >
+                    📊 {t('admin.badge.dashboard')}
+                  </Link>
+                  <div className="h-px bg-[#EFEBE4] my-1" />
                   <button
                     type="button"
                     onClick={() => {

@@ -4,6 +4,18 @@ import React, { createContext, useCallback, useContext, useState } from 'react';
 export const ADMIN_SECRET_KEY: string =
   (import.meta.env.VITE_ADMIN_SECRET_KEY as string | undefined) ?? 'healthcalc-admin-2026-v1';
 
+export const ADMIN_PASSWORD_OVERRIDE_KEY = 'healthcalc_admin_password_override';
+
+export const getAdminSecretKey = (): string => {
+  try {
+    const override = localStorage.getItem(ADMIN_PASSWORD_OVERRIDE_KEY);
+    if (override && override.trim()) return override.trim();
+  } catch {
+    /* ignore */
+  }
+  return ADMIN_SECRET_KEY;
+};
+
 export const ADMIN_STORAGE_KEY = 'adminToken';
 
 interface AdminContextType {
@@ -27,15 +39,15 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [adminToken, setAdminToken] = useState<string | null>(readToken);
 
   const enableAdmin = useCallback((password: string): boolean => {
-    if (password !== ADMIN_SECRET_KEY) {
+    if (password !== getAdminSecretKey()) {
       return false;
     }
     try {
-      localStorage.setItem(ADMIN_STORAGE_KEY, ADMIN_SECRET_KEY);
+      localStorage.setItem(ADMIN_STORAGE_KEY, getAdminSecretKey());
     } catch {
       /* ignore */
     }
-    setAdminToken(ADMIN_SECRET_KEY);
+    setAdminToken(getAdminSecretKey());
     return true;
   }, []);
 
@@ -50,7 +62,7 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   return (
     <AdminContext.Provider
-      value={{ isAdmin: adminToken === ADMIN_SECRET_KEY, adminToken, enableAdmin, disableAdmin }}
+      value={{ isAdmin: adminToken === getAdminSecretKey(), adminToken, enableAdmin, disableAdmin }}
     >
       {children}
     </AdminContext.Provider>

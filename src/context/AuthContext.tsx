@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import { supabase } from '../lib/supabase';
 import type { Session, User as SupabaseUser } from '@supabase/supabase-js';
-import { ADMIN_SECRET_KEY, ADMIN_STORAGE_KEY } from './AdminContext';
+import { ADMIN_STORAGE_KEY, getAdminSecretKey } from './AdminContext';
 
 export const ENABLE_PHONE_AUTH = false;
 
@@ -9,7 +9,7 @@ export const isAdmin = (): boolean => {
   try {
     return (
       localStorage.getItem('dev_mode') === 'ADMIN_2026' ||
-      localStorage.getItem(ADMIN_STORAGE_KEY) === ADMIN_SECRET_KEY
+      localStorage.getItem(ADMIN_STORAGE_KEY) === getAdminSecretKey()
     );
   } catch {
     return false;

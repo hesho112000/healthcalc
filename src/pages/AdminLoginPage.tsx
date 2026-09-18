@@ -13,13 +13,13 @@ const AdminLoginPage: React.FC = () => {
 
   useEffect(() => {
     if (isAdmin) {
-      navigate('/advanced-care', { replace: true });
+      navigate('/admin/dashboard', { replace: true });
     }
   }, [isAdmin, navigate]);
 
   const handleSubmit = () => {
     if (enableAdmin(password)) {
-      navigate('/advanced-care');
+      navigate('/admin/dashboard');
       return;
     }
     setError(true);

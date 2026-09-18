@@ -3,10 +3,12 @@ import { Routes, Route, Navigate, Link, useParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
 import ProtectedRoute from '../components/ProtectedRoute';
+import AdminProtectedRoute from '../components/AdminProtectedRoute';
 import LoadingFallback from '../components/LoadingFallback';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const AdminLoginPage = lazy(() => import('../pages/AdminLoginPage'));
+const AdminDashboardPage = lazy(() => import('../pages/AdminDashboardPage'));
 const WeightLossPage = lazy(() => import('../pages/WeightLossPage'));
 const DiabetesPage = lazy(() => import('../pages/DiabetesPage'));
 const LegacyAdvancedCarePage = lazy(() => import('../pages/LegacyAdvancedCarePage'));
@@ -95,6 +97,22 @@ export const AppRoutes: React.FC = () => (
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/admin-login" element={<AdminLoginPage />} />
       <Route
+        path="/admin/dashboard"
+        element={
+          <AdminProtectedRoute>
+            <AdminDashboardPage />
+          </AdminProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/dashboard/:section"
+        element={
+          <AdminProtectedRoute>
+            <AdminDashboardPage />
+          </AdminProtectedRoute>
+        }
+      />
+      <Route
         path="/dashboard"
         element={
           <ProtectedRoute>
@@ -120,8 +138,6 @@ export const AppRoutes: React.FC = () => (
       <Route path="/wizard/step2" element={<StaticStepPage step={2} />} />
       <Route path="/Personal-Data-Entry-Step1" element={<StaticStepPage step={1} />} />
       <Route path="/Personal-Data-Entry-Step2" element={<StaticStepPage step={2} />} />
-
-      <Route path="/admin" element={<Navigate to="/admin-login" replace />} />
 
       <Route path="/:lang/landing/:slug" element={<LocalizedSeoPage />} />
       <Route path="/health-guide/:slug" element={<LegacySeoRedirect />} />
