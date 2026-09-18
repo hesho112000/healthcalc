@@ -15,7 +15,7 @@ const App: React.FC = () => {
       <AdminProvider>
         <AuthProvider>
           <SubscriptionProvider>
-            <Router>
+            <Router basename="/healthcalc">
             <div className="min-h-screen flex flex-col">
               <Header />
               <main className="flex-1">
