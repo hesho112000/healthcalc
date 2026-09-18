@@ -58,7 +58,7 @@ const ArticlePage: React.FC = () => {
     datePublished: article.publishedAt,
     author: { '@type': 'Organization', name: 'HealthCalc' },
     publisher: { '@type': 'Organization', name: 'HealthCalc', url: 'https://hesho112000.github.io/healthcalc/' },
-    mainEntityOfPage: `https://hesho112000.github.io/healthcalc/#/resources/article/${article.slug}`,
+    mainEntityOfPage: `https://hesho112000.github.io/healthcalc/resources/article/${article.slug}`,
   };
 
   return (

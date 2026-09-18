@@ -108,7 +108,7 @@ const HealthUniversePage: React.FC = () => {
           '@type': 'MedicalWebPage',
           name: t('seo.universe.title'),
           description: t('seo.universe.description'),
-          url: 'https://hesho112000.github.io/healthcalc/#/advanced-care',
+          url: 'https://hesho112000.github.io/healthcalc/advanced-care',
           about: { '@type': 'MedicalCondition' },
           audience: { '@type': 'MedicalAudience' },
         })}</script>

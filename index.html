@@ -44,21 +44,22 @@
       "description": "Free BMI, BMR, TDEE calculators plus advanced medical care for diabetes, hypertension, cholesterol, and gout.",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://hesho112000.github.io/healthcalc/#/search?q={search_term_string}",
+        "target": "https://hesho112000.github.io/healthcalc/search?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     }
     </script>
     <script>
-      (function () {
-        var r = sessionStorage.getItem('hc:redirect');
-        if (!r) return;
-        sessionStorage.removeItem('hc:redirect');
-        var base = location.href.split('#')[0];
-        var path = r.replace(base, '').replace(/^\/+/, '').replace(/index\.html$/, '');
-        var target = path ? '#/' + path + location.hash : '#/';
-        location.replace(base + target);
-      })();
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
     </script>
   </head>
   <body>
