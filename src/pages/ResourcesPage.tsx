@@ -22,6 +22,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
 import { ARTICLES } from '../data/articles';
 import { RECIPES } from '../data/recipes';
+import { EXERCISE_GUIDES } from '../data/exerciseGuides';
 
 type TKey = keyof typeof translations.en;
 
@@ -213,11 +214,13 @@ const ResourcesPage: React.FC = () => {
           <section>
             <SectionHeading title={t('resources.exercises.title')} />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {Array.from({ length: 6 }, (_, i) => i + 1).map((id) => {
-                const Icon = EX_ICONS[id - 1];
+              {EXERCISE_GUIDES.map((guide, i) => {
+                const id = i + 1;
+                const Icon = EX_ICONS[i];
                 return (
-                  <article
-                    key={id}
+                  <Link
+                    key={guide.slug}
+                    to={`/resources/exercise/${guide.slug}`}
                     className="group rounded-3xl border border-[#EFEBE4] bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(15,76,58,0.10)]"
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -247,7 +250,7 @@ const ResourcesPage: React.FC = () => {
                       {t('common.viewGuide')}
                       <ArrowRight size={15} className="rtl:rotate-180" />
                     </div>
-                  </article>
+                  </Link>
                 );
               })}
             </div>

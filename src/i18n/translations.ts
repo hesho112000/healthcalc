@@ -986,6 +986,35 @@ type TranslationKeys = {
   'recipe.protein': string;
   'recipe.carbs': string;
   'recipe.fat': string;
+  // Exercise guide page
+  'exercise.notFound': string;
+  'exercise.backToResources': string;
+  'exercise.stats.duration': string;
+  'exercise.stats.difficulty': string;
+  'exercise.stats.calories': string;
+  'exercise.stats.equipment': string;
+  'exercise.benefits': string;
+  'exercise.instructions': string;
+  'exercise.tips': string;
+  'exercise.suitableFor': string;
+  'exercise.related': string;
+  'exercise.cta.title': string;
+  'exercise.cta.button': string;
+  'exercise.difficulty.easy': string;
+  'exercise.difficulty.medium': string;
+  'exercise.difficulty.hard': string;
+  'exercise.equipment.none': string;
+  'exercise.equipment.dumbbells': string;
+  'exercise.equipment.mat': string;
+  'exercise.category.cardio': string;
+  'exercise.category.strength': string;
+  'exercise.category.mindbody': string;
+  'exercise.category.flexibility': string;
+  'exercise.condition.diabetes': string;
+  'exercise.condition.hypertension': string;
+  'exercise.condition.cholesterol': string;
+  'exercise.condition.stress': string;
+  'exercise.condition.joints': string;
   'auth.continueWithGoogle': string;
   'auth.orContinueWith': string;
   'auth.signInWithPhone': string;
@@ -3767,6 +3796,35 @@ export const translations: Record<Language, TranslationKeys> = {
     'recipe.protein': 'Protein',
     'recipe.carbs': 'Carbohydrates',
     'recipe.fat': 'Fat',
+    // Exercise guide page
+    'exercise.notFound': 'Exercise guide not found',
+    'exercise.backToResources': 'Back to Resources',
+    'exercise.stats.duration': 'Duration',
+    'exercise.stats.difficulty': 'Difficulty',
+    'exercise.stats.calories': 'Calories Burned',
+    'exercise.stats.equipment': 'Equipment',
+    'exercise.benefits': 'Benefits',
+    'exercise.instructions': 'How to Do It',
+    'exercise.tips': 'Pro Tips',
+    'exercise.suitableFor': 'Recommended For',
+    'exercise.related': 'You might also like...',
+    'exercise.cta.title': 'Want a personalized exercise plan?',
+    'exercise.cta.button': 'Start Your Health Journey',
+    'exercise.difficulty.easy': 'Easy',
+    'exercise.difficulty.medium': 'Medium',
+    'exercise.difficulty.hard': 'Hard',
+    'exercise.equipment.none': 'None',
+    'exercise.equipment.dumbbells': 'Dumbbells',
+    'exercise.equipment.mat': 'Mat',
+    'exercise.category.cardio': 'Cardio',
+    'exercise.category.strength': 'Strength',
+    'exercise.category.mindbody': 'Mind & Body',
+    'exercise.category.flexibility': 'Flexibility',
+    'exercise.condition.diabetes': 'Diabetes',
+    'exercise.condition.hypertension': 'Hypertension',
+    'exercise.condition.cholesterol': 'High Cholesterol',
+    'exercise.condition.stress': 'Stress Relief',
+    'exercise.condition.joints': 'Joint Health',
     'auth.continueWithGoogle': 'Continue with Google',
     'sync.loading': 'Loading your saved data…',
     'sync.saving': 'Saving to your account…',
@@ -6052,6 +6110,35 @@ export const translations: Record<Language, TranslationKeys> = {
     'recipe.protein': 'Protéines',
     'recipe.carbs': 'Glucides',
     'recipe.fat': 'Lipides',
+    // Exercise guide page
+    'exercise.notFound': 'Guide d\'exercice introuvable',
+    'exercise.backToResources': 'Retour aux Ressources',
+    'exercise.stats.duration': 'Durée',
+    'exercise.stats.difficulty': 'Difficulté',
+    'exercise.stats.calories': 'Calories Brûlées',
+    'exercise.stats.equipment': 'Équipement',
+    'exercise.benefits': 'Bienfaits',
+    'exercise.instructions': 'Comment faire',
+    'exercise.tips': 'Conseils de Pro',
+    'exercise.suitableFor': 'Recommandé Pour',
+    'exercise.related': 'Vous aimerez aussi...',
+    'exercise.cta.title': 'Un plan d\'exercice personnalisé ?',
+    'exercise.cta.button': 'Commencez votre parcours santé',
+    'exercise.difficulty.easy': 'Facile',
+    'exercise.difficulty.medium': 'Moyen',
+    'exercise.difficulty.hard': 'Difficile',
+    'exercise.equipment.none': 'Aucun',
+    'exercise.equipment.dumbbells': 'Haltères',
+    'exercise.equipment.mat': 'Tapis',
+    'exercise.category.cardio': 'Cardio',
+    'exercise.category.strength': 'Force',
+    'exercise.category.mindbody': 'Esprit & Corps',
+    'exercise.category.flexibility': 'Souplesse',
+    'exercise.condition.diabetes': 'Diabète',
+    'exercise.condition.hypertension': 'Hypertension',
+    'exercise.condition.cholesterol': 'Cholestérol élevé',
+    'exercise.condition.stress': 'Soulagement du stress',
+    'exercise.condition.joints': 'Santé des articulations',
     'auth.continueWithGoogle': 'Continuer avec Google',
     'sync.loading': 'Chargement de vos données sauvegardées…',
     'sync.saving': 'Enregistrement sur votre compte…',
@@ -8307,6 +8394,35 @@ export const translations: Record<Language, TranslationKeys> = {
     'recipe.protein': 'Proteínas',
     'recipe.carbs': 'Carbohidratos',
     'recipe.fat': 'Grasas',
+    // Exercise guide page
+    'exercise.notFound': 'Guía de ejercicio no encontrada',
+    'exercise.backToResources': 'Volver a Recursos',
+    'exercise.stats.duration': 'Duración',
+    'exercise.stats.difficulty': 'Dificultad',
+    'exercise.stats.calories': 'Calorías Quemadas',
+    'exercise.stats.equipment': 'Equipamiento',
+    'exercise.benefits': 'Beneficios',
+    'exercise.instructions': 'Cómo Hacerlo',
+    'exercise.tips': 'Consejos de Pro',
+    'exercise.suitableFor': 'Recomendado Para',
+    'exercise.related': 'También te puede gustar...',
+    'exercise.cta.title': '¿Quieres un plan de ejercicio personalizado?',
+    'exercise.cta.button': 'Comienza tu viaje de salud',
+    'exercise.difficulty.easy': 'Fácil',
+    'exercise.difficulty.medium': 'Media',
+    'exercise.difficulty.hard': 'Difícil',
+    'exercise.equipment.none': 'Ninguno',
+    'exercise.equipment.dumbbells': 'Mancuernas',
+    'exercise.equipment.mat': 'Esterilla',
+    'exercise.category.cardio': 'Cardio',
+    'exercise.category.strength': 'Fuerza',
+    'exercise.category.mindbody': 'Mente & Cuerpo',
+    'exercise.category.flexibility': 'Flexibilidad',
+    'exercise.condition.diabetes': 'Diabetes',
+    'exercise.condition.hypertension': 'Hipertensión',
+    'exercise.condition.cholesterol': 'Colesterol alto',
+    'exercise.condition.stress': 'Alivio del estrés',
+    'exercise.condition.joints': 'Salud articular',
     'auth.continueWithGoogle': 'Continuar con Google',
     'sync.loading': 'Cargando tus datos guardados…',
     'sync.saving': 'Guardando en tu cuenta…',
@@ -10562,6 +10678,35 @@ export const translations: Record<Language, TranslationKeys> = {
     'recipe.protein': 'البروتين',
     'recipe.carbs': 'الكربوهيدرات',
     'recipe.fat': 'الدهون',
+    // Exercise guide page
+    'exercise.notFound': 'دليل التمرين غير موجود',
+    'exercise.backToResources': 'العودة إلى المصادر',
+    'exercise.stats.duration': 'المدة',
+    'exercise.stats.difficulty': 'الصعوبة',
+    'exercise.stats.calories': 'السعرات المحروقة',
+    'exercise.stats.equipment': 'المعدات',
+    'exercise.benefits': 'الفوائد',
+    'exercise.instructions': 'كيفية الأداء',
+    'exercise.tips': 'نصائح الخبراء',
+    'exercise.suitableFor': 'موصى به لـ',
+    'exercise.related': 'قد يعجبك أيضًا...',
+    'exercise.cta.title': 'هل تريد خطة تمرين مخصصة؟',
+    'exercise.cta.button': 'ابدأ رحلتك الصحية',
+    'exercise.difficulty.easy': 'سهل',
+    'exercise.difficulty.medium': 'متوسط',
+    'exercise.difficulty.hard': 'صعب',
+    'exercise.equipment.none': 'لا يوجد',
+    'exercise.equipment.dumbbells': 'دمبلز',
+    'exercise.equipment.mat': 'حصيرة',
+    'exercise.category.cardio': 'كارديو',
+    'exercise.category.strength': 'قوة',
+    'exercise.category.mindbody': 'عقل وجسد',
+    'exercise.category.flexibility': 'مرونة',
+    'exercise.condition.diabetes': 'السكري',
+    'exercise.condition.hypertension': 'ارتفاع الضغط',
+    'exercise.condition.cholesterol': 'ارتفاع الكوليسترول',
+    'exercise.condition.stress': 'تخفيف التوتر',
+    'exercise.condition.joints': 'صحة المفاصل',
     'auth.continueWithGoogle': 'المتابعة عبر Google',
     'sync.loading': 'جارٍ تحميل بياناتك المحفوظة…',
     'sync.saving': 'جارٍ الحفظ في حسابك…',
@@ -12828,6 +12973,35 @@ export const translations: Record<Language, TranslationKeys> = {
     'recipe.protein': 'Protein',
     'recipe.carbs': 'Kohlenhydrate',
     'recipe.fat': 'Fett',
+    // Exercise guide page
+    'exercise.notFound': 'Übungsleitfaden nicht gefunden',
+    'exercise.backToResources': 'Zurück zu den Ressourcen',
+    'exercise.stats.duration': 'Dauer',
+    'exercise.stats.difficulty': 'Schwierigkeit',
+    'exercise.stats.calories': 'Verbrannte Kalorien',
+    'exercise.stats.equipment': 'Ausrüstung',
+    'exercise.benefits': 'Vorteile',
+    'exercise.instructions': 'So geht\'s',
+    'exercise.tips': 'Profi-Tipps',
+    'exercise.suitableFor': 'Empfohlen für',
+    'exercise.related': 'Das könnte dir auch gefallen...',
+    'exercise.cta.title': 'Möchtest du einen persönlichen Trainingsplan?',
+    'exercise.cta.button': 'Starte deine Gesundheitsreise',
+    'exercise.difficulty.easy': 'Leicht',
+    'exercise.difficulty.medium': 'Mittel',
+    'exercise.difficulty.hard': 'Schwer',
+    'exercise.equipment.none': 'Keine',
+    'exercise.equipment.dumbbells': 'Kurzhanteln',
+    'exercise.equipment.mat': 'Matte',
+    'exercise.category.cardio': 'Cardio',
+    'exercise.category.strength': 'Kraft',
+    'exercise.category.mindbody': 'Geist & Körper',
+    'exercise.category.flexibility': 'Beweglichkeit',
+    'exercise.condition.diabetes': 'Diabetes',
+    'exercise.condition.hypertension': 'Bluthochdruck',
+    'exercise.condition.cholesterol': 'Hohes Cholesterin',
+    'exercise.condition.stress': 'Stressabbau',
+    'exercise.condition.joints': 'Gelenkgesundheit',
     'auth.continueWithGoogle': 'Mit Google fortfahren',
     'sync.loading': 'Gespeicherte Daten werden geladen…',
     'sync.saving': 'Wird auf dein Konto gespeichert…',

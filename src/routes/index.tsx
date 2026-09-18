@@ -33,6 +33,7 @@ import AboutPage from '../pages/AboutPage';
 import ResourcesPage from '../pages/ResourcesPage';
 import ArticlePage from '../pages/ArticlePage';
 import RecipePage from '../pages/RecipePage';
+import ExerciseGuidePage from '../pages/ExerciseGuidePage';
 
 const LegacySeoRedirect: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -128,6 +129,7 @@ export const AppRoutes: React.FC = () => (
     <Route path="/resources" element={<ResourcesPage />} />
     <Route path="/resources/article/:slug" element={<ArticlePage />} />
     <Route path="/resources/recipe/:slug" element={<RecipePage />} />
+    <Route path="/resources/exercise/:slug" element={<ExerciseGuidePage />} />
     <Route path="/about" element={<AboutPage />} />
     <Route path="/faq" element={<SimplePage emoji="💬" titleKey="spFaqTitle" descKey="spFaqDesc" />} />
     <Route path="/wizard/step1" element={<StaticStepPage step={1} />} />
