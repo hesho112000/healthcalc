@@ -71,7 +71,7 @@ const Header: React.FC = () => {
     { to: '/fitness', key: 'nav.calculators' },
     { to: '/advanced-care', key: 'nav.advancedCare' },
     ...(hubReady ? [{ to: '/my-health-hub', key: 'nav.myHealthHub' }] : []),
-    { to: '/articles', key: 'nav.resources' },
+    { to: '/resources', key: 'nav.resources' },
     { to: '/about', key: 'nav.about' },
     { to: '/contact', key: 'nav.contact' },
   ];

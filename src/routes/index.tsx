@@ -29,6 +29,8 @@ import MyHealthHubPage from '../pages/MyHealthHubPage';
 import SubscriptionPage from '../pages/SubscriptionPage';
 import OrganHubPage from '../pages/OrganHubPage';
 import SearchPage from '../pages/SearchPage';
+import AboutPage from '../pages/AboutPage';
+import ResourcesPage from '../pages/ResourcesPage';
 
 const LegacySeoRedirect: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -121,8 +123,8 @@ export const AppRoutes: React.FC = () => (
     <Route path="/plan" element={<SimplePage emoji="📋" titleKey="spPlanTitle" descKey="spPlanDesc" />} />
     <Route path="/tracking" element={<SimplePage emoji="📈" titleKey="spTrackingTitle" descKey="spTrackingDesc" />} />
     <Route path="/bio-age" element={<SimplePage emoji="🫀" titleKey="spBioAgeTitle" descKey="spBioAgeDesc" />} />
-    <Route path="/articles" element={<SimplePage emoji="📰" titleKey="spArticlesTitle" descKey="spArticlesDesc" />} />
-    <Route path="/about" element={<SimplePage emoji="🌿" titleKey="spAboutTitle" descKey="spAboutDesc" />} />
+    <Route path="/resources" element={<ResourcesPage />} />
+    <Route path="/about" element={<AboutPage />} />
     <Route path="/faq" element={<SimplePage emoji="💬" titleKey="spFaqTitle" descKey="spFaqDesc" />} />
     <Route path="/wizard/step1" element={<StaticStepPage step={1} />} />
     <Route path="/wizard/step2" element={<StaticStepPage step={2} />} />

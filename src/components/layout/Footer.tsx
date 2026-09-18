@@ -34,6 +34,12 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="footer-col">
+            <h4>{t('footerLearn')}</h4>
+            <Link to="/about">{t('footerAbout')}</Link>
+            <Link to="/resources">{t('footerResources')}</Link>
+          </div>
+
+          <div className="footer-col">
             <h4>{t('footerHelp')}</h4>
             <Link to="/faq">{t('footerFaq')}</Link>
             <Link to="/contact">{t('footerContact')}</Link>
