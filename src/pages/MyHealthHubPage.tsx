@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ArrowRight, FileDown, Lock, Play, Sparkles } from 'lucide-react';
+import { ArrowRight, FileDown, FlaskConical, Lock, Play, Share2, Sparkles } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
 import { useSubscription } from '../context/SubscriptionContext';
@@ -10,8 +10,15 @@ import { savePlanToStorage } from '../utils/planStorage';
 import type { PlanStoragePayload } from '../utils/planStorage';
 import type { FeatureId, Tier } from '../context/SubscriptionContext';
 import PaywallModal from '../components/health-universe/PaywallModal';
-import ProfileHeader from '../components/hub/ProfileHeader';
-import HealthScoreCards from '../components/hub/HealthScoreCards';
+import UserProfileCard from '../components/hub/UserProfileCard';
+import DailyGoalsCard from '../components/hub/DailyGoalsCard';
+import HealthScoreCard from '../components/hub/HealthScoreCard';
+import MealLoggingTabs from '../components/hub/MealLoggingTabs';
+import TodayExerciseCard from '../components/hub/TodayExerciseCard';
+import WaterTracker from '../components/hub/WaterTracker';
+import AiCoPilotCard from '../components/hub/AiCoPilotCard';
+import WeightTrendChart from '../components/hub/WeightTrendChart';
+import QuickActions from '../components/hub/QuickActions';
 import LabSummary from '../components/hub/LabSummary';
 import ExerciseDayWizard from '../components/hub/ExerciseDayWizard';
 import NutritionDayWizard from '../components/hub/NutritionDayWizard';
@@ -148,6 +155,15 @@ const MyHealthHubPage: React.FC = () => {
     (plan?.profile as { age?: number; height?: number; weight?: number; gender?: string } | undefined) ??
     dbProfileView ??
     readHubProfile();
+
+  const baseCalories = useMemo(() => {
+    const planCal = Number(plan?.calories);
+    return Number.isFinite(planCal) && planCal > 0 ? planCal : 2100;
+  }, [plan]);
+
+  const scrollToLabs = () => {
+    document.getElementById('hub-lab')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
   const hasData =
     Boolean(plan) ||
     conditions.length > 0 ||
@@ -330,26 +346,57 @@ const MyHealthHubPage: React.FC = () => {
           <ArrowRight size={14} strokeWidth={2.5} className="rtl:rotate-180" />
           {t('hub.backToUniverse')}
         </Link>
-        <span className="inline-flex items-center gap-2 text-xs font-bold text-[#0F4C3A] bg-[#D4AF37]/15 rounded-full px-3 py-1.5">
-          <Sparkles size={13} />
-          {paid ? t('hub.badge.premium') : t('hub.badge.free')}
-        </span>
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="inline-flex items-center gap-2 text-xs font-bold text-[#0F4C3A] bg-[#D4AF37]/15 rounded-full px-3 py-1.5">
+            <Sparkles size={13} />
+            {paid ? t('hub.badge.premium') : t('hub.badge.free')}
+          </span>
+          <button
+            type="button"
+            onClick={handleShare}
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F4C3A] bg-[#F4F1EB]/70 rounded-full px-3 py-1.5 hover:bg-[#F4F1EB] transition"
+          >
+            <Share2 size={12} />
+            {t('hub.share')}
+          </button>
+        </div>
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0F4C3A] mt-3">{t('hub.title')}</h1>
         <p className="text-[#6B7A75] mt-2">{t('hub.subtitle')}</p>
       </header>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 mt-10 space-y-8">
-        <ProfileHeader
-          name={name}
-          conditions={sourceConditions}
-          profile={profile}
-          paid={paid}
-          onEdit={adjustPlan}
-          onShare={handleShare}
-          onDownload={handleDownloadPdf}
-        />
+        <div className="grid lg:grid-cols-12 gap-6 items-start">
+          <div className="lg:col-span-3 space-y-6">
+            <UserProfileCard name={name} onEdit={adjustPlan} />
+            <DailyGoalsCard baseCalories={baseCalories} />
+            <HealthScoreCard conditions={sourceConditions} />
+          </div>
 
-        <HealthScoreCards conditions={sourceConditions} />
+          <div className="lg:col-span-5 space-y-6">
+            <MealLoggingTabs />
+            <TodayExerciseCard />
+            <WaterTracker />
+          </div>
+
+          <div className="lg:col-span-4 space-y-6">
+            <AiCoPilotCard />
+            <WeightTrendChart />
+            <QuickActions />
+            <button
+              type="button"
+              onClick={scrollToLabs}
+              className="w-full flex items-center justify-between gap-3 rounded-3xl border border-[#EFEBE4] bg-white px-5 py-4 text-start shadow-[0_8px_24px_rgba(15,76,58,0.06)] hover:border-[#D4AF37]/60 transition"
+            >
+              <span className="inline-flex items-center gap-2.5 text-sm font-extrabold text-[#0F4C3A]">
+                <span className="h-9 w-9 rounded-xl bg-[#F4F1EB] text-[#D4AF37] flex items-center justify-center">
+                  <FlaskConical size={17} />
+                </span>
+                {t('hub.quickActions.labLink')}
+              </span>
+              <ArrowRight size={16} strokeWidth={2.5} className="text-[#0F4C3A] rtl:rotate-180" />
+            </button>
+          </div>
+        </div>
 
         <SubscriptionFeatures
           hasFullHub={hasFeature('hubAllDays')}
@@ -359,7 +406,9 @@ const MyHealthHubPage: React.FC = () => {
           onNote={note}
         />
 
-        <LabSummary paid={hasFeature('labSave')} onUnlock={() => gate('labSave')} />
+        <div id="hub-lab" className="scroll-mt-24">
+          <LabSummary paid={hasFeature('labSave')} onUnlock={() => gate('labSave')} />
+        </div>
 
         <div className="grid lg:grid-cols-2 gap-6">
           <ExerciseDayWizard
