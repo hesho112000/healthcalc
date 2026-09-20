@@ -145,7 +145,7 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
                 <p className="text-primary-200 text-xs">{t('mealPlanSubtitle')}</p>
               </div>
             </div>
-            <button onClick={onClose} className="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center transition-all cursor-pointer">
+            <button onClick={onClose} className="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center transition-all cursor-pointer" aria-label="Close">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -158,17 +158,17 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
           <div className="border-b border-gray-100 px-6 py-3 shrink-0">
             <div className="flex items-center gap-3">
               <button onClick={() => setDay(Math.max(0, activeDay - 1))} disabled={activeDay === 0}
-                className="w-8 h-8 rounded-xl bg-gray-100 hover:bg-gray-200 disabled:opacity-30 flex items-center justify-center transition-all shrink-0 cursor-pointer disabled:cursor-not-allowed">
+                className="w-8 h-8 rounded-xl bg-gray-100 hover:bg-gray-200 disabled:opacity-30 flex items-center justify-center transition-all shrink-0 cursor-pointer disabled:cursor-not-allowed" aria-label="Previous day">
                 <svg className="w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
               </button>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-sm font-bold text-gray-900">{t('dayLabel')} {activeDay + 1}</span>
-                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-lg bg-primary-50 text-primary-600">{dayTheme}</span>
+                  <span className="text-xs font-semibold px-2 py-0.5 rounded-lg bg-primary-50 text-primary-600">{dayTheme}</span>
                 </div>
                 <div className="flex gap-1 overflow-x-auto">
                   {Array.from({ length: Math.min(fullMealPlan.length, 30) }, (_, i) => (
-                    <button key={i} onClick={() => setDay(i)} className="shrink-0 w-7 h-7 rounded-lg text-[10px] font-bold transition-all cursor-pointer"
+                    <button key={i} onClick={() => setDay(i)} className="shrink-0 w-7 h-7 rounded-lg text-xs font-bold transition-all cursor-pointer"
                       style={activeDay === i ? { background: '#1a6df5', color: '#fff' } : { background: '#f3f4f6', color: '#9ca3af' }}>
                       {i + 1}
                     </button>
@@ -176,7 +176,7 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
                 </div>
               </div>
               <button onClick={() => setDay(Math.min(fullMealPlan.length - 1, activeDay + 1))} disabled={activeDay >= fullMealPlan.length - 1}
-                className="w-8 h-8 rounded-xl bg-gray-100 hover:bg-gray-200 disabled:opacity-30 flex items-center justify-center transition-all shrink-0 cursor-pointer disabled:cursor-not-allowed">
+                className="w-8 h-8 rounded-xl bg-gray-100 hover:bg-gray-200 disabled:opacity-30 flex items-center justify-center transition-all shrink-0 cursor-pointer disabled:cursor-not-allowed" aria-label="Next day">
                 <svg className="w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
               </button>
             </div>
@@ -321,7 +321,7 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
                       <p className="text-xs" style={{ color: completed[i] ? '#86efac' : '#9ca3af' }}>{meal.calories} kcal</p>
                     </div>
                   </div>
-                  <button onClick={() => toggleComplete(i)} className="w-7 h-7 rounded-xl border-2 flex items-center justify-center transition-all cursor-pointer shrink-0"
+                  <button onClick={() => toggleComplete(i)} className="w-7 h-7 rounded-xl border-2 flex items-center justify-center transition-all cursor-pointer shrink-0" aria-label={completed[i] ? 'Mark as incomplete' : 'Mark as complete'}
                     style={completed[i]
                       ? { background: '#22c55e', borderColor: '#22c55e', color: '#fff' }
                       : { borderColor: '#e5e7eb', color: 'transparent' }}>

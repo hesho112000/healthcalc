@@ -76,6 +76,7 @@ const AddFoodModal: React.FC<AddFoodModalProps> = ({ open, slot, onClose, onAdde
           <button
             type="button"
             onClick={onClose}
+            aria-label="Close"
             className="h-9 w-9 rounded-full bg-[#F4F1EB]/60 text-[#0F4C3A] hover:bg-[#F4F1EB] transition flex items-center justify-center"
           >
             <X size={16} />
