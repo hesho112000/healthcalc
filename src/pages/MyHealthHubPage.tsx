@@ -323,7 +323,7 @@ const MyHealthHubPage: React.FC = () => {
             <span className="text-4xl">🫀</span>
           </div>
           <h1 className="text-2xl font-extrabold text-[#0F4C3A] mb-3">{t('hub.title')}</h1>
-          <p className="text-sm text-[#6B7A75] mb-8 leading-relaxed">{t('hub.noData')}</p>
+          <p className="text-base text-[#6B7A75] mb-8 leading-relaxed">{t('hub.noData')}</p>
           <Link
             to="/advanced-care/wizard"
             className="inline-flex items-center gap-2 bg-[#D4AF37] text-[#0F4C3A] font-bold rounded-full px-8 py-3.5 hover:bg-[#c9a52e] transition"
