@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
@@ -13,6 +13,8 @@
   }
   body {
     @apply font-sans text-gray-800 bg-[#f8fafc] antialiased;
+    font-size: 16px;
+    line-height: 1.6;
     background-image: radial-gradient(circle at 10% 0%, rgba(15,76,58,.055), transparent 28rem), radial-gradient(circle at 90% 10%, rgba(212,175,55,.045), transparent 30rem);
   }
   ::selection {
@@ -46,6 +48,13 @@ html[lang='ar'] textarea {
     --hc-gold: #D4AF37;
     --hc-gold-dark: #C9A032;
     --hc-cream: #FDFBF7;
+    --hc-gold: #D4AF37;
+    --hc-gold-dark: #C9A52E;
+    --hc-beige: #F4F1EB;
+    --hc-emerald: #0F4C3A;
+    --hc-emerald-light: #1A6B53;
+    --hc-hairline: #EFEBE4;
+    --hc-error: #B91C1C;
     --hc-beige: #F4F1EB;
     --hc-muted: #6B7A75;
     --hc-body: #4A5A55;

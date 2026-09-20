@@ -39,7 +39,17 @@ export default {
           lightgreen: '#EEFBF3',
           dark: '#0F172A',
           muted: '#64748B',
-        }
+        },
+        brand: {
+          gold: '#D4AF37',
+          goldDark: '#C9A52E',
+          cream: '#FDFBF7',
+          beige: '#F4F1EB',
+          emerald: '#0F4C3A',
+          emeraldLight: '#1A6B53',
+          hairline: '#EFEBE4',
+          error: '#B91C1C',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
