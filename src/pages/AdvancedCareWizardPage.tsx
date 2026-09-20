@@ -873,7 +873,7 @@ ${conditionTags}
               {railS && (
                 <>
                   <div className="rounded-[24px] bg-[#0F4C3A] text-[#FDFBF7] p-5 shadow-[0_18px_44px_-18px_rgba(15,76,58,0.5)]">
-                    <span className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">
+                    <span className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[2px] text-[#D4AF37]">
                       ✨ {t(tk('wizard.rail.hdr'))}
                     </span>
                     <p className="mt-3 text-[13px] leading-relaxed text-[#FDFBF7]/90">
@@ -882,7 +882,7 @@ ${conditionTags}
                   </div>
 
                   <div className="rounded-[24px] border border-[#D4AF37]/50 bg-[#D4AF37]/10 p-5">
-                    <span className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[2px] text-[#6b4f0c]">
+                    <span className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[2px] text-[#6b4f0c]">
                       💡 {t(tk('wizard.rail.tipHdr'))}
                     </span>
                     <p className="mt-2 text-[13px] leading-relaxed text-[#4A5A55]">
