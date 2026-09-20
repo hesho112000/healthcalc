@@ -82,7 +82,7 @@ const ExerciseGuidePage: React.FC = () => {
             {t('nav.resources')}
           </Link>
           <span aria-hidden="true">/</span>
-          <span className="font-bold text-[#0F4C3A]">Exercises</span>
+          <span className="font-bold text-[#0F4C3A]">{t('resources.breadcrumb.exercises')}</span>
           <span aria-hidden="true">/</span>
           <span className="font-semibold truncate max-w-[320px]">{title}</span>
         </div>

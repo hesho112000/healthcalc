@@ -878,6 +878,7 @@ type TranslationKeys = {
   'resources.tag.article': string;
   'resources.tag.recipe': string;
   'resources.tag.exercise': string;
+  'resources.breadcrumb.exercises': string;
   'resources.articles.title': string;
   'resources.recipes.title': string;
   'resources.exercises.title': string;
@@ -3980,6 +3981,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'resources.tag.article': 'Article',
     'resources.tag.recipe': 'Recipe',
     'resources.tag.exercise': 'Exercise Guide',
+    'resources.breadcrumb.exercises': 'Exercises',
     'resources.articles.title': 'Articles',
     'resources.recipes.title': 'Recipes',
     'resources.exercises.title': 'Exercise Guides',
@@ -6440,6 +6442,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'resources.tag.article': 'Article',
     'resources.tag.recipe': 'Recette',
     'resources.tag.exercise': 'Guide d\'Exercice',
+    'resources.breadcrumb.exercises': 'Exercices',
     'resources.articles.title': 'Articles',
     'resources.recipes.title': 'Recettes',
     'resources.exercises.title': 'Guides d\'Exercice',
@@ -8870,6 +8873,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'resources.tag.article': 'Artículo',
     'resources.tag.recipe': 'Receta',
     'resources.tag.exercise': 'Guía de Ejercicio',
+    'resources.breadcrumb.exercises': 'Ejercicios',
     'resources.articles.title': 'Artículos',
     'resources.recipes.title': 'Recetas',
     'resources.exercises.title': 'Guías de Ejercicio',
@@ -11300,6 +11304,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'resources.tag.article': 'مقال',
     'resources.tag.recipe': 'وصفة',
     'resources.tag.exercise': 'دليل تمارين',
+    'resources.breadcrumb.exercises': 'تمارين',
     'resources.articles.title': 'مقالات',
     'resources.recipes.title': 'وصفات',
     'resources.exercises.title': 'أدلة التمارين',
@@ -13741,6 +13746,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'resources.tag.article': 'Artikel',
     'resources.tag.recipe': 'Rezept',
     'resources.tag.exercise': 'Trainingsanleitung',
+    'resources.breadcrumb.exercises': 'Übungen',
     'resources.articles.title': 'Artikel',
     'resources.recipes.title': 'Rezepte',
     'resources.exercises.title': 'Trainingsanleitungen',
