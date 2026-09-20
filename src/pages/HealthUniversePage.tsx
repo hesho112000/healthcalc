@@ -236,7 +236,7 @@ const HealthUniversePage: React.FC = () => {
       </section>
 
       {toast && (
-        <div className="fixed bottom-24 inset-x-0 z-[60] flex justify-center px-4 pointer-events-none">
+        <div className="fixed bottom-24 inset-x-0 z-[60] flex justify-center px-4 pointer-events-none" role="status" aria-live="polite" aria-atomic="true">
           <div className="rounded-full bg-[#0F4C3A] text-[#FDFBF7] text-sm font-bold px-6 py-3 shadow-lg">
             {toast}
           </div>

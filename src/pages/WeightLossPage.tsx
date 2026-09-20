@@ -2116,7 +2116,7 @@ const WeightLossPage: React.FC = () => {
       </main>
 
       {toast && (
-        <div className="no-print fixed bottom-24 left-1/2 -translate-x-1/2 z-50 rounded-full bg-[#0F4C3A] text-white text-[12.5px] font-semibold px-5 py-2.5 shadow-lg whitespace-nowrap">
+        <div className="no-print fixed bottom-24 left-1/2 -translate-x-1/2 z-50 rounded-full bg-[#0F4C3A] text-white text-[12.5px] font-semibold px-5 py-2.5 shadow-lg whitespace-nowrap" role="status" aria-live="polite" aria-atomic="true">
           {toast}
         </div>
       )}

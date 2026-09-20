@@ -129,7 +129,7 @@ const SettingsPanel: React.FC = () => {
 
       <div className="mt-5 flex items-center justify-between gap-3">
         {toast && (
-          <span className="inline-flex items-center gap-1.5 text-sm font-extrabold text-[#0F4C3A]">
+          <span className="inline-flex items-center gap-1.5 text-sm font-extrabold text-[#0F4C3A]" role="status" aria-live="polite" aria-atomic="true">
             <Check size={16} strokeWidth={2.5} /> {t('admin.settings.saved')}
           </span>
         )}

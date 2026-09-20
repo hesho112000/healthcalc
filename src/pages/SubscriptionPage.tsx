@@ -151,7 +151,7 @@ const SubscriptionPage: React.FC = () => {
       </main>
 
       {toast && (
-        <div className="fixed bottom-8 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+        <div className="fixed bottom-8 inset-x-0 z-50 flex justify-center px-4 pointer-events-none" role="status" aria-live="polite" aria-atomic="true">
           <div className="rounded-full bg-[#0F4C3A] text-[#FDFBF7] text-sm font-bold px-6 py-3 shadow-lg">{toast}</div>
         </div>
       )}
