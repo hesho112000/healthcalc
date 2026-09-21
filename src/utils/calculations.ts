@@ -2,6 +2,8 @@ import { UserProfile, CalorieResult, Macros, MealPlan, DailyMealPlan, WorkoutPla
 import { CUISINE_GROUPS, CUISINE_FLAGS, REGIONAL_FOODS, FRUITS, JUICES, CUISINE_FRUITS, CUISINE_JUICES, getPortion, getPortionMeasure, type Portion, type Cuisine, type MealType } from './cuisineCatalog';
 import { usdaEnrich } from './usda-meals-database';
 import { isHeavyMeal } from '../data/cuisine-allowed';
+import { evaluateSuitability } from './dishSuitability';
+import type { SuitabilityCondition } from './dishSuitability';
 import { EGYPTIAN_FULL, isMinistryVerified, type EgyptianFullDish } from '../data/egyptian-full';
 import { LIBYAN_FULL, type LibyanFullDish } from '../data/libyan-full';
 import { TUNISIAN_FULL, type TunisianFullDish } from '../data/tunisian-full';
@@ -90,9 +92,9 @@ export const calculateMacros = (calories: number) => ({
   fat: Math.round((calories * 0.25) / 9),
 });
 
-export const generateMealPlan = (targetCalories: number, cuisineId?: Cuisine, lang: string = 'en', healthyOnly: boolean = false): MealPlan[] => {
+export const generateMealPlan = (targetCalories: number, cuisineId?: Cuisine, lang: string = 'en', healthyOnly: boolean = false, conditions?: SuitabilityCondition[]): MealPlan[] => {
   if (cuisineId) {
-    return buildCuisineMealPlan(targetCalories, cuisineId, lang, healthyOnly);
+    return buildCuisineMealPlan(targetCalories, cuisineId, lang, healthyOnly, conditions);
   }
   const meals: MealPlan[] = [
     { meal: '🌅 Breakfast', icon: 'meal', calories: Math.round(targetCalories * 0.3), protein: Math.round(targetCalories * 0.3 * 0.3 / 4), carbs: Math.round(targetCalories * 0.3 * 0.45 / 4), fat: Math.round(targetCalories * 0.3 * 0.25 / 9), items: lang === 'ar' ? ['شوفان مع التوت', 'زبادي يوناني', 'شاي أخضر', '🍎 فاكهة: تفاحة (غنية بالألياف وفيتامين سي)', '🧃 مشروب: عصير برتقال (فيتامين سي وبوتاسيوم)'] : ['Oatmeal with berries', 'Greek yogurt', 'Green tea', '🍎 Fruit: Apple (Rich in fiber & Vitamin C)', '🧃 Drink: Orange Juice (Vitamin C & potassium)'], description: lang === 'ar' ? 'فطور صحي' : 'Healthy breakfast' },
@@ -105,6 +107,22 @@ export const generateMealPlan = (targetCalories: number, cuisineId?: Cuisine, la
 };
 
 const shuffleFoods = (foods: FoodItem[]): FoodItem[] => [...foods].sort(() => Math.random() - 0.5);
+
+const suitabilityScore = (food: FoodItem, conditions: SuitabilityCondition[]): number => {
+  const status = evaluateSuitability(food, conditions);
+  if (status === 'suitable') return 2;
+  if (status === 'unsuitable') return 0;
+  return 1;
+};
+
+export const rankFoodsBySuitability = (foods: FoodItem[], conditions: SuitabilityCondition[]): FoodItem[] =>
+  [...foods].sort((a, b) => suitabilityScore(b, conditions) - suitabilityScore(a, conditions));
+
+const shuffleRankedBySuitability = (foods: FoodItem[], conditions: SuitabilityCondition[]): FoodItem[] => {
+  const byScore = (score: number): FoodItem[] =>
+    shuffleFoods(foods.filter((f) => suitabilityScore(f, conditions) === score));
+  return [...byScore(2), ...byScore(1), ...byScore(0)];
+};
 
 const foodsForSlot = (cuisineId: Cuisine, mealType: MealType, healthyOnly: boolean = false): FoodItem[] => {
   const pool = FOODS_DATABASE.filter((f) => f.cuisine.includes(cuisineId) || f.cuisine.includes('all'));
@@ -128,7 +146,7 @@ const FRUIT_EMOJI: Record<string, string> = {
   'Dragon Fruit': '🐉', 'Passion Fruit': '🍈', 'Coconut (fresh)': '🥥', 'Cranberries': '🍒',
 };
 
-const buildCuisineMealPlan = (targetCalories: number, cuisineId: Cuisine, lang: string, healthyOnly: boolean = false): MealPlan[] => {
+const buildCuisineMealPlan = (targetCalories: number, cuisineId: Cuisine, lang: string, healthyOnly: boolean = false, conditions?: SuitabilityCondition[]): MealPlan[] => {
   const L = (f: FoodItem): string => (lang === 'ar' ? f.name_ar : f.name_en);
   const fruitWord = lang === 'ar' ? 'فاكهة' : 'Fruit';
   const drinkWord = lang === 'ar' ? 'مشروب' : 'Drink';
@@ -157,9 +175,21 @@ const buildCuisineMealPlan = (targetCalories: number, cuisineId: Cuisine, lang: 
       : f.type === 'juice'
         ? `🧃 ${drinkWord}: ${L(f)} (${f.benefits})${measurePart(f)}`
         : `${L(f)}${measurePart(f)}${dualCal(f)}`;
+
+  const suitabilityFilter = (pool: FoodItem[]): FoodItem[] => {
+    if (!conditions || conditions.length === 0) return pool;
+    const filtered = pool.filter((f) => evaluateSuitability(f, conditions) !== 'unsuitable');
+    if (filtered.length < 3) {
+      console.warn(`[calculations] Fewer than 3 suitable foods for slot after condition filtering (${conditions.join(', ')}). Falling back to unfiltered pool (${pool.length} foods).`);
+      return pool;
+    }
+    return filtered;
+  };
+
   const pickMain = (mealType: MealType, count: number): FoodItem[] =>
-    shuffleFoods(foodsForSlot(cuisineId, mealType, healthyOnly).filter((f) => f.type !== 'fruit' && f.type !== 'juice')).slice(0, count);
-  const pickByMealType = (mealType: MealType, count: number): FoodItem[] => shuffleFoods(foodsForSlot(cuisineId, mealType, healthyOnly)).slice(0, count);
+    shuffleRankedBySuitability(suitabilityFilter(foodsForSlot(cuisineId, mealType, healthyOnly).filter((f) => f.type !== 'fruit' && f.type !== 'juice')), conditions ?? []).slice(0, count);
+  const pickByMealType = (mealType: MealType, count: number): FoodItem[] =>
+    shuffleRankedBySuitability(suitabilityFilter(foodsForSlot(cuisineId, mealType, healthyOnly)), conditions ?? []).slice(0, count);
   const pickSnack = (): FoodItem[] =>
     Math.random() < 0.5
       ? [...pickByMealType('fruit', 1), ...pickByMealType('juice', 1)]
@@ -182,6 +212,20 @@ const buildCuisineMealPlan = (targetCalories: number, cuisineId: Cuisine, lang: 
   const breakfastCal = pct(0.3);
   const lunchCal = pct(0.3);
   const dinnerCal = pct(0.2);
+
+  // DEV ONLY — remove before production
+  const validateMealSuitability = (mealLabel: string, foods: FoodItem[]): void => {
+    if (!conditions || conditions.length === 0) return;
+    const unsuitableCount = foods.filter((f) => evaluateSuitability(f, conditions) === 'unsuitable').length;
+    if (unsuitableCount > 2) {
+      console.warn(`[calculations][DEV] Meal "${mealLabel}" contains ${unsuitableCount} unsuitable items for conditions: ${conditions.join(', ')}`);
+    }
+  };
+  validateMealSuitability('Breakfast', [...breakfastMain, ...breakfastFruit, ...breakfastJuice]);
+  validateMealSuitability('Morning Snack', morningSnack);
+  validateMealSuitability('Lunch', [...lunch, ...lunchFruit]);
+  validateMealSuitability('Afternoon Snack', afternoonSnack);
+  validateMealSuitability('Dinner', dinner);
 
   return [
     {
@@ -223,7 +267,7 @@ const getCuisineName = (cuisineId: Cuisine, lang: string): string => {
   return lang === 'ar' ? meta.label_ar : meta.label_en;
 };
 
-export const generateFullMealPlan = (targetCalories: number, cuisineId?: Cuisine, lang: string = 'en', healthyOnly: boolean = false): DailyMealPlan[] => {
+export const generateFullMealPlan = (targetCalories: number, cuisineId?: Cuisine, lang: string = 'en', healthyOnly: boolean = false, conditions?: SuitabilityCondition[]): DailyMealPlan[] => {
   const days: DailyMealPlan[] = [];
   const themes: Record<string, string[]> = {
     egyptian: ['Egyptian Classics', 'High Fiber', 'Balanced', 'Legume Focus', 'Veggie Rich', 'Traditional', 'Protein Focus'],
@@ -246,7 +290,7 @@ export const generateFullMealPlan = (targetCalories: number, cuisineId?: Cuisine
       day: i + 1,
       label: `Day ${i + 1}`,
       theme: themesForCuisine[i % themesForCuisine.length],
-      meals: generateMealPlan(targetCalories, cuisineId, lang, healthyOnly),
+      meals: generateMealPlan(targetCalories, cuisineId, lang, healthyOnly, conditions),
     });
   }
   return days;
@@ -262,7 +306,7 @@ const generateWorkoutPlan = (goal: string): WorkoutPlan => {
   };
 };
 
-export const calculateFullResults = (profile: UserProfile, cuisineId?: Cuisine, lang: string = 'en'): CalorieResult => {
+export const calculateFullResults = (profile: UserProfile, cuisineId?: Cuisine, lang: string = 'en', conditions?: SuitabilityCondition[]): CalorieResult => {
   const bmr = calculateBMR(profile.weight, profile.height, profile.age, profile.gender);
   const activityFactor = profile.workoutDays !== undefined
     ? getActivityFactor(profile.workoutDays)
@@ -281,8 +325,8 @@ export const calculateFullResults = (profile: UserProfile, cuisineId?: Cuisine, 
   };
   return {
     bmr, tdee, targetCalories, macros,
-    mealPlan: generateMealPlan(targetCalories, cuisineId, lang),
-    fullMealPlan: generateFullMealPlan(targetCalories, cuisineId, lang),
+    mealPlan: generateMealPlan(targetCalories, cuisineId, lang, undefined, conditions),
+    fullMealPlan: generateFullMealPlan(targetCalories, cuisineId, lang, undefined, conditions),
     workoutPlan: generateWorkoutPlan(profile.goal),
   };
 };
