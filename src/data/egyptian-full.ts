@@ -43,19 +43,40 @@ type KitchenCategory = {
     confidence: number;
     confidence_label: string;
     confidence_color: 'green' | 'yellow' | 'orange';
+    mealType?: string;
+    mealTypes?: string[];
   }>;
 };
 
 const CATEGORY_MEAL: Record<string, string> = {
-  soups: 'dinner',
+  grains_cereals: 'breakfast',
+  bread_bakery: 'breakfast',
+  legumes: 'lunch',
+  vegetables: 'lunch',
+  fruits: 'snack',
   meats: 'lunch',
   poultry: 'lunch',
+  fish_seafood: 'lunch',
+  dairy_eggs: 'breakfast',
+  fats_oils: 'lunch',
+  sweets_desserts: 'snack',
+  beverages: 'snack',
+  nuts_seeds: 'snack',
+  mixed_dishes: 'lunch',
+  spices_misc: 'lunch',
+  // keep any old IDs mapped as fallback
+  soups: 'dinner',
+  salads: 'lunch',
+  brik: 'snack',
+  main_stews: 'lunch',
+  couscous: 'lunch',
   seafood: 'lunch',
-  carbs_mahashi: 'lunch',
-  breakfast: 'breakfast',
-  salads: 'dinner',
+  meats_poultry: 'lunch',
   bakery: 'breakfast',
   sweets: 'snack',
+  drinks_spices: 'snack',
+  carbs_mahashi: 'lunch',
+  breakfast: 'breakfast',
   drinks: 'juice',
 };
 
@@ -63,14 +84,21 @@ const round1 = (n: number): number => Math.round(n * 10) / 10;
 
 const raw = (egyptianKitchenFull as unknown as { categories: KitchenCategory[] }).categories;
 
+const normalizeMeal = (m?: string): string | undefined => {
+  if (!m) return undefined;
+  const aliases: Record<string, string> = { snacks: 'snack', drinks: 'drink' };
+  return aliases[m] ?? m;
+};
+
 export const EGYPTIAN_FULL: EgyptianFullDish[] = raw.flatMap((cat) =>
   cat.dishes.map((d, i) => {
     const ratio = d.serv_g / 100;
+    const dishMeal = normalizeMeal(d.mealTypes?.[0] ?? d.mealType);
     return {
       id: `${cat.id}_${i + 1}`,
       nameAr: d.name,
       nameEn: d.name,
-      mealType: CATEGORY_MEAL[cat.id] ?? 'lunch',
+      mealType: dishMeal ?? CATEGORY_MEAL[cat.id] ?? 'lunch',
       grams: d.serv_g,
       kcal: d.cal_serv,
       protein: round1(d.p * ratio),
