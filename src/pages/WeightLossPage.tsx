@@ -253,7 +253,7 @@ function pickPlate(pool: KitchenDish[]): KitchenDish[] {
   return [breakfast, lunch, dinner, snack];
 }
 
-const FEATURED_KITCHEN_IDS = ['egyptian', 'tunisian', 'diet-keto', 'diet-vegan', 'diet-high-protein', 'diet-mediterranean', 'diet-low-carb'];
+const FEATURED_KITCHEN_IDS = ['egyptian', 'tunisian', 'moroccan', 'diet-keto', 'diet-vegan', 'diet-high-protein', 'diet-mediterranean', 'diet-low-carb'];
 
 const MEAL_LABELS: Record<string, string> = {
   breakfast: 'فطار 🍳',
@@ -488,6 +488,11 @@ const MEAL_TABS: { key: MealKey; label: string; emoji: string }[] = [
 const MEAL_ORDER: MealKey[] = ['breakfast', 'lunch', 'dinner', 'snacks'];
 
 function getMealTypesForDish(k: KitchenInfo, cat: KitchenCategory, dish: KitchenDish): MealKey[] {
+  const dn = dish.name;
+  if (/مكرون|معكرون|pasta|macaroni/i.test(dn)) return ['lunch', 'dinner'];
+  if (/رز|أرز|rice/i.test(dn)) return ['lunch', 'dinner'];
+  if (/كسكسي|couscous/i.test(dn)) return ['lunch', 'dinner'];
+  if (/خبز|عيش|bread/i.test(dn)) return ['breakfast', 'snacks'];
   const types: MealKey[] = [];
   for (const key of MEAL_ORDER) {
     if (getMealFilter(k, key)(cat, dish)) types.push(key);
@@ -1628,11 +1633,15 @@ const WeightLossPage: React.FC = () => {
                       >
                         <span className="shrink-0">{tab.emoji}</span>
                         {mealLabel(tab.key)}
-                        <span className={`text-[11px] ${on ? 'text-white/70' : 'text-[#6B7A75]'}`}>({tabCounts[tab.key]})</span>
+                        <span className={`text-[11px] ${on ? 'text-white/70' : 'text-[#6B7A75]'}`}>
+                          · {t('wizard.step3.dishCount').replace('{n}', String(tabCounts[tab.key]))}
+                        </span>
                       </button>
                     );
                   })}
                 </div>
+
+                <p className="mt-2 text-[11px] text-[#A0A8A4]">{t('wizard.step3.someDishesMulti')}</p>
 
                 <div className="mt-3 h-[46px] bg-[#F4F1EB] rounded-[14px] flex items-center px-4 border-2 border-transparent focus-within:border-[#D4AF37]">
                   <input value={dishSearch} onChange={(e) => setDishSearch(e.target.value)} placeholder={t('wizard.step3.searchPlaceholder')} className="flex-1 bg-transparent outline-none text-[15px] text-[#0F4C3A] placeholder:text-[#A0A8A4] min-w-0" />

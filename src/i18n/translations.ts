@@ -408,6 +408,7 @@ type TranslationKeys = {
   'wizard.step3.subtitle': string;
   'wizard.step3.chooseCuisine': string;
   'wizard.step3.dishCount': string;
+  'wizard.step3.someDishesMulti': string;
   'wizard.step3.healthyOnly': string;
   'wizard.step3.autoTitle': string;
   'wizard.step3.autoDesc': string;
@@ -4377,6 +4378,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.step3.subtitle': 'Pick a target and intensity — we will do the math.',
     'wizard.step3.chooseCuisine': 'Choose a Cuisine',
     'wizard.step3.dishCount': '{n} dishes',
+    'wizard.step3.someDishesMulti': 'Some dishes appear in multiple meals',
     'wizard.step3.healthyOnly': '✅ Healthy Only',
     'wizard.step3.autoTitle': 'Let Us Choose For You',
     'wizard.step3.autoDesc': 'Our engine picks the perfect cuisine and dishes for your goal — with healthy swaps built in.',
@@ -6838,6 +6840,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.step3.subtitle': 'Choisissez une cible et une intensité — nous faisons les calculs.',
     'wizard.step3.chooseCuisine': 'Choisir une cuisine',
     'wizard.step3.dishCount': '{n} plats',
+    'wizard.step3.someDishesMulti': 'Certains plats apparaissent dans plusieurs repas',
     'wizard.step3.healthyOnly': '✅ Sain uniquement',
     'wizard.step3.autoTitle': 'Laissez-nous choisir pour vous',
     'wizard.step3.autoDesc': 'Notre moteur choisit la cuisine et les plats parfaits pour votre objectif — avec des échanges sains intégrés.',
@@ -9269,6 +9272,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.step3.subtitle': 'Elige un objetivo y una intensidad: nosotros hacemos los cálculos.',
     'wizard.step3.chooseCuisine': 'Elige una cocina',
     'wizard.step3.dishCount': '{n} platos',
+    'wizard.step3.someDishesMulti': 'Algunos platos aparecen en varias comidas',
     'wizard.step3.healthyOnly': '✅ Solo saludable',
     'wizard.step3.autoTitle': 'Déjanos elegir por ti',
     'wizard.step3.autoDesc': 'Nuestro motor elige la cocina y los platos perfectos para tu meta, con opciones saludables incluidas.',
@@ -11700,6 +11704,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.step3.subtitle': 'اختر الهدف والشدة — ونحن نتكفل بالحسابات.',
     'wizard.step3.chooseCuisine': 'اختر المطبخ',
     'wizard.step3.dishCount': '{n} طبق',
+    'wizard.step3.someDishesMulti': 'بعض الأطباق تظهر في أكثر من وجبة',
     'wizard.step3.healthyOnly': '✅ صحي فقط',
     'wizard.step3.autoTitle': 'اترك الاختيار لنا',
     'wizard.step3.autoDesc': 'يختار محركنا المطبخ والأطباق المثالية لهدفك — مع بدائل صحية مدمجة.',
@@ -14142,6 +14147,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.step3.subtitle': 'Wähle ein Ziel und eine Intensität — wir rechnen.',
     'wizard.step3.chooseCuisine': 'Küche wählen',
     'wizard.step3.dishCount': '{n} Gerichte',
+    'wizard.step3.someDishesMulti': 'Einige Gerichte erscheinen in mehreren Mahlzeiten',
     'wizard.step3.healthyOnly': '✅ Nur gesund',
     'wizard.step3.autoTitle': 'Lass uns für dich wählen',
     'wizard.step3.autoDesc': 'Unser Engine wählt die perfekte Küche und die perfekten Gerichte für dein Ziel — mit gesunden Alternativen.',

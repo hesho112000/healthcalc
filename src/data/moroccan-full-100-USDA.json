@@ -243,7 +243,8 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast"
+            "breakfast",
+            "snacks"
           ],
           "source": "المطبخ المغربي التقليدي - أرقام محسوبة",
           "notes": "",
@@ -650,7 +651,8 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast"
+            "breakfast",
+            "snacks"
           ],
           "source": "المطبخ المغربي التقليدي - أرقام محسوبة",
           "notes": "",
@@ -679,7 +681,8 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast"
+            "breakfast",
+            "snacks"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Khobz (Bread)",
@@ -708,7 +711,8 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast"
+            "breakfast",
+            "snacks"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Khobz (Bread)",
@@ -737,7 +741,8 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast"
+            "breakfast",
+            "snacks"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Khobz (Bread)",
@@ -1239,10 +1244,10 @@
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
-          "mealType": "lunch",
+          "mealType": "breakfast",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "breakfast",
+            "snacks"
           ],
           "source": "المطبخ المغربي التقليدي - أرقام محسوبة",
           "notes": "",
@@ -1269,10 +1274,10 @@
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
-          "mealType": "lunch",
+          "mealType": "breakfast",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "breakfast",
+            "snacks"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Olive Bread",
