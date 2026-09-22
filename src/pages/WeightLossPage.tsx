@@ -367,24 +367,48 @@ const MEAL_NAMES: Record<MealKey, string> = { breakfast: 'فطار', lunch: 'غ�
 const EGYPTIAN_MEAL: Record<MealKey, MealDefinition['filter']> = {
   breakfast: (cat, dish) => {
     const cn = cat.name_ar;
-    const dn = dish.name;
-    if (cn.includes('سادساً')) return true;
-    if (cn.includes('سابعاً') && dish.cal_serv <= 40) return true;
-    if (cn.includes('عاشراً') && (dn.includes('شاي') || dn.includes('حلبة') || dn.includes('عصير برتقال') || dn.includes('ليمون بالنعناع'))) return true;
-    if (cn.includes('ثامناً') && (dn.includes('الخبز البلدي') || dn.includes('عيش الشامي'))) return true;
-    return false;
+    return (
+      cn.includes('ألبان') ||
+      cn.includes('بيض') ||
+      cn.includes('مخبوزات') ||
+      cn.includes('مربات') ||
+      cn.includes('مربى') ||
+      cn.includes('مقبلات') ||
+      (cn.includes('عصائر') && dish.cal_100 < 50)
+    );
   },
   lunch: (cat) => {
     const cn = cat.name_ar;
-    return cn.includes('ثانياً') || cn.includes('ثالثاً') || cn.includes('رابعاً') || cn.includes('خامساً');
+    return (
+      cn.includes('لحوم') ||
+      cn.includes('طيور') ||
+      cn.includes('دواجن') ||
+      cn.includes('أسماك') ||
+      cn.includes('خضروات') ||
+      cn.includes('بقوليات') ||
+      cn.includes('شوربة') ||
+      cn.includes('صلصات')
+    );
   },
-  dinner: (cat) => {
+  dinner: (cat, dish) => {
     const cn = cat.name_ar;
-    return cn.includes('أولاً') || cn.includes('سابعاً');
+    return (
+      cn.includes('شوربة') ||
+      cn.includes('سلطات') ||
+      cn.includes('خضروات') ||
+      (cn.includes('بيض') && dish.cal_serv < 200) ||
+      (cn.includes('ألبان') && dish.cal_serv < 150)
+    );
   },
   snacks: (cat, dish) => {
     const cn = cat.name_ar;
-    return cn.includes('تاسعاً') || (cn.includes('عاشراً') && dish.cal_serv >= 100) || (cn.includes('ثامناً') && dish.serv_g <= 40);
+    return (
+      cn.includes('فواكه') ||
+      cn.includes('عصائر') ||
+      cn.includes('حلويات') ||
+      cn.includes('مخللات') ||
+      (cn.includes('مخبوزات') && dish.serv_g <= 60)
+    );
   },
 };
 
@@ -392,24 +416,40 @@ const TUNISIAN_MEAL: Record<MealKey, MealDefinition['filter']> = {
   breakfast: (cat, dish) => {
     const cn = cat.name_ar;
     const dn = dish.name;
-    if (cn.includes('ثانياً') && dish.cal_serv <= 60) return true;
-    if (cn.includes('ثانياً') && dn.includes('بسطرمة بالبيض')) return true;
-    if (cn.includes('ثالثاً') && dn.includes('بريك البيض والبطاطس')) return true;
-    if (cn.includes('ثامناً') && (dn.includes('الطابونة') || dn.includes('الشعير الصحي') || dn.includes('البذرات') || dn.includes('الدائري') || dn.includes('الباغات'))) return true;
-    if (cn.includes('عاشراً') && (dn.includes('قهوة') || dn.includes('شاي') || dn.includes('برتقال') || dn.includes('رمان') || dn.includes('تين شوكي'))) return true;
-    return false;
+    return (
+      cn.includes('مخبوزات') ||
+      cn.includes('المقبلات المقلية') ||
+      (cn.includes('مشروبات') && (dn.includes('قهوة') || dn.includes('شاي') || dn.includes('ليموناضة') || (dn.includes('عصير') && dish.cal_serv <= 120)))
+    );
   },
-  lunch: (cat) => {
+  lunch: (cat, dish) => {
     const cn = cat.name_ar;
-    return cn.includes('أولاً') || cn.includes('رابعاً') || cn.includes('خامساً') || cn.includes('سادساً') || cn.includes('سابعاً');
+    const dn = dish.name;
+    return (
+      cn.includes('شوربات') ||
+      cn.includes('الرئيسية') ||
+      cn.includes('يخنات') ||
+      cn.includes('مرق') ||
+      cn.includes('كسكسي') ||
+      cn.includes('أسماك') ||
+      cn.includes('لحوم') ||
+      cn.includes('دواجن') ||
+      cn.includes('مشويات') ||
+      (cn.includes('المقبلات المقلية') && dn.includes('طاجين'))
+    );
   },
   dinner: (cat, dish) => {
     const cn = cat.name_ar;
-    return (cn.includes('أولاً') && dish.cal_serv < 120) || (cn.includes('ثانياً') && dish.cal_serv < 60);
+    return (cn.includes('شوربات') && dish.cal_serv < 120) || (cn.includes('سلطات') && dish.cal_serv < 120);
   },
   snacks: (cat, dish) => {
     const cn = cat.name_ar;
-    return cn.includes('تاسعاً') || (cn.includes('عاشراً') && dish.cal_serv >= 100);
+    const dn = dish.name;
+    return (
+      cn.includes('حلويات') ||
+      (cn.includes('مشروبات') && (dn.includes('عصير') || dn.includes('شراب') || dn.includes('روزاطة'))) ||
+      (cn.includes('مشروبات') && dn.includes('مخلل'))
+    );
   },
 };
 
