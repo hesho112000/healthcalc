@@ -9736,9 +9736,10 @@
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
-          "mealType": "snacks",
+          "mealType": "lunch",
           "mealTypes": [
-            "snacks"
+            "lunch",
+            "dinner"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -10696,8 +10697,9 @@
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
-          "mealType": "snacks",
+          "mealType": "breakfast",
           "mealTypes": [
+            "breakfast",
             "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
@@ -12288,7 +12290,8 @@
           "is_sweet": false,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch"
+            "lunch",
+            "dinner"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",

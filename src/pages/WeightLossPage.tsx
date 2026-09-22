@@ -255,6 +255,23 @@ function pickPlate(pool: KitchenDish[]): KitchenDish[] {
 
 const FEATURED_KITCHEN_IDS = ['egyptian', 'tunisian', 'moroccan', 'diet-keto', 'diet-vegan', 'diet-high-protein', 'diet-mediterranean', 'diet-low-carb'];
 
+interface RegionDef {
+  id: string;
+  emoji: string;
+  en: string;
+  ar: string;
+  ids: string[];
+}
+
+const REGIONS: RegionDef[] = [
+  { id: 'africa', emoji: '🌍', en: 'Africa', ar: 'أفريقيا', ids: ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'nigerian', 'ethiopian', 'kenyan', 'rwandan', 'south-african'] },
+  { id: 'middle-east', emoji: '🕌', en: 'Middle East', ar: 'الشرق الأوسط', ids: ['saudi', 'emirati', 'omani', 'kuwaiti', 'qatar', 'bahraini', 'lebanese', 'palestinian', 'syrian', 'jordanian'] },
+  { id: 'asia', emoji: '🌏', en: 'Asia', ar: 'آسيا', ids: ['indian', 'pakistani', 'chinese', 'japanese', 'korean', 'thai', 'australian', 'new-zealand'] },
+  { id: 'americas', emoji: '🌎', en: 'Americas', ar: 'الأمريكتان', ids: ['american', 'mexican', 'jamaican', 'cuban', 'costa-rican', 'brazilian', 'peruvian', 'colombian', 'chilean', 'venezuelan'] },
+  { id: 'europe', emoji: '🏰', en: 'Europe', ar: 'أوروبا', ids: ['italian', 'french', 'spanish', 'greek', 'turkish', 'british', 'swiss'] },
+  { id: 'special-diets', emoji: '🌿', en: 'Special Diets', ar: 'أنظمة غذائية خاصة', ids: ['diet-keto', 'diet-vegan', 'diet-vegetarian', 'diet-high-protein', 'diet-mediterranean', 'diet-low-carb', 'diet-dash', 'diet-gluten-free', 'diet-intermittent-fasting', 'diet-paleo'] },
+];
+
 const MEAL_LABELS: Record<string, string> = {
   breakfast: 'فطار 🍳',
   lunch: 'غدا 🍲',
@@ -490,7 +507,7 @@ const MEAL_ORDER: MealKey[] = ['breakfast', 'lunch', 'dinner', 'snacks'];
 function getMealTypesForDish(k: KitchenInfo, cat: KitchenCategory, dish: KitchenDish): MealKey[] {
   const dn = dish.name;
   if (/مكرون|معكرون|pasta|macaroni/i.test(dn)) return ['lunch', 'dinner'];
-  if (/رز|أرز|rice/i.test(dn)) return ['lunch', 'dinner'];
+  if (/رز|أرز|rice/i.test(dn) && !/بلبن|حليب|pudding|بودنج/i.test(dn)) return ['lunch', 'dinner'];
   if (/كسكسي|couscous/i.test(dn)) return ['lunch', 'dinner'];
   if (/خبز|عيش|bread/i.test(dn)) return ['breakfast', 'snacks'];
   const types: MealKey[] = [];
@@ -553,7 +570,7 @@ const BodyFigure: React.FC<{ kind: Sex }> = ({ kind }) => (
 
 const WeightLossPage: React.FC = () => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { user } = useAuth();
   const [step, setStep] = useState<Step>(1);
   const [planType, setPlanType] = useState<PlanType>('both');
@@ -594,6 +611,8 @@ const WeightLossPage: React.FC = () => {
   const [autoBuildMode, setAutoBuildMode] = useState(false);
   const [mealTab, setMealTab] = useState<MealKey>('breakfast');
   const [countryMode, setCountryMode] = useState<'egyptian' | 'tunisian' | 'both'>('egyptian');
+  const [regionSel, setRegionSel] = useState<string | null>(null);
+  const [cuisineSel, setCuisineSel] = useState<string | null>(null);
   const [dishSearch, setDishSearch] = useState('');
   const [savedSearch, setSavedSearch] = useState('');
   const [healthyOnly, setHealthyOnly] = useState(false);
@@ -673,13 +692,29 @@ const WeightLossPage: React.FC = () => {
     }
     return base.length ? base : [selectedKitchen];
   }, [countryMode, selectedKitchen]);
+  const regionKitchens = useMemo<Record<string, KitchenInfo[]>>(() => {
+    const out: Record<string, KitchenInfo[]> = {};
+    for (const r of REGIONS) {
+      out[r.id] = r.ids
+        .map((id) => kitchensRegistry.find((k) => k.id === id))
+        .filter((k): k is KitchenInfo => !!k && k.dishes.length > 0);
+    }
+    return out;
+  }, []);
+  const browseKitchens = useMemo<KitchenInfo[]>(() => {
+    if (cuisineSel) {
+      const k = kitchensRegistry.find((x) => x.id === cuisineSel);
+      if (k && k.dishes.length) return [k];
+    }
+    return countryKitchens;
+  }, [cuisineSel, countryKitchens]);
   const planKitchens = useMemo<KitchenInfo[]>(() => {
     if (kitchenMode === 'auto' && !countryKitchens.some((k) => k.id === selectedKitchen.id)) return [selectedKitchen];
     return countryKitchens;
   }, [countryKitchens, selectedKitchen, kitchenMode]);
   const dishRows = useMemo(() => {
     const rows: { key: string; kitchen: KitchenInfo; cat: KitchenCategory; dish: KitchenDish; meals: MealKey[] }[] = [];
-    for (const k of countryKitchens) {
+    for (const k of browseKitchens) {
       for (const cat of getKitchenCategories(k)) {
         for (const d of cat.dishes) {
           rows.push({ key: `${k.id}::${cat.id}::${d.name}`, kitchen: k, cat, dish: d, meals: getMealTypesForDish(k, cat, d) });
@@ -687,7 +722,7 @@ const WeightLossPage: React.FC = () => {
       }
     }
     return rows;
-  }, [countryKitchens]);
+  }, [browseKitchens]);
   const tabCounts = useMemo(() => {
     const c: Record<MealKey, number> = { breakfast: 0, lunch: 0, dinner: 0, snacks: 0 };
     for (const r of dishRows) for (const mm of r.meals) c[mm]++;
@@ -1034,6 +1069,8 @@ const WeightLossPage: React.FC = () => {
     setDishSearch('');
     setSelectedDishKeys([]);
     setAssignedDishes({});
+    setRegionSel(null);
+    setCuisineSel(null);
   };
 
   const addDish = (key: string) => {
@@ -1570,27 +1607,104 @@ const WeightLossPage: React.FC = () => {
                 </button>
               </div>
 
-              <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {featuredKitchens.map((k) => {
-                  const on = selectedKitchenId === k.id;
-                  return (
-                    <div
-                      key={k.id}
-                      onClick={() => chooseKitchen(k)}
-                      className={`rounded-[20px] border-2 p-4 flex flex-col items-center text-center cursor-pointer min-w-0 transition-all active:scale-95 ${on ? 'border-[#D4AF37] bg-[#FFFBEF] shadow-[0_0_0_4px_rgba(212,175,55,0.15)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
-                    >
-                      <span className="text-[34px] leading-none">{k.flag}</span>
-                      <span className={`mt-2 text-[14px] font-extrabold leading-none truncate max-w-full ${on ? 'text-[#0F4C3A]' : 'text-[#0F4C3A]'}`}>{k.country}</span>
-                      <span className="mt-1 text-[11px] text-[#6B7A75] leading-tight truncate max-w-full">{k.kitchen}</span>
-                      {k.sample && <span className="mt-1.5 text-[10.5px] text-[#8A938E] truncate max-w-full">🍽 {k.sample.name}</span>}
-                      <span className={`mt-2 text-[11px] font-bold px-2.5 py-1 rounded-full ${on ? 'bg-[#D4AF37] text-[#0F4C3A]' : 'bg-[#F4F1EB] text-[#6B7A75]'}`}>
-                        {t('wizard.step3.dishCount').replace('{n}', String(k.total))}
-                      </span>
-                      {on && <span className="mt-1.5 text-[11px] font-bold text-[#B8860B]">✓ {t('wizard.step2.auto')}</span>}
-                    </div>
-                  );
-                })}
-              </div>
+              {regionSel === null ? (
+                <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {REGIONS.map((r) => {
+                    const kits = regionKitchens[r.id];
+                    return (
+                      <button
+                        key={r.id}
+                        type="button"
+                        onClick={() => {
+                          setRegionSel(r.id);
+                          setCuisineSel(null);
+                        }}
+                        className="rounded-[20px] border-2 border-[#EFEBE4] bg-white hover:border-[#D4AF37] p-4 flex flex-col items-center text-center cursor-pointer min-w-0 transition-all active:scale-95"
+                      >
+                        <span className="text-[34px] leading-none">{r.emoji}</span>
+                        <span className="mt-2 text-[14px] font-extrabold leading-none truncate max-w-full text-[#0F4C3A]">{language === 'ar' ? r.ar : r.en}</span>
+                        <span className="mt-1 text-[11px] text-[#6B7A75]">
+                          {kits.length} {language === 'ar' ? 'مطبخ' : 'cuisines'}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : cuisineSel === null ? (
+                <div className="mt-4">
+                  <button
+                    type="button"
+                    onClick={() => setRegionSel(null)}
+                    className="text-[12.5px] font-bold text-[#0F4C3A] hover:text-[#B8860B] transition-all"
+                  >
+                    ← {language === 'ar' ? 'العودة للمناطق' : 'Back to Regions'}
+                  </button>
+                  {(() => {
+                    const r = REGIONS.find((x) => x.id === regionSel);
+                    return r ? (
+                      <div className="mt-3 flex items-center gap-2">
+                        <span className="text-[24px] leading-none">{r.emoji}</span>
+                        <span className="text-[16px] font-extrabold text-[#0F4C3A]">{language === 'ar' ? r.ar : r.en}</span>
+                        <span className="text-[11px] font-bold bg-[#F4F1EB] text-[#6B7A75] px-2.5 py-1 rounded-full">{regionKitchens[r.id].length}</span>
+                      </div>
+                    ) : null;
+                  })()}
+                  <div className="mt-3 grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    {regionKitchens[regionSel].map((k) => {
+                      const on = selectedKitchenId === k.id;
+                      return (
+                        <div
+                          key={k.id}
+                          onClick={() => {
+                            chooseKitchen(k);
+                            setCuisineSel(k.id);
+                          }}
+                          className={`rounded-[20px] border-2 p-4 flex flex-col items-center text-center cursor-pointer min-w-0 transition-all active:scale-95 ${on ? 'border-[#D4AF37] bg-[#FFFBEF] shadow-[0_0_0_4px_rgba(212,175,55,0.15)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
+                        >
+                          <span className="text-[34px] leading-none">{k.flag}</span>
+                          <span className={`mt-2 text-[14px] font-extrabold leading-none truncate max-w-full text-[#0F4C3A]`}>{k.country}</span>
+                          <span className="mt-1 text-[11px] text-[#6B7A75] leading-tight truncate max-w-full">{k.kitchen}</span>
+                          {k.sample && <span className="mt-1.5 text-[10.5px] text-[#8A938E] truncate max-w-full">🍽 {k.sample.name}</span>}
+                          <span className={`mt-2 text-[11px] font-bold px-2.5 py-1 rounded-full ${on ? 'bg-[#D4AF37] text-[#0F4C3A]' : 'bg-[#F4F1EB] text-[#6B7A75]'}`}>
+                            {t('wizard.step3.dishCount').replace('{n}', String(k.total))}
+                          </span>
+                          {on && <span className="mt-1.5 text-[11px] font-bold text-[#B8860B]">✓ {t('wizard.step2.auto')}</span>}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : (
+                <div className="mt-4">
+                  <button
+                    type="button"
+                    onClick={() => setCuisineSel(null)}
+                    className="text-[12.5px] font-bold text-[#0F4C3A] hover:text-[#B8860B] transition-all"
+                  >
+                    ←{' '}
+                    {language === 'ar'
+                      ? `العودة إلى ${REGIONS.find((x) => x.id === regionSel)?.ar ?? ''}`
+                      : `Back to ${REGIONS.find((x) => x.id === regionSel)?.en ?? ''}`}
+                  </button>
+                  {(() => {
+                    const k = kitchensRegistry.find((x) => x.id === cuisineSel);
+                    return k ? (
+                      <div className="mt-3 rounded-[20px] border-2 border-[#D4AF37] bg-[#FFFBEF] p-4 flex flex-col items-center text-center">
+                        <span className="text-[34px] leading-none">{k.flag}</span>
+                        <span className="mt-2 text-[14px] font-extrabold leading-none truncate max-w-full text-[#0F4C3A]">{k.country}</span>
+                        <span className="mt-1 text-[11px] text-[#6B7A75] leading-tight truncate max-w-full">{k.kitchen}</span>
+                        {k.sample && <span className="mt-1.5 text-[10.5px] text-[#8A938E] truncate max-w-full">🍽 {k.sample.name}</span>}
+                        <span className="mt-2 text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#D4AF37] text-[#0F4C3A]">
+                          {t('wizard.step3.dishCount').replace('{n}', String(k.total))}
+                        </span>
+                      </div>
+                    ) : null;
+                  })()}
+                  <p className="mt-2 text-[11px] text-[#A0A8A4] text-center">
+                    {language === 'ar' ? 'اختر أطباقك من القائمة بالأسفل' : 'Pick your dishes from the list below'}
+                  </p>
+                </div>
+              )}
             </div>
 
             {planType !== 'fitness' && (
