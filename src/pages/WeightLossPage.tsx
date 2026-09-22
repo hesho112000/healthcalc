@@ -75,13 +75,15 @@ const ACTIVITY_ORDER: ActivityKey[] = ['sedentary', 'light', 'moderate', 'active
 
 const readWizardInput = (): { age?: string; height?: string; weight?: string; sex?: Sex; activityLevel?: ActivityKey } => {
   try {
-    const raw = localStorage.getItem('fitness-wizard-input');
+    const raw = localStorage.getItem('fitness-inputs') || localStorage.getItem('fitness-wizard-input');
     if (!raw) return {};
     const d = JSON.parse(raw);
     const out: { age?: string; height?: string; weight?: string; sex?: Sex; activityLevel?: ActivityKey } = {};
     if (d && d.age !== undefined && d.age !== null && d.age !== '') out.age = String(d.age);
-    if (d && d.heightCm !== undefined && d.heightCm !== null) out.height = String(d.heightCm);
-    if (d && d.weightKg !== undefined && d.weightKg !== null) out.weight = String(d.weightKg);
+    const heightRaw = d && (d.height !== undefined ? d.height : d.heightCm);
+    const weightRaw = d && (d.weight !== undefined ? d.weight : d.weightKg);
+    if (d && heightRaw !== undefined && heightRaw !== null && heightRaw !== '') out.height = String(heightRaw);
+    if (d && weightRaw !== undefined && weightRaw !== null && weightRaw !== '') out.weight = String(weightRaw);
     if (d && (d.gender === 'male' || d.gender === 'female')) out.sex = d.gender as Sex;
     if (d && ACTIVITY[d.activityLevel as ActivityKey]) out.activityLevel = d.activityLevel as ActivityKey;
     return out;
@@ -767,7 +769,7 @@ const WeightLossPage: React.FC = () => {
     const diet = getDiet(goal, dietId);
     const wk = WORKOUTS.find((x) => x.id === workout) ?? WORKOUTS[0];
     const bmi = +(w / Math.pow(h / 100, 2)).toFixed(1);
-    console.log('[BMI Debug]', { weight: w, height: h, bmi });
+    console.log('[DEBUG]', { weight: w, height: h, age: a, gender: sex, bmi });
     const bmr = sex === 'male' ? 10 * w + 6.25 * h - 5 * a + 5 : 10 * w + 6.25 * h - 5 * a - 161;
     const tdeeBase = bmr * ACTIVITY[step2Data.activityLevel].factor;
     const exBurnMid = EXERCISE_TYPES.filter((e) => exerciseTypes.includes(e.id)).map((e) => {

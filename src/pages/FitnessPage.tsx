@@ -75,6 +75,7 @@ const FitnessPage: React.FC = () => {
     const w = +form.weightKg;
     if (!age || !h || !w) return null;
     const bmi = Math.round(bmiValue(h, w) * 10) / 10;
+    console.log('[DEBUG]', { weight: w, height: h, age, gender: form.gender, bmi });
     const bmr = Math.round(bmrValue(form.gender, age, h, w));
     const maintain = Math.round(bmr * (ACT[form.activityLevel] || 1.55));
     const lose = Math.max(1200, maintain - 500);
@@ -112,6 +113,17 @@ const FitnessPage: React.FC = () => {
     return '';
   }, [form]);
 
+  const persistFitnessInputs = useCallback(() => {
+    localStorage.setItem('fitness-inputs', JSON.stringify({
+      age: String(form.age),
+      height: String(form.heightCm),
+      weight: String(form.weightKg),
+      gender: form.gender,
+      activityLevel: form.activityLevel,
+      savedAt: new Date().toISOString(),
+    }));
+  }, [form]);
+
   const handleBridge = useCallback(() => {
     const validationError = validate();
     if (validationError) {
@@ -120,6 +132,7 @@ const FitnessPage: React.FC = () => {
     }
     setError('');
     saveProfile();
+    persistFitnessInputs();
     localStorage.setItem('hc_calculator_bridge', JSON.stringify({
       age: +form.age,
       gender: form.gender,
@@ -145,7 +158,7 @@ const FitnessPage: React.FC = () => {
       localStorage.setItem('userBMR', String(metrics.bmr));
     }
     navigate('/weight-loss');
-  }, [form, metrics, validate, saveProfile, navigate]);
+  }, [form, metrics, validate, saveProfile, persistFitnessInputs, navigate]);
 
   const handleCalculate = useCallback(() => {
     const validationError = validate();
@@ -155,9 +168,10 @@ const FitnessPage: React.FC = () => {
     }
     setError('');
     saveProfile();
+    persistFitnessInputs();
     setCalculated(true);
     setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
-  }, [validate, saveProfile]);
+  }, [validate, saveProfile, persistFitnessInputs]);
 
   const patch = (p: Partial<FormData>) => setForm((f) => ({ ...f, ...p }));
 
