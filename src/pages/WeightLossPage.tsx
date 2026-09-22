@@ -73,6 +73,23 @@ const ACTIVITY: Record<ActivityKey, { factor: number; label: string; desc: strin
 
 const ACTIVITY_ORDER: ActivityKey[] = ['sedentary', 'light', 'moderate', 'active', 'very_active'];
 
+const readWizardInput = (): { age?: string; height?: string; weight?: string; sex?: Sex; activityLevel?: ActivityKey } => {
+  try {
+    const raw = localStorage.getItem('fitness-wizard-input');
+    if (!raw) return {};
+    const d = JSON.parse(raw);
+    const out: { age?: string; height?: string; weight?: string; sex?: Sex; activityLevel?: ActivityKey } = {};
+    if (d && d.age !== undefined && d.age !== null && d.age !== '') out.age = String(d.age);
+    if (d && d.heightCm !== undefined && d.heightCm !== null) out.height = String(d.heightCm);
+    if (d && d.weightKg !== undefined && d.weightKg !== null) out.weight = String(d.weightKg);
+    if (d && (d.gender === 'male' || d.gender === 'female')) out.sex = d.gender as Sex;
+    if (d && ACTIVITY[d.activityLevel as ActivityKey]) out.activityLevel = d.activityLevel as ActivityKey;
+    return out;
+  } catch {
+    return {};
+  }
+};
+
 const WORKOUTS: Workout[] = [
   { id: 'full_body', name: 'Full Body 3x', days: 3, dur: '45د', focus: 'كل الجسم', burn: 150, level: 'مبتدئ' },
   { id: 'upper_lower', name: 'Upper/Lower 4x', days: 4, dur: '50د', focus: 'علوي/سفلي', burn: 200, level: 'متوسط' },
@@ -533,10 +550,10 @@ const WeightLossPage: React.FC = () => {
   const { user } = useAuth();
   const [step, setStep] = useState<Step>(1);
   const [planType, setPlanType] = useState<PlanType>('both');
-  const [age, setAge] = useState('26');
-  const [sex, setSex] = useState<Sex>('male');
-  const [height, setHeight] = useState('175');
-  const [weight, setWeight] = useState('70');
+  const [age, setAge] = useState<string>(() => readWizardInput().age ?? '26');
+  const [sex, setSex] = useState<Sex>(() => readWizardInput().sex ?? 'male');
+  const [height, setHeight] = useState<string>(() => readWizardInput().height ?? '175');
+  const [weight, setWeight] = useState<string>(() => readWizardInput().weight ?? '70');
   const [goal, setGoal] = useState<GoalKey>('lose');
   const [targetWeight, setTargetWeight] = useState('75');
   const [timeline, setTimeline] = useState('12');
@@ -563,7 +580,7 @@ const WeightLossPage: React.FC = () => {
   const [categoryMode, setCategoryMode] = useState<'manual' | 'auto'>('manual');
   const [exerciseMode, setExerciseMode] = useState<'manual' | 'auto'>('auto');
   const [step2Data, setStep2Data] = useState<{ activityLevel: ActivityKey; exerciseType: string | null; selectedExercises: string[] }>({
-    activityLevel: 'moderate',
+    activityLevel: readWizardInput().activityLevel ?? 'moderate',
     exerciseType: null,
     selectedExercises: [],
   });
@@ -750,6 +767,7 @@ const WeightLossPage: React.FC = () => {
     const diet = getDiet(goal, dietId);
     const wk = WORKOUTS.find((x) => x.id === workout) ?? WORKOUTS[0];
     const bmi = +(w / Math.pow(h / 100, 2)).toFixed(1);
+    console.log('[BMI Debug]', { weight: w, height: h, bmi });
     const bmr = sex === 'male' ? 10 * w + 6.25 * h - 5 * a + 5 : 10 * w + 6.25 * h - 5 * a - 161;
     const tdeeBase = bmr * ACTIVITY[step2Data.activityLevel].factor;
     const exBurnMid = EXERCISE_TYPES.filter((e) => exerciseTypes.includes(e.id)).map((e) => {

@@ -132,6 +132,14 @@ const FitnessPage: React.FC = () => {
       tdee: metrics?.maintain,
       savedAt: new Date().toISOString(),
     }));
+    localStorage.setItem('fitness-wizard-input', JSON.stringify({
+      age: String(form.age),
+      heightCm: String(form.heightCm),
+      weightKg: String(form.weightKg),
+      gender: form.gender,
+      activityLevel: form.activityLevel,
+      savedAt: new Date().toISOString(),
+    }));
     if (metrics) {
       localStorage.setItem('userTDEE', String(metrics.maintain));
       localStorage.setItem('userBMR', String(metrics.bmr));
