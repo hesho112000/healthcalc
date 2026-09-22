@@ -506,7 +506,7 @@ const MEAL_ORDER: MealKey[] = ['breakfast', 'lunch', 'dinner', 'snacks'];
 
 function getMealTypesForDish(k: KitchenInfo, cat: KitchenCategory, dish: KitchenDish): MealKey[] {
   const dn = dish.name;
-  if (/مكرون|معكرون|pasta|macaroni/i.test(dn)) return ['lunch', 'dinner'];
+  if (/مكرون|معكرون|شعرية|مقرونة|نودلز|pasta|macaroni|noodle/i.test(dn)) return ['lunch', 'dinner'];
   if (/رز|أرز|rice/i.test(dn) && !/بلبن|حليب|pudding|بودنج/i.test(dn)) return ['lunch', 'dinner'];
   if (/كسكسي|couscous/i.test(dn)) return ['lunch', 'dinner'];
   if (/خبز|عيش|bread/i.test(dn)) return ['breakfast', 'snacks'];
@@ -610,7 +610,6 @@ const WeightLossPage: React.FC = () => {
   });
   const [autoBuildMode, setAutoBuildMode] = useState(false);
   const [mealTab, setMealTab] = useState<MealKey>('breakfast');
-  const [countryMode, setCountryMode] = useState<'egyptian' | 'tunisian' | 'both'>('egyptian');
   const [regionSel, setRegionSel] = useState<string | null>(null);
   const [cuisineSel, setCuisineSel] = useState<string | null>(null);
   const [dishSearch, setDishSearch] = useState('');
@@ -668,30 +667,10 @@ const WeightLossPage: React.FC = () => {
     return found;
   }, []);
   const selectedKitchenCats = useMemo<KitchenCategory[]>(() => getKitchenCategories(selectedKitchen), [selectedKitchen]);
-  const countryOptions = useMemo(() => {
-    const e = kitchensRegistry.find((k) => k.id === 'egyptian');
-    const tns = kitchensRegistry.find((k) => k.id === 'tunisian');
-    const eTot = e?.total ?? 0;
-    const tTot = tns?.total ?? 0;
-    return [
-      { m: 'egyptian' as const, flag: '🇪🇬', label: t('wizard.step3.countryEgypt'), count: eTot },
-      { m: 'tunisian' as const, flag: '🇹🇳', label: t('wizard.step3.countryTunis'), count: tTot },
-      { m: 'both' as const, flag: '🌍', label: t('wizard.step3.countryBoth'), count: eTot + tTot },
-    ];
-  }, [t]);
   const countryKitchens = useMemo<KitchenInfo[]>(() => {
     const e = kitchensRegistry.find((k) => k.id === 'egyptian');
-    const tns = kitchensRegistry.find((k) => k.id === 'tunisian');
-    const base: KitchenInfo[] = [];
-    if (countryMode === 'both') {
-      if (e) base.push(e);
-      if (tns) base.push(tns);
-    } else {
-      const k = countryMode === 'egyptian' ? e : tns;
-      if (k) base.push(k);
-    }
-    return base.length ? base : [selectedKitchen];
-  }, [countryMode, selectedKitchen]);
+    return e && e.dishes.length ? [e] : [selectedKitchen];
+  }, [selectedKitchen]);
   const regionKitchens = useMemo<Record<string, KitchenInfo[]>>(() => {
     const out: Record<string, KitchenInfo[]> = {};
     for (const r of REGIONS) {
@@ -1059,18 +1038,6 @@ const WeightLossPage: React.FC = () => {
       setStep(5);
       notify(t('wizard.toast.autoKitchen'));
     }, 1500);
-  };
-
-  const chooseCountry = (m: 'egyptian' | 'tunisian' | 'both') => {
-    setCountryMode(m);
-    const id = m === 'both' ? 'egyptian' : m;
-    const k = kitchensRegistry.find((x) => x.id === id);
-    if (k) setSelectedKitchenId(k.id);
-    setDishSearch('');
-    setSelectedDishKeys([]);
-    setAssignedDishes({});
-    setRegionSel(null);
-    setCuisineSel(null);
   };
 
   const addDish = (key: string) => {
@@ -1709,35 +1676,12 @@ const WeightLossPage: React.FC = () => {
 
             {planType !== 'fitness' && (
               <div className={`${cardBase} p-6`}>
-                <div className="flex items-center justify-between gap-2 flex-wrap">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[16px] shrink-0">🌍</span>
-                    <h3 className="text-[15px] font-extrabold">{t('wizard.step3.country')}</h3>
-                  </div>
-                  <span className="text-[12px] font-bold bg-[#FFF8E7] text-[#B8860B] px-3 py-1 rounded-full shrink-0">
-                    {t('wizard.step3.totalToday').replace('{n}', String(totalCal))}
-                  </span>
-                </div>
-
-                <div className="mt-3 flex gap-2 overflow-x-auto no-scrollbar">
-                  {countryOptions.map((o) => {
-                    const on = countryMode === o.m;
-                    return (
-                      <button
-                        key={o.m}
-                        type="button"
-                        onClick={() => chooseCountry(o.m)}
-                        className={`shrink-0 h-[46px] rounded-full px-5 text-[13px] font-bold border-2 transition-all active:scale-95 ${on ? 'bg-[#0F4C3A] border-[#0F4C3A] text-white' : 'bg-white border-[#E3E0D8] text-[#0F4C3A] hover:border-[#D4AF37]'}`}
-                      >
-                        {o.label} <span className={`num text-[11px] ${on ? 'text-white/70' : 'text-[#6B7A75]'}`}>{o.count}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-
                 <div className="mt-4 flex gap-1.5 overflow-x-auto no-scrollbar">
                   {MEAL_TABS.map((tab) => {
                     const on = mealTab === tab.key;
+                    const label = mealLabel(tab.key)
+                      .replace(new RegExp(tab.emoji.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*$'), '')
+                      .trim();
                     return (
                       <button
                         key={tab.key}
@@ -1746,10 +1690,8 @@ const WeightLossPage: React.FC = () => {
                         className={`shrink-0 h-11 rounded-full px-4 text-[13.5px] font-bold flex items-center gap-1.5 border-2 transition-all active:scale-95 ${on ? 'bg-[#0F4C3A] border-[#0F4C3A] text-white' : 'bg-white text-[#0F4C3A] border-[#E3E0D8] hover:border-[#D4AF37]'}`}
                       >
                         <span className="shrink-0">{tab.emoji}</span>
-                        {mealLabel(tab.key)}
-                        <span className={`text-[11px] ${on ? 'text-white/70' : 'text-[#6B7A75]'}`}>
-                          · {t('wizard.step3.dishCount').replace('{n}', String(tabCounts[tab.key]))}
-                        </span>
+                        {label}
+                        <span className={`num text-[11px] ${on ? 'text-white/70' : 'text-[#6B7A75]'}`}>· {tabCounts[tab.key]}</span>
                       </button>
                     );
                   })}
