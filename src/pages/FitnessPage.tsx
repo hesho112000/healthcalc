@@ -6,7 +6,7 @@ import SEO from '../components/seo/SEO';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import FitnessHeroVisual from '../components/illustrations/FitnessHeroVisual';
 
-interface FormData { age: number; gender: 'male' | 'female'; heightCm: number; weightKg: number; activityLevel: string }
+interface FormData { age: string; gender: 'male' | 'female'; heightCm: string; weightKg: string; activityLevel: string }
 
 const ACT: Record<string, number> = { sedentary: 1.2, light: 1.375, moderate: 1.55, active: 1.725, very_active: 1.9 };
 const ACT_ORDER = ['sedentary', 'light', 'moderate', 'active', 'very_active'];
@@ -64,19 +64,23 @@ const bfColor = (k: string) => (k === 'fcBfLevelObese' ? '#ef4444' : k === 'fcBf
 const FitnessPage: React.FC = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
-  const [form, setForm] = useState<FormData>({ age: 30, gender: 'male', heightCm: 170, weightKg: 70, activityLevel: 'moderate' });
+  const [form, setForm] = useState<FormData>({ age: '', gender: 'male', heightCm: '', weightKg: '', activityLevel: 'moderate' });
   const [calculated, setCalculated] = useState(false);
+  const [error, setError] = useState('');
   const resultsRef = useRef<HTMLDivElement>(null);
 
   const metrics = useMemo(() => {
-    if (!form.age || !form.heightCm || !form.weightKg) return null;
-    const bmi = Math.round(bmiValue(form.heightCm, form.weightKg) * 10) / 10;
-    const bmr = Math.round(bmrValue(form.gender, form.age, form.heightCm, form.weightKg));
+    const age = +form.age;
+    const h = +form.heightCm;
+    const w = +form.weightKg;
+    if (!age || !h || !w) return null;
+    const bmi = Math.round(bmiValue(h, w) * 10) / 10;
+    const bmr = Math.round(bmrValue(form.gender, age, h, w));
     const maintain = Math.round(bmr * (ACT[form.activityLevel] || 1.55));
     const lose = Math.max(1200, maintain - 500);
-    const maxHr = 220 - form.age;
-    const bodyFat = Math.round(estBodyFat(form.gender, bmi, form.age) * 10) / 10;
-    const vo2 = estVo2(form.gender, form.age, form.activityLevel);
+    const maxHr = 220 - age;
+    const bodyFat = Math.round(estBodyFat(form.gender, bmi, age) * 10) / 10;
+    const vo2 = estVo2(form.gender, age, form.activityLevel);
     const whr = estWhr(form.gender, bmi);
     const mk = (lo: number, hi: number) => `${Math.round((maxHr * lo) / 100)}–${Math.round((maxHr * hi) / 100)}`;
     const zones = [
@@ -89,16 +93,38 @@ const FitnessPage: React.FC = () => {
   }, [form]);
 
   const saveProfile = useCallback(() => {
-    localStorage.setItem('hc_calc_profile', JSON.stringify(form));
+    localStorage.setItem('hc_calc_profile', JSON.stringify({
+      age: +form.age || 0,
+      gender: form.gender,
+      heightCm: +form.heightCm || 0,
+      weightKg: +form.weightKg || 0,
+      activityLevel: form.activityLevel,
+    }));
+  }, [form]);
+
+  const validate = useCallback(() => {
+    const age = parseInt(form.age, 10);
+    const height = parseInt(form.heightCm, 10);
+    const weight = parseInt(form.weightKg, 10);
+    if (!age || age < 10 || age > 120) return 'Please enter a valid age (10-120).';
+    if (!height || height < 100 || height > 250) return 'Please enter a valid height (100-250 cm).';
+    if (!weight || weight < 20 || weight > 300) return 'Please enter a valid weight (20-300 kg).';
+    return '';
   }, [form]);
 
   const handleBridge = useCallback(() => {
+    const validationError = validate();
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+    setError('');
     saveProfile();
     localStorage.setItem('hc_calculator_bridge', JSON.stringify({
-      age: form.age,
+      age: +form.age,
       gender: form.gender,
-      height: form.heightCm,
-      weight: form.weightKg,
+      height: +form.heightCm,
+      weight: +form.weightKg,
       activityLevel: form.activityLevel,
       goal: 'lose_weight',
       bmi: metrics?.bmi,
@@ -111,13 +137,19 @@ const FitnessPage: React.FC = () => {
       localStorage.setItem('userBMR', String(metrics.bmr));
     }
     navigate('/weight-loss');
-  }, [form, metrics, saveProfile, navigate]);
+  }, [form, metrics, validate, saveProfile, navigate]);
 
   const handleCalculate = useCallback(() => {
+    const validationError = validate();
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+    setError('');
     saveProfile();
     setCalculated(true);
     setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
-  }, [saveProfile]);
+  }, [validate, saveProfile]);
 
   const patch = (p: Partial<FormData>) => setForm((f) => ({ ...f, ...p }));
 
@@ -184,7 +216,7 @@ const FitnessPage: React.FC = () => {
               <div>
                 <label className="wiz-label" htmlFor="wiz-age">{t('fitnessPage.profile.age')}</label>
                 <div className="relative">
-                  <input id="wiz-age" type="number" min={2} max={120} className="wiz-input" value={form.age} onChange={(e) => patch({ age: Math.max(2, Math.min(120, +e.target.value || 2)) })} />
+                  <input id="wiz-age" type="number" inputMode="numeric" min={10} max={120} className="wiz-input" value={form.age} onChange={(e) => { setError(''); patch({ age: e.target.value }); }} />
                   {unitSuffix(t('fcYears'))}
                 </div>
               </div>
@@ -202,14 +234,14 @@ const FitnessPage: React.FC = () => {
               <div>
                 <label className="wiz-label" htmlFor="wiz-height">{t('fitnessPage.profile.height')}</label>
                 <div className="relative">
-                  <input id="wiz-height" type="number" min={100} max={250} step={0.5} className="wiz-input" value={form.heightCm} onChange={(e) => patch({ heightCm: Math.max(100, Math.min(250, +e.target.value || 100)) })} />
+                  <input id="wiz-height" type="number" inputMode="decimal" min={100} max={250} step={0.5} className="wiz-input" value={form.heightCm} onChange={(e) => { setError(''); patch({ heightCm: e.target.value }); }} />
                   {unitSuffix('cm')}
                 </div>
               </div>
               <div>
                 <label className="wiz-label" htmlFor="wiz-weight">{t('fitnessPage.profile.weight')}</label>
                 <div className="relative">
-                  <input id="wiz-weight" type="number" min={20} max={300} step={0.5} className="wiz-input" value={form.weightKg} onChange={(e) => patch({ weightKg: Math.max(20, Math.min(300, +e.target.value || 20)) })} />
+                  <input id="wiz-weight" type="number" inputMode="decimal" min={20} max={300} step={0.5} className="wiz-input" value={form.weightKg} onChange={(e) => { setError(''); patch({ weightKg: e.target.value }); }} />
                   {unitSuffix('kg')}
                 </div>
               </div>
@@ -223,6 +255,7 @@ const FitnessPage: React.FC = () => {
             </div>
 
             <div className="mt-8">
+              {error && <p className="mb-4 text-center text-[13px] font-bold text-[#ef4444]">{error}</p>}
               <button type="button" className="cta-calc" onClick={handleCalculate}>
                 {t('fitnessPage.cta.calculate')}
               </button>
