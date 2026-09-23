@@ -506,10 +506,12 @@ const MEAL_ORDER: MealKey[] = ['breakfast', 'lunch', 'dinner', 'snacks'];
 
 function getMealTypesForDish(k: KitchenInfo, cat: KitchenCategory, dish: KitchenDish): MealKey[] {
   const dn = dish.name;
+  if (/ترايفل|حلاوة|حلوى|بسبوسة|كنافة|قطايف|كيك|بسكويت|شوكولاتة/i.test(dn)) return ['snacks'];
+  if (/حبوب|بذور|لقاح/i.test(dn)) return ['snacks'];
   if (/مكرون|معكرون|شعرية|مقرونة|نودلز|pasta|macaroni|noodle/i.test(dn)) return ['lunch', 'dinner'];
   if (/رز|أرز|rice/i.test(dn) && !/بلبن|حليب|pudding|بودنج/i.test(dn)) return ['lunch', 'dinner'];
   if (/كسكسي|couscous/i.test(dn)) return ['lunch', 'dinner'];
-  if (/خبز|عيش|bread/i.test(dn)) return ['breakfast', 'snacks'];
+  if (/خبز|عيش|bread/i.test(dn)) return ['breakfast'];
   const types: MealKey[] = [];
   for (const key of MEAL_ORDER) {
     if (getMealFilter(k, key)(cat, dish)) types.push(key);
