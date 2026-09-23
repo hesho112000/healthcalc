@@ -1616,28 +1616,32 @@ const WeightLossPage: React.FC = () => {
             </div>
 
             {cuisineSel && (
-              <button
-                type="button"
-                onClick={runAutoKitchen}
-                disabled={autoBuilding}
-                className={`w-full h-[56px] rounded-full bg-[#D4AF37] text-[#0F4C3A] font-extrabold text-[15px] flex items-center justify-center gap-2 shadow-[0_10px_24px_rgba(212,175,55,0.45)] transition-all ${autoBuilding ? 'opacity-70 cursor-wait' : 'hover:translate-y-[-1px] active:scale-95'}`}
-              >
-                {autoBuilding ? (
-                  <>
-                    <span className="w-5 h-5 rounded-full border-[3px] border-[#0F4C3A] border-t-transparent animate-spin shrink-0" />
-                    {t('wizard.step3.loading')}
-                  </>
-                ) : (
-                  <>
-                    <span className="shrink-0">✅</span>
+              <div className="space-y-2">
+                <button
+                  type="button"
+                  onClick={runAutoKitchen}
+                  disabled={autoBuilding}
+                  className={`w-full h-[56px] rounded-full bg-[#D4AF37] text-[#0F4C3A] font-extrabold text-[15px] flex items-center justify-center gap-2 shadow-[0_10px_24px_rgba(212,175,55,0.45)] transition-all ${autoBuilding ? 'opacity-70 cursor-wait' : 'hover:translate-y-[-1px] active:scale-95'}`}
+                >
+                  {autoBuilding ? (
+                    <>
+                      <span className="w-5 h-5 rounded-full border-[3px] border-[#0F4C3A] border-t-transparent animate-spin shrink-0" />
+                      {t('wizard.step3.loading')}
+                    </>
+                  ) : (
                     <span>
                       {language === 'ar'
-                        ? `اختيار تلقائي — أنشئ خطتي لـ 7 أيام من المطبخ ${selectedKitchen.kitchen}`
-                        : `Auto-Select — Build my 7-day plan from ${selectedKitchen.country} cuisine`}
+                        ? '✅ ابدأ — ابنيلي خطة أسبوعية من المطبخ المختار'
+                        : '✅ Auto-Select — Build my 7-day plan'}
                     </span>
-                  </>
-                )}
-              </button>
+                  )}
+                </button>
+                <p className="text-center text-[11.5px] text-[#8A938E] leading-snug">
+                  {language === 'ar'
+                    ? 'سيختار تلقائياً 7 أيام × 4 وجبات من الأطباق المناسبة لهدفك'
+                    : 'It will automatically pick 7 days × 4 meals of dishes matching your goal'}
+                </p>
+              </div>
             )}
 
             {planType !== 'fitness' && (
