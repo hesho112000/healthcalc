@@ -243,8 +243,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المطبخ المغربي التقليدي - أرقام محسوبة",
           "notes": "",
@@ -476,7 +475,7 @@
           "is_sweet": false,
           "mealType": "dinner",
           "mealTypes": [
-            "dinner"
+            "breakfast"
           ],
           "source": "المطبخ المغربي التقليدي - أرقام محسوبة",
           "notes": "",
@@ -563,8 +562,7 @@
           "is_sweet": false,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "breakfast"
           ],
           "source": "المطبخ المغربي التقليدي - أرقام محسوبة",
           "notes": "",
@@ -651,8 +649,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المطبخ المغربي التقليدي - أرقام محسوبة",
           "notes": "",
@@ -681,8 +678,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Khobz (Bread)",
@@ -711,8 +707,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Khobz (Bread)",
@@ -741,8 +736,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Khobz (Bread)",
@@ -1061,7 +1055,7 @@
           "is_sweet": false,
           "mealType": "dinner",
           "mealTypes": [
-            "dinner"
+            "breakfast"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Foul Medames (Dinner)",
@@ -1090,7 +1084,7 @@
           "is_sweet": false,
           "mealType": "dinner",
           "mealTypes": [
-            "dinner"
+            "breakfast"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Foul Medames (Dinner)",
@@ -1246,8 +1240,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المطبخ المغربي التقليدي - أرقام محسوبة",
           "notes": "",
@@ -1276,8 +1269,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Olive Bread",
@@ -1406,6 +1398,7 @@
           "is_sweet": false,
           "mealType": "dinner",
           "mealTypes": [
+            "lunch",
             "dinner"
           ],
           "source": "المطبخ المغربي التقليدي - أرقام محسوبة",
@@ -1672,6 +1665,7 @@
           "is_sweet": false,
           "mealType": "dinner",
           "mealTypes": [
+            "lunch",
             "dinner"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
@@ -1701,6 +1695,7 @@
           "is_sweet": false,
           "mealType": "dinner",
           "mealTypes": [
+            "lunch",
             "dinner"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
@@ -1730,6 +1725,7 @@
           "is_sweet": false,
           "mealType": "dinner",
           "mealTypes": [
+            "lunch",
             "dinner"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
@@ -1918,8 +1914,7 @@
           "is_sweet": false,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "المطبخ المغربي التقليدي - أرقام محسوبة",
           "notes": "",
@@ -5903,8 +5898,7 @@
           "is_sweet": true,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "المطبخ المغربي التقليدي - أرقام محسوبة",
           "notes": "",
@@ -5933,8 +5927,7 @@
           "is_sweet": true,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "المطبخ المغربي التقليدي - أرقام محسوبة",
           "notes": "",
@@ -5963,8 +5956,7 @@
           "is_sweet": true,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "المطبخ المغربي التقليدي - أرقام محسوبة",
           "notes": "",
@@ -5993,8 +5985,7 @@
           "is_sweet": true,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "المطبخ المغربي التقليدي - أرقام محسوبة",
           "notes": "",
@@ -6023,8 +6014,7 @@
           "is_sweet": true,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "المطبخ المغربي التقليدي - أرقام محسوبة",
           "notes": "",
@@ -6053,7 +6043,7 @@
           "is_sweet": true,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast"
+            "snacks"
           ],
           "source": "المطبخ المغربي التقليدي - أرقام محسوبة",
           "notes": "",
@@ -6082,8 +6072,7 @@
           "is_sweet": true,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Almond Briouat (Light)",
@@ -6112,8 +6101,7 @@
           "is_sweet": false,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Ghrayba (Light)",
@@ -6142,8 +6130,7 @@
           "is_sweet": true,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Ghrayba (Light)",
@@ -6172,8 +6159,7 @@
           "is_sweet": false,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Ghrayba (Light)",
@@ -6202,8 +6188,7 @@
           "is_sweet": false,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Fekkas",
@@ -6232,8 +6217,7 @@
           "is_sweet": false,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Fekkas",
@@ -6262,8 +6246,7 @@
           "is_sweet": false,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Chebbakia (Light)",
@@ -6303,7 +6286,7 @@
           "is_sweet": false,
           "mealType": "dinner",
           "mealTypes": [
-            "dinner"
+            "breakfast"
           ],
           "source": "المطبخ المغربي التقليدي - أرقام محسوبة",
           "notes": "",
@@ -6332,7 +6315,7 @@
           "is_sweet": false,
           "mealType": "dinner",
           "mealTypes": [
-            "dinner"
+            "breakfast"
           ],
           "source": "المطبخ المغربي التقليدي - أرقام محسوبة",
           "notes": "",
@@ -6540,7 +6523,7 @@
           "is_sweet": true,
           "mealType": "dinner",
           "mealTypes": [
-            "dinner"
+            "snacks"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Yogurt",
@@ -6569,7 +6552,7 @@
           "is_sweet": false,
           "mealType": "dinner",
           "mealTypes": [
-            "dinner"
+            "breakfast"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Yogurt",
@@ -6598,7 +6581,7 @@
           "is_sweet": false,
           "mealType": "dinner",
           "mealTypes": [
-            "dinner"
+            "breakfast"
           ],
           "source": "Moroccan Kitchen - Extended Variants",
           "notes": "Variant of Boiled Eggs",

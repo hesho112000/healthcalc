@@ -73,7 +73,6 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
             "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
@@ -642,7 +641,6 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
             "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
@@ -926,8 +924,7 @@
           "is_sweet": false,
           "mealType": "snacks",
           "mealTypes": [
-            "snacks",
-            "breakfast"
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -985,8 +982,7 @@
           "is_sweet": false,
           "mealType": "snacks",
           "mealTypes": [
-            "snacks",
-            "breakfast"
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -1102,8 +1098,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -1132,8 +1127,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -1162,8 +1156,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -1222,8 +1215,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -1252,8 +1244,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -1282,8 +1273,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -1342,8 +1332,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -1372,8 +1361,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -1402,8 +1390,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -1432,8 +1419,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -1462,8 +1448,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -1492,8 +1477,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -1522,8 +1506,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -1612,8 +1595,7 @@
           "is_sweet": false,
           "mealType": "snacks",
           "mealTypes": [
-            "snacks",
-            "breakfast"
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -1864,8 +1846,7 @@
           "is_sweet": false,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -1894,8 +1875,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "lunch"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -1924,8 +1904,7 @@
           "is_sweet": false,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -1954,8 +1933,7 @@
           "is_sweet": false,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -1984,8 +1962,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "lunch"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -2494,7 +2471,6 @@
           "is_sweet": false,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch",
             "dinner"
           ],
           "source": "المعهد القومي للتغذية المصري",
@@ -8601,8 +8577,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "lunch"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -8631,8 +8606,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "lunch"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -8661,8 +8635,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "lunch"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -8691,8 +8664,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "lunch"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -8721,8 +8693,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "lunch"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -8751,8 +8722,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -8781,8 +8751,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -8811,8 +8780,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -8841,8 +8809,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -8871,8 +8838,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -8901,8 +8867,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -8931,8 +8896,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -8961,8 +8925,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -8991,8 +8954,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -9021,8 +8983,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -9051,8 +9012,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -9081,8 +9041,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -9111,8 +9070,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -9231,7 +9189,6 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
             "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
@@ -9261,7 +9218,6 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
             "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
@@ -9291,7 +9247,6 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
             "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
@@ -9321,7 +9276,6 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
             "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
@@ -9351,7 +9305,6 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
             "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
@@ -9381,7 +9334,6 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
             "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
@@ -9411,7 +9363,6 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
             "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
@@ -9441,7 +9392,6 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
             "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
@@ -9471,7 +9421,6 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
             "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
@@ -9501,7 +9450,6 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
             "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
@@ -9531,8 +9479,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -9561,8 +9508,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -9591,8 +9537,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "snacks"
+            "breakfast"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -9738,8 +9683,7 @@
           "is_sweet": true,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -9768,8 +9712,7 @@
           "is_sweet": true,
           "mealType": "snacks",
           "mealTypes": [
-            "snacks",
-            "breakfast"
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -10436,7 +10379,6 @@
           "is_sweet": true,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
             "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
@@ -10466,7 +10408,6 @@
           "is_sweet": true,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
             "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
@@ -10699,7 +10640,6 @@
           "is_sweet": true,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
             "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
@@ -11236,8 +11176,8 @@
           "is_sweet": false,
           "mealType": "snacks",
           "mealTypes": [
-            "snacks",
-            "breakfast"
+            "breakfast",
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -11295,8 +11235,8 @@
           "is_sweet": false,
           "mealType": "snacks",
           "mealTypes": [
-            "snacks",
-            "breakfast"
+            "breakfast",
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -11325,8 +11265,7 @@
           "is_sweet": false,
           "mealType": "snacks",
           "mealTypes": [
-            "snacks",
-            "breakfast"
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -11413,8 +11352,7 @@
           "is_sweet": false,
           "mealType": "snacks",
           "mealTypes": [
-            "snacks",
-            "breakfast"
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -11443,8 +11381,7 @@
           "is_sweet": false,
           "mealType": "snacks",
           "mealTypes": [
-            "snacks",
-            "breakfast"
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -12320,7 +12257,8 @@
           "is_sweet": false,
           "mealType": "lunch",
           "mealTypes": [
-            "lunch"
+            "lunch",
+            "dinner"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -12529,7 +12467,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
+            "lunch",
             "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
@@ -12559,7 +12497,7 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
+            "lunch",
             "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
@@ -12590,7 +12528,7 @@
           "mealType": "lunch",
           "mealTypes": [
             "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -12620,7 +12558,7 @@
           "mealType": "lunch",
           "mealTypes": [
             "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -12650,7 +12588,7 @@
           "mealType": "lunch",
           "mealTypes": [
             "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -12680,7 +12618,7 @@
           "mealType": "lunch",
           "mealTypes": [
             "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -12710,7 +12648,7 @@
           "mealType": "lunch",
           "mealTypes": [
             "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -12739,8 +12677,8 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "lunch"
+            "lunch",
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -12770,7 +12708,7 @@
           "mealType": "lunch",
           "mealTypes": [
             "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -12800,7 +12738,7 @@
           "mealType": "lunch",
           "mealTypes": [
             "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -12830,7 +12768,7 @@
           "mealType": "lunch",
           "mealTypes": [
             "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -12860,7 +12798,7 @@
           "mealType": "lunch",
           "mealTypes": [
             "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -12890,7 +12828,7 @@
           "mealType": "lunch",
           "mealTypes": [
             "lunch",
-            "dinner"
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
@@ -12919,8 +12857,8 @@
           "is_sweet": false,
           "mealType": "breakfast",
           "mealTypes": [
-            "breakfast",
-            "lunch"
+            "lunch",
+            "snacks"
           ],
           "source": "المعهد القومي للتغذية المصري",
           "notes": "",
