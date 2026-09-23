@@ -1014,7 +1014,7 @@ const WeightLossPage: React.FC = () => {
         gender: sex,
         targetCalories: numbers ? numbers.targetCal : 2000,
         goal,
-        kitchens: countryKitchens,
+        kitchens: [selectedKitchen],
         varietyAcrossDays: true,
         maxDishesPerMeal: 5,
       });
@@ -1499,38 +1499,6 @@ const WeightLossPage: React.FC = () => {
 
         {step === 4 && (
           <div className="mt-6 space-y-5">
-            <div
-              className="rounded-[24px] p-8 relative overflow-hidden text-white border-2 border-[#D4AF37]"
-              style={{ background: 'linear-gradient(135deg,#0F4C3A,#14532D 55%,#1f6b52)', boxShadow: '0 8px 20px rgba(212,175,55,0.35)' }}
-            >
-              <div className="absolute -top-6 -end-6 text-[110px] leading-none opacity-15 select-none">✨</div>
-              <h3 className="text-[20px] font-extrabold text-[#D4AF37] flex items-center gap-2">
-                <span className="shrink-0">✨</span>
-                <span>{t('wizard.step3.autoTitle')}</span>
-              </h3>
-              <p className="mt-2.5 text-[13.5px] text-white/85 leading-relaxed max-w-[560px]">{t('wizard.step3.autoDesc')}</p>
-
-              {autoBuilding ? (
-                <div className="mt-5 flex items-center gap-3 rounded-[18px] bg-white/10 border border-white/15 px-5 py-4">
-                  <span className="w-9 h-9 rounded-full border-[3px] border-[#D4AF37] border-t-transparent animate-spin shrink-0" />
-                  <span className="text-[15px] font-bold">{t('wizard.step3.loading')}</span>
-                </div>
-              ) : (
-                <button
-                  type="button"
-                  onClick={runAutoKitchen}
-                  className="mt-5 h-[54px] px-7 rounded-full bg-[#D4AF37] text-[#0F4C3A] font-extrabold text-[15px] flex items-center gap-2 shadow-[0_10px_24px_rgba(212,175,55,0.45)] hover:translate-y-[-1px] transition-all active:scale-95"
-                >
-                  {t('wizard.step3.autoBtn')}
-                </button>
-              )}
-            </div>
-
-            <div className="flex items-center gap-3">
-              <span className="h-px flex-1 bg-[#E9E5DB]" />
-              <span className="px-4 py-1.5 rounded-full bg-white border border-[#E9E5DB] text-[12px] font-extrabold tracking-[0.2em] text-[#6B7A75]">{t('wizard.step3.or')}</span>
-              <span className="h-px flex-1 bg-[#E9E5DB]" />
-            </div>
 
             <div className={`${cardBase} p-6`}>
               <div className="flex items-center justify-between gap-2 flex-wrap">
@@ -1646,6 +1614,31 @@ const WeightLossPage: React.FC = () => {
                 </div>
               )}
             </div>
+
+            {cuisineSel && (
+              <button
+                type="button"
+                onClick={runAutoKitchen}
+                disabled={autoBuilding}
+                className={`w-full h-[56px] rounded-full bg-[#D4AF37] text-[#0F4C3A] font-extrabold text-[15px] flex items-center justify-center gap-2 shadow-[0_10px_24px_rgba(212,175,55,0.45)] transition-all ${autoBuilding ? 'opacity-70 cursor-wait' : 'hover:translate-y-[-1px] active:scale-95'}`}
+              >
+                {autoBuilding ? (
+                  <>
+                    <span className="w-5 h-5 rounded-full border-[3px] border-[#0F4C3A] border-t-transparent animate-spin shrink-0" />
+                    {t('wizard.step3.loading')}
+                  </>
+                ) : (
+                  <>
+                    <span className="shrink-0">✅</span>
+                    <span>
+                      {language === 'ar'
+                        ? `اختيار تلقائي — أنشئ خطتي لـ 7 أيام من المطبخ ${selectedKitchen.kitchen}`
+                        : `Auto-Select — Build my 7-day plan from ${selectedKitchen.country} cuisine`}
+                    </span>
+                  </>
+                )}
+              </button>
+            )}
 
             {planType !== 'fitness' && (
               <div className={`${cardBase} p-6`}>
@@ -1778,11 +1771,6 @@ const WeightLossPage: React.FC = () => {
                     })}
                     {!selectedDishKeys.length && <div className="text-[11.5px] text-[#A0A8A4]">{t('wizard.step3.addHint')}</div>}
                   </div>
-                  {planType !== 'nutrition' && (
-                    <button type="button" onClick={runAutoKitchen} className="mt-3 w-full h-11 rounded-[14px] bg-[#F4F1EB] text-[#0F4C3A] text-[13px] font-bold border border-[#E3E0D8] hover:border-[#D4AF37] transition-all active:scale-[0.98]">
-                      {t('wizard.step2.autoBtn')} 🍽️
-                    </button>
-                  )}
                 </div>
               </div>
             )}
@@ -2026,39 +2014,47 @@ const WeightLossPage: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {(weeklyPlan[selectedPlanDay - 1]?.meals ?? []).map((meal, idx) => {
                   const emoji = step5Meals.find((s) => s.key === meal.mealType)?.emoji ?? '🍽️';
-                  const totalGrams = meal.dishes.reduce((s, d) => s + d.grams, 0);
                   const mealCal = meal.totalCal;
-                  const p = meal.dishes.reduce((s, d) => s + Math.round((d.dish.p * d.dish.serv_g) / 100), 0);
-                  const c = meal.dishes.reduce((s, d) => s + Math.round((d.dish.c * d.dish.serv_g) / 100), 0);
-                  const f = meal.dishes.reduce((s, d) => s + Math.round((d.dish.f * d.dish.serv_g) / 100), 0);
                   const done = idx < 3 ? mealsDone[idx] : false;
                   return (
                     <div
                       key={meal.mealType}
-                      className={`rounded-[18px] border-2 p-4 flex items-center justify-between transition-colors ${done ? 'border-[#0F4C3A] bg-[#F2F8F4]' : 'border-[#EFEBE4] bg-white'}`}
+                      className={`rounded-[18px] border-2 p-4 transition-colors ${done ? 'border-[#0F4C3A] bg-[#F2F8F4]' : 'border-[#EFEBE4] bg-white'}`}
                     >
-                      <div className="flex items-center gap-3 min-w-0 flex-1">
+                      <div className="flex items-center gap-3 min-w-0">
                         <span className="w-11 h-11 rounded-[14px] bg-[#F4F1EB] flex items-center justify-center text-[18px] shrink-0">{emoji}</span>
-                        <div className="min-w-0">
+                        <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 flex-wrap">
                             <span className="text-[13px] font-extrabold text-[#0F4C3A]">{meal.label}</span>
                             <span className="text-[11px] text-[#8A938E]">{mealTime(meal.mealType)}</span>
                           </div>
-                          <div className="text-[12px] text-[#6B7A75] truncate break-words min-w-0 mt-0.5">{meal.dishes.map((d) => d.dish.name).join('، ') || ''}</div>
-                          <div className="mt-1 text-[10.5px] text-[#8A938E]">
-                            <span className="num font-bold text-[#B8860B]">{mealCal}</span> kcal · {macrosT(p, c, f)} · {totalGrams} g
+                          <div className="mt-0.5 text-[12px] text-[#6B7A75]">
+                            <span className="num font-bold text-[#B8860B]">{mealCal}</span> kcal
                           </div>
                         </div>
+                        {idx < 3 && (
+                          <button
+                            type="button"
+                            onClick={() => setMealsDone((prev) => prev.map((v, i) => (i === idx ? !v : v)))}
+                            className={`w-7 h-7 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ml-2 ${done ? 'bg-[#0F4C3A] border-[#0F4C3A] text-white' : 'border-[#C8C4B8] bg-white'}`}
+                          >
+                            {done ? '✓' : ''}
+                          </button>
+                        )}
                       </div>
-                      {idx < 3 && (
-                        <button
-                          type="button"
-                          onClick={() => setMealsDone((prev) => prev.map((v, i) => (i === idx ? !v : v)))}
-                          className={`w-7 h-7 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ml-2 ${done ? 'bg-[#0F4C3A] border-[#0F4C3A] text-white' : 'border-[#C8C4B8] bg-white'}`}
-                        >
-                          {done ? '✓' : ''}
-                        </button>
-                      )}
+                      <div className="mt-3 space-y-1.5">
+                        {meal.dishes.map((d, di) => (
+                          <div key={di} className="flex items-center justify-between gap-2 text-[12px] min-w-0">
+                            <span className="font-semibold text-[#0F4C3A] min-w-0 truncate">• {d.dish.name}</span>
+                            <span className="flex items-center gap-1 shrink-0 text-[#8A938E]">
+                              <span className="num font-bold text-[#B8860B]">{d.calories}</span>
+                              <span>kcal</span>
+                              <span className="text-[#C8C4B8]">·</span>
+                              <span className="num font-bold text-[#6B7A75]">{Math.round(d.grams)}g</span>
+                            </span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   );
                 })}
