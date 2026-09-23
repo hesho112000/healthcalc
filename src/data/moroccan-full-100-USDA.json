@@ -35,6 +35,31 @@
           "sat_fat_g": 3.3,
           "serv_g": 80,
           "cal_serv": 235,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 80جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 40,
+              "kcal": 118
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 80,
+              "kcal": 235
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 160,
+              "kcal": 470
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -64,6 +89,31 @@
           "sat_fat_g": 1.3,
           "serv_g": 80,
           "cal_serv": 165,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 80جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 40,
+              "kcal": 82
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 80,
+              "kcal": 165
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 160,
+              "kcal": 330
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -93,6 +143,31 @@
           "sat_fat_g": 1.0,
           "serv_g": 90,
           "cal_serv": 165,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 90جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 45,
+              "kcal": 82
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 90,
+              "kcal": 165
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 180,
+              "kcal": 330
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -122,6 +197,31 @@
           "sat_fat_g": 2.4,
           "serv_g": 70,
           "cal_serv": 185,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 70جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 35,
+              "kcal": 92
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 70,
+              "kcal": 185
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 140,
+              "kcal": 370
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -151,6 +251,31 @@
           "sat_fat_g": 1.0,
           "serv_g": 70,
           "cal_serv": 135,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 70جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 35,
+              "kcal": 68
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 70,
+              "kcal": 135
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 140,
+              "kcal": 270
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -180,6 +305,31 @@
           "sat_fat_g": 2.4,
           "serv_g": 50,
           "cal_serv": 175,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 50جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 25,
+              "kcal": 88
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 50,
+              "kcal": 175
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 100,
+              "kcal": 350
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -209,6 +359,31 @@
           "sat_fat_g": 2.6,
           "serv_g": 30,
           "cal_serv": 135,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 30جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 15,
+              "kcal": 68
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 30,
+              "kcal": 135
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 60,
+              "kcal": 270
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": false,
@@ -238,6 +413,31 @@
           "sat_fat_g": 0.5,
           "serv_g": 80,
           "cal_serv": 195,
+          "serving_unit": "رغيف",
+          "serving_description": "رغيف 80جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 40,
+              "kcal": 98
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 80,
+              "kcal": 195
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 160,
+              "kcal": 390
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -267,6 +467,31 @@
           "sat_fat_g": 1.0,
           "serv_g": 60,
           "cal_serv": 155,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 60جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 30,
+              "kcal": 78
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 60,
+              "kcal": 155
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 120,
+              "kcal": 310
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -296,6 +521,31 @@
           "sat_fat_g": 4.4,
           "serv_g": 220,
           "cal_serv": 215,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 220جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 110,
+              "kcal": 108
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 220,
+              "kcal": 215
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 440,
+              "kcal": 430
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -325,6 +575,31 @@
           "sat_fat_g": 1.0,
           "serv_g": 200,
           "cal_serv": 165,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 200جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 100,
+              "kcal": 82
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 200,
+              "kcal": 165
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 400,
+              "kcal": 330
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -354,6 +629,31 @@
           "sat_fat_g": 2.8,
           "serv_g": 80,
           "cal_serv": 145,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 80جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 40,
+              "kcal": 72
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 80,
+              "kcal": 145
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 160,
+              "kcal": 290
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -383,6 +683,31 @@
           "sat_fat_g": 1.5,
           "serv_g": 10,
           "cal_serv": 55,
+          "serving_unit": "ملعقة",
+          "serving_description": "ملعقة 10جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 5,
+              "kcal": 28
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 10,
+              "kcal": 55
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 20,
+              "kcal": 110
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": false,
@@ -412,6 +737,31 @@
           "sat_fat_g": 1.0,
           "serv_g": 200,
           "cal_serv": 165,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 200جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 100,
+              "kcal": 82
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 200,
+              "kcal": 165
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 400,
+              "kcal": 330
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -441,6 +791,31 @@
           "sat_fat_g": 0.2,
           "serv_g": 120,
           "cal_serv": 132,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 120جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 60,
+              "kcal": 66
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 120,
+              "kcal": 132
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 240,
+              "kcal": 264
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -470,6 +845,31 @@
           "sat_fat_g": 4.0,
           "serv_g": 150,
           "cal_serv": 195,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 98
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 195
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 390
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -499,6 +899,31 @@
           "sat_fat_g": 2.7,
           "serv_g": 80,
           "cal_serv": 195,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 80جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 40,
+              "kcal": 98
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 80,
+              "kcal": 195
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 160,
+              "kcal": 390
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -528,6 +953,31 @@
           "sat_fat_g": 3.0,
           "serv_g": 80,
           "cal_serv": 225,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 80جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 40,
+              "kcal": 112
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 80,
+              "kcal": 225
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 160,
+              "kcal": 450
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -557,6 +1007,31 @@
           "sat_fat_g": 1.1,
           "serv_g": 200,
           "cal_serv": 175,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 200جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 100,
+              "kcal": 88
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 200,
+              "kcal": 175
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 400,
+              "kcal": 350
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -586,6 +1061,31 @@
           "sat_fat_g": 4.8,
           "serv_g": 120,
           "cal_serv": 215,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 120جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 60,
+              "kcal": 108
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 120,
+              "kcal": 215
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 240,
+              "kcal": 430
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -615,6 +1115,31 @@
           "sat_fat_g": 2.7,
           "serv_g": 50,
           "cal_serv": 165,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 50جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 25,
+              "kcal": 82
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 50,
+              "kcal": 165
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 100,
+              "kcal": 330
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -644,6 +1169,31 @@
           "sat_fat_g": 3.0,
           "serv_g": 80,
           "cal_serv": 225,
+          "serving_unit": "رغيف",
+          "serving_description": "رغيف 80جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 40,
+              "kcal": 112
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 80,
+              "kcal": 225
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 160,
+              "kcal": 450
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -673,6 +1223,31 @@
           "sat_fat_g": 0.8,
           "serv_g": 80,
           "cal_serv": 215,
+          "serving_unit": "رغيف",
+          "serving_description": "رغيف 80جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 40,
+              "kcal": 108
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 80,
+              "kcal": 215
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 160,
+              "kcal": 430
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -702,6 +1277,31 @@
           "sat_fat_g": 0.3,
           "serv_g": 80,
           "cal_serv": 204,
+          "serving_unit": "رغيف",
+          "serving_description": "رغيف 80جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 40,
+              "kcal": 102
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 80,
+              "kcal": 204
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 160,
+              "kcal": 408
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -731,6 +1331,31 @@
           "sat_fat_g": 0.5,
           "serv_g": 80,
           "cal_serv": 211,
+          "serving_unit": "رغيف",
+          "serving_description": "رغيف 80جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 40,
+              "kcal": 106
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 80,
+              "kcal": 211
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 160,
+              "kcal": 422
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -760,6 +1385,31 @@
           "sat_fat_g": 3.3,
           "serv_g": 80,
           "cal_serv": 241,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 80جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 40,
+              "kcal": 120
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 80,
+              "kcal": 241
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 160,
+              "kcal": 482
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
@@ -789,6 +1439,31 @@
           "sat_fat_g": 3.3,
           "serv_g": 80,
           "cal_serv": 241,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 80جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 40,
+              "kcal": 120
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 80,
+              "kcal": 241
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 160,
+              "kcal": 482
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
@@ -818,6 +1493,31 @@
           "sat_fat_g": 1.5,
           "serv_g": 90,
           "cal_serv": 188,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 90جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 45,
+              "kcal": 94
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 90,
+              "kcal": 188
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 180,
+              "kcal": 376
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
@@ -847,6 +1547,31 @@
           "sat_fat_g": 2.7,
           "serv_g": 70,
           "cal_serv": 200,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 70جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 35,
+              "kcal": 100
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 70,
+              "kcal": 200
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 140,
+              "kcal": 400
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -876,6 +1601,31 @@
           "sat_fat_g": 2.7,
           "serv_g": 70,
           "cal_serv": 200,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 70جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 35,
+              "kcal": 100
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 70,
+              "kcal": 200
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 140,
+              "kcal": 400
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
@@ -905,6 +1655,31 @@
           "sat_fat_g": 3.2,
           "serv_g": 30,
           "cal_serv": 146,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 30جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 15,
+              "kcal": 73
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 30,
+              "kcal": 146
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 60,
+              "kcal": 292
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": false,
@@ -934,6 +1709,31 @@
           "sat_fat_g": 3.2,
           "serv_g": 30,
           "cal_serv": 145,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 30جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 15,
+              "kcal": 72
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 30,
+              "kcal": 145
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 60,
+              "kcal": 290
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": false,
@@ -963,6 +1763,31 @@
           "sat_fat_g": 1.0,
           "serv_g": 200,
           "cal_serv": 181,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 200جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 100,
+              "kcal": 90
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 200,
+              "kcal": 181
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 400,
+              "kcal": 362
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -992,6 +1817,31 @@
           "sat_fat_g": 1.3,
           "serv_g": 200,
           "cal_serv": 199,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 200جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 100,
+              "kcal": 100
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 200,
+              "kcal": 199
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 400,
+              "kcal": 398
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1021,6 +1871,31 @@
           "sat_fat_g": 1.8,
           "serv_g": 10,
           "cal_serv": 57,
+          "serving_unit": "ملعقة",
+          "serving_description": "ملعقة 10جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 5,
+              "kcal": 28
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 10,
+              "kcal": 57
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 20,
+              "kcal": 114
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
@@ -1050,6 +1925,31 @@
           "sat_fat_g": 0.2,
           "serv_g": 120,
           "cal_serv": 142,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 120جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 60,
+              "kcal": 71
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 120,
+              "kcal": 142
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 240,
+              "kcal": 284
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1079,6 +1979,31 @@
           "sat_fat_g": 0.2,
           "serv_g": 120,
           "cal_serv": 151,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 120جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 60,
+              "kcal": 76
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 120,
+              "kcal": 151
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 240,
+              "kcal": 302
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1108,6 +2033,31 @@
           "sat_fat_g": 2.8,
           "serv_g": 80,
           "cal_serv": 155,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 80جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 40,
+              "kcal": 78
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 80,
+              "kcal": 155
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 160,
+              "kcal": 310
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
@@ -1137,6 +2087,31 @@
           "sat_fat_g": 4.7,
           "serv_g": 220,
           "cal_serv": 296,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 220جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 110,
+              "kcal": 148
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 220,
+              "kcal": 296
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 440,
+              "kcal": 592
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1166,6 +2141,31 @@
           "sat_fat_g": 2.7,
           "serv_g": 50,
           "cal_serv": 188,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 50جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 25,
+              "kcal": 94
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 50,
+              "kcal": 188
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 100,
+              "kcal": 376
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
@@ -1195,6 +2195,31 @@
           "sat_fat_g": 3.3,
           "serv_g": 50,
           "cal_serv": 184,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 50جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 25,
+              "kcal": 92
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 50,
+              "kcal": 184
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 100,
+              "kcal": 368
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1235,6 +2260,31 @@
           "sat_fat_g": 1.6,
           "serv_g": 80,
           "cal_serv": 205,
+          "serving_unit": "رغيف",
+          "serving_description": "رغيف 80جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 40,
+              "kcal": 102
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 80,
+              "kcal": 205
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 160,
+              "kcal": 410
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1265,6 +2315,31 @@
           "sat_fat_g": 1.8,
           "serv_g": 80,
           "cal_serv": 218,
+          "serving_unit": "رغيف",
+          "serving_description": "رغيف 80جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 40,
+              "kcal": 109
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 80,
+              "kcal": 218
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 160,
+              "kcal": 436
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1306,6 +2381,31 @@
           "sat_fat_g": 2.1,
           "serv_g": 300,
           "cal_serv": 225,
+          "serving_unit": "طبق",
+          "serving_description": "طبق 300مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 112
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 225
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 450
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1335,6 +2435,31 @@
           "sat_fat_g": 2.4,
           "serv_g": 300,
           "cal_serv": 245,
+          "serving_unit": "طبق",
+          "serving_description": "طبق 300مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 122
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 245
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 490
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1364,6 +2489,31 @@
           "sat_fat_g": 1.3,
           "serv_g": 250,
           "cal_serv": 165,
+          "serving_unit": "طبق",
+          "serving_description": "طبق 250مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 82
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 165
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 330
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1393,6 +2543,31 @@
           "sat_fat_g": 0.8,
           "serv_g": 250,
           "cal_serv": 195,
+          "serving_unit": "طبق",
+          "serving_description": "طبق 250مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 98
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 195
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 390
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1422,6 +2597,31 @@
           "sat_fat_g": 1.2,
           "serv_g": 250,
           "cal_serv": 95,
+          "serving_unit": "طبق",
+          "serving_description": "طبق 250مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 48
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 95
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 190
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1452,6 +2652,31 @@
           "sat_fat_g": 1.0,
           "serv_g": 200,
           "cal_serv": 145,
+          "serving_unit": "طبق",
+          "serving_description": "طبق 200مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 100,
+              "kcal": 72
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 200,
+              "kcal": 145
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 400,
+              "kcal": 290
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1482,6 +2707,31 @@
           "sat_fat_g": 1.3,
           "serv_g": 250,
           "cal_serv": 135,
+          "serving_unit": "طبق",
+          "serving_description": "طبق 250مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 68
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 135
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 270
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1512,6 +2762,31 @@
           "sat_fat_g": 2.7,
           "serv_g": 300,
           "cal_serv": 375,
+          "serving_unit": "طبق",
+          "serving_description": "طبق 300مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 188
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 375
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 750
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1541,6 +2816,31 @@
           "sat_fat_g": 2.2,
           "serv_g": 300,
           "cal_serv": 322,
+          "serving_unit": "طبق",
+          "serving_description": "طبق 300مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 161
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 322
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 644
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1570,6 +2870,31 @@
           "sat_fat_g": 2.1,
           "serv_g": 300,
           "cal_serv": 273,
+          "serving_unit": "طبق",
+          "serving_description": "طبق 300مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 136
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 273
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 546
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1599,6 +2924,31 @@
           "sat_fat_g": 2.1,
           "serv_g": 300,
           "cal_serv": 309,
+          "serving_unit": "طبق",
+          "serving_description": "طبق 300مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 154
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 309
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 618
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1628,6 +2978,31 @@
           "sat_fat_g": 2.1,
           "serv_g": 300,
           "cal_serv": 249,
+          "serving_unit": "طبق",
+          "serving_description": "طبق 300مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 124
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 249
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 498
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1657,6 +3032,31 @@
           "sat_fat_g": 0.8,
           "serv_g": 250,
           "cal_serv": 245,
+          "serving_unit": "طبق",
+          "serving_description": "طبق 250مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 122
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 245
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 490
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1686,6 +3086,31 @@
           "sat_fat_g": 0.8,
           "serv_g": 250,
           "cal_serv": 205,
+          "serving_unit": "طبق",
+          "serving_description": "طبق 250مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 102
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 205
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 410
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1715,6 +3140,31 @@
           "sat_fat_g": 1.3,
           "serv_g": 250,
           "cal_serv": 206,
+          "serving_unit": "طبق",
+          "serving_description": "طبق 250مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 103
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 206
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 412
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1744,6 +3194,31 @@
           "sat_fat_g": 1.2,
           "serv_g": 250,
           "cal_serv": 145,
+          "serving_unit": "طبق",
+          "serving_description": "طبق 250مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 72
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 145
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 290
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1774,6 +3249,31 @@
           "sat_fat_g": 1.3,
           "serv_g": 250,
           "cal_serv": 155,
+          "serving_unit": "طبق",
+          "serving_description": "طبق 250مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 78
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 155
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 310
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1815,6 +3315,31 @@
           "sat_fat_g": 0.3,
           "serv_g": 150,
           "cal_serv": 45,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 22
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 45
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 90
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1845,6 +3370,31 @@
           "sat_fat_g": 1.3,
           "serv_g": 150,
           "cal_serv": 85,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 42
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 85
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 170
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1875,6 +3425,31 @@
           "sat_fat_g": 1.0,
           "serv_g": 150,
           "cal_serv": 75,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 38
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 75
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 150
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1905,6 +3480,31 @@
           "sat_fat_g": 3.0,
           "serv_g": 100,
           "cal_serv": 185,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 100جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 50,
+              "kcal": 92
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 100,
+              "kcal": 185
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 200,
+              "kcal": 370
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1935,6 +3535,31 @@
           "sat_fat_g": 0.8,
           "serv_g": 150,
           "cal_serv": 145,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 72
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 145
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 290
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -1965,6 +3590,31 @@
           "sat_fat_g": 1.6,
           "serv_g": 10,
           "cal_serv": 59,
+          "serving_unit": "ملعقة",
+          "serving_description": "ملعقة 10جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 5,
+              "kcal": 30
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 10,
+              "kcal": 59
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 20,
+              "kcal": 118
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": false,
@@ -1995,6 +3645,31 @@
           "sat_fat_g": 2.7,
           "serv_g": 180,
           "cal_serv": 145,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 180جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 90,
+              "kcal": 72
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 180,
+              "kcal": 145
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 360,
+              "kcal": 290
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2025,6 +3700,31 @@
           "sat_fat_g": 1.0,
           "serv_g": 100,
           "cal_serv": 85,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 100جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 50,
+              "kcal": 42
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 100,
+              "kcal": 85
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 200,
+              "kcal": 170
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2055,6 +3755,31 @@
           "sat_fat_g": 0.3,
           "serv_g": 150,
           "cal_serv": 75,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 38
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 75
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 150
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2085,6 +3810,31 @@
           "sat_fat_g": 0.3,
           "serv_g": 150,
           "cal_serv": 81,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 40
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 81
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 162
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2115,6 +3865,31 @@
           "sat_fat_g": 0.3,
           "serv_g": 150,
           "cal_serv": 75,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 38
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 75
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 150
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2145,6 +3920,31 @@
           "sat_fat_g": 0.4,
           "serv_g": 150,
           "cal_serv": 106,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 53
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 106
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 212
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2175,6 +3975,31 @@
           "sat_fat_g": 1.5,
           "serv_g": 150,
           "cal_serv": 129,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 64
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 129
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 258
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2205,6 +4030,31 @@
           "sat_fat_g": 1.5,
           "serv_g": 150,
           "cal_serv": 129,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 64
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 129
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 258
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2235,6 +4085,31 @@
           "sat_fat_g": 1.4,
           "serv_g": 150,
           "cal_serv": 138,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 69
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 138
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 276
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2265,6 +4140,31 @@
           "sat_fat_g": 3.4,
           "serv_g": 100,
           "cal_serv": 235,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 100جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 50,
+              "kcal": 118
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 100,
+              "kcal": 235
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 200,
+              "kcal": 470
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2295,6 +4195,31 @@
           "sat_fat_g": 4.6,
           "serv_g": 100,
           "cal_serv": 236,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 100جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 50,
+              "kcal": 118
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 100,
+              "kcal": 236
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 200,
+              "kcal": 472
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2325,6 +4250,31 @@
           "sat_fat_g": 3.2,
           "serv_g": 100,
           "cal_serv": 214,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 100جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 50,
+              "kcal": 107
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 100,
+              "kcal": 214
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 200,
+              "kcal": 428
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2355,6 +4305,31 @@
           "sat_fat_g": 1.0,
           "serv_g": 100,
           "cal_serv": 93,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 100جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 50,
+              "kcal": 46
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 100,
+              "kcal": 93
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 200,
+              "kcal": 186
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2385,6 +4360,31 @@
           "sat_fat_g": 0.9,
           "serv_g": 150,
           "cal_serv": 176,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 88
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 176
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 352
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2415,6 +4415,31 @@
           "sat_fat_g": 1.6,
           "serv_g": 10,
           "cal_serv": 59,
+          "serving_unit": "ملعقة",
+          "serving_description": "ملعقة 10جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 5,
+              "kcal": 30
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 10,
+              "kcal": 59
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 20,
+              "kcal": 118
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": false,
@@ -2456,6 +4481,31 @@
           "sat_fat_g": 4.4,
           "serv_g": 350,
           "cal_serv": 465,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 232
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 465
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 930
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2486,6 +4536,31 @@
           "sat_fat_g": 2.8,
           "serv_g": 350,
           "cal_serv": 405,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 202
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 405
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 810
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2516,6 +4591,31 @@
           "sat_fat_g": 2.2,
           "serv_g": 350,
           "cal_serv": 385,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 192
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 385
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 770
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2546,6 +4646,31 @@
           "sat_fat_g": 2.0,
           "serv_g": 300,
           "cal_serv": 315,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 158
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 315
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 630
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2576,6 +4701,31 @@
           "sat_fat_g": 4.2,
           "serv_g": 350,
           "cal_serv": 445,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 222
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 445
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 890
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2606,6 +4756,31 @@
           "sat_fat_g": 5.4,
           "serv_g": 300,
           "cal_serv": 315,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 158
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 315
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 630
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2636,6 +4811,31 @@
           "sat_fat_g": 3.9,
           "serv_g": 300,
           "cal_serv": 275,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 138
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 275
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 550
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2666,6 +4866,31 @@
           "sat_fat_g": 5.4,
           "serv_g": 280,
           "cal_serv": 315,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 280جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 140,
+              "kcal": 158
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 280,
+              "kcal": 315
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 560,
+              "kcal": 630
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2696,6 +4921,31 @@
           "sat_fat_g": 2.2,
           "serv_g": 300,
           "cal_serv": 165,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 82
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 165
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 330
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2726,6 +4976,31 @@
           "sat_fat_g": 4.5,
           "serv_g": 200,
           "cal_serv": 225,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 200جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 100,
+              "kcal": 112
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 200,
+              "kcal": 225
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 400,
+              "kcal": 450
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2756,6 +5031,31 @@
           "sat_fat_g": 2.2,
           "serv_g": 350,
           "cal_serv": 335,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 168
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 335
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 670
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2786,6 +5086,31 @@
           "sat_fat_g": 4.2,
           "serv_g": 300,
           "cal_serv": 295,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 148
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 295
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 590
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2816,6 +5141,31 @@
           "sat_fat_g": 4.2,
           "serv_g": 300,
           "cal_serv": 275,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 138
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 275
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 550
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2846,6 +5196,31 @@
           "sat_fat_g": 6.0,
           "serv_g": 280,
           "cal_serv": 325,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 280جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 140,
+              "kcal": 162
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 280,
+              "kcal": 325
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 560,
+              "kcal": 650
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2876,6 +5251,31 @@
           "sat_fat_g": 4.1,
           "serv_g": 350,
           "cal_serv": 448,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 224
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 448
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 896
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2906,6 +5306,31 @@
           "sat_fat_g": 4.6,
           "serv_g": 350,
           "cal_serv": 593,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 296
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 593
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 1186
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2936,6 +5361,31 @@
           "sat_fat_g": 4.4,
           "serv_g": 350,
           "cal_serv": 549,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 274
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 549
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 1098
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2966,6 +5416,31 @@
           "sat_fat_g": 4.4,
           "serv_g": 350,
           "cal_serv": 507,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 254
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 507
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 1014
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -2996,6 +5471,31 @@
           "sat_fat_g": 4.4,
           "serv_g": 350,
           "cal_serv": 521,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 260
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 521
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 1042
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3026,6 +5526,31 @@
           "sat_fat_g": 4.7,
           "serv_g": 350,
           "cal_serv": 525,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 262
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 525
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 1050
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3056,6 +5581,31 @@
           "sat_fat_g": 2.8,
           "serv_g": 350,
           "cal_serv": 475,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 238
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 475
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 950
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3086,6 +5636,31 @@
           "sat_fat_g": 2.9,
           "serv_g": 350,
           "cal_serv": 533,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 266
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 533
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 1066
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3116,6 +5691,31 @@
           "sat_fat_g": 3.1,
           "serv_g": 350,
           "cal_serv": 492,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 246
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 492
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 984
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3146,6 +5746,31 @@
           "sat_fat_g": 2.8,
           "serv_g": 350,
           "cal_serv": 447,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 224
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 447
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 894
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3176,6 +5801,31 @@
           "sat_fat_g": 2.2,
           "serv_g": 350,
           "cal_serv": 427,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 214
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 427
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 854
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3206,6 +5856,31 @@
           "sat_fat_g": 2.2,
           "serv_g": 350,
           "cal_serv": 441,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 220
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 441
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 882
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3236,6 +5911,31 @@
           "sat_fat_g": 2.2,
           "serv_g": 300,
           "cal_serv": 436,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 218
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 436
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 872
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3266,6 +5966,31 @@
           "sat_fat_g": 2.0,
           "serv_g": 300,
           "cal_serv": 387,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 194
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 387
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 774
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3296,6 +6021,31 @@
           "sat_fat_g": 2.0,
           "serv_g": 300,
           "cal_serv": 375,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 188
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 375
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 750
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3326,6 +6076,31 @@
           "sat_fat_g": 2.0,
           "serv_g": 300,
           "cal_serv": 363,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 182
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 363
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 726
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3356,6 +6131,31 @@
           "sat_fat_g": 2.4,
           "serv_g": 350,
           "cal_serv": 463,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 232
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 463
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 926
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3386,6 +6186,31 @@
           "sat_fat_g": 4.8,
           "serv_g": 350,
           "cal_serv": 578,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 289
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 578
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 1156
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3416,6 +6241,31 @@
           "sat_fat_g": 4.6,
           "serv_g": 350,
           "cal_serv": 562,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 281
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 562
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 1124
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3446,6 +6296,31 @@
           "sat_fat_g": 5.4,
           "serv_g": 300,
           "cal_serv": 363,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 182
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 363
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 726
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3476,6 +6351,31 @@
           "sat_fat_g": 5.7,
           "serv_g": 300,
           "cal_serv": 366,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 183
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 366
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 732
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3506,6 +6406,31 @@
           "sat_fat_g": 5.7,
           "serv_g": 300,
           "cal_serv": 438,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 219
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 438
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 876
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3536,6 +6461,31 @@
           "sat_fat_g": 5.4,
           "serv_g": 300,
           "cal_serv": 387,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 194
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 387
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 774
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3566,6 +6516,31 @@
           "sat_fat_g": 5.6,
           "serv_g": 300,
           "cal_serv": 412,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 206
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 412
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 824
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3596,6 +6571,31 @@
           "sat_fat_g": 4.2,
           "serv_g": 300,
           "cal_serv": 338,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 169
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 338
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 676
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3626,6 +6626,31 @@
           "sat_fat_g": 4.0,
           "serv_g": 300,
           "cal_serv": 409,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 204
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 409
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 818
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3656,6 +6681,31 @@
           "sat_fat_g": 3.9,
           "serv_g": 300,
           "cal_serv": 347,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 174
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 347
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 694
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3686,6 +6736,31 @@
           "sat_fat_g": 4.8,
           "serv_g": 300,
           "cal_serv": 440,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 220
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 440
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 880
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
@@ -3716,6 +6791,31 @@
           "sat_fat_g": 3.9,
           "serv_g": 300,
           "cal_serv": 335,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 168
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 335
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 670
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3746,6 +6846,31 @@
           "sat_fat_g": 5.4,
           "serv_g": 280,
           "cal_serv": 382,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 280جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 140,
+              "kcal": 191
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 280,
+              "kcal": 382
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 560,
+              "kcal": 764
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3776,6 +6901,31 @@
           "sat_fat_g": 7.0,
           "serv_g": 280,
           "cal_serv": 447,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 280جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 140,
+              "kcal": 224
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 280,
+              "kcal": 447
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 560,
+              "kcal": 894
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3806,6 +6956,31 @@
           "sat_fat_g": 5.7,
           "serv_g": 280,
           "cal_serv": 441,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 280جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 140,
+              "kcal": 220
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 280,
+              "kcal": 441
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 560,
+              "kcal": 882
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3836,6 +7011,31 @@
           "sat_fat_g": 2.4,
           "serv_g": 300,
           "cal_serv": 274,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 137
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 274
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 548
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3866,6 +7066,31 @@
           "sat_fat_g": 2.2,
           "serv_g": 300,
           "cal_serv": 213,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 106
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 213
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 426
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3896,6 +7121,31 @@
           "sat_fat_g": 2.2,
           "serv_g": 300,
           "cal_serv": 213,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 106
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 213
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 426
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3926,6 +7176,31 @@
           "sat_fat_g": 4.8,
           "serv_g": 300,
           "cal_serv": 409,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 204
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 409
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 818
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3956,6 +7231,31 @@
           "sat_fat_g": 5.4,
           "serv_g": 200,
           "cal_serv": 335,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 200جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 100,
+              "kcal": 168
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 200,
+              "kcal": 335
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 400,
+              "kcal": 670
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -3997,6 +7297,31 @@
           "sat_fat_g": 4.9,
           "serv_g": 150,
           "cal_serv": 265,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 132
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 265
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 530
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4027,6 +7352,31 @@
           "sat_fat_g": 4.0,
           "serv_g": 150,
           "cal_serv": 245,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 122
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 245
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 490
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4057,6 +7407,31 @@
           "sat_fat_g": 5.8,
           "serv_g": 350,
           "cal_serv": 445,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 222
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 445
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 890
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4087,6 +7462,31 @@
           "sat_fat_g": 2.8,
           "serv_g": 250,
           "cal_serv": 295,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 250جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 148
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 295
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 590
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4117,6 +7517,31 @@
           "sat_fat_g": 1.3,
           "serv_g": 250,
           "cal_serv": 215,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 250جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 108
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 215
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 430
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4147,6 +7572,31 @@
           "sat_fat_g": 3.3,
           "serv_g": 300,
           "cal_serv": 335,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 168
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 335
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 670
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4177,6 +7627,31 @@
           "sat_fat_g": 6.6,
           "serv_g": 250,
           "cal_serv": 295,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 250جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 148
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 295
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 590
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4207,6 +7682,31 @@
           "sat_fat_g": 5.1,
           "serv_g": 150,
           "cal_serv": 265,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 132
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 265
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 530
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4237,6 +7737,31 @@
           "sat_fat_g": 7.5,
           "serv_g": 150,
           "cal_serv": 315,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 158
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 315
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 630
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4267,6 +7792,31 @@
           "sat_fat_g": 3.9,
           "serv_g": 150,
           "cal_serv": 230,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 115
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 230
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 460
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4297,6 +7847,31 @@
           "sat_fat_g": 2.8,
           "serv_g": 150,
           "cal_serv": 210,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 105
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 210
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 420
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4327,6 +7902,31 @@
           "sat_fat_g": 1.3,
           "serv_g": 250,
           "cal_serv": 215,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 250جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 108
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 215
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 430
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4357,6 +7957,31 @@
           "sat_fat_g": 0.9,
           "serv_g": 250,
           "cal_serv": 205,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 250جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 102
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 205
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 410
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4387,6 +8012,31 @@
           "sat_fat_g": 5.1,
           "serv_g": 350,
           "cal_serv": 425,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 212
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 425
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 850
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4417,6 +8067,31 @@
           "sat_fat_g": 2.6,
           "serv_g": 150,
           "cal_serv": 195,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 98
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 195
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 390
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4447,6 +8122,31 @@
           "sat_fat_g": 4.9,
           "serv_g": 250,
           "cal_serv": 285,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 250جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 142
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 285
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 570
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4477,6 +8177,31 @@
           "sat_fat_g": 3.7,
           "serv_g": 280,
           "cal_serv": 355,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 280جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 140,
+              "kcal": 178
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 280,
+              "kcal": 355
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 560,
+              "kcal": 710
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4507,6 +8232,31 @@
           "sat_fat_g": 5.2,
           "serv_g": 150,
           "cal_serv": 291,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 146
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 291
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 582
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4537,6 +8287,31 @@
           "sat_fat_g": 5.9,
           "serv_g": 150,
           "cal_serv": 342,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 171
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 342
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 684
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
@@ -4567,6 +8342,31 @@
           "sat_fat_g": 5.3,
           "serv_g": 350,
           "cal_serv": 511,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 350جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 175,
+              "kcal": 256
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 350,
+              "kcal": 511
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 700,
+              "kcal": 1022
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4597,6 +8397,31 @@
           "sat_fat_g": 3.6,
           "serv_g": 300,
           "cal_serv": 458,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 229
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 458
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 916
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4627,6 +8452,31 @@
           "sat_fat_g": 3.4,
           "serv_g": 250,
           "cal_serv": 400,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 250جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 200
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 400
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 800
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
@@ -4657,6 +8507,31 @@
           "sat_fat_g": 5.5,
           "serv_g": 250,
           "cal_serv": 360,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 250جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 180
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 360
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 720
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4687,6 +8562,31 @@
           "sat_fat_g": 6.9,
           "serv_g": 250,
           "cal_serv": 338,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 250جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 169
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 338
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 676
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4717,6 +8617,31 @@
           "sat_fat_g": 1.3,
           "serv_g": 250,
           "cal_serv": 265,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 250جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 132
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 265
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 530
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4747,6 +8672,31 @@
           "sat_fat_g": 0.9,
           "serv_g": 250,
           "cal_serv": 255,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 250جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 128
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 255
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 510
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4788,6 +8738,31 @@
           "sat_fat_g": 5.6,
           "serv_g": 150,
           "cal_serv": 285,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 142
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 285
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 570
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4818,6 +8793,31 @@
           "sat_fat_g": 8.0,
           "serv_g": 150,
           "cal_serv": 335,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 168
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 335
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 670
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4848,6 +8848,31 @@
           "sat_fat_g": 3.3,
           "serv_g": 150,
           "cal_serv": 230,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 115
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 230
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 460
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4878,6 +8903,31 @@
           "sat_fat_g": 1.9,
           "serv_g": 150,
           "cal_serv": 195,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 98
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 195
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 390
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4908,6 +8958,31 @@
           "sat_fat_g": 4.8,
           "serv_g": 150,
           "cal_serv": 245,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 122
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 245
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 490
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4938,6 +9013,31 @@
           "sat_fat_g": 3.3,
           "serv_g": 120,
           "cal_serv": 185,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 120جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 60,
+              "kcal": 92
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 120,
+              "kcal": 185
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 240,
+              "kcal": 370
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4968,6 +9068,31 @@
           "sat_fat_g": 3.4,
           "serv_g": 150,
           "cal_serv": 240,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 120
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 240
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 480
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -4998,6 +9123,31 @@
           "sat_fat_g": 5.2,
           "serv_g": 130,
           "cal_serv": 235,
+          "serving_unit": "سيخ",
+          "serving_description": "سيخ 130جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 65,
+              "kcal": 118
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 130,
+              "kcal": 235
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 260,
+              "kcal": 470
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5028,6 +9178,31 @@
           "sat_fat_g": 5.4,
           "serv_g": 60,
           "cal_serv": 185,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 60جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 30,
+              "kcal": 92
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 60,
+              "kcal": 185
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 120,
+              "kcal": 370
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5058,6 +9233,31 @@
           "sat_fat_g": 4.4,
           "serv_g": 60,
           "cal_serv": 165,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 60جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 30,
+              "kcal": 82
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 60,
+              "kcal": 165
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 120,
+              "kcal": 330
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5088,6 +9288,31 @@
           "sat_fat_g": 2.8,
           "serv_g": 30,
           "cal_serv": 95,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 30جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 15,
+              "kcal": 48
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 30,
+              "kcal": 95
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 60,
+              "kcal": 190
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5118,6 +9343,31 @@
           "sat_fat_g": 8.4,
           "serv_g": 150,
           "cal_serv": 360,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 180
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 360
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 720
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": false,
@@ -5148,6 +9398,31 @@
           "sat_fat_g": 8.4,
           "serv_g": 150,
           "cal_serv": 360,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 180
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 360
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 720
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": false,
@@ -5178,6 +9453,31 @@
           "sat_fat_g": 5.9,
           "serv_g": 150,
           "cal_serv": 310,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 155
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 310
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 620
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5208,6 +9508,31 @@
           "sat_fat_g": 3.5,
           "serv_g": 150,
           "cal_serv": 255,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 128
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 255
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 510
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5238,6 +9563,31 @@
           "sat_fat_g": 3.5,
           "serv_g": 150,
           "cal_serv": 255,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 128
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 255
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 510
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5268,6 +9618,31 @@
           "sat_fat_g": 2.1,
           "serv_g": 150,
           "cal_serv": 214,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 107
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 214
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 428
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5298,6 +9673,31 @@
           "sat_fat_g": 5.6,
           "serv_g": 130,
           "cal_serv": 262,
+          "serving_unit": "سيخ",
+          "serving_description": "سيخ 130جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 65,
+              "kcal": 131
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 130,
+              "kcal": 262
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 260,
+              "kcal": 524
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5328,6 +9728,31 @@
           "sat_fat_g": 5.6,
           "serv_g": 60,
           "cal_serv": 190,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 60جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 30,
+              "kcal": 95
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 60,
+              "kcal": 190
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 120,
+              "kcal": 380
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5358,6 +9783,31 @@
           "sat_fat_g": 5.0,
           "serv_g": 150,
           "cal_serv": 258,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 129
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 258
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 516
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5388,6 +9838,31 @@
           "sat_fat_g": 3.6,
           "serv_g": 150,
           "cal_serv": 253,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 126
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 253
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 506
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5429,6 +9904,31 @@
           "sat_fat_g": 0.9,
           "serv_g": 300,
           "cal_serv": 245,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 122
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 245
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 490
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5459,6 +9959,31 @@
           "sat_fat_g": 1.1,
           "serv_g": 200,
           "cal_serv": 250,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 200جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 100,
+              "kcal": 125
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 200,
+              "kcal": 250
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 400,
+              "kcal": 500
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5489,6 +10014,31 @@
           "sat_fat_g": 1.4,
           "serv_g": 150,
           "cal_serv": 245,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 122
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 245
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 490
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5519,6 +10069,31 @@
           "sat_fat_g": 0.2,
           "serv_g": 150,
           "cal_serv": 145,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 72
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 145
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 290
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5549,6 +10124,31 @@
           "sat_fat_g": 1.5,
           "serv_g": 250,
           "cal_serv": 265,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 250جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 125,
+              "kcal": 132
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 250,
+              "kcal": 265
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 500,
+              "kcal": 530
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5579,6 +10179,31 @@
           "sat_fat_g": 1.1,
           "serv_g": 200,
           "cal_serv": 255,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 200جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 100,
+              "kcal": 128
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 200,
+              "kcal": 255
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 400,
+              "kcal": 510
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5609,6 +10234,31 @@
           "sat_fat_g": 1.0,
           "serv_g": 300,
           "cal_serv": 320,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 160
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 320
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 640
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5639,6 +10289,31 @@
           "sat_fat_g": 1.0,
           "serv_g": 300,
           "cal_serv": 344,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 172
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 344
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 688
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5669,6 +10344,31 @@
           "sat_fat_g": 1.0,
           "serv_g": 300,
           "cal_serv": 367,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 184
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 367
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 734
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5699,6 +10399,31 @@
           "sat_fat_g": 1.5,
           "serv_g": 150,
           "cal_serv": 288,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 144
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 288
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 576
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5729,6 +10454,31 @@
           "sat_fat_g": 0.2,
           "serv_g": 150,
           "cal_serv": 170,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 85
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 170
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 340
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5759,6 +10509,31 @@
           "sat_fat_g": 1.2,
           "serv_g": 200,
           "cal_serv": 289,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 200جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 100,
+              "kcal": 144
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 200,
+              "kcal": 289
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 400,
+              "kcal": 578
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5789,6 +10564,31 @@
           "sat_fat_g": 1.2,
           "serv_g": 200,
           "cal_serv": 283,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 200جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 100,
+              "kcal": 142
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 200,
+              "kcal": 283
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 400,
+              "kcal": 566
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5819,6 +10619,31 @@
           "sat_fat_g": 1.2,
           "serv_g": 200,
           "cal_serv": 299,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 200جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 100,
+              "kcal": 150
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 200,
+              "kcal": 299
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 400,
+              "kcal": 598
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5849,6 +10674,31 @@
           "sat_fat_g": 1.0,
           "serv_g": 300,
           "cal_serv": 355,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 300جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 150,
+              "kcal": 178
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 300,
+              "kcal": 355
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 600,
+              "kcal": 710
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -5890,6 +10740,31 @@
           "sat_fat_g": 1.0,
           "serv_g": 20,
           "cal_serv": 75,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 20جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 10,
+              "kcal": 38
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 20,
+              "kcal": 75
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 40,
+              "kcal": 150
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
@@ -5919,6 +10794,31 @@
           "sat_fat_g": 0.8,
           "serv_g": 20,
           "cal_serv": 70,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 20جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 10,
+              "kcal": 35
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 20,
+              "kcal": 70
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 40,
+              "kcal": 140
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
@@ -5948,6 +10848,31 @@
           "sat_fat_g": 0.8,
           "serv_g": 15,
           "cal_serv": 55,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 15جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 8,
+              "kcal": 28
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 15,
+              "kcal": 55
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 30,
+              "kcal": 110
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
@@ -5977,6 +10902,31 @@
           "sat_fat_g": 1.0,
           "serv_g": 20,
           "cal_serv": 65,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 20جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 10,
+              "kcal": 32
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 20,
+              "kcal": 65
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 40,
+              "kcal": 130
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
@@ -6006,6 +10956,31 @@
           "sat_fat_g": 0.9,
           "serv_g": 70,
           "cal_serv": 95,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 70جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 35,
+              "kcal": 48
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 70,
+              "kcal": 95
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 140,
+              "kcal": 190
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
@@ -6035,6 +11010,31 @@
           "sat_fat_g": 1.5,
           "serv_g": 150,
           "cal_serv": 215,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 108
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 215
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 430
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
@@ -6064,6 +11064,31 @@
           "sat_fat_g": 1.7,
           "serv_g": 20,
           "cal_serv": 73,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 20جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 10,
+              "kcal": 36
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 20,
+              "kcal": 73
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 40,
+              "kcal": 146
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
@@ -6093,6 +11118,31 @@
           "sat_fat_g": 2.0,
           "serv_g": 20,
           "cal_serv": 84,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 20جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 10,
+              "kcal": 42
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 20,
+              "kcal": 84
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 40,
+              "kcal": 168
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": false,
@@ -6122,6 +11172,31 @@
           "sat_fat_g": 1.4,
           "serv_g": 20,
           "cal_serv": 78,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 20جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 10,
+              "kcal": 39
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 20,
+              "kcal": 78
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 40,
+              "kcal": 156
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
@@ -6151,6 +11226,31 @@
           "sat_fat_g": 1.7,
           "serv_g": 20,
           "cal_serv": 82,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 20جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 10,
+              "kcal": 41
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 20,
+              "kcal": 82
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 40,
+              "kcal": 164
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": false,
@@ -6180,6 +11280,31 @@
           "sat_fat_g": 1.5,
           "serv_g": 20,
           "cal_serv": 78,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 20جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 10,
+              "kcal": 39
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 20,
+              "kcal": 78
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 40,
+              "kcal": 156
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -6209,6 +11334,31 @@
           "sat_fat_g": 1.5,
           "serv_g": 20,
           "cal_serv": 78,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 20جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 10,
+              "kcal": 39
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 20,
+              "kcal": 78
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 40,
+              "kcal": 156
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -6238,6 +11388,31 @@
           "sat_fat_g": 1.8,
           "serv_g": 15,
           "cal_serv": 61,
+          "serving_unit": "قطعة",
+          "serving_description": "قطعة 15جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 8,
+              "kcal": 30
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 15,
+              "kcal": 61
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 30,
+              "kcal": 122
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": false,
@@ -6278,6 +11453,31 @@
           "sat_fat_g": 1.3,
           "serv_g": 150,
           "cal_serv": 90,
+          "serving_unit": "كوب",
+          "serving_description": "كوب 150مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 45
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 90
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 180
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -6307,6 +11507,31 @@
           "sat_fat_g": 2.8,
           "serv_g": 100,
           "cal_serv": 140,
+          "serving_unit": "حبة",
+          "serving_description": "حبة متوسطة 100جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 50,
+              "kcal": 70
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 100,
+              "kcal": 140
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 200,
+              "kcal": 280
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -6336,6 +11561,31 @@
           "sat_fat_g": 0.2,
           "serv_g": 100,
           "cal_serv": 116,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 100جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 50,
+              "kcal": 58
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 100,
+              "kcal": 116
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 200,
+              "kcal": 232
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -6366,6 +11616,31 @@
           "sat_fat_g": 0.1,
           "serv_g": 150,
           "cal_serv": 78,
+          "serving_unit": "حبة",
+          "serving_description": "حبة متوسطة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 39
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 78
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 156
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -6395,6 +11670,31 @@
           "sat_fat_g": 0.1,
           "serv_g": 150,
           "cal_serv": 70,
+          "serving_unit": "حبة",
+          "serving_description": "حبة متوسطة 150جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 35
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 70
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 140
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -6424,6 +11724,31 @@
           "sat_fat_g": 0.0,
           "serv_g": 24,
           "cal_serv": 67,
+          "serving_unit": "حبة",
+          "serving_description": "حبة متوسطة 24جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 12,
+              "kcal": 34
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 24,
+              "kcal": 67
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 48,
+              "kcal": 134
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -6453,6 +11778,31 @@
           "sat_fat_g": 0.1,
           "serv_g": 100,
           "cal_serv": 89,
+          "serving_unit": "حبة",
+          "serving_description": "حبة متوسطة 100جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 50,
+              "kcal": 44
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 100,
+              "kcal": 89
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 200,
+              "kcal": 178
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -6482,6 +11832,31 @@
           "sat_fat_g": 0.1,
           "serv_g": 200,
           "cal_serv": 60,
+          "serving_unit": "حبة",
+          "serving_description": "حبة متوسطة 200جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 100,
+              "kcal": 30
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 200,
+              "kcal": 60
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 400,
+              "kcal": 120
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -6511,6 +11886,31 @@
           "sat_fat_g": 1.3,
           "serv_g": 150,
           "cal_serv": 114,
+          "serving_unit": "كوب",
+          "serving_description": "كوب 150مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 57
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 114
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 228
+            }
+          ],
           "healthy": false,
           "is_fried": false,
           "is_sweet": true,
@@ -6540,6 +11940,31 @@
           "sat_fat_g": 2.4,
           "serv_g": 150,
           "cal_serv": 129,
+          "serving_unit": "كوب",
+          "serving_description": "كوب 150مل",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 75,
+              "kcal": 64
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 150,
+              "kcal": 129
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 300,
+              "kcal": 258
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -6569,6 +11994,31 @@
           "sat_fat_g": 3.1,
           "serv_g": 100,
           "cal_serv": 148,
+          "serving_unit": "حبة",
+          "serving_description": "حبة متوسطة 100جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 50,
+              "kcal": 74
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 100,
+              "kcal": 148
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 200,
+              "kcal": 296
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
@@ -6598,6 +12048,31 @@
           "sat_fat_g": 2.4,
           "serv_g": 100,
           "cal_serv": 160,
+          "serving_unit": "طبق",
+          "serving_description": "طبق متوسط 100جم",
+          "serving_options": [
+            {
+              "label": "نص",
+              "label_en": "Half",
+              "multiplier": 0.5,
+              "g": 50,
+              "kcal": 80
+            },
+            {
+              "label": "كامل",
+              "label_en": "Full",
+              "multiplier": 1,
+              "g": 100,
+              "kcal": 160
+            },
+            {
+              "label": "مضاعف",
+              "label_en": "Double",
+              "multiplier": 2,
+              "g": 200,
+              "kcal": 320
+            }
+          ],
           "healthy": true,
           "is_fried": false,
           "is_sweet": false,
