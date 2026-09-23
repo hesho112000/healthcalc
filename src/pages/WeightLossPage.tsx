@@ -10,6 +10,8 @@ import { ExerciseTypeSelector } from '../components/wizard/ExerciseTypeSelector'
 import { ExerciseList } from '../components/wizard/ExerciseList';
 import { useAuth } from '../context/AuthContext';
 import { savePlan, saveProfile } from '../services/supabaseData';
+import { generateWeeklyPlan } from '../utils/mealPlanGenerator';
+import type { PlanDay } from '../utils/mealPlanGenerator';
 
 type Step = 1 | 2 | 3 | 4 | 5;
 type Sex = 'male' | 'female';
@@ -629,7 +631,8 @@ const WeightLossPage: React.FC = () => {
   const [assignedDishes, setAssignedDishes] = useState<Record<string, MealKey[]>>({});
   const [editField, setEditField] = useState<'age' | 'height' | 'weight' | null>(null);
   const [dietId, setDietId] = useState('normal_lose');
-  const [selectedDay, setSelectedDay] = useState(1);
+  const [weeklyPlan, setWeeklyPlan] = useState<PlanDay[]>([]);
+  const [selectedPlanDay, setSelectedPlanDay] = useState(1);
   const [water, setWater] = useState(0);
   const [mealsDone, setMealsDone] = useState([false, false, false]);
   const [emailOpen, setEmailOpen] = useState(false);
@@ -834,44 +837,6 @@ const WeightLossPage: React.FC = () => {
 
   const diet = numbers ? numbers.diet : getDiet(goal, dietId);
 
-  const mealPlan = useMemo(() => {
-    const baseG = portionGrams(diet, goal);
-    const pickLight = (pool: KitchenDish[]): KitchenDish | undefined =>
-      pool.length ? [...pool].sort((a, b) => a.cal_100 - b.cal_100 || b.p - a.p)[0] : undefined;
-    const pickHeavy = (pool: KitchenDish[]): KitchenDish | undefined =>
-      pool.length ? [...pool].sort((a, b) => b.p - a.p || b.cal_100 - a.cal_100)[0] : undefined;
-    const pickSmall = (pool: KitchenDish[]): KitchenDish | undefined =>
-      pool.length ? [...pool].sort((a, b) => a.serv_g - b.serv_g || a.cal_100 - b.cal_100)[0] : undefined;
-    const poolFor = (key: MealKey): KitchenDish[] => {
-      const seen = new Set<string>();
-      const out: KitchenDish[] = [];
-      for (const k of planKitchens) {
-        for (const d of dishesForMeal(k, key)) {
-          if (!seen.has(d.name)) {
-            seen.add(d.name);
-            out.push(d);
-          }
-        }
-      }
-      return out;
-    };
-    const pickAssigned = (key: MealKey): KitchenDish | undefined => {
-      const list = mealSummary[key];
-      if (!list.length) return undefined;
-      const sorted = [...list].sort((a, b) => (key === 'lunch' ? b.dish.p - a.dish.p : a.dish.cal_100 - b.dish.cal_100));
-      return sorted[0].dish;
-    };
-    const fallbackKitchen = planKitchens[0] ?? selectedKitchen;
-    const fallback = pickPlate(filterDishes(fallbackKitchen, diet, goal));
-    const meals: { meal: string; dish: KitchenDish | undefined; grams: number }[] = [
-      { meal: MEAL_NAMES.breakfast, dish: pickAssigned('breakfast') ?? pickLight(poolFor('breakfast')), grams: Math.round(baseG * 0.85) },
-      { meal: MEAL_NAMES.lunch, dish: pickAssigned('lunch') ?? pickHeavy(poolFor('lunch')), grams: Math.round(baseG * 1.4) },
-      { meal: MEAL_NAMES.dinner, dish: pickAssigned('dinner') ?? pickLight(poolFor('dinner')), grams: Math.round(baseG * 1.25) },
-      { meal: MEAL_NAMES.snacks, dish: pickAssigned('snacks') ?? pickSmall(poolFor('snacks')), grams: Math.round(baseG * 0.6) },
-    ];
-    return meals.map((m, i) => ({ meal: m.meal, dish: m.dish ?? fallback[i], grams: m.grams }));
-  }, [planKitchens, selectedKitchen, diet, goal, mealSummary]);
-
   const goalViolation = (): string => {
     if (goal === 'lose') {
       if (parsed.target && parsed.weight && parsed.target >= parsed.weight) return t('wizard.step4.hintLose');
@@ -1042,10 +1007,22 @@ const WeightLossPage: React.FC = () => {
     if (autoBuilding) return;
     setAutoBuilding(true);
     window.setTimeout(() => {
-      autoPickKitchen();
+      const plan = generateWeeklyPlan({
+        age: parseInt(age, 10),
+        height: parseInt(height, 10),
+        weight: parseFloat(weight),
+        gender: sex,
+        targetCalories: numbers ? numbers.targetCal : 2000,
+        goal,
+        kitchens: countryKitchens,
+        varietyAcrossDays: true,
+        maxDishesPerMeal: 5,
+      });
+      setWeeklyPlan(plan);
+      setSelectedPlanDay(1);
       setAutoBuilding(false);
       setStep(5);
-      notify(t('wizard.toast.autoKitchen'));
+      notify(`Generated 7-day plan: ${plan.length} days`);
     }, 1500);
   };
 
@@ -1076,23 +1053,6 @@ const WeightLossPage: React.FC = () => {
       return cp;
     });
     if (!next.length) setSelectedDishKeys((prev) => prev.filter((k) => k !== key));
-  };
-
-  const autoPickDishes = () => {
-    const keys: string[] = [];
-    const assigned: Record<string, MealKey[]> = {};
-    for (const k of countryKitchens) {
-      for (const cat of getKitchenCategories(k)) {
-        for (const d of cat.dishes) {
-          const mk = `${k.id}::${cat.id}::${d.name}`;
-          keys.push(mk);
-          assigned[mk] = getMealTypesForDish(k, cat, d);
-        }
-      }
-    }
-    setSelectedDishKeys(keys);
-    setAssignedDishes(assigned);
-    setCategoryMode('auto');
   };
 
   const assignDishToMeal = (key: string, meal: MealKey) => {
@@ -1158,7 +1118,11 @@ const WeightLossPage: React.FC = () => {
           dishes: selectedDishKeys,
           kitchen: selectedKitchenId,
           diet: dietId,
-          mealLines: mealPlan.map((m) => ({ meal: m.meal, dish: m.dish?.name, grams: m.grams })),
+          mealLines: (weeklyPlan[selectedPlanDay - 1]?.meals ?? []).map((m) => ({
+            meal: m.label,
+            dish: m.dishes.map((d) => d.dish.name).join('، '),
+            grams: Math.round(m.dishes.reduce((s, d) => s + d.grams, 0)),
+          })),
           savedAt: Date.now(),
         });
       } catch {
@@ -1815,7 +1779,7 @@ const WeightLossPage: React.FC = () => {
                     {!selectedDishKeys.length && <div className="text-[11.5px] text-[#A0A8A4]">{t('wizard.step3.addHint')}</div>}
                   </div>
                   {planType !== 'nutrition' && (
-                    <button type="button" onClick={autoPickDishes} className="mt-3 w-full h-11 rounded-[14px] bg-[#F4F1EB] text-[#0F4C3A] text-[13px] font-bold border border-[#E3E0D8] hover:border-[#D4AF37] transition-all active:scale-[0.98]">
+                    <button type="button" onClick={runAutoKitchen} className="mt-3 w-full h-11 rounded-[14px] bg-[#F4F1EB] text-[#0F4C3A] text-[13px] font-bold border border-[#E3E0D8] hover:border-[#D4AF37] transition-all active:scale-[0.98]">
                       {t('wizard.step2.autoBtn')} 🍽️
                     </button>
                   )}
@@ -1984,21 +1948,21 @@ const WeightLossPage: React.FC = () => {
               <div className="bg-[#FDFBF7] border-b border-[#F0ECE2] px-4 md:px-6 py-4">
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2 min-w-0">
-                    <span className="text-[16px] font-extrabold text-[#0F4C3A] shrink-0">{t('wizard.step5.day').replace('{n}', String(selectedDay))}</span>
+                    <span className="text-[16px] font-extrabold text-[#0F4C3A] shrink-0">{t('wizard.step5.day').replace('{n}', String(selectedPlanDay))}</span>
                     <span className="text-[11px] font-bold bg-[#FFF8E7] text-[#B8860B] px-2.5 py-1 rounded-full shrink-0">{t('wizard.step5.dayHeader')}</span>
                   </div>
-                  <div className="text-[11px] text-[#8A938E] font-semibold shrink-0">{t('wizard.step5.dayOf').replace('{n}', String(selectedDay))}</div>
+                  <div className="text-[11px] text-[#8A938E] font-semibold shrink-0">{t('wizard.step5.dayOf').replace('{n}', String(selectedPlanDay))}</div>
                 </div>
                 <div className="mt-3 flex items-center gap-2">
-                  <button type="button" onClick={() => setSelectedDay((s) => Math.max(1, s - 1))} className="w-9 h-9 rounded-full bg-white border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] hover:border-[#D4AF37] shrink-0">‹</button>
+                  <button type="button" onClick={() => setSelectedPlanDay((s) => Math.max(1, s - 1))} className="w-9 h-9 rounded-full bg-white border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] hover:border-[#D4AF37] shrink-0">‹</button>
                   <div className="flex-1 flex gap-2 overflow-x-auto no-scrollbar justify-between min-w-0">
-                    {[1, 2, 3, 4, 5, 6, 7, 8].map((d) => {
-                      const ad = d === selectedDay;
+                    {[1, 2, 3, 4, 5, 6, 7].map((d) => {
+                      const ad = d === selectedPlanDay;
                       return (
                         <button
                           key={d}
                           type="button"
-                          onClick={() => setSelectedDay(d)}
+                          onClick={() => setSelectedPlanDay(d)}
                           className={`relative w-9 h-9 min-w-[36px] rounded-xl flex items-center justify-center text-[13px] font-bold transition-all ${ad ? 'bg-[#D4AF37] text-[#0F4C3A] shadow-[0_4px_10px_rgba(212,175,55,0.4)]' : 'bg-white border border-[#E9E5DB] text-[#6B7A75] hover:border-[#D4AF37]'}`}
                         >
                           <span className="num">{d}</span>
@@ -2006,7 +1970,7 @@ const WeightLossPage: React.FC = () => {
                       );
                     })}
                   </div>
-                  <button type="button" onClick={() => setSelectedDay((s) => Math.min(8, s + 1))} className="w-9 h-9 rounded-full bg-white border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] hover:border-[#D4AF37] shrink-0">›</button>
+                  <button type="button" onClick={() => setSelectedPlanDay((s) => Math.min(7, s + 1))} className="w-9 h-9 rounded-full bg-white border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] hover:border-[#D4AF37] shrink-0">›</button>
                 </div>
               </div>
             </div>
@@ -2056,32 +2020,33 @@ const WeightLossPage: React.FC = () => {
               <div className="flex items-center justify-between gap-2 mb-4">
                 <h3 className="text-[16px] font-extrabold">🍱 {t('wizard.step5.statMealsDone')}</h3>
                 <span className="text-[11px] font-bold bg-[#FFF8E7] text-[#B8860B] px-3 py-1 rounded-full">
-                  {t('wizard.step5.day').replace('{n}', String(selectedDay))} · {calT(numbers!.targetCal)}
+                  {t('wizard.step5.day').replace('{n}', String(selectedPlanDay))} · {calT(numbers!.targetCal)}
                 </span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {step5Meals.map((m, idx) => {
-                  const plan = mealPlan[idx];
-                  const calServ = plan && plan.dish ? Math.round((plan.dish.cal_100 * plan.grams) / 100) : 380;
-                  const p = plan && plan.dish ? Math.round((plan.dish.p * plan.grams) / 100) : 0;
-                  const c = plan && plan.dish ? Math.round((plan.dish.c * plan.grams) / 100) : 0;
-                  const f = plan && plan.dish ? Math.round((plan.dish.f * plan.grams) / 100) : 0;
+                {(weeklyPlan[selectedPlanDay - 1]?.meals ?? []).map((meal, idx) => {
+                  const emoji = step5Meals.find((s) => s.key === meal.mealType)?.emoji ?? '🍽️';
+                  const totalGrams = meal.dishes.reduce((s, d) => s + d.grams, 0);
+                  const mealCal = meal.totalCal;
+                  const p = meal.dishes.reduce((s, d) => s + Math.round((d.dish.p * d.dish.serv_g) / 100), 0);
+                  const c = meal.dishes.reduce((s, d) => s + Math.round((d.dish.c * d.dish.serv_g) / 100), 0);
+                  const f = meal.dishes.reduce((s, d) => s + Math.round((d.dish.f * d.dish.serv_g) / 100), 0);
                   const done = idx < 3 ? mealsDone[idx] : false;
                   return (
                     <div
-                      key={m.key}
+                      key={meal.mealType}
                       className={`rounded-[18px] border-2 p-4 flex items-center justify-between transition-colors ${done ? 'border-[#0F4C3A] bg-[#F2F8F4]' : 'border-[#EFEBE4] bg-white'}`}
                     >
                       <div className="flex items-center gap-3 min-w-0 flex-1">
-                        <span className="w-11 h-11 rounded-[14px] bg-[#F4F1EB] flex items-center justify-center text-[18px] shrink-0">{m.emoji}</span>
+                        <span className="w-11 h-11 rounded-[14px] bg-[#F4F1EB] flex items-center justify-center text-[18px] shrink-0">{emoji}</span>
                         <div className="min-w-0">
                           <div className="flex items-center gap-2 flex-wrap">
-                            <span className="text-[13px] font-extrabold text-[#0F4C3A]">{mealLabel(m.key)}</span>
-                            <span className="text-[11px] text-[#8A938E]">{mealTime(m.key)}</span>
+                            <span className="text-[13px] font-extrabold text-[#0F4C3A]">{meal.label}</span>
+                            <span className="text-[11px] text-[#8A938E]">{mealTime(meal.mealType)}</span>
                           </div>
-                          <div className="text-[12px] text-[#6B7A75] truncate break-words min-w-0 mt-0.5">{plan && plan.dish ? plan.dish.name : ''}</div>
+                          <div className="text-[12px] text-[#6B7A75] truncate break-words min-w-0 mt-0.5">{meal.dishes.map((d) => d.dish.name).join('، ') || ''}</div>
                           <div className="mt-1 text-[10.5px] text-[#8A938E]">
-                            <span className="num font-bold text-[#B8860B]">{calServ}</span> kcal · {macrosT(p, c, f)}
+                            <span className="num font-bold text-[#B8860B]">{mealCal}</span> kcal · {macrosT(p, c, f)} · {totalGrams} g
                           </div>
                         </div>
                       </div>
