@@ -8,10 +8,11 @@ import { getWizardExercisesByType } from '../data/exercises';
 import type { ExerciseItem } from '../data/exercises';
 import { ExerciseTypeSelector } from '../components/wizard/ExerciseTypeSelector';
 import { ExerciseList } from '../components/wizard/ExerciseList';
+import AddDishModal from '../components/wizard/AddDishModal';
 import { useAuth } from '../context/AuthContext';
 import { savePlan, saveProfile } from '../services/supabaseData';
 import { generateWeeklyPlan } from '../utils/mealPlanGenerator';
-import type { PlanDay } from '../utils/mealPlanGenerator';
+import type { PlanDay, PlanDish, PlanMealType } from '../utils/mealPlanGenerator';
 
 type Step = 1 | 2 | 3 | 4 | 5;
 type Sex = 'male' | 'female';
@@ -633,6 +634,7 @@ const WeightLossPage: React.FC = () => {
   const [dietId, setDietId] = useState('normal_lose');
   const [weeklyPlan, setWeeklyPlan] = useState<PlanDay[]>([]);
   const [selectedPlanDay, setSelectedPlanDay] = useState(1);
+  const [dishModal, setDishModal] = useState<{ mode: 'add' | 'swap'; dayIndex: number; mealIndex: number; mealType: PlanMealType; dishIndex: number } | null>(null);
   const [water, setWater] = useState(0);
   const [mealsDone, setMealsDone] = useState([false, false, false]);
   const [emailOpen, setEmailOpen] = useState(false);
@@ -679,6 +681,13 @@ const WeightLossPage: React.FC = () => {
     return found;
   }, []);
   const selectedKitchenCats = useMemo<KitchenCategory[]>(() => getKitchenCategories(selectedKitchen), [selectedKitchen]);
+  const dishPoolByMeal = useMemo(
+    () => (mealType: MealKey) =>
+      selectedKitchenCats.flatMap((cat) =>
+        cat.dishes.filter((d) => getMealTypesForDish(selectedKitchen, cat, d).includes(mealType)),
+      ),
+    [selectedKitchenCats, selectedKitchen],
+  );
   const countryKitchens = useMemo<KitchenInfo[]>(() => {
     const e = kitchensRegistry.find((k) => k.id === 'egyptian');
     return e && e.dishes.length ? [e] : [selectedKitchen];
@@ -1131,6 +1140,66 @@ const WeightLossPage: React.FC = () => {
     })();
   };
 
+  const recalcDay = (d: PlanDay): PlanDay => {
+    const meals = d.meals.map((m) => ({ ...m, totalCal: m.dishes.reduce((s, x) => s + x.calories, 0) }));
+    return { ...d, meals, totalCal: meals.reduce((s, m) => s + m.totalCal, 0) };
+  };
+
+  const handleRemoveDish = (dayIndex: number, mealIndex: number, dishIndex: number) => {
+    setWeeklyPlan((prev) =>
+      prev.map((d, di) => {
+        if (di !== dayIndex) return d;
+        const meals = d.meals.map((m, mi) =>
+          mi === mealIndex ? { ...m, dishes: m.dishes.filter((_, i) => i !== dishIndex) } : m,
+        );
+        return recalcDay({ ...d, meals });
+      }),
+    );
+    notify(language === 'ar' ? 'تم حذف الطبق' : 'Dish removed');
+  };
+
+  const handleAddDish = (dayIndex: number, mealIndex: number, dish: KitchenDish) => {
+    setWeeklyPlan((prev) =>
+      prev.map((d, di) => {
+        if (di !== dayIndex) return d;
+        const meals = d.meals.map((m, mi) => {
+          if (mi !== mealIndex) return m;
+          const pd: PlanDish = {
+            dish,
+            mealTypes: [m.mealType],
+            servings: 1,
+            grams: dish.serv_g > 0 ? dish.serv_g : 100,
+            calories: dish.cal_serv,
+          };
+          return { ...m, dishes: [...m.dishes, pd] };
+        });
+        return recalcDay({ ...d, meals });
+      }),
+    );
+    notify(language === 'ar' ? 'تمت إضافة الطبق' : 'Dish added');
+  };
+
+  const handleSwapDish = (dayIndex: number, mealIndex: number, dishIndex: number, dish: KitchenDish) => {
+    setWeeklyPlan((prev) =>
+      prev.map((d, di) => {
+        if (di !== dayIndex) return d;
+        const meals = d.meals.map((m, mi) => {
+          if (mi !== mealIndex) return m;
+          const pd: PlanDish = {
+            dish,
+            mealTypes: [m.mealType],
+            servings: 1,
+            grams: dish.serv_g > 0 ? dish.serv_g : 100,
+            calories: dish.cal_serv,
+          };
+          return { ...m, dishes: m.dishes.map((x, i) => (i === dishIndex ? pd : x)) };
+        });
+        return recalcDay({ ...d, meals });
+      }),
+    );
+    notify(language === 'ar' ? 'تم تبديل الطبق' : 'Dish swapped');
+  };
+
   const macrosT = (p: number, c: number, f: number): string =>
     t('wizard.step3.macros').replace('{p}', String(Math.round(p))).replace('{c}', String(Math.round(c))).replace('{f}', String(Math.round(f)));
   const calT = (n: number): string => t('wizard.step3.cal').replace('{n}', String(n));
@@ -1501,18 +1570,9 @@ const WeightLossPage: React.FC = () => {
           <div className="mt-6 space-y-5">
 
             <div className={`${cardBase} p-6`}>
-              <div className="flex items-center justify-between gap-2 flex-wrap">
-                <div>
-                  <h2 className="text-[18px] font-extrabold">{t('wizard.step3.chooseCuisine')}</h2>
-                  <p className="mt-0.5 text-[12px] text-[#6B7A75]">✨ {t('wizard.step3.manualBtn')}</p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setHealthyOnly((p) => !p)}
-                  className={`h-10 rounded-full px-4 text-[13px] font-bold border-2 transition-all ${healthyOnly ? 'bg-[#0F4C3A] text-white border-[#0F4C3A]' : 'bg-white text-[#0F4C3A] border-[#E3E0D8] hover:border-[#D4AF37]'}`}
-                >
-                  {t('wizard.step3.healthyOnly')}
-                </button>
+              <div>
+                <h2 className="text-[18px] font-extrabold">{t('wizard.step3.chooseCuisine')}</h2>
+                <p className="mt-0.5 text-[12px] text-[#6B7A75]">✨ {t('wizard.step3.manualBtn')}</p>
               </div>
 
               {regionSel === null ? (
@@ -1608,10 +1668,7 @@ const WeightLossPage: React.FC = () => {
                       </div>
                     ) : null;
                   })()}
-                  <p className="mt-2 text-[11px] text-[#A0A8A4] text-center">
-                    {language === 'ar' ? 'اختر أطباقك من القائمة بالأسفل' : 'Pick your dishes from the list below'}
-                  </p>
-                </div>
+                  </div>
               )}
             </div>
 
@@ -1631,7 +1688,7 @@ const WeightLossPage: React.FC = () => {
                   ) : (
                     <span>
                       {language === 'ar'
-                        ? '✅ ابدأ — ابنيلي خطة أسبوعية من المطبخ المختار'
+                        ? '✅ ابدأ — ابنيلي خطة أسبوعية'
                         : '✅ Auto-Select — Build my 7-day plan'}
                     </span>
                   )}
@@ -1641,141 +1698,6 @@ const WeightLossPage: React.FC = () => {
                     ? 'سيختار تلقائياً 7 أيام × 4 وجبات من الأطباق المناسبة لهدفك'
                     : 'It will automatically pick 7 days × 4 meals of dishes matching your goal'}
                 </p>
-              </div>
-            )}
-
-            {planType !== 'fitness' && (
-              <div className={`${cardBase} p-6`}>
-                <div className="mt-4 flex gap-1.5 overflow-x-auto no-scrollbar">
-                  {MEAL_TABS.map((tab) => {
-                    const on = mealTab === tab.key;
-                    const label = mealLabel(tab.key)
-                      .replace(new RegExp(tab.emoji.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*$'), '')
-                      .trim();
-                    return (
-                      <button
-                        key={tab.key}
-                        type="button"
-                        onClick={() => setMealTab(tab.key)}
-                        className={`shrink-0 h-11 rounded-full px-4 text-[13.5px] font-bold flex items-center gap-1.5 border-2 transition-all active:scale-95 ${on ? 'bg-[#0F4C3A] border-[#0F4C3A] text-white' : 'bg-white text-[#0F4C3A] border-[#E3E0D8] hover:border-[#D4AF37]'}`}
-                      >
-                        <span className="shrink-0">{tab.emoji}</span>
-                        {label}
-                        <span className={`num text-[11px] ${on ? 'text-white/70' : 'text-[#6B7A75]'}`}>· {tabCounts[tab.key]}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-
-                <p className="mt-2 text-[11px] text-[#A0A8A4]">{t('wizard.step3.someDishesMulti')}</p>
-
-                <div className="mt-3 h-[46px] bg-[#F4F1EB] rounded-[14px] flex items-center px-4 border-2 border-transparent focus-within:border-[#D4AF37]">
-                  <input value={dishSearch} onChange={(e) => setDishSearch(e.target.value)} placeholder={t('wizard.step3.searchPlaceholder')} className="flex-1 bg-transparent outline-none text-[15px] text-[#0F4C3A] placeholder:text-[#A0A8A4] min-w-0" />
-                  <span className="text-[#0F4C3A] text-[18px] shrink-0">🔍</span>
-                </div>
-
-                <div className="mt-3 space-y-2.5 max-h-[420px] overflow-y-auto pr-1">
-                  {displayedRows.length ? (
-                    displayedRows.map((r) => {
-                      const checked = selectedDishKeys.includes(r.key);
-                      const dot = r.dish.confidence_color;
-                      return (
-                        <div
-                          key={r.key}
-                          className={`flex items-center gap-3 min-h-[84px] p-3 bg-white rounded-[18px] border-2 transition-all min-w-0 ${checked ? 'border-[#D4AF37] bg-[#FFFBEF]' : 'border-[#EFEBE4] hover:border-[#D4AF37]'}`}
-                        >
-                          <span className="w-14 h-14 rounded-[14px] bg-[#F4F1EB] flex items-center justify-center text-[26px] shrink-0">🍲</span>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-1.5 min-w-0">
-                              <span className="font-extrabold text-[13.5px] text-[#0F4C3A] truncate">{r.dish.name}</span>
-                              <span className={`w-2 h-2 rounded-full shrink-0 ${dot === 'green' ? 'bg-[#0F4C3A]' : dot === 'yellow' ? 'bg-yellow-500' : 'bg-orange-500'}`} />
-                            </div>
-                            <div className="text-[11px] text-[#6B7A75] truncate mt-0.5">
-                              {r.cat.name_ar}
-                              {r.dish.healthy ? ` · ${t('wizard.step3.healthyTag')}` : ''}
-                            </div>
-                            <div className="text-[11px] text-[#8A938E] mt-0.5">{macrosT(r.dish.p, r.dish.c, r.dish.f)}</div>
-                          </div>
-                          <div className="flex flex-col items-end gap-1.5 shrink-0">
-                            <span className="text-[13.5px] font-extrabold text-[#B8860B] whitespace-nowrap">{calT(r.dish.cal_serv)}</span>
-                            <button
-                              type="button"
-                              onClick={() => addDish(r.key)}
-                              className={`w-9 h-9 rounded-full flex items-center justify-center text-[18px] text-white shadow-sm transition-all active:scale-95 ${checked ? 'bg-[#9AA19D]' : 'bg-[#D4AF37]'}`}
-                            >
-                              {checked ? '✓' : '+'}
-                            </button>
-                          </div>
-                        </div>
-                      );
-                    })
-                  ) : (
-                    <div className="text-center text-[13px] text-[#A0A8A4] py-6">{t('wizard.step3.noDishes')}</div>
-                  )}
-                </div>
-
-                <div className="mt-4 border-2 border-[#E9E5DB] rounded-[20px] bg-[#FAF8F3] p-4 min-w-0">
-                  <div className="flex items-center justify-between gap-2 flex-wrap">
-                    <div className="text-[15px] font-extrabold text-[#0F4C3A] truncate">{t('wizard.step3.savedTitle')}</div>
-                    {selectedDishKeys.length > 0 && (
-                      <span className="num text-[11.5px] font-bold bg-[#FFF8E7] text-[#B8860B] px-3 py-1.5 rounded-full shrink-0 whitespace-nowrap">
-                        🔥 {totalCal} kcal · {selectedDishKeys.length} {t('wizard.step3.dishCount').replace('{n}', String(selectedDishKeys.length))}
-                      </span>
-                    )}
-                  </div>
-                  {selectedDishKeys.length > 0 && (
-                    <div className="h-[42px] bg-white border border-[#E9E5DB] rounded-[12px] flex items-center px-3 mt-2.5 focus-within:border-[#D4AF37]">
-                      <input value={savedSearch} onChange={(e) => setSavedSearch(e.target.value)} placeholder={t('wizard.step3.savedSearch')} className="flex-1 bg-transparent outline-none text-[14px] text-[#0F4C3A] placeholder:text-[#A0A8A4] min-w-0" />
-                      <span className="text-[#0F4C3A] text-[15px] shrink-0">🔍</span>
-                    </div>
-                  )}
-                  <div className="mt-3 space-y-2.5">
-                    {MEAL_ORDER.map((mk) => {
-                      const all = mealSummary[mk].filter((x) => !savedSearch.trim() || x.dish.name.includes(savedSearch.trim()));
-                      if (!all.length) return null;
-                      const isCollapsed = collapsedSaved.has(mk);
-                      const isShowAll = showAllSaved.has(mk);
-                      const visible = isShowAll ? all : all.slice(0, 5);
-                      const groupTotal = all.reduce((s, x) => s + x.dish.cal_serv, 0);
-                      return (
-                        <div key={mk} className="rounded-[16px] bg-white border border-[#EFEBE4] overflow-hidden min-w-0">
-                          <button
-                            type="button"
-                            onClick={() => setCollapsedSaved((p) => { const cp = new Set(p); if (cp.has(mk)) cp.delete(mk); else cp.add(mk); return cp; })}
-                            className="w-full px-4 py-3 flex items-center justify-between gap-2 text-start bg-white hover:bg-[#FAF8F3] transition-all"
-                          >
-                            <span className="text-[13px] font-extrabold text-[#0F4C3A]">{mealLabel(mk)}</span>
-                            <span className="flex items-center gap-2 shrink-0">
-                              <span className="num text-[11.5px] font-bold text-[#B8860B]">{groupTotal} kcal</span>
-                              <span className={`text-[#B8860B] text-[11px] transition-transform ${isCollapsed ? '' : 'rotate-180'}`}>▾</span>
-                            </span>
-                          </button>
-                          {!isCollapsed && (
-                            <div className="px-2 pb-2 space-y-1">
-                              {visible.map((x) => (
-                                <div key={x.key} className="flex items-center justify-between gap-2 rounded-[12px] bg-[#FAF8F3] px-3 py-2 min-w-0">
-                                  <span className="flex-1 min-w-0 text-[12.5px] font-semibold text-[#0F4C3A] truncate">{x.dish.name}</span>
-                                  <span className="num text-[12px] font-extrabold text-[#0F4C3A] shrink-0">{x.dish.cal_serv} <span className="text-[10px] font-semibold text-[#8A938E]">kcal</span></span>
-                                  <button type="button" onClick={() => removeChip(x.key, mk)} className="w-7 h-7 shrink-0 rounded-full flex items-center justify-center text-[#9AA19D] hover:text-red-500 hover:bg-red-50 text-[13px] transition-all">✕</button>
-                                </div>
-                              ))}
-                              {all.length > 5 && (
-                                <button
-                                  type="button"
-                                  onClick={() => setShowAllSaved((p) => { const cp = new Set(p); if (cp.has(mk)) cp.delete(mk); else cp.add(mk); return cp; })}
-                                  className="w-full h-9 rounded-[12px] text-[12px] font-extrabold text-[#B8860B] hover:text-[#0F4C3A] hover:bg-[#FFF8E7] transition-all"
-                                >
-                                  {isShowAll ? t('wizard.step3.showLess') : t('wizard.step3.showAll').replace('{n}', String(all.length - 5))}
-                                </button>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                    {!selectedDishKeys.length && <div className="text-[11.5px] text-[#A0A8A4]">{t('wizard.step3.addHint')}</div>}
-                  </div>
-                </div>
               </div>
             )}
 
@@ -2048,16 +1970,41 @@ const WeightLossPage: React.FC = () => {
                       </div>
                       <div className="mt-3 space-y-1.5">
                         {meal.dishes.map((d, di) => (
-                          <div key={di} className="flex items-center justify-between gap-2 text-[12px] min-w-0">
+                          <div key={di} className="flex items-center justify-between gap-2 text-[12px] min-w-0 group">
                             <span className="font-semibold text-[#0F4C3A] min-w-0 truncate">• {d.dish.name}</span>
-                            <span className="flex items-center gap-1 shrink-0 text-[#8A938E]">
-                              <span className="num font-bold text-[#B8860B]">{d.calories}</span>
-                              <span>kcal</span>
-                              <span className="text-[#C8C4B8]">·</span>
-                              <span className="num font-bold text-[#6B7A75]">{Math.round(d.grams)}g</span>
+                            <span className="flex items-center gap-1.5 shrink-0 text-[#8A938E]">
+                              <span className="flex items-center gap-1 min-w-0">
+                                <span className="num font-bold text-[#B8860B]">{d.calories}</span>
+                                <span>kcal</span>
+                                <span className="text-[#C8C4B8]">·</span>
+                                <span className="num font-bold text-[#6B7A75]">{Math.round(d.grams)}g</span>
+                              </span>
+                              <button
+                                type="button"
+                                title={language === 'ar' ? 'تبديل الطبق' : 'Swap dish'}
+                                onClick={() => setDishModal({ mode: 'swap', dayIndex: selectedPlanDay - 1, mealIndex: idx, mealType: meal.mealType, dishIndex: di })}
+                                className="w-7 h-7 rounded-full flex items-center justify-center text-[12px] border border-[#E9E5DB] bg-white hover:border-[#D4AF37] hover:bg-[#FFFBEF] text-[#0F4C3A] transition-all active:scale-95 shrink-0"
+                              >
+                                🔄
+                              </button>
+                              <button
+                                type="button"
+                                title={language === 'ar' ? 'إزالة الطبق' : 'Remove dish'}
+                                onClick={() => handleRemoveDish(selectedPlanDay - 1, idx, di)}
+                                className="w-7 h-7 rounded-full flex items-center justify-center text-[12px] border border-[#E9E5DB] bg-white hover:border-red-300 hover:bg-red-50 text-[#9AA19D] hover:text-red-500 transition-all active:scale-95 shrink-0"
+                              >
+                                ✕
+                              </button>
                             </span>
                           </div>
                         ))}
+                        <button
+                          type="button"
+                          onClick={() => setDishModal({ mode: 'add', dayIndex: selectedPlanDay - 1, mealIndex: idx, mealType: meal.mealType, dishIndex: 0 })}
+                          className="w-full h-9 rounded-[12px] border-2 border-dashed border-[#E3E0D8] text-[12px] font-bold text-[#0F4C3A] hover:border-[#D4AF37] hover:bg-[#FFFBEF] flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
+                        >
+                          <span>+</span> {language === 'ar' ? 'أضف طبقاً' : 'Add dish'}
+                        </button>
                       </div>
                     </div>
                   );
@@ -2286,6 +2233,32 @@ const WeightLossPage: React.FC = () => {
           </div>
         </div>
       )}
+
+      {dishModal && (() => {
+        const day = weeklyPlan[dishModal.dayIndex];
+        const meal = day?.meals[dishModal.mealIndex];
+        const cur = dishModal.mode === 'swap' ? meal?.dishes[dishModal.dishIndex] ?? null : null;
+        return (
+          <AddDishModal
+            open={!!dishModal}
+            mode={dishModal.mode}
+            mealType={dishModal.mealType}
+            mealLabel={meal ? meal.label : mealLabel(dishModal.mealType)}
+            pool={dishPoolByMeal(dishModal.mealType)}
+            currentDish={cur ? { calories: cur.calories, name: cur.dish.name } : null}
+            language={language}
+            onClose={() => setDishModal(null)}
+            onSelect={(dish) => {
+              if (dishModal.mode === 'add') {
+                handleAddDish(dishModal.dayIndex, dishModal.mealIndex, dish);
+              } else if (cur) {
+                handleSwapDish(dishModal.dayIndex, dishModal.mealIndex, dishModal.dishIndex, dish);
+              }
+              setDishModal(null);
+            }}
+          />
+        );
+      })()}
     </div>
   );
 };
