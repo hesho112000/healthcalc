@@ -505,6 +505,13 @@ const MEAL_TABS: { key: MealKey; label: string; emoji: string }[] = [
 const MEAL_ORDER: MealKey[] = ['breakfast', 'lunch', 'dinner', 'snacks'];
 
 function getMealTypesForDish(k: KitchenInfo, cat: KitchenCategory, dish: KitchenDish): MealKey[] {
+  if (Array.isArray(dish.mealTypes)) {
+    const dataTypes: MealKey[] = [];
+    for (const m of dish.mealTypes) {
+      if ((MEAL_ORDER as readonly string[]).includes(m) && !dataTypes.includes(m as MealKey)) dataTypes.push(m as MealKey);
+    }
+    return dataTypes;
+  }
   const dn = dish.name;
   if (/ترايفل|حلاوة|حلوى|بسبوسة|كنافة|قطايف|كيك|بسكويت|شوكولاتة/i.test(dn)) return ['snacks'];
   if (/حبوب|بذور|لقاح/i.test(dn)) return ['snacks'];

@@ -18,6 +18,7 @@ export interface KitchenDish {
   source: string;
   notes: string;
   mealType?: string;
+  mealTypes?: string[];
 }
 
 export interface KitchenCategory {
@@ -244,6 +245,7 @@ function toKitchenDish(raw: any): KitchenDish | null {
       confidence_color: (raw.confidence_color as KitchenDish['confidence_color']) ?? 'orange',
       source: raw.source ?? '',
       notes: raw.notes ?? '',
+      mealTypes: Array.isArray(raw.mealTypes) ? raw.mealTypes : undefined,
     };
   }
   const grams = raw.grams || 100;
