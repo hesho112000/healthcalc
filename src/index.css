@@ -788,3 +788,50 @@ select.wiz-input { -webkit-appearance: none; appearance: none; background-image:
   50%  { width: 80%; }
   100% { width: 95%; }
 }
+
+/* ---------- Step 5 dish row enter / leave / swap animations ---------- */
+@keyframes dishEnter {
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.dish-enter { animation: dishEnter 0.28s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@keyframes dishLeave {
+  0%   { opacity: 1; transform: scale(1); max-height: 60px; margin-bottom: 6px; }
+  100% { opacity: 0; transform: scale(0.96); max-height: 0; margin-bottom: 0; }
+}
+.dish-leave { animation: dishLeave 0.22s ease-in both; overflow: hidden; }
+
+@keyframes swapFlash {
+  0%   { background-color: #FFFBEF; box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.25); }
+  100% { background-color: transparent; box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+.dish-swap-flash { animation: swapFlash 0.8s ease-out 0.08s both; }
+
+/* ---------- Bottom sheet / modal animations ---------- */
+@keyframes sheetUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+.sheet-up { animation: sheetUp 0.32s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes overlayFade { from { opacity: 0; } to { opacity: 1; } }
+.overlay-fade { animation: overlayFade 0.25s ease-out both; }
+
+/* ---------- Toast entrance ---------- */
+@keyframes toastIn {
+  from { opacity: 0; transform: translate(-50%, 14px) scale(0.95); }
+  to   { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+.toast-in { animation: toastIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* ---------- Skeleton shimmer ---------- */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.skeleton-row {
+  background: linear-gradient(90deg, #EFEBE4 0%, #F8F5EF 40%, #EFEBE4 80%);
+  background-size: 800px 100%;
+  animation: shimmer 1.2s ease-in-out infinite;
+  border-radius: 16px;
+}

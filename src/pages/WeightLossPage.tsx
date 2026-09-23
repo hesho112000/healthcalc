@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
@@ -632,9 +632,22 @@ const WeightLossPage: React.FC = () => {
   const [assignedDishes, setAssignedDishes] = useState<Record<string, MealKey[]>>({});
   const [editField, setEditField] = useState<'age' | 'height' | 'weight' | null>(null);
   const [dietId, setDietId] = useState('normal_lose');
-  const [weeklyPlan, setWeeklyPlan] = useState<PlanDay[]>([]);
+  const [weeklyPlan, setWeeklyPlan] = useState<PlanDay[]>(() => {
+    try {
+      const raw = localStorage.getItem(`hc_weekly_plan_${'egyptian'}`);
+      if (raw) {
+        const p = JSON.parse(raw) as PlanDay[];
+        if (Array.isArray(p) && p.length === 7) return p;
+      }
+    } catch {
+      /* ignore */
+    }
+    return [];
+  });
   const [selectedPlanDay, setSelectedPlanDay] = useState(1);
   const [dishModal, setDishModal] = useState<{ mode: 'add' | 'swap'; dayIndex: number; mealIndex: number; mealType: PlanMealType; dishIndex: number } | null>(null);
+  const [removingDish, setRemovingDish] = useState<string | null>(null);
+  const [swapFlash, setSwapFlash] = useState<string | null>(null);
   const [water, setWater] = useState(0);
   const [mealsDone, setMealsDone] = useState([false, false, false]);
   const [emailOpen, setEmailOpen] = useState(false);
@@ -646,6 +659,7 @@ const WeightLossPage: React.FC = () => {
   const [collapsedSaved, setCollapsedSaved] = useState<Set<MealKey>>(new Set());
   const [showAllSaved, setShowAllSaved] = useState<Set<MealKey>>(new Set());
   const [toast, setToast] = useState('');
+  const [toastUndo, setToastUndo] = useState<{ label: string; action: () => void } | null>(null);
 
   useEffect(() => {
     autoPickExercises(true);
@@ -655,6 +669,23 @@ const WeightLossPage: React.FC = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [step]);
+
+  useEffect(() => {
+    if (!weeklyPlan.length) return;
+    try {
+      localStorage.setItem(`hc_weekly_plan_${selectedKitchenId}`, JSON.stringify(weeklyPlan));
+    } catch {
+      /* ignore */
+    }
+  }, [weeklyPlan, selectedKitchenId]);
+
+  const haptic = (ms = 12) => {
+    try {
+      if (typeof navigator !== 'undefined' && navigator.vibrate) navigator.vibrate(ms);
+    } catch {
+      /* ignore */
+    }
+  };
 
   const parsed = useMemo(
     () => ({
@@ -1084,9 +1115,13 @@ const WeightLossPage: React.FC = () => {
     setDietId(DIETS[g][0].id);
   };
 
-  const notify = (m: string) => {
+  const notify = (m: string, undo?: { label: string; action: () => void }) => {
     setToast(m);
-    window.setTimeout(() => setToast(''), 3200);
+    setToastUndo(undo ?? null);
+    window.setTimeout(() => {
+      setToast('');
+      setToastUndo(null);
+    }, 3800);
   };
 
   const sendEmail = () => {
@@ -1096,7 +1131,11 @@ const WeightLossPage: React.FC = () => {
       setEmailSending(false);
       setEmailDone(emailText.trim());
       setToast(`PDF sent to ${emailText.trim()}`);
-      window.setTimeout(() => setToast(''), 3200);
+      setToastUndo(null);
+      window.setTimeout(() => {
+        setToast('');
+        setToastUndo(null);
+      }, 3200);
     }, 2200);
   };
 
@@ -1145,20 +1184,55 @@ const WeightLossPage: React.FC = () => {
     return { ...d, meals, totalCal: meals.reduce((s, m) => s + m.totalCal, 0) };
   };
 
+  const dishKey = (dayIndex: number, mealIndex: number, dishIndex: number, dish: PlanDish) =>
+    `d${dayIndex}-m${mealIndex}-x${dishIndex}-${dish.dish.name}`;
+
+  const lastRemoved = useRef<{ dayIndex: number; mealIndex: number; dishIndex: number; dish: PlanDish } | null>(null);
+
   const handleRemoveDish = (dayIndex: number, mealIndex: number, dishIndex: number) => {
-    setWeeklyPlan((prev) =>
-      prev.map((d, di) => {
-        if (di !== dayIndex) return d;
-        const meals = d.meals.map((m, mi) =>
-          mi === mealIndex ? { ...m, dishes: m.dishes.filter((_, i) => i !== dishIndex) } : m,
-        );
-        return recalcDay({ ...d, meals });
-      }),
-    );
-    notify(language === 'ar' ? 'تم حذف الطبق' : 'Dish removed');
+    const day = weeklyPlan[dayIndex];
+    const meal = day?.meals[mealIndex];
+    const removed = meal?.dishes[dishIndex];
+    if (!removed) return;
+    lastRemoved.current = { dayIndex, mealIndex, dishIndex, dish: removed };
+    haptic(8);
+    setRemovingDish(dishKey(dayIndex, mealIndex, dishIndex, removed));
+    window.setTimeout(() => {
+      setRemovingDish(null);
+      setWeeklyPlan((prev) =>
+        prev.map((d, di) => {
+          if (di !== dayIndex) return d;
+          const meals = d.meals.map((m, mi) =>
+            mi === mealIndex ? { ...m, dishes: m.dishes.filter((_, i) => i !== dishIndex) } : m,
+          );
+          return recalcDay({ ...d, meals });
+        }),
+      );
+      notify(language === 'ar' ? 'تم حذف الطبق' : 'Dish removed', {
+        label: language === 'ar' ? 'تراجع' : 'Undo',
+        action: () => {
+          const lr = lastRemoved.current;
+          if (!lr) return;
+          lastRemoved.current = null;
+          setWeeklyPlan((prev) =>
+            prev.map((d, di) => {
+              if (di !== lr.dayIndex) return d;
+              const meals = d.meals.map((m, mi) => {
+                if (mi !== lr.mealIndex) return m;
+                const dishes = [...m.dishes];
+                dishes.splice(Math.min(lr.dishIndex, dishes.length), 0, lr.dish);
+                return { ...m, dishes };
+              });
+              return recalcDay({ ...d, meals });
+            }),
+          );
+        },
+      });
+    }, 210);
   };
 
   const handleAddDish = (dayIndex: number, mealIndex: number, dish: KitchenDish) => {
+    haptic(8);
     setWeeklyPlan((prev) =>
       prev.map((d, di) => {
         if (di !== dayIndex) return d;
@@ -1180,6 +1254,10 @@ const WeightLossPage: React.FC = () => {
   };
 
   const handleSwapDish = (dayIndex: number, mealIndex: number, dishIndex: number, dish: KitchenDish) => {
+    haptic(10);
+    const flashKey = `d${dayIndex}-m${mealIndex}-s-${dish.name}`;
+    setSwapFlash(flashKey);
+    window.setTimeout(() => setSwapFlash((k) => (k === flashKey ? null : k)), 900);
     setWeeklyPlan((prev) =>
       prev.map((d, di) => {
         if (di !== dayIndex) return d;
@@ -1961,7 +2039,11 @@ const WeightLossPage: React.FC = () => {
                         {idx < 3 && (
                           <button
                             type="button"
-                            onClick={() => setMealsDone((prev) => prev.map((v, i) => (i === idx ? !v : v)))}
+                            aria-label={done ? (language === 'ar' ? 'إلغاء إكمال الوجبة' : 'Unmark meal done') : (language === 'ar' ? 'تحديد الوجبة كمكتملة' : 'Mark meal done')}
+                            onClick={() => {
+                              haptic(6);
+                              setMealsDone((prev) => prev.map((v, i) => (i === idx ? !v : v)));
+                            }}
                             className={`w-7 h-7 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ml-2 ${done ? 'bg-[#0F4C3A] border-[#0F4C3A] text-white' : 'border-[#C8C4B8] bg-white'}`}
                           >
                             {done ? '✓' : ''}
@@ -1969,37 +2051,50 @@ const WeightLossPage: React.FC = () => {
                         )}
                       </div>
                       <div className="mt-3 space-y-1.5">
-                        {meal.dishes.map((d, di) => (
-                          <div key={di} className="flex items-center justify-between gap-2 text-[12px] min-w-0 group">
-                            <span className="font-semibold text-[#0F4C3A] min-w-0 truncate">• {d.dish.name}</span>
-                            <span className="flex items-center gap-1.5 shrink-0 text-[#8A938E]">
-                              <span className="flex items-center gap-1 min-w-0">
-                                <span className="num font-bold text-[#B8860B]">{d.calories}</span>
-                                <span>kcal</span>
-                                <span className="text-[#C8C4B8]">·</span>
-                                <span className="num font-bold text-[#6B7A75]">{Math.round(d.grams)}g</span>
+                        {meal.dishes.map((d, di) => {
+                          const rowKey = `${di}-${d.dish.name}`;
+                          const leaveKey = `d${selectedPlanDay - 1}-m${idx}-x${di}-${d.dish.name}`;
+                          const flashKey = `d${selectedPlanDay - 1}-m${idx}-s-${d.dish.name}`;
+                          return (
+                            <div
+                              key={rowKey}
+                              className={`flex items-center justify-between gap-2 text-[12px] min-w-0 group rounded-[12px] px-2 py-1 ${
+                                removingDish === leaveKey ? 'dish-leave' : 'dish-enter'
+                              } ${swapFlash === flashKey ? 'dish-swap-flash' : ''}`}
+                            >
+                              <span className="font-semibold text-[#0F4C3A] min-w-0 truncate">• {d.dish.name}</span>
+                              <span className="flex items-center gap-1.5 shrink-0 text-[#8A938E]">
+                                <span className="flex items-center gap-1 min-w-0">
+                                  <span className="num font-bold text-[#B8860B]">{d.calories}</span>
+                                  <span>kcal</span>
+                                  <span className="text-[#C8C4B8]">·</span>
+                                  <span className="num font-bold text-[#6B7A75]">{Math.round(d.grams)}g</span>
+                                </span>
+                                <button
+                                  type="button"
+                                  aria-label={language === 'ar' ? 'تبديل الطبق' : 'Swap dish'}
+                                  title={language === 'ar' ? 'تبديل الطبق' : 'Swap dish'}
+                                  onClick={() => setDishModal({ mode: 'swap', dayIndex: selectedPlanDay - 1, mealIndex: idx, mealType: meal.mealType, dishIndex: di })}
+                                  className="w-7 h-7 rounded-full flex items-center justify-center text-[12px] border border-[#E9E5DB] bg-white hover:border-[#D4AF37] hover:bg-[#FFFBEF] text-[#0F4C3A] transition-all active:scale-95 shrink-0"
+                                >
+                                  🔄
+                                </button>
+                                <button
+                                  type="button"
+                                  aria-label={language === 'ar' ? 'إزالة الطبق' : 'Remove dish'}
+                                  title={language === 'ar' ? 'إزالة الطبق' : 'Remove dish'}
+                                  onClick={() => handleRemoveDish(selectedPlanDay - 1, idx, di)}
+                                  className="w-7 h-7 rounded-full flex items-center justify-center text-[12px] border border-[#E9E5DB] bg-white hover:border-red-300 hover:bg-red-50 text-[#9AA19D] hover:text-red-500 transition-all active:scale-95 shrink-0"
+                                >
+                                  ✕
+                                </button>
                               </span>
-                              <button
-                                type="button"
-                                title={language === 'ar' ? 'تبديل الطبق' : 'Swap dish'}
-                                onClick={() => setDishModal({ mode: 'swap', dayIndex: selectedPlanDay - 1, mealIndex: idx, mealType: meal.mealType, dishIndex: di })}
-                                className="w-7 h-7 rounded-full flex items-center justify-center text-[12px] border border-[#E9E5DB] bg-white hover:border-[#D4AF37] hover:bg-[#FFFBEF] text-[#0F4C3A] transition-all active:scale-95 shrink-0"
-                              >
-                                🔄
-                              </button>
-                              <button
-                                type="button"
-                                title={language === 'ar' ? 'إزالة الطبق' : 'Remove dish'}
-                                onClick={() => handleRemoveDish(selectedPlanDay - 1, idx, di)}
-                                className="w-7 h-7 rounded-full flex items-center justify-center text-[12px] border border-[#E9E5DB] bg-white hover:border-red-300 hover:bg-red-50 text-[#9AA19D] hover:text-red-500 transition-all active:scale-95 shrink-0"
-                              >
-                                ✕
-                              </button>
-                            </span>
-                          </div>
-                        ))}
+                            </div>
+                          );
+                        })}
                         <button
                           type="button"
+                          aria-label={language === 'ar' ? 'أضف طبقاً' : 'Add dish'}
                           onClick={() => setDishModal({ mode: 'add', dayIndex: selectedPlanDay - 1, mealIndex: idx, mealType: meal.mealType, dishIndex: 0 })}
                           className="w-full h-9 rounded-[12px] border-2 border-dashed border-[#E3E0D8] text-[12px] font-bold text-[#0F4C3A] hover:border-[#D4AF37] hover:bg-[#FFFBEF] flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
                         >
@@ -2162,8 +2257,17 @@ const WeightLossPage: React.FC = () => {
       </main>
 
       {toast && (
-        <div className="no-print fixed bottom-24 left-1/2 -translate-x-1/2 z-50 rounded-full bg-[#0F4C3A] text-white text-[12.5px] font-semibold px-5 py-2.5 shadow-lg whitespace-nowrap" role="status" aria-live="polite" aria-atomic="true">
-          {toast}
+        <div className="no-print fixed bottom-24 left-1/2 z-50 flex items-center gap-3 rounded-full bg-[#0F4C3A] text-white text-[12.5px] font-semibold px-5 py-2.5 shadow-lg whitespace-nowrap toast-in" style={{ transform: 'translate(-50%, 0)' }} role="status" aria-live="polite" aria-atomic="true">
+          <span>{toast}</span>
+          {toastUndo && (
+            <button
+              type="button"
+              onClick={toastUndo.action}
+              className="text-[#D4AF37] font-extrabold text-[12px] uppercase tracking-wide hover:underline shrink-0"
+            >
+              {toastUndo.label}
+            </button>
+          )}
         </div>
       )}
 
