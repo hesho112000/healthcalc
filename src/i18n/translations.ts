@@ -511,6 +511,12 @@ type TranslationKeys = {
   'wizard.step5.saveProgress': string;
   'wizard.step5.close': string;
   'wizard.step5.completed': string;
+  'wizard.step5.dailyTarget': string;
+  'wizard.step5.basedOnMaintenance': string;
+  'wizard.step5.planTitle': string;
+  'wizard.step5.todayProgress': string;
+  'wizard.step5.viewFullPlan': string;
+  'wizard.step5.changeCuisineBtn': string;
   'wizard.step5.savedToast': string;
   'wizard.toast.autoKitchen': string;
   'wizard.toast.autoExercises': string;
@@ -4480,7 +4486,13 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.step5.hideDetails': 'Hide Details',
     'wizard.step5.saveProgress': 'Save Progress',
     'wizard.step5.close': 'Close',
-    'wizard.step5.completed': '{n}/3 meals completed',
+    'wizard.step5.completed': '{n}/4 meals completed',
+    'wizard.step5.dailyTarget': 'Daily Target',
+    'wizard.step5.basedOnMaintenance': 'based on maintenance {m} − {d} deficit',
+    'wizard.step5.planTitle': 'Your Nutrition Plan — 7 days × 4 meals',
+    'wizard.step5.todayProgress': 'Today: {n}/4 meals completed',
+    'wizard.step5.viewFullPlan': 'View Full Plan',
+    'wizard.step5.changeCuisineBtn': 'Change Cuisine',
     'wizard.step5.savedToast': 'Progress saved! ✓',
     'wizard.toast.autoKitchen': 'Let us build your ideal kitchen ✨',
     'wizard.toast.autoExercises': 'Auto-selected for your goal & activity 🤖',
@@ -6942,7 +6954,13 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.step5.hideDetails': 'Masquer les détails',
     'wizard.step5.saveProgress': 'Enregistrer la progression',
     'wizard.step5.close': 'Fermer',
-    'wizard.step5.completed': '{n}/3 repas terminés',
+    'wizard.step5.completed': '{n}/4 repas terminés',
+    'wizard.step5.dailyTarget': 'Cible quotidienne',
+    'wizard.step5.basedOnMaintenance': 'basé sur le maintien {m} − {d} de déficit',
+    'wizard.step5.planTitle': 'Votre plan nutritionnel — 7 jours × 4 repas',
+    'wizard.step5.todayProgress': 'Aujourd’hui : {n}/4 repas terminés',
+    'wizard.step5.viewFullPlan': 'Voir le plan complet',
+    'wizard.step5.changeCuisineBtn': 'Changer de cuisine',
     'wizard.step5.savedToast': 'Progression enregistrée ! ✓',
     'wizard.toast.autoKitchen': 'Laissez-nous bâtir votre cuisine idéale ✨',
     'wizard.toast.autoExercises': 'Sélection automatique selon votre objectif et votre activité 🤖',
@@ -9374,7 +9392,13 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.step5.hideDetails': 'Ocultar detalles',
     'wizard.step5.saveProgress': 'Guardar progreso',
     'wizard.step5.close': 'Cerrar',
-    'wizard.step5.completed': '{n}/3 comidas hechas',
+    'wizard.step5.completed': '{n}/4 comidas hechas',
+    'wizard.step5.dailyTarget': 'Objetivo diario',
+    'wizard.step5.basedOnMaintenance': 'basado en el mantenimiento {m} − {d} de déficit',
+    'wizard.step5.planTitle': 'Tu plan de nutrición — 7 días × 4 comidas',
+    'wizard.step5.todayProgress': 'Hoy: {n}/4 comidas hechas',
+    'wizard.step5.viewFullPlan': 'Ver plan completo',
+    'wizard.step5.changeCuisineBtn': 'Cambiar cocina',
     'wizard.step5.savedToast': 'Progreso guardado ✓',
     'wizard.toast.autoKitchen': 'Déjanos construir tu cocina ideal ✨',
     'wizard.toast.autoExercises': 'Selección automática para tu meta y actividad 🤖',
@@ -11806,7 +11830,13 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.step5.hideDetails': 'إخفاء التفاصيل',
     'wizard.step5.saveProgress': 'حفظ التقدم',
     'wizard.step5.close': 'إغلاق',
-    'wizard.step5.completed': '{n}/3 وجبات مكتملة',
+    'wizard.step5.completed': '{n}/4 وجبات مكتملة',
+    'wizard.step5.dailyTarget': 'الهدف اليومي',
+    'wizard.step5.basedOnMaintenance': 'على أساس الصيانة {m} − {d} عجز',
+    'wizard.step5.planTitle': 'خطتك الغذائية — 7 أيام × 4 وجبات',
+    'wizard.step5.todayProgress': 'اليوم: {n}/4 وجبات مكتملة',
+    'wizard.step5.viewFullPlan': 'عرض الخطة كاملة',
+    'wizard.step5.changeCuisineBtn': 'تغيير المطبخ',
     'wizard.step5.savedToast': 'تم حفظ التقدم ✓',
     'wizard.toast.autoKitchen': 'دعنا نبني لك المطبخ المثالي ✨',
     'wizard.toast.autoExercises': 'تم الاختيار التلقائي حسب هدفك ونشاطك 🤖',
@@ -14249,7 +14279,13 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.step5.hideDetails': 'Details ausblenden',
     'wizard.step5.saveProgress': 'Fortschritt speichern',
     'wizard.step5.close': 'Schließen',
-    'wizard.step5.completed': '{n}/3 Mahlzeiten erledigt',
+    'wizard.step5.completed': '{n}/4 Mahlzeiten erledigt',
+    'wizard.step5.dailyTarget': 'Tagesziel',
+    'wizard.step5.basedOnMaintenance': 'basierend auf Erhalt {m} − {d} Defizit',
+    'wizard.step5.planTitle': 'Dein Ernährungsplan — 7 Tage × 4 Mahlzeiten',
+    'wizard.step5.todayProgress': 'Heute: {n}/4 Mahlzeiten erledigt',
+    'wizard.step5.viewFullPlan': 'Vollständigen Plan ansehen',
+    'wizard.step5.changeCuisineBtn': 'Küche ändern',
     'wizard.step5.savedToast': 'Fortschritt gespeichert ✓',
     'wizard.toast.autoKitchen': 'Lass uns deine ideale Küche bauen ✨',
     'wizard.toast.autoExercises': 'Automatisch für dein Ziel & deine Aktivität gewählt 🤖',
