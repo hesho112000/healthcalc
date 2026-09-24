@@ -4,11 +4,12 @@
  "last_updated": "2026-09",
  "sources": [
   "saudi-full.ts (existing project file)",
-  "Expanded with traditional variants"
+  "Expanded with traditional variants",
+  "Expanded with traditional Saudi variants"
  ],
  "disclaimer": "السعرات لكل 100جم مطبوخ. الأرقام تقديرية وقابلة للمراجعة.",
  "portion_guide": "كبسة 350جم, مندي 350جم, هريس 250جم, تميس 90جم",
- "total_dishes": 150,
+ "total_dishes": 300,
  "categories": [
   {
    "id": "breakfast",
@@ -17,7 +18,7 @@
    "name_fr": "Petit-déjeuner",
    "name_es": "Desayuno",
    "name_de": "Frühstück",
-   "count": 10,
+   "count": 24,
    "dishes": [
     {
      "name": "فول",
@@ -558,6 +559,762 @@
      "confidence": 65,
      "confidence_label": "65% - تقديري (variant)",
      "confidence_color": "orange"
+    },
+    {
+     "name": "عريكة بالقشطة",
+     "name_en": "Areeka with Cream",
+     "name_fr": "Areeka à la crème",
+     "name_es": "Areeka con crema",
+     "name_de": "Areeka mit Sahne",
+     "cal_100": 240.0,
+     "p": 5.0,
+     "c": 32.0,
+     "f": 10.0,
+     "fiber_g": 1.8,
+     "sugar_g": 19.0,
+     "sodium_mg": 300.0,
+     "sat_fat_g": 3.3,
+     "serv_g": 150,
+     "cal_serv": 360,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 180
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 360
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 720
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: عريكة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "شكشوكة بالجبن",
+     "name_en": "Shakshouka with Cheese",
+     "name_fr": "Shakshouka au fromage",
+     "name_es": "Shakshouka con queso",
+     "name_de": "Shakshouka mit Käse",
+     "cal_100": 130.0,
+     "p": 9.0,
+     "c": 5.0,
+     "f": 8.0,
+     "fiber_g": 2.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 380.0,
+     "sat_fat_g": 2.6,
+     "serv_g": 220,
+     "cal_serv": 286,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 220جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 110,
+       "kcal": 143
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 220,
+       "kcal": 286
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 440,
+       "kcal": 572
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: شكشوكة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "شكشوكة بالسجق",
+     "name_en": "Shakshouka with Sausage",
+     "name_fr": "Shakshouka au saucisson",
+     "name_es": "Shakshouka con salchicha",
+     "name_de": "Shakshouka mit Wurst",
+     "cal_100": 150.0,
+     "p": 9.0,
+     "c": 6.0,
+     "f": 9.0,
+     "fiber_g": 2.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 380.0,
+     "sat_fat_g": 3.0,
+     "serv_g": 220,
+     "cal_serv": 330,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 220جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 110,
+       "kcal": 165
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 220,
+       "kcal": 330
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 440,
+       "kcal": 660
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: شكشوكة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "شكشوكة بالخضار",
+     "name_en": "Vegetable Shakshouka",
+     "name_fr": "Shakshouka aux légumes",
+     "name_es": "Shakshouka de verduras",
+     "name_de": "Gemüse-Shakshouka",
+     "cal_100": 90.0,
+     "p": 6.0,
+     "c": 7.0,
+     "f": 4.5,
+     "fiber_g": 3.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 380.0,
+     "sat_fat_g": 1.5,
+     "serv_g": 220,
+     "cal_serv": 198,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 220جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 110,
+       "kcal": 99
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 220,
+       "kcal": 198
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 440,
+       "kcal": 396
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: شكشوكة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "بيض مخفوق",
+     "name_en": "Scrambled Eggs",
+     "name_fr": "Œufs brouillés",
+     "name_es": "Huevos revueltos",
+     "name_de": "Rührei",
+     "cal_100": 140.0,
+     "p": 9.0,
+     "c": 1.0,
+     "f": 11.0,
+     "fiber_g": 1.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 300.0,
+     "sat_fat_g": 3.6,
+     "serv_g": 120,
+     "cal_serv": 168,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 120جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 60,
+       "kcal": 84
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 120,
+       "kcal": 168
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 240,
+       "kcal": 336
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: بيض",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "أومليت بالبصل",
+     "name_en": "Onion Omelette",
+     "name_fr": "Omelette à l'oignon",
+     "name_es": "Tortilla de cebolla",
+     "name_de": "Zwiebel-Omelett",
+     "cal_100": 160.0,
+     "p": 11.0,
+     "c": 3.0,
+     "f": 11.0,
+     "fiber_g": 2.2,
+     "sugar_g": 3.0,
+     "sodium_mg": 300.0,
+     "sat_fat_g": 3.6,
+     "serv_g": 150,
+     "cal_serv": 240,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 120
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 240
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 480
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: أومليت",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "أومليت بالطماطم",
+     "name_en": "Tomato Omelette",
+     "name_fr": "Omelette à la tomate",
+     "name_es": "Tortilla de tomate",
+     "name_de": "Tomaten-Omelett",
+     "cal_100": 125.0,
+     "p": 9.0,
+     "c": 4.0,
+     "f": 8.0,
+     "fiber_g": 2.2,
+     "sugar_g": 3.0,
+     "sodium_mg": 300.0,
+     "sat_fat_g": 2.6,
+     "serv_g": 150,
+     "cal_serv": 188,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 94
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 188
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 376
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: أومليت",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "فول بالطحينة",
+     "name_en": "Foul with Tahini",
+     "name_fr": "Fèves au tahini",
+     "name_es": "Habas con tahini",
+     "name_de": "Saubohnen mit Tahini",
+     "cal_100": 130.0,
+     "p": 6.5,
+     "c": 14.0,
+     "f": 5.0,
+     "fiber_g": 2.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 380.0,
+     "sat_fat_g": 1.6,
+     "serv_g": 180,
+     "cal_serv": 234,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 180جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 90,
+       "kcal": 117
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 180,
+       "kcal": 234
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 360,
+       "kcal": 468
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: فول",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "فول حار",
+     "name_en": "Spicy Foul",
+     "name_fr": "Fèves épicées",
+     "name_es": "Habas picantes",
+     "name_de": "Scharfe Saubohnen",
+     "cal_100": 150.0,
+     "p": 8.0,
+     "c": 14.0,
+     "f": 7.0,
+     "fiber_g": 2.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 380.0,
+     "sat_fat_g": 2.3,
+     "serv_g": 180,
+     "cal_serv": 270,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 180جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 90,
+       "kcal": 135
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 180,
+       "kcal": 270
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 360,
+       "kcal": 540
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: فول",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "فول بالطماطم",
+     "name_en": "Foul with Tomato",
+     "name_fr": "Fèves à la tomate",
+     "name_es": "Habas con tomate",
+     "name_de": "Saubohnen mit Tomate",
+     "cal_100": 120.0,
+     "p": 7.0,
+     "c": 13.0,
+     "f": 4.5,
+     "fiber_g": 2.2,
+     "sugar_g": 3.0,
+     "sodium_mg": 380.0,
+     "sat_fat_g": 1.5,
+     "serv_g": 180,
+     "cal_serv": 216,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 180جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 90,
+       "kcal": 108
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 180,
+       "kcal": 216
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 360,
+       "kcal": 432
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: فول",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "فول بالبيض",
+     "name_en": "Foul with Eggs",
+     "name_fr": "Fèves aux œufs",
+     "name_es": "Habas con huevo",
+     "name_de": "Saubohnen mit Ei",
+     "cal_100": 150.0,
+     "p": 9.0,
+     "c": 12.0,
+     "f": 7.0,
+     "fiber_g": 2.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 380.0,
+     "sat_fat_g": 2.3,
+     "serv_g": 200,
+     "cal_serv": 300,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 200جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 100,
+       "kcal": 150
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 200,
+       "kcal": 300
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 400,
+       "kcal": 600
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: فول",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "فول بالليمون",
+     "name_en": "Foul with Lemon",
+     "name_fr": "Fèves au citron",
+     "name_es": "Habas con limón",
+     "name_de": "Saubohnen mit Zitrone",
+     "cal_100": 115.0,
+     "p": 7.0,
+     "c": 13.0,
+     "f": 3.5,
+     "fiber_g": 2.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 380.0,
+     "sat_fat_g": 1.2,
+     "serv_g": 180,
+     "cal_serv": 207,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 180جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 90,
+       "kcal": 104
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 180,
+       "kcal": 207
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 360,
+       "kcal": 414
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: فول",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "عجة بالبيض",
+     "name_en": "Egg Ajjah",
+     "name_fr": "Œufs en cocotte (ajjah)",
+     "name_es": "Ajjah (tortilla árabe)",
+     "name_de": "Arabisches Omelett (Ajjah)",
+     "cal_100": 150.0,
+     "p": 9.0,
+     "c": 5.0,
+     "f": 10.0,
+     "fiber_g": 2.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 300.0,
+     "sat_fat_g": 3.3,
+     "serv_g": 150,
+     "cal_serv": 225,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 112
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 225
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 450
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: بيض",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "بيض مقلي",
+     "name_en": "Fried Eggs",
+     "name_fr": "Œufs au plat",
+     "name_es": "Huevos fritos",
+     "name_de": "Spiegeleier",
+     "cal_100": 175.0,
+     "p": 9.0,
+     "c": 1.5,
+     "f": 14.5,
+     "fiber_g": 1.7,
+     "sugar_g": 2.0,
+     "sodium_mg": 300.0,
+     "sat_fat_g": 4.8,
+     "serv_g": 100,
+     "cal_serv": 175,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 100جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 50,
+       "kcal": 88
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 100,
+       "kcal": 175
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 200,
+       "kcal": 350
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: بيض",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
     }
    ]
   },
@@ -568,7 +1325,7 @@
    "name_fr": "Pains & Viennoiseries",
    "name_es": "Panes y Repostería",
    "name_de": "Brote & Gebäck",
-   "count": 13,
+   "count": 30,
    "dishes": [
     {
      "name": "تميس",
@@ -1286,6 +2043,941 @@
      "confidence": 65,
      "confidence_label": "65% - تقديري (variant)",
      "confidence_color": "orange"
+    },
+    {
+     "name": "مطبق بالعسل",
+     "name_en": "Mutabbaq with Honey",
+     "name_fr": "Mutabbaq au miel",
+     "name_es": "Mutabbaq con miel",
+     "name_de": "Mutabbaq mit Honig",
+     "cal_100": 245.0,
+     "p": 5.0,
+     "c": 32.0,
+     "f": 11.0,
+     "fiber_g": 1.8,
+     "sugar_g": 24.0,
+     "sodium_mg": 340.0,
+     "sat_fat_g": 3.5,
+     "serv_g": 100,
+     "cal_serv": 245,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 100جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 50,
+       "kcal": 122
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 100,
+       "kcal": 245
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 200,
+       "kcal": 490
+      }
+     ],
+     "healthy": true,
+     "is_fried": true,
+     "is_sweet": true,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مطبق",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مطبق بالموز",
+     "name_en": "Banana Mutabbaq",
+     "name_fr": "Mutabbaq à la banane",
+     "name_es": "Mutabbaq de plátano",
+     "name_de": "Mutabbaq mit Banane",
+     "cal_100": 230.0,
+     "p": 4.5,
+     "c": 30.0,
+     "f": 10.0,
+     "fiber_g": 1.8,
+     "sugar_g": 19.0,
+     "sodium_mg": 340.0,
+     "sat_fat_g": 3.2,
+     "serv_g": 100,
+     "cal_serv": 230,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 100جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 50,
+       "kcal": 115
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 100,
+       "kcal": 230
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 200,
+       "kcal": 460
+      }
+     ],
+     "healthy": true,
+     "is_fried": true,
+     "is_sweet": true,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مطبق",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "تميس بالجبن",
+     "name_en": "Cheese Tameez",
+     "name_fr": "Tameez au fromage",
+     "name_es": "Tameez con queso",
+     "name_de": "Tameez mit Käse",
+     "cal_100": 250.0,
+     "p": 7.0,
+     "c": 36.0,
+     "f": 8.0,
+     "fiber_g": 1.8,
+     "sugar_g": 2.0,
+     "sodium_mg": 340.0,
+     "sat_fat_g": 2.6,
+     "serv_g": 90,
+     "cal_serv": 225,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 90جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 45,
+       "kcal": 112
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 90,
+       "kcal": 225
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 180,
+       "kcal": 450
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: تميس",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "تميس بالسمسم",
+     "name_en": "Sesame Tameez",
+     "name_fr": "Tameez au sésame",
+     "name_es": "Tameez con sésamo",
+     "name_de": "Tameez mit Sesam",
+     "cal_100": 242.0,
+     "p": 6.5,
+     "c": 44.0,
+     "f": 4.5,
+     "fiber_g": 1.8,
+     "sugar_g": 2.0,
+     "sodium_mg": 340.0,
+     "sat_fat_g": 1.4,
+     "serv_g": 90,
+     "cal_serv": 218,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 90جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 45,
+       "kcal": 109
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 90,
+       "kcal": 218
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 180,
+       "kcal": 436
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: تميس",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "تميس بالطحين الأسمر",
+     "name_en": "Whole-Wheat Tameez",
+     "name_fr": "Tameez au blé complet",
+     "name_es": "Tameez integral",
+     "name_de": "Vollkorn-Tameez",
+     "cal_100": 225.0,
+     "p": 7.0,
+     "c": 42.0,
+     "f": 2.5,
+     "fiber_g": 1.8,
+     "sugar_g": 2.0,
+     "sodium_mg": 340.0,
+     "sat_fat_g": 0.8,
+     "serv_g": 90,
+     "cal_serv": 202,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 90جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 45,
+       "kcal": 101
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 90,
+       "kcal": 202
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 180,
+       "kcal": 404
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: تميس",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "خبز بالسمسم",
+     "name_en": "Sesame Bread",
+     "name_fr": "Pain au sésame",
+     "name_es": "Pan con sésamo",
+     "name_de": "Sesambrot",
+     "cal_100": 250.0,
+     "p": 7.0,
+     "c": 42.0,
+     "f": 5.5,
+     "fiber_g": 1.8,
+     "sugar_g": 2.0,
+     "sodium_mg": 340.0,
+     "sat_fat_g": 1.8,
+     "serv_g": 80,
+     "cal_serv": 200,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 80جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 40,
+       "kcal": 100
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 80,
+       "kcal": 200
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 160,
+       "kcal": 400
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: عيش بر",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "فطائر بالسبانخ",
+     "name_en": "Spinach Fatayer",
+     "name_fr": "Fatayer aux épinards",
+     "name_es": "Fatayer de espinacas",
+     "name_de": "Spinat-Fatayer",
+     "cal_100": 220.0,
+     "p": 6.0,
+     "c": 26.0,
+     "f": 10.0,
+     "fiber_g": 1.8,
+     "sugar_g": 2.0,
+     "sodium_mg": 340.0,
+     "sat_fat_g": 3.2,
+     "serv_g": 90,
+     "cal_serv": 198,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 90جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 45,
+       "kcal": 99
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 90,
+       "kcal": 198
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 180,
+       "kcal": 396
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: فطيرة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "فطائر باللحم",
+     "name_en": "Meat Fatayer",
+     "name_fr": "Fatayer à la viande",
+     "name_es": "Fatayer de carne",
+     "name_de": "Fleisch-Fatayer",
+     "cal_100": 245.0,
+     "p": 9.0,
+     "c": 24.0,
+     "f": 12.0,
+     "fiber_g": 1.8,
+     "sugar_g": 2.0,
+     "sodium_mg": 340.0,
+     "sat_fat_g": 3.8,
+     "serv_g": 90,
+     "cal_serv": 220,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 90جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 45,
+       "kcal": 110
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 90,
+       "kcal": 220
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 180,
+       "kcal": 440
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: فطيرة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "فطائر بالجبن",
+     "name_en": "Cheese Fatayer",
+     "name_fr": "Fatayer au fromage",
+     "name_es": "Fatayer de queso",
+     "name_de": "Käse-Fatayer",
+     "cal_100": 235.0,
+     "p": 8.0,
+     "c": 25.0,
+     "f": 11.0,
+     "fiber_g": 1.8,
+     "sugar_g": 2.0,
+     "sodium_mg": 340.0,
+     "sat_fat_g": 3.5,
+     "serv_g": 90,
+     "cal_serv": 212,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 90جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 45,
+       "kcal": 106
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 90,
+       "kcal": 212
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 180,
+       "kcal": 424
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: فطيرة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "فطائر بالزعتر",
+     "name_en": "Za'atar Fatayer",
+     "name_fr": "Fatayer au za'atar",
+     "name_es": "Fatayer con za'atar",
+     "name_de": "Za'atar-Fatayer",
+     "cal_100": 215.0,
+     "p": 6.0,
+     "c": 27.0,
+     "f": 9.0,
+     "fiber_g": 1.8,
+     "sugar_g": 2.0,
+     "sodium_mg": 340.0,
+     "sat_fat_g": 2.9,
+     "serv_g": 90,
+     "cal_serv": 194,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 90جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 45,
+       "kcal": 97
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 90,
+       "kcal": 194
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 180,
+       "kcal": 388
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: فطيرة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "سمبوسك بالدجاج",
+     "name_en": "Chicken Sambosa",
+     "name_fr": "Samboussa au poulet",
+     "name_es": "Sambusa de pollo",
+     "name_de": "Sambusa mit Hähnchen",
+     "cal_100": 235.0,
+     "p": 9.0,
+     "c": 23.0,
+     "f": 12.0,
+     "fiber_g": 1.8,
+     "sugar_g": 2.0,
+     "sodium_mg": 340.0,
+     "sat_fat_g": 3.8,
+     "serv_g": 60,
+     "cal_serv": 141,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 60جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 30,
+       "kcal": 70
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 60,
+       "kcal": 141
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 120,
+       "kcal": 282
+      }
+     ],
+     "healthy": true,
+     "is_fried": true,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: سمبوسك",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "سمبوسك بالخضار",
+     "name_en": "Vegetable Sambosa",
+     "name_fr": "Samboussa aux légumes",
+     "name_es": "Sambusa de verduras",
+     "name_de": "Gemüse-Sambusa",
+     "cal_100": 190.0,
+     "p": 4.0,
+     "c": 24.0,
+     "f": 9.0,
+     "fiber_g": 3.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 340.0,
+     "sat_fat_g": 2.9,
+     "serv_g": 60,
+     "cal_serv": 114,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 60جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 30,
+       "kcal": 57
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 60,
+       "kcal": 114
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 120,
+       "kcal": 228
+      }
+     ],
+     "healthy": true,
+     "is_fried": true,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: سمبوسك",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "خبز عربي",
+     "name_en": "Arabic Bread (Pita)",
+     "name_fr": "Pain arabe (pita)",
+     "name_es": "Pan árabe (pita)",
+     "name_de": "Arabisches Fladenbrot (Pita)",
+     "cal_100": 260.0,
+     "p": 8.0,
+     "c": 52.0,
+     "f": 1.5,
+     "fiber_g": 1.8,
+     "sugar_g": 2.0,
+     "sodium_mg": 340.0,
+     "sat_fat_g": 0.5,
+     "serv_g": 60,
+     "cal_serv": 156,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 60جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 30,
+       "kcal": 78
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 60,
+       "kcal": 156
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 120,
+       "kcal": 312
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: عيش بر",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "خبز التنور",
+     "name_en": "Tandoor Bread",
+     "name_fr": "Pain tandoor",
+     "name_es": "Pan tandoor",
+     "name_de": "Tandoor-Brot",
+     "cal_100": 245.0,
+     "p": 7.0,
+     "c": 46.0,
+     "f": 3.0,
+     "fiber_g": 1.8,
+     "sugar_g": 2.0,
+     "sodium_mg": 340.0,
+     "sat_fat_g": 1.0,
+     "serv_g": 80,
+     "cal_serv": 196,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 80جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 40,
+       "kcal": 98
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 80,
+       "kcal": 196
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 160,
+       "kcal": 392
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: عيش بر",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "خبز الشعير",
+     "name_en": "Barley Bread",
+     "name_fr": "Pain d'orge",
+     "name_es": "Pan de cebada",
+     "name_de": "Gerstenbrot",
+     "cal_100": 240.0,
+     "p": 7.0,
+     "c": 46.0,
+     "f": 2.5,
+     "fiber_g": 1.8,
+     "sugar_g": 2.0,
+     "sodium_mg": 340.0,
+     "sat_fat_g": 0.8,
+     "serv_g": 80,
+     "cal_serv": 192,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 80جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 40,
+       "kcal": 96
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 80,
+       "kcal": 192
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 160,
+       "kcal": 384
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: خبز",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "قرصان",
+     "name_en": "Gursan (Unleavened Discs)",
+     "name_fr": "Qarssan (galettes sans levain)",
+     "name_es": "Qarsan (panes ázimos)",
+     "name_de": "Gursan (ungesäuerte Fladen)",
+     "cal_100": 265.0,
+     "p": 6.0,
+     "c": 48.0,
+     "f": 5.0,
+     "fiber_g": 1.8,
+     "sugar_g": 2.0,
+     "sodium_mg": 340.0,
+     "sat_fat_g": 1.6,
+     "serv_g": 100,
+     "cal_serv": 265,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 100جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 50,
+       "kcal": 132
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 100,
+       "kcal": 265
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 200,
+       "kcal": 530
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: عيش بر",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كعك بالسمسم",
+     "name_en": "Sesame Kaak",
+     "name_fr": "Kaak au sésame",
+     "name_es": "Kaak con sésamo",
+     "name_de": "Sesam-Kaak",
+     "cal_100": 320.0,
+     "p": 7.0,
+     "c": 48.0,
+     "f": 11.0,
+     "fiber_g": 1.8,
+     "sugar_g": 2.0,
+     "sodium_mg": 340.0,
+     "sat_fat_g": 3.5,
+     "serv_g": 50,
+     "cal_serv": 160,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 50جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 25,
+       "kcal": 80
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 50,
+       "kcal": 160
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 100,
+       "kcal": 320
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كعك",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
     }
    ]
   },
@@ -1296,7 +2988,7 @@
    "name_fr": "Soupes",
    "name_es": "Sopas",
    "name_de": "Suppen",
-   "count": 3,
+   "count": 13,
    "dishes": [
     {
      "name": "شوربة عدس",
@@ -1462,6 +3154,556 @@
      "confidence": 65,
      "confidence_label": "65% - تقديري (variant)",
      "confidence_color": "orange"
+    },
+    {
+     "name": "مرق دجاج",
+     "name_en": "Chicken Broth (Marag)",
+     "name_fr": "Bouillon de poulet (marag)",
+     "name_es": "Caldo de pollo (marag)",
+     "name_de": "Hühnerbrühe (Marag)",
+     "cal_100": 45.0,
+     "p": 4.0,
+     "c": 2.0,
+     "f": 2.0,
+     "fiber_g": 2.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 0.7,
+     "serv_g": 250,
+     "cal_serv": 112,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 56
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 112
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 224
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مرق",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مرق لحم",
+     "name_en": "Lamb Broth (Marag)",
+     "name_fr": "Bouillon d'agneau (marag)",
+     "name_es": "Caldo de cordero (marag)",
+     "name_de": "Lammbrühe (Marag)",
+     "cal_100": 70.0,
+     "p": 6.0,
+     "c": 1.0,
+     "f": 4.0,
+     "fiber_g": 1.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.3,
+     "serv_g": 250,
+     "cal_serv": 175,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 88
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 175
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 350
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مرق",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مرق بقري",
+     "name_en": "Beef Broth (Marag)",
+     "name_fr": "Bouillon de bœuf (marag)",
+     "name_es": "Caldo de res (marag)",
+     "name_de": "Rinderbrühe (Marag)",
+     "cal_100": 65.0,
+     "p": 6.0,
+     "c": 1.0,
+     "f": 3.5,
+     "fiber_g": 1.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.2,
+     "serv_g": 250,
+     "cal_serv": 162,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 81
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 162
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 324
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مرق",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مرق خضار",
+     "name_en": "Vegetable Broth (Marag)",
+     "name_fr": "Bouillon de légumes (marag)",
+     "name_es": "Caldo de verduras (marag)",
+     "name_de": "Gemüsebrühe (Marag)",
+     "cal_100": 35.0,
+     "p": 1.5,
+     "c": 5.0,
+     "f": 0.8,
+     "fiber_g": 3.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 0.3,
+     "serv_g": 250,
+     "cal_serv": 88,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 44
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 88
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 176
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مرق",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مرق عدس",
+     "name_en": "Lentil Broth (Marag)",
+     "name_fr": "Bouillon de lentilles",
+     "name_es": "Caldo de lentejas",
+     "name_de": "Linsenbrühe",
+     "cal_100": 70.0,
+     "p": 4.0,
+     "c": 10.0,
+     "f": 1.5,
+     "fiber_g": 3.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 0.5,
+     "serv_g": 250,
+     "cal_serv": 175,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 88
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 175
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 350
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مرق",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "شوربة فريكة",
+     "name_en": "Freekeh Soup",
+     "name_fr": "Soupe de freekeh",
+     "name_es": "Sopa de freekeh",
+     "name_de": "Freekeh-Suppe",
+     "cal_100": 80.0,
+     "p": 3.5,
+     "c": 12.0,
+     "f": 1.8,
+     "fiber_g": 3.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 0.6,
+     "serv_g": 250,
+     "cal_serv": 200,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 100
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 200
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 400
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: شوربة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "شوربة شعير",
+     "name_en": "Barley Soup",
+     "name_fr": "Soupe d'orge",
+     "name_es": "Sopa de cebada",
+     "name_de": "Gerstensuppe",
+     "cal_100": 75.0,
+     "p": 2.5,
+     "c": 14.0,
+     "f": 1.0,
+     "fiber_g": 2.8,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 0.3,
+     "serv_g": 250,
+     "cal_serv": 188,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 94
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 188
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 376
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: شوربة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "شوربة شوفان",
+     "name_en": "Oat Soup",
+     "name_fr": "Soupe d'avoine",
+     "name_es": "Sopa de avena",
+     "name_de": "Hafersuppe",
+     "cal_100": 70.0,
+     "p": 3.0,
+     "c": 11.0,
+     "f": 1.5,
+     "fiber_g": 2.8,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 0.5,
+     "serv_g": 250,
+     "cal_serv": 175,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 88
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 175
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 350
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: شوربة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "شوربة حمص",
+     "name_en": "Chickpea Soup",
+     "name_fr": "Soupe de pois chiches",
+     "name_es": "Sopa de garbanzos",
+     "name_de": "Kichererbsensuppe",
+     "cal_100": 95.0,
+     "p": 5.0,
+     "c": 12.0,
+     "f": 3.0,
+     "fiber_g": 2.8,
+     "sugar_g": 2.0,
+     "sodium_mg": 380.0,
+     "sat_fat_g": 1.0,
+     "serv_g": 250,
+     "cal_serv": 238,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 119
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 238
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 476
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: شوربة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "شوربة خضار",
+     "name_en": "Vegetable Soup",
+     "name_fr": "Soupe de légumes",
+     "name_es": "Sopa de verduras",
+     "name_de": "Gemüsesuppe",
+     "cal_100": 45.0,
+     "p": 2.0,
+     "c": 6.0,
+     "f": 1.5,
+     "fiber_g": 3.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 0.5,
+     "serv_g": 250,
+     "cal_serv": 112,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 56
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 112
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 224
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: شوربة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
     }
    ]
   },
@@ -1472,7 +3714,7 @@
    "name_fr": "Salades & Accompagnements",
    "name_es": "Ensaladas y Guarniciones",
    "name_de": "Salate & Beilagen",
-   "count": 7,
+   "count": 18,
    "dishes": [
     {
      "name": "سلطة خضراء",
@@ -1858,6 +4100,611 @@
      "confidence": 65,
      "confidence_label": "65% - تقديري (variant)",
      "confidence_color": "orange"
+    },
+    {
+     "name": "فتوش",
+     "name_en": "Fattoush",
+     "name_fr": "Fattouche",
+     "name_es": "Fattoush",
+     "name_de": "Fattoush",
+     "cal_100": 90.0,
+     "p": 1.5,
+     "c": 11.0,
+     "f": 4.0,
+     "fiber_g": 3.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 280.0,
+     "sat_fat_g": 1.3,
+     "serv_g": 150,
+     "cal_serv": 135,
+     "serving_unit": "صحن",
+     "serving_description": "صحن 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 68
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 135
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 270
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: سلطة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "سلطة طحينة",
+     "name_en": "Tahini Salad",
+     "name_fr": "Salade au tahini",
+     "name_es": "Ensalada de tahini",
+     "name_de": "Tahini-Salat",
+     "cal_100": 150.0,
+     "p": 3.0,
+     "c": 9.0,
+     "f": 11.0,
+     "fiber_g": 3.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 280.0,
+     "sat_fat_g": 3.6,
+     "serv_g": 100,
+     "cal_serv": 150,
+     "serving_unit": "صحن",
+     "serving_description": "صحن 100جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 50,
+       "kcal": 75
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 100,
+       "kcal": 150
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 200,
+       "kcal": 300
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: سلطة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "سلطة عربية",
+     "name_en": "Arab Salad",
+     "name_fr": "Salade arabe",
+     "name_es": "Ensalada árabe",
+     "name_de": "Arabischer Salat",
+     "cal_100": 60.0,
+     "p": 1.5,
+     "c": 8.0,
+     "f": 3.0,
+     "fiber_g": 3.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 280.0,
+     "sat_fat_g": 1.0,
+     "serv_g": 150,
+     "cal_serv": 90,
+     "serving_unit": "صحن",
+     "serving_description": "صحن 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 45
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 90
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 180
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: سلطة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "سلطة جرجير",
+     "name_en": "Arugula Salad",
+     "name_fr": "Salade de roquette",
+     "name_es": "Ensalada de rúcula",
+     "name_de": "Rucola-Salat",
+     "cal_100": 35.0,
+     "p": 2.0,
+     "c": 3.0,
+     "f": 1.5,
+     "fiber_g": 3.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 280.0,
+     "sat_fat_g": 0.5,
+     "serv_g": 100,
+     "cal_serv": 35,
+     "serving_unit": "صحن",
+     "serving_description": "صحن 100جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 50,
+       "kcal": 18
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 100,
+       "kcal": 35
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 200,
+       "kcal": 70
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: سلطة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "بابا غنوج",
+     "name_en": "Baba Ghanoush",
+     "name_fr": "Baba ganoush",
+     "name_es": "Babaganush",
+     "name_de": "Baba-Ghanoush",
+     "cal_100": 110.0,
+     "p": 2.0,
+     "c": 8.0,
+     "f": 8.0,
+     "fiber_g": 3.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 280.0,
+     "sat_fat_g": 2.6,
+     "serv_g": 80,
+     "cal_serv": 88,
+     "serving_unit": "صحن",
+     "serving_description": "صحن 80جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 40,
+       "kcal": 44
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 80,
+       "kcal": 88
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 160,
+       "kcal": 176
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: متبل",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "زيتون مشكل",
+     "name_en": "Mixed Olives",
+     "name_fr": "Olives assorties",
+     "name_es": "Aceitunas variadas",
+     "name_de": "Gemischte Oliven",
+     "cal_100": 145.0,
+     "p": 1.0,
+     "c": 4.0,
+     "f": 15.0,
+     "fiber_g": 3.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 280.0,
+     "sat_fat_g": 5.0,
+     "serv_g": 60,
+     "cal_serv": 87,
+     "serving_unit": "صحن",
+     "serving_description": "صحن 60جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 30,
+       "kcal": 44
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 60,
+       "kcal": 87
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 120,
+       "kcal": 174
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: زيتون",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مخلل خيار",
+     "name_en": "Pickled Cucumbers",
+     "name_fr": "Cornichons marinés",
+     "name_es": "Pepinillos encurtidos",
+     "name_de": "Eingelegte Gurken",
+     "cal_100": 20.0,
+     "p": 0.7,
+     "c": 4.0,
+     "f": 0.2,
+     "fiber_g": 3.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 280.0,
+     "sat_fat_g": 0.1,
+     "serv_g": 80,
+     "cal_serv": 16,
+     "serving_unit": "صحن",
+     "serving_description": "صحن 80جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 40,
+       "kcal": 8
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 80,
+       "kcal": 16
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 160,
+       "kcal": 32
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مخلل",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مخلل جزر",
+     "name_en": "Pickled Carrots",
+     "name_fr": "Carottes marinées",
+     "name_es": "Zanahorias encurtidas",
+     "name_de": "Eingelegte Karotten",
+     "cal_100": 25.0,
+     "p": 0.5,
+     "c": 5.0,
+     "f": 0.2,
+     "fiber_g": 3.0,
+     "sugar_g": 3.0,
+     "sodium_mg": 280.0,
+     "sat_fat_g": 0.1,
+     "serv_g": 80,
+     "cal_serv": 20,
+     "serving_unit": "صحن",
+     "serving_description": "صحن 80جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 40,
+       "kcal": 10
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 80,
+       "kcal": 20
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 160,
+       "kcal": 40
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مخلل",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "رز مفلفل",
+     "name_en": "Spiced Pilaf Rice",
+     "name_fr": "Riz pilaf épicé",
+     "name_es": "Arroz pilaf especiado",
+     "name_de": "Gewürzter Pilaw-Reis",
+     "cal_100": 130.0,
+     "p": 2.5,
+     "c": 28.0,
+     "f": 0.8,
+     "fiber_g": 3.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 280.0,
+     "sat_fat_g": 0.3,
+     "serv_g": 150,
+     "cal_serv": 195,
+     "serving_unit": "صحن",
+     "serving_description": "صحن 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 98
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 195
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 390
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: رز أبيض",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "رز بالشعيرية",
+     "name_en": "Rice with Vermicelli",
+     "name_fr": "Riz aux vermicelles",
+     "name_es": "Arroz con fideos",
+     "name_de": "Reis mit Fadennudeln",
+     "cal_100": 165.0,
+     "p": 3.5,
+     "c": 31.0,
+     "f": 3.0,
+     "fiber_g": 3.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 280.0,
+     "sat_fat_g": 1.0,
+     "serv_g": 150,
+     "cal_serv": 248,
+     "serving_unit": "صحن",
+     "serving_description": "صحن 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 124
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 248
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 496
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: رز أبيض",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كسكسي بالخضار",
+     "name_en": "Vegetable Couscous",
+     "name_fr": "Couscous aux légumes",
+     "name_es": "Cuscús de verduras",
+     "name_de": "Gemüse-Couscous",
+     "cal_100": 105.0,
+     "p": 3.0,
+     "c": 19.0,
+     "f": 2.0,
+     "fiber_g": 3.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 280.0,
+     "sat_fat_g": 0.7,
+     "serv_g": 250,
+     "cal_serv": 262,
+     "serving_unit": "صحن",
+     "serving_description": "صحن 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 131
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 262
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 524
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كسكسي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
     }
    ]
   },
@@ -1868,7 +4715,7 @@
    "name_fr": "Plats de Riz",
    "name_es": "Platos de Arroz",
    "name_de": "Reisgerichte",
-   "count": 22,
+   "count": 46,
    "dishes": [
     {
      "name": "كبسة دجاج",
@@ -3079,6 +5926,1326 @@
      "confidence": 65,
      "confidence_label": "65% - تقديري (variant)",
      "confidence_color": "orange"
+    },
+    {
+     "name": "كبسة بالمكسرات",
+     "name_en": "Kabsa with Nuts",
+     "name_fr": "Kabsa aux noix",
+     "name_es": "Kabsa con nueces",
+     "name_de": "Kabsa mit Nüssen",
+     "cal_100": 135.0,
+     "p": 7.0,
+     "c": 14.0,
+     "f": 5.0,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.6,
+     "serv_g": 350,
+     "cal_serv": 472,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 236
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 472
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 944
+      }
+     ],
+     "healthy": false,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كبسة لحم",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كبسة بالزبيب",
+     "name_en": "Kabsa with Raisins",
+     "name_fr": "Kabsa aux raisins",
+     "name_es": "Kabsa con pasas",
+     "name_de": "Kabsa mit Rosinen",
+     "cal_100": 130.0,
+     "p": 6.0,
+     "c": 15.0,
+     "f": 4.0,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.3,
+     "serv_g": 350,
+     "cal_serv": 455,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 228
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 455
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 910
+      }
+     ],
+     "healthy": false,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كبسة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كبسة بريانية",
+     "name_en": "Biryani-Style Kabsa",
+     "name_fr": "Kabsa façon biryani",
+     "name_es": "Kabsa estilo biryani",
+     "name_de": "Biryani-artige Kabsa",
+     "cal_100": 125.0,
+     "p": 6.5,
+     "c": 14.0,
+     "f": 3.5,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.2,
+     "serv_g": 350,
+     "cal_serv": 438,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 219
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 438
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 876
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كبسة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كبسة مشكّلة",
+     "name_en": "Mixed-Meat Kabsa",
+     "name_fr": "Kabsa de viandes mélangées",
+     "name_es": "Kabsa de carnes mixtas",
+     "name_de": "Kabsa mit gemischtem Fleisch",
+     "cal_100": 130.0,
+     "p": 7.0,
+     "c": 14.0,
+     "f": 4.5,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.5,
+     "serv_g": 350,
+     "cal_serv": 455,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 228
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 455
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 910
+      }
+     ],
+     "healthy": false,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كبسة لحم",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كبسة باللحم البقري",
+     "name_en": "Beef Kabsa",
+     "name_fr": "Kabsa au bœuf",
+     "name_es": "Kabsa de res",
+     "name_de": "Kabsa mit Rindfleisch",
+     "cal_100": 128.0,
+     "p": 7.0,
+     "c": 14.0,
+     "f": 4.0,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.3,
+     "serv_g": 350,
+     "cal_serv": 448,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 224
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 448
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 896
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كبسة لحم",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كبسة بالحمص",
+     "name_en": "Kabsa with Chickpeas",
+     "name_fr": "Kabsa aux pois chiches",
+     "name_es": "Kabsa con garbanzos",
+     "name_de": "Kabsa mit Kichererbsen",
+     "cal_100": 110.0,
+     "p": 5.0,
+     "c": 15.0,
+     "f": 2.5,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 380.0,
+     "sat_fat_g": 0.8,
+     "serv_g": 350,
+     "cal_serv": 385,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 192
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 385
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 770
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كبسة خضار",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كبسة باللحم المفروم",
+     "name_en": "Kabsa with Minced Meat",
+     "name_fr": "Kabsa à la viande hachée",
+     "name_es": "Kabsa con carne picada",
+     "name_de": "Kabsa mit Hackfleisch",
+     "cal_100": 120.0,
+     "p": 6.0,
+     "c": 13.0,
+     "f": 4.0,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.3,
+     "serv_g": 350,
+     "cal_serv": 420,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 210
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 420
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 840
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كبسة لحم",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مندي مشكّل",
+     "name_en": "Mixed Mandi",
+     "name_fr": "Mandi mélangé",
+     "name_es": "Mandi mixto",
+     "name_de": "Gemischtes Mandi",
+     "cal_100": 128.0,
+     "p": 7.5,
+     "c": 12.5,
+     "f": 4.5,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.5,
+     "serv_g": 350,
+     "cal_serv": 448,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 224
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 448
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 896
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مندي لحم",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مندي بالخضار",
+     "name_en": "Vegetable Mandi",
+     "name_fr": "Mandi aux légumes",
+     "name_es": "Mandi de verduras",
+     "name_de": "Gemüse-Mandi",
+     "cal_100": 90.0,
+     "p": 2.5,
+     "c": 14.0,
+     "f": 2.0,
+     "fiber_g": 3.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 0.7,
+     "serv_g": 350,
+     "cal_serv": 315,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 158
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 315
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 630
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مندي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مقلوبة روبيان",
+     "name_en": "Shrimp Maqluba",
+     "name_fr": "Maqluba aux crevettes",
+     "name_es": "Maqluba de camarones",
+     "name_de": "Maqluba mit Garnelen",
+     "cal_100": 100.0,
+     "p": 5.5,
+     "c": 13.0,
+     "f": 2.5,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 0.8,
+     "serv_g": 350,
+     "cal_serv": 350,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 175
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 350
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 700
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مقلوبة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مقلوبة لحم",
+     "name_en": "Meat Maqluba",
+     "name_fr": "Maqluba à la viande",
+     "name_es": "Maqluba de carne",
+     "name_de": "Maqluba mit Fleisch",
+     "cal_100": 118.0,
+     "p": 6.5,
+     "c": 14.0,
+     "f": 3.5,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.2,
+     "serv_g": 350,
+     "cal_serv": 413,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 206
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 413
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 826
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مقلوبة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مقلوبة خضار",
+     "name_en": "Vegetable Maqluba",
+     "name_fr": "Maqluba aux légumes",
+     "name_es": "Maqluba de verduras",
+     "name_de": "Gemüse-Maqluba",
+     "cal_100": 88.0,
+     "p": 2.5,
+     "c": 15.0,
+     "f": 2.0,
+     "fiber_g": 3.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 0.7,
+     "serv_g": 350,
+     "cal_serv": 308,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 154
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 308
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 616
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مقلوبة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مقلوبة سمك",
+     "name_en": "Fish Maqluba",
+     "name_fr": "Maqluba au poisson",
+     "name_es": "Maqluba de pescado",
+     "name_de": "Maqluba mit Fisch",
+     "cal_100": 105.0,
+     "p": 6.0,
+     "c": 13.0,
+     "f": 2.5,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 0.8,
+     "serv_g": 350,
+     "cal_serv": 368,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 184
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 368
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 736
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مقلوبة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مثلوثة بقري",
+     "name_en": "Beef Mathloutha",
+     "name_fr": "Mathloutha au bœuf",
+     "name_es": "Mathloutha de res",
+     "name_de": "Mathloutha mit Rindfleisch",
+     "cal_100": 115.0,
+     "p": 6.0,
+     "c": 13.7,
+     "f": 3.5,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.2,
+     "serv_g": 400,
+     "cal_serv": 460,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 400جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 200,
+       "kcal": 230
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 400,
+       "kcal": 460
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 800,
+       "kcal": 920
+      }
+     ],
+     "healthy": false,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مثلوثة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مثلوثة حاشي",
+     "name_en": "Camel Mathloutha",
+     "name_fr": "Mathloutha au chameau",
+     "name_es": "Mathloutha de camello",
+     "name_de": "Mathloutha mit Kamel",
+     "cal_100": 118.0,
+     "p": 6.0,
+     "c": 14.0,
+     "f": 3.5,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.6,
+     "serv_g": 400,
+     "cal_serv": 472,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 400جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 200,
+       "kcal": 236
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 400,
+       "kcal": 472
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 800,
+       "kcal": 944
+      }
+     ],
+     "healthy": false,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مثلوثة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مظبي دجاج",
+     "name_en": "Chicken Mazbi",
+     "name_fr": "Mazbi au poulet",
+     "name_es": "Mazbi de pollo",
+     "name_de": "Mazbi mit Hähnchen",
+     "cal_100": 140.0,
+     "p": 8.0,
+     "c": 15.0,
+     "f": 4.0,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.3,
+     "serv_g": 350,
+     "cal_serv": 490,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 245
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 490
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 980
+      }
+     ],
+     "healthy": false,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مظبي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مظبي بقري",
+     "name_en": "Beef Mazbi",
+     "name_fr": "Mazbi au bœuf",
+     "name_es": "Mazbi de res",
+     "name_de": "Mazbi mit Rindfleisch",
+     "cal_100": 148.0,
+     "p": 7.0,
+     "c": 15.0,
+     "f": 5.5,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.8,
+     "serv_g": 350,
+     "cal_serv": 518,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 259
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 518
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 1036
+      }
+     ],
+     "healthy": false,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مظبي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مظبي حاشي",
+     "name_en": "Camel Mazbi",
+     "name_fr": "Mazbi au chameau",
+     "name_es": "Mazbi de camello",
+     "name_de": "Mazbi mit Kamel",
+     "cal_100": 150.0,
+     "p": 7.0,
+     "c": 15.0,
+     "f": 6.5,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 2.9,
+     "serv_g": 350,
+     "cal_serv": 525,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 262
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 525
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 1050
+      }
+     ],
+     "healthy": false,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مظبي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مفطح غنم",
+     "name_en": "Whole Lamb Mufattah",
+     "name_fr": "Mufattah d'agneau entier",
+     "name_es": "Mufattah de cordero entero",
+     "name_de": "Ganzer Lamm-Mufattah",
+     "cal_100": 160.0,
+     "p": 7.5,
+     "c": 15.0,
+     "f": 7.0,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 2.3,
+     "serv_g": 350,
+     "cal_serv": 560,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 280
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 560
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 1120
+      }
+     ],
+     "healthy": false,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مفطح",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مفطح حاشي",
+     "name_en": "Whole Camel Mufattah",
+     "name_fr": "Mufattah de chameau entier",
+     "name_es": "Mufattah de camello entero",
+     "name_de": "Ganzer Kamel-Mufattah",
+     "cal_100": 155.0,
+     "p": 8.0,
+     "c": 15.0,
+     "f": 6.5,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 2.9,
+     "serv_g": 350,
+     "cal_serv": 542,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 271
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 542
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 1084
+      }
+     ],
+     "healthy": false,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مفطح",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مفطح معيز",
+     "name_en": "Goat Mufattah",
+     "name_fr": "Mufattah de chèvre",
+     "name_es": "Mufattah de cabra",
+     "name_de": "Ziegen-Mufattah",
+     "cal_100": 150.0,
+     "p": 8.0,
+     "c": 15.0,
+     "f": 6.0,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 2.0,
+     "serv_g": 350,
+     "cal_serv": 525,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 262
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 525
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 1050
+      }
+     ],
+     "healthy": false,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مفطح",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مضغوط روبيان",
+     "name_en": "Shrimp Madghouth",
+     "name_fr": "Madghouth aux crevettes",
+     "name_es": "Madghouth de camarones",
+     "name_de": "Madghouth mit Garnelen",
+     "cal_100": 110.0,
+     "p": 6.5,
+     "c": 14.0,
+     "f": 2.5,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 0.8,
+     "serv_g": 350,
+     "cal_serv": 385,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 192
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 385
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 770
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مضغوط دجاج",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مضغوط سمك",
+     "name_en": "Fish Madghouth",
+     "name_fr": "Madghouth au poisson",
+     "name_es": "Madghouth de pescado",
+     "name_de": "Madghouth mit Fisch",
+     "cal_100": 112.0,
+     "p": 6.5,
+     "c": 14.0,
+     "f": 2.5,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 0.8,
+     "serv_g": 350,
+     "cal_serv": 392,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 196
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 392
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 784
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مضغوط دجاج",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "سليق بالزعفران",
+     "name_en": "Saffron Saleeg",
+     "name_fr": "Saleeg au safran",
+     "name_es": "Saleeg con azafrán",
+     "name_de": "Safran-Saleeg",
+     "cal_100": 115.0,
+     "p": 6.5,
+     "c": 14.0,
+     "f": 3.5,
+     "fiber_g": 2.0,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.2,
+     "serv_g": 300,
+     "cal_serv": 345,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 300جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 150,
+       "kcal": 172
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 300,
+       "kcal": 345
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 600,
+       "kcal": 690
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: سليق دجاج",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
     }
    ]
   },
@@ -3089,7 +7256,7 @@
    "name_fr": "Plats Principaux",
    "name_es": "Platos Principales",
    "name_de": "Hauptgerichte",
-   "count": 19,
+   "count": 31,
    "dishes": [
     {
      "name": "مطازيز",
@@ -4135,6 +8302,666 @@
      "confidence": 65,
      "confidence_label": "65% - تقديري (variant)",
      "confidence_color": "orange"
+    },
+    {
+     "name": "كباب الحلة",
+     "name_en": "Kebab Halla",
+     "name_fr": "Kebab Halla (ragoût de viande)",
+     "name_es": "Kebab Halla (guiso de carne)",
+     "name_de": "Kebab Halla (Fleischeintopf)",
+     "cal_100": 130.0,
+     "p": 9.0,
+     "c": 5.0,
+     "f": 8.0,
+     "fiber_g": 2.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 2.6,
+     "serv_g": 300,
+     "cal_serv": 390,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 300جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 150,
+       "kcal": 195
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 300,
+       "kcal": 390
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 600,
+       "kcal": 780
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: قلاية لحم",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "قلاية بندورة",
+     "name_en": "Galayet Bandora",
+     "name_fr": "Galayet Bandora (tomates poêlées)",
+     "name_es": "Galayet de tomate",
+     "name_de": "Galayet (Tomatenpfanne)",
+     "cal_100": 85.0,
+     "p": 3.0,
+     "c": 10.0,
+     "f": 3.5,
+     "fiber_g": 2.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.2,
+     "serv_g": 250,
+     "cal_serv": 212,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 106
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 212
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 424
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: قلاية لحم",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "جريش حار",
+     "name_en": "Spicy Jareesh",
+     "name_fr": "Jareesh épicé",
+     "name_es": "Jareesh picante",
+     "name_de": "Scharfer Jareesh",
+     "cal_100": 118.0,
+     "p": 6.0,
+     "c": 14.0,
+     "f": 3.5,
+     "fiber_g": 2.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.2,
+     "serv_g": 250,
+     "cal_serv": 295,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 148
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 295
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 590
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: جريش لحم",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "هريس بالسمن",
+     "name_en": "Harees with Ghee",
+     "name_fr": "Harees au beurre clarifié",
+     "name_es": "Harees con ghee",
+     "name_de": "Harees mit Ghee",
+     "cal_100": 130.0,
+     "p": 6.0,
+     "c": 15.0,
+     "f": 4.5,
+     "fiber_g": 2.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.5,
+     "serv_g": 250,
+     "cal_serv": 325,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 162
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 325
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 650
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: هريس لحم",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مرقوق بالقرع",
+     "name_en": "Margoog with Pumpkin",
+     "name_fr": "Margoog à la courge",
+     "name_es": "Margoog con calabaza",
+     "name_de": "Margoog mit Kürbis",
+     "cal_100": 85.0,
+     "p": 3.5,
+     "c": 14.0,
+     "f": 1.8,
+     "fiber_g": 2.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 0.6,
+     "serv_g": 300,
+     "cal_serv": 255,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 300جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 150,
+       "kcal": 128
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 300,
+       "kcal": 255
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 600,
+       "kcal": 510
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مرقوق",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مرقوق بالكوسا",
+     "name_en": "Margoog with Zucchini",
+     "name_fr": "Margoog à la courgette",
+     "name_es": "Margoog con calabacín",
+     "name_de": "Margoog mit Zucchini",
+     "cal_100": 88.0,
+     "p": 3.5,
+     "c": 14.0,
+     "f": 2.0,
+     "fiber_g": 2.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 0.7,
+     "serv_g": 300,
+     "cal_serv": 264,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 300جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 150,
+       "kcal": 132
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 300,
+       "kcal": 264
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 600,
+       "kcal": 528
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مرقوق",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مطازيز خضار",
+     "name_en": "Vegetable Matazeez",
+     "name_fr": "Matazeez aux légumes",
+     "name_es": "Matazeez de verduras",
+     "name_de": "Gemüse-Matazeez",
+     "cal_100": 90.0,
+     "p": 3.0,
+     "c": 14.0,
+     "f": 2.5,
+     "fiber_g": 3.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 0.8,
+     "serv_g": 300,
+     "cal_serv": 270,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 300جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 150,
+       "kcal": 135
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 300,
+       "kcal": 270
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 600,
+       "kcal": 540
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مطازيز",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "محشي قرع",
+     "name_en": "Stuffed Pumpkin (Mahshi Qara)",
+     "name_fr": "Courge farcie (mahshi qara)",
+     "name_es": "Calabaza rellena (mahshi qara)",
+     "name_de": "Gefüllter Kürbis (Mahshi Qara)",
+     "cal_100": 78.0,
+     "p": 3.0,
+     "c": 10.0,
+     "f": 2.5,
+     "fiber_g": 2.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 0.8,
+     "serv_g": 300,
+     "cal_serv": 234,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 300جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 150,
+       "kcal": 117
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 300,
+       "kcal": 234
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 600,
+       "kcal": 468
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: محشي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "محشي كوسا",
+     "name_en": "Stuffed Zucchini",
+     "name_fr": "Courgettes farcies",
+     "name_es": "Calabacines rellenos",
+     "name_de": "Gefüllte Zucchini",
+     "cal_100": 82.0,
+     "p": 4.0,
+     "c": 9.0,
+     "f": 3.0,
+     "fiber_g": 2.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.0,
+     "serv_g": 300,
+     "cal_serv": 246,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 300جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 150,
+       "kcal": 123
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 300,
+       "kcal": 246
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 600,
+       "kcal": 492
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: محشي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "محشي باذنجان",
+     "name_en": "Stuffed Eggplant",
+     "name_fr": "Aubergines farcies",
+     "name_es": "Berenjenas rellenas",
+     "name_de": "Gefüllte Auberginen",
+     "cal_100": 90.0,
+     "p": 3.5,
+     "c": 11.0,
+     "f": 3.5,
+     "fiber_g": 3.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.2,
+     "serv_g": 300,
+     "cal_serv": 270,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 300جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 150,
+       "kcal": 135
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 300,
+       "kcal": 270
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 600,
+       "kcal": 540
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: محشي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "ثريد لحم",
+     "name_en": "Meat Thareed",
+     "name_fr": "Thareed à la viande",
+     "name_es": "Thareed de carne",
+     "name_de": "Thareed mit Fleisch",
+     "cal_100": 115.0,
+     "p": 6.5,
+     "c": 14.0,
+     "f": 3.5,
+     "fiber_g": 2.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 1.2,
+     "serv_g": 350,
+     "cal_serv": 402,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 350جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 175,
+       "kcal": 201
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 350,
+       "kcal": 402
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 700,
+       "kcal": 804
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مرقوق",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "صالونة خضار مشكلة",
+     "name_en": "Mixed Vegetable Saloona",
+     "name_fr": "Saloona de légumes variés",
+     "name_es": "Saloona de verduras mixtas",
+     "name_de": "Gemüse-Saloona",
+     "cal_100": 72.0,
+     "p": 2.5,
+     "c": 12.0,
+     "f": 1.8,
+     "fiber_g": 3.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 330.0,
+     "sat_fat_g": 0.6,
+     "serv_g": 300,
+     "cal_serv": 216,
+     "serving_unit": "طبق",
+     "serving_description": "طبق متوسط 300جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 150,
+       "kcal": 108
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 300,
+       "kcal": 216
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 600,
+       "kcal": 432
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: صالونة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
     }
    ]
   },
@@ -4145,7 +8972,7 @@
    "name_fr": "Viandes & Volailles Grillées",
    "name_es": "Carnes y Aves a la Parrilla",
    "name_de": "Gegrilltes Fleisch & Geflügel",
-   "count": 27,
+   "count": 40,
    "dishes": [
     {
      "name": "كبدة بالبصل",
@@ -5630,6 +10457,721 @@
      "confidence": 65,
      "confidence_label": "65% - تقديري (variant)",
      "confidence_color": "orange"
+    },
+    {
+     "name": "كفتة بالبهارات",
+     "name_en": "Spiced Kofta",
+     "name_fr": "Kofta épicée",
+     "name_es": "Kofta especiada",
+     "name_de": "Gewürzte Kofta",
+     "cal_100": 235.0,
+     "p": 19.0,
+     "c": 3.0,
+     "f": 16.0,
+     "fiber_g": 0.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 250.0,
+     "sat_fat_g": 4.8,
+     "serv_g": 180,
+     "cal_serv": 423,
+     "serving_unit": "حصة",
+     "serving_description": "حصة 180جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 90,
+       "kcal": 212
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 180,
+       "kcal": 423
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 360,
+       "kcal": 846
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كفتة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كفتة بالطحينة",
+     "name_en": "Kofta with Tahini",
+     "name_fr": "Kofta au tahini",
+     "name_es": "Kofta con tahini",
+     "name_de": "Kofta mit Tahini",
+     "cal_100": 250.0,
+     "p": 18.0,
+     "c": 4.0,
+     "f": 17.0,
+     "fiber_g": 0.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 250.0,
+     "sat_fat_g": 5.1,
+     "serv_g": 180,
+     "cal_serv": 450,
+     "serving_unit": "حصة",
+     "serving_description": "حصة 180جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 90,
+       "kcal": 225
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 180,
+       "kcal": 450
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 360,
+       "kcal": 900
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كفتة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كفتة بالصلصة",
+     "name_en": "Kofta in Tomato Sauce",
+     "name_fr": "Kofta à la sauce tomate",
+     "name_es": "Kofta en salsa de tomate",
+     "name_de": "Kofta in Tomatensoße",
+     "cal_100": 215.0,
+     "p": 18.0,
+     "c": 5.0,
+     "f": 13.0,
+     "fiber_g": 0.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 250.0,
+     "sat_fat_g": 3.9,
+     "serv_g": 180,
+     "cal_serv": 387,
+     "serving_unit": "حصة",
+     "serving_description": "حصة 180جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 90,
+       "kcal": 194
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 180,
+       "kcal": 387
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 360,
+       "kcal": 774
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كفتة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "شيش كباب",
+     "name_en": "Shish Kebab",
+     "name_fr": "Chiche kebab",
+     "name_es": "Shish kebab",
+     "name_de": "Schisch-Kebab",
+     "cal_100": 245.0,
+     "p": 19.0,
+     "c": 2.0,
+     "f": 17.0,
+     "fiber_g": 0.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 250.0,
+     "sat_fat_g": 5.1,
+     "serv_g": 150,
+     "cal_serv": 368,
+     "serving_unit": "حصة",
+     "serving_description": "حصة 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 184
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 368
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 736
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كباب",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "ريش غنم مشوية",
+     "name_en": "Grilled Lamb Chops",
+     "name_fr": "Côtelettes d'agneau grillées",
+     "name_es": "Chuletas de cordero a la parrilla",
+     "name_de": "Gegrillte Lammkoteletts",
+     "cal_100": 280.0,
+     "p": 22.0,
+     "c": 0.0,
+     "f": 20.0,
+     "fiber_g": 0.2,
+     "sugar_g": 2.0,
+     "sodium_mg": 250.0,
+     "sat_fat_g": 6.0,
+     "serv_g": 150,
+     "cal_serv": 420,
+     "serving_unit": "حصة",
+     "serving_description": "حصة 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 210
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 420
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 840
+      }
+     ],
+     "healthy": false,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: لحم خروف مشوي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "ريش غنم متبلة",
+     "name_en": "Marinated Lamb Chops",
+     "name_fr": "Côtelettes marinées",
+     "name_es": "Chuletas marinadas",
+     "name_de": "Marinierte Lammkoteletts",
+     "cal_100": 290.0,
+     "p": 22.0,
+     "c": 1.0,
+     "f": 21.0,
+     "fiber_g": 0.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 250.0,
+     "sat_fat_g": 6.3,
+     "serv_g": 150,
+     "cal_serv": 435,
+     "serving_unit": "حصة",
+     "serving_description": "حصة 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 218
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 435
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 870
+      }
+     ],
+     "healthy": false,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: لحم خروف مشوي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "ريش غنم بالليمون",
+     "name_en": "Lemon Lamb Chops",
+     "name_fr": "Côtelettes au citron",
+     "name_es": "Chuletas con limón",
+     "name_de": "Lammkoteletts mit Zitrone",
+     "cal_100": 270.0,
+     "p": 22.0,
+     "c": 2.0,
+     "f": 19.0,
+     "fiber_g": 0.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 250.0,
+     "sat_fat_g": 5.7,
+     "serv_g": 150,
+     "cal_serv": 405,
+     "serving_unit": "حصة",
+     "serving_description": "حصة 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 202
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 405
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 810
+      }
+     ],
+     "healthy": false,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: لحم خروف مشوي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "دجاج تكا",
+     "name_en": "Chicken Tikka",
+     "name_fr": "Tikka de poulet",
+     "name_es": "Pollo tikka",
+     "name_de": "Hühnchen-Tikka",
+     "cal_100": 170.0,
+     "p": 17.0,
+     "c": 3.0,
+     "f": 10.0,
+     "fiber_g": 0.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 250.0,
+     "sat_fat_g": 3.0,
+     "serv_g": 180,
+     "cal_serv": 306,
+     "serving_unit": "حصة",
+     "serving_description": "حصة 180جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 90,
+       "kcal": 153
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 180,
+       "kcal": 306
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 360,
+       "kcal": 612
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: دجاج مشوي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كباب دجاج",
+     "name_en": "Chicken Kebab",
+     "name_fr": "Kebab de poulet",
+     "name_es": "Kebab de pollo",
+     "name_de": "Hähnchen-Kebab",
+     "cal_100": 175.0,
+     "p": 17.0,
+     "c": 3.0,
+     "f": 10.0,
+     "fiber_g": 0.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 250.0,
+     "sat_fat_g": 3.0,
+     "serv_g": 150,
+     "cal_serv": 262,
+     "serving_unit": "حصة",
+     "serving_description": "حصة 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 131
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 262
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 524
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: دجاج مشوي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "دجاج متبل باللبن",
+     "name_en": "Yogurt-Marinated Chicken",
+     "name_fr": "Poulet mariné au yaourt",
+     "name_es": "Pollo marinado en yogur",
+     "name_de": "Joghurt-mariniertes Hähnchen",
+     "cal_100": 165.0,
+     "p": 17.0,
+     "c": 2.0,
+     "f": 10.0,
+     "fiber_g": 0.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 250.0,
+     "sat_fat_g": 3.0,
+     "serv_g": 180,
+     "cal_serv": 297,
+     "serving_unit": "حصة",
+     "serving_description": "حصة 180جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 90,
+       "kcal": 148
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 180,
+       "kcal": 297
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 360,
+       "kcal": 594
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: دجاج مشوي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "دجاج محشي بالأرز",
+     "name_en": "Chicken Stuffed with Rice",
+     "name_fr": "Poulet farci au riz",
+     "name_es": "Pollo relleno de arroz",
+     "name_de": "Mit Reis gefülltes Hähnchen",
+     "cal_100": 185.0,
+     "p": 16.0,
+     "c": 8.0,
+     "f": 9.0,
+     "fiber_g": 0.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 250.0,
+     "sat_fat_g": 2.7,
+     "serv_g": 250,
+     "cal_serv": 462,
+     "serving_unit": "حصة",
+     "serving_description": "حصة 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 231
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 462
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 924
+      }
+     ],
+     "healthy": false,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: دجاج مشوي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "حاشي مشوي بالبهارات",
+     "name_en": "Spiced Grilled Camel",
+     "name_fr": "Chameau grillé épicé",
+     "name_es": "Camello especiado a la parrilla",
+     "name_de": "Gewürztes gegrilltes Kamel",
+     "cal_100": 270.0,
+     "p": 26.0,
+     "c": 1.0,
+     "f": 17.0,
+     "fiber_g": 0.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 250.0,
+     "sat_fat_g": 7.6,
+     "serv_g": 150,
+     "cal_serv": 405,
+     "serving_unit": "حصة",
+     "serving_description": "حصة 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 202
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 405
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 810
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: لحم حاشي مشوي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "حاشي مطهو بالخضار",
+     "name_en": "Camel Stew with Vegetables",
+     "name_fr": "Ragoût de chameau aux légumes",
+     "name_es": "Guiso de camello con verduras",
+     "name_de": "Kamelgemüseeintopf",
+     "cal_100": 150.0,
+     "p": 16.0,
+     "c": 4.0,
+     "f": 7.0,
+     "fiber_g": 3.5,
+     "sugar_g": 2.0,
+     "sodium_mg": 250.0,
+     "sat_fat_g": 3.2,
+     "serv_g": 250,
+     "cal_serv": 375,
+     "serving_unit": "حصة",
+     "serving_description": "حصة 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 188
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 375
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 750
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "lunch",
+     "mealTypes": [
+      "lunch",
+      "dinner"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: لحم حاشي مسلوق",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
     }
    ]
   },
@@ -6750,7 +12292,7 @@
    "name_fr": "Sucreries & Desserts",
    "name_es": "Dulces y Postres",
    "name_de": "Süßigkeiten & Desserts",
-   "count": 15,
+   "count": 42,
    "dishes": [
     {
      "name": "كليجا",
@@ -7562,6 +13104,1464 @@
      "confidence": 65,
      "confidence_label": "65% - تقديري (variant)",
      "confidence_color": "orange"
+    },
+    {
+     "name": "لقيمات بالفستق",
+     "name_en": "Luqaimat with Pistachio",
+     "name_fr": "Louqaimat à la pistache",
+     "name_es": "Luqaimat con pistacho",
+     "name_de": "Luqaimat mit Pistazien",
+     "cal_100": 320.0,
+     "p": 5.0,
+     "c": 42.0,
+     "f": 15.0,
+     "fiber_g": 1.3,
+     "sugar_g": 19.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 7.5,
+     "serv_g": 40,
+     "cal_serv": 128,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 40جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 20,
+       "kcal": 64
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 40,
+       "kcal": 128
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 80,
+       "kcal": 256
+      }
+     ],
+     "healthy": true,
+     "is_fried": true,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: لقيمات",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "لقيمات بالهيل",
+     "name_en": "Luqaimat with Cardamom",
+     "name_fr": "Louqaimat à la cardamome",
+     "name_es": "Luqaimat con cardamomo",
+     "name_de": "Luqaimat mit Kardamom",
+     "cal_100": 305.0,
+     "p": 4.0,
+     "c": 44.0,
+     "f": 13.0,
+     "fiber_g": 1.3,
+     "sugar_g": 19.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 6.5,
+     "serv_g": 40,
+     "cal_serv": 122,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 40جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 20,
+       "kcal": 61
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 40,
+       "kcal": 122
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 80,
+       "kcal": 244
+      }
+     ],
+     "healthy": true,
+     "is_fried": true,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: لقيمات",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "لقيمات بالجوز",
+     "name_en": "Luqaimat with Walnuts",
+     "name_fr": "Louqaimat aux noix",
+     "name_es": "Luqaimat con nueces",
+     "name_de": "Luqaimat mit Walnüssen",
+     "cal_100": 315.0,
+     "p": 5.0,
+     "c": 43.0,
+     "f": 14.0,
+     "fiber_g": 1.3,
+     "sugar_g": 19.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 7.0,
+     "serv_g": 40,
+     "cal_serv": 126,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 40جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 20,
+       "kcal": 63
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 40,
+       "kcal": 126
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 80,
+       "kcal": 252
+      }
+     ],
+     "healthy": true,
+     "is_fried": true,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: لقيمات",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "بسبوسة بالفستق",
+     "name_en": "Pistachio Basbousa",
+     "name_fr": "Basboussa à la pistache",
+     "name_es": "Basbousa con pistacho",
+     "name_de": "Basbousa mit Pistazien",
+     "cal_100": 285.0,
+     "p": 4.0,
+     "c": 40.0,
+     "f": 12.0,
+     "fiber_g": 1.3,
+     "sugar_g": 19.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 6.0,
+     "serv_g": 60,
+     "cal_serv": 171,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 60جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 30,
+       "kcal": 86
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 60,
+       "kcal": 171
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 120,
+       "kcal": 342
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: بسبوسة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "بسبوسة بالقشطة",
+     "name_en": "Cream-Filled Basbousa",
+     "name_fr": "Basboussa à la crème",
+     "name_es": "Basbousa con crema",
+     "name_de": "Basbousa mit Sahne",
+     "cal_100": 260.0,
+     "p": 4.0,
+     "c": 38.0,
+     "f": 10.0,
+     "fiber_g": 1.3,
+     "sugar_g": 19.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 5.0,
+     "serv_g": 60,
+     "cal_serv": 156,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 60جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 30,
+       "kcal": 78
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 60,
+       "kcal": 156
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 120,
+       "kcal": 312
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: بسبوسة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "بسبوسة بالتمر",
+     "name_en": "Date Basbousa",
+     "name_fr": "Basboussa aux dattes",
+     "name_es": "Basbousa con dátiles",
+     "name_de": "Dattel-Basbousa",
+     "cal_100": 280.0,
+     "p": 4.0,
+     "c": 44.0,
+     "f": 10.0,
+     "fiber_g": 1.3,
+     "sugar_g": 24.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 5.0,
+     "serv_g": 60,
+     "cal_serv": 168,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 60جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 30,
+       "kcal": 84
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 60,
+       "kcal": 168
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 120,
+       "kcal": 336
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: بسبوسة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كليجا بالهيل",
+     "name_en": "Cardamom Kleija",
+     "name_fr": "Kleija à la cardamome",
+     "name_es": "Kleija con cardamomo",
+     "name_de": "Kleija mit Kardamom",
+     "cal_100": 265.0,
+     "p": 5.0,
+     "c": 40.0,
+     "f": 9.0,
+     "fiber_g": 1.3,
+     "sugar_g": 24.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 4.5,
+     "serv_g": 50,
+     "cal_serv": 132,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 50جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 25,
+       "kcal": 66
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 50,
+       "kcal": 132
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 100,
+       "kcal": 264
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كليجا",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كليجا بالفستق",
+     "name_en": "Pistachio Kleija",
+     "name_fr": "Kleija à la pistache",
+     "name_es": "Kleija con pistacho",
+     "name_de": "Kleija mit Pistazien",
+     "cal_100": 280.0,
+     "p": 6.0,
+     "c": 38.0,
+     "f": 12.0,
+     "fiber_g": 1.3,
+     "sugar_g": 24.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 6.0,
+     "serv_g": 50,
+     "cal_serv": 140,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 50جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 25,
+       "kcal": 70
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 50,
+       "kcal": 140
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 100,
+       "kcal": 280
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كليجا",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "معمول بالفستق",
+     "name_en": "Pistachio Maamoul",
+     "name_fr": "Maamoul à la pistache",
+     "name_es": "Maamoul con pistacho",
+     "name_de": "Pistazien-Maamoul",
+     "cal_100": 300.0,
+     "p": 6.0,
+     "c": 44.0,
+     "f": 12.0,
+     "fiber_g": 1.3,
+     "sugar_g": 24.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 6.0,
+     "serv_g": 50,
+     "cal_serv": 150,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 50جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 25,
+       "kcal": 75
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 50,
+       "kcal": 150
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 100,
+       "kcal": 300
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: معمول",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "معمول بالسمسم",
+     "name_en": "Sesame Maamoul",
+     "name_fr": "Maamoul au sésame",
+     "name_es": "Maamoul con sésamo",
+     "name_de": "Sesam-Maamoul",
+     "cal_100": 310.0,
+     "p": 6.0,
+     "c": 46.0,
+     "f": 11.0,
+     "fiber_g": 1.3,
+     "sugar_g": 24.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 5.5,
+     "serv_g": 50,
+     "cal_serv": 155,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 50جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 25,
+       "kcal": 78
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 50,
+       "kcal": 155
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 100,
+       "kcal": 310
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: معمول",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كنافة بالقشطة",
+     "name_en": "Kunafa with Cream",
+     "name_fr": "Knafeh à la crème",
+     "name_es": "Kunafa con crema",
+     "name_de": "Kunafa mit Sahne",
+     "cal_100": 260.0,
+     "p": 4.0,
+     "c": 35.0,
+     "f": 12.0,
+     "fiber_g": 1.3,
+     "sugar_g": 19.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 6.0,
+     "serv_g": 150,
+     "cal_serv": 390,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 195
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 390
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 780
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كنافة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كنافة بالجبن",
+     "name_en": "Cheese Kunafa",
+     "name_fr": "Knafeh au fromage",
+     "name_es": "Kunafa con queso",
+     "name_de": "Kunafa mit Käse",
+     "cal_100": 280.0,
+     "p": 7.0,
+     "c": 30.0,
+     "f": 14.0,
+     "fiber_g": 1.3,
+     "sugar_g": 19.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 7.0,
+     "serv_g": 150,
+     "cal_serv": 420,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 210
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 420
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 840
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كنافة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كنافة بالمكسرات",
+     "name_en": "Nut Kunafa",
+     "name_fr": "Knafeh aux noix",
+     "name_es": "Kunafa con frutos secos",
+     "name_de": "Kunafa mit Nüssen",
+     "cal_100": 300.0,
+     "p": 6.0,
+     "c": 34.0,
+     "f": 15.0,
+     "fiber_g": 1.3,
+     "sugar_g": 19.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 7.5,
+     "serv_g": 150,
+     "cal_serv": 450,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 225
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 450
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 900
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كنافة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "قطايف بالقشطة",
+     "name_en": "Qatayef with Cream",
+     "name_fr": "Qatayef à la crème",
+     "name_es": "Qatayef con crema",
+     "name_de": "Qatayef mit Sahne",
+     "cal_100": 240.0,
+     "p": 4.0,
+     "c": 36.0,
+     "f": 9.0,
+     "fiber_g": 1.3,
+     "sugar_g": 19.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 4.5,
+     "serv_g": 120,
+     "cal_serv": 288,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 120جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 60,
+       "kcal": 144
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 120,
+       "kcal": 288
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 240,
+       "kcal": 576
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: قطايف",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "قطايف بالجوز",
+     "name_en": "Qatayef with Walnuts",
+     "name_fr": "Qatayef aux noix",
+     "name_es": "Qatayef con nueces",
+     "name_de": "Qatayef mit Walnüssen",
+     "cal_100": 260.0,
+     "p": 5.0,
+     "c": 34.0,
+     "f": 11.0,
+     "fiber_g": 1.3,
+     "sugar_g": 19.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 5.5,
+     "serv_g": 120,
+     "cal_serv": 312,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 120جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 60,
+       "kcal": 156
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 120,
+       "kcal": 312
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 240,
+       "kcal": 624
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: قطايف",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "قطايف بالتمر",
+     "name_en": "Qatayef with Dates",
+     "name_fr": "Qatayef aux dattes",
+     "name_es": "Qatayef con dátiles",
+     "name_de": "Qatayef mit Datteln",
+     "cal_100": 250.0,
+     "p": 4.0,
+     "c": 38.0,
+     "f": 9.0,
+     "fiber_g": 1.3,
+     "sugar_g": 24.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 4.5,
+     "serv_g": 120,
+     "cal_serv": 300,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 120جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 60,
+       "kcal": 150
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 120,
+       "kcal": 300
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 240,
+       "kcal": 600
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: قطايف",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "قطايف بالفستق",
+     "name_en": "Pistachio Qatayef",
+     "name_fr": "Qatayef à la pistache",
+     "name_es": "Qatayef con pistacho",
+     "name_de": "Qatayef mit Pistazien",
+     "cal_100": 265.0,
+     "p": 5.0,
+     "c": 35.0,
+     "f": 12.0,
+     "fiber_g": 1.3,
+     "sugar_g": 19.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 6.0,
+     "serv_g": 120,
+     "cal_serv": 318,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 120جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 60,
+       "kcal": 159
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 120,
+       "kcal": 318
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 240,
+       "kcal": 636
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: قطايف",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "قطايف محمرة",
+     "name_en": "Fried Qatayef",
+     "name_fr": "Qatayef frits",
+     "name_es": "Qatayef fritos",
+     "name_de": "Frittierte Qatayef",
+     "cal_100": 285.0,
+     "p": 4.0,
+     "c": 38.0,
+     "f": 13.0,
+     "fiber_g": 1.3,
+     "sugar_g": 19.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 6.5,
+     "serv_g": 100,
+     "cal_serv": 285,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 100جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 50,
+       "kcal": 142
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 100,
+       "kcal": 285
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 200,
+       "kcal": 570
+      }
+     ],
+     "healthy": true,
+     "is_fried": true,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: قطايف",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كيك التمر",
+     "name_en": "Date Cake",
+     "name_fr": "Gâteau aux dattes",
+     "name_es": "Pastel de dátiles",
+     "name_de": "Dattelkuchen",
+     "cal_100": 300.0,
+     "p": 4.0,
+     "c": 48.0,
+     "f": 11.0,
+     "fiber_g": 1.3,
+     "sugar_g": 24.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 5.5,
+     "serv_g": 80,
+     "cal_serv": 240,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 80جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 40,
+       "kcal": 120
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 80,
+       "kcal": 240
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 160,
+       "kcal": 480
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كيك",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "بسكوت التمر",
+     "name_en": "Date Biscuits",
+     "name_fr": "Biscuits aux dattes",
+     "name_es": "Galletas de dátiles",
+     "name_de": "Dattelkekse",
+     "cal_100": 290.0,
+     "p": 5.0,
+     "c": 44.0,
+     "f": 12.0,
+     "fiber_g": 1.3,
+     "sugar_g": 24.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 6.0,
+     "serv_g": 40,
+     "cal_serv": 116,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 40جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 20,
+       "kcal": 58
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 40,
+       "kcal": 116
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 80,
+       "kcal": 232
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: بسكوت",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مهلبية بالفستق",
+     "name_en": "Pistachio Mahalabia",
+     "name_fr": "Mahalabiya à la pistache",
+     "name_es": "Mahalabia con pistacho",
+     "name_de": "Mahalabia mit Pistazien",
+     "cal_100": 150.0,
+     "p": 4.0,
+     "c": 24.0,
+     "f": 4.0,
+     "fiber_g": 1.3,
+     "sugar_g": 19.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 2.0,
+     "serv_g": 150,
+     "cal_serv": 225,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 112
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 225
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 450
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مهلبية",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مهلبية بماء الورد",
+     "name_en": "Rosewater Mahalabia",
+     "name_fr": "Mahalabiya à l'eau de rose",
+     "name_es": "Mahalabia con agua de rosas",
+     "name_de": "Rosenwasser-Mahalabia",
+     "cal_100": 120.0,
+     "p": 3.0,
+     "c": 20.0,
+     "f": 3.0,
+     "fiber_g": 1.3,
+     "sugar_g": 19.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 1.5,
+     "serv_g": 150,
+     "cal_serv": 180,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 90
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 180
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 360
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مهلبية",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "مهلبية بالزعفران",
+     "name_en": "Saffron Mahalabia",
+     "name_fr": "Mahalabiya au safran",
+     "name_es": "Mahalabia con azafrán",
+     "name_de": "Safran-Mahalabia",
+     "cal_100": 125.0,
+     "p": 3.0,
+     "c": 20.0,
+     "f": 3.5,
+     "fiber_g": 1.3,
+     "sugar_g": 19.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 1.8,
+     "serv_g": 150,
+     "cal_serv": 188,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 94
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 188
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 376
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: مهلبية",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "أرز باللبن بالزعفران",
+     "name_en": "Saffron Rice Pudding",
+     "name_fr": "Riz au lait au safran",
+     "name_es": "Arroz con leche con azafrán",
+     "name_de": "Safran-Milchreis",
+     "cal_100": 145.0,
+     "p": 4.0,
+     "c": 25.0,
+     "f": 3.5,
+     "fiber_g": 1.3,
+     "sugar_g": 19.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 1.8,
+     "serv_g": 150,
+     "cal_serv": 218,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 109
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 218
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 436
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: أرز باللبن",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "تمر محشي باللوز",
+     "name_en": "Dates Stuffed with Almonds",
+     "name_fr": "Dattes farcies aux amandes",
+     "name_es": "Dátiles rellenos de almendras",
+     "name_de": "Mit Mandeln gefüllte Datteln",
+     "cal_100": 290.0,
+     "p": 2.5,
+     "c": 52.0,
+     "f": 8.0,
+     "fiber_g": 1.3,
+     "sugar_g": 24.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 4.0,
+     "serv_g": 30,
+     "cal_serv": 87,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 30جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 15,
+       "kcal": 44
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 30,
+       "kcal": 87
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 60,
+       "kcal": 174
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: تمر",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "تمر محشي بالجوز",
+     "name_en": "Dates Stuffed with Walnuts",
+     "name_fr": "Dattes farcies aux noix",
+     "name_es": "Dátiles rellenos de nueces",
+     "name_de": "Mit Walnüssen gefüllte Datteln",
+     "cal_100": 300.0,
+     "p": 3.0,
+     "c": 48.0,
+     "f": 11.0,
+     "fiber_g": 1.3,
+     "sugar_g": 24.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 5.5,
+     "serv_g": 30,
+     "cal_serv": 90,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 30جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 15,
+       "kcal": 45
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 30,
+       "kcal": 90
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 60,
+       "kcal": 180
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: تمر",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "تمر محشي بالفستق",
+     "name_en": "Dates Stuffed with Pistachio",
+     "name_fr": "Dattes farcies à la pistache",
+     "name_es": "Dátiles rellenos de pistacho",
+     "name_de": "Mit Pistazien gefüllte Datteln",
+     "cal_100": 305.0,
+     "p": 3.0,
+     "c": 48.0,
+     "f": 12.0,
+     "fiber_g": 1.3,
+     "sugar_g": 24.0,
+     "sodium_mg": 140.0,
+     "sat_fat_g": 6.0,
+     "serv_g": 30,
+     "cal_serv": 92,
+     "serving_unit": "قطعة",
+     "serving_description": "قطعة 30جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 15,
+       "kcal": 46
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 30,
+       "kcal": 92
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 60,
+       "kcal": 184
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: تمر",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
     }
    ]
   },
@@ -7572,7 +14572,7 @@
    "name_fr": "Produits Laitiers, Œufs & Fruits",
    "name_es": "Lácteos, Huevos y Frutas",
    "name_de": "Milchprodukte, Eier & Obst",
-   "count": 14,
+   "count": 36,
    "dishes": [
     {
      "name": "جبنة بيضاء",
@@ -8333,6 +15333,1200 @@
      ],
      "source": "المطبخ السعودي - variant",
      "notes": "Variant of: فاكهة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كرك",
+     "name_en": "Karak Tea",
+     "name_fr": "Thé karak",
+     "name_es": "Té karak",
+     "name_de": "Karak-Tee",
+     "cal_100": 30.0,
+     "p": 2.0,
+     "c": 4.0,
+     "f": 1.0,
+     "fiber_g": 0.6,
+     "sugar_g": 24.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.6,
+     "serv_g": 200,
+     "cal_serv": 60,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 200جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 100,
+       "kcal": 30
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 200,
+       "kcal": 60
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 400,
+       "kcal": 120
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: شاي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كرك بالهيل",
+     "name_en": "Karak with Cardamom",
+     "name_fr": "Karak à la cardamome",
+     "name_es": "Karak con cardamomo",
+     "name_de": "Karak mit Kardamom",
+     "cal_100": 32.0,
+     "p": 2.0,
+     "c": 4.0,
+     "f": 1.2,
+     "fiber_g": 0.6,
+     "sugar_g": 24.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.7,
+     "serv_g": 200,
+     "cal_serv": 64,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 200جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 100,
+       "kcal": 32
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 200,
+       "kcal": 64
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 400,
+       "kcal": 128
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كرك",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كرك بالزعفران",
+     "name_en": "Karak with Saffron",
+     "name_fr": "Karak au safran",
+     "name_es": "Karak con azafrán",
+     "name_de": "Karak mit Safran",
+     "cal_100": 33.0,
+     "p": 2.0,
+     "c": 4.0,
+     "f": 1.2,
+     "fiber_g": 0.6,
+     "sugar_g": 24.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.7,
+     "serv_g": 200,
+     "cal_serv": 66,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 200جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 100,
+       "kcal": 33
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 200,
+       "kcal": 66
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 400,
+       "kcal": 132
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كرك",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "كرك بالزنجبيل",
+     "name_en": "Karak with Ginger",
+     "name_fr": "Karak au gingembre",
+     "name_es": "Karak con jengibre",
+     "name_de": "Karak mit Ingwer",
+     "cal_100": 32.0,
+     "p": 2.0,
+     "c": 4.5,
+     "f": 1.0,
+     "fiber_g": 0.6,
+     "sugar_g": 24.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.6,
+     "serv_g": 200,
+     "cal_serv": 64,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 200جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 100,
+       "kcal": 32
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 200,
+       "kcal": 64
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 400,
+       "kcal": 128
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: كرك",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "قهوة عربية",
+     "name_en": "Arabic Coffee",
+     "name_fr": "Café arabe",
+     "name_es": "Café árabe",
+     "name_de": "Arabischer Kaffee",
+     "cal_100": 20.0,
+     "p": 0.2,
+     "c": 4.5,
+     "f": 0.1,
+     "fiber_g": 0.6,
+     "sugar_g": 2.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.1,
+     "serv_g": 80,
+     "cal_serv": 16,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 80جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 40,
+       "kcal": 8
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 80,
+       "kcal": 16
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 160,
+       "kcal": 32
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: قهوة",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "قهوة بالهيل",
+     "name_en": "Cardamom Coffee",
+     "name_fr": "Café à la cardamome",
+     "name_es": "Café con cardamomo",
+     "name_de": "Kaffee mit Kardamom",
+     "cal_100": 20.0,
+     "p": 0.2,
+     "c": 4.5,
+     "f": 0.1,
+     "fiber_g": 0.6,
+     "sugar_g": 2.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.1,
+     "serv_g": 80,
+     "cal_serv": 16,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 80جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 40,
+       "kcal": 8
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 80,
+       "kcal": 16
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 160,
+       "kcal": 32
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: قهوة عربية",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "قهوة بالزعفران",
+     "name_en": "Saffron Coffee",
+     "name_fr": "Café au safran",
+     "name_es": "Café con azafrán",
+     "name_de": "Kaffee mit Safran",
+     "cal_100": 20.0,
+     "p": 0.2,
+     "c": 4.5,
+     "f": 0.1,
+     "fiber_g": 0.6,
+     "sugar_g": 2.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.1,
+     "serv_g": 80,
+     "cal_serv": 16,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 80جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 40,
+       "kcal": 8
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 80,
+       "kcal": 16
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 160,
+       "kcal": 32
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: قهوة عربية",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "قهوة بماء الورد",
+     "name_en": "Rosewater Coffee",
+     "name_fr": "Café à l'eau de rose",
+     "name_es": "Café con agua de rosas",
+     "name_de": "Rosenwasser-Kaffee",
+     "cal_100": 20.0,
+     "p": 0.2,
+     "c": 4.5,
+     "f": 0.1,
+     "fiber_g": 0.6,
+     "sugar_g": 2.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.1,
+     "serv_g": 80,
+     "cal_serv": 16,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 80جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 40,
+       "kcal": 8
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 80,
+       "kcal": 16
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 160,
+       "kcal": 32
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: قهوة عربية",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "عصير مانجو",
+     "name_en": "Mango Juice",
+     "name_fr": "Jus de mangue",
+     "name_es": "Zumo de mango",
+     "name_de": "Mangosaft",
+     "cal_100": 55.0,
+     "p": 0.4,
+     "c": 13.0,
+     "f": 0.2,
+     "fiber_g": 0.6,
+     "sugar_g": 11.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.1,
+     "serv_g": 250,
+     "cal_serv": 138,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 69
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 138
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 276
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: عصير",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "عصير جوافة",
+     "name_en": "Guava Juice",
+     "name_fr": "Jus de goyave",
+     "name_es": "Zumo de guayaba",
+     "name_de": "Guavensaft",
+     "cal_100": 50.0,
+     "p": 0.7,
+     "c": 11.0,
+     "f": 0.3,
+     "fiber_g": 0.6,
+     "sugar_g": 11.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.2,
+     "serv_g": 250,
+     "cal_serv": 125,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 62
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 125
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 250
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: عصير",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "عصير تمر هندي",
+     "name_en": "Tamarind Juice",
+     "name_fr": "Jus de tamarin",
+     "name_es": "Zumo de tamarindo",
+     "name_de": "Tamarindensaft",
+     "cal_100": 65.0,
+     "p": 0.5,
+     "c": 16.0,
+     "f": 0.2,
+     "fiber_g": 0.6,
+     "sugar_g": 11.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.1,
+     "serv_g": 250,
+     "cal_serv": 162,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 81
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 162
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 324
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: عصير",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "عصير كركديه",
+     "name_en": "Hibiscus Juice",
+     "name_fr": "Jus d'hibiscus",
+     "name_es": "Zumo de hibisco",
+     "name_de": "Hibiskussaft",
+     "cal_100": 30.0,
+     "p": 0.3,
+     "c": 7.0,
+     "f": 0.1,
+     "fiber_g": 0.6,
+     "sugar_g": 11.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.1,
+     "serv_g": 250,
+     "cal_serv": 75,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 38
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 75
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 150
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: عصير",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "عصير مشكل",
+     "name_en": "Mixed Fruit Juice",
+     "name_fr": "Jus de fruits mélangés",
+     "name_es": "Zumo de frutas mixtas",
+     "name_de": "Gemischter Fruchtsaft",
+     "cal_100": 50.0,
+     "p": 0.5,
+     "c": 12.0,
+     "f": 0.2,
+     "fiber_g": 0.6,
+     "sugar_g": 11.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.1,
+     "serv_g": 250,
+     "cal_serv": 125,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 62
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 125
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 250
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: عصير",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "حليب بالتمر",
+     "name_en": "Date Milkshake",
+     "name_fr": "Lait aux dattes",
+     "name_es": "Batido de dátiles",
+     "name_de": "Dattelmilch",
+     "cal_100": 70.0,
+     "p": 2.2,
+     "c": 10.0,
+     "f": 2.5,
+     "fiber_g": 0.6,
+     "sugar_g": 24.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 1.4,
+     "serv_g": 250,
+     "cal_serv": 175,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 88
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 175
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 350
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: حليب",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "حليب الإبل",
+     "name_en": "Camel Milk",
+     "name_fr": "Lait de chamelle",
+     "name_es": "Leche de camella",
+     "name_de": "Kamelmilch",
+     "cal_100": 46.0,
+     "p": 3.0,
+     "c": 4.5,
+     "f": 1.5,
+     "fiber_g": 0.6,
+     "sugar_g": 2.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.8,
+     "serv_g": 250,
+     "cal_serv": 115,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 58
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 115
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 230
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: حليب",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "زبادي بالتمر",
+     "name_en": "Yogurt with Dates",
+     "name_fr": "Yaourt aux dattes",
+     "name_es": "Yogur con dátiles",
+     "name_de": "Joghurt mit Datteln",
+     "cal_100": 95.0,
+     "p": 4.0,
+     "c": 13.0,
+     "f": 3.0,
+     "fiber_g": 0.6,
+     "sugar_g": 24.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 1.6,
+     "serv_g": 150,
+     "cal_serv": 142,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 150جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 75,
+       "kcal": 71
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 150,
+       "kcal": 142
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 300,
+       "kcal": 284
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "breakfast",
+     "mealTypes": [
+      "breakfast",
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: زبادي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "شاي أحمر",
+     "name_en": "Black Tea",
+     "name_fr": "Thé noir",
+     "name_es": "Té negro",
+     "name_de": "Schwarzer Tee",
+     "cal_100": 20.0,
+     "p": 0.0,
+     "c": 5.0,
+     "f": 0.0,
+     "fiber_g": 0.6,
+     "sugar_g": 19.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.0,
+     "serv_g": 200,
+     "cal_serv": 40,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 200جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 100,
+       "kcal": 20
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 200,
+       "kcal": 40
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 400,
+       "kcal": 80
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: شاي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "شاي بالنعناع",
+     "name_en": "Mint Tea",
+     "name_fr": "Thé à la menthe",
+     "name_es": "Té con menta",
+     "name_de": "Pfefferminztee",
+     "cal_100": 20.0,
+     "p": 0.1,
+     "c": 5.0,
+     "f": 0.0,
+     "fiber_g": 0.6,
+     "sugar_g": 2.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.0,
+     "serv_g": 200,
+     "cal_serv": 40,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 200جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 100,
+       "kcal": 20
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 200,
+       "kcal": 40
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 400,
+       "kcal": 80
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": false,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: شاي",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "عصير ليمون بالنعناع",
+     "name_en": "Lemon-Mint Juice",
+     "name_fr": "Citronnade à la menthe",
+     "name_es": "Limonada con menta",
+     "name_de": "Zitronen-Minz-Saft",
+     "cal_100": 25.0,
+     "p": 0.2,
+     "c": 6.0,
+     "f": 0.1,
+     "fiber_g": 0.6,
+     "sugar_g": 11.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.1,
+     "serv_g": 250,
+     "cal_serv": 62,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 31
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 62
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 124
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: عصير",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "عصير فراولة",
+     "name_en": "Strawberry Juice",
+     "name_fr": "Jus de fraise",
+     "name_es": "Zumo de fresa",
+     "name_de": "Erdbeersaft",
+     "cal_100": 45.0,
+     "p": 0.4,
+     "c": 11.0,
+     "f": 0.2,
+     "fiber_g": 0.6,
+     "sugar_g": 11.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.1,
+     "serv_g": 250,
+     "cal_serv": 112,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 56
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 112
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 224
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: عصير",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "عصير رمان",
+     "name_en": "Pomegranate Juice",
+     "name_fr": "Jus de grenade",
+     "name_es": "Zumo de granada",
+     "name_de": "Granatapfelsaft",
+     "cal_100": 54.0,
+     "p": 0.2,
+     "c": 13.0,
+     "f": 0.2,
+     "fiber_g": 0.6,
+     "sugar_g": 11.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.1,
+     "serv_g": 250,
+     "cal_serv": 135,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 68
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 135
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 270
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: عصير",
+     "confidence": 65,
+     "confidence_label": "65% - تقديري (variant)",
+     "confidence_color": "orange"
+    },
+    {
+     "name": "سوبيا",
+     "name_en": "Sobia (Saudi Rice Drink)",
+     "name_fr": "Sobia (boisson de riz saoudienne)",
+     "name_es": "Sobia (bebida de arroz saudí)",
+     "name_de": "Sobia (saudisches Reisgetränk)",
+     "cal_100": 70.0,
+     "p": 0.5,
+     "c": 16.0,
+     "f": 0.7,
+     "fiber_g": 0.6,
+     "sugar_g": 19.0,
+     "sodium_mg": 120.0,
+     "sat_fat_g": 0.4,
+     "serv_g": 250,
+     "cal_serv": 175,
+     "serving_unit": "كوب",
+     "serving_description": "كوب 250جم",
+     "serving_options": [
+      {
+       "label": "نص",
+       "label_en": "Half",
+       "multiplier": 0.5,
+       "g": 125,
+       "kcal": 88
+      },
+      {
+       "label": "كامل",
+       "label_en": "Full",
+       "multiplier": 1.0,
+       "g": 250,
+       "kcal": 175
+      },
+      {
+       "label": "مضاعف",
+       "label_en": "Double",
+       "multiplier": 2.0,
+       "g": 500,
+       "kcal": 350
+      }
+     ],
+     "healthy": true,
+     "is_fried": false,
+     "is_sweet": true,
+     "mealType": "snacks",
+     "mealTypes": [
+      "snacks"
+     ],
+     "source": "المطبخ السعودي - variant",
+     "notes": "Variant of: سوبيا",
      "confidence": 65,
      "confidence_label": "65% - تقديري (variant)",
      "confidence_color": "orange"
