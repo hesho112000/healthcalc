@@ -2196,19 +2196,34 @@ const WeightLossPage: React.FC = () => {
                   </span>
                 </div>
                 <div className="mt-4 grid grid-cols-7 gap-1.5">
-                  {[0, 1, 2, 3, 4, 5, 6].map((i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      onClick={() => setSelectedPlanDay(i + 1)}
-                      className={`rounded-[12px] py-2 text-center transition-all ${i === selectedPlanDay - 1 ? 'bg-[#0F4C3A] text-white shadow-md' : 'bg-[#F4F1EB] text-[#6B7A75] hover:bg-[#EDE8DF]'}`}
-                    >
-                      <div className="text-[10px] font-extrabold">{t('wizard.step5.day').replace('{n}', String(i + 1))}</div>
-                      <div className="text-[9.5px] opacity-80 mt-0.5">
-                        {(weeklyPlan[i]?.meals ?? []).reduce((s, m) => s + m.dishes.reduce((x, d) => x + d.calories, 0), 0)} kcal
-                      </div>
-                    </button>
-                  ))}
+                  {[0, 1, 2, 3, 4, 5, 6].map((i) => {
+                    const dayTotal = (weeklyPlan[i]?.meals ?? []).reduce((s, m) => s + m.dishes.reduce((x, d) => x + d.calories, 0), 0);
+                    const target = numbers!.targetCal;
+                    const pct = target ? Math.round(((dayTotal - target) / target) * 100) : 0;
+                    const sign = pct > 0 ? '+' : '';
+                    const abs = Math.abs(pct);
+                    const active = i === selectedPlanDay - 1;
+                    const badgeCls = !weeklyPlan[i] ? '' : abs > 20 ? 'bg-red-50 text-red-600' : abs > 10 ? 'bg-[#FFF8E7] text-[#B8860B]' : 'bg-[#E4F2EC] text-[#0F4C3A]';
+                    const mark = !weeklyPlan[i] ? '' : abs > 20 ? '🔴' : abs > 10 ? '⚠️' : '✅';
+                    return (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => setSelectedPlanDay(i + 1)}
+                        className={`rounded-[12px] py-2 text-center transition-all ${active ? 'bg-[#0F4C3A] text-white shadow-md' : 'bg-[#F4F1EB] text-[#6B7A75] hover:bg-[#EDE8DF]'}`}
+                      >
+                        <div className="text-[10px] font-extrabold">{t('wizard.step5.day').replace('{n}', String(i + 1))}</div>
+                        <div className="text-[9.5px] opacity-80 mt-0.5">
+                          {weeklyPlan[i] ? `${dayTotal} kcal` : '—'}
+                        </div>
+                        {weeklyPlan[i] && (
+                          <div className={`mt-1 inline-flex items-center gap-0.5 rounded-full px-1.5 py-0.5 text-[9px] font-bold ${badgeCls}`}>
+                            {sign}{pct}% {mark}
+                          </div>
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
                 <div className="mt-4 rounded-[16px] bg-[#FAF8F3] px-4 py-3 flex items-center justify-between gap-2">
                   <span className="text-[12px] font-bold text-[#0F4C3A]">{t('wizard.step5.completed').replace('{n}', String(doneCount))}</span>

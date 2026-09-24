@@ -152,7 +152,9 @@ function selectDishes(
   budget: number,
   maxDishes: number,
   seed: number,
-  recent: Set<string>,
+  used: Map<string, number>,
+  maxUses: number,
+  dayNames: Set<string>,
   fallback: KitchenDish[],
 ): PlanDish[] {
   if (!pool.length) {
@@ -161,14 +163,19 @@ function selectDishes(
     const grams = fb.serv_g > 0 ? fb.serv_g : 100;
     return [{ dish: fb, mealTypes: ['lunch'], servings: 1, grams, calories: fb.cal_serv }];
   }
-  let candidates = pool;
-  if (recent.size) {
-    const fresh = pool.filter((x) => !recent.has(x.dish.name));
-    if (fresh.length >= 3) candidates = [...fresh, ...pool.filter((x) => recent.has(x.dish.name))];
+  let base = pool;
+  if (dayNames.size) {
+    const fresh = pool.filter((x) => !dayNames.has(x.dish.name));
+    if (fresh.length >= 2) base = fresh;
   }
-  const suitable = candidates.filter((x) => x.suit === 'suitable');
-  const neutral = candidates.filter((x) => x.suit !== 'suitable');
-  const cand = [...seededShuffle(suitable, seed), ...seededShuffle(neutral, seed + 1)];
+  const preferred = base.filter((x) => (used.get(x.dish.name) ?? 0) < maxUses);
+  const rest = base.filter((x) => (used.get(x.dish.name) ?? 0) >= maxUses);
+  const order = (arr: PoolItem[]) => {
+    const suitable = arr.filter((x) => x.suit === 'suitable');
+    const neutral = arr.filter((x) => x.suit !== 'suitable');
+    return [...seededShuffle(suitable, seed), ...seededShuffle(neutral, seed + 1)];
+  };
+  const cand = [...order(preferred), ...order(rest)];
   const chosen: PlanDish[] = [];
   let total = 0;
   for (const it of cand) {
@@ -178,7 +185,8 @@ function selectDishes(
     if (total + c <= budget * 1.1) {
       chosen.push({ dish: it.dish, mealTypes: it.keys, servings: 1, grams: it.dish.serv_g, calories: c });
       total += c;
-      recent.add(it.dish.name);
+      used.set(it.dish.name, (used.get(it.dish.name) ?? 0) + 1);
+      dayNames.add(it.dish.name);
     }
   }
   let improved = true;
@@ -203,7 +211,8 @@ function selectDishes(
       if (total + it.dish.cal_serv <= budget * 1.1) {
         chosen.push({ dish: it.dish, mealTypes: it.keys, servings: 1, grams: it.dish.serv_g, calories: it.dish.cal_serv });
         total = chosen.reduce((s, x) => s + x.calories, 0);
-        recent.add(it.dish.name);
+        used.set(it.dish.name, (used.get(it.dish.name) ?? 0) + 1);
+        dayNames.add(it.dish.name);
         if (total >= budget * 0.8 || chosen.length >= maxDishes) break;
       }
     }
@@ -236,34 +245,43 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
     snacks: buildPool(allDishes, conditions, 'snacks'),
   };
 
-  const dayUsed: Set<string>[] = [];
+  const used = new Map<string, number>();
   const days: PlanDay[] = [];
 
   for (let day = 1; day <= 7; day++) {
-    const recent = new Set<string>();
-    if (varietyAcrossDays) {
-      for (const prev of dayUsed.slice(Math.max(0, dayUsed.length - 2))) {
-        for (const n of prev) recent.add(n);
+    let maxUses = varietyAcrossDays ? (day <= 4 ? 1 : 2) : 99;
+    const maxAllowed = day <= 4 ? 1 : 3;
+    let best: { meals: PlanMeal[]; dayTotal: number; inRange: boolean } | null = null;
+    for (let attempt = 0; attempt < 4; attempt++) {
+      const usageSnapshot = new Map(used);
+      const dayUsed = new Set<string>();
+      const meals: PlanMeal[] = [];
+      let dayTotal = 0;
+      MEAL_ORDER.forEach((meal, i) => {
+        const budget = Math.round(target * MEAL_ALLOCATION[meal]);
+        const seed = day * 100 + i + attempt * 7;
+        const chosen = selectDishes(pools[meal], budget, maxDishes, seed, used, maxUses, dayUsed, allDishes);
+        const totalCal = chosen.reduce((s, x) => s + x.calories, 0);
+        dayTotal += totalCal;
+        meals.push({ mealType: meal, label: MEAL_LABELS[meal], dishes: chosen, totalCal, targetCal: budget });
+      });
+      const inRange = dayTotal >= target * 0.9 && dayTotal <= target * 1.1;
+      best = { meals, dayTotal, inRange };
+      if (inRange) break;
+      if (varietyAcrossDays && maxUses < maxAllowed) {
+        maxUses += 1;
+        used.clear();
+        for (const [k, v] of usageSnapshot) used.set(k, v);
+        continue;
       }
+      break;
     }
-    const meals: PlanMeal[] = [];
-    let dayTotal = 0;
-    MEAL_ORDER.forEach((meal, i) => {
-      const budget = Math.round(target * MEAL_ALLOCATION[meal]);
-      const seed = day * 100 + i;
-      const chosen = selectDishes(pools[meal], budget, maxDishes, seed, recent, allDishes);
-      const totalCal = chosen.reduce((s, x) => s + x.calories, 0);
-      dayTotal += totalCal;
-      meals.push({ mealType: meal, label: MEAL_LABELS[meal], dishes: chosen, totalCal, targetCal: budget });
-    });
-    const used = new Set<string>();
-    for (const m of meals) for (const d of m.dishes) used.add(d.dish.name);
-    dayUsed.push(used);
+    const final = best ?? { meals: [], dayTotal: 0, inRange: false };
     days.push({
       day,
       label: DAY_LABELS[day - 1],
-      meals,
-      totalCal: dayTotal,
+      meals: final.meals,
+      totalCal: final.dayTotal,
       targetCal: target,
     });
   }
