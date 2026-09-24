@@ -2012,13 +2012,20 @@ const WeightLossPage: React.FC = () => {
               <div className="flex items-center justify-between gap-2 mb-4">
                 <h3 className="text-[16px] font-extrabold">🍱 {t('wizard.step5.statMealsDone')}</h3>
                 <span className="text-[11px] font-bold bg-[#FFF8E7] text-[#B8860B] px-3 py-1 rounded-full">
-                  {t('wizard.step5.day').replace('{n}', String(selectedPlanDay))} · {calT(numbers!.targetCal)}
+                  {(() => {
+                    const dayIdx = selectedPlanDay - 1;
+                    const day = weeklyPlan[dayIdx];
+                    const computed = (day?.meals ?? []).reduce((s, m) => s + m.dishes.reduce((x, d) => x + d.calories, 0), 0);
+                    const displayed = numbers!.targetCal;
+                    console.log('[Day Total]', { day: selectedPlanDay, computed, displayed });
+                    return `${t('wizard.step5.day').replace('{n}', String(selectedPlanDay))} · ${computed} kcal`;
+                  })()}
                 </span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {(weeklyPlan[selectedPlanDay - 1]?.meals ?? []).map((meal, idx) => {
                   const emoji = step5Meals.find((s) => s.key === meal.mealType)?.emoji ?? '🍽️';
-                  const mealCal = meal.totalCal;
+                  const mealCal = meal.dishes.reduce((s, x) => s + x.calories, 0);
                   const done = idx < 3 ? mealsDone[idx] : false;
                   return (
                     <div
