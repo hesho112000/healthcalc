@@ -59,6 +59,107 @@ const MEAL_LABELS: Record<PlanMealType, string> = {
 
 const DAY_LABELS = ['السبت', 'الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة'];
 
+const DAY_LOW = 0.9;
+const DAY_HIGH = 1.1;
+const MEAL_LOW = 0.8;
+const MAX_GAP_FILL_STEPS = 12;
+
+// Small generic side/snack/fruit items used only to top up a meal that
+// sits under 80% of its budget (spec: "if Lunch is short 150 kcal -> fruit").
+const FILLER_SNACKS: KitchenDish[] = [
+  {
+    name: 'تفاحة (سناك خفيف)',
+    cal_100: 52,
+    p: 0.3,
+    c: 14,
+    f: 0.2,
+    serv_g: 130,
+    cal_serv: 68,
+    healthy: true,
+    confidence: 100,
+    confidence_label: '100% - دقيق',
+    confidence_color: 'green',
+    source: 'USDA - Apple raw',
+    notes: 'سناك فواكه خفيف لتكملة الوجبة',
+    mealType: 'snacks',
+    mealTypes: ['snacks'],
+  },
+  {
+    name: 'زبادي يوناني (سناك)',
+    cal_100: 59,
+    p: 10,
+    c: 3.6,
+    f: 0.4,
+    serv_g: 100,
+    cal_serv: 59,
+    healthy: true,
+    confidence: 100,
+    confidence_label: '100% - دقيق',
+    confidence_color: 'green',
+    source: 'USDA - Yogurt Greek plain',
+    notes: 'طبق جانبي خفيف',
+    mealType: 'snacks',
+    mealTypes: ['snacks'],
+  },
+  {
+    name: 'حفنة لوز (سناك)',
+    cal_100: 579,
+    p: 21,
+    c: 22,
+    f: 50,
+    serv_g: 28,
+    cal_serv: 162,
+    healthy: true,
+    confidence: 100,
+    confidence_label: '100% - دقيق',
+    confidence_color: 'green',
+    source: 'USDA - Almonds',
+    notes: 'حفنة صغيرة 28جم',
+    mealType: 'snacks',
+    mealTypes: ['snacks'],
+  },
+  {
+    name: 'خيار مع لبن (سناك)',
+    cal_100: 16,
+    p: 1.5,
+    c: 3,
+    f: 0.2,
+    serv_g: 120,
+    cal_serv: 32,
+    healthy: true,
+    confidence: 70,
+    confidence_label: '70% - تقديري',
+    confidence_color: 'green',
+    source: 'تقديري من بيانات محلية',
+    notes: 'سناك خفيف',
+    mealType: 'snacks',
+    mealTypes: ['snacks'],
+  },
+  {
+    name: 'برتقالة (فاكهة)',
+    cal_100: 47,
+    p: 0.9,
+    c: 12,
+    f: 0.1,
+    serv_g: 131,
+    cal_serv: 62,
+    healthy: true,
+    confidence: 100,
+    confidence_label: '100% - دقيق',
+    confidence_color: 'green',
+    source: 'USDA - Orange',
+    notes: 'فاكهة طازجة',
+    mealType: 'snacks',
+    mealTypes: ['snacks'],
+  },
+];
+
+interface CooldownOpts {
+  today: number;
+  days: number;
+  lastUsed: Map<string, number>;
+}
+
 interface PoolItem {
   dish: KitchenDish;
   keys: PlanMealType[];
@@ -156,16 +257,26 @@ function selectDishes(
   maxUses: number,
   dayNames: Set<string>,
   fallback: KitchenDish[],
+  cooldown: CooldownOpts,
 ): PlanDish[] {
   if (!pool.length) {
-    const fb = fallback[0];
+    const fb = fallback[0] ?? FILLER_SNACKS[1];
     if (!fb) return [];
     const grams = fb.serv_g > 0 ? fb.serv_g : 100;
-    return [{ dish: fb, mealTypes: ['lunch'], servings: 1, grams, calories: fb.cal_serv }];
+    return [{ dish: fb, mealTypes: ['snacks'], servings: 1, grams, calories: fb.cal_serv }];
   }
+  const freshCheck = (x: PoolItem) => {
+    if (dayNames.has(x.dish.name)) return false;
+    if (cooldown.days === 0) return true;
+    const last = cooldown.lastUsed.get(x.dish.name);
+    return last == null || cooldown.today - last >= cooldown.days;
+  };
+  // Relaxed variety: prefer dishes that are (a) not used today and (b) past the
+  // variety cooldown (no repeat days 1-4, 2-day gap days 5-6, 1-day gap day 7).
+  // Fall back to the full pool when too few fresh remain so later days still fill.
   let base = pool;
   if (dayNames.size) {
-    const fresh = pool.filter((x) => !dayNames.has(x.dish.name));
+    const fresh = pool.filter(freshCheck);
     if (fresh.length >= 2) base = fresh;
   }
   const preferred = base.filter((x) => (used.get(x.dish.name) ?? 0) < maxUses);
@@ -180,9 +291,9 @@ function selectDishes(
   let total = 0;
   for (const it of cand) {
     if (chosen.length >= maxDishes) break;
-    if (total >= budget * 0.9) break;
+    if (total >= budget * DAY_LOW) break;
     const c = it.dish.cal_serv;
-    if (total + c <= budget * 1.1) {
+    if (total + c <= budget * DAY_HIGH) {
       chosen.push({ dish: it.dish, mealTypes: it.keys, servings: 1, grams: it.dish.serv_g, calories: c });
       total += c;
       used.set(it.dish.name, (used.get(it.dish.name) ?? 0) + 1);
@@ -190,34 +301,135 @@ function selectDishes(
     }
   }
   let improved = true;
-  while (improved && total < budget * 0.9) {
+  while (improved && total < budget * DAY_LOW) {
     improved = false;
     for (const d of chosen) {
-      if (d.servings === 1 && total + d.calories <= budget * 1.1) {
-        d.servings = 2;
-        d.calories *= 2;
-        d.grams *= 2;
+      const next = d.servings === 1 ? 1.5 : d.servings === 1.5 ? 2 : 0;
+      if (!next) continue;
+      const bump = Math.round(d.dish.cal_serv * next) - d.calories;
+      if (bump > 0 && total + bump <= budget * DAY_HIGH) {
+        d.servings = next;
+        d.calories = Math.round(d.dish.cal_serv * next);
+        d.grams = Math.round(d.dish.serv_g * next);
         total = chosen.reduce((s, x) => s + x.calories, 0);
         improved = true;
         break;
       }
     }
   }
-  if (total < budget * 0.8 && chosen.length < maxDishes) {
-    const smalls = cand.filter(
-      (x) => x.dish.cal_serv <= budget * 0.25 && !chosen.find((d) => d.dish.name === x.dish.name),
-    );
-    for (const it of smalls) {
-      if (total + it.dish.cal_serv <= budget * 1.1) {
-        chosen.push({ dish: it.dish, mealTypes: it.keys, servings: 1, grams: it.dish.serv_g, calories: it.dish.cal_serv });
-        total = chosen.reduce((s, x) => s + x.calories, 0);
-        used.set(it.dish.name, (used.get(it.dish.name) ?? 0) + 1);
-        dayNames.add(it.dish.name);
-        if (total >= budget * 0.8 || chosen.length >= maxDishes) break;
-      }
-    }
+  // Per-meal gap fill: under 80% of budget -> add a small side/snack/fruit.
+  if (total < budget * MEAL_LOW) {
+    fillMeal(pool, chosen, budget, maxDishes, used, dayNames, total);
   }
   return chosen;
+}
+
+function pushDish(chosen: PlanDish[], dish: KitchenDish, keys: PlanMealType[], used: Map<string, number>, dayNames: Set<string>) {
+  chosen.push({ dish, mealTypes: keys, servings: 1, grams: dish.serv_g, calories: dish.cal_serv });
+  used.set(dish.name, (used.get(dish.name) ?? 0) + 1);
+  dayNames.add(dish.name);
+}
+
+function fillMeal(pool: PoolItem[], chosen: PlanDish[], budget: number, maxDishes: number, used: Map<string, number>, dayNames: Set<string>, startTotal: number) {
+  let total = startTotal;
+  const inMeal = new Set(chosen.map((x) => x.dish.name));
+  const smalls = pool
+    .filter((x) => x.dish.cal_serv > 0 && !inMeal.has(x.dish.name) && x.dish.cal_serv <= budget * 0.35)
+    .sort((a, b) => a.dish.cal_serv - b.dish.cal_serv);
+  for (const it of smalls) {
+    if (total >= budget * MEAL_LOW || chosen.length >= maxDishes) break;
+    const c = it.dish.cal_serv;
+    if (total + c <= budget * DAY_HIGH) {
+      pushDish(chosen, it.dish, it.keys, used, dayNames);
+      total += c;
+      inMeal.add(it.dish.name);
+    }
+  }
+  if (total >= budget * MEAL_LOW) return;
+  for (const filler of FILLER_SNACKS) {
+    if (total >= budget * MEAL_LOW || chosen.length >= maxDishes) break;
+    if (inMeal.has(filler.name)) continue;
+    const c = filler.cal_serv;
+    if (total + c <= budget * DAY_HIGH) {
+      pushDish(chosen, filler, ['snacks'], used, dayNames);
+      total += c;
+      inMeal.add(filler.name);
+    }
+  }
+}
+
+// Day-level gap fill: a day under 90% of target gets one extra dish (repeats
+// allowed) and/or its existing dishes scaled to 1.5x/2x servings until the day
+// reaches >= 90% (never exceeding 110%).
+function gapFillDay(
+  meals: PlanMeal[],
+  target: number,
+  pools: Record<PlanMealType, PoolItem[]>,
+  dayNames: Set<string>,
+  used: Map<string, number>,
+  cooldown: CooldownOpts,
+) {
+  const dayTotal = () => meals.reduce((s, m) => s + m.totalCal, 0);
+  // (a) add one more dish to the meal with the most room
+  let guard = 0;
+  while (dayTotal() < target * DAY_LOW && guard < MAX_GAP_FILL_STEPS) {
+    guard += 1;
+    const dayRoom = target * DAY_HIGH - dayTotal();
+    if (dayRoom < 1) break;
+    let bestMeal: PlanMeal | null = null;
+    let bestSpace = -1;
+    for (const m of meals) {
+      const space = m.targetCal * DAY_HIGH - m.totalCal;
+      if (space > bestSpace) {
+        bestSpace = space;
+        bestMeal = m;
+      }
+    }
+    if (!bestMeal || bestSpace < 1) break;
+    const pool = pools[bestMeal.mealType] ?? [];
+    if (!pool.length) break;
+    const inMeal = new Set(bestMeal.dishes.map((x) => x.dish.name));
+    const room = Math.min(dayRoom, bestSpace);
+    const fits = pool
+      .filter((x) => x.dish.cal_serv > 0 && !inMeal.has(x.dish.name) && x.dish.cal_serv <= room)
+      .sort((a, b) => a.dish.cal_serv - b.dish.cal_serv);
+    const pick = fits[0];
+    if (!pick) break;
+    pushDish(bestMeal.dishes, pick.dish, pick.keys, used, dayNames);
+    bestMeal.totalCal = bestMeal.dishes.reduce((s, x) => s + x.calories, 0);
+  }
+  // (b) scale existing servings by +0.5 steps (1 -> 1.5 -> 2)
+  guard = 0;
+  let changed = true;
+  while (changed && dayTotal() < target * DAY_LOW && guard < MAX_GAP_FILL_STEPS) {
+    guard += 1;
+    changed = false;
+    const dayRoom = target * DAY_HIGH - dayTotal();
+    if (dayRoom < 1) break;
+    let bestD: PlanDish | null = null;
+    let bestMeal: PlanMeal | null = null;
+    let bestBump = 0;
+    for (const m of meals) {
+      for (const d of m.dishes) {
+        const next = d.servings === 1 ? 1.5 : d.servings === 1.5 ? 2 : 0;
+        if (!next) continue;
+        const bump = Math.round(d.dish.cal_serv * next) - d.calories;
+        if (bump > 0 && bump <= dayRoom && (!bestD || bump < bestBump)) {
+          bestD = d;
+          bestMeal = m;
+          bestBump = bump;
+        }
+      }
+    }
+    if (bestD && bestMeal) {
+      const next = bestD.servings === 1 ? 1.5 : 2;
+      bestD.servings = next;
+      bestD.calories = Math.round(bestD.dish.cal_serv * next);
+      bestD.grams = Math.round(bestD.dish.serv_g * next);
+      bestMeal.totalCal = bestMeal.dishes.reduce((s, x) => s + x.calories, 0);
+      changed = true;
+    }
+  }
 }
 
 export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
@@ -246,9 +458,13 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
   };
 
   const used = new Map<string, number>();
+  const lastUsedDay = new Map<string, number>();
   const days: PlanDay[] = [];
 
   for (let day = 1; day <= 7; day++) {
+    // Variety cooldown: days 1-4 no repeat, days 5-6 repeat after 2 days, day 7 after 1 day.
+    const cooldownDays = day <= 4 ? Infinity : day >= 7 ? 1 : 2;
+    const coopts: CooldownOpts = { today: day, days: cooldownDays, lastUsed: lastUsedDay };
     let maxUses = varietyAcrossDays ? (day <= 4 ? 1 : 2) : 99;
     const maxAllowed = day <= 4 ? 1 : 3;
     let best: { meals: PlanMeal[]; dayTotal: number; inRange: boolean } | null = null;
@@ -260,12 +476,17 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
       MEAL_ORDER.forEach((meal, i) => {
         const budget = Math.round(target * MEAL_ALLOCATION[meal]);
         const seed = day * 100 + i + attempt * 7;
-        const chosen = selectDishes(pools[meal], budget, maxDishes, seed, used, maxUses, dayUsed, allDishes);
+        const chosen = selectDishes(pools[meal], budget, maxDishes, seed, used, maxUses, dayUsed, allDishes, coopts);
         const totalCal = chosen.reduce((s, x) => s + x.calories, 0);
         dayTotal += totalCal;
         meals.push({ mealType: meal, label: MEAL_LABELS[meal], dishes: chosen, totalCal, targetCal: budget });
       });
-      const inRange = dayTotal >= target * 0.9 && dayTotal <= target * 1.1;
+      // Day-level gap fill: if still under 90%, add a dish / scale servings.
+      if (dayTotal < target * DAY_LOW) {
+        gapFillDay(meals, target, pools, dayUsed, used, coopts);
+        dayTotal = meals.reduce((s, m) => s + m.totalCal, 0);
+      }
+      const inRange = dayTotal >= target * DAY_LOW && dayTotal <= target * DAY_HIGH;
       best = { meals, dayTotal, inRange };
       if (inRange) break;
       if (varietyAcrossDays && maxUses < maxAllowed) {
@@ -277,6 +498,7 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
       break;
     }
     const final = best ?? { meals: [], dayTotal: 0, inRange: false };
+    for (const m of final.meals) for (const d of m.dishes) lastUsedDay.set(d.dish.name, day);
     days.push({
       day,
       label: DAY_LABELS[day - 1],
@@ -285,6 +507,16 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
       targetCal: target,
     });
   }
+
+  const within = (p: PlanDay) => p.totalCal >= target * DAY_LOW && p.totalCal <= target * DAY_HIGH;
+  const okDays = days.filter(within).length;
+  console.log('[Plan Generator]');
+  console.log(`  Target: ${target} kcal`);
+  for (const d of days) {
+    const pct = Math.round((d.totalCal / target) * 100);
+    console.log(`  Day ${d.day}: ${d.totalCal} (${pct}%) ${within(d) ? 'OK' : 'UNDER'}`);
+  }
+  console.log(`  Days within +/-10%: ${okDays}/7`);
 
   const isDev = typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.DEV;
   if (isDev) {
