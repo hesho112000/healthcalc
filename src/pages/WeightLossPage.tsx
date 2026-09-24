@@ -268,7 +268,7 @@ interface RegionDef {
 
 const REGIONS: RegionDef[] = [
   { id: 'africa', emoji: '🌍', en: 'Africa', ar: 'أفريقيا', ids: ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'nigerian', 'ethiopian', 'kenyan', 'rwandan', 'south-african'] },
-  { id: 'middle-east', emoji: '🕌', en: 'Middle East', ar: 'الشرق الأوسط', ids: ['saudi', 'emirati', 'omani', 'kuwaiti', 'qatar', 'bahraini', 'lebanese', 'palestinian', 'syrian', 'jordanian'] },
+  { id: 'middle-east', emoji: '🕌', en: 'Middle East & Gulf', ar: 'الشرق الأوسط والخليج', ids: ['saudi', 'emirati', 'omani', 'kuwaiti', 'qatar', 'bahraini', 'lebanese', 'palestinian', 'syrian', 'jordanian'] },
   { id: 'asia', emoji: '🌏', en: 'Asia', ar: 'آسيا', ids: ['indian', 'pakistani', 'chinese', 'japanese', 'korean', 'thai', 'australian', 'new-zealand'] },
   { id: 'americas', emoji: '🌎', en: 'Americas', ar: 'الأمريكتان', ids: ['american', 'mexican', 'jamaican', 'cuban', 'costa-rican', 'brazilian', 'peruvian', 'colombian', 'chilean', 'venezuelan'] },
   { id: 'europe', emoji: '🏰', en: 'Europe', ar: 'أوروبا', ids: ['italian', 'french', 'spanish', 'greek', 'turkish', 'british', 'swiss'] },
