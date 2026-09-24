@@ -275,6 +275,16 @@ const REGIONS: RegionDef[] = [
   { id: 'special-diets', emoji: '🌿', en: 'Special Diets', ar: 'أنظمة غذائية خاصة', ids: ['diet-keto', 'diet-vegan', 'diet-vegetarian', 'diet-high-protein', 'diet-mediterranean', 'diet-low-carb', 'diet-dash', 'diet-gluten-free', 'diet-intermittent-fasting', 'diet-paleo'] },
 ];
 
+const SAUDI_REGION_META: { id: string; emoji: string; en: string; ar: string }[] = [
+  { id: 'all', emoji: '🇸🇦', en: 'All Saudi', ar: 'كل المطبخ السعودي' },
+  { id: 'pan_saudi', emoji: '🥘', en: 'General Saudi', ar: 'عام (كل المناطق)' },
+  { id: 'najdi', emoji: '🏜️', en: 'Najdi', ar: 'نجدي' },
+  { id: 'hijazi', emoji: '🕋', en: 'Hijazi', ar: 'حجازي' },
+  { id: 'janubi', emoji: '🏔️', en: 'Southern', ar: 'جنوبي' },
+  { id: 'sharqi', emoji: '🏝️', en: 'Eastern', ar: 'شرقي' },
+  { id: 'gulf_shared', emoji: '🌊', en: 'Gulf Shared', ar: 'خليجي مشترك' },
+];
+
 const MEAL_LABELS: Record<string, string> = {
   breakfast: 'فطار 🍳',
   lunch: 'غدا 🍲',
@@ -624,6 +634,7 @@ const WeightLossPage: React.FC = () => {
   const [mealTab, setMealTab] = useState<MealKey>('breakfast');
   const [regionSel, setRegionSel] = useState<string | null>(null);
   const [cuisineSel, setCuisineSel] = useState<string | null>(null);
+  const [kitchenRegion, setKitchenRegion] = useState<string>('all');
   const [dishSearch, setDishSearch] = useState('');
   const [savedSearch, setSavedSearch] = useState('');
   const [healthyOnly, setHealthyOnly] = useState(false);
@@ -1041,6 +1052,7 @@ const WeightLossPage: React.FC = () => {
     setExpandedCat(null);
     setSelectedDishKeys([]);
     setAssignedDishes({});
+    setKitchenRegion('all');
   };
 
   const runAutoKitchen = () => {
@@ -1055,6 +1067,7 @@ const WeightLossPage: React.FC = () => {
         targetCalories: numbers ? numbers.targetCal : 2000,
         goal,
         kitchens: [selectedKitchen],
+        region: kitchenRegion === 'all' ? undefined : kitchenRegion,
         varietyAcrossDays: true,
         maxDishesPerMeal: 5,
       });
@@ -1752,6 +1765,41 @@ const WeightLossPage: React.FC = () => {
 
             {cuisineSel && (
               <div className="space-y-2">
+                {(() => {
+                  const picked = kitchensRegistry.find((x) => x.id === cuisineSel);
+                  const hasRegions = !!picked && Array.isArray(picked.regions) && picked.regions.length > 0;
+                  if (!hasRegions) return null;
+                  return (
+                    <div className="rounded-[20px] border-2 border-[#EFEBE4] bg-white p-4">
+                      <div className="text-[12px] font-bold text-[#6B7A75]">
+                        {language === 'ar' ? '🏷️ اختر المنطقة (تلقائي: عام)' : '🏷️ Choose a region (default: General)'}
+                      </div>
+                      <div className="mt-2.5 flex flex-wrap gap-2">
+                        {SAUDI_REGION_META.map((r) => {
+                          const on = kitchenRegion === r.id;
+                          return (
+                            <button
+                              key={r.id}
+                              type="button"
+                              onClick={() => setKitchenRegion(r.id)}
+                              className={`rounded-full border-2 px-3 py-1.5 text-[12px] font-bold flex items-center gap-1.5 transition-all active:scale-95 ${on ? 'border-[#D4AF37] bg-[#FFFBEF] text-[#0F4C3A] shadow-[0_0_0_3px_rgba(212,175,55,0.15)]' : 'border-[#EFEBE4] bg-white text-[#6B7A75] hover:border-[#D4AF37]'}`}
+                            >
+                              <span>{r.emoji}</span>
+                              <span>{language === 'ar' ? r.ar : r.en}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                      {kitchenRegion !== 'all' && picked && (
+                        <p className="mt-2 text-[11px] text-[#8A938E] leading-snug">
+                          {language === 'ar'
+                            ? 'إذا كانت أطباق المنطقة أقل من 7 سيُكمل المولّد تلقائياً من الأطباق العامة، دون تكرار أي طبق أكثر من مرتين بالأسبوع.'
+                            : 'If the region has fewer than 7 dishes, the generator auto-fills from general Saudi dishes, never repeating a meal more than twice a week.'}
+                        </p>
+                      )}
+                    </div>
+                  );
+                })()}
                 <button
                   type="button"
                   onClick={runAutoKitchen}

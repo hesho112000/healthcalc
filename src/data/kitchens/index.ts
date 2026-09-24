@@ -19,6 +19,7 @@ export interface KitchenDish {
   notes: string;
   mealType?: string;
   mealTypes?: string[];
+  region?: string;
 }
 
 export interface KitchenCategory {
@@ -42,6 +43,7 @@ export interface KitchenInfo {
   dishes: KitchenDish[];
   categories: KitchenCategory[];
   portion_guide?: string;
+  regions?: string[];
   rich: boolean;
 }
 
@@ -246,6 +248,7 @@ function toKitchenDish(raw: any): KitchenDish | null {
       source: raw.source ?? '',
       notes: raw.notes ?? '',
       mealTypes: Array.isArray(raw.mealTypes) ? raw.mealTypes : undefined,
+      region: typeof raw.region === 'string' && raw.region ? raw.region : undefined,
     };
   }
   const grams = raw.grams || 100;
@@ -352,6 +355,7 @@ function buildRich(path: string, mod: any): KitchenInfo {
     dishes,
     categories,
     portion_guide: data.portion_guide,
+    regions: Array.isArray(data.regions) ? data.regions.filter((r: unknown): r is string => typeof r === 'string') : undefined,
     rich: true,
   };
 }

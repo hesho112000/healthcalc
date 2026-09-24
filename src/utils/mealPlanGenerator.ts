@@ -37,6 +37,7 @@ export interface PlanOptions {
   goal: string;
   conditions?: SuitabilityCondition[];
   kitchens: KitchenInfo[];
+  region?: string;
   varietyAcrossDays?: boolean;
   maxDishesPerMeal?: number;
 }
@@ -63,6 +64,8 @@ const DAY_LOW = 0.9;
 const DAY_HIGH = 1.1;
 const MEAL_LOW = 0.8;
 const MAX_GAP_FILL_STEPS = 12;
+const MIN_REGION_DISHES = 7;
+const WEEK_MAX_USES = 2;
 
 // Small generic side/snack/fruit items used only to top up a meal that
 // sits under 80% of its budget (spec: "if Lunch is short 150 kcal -> fruit").
@@ -231,7 +234,7 @@ function seededShuffle<T>(arr: readonly T[], seed: number): T[] {
   return a;
 }
 
-function buildPool(dishes: KitchenDish[], conditions: SuitabilityCondition[], meal: PlanMealType): PoolItem[] {
+function buildPool(dishes: KitchenDish[], conditions: SuitabilityCondition[], meal: PlanMealType, regionPriority?: Set<string>): PoolItem[] {
   const out: PoolItem[] = [];
   for (const dish of dishes) {
     const keys = mealKeysOf(dish);
@@ -243,9 +246,14 @@ function buildPool(dishes: KitchenDish[], conditions: SuitabilityCondition[], me
     if (suit === 'unsuitable') continue;
     out.push({ dish, keys, suit });
   }
-  const suitable = out.filter((x) => x.suit === 'suitable');
-  const neutral = out.filter((x) => x.suit !== 'suitable');
-  return [...suitable, ...neutral];
+  const bySuit = (s: Suitability) => out.filter((x) => x.suit === s);
+  const prioritize = (arr: PoolItem[]) => {
+    if (!regionPriority || regionPriority.size === 0) return arr;
+    const prio = arr.filter((x) => regionPriority.has(x.dish.name));
+    const rest = arr.filter((x) => !regionPriority.has(x.dish.name));
+    return [...prio, ...rest];
+  };
+  return [...prioritize(bySuit('suitable')), ...prioritize(bySuit('neutral'))];
 }
 
 function selectDishes(
@@ -258,11 +266,15 @@ function selectDishes(
   dayNames: Set<string>,
   fallback: KitchenDish[],
   cooldown: CooldownOpts,
+  weekCap = 0,
 ): PlanDish[] {
   if (!pool.length) {
-    const fb = fallback[0] ?? FILLER_SNACKS[1];
+    const avail = fallback.filter((f) => weekCap <= 0 || (used.get(f.name) ?? 0) < weekCap);
+    const fb = avail[0] ?? fallback[0] ?? FILLER_SNACKS[1];
     if (!fb) return [];
     const grams = fb.serv_g > 0 ? fb.serv_g : 100;
+    used.set(fb.name, (used.get(fb.name) ?? 0) + 1);
+    dayNames.add(fb.name);
     return [{ dish: fb, mealTypes: ['snacks'], servings: 1, grams, calories: fb.cal_serv }];
   }
   const freshCheck = (x: PoolItem) => {
@@ -278,6 +290,10 @@ function selectDishes(
   if (dayNames.size) {
     const fresh = pool.filter(freshCheck);
     if (fresh.length >= 2) base = fresh;
+  }
+  if (weekCap > 0) {
+    const under = base.filter((x) => (used.get(x.dish.name) ?? 0) < weekCap);
+    if (under.length) base = under;
   }
   const preferred = base.filter((x) => (used.get(x.dish.name) ?? 0) < maxUses);
   const rest = base.filter((x) => (used.get(x.dish.name) ?? 0) >= maxUses);
@@ -319,7 +335,7 @@ function selectDishes(
   }
   // Per-meal gap fill: under 80% of budget -> add a small side/snack/fruit.
   if (total < budget * MEAL_LOW) {
-    fillMeal(pool, chosen, budget, maxDishes, used, dayNames, total);
+    fillMeal(pool, chosen, budget, maxDishes, used, dayNames, total, weekCap);
   }
   return chosen;
 }
@@ -330,11 +346,11 @@ function pushDish(chosen: PlanDish[], dish: KitchenDish, keys: PlanMealType[], u
   dayNames.add(dish.name);
 }
 
-function fillMeal(pool: PoolItem[], chosen: PlanDish[], budget: number, maxDishes: number, used: Map<string, number>, dayNames: Set<string>, startTotal: number) {
+function fillMeal(pool: PoolItem[], chosen: PlanDish[], budget: number, maxDishes: number, used: Map<string, number>, dayNames: Set<string>, startTotal: number, weekCap = 0) {
   let total = startTotal;
   const inMeal = new Set(chosen.map((x) => x.dish.name));
   const smalls = pool
-    .filter((x) => x.dish.cal_serv > 0 && !inMeal.has(x.dish.name) && x.dish.cal_serv <= budget * 0.35)
+    .filter((x) => x.dish.cal_serv > 0 && !inMeal.has(x.dish.name) && x.dish.cal_serv <= budget * 0.35 && (weekCap <= 0 || (used.get(x.dish.name) ?? 0) < weekCap))
     .sort((a, b) => a.dish.cal_serv - b.dish.cal_serv);
   for (const it of smalls) {
     if (total >= budget * MEAL_LOW || chosen.length >= maxDishes) break;
@@ -346,7 +362,9 @@ function fillMeal(pool: PoolItem[], chosen: PlanDish[], budget: number, maxDishe
     }
   }
   if (total >= budget * MEAL_LOW) return;
-  for (const filler of FILLER_SNACKS) {
+  const freshFillers = FILLER_SNACKS.filter((f) => weekCap <= 0 || (used.get(f.name) ?? 0) < weekCap);
+  const fillerCandidates = freshFillers.length ? freshFillers : FILLER_SNACKS;
+  for (const filler of fillerCandidates) {
     if (total >= budget * MEAL_LOW || chosen.length >= maxDishes) break;
     if (inMeal.has(filler.name)) continue;
     const c = filler.cal_serv;
@@ -368,6 +386,7 @@ function gapFillDay(
   dayNames: Set<string>,
   used: Map<string, number>,
   cooldown: CooldownOpts,
+  weekCap = 0,
 ) {
   const dayTotal = () => meals.reduce((s, m) => s + m.totalCal, 0);
   // (a) add one more dish to the meal with the most room
@@ -391,7 +410,7 @@ function gapFillDay(
     const inMeal = new Set(bestMeal.dishes.map((x) => x.dish.name));
     const room = Math.min(dayRoom, bestSpace);
     const fits = pool
-      .filter((x) => x.dish.cal_serv > 0 && !inMeal.has(x.dish.name) && x.dish.cal_serv <= room)
+      .filter((x) => x.dish.cal_serv > 0 && !inMeal.has(x.dish.name) && x.dish.cal_serv <= room && (weekCap <= 0 || (used.get(x.dish.name) ?? 0) < weekCap))
       .sort((a, b) => a.dish.cal_serv - b.dish.cal_serv);
     const pick = fits[0];
     if (!pick) break;
@@ -450,12 +469,39 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
     }
   }
 
-  const pools: Record<PlanMealType, PoolItem[]> = {
-    breakfast: buildPool(allDishes, conditions, 'breakfast'),
-    lunch: buildPool(allDishes, conditions, 'lunch'),
-    dinner: buildPool(allDishes, conditions, 'dinner'),
-    snacks: buildPool(allDishes, conditions, 'snacks'),
-  };
+  const requestedRegion = options.region?.trim();
+  const isGeneralSaudi = (d: KitchenDish) => d.region === 'pan_saudi' || !d.region;
+  let pools: Record<PlanMealType, PoolItem[]>;
+  if (requestedRegion && requestedRegion !== 'all') {
+    pools = { breakfast: [], lunch: [], dinner: [], snacks: [] };
+    const regionDishes = allDishes.filter((d) => d.region === requestedRegion);
+    let fallbackLogged = false;
+    for (const meal of MEAL_ORDER) {
+      const mealRegionDishes = regionDishes.filter((d) => mealKeysOf(d).includes(meal));
+      const priority = new Set(mealRegionDishes.map((d) => d.name));
+      let src = mealRegionDishes;
+      if (mealRegionDishes.length < MIN_REGION_DISHES) {
+        const panForMeal = allDishes.filter((d) => isGeneralSaudi(d) && mealKeysOf(d).includes(meal));
+        const names = new Set(src.map((d) => d.name));
+        const fillers = panForMeal.filter((d) => !names.has(d.name));
+        src = [...src, ...fillers];
+        if (!fallbackLogged) {
+          fallbackLogged = true;
+          console.log(
+            `[Plan Generator] Region "${requestedRegion}" has ${mealRegionDishes.length} meal-${meal} dish(es) (<${MIN_REGION_DISHES}); pulled ${fillers.length} general (pan_saudi) dish(es) to fill the gap`,
+          );
+        }
+      }
+      pools[meal] = buildPool(src, conditions, meal, priority);
+    }
+  } else {
+    pools = {
+      breakfast: buildPool(allDishes, conditions, 'breakfast'),
+      lunch: buildPool(allDishes, conditions, 'lunch'),
+      dinner: buildPool(allDishes, conditions, 'dinner'),
+      snacks: buildPool(allDishes, conditions, 'snacks'),
+    };
+  }
 
   const used = new Map<string, number>();
   const lastUsedDay = new Map<string, number>();
@@ -476,14 +522,14 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
       MEAL_ORDER.forEach((meal, i) => {
         const budget = Math.round(target * MEAL_ALLOCATION[meal]);
         const seed = day * 100 + i + attempt * 7;
-        const chosen = selectDishes(pools[meal], budget, maxDishes, seed, used, maxUses, dayUsed, allDishes, coopts);
+        const chosen = selectDishes(pools[meal], budget, maxDishes, seed, used, maxUses, dayUsed, allDishes, coopts, WEEK_MAX_USES);
         const totalCal = chosen.reduce((s, x) => s + x.calories, 0);
         dayTotal += totalCal;
         meals.push({ mealType: meal, label: MEAL_LABELS[meal], dishes: chosen, totalCal, targetCal: budget });
       });
       // Day-level gap fill: if still under 90%, add a dish / scale servings.
       if (dayTotal < target * DAY_LOW) {
-        gapFillDay(meals, target, pools, dayUsed, used, coopts);
+        gapFillDay(meals, target, pools, dayUsed, used, coopts, WEEK_MAX_USES);
         dayTotal = meals.reduce((s, m) => s + m.totalCal, 0);
       }
       const inRange = dayTotal >= target * DAY_LOW && dayTotal <= target * DAY_HIGH;
