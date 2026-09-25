@@ -470,7 +470,14 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
   }
 
   const requestedRegion = options.region?.trim();
-  const isGeneralSaudi = (d: KitchenDish) => d.region === 'pan_saudi' || !d.region;
+  const kitchenId = options.kitchens[0]?.id ?? '';
+  const generalRank = (d: KitchenDish): number => {
+    if (!d.region) return 2;
+    if (kitchenId === 'saudi') return d.region === 'pan_saudi' ? 0 : -1;
+    if (kitchenId === 'emirati') return d.region === 'pan_emirati' ? 0 : d.region === 'gulf_shared' ? 1 : -1;
+    return -1;
+  };
+  const isGeneralDish = (d: KitchenDish) => generalRank(d) >= 0;
   let pools: Record<PlanMealType, PoolItem[]>;
   if (requestedRegion && requestedRegion !== 'all') {
     pools = { breakfast: [], lunch: [], dinner: [], snacks: [] };
@@ -481,14 +488,16 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
       const priority = new Set(mealRegionDishes.map((d) => d.name));
       let src = mealRegionDishes;
       if (mealRegionDishes.length < MIN_REGION_DISHES) {
-        const panForMeal = allDishes.filter((d) => isGeneralSaudi(d) && mealKeysOf(d).includes(meal));
+        const generalForMeal = allDishes
+          .filter((d) => isGeneralDish(d) && mealKeysOf(d).includes(meal))
+          .sort((a, b) => generalRank(a) - generalRank(b));
         const names = new Set(src.map((d) => d.name));
-        const fillers = panForMeal.filter((d) => !names.has(d.name));
+        const fillers = generalForMeal.filter((d) => !names.has(d.name));
         src = [...src, ...fillers];
         if (!fallbackLogged) {
           fallbackLogged = true;
           console.log(
-            `[Plan Generator] Region "${requestedRegion}" has ${mealRegionDishes.length} meal-${meal} dish(es) (<${MIN_REGION_DISHES}); pulled ${fillers.length} general (pan_saudi) dish(es) to fill the gap`,
+            `[Plan Generator] Region "${requestedRegion}" has ${mealRegionDishes.length} meal-${meal} dish(es) (<${MIN_REGION_DISHES}); pulled ${fillers.length} general dish(es) to fill the gap`,
           );
         }
       }

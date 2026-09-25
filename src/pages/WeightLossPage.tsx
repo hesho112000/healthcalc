@@ -11,6 +11,7 @@ import { ExerciseList } from '../components/wizard/ExerciseList';
 import AddDishModal from '../components/wizard/AddDishModal';
 import { useAuth } from '../context/AuthContext';
 import { savePlan, saveProfile } from '../services/supabaseData';
+import { useDishes } from '../hooks/useDishes';
 import { generateWeeklyPlan } from '../utils/mealPlanGenerator';
 import type { PlanDay, PlanDish, PlanMealType } from '../utils/mealPlanGenerator';
 
@@ -283,6 +284,13 @@ const SAUDI_REGION_META: { id: string; emoji: string; en: string; ar: string }[]
   { id: 'janubi', emoji: '🏔️', en: 'Southern', ar: 'جنوبي' },
   { id: 'sharqi', emoji: '🏝️', en: 'Eastern', ar: 'شرقي' },
   { id: 'gulf_shared', emoji: '🌊', en: 'Gulf Shared', ar: 'خليجي مشترك' },
+];
+
+const EMIRATI_REGION_META: { id: string; emoji: string; en: string; ar: string }[] = [
+  { id: 'all', emoji: '🇦🇪', en: 'All Emirati', ar: 'كل المطبخ الإماراتي' },
+  { id: 'pan_emirati', emoji: '🥘', en: 'General Emirati', ar: 'عام (كل الإمارات)' },
+  { id: 'gulf_shared', emoji: '🌊', en: 'Gulf Shared', ar: 'خليجي مشترك' },
+  { id: 'ras_al_khaimah', emoji: '🏔️', en: 'Ras Al Khaimah', ar: 'رأس الخيمة' },
 ];
 
 const MEAL_LABELS: Record<string, string> = {
@@ -709,19 +717,25 @@ const WeightLossPage: React.FC = () => {
     [age, height, weight, targetWeight, timeline],
   );
 
+  const { kitchen: saudiKitchen, loading: saudiLoading, error: saudiError } = useDishes();
+  const kitchens = useMemo<KitchenInfo[]>(
+    () => (saudiKitchen ? [saudiKitchen, ...kitchensRegistry.filter((k) => k.id !== 'saudi')] : kitchensRegistry),
+    [saudiKitchen],
+  );
+
   const selectedKitchen = useMemo<KitchenInfo>(
-    () => kitchensRegistry.find((k) => k.id === selectedKitchenId) ?? kitchensRegistry[0],
-    [selectedKitchenId],
+    () => kitchens.find((k) => k.id === selectedKitchenId) ?? kitchens[0],
+    [selectedKitchenId, kitchens],
   );
 
   const featuredKitchens = useMemo(() => {
-    const found = FEATURED_KITCHEN_IDS.map((id) => kitchensRegistry.find((k) => k.id === id)).filter((k): k is KitchenInfo => !!k);
-    for (const k of kitchensRegistry) {
+    const found = FEATURED_KITCHEN_IDS.map((id) => kitchens.find((k) => k.id === id)).filter((k): k is KitchenInfo => !!k);
+    for (const k of kitchens) {
       if (found.length >= FEATURED_KITCHEN_IDS.length) break;
       if (k.dishes.length && !found.some((f) => f.id === k.id)) found.push(k);
     }
     return found;
-  }, []);
+  }, [kitchens]);
   const selectedKitchenCats = useMemo<KitchenCategory[]>(() => getKitchenCategories(selectedKitchen), [selectedKitchen]);
   const dishPoolByMeal = useMemo(
     () => (mealType: MealKey) =>
@@ -731,25 +745,25 @@ const WeightLossPage: React.FC = () => {
     [selectedKitchenCats, selectedKitchen],
   );
   const countryKitchens = useMemo<KitchenInfo[]>(() => {
-    const e = kitchensRegistry.find((k) => k.id === 'egyptian');
+    const e = kitchens.find((k) => k.id === 'egyptian');
     return e && e.dishes.length ? [e] : [selectedKitchen];
-  }, [selectedKitchen]);
+  }, [selectedKitchen, kitchens]);
   const regionKitchens = useMemo<Record<string, KitchenInfo[]>>(() => {
     const out: Record<string, KitchenInfo[]> = {};
     for (const r of REGIONS) {
       out[r.id] = r.ids
-        .map((id) => kitchensRegistry.find((k) => k.id === id))
+        .map((id) => kitchens.find((k) => k.id === id))
         .filter((k): k is KitchenInfo => !!k && k.dishes.length > 0);
     }
     return out;
-  }, []);
+  }, [kitchens]);
   const browseKitchens = useMemo<KitchenInfo[]>(() => {
     if (cuisineSel) {
-      const k = kitchensRegistry.find((x) => x.id === cuisineSel);
+      const k = kitchens.find((x) => x.id === cuisineSel);
       if (k && k.dishes.length) return [k];
     }
     return countryKitchens;
-  }, [cuisineSel, countryKitchens]);
+  }, [cuisineSel, countryKitchens, kitchens]);
   const planKitchens = useMemo<KitchenInfo[]>(() => {
     if (kitchenMode === 'auto' && !countryKitchens.some((k) => k.id === selectedKitchen.id)) return [selectedKitchen];
     return countryKitchens;
@@ -1746,7 +1760,7 @@ const WeightLossPage: React.FC = () => {
                       : `Back to ${REGIONS.find((x) => x.id === regionSel)?.en ?? ''}`}
                   </button>
                   {(() => {
-                    const k = kitchensRegistry.find((x) => x.id === cuisineSel);
+                    const k = kitchens.find((x) => x.id === cuisineSel);
                     return k ? (
                       <div className="mt-3 rounded-[20px] border-2 border-[#D4AF37] bg-[#FFFBEF] p-4 flex flex-col items-center text-center">
                         <span className="text-[34px] leading-none">{k.flag}</span>
@@ -1766,7 +1780,7 @@ const WeightLossPage: React.FC = () => {
             {cuisineSel && (
               <div className="space-y-2">
                 {(() => {
-                  const picked = kitchensRegistry.find((x) => x.id === cuisineSel);
+                  const picked = kitchens.find((x) => x.id === cuisineSel);
                   const hasRegions = !!picked && Array.isArray(picked.regions) && picked.regions.length > 0;
                   if (!hasRegions) return null;
                   return (
@@ -1775,7 +1789,7 @@ const WeightLossPage: React.FC = () => {
                         {language === 'ar' ? '🏷️ اختر المنطقة (تلقائي: عام)' : '🏷️ Choose a region (default: General)'}
                       </div>
                       <div className="mt-2.5 flex flex-wrap gap-2">
-                        {SAUDI_REGION_META.map((r) => {
+                        {(picked.id === 'emirati' ? EMIRATI_REGION_META : picked.id === 'saudi' ? SAUDI_REGION_META : []).map((r) => {
                           const on = kitchenRegion === r.id;
                           return (
                             <button
@@ -1794,7 +1808,7 @@ const WeightLossPage: React.FC = () => {
                         <p className="mt-2 text-[11px] text-[#8A938E] leading-snug">
                           {language === 'ar'
                             ? 'إذا كانت أطباق المنطقة أقل من 7 سيُكمل المولّد تلقائياً من الأطباق العامة، دون تكرار أي طبق أكثر من مرتين بالأسبوع.'
-                            : 'If the region has fewer than 7 dishes, the generator auto-fills from general Saudi dishes, never repeating a meal more than twice a week.'}
+                            : 'If the region has fewer than 7 dishes, the generator auto-fills from general dishes, never repeating a meal more than twice a week.'}
                         </p>
                       )}
                     </div>
