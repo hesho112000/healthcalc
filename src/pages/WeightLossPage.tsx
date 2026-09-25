@@ -12,6 +12,7 @@ import AddDishModal from '../components/wizard/AddDishModal';
 import { useAuth } from '../context/AuthContext';
 import { savePlan, saveProfile } from '../services/supabaseData';
 import { useDishes } from '../hooks/useDishes';
+import { useKitchenDishCounts } from '../hooks/useKitchenDishCounts';
 import { generateWeeklyPlan } from '../utils/mealPlanGenerator';
 import type { PlanDay, PlanDish, PlanMealType } from '../utils/mealPlanGenerator';
 
@@ -339,6 +340,19 @@ const EGYPTIAN_REGION_META: { id: string; emoji: string; en: string; ar: string 
   { id: 'upper_egypt', emoji: '⛵', en: 'Upper Egypt', ar: 'الصعيد' },
   { id: 'sinai', emoji: '⛰️', en: 'Sinai', ar: 'سيناء' },
   { id: 'nubia', emoji: '🛶', en: 'Nubia', ar: 'النوبة' },
+];
+
+const TUNISIAN_REGION_META: { id: string; emoji: string; en: string; ar: string }[] = [
+  { id: 'all', emoji: '🇹🇳', en: 'All Tunisian', ar: 'كل المطبخ التونسي' },
+  { id: 'pan_tunisian', emoji: '🥘', en: 'General Tunisian', ar: 'عام (كل تونس)' },
+  { id: 'maghreb_shared', emoji: '🌊', en: 'Maghreb Shared', ar: 'مغاربي مشترك' },
+  { id: 'tunis', emoji: '🏛️', en: 'Tunis', ar: 'تونس العاصمة' },
+  { id: 'sfax', emoji: '🐟', en: 'Sfax', ar: 'صفاقس' },
+  { id: 'sousse', emoji: '🛥️', en: 'Sousse', ar: 'سوسة' },
+  { id: 'nabeul', emoji: '🍊', en: 'Nabeul', ar: 'نابل' },
+  { id: 'gabes', emoji: '🌴', en: 'Gabes', ar: 'قابس' },
+  { id: 'medenine', emoji: '🏜️', en: 'Medenine', ar: 'مدنين' },
+  { id: 'bizerte', emoji: '⚓', en: 'Bizerte', ar: 'بنزرت' },
 ];
 
 const MEAL_LABELS: Record<string, string> = {
@@ -766,6 +780,7 @@ const WeightLossPage: React.FC = () => {
   );
 
   const { kitchen: saudiKitchen, loading: saudiLoading, error: saudiError } = useDishes();
+  const kitchenCounts = useKitchenDishCounts();
   const kitchens = useMemo<KitchenInfo[]>(
     () => (saudiKitchen ? [saudiKitchen, ...kitchensRegistry.filter((k) => k.id !== 'saudi')] : kitchensRegistry),
     [saudiKitchen],
@@ -1787,7 +1802,7 @@ const WeightLossPage: React.FC = () => {
                           <span className="mt-1 text-[11px] text-[#6B7A75] leading-tight truncate max-w-full">{k.kitchen}</span>
                           {k.sample && <span className="mt-1.5 text-[10.5px] text-[#8A938E] truncate max-w-full">🍽 {k.sample.name}</span>}
                           <span className={`mt-2 text-[11px] font-bold px-2.5 py-1 rounded-full ${on ? 'bg-[#D4AF37] text-[#0F4C3A]' : 'bg-[#F4F1EB] text-[#6B7A75]'}`}>
-                            {t('wizard.step3.dishCount').replace('{n}', String(k.total))}
+                            {t('wizard.step3.dishCount').replace('{n}', String(kitchenCounts[k.id] ?? k.total))}
                           </span>
                           {on && <span className="mt-1.5 text-[11px] font-bold text-[#B8860B]">✓ {t('wizard.step2.auto')}</span>}
                         </div>
@@ -1816,7 +1831,7 @@ const WeightLossPage: React.FC = () => {
                         <span className="mt-1 text-[11px] text-[#6B7A75] leading-tight truncate max-w-full">{k.kitchen}</span>
                         {k.sample && <span className="mt-1.5 text-[10.5px] text-[#8A938E] truncate max-w-full">🍽 {k.sample.name}</span>}
                         <span className="mt-2 text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#D4AF37] text-[#0F4C3A]">
-                          {t('wizard.step3.dishCount').replace('{n}', String(k.total))}
+                          {t('wizard.step3.dishCount').replace('{n}', String(kitchenCounts[k.id] ?? k.total))}
                         </span>
                       </div>
                     ) : null;
@@ -1829,7 +1844,7 @@ const WeightLossPage: React.FC = () => {
               <div className="space-y-2">
                 {(() => {
                   const picked = kitchens.find((x) => x.id === cuisineSel);
-                  const hasRegions = !!picked && (picked.id === 'kuwaiti' || picked.id === 'qatar' || picked.id === 'bahraini' || picked.id === 'omani' || picked.id === 'moroccan' || picked.id === 'egyptian' || (Array.isArray(picked.regions) && picked.regions.length > 0));
+                  const hasRegions = !!picked && (picked.id === 'kuwaiti' || picked.id === 'qatar' || picked.id === 'bahraini' || picked.id === 'omani' || picked.id === 'moroccan' || picked.id === 'egyptian' || picked.id === 'tunisian' || (Array.isArray(picked.regions) && picked.regions.length > 0));
                   if (!hasRegions) return null;
                   return (
                     <div className="rounded-[20px] border-2 border-[#EFEBE4] bg-white p-4">
@@ -1837,7 +1852,7 @@ const WeightLossPage: React.FC = () => {
                         {language === 'ar' ? '🏷️ اختر المنطقة (تلقائي: عام)' : '🏷️ Choose a region (default: General)'}
                       </div>
                       <div className="mt-2.5 flex flex-wrap gap-2">
-                        {(picked.id === 'emirati' ? EMIRATI_REGION_META : picked.id === 'saudi' ? SAUDI_REGION_META : picked.id === 'kuwaiti' ? KUWAITI_REGION_META : picked.id === 'qatar' ? QATARI_REGION_META : picked.id === 'bahraini' ? BAHRAINI_REGION_META : picked.id === 'omani' ? OMANI_REGION_META : picked.id === 'moroccan' ? MOROCCAN_REGION_META : picked.id === 'egyptian' ? EGYPTIAN_REGION_META : []).map((r) => {
+                        {(picked.id === 'emirati' ? EMIRATI_REGION_META : picked.id === 'saudi' ? SAUDI_REGION_META : picked.id === 'kuwaiti' ? KUWAITI_REGION_META : picked.id === 'qatar' ? QATARI_REGION_META : picked.id === 'bahraini' ? BAHRAINI_REGION_META : picked.id === 'omani' ? OMANI_REGION_META : picked.id === 'moroccan' ? MOROCCAN_REGION_META : picked.id === 'egyptian' ? EGYPTIAN_REGION_META : picked.id === 'tunisian' ? TUNISIAN_REGION_META : []).map((r) => {
                           const on = kitchenRegion === r.id;
                           return (
                             <button
