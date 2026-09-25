@@ -317,6 +317,18 @@ const OMANI_REGION_META: { id: string; emoji: string; en: string; ar: string }[]
   { id: 'gulf_shared', emoji: '🌊', en: 'Gulf Shared', ar: 'خليجي مشترك' },
 ];
 
+const MOROCCAN_REGION_META: { id: string; emoji: string; en: string; ar: string }[] = [
+  { id: 'all', emoji: '🇲🇦', en: 'All Moroccan', ar: 'كل المطبخ المغربي' },
+  { id: 'pan_moroccan', emoji: '🥘', en: 'General Moroccan', ar: 'عام (كل المغرب)' },
+  { id: 'maghreb_shared', emoji: '🌊', en: 'Maghreb Shared', ar: 'مغاربي مشترك' },
+  { id: 'fes', emoji: '🏛️', en: 'Fes', ar: 'فاس' },
+  { id: 'marrakech', emoji: '🫖', en: 'Marrakech', ar: 'مراكش' },
+  { id: 'tangier', emoji: '⚓', en: 'Tangier', ar: 'طنجة' },
+  { id: 'essouira', emoji: '🐟', en: 'Essaouira', ar: 'الصويرة' },
+  { id: 'chefchaouen', emoji: '💙', en: 'Chefchaouen', ar: 'شفشاون' },
+  { id: 'sahara', emoji: '🏜️', en: 'Sahara', ar: 'الصحراء' },
+];
+
 const MEAL_LABELS: Record<string, string> = {
   breakfast: 'فطار 🍳',
   lunch: 'غدا 🍲',
@@ -1805,7 +1817,7 @@ const WeightLossPage: React.FC = () => {
               <div className="space-y-2">
                 {(() => {
                   const picked = kitchens.find((x) => x.id === cuisineSel);
-                  const hasRegions = !!picked && (picked.id === 'kuwaiti' || picked.id === 'qatar' || picked.id === 'bahraini' || picked.id === 'omani' || (Array.isArray(picked.regions) && picked.regions.length > 0));
+                  const hasRegions = !!picked && (picked.id === 'kuwaiti' || picked.id === 'qatar' || picked.id === 'bahraini' || picked.id === 'omani' || picked.id === 'moroccan' || (Array.isArray(picked.regions) && picked.regions.length > 0));
                   if (!hasRegions) return null;
                   return (
                     <div className="rounded-[20px] border-2 border-[#EFEBE4] bg-white p-4">
@@ -1813,7 +1825,7 @@ const WeightLossPage: React.FC = () => {
                         {language === 'ar' ? '🏷️ اختر المنطقة (تلقائي: عام)' : '🏷️ Choose a region (default: General)'}
                       </div>
                       <div className="mt-2.5 flex flex-wrap gap-2">
-                        {(picked.id === 'emirati' ? EMIRATI_REGION_META : picked.id === 'saudi' ? SAUDI_REGION_META : picked.id === 'kuwaiti' ? KUWAITI_REGION_META : picked.id === 'qatar' ? QATARI_REGION_META : picked.id === 'bahraini' ? BAHRAINI_REGION_META : picked.id === 'omani' ? OMANI_REGION_META : []).map((r) => {
+                        {(picked.id === 'emirati' ? EMIRATI_REGION_META : picked.id === 'saudi' ? SAUDI_REGION_META : picked.id === 'kuwaiti' ? KUWAITI_REGION_META : picked.id === 'qatar' ? QATARI_REGION_META : picked.id === 'bahraini' ? BAHRAINI_REGION_META : picked.id === 'omani' ? OMANI_REGION_META : picked.id === 'moroccan' ? MOROCCAN_REGION_META : []).map((r) => {
                           const on = kitchenRegion === r.id;
                           return (
                             <button
