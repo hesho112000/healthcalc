@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { supabaseClient, hasSupabaseConfig } from '../lib/supabaseClient';
 import type { KitchenDish, KitchenInfo } from '../data/kitchens';
+import { isAuthenticForKitchen } from '../utils/kitchenAuthenticity';
 
 export interface ServingOption {
   label: string;
@@ -75,9 +76,22 @@ function rowToDish(r: DishRow): KitchenDish {
 }
 
 async function fetchAllDishes(): Promise<DishRow[]> {
-  const { data, error } = await supabaseClient!.from('dishes').select('*').order('name_ar', { ascending: true });
-  if (error) throw error;
-  return (data ?? []) as DishRow[];
+  const out: DishRow[] = [];
+  const PAGE = 1000;
+  for (let from = 0; ; from += PAGE) {
+    const { data, error } = await supabaseClient!
+      .from('dishes')
+      .select('*')
+      .order('name_ar', { ascending: true })
+      .order('id', { ascending: true })
+      .range(from, from + PAGE - 1);
+    if (error) throw error;
+    const rows = (data ?? []) as DishRow[];
+    out.push(...rows);
+    if (rows.length < PAGE) break;
+  }
+  // The Saudi kitchen draws ONLY from its region family; anything else stays out.
+  return out.filter((r) => isAuthenticForKitchen('saudi', r.region, r.name_ar));
 }
 
 async function fetchAllServingOptions(): Promise<ServingOptionRow[]> {

@@ -1,6 +1,7 @@
 import { evaluateSuitability, type Suitability, type SuitabilityCondition } from './dishSuitability';
 import type { KitchenDish, KitchenInfo } from '../data/kitchens';
 import type { FoodItem } from './calculations';
+import { isAuthenticForKitchen } from './kitchenAuthenticity';
 
 export type PlanMealType = 'breakfast' | 'lunch' | 'dinner' | 'snacks';
 
@@ -459,21 +460,27 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
 
   const seen = new Set<string>();
   const allDishes: KitchenDish[] = [];
+  const kitchenId = options.kitchens[0]?.id ?? '';
   for (const k of options.kitchens) {
     if (!k || !k.dishes) continue;
     for (const d of k.dishes) {
-      if (!seen.has(d.name)) {
-        seen.add(d.name);
-        allDishes.push(d);
-      }
+      if (seen.has(d.name)) continue;
+      // Strict kitchen isolation: a dish is only eligible if its region belongs to this
+      // kitchen's family and its name carries no foreign nationality.
+      if (!isAuthenticForKitchen(k.id, d.region, d.name)) continue;
+      seen.add(d.name);
+      allDishes.push(d);
     }
   }
 
   const requestedRegion = options.region?.trim();
-  const kitchenId = options.kitchens[0]?.id ?? '';
   const generalRank = (d: KitchenDish): number => {
     if (!d.region) return 2;
-    if (kitchenId === 'saudi') return d.region === 'pan_saudi' ? 0 : -1;
+    if (kitchenId === 'saudi') {
+      if (d.region === 'pan_saudi') return 0;
+      if (d.region === 'hijazi' || d.region === 'najdi' || d.region === 'janubi' || d.region === 'sharqi') return 1;
+      return d.region === 'gulf_shared' ? 2 : -1;
+    }
     if (kitchenId === 'emirati') return d.region === 'pan_emirati' ? 0 : d.region === 'gulf_shared' ? 1 : -1;
     if (kitchenId === 'kuwaiti') return d.region === 'pan_kuwaiti' ? 0 : d.region === 'gulf_shared' ? 1 : -1;
     if (kitchenId === 'qatar') return d.region === 'pan_qatari' ? 0 : d.region === 'gulf_shared' ? 1 : -1;
