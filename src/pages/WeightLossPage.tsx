@@ -286,6 +286,13 @@ const SAUDI_REGION_META: { id: string; emoji: string; en: string; ar: string }[]
   { id: 'gulf_shared', emoji: '🌊', en: 'Gulf Shared', ar: 'خليجي مشترك' },
 ];
 
+const EMIRATI_REGION_META: { id: string; emoji: string; en: string; ar: string }[] = [
+  { id: 'all', emoji: '🇦🇪', en: 'All Emirati', ar: 'كل المطبخ الإماراتي' },
+  { id: 'pan_emirati', emoji: '🥘', en: 'General Emirati', ar: 'عام (كل الإمارات)' },
+  { id: 'gulf_shared', emoji: '🌊', en: 'Gulf Shared', ar: 'خليجي مشترك' },
+  { id: 'ras_al_khaimah', emoji: '🏔️', en: 'Ras Al Khaimah', ar: 'رأس الخيمة' },
+];
+
 const MEAL_LABELS: Record<string, string> = {
   breakfast: 'فطار 🍳',
   lunch: 'غدا 🍲',
@@ -1782,7 +1789,7 @@ const WeightLossPage: React.FC = () => {
                         {language === 'ar' ? '🏷️ اختر المنطقة (تلقائي: عام)' : '🏷️ Choose a region (default: General)'}
                       </div>
                       <div className="mt-2.5 flex flex-wrap gap-2">
-                        {SAUDI_REGION_META.map((r) => {
+                        {(picked.id === 'emirati' ? EMIRATI_REGION_META : picked.id === 'saudi' ? SAUDI_REGION_META : []).map((r) => {
                           const on = kitchenRegion === r.id;
                           return (
                             <button
@@ -1801,7 +1808,7 @@ const WeightLossPage: React.FC = () => {
                         <p className="mt-2 text-[11px] text-[#8A938E] leading-snug">
                           {language === 'ar'
                             ? 'إذا كانت أطباق المنطقة أقل من 7 سيُكمل المولّد تلقائياً من الأطباق العامة، دون تكرار أي طبق أكثر من مرتين بالأسبوع.'
-                            : 'If the region has fewer than 7 dishes, the generator auto-fills from general Saudi dishes, never repeating a meal more than twice a week.'}
+                            : 'If the region has fewer than 7 dishes, the generator auto-fills from general dishes, never repeating a meal more than twice a week.'}
                         </p>
                       )}
                     </div>

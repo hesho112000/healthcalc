@@ -1,0 +1,8371 @@
+[
+ {
+  "name": "بفتة",
+  "name_en": "Baftha Bread",
+  "name_fr": "Pain baftha",
+  "name_es": "Pan baftha",
+  "name_de": "Baftha-Brot",
+  "cal_100": 240,
+  "p": 5.5,
+  "c": 43,
+  "f": 5.5,
+  "fiber_g": 1.8,
+  "sugar_g": 2,
+  "sodium_mg": 340,
+  "serv_g": 70,
+  "cal_serv": 168,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 70جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 35,
+    "kcal": 84
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 70,
+    "kcal": 168
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 140,
+    "kcal": 336
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "عريك بالجبن",
+  "name_en": "Areeka with Cheese",
+  "name_fr": "Areeka au fromage",
+  "name_es": "Areeka con queso",
+  "name_de": "Areeka mit Käse",
+  "cal_100": 225,
+  "p": 6,
+  "c": 32,
+  "f": 8,
+  "fiber_g": 2.2,
+  "sugar_g": 24,
+  "sodium_mg": 330,
+  "serv_g": 160,
+  "cal_serv": 360,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 160جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 80,
+    "kcal": 180
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 160,
+    "kcal": 360
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 320,
+    "kcal": 720
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "مراصيع",
+  "name_en": "Mraseea",
+  "name_fr": "Mraseea (blé et viande)",
+  "name_es": "Mraseea (trigo y carne)",
+  "name_de": "Mraseea (Weizen und Fleisch)",
+  "cal_100": 118,
+  "p": 7,
+  "c": 13,
+  "f": 4,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 250,
+  "cal_serv": 295,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 148
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 295
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 590
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "ras_al_khaimah",
+  "region_note": "Northern Emirates (Ras Al Khaimah / Hajar mountains)",
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "رقاق بالبيض",
+  "name_en": "Regag Bread with Egg",
+  "name_fr": "Regag aux œufs",
+  "name_es": "Regag con huevo",
+  "name_de": "Regag mit Ei",
+  "cal_100": 165,
+  "p": 8,
+  "c": 15,
+  "f": 7.5,
+  "fiber_g": 1.8,
+  "sugar_g": 2,
+  "sodium_mg": 340,
+  "serv_g": 100,
+  "cal_serv": 165,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 100جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 50,
+    "kcal": 83
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 100,
+    "kcal": 165
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 200,
+    "kcal": 330
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "جباب بالتمر",
+  "name_en": "Chebab with Dates",
+  "name_fr": "Chebab aux dattes",
+  "name_es": "Chebab con dátiles",
+  "name_de": "Chebab mit Datteln",
+  "cal_100": 265,
+  "p": 5,
+  "c": 45,
+  "f": 8,
+  "fiber_g": 1.8,
+  "sugar_g": 24,
+  "sodium_mg": 300,
+  "serv_g": 90,
+  "cal_serv": 239,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 90جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 45,
+    "kcal": 120
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 90,
+    "kcal": 239
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 180,
+    "kcal": 478
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "جباب بالعسل واللبن",
+  "name_en": "Chebab with Honey and Laban",
+  "name_fr": "Chebab au miel et laban",
+  "name_es": "Chebab con miel y laban",
+  "name_de": "Chebab mit Honig und Laban",
+  "cal_100": 255,
+  "p": 6,
+  "c": 42,
+  "f": 7.5,
+  "fiber_g": 1.8,
+  "sugar_g": 24,
+  "sodium_mg": 320,
+  "serv_g": 95,
+  "cal_serv": 242,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 95جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 48,
+    "kcal": 121
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 95,
+    "kcal": 242
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 190,
+    "kcal": 484
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "رقاق محشي",
+  "name_en": "Stuffed Regag",
+  "name_fr": "Regag farci",
+  "name_es": "Regag relleno",
+  "name_de": "Gefülltes Regag",
+  "cal_100": 168,
+  "p": 7.5,
+  "c": 21,
+  "f": 6.2,
+  "fiber_g": 1.8,
+  "sugar_g": 2,
+  "sodium_mg": 380,
+  "serv_g": 110,
+  "cal_serv": 185,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 110جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 55,
+    "kcal": 93
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 110,
+    "kcal": 185
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 220,
+    "kcal": 370
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "مشلتت بالجبن",
+  "name_en": "Mashlouta with Cheese",
+  "name_fr": "Mashlouta au fromage",
+  "name_es": "Mashlouta con queso",
+  "name_de": "Mashlouta mit Käse",
+  "cal_100": 280,
+  "p": 9,
+  "c": 44,
+  "f": 8,
+  "fiber_g": 1.8,
+  "sugar_g": 2,
+  "sodium_mg": 380,
+  "serv_g": 70,
+  "cal_serv": 196,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 70جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 35,
+    "kcal": 98
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 70,
+    "kcal": 196
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 140,
+    "kcal": 392
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "سويق بالتمر",
+  "name_en": "Sawiq Date Porridge",
+  "name_fr": "Sawiq aux dattes",
+  "name_es": "Sawiq de dátiles",
+  "name_de": "Sawiq mit Datteln",
+  "cal_100": 165,
+  "p": 5,
+  "c": 28,
+  "f": 4,
+  "fiber_g": 3.5,
+  "sugar_g": 19,
+  "sodium_mg": 300,
+  "serv_g": 180,
+  "cal_serv": 297,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 180جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 90,
+    "kcal": 149
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 180,
+    "kcal": 297
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 360,
+    "kcal": 594
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "حميس",
+  "name_en": "Hamiss",
+  "name_fr": "Hamiss (œufs à l'oignon)",
+  "name_es": "Hamiss (huevos con cebolla)",
+  "name_de": "Hamiss (Eier mit Zwiebeln)",
+  "cal_100": 132,
+  "p": 8,
+  "c": 6,
+  "f": 8.5,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 380,
+  "serv_g": 200,
+  "cal_serv": 264,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 200جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 100,
+    "kcal": 132
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 200,
+    "kcal": 264
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 400,
+    "kcal": 528
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "رقاق حلو",
+  "name_en": "Sweet Regag",
+  "name_fr": "Regag sucré",
+  "name_es": "Regag dulce",
+  "name_de": "Süßes Regag",
+  "cal_100": 240,
+  "p": 5,
+  "c": 46,
+  "f": 4,
+  "fiber_g": 1.8,
+  "sugar_g": 24,
+  "sodium_mg": 300,
+  "serv_g": 50,
+  "cal_serv": 120,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 50جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 25,
+    "kcal": 60
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 50,
+    "kcal": 120
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 100,
+    "kcal": 240
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "صمون",
+  "name_en": "Emirati Samoon Bread",
+  "name_fr": "Pain samoon émirati",
+  "name_es": "Pan samoon emiratí",
+  "name_de": "Emirati-Samoon-Brot",
+  "cal_100": 275,
+  "p": 8,
+  "c": 50,
+  "f": 4.5,
+  "fiber_g": 1.8,
+  "sugar_g": 2,
+  "sodium_mg": 340,
+  "serv_g": 80,
+  "cal_serv": 220,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 80جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 40,
+    "kcal": 110
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 80,
+    "kcal": 220
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 160,
+    "kcal": 440
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "خمير بالجبن",
+  "name_en": "Khameer with Cheese",
+  "name_fr": "Khameer au fromage",
+  "name_es": "Khameer con queso",
+  "name_de": "Khameer mit Käse",
+  "cal_100": 270,
+  "p": 9,
+  "c": 40,
+  "f": 9,
+  "fiber_g": 1.8,
+  "sugar_g": 2,
+  "sodium_mg": 380,
+  "serv_g": 80,
+  "cal_serv": 216,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 80جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 40,
+    "kcal": 108
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 80,
+    "kcal": 216
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 160,
+    "kcal": 432
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "عيش بالفلفل",
+  "name_en": "Spiced Aish Bread",
+  "name_fr": "Pain aish épicé",
+  "name_es": "Pan aish especiado",
+  "name_de": "Aish-Brot mit Gewürzen",
+  "cal_100": 255,
+  "p": 7,
+  "c": 46,
+  "f": 4.5,
+  "fiber_g": 1.8,
+  "sugar_g": 2,
+  "sodium_mg": 340,
+  "serv_g": 80,
+  "cal_serv": 204,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 80جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 40,
+    "kcal": 102
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 80,
+    "kcal": 204
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 160,
+    "kcal": 408
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "كليجة بالهيل",
+  "name_en": "Kleicha with Cardamom",
+  "name_fr": "Kleicha à la cardamome",
+  "name_es": "Kleicha con cardamomo",
+  "name_de": "Kleicha mit Kardamom",
+  "cal_100": 300,
+  "p": 5,
+  "c": 52,
+  "f": 9,
+  "fiber_g": 1.3,
+  "sugar_g": 19,
+  "sodium_mg": 140,
+  "serv_g": 50,
+  "cal_serv": 150,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 50جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 25,
+    "kcal": 75
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 50,
+    "kcal": 150
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 100,
+    "kcal": 300
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "gulf_shared",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "قرص بالتمر",
+  "name_en": "Qurs Stuffed with Dates",
+  "name_fr": "Qurs fourré aux dattes",
+  "name_es": "Qurs relleno de dátiles",
+  "name_de": "Qurs mit Datteln gefüllt",
+  "cal_100": 290,
+  "p": 5,
+  "c": 50,
+  "f": 8,
+  "fiber_g": 1.8,
+  "sugar_g": 24,
+  "sodium_mg": 300,
+  "serv_g": 60,
+  "cal_serv": 174,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 60جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 30,
+    "kcal": 87
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 60,
+    "kcal": 174
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 120,
+    "kcal": 348
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "خمير بالحليب والزعفران",
+  "name_en": "Khameer with Saffron Milk",
+  "name_fr": "Khameer au lait safrané",
+  "name_es": "Khameer con leche de azafrán",
+  "name_de": "Khameer mit Safranmilch",
+  "cal_100": 265,
+  "p": 8,
+  "c": 44,
+  "f": 6,
+  "fiber_g": 1.8,
+  "sugar_g": 19,
+  "sodium_mg": 320,
+  "serv_g": 80,
+  "cal_serv": 212,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 80جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 40,
+    "kcal": 106
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 80,
+    "kcal": 212
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 160,
+    "kcal": 424
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "خبز وقافي",
+  "name_en": "Waggafi Bread",
+  "name_fr": "Pain waggafi",
+  "name_es": "Pan waggafi",
+  "name_de": "Waggafi-Brot",
+  "cal_100": 250,
+  "p": 7,
+  "c": 45,
+  "f": 4.5,
+  "fiber_g": 1.8,
+  "sugar_g": 2,
+  "sodium_mg": 340,
+  "serv_g": 80,
+  "cal_serv": 200,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 80جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 40,
+    "kcal": 100
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 80,
+    "kcal": 200
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 160,
+    "kcal": 400
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "خبز محلا",
+  "name_en": "Muhala Bread",
+  "name_fr": "Pain muhala",
+  "name_es": "Pan muhala",
+  "name_de": "Muhala-Brot",
+  "cal_100": 235,
+  "p": 6,
+  "c": 44,
+  "f": 3.5,
+  "fiber_g": 1.8,
+  "sugar_g": 2,
+  "sodium_mg": 340,
+  "serv_g": 80,
+  "cal_serv": 188,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 80جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 40,
+    "kcal": 94
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 80,
+    "kcal": 188
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 160,
+    "kcal": 376
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "بتير",
+  "name_en": "Bteer Bread",
+  "name_fr": "Pain bteer",
+  "name_es": "Pan bteer",
+  "name_de": "Bteer-Brot",
+  "cal_100": 258,
+  "p": 7,
+  "c": 46,
+  "f": 4.8,
+  "fiber_g": 1.8,
+  "sugar_g": 2,
+  "sodium_mg": 340,
+  "serv_g": 80,
+  "cal_serv": 206,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 80جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 40,
+    "kcal": 103
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 80,
+    "kcal": 206
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 160,
+    "kcal": 412
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "breakfast",
+  "mealTypes": [
+   "breakfast",
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "شوربة لسان العصفور",
+  "name_en": "Vermicelli Bird-Tongue Soup",
+  "name_fr": "Soupe langue d'oiseau",
+  "name_es": "Sopa pico de pájaro",
+  "name_de": "Vogelshraube-Suppe",
+  "cal_100": 72,
+  "p": 3.5,
+  "c": 10.5,
+  "f": 1.8,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 250,
+  "cal_serv": 180,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 90
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 180
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 360
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "شوربة الشعيرية بالدجاج",
+  "name_en": "Vermicelli Chicken Soup",
+  "name_fr": "Soupe de vermicelles au poulet",
+  "name_es": "Sopa de fideos con pollo",
+  "name_de": "Fadennudelsuppe mit Hühnchen",
+  "cal_100": 78,
+  "p": 4.3,
+  "c": 9.5,
+  "f": 2.2,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 250,
+  "cal_serv": 195,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 98
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 195
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 390
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "شوربة ملوخية بالدجاج",
+  "name_en": "Molokhia Soup with Chicken",
+  "name_fr": "Soupe de molokhia au poulet",
+  "name_es": "Sopa de molokhia con pollo",
+  "name_de": "Molokhia-Suppe mit Hühnchen",
+  "cal_100": 82,
+  "p": 5.5,
+  "c": 8.5,
+  "f": 2.4,
+  "fiber_g": 3.5,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 250,
+  "cal_serv": 205,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 103
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 205
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 410
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "شوربة سمك",
+  "name_en": "Emirati Fish Soup",
+  "name_fr": "Soupe de poisson émiratie",
+  "name_es": "Sopa de pescado emiratí",
+  "name_de": "Emirati-Fischsuppe",
+  "cal_100": 65,
+  "p": 6.5,
+  "c": 4.5,
+  "f": 2.2,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 250,
+  "cal_serv": 163,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 82
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 163
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 326
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "شوربة كوسا بالزبادي",
+  "name_en": "Zucchini and Yogurt Soup",
+  "name_fr": "Soupe de courgettes au yaourt",
+  "name_es": "Sopa de calabacín con yogur",
+  "name_de": "Zucchini-Joghurt-Suppe",
+  "cal_100": 70,
+  "p": 3.5,
+  "c": 7.5,
+  "f": 2.8,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 250,
+  "cal_serv": 175,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 88
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 175
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 350
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "شوربة الفاصوليا البيضاء",
+  "name_en": "White Bean Soup",
+  "name_fr": "Soupe de haricots blancs",
+  "name_es": "Sopa de alubias blancas",
+  "name_de": "Weiße-Bohnen-Suppe",
+  "cal_100": 95,
+  "p": 5.5,
+  "c": 13.5,
+  "f": 1.8,
+  "fiber_g": 3.5,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 250,
+  "cal_serv": 238,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 119
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 238
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 476
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "شوربة الذرة بالدجاج",
+  "name_en": "Corn and Chicken Soup",
+  "name_fr": "Soupe de maïs au poulet",
+  "name_es": "Sopa de maíz con pollo",
+  "name_de": "Mais-Hühnchen-Suppe",
+  "cal_100": 85,
+  "p": 4.8,
+  "c": 10.5,
+  "f": 2.4,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 250,
+  "cal_serv": 213,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 107
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 213
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 426
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "شوربة عدس بالكمون",
+  "name_en": "Cumin Lentil Soup",
+  "name_fr": "Soupe de lentilles au cumin",
+  "name_es": "Sopa de lentejas con comino",
+  "name_de": "Linsensuppe mit Kreuzkümmel",
+  "cal_100": 80,
+  "p": 4.8,
+  "c": 11.5,
+  "f": 1.2,
+  "fiber_g": 3.5,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 250,
+  "cal_serv": 200,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 100
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 200
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 400
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "شوربة الجريش",
+  "name_en": "Jareesh Soup",
+  "name_fr": "Soupe de jareesh",
+  "name_es": "Sopa de jareesh",
+  "name_de": "Jareesh-Suppe",
+  "cal_100": 90,
+  "p": 4.5,
+  "c": 13,
+  "f": 2.2,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 250,
+  "cal_serv": 225,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 113
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 225
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 450
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "شوربة لحم بالخضار",
+  "name_en": "Meat and Vegetable Soup",
+  "name_fr": "Soupe de viande aux légumes",
+  "name_es": "Sopa de carne con verduras",
+  "name_de": "Fleisch-Gemüse-Suppe",
+  "cal_100": 88,
+  "p": 6.5,
+  "c": 6.5,
+  "f": 3.6,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 250,
+  "cal_serv": 220,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 110
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 220
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 440
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "دقوس",
+  "name_en": "Daqoos",
+  "name_fr": "Daqoos (sauce tomate épicée)",
+  "name_es": "Daqoos (salsa de tomate picante)",
+  "name_de": "Daqoos (scharfe Tomatensauce)",
+  "cal_100": 55,
+  "p": 2,
+  "c": 8,
+  "f": 2.2,
+  "fiber_g": 2.2,
+  "sugar_g": 3,
+  "sodium_mg": 380,
+  "serv_g": 60,
+  "cal_serv": 33,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 60جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 30,
+    "kcal": 17
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 60,
+    "kcal": 33
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 120,
+    "kcal": 66
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "سلطة جرجير بالدبس",
+  "name_en": "Arugula with Date Syrup",
+  "name_fr": "Salade de roquette au sirop de datte",
+  "name_es": "Ensalada de rúcula con sirope de dátil",
+  "name_de": "Rucola-Salat mit Dattelsirup",
+  "cal_100": 42,
+  "p": 2.2,
+  "c": 6.5,
+  "f": 1.2,
+  "fiber_g": 3.5,
+  "sugar_g": 19,
+  "sodium_mg": 280,
+  "serv_g": 120,
+  "cal_serv": 50,
+  "serving_unit": "صحن",
+  "serving_description": "صحن 120جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 60,
+    "kcal": 25
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 120,
+    "kcal": 50
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 240,
+    "kcal": 100
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "سلطة شمندر",
+  "name_en": "Beetroot Salad",
+  "name_fr": "Salade de betterave",
+  "name_es": "Ensalada de remolacha",
+  "name_de": "Rote-Bete-Salat",
+  "cal_100": 45,
+  "p": 1.6,
+  "c": 9.5,
+  "f": 0.4,
+  "fiber_g": 3.5,
+  "sugar_g": 19,
+  "sodium_mg": 280,
+  "serv_g": 150,
+  "cal_serv": 68,
+  "serving_unit": "صحن",
+  "serving_description": "صحن 150جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 75,
+    "kcal": 34
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 150,
+    "kcal": 68
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 300,
+    "kcal": 136
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "سلطة خيار بالنعناع",
+  "name_en": "Cucumber and Mint Salad",
+  "name_fr": "Salade de concombre à la menthe",
+  "name_es": "Ensalada de pepino con menta",
+  "name_de": "Gurken-Minz-Salat",
+  "cal_100": 28,
+  "p": 1.2,
+  "c": 5.5,
+  "f": 0.3,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 280,
+  "serv_g": 150,
+  "cal_serv": 42,
+  "serving_unit": "صحن",
+  "serving_description": "صحن 150جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 75,
+    "kcal": 21
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 150,
+    "kcal": 42
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 300,
+    "kcal": 84
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "سلطة طماطم بالبصل",
+  "name_en": "Tomato and Onion Salad",
+  "name_fr": "Salade de tomates et oignons",
+  "name_es": "Ensalada de tomate y cebolla",
+  "name_de": "Tomaten-Zwiebel-Salat",
+  "cal_100": 35,
+  "p": 1.5,
+  "c": 6.5,
+  "f": 0.5,
+  "fiber_g": 2.2,
+  "sugar_g": 3,
+  "sodium_mg": 280,
+  "serv_g": 150,
+  "cal_serv": 53,
+  "serving_unit": "صحن",
+  "serving_description": "صحن 150جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 75,
+    "kcal": 27
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 150,
+    "kcal": 53
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 300,
+    "kcal": 106
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "مخلل خضار مشكل",
+  "name_en": "Mixed Vegetable Pickles",
+  "name_fr": "Légumes marinés",
+  "name_es": "Encurtidos de verduras",
+  "name_de": "Gemischtes eingelegtes Gemüse",
+  "cal_100": 25,
+  "p": 1,
+  "c": 5.5,
+  "f": 0.2,
+  "fiber_g": 2.2,
+  "sugar_g": 3,
+  "sodium_mg": 380,
+  "serv_g": 60,
+  "cal_serv": 15,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 60جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 30,
+    "kcal": 8
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 60,
+    "kcal": 15
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 120,
+    "kcal": 30
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "متبل شمندر",
+  "name_en": "Beetroot Mutabal",
+  "name_fr": "Mutabal de betterave",
+  "name_es": "Mutabal de remolacha",
+  "name_de": "Rote-Bete-Mutabal",
+  "cal_100": 68,
+  "p": 1.8,
+  "c": 9.5,
+  "f": 3,
+  "fiber_g": 2.2,
+  "sugar_g": 3,
+  "sodium_mg": 280,
+  "serv_g": 80,
+  "cal_serv": 54,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 80جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 40,
+    "kcal": 27
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 80,
+    "kcal": 54
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 160,
+    "kcal": 108
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "سلطة حمص",
+  "name_en": "Chickpea Salad",
+  "name_fr": "Salade de pois chiches",
+  "name_es": "Ensalada de garbanzos",
+  "name_de": "Kichererbsensalat",
+  "cal_100": 95,
+  "p": 4.5,
+  "c": 11.5,
+  "f": 3.2,
+  "fiber_g": 3.5,
+  "sugar_g": 2,
+  "sodium_mg": 280,
+  "serv_g": 120,
+  "cal_serv": 114,
+  "serving_unit": "صحن",
+  "serving_description": "صحن 120جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 60,
+    "kcal": 57
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 120,
+    "kcal": 114
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 240,
+    "kcal": 228
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "زبادي بالثوم",
+  "name_en": "Garlic Yogurt Dip",
+  "name_fr": "Yaourt à l'ail",
+  "name_es": "Yogur con ajo",
+  "name_de": "Knoblauch-Joghurt",
+  "cal_100": 62,
+  "p": 3.5,
+  "c": 5.2,
+  "f": 3.2,
+  "fiber_g": 0.6,
+  "sugar_g": 2,
+  "sodium_mg": 120,
+  "serv_g": 80,
+  "cal_serv": 50,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 80جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 40,
+    "kcal": 25
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 80,
+    "kcal": 50
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 160,
+    "kcal": 100
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "سلطة جزر",
+  "name_en": "Carrot Salad",
+  "name_fr": "Salade de carottes",
+  "name_es": "Ensalada de zanahoria",
+  "name_de": "Karottensalat",
+  "cal_100": 40,
+  "p": 1.2,
+  "c": 9,
+  "f": 0.3,
+  "fiber_g": 2.2,
+  "sugar_g": 3,
+  "sodium_mg": 280,
+  "serv_g": 150,
+  "cal_serv": 60,
+  "serving_unit": "صحن",
+  "serving_description": "صحن 150جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 75,
+    "kcal": 30
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 150,
+    "kcal": 60
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 300,
+    "kcal": 120
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "باجيلة",
+  "name_en": "Bajella",
+  "name_fr": "Bajella (plat de fèves)",
+  "name_es": "Bajella (plato de habas)",
+  "name_de": "Bajella (Bohnengericht)",
+  "cal_100": 105,
+  "p": 6.5,
+  "c": 14.5,
+  "f": 1.8,
+  "fiber_g": 3.5,
+  "sugar_g": 2,
+  "sodium_mg": 380,
+  "serv_g": 180,
+  "cal_serv": 189,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 180جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 90,
+    "kcal": 95
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 180,
+    "kcal": 189
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 360,
+    "kcal": 378
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "سلطة الملفوف",
+  "name_en": "Cabbage Salad",
+  "name_fr": "Salade de chou",
+  "name_es": "Ensalada de col",
+  "name_de": "Kohlsalat",
+  "cal_100": 32,
+  "p": 1.4,
+  "c": 6.2,
+  "f": 0.4,
+  "fiber_g": 2.2,
+  "sugar_g": 3,
+  "sodium_mg": 280,
+  "serv_g": 150,
+  "cal_serv": 48,
+  "serving_unit": "صحن",
+  "serving_description": "صحن 150جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 75,
+    "kcal": 24
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 150,
+    "kcal": 48
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 300,
+    "kcal": 96
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "سلطة الباذنجان المحمص",
+  "name_en": "Charred Eggplant Salad",
+  "name_fr": "Salade d'aubergines grillées",
+  "name_es": "Ensalada de berenjena asada",
+  "name_de": "Gerösteter Auberginensalat",
+  "cal_100": 65,
+  "p": 1.8,
+  "c": 7.5,
+  "f": 3.5,
+  "fiber_g": 3.5,
+  "sugar_g": 2,
+  "sodium_mg": 280,
+  "serv_g": 120,
+  "cal_serv": 78,
+  "serving_unit": "صحن",
+  "serving_description": "صحن 120جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 60,
+    "kcal": 39
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 120,
+    "kcal": 78
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 240,
+    "kcal": 156
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "مضبي لحم",
+  "name_en": "Madbi Meat",
+  "name_fr": "Madbi de viande",
+  "name_es": "Madbi de carne",
+  "name_de": "Madbi mit Fleisch",
+  "cal_100": 155,
+  "p": 8.5,
+  "c": 16.5,
+  "f": 5.5,
+  "fiber_g": 2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 350,
+  "cal_serv": 543,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 350جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 175,
+    "kcal": 272
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 350,
+    "kcal": 543
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 700,
+    "kcal": 1086
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "gulf_shared",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "مضبي دجاج",
+  "name_en": "Madbi Chicken",
+  "name_fr": "Madbi de poulet",
+  "name_es": "Madbi de pollo",
+  "name_de": "Madbi mit Hühnchen",
+  "cal_100": 135,
+  "p": 9,
+  "c": 14.5,
+  "f": 4.2,
+  "fiber_g": 2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 350,
+  "cal_serv": 473,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 350جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 175,
+    "kcal": 237
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 350,
+    "kcal": 473
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 700,
+    "kcal": 946
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "gulf_shared",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "زربيان دجاج",
+  "name_en": "Zurbian Chicken",
+  "name_fr": "Zurbian de poulet",
+  "name_es": "Zurbian de pollo",
+  "name_de": "Zurbian mit Hühnchen",
+  "cal_100": 138,
+  "p": 8.5,
+  "c": 15,
+  "f": 4.5,
+  "fiber_g": 2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 350,
+  "cal_serv": 483,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 350جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 175,
+    "kcal": 242
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 350,
+    "kcal": 483
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 700,
+    "kcal": 966
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "gulf_shared",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "زربيان لحم",
+  "name_en": "Zurbian Lamb",
+  "name_fr": "Zurbian d'agneau",
+  "name_es": "Zurbian de cordero",
+  "name_de": "Zurbian mit Lamm",
+  "cal_100": 158,
+  "p": 8.8,
+  "c": 15.5,
+  "f": 6.2,
+  "fiber_g": 2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 350,
+  "cal_serv": 553,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 350جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 175,
+    "kcal": 277
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 350,
+    "kcal": 553
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 700,
+    "kcal": 1106
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "gulf_shared",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "رز بحريني",
+  "name_en": "Bahraini Spiced Rice",
+  "name_fr": "Riz épicé bahreïni",
+  "name_es": "Arroz especiado bahreiní",
+  "name_de": "Bahrainischer Gewürzreis",
+  "cal_100": 148,
+  "p": 6.5,
+  "c": 20,
+  "f": 4.8,
+  "fiber_g": 1.8,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 300,
+  "cal_serv": 444,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 300جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 150,
+    "kcal": 222
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 300,
+    "kcal": 444
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 600,
+    "kcal": 888
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "gulf_shared",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "دبيازة",
+  "name_en": "Debyaza",
+  "name_fr": "Debyaza (agneau et pois chiches)",
+  "name_es": "Debyaza (cordero y garbanzos)",
+  "name_de": "Debyaza (Lamm und Kichererbsen)",
+  "cal_100": 165,
+  "p": 9.5,
+  "c": 18.5,
+  "f": 5.5,
+  "fiber_g": 2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 350,
+  "cal_serv": 578,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 350جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 175,
+    "kcal": 289
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 350,
+    "kcal": 578
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 700,
+    "kcal": 1156
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "ras_al_khaimah",
+  "region_note": "Ras Al Khaimah",
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "صيادية سمك",
+  "name_en": "Sayyadia",
+  "name_fr": "Sayyadia (poisson et riz)",
+  "name_es": "Sayyadia (pescado y arroz)",
+  "name_de": "Sayyadia (Fisch und Reis)",
+  "cal_100": 142,
+  "p": 7.5,
+  "c": 16.5,
+  "f": 4.6,
+  "fiber_g": 2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 350,
+  "cal_serv": 497,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 350جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 175,
+    "kcal": 249
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 350,
+    "kcal": 497
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 700,
+    "kcal": 994
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "gulf_shared",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "أرز أصفر بالزعفران",
+  "name_en": "Saffron Yellow Rice",
+  "name_fr": "Riz jaune au safran",
+  "name_es": "Arroz amarillo con azafrán",
+  "name_de": "Gelber Safranreis",
+  "cal_100": 125,
+  "p": 3.2,
+  "c": 26.5,
+  "f": 1.2,
+  "fiber_g": 1.8,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 200,
+  "cal_serv": 250,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 200جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 100,
+    "kcal": 125
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 200,
+    "kcal": 250
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 400,
+    "kcal": 500
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "رز بسمتي بالهيل",
+  "name_en": "Cardamom Basmati Rice",
+  "name_fr": "Riz basmati à la cardamome",
+  "name_es": "Arroz basmati con cardamomo",
+  "name_de": "Basmatireis mit Kardamom",
+  "cal_100": 122,
+  "p": 3,
+  "c": 26,
+  "f": 1,
+  "fiber_g": 1.8,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 200,
+  "cal_serv": 244,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 200جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 100,
+    "kcal": 122
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 200,
+    "kcal": 244
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 400,
+    "kcal": 488
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "رز بالخضار",
+  "name_en": "Vegetable Rice",
+  "name_fr": "Riz aux légumes",
+  "name_es": "Arroz con verduras",
+  "name_de": "Gemüsereis",
+  "cal_100": 105,
+  "p": 2.8,
+  "c": 21.5,
+  "f": 1.6,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 250,
+  "cal_serv": 263,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 132
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 263
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 526
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "أرز بالقرع والتمر",
+  "name_en": "Rice with Pumpkin and Dates",
+  "name_fr": "Riz au potiron et dattes",
+  "name_es": "Arroz con calabaza y dátiles",
+  "name_de": "Reis mit Kürbis und Datteln",
+  "cal_100": 130,
+  "p": 3,
+  "c": 27,
+  "f": 1.8,
+  "fiber_g": 3.5,
+  "sugar_g": 19,
+  "sodium_mg": 300,
+  "serv_g": 250,
+  "cal_serv": 325,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 163
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 325
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 650
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "أرز باللوز",
+  "name_en": "Almond Rice",
+  "name_fr": "Riz aux amandes",
+  "name_es": "Arroz con almendras",
+  "name_de": "Mandelreis",
+  "cal_100": 180,
+  "p": 4.5,
+  "c": 28,
+  "f": 6.5,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 250,
+  "cal_serv": 450,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 225
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 450
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 900
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "مكبوس حاشي",
+  "name_en": "Camel Makhboos",
+  "name_fr": "Makhboos de chameau",
+  "name_es": "Makhboos de camello",
+  "name_de": "Kamel-Makhboos",
+  "cal_100": 128,
+  "p": 8.5,
+  "c": 14,
+  "f": 3.8,
+  "fiber_g": 2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 350,
+  "cal_serv": 448,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 350جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 175,
+    "kcal": 224
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 350,
+    "kcal": 448
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 700,
+    "kcal": 896
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "رز مطبخ بالخضار",
+  "name_en": "Cooked Vegetable Rice",
+  "name_fr": "Riz cuit aux légumes",
+  "name_es": "Arroz cocinado con verduras",
+  "name_de": "Gekochter Gemüsereis",
+  "cal_100": 108,
+  "p": 2.9,
+  "c": 22,
+  "f": 1.7,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 250,
+  "cal_serv": 270,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 135
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 270
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 540
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "برياني دجاج بالزعفران",
+  "name_en": "Saffron Chicken Biryani",
+  "name_fr": "Biryani de poulet au safran",
+  "name_es": "Biryani de pollo con azafrán",
+  "name_de": "Safran-Hähnchen-Biryani",
+  "cal_100": 142,
+  "p": 8.8,
+  "c": 15.5,
+  "f": 4.8,
+  "fiber_g": 2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 350,
+  "cal_serv": 497,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 350جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 175,
+    "kcal": 249
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 350,
+    "kcal": 497
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 700,
+    "kcal": 994
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "مكبوس روبيان",
+  "name_en": "Shrimp Makhboos",
+  "name_fr": "Makhboos de crevettes",
+  "name_es": "Makhboos de camarones",
+  "name_de": "Garnelen-Makhboos",
+  "cal_100": 112,
+  "p": 7.3,
+  "c": 14,
+  "f": 2.5,
+  "fiber_g": 2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 300,
+  "cal_serv": 336,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 300جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 150,
+    "kcal": 168
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 300,
+    "kcal": 336
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 600,
+    "kcal": 672
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "رز مع الفريكة",
+  "name_en": "Freekeh Mixed Rice",
+  "name_fr": "Riz au freekeh",
+  "name_es": "Arroz con freekeh",
+  "name_de": "Reis mit Freekeh",
+  "cal_100": 130,
+  "p": 5.5,
+  "c": 21,
+  "f": 2.8,
+  "fiber_g": 3.5,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 300,
+  "cal_serv": 390,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 300جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 150,
+    "kcal": 195
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 300,
+    "kcal": 390
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 600,
+    "kcal": 780
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "مكبوس حمام",
+  "name_en": "Pigeon Makhboos",
+  "name_fr": "Makhboos de pigeon",
+  "name_es": "Makhboos de pichón",
+  "name_de": "Tauben-Makhboos",
+  "cal_100": 135,
+  "p": 9.5,
+  "c": 14.5,
+  "f": 4.2,
+  "fiber_g": 2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 350,
+  "cal_serv": 473,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 350جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 175,
+    "kcal": 237
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 350,
+    "kcal": 473
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 700,
+    "kcal": 946
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "مكبوس سمان",
+  "name_en": "Quail Makhboos",
+  "name_fr": "Makhboos de caille",
+  "name_es": "Makhboos de codorniz",
+  "name_de": "Wachtel-Makhboos",
+  "cal_100": 138,
+  "p": 10.5,
+  "c": 14,
+  "f": 4.4,
+  "fiber_g": 2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 350,
+  "cal_serv": 483,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 350جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 175,
+    "kcal": 242
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 350,
+    "kcal": 483
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 700,
+    "kcal": 966
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "إيدام لحم",
+  "name_en": "Lamb Eidam Stew",
+  "name_fr": "Ragoût d'agneau eidam",
+  "name_es": "Guiso de cordero eidam",
+  "name_de": "Lamm-Eidam-Eintopf",
+  "cal_100": 142,
+  "p": 8.5,
+  "c": 8.5,
+  "f": 8,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 300,
+  "cal_serv": 426,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 300جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 150,
+    "kcal": 213
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 300,
+    "kcal": 426
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 600,
+    "kcal": 852
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "إيدام دجاج",
+  "name_en": "Chicken Eidam Stew",
+  "name_fr": "Ragoût de poulet eidam",
+  "name_es": "Guiso de pollo eidam",
+  "name_de": "Hähnchen-Eidam-Eintopf",
+  "cal_100": 108,
+  "p": 9.5,
+  "c": 6.5,
+  "f": 5,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 300,
+  "cal_serv": 324,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 300جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 150,
+    "kcal": 162
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 300,
+    "kcal": 324
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 600,
+    "kcal": 648
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "إيدام خضار",
+  "name_en": "Vegetable Eidam Stew",
+  "name_fr": "Ragoût de légumes eidam",
+  "name_es": "Guiso de verduras eidam",
+  "name_de": "Gemüse-Eidam-Eintopf",
+  "cal_100": 82,
+  "p": 3.2,
+  "c": 12,
+  "f": 2.6,
+  "fiber_g": 3.5,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 300,
+  "cal_serv": 246,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 300جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 150,
+    "kcal": 123
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 300,
+    "kcal": 246
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 600,
+    "kcal": 492
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "إيدام روبيان",
+  "name_en": "Shrimp Eidam Stew",
+  "name_fr": "Ragoût de crevettes eidam",
+  "name_es": "Guiso de camarones eidam",
+  "name_de": "Garnelen-Eidam-Eintopf",
+  "cal_100": 95,
+  "p": 9.5,
+  "c": 6.5,
+  "f": 3.4,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 300,
+  "cal_serv": 285,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 300جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 150,
+    "kcal": 143
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 300,
+    "kcal": 285
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 600,
+    "kcal": 570
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "لوبيا باللحم",
+  "name_en": "Green Beans with Meat",
+  "name_fr": "Haricots verts à la viande",
+  "name_es": "Judías verdes con carne",
+  "name_de": "Grüne Bohnen mit Fleisch",
+  "cal_100": 98,
+  "p": 8.5,
+  "c": 7.5,
+  "f": 4,
+  "fiber_g": 3.5,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 280,
+  "cal_serv": 274,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 280جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 140,
+    "kcal": 137
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 280,
+    "kcal": 274
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 560,
+    "kcal": 548
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "جحي لحم",
+  "name_en": "Jahi Lamb",
+  "name_fr": "Jahi d'agneau",
+  "name_es": "Jahi de cordero",
+  "name_de": "Jahi mit Lamm",
+  "cal_100": 165,
+  "p": 9.5,
+  "c": 8.5,
+  "f": 10.5,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 300,
+  "cal_serv": 495,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 300جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 150,
+    "kcal": 248
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 300,
+    "kcal": 495
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 600,
+    "kcal": 990
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "فلفل محشي",
+  "name_en": "Stuffed Peppers",
+  "name_fr": "Poivrons farcis",
+  "name_es": "Pimientos rellenos",
+  "name_de": "Gefüllte Paprika",
+  "cal_100": 88,
+  "p": 4.8,
+  "c": 10.5,
+  "f": 3,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 250,
+  "cal_serv": 220,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 110
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 220
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 440
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "ورق عنب محشي",
+  "name_en": "Stuffed Vine Leaves",
+  "name_fr": "Feuilles de vigne farcies",
+  "name_es": "Hojas de parra rellenas",
+  "name_de": "Gefüllte Weinblätter",
+  "cal_100": 118,
+  "p": 4.5,
+  "c": 14.5,
+  "f": 4.8,
+  "fiber_g": 3.5,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 200,
+  "cal_serv": 236,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 200جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 100,
+    "kcal": 118
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 200,
+    "kcal": 236
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 400,
+    "kcal": 472
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "سبانخ باللحم",
+  "name_en": "Spinach with Meat",
+  "name_fr": "Épinards à la viande",
+  "name_es": "Espinacas con carne",
+  "name_de": "Spinat mit Fleisch",
+  "cal_100": 92,
+  "p": 8,
+  "c": 5.5,
+  "f": 4.6,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 280,
+  "cal_serv": 258,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 280جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 140,
+    "kcal": 129
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 280,
+    "kcal": 258
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 560,
+    "kcal": 516
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "قرع بالتمر",
+  "name_en": "Pumpkin with Dates",
+  "name_fr": "Potiron aux dattes",
+  "name_es": "Calabaza con dátiles",
+  "name_de": "Kürbis mit Datteln",
+  "cal_100": 118,
+  "p": 3.5,
+  "c": 22,
+  "f": 2.2,
+  "fiber_g": 3.5,
+  "sugar_g": 24,
+  "sodium_mg": 300,
+  "serv_g": 220,
+  "cal_serv": 260,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 220جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 110,
+    "kcal": 130
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 220,
+    "kcal": 260
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 440,
+    "kcal": 520
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "دجاج بالكاري",
+  "name_en": "Emirati Chicken Curry",
+  "name_fr": "Curry de poulet émirati",
+  "name_es": "Curry de pollo emiratí",
+  "name_de": "Emirati-Hähnchen-Curry",
+  "cal_100": 132,
+  "p": 11.5,
+  "c": 7.5,
+  "f": 6.2,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 300,
+  "cal_serv": 396,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 300جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 150,
+    "kcal": 198
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 300,
+    "kcal": 396
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 600,
+    "kcal": 792
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "دال عدس",
+  "name_en": "Emirati Lentil Dal",
+  "name_fr": "Dal de lentilles émirati",
+  "name_es": "Dal de lentejas emiratí",
+  "name_de": "Emirati-Linsen-Dal",
+  "cal_100": 105,
+  "p": 6.5,
+  "c": 15.5,
+  "f": 2.2,
+  "fiber_g": 3.5,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 250,
+  "cal_serv": 263,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 132
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 263
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 526
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "كاري روبيان",
+  "name_en": "Shrimp Curry",
+  "name_fr": "Curry de crevettes",
+  "name_es": "Curry de camarones",
+  "name_de": "Garnelen-Curry",
+  "cal_100": 112,
+  "p": 10.5,
+  "c": 7.5,
+  "f": 4.6,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 280,
+  "cal_serv": 314,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 280جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 140,
+    "kcal": 157
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 280,
+    "kcal": 314
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 560,
+    "kcal": 628
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "كاري سمك",
+  "name_en": "Fish Curry",
+  "name_fr": "Curry de poisson",
+  "name_es": "Curry de pescado",
+  "name_de": "Fisch-Curry",
+  "cal_100": 118,
+  "p": 11.5,
+  "c": 6.5,
+  "f": 5.2,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 280,
+  "cal_serv": 330,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 280جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 140,
+    "kcal": 165
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 280,
+    "kcal": 330
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 560,
+    "kcal": 660
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "خضار بالكاري",
+  "name_en": "Mixed Vegetable Curry",
+  "name_fr": "Curry de légumes",
+  "name_es": "Curry de verduras",
+  "name_de": "Gemüse-Curry",
+  "cal_100": 88,
+  "p": 3.5,
+  "c": 14.5,
+  "f": 2.2,
+  "fiber_g": 3.5,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 250,
+  "cal_serv": 220,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 110
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 220
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 440
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "بامية بالدجاج",
+  "name_en": "Okra with Chicken",
+  "name_fr": "Gombos au poulet",
+  "name_es": "Okra con pollo",
+  "name_de": "Okra mit Hühnchen",
+  "cal_100": 95,
+  "p": 8,
+  "c": 8.5,
+  "f": 3.2,
+  "fiber_g": 3.5,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 300,
+  "cal_serv": 285,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 300جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 150,
+    "kcal": 143
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 300,
+    "kcal": 285
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 600,
+    "kcal": 570
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "جريش بالروبيان",
+  "name_en": "Jareesh with Shrimp",
+  "name_fr": "Jareesh aux crevettes",
+  "name_es": "Jareesh con camarones",
+  "name_de": "Jareesh mit Garnelen",
+  "cal_100": 105,
+  "p": 8.5,
+  "c": 12.5,
+  "f": 2.5,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 280,
+  "cal_serv": 294,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 280جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 140,
+    "kcal": 147
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 280,
+    "kcal": 294
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 560,
+    "kcal": 588
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "فريكة بالدجاج",
+  "name_en": "Freekeh with Chicken",
+  "name_fr": "Freekeh au poulet",
+  "name_es": "Freekeh con pollo",
+  "name_de": "Freekeh mit Hühnchen",
+  "cal_100": 138,
+  "p": 9.5,
+  "c": 15.5,
+  "f": 4.2,
+  "fiber_g": 3.5,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 300,
+  "cal_serv": 414,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 300جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 150,
+    "kcal": 207
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 300,
+    "kcal": 414
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 600,
+    "kcal": 828
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "ثريد روبيان",
+  "name_en": "Thareed with Shrimp",
+  "name_fr": "Thareed aux crevettes",
+  "name_es": "Thareed con camarones",
+  "name_de": "Thareed mit Garnelen",
+  "cal_100": 108,
+  "p": 9,
+  "c": 11,
+  "f": 3.4,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 320,
+  "cal_serv": 346,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 320جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 160,
+    "kcal": 173
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 320,
+    "kcal": 346
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 640,
+    "kcal": 692
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "قوزي دجاج",
+  "name_en": "Chicken Quzi",
+  "name_fr": "Quzi de poulet",
+  "name_es": "Quzi de pollo",
+  "name_de": "Hähnchen-Quzi",
+  "cal_100": 150,
+  "p": 9.5,
+  "c": 16.5,
+  "f": 5.2,
+  "fiber_g": 2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 350,
+  "cal_serv": 525,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 350جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 175,
+    "kcal": 263
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 350,
+    "kcal": 525
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 700,
+    "kcal": 1050
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "دجاج محشي بالبرغل",
+  "name_en": "Chicken Stuffed with Bulgur",
+  "name_fr": "Poulet farci au boulgour",
+  "name_es": "Pollo relleno de bulgur",
+  "name_de": "Hähnchen mit Bulgur gefüllt",
+  "cal_100": 138,
+  "p": 12.5,
+  "c": 9.5,
+  "f": 5.8,
+  "fiber_g": 3.5,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 300,
+  "cal_serv": 414,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 300جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 150,
+    "kcal": 207
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 300,
+    "kcal": 414
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 600,
+    "kcal": 828
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "عرايس دجاج",
+  "name_en": "Chicken Arayes",
+  "name_fr": "Arayes de poulet",
+  "name_es": "Arayes de pollo",
+  "name_de": "Hähnchen-Arayes",
+  "cal_100": 225,
+  "p": 14.5,
+  "c": 18,
+  "f": 10.5,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 340,
+  "serv_g": 140,
+  "cal_serv": 315,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 140جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 70,
+    "kcal": 158
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 140,
+    "kcal": 315
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 280,
+    "kcal": 630
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "gulf_shared",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "محشوش باللحم",
+  "name_en": "Mahshoush",
+  "name_fr": "Mahshoush (blé concassé et agneau)",
+  "name_es": "Mahshoush (trigo y cordero)",
+  "name_de": "Mahshoush (Weizen und Lamm)",
+  "cal_100": 128,
+  "p": 7.5,
+  "c": 15,
+  "f": 4.2,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 280,
+  "cal_serv": 358,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 280جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 140,
+    "kcal": 179
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 280,
+    "kcal": 358
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 560,
+    "kcal": 716
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "كمونية لحم",
+  "name_en": "Lamb Kamooniya",
+  "name_fr": "Kamooniya d'agneau",
+  "name_es": "Kamooniya de cordero",
+  "name_de": "Lamm-Kamooniya",
+  "cal_100": 148,
+  "p": 10.5,
+  "c": 8.5,
+  "f": 8,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 280,
+  "cal_serv": 414,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 280جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 140,
+    "kcal": 207
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 280,
+    "kcal": 414
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 560,
+    "kcal": 828
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "gulf_shared",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "عيش ولحم",
+  "name_en": "Aish wa Laham",
+  "name_fr": "Aish wa laham (agneau au pain)",
+  "name_es": "Aish wa laham (cordero con pan)",
+  "name_de": "Aish wa Laham (Lamm mit Brot)",
+  "cal_100": 158,
+  "p": 9.5,
+  "c": 14.5,
+  "f": 6.2,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 300,
+  "cal_serv": 474,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 300جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 150,
+    "kcal": 237
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 300,
+    "kcal": 474
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 600,
+    "kcal": 948
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "ريش لحم مشوية",
+  "name_en": "Grilled Lamb Rack",
+  "name_fr": "Carré d'agneau grillé",
+  "name_es": "Carré de cordero a la parrilla",
+  "name_de": "Gegrillte Lammkoteletts",
+  "cal_100": 245,
+  "p": 20.5,
+  "c": 0,
+  "f": 17.5,
+  "fiber_g": 0.2,
+  "sugar_g": 2,
+  "sodium_mg": 250,
+  "serv_g": 150,
+  "cal_serv": 368,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 150جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 75,
+    "kcal": 184
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 150,
+    "kcal": 368
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 300,
+    "kcal": 736
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "كفتة مشوية",
+  "name_en": "Grilled Kofta",
+  "name_fr": "Kofta grillée",
+  "name_es": "Kofta a la parrilla",
+  "name_de": "Gegrillte Kofta",
+  "cal_100": 225,
+  "p": 17.5,
+  "c": 4,
+  "f": 15.5,
+  "fiber_g": 0.6,
+  "sugar_g": 2,
+  "sodium_mg": 250,
+  "serv_g": 160,
+  "cal_serv": 360,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 160جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 80,
+    "kcal": 180
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 160,
+    "kcal": 360
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 320,
+    "kcal": 720
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "دجاج على الفحم",
+  "name_en": "Charcoal Chicken",
+  "name_fr": "Poulet au charbon de bois",
+  "name_es": "Pollo al carbón",
+  "name_de": "Holzkohle-Hähnchen",
+  "cal_100": 195,
+  "p": 20.5,
+  "c": 1.5,
+  "f": 11.5,
+  "fiber_g": 0.6,
+  "sugar_g": 2,
+  "sodium_mg": 250,
+  "serv_g": 180,
+  "cal_serv": 351,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 180جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 90,
+    "kcal": 176
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 180,
+    "kcal": 351
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 360,
+    "kcal": 702
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "كفتة حاشي",
+  "name_en": "Camel Kofta",
+  "name_fr": "Kofta de chameau",
+  "name_es": "Kofta de camello",
+  "name_de": "Kamel-Kofta",
+  "cal_100": 195,
+  "p": 18.5,
+  "c": 4,
+  "f": 12.5,
+  "fiber_g": 0.6,
+  "sugar_g": 2,
+  "sodium_mg": 250,
+  "serv_g": 160,
+  "cal_serv": 312,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 160جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 80,
+    "kcal": 156
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 160,
+    "kcal": 312
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 320,
+    "kcal": 624
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "مشاوي بحرية مشكلة",
+  "name_en": "Mixed Seafood Grill",
+  "name_fr": "Grillade de fruits de mer",
+  "name_es": "Parrillada de mariscos",
+  "name_de": "Gegrillte Meeresfrüchte",
+  "cal_100": 135,
+  "p": 17.5,
+  "c": 1.5,
+  "f": 6.5,
+  "fiber_g": 0.2,
+  "sugar_g": 2,
+  "sodium_mg": 250,
+  "serv_g": 220,
+  "cal_serv": 297,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 220جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 110,
+    "kcal": 149
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 220,
+    "kcal": 297
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 440,
+    "kcal": 594
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "كباب روبيان",
+  "name_en": "Shrimp Kebab",
+  "name_fr": "Brochettes de crevettes",
+  "name_es": "Brochetas de camarones",
+  "name_de": "Garnelen-Spieße",
+  "cal_100": 125,
+  "p": 15.5,
+  "c": 4.5,
+  "f": 5.2,
+  "fiber_g": 0.6,
+  "sugar_g": 2,
+  "sodium_mg": 250,
+  "serv_g": 180,
+  "cal_serv": 225,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 180جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 90,
+    "kcal": 113
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 180,
+    "kcal": 225
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 360,
+    "kcal": 450
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "كرشة مشوية",
+  "name_en": "Grilled Tripe",
+  "name_fr": "Tripe grillée",
+  "name_es": "Tripas a la parrilla",
+  "name_de": "Gegrillter Kutteln",
+  "cal_100": 155,
+  "p": 15.5,
+  "c": 0.5,
+  "f": 10.5,
+  "fiber_g": 0.2,
+  "sugar_g": 2,
+  "sodium_mg": 250,
+  "serv_g": 150,
+  "cal_serv": 233,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 150جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 75,
+    "kcal": 117
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 150,
+    "kcal": 233
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 300,
+    "kcal": 466
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "سجق حاشي",
+  "name_en": "Camel Sausage",
+  "name_fr": "Saucisse de chameau",
+  "name_es": "Salchicha de camello",
+  "name_de": "Kamelwurst",
+  "cal_100": 245,
+  "p": 15.5,
+  "c": 2.5,
+  "f": 19.5,
+  "fiber_g": 0.2,
+  "sugar_g": 2,
+  "sodium_mg": 380,
+  "serv_g": 120,
+  "cal_serv": 294,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 120جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 60,
+    "kcal": 147
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 120,
+    "kcal": 294
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 240,
+    "kcal": 588
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "دجاج بلدي مشوي كامل",
+  "name_en": "Whole Grilled Chicken",
+  "name_fr": "Poulet entier grillé",
+  "name_es": "Pollo entero a la parrilla",
+  "name_de": "Gegrilltes ganzes Huhn",
+  "cal_100": 195,
+  "p": 20.5,
+  "c": 1.5,
+  "f": 11.5,
+  "fiber_g": 0.6,
+  "sugar_g": 2,
+  "sodium_mg": 250,
+  "serv_g": 220,
+  "cal_serv": 429,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 220جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 110,
+    "kcal": 215
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 220,
+    "kcal": 429
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 440,
+    "kcal": 858
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "دجاج بالعسل",
+  "name_en": "Honey Glazed Chicken",
+  "name_fr": "Poulet au miel",
+  "name_es": "Pollo con miel",
+  "name_de": "Honig-Hähnchen",
+  "cal_100": 200,
+  "p": 21.5,
+  "c": 5.5,
+  "f": 10,
+  "fiber_g": 0.6,
+  "sugar_g": 19,
+  "sodium_mg": 300,
+  "serv_g": 180,
+  "cal_serv": 360,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 180جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 90,
+    "kcal": 180
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 180,
+    "kcal": 360
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 360,
+    "kcal": 720
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "كبدة بالبهارات",
+  "name_en": "Spiced Liver",
+  "name_fr": "Foie épicé",
+  "name_es": "Hígado especiado",
+  "name_de": "Gewürzte Leber",
+  "cal_100": 168,
+  "p": 22.5,
+  "c": 5.5,
+  "f": 5.5,
+  "fiber_g": 0.2,
+  "sugar_g": 2,
+  "sodium_mg": 380,
+  "serv_g": 140,
+  "cal_serv": 235,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 140جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 70,
+    "kcal": 118
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 140,
+    "kcal": 235
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 280,
+    "kcal": 470
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "سجق دجاج",
+  "name_en": "Chicken Sausage",
+  "name_fr": "Saucisse de poulet",
+  "name_es": "Salchicha de pollo",
+  "name_de": "Hähnchenwurst",
+  "cal_100": 215,
+  "p": 14.5,
+  "c": 2.5,
+  "f": 16.5,
+  "fiber_g": 0.2,
+  "sugar_g": 2,
+  "sodium_mg": 380,
+  "serv_g": 100,
+  "cal_serv": 215,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 100جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 50,
+    "kcal": 108
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 100,
+    "kcal": 215
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 200,
+    "kcal": 430
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "دجاج مشوي بالزعفران",
+  "name_en": "Saffron Grilled Chicken",
+  "name_fr": "Poulet grillé au safran",
+  "name_es": "Pollo asado con azafrán",
+  "name_de": "Gegrilltes Safran-Hähnchen",
+  "cal_100": 190,
+  "p": 21.5,
+  "c": 2.5,
+  "f": 10.5,
+  "fiber_g": 0.6,
+  "sugar_g": 2,
+  "sodium_mg": 250,
+  "serv_g": 180,
+  "cal_serv": 342,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 180جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 90,
+    "kcal": 171
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 180,
+    "kcal": 342
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 360,
+    "kcal": 684
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "كباب سمك",
+  "name_en": "Fish Kebab",
+  "name_fr": "Brochettes de poisson",
+  "name_es": "Brochetas de pescado",
+  "name_de": "Fisch-Spieße",
+  "cal_100": 148,
+  "p": 16.5,
+  "c": 4.5,
+  "f": 6.5,
+  "fiber_g": 0.2,
+  "sugar_g": 2,
+  "sodium_mg": 250,
+  "serv_g": 180,
+  "cal_serv": 266,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 180جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 90,
+    "kcal": 133
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 180,
+    "kcal": 266
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 360,
+    "kcal": 532
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "شوى",
+  "name_en": "Shuwaa",
+  "name_fr": "Shuwaa (agneau rôti)",
+  "name_es": "Shuwaa (cordero asado)",
+  "name_de": "Shuwaa (Bratlamm)",
+  "cal_100": 175,
+  "p": 17.5,
+  "c": 3.5,
+  "f": 10.5,
+  "fiber_g": 1.8,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 250,
+  "cal_serv": 438,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 219
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 438
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 876
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "سبيطي مشوي",
+  "name_en": "Grilled Sobaity Bream",
+  "name_fr": "Bretonneau sobaity grillé",
+  "name_es": "Dorada sobaity a la parrilla",
+  "name_de": "Gegrillte Sobaity-Brasse",
+  "cal_100": 120,
+  "p": 16.5,
+  "c": 0,
+  "f": 5.5,
+  "fiber_g": 0.2,
+  "sugar_g": 2,
+  "sodium_mg": 250,
+  "serv_g": 200,
+  "cal_serv": 240,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 200جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 100,
+    "kcal": 120
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 200,
+    "kcal": 240
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 400,
+    "kcal": 480
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "شعم مقلي",
+  "name_en": "Fried Threadfin",
+  "name_fr": "Filament frit",
+  "name_es": "Pez hilo frito",
+  "name_de": "Gebratener Fadenfisch",
+  "cal_100": 205,
+  "p": 16.5,
+  "c": 10.5,
+  "f": 11.5,
+  "fiber_g": 1.3,
+  "sugar_g": 2,
+  "sodium_mg": 280,
+  "serv_g": 180,
+  "cal_serv": 369,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 180جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 90,
+    "kcal": 185
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 180,
+    "kcal": 369
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 360,
+    "kcal": 738
+   }
+  ],
+  "healthy": true,
+  "is_fried": true,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "بياح مقلي",
+  "name_en": "Fried Bayah Fish",
+  "name_fr": "Bayah frit",
+  "name_es": "Bayah frito",
+  "name_de": "Gebratener Bayah-Fisch",
+  "cal_100": 190,
+  "p": 16.5,
+  "c": 9.5,
+  "f": 10,
+  "fiber_g": 1.3,
+  "sugar_g": 2,
+  "sodium_mg": 280,
+  "serv_g": 180,
+  "cal_serv": 342,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 180جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 90,
+    "kcal": 171
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 180,
+    "kcal": 342
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 360,
+    "kcal": 684
+   }
+  ],
+  "healthy": true,
+  "is_fried": true,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "قرش مقلي",
+  "name_en": "Fried Shark",
+  "name_fr": "Requin frit",
+  "name_es": "Tiburón frito",
+  "name_de": "Gebratener Hai",
+  "cal_100": 210,
+  "p": 18.5,
+  "c": 8.5,
+  "f": 12,
+  "fiber_g": 1.3,
+  "sugar_g": 2,
+  "sodium_mg": 280,
+  "serv_g": 180,
+  "cal_serv": 378,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 180جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 90,
+    "kcal": 189
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 180,
+    "kcal": 378
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 360,
+    "kcal": 756
+   }
+  ],
+  "healthy": true,
+  "is_fried": true,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "gulf_shared",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "كلمار مقلي",
+  "name_en": "Fried Calamari",
+  "name_fr": "Calmars frits",
+  "name_es": "Calamares fritos",
+  "name_de": "Gebratene Calamari",
+  "cal_100": 180,
+  "p": 14.5,
+  "c": 12,
+  "f": 8.5,
+  "fiber_g": 0.5,
+  "sugar_g": 2,
+  "sodium_mg": 280,
+  "serv_g": 150,
+  "cal_serv": 270,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 150جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 75,
+    "kcal": 135
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 150,
+    "kcal": 270
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 300,
+    "kcal": 540
+   }
+  ],
+  "healthy": true,
+  "is_fried": true,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "سبيط مشوي",
+  "name_en": "Grilled Cuttlefish",
+  "name_fr": "Seiche grillée",
+  "name_es": "Sepia a la parrilla",
+  "name_de": "Gegrillter Tintenfisch",
+  "cal_100": 90,
+  "p": 14.7,
+  "c": 1.7,
+  "f": 2.3,
+  "fiber_g": 0.5,
+  "sugar_g": 2,
+  "sodium_mg": 250,
+  "serv_g": 150,
+  "cal_serv": 135,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 150جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 75,
+    "kcal": 68
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 150,
+    "kcal": 135
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 300,
+    "kcal": 270
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "بلح البحر بالثوم",
+  "name_en": "Garlic Mussels",
+  "name_fr": "Moules à l'ail",
+  "name_es": "Mejillones al ajillo",
+  "name_de": "Knoblauch-Muscheln",
+  "cal_100": 120,
+  "p": 15.5,
+  "c": 5.5,
+  "f": 4.5,
+  "fiber_g": 0.5,
+  "sugar_g": 2,
+  "sodium_mg": 250,
+  "serv_g": 180,
+  "cal_serv": 216,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 180جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 90,
+    "kcal": 108
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 180,
+    "kcal": 216
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 360,
+    "kcal": 432
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "هامور محشي",
+  "name_en": "Stuffed Hamour",
+  "name_fr": "Mérou farci",
+  "name_es": "Mero relleno",
+  "name_de": "Gefüllter Zackenbarsch",
+  "cal_100": 140,
+  "p": 16.5,
+  "c": 4.5,
+  "f": 6.5,
+  "fiber_g": 0.2,
+  "sugar_g": 2,
+  "sodium_mg": 250,
+  "serv_g": 220,
+  "cal_serv": 308,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 220جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 110,
+    "kcal": 154
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 220,
+    "kcal": 308
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 440,
+    "kcal": 616
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "سمك مقلي بالبهارات",
+  "name_en": "Spiced Fried Fish",
+  "name_fr": "Poisson frit aux épices",
+  "name_es": "Pescado frito especiado",
+  "name_de": "Gebratener Fisch mit Gewürzen",
+  "cal_100": 210,
+  "p": 16.5,
+  "c": 10.5,
+  "f": 11.5,
+  "fiber_g": 1.3,
+  "sugar_g": 2,
+  "sodium_mg": 280,
+  "serv_g": 180,
+  "cal_serv": 378,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 180جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 90,
+    "kcal": 189
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 180,
+    "kcal": 378
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 360,
+    "kcal": 756
+   }
+  ],
+  "healthy": true,
+  "is_fried": true,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "يخنة روبيان بالخضار",
+  "name_en": "Shrimp and Vegetable Stew",
+  "name_fr": "Ragoût de crevettes aux légumes",
+  "name_es": "Guiso de camarones con verduras",
+  "name_de": "Garnelen-Gemüse-Eintopf",
+  "cal_100": 92,
+  "p": 9.5,
+  "c": 6.5,
+  "f": 3.2,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 300,
+  "cal_serv": 276,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 300جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 150,
+    "kcal": 138
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 300,
+    "kcal": 276
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 600,
+    "kcal": 552
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "قباقب بالكاري",
+  "name_en": "Crab Curry",
+  "name_fr": "Curry de crabe",
+  "name_es": "Curry de cangrejo",
+  "name_de": "Krabben-Curry",
+  "cal_100": 105,
+  "p": 12.5,
+  "c": 6.5,
+  "f": 3.8,
+  "fiber_g": 0.6,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 280,
+  "cal_serv": 294,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 280جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 140,
+    "kcal": 147
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 280,
+    "kcal": 294
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 560,
+    "kcal": 588
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "صبور مشوي",
+  "name_en": "Grilled Shad",
+  "name_fr": "Alose grillée",
+  "name_es": "Sábalo a la parrilla",
+  "name_de": "Gegrillte Alse",
+  "cal_100": 128,
+  "p": 15.5,
+  "c": 0,
+  "f": 7.5,
+  "fiber_g": 0.2,
+  "sugar_g": 2,
+  "sodium_mg": 250,
+  "serv_g": 200,
+  "cal_serv": 256,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 200جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 100,
+    "kcal": 128
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 200,
+    "kcal": 256
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 400,
+    "kcal": 512
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "روبيان مجفف محمر",
+  "name_en": "Fried Dried Shrimp",
+  "name_fr": "Crevettes séchées frites",
+  "name_es": "Camarones secos fritos",
+  "name_de": "Gebratene getrocknete Garnelen",
+  "cal_100": 175,
+  "p": 14.5,
+  "c": 9.5,
+  "f": 9,
+  "fiber_g": 0.5,
+  "sugar_g": 2,
+  "sodium_mg": 280,
+  "serv_g": 120,
+  "cal_serv": 210,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 120جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 60,
+    "kcal": 105
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 120,
+    "kcal": 210
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 240,
+    "kcal": 420
+   }
+  ],
+  "healthy": true,
+  "is_fried": true,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "يخنة تونة",
+  "name_en": "Tuna Stew",
+  "name_fr": "Ragoût de thon",
+  "name_es": "Guiso de atún",
+  "name_de": "Thunfisch-Eintopf",
+  "cal_100": 135,
+  "p": 14.5,
+  "c": 6.5,
+  "f": 6.5,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 280,
+  "cal_serv": 378,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 280جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 140,
+    "kcal": 189
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 280,
+    "kcal": 378
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 560,
+    "kcal": 756
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "مضروبة",
+  "name_en": "Madrooba",
+  "name_fr": "Madrooba (poisson salé)",
+  "name_es": "Madrooba (pescado salado)",
+  "name_de": "Madrooba (gesalzener Fisch)",
+  "cal_100": 122,
+  "p": 8.5,
+  "c": 12.5,
+  "f": 4.2,
+  "fiber_g": 2.2,
+  "sugar_g": 2,
+  "sodium_mg": 380,
+  "serv_g": 250,
+  "cal_serv": 305,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 153
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 305
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 610
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "جشيد",
+  "name_en": "Jasheed",
+  "name_fr": "Jasheed (requin épicé)",
+  "name_es": "Jasheed (tiburón especiado)",
+  "name_de": "Jasheed (gewürzter Hai)",
+  "cal_100": 118,
+  "p": 15.5,
+  "c": 4.5,
+  "f": 4.5,
+  "fiber_g": 0.2,
+  "sugar_g": 2,
+  "sodium_mg": 330,
+  "serv_g": 200,
+  "cal_serv": 236,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 200جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 100,
+    "kcal": 118
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 200,
+    "kcal": 236
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 400,
+    "kcal": 472
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "روبيان ناشف",
+  "name_en": "Ro-be-yann Nashif",
+  "name_fr": "Crevettes épicées frites",
+  "name_es": "Camarones picantes fritos",
+  "name_de": "Scharf gebratene Garnelen",
+  "cal_100": 165,
+  "p": 14.5,
+  "c": 8.5,
+  "f": 8.5,
+  "fiber_g": 0.5,
+  "sugar_g": 2,
+  "sodium_mg": 280,
+  "serv_g": 160,
+  "cal_serv": 264,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 160جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 80,
+    "kcal": 132
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 160,
+    "kcal": 264
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 320,
+    "kcal": 528
+   }
+  ],
+  "healthy": true,
+  "is_fried": true,
+  "is_sweet": false,
+  "mealType": "lunch",
+  "mealTypes": [
+   "lunch",
+   "dinner"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "حيسة",
+  "name_en": "Haisa",
+  "name_fr": "Haisa (dattes et beurre)",
+  "name_es": "Haisa (dátiles y mantequilla)",
+  "name_de": "Haisa (Datteln und Butter)",
+  "cal_100": 285,
+  "p": 3.8,
+  "c": 42,
+  "f": 11.5,
+  "fiber_g": 1.3,
+  "sugar_g": 24,
+  "sodium_mg": 140,
+  "serv_g": 60,
+  "cal_serv": 171,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 60جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 30,
+    "kcal": 86
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 60,
+    "kcal": 171
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 120,
+    "kcal": 342
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "كليجة بالتمر",
+  "name_en": "Date Kleicha",
+  "name_fr": "Kleicha aux dattes",
+  "name_es": "Kleicha de dátiles",
+  "name_de": "Dattel-Kleicha",
+  "cal_100": 305,
+  "p": 5,
+  "c": 52,
+  "f": 9.5,
+  "fiber_g": 1.3,
+  "sugar_g": 24,
+  "sodium_mg": 140,
+  "serv_g": 50,
+  "cal_serv": 153,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 50جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 25,
+    "kcal": 77
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 50,
+    "kcal": 153
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 100,
+    "kcal": 306
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "gulf_shared",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "كعك العيد",
+  "name_en": "Eid Kaak Cookies",
+  "name_fr": "Kaak de l'Aïd",
+  "name_es": "Kaak de Eid",
+  "name_de": "Osterlamm-Kaak",
+  "cal_100": 310,
+  "p": 6.5,
+  "c": 50,
+  "f": 10.5,
+  "fiber_g": 1.3,
+  "sugar_g": 19,
+  "sodium_mg": 140,
+  "serv_g": 40,
+  "cal_serv": 124,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 40جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 20,
+    "kcal": 62
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 40,
+    "kcal": 124
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 80,
+    "kcal": 248
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "تمر محشي بالمكسرات",
+  "name_en": "Stuffed Dates with Nuts",
+  "name_fr": "Dattes fourrées aux noix",
+  "name_es": "Dátiles rellenos de frutos secos",
+  "name_de": "Mit Nüssen gefüllte Datteln",
+  "cal_100": 280,
+  "p": 4.5,
+  "c": 45,
+  "f": 10,
+  "fiber_g": 1.3,
+  "sugar_g": 24,
+  "sodium_mg": 120,
+  "serv_g": 40,
+  "cal_serv": 112,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 40جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 20,
+    "kcal": 56
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 40,
+    "kcal": 112
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 80,
+    "kcal": 224
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "عصيدة بالقرع",
+  "name_en": "Pumpkin Asida",
+  "name_fr": "Asida au potiron",
+  "name_es": "Asida de calabaza",
+  "name_de": "Kürbis-Asida",
+  "cal_100": 175,
+  "p": 3.5,
+  "c": 30,
+  "f": 5.5,
+  "fiber_g": 3.5,
+  "sugar_g": 19,
+  "sodium_mg": 140,
+  "serv_g": 180,
+  "cal_serv": 315,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 180جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 90,
+    "kcal": 158
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 180,
+    "kcal": 315
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 360,
+    "kcal": 630
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "خبيص بالجوز",
+  "name_en": "Khabees with Walnuts",
+  "name_fr": "Khabees aux noix",
+  "name_es": "Khabees con nueces",
+  "name_de": "Khabees mit Walnüssen",
+  "cal_100": 290,
+  "p": 5.5,
+  "c": 42,
+  "f": 12,
+  "fiber_g": 1.8,
+  "sugar_g": 24,
+  "sodium_mg": 140,
+  "serv_g": 60,
+  "cal_serv": 174,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 60جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 30,
+    "kcal": 87
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 60,
+    "kcal": 174
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 120,
+    "kcal": 348
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "رقاق بالحلاوة",
+  "name_en": "Regag with Halva",
+  "name_fr": "Regag au halva",
+  "name_es": "Regag con halva",
+  "name_de": "Regag mit Halva",
+  "cal_100": 285,
+  "p": 6,
+  "c": 42,
+  "f": 11,
+  "fiber_g": 1.8,
+  "sugar_g": 19,
+  "sodium_mg": 300,
+  "serv_g": 70,
+  "cal_serv": 200,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 70جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 35,
+    "kcal": 100
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 70,
+    "kcal": 200
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 140,
+    "kcal": 400
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "قرص بالتمر والفستق",
+  "name_en": "Date and Pistachio Qurs",
+  "name_fr": "Qurs aux dattes et pistaches",
+  "name_es": "Qurs de dátiles y pistachos",
+  "name_de": "Qurs mit Datteln und Pistazien",
+  "cal_100": 295,
+  "p": 5.5,
+  "c": 50,
+  "f": 9,
+  "fiber_g": 1.8,
+  "sugar_g": 24,
+  "sodium_mg": 140,
+  "serv_g": 50,
+  "cal_serv": 148,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 50جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 25,
+    "kcal": 74
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 50,
+    "kcal": 148
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 100,
+    "kcal": 296
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "فطيرة التمر",
+  "name_en": "Date Pastry",
+  "name_fr": "Feuilleté aux dattes",
+  "name_es": "Hojaldre de dátiles",
+  "name_de": "Dattel-Pastete",
+  "cal_100": 300,
+  "p": 4.5,
+  "c": 48,
+  "f": 10.5,
+  "fiber_g": 1.8,
+  "sugar_g": 24,
+  "sodium_mg": 140,
+  "serv_g": 60,
+  "cal_serv": 180,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 60جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 30,
+    "kcal": 90
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 60,
+    "kcal": 180
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 120,
+    "kcal": 360
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "رقاق بالتمر",
+  "name_en": "Regag with Dates",
+  "name_fr": "Regag aux dattes",
+  "name_es": "Regag con dátiles",
+  "name_de": "Regag mit Datteln",
+  "cal_100": 280,
+  "p": 4.5,
+  "c": 50,
+  "f": 7.5,
+  "fiber_g": 1.8,
+  "sugar_g": 24,
+  "sodium_mg": 300,
+  "serv_g": 70,
+  "cal_serv": 196,
+  "serving_unit": "قطعة",
+  "serving_description": "قطعة 70جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 35,
+    "kcal": 98
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 70,
+    "kcal": 196
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 140,
+    "kcal": 392
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "قهوة عربية بالهيل",
+  "name_en": "Emirati Gahwa",
+  "name_fr": "Gahwa émirati",
+  "name_es": "Gahwa emiratí",
+  "name_de": "Emirati-Gahwa",
+  "cal_100": 20,
+  "p": 0.5,
+  "c": 2,
+  "f": 0.8,
+  "fiber_g": 0.2,
+  "sugar_g": 2,
+  "sodium_mg": 60,
+  "serv_g": 60,
+  "cal_serv": 12,
+  "serving_unit": "كوب",
+  "serving_description": "فنجان قهوة 60جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 30,
+    "kcal": 6
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 60,
+    "kcal": 12
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 120,
+    "kcal": 24
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "شاي حليب إماراتي",
+  "name_en": "Emirati Milk Tea",
+  "name_fr": "Thé au lait émirati",
+  "name_es": "Té con leche emiratí",
+  "name_de": "Emirati-Milchtee",
+  "cal_100": 35,
+  "p": 1.5,
+  "c": 5,
+  "f": 1,
+  "fiber_g": 0.2,
+  "sugar_g": 19,
+  "sodium_mg": 60,
+  "serv_g": 200,
+  "cal_serv": 70,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 200جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 100,
+    "kcal": 35
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 200,
+    "kcal": 70
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 400,
+    "kcal": 140
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "شنينة",
+  "name_en": "Shanina",
+  "name_fr": "Shanina (boisson au laban)",
+  "name_es": "Shanina (bebida de laban)",
+  "name_de": "Shanina (Laban-Getränk)",
+  "cal_100": 30,
+  "p": 2.2,
+  "c": 3.2,
+  "f": 1,
+  "fiber_g": 0.2,
+  "sugar_g": 2,
+  "sodium_mg": 120,
+  "serv_g": 200,
+  "cal_serv": 60,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 200جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 100,
+    "kcal": 30
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 200,
+    "kcal": 60
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 400,
+    "kcal": 120
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "ليمون بالنعناع",
+  "name_en": "Mint Lemonade",
+  "name_fr": "Citronnade à la menthe",
+  "name_es": "Limonada de menta",
+  "name_de": "Minz-Limonade",
+  "cal_100": 28,
+  "p": 0.3,
+  "c": 7,
+  "f": 0,
+  "fiber_g": 0.2,
+  "sugar_g": 11,
+  "sodium_mg": 60,
+  "serv_g": 250,
+  "cal_serv": 70,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 35
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 70
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 140
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "عصير أفوكادو",
+  "name_en": "Avocado Shake",
+  "name_fr": "Milk-shake d'avocat",
+  "name_es": "Batido de aguacate",
+  "name_de": "Avocado-Shake",
+  "cal_100": 75,
+  "p": 1.5,
+  "c": 9,
+  "f": 4,
+  "fiber_g": 0.6,
+  "sugar_g": 11,
+  "sodium_mg": 60,
+  "serv_g": 250,
+  "cal_serv": 188,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 94
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 188
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 376
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "حليب بالهيل والزعفران",
+  "name_en": "Saffron Cardamom Milk",
+  "name_fr": "Lait à la cardamome et safran",
+  "name_es": "Leche con cardamomo y azafrán",
+  "name_de": "Safran-Kardamom-Milch",
+  "cal_100": 85,
+  "p": 3.5,
+  "c": 11,
+  "f": 3.2,
+  "fiber_g": 0.6,
+  "sugar_g": 11,
+  "sodium_mg": 120,
+  "serv_g": 200,
+  "cal_serv": 170,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 200جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 100,
+    "kcal": 85
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 200,
+    "kcal": 170
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 400,
+    "kcal": 340
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "تمر بالحليب",
+  "name_en": "Dates with Milk",
+  "name_fr": "Dattes au lait",
+  "name_es": "Dátiles con leche",
+  "name_de": "Datteln mit Milch",
+  "cal_100": 135,
+  "p": 3.5,
+  "c": 26,
+  "f": 2.5,
+  "fiber_g": 0.6,
+  "sugar_g": 24,
+  "sodium_mg": 120,
+  "serv_g": 180,
+  "cal_serv": 243,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 180جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 90,
+    "kcal": 122
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 180,
+    "kcal": 243
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 360,
+    "kcal": 486
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "عجة بيض",
+  "name_en": "Emirati Egg Omelette",
+  "name_fr": "Omelette émirati",
+  "name_es": "Tortilla emiratí",
+  "name_de": "Emirati-Omelett",
+  "cal_100": 150,
+  "p": 10.5,
+  "c": 3,
+  "f": 10.5,
+  "fiber_g": 0.6,
+  "sugar_g": 2,
+  "sodium_mg": 300,
+  "serv_g": 180,
+  "cal_serv": 270,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 180جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 90,
+    "kcal": 135
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 180,
+    "kcal": 270
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 360,
+    "kcal": 540
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "بيض بالكمون",
+  "name_en": "Cumin Eggs",
+  "name_fr": "Œufs au cumin",
+  "name_es": "Huevos con comino",
+  "name_de": "Eier mit Kreuzkümmel",
+  "cal_100": 145,
+  "p": 11,
+  "c": 2.5,
+  "f": 10,
+  "fiber_g": 0.6,
+  "sugar_g": 2,
+  "sodium_mg": 300,
+  "serv_g": 160,
+  "cal_serv": 232,
+  "serving_unit": "طبق",
+  "serving_description": "طبق متوسط 160جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 80,
+    "kcal": 116
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 160,
+    "kcal": 232
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 320,
+    "kcal": 464
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "سلطة فواكه",
+  "name_en": "Fruit Salad",
+  "name_fr": "Salade de fruits",
+  "name_es": "Ensalada de frutas",
+  "name_de": "Obstsalat",
+  "cal_100": 62,
+  "p": 1,
+  "c": 15,
+  "f": 0.3,
+  "fiber_g": 0.6,
+  "sugar_g": 19,
+  "sodium_mg": 60,
+  "serv_g": 200,
+  "cal_serv": 124,
+  "serving_unit": "صحن",
+  "serving_description": "صحن 200جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 100,
+    "kcal": 62
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 200,
+    "kcal": 124
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 400,
+    "kcal": 248
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "عصير أناناس",
+  "name_en": "Pineapple Juice",
+  "name_fr": "Jus d'ananas",
+  "name_es": "Jugo de piña",
+  "name_de": "Ananassaft",
+  "cal_100": 55,
+  "p": 0.5,
+  "c": 13,
+  "f": 0.1,
+  "fiber_g": 0.6,
+  "sugar_g": 11,
+  "sodium_mg": 60,
+  "serv_g": 250,
+  "cal_serv": 138,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 69
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 138
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 276
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "ليموناضة بالعسل",
+  "name_en": "Honey Lemonade",
+  "name_fr": "Citronnade au miel",
+  "name_es": "Limonada con miel",
+  "name_de": "Honig-Limonade",
+  "cal_100": 42,
+  "p": 0.2,
+  "c": 11,
+  "f": 0,
+  "fiber_g": 0.2,
+  "sugar_g": 11,
+  "sodium_mg": 60,
+  "serv_g": 250,
+  "cal_serv": 105,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 53
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 105
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 210
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "قشطة",
+  "name_en": "Fresh Cream",
+  "name_fr": "Crème fraîche",
+  "name_es": "Crema fresca",
+  "name_de": "Frische Sahne",
+  "cal_100": 320,
+  "p": 2.5,
+  "c": 4,
+  "f": 33,
+  "fiber_g": 0.6,
+  "sugar_g": 2,
+  "sodium_mg": 120,
+  "serv_g": 40,
+  "cal_serv": 128,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 40جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 20,
+    "kcal": 64
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 40,
+    "kcal": 128
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 80,
+    "kcal": 256
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "تمر خنيزي",
+  "name_en": "Khnezi Dates",
+  "name_fr": "Dattes khnezi",
+  "name_es": "Dátiles khnezi",
+  "name_de": "Khnezi-Datteln",
+  "cal_100": 272,
+  "p": 1.8,
+  "c": 74,
+  "f": 0.4,
+  "fiber_g": 0.6,
+  "sugar_g": 24,
+  "sodium_mg": 120,
+  "serv_g": 24,
+  "cal_serv": 65,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 24جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 12,
+    "kcal": 33
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 24,
+    "kcal": 65
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 48,
+    "kcal": 130
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "رطب خلاص",
+  "name_en": "Khalas Rutab Dates",
+  "name_fr": "Dattes rutab khalas",
+  "name_es": "Dátiles rutab khalas",
+  "name_de": "Khalas-Rutab-Datteln",
+  "cal_100": 150,
+  "p": 1.2,
+  "c": 38,
+  "f": 0.3,
+  "fiber_g": 0.6,
+  "sugar_g": 19,
+  "sodium_mg": 120,
+  "serv_g": 40,
+  "cal_serv": 60,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 40جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 20,
+    "kcal": 30
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 40,
+    "kcal": 60
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 80,
+    "kcal": 120
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "ميلك شيك موز",
+  "name_en": "Banana Milkshake",
+  "name_fr": "Milk-shake à la banane",
+  "name_es": "Batido de plátano",
+  "name_de": "Banane-Milchshake",
+  "cal_100": 78,
+  "p": 2.5,
+  "c": 12,
+  "f": 2.5,
+  "fiber_g": 0.6,
+  "sugar_g": 19,
+  "sodium_mg": 120,
+  "serv_g": 250,
+  "cal_serv": 195,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 98
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 195
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 390
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "عصير شمام",
+  "name_en": "Cantaloupe Juice",
+  "name_fr": "Jus de cantaloup",
+  "name_es": "Jugo de melón",
+  "name_de": "Cantaloup-Saft",
+  "cal_100": 32,
+  "p": 0.8,
+  "c": 7.5,
+  "f": 0.2,
+  "fiber_g": 0.6,
+  "sugar_g": 11,
+  "sodium_mg": 60,
+  "serv_g": 250,
+  "cal_serv": 80,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 40
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 80
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 160
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "جبنة بيلادي بالكريمة",
+  "name_en": "Creamy Beladi Cheese",
+  "name_fr": "Fromage beladi à la crème",
+  "name_es": "Queso beladi cremoso",
+  "name_de": "Cremiger Beladi-Käse",
+  "cal_100": 245,
+  "p": 7.5,
+  "c": 3.5,
+  "f": 22,
+  "fiber_g": 0.6,
+  "sugar_g": 2,
+  "sodium_mg": 380,
+  "serv_g": 50,
+  "cal_serv": 123,
+  "serving_unit": "حصة",
+  "serving_description": "حصة 50جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 25,
+    "kcal": 62
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 50,
+    "kcal": 123
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 100,
+    "kcal": 246
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "عصير جزر بالبرتقال",
+  "name_en": "Carrot and Orange Juice",
+  "name_fr": "Jus de carotte et orange",
+  "name_es": "Zumo de zanahoria y naranja",
+  "name_de": "Karotten-Orangen-Saft",
+  "cal_100": 42,
+  "p": 0.8,
+  "c": 10,
+  "f": 0.2,
+  "fiber_g": 0.6,
+  "sugar_g": 11,
+  "sodium_mg": 60,
+  "serv_g": 250,
+  "cal_serv": 105,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 53
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 105
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 210
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "شاي بالزعفران",
+  "name_en": "Saffron Tea",
+  "name_fr": "Thé au safran",
+  "name_es": "Té de azafrán",
+  "name_de": "Safrantee",
+  "cal_100": 22,
+  "p": 0.3,
+  "c": 3.5,
+  "f": 0.6,
+  "fiber_g": 0.2,
+  "sugar_g": 2,
+  "sodium_mg": 60,
+  "serv_g": 200,
+  "cal_serv": 44,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 200جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 100,
+    "kcal": 22
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 200,
+    "kcal": 44
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 400,
+    "kcal": 88
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": false,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ },
+ {
+  "name": "عصير مانجو بالحليب",
+  "name_en": "Mango Lassi",
+  "name_fr": "Lassi à la mangue",
+  "name_es": "Lassi de mango",
+  "name_de": "Mango-Lassi",
+  "cal_100": 82,
+  "p": 2,
+  "c": 13,
+  "f": 2.6,
+  "fiber_g": 0.6,
+  "sugar_g": 11,
+  "sodium_mg": 120,
+  "serv_g": 250,
+  "cal_serv": 205,
+  "serving_unit": "كوب",
+  "serving_description": "كوب 250جم",
+  "serving_options": [
+   {
+    "label": "نص",
+    "label_en": "Half",
+    "multiplier": 0.5,
+    "g": 125,
+    "kcal": 103
+   },
+   {
+    "label": "كامل",
+    "label_en": "Full",
+    "multiplier": 1,
+    "g": 250,
+    "kcal": 205
+   },
+   {
+    "label": "مضاعف",
+    "label_en": "Double",
+    "multiplier": 2,
+    "g": 500,
+    "kcal": 410
+   }
+  ],
+  "healthy": true,
+  "is_fried": false,
+  "is_sweet": true,
+  "mealType": "snacks",
+  "mealTypes": [
+   "snacks"
+  ],
+  "region": "pan_emirati",
+  "region_note": null,
+  "source": "المطبخ الإماراتي - أرقام محسوبة · Verified against UAE Culinary Heritage",
+  "notes": "",
+  "confidence": 70,
+  "confidence_label": "70% - تقديري",
+  "confidence_color": "orange"
+ }
+]
