@@ -1,0 +1,1234 @@
+[
+  {
+    "name_ar": "عريك بالتمر",
+    "name_en": "Areeka with Dates",
+    "category": "breads_pastries",
+    "mealType": "breakfast",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "بفتة بالتمر",
+    "name_en": "Baftha with Dates",
+    "category": "breads_pastries",
+    "mealType": "breakfast",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "عيش بشعير",
+    "name_en": "Barley Aish Bread",
+    "category": "breads_pastries",
+    "mealType": "breakfast",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "جباب بحشوة التمر",
+    "name_en": "Chebab Stuffed with Dates",
+    "category": "breads_pastries",
+    "mealType": "breakfast",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "خبز الموز",
+    "name_en": "Emirati Banana Bread",
+    "category": "breads_pastries",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "خمير بالعسل",
+    "name_en": "Khameer with Honey",
+    "category": "breads_pastries",
+    "mealType": "breakfast",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "خمير بالسمسم",
+    "name_en": "Khameer with Sesame",
+    "category": "breads_pastries",
+    "mealType": "breakfast",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مشلتت بالدبس",
+    "name_en": "Mashlouta with Date Syrup",
+    "category": "breads_pastries",
+    "mealType": "breakfast",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "خبز الحبوب",
+    "name_en": "Multigrain Bread",
+    "category": "breads_pastries",
+    "mealType": "breakfast",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "قرص بالعسل",
+    "name_en": "Qurs with Honey",
+    "category": "breads_pastries",
+    "mealType": "breakfast",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "رقاق بالزبدة والتمر",
+    "name_en": "Regag with Butter and Dates",
+    "category": "breads_pastries",
+    "mealType": "breakfast",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "رقاق بالحليب",
+    "name_en": "Regag with Milk",
+    "category": "breads_pastries",
+    "mealType": "breakfast",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "رقاق بالزعفران",
+    "name_en": "Saffron Regag",
+    "category": "breads_pastries",
+    "mealType": "breakfast",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "صمون محشو بالجبن",
+    "name_en": "Samoon Stuffed with Cheese",
+    "category": "breads_pastries",
+    "mealType": "breakfast",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "صمون محشو بالتمر",
+    "name_en": "Samoon Stuffed with Dates",
+    "category": "breads_pastries",
+    "mealType": "breakfast",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "خبز القمح",
+    "name_en": "Wheat Flour Bread",
+    "category": "breads_pastries",
+    "mealType": "breakfast",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "عصيدة بالتمر والعسل",
+    "name_en": "Asida with Dates and Honey",
+    "category": "breakfast",
+    "mealType": "breakfast",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "بيض بالكاري",
+    "name_en": "Curry Eggs",
+    "category": "breakfast",
+    "mealType": "breakfast",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "بيض بالبصل",
+    "name_en": "Eggs with Onions",
+    "category": "breakfast",
+    "mealType": "breakfast",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "هريس بالقرع",
+    "name_en": "Harees with Pumpkin",
+    "category": "breakfast",
+    "mealType": "breakfast",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "عصير التوت",
+    "name_en": "Berry Juice",
+    "category": "dairy_eggs_fruits",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "قهوة بالهيل والقرفة",
+    "name_en": "Cardamom Cinnamon Coffee",
+    "category": "dairy_eggs_fruits",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "شاي البابونج",
+    "name_en": "Chamomile Tea",
+    "category": "dairy_eggs_fruits",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "عصير الخيار",
+    "name_en": "Cucumber Juice",
+    "category": "dairy_eggs_fruits",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "شاي الكمون",
+    "name_en": "Cumin Tea",
+    "category": "dairy_eggs_fruits",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "عصير الجريب فروت",
+    "name_en": "Grapefruit Juice",
+    "category": "dairy_eggs_fruits",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "عصير الليمون",
+    "name_en": "Lemon Juice",
+    "category": "dairy_eggs_fruits",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "عصير البطيخ",
+    "name_en": "Watermelon Juice",
+    "category": "dairy_eggs_fruits",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "سمك بالبهارات العربية",
+    "name_en": "Arabic Spiced Fish",
+    "category": "fish_seafood",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "روبيان مسلوق",
+    "name_en": "Boiled Shrimp",
+    "category": "fish_seafood",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "قباقب بالزبدة",
+    "name_en": "Butter Crab",
+    "category": "fish_seafood",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "لبستر بالزبدة",
+    "name_en": "Butter Lobster",
+    "category": "fish_seafood",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "سمك بالكاري",
+    "name_en": "Curry Fish",
+    "category": "fish_seafood",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "سلمون مقلي",
+    "name_en": "Fried Salmon",
+    "category": "fish_seafood",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "روبيان بالثوم",
+    "name_en": "Garlic Shrimp",
+    "category": "fish_seafood",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "قباقب مشوي",
+    "name_en": "Grilled Crab",
+    "category": "fish_seafood",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "سلمون مشوي",
+    "name_en": "Grilled Salmon",
+    "category": "fish_seafood",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "محار بالليمون",
+    "name_en": "Lemon Oysters",
+    "category": "fish_seafood",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "روبيان بالليمون",
+    "name_en": "Lemon Shrimp",
+    "category": "fish_seafood",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "سلمون بالفرن",
+    "name_en": "Oven Baked Salmon",
+    "category": "fish_seafood",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "تونة بالفرن",
+    "name_en": "Oven Baked Tuna",
+    "category": "fish_seafood",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "دجاج مشوي بالتتبيلة العربية",
+    "name_en": "Arabic Spiced Grilled Chicken",
+    "category": "grilled_meats",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "لحم مشوي بالخل البلسمي",
+    "name_en": "Balsamic Grilled Meat",
+    "category": "grilled_meats",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "سجق لحم البقر",
+    "name_en": "Beef Sausage",
+    "category": "grilled_meats",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "شاورما اللحم",
+    "name_en": "Beef Shawarma",
+    "category": "grilled_meats",
+    "mealType": "lunch",
+    "region": "gulf_shared"
+  },
+  {
+    "name_ar": "ستيك اللحم",
+    "name_en": "Beef Steak",
+    "category": "grilled_meats",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "روبيان مشوي بالزبدة",
+    "name_en": "Butter Grilled Shrimp",
+    "category": "grilled_meats",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مشاوي الدجاج",
+    "name_en": "Chicken Grill Mix",
+    "category": "grilled_meats",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "دجاج بالثوم والليمون مشوي",
+    "name_en": "Garlic Lemon Grilled Chicken",
+    "category": "grilled_meats",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "كباب خضار مشوي",
+    "name_en": "Grilled Vegetable Kebab",
+    "category": "grilled_meats",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "همبورجر لحم",
+    "name_en": "Lamb Burger",
+    "category": "grilled_meats",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "سمك مشوي بالليمون",
+    "name_en": "Lemon Grilled Fish",
+    "category": "grilled_meats",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "ريش الغنم بزيت الزيتون",
+    "name_en": "Olive Oil Lamb Rack",
+    "category": "grilled_meats",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "كفتة بالزعفران",
+    "name_en": "Saffron Kofta",
+    "category": "grilled_meats",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "شيش طاووق بالزبادي",
+    "name_en": "Yogurt Shawarma Skewers",
+    "category": "grilled_meats",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "إيدام الشمندر",
+    "name_en": "Beetroot Eidam",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "حاشي بالكاري",
+    "name_en": "Camel Curry",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "محشوش بالدجاج",
+    "name_en": "Chicken Mahshoush",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مرق الحمص",
+    "name_en": "Chickpea Stew",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "لحم بالفخار",
+    "name_en": "Clay Pot Lamb",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "طيور بالكاري",
+    "name_en": "Curry Quail",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مرق الباذنجان",
+    "name_en": "Eggplant Stew",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مرق الفول",
+    "name_en": "Ful Stew",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "دجاج مقلي بالثوم",
+    "name_en": "Garlic Fried Chicken",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مرق اللوبيا الخضراء",
+    "name_en": "Green Bean Meat Stew",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "إيدام اللوبيا",
+    "name_en": "Green Beans Eidam",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "طبعيخة اللوبيا",
+    "name_en": "Green Beans Tabaikha",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "هريس باللحم",
+    "name_en": "Harees with Lamb",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "جريش بالبصل",
+    "name_en": "Jireesh with Onions",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "لحم بالزبادي",
+    "name_en": "Lamb in Yogurt",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "لحم بالبرقوق",
+    "name_en": "Lamb with Prunes",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "دجاج بالليمون",
+    "name_en": "Lemon Chicken",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مرق العدس باللحم",
+    "name_en": "Lentil Meat Stew",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "كبدة البصل",
+    "name_en": "Liver with Onions",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "إيدام البامية",
+    "name_en": "Okra Eidam",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مرق البامية باللحم",
+    "name_en": "Okra Meat Stew",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مرق البازلاء والجزر",
+    "name_en": "Peas and Carrots Stew",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "إيدام البطاطس",
+    "name_en": "Potato Eidam",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "طبعيخة البطاطس",
+    "name_en": "Potato Tabaikha",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "إيدام القرع",
+    "name_en": "Pumpkin Eidam",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "رقاق بالمرق",
+    "name_en": "Regag in Broth",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "دجاج بالفرن بالزعفران",
+    "name_en": "Saffron Oven Chicken",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "إيدام السبانخ بالدجاج",
+    "name_en": "Spinach Chicken Eidam",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "طبعيخة السبانخ",
+    "name_en": "Spinach Tabaikha",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مشبع الكرنب",
+    "name_en": "Stuffed Cabbage",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "خروف محشي",
+    "name_en": "Stuffed Roast Lamb",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "محشوش بالخضار",
+    "name_en": "Vegetable Mahshoush",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "إيدام الفاصوليا البيضاء",
+    "name_en": "White Beans Eidam",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مرق الكوسا باللحم",
+    "name_en": "Zucchini Meat Stew",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "طبعيخة الكوسا",
+    "name_en": "Zucchini Tabaikha",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "إيدام الكوسا باللبن",
+    "name_en": "Zucchini Yogurt Eidam",
+    "category": "main_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "رز بسمتي بحب الرمان",
+    "name_en": "Basmati Rice with Pomegranate",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "قوزي الحاشي",
+    "name_en": "Camel Quzi",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مثلوثة بالدجاج",
+    "name_en": "Chicken Mathloutha",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "أرز بالكاري والخضار",
+    "name_en": "Curry Vegetable Rice",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مكبوس البط",
+    "name_en": "Duck Makhboos",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "صيادية السمك",
+    "name_en": "Fish Sayyadia",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "gulf_shared"
+  },
+  {
+    "name_ar": "زربيان السمك",
+    "name_en": "Fish Zurbian",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "gulf_shared"
+  },
+  {
+    "name_ar": "رز بالفاصوليا الخضراء",
+    "name_en": "Green Bean Rice",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مكبوس الجريش",
+    "name_en": "Jireesh Makhboos",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مقلوبة اللحم",
+    "name_en": "Lamb Maqluba",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مثلوثة باللحم",
+    "name_en": "Lamb Mathloutha",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مكبوس بالفاصولياء",
+    "name_en": "Makhboos with Beans",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مكبوس بالباذنجان",
+    "name_en": "Makhboos with Eggplant",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "رز بالقرنبيط",
+    "name_en": "Rice with Cauliflower",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "رز بالحمص",
+    "name_en": "Rice with Chickpeas",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "رز بالبصل المحمر",
+    "name_en": "Rice with Fried Onions",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "رز بالعدس",
+    "name_en": "Rice with Lentils",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "gulf_shared"
+  },
+  {
+    "name_ar": "رز بالبازلاء",
+    "name_en": "Rice with Peas",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "رز بالزبيب",
+    "name_en": "Rice with Raisins",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "رز بالكوسا",
+    "name_en": "Rice with Zucchini",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مضغوط الروبيان",
+    "name_en": "Shrimp Madghoot",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "برياني الدجاج المدخن",
+    "name_en": "Smoked Chicken Biryani",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "رز أصفر بالكركم",
+    "name_en": "Turmeric Rice",
+    "category": "rice_dishes",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "سلطة الجرجير بالليمون",
+    "name_en": "Arugula Lemon Salad",
+    "category": "salads_sides",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "سلطة الملفوف بالجزر",
+    "name_en": "Cabbage Carrot Salad",
+    "category": "salads_sides",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "متبل الجزر",
+    "name_en": "Carrot Mutabal",
+    "category": "salads_sides",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "سلطة الحمص بالفلفل",
+    "name_en": "Chickpea Pepper Salad",
+    "category": "salads_sides",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "خيار بالزعتر",
+    "name_en": "Cucumbers with Zaatar",
+    "category": "salads_sides",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "سلطة الباذنجان",
+    "name_en": "Eggplant Salad",
+    "category": "salads_sides",
+    "mealType": "lunch",
+    "region": "gulf_shared"
+  },
+  {
+    "name_ar": "سلطة البصل",
+    "name_en": "Onion Salad",
+    "category": "salads_sides",
+    "mealType": "lunch",
+    "region": "gulf_shared"
+  },
+  {
+    "name_ar": "مخلل الباذنجان",
+    "name_en": "Pickled Eggplant",
+    "category": "salads_sides",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مخلل الطماطم",
+    "name_en": "Pickled Tomatoes",
+    "category": "salads_sides",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "سلطة الرمان",
+    "name_en": "Pomegranate Salad",
+    "category": "salads_sides",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "متبل اليقطين",
+    "name_en": "Pumpkin Mutabal",
+    "category": "salads_sides",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "سلطة الفجل",
+    "name_en": "Radish Salad",
+    "category": "salads_sides",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "سلطة الطماطم بالخيار",
+    "name_en": "Tomato Cucumber Salad",
+    "category": "salads_sides",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "طماطم باللبنة",
+    "name_en": "Tomatoes with Labneh",
+    "category": "salads_sides",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "شوربة البروكلي",
+    "name_en": "Broccoli Soup",
+    "category": "soups",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "شوربة الجزر والزنجبيل",
+    "name_en": "Carrot and Ginger Soup",
+    "category": "soups",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "شوربة الدجاج بالكريمة",
+    "name_en": "Creamy Chicken Soup",
+    "category": "soups",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "شوربة الذرة بالكريمة",
+    "name_en": "Creamy Corn Soup",
+    "category": "soups",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "شوربة السمك بالخضار",
+    "name_en": "Fish and Vegetable Soup",
+    "category": "soups",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "شوربة الفطر",
+    "name_en": "Mushroom Soup",
+    "category": "soups",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "شوربة البصل",
+    "name_en": "Onion Soup",
+    "category": "soups",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "شوربة البطاطس",
+    "name_en": "Potato Soup",
+    "category": "soups",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "شوربة اليقطين",
+    "name_en": "Pumpkin Soup",
+    "category": "soups",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "شوربة اللبن",
+    "name_en": "Yogurt Soup",
+    "category": "soups",
+    "mealType": "lunch",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "عصيدة بالجبن",
+    "name_en": "Asida with Cheese",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "كيك الهيل",
+    "name_en": "Cardamom Cake",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "خبيص بالجبن",
+    "name_en": "Cheese Khabees",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "لقيمات بالجبن",
+    "name_en": "Cheese Luqaimat",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "أرز بالحليب بالقرفة",
+    "name_en": "Cinnamon Rice Pudding",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "لقيمات بجوز الهند",
+    "name_en": "Coconut Luqaimat",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "حلاوة جوز الهند",
+    "name_en": "Coconut Sweet",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "كراميل بالتمر",
+    "name_en": "Date Caramel",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "بسكويت التمر",
+    "name_en": "Date Cookies",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "كاسترد بالتمر",
+    "name_en": "Date Custard",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "فطير بالتمر",
+    "name_en": "Date Fatir",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مهلبية بالتمر",
+    "name_en": "Date Muhallabia",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "حلوة الدبس",
+    "name_en": "Date Syrup Sweet",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "خبيص بالتمر",
+    "name_en": "Khabees with Dates",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "خبيص بالسمسم",
+    "name_en": "Khabees with Sesame",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "كيك الليمون",
+    "name_en": "Lemon Cake",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "لقيمات بالحلوى",
+    "name_en": "Luqaimat with Halva",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "حلو اللبن",
+    "name_en": "Milk Sweet",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "عصيدة بالفستق",
+    "name_en": "Pistachio Asida",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "حلاوة بالفستق",
+    "name_en": "Pistachio Dessert",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "حلو الفستق",
+    "name_en": "Pistachio Sweet",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "مهلبية بالورد",
+    "name_en": "Rose Muhallabia",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "بسبوسة بالزعفران",
+    "name_en": "Saffron Basbousa",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "كيك الزعفران",
+    "name_en": "Saffron Cake",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "بسكويت الزعفران",
+    "name_en": "Saffron Cookies",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "كاسترد بالزعفران",
+    "name_en": "Saffron Custard",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "فرني بالزعفران",
+    "name_en": "Saffron Ferni",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "خبيص بالزعفران",
+    "name_en": "Saffron Khabees",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "حلاوة الأرز بالزعفران",
+    "name_en": "Saffron Rice Dessert",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "بسكويت السمسم",
+    "name_en": "Sesame Cookies",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "حلوة السمسم",
+    "name_en": "Sesame Sweet",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "حلاوة السميد المحمص",
+    "name_en": "Toasted Semolina Dessert",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "حلاوة القمح المحمص",
+    "name_en": "Toasted Wheat Dessert",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "حلى كاسترد بالتوفي",
+    "name_en": "Toffee Custard",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "كاسترد بالوز",
+    "name_en": "Walnut Custard",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "حلاوة بالجوز",
+    "name_en": "Walnut Dessert",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "حلو الجوز بالعسل",
+    "name_en": "Walnut Honey Sweet",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  },
+  {
+    "name_ar": "عصيدة البيضاء",
+    "name_en": "White Asida",
+    "category": "sweets_desserts",
+    "mealType": "snacks",
+    "region": "pan_emirati"
+  }
+]

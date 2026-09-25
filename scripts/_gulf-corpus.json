@@ -1,0 +1,3332 @@
+{
+ "فول": {
+  "src": "uae-local",
+  "norm": "فول",
+  "en": "foul"
+ },
+ "فول بالسمن": {
+  "src": "saudi",
+  "norm": "فولبالسمن",
+  "en": "foul with ghee"
+ },
+ "فتة تمر": {
+  "src": "saudi",
+  "norm": "فتةتمر",
+  "en": "date fateh"
+ },
+ "معصوب": {
+  "src": "saudi",
+  "norm": "معصوب",
+  "en": "masoub"
+ },
+ "معصوب لايت": {
+  "src": "saudi",
+  "norm": "معصوبلايت",
+  "en": "masoub light"
+ },
+ "شكشوكة": {
+  "src": "uae-local",
+  "norm": "شكشوك",
+  "en": "shakshouka"
+ },
+ "بلاليط": {
+  "src": "uae-local",
+  "norm": "بلاليط",
+  "en": "balaleet"
+ },
+ "عريكة": {
+  "src": "saudi",
+  "norm": "عريك",
+  "en": "areeka"
+ },
+ "سجق بالبيض": {
+  "src": "saudi",
+  "norm": "سجقبالبيض",
+  "en": "sausage and eggs"
+ },
+ "فول بزيت الزيتون": {
+  "src": "saudi",
+  "norm": "فولبزيتالزيتون",
+  "en": "foul with olive oil"
+ },
+ "عريكة بالقشطة": {
+  "src": "saudi",
+  "norm": "عريكةبالقشط",
+  "en": "areeka with cream"
+ },
+ "شكشوكة بالجبن": {
+  "src": "saudi",
+  "norm": "شكشوكةبالجبن",
+  "en": "shakshouka with cheese"
+ },
+ "شكشوكة بالسجق": {
+  "src": "saudi",
+  "norm": "شكشوكةبالسجق",
+  "en": "shakshouka with sausage"
+ },
+ "شكشوكة بالخضار": {
+  "src": "saudi",
+  "norm": "شكشوكةبالخضار",
+  "en": "vegetable shakshouka"
+ },
+ "بيض مخفوق": {
+  "src": "saudi",
+  "norm": "بيضمخفوق",
+  "en": "scrambled eggs"
+ },
+ "أومليت بالبصل": {
+  "src": "saudi",
+  "norm": "اومليتبالبصل",
+  "en": "onion omelette"
+ },
+ "أومليت بالطماطم": {
+  "src": "saudi",
+  "norm": "اومليتبالطماطم",
+  "en": "tomato omelette"
+ },
+ "فول بالطحينة": {
+  "src": "saudi",
+  "norm": "فولبالطحين",
+  "en": "foul with tahini"
+ },
+ "فول حار": {
+  "src": "saudi",
+  "norm": "فولحار",
+  "en": "spicy foul"
+ },
+ "فول بالطماطم": {
+  "src": "saudi",
+  "norm": "فولبالطماطم",
+  "en": "foul with tomato"
+ },
+ "فول بالبيض": {
+  "src": "saudi",
+  "norm": "فولبالبيض",
+  "en": "foul with eggs"
+ },
+ "فول بالليمون": {
+  "src": "saudi",
+  "norm": "فولبالليمون",
+  "en": "foul with lemon"
+ },
+ "عجة بالبيض": {
+  "src": "saudi",
+  "norm": "عجةبالبيض",
+  "en": "egg ajjah"
+ },
+ "بيض مقلي": {
+  "src": "uae-local",
+  "norm": "بيضمقلي",
+  "en": "fried egg"
+ },
+ "بيض بالطماطم": {
+  "src": "uae-local",
+  "norm": "بيضبالطماطم",
+  "en": "eggs with tomato"
+ },
+ "بيض بالجبن": {
+  "src": "saudi",
+  "norm": "بيضبالجبن",
+  "en": "eggs with cheese"
+ },
+ "أومليت خضار": {
+  "src": "uae-local",
+  "norm": "اومليتخضار",
+  "en": "vegetable omelette"
+ },
+ "أومليت جبن": {
+  "src": "saudi",
+  "norm": "اومليتجبن",
+  "en": "cheese omelette"
+ },
+ "بيض مقلقل": {
+  "src": "saudi",
+  "norm": "بيضمقلقل",
+  "en": "mughallal eggs"
+ },
+ "فول بالبصل": {
+  "src": "saudi",
+  "norm": "فولبالبصل",
+  "en": "foul with onion"
+ },
+ "فول بالطحينة بالبيض": {
+  "src": "saudi",
+  "norm": "فولبالطحينةبالبيض",
+  "en": "foul with tahini and egg"
+ },
+ "عريكة بالعسل": {
+  "src": "saudi",
+  "norm": "عريكةبالعسل",
+  "en": "areeka with honey"
+ },
+ "عريكة بالزبدة": {
+  "src": "saudi",
+  "norm": "عريكةبالزبد",
+  "en": "areeka with butter"
+ },
+ "فول بالبقدونس": {
+  "src": "saudi",
+  "norm": "فولبالبقدونس",
+  "en": "foul with parsley"
+ },
+ "فول بالكمون": {
+  "src": "saudi",
+  "norm": "فولبالكمون",
+  "en": "foul with cumin"
+ },
+ "فول بالثوم": {
+  "src": "saudi",
+  "norm": "فولبالثوم",
+  "en": "foul with garlic"
+ },
+ "فول بالجبن": {
+  "src": "saudi",
+  "norm": "فولبالجبن",
+  "en": "foul with cheese"
+ },
+ "بيض مسلوق بالكمون": {
+  "src": "saudi",
+  "norm": "بيضمسلوقبالكمون",
+  "en": "boiled eggs with cumin"
+ },
+ "بيض بالفلفل الحار": {
+  "src": "saudi",
+  "norm": "بيضبالفلفلالحار",
+  "en": "eggs with chili"
+ },
+ "أومليت بالبقدونس": {
+  "src": "saudi",
+  "norm": "اومليتبالبقدونس",
+  "en": "parsley omelette"
+ },
+ "أومليت بالزعتر": {
+  "src": "saudi",
+  "norm": "اومليتبالزعتر",
+  "en": "zaatar omelette"
+ },
+ "أومليت بالسبانخ": {
+  "src": "saudi",
+  "norm": "اومليتبالسبانخ",
+  "en": "spinach omelette"
+ },
+ "عجة بالخضار": {
+  "src": "saudi",
+  "norm": "عجةبالخضار",
+  "en": "vegetable eggah"
+ },
+ "عجة بالجبن": {
+  "src": "saudi",
+  "norm": "عجةبالجبن",
+  "en": "cheese eggah"
+ },
+ "شكشوكة بالفلفل الحار": {
+  "src": "saudi",
+  "norm": "شكشوكةبالفلفلالحار",
+  "en": "shakshuka with chili"
+ },
+ "شكشوكة بالباذنجان": {
+  "src": "saudi",
+  "norm": "شكشوكةبالباذنجان",
+  "en": "shakshuka with eggplant"
+ },
+ "لبنة بالزعتر": {
+  "src": "saudi",
+  "norm": "لبنةبالزعتر",
+  "en": "labneh with zaatar"
+ },
+ "لبنة بالخيار": {
+  "src": "saudi",
+  "norm": "لبنةبالخيار",
+  "en": "labneh with cucumber"
+ },
+ "جبنة بيضاء بالزعتر": {
+  "src": "saudi",
+  "norm": "جبنةبيضاءبالزعتر",
+  "en": "white cheese with zaatar"
+ },
+ "جبنة بيضاء بالطماطم": {
+  "src": "saudi",
+  "norm": "جبنةبيضاءبالطماطم",
+  "en": "white cheese with tomato"
+ },
+ "جبنة حلوم مشوية": {
+  "src": "uae-local",
+  "norm": "جبنةحلوممشوي",
+  "en": "grilled halloumi"
+ },
+ "زبادي بالعسل والجوز": {
+  "src": "saudi",
+  "norm": "زباديبالعسلوالجوز",
+  "en": "yogurt with honey and walnuts"
+ },
+ "تمر بالزبدة": {
+  "src": "saudi",
+  "norm": "تمربالزبد",
+  "en": "dates with butter"
+ },
+ "سميد بالحليب": {
+  "src": "saudi",
+  "norm": "سميدبالحليب",
+  "en": "semolina porridge with milk"
+ },
+ "عصيدة بالزبدة": {
+  "src": "saudi",
+  "norm": "عصيدةبالزبد",
+  "en": "aseedah with butter"
+ },
+ "تميس": {
+  "src": "saudi",
+  "norm": "تميس",
+  "en": "tameez bread"
+ },
+ "مطبق بالبيض والبصل": {
+  "src": "saudi",
+  "norm": "مطبقبالبيضوالبصل",
+  "en": "mutabbaq"
+ },
+ "مطبق فرن لايت": {
+  "src": "saudi",
+  "norm": "مطبقفرنلايت",
+  "en": "mutabbaq oven light"
+ },
+ "عيش بر": {
+  "src": "saudi",
+  "norm": "عيشبر",
+  "en": "whole wheat bread"
+ },
+ "خبز ملة": {
+  "src": "saudi",
+  "norm": "خبزمل",
+  "en": "malla bread"
+ },
+ "مطبق حلو": {
+  "src": "saudi",
+  "norm": "مطبقحلو",
+  "en": "sweet mutabbaq"
+ },
+ "مطبق جبن": {
+  "src": "saudi",
+  "norm": "مطبقجبن",
+  "en": "cheese mutabbaq"
+ },
+ "مطبق لحم": {
+  "src": "saudi",
+  "norm": "مطبقلحم",
+  "en": "meat mutabbaq"
+ },
+ "مطبق خضار": {
+  "src": "saudi",
+  "norm": "مطبقخضار",
+  "en": "vegetable mutabbaq"
+ },
+ "فطيرة لحم": {
+  "src": "saudi",
+  "norm": "فطيرةلحم",
+  "en": "meat pie"
+ },
+ "سمبوسك بالجبن": {
+  "src": "saudi",
+  "norm": "سمبوسكبالجبن",
+  "en": "cheese sambosa"
+ },
+ "سمبوسك باللحم": {
+  "src": "saudi",
+  "norm": "سمبوسكباللحم",
+  "en": "meat sambosa"
+ },
+ "خبز رقاق": {
+  "src": "saudi",
+  "norm": "خبزرقاق",
+  "en": "regag bread"
+ },
+ "مطبق بالعسل": {
+  "src": "saudi",
+  "norm": "مطبقبالعسل",
+  "en": "mutabbaq with honey"
+ },
+ "مطبق بالموز": {
+  "src": "saudi",
+  "norm": "مطبقبالموز",
+  "en": "banana mutabbaq"
+ },
+ "تميس بالجبن": {
+  "src": "saudi",
+  "norm": "تميسبالجبن",
+  "en": "cheese tameez"
+ },
+ "تميس بالسمسم": {
+  "src": "saudi",
+  "norm": "تميسبالسمسم",
+  "en": "sesame tameez"
+ },
+ "تميس بالطحين الأسمر": {
+  "src": "saudi",
+  "norm": "تميسبالطحينالاسمر",
+  "en": "whole-wheat tameez"
+ },
+ "خبز بالسمسم": {
+  "src": "saudi",
+  "norm": "خبزبالسمسم",
+  "en": "sesame bread"
+ },
+ "فطائر بالسبانخ": {
+  "src": "saudi",
+  "norm": "فطائربالسبانخ",
+  "en": "spinach fatayer"
+ },
+ "فطائر باللحم": {
+  "src": "saudi",
+  "norm": "فطائرباللحم",
+  "en": "meat fatayer"
+ },
+ "فطائر بالجبن": {
+  "src": "saudi",
+  "norm": "فطائربالجبن",
+  "en": "cheese fatayer"
+ },
+ "فطائر بالزعتر": {
+  "src": "saudi",
+  "norm": "فطائربالزعتر",
+  "en": "za'atar fatayer"
+ },
+ "سمبوسك بالدجاج": {
+  "src": "saudi",
+  "norm": "سمبوسكبالدجاج",
+  "en": "chicken sambosa"
+ },
+ "سمبوسك بالخضار": {
+  "src": "saudi",
+  "norm": "سمبوسكبالخضار",
+  "en": "vegetable sambosa"
+ },
+ "خبز عربي": {
+  "src": "saudi",
+  "norm": "خبزعربي",
+  "en": "arabic bread (pita)"
+ },
+ "خبز التنور": {
+  "src": "saudi",
+  "norm": "خبزالتنور",
+  "en": "tandoor bread"
+ },
+ "خبز الشعير": {
+  "src": "saudi",
+  "norm": "خبزالشعير",
+  "en": "barley bread"
+ },
+ "قرصان": {
+  "src": "saudi",
+  "norm": "قرصان",
+  "en": "gursan (unleavened discs)"
+ },
+ "كعك بالسمسم": {
+  "src": "saudi",
+  "norm": "كعكبالسمسم",
+  "en": "sesame kaak"
+ },
+ "كماج حجازي": {
+  "src": "saudi",
+  "norm": "كماجحجازي",
+  "en": "hijazi komaj"
+ },
+ "خبز خمير جنوبي": {
+  "src": "saudi",
+  "norm": "خبزخميرجنوبي",
+  "en": "southern khamir bread"
+ },
+ "خبز الحليب": {
+  "src": "saudi",
+  "norm": "خبزالحليب",
+  "en": "milk bread"
+ },
+ "فطيرة دجاج": {
+  "src": "saudi",
+  "norm": "فطيرةدجاج",
+  "en": "chicken pie"
+ },
+ "خبز الجبن": {
+  "src": "saudi",
+  "norm": "خبزالجبن",
+  "en": "cheese bread"
+ },
+ "مطبق بالدجاج": {
+  "src": "saudi",
+  "norm": "مطبقبالدجاج",
+  "en": "chicken mutabbaq"
+ },
+ "خبز الصاج": {
+  "src": "saudi",
+  "norm": "خبزالصاج",
+  "en": "saj bread"
+ },
+ "خبز بالتمر": {
+  "src": "saudi",
+  "norm": "خبزبالتمر",
+  "en": "date bread"
+ },
+ "خبز البطاطا": {
+  "src": "saudi",
+  "norm": "خبزالبطاطا",
+  "en": "potato bread"
+ },
+ "كعك بالتمر": {
+  "src": "saudi",
+  "norm": "كعكبالتمر",
+  "en": "date kaak"
+ },
+ "خبز النخالة": {
+  "src": "saudi",
+  "norm": "خبزالنخال",
+  "en": "bran bread"
+ },
+ "شوربة عدس": {
+  "src": "uae-local",
+  "norm": "شوربةعدس",
+  "en": "lentil soup"
+ },
+ "شوربة دجاج": {
+  "src": "uae-local",
+  "norm": "شوربةدجاج",
+  "en": "chicken soup"
+ },
+ "شوربة لسان عصفور": {
+  "src": "saudi",
+  "norm": "شوربةلسانعصفور",
+  "en": "orzo soup"
+ },
+ "مرق دجاج": {
+  "src": "saudi",
+  "norm": "مرقدجاج",
+  "en": "chicken broth (marag)"
+ },
+ "مرق لحم": {
+  "src": "saudi",
+  "norm": "مرقلحم",
+  "en": "lamb broth (marag)"
+ },
+ "مرق بقري": {
+  "src": "saudi",
+  "norm": "مرقبقري",
+  "en": "beef broth (marag)"
+ },
+ "مرق خضار": {
+  "src": "saudi",
+  "norm": "مرقخضار",
+  "en": "vegetable broth (marag)"
+ },
+ "مرق عدس": {
+  "src": "saudi",
+  "norm": "مرقعدس",
+  "en": "lentil broth (marag)"
+ },
+ "شوربة فريكة": {
+  "src": "saudi",
+  "norm": "شوربةفريك",
+  "en": "freekeh soup"
+ },
+ "شوربة شعير": {
+  "src": "saudi",
+  "norm": "شوربةشعير",
+  "en": "barley soup"
+ },
+ "شوربة شوفان": {
+  "src": "saudi",
+  "norm": "شوربةشوفان",
+  "en": "oat soup"
+ },
+ "شوربة حمص": {
+  "src": "saudi",
+  "norm": "شوربةحمص",
+  "en": "chickpea soup"
+ },
+ "شوربة خضار": {
+  "src": "uae-local",
+  "norm": "شوربةخضار",
+  "en": "vegetable soup"
+ },
+ "شوربة عدس بالليمون": {
+  "src": "saudi",
+  "norm": "شوربةعدسبالليمون",
+  "en": "lentil soup with lemon"
+ },
+ "شوربة ماش": {
+  "src": "saudi",
+  "norm": "شوربةماش",
+  "en": "mung bean soup"
+ },
+ "شوربة كوسا": {
+  "src": "saudi",
+  "norm": "شوربةكوسا",
+  "en": "zucchini soup"
+ },
+ "شوربة روبيان": {
+  "src": "saudi",
+  "norm": "شوربةروبيان",
+  "en": "shrimp soup"
+ },
+ "شوربة فريكة بالدجاج": {
+  "src": "saudi",
+  "norm": "شوربةفريكةبالدجاج",
+  "en": "freekeh chicken soup"
+ },
+ "شوربة عدس بالسبانخ": {
+  "src": "saudi",
+  "norm": "شوربةعدسبالسبانخ",
+  "en": "lentil-spinach soup"
+ },
+ "شوربة دجاج بالذرة": {
+  "src": "saudi",
+  "norm": "شوربةدجاجبالذر",
+  "en": "chicken corn soup"
+ },
+ "شوربة طماطم": {
+  "src": "saudi",
+  "norm": "شوربةطماطم",
+  "en": "tomato soup"
+ },
+ "سلطة خضراء": {
+  "src": "uae-local",
+  "norm": "سلطةخضراء",
+  "en": "green salad"
+ },
+ "حمص": {
+  "src": "uae-local",
+  "norm": "حمص",
+  "en": "hummus"
+ },
+ "متبل": {
+  "src": "saudi",
+  "norm": "متبل",
+  "en": "mtabal"
+ },
+ "طحينة": {
+  "src": "uae-local",
+  "norm": "طحين",
+  "en": "tahini"
+ },
+ "رز أبيض": {
+  "src": "uae-local",
+  "norm": "رزابيض",
+  "en": "plain white rice"
+ },
+ "تبولة": {
+  "src": "uae-local",
+  "norm": "تبول",
+  "en": "tabbouleh"
+ },
+ "مخلل مشكل": {
+  "src": "saudi",
+  "norm": "مخللمشكل",
+  "en": "mixed pickles"
+ },
+ "فتوش": {
+  "src": "uae-local",
+  "norm": "فتوش",
+  "en": "fattoush"
+ },
+ "سلطة طحينة": {
+  "src": "saudi",
+  "norm": "سلطةطحين",
+  "en": "tahini salad"
+ },
+ "سلطة عربية": {
+  "src": "saudi",
+  "norm": "سلطةعربي",
+  "en": "arab salad"
+ },
+ "سلطة جرجير": {
+  "src": "saudi",
+  "norm": "سلطةجرجير",
+  "en": "arugula salad"
+ },
+ "بابا غنوج": {
+  "src": "saudi",
+  "norm": "باباغنوج",
+  "en": "baba ghanoush"
+ },
+ "زيتون مشكل": {
+  "src": "saudi",
+  "norm": "زيتونمشكل",
+  "en": "mixed olives"
+ },
+ "مخلل خيار": {
+  "src": "saudi",
+  "norm": "مخللخيار",
+  "en": "pickled cucumbers"
+ },
+ "مخلل جزر": {
+  "src": "saudi",
+  "norm": "مخللجزر",
+  "en": "pickled carrots"
+ },
+ "رز مفلفل": {
+  "src": "saudi",
+  "norm": "رزمفلفل",
+  "en": "spiced pilaf rice"
+ },
+ "رز بالشعيرية": {
+  "src": "saudi",
+  "norm": "رزبالشعيري",
+  "en": "rice with vermicelli"
+ },
+ "كسكسي بالخضار": {
+  "src": "saudi",
+  "norm": "كسكسيبالخضار",
+  "en": "vegetable couscous"
+ },
+ "سلطة تونة": {
+  "src": "saudi",
+  "norm": "سلطةتون",
+  "en": "tuna salad"
+ },
+ "مخلل فلفل": {
+  "src": "saudi",
+  "norm": "مخللفلفل",
+  "en": "pickled peppers"
+ },
+ "سلطة جرجير بالجبن": {
+  "src": "saudi",
+  "norm": "سلطةجرجيربالجبن",
+  "en": "arugula salad with cheese"
+ },
+ "تبولة بالرمان": {
+  "src": "saudi",
+  "norm": "تبولةبالرمان",
+  "en": "tabbouleh with pomegranate"
+ },
+ "مخلل لفت": {
+  "src": "saudi",
+  "norm": "مخلللفت",
+  "en": "pickled turnip"
+ },
+ "سلطة الذرة": {
+  "src": "saudi",
+  "norm": "سلطةالذر",
+  "en": "corn salad"
+ },
+ "سلطة البطاطس": {
+  "src": "saudi",
+  "norm": "سلطةالبطاطس",
+  "en": "potato salad"
+ },
+ "سلطة معكرونة": {
+  "src": "saudi",
+  "norm": "سلطةمعكرون",
+  "en": "pasta salad"
+ },
+ "كبسة دجاج": {
+  "src": "saudi",
+  "norm": "كبسةدجاج",
+  "en": "chicken kabsa"
+ },
+ "كبسة لحم": {
+  "src": "saudi",
+  "norm": "كبسةلحم",
+  "en": "meat kabsa"
+ },
+ "كبسة سمك": {
+  "src": "saudi",
+  "norm": "كبسةسمك",
+  "en": "fish kabsa"
+ },
+ "كبسة روبيان": {
+  "src": "saudi",
+  "norm": "كبسةروبيان",
+  "en": "shrimp kabsa"
+ },
+ "مندي دجاج": {
+  "src": "saudi",
+  "norm": "منديدجاج",
+  "en": "chicken mandi"
+ },
+ "مندي لحم": {
+  "src": "saudi",
+  "norm": "منديلحم",
+  "en": "meat mandi"
+ },
+ "مضغوط دجاج": {
+  "src": "saudi",
+  "norm": "مضغوطدجاج",
+  "en": "madghout chicken"
+ },
+ "مضغوط لحم": {
+  "src": "saudi",
+  "norm": "مضغوطلحم",
+  "en": "madghout meat"
+ },
+ "سليق دجاج": {
+  "src": "saudi",
+  "norm": "سليقدجاج",
+  "en": "saleeg chicken"
+ },
+ "سليق لحم": {
+  "src": "saudi",
+  "norm": "سليقلحم",
+  "en": "saleeg meat"
+ },
+ "مثلوثة": {
+  "src": "saudi",
+  "norm": "مثلوث",
+  "en": "mathlotha"
+ },
+ "مجبوس روبيان": {
+  "src": "uae-local",
+  "norm": "مجبوسروبيان",
+  "en": "shrimp majboos"
+ },
+ "كبسة حاشي": {
+  "src": "saudi",
+  "norm": "كبسةحاشي",
+  "en": "camel kabsa"
+ },
+ "مندي سمك": {
+  "src": "saudi",
+  "norm": "منديسمك",
+  "en": "fish mandi"
+ },
+ "كبسة لحم غنم": {
+  "src": "saudi",
+  "norm": "كبسةلحمغنم",
+  "en": "lamb kabsa"
+ },
+ "كبسة خضار": {
+  "src": "saudi",
+  "norm": "كبسةخضار",
+  "en": "vegetable kabsa"
+ },
+ "مندي روبيان": {
+  "src": "saudi",
+  "norm": "منديروبيان",
+  "en": "shrimp mandi"
+ },
+ "مندي لحم غنم": {
+  "src": "saudi",
+  "norm": "منديلحمغنم",
+  "en": "lamb mandi"
+ },
+ "مقلوبة دجاج": {
+  "src": "uae-local",
+  "norm": "مقلوبةدجاج",
+  "en": "chicken maqluba"
+ },
+ "مقلوبة باذنجان": {
+  "src": "saudi",
+  "norm": "مقلوبةباذنجان",
+  "en": "maqluba with eggplant"
+ },
+ "مقلوبة قرنبيط": {
+  "src": "saudi",
+  "norm": "مقلوبةقرنبيط",
+  "en": "maqluba with cauliflower"
+ },
+ "مندي حاشي": {
+  "src": "saudi",
+  "norm": "منديحاشي",
+  "en": "camel mandi"
+ },
+ "كبسة بالمكسرات": {
+  "src": "saudi",
+  "norm": "كبسةبالمكسرات",
+  "en": "kabsa with nuts"
+ },
+ "كبسة بالزبيب": {
+  "src": "saudi",
+  "norm": "كبسةبالزبيب",
+  "en": "kabsa with raisins"
+ },
+ "كبسة بريانية": {
+  "src": "saudi",
+  "norm": "كبسةبرياني",
+  "en": "biryani-style kabsa"
+ },
+ "كبسة مشكّلة": {
+  "src": "saudi",
+  "norm": "كبسةمشكّل",
+  "en": "mixed-meat kabsa"
+ },
+ "كبسة باللحم البقري": {
+  "src": "saudi",
+  "norm": "كبسةباللحمالبقري",
+  "en": "beef kabsa"
+ },
+ "كبسة بالحمص": {
+  "src": "saudi",
+  "norm": "كبسةبالحمص",
+  "en": "kabsa with chickpeas"
+ },
+ "كبسة باللحم المفروم": {
+  "src": "saudi",
+  "norm": "كبسةباللحمالمفروم",
+  "en": "kabsa with minced meat"
+ },
+ "مندي مشكّل": {
+  "src": "saudi",
+  "norm": "منديمشكّل",
+  "en": "mixed mandi"
+ },
+ "مندي بالخضار": {
+  "src": "saudi",
+  "norm": "منديبالخضار",
+  "en": "vegetable mandi"
+ },
+ "مقلوبة روبيان": {
+  "src": "saudi",
+  "norm": "مقلوبةروبيان",
+  "en": "shrimp maqluba"
+ },
+ "مقلوبة لحم": {
+  "src": "saudi",
+  "norm": "مقلوبةلحم",
+  "en": "meat maqluba"
+ },
+ "مقلوبة خضار": {
+  "src": "saudi",
+  "norm": "مقلوبةخضار",
+  "en": "vegetable maqluba"
+ },
+ "مقلوبة سمك": {
+  "src": "saudi",
+  "norm": "مقلوبةسمك",
+  "en": "fish maqluba"
+ },
+ "مثلوثة بقري": {
+  "src": "saudi",
+  "norm": "مثلوثةبقري",
+  "en": "beef mathloutha"
+ },
+ "مثلوثة حاشي": {
+  "src": "saudi",
+  "norm": "مثلوثةحاشي",
+  "en": "camel mathloutha"
+ },
+ "مظبي دجاج": {
+  "src": "saudi",
+  "norm": "مظبيدجاج",
+  "en": "chicken mazbi"
+ },
+ "مظبي بقري": {
+  "src": "saudi",
+  "norm": "مظبيبقري",
+  "en": "beef mazbi"
+ },
+ "مظبي حاشي": {
+  "src": "saudi",
+  "norm": "مظبيحاشي",
+  "en": "camel mazbi"
+ },
+ "مفطح غنم": {
+  "src": "saudi",
+  "norm": "مفطحغنم",
+  "en": "whole lamb mufattah"
+ },
+ "مفطح حاشي": {
+  "src": "saudi",
+  "norm": "مفطححاشي",
+  "en": "whole camel mufattah"
+ },
+ "مفطح معيز": {
+  "src": "saudi",
+  "norm": "مفطحمعيز",
+  "en": "goat mufattah"
+ },
+ "مضغوط روبيان": {
+  "src": "saudi",
+  "norm": "مضغوطروبيان",
+  "en": "shrimp madghouth"
+ },
+ "مضغوط سمك": {
+  "src": "saudi",
+  "norm": "مضغوطسمك",
+  "en": "fish madghouth"
+ },
+ "سليق بالزعفران": {
+  "src": "saudi",
+  "norm": "سليقبالزعفران",
+  "en": "saffron saleeg"
+ },
+ "كبسة بالجمل": {
+  "src": "saudi",
+  "norm": "كبسةبالجمل",
+  "en": "camel kabsa"
+ },
+ "كبسة ملكية": {
+  "src": "saudi",
+  "norm": "كبسةملكي",
+  "en": "royal kabsa"
+ },
+ "مندي بالجمل": {
+  "src": "saudi",
+  "norm": "منديبالجمل",
+  "en": "camel mandi"
+ },
+ "مضغوط حاشي": {
+  "src": "saudi",
+  "norm": "مضغوطحاشي",
+  "en": "camel madghuth"
+ },
+ "سيادية بالحوت": {
+  "src": "saudi",
+  "norm": "سياديةبالحوت",
+  "en": "fish sayyadiyah"
+ },
+ "سيادية بالربيان": {
+  "src": "saudi",
+  "norm": "سياديةبالربيان",
+  "en": "shrimp sayyadiyah"
+ },
+ "رز بخاري بالدجاج": {
+  "src": "saudi",
+  "norm": "رزبخاريبالدجاج",
+  "en": "bukhari rice with chicken"
+ },
+ "رز بخاري باللحم": {
+  "src": "saudi",
+  "norm": "رزبخاريباللحم",
+  "en": "bukhari rice with meat"
+ },
+ "مشخول دجاج": {
+  "src": "saudi",
+  "norm": "مشخولدجاج",
+  "en": "chicken mashkhul"
+ },
+ "مشخول لحم": {
+  "src": "saudi",
+  "norm": "مشخوللحم",
+  "en": "meat mashkhul"
+ },
+ "سليق بالروبيان": {
+  "src": "saudi",
+  "norm": "سليقبالروبيان",
+  "en": "shrimp saleeg"
+ },
+ "مچبوس دجاج": {
+  "src": "saudi",
+  "norm": "مچبوسدجاج",
+  "en": "chicken machboos"
+ },
+ "مچبوس لحم": {
+  "src": "saudi",
+  "norm": "مچبوسلحم",
+  "en": "meat machboos"
+ },
+ "مچبوس روبيان": {
+  "src": "saudi",
+  "norm": "مچبوسروبيان",
+  "en": "shrimp machboos"
+ },
+ "مچبوس حوت": {
+  "src": "saudi",
+  "norm": "مچبوسحوت",
+  "en": "fish machboos"
+ },
+ "رز أحمر أحسائي": {
+  "src": "saudi",
+  "norm": "رزاحمراحسائي",
+  "en": "al-ahsa red rice"
+ },
+ "رز أحمر أحسائي بالربيان": {
+  "src": "saudi",
+  "norm": "رزاحمراحسائيبالربيان",
+  "en": "al-ahsa red rice with shrimp"
+ },
+ "مضغوط بالبصل": {
+  "src": "saudi",
+  "norm": "مضغوطبالبصل",
+  "en": "madghuth with onion"
+ },
+ "مچبوس بالزعفران والهيل": {
+  "src": "saudi",
+  "norm": "مچبوسبالزعفرانوالهيل",
+  "en": "machboos with saffron and cardamom"
+ },
+ "مچبوس بالجمل": {
+  "src": "saudi",
+  "norm": "مچبوسبالجمل",
+  "en": "camel machboos"
+ },
+ "مطازيز": {
+  "src": "saudi",
+  "norm": "مطازيز",
+  "en": "matazeez"
+ },
+ "مرقوق لحم": {
+  "src": "saudi",
+  "norm": "مرقوقلحم",
+  "en": "margoog with meat"
+ },
+ "هريس لحم": {
+  "src": "uae-local",
+  "norm": "هريسلحم",
+  "en": "harees with meat"
+ },
+ "هريس دجاج": {
+  "src": "uae-local",
+  "norm": "هريسدجاج",
+  "en": "harees with chicken"
+ },
+ "جريش لحم": {
+  "src": "saudi",
+  "norm": "جريشلحم",
+  "en": "jareesh with meat"
+ },
+ "جريش دجاج": {
+  "src": "saudi",
+  "norm": "جريشدجاج",
+  "en": "jareesh with chicken"
+ },
+ "قلاية لحم": {
+  "src": "saudi",
+  "norm": "قلايةلحم",
+  "en": "galayet meat"
+ },
+ "مثروبة": {
+  "src": "saudi",
+  "norm": "مثروب",
+  "en": "mathrouba"
+ },
+ "مرقوق دجاج": {
+  "src": "saudi",
+  "norm": "مرقوقدجاج",
+  "en": "margoog with chicken"
+ },
+ "جريش روبيان": {
+  "src": "saudi",
+  "norm": "جريشروبيان",
+  "en": "shrimp jareesh"
+ },
+ "جريش باللبن": {
+  "src": "saudi",
+  "norm": "جريشباللبن",
+  "en": "jareesh with yogurt"
+ },
+ "صالونة دجاج": {
+  "src": "uae-local",
+  "norm": "صالونةدجاج",
+  "en": "saloona with chicken"
+ },
+ "صالونة لحم بقري": {
+  "src": "saudi",
+  "norm": "صالونةلحمبقري",
+  "en": "beef saloona"
+ },
+ "صالونة سمك": {
+  "src": "uae-local",
+  "norm": "صالونةسمك",
+  "en": "saloona with fish"
+ },
+ "صالونة روبيان": {
+  "src": "uae-local",
+  "norm": "صالونةروبيان",
+  "en": "shrimp saloona"
+ },
+ "مطازيز دجاج": {
+  "src": "saudi",
+  "norm": "مطازيزدجاج",
+  "en": "chicken matazeez"
+ },
+ "مثروبة دجاج": {
+  "src": "saudi",
+  "norm": "مثروبةدجاج",
+  "en": "chicken mathrouba"
+ },
+ "مرقوق خضار": {
+  "src": "saudi",
+  "norm": "مرقوقخضار",
+  "en": "margoog with vegetables"
+ },
+ "هريس بالتمر": {
+  "src": "uae-local",
+  "norm": "هريسبالتمر",
+  "en": "harees with dates"
+ },
+ "كباب الحلة": {
+  "src": "saudi",
+  "norm": "كبابالحل",
+  "en": "kebab halla"
+ },
+ "قلاية بندورة": {
+  "src": "saudi",
+  "norm": "قلايةبندور",
+  "en": "galayet bandora"
+ },
+ "جريش حار": {
+  "src": "saudi",
+  "norm": "جريشحار",
+  "en": "spicy jareesh"
+ },
+ "هريس بالسمن": {
+  "src": "saudi",
+  "norm": "هريسبالسمن",
+  "en": "harees with ghee"
+ },
+ "مرقوق بالقرع": {
+  "src": "saudi",
+  "norm": "مرقوقبالقرع",
+  "en": "margoog with pumpkin"
+ },
+ "مرقوق بالكوسا": {
+  "src": "saudi",
+  "norm": "مرقوقبالكوسا",
+  "en": "margoog with zucchini"
+ },
+ "مطازيز خضار": {
+  "src": "saudi",
+  "norm": "مطازيزخضار",
+  "en": "vegetable matazeez"
+ },
+ "محشي قرع": {
+  "src": "saudi",
+  "norm": "محشيقرع",
+  "en": "stuffed pumpkin (mahshi qara)"
+ },
+ "محشي كوسا": {
+  "src": "saudi",
+  "norm": "محشيكوسا",
+  "en": "stuffed zucchini"
+ },
+ "محشي باذنجان": {
+  "src": "saudi",
+  "norm": "محشيباذنجان",
+  "en": "stuffed eggplant"
+ },
+ "ثريد لحم": {
+  "src": "uae-local",
+  "norm": "ثريدلحم",
+  "en": "thareed with meat"
+ },
+ "صالونة خضار مشكلة": {
+  "src": "saudi",
+  "norm": "صالونةخضارمشكل",
+  "en": "mixed vegetable saloona"
+ },
+ "مدفون لحم": {
+  "src": "saudi",
+  "norm": "مدفونلحم",
+  "en": "meat madfun"
+ },
+ "مدفون دجاج": {
+  "src": "saudi",
+  "norm": "مدفوندجاج",
+  "en": "chicken madfun"
+ },
+ "مقنعة كلاسيكية": {
+  "src": "saudi",
+  "norm": "مقنعةكلاسيكي",
+  "en": "classic muqana'a"
+ },
+ "مقنعة باللحم": {
+  "src": "saudi",
+  "norm": "مقنعةباللحم",
+  "en": "muqana'a with meat"
+ },
+ "ثريد دجاج": {
+  "src": "uae-local",
+  "norm": "ثريددجاج",
+  "en": "thareed with chicken"
+ },
+ "ثريد بقر": {
+  "src": "saudi",
+  "norm": "ثريدبقر",
+  "en": "beef thareed"
+ },
+ "جريش خليجي": {
+  "src": "saudi",
+  "norm": "جريشخليجي",
+  "en": "gulf jareesh"
+ },
+ "مطازيز باللحم": {
+  "src": "saudi",
+  "norm": "مطازيزباللحم",
+  "en": "matazeez with meat"
+ },
+ "قرصان باللحم": {
+  "src": "saudi",
+  "norm": "قرصانباللحم",
+  "en": "gursan with meat"
+ },
+ "قرصان بالخضار": {
+  "src": "saudi",
+  "norm": "قرصانبالخضار",
+  "en": "gursan with vegetables"
+ },
+ "مرقوق باللبن": {
+  "src": "saudi",
+  "norm": "مرقوقباللبن",
+  "en": "margoog with yogurt"
+ },
+ "منتو لحم": {
+  "src": "saudi",
+  "norm": "منتولحم",
+  "en": "meat mantu"
+ },
+ "منتو دجاج": {
+  "src": "saudi",
+  "norm": "منتودجاج",
+  "en": "chicken mantu"
+ },
+ "منتو خضار": {
+  "src": "saudi",
+  "norm": "منتوخضار",
+  "en": "vegetable mantu"
+ },
+ "صالونة بامية": {
+  "src": "saudi",
+  "norm": "صالونةبامي",
+  "en": "okra saloona"
+ },
+ "مطازيز بالجمل": {
+  "src": "saudi",
+  "norm": "مطازيزبالجمل",
+  "en": "camel matazeez"
+ },
+ "مطازيز كلاسيكية": {
+  "src": "saudi",
+  "norm": "مطازيزكلاسيكي",
+  "en": "classic matazeez"
+ },
+ "قرصان بالمرق": {
+  "src": "saudi",
+  "norm": "قرصانبالمرق",
+  "en": "gursan with broth"
+ },
+ "قرصان بالحاشي": {
+  "src": "saudi",
+  "norm": "قرصانبالحاشي",
+  "en": "camel gursan"
+ },
+ "مرقوق نجدي كلاسيكي": {
+  "src": "saudi",
+  "norm": "مرقوقنجديكلاسيكي",
+  "en": "classic najdi margoog"
+ },
+ "مرقوق نجدي باللحم": {
+  "src": "saudi",
+  "norm": "مرقوقنجديباللحم",
+  "en": "najdi margoog with meat"
+ },
+ "جريش نجدي كلاسيكي": {
+  "src": "saudi",
+  "norm": "جريشنجديكلاسيكي",
+  "en": "classic najdi jareesh"
+ },
+ "جريش نجدي بالبصل": {
+  "src": "saudi",
+  "norm": "جريشنجديبالبصل",
+  "en": "najdi jareesh with onion"
+ },
+ "جريش نجدي باللبن": {
+  "src": "saudi",
+  "norm": "جريشنجديباللبن",
+  "en": "najdi jareesh with yogurt"
+ },
+ "هريس خليجي كلاسيكي": {
+  "src": "saudi",
+  "norm": "هريسخليجيكلاسيكي",
+  "en": "classic gulf harees"
+ },
+ "ثريد بالخضار": {
+  "src": "saudi",
+  "norm": "ثريدبالخضار",
+  "en": "thareed with vegetables"
+ },
+ "جريش خليجي بالروبيان": {
+  "src": "saudi",
+  "norm": "جريشخليجيبالروبيان",
+  "en": "gulf jareesh with shrimp"
+ },
+ "جريش خليجي بالدجاج": {
+  "src": "saudi",
+  "norm": "جريشخليجيبالدجاج",
+  "en": "gulf jareesh with chicken"
+ },
+ "كبدة بالبصل": {
+  "src": "saudi",
+  "norm": "كبدةبالبصل",
+  "en": "lamb liver sauté"
+ },
+ "كباب حطب": {
+  "src": "saudi",
+  "norm": "كبابحطب",
+  "en": "kebab hatab"
+ },
+ "لحم بقري مسلوق": {
+  "src": "uae-local",
+  "norm": "لحمبقريمسلوق",
+  "en": "boiled beef"
+ },
+ "لحم بقري مشوي": {
+  "src": "uae-local",
+  "norm": "لحمبقريمشوي",
+  "en": "grilled beef"
+ },
+ "لحم خروف مسلوق": {
+  "src": "uae-local",
+  "norm": "لحمخروفمسلوق",
+  "en": "boiled lamb"
+ },
+ "لحم خروف مشوي": {
+  "src": "uae-local",
+  "norm": "لحمخروفمشوي",
+  "en": "grilled lamb"
+ },
+ "حنيذ لحم": {
+  "src": "saudi",
+  "norm": "حنيذلحم",
+  "en": "hanith lamb"
+ },
+ "لحم معيز مسلوق": {
+  "src": "uae-local",
+  "norm": "لحممعيزمسلوق",
+  "en": "boiled goat"
+ },
+ "لحم معيز مشوي": {
+  "src": "saudi",
+  "norm": "لحممعيزمشوي",
+  "en": "grilled goat"
+ },
+ "لحم حاشي مسلوق": {
+  "src": "uae-local",
+  "norm": "لحمحاشيمسلوق",
+  "en": "boiled camel"
+ },
+ "لحم حاشي مشوي": {
+  "src": "uae-local",
+  "norm": "لحمحاشيمشوي",
+  "en": "grilled camel"
+ },
+ "صدر دجاج مسلوق": {
+  "src": "uae-local",
+  "norm": "صدردجاجمسلوق",
+  "en": "boiled chicken breast"
+ },
+ "صدر دجاج مشوي": {
+  "src": "uae-local",
+  "norm": "صدردجاجمشوي",
+  "en": "grilled chicken breast"
+ },
+ "دجاج شواية": {
+  "src": "saudi",
+  "norm": "دجاجشواي",
+  "en": "grilled chicken (shawaya)"
+ },
+ "صدر رومي مشوي": {
+  "src": "uae-local",
+  "norm": "صدرروميمشوي",
+  "en": "grilled turkey breast"
+ },
+ "صدر رومي مسلوق": {
+  "src": "saudi",
+  "norm": "صدرروميمسلوق",
+  "en": "boiled turkey breast"
+ },
+ "بط مشوي": {
+  "src": "uae-local",
+  "norm": "بطمشوي",
+  "en": "grilled duck"
+ },
+ "حمام مشوي": {
+  "src": "uae-local",
+  "norm": "حماممشوي",
+  "en": "grilled pigeon"
+ },
+ "سمان مشوي": {
+  "src": "uae-local",
+  "norm": "سمانمشوي",
+  "en": "grilled quail"
+ },
+ "أرانب مشوية": {
+  "src": "saudi",
+  "norm": "ارانبمشوي",
+  "en": "grilled rabbit"
+ },
+ "حنيذ دجاج": {
+  "src": "saudi",
+  "norm": "حنيذدجاج",
+  "en": "hanith chicken"
+ },
+ "شيش طاووق": {
+  "src": "uae-local",
+  "norm": "شيشطاووق",
+  "en": "shish tawook"
+ },
+ "كباب لحم غنم": {
+  "src": "saudi",
+  "norm": "كبابلحمغنم",
+  "en": "lamb kebab"
+ },
+ "مشاوي مشكلة": {
+  "src": "uae-local",
+  "norm": "مشاويمشكل",
+  "en": "mixed grill"
+ },
+ "دجاج صنية بالفرن": {
+  "src": "saudi",
+  "norm": "دجاجصنيةبالفرن",
+  "en": "baked chicken tray"
+ },
+ "كبدة دجاج": {
+  "src": "saudi",
+  "norm": "كبدةدجاج",
+  "en": "chicken liver"
+ },
+ "شاورما دجاج": {
+  "src": "saudi",
+  "norm": "شاورمادجاج",
+  "en": "chicken shawarma"
+ },
+ "كفتة بالبهارات": {
+  "src": "saudi",
+  "norm": "كفتةبالبهارات",
+  "en": "spiced kofta"
+ },
+ "كفتة بالطحينة": {
+  "src": "saudi",
+  "norm": "كفتةبالطحين",
+  "en": "kofta with tahini"
+ },
+ "كفتة بالصلصة": {
+  "src": "saudi",
+  "norm": "كفتةبالصلص",
+  "en": "kofta in tomato sauce"
+ },
+ "شيش كباب": {
+  "src": "saudi",
+  "norm": "شيشكباب",
+  "en": "shish kebab"
+ },
+ "ريش غنم مشوية": {
+  "src": "saudi",
+  "norm": "ريشغنممشوي",
+  "en": "grilled lamb chops"
+ },
+ "ريش غنم متبلة": {
+  "src": "saudi",
+  "norm": "ريشغنممتبل",
+  "en": "marinated lamb chops"
+ },
+ "ريش غنم بالليمون": {
+  "src": "saudi",
+  "norm": "ريشغنمبالليمون",
+  "en": "lemon lamb chops"
+ },
+ "دجاج تكا": {
+  "src": "saudi",
+  "norm": "دجاجتكا",
+  "en": "chicken tikka"
+ },
+ "كباب دجاج": {
+  "src": "saudi",
+  "norm": "كبابدجاج",
+  "en": "chicken kebab"
+ },
+ "دجاج متبل باللبن": {
+  "src": "saudi",
+  "norm": "دجاجمتبلباللبن",
+  "en": "yogurt-marinated chicken"
+ },
+ "دجاج محشي بالأرز": {
+  "src": "saudi",
+  "norm": "دجاجمحشيبالارز",
+  "en": "chicken stuffed with rice"
+ },
+ "حاشي مشوي بالبهارات": {
+  "src": "saudi",
+  "norm": "حاشيمشويبالبهارات",
+  "en": "spiced grilled camel"
+ },
+ "حاشي مطهو بالخضار": {
+  "src": "saudi",
+  "norm": "حاشيمطهوبالخضار",
+  "en": "camel stew with vegetables"
+ },
+ "حنيذ ماعز": {
+  "src": "saudi",
+  "norm": "حنيذماعز",
+  "en": "goat haneeth"
+ },
+ "كباب مختلط": {
+  "src": "saudi",
+  "norm": "كبابمختلط",
+  "en": "mixed kebab"
+ },
+ "ستيك لحم مشوي": {
+  "src": "saudi",
+  "norm": "ستيكلحممشوي",
+  "en": "grilled beef steak"
+ },
+ "كفتة بالطماطم": {
+  "src": "saudi",
+  "norm": "كفتةبالطماطم",
+  "en": "kofta with tomato"
+ },
+ "قلب غنم مشوي": {
+  "src": "saudi",
+  "norm": "قلبغنممشوي",
+  "en": "grilled lamb heart"
+ },
+ "شيش طاووق بالخضار": {
+  "src": "saudi",
+  "norm": "شيشطاووقبالخضار",
+  "en": "chicken tikka with vegetables"
+ },
+ "كباب حاشي": {
+  "src": "saudi",
+  "norm": "كبابحاشي",
+  "en": "camel kebab"
+ },
+ "كباب لحم بقري": {
+  "src": "saudi",
+  "norm": "كبابلحمبقري",
+  "en": "beef kebab"
+ },
+ "هامور مشوي": {
+  "src": "uae-local",
+  "norm": "هامورمشوي",
+  "en": "grilled hamour"
+ },
+ "هامور بالفرن": {
+  "src": "uae-local",
+  "norm": "هاموربالفرن",
+  "en": "baked hamour"
+ },
+ "هامور مقلي فرن لايت": {
+  "src": "saudi",
+  "norm": "هامورمقليفرنلايت",
+  "en": "light baked hamour"
+ },
+ "كنعد مشوي": {
+  "src": "uae-local",
+  "norm": "كنعدمشوي",
+  "en": "grilled kingfish"
+ },
+ "شعري مشوي": {
+  "src": "uae-local",
+  "norm": "شعريمشوي",
+  "en": "grilled emperor fish"
+ },
+ "صافي مشوي": {
+  "src": "uae-local",
+  "norm": "صافيمشوي",
+  "en": "grilled safi"
+ },
+ "زبيدي مشوي": {
+  "src": "uae-local",
+  "norm": "زبيديمشوي",
+  "en": "grilled zubaidi"
+ },
+ "سيباس مشوي": {
+  "src": "uae-local",
+  "norm": "سيباسمشوي",
+  "en": "grilled sea bass"
+ },
+ "حمرا مشوية": {
+  "src": "uae-local",
+  "norm": "حمرامشوي",
+  "en": "grilled hamra"
+ },
+ "ناجل مشوي": {
+  "src": "uae-local",
+  "norm": "ناجلمشوي",
+  "en": "grilled najil"
+ },
+ "روبيان مشوي": {
+  "src": "uae-local",
+  "norm": "روبيانمشوي",
+  "en": "grilled shrimp"
+ },
+ "قباقب مسلوق": {
+  "src": "uae-local",
+  "norm": "قباقبمسلوق",
+  "en": "boiled crab"
+ },
+ "أم الربيان مشوي": {
+  "src": "uae-local",
+  "norm": "امالربيانمشوي",
+  "en": "grilled lobster"
+ },
+ "محار مسلوق": {
+  "src": "uae-local",
+  "norm": "محارمسلوق",
+  "en": "boiled oysters"
+ },
+ "تونة مشوية": {
+  "src": "uae-local",
+  "norm": "تونةمشوي",
+  "en": "grilled tuna"
+ },
+ "سردين مشوي": {
+  "src": "uae-local",
+  "norm": "سردينمشوي",
+  "en": "grilled sardines"
+ },
+ "تونة ماء": {
+  "src": "uae-local",
+  "norm": "تونةماء",
+  "en": "tuna in water"
+ },
+ "هامور مقلي": {
+  "src": "uae-local",
+  "norm": "هامورمقلي",
+  "en": "fried hamour"
+ },
+ "روبيان مقلي": {
+  "src": "uae-local",
+  "norm": "روبيانمقلي",
+  "en": "fried shrimp"
+ },
+ "سمك بالفرن": {
+  "src": "saudi",
+  "norm": "سمكبالفرن",
+  "en": "baked fish"
+ },
+ "هامور بصلصة الليمون والثوم": {
+  "src": "saudi",
+  "norm": "هاموربصلصةالليمونوالثوم",
+  "en": "hamour in lemon-garlic sauce"
+ },
+ "سمك كنعد مقلي": {
+  "src": "saudi",
+  "norm": "سمككنعدمقلي",
+  "en": "fried kingfish"
+ },
+ "كاليماري مشوي": {
+  "src": "saudi",
+  "norm": "كاليماريمشوي",
+  "en": "grilled squid"
+ },
+ "قرنيط محشي": {
+  "src": "saudi",
+  "norm": "قرنيطمحشي",
+  "en": "stuffed squid"
+ },
+ "مأكولات بحرية مشكلة": {
+  "src": "saudi",
+  "norm": "ماكولاتبحريةمشكل",
+  "en": "mixed seafood"
+ },
+ "سيباس بالليمون والزعفران": {
+  "src": "saudi",
+  "norm": "سيباسبالليمونوالزعفران",
+  "en": "sea bass in lemon-saffron"
+ },
+ "شعري مقلي": {
+  "src": "saudi",
+  "norm": "شعريمقلي",
+  "en": "fried mullet"
+ },
+ "روبيان بالثوم والزبدة": {
+  "src": "saudi",
+  "norm": "روبيانبالثوموالزبد",
+  "en": "garlic-butter shrimp"
+ },
+ "كليجا": {
+  "src": "saudi",
+  "norm": "كليجا",
+  "en": "kleija"
+ },
+ "كليجا بالتمر": {
+  "src": "saudi",
+  "norm": "كليجابالتمر",
+  "en": "kleija with dates"
+ },
+ "كليجا بالمكسرات": {
+  "src": "saudi",
+  "norm": "كليجابالمكسرات",
+  "en": "kleija with nuts"
+ },
+ "لقيمات بالعسل": {
+  "src": "uae-local",
+  "norm": "لقيماتبالعسل",
+  "en": "luqaimat with honey"
+ },
+ "لقيمات بدبس التمر": {
+  "src": "uae-local",
+  "norm": "لقيماتبدبسالتمر",
+  "en": "luqaimat with date syrup"
+ },
+ "لقيمات بالسمسم": {
+  "src": "uae-local",
+  "norm": "لقيماتبالسمسم",
+  "en": "luqaimat with sesame"
+ },
+ "بسبوسة": {
+  "src": "saudi",
+  "norm": "بسبوس",
+  "en": "basbousa"
+ },
+ "بسبوسة بالزبادي": {
+  "src": "saudi",
+  "norm": "بسبوسةبالزبادي",
+  "en": "basbousa with yogurt"
+ },
+ "بسبوسة بجوز الهند": {
+  "src": "saudi",
+  "norm": "بسبوسةبجوزالهند",
+  "en": "coconut basbousa"
+ },
+ "معمول بالتمر": {
+  "src": "saudi",
+  "norm": "معمولبالتمر",
+  "en": "maamoul with dates"
+ },
+ "معمول بالجوز": {
+  "src": "saudi",
+  "norm": "معمولبالجوز",
+  "en": "maamoul with nuts"
+ },
+ "مهلبية": {
+  "src": "uae-local",
+  "norm": "مهلبي",
+  "en": "mahalabiya"
+ },
+ "أرز باللبن": {
+  "src": "uae-local",
+  "norm": "ارزباللبن",
+  "en": "rice pudding"
+ },
+ "حنيني": {
+  "src": "saudi",
+  "norm": "حنيني",
+  "en": "haneeni"
+ },
+ "عصيدة بالعسل": {
+  "src": "saudi",
+  "norm": "عصيدةبالعسل",
+  "en": "asida with honey"
+ },
+ "لقيمات بالفستق": {
+  "src": "saudi",
+  "norm": "لقيماتبالفستق",
+  "en": "luqaimat with pistachio"
+ },
+ "لقيمات بالهيل": {
+  "src": "saudi",
+  "norm": "لقيماتبالهيل",
+  "en": "luqaimat with cardamom"
+ },
+ "لقيمات بالجوز": {
+  "src": "saudi",
+  "norm": "لقيماتبالجوز",
+  "en": "luqaimat with walnuts"
+ },
+ "بسبوسة بالفستق": {
+  "src": "saudi",
+  "norm": "بسبوسةبالفستق",
+  "en": "pistachio basbousa"
+ },
+ "بسبوسة بالقشطة": {
+  "src": "saudi",
+  "norm": "بسبوسةبالقشط",
+  "en": "cream-filled basbousa"
+ },
+ "بسبوسة بالتمر": {
+  "src": "saudi",
+  "norm": "بسبوسةبالتمر",
+  "en": "date basbousa"
+ },
+ "كليجا بالهيل": {
+  "src": "saudi",
+  "norm": "كليجابالهيل",
+  "en": "cardamom kleija"
+ },
+ "كليجا بالفستق": {
+  "src": "saudi",
+  "norm": "كليجابالفستق",
+  "en": "pistachio kleija"
+ },
+ "معمول بالفستق": {
+  "src": "saudi",
+  "norm": "معمولبالفستق",
+  "en": "pistachio maamoul"
+ },
+ "معمول بالسمسم": {
+  "src": "saudi",
+  "norm": "معمولبالسمسم",
+  "en": "sesame maamoul"
+ },
+ "كنافة بالقشطة": {
+  "src": "saudi",
+  "norm": "كنافةبالقشط",
+  "en": "kunafa with cream"
+ },
+ "كنافة بالجبن": {
+  "src": "saudi",
+  "norm": "كنافةبالجبن",
+  "en": "cheese kunafa"
+ },
+ "كنافة بالمكسرات": {
+  "src": "saudi",
+  "norm": "كنافةبالمكسرات",
+  "en": "nut kunafa"
+ },
+ "قطايف بالقشطة": {
+  "src": "saudi",
+  "norm": "قطايفبالقشط",
+  "en": "qatayef with cream"
+ },
+ "قطايف بالجوز": {
+  "src": "saudi",
+  "norm": "قطايفبالجوز",
+  "en": "qatayef with walnuts"
+ },
+ "قطايف بالتمر": {
+  "src": "saudi",
+  "norm": "قطايفبالتمر",
+  "en": "qatayef with dates"
+ },
+ "قطايف بالفستق": {
+  "src": "saudi",
+  "norm": "قطايفبالفستق",
+  "en": "pistachio qatayef"
+ },
+ "قطايف محمرة": {
+  "src": "saudi",
+  "norm": "قطايفمحمر",
+  "en": "fried qatayef"
+ },
+ "كيك التمر": {
+  "src": "saudi",
+  "norm": "كيكالتمر",
+  "en": "date cake"
+ },
+ "بسكوت التمر": {
+  "src": "saudi",
+  "norm": "بسكوتالتمر",
+  "en": "date biscuits"
+ },
+ "مهلبية بالفستق": {
+  "src": "saudi",
+  "norm": "مهلبيةبالفستق",
+  "en": "pistachio mahalabia"
+ },
+ "مهلبية بماء الورد": {
+  "src": "saudi",
+  "norm": "مهلبيةبماءالورد",
+  "en": "rosewater mahalabia"
+ },
+ "مهلبية بالزعفران": {
+  "src": "saudi",
+  "norm": "مهلبيةبالزعفران",
+  "en": "saffron mahalabia"
+ },
+ "أرز باللبن بالزعفران": {
+  "src": "saudi",
+  "norm": "ارزباللبنبالزعفران",
+  "en": "saffron rice pudding"
+ },
+ "تمر محشي باللوز": {
+  "src": "saudi",
+  "norm": "تمرمحشيباللوز",
+  "en": "dates stuffed with almonds"
+ },
+ "تمر محشي بالجوز": {
+  "src": "saudi",
+  "norm": "تمرمحشيبالجوز",
+  "en": "dates stuffed with walnuts"
+ },
+ "تمر محشي بالفستق": {
+  "src": "saudi",
+  "norm": "تمرمحشيبالفستق",
+  "en": "dates stuffed with pistachio"
+ },
+ "قرص عقيلي": {
+  "src": "uae-local",
+  "norm": "قرصعقيلي",
+  "en": "aqili bread"
+ },
+ "خبيصة": {
+  "src": "uae-local",
+  "norm": "خبيص",
+  "en": "khabisah"
+ },
+ "مهلبية بالهيل": {
+  "src": "saudi",
+  "norm": "مهلبيةبالهيل",
+  "en": "cardamom mahalabia"
+ },
+ "لقيمات بالقرفة": {
+  "src": "saudi",
+  "norm": "لقيماتبالقرف",
+  "en": "cinnamon luqaimat"
+ },
+ "بسبوسة بالجوز": {
+  "src": "saudi",
+  "norm": "بسبوسةبالجوز",
+  "en": "walnut basbousa"
+ },
+ "معمول باللوز": {
+  "src": "saudi",
+  "norm": "معمولباللوز",
+  "en": "almond maamoul"
+ },
+ "كليجا باللوز": {
+  "src": "saudi",
+  "norm": "كليجاباللوز",
+  "en": "almond kleija"
+ },
+ "كليجا بالجوز": {
+  "src": "saudi",
+  "norm": "كليجابالجوز",
+  "en": "walnut kleija"
+ },
+ "أرز بالحليب بالهيل": {
+  "src": "saudi",
+  "norm": "ارزبالحليببالهيل",
+  "en": "cardamom rice pudding"
+ },
+ "لقيمات بالقشطة": {
+  "src": "saudi",
+  "norm": "لقيماتبالقشط",
+  "en": "luqaimat with cream"
+ },
+ "لقيمات بالزعفران": {
+  "src": "saudi",
+  "norm": "لقيماتبالزعفران",
+  "en": "saffron luqaimat"
+ },
+ "خبيصة بالتمر": {
+  "src": "saudi",
+  "norm": "خبيصةبالتمر",
+  "en": "khubaiza with dates"
+ },
+ "قرص عقيلي بالفستق": {
+  "src": "saudi",
+  "norm": "قرصعقيليبالفستق",
+  "en": "qurs aqili with pistachio"
+ },
+ "جبنة بيضاء": {
+  "src": "uae-local",
+  "norm": "جبنةبيضاء",
+  "en": "white cheese"
+ },
+ "لبنة": {
+  "src": "saudi",
+  "norm": "لبن",
+  "en": "labneh"
+ },
+ "زبادي": {
+  "src": "uae-local",
+  "norm": "زبادي",
+  "en": "yogurt"
+ },
+ "لبن رايب": {
+  "src": "saudi",
+  "norm": "لبنرايب",
+  "en": "laban"
+ },
+ "بيض مسلوق": {
+  "src": "uae-local",
+  "norm": "بيضمسلوق",
+  "en": "boiled eggs"
+ },
+ "تفاح": {
+  "src": "uae-local",
+  "norm": "تفاح",
+  "en": "apple"
+ },
+ "تمر": {
+  "src": "uae-local",
+  "norm": "تمر",
+  "en": "dates"
+ },
+ "تمر خلاص": {
+  "src": "saudi",
+  "norm": "تمرخلاص",
+  "en": "khallas dates"
+ },
+ "موز": {
+  "src": "uae-local",
+  "norm": "موز",
+  "en": "banana"
+ },
+ "أومليت بالجبن": {
+  "src": "saudi",
+  "norm": "اومليتبالجبن",
+  "en": "cheese omelette"
+ },
+ "سلطة خيار باللبن": {
+  "src": "uae-local",
+  "norm": "سلطةخيارباللبن",
+  "en": "cucumber yogurt salad"
+ },
+ "بطيخ": {
+  "src": "uae-local",
+  "norm": "بطيخ",
+  "en": "watermelon"
+ },
+ "برتقال": {
+  "src": "saudi",
+  "norm": "برتقال",
+  "en": "orange"
+ },
+ "مانجو": {
+  "src": "saudi",
+  "norm": "مانجو",
+  "en": "mango"
+ },
+ "كرك": {
+  "src": "uae-local",
+  "norm": "كرك",
+  "en": "karak tea"
+ },
+ "كرك بالهيل": {
+  "src": "saudi",
+  "norm": "كركبالهيل",
+  "en": "karak with cardamom"
+ },
+ "كرك بالزعفران": {
+  "src": "saudi",
+  "norm": "كركبالزعفران",
+  "en": "karak with saffron"
+ },
+ "كرك بالزنجبيل": {
+  "src": "saudi",
+  "norm": "كركبالزنجبيل",
+  "en": "karak with ginger"
+ },
+ "قهوة عربية": {
+  "src": "saudi",
+  "norm": "قهوةعربي",
+  "en": "arabic coffee"
+ },
+ "قهوة بالهيل": {
+  "src": "saudi",
+  "norm": "قهوةبالهيل",
+  "en": "cardamom coffee"
+ },
+ "قهوة بالزعفران": {
+  "src": "saudi",
+  "norm": "قهوةبالزعفران",
+  "en": "saffron coffee"
+ },
+ "قهوة بماء الورد": {
+  "src": "saudi",
+  "norm": "قهوةبماءالورد",
+  "en": "rosewater coffee"
+ },
+ "عصير مانجو": {
+  "src": "uae-local",
+  "norm": "عصيرمانجو",
+  "en": "mango juice"
+ },
+ "عصير جوافة": {
+  "src": "saudi",
+  "norm": "عصيرجواف",
+  "en": "guava juice"
+ },
+ "عصير تمر هندي": {
+  "src": "saudi",
+  "norm": "عصيرتمرهندي",
+  "en": "tamarind juice"
+ },
+ "عصير كركديه": {
+  "src": "saudi",
+  "norm": "عصيركركديه",
+  "en": "hibiscus juice"
+ },
+ "عصير مشكل": {
+  "src": "saudi",
+  "norm": "عصيرمشكل",
+  "en": "mixed fruit juice"
+ },
+ "حليب بالتمر": {
+  "src": "saudi",
+  "norm": "حليببالتمر",
+  "en": "date milkshake"
+ },
+ "حليب الإبل": {
+  "src": "saudi",
+  "norm": "حليبالابل",
+  "en": "camel milk"
+ },
+ "زبادي بالتمر": {
+  "src": "saudi",
+  "norm": "زباديبالتمر",
+  "en": "yogurt with dates"
+ },
+ "شاي أحمر": {
+  "src": "saudi",
+  "norm": "شاياحمر",
+  "en": "black tea"
+ },
+ "شاي بالنعناع": {
+  "src": "saudi",
+  "norm": "شايبالنعناع",
+  "en": "mint tea"
+ },
+ "عصير ليمون بالنعناع": {
+  "src": "saudi",
+  "norm": "عصيرليمونبالنعناع",
+  "en": "lemon-mint juice"
+ },
+ "عصير فراولة": {
+  "src": "saudi",
+  "norm": "عصيرفراول",
+  "en": "strawberry juice"
+ },
+ "عصير رمان": {
+  "src": "saudi",
+  "norm": "عصيررمان",
+  "en": "pomegranate juice"
+ },
+ "سوبيا": {
+  "src": "saudi",
+  "norm": "سوبيا",
+  "en": "sobia (saudi rice drink)"
+ },
+ "قهوة بالتمر": {
+  "src": "saudi",
+  "norm": "قهوةبالتمر",
+  "en": "date coffee"
+ },
+ "عسل سدر": {
+  "src": "saudi",
+  "norm": "عسلسدر",
+  "en": "sidr honey"
+ },
+ "عسل سمر": {
+  "src": "saudi",
+  "norm": "عسلسمر",
+  "en": "samr honey"
+ },
+ "شاي أخضر": {
+  "src": "saudi",
+  "norm": "شاياخضر",
+  "en": "green tea"
+ },
+ "شاي بالحليب": {
+  "src": "saudi",
+  "norm": "شايبالحليب",
+  "en": "milk tea"
+ },
+ "زبادي بالعسل": {
+  "src": "saudi",
+  "norm": "زباديبالعسل",
+  "en": "yogurt with honey"
+ },
+ "تمر سكري": {
+  "src": "saudi",
+  "norm": "تمرسكري",
+  "en": "sukkari dates"
+ },
+ "بفتة": {
+  "src": "uae-db",
+  "norm": "بفت",
+  "en": "baftha bread"
+ },
+ "عريك بالجبن": {
+  "src": "uae-db",
+  "norm": "عريكبالجبن",
+  "en": "areeka with cheese"
+ },
+ "مراصيع": {
+  "src": "uae-db",
+  "norm": "مراصيع",
+  "en": "mraseea"
+ },
+ "رقاق بالبيض": {
+  "src": "uae-db",
+  "norm": "رقاقبالبيض",
+  "en": "regag bread with egg"
+ },
+ "جباب بالتمر": {
+  "src": "uae-db",
+  "norm": "جباببالتمر",
+  "en": "chebab with dates"
+ },
+ "جباب بالعسل واللبن": {
+  "src": "uae-db",
+  "norm": "جباببالعسلواللبن",
+  "en": "chebab with honey and laban"
+ },
+ "رقاق محشي": {
+  "src": "uae-db",
+  "norm": "رقاقمحشي",
+  "en": "stuffed regag"
+ },
+ "مشلتت بالجبن": {
+  "src": "uae-db",
+  "norm": "مشلتتبالجبن",
+  "en": "mashlouta with cheese"
+ },
+ "سويق بالتمر": {
+  "src": "uae-db",
+  "norm": "سويقبالتمر",
+  "en": "sawiq date porridge"
+ },
+ "حميس": {
+  "src": "uae-db",
+  "norm": "حميس",
+  "en": "hamiss"
+ },
+ "رقاق حلو": {
+  "src": "uae-db",
+  "norm": "رقاقحلو",
+  "en": "sweet regag"
+ },
+ "صمون": {
+  "src": "uae-db",
+  "norm": "صمون",
+  "en": "emirati samoon bread"
+ },
+ "خمير بالجبن": {
+  "src": "uae-db",
+  "norm": "خميربالجبن",
+  "en": "khameer with cheese"
+ },
+ "عيش بالفلفل": {
+  "src": "uae-db",
+  "norm": "عيشبالفلفل",
+  "en": "spiced aish bread"
+ },
+ "كليجة بالهيل": {
+  "src": "uae-db",
+  "norm": "كليجةبالهيل",
+  "en": "kleicha with cardamom"
+ },
+ "قرص بالتمر": {
+  "src": "uae-db",
+  "norm": "قرصبالتمر",
+  "en": "qurs stuffed with dates"
+ },
+ "خمير بالحليب والزعفران": {
+  "src": "uae-db",
+  "norm": "خميربالحليبوالزعفران",
+  "en": "khameer with saffron milk"
+ },
+ "خبز وقافي": {
+  "src": "uae-db",
+  "norm": "خبزوقافي",
+  "en": "waggafi bread"
+ },
+ "خبز محلا": {
+  "src": "uae-db",
+  "norm": "خبزمحلا",
+  "en": "muhala bread"
+ },
+ "بتير": {
+  "src": "uae-db",
+  "norm": "بتير",
+  "en": "bteer bread"
+ },
+ "شوربة لسان العصفور": {
+  "src": "uae-db",
+  "norm": "شوربةلسانالعصفور",
+  "en": "vermicelli bird-tongue soup"
+ },
+ "شوربة الشعيرية بالدجاج": {
+  "src": "uae-db",
+  "norm": "شوربةالشعيريةبالدجاج",
+  "en": "vermicelli chicken soup"
+ },
+ "شوربة ملوخية بالدجاج": {
+  "src": "uae-db",
+  "norm": "شوربةملوخيةبالدجاج",
+  "en": "molokhia soup with chicken"
+ },
+ "شوربة سمك": {
+  "src": "uae-db",
+  "norm": "شوربةسمك",
+  "en": "emirati fish soup"
+ },
+ "شوربة كوسا بالزبادي": {
+  "src": "uae-db",
+  "norm": "شوربةكوسابالزبادي",
+  "en": "zucchini and yogurt soup"
+ },
+ "شوربة الفاصوليا البيضاء": {
+  "src": "uae-db",
+  "norm": "شوربةالفاصولياالبيضاء",
+  "en": "white bean soup"
+ },
+ "شوربة الذرة بالدجاج": {
+  "src": "uae-db",
+  "norm": "شوربةالذرةبالدجاج",
+  "en": "corn and chicken soup"
+ },
+ "شوربة عدس بالكمون": {
+  "src": "uae-db",
+  "norm": "شوربةعدسبالكمون",
+  "en": "cumin lentil soup"
+ },
+ "شوربة الجريش": {
+  "src": "uae-db",
+  "norm": "شوربةالجريش",
+  "en": "jareesh soup"
+ },
+ "شوربة لحم بالخضار": {
+  "src": "uae-db",
+  "norm": "شوربةلحمبالخضار",
+  "en": "meat and vegetable soup"
+ },
+ "دقوس": {
+  "src": "uae-db",
+  "norm": "دقوس",
+  "en": "daqoos"
+ },
+ "سلطة جرجير بالدبس": {
+  "src": "uae-db",
+  "norm": "سلطةجرجيربالدبس",
+  "en": "arugula with date syrup"
+ },
+ "سلطة شمندر": {
+  "src": "uae-db",
+  "norm": "سلطةشمندر",
+  "en": "beetroot salad"
+ },
+ "سلطة خيار بالنعناع": {
+  "src": "uae-db",
+  "norm": "سلطةخياربالنعناع",
+  "en": "cucumber and mint salad"
+ },
+ "سلطة طماطم بالبصل": {
+  "src": "uae-db",
+  "norm": "سلطةطماطمبالبصل",
+  "en": "tomato and onion salad"
+ },
+ "مخلل خضار مشكل": {
+  "src": "uae-db",
+  "norm": "مخللخضارمشكل",
+  "en": "mixed vegetable pickles"
+ },
+ "متبل شمندر": {
+  "src": "uae-db",
+  "norm": "متبلشمندر",
+  "en": "beetroot mutabal"
+ },
+ "سلطة حمص": {
+  "src": "uae-db",
+  "norm": "سلطةحمص",
+  "en": "chickpea salad"
+ },
+ "زبادي بالثوم": {
+  "src": "uae-db",
+  "norm": "زباديبالثوم",
+  "en": "garlic yogurt dip"
+ },
+ "سلطة جزر": {
+  "src": "uae-db",
+  "norm": "سلطةجزر",
+  "en": "carrot salad"
+ },
+ "باجيلة": {
+  "src": "uae-db",
+  "norm": "باجيل",
+  "en": "bajella"
+ },
+ "سلطة الملفوف": {
+  "src": "uae-db",
+  "norm": "سلطةالملفوف",
+  "en": "cabbage salad"
+ },
+ "سلطة الباذنجان المحمص": {
+  "src": "uae-db",
+  "norm": "سلطةالباذنجانالمحمص",
+  "en": "charred eggplant salad"
+ },
+ "مضبي لحم": {
+  "src": "uae-db",
+  "norm": "مضبيلحم",
+  "en": "madbi meat"
+ },
+ "مضبي دجاج": {
+  "src": "uae-db",
+  "norm": "مضبيدجاج",
+  "en": "madbi chicken"
+ },
+ "زربيان دجاج": {
+  "src": "uae-db",
+  "norm": "زربياندجاج",
+  "en": "zurbian chicken"
+ },
+ "زربيان لحم": {
+  "src": "uae-db",
+  "norm": "زربيانلحم",
+  "en": "zurbian lamb"
+ },
+ "رز بحريني": {
+  "src": "uae-db",
+  "norm": "رزبحريني",
+  "en": "bahraini spiced rice"
+ },
+ "دبيازة": {
+  "src": "uae-db",
+  "norm": "دبياز",
+  "en": "debyaza"
+ },
+ "صيادية سمك": {
+  "src": "uae-db",
+  "norm": "صياديةسمك",
+  "en": "sayyadia"
+ },
+ "أرز أصفر بالزعفران": {
+  "src": "uae-db",
+  "norm": "ارزاصفربالزعفران",
+  "en": "saffron yellow rice"
+ },
+ "رز بسمتي بالهيل": {
+  "src": "uae-db",
+  "norm": "رزبسمتيبالهيل",
+  "en": "cardamom basmati rice"
+ },
+ "رز بالخضار": {
+  "src": "uae-db",
+  "norm": "رزبالخضار",
+  "en": "vegetable rice"
+ },
+ "أرز بالقرع والتمر": {
+  "src": "uae-db",
+  "norm": "ارزبالقرعوالتمر",
+  "en": "rice with pumpkin and dates"
+ },
+ "أرز باللوز": {
+  "src": "uae-db",
+  "norm": "ارزباللوز",
+  "en": "almond rice"
+ },
+ "مكبوس حاشي": {
+  "src": "uae-db",
+  "norm": "مكبوسحاشي",
+  "en": "camel makhboos"
+ },
+ "رز مطبخ بالخضار": {
+  "src": "uae-db",
+  "norm": "رزمطبخبالخضار",
+  "en": "cooked vegetable rice"
+ },
+ "برياني دجاج بالزعفران": {
+  "src": "uae-db",
+  "norm": "بريانيدجاجبالزعفران",
+  "en": "saffron chicken biryani"
+ },
+ "مكبوس روبيان": {
+  "src": "uae-db",
+  "norm": "مكبوسروبيان",
+  "en": "shrimp makhboos"
+ },
+ "رز مع الفريكة": {
+  "src": "uae-db",
+  "norm": "رزمعالفريك",
+  "en": "freekeh mixed rice"
+ },
+ "مكبوس حمام": {
+  "src": "uae-db",
+  "norm": "مكبوسحمام",
+  "en": "pigeon makhboos"
+ },
+ "مكبوس سمان": {
+  "src": "uae-db",
+  "norm": "مكبوسسمان",
+  "en": "quail makhboos"
+ },
+ "إيدام لحم": {
+  "src": "uae-db",
+  "norm": "ايداملحم",
+  "en": "lamb eidam stew"
+ },
+ "إيدام دجاج": {
+  "src": "uae-db",
+  "norm": "ايدامدجاج",
+  "en": "chicken eidam stew"
+ },
+ "إيدام خضار": {
+  "src": "uae-db",
+  "norm": "ايدامخضار",
+  "en": "vegetable eidam stew"
+ },
+ "إيدام روبيان": {
+  "src": "uae-db",
+  "norm": "ايدامروبيان",
+  "en": "shrimp eidam stew"
+ },
+ "لوبيا باللحم": {
+  "src": "uae-db",
+  "norm": "لوبياباللحم",
+  "en": "green beans with meat"
+ },
+ "جحي لحم": {
+  "src": "uae-db",
+  "norm": "جحيلحم",
+  "en": "jahi lamb"
+ },
+ "فلفل محشي": {
+  "src": "uae-db",
+  "norm": "فلفلمحشي",
+  "en": "stuffed peppers"
+ },
+ "ورق عنب محشي": {
+  "src": "uae-db",
+  "norm": "ورقعنبمحشي",
+  "en": "stuffed vine leaves"
+ },
+ "سبانخ باللحم": {
+  "src": "uae-db",
+  "norm": "سبانخباللحم",
+  "en": "spinach with meat"
+ },
+ "قرع بالتمر": {
+  "src": "uae-db",
+  "norm": "قرعبالتمر",
+  "en": "pumpkin with dates"
+ },
+ "دجاج بالكاري": {
+  "src": "uae-db",
+  "norm": "دجاجبالكاري",
+  "en": "emirati chicken curry"
+ },
+ "دال عدس": {
+  "src": "uae-db",
+  "norm": "دالعدس",
+  "en": "emirati lentil dal"
+ },
+ "كاري روبيان": {
+  "src": "uae-db",
+  "norm": "كاريروبيان",
+  "en": "shrimp curry"
+ },
+ "كاري سمك": {
+  "src": "uae-db",
+  "norm": "كاريسمك",
+  "en": "fish curry"
+ },
+ "خضار بالكاري": {
+  "src": "uae-db",
+  "norm": "خضاربالكاري",
+  "en": "mixed vegetable curry"
+ },
+ "بامية بالدجاج": {
+  "src": "uae-db",
+  "norm": "باميةبالدجاج",
+  "en": "okra with chicken"
+ },
+ "جريش بالروبيان": {
+  "src": "uae-db",
+  "norm": "جريشبالروبيان",
+  "en": "jareesh with shrimp"
+ },
+ "فريكة بالدجاج": {
+  "src": "uae-db",
+  "norm": "فريكةبالدجاج",
+  "en": "freekeh with chicken"
+ },
+ "ثريد روبيان": {
+  "src": "uae-db",
+  "norm": "ثريدروبيان",
+  "en": "thareed with shrimp"
+ },
+ "قوزي دجاج": {
+  "src": "uae-db",
+  "norm": "قوزيدجاج",
+  "en": "chicken quzi"
+ },
+ "دجاج محشي بالبرغل": {
+  "src": "uae-db",
+  "norm": "دجاجمحشيبالبرغل",
+  "en": "chicken stuffed with bulgur"
+ },
+ "عرايس دجاج": {
+  "src": "uae-db",
+  "norm": "عرايسدجاج",
+  "en": "chicken arayes"
+ },
+ "محشوش باللحم": {
+  "src": "uae-db",
+  "norm": "محشوشباللحم",
+  "en": "mahshoush"
+ },
+ "كمونية لحم": {
+  "src": "uae-db",
+  "norm": "كمونيةلحم",
+  "en": "lamb kamooniya"
+ },
+ "عيش ولحم": {
+  "src": "uae-db",
+  "norm": "عيشولحم",
+  "en": "aish wa laham"
+ },
+ "ريش لحم مشوية": {
+  "src": "uae-db",
+  "norm": "ريشلحممشوي",
+  "en": "grilled lamb rack"
+ },
+ "كفتة مشوية": {
+  "src": "uae-db",
+  "norm": "كفتةمشوي",
+  "en": "grilled kofta"
+ },
+ "دجاج على الفحم": {
+  "src": "uae-db",
+  "norm": "دجاجعلىالفحم",
+  "en": "charcoal chicken"
+ },
+ "كفتة حاشي": {
+  "src": "uae-db",
+  "norm": "كفتةحاشي",
+  "en": "camel kofta"
+ },
+ "مشاوي بحرية مشكلة": {
+  "src": "uae-db",
+  "norm": "مشاويبحريةمشكل",
+  "en": "mixed seafood grill"
+ },
+ "كباب روبيان": {
+  "src": "uae-db",
+  "norm": "كبابروبيان",
+  "en": "shrimp kebab"
+ },
+ "كرشة مشوية": {
+  "src": "uae-db",
+  "norm": "كرشةمشوي",
+  "en": "grilled tripe"
+ },
+ "سجق حاشي": {
+  "src": "uae-db",
+  "norm": "سجقحاشي",
+  "en": "camel sausage"
+ },
+ "دجاج بلدي مشوي كامل": {
+  "src": "uae-db",
+  "norm": "دجاجبلديمشويكامل",
+  "en": "whole grilled chicken"
+ },
+ "دجاج بالعسل": {
+  "src": "uae-db",
+  "norm": "دجاجبالعسل",
+  "en": "honey glazed chicken"
+ },
+ "كبدة بالبهارات": {
+  "src": "uae-db",
+  "norm": "كبدةبالبهارات",
+  "en": "spiced liver"
+ },
+ "سجق دجاج": {
+  "src": "uae-db",
+  "norm": "سجقدجاج",
+  "en": "chicken sausage"
+ },
+ "دجاج مشوي بالزعفران": {
+  "src": "uae-db",
+  "norm": "دجاجمشويبالزعفران",
+  "en": "saffron grilled chicken"
+ },
+ "كباب سمك": {
+  "src": "uae-db",
+  "norm": "كبابسمك",
+  "en": "fish kebab"
+ },
+ "شوى": {
+  "src": "uae-db",
+  "norm": "شوى",
+  "en": "shuwaa"
+ },
+ "سبيطي مشوي": {
+  "src": "uae-db",
+  "norm": "سبيطيمشوي",
+  "en": "grilled sobaity bream"
+ },
+ "شعم مقلي": {
+  "src": "uae-db",
+  "norm": "شعممقلي",
+  "en": "fried threadfin"
+ },
+ "بياح مقلي": {
+  "src": "uae-db",
+  "norm": "بياحمقلي",
+  "en": "fried bayah fish"
+ },
+ "قرش مقلي": {
+  "src": "uae-db",
+  "norm": "قرشمقلي",
+  "en": "fried shark"
+ },
+ "كلمار مقلي": {
+  "src": "uae-db",
+  "norm": "كلمارمقلي",
+  "en": "fried calamari"
+ },
+ "سبيط مشوي": {
+  "src": "uae-db",
+  "norm": "سبيطمشوي",
+  "en": "grilled cuttlefish"
+ },
+ "بلح البحر بالثوم": {
+  "src": "uae-db",
+  "norm": "بلحالبحربالثوم",
+  "en": "garlic mussels"
+ },
+ "هامور محشي": {
+  "src": "uae-db",
+  "norm": "هامورمحشي",
+  "en": "stuffed hamour"
+ },
+ "سمك مقلي بالبهارات": {
+  "src": "uae-db",
+  "norm": "سمكمقليبالبهارات",
+  "en": "spiced fried fish"
+ },
+ "يخنة روبيان بالخضار": {
+  "src": "uae-db",
+  "norm": "يخنةروبيانبالخضار",
+  "en": "shrimp and vegetable stew"
+ },
+ "قباقب بالكاري": {
+  "src": "uae-db",
+  "norm": "قباقببالكاري",
+  "en": "crab curry"
+ },
+ "صبور مشوي": {
+  "src": "uae-db",
+  "norm": "صبورمشوي",
+  "en": "grilled shad"
+ },
+ "روبيان مجفف محمر": {
+  "src": "uae-db",
+  "norm": "روبيانمجففمحمر",
+  "en": "fried dried shrimp"
+ },
+ "يخنة تونة": {
+  "src": "uae-db",
+  "norm": "يخنةتون",
+  "en": "tuna stew"
+ },
+ "مضروبة": {
+  "src": "uae-db",
+  "norm": "مضروب",
+  "en": "madrooba"
+ },
+ "جشيد": {
+  "src": "uae-db",
+  "norm": "جشيد",
+  "en": "jasheed"
+ },
+ "روبيان ناشف": {
+  "src": "uae-db",
+  "norm": "روبيانناشف",
+  "en": "ro-be-yann nashif"
+ },
+ "حيسة": {
+  "src": "uae-db",
+  "norm": "حيس",
+  "en": "haisa"
+ },
+ "كليجة بالتمر": {
+  "src": "uae-db",
+  "norm": "كليجةبالتمر",
+  "en": "date kleicha"
+ },
+ "كعك العيد": {
+  "src": "uae-db",
+  "norm": "كعكالعيد",
+  "en": "eid kaak cookies"
+ },
+ "تمر محشي بالمكسرات": {
+  "src": "uae-db",
+  "norm": "تمرمحشيبالمكسرات",
+  "en": "stuffed dates with nuts"
+ },
+ "عصيدة بالقرع": {
+  "src": "uae-db",
+  "norm": "عصيدةبالقرع",
+  "en": "pumpkin asida"
+ },
+ "خبيص بالجوز": {
+  "src": "uae-db",
+  "norm": "خبيصبالجوز",
+  "en": "khabees with walnuts"
+ },
+ "رقاق بالحلاوة": {
+  "src": "uae-db",
+  "norm": "رقاقبالحلاو",
+  "en": "regag with halva"
+ },
+ "قرص بالتمر والفستق": {
+  "src": "uae-db",
+  "norm": "قرصبالتمروالفستق",
+  "en": "date and pistachio qurs"
+ },
+ "فطيرة التمر": {
+  "src": "uae-db",
+  "norm": "فطيرةالتمر",
+  "en": "date pastry"
+ },
+ "رقاق بالتمر": {
+  "src": "uae-db",
+  "norm": "رقاقبالتمر",
+  "en": "regag with dates"
+ },
+ "قهوة عربية بالهيل": {
+  "src": "uae-db",
+  "norm": "قهوةعربيةبالهيل",
+  "en": "emirati gahwa"
+ },
+ "شاي حليب إماراتي": {
+  "src": "uae-db",
+  "norm": "شايحليباماراتي",
+  "en": "emirati milk tea"
+ },
+ "شنينة": {
+  "src": "uae-db",
+  "norm": "شنين",
+  "en": "shanina"
+ },
+ "ليمون بالنعناع": {
+  "src": "uae-db",
+  "norm": "ليمونبالنعناع",
+  "en": "mint lemonade"
+ },
+ "عصير أفوكادو": {
+  "src": "uae-db",
+  "norm": "عصيرافوكادو",
+  "en": "avocado shake"
+ },
+ "حليب بالهيل والزعفران": {
+  "src": "uae-db",
+  "norm": "حليببالهيلوالزعفران",
+  "en": "saffron cardamom milk"
+ },
+ "تمر بالحليب": {
+  "src": "uae-db",
+  "norm": "تمربالحليب",
+  "en": "dates with milk"
+ },
+ "عجة بيض": {
+  "src": "uae-db",
+  "norm": "عجةبيض",
+  "en": "emirati egg omelette"
+ },
+ "بيض بالكمون": {
+  "src": "uae-db",
+  "norm": "بيضبالكمون",
+  "en": "cumin eggs"
+ },
+ "سلطة فواكه": {
+  "src": "uae-db",
+  "norm": "سلطةفواكه",
+  "en": "fruit salad"
+ },
+ "عصير أناناس": {
+  "src": "uae-db",
+  "norm": "عصيراناناس",
+  "en": "pineapple juice"
+ },
+ "ليموناضة بالعسل": {
+  "src": "uae-db",
+  "norm": "ليموناضةبالعسل",
+  "en": "honey lemonade"
+ },
+ "قشطة": {
+  "src": "uae-db",
+  "norm": "قشط",
+  "en": "fresh cream"
+ },
+ "تمر خنيزي": {
+  "src": "uae-db",
+  "norm": "تمرخنيزي",
+  "en": "khnezi dates"
+ },
+ "رطب خلاص": {
+  "src": "uae-db",
+  "norm": "رطبخلاص",
+  "en": "khalas rutab dates"
+ },
+ "ميلك شيك موز": {
+  "src": "uae-db",
+  "norm": "ميلكشيكموز",
+  "en": "banana milkshake"
+ },
+ "عصير شمام": {
+  "src": "uae-db",
+  "norm": "عصيرشمام",
+  "en": "cantaloupe juice"
+ },
+ "جبنة بيلادي بالكريمة": {
+  "src": "uae-db",
+  "norm": "جبنةبيلاديبالكريم",
+  "en": "creamy beladi cheese"
+ },
+ "عصير جزر بالبرتقال": {
+  "src": "uae-db",
+  "norm": "عصيرجزربالبرتقال",
+  "en": "carrot and orange juice"
+ },
+ "شاي بالزعفران": {
+  "src": "uae-db",
+  "norm": "شايبالزعفران",
+  "en": "saffron tea"
+ },
+ "عصير مانجو بالحليب": {
+  "src": "uae-db",
+  "norm": "عصيرمانجوبالحليب",
+  "en": "mango lassi"
+ },
+ "هريس فطار": {
+  "src": "uae-local",
+  "norm": "هريسفطار",
+  "en": "harees (breakfast)"
+ },
+ "بلاليط ببيض": {
+  "src": "uae-local",
+  "norm": "بلاليطببيض",
+  "en": "balaleet with egg"
+ },
+ "معصوب إماراتي": {
+  "src": "uae-local",
+  "norm": "معصوباماراتي",
+  "en": "emirati masoub"
+ },
+ "جباب": {
+  "src": "uae-local",
+  "norm": "جباب",
+  "en": "chebab pancakes"
+ },
+ "جباب بالجبن": {
+  "src": "uae-local",
+  "norm": "جباببالجبن",
+  "en": "cheese chebab"
+ },
+ "خمير": {
+  "src": "uae-local",
+  "norm": "خمير",
+  "en": "khameer bread"
+ },
+ "عيش": {
+  "src": "uae-local",
+  "norm": "عيش",
+  "en": "emirati bread"
+ },
+ "رقاق": {
+  "src": "uae-local",
+  "norm": "رقاق",
+  "en": "regag bread"
+ },
+ "رقاق بالجبن": {
+  "src": "uae-local",
+  "norm": "رقاقبالجبن",
+  "en": "cheese regag"
+ },
+ "خبز التمر": {
+  "src": "uae-local",
+  "norm": "خبزالتمر",
+  "en": "date bread"
+ },
+ "خبز ذرة": {
+  "src": "uae-local",
+  "norm": "خبزذر",
+  "en": "corn bread"
+ },
+ "سمبوسة بالجبن": {
+  "src": "uae-local",
+  "norm": "سمبوسةبالجبن",
+  "en": "cheese samboosa"
+ },
+ "سمبوسة باللحم": {
+  "src": "uae-local",
+  "norm": "سمبوسةباللحم",
+  "en": "meat samboosa"
+ },
+ "سمبوسة بالخضار": {
+  "src": "uae-local",
+  "norm": "سمبوسةبالخضار",
+  "en": "vegetable samboosa"
+ },
+ "مشلتت": {
+  "src": "uae-local",
+  "norm": "مشلتت",
+  "en": "mashlouta bread"
+ },
+ "متبل باذنجان": {
+  "src": "uae-local",
+  "norm": "متبلباذنجان",
+  "en": "mutabal (eggplant)"
+ },
+ "حمص باللحم": {
+  "src": "uae-local",
+  "norm": "حمصباللحم",
+  "en": "hummus with meat"
+ },
+ "مجبوس دجاج": {
+  "src": "uae-local",
+  "norm": "مجبوسدجاج",
+  "en": "chicken majboos"
+ },
+ "مجبوس لحم": {
+  "src": "uae-local",
+  "norm": "مجبوسلحم",
+  "en": "meat majboos"
+ },
+ "مجبوس سمك": {
+  "src": "uae-local",
+  "norm": "مجبوسسمك",
+  "en": "fish majboos"
+ },
+ "مجبوس حاشي": {
+  "src": "uae-local",
+  "norm": "مجبوسحاشي",
+  "en": "camel majboos"
+ },
+ "برياني دجاج": {
+  "src": "uae-local",
+  "norm": "بريانيدجاج",
+  "en": "chicken biryani"
+ },
+ "برياني لحم": {
+  "src": "uae-local",
+  "norm": "بريانيلحم",
+  "en": "meat biryani"
+ },
+ "برياني سمك": {
+  "src": "uae-local",
+  "norm": "بريانيسمك",
+  "en": "fish biryani"
+ },
+ "روبيان مع أرز": {
+  "src": "uae-local",
+  "norm": "روبيانمعارز",
+  "en": "shrimp with rice"
+ },
+ "برياني حاشي": {
+  "src": "uae-local",
+  "norm": "بريانيحاشي",
+  "en": "camel biryani"
+ },
+ "مجبوس لحم غنم": {
+  "src": "uae-local",
+  "norm": "مجبوسلحمغنم",
+  "en": "lamb majboos"
+ },
+ "مجبوس خضار": {
+  "src": "uae-local",
+  "norm": "مجبوسخضار",
+  "en": "vegetable majboos"
+ },
+ "برياني روبيان": {
+  "src": "uae-local",
+  "norm": "بريانيروبيان",
+  "en": "shrimp biryani"
+ },
+ "برياني خضار": {
+  "src": "uae-local",
+  "norm": "بريانيخضار",
+  "en": "vegetable biryani"
+ },
+ "مجبوس بط": {
+  "src": "uae-local",
+  "norm": "مجبوسبط",
+  "en": "duck majboos"
+ },
+ "قوزي لحم": {
+  "src": "uae-local",
+  "norm": "قوزيلحم",
+  "en": "quzi (meat with rice)"
+ },
+ "كبسة إماراتية": {
+  "src": "uae-local",
+  "norm": "كبسةاماراتي",
+  "en": "emirati kabsa"
+ },
+ "صالونة لحم": {
+  "src": "uae-local",
+  "norm": "صالونةلحم",
+  "en": "saloona with meat"
+ },
+ "مرقوقة لحم": {
+  "src": "uae-local",
+  "norm": "مرقوقةلحم",
+  "en": "margooga with meat"
+ },
+ "مرقوقة دجاج": {
+  "src": "uae-local",
+  "norm": "مرقوقةدجاج",
+  "en": "margooga with chicken"
+ },
+ "عرسية": {
+  "src": "uae-local",
+  "norm": "عرسي",
+  "en": "arsiya"
+ },
+ "صالونة قباقب": {
+  "src": "uae-local",
+  "norm": "صالونةقباقب",
+  "en": "crab saloona"
+ },
+ "ثريد خضار": {
+  "src": "uae-local",
+  "norm": "ثريدخضار",
+  "en": "thareed with vegetables"
+ },
+ "صالونة خضار": {
+  "src": "uae-local",
+  "norm": "صالونةخضار",
+  "en": "vegetable saloona"
+ },
+ "جريش دجاج إماراتي": {
+  "src": "uae-local",
+  "norm": "جريشدجاجاماراتي",
+  "en": "emirati jareesh with chicken"
+ },
+ "جريش لحم إماراتي": {
+  "src": "uae-local",
+  "norm": "جريشلحماماراتي",
+  "en": "emirati jareesh with meat"
+ },
+ "فريكة باللحم": {
+  "src": "uae-local",
+  "norm": "فريكةباللحم",
+  "en": "freekeh with meat"
+ },
+ "شيخ محشي": {
+  "src": "uae-local",
+  "norm": "شيخمحشي",
+  "en": "sheikh mahshi (stuffed zucchini)"
+ },
+ "بامية باللحم": {
+  "src": "uae-local",
+  "norm": "باميةباللحم",
+  "en": "okra with meat"
+ },
+ "ملوخية دجاج": {
+  "src": "uae-local",
+  "norm": "ملوخيةدجاج",
+  "en": "molokhia with chicken"
+ },
+ "حاشي محمر": {
+  "src": "uae-local",
+  "norm": "حاشيمحمر",
+  "en": "roast camel"
+ },
+ "كباب إماراتي": {
+  "src": "uae-local",
+  "norm": "كباباماراتي",
+  "en": "emirati kebab"
+ },
+ "كبدة مشوية": {
+  "src": "uae-local",
+  "norm": "كبدةمشوي",
+  "en": "grilled liver"
+ },
+ "دجاج محشي": {
+  "src": "uae-local",
+  "norm": "دجاجمحشي",
+  "en": "stuffed chicken"
+ },
+ "بط بالعسل": {
+  "src": "uae-local",
+  "norm": "بطبالعسل",
+  "en": "honey duck"
+ },
+ "حنيذ حاشي": {
+  "src": "uae-local",
+  "norm": "حنيذحاشي",
+  "en": "hanith camel"
+ },
+ "حبار مشوي": {
+  "src": "uae-local",
+  "norm": "حبارمشوي",
+  "en": "grilled squid"
+ },
+ "يخنة سمك": {
+  "src": "uae-local",
+  "norm": "يخنةسمك",
+  "en": "fish stew (husheel)"
+ },
+ "قباقب بالثوم": {
+  "src": "uae-local",
+  "norm": "قباقببالثوم",
+  "en": "garlic crab"
+ },
+ "سردين مقلي": {
+  "src": "uae-local",
+  "norm": "سردينمقلي",
+  "en": "fried sardines"
+ },
+ "بثيثة": {
+  "src": "uae-local",
+  "norm": "بثيث",
+  "en": "bathitha"
+ },
+ "لقيمات لايت": {
+  "src": "uae-local",
+  "norm": "لقيماتلايت",
+  "en": "luqaimat (light)"
+ },
+ "فوقة": {
+  "src": "uae-local",
+  "norm": "فوق",
+  "en": "foga"
+ },
+ "خبيص": {
+  "src": "uae-local",
+  "norm": "خبيص",
+  "en": "khabees"
+ },
+ "فرني لايت": {
+  "src": "uae-local",
+  "norm": "فرنيلايت",
+  "en": "ferni light"
+ },
+ "خنفروش": {
+  "src": "uae-local",
+  "norm": "خنفروش",
+  "en": "khunfroosh"
+ },
+ "عصيدة إماراتية": {
+  "src": "uae-local",
+  "norm": "عصيدةاماراتي",
+  "en": "emirati asida"
+ },
+ "عصيدة بالتمر": {
+  "src": "uae-local",
+  "norm": "عصيدةبالتمر",
+  "en": "asida with dates"
+ },
+ "حلاوة طحينية": {
+  "src": "uae-local",
+  "norm": "حلاوةطحيني",
+  "en": "tahini halva"
+ },
+ "لبن": {
+  "src": "uae-local",
+  "norm": "لبن",
+  "en": "laban"
+ },
+ "عصير برتقال": {
+  "src": "uae-local",
+  "norm": "عصيربرتقال",
+  "en": "orange juice"
+ },
+ "تمر عنبرة": {
+  "src": "uae-local",
+  "norm": "تمرعنبر",
+  "en": "amber dates"
+ },
+ "عصير جزر": {
+  "src": "uae-local",
+  "norm": "عصيرجزر",
+  "en": "carrot juice"
+ },
+ "حليب طازج": {
+  "src": "uae-local",
+  "norm": "حليبطازج",
+  "en": "fresh milk"
+ },
+ "فراولة": {
+  "src": "uae-local",
+  "norm": "فراول",
+  "en": "strawberries"
+ },
+ "مانجو طازج": {
+  "src": "uae-local",
+  "norm": "مانجوطازج",
+  "en": "fresh mango"
+ },
+ "برتقال طازج": {
+  "src": "uae-local",
+  "norm": "برتقالطازج",
+  "en": "fresh orange"
+ },
+ "شكشوكة باللحم": {
+  "src": "uae-local",
+  "norm": "شكشوكةباللحم",
+  "en": "shakshouka with meat"
+ }
+}

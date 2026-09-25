@@ -1,0 +1,1779 @@
+{
+  "kitchen": "kuwait",
+  "goal": "establish Kuwaiti Kitchen with 250 new authentic dishes (Supabase)",
+  "local_additions": 0,
+  "new_additions": 250,
+  "regions": {
+    "pan_kuwaiti": 174,
+    "gulf_shared": 76
+  },
+  "meal_types": {
+    "breakfast": 34,
+    "lunch": 156,
+    "snacks": 60
+  },
+  "dishes": [
+    {
+      "name_ar": "خبز رقاق كويتي",
+      "name_en": "Kuwaiti Regag Bread",
+      "category": "breads_pastries",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "خبز جباب",
+      "name_en": "Chebab Bread",
+      "category": "breads_pastries",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "خبز خمير",
+      "name_en": "Khameer Bread",
+      "category": "breads_pastries",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "صمون كويتي",
+      "name_en": "Kuwaiti Samoon",
+      "category": "breads_pastries",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "صمون بالسمسم",
+      "name_en": "Sesame Samoon",
+      "category": "breads_pastries",
+      "mealType": "breakfast",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "صمون محشي باللحم",
+      "name_en": "Meat-Filled Samoon",
+      "category": "breads_pastries",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "خبز تنور",
+      "name_en": "Tanoor Bread",
+      "category": "breads_pastries",
+      "mealType": "breakfast",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "خبز شراك",
+      "name_en": "Shrak Bread",
+      "category": "breads_pastries",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "خبز شعير بلدي",
+      "name_en": "Local Barley Bread",
+      "category": "breads_pastries",
+      "mealType": "breakfast",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "خبز البر الكويتي",
+      "name_en": "Kuwaiti Whole-Wheat Bread",
+      "category": "breads_pastries",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "خبز القمح الكامل",
+      "name_en": "Whole Grain Bread",
+      "category": "breads_pastries",
+      "mealType": "breakfast",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "خبز الدخن",
+      "name_en": "Millet Bread",
+      "category": "breads_pastries",
+      "mealType": "breakfast",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "سمبوسة",
+      "name_en": "Samboosa",
+      "category": "breads_pastries",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "سمبوسة جبنة",
+      "name_en": "Cheese-Filled Samboosa",
+      "category": "breads_pastries",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "سمبوسة باللوز",
+      "name_en": "Almond Samboosa",
+      "category": "breads_pastries",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "رقاق مدهون بالبيض",
+      "name_en": "Egg-Soaked Regag",
+      "category": "breads_pastries",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "رقاق بالعسل",
+      "name_en": "Regag with Honey",
+      "category": "breakfast",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "خمير بالتمر",
+      "name_en": "Khameer with Dates",
+      "category": "breakfast",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "جباب بالزعفران",
+      "name_en": "Saffron Chebab",
+      "category": "breakfast",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "خمير بالزبدة",
+      "name_en": "Khameer with Butter",
+      "category": "breakfast",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "فول بالليمون والكمون",
+      "name_en": "Foul with Lemon and Cumin",
+      "category": "breakfast",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "عصيدة كويتية",
+      "name_en": "Kuwaiti Asida",
+      "category": "breakfast",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "بيض بالزبدة",
+      "name_en": "Eggs in Ghee",
+      "category": "breakfast",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "رقاق بالزبدة",
+      "name_en": "Regag with Butter",
+      "category": "breakfast",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "حب الرمان باللبن",
+      "name_en": "Yogurt with Pomegranate",
+      "category": "breakfast",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "شوربة جريش كويتية",
+      "name_en": "Kuwaiti Jireesh Soup",
+      "category": "soups",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "شوربة السمك الكويتية",
+      "name_en": "Kuwaiti Fish Soup",
+      "category": "soups",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "شوربة الفاصولياء الحمراء",
+      "name_en": "Red Bean Soup",
+      "category": "soups",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "شوربة الدجاج بالشعيرية",
+      "name_en": "Chicken Vermicelli Soup",
+      "category": "soups",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "شوربة الخضار باللحم",
+      "name_en": "Meat Vegetable Soup",
+      "category": "soups",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "شوربة القرنبيط",
+      "name_en": "Cauliflower Soup",
+      "category": "soups",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "شوربة الملفوف",
+      "name_en": "Cabbage Soup",
+      "category": "soups",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "شوربة قريدس",
+      "name_en": "Prawn Soup",
+      "category": "soups",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "دقوس بالليمون",
+      "name_en": "Lemon Dakkous",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مخلل بصل",
+      "name_en": "Pickled Onions",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "مخلل فلفل حار",
+      "name_en": "Spicy Pickled Peppers",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "طرشي مشكل",
+      "name_en": "Mixed Torshi",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "خيار باللبن",
+      "name_en": "Cucumbers in Yogurt",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "سلطة الجرجير بالرمان",
+      "name_en": "Arugula Pomegranate Salad",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "سلطة البندورة",
+      "name_en": "Tomato Salad",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "سلطة الطماطم بالبصل",
+      "name_en": "Tomato Onion Salad",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "سلطة الخيار والطماطم",
+      "name_en": "Cucumber Tomato Salad",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "سلطة الباذنجان المشوي",
+      "name_en": "Grilled Eggplant Salad",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "سلطة الملفوف الأحمر",
+      "name_en": "Red Cabbage Salad",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "سلطة الجزر المبشور",
+      "name_en": "Grated Carrot Salad",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "سلطة الشمندر والجزر",
+      "name_en": "Beetroot Carrot Salad",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "سلطة الكرفس",
+      "name_en": "Celery Salad",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "متبل الكوسة",
+      "name_en": "Zucchini Mutabal",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "سلطة الفجل بالليمون",
+      "name_en": "Radish Lemon Salad",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "سلطة الشمندر بالليمون",
+      "name_en": "Beetroot Lemon Salad",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "متبل القرنبيط",
+      "name_en": "Cauliflower Mutabal",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "متبل الفلفل المشوي",
+      "name_en": "Grilled Pepper Mutabal",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "سلطة الرز البارد",
+      "name_en": "Cold Rice Salad",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مكبوس دجاج كويتي",
+      "name_en": "Kuwaiti Chicken Machboos",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مكبوس لحم",
+      "name_en": "Lamb Machboos",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مكبوس كنعد",
+      "name_en": "Kanad Machboos",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مكبوس قريدس",
+      "name_en": "Prawn Machboos",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مكبوس زبيدي",
+      "name_en": "Zubaidi Machboos",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مكبوس صيادية",
+      "name_en": "Machboos Sayyadia",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مكبوس جريش",
+      "name_en": "Jireesh Machboos",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مكبوس القرنبيط",
+      "name_en": "Cauliflower Machboos",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "جريش كويتي",
+      "name_en": "Kuwaiti Jireesh",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "سليق كويتي بالدجاج",
+      "name_en": "Kuwaiti Chicken Saleeg",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "سليق كويتي بالروبيان",
+      "name_en": "Kuwaiti Shrimp Saleeg",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مضغوط دجاج كويتي",
+      "name_en": "Kuwaiti Chicken Madghoot",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مضغوط لحم كويتي",
+      "name_en": "Kuwaiti Lamb Madghoot",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مضغوط حاشي كويتي",
+      "name_en": "Kuwaiti Camel Madghoot",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مشخول",
+      "name_en": "Mashkhol Rice",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "محمر بالسمك",
+      "name_en": "Muhammar Fish Rice",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "رز بالتمر",
+      "name_en": "Sweet Date Rice",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "كبسة ملوخية",
+      "name_en": "Molokhia Kabsa",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "برياني كنعد",
+      "name_en": "Kanad Biryani",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "زربيان اللحم الكويتي",
+      "name_en": "Kuwaiti Lamb Zurbian",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "زربيان حاشي",
+      "name_en": "Camel Zurbian",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "رز بالخضار المشكلة",
+      "name_en": "Mixed Vegetable Rice",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "برياني البطاطا",
+      "name_en": "Potato Biryani",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "رز بخاري",
+      "name_en": "Bukhari Rice",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "رز بخاري بالحاشي",
+      "name_en": "Camel Bukhari Rice",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "رز بالشعيرية المحمصة",
+      "name_en": "Rice with Toasted Vermicelli",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "رز أصفر",
+      "name_en": "Yellow Rice",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "رز بالسمن",
+      "name_en": "Rice with Ghee",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "رز بالزبيب واللوز",
+      "name_en": "Raisin Almond Rice",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "رز بيلاف خضار",
+      "name_en": "Vegetable Pilaf",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "قوزي غنم",
+      "name_en": "Lamb Quzi",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "قوزي بط",
+      "name_en": "Duck Quzi",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "مقلوبة كوسا",
+      "name_en": "Zucchini Maqluba",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "كبسة جمبري",
+      "name_en": "Prawn Kabsa",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "كبسة دجاج كويتية",
+      "name_en": "Kuwaiti Chicken Kabsa",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "برياني حاشي كويتي",
+      "name_en": "Kuwaiti Camel Biryani",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "صالونة قريدس",
+      "name_en": "Prawn Saloona",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مكبوس ملوخية",
+      "name_en": "Molokhia Machboos",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "برياني روبيان بالزعفران",
+      "name_en": "Saffron Shrimp Biryani",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "رز زعفراني",
+      "name_en": "Saffron Rice",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "رز المندي الأبيض",
+      "name_en": "White Mandi Rice",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "سليق خضار",
+      "name_en": "Vegetable Saleeg",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "هريس كويتي",
+      "name_en": "Kuwaiti Harees",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مرقوق",
+      "name_en": "Marqooq",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مرقوق بالخضار",
+      "name_en": "Marqooq with Vegetables",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "ثريد كويتي",
+      "name_en": "Kuwaiti Thareed",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "ملوخية كويتية",
+      "name_en": "Kuwaiti Molokhia",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مطبق السمك",
+      "name_en": "Fish Mutabbaq",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مطبق باللحم المفروم",
+      "name_en": "Minced Meat Mutabbaq",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مطبق بالدجاج المفروم",
+      "name_en": "Minced Chicken Mutabbaq",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مطبق بالبيض",
+      "name_en": "Egg Mutabbaq",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مطبق بالجبن الذائب",
+      "name_en": "Melted Cheese Mutabbaq",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مطبق بالبصل والفلفل",
+      "name_en": "Onion Pepper Mutabbaq",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مطبق بالقشطة",
+      "name_en": "Cream Mutabbaq",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مطبق بالتمر",
+      "name_en": "Date Mutabbaq",
+      "category": "main_dishes",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "ورق عنب",
+      "name_en": "Stuffed Grape Leaves",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "كوسا محشية بالأرز",
+      "name_en": "Rice-Stuffed Zucchini",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "لحم بقلوب",
+      "name_en": "Pumpkin Lamb Stew",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "فاصولياء لحم",
+      "name_en": "Beans with Lamb",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "لوبيا بالصلصة",
+      "name_en": "Beans in Sauce",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "بازيلا بالجزر واللحم",
+      "name_en": "Peas Carrots with Meat",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "كاري الدجاج الكويتي",
+      "name_en": "Kuwaiti Chicken Curry",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "كاري اللحم",
+      "name_en": "Lamb Curry",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "كاري الجمبري",
+      "name_en": "Prawn Curry",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "دجاج بالكاري والتوابل",
+      "name_en": "Chicken Spice Curry",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "دجاج بالفرن",
+      "name_en": "Oven Roasted Chicken",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "دجاج بالبطاطس",
+      "name_en": "Chicken with Potatoes",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "لحم بالبرتقال",
+      "name_en": "Lamb with Oranges",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "لحم بالتمر",
+      "name_en": "Lamb with Dates",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "حاشي بالبهارات",
+      "name_en": "Spiced Camel Meat",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "خروف محشي رز",
+      "name_en": "Stuffed Rice Lamb",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "بامية كويتية",
+      "name_en": "Kuwaiti Okra Stew",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "سبانخ بالدجاج",
+      "name_en": "Spinach with Chicken",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "سليق بالحليب",
+      "name_en": "Saleeg with Milk",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "كوسا باللبن",
+      "name_en": "Zucchini in Yogurt",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مسقعة كويتية",
+      "name_en": "Kuwaiti Moussaka",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "طاجن لحم",
+      "name_en": "Lamb Tajin",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "عدس باللحم",
+      "name_en": "Lentils with Meat",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "شعيرية بالدجاج",
+      "name_en": "Chicken Vermicelli",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "معكرونة بالروبيان",
+      "name_en": "Shrimp Pasta",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "بيض بسطرمة",
+      "name_en": "Pastrami and Eggs",
+      "category": "main_dishes",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "كبسة الحاشي الكويتية",
+      "name_en": "Kuwaiti Camel Kabsa",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "دجاج شواية الفحم",
+      "name_en": "Charcoal Grill Chicken",
+      "category": "grilled_meats",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مشاوي اللحم",
+      "name_en": "Lamb Grill Mix",
+      "category": "grilled_meats",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "ريش الغنم",
+      "name_en": "Lamb Chops",
+      "category": "grilled_meats",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مظبي الدجاج الكويتي",
+      "name_en": "Kuwaiti Chicken Madhbi",
+      "category": "grilled_meats",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مظبي لحم",
+      "name_en": "Lamb Madhbi",
+      "category": "grilled_meats",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "كباب حاشي متبل",
+      "name_en": "Spiced Camel Kebab",
+      "category": "grilled_meats",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "كباب لحم متبل",
+      "name_en": "Spiced Lamb Kebab",
+      "category": "grilled_meats",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "كباب دجاج بالبهارات",
+      "name_en": "Spiced Chicken Kebab",
+      "category": "grilled_meats",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "كفتة الدجاج",
+      "name_en": "Chicken Kofta",
+      "category": "grilled_meats",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "شيش طاووق بالبهارات",
+      "name_en": "Spiced Shish Tawook",
+      "category": "grilled_meats",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "سوسيس مشوي",
+      "name_en": "Grilled Sausage",
+      "category": "grilled_meats",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "ستيك هامور مشوي",
+      "name_en": "Grilled Hamour Steak",
+      "category": "grilled_meats",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "شيش لحم",
+      "name_en": "Meat Skewers",
+      "category": "grilled_meats",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "أوراك دجاج مشوية",
+      "name_en": "Grilled Chicken Thighs",
+      "category": "grilled_meats",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "صدور دجاج بالفرن",
+      "name_en": "Oven Chicken Breasts",
+      "category": "grilled_meats",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مشوي الخضار",
+      "name_en": "Grilled Vegetables",
+      "category": "grilled_meats",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "جدي محمر",
+      "name_en": "Roasted Kid Goat",
+      "category": "grilled_meats",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "برياني مشوي بالفرن",
+      "name_en": "Oven-Grilled Brochette Mix",
+      "category": "grilled_meats",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "زبيدي مقلي",
+      "name_en": "Fried Zubaidi",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "شعري مقلي بالليمون",
+      "name_en": "Fried Shairi with Lemon",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "كنعد مقلي",
+      "name_en": "Fried Kanad",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "ناجل بالفرن",
+      "name_en": "Oven Baked Najil",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "بوري مقلي",
+      "name_en": "Fried Bori",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "بوري مشوي",
+      "name_en": "Grilled Bori",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "قريدس محمر",
+      "name_en": "Golden Fried Shrimp",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "قريدس مقرمش",
+      "name_en": "Crispy Shrimp",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "قباقب بالكاري والزنجبيل",
+      "name_en": "Ginger Crab Curry",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "سيباس بالفرن",
+      "name_en": "Oven Baked Sea Bass",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "حبار مقلي",
+      "name_en": "Fried Squid",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "سلمون بالعسل",
+      "name_en": "Honey Glazed Salmon",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "روبيان بالليمون والنعناع",
+      "name_en": "Shrimp with Lemon and Mint",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "صيادية كنعد",
+      "name_en": "Kanad Sayyadia",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "حبار بالثوم",
+      "name_en": "Garlic Squid",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "سردين بالليمون",
+      "name_en": "Lemon Sardines",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "قريدس بالزبدة",
+      "name_en": "Butter Shrimp",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "ناجل مقلي",
+      "name_en": "Fried Najil",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "كنعد بالفرن",
+      "name_en": "Oven Baked Kanad",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "روبيان مجفف",
+      "name_en": "Dried Shrimp",
+      "category": "fish_seafood",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "هامور بالليمون",
+      "name_en": "Lemon Hamour",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "زبيدي بالفرن",
+      "name_en": "Oven Baked Zubaidi",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "سمك مقلي بالدقيق",
+      "name_en": "Flour-Coated Fried Fish",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "مشوي الروبيان بالفحم",
+      "name_en": "Charcoal Grilled Shrimp",
+      "category": "fish_seafood",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "لقيمات",
+      "name_en": "Luqaimat",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "أم علي",
+      "name_en": "Um Ali",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "فرني كويتي",
+      "name_en": "Kuwaiti Ferni",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "خبيص كويتي",
+      "name_en": "Kuwaiti Khabees",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "كعك بتمر العجوة",
+      "name_en": "Ajwa Date Kaak",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "كعك السمسم المحمص",
+      "name_en": "Toasted Sesame Kaak",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "معمول",
+      "name_en": "Maamoul",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "بقلاوة بالتمر",
+      "name_en": "Date Baklava",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "حلاوة اللوز",
+      "name_en": "Almond Sweet",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "كاسترد بالهيل",
+      "name_en": "Cardamom Custard",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "زبادي بالتمر والعسل",
+      "name_en": "Dates Yogurt Honey",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "حلوى الأرز بالحليب",
+      "name_en": "Milk Rice Sweet",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "حلاوة السميد بالزبدة",
+      "name_en": "Butter Semolina Sweet",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "عصيدة بالعسل والزعفران",
+      "name_en": "Saffron Honey Asida",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "حلى القشطة",
+      "name_en": "Cream Dessert",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مهلبية باللوز",
+      "name_en": "Almond Muhallabia",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "كيك الهيل والفستق",
+      "name_en": "Cardamom Pistachio Cake",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "بسبوسة كويتية",
+      "name_en": "Kuwaiti Basbousa",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "كيك بالتمر والجوز",
+      "name_en": "Date Walnut Cake",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "فطائر التمر",
+      "name_en": "Date Pastries",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "سمبوسة حلوة",
+      "name_en": "Sweet Samboosa",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "حبات النواشف",
+      "name_en": "Dried Fruits Mix",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "رطب بالزبدة",
+      "name_en": "Rutab with Butter",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "حلوى التمر والجوز",
+      "name_en": "Date Walnut Sweet",
+      "category": "sweets_desserts",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "لبنة بزيت الزيتون",
+      "name_en": "Labneh with Olive Oil",
+      "category": "dairy_eggs_fruits",
+      "mealType": "breakfast",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "لبن مخيض",
+      "name_en": "Buttermilk",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "سمن بلدي",
+      "name_en": "Local Ghee",
+      "category": "dairy_eggs_fruits",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "جبنة حلوم",
+      "name_en": "Halloumi Cheese",
+      "category": "dairy_eggs_fruits",
+      "mealType": "breakfast",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "زبادي بلدي",
+      "name_en": "Local Yogurt",
+      "category": "dairy_eggs_fruits",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "رطب خنيزي",
+      "name_en": "Khunaizi Rutab",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "تمر سري",
+      "name_en": "Serei Dates",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "تمر برحي",
+      "name_en": "Barhi Dates",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "تمر زهدي",
+      "name_en": "Zahdi Dates",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "رطب شيشي",
+      "name_en": "Shishi Rutab",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "قهوة كويتية",
+      "name_en": "Kuwaiti Coffee",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "شاي بحليب مكثف",
+      "name_en": "Condensed Milk Tea",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "جلاب",
+      "name_en": "Jallab",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "قمر الدين",
+      "name_en": "Amardine",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "ليمون نعناع بالثلج",
+      "name_en": "Iced Lemon Mint",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "شراب التمر الهندي",
+      "name_en": "Tamarind Sherbet",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "مانجا بالحليب",
+      "name_en": "Mango Milk Drink",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "عصير البطيخ الأصفر",
+      "name_en": "Honeydew Juice",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "شربات",
+      "name_en": "Sherbet Drink",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "عصير عنب",
+      "name_en": "Grape Juice",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "شراب الكركديه",
+      "name_en": "Hibiscus Sherbet",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "عصير الجوافة بالحليب",
+      "name_en": "Milky Guava Juice",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "عصير جوز الهند",
+      "name_en": "Coconut Juice",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "عصير موز",
+      "name_en": "Banana Smoothie",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "عصير خوخ",
+      "name_en": "Peach Juice",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "عصير البرتقال بالجزر",
+      "name_en": "Orange Carrot Juice",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "شاي أخضر بالنعناع",
+      "name_en": "Green Mint Tea",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "عصير تفاح",
+      "name_en": "Apple Juice",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "مشروب الزنجبيل",
+      "name_en": "Ginger Drink",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "قهوة مطحونة بالهيل",
+      "name_en": "Cardamom Ground Coffee",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "بيض مسلوق بالملح",
+      "name_en": "Salted Boiled Eggs",
+      "category": "dairy_eggs_fruits",
+      "mealType": "breakfast",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "أومليت",
+      "name_en": "Plain Omelette",
+      "category": "dairy_eggs_fruits",
+      "mealType": "breakfast",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "بيض مخفوق بالطماطم",
+      "name_en": "Scrambled Eggs with Tomato",
+      "category": "dairy_eggs_fruits",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "موز مقلي",
+      "name_en": "Fried Banana",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مناقيش زعتر",
+      "name_en": "Zaatar Manakish",
+      "category": "breads_pastries",
+      "mealType": "breakfast",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "فلافل",
+      "name_en": "Falafel",
+      "category": "breakfast",
+      "mealType": "breakfast",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "خبز بلدي",
+      "name_en": "Local Village Bread",
+      "category": "breads_pastries",
+      "mealType": "breakfast",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "رغيف السمسم",
+      "name_en": "Sesame Loaf",
+      "category": "breads_pastries",
+      "mealType": "breakfast",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مكبوس أوراك",
+      "name_en": "Chicken Drumstick Machboos",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "مضغوط كنعد",
+      "name_en": "Kanad Madghoot",
+      "category": "rice_dishes",
+      "mealType": "lunch",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "لحم بعجين",
+      "name_en": "Lahmacun",
+      "category": "main_dishes",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "مخلل ليمون",
+      "name_en": "Pickled Lemon",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "مخلل زيتون",
+      "name_en": "Pickled Olives",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "سلطة الفاصولياء",
+      "name_en": "Bean Salad",
+      "category": "salads_sides",
+      "mealType": "lunch",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "ميلك شيك الأفوكادو",
+      "name_en": "Avocado Milkshake",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "شاي القرنفل",
+      "name_en": "Clove Tea",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "pan_kuwaiti"
+    },
+    {
+      "name_ar": "رطب سكري",
+      "name_en": "Sukari Rutab",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "زعتر بزيت الزيتون",
+      "name_en": "Zaatar with Olive Oil",
+      "category": "breakfast",
+      "mealType": "breakfast",
+      "region": "gulf_shared"
+    },
+    {
+      "name_ar": "سحلب",
+      "name_en": "Salep Drink",
+      "category": "dairy_eggs_fruits",
+      "mealType": "snacks",
+      "region": "gulf_shared"
+    }
+  ],
+  "byCategory": {
+    "breads_pastries": 19,
+    "breakfast": 11,
+    "soups": 8,
+    "salads_sides": 23,
+    "rice_dishes": 44,
+    "main_dishes": 41,
+    "grilled_meats": 18,
+    "fish_seafood": 24,
+    "sweets_desserts": 24,
+    "dairy_eggs_fruits": 38
+  }
+}
