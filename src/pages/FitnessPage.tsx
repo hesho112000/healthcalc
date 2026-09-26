@@ -75,7 +75,6 @@ const FitnessPage: React.FC = () => {
     const w = +form.weightKg;
     if (!age || !h || !w) return null;
     const bmi = Math.round(bmiValue(h, w) * 10) / 10;
-    console.log('[DEBUG]', { weight: w, height: h, age, gender: form.gender, bmi });
     const bmr = Math.round(bmrValue(form.gender, age, h, w));
     const maintain = Math.round(bmr * (ACT[form.activityLevel] || 1.55));
     const lose = Math.max(1200, maintain - 500);

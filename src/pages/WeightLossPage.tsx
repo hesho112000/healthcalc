@@ -355,6 +355,19 @@ const TUNISIAN_REGION_META: { id: string; emoji: string; en: string; ar: string 
   { id: 'bizerte', emoji: '⚓', en: 'Bizerte', ar: 'بنزرت' },
 ];
 
+const ALGERIAN_REGION_META: { id: string; emoji: string; en: string; ar: string }[] = [
+  { id: 'all', emoji: '🇩🇿', en: 'All Algerian', ar: 'كل المطبخ الجزائري' },
+  { id: 'pan_algerian', emoji: '🥘', en: 'General Algerian', ar: 'عام (كل الجزائر)' },
+  { id: 'maghreb_shared', emoji: '🌊', en: 'Maghreb Shared', ar: 'مغاربي مشترك' },
+  { id: 'alger', emoji: '🏛️', en: 'Algiers', ar: 'الجزائر العاصمة' },
+  { id: 'oran', emoji: '🛥️', en: 'Oran', ar: 'وهران' },
+  { id: 'constantine', emoji: '🏰', en: 'Constantine', ar: 'قسنطينة' },
+  { id: 'annaba', emoji: '⚓', en: 'Annaba', ar: 'عنابة' },
+  { id: 'tlemcen', emoji: '🏺', en: 'Tlemcen', ar: 'تلمسان' },
+  { id: 'bejaia', emoji: '⛰️', en: 'Bejaia', ar: 'بجاية' },
+  { id: 'kabylie', emoji: '🌄', en: 'Kabylie', ar: 'القبائل' },
+];
+
 const MEAL_LABELS: Record<string, string> = {
   breakfast: 'فطار 🍳',
   lunch: 'غدا 🍲',
@@ -1843,7 +1856,7 @@ const WeightLossPage: React.FC = () => {
               <div className="space-y-2">
                 {(() => {
                   const picked = kitchens.find((x) => x.id === cuisineSel);
-                  const hasRegions = !!picked && (picked.id === 'kuwaiti' || picked.id === 'qatar' || picked.id === 'bahraini' || picked.id === 'omani' || picked.id === 'moroccan' || picked.id === 'egyptian' || picked.id === 'tunisian' || (Array.isArray(picked.regions) && picked.regions.length > 0));
+                  const hasRegions = !!picked && (picked.id === 'kuwaiti' || picked.id === 'qatar' || picked.id === 'bahraini' || picked.id === 'omani' || picked.id === 'moroccan' || picked.id === 'egyptian' || picked.id === 'tunisian' || picked.id === 'algerian' || (Array.isArray(picked.regions) && picked.regions.length > 0));
                   if (!hasRegions) return null;
                   return (
                     <div className="rounded-[20px] border-2 border-[#EFEBE4] bg-white p-4">
@@ -1851,7 +1864,7 @@ const WeightLossPage: React.FC = () => {
                         {language === 'ar' ? '🏷️ اختر المنطقة (تلقائي: عام)' : '🏷️ Choose a region (default: General)'}
                       </div>
                       <div className="mt-2.5 flex flex-wrap gap-2">
-                        {(picked.id === 'emirati' ? EMIRATI_REGION_META : picked.id === 'saudi' ? SAUDI_REGION_META : picked.id === 'kuwaiti' ? KUWAITI_REGION_META : picked.id === 'qatar' ? QATARI_REGION_META : picked.id === 'bahraini' ? BAHRAINI_REGION_META : picked.id === 'omani' ? OMANI_REGION_META : picked.id === 'moroccan' ? MOROCCAN_REGION_META : picked.id === 'egyptian' ? EGYPTIAN_REGION_META : picked.id === 'tunisian' ? TUNISIAN_REGION_META : []).map((r) => {
+                        {(picked.id === 'emirati' ? EMIRATI_REGION_META : picked.id === 'saudi' ? SAUDI_REGION_META : picked.id === 'kuwaiti' ? KUWAITI_REGION_META : picked.id === 'qatar' ? QATARI_REGION_META : picked.id === 'bahraini' ? BAHRAINI_REGION_META : picked.id === 'omani' ? OMANI_REGION_META : picked.id === 'moroccan' ? MOROCCAN_REGION_META : picked.id === 'egyptian' ? EGYPTIAN_REGION_META : picked.id === 'tunisian' ? TUNISIAN_REGION_META : picked.id === 'algerian' ? ALGERIAN_REGION_META : []).map((r) => {
                           const on = kitchenRegion === r.id;
                           return (
                             <button
@@ -2147,7 +2160,6 @@ const WeightLossPage: React.FC = () => {
                   const computed = (day?.meals ?? []).reduce((s, m) => s + m.dishes.reduce((x, d) => x + d.calories, 0), 0);
                   const target = numbers!.targetCal;
                   const pct = target ? Math.round(((computed - target) / target) * 100) : 0;
-                  console.log('[Day Total]', { day: selectedPlanDay, computed, displayed: target });
                   const abs = Math.abs(pct);
                   if (abs > 20) return 'bg-red-50 text-red-600';
                   if (abs > 10) return 'bg-[#FFF8E7] text-[#B8860B]';
