@@ -408,11 +408,11 @@
           "confidence_color": "yellow"
         },
         {
-          "name": "أرز محصن لأغذية الأطفال",
-          "nameEn": "Fortified Baby Rice Cereal",
-          "nameFr": "Bouillie de riz infantile enrichie",
-          "nameEs": "Cereal de arroz fortificado para bebés",
-          "nameDe": "Angereicherte Babynahrung aus Reis",
+          "name": "رقائق أرز محمّصة محصّنة",
+          "nameEn": "Fortified Toasted Rice Flakes",
+          "nameFr": "Flocons de riz grillés enrichis",
+          "nameEs": "Copos de arroz tostados enriquecidos",
+          "nameDe": "Angereicherte geröstete Reisflocken",
           "cal_100": 420,
           "p": 16.2,
           "c": 66.4,
@@ -573,11 +573,11 @@
           "confidence_color": "yellow"
         },
         {
-          "name": "قمح محصن لأغذية الأطفال",
-          "nameEn": "Fortified Wheat Baby Cereal",
-          "nameFr": "Bouillie de blé infantile enrichie",
-          "nameEs": "Cereal de trigo fortificado para bebés",
-          "nameDe": "Angereicherte Babynahrung aus Weizen",
+          "name": "رقائق قمح محمّصة محصّنة",
+          "nameEn": "Fortified Toasted Wheat Flakes",
+          "nameFr": "Flocons de blé grillés enrichis",
+          "nameEs": "Copos de trigo tostados enriquecidos",
+          "nameDe": "Angereicherte geröstete Weizenflocken",
           "cal_100": 413,
           "p": 17.0,
           "c": 63.8,
@@ -15575,61 +15575,7 @@
           "confidence_label": "85% - تقديري",
           "confidence_color": "yellow"
         },
-        {
-          "name": "لبن الأم",
-          "nameEn": "Human Milk",
-          "nameFr": "Lait maternel",
-          "nameEs": "Leche materna",
-          "nameDe": "Muttermilch",
-          "cal_100": 70,
-          "p": 1.2,
-          "c": 7.5,
-          "f": 3.9,
-          "fiber": 0,
-          "sugar": 4,
-          "sodium": 17.0,
-          "sat_fat": 1.56,
-          "serv_g": 100,
-          "cal_serv": 70,
-          "serving_unit": "كوب",
-          "serving_description": "كوب 100مل",
-          "serving_options": [
-            {
-              "label": "نص",
-              "label_en": "Half",
-              "multiplier": 0.5,
-              "g": 50,
-              "kcal": 35
-            },
-            {
-              "label": "كامل",
-              "label_en": "Full",
-              "multiplier": 1,
-              "g": 100,
-              "kcal": 70
-            },
-            {
-              "label": "مضاعف",
-              "label_en": "Double",
-              "multiplier": 2,
-              "g": 200,
-              "kcal": 140
-            }
-          ],
-          "healthy": true,
-          "is_fried": false,
-          "is_sweet": false,
-          "mealType": "breakfast",
-          "mealTypes": [
-            "breakfast",
-            "snacks"
-          ],
-          "source": "المعهد القومي للتغذية المصري",
-          "notes": "",
-          "confidence": 85,
-          "confidence_label": "85% - تقديري",
-          "confidence_color": "yellow"
-        },
+        
         {
           "name": "لبن شوكولاتة",
           "nameEn": "Chocolate Milk",
