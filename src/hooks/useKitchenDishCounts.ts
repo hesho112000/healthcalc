@@ -43,6 +43,14 @@ export function useKitchenDishCounts(): Record<string, number> {
             (r.region === 'levantine_shared' || r.region === 'mena_shared') &&
             (r.source ?? '').startsWith('levant-syria-'),
         ).length;
+        // Jordan's card mirrors Lebanon/Syria: credits its own shared family rows,
+        // identified by the levant-jordan- source prefix so Lebanese/Syrian ones
+        // are never double-counted.
+        out.jordanian += rows.filter(
+          (r) =>
+            (r.region === 'levantine_shared' || r.region === 'mena_shared') &&
+            (r.source ?? '').startsWith('levant-jordan-'),
+        ).length;
         if (!cancelled) setCounts(out);
       } catch {
         if (!cancelled) setCounts({});
