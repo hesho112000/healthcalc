@@ -36,6 +36,7 @@ const TOKEN_REGIONS: Record<string, string> = {
   هندي: 'pan_indian', هنديه: 'pan_indian',
   تركي: 'global', تركيه: 'global',
   باكستاني: 'pan_pakistani', باكستانيه: 'pan_pakistani',
+  اندونيسي: 'pan_indonesian', اندونيسيه: 'pan_indonesian',
 };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -105,6 +106,9 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
   // Pakistan's card counts its own region-tagged rows; asian_shared rows authored with
   // the asia-pakistan-2026 prefix are credited in useKitchenDishCounts (set is region-only).
   pakistani: new Set(['pan_pakistani', 'punjab', 'sindh', 'kpk', 'balochistan', 'gilgit_baltistan']),
+  // Indonesia's card counts its own region-tagged rows; asian_shared rows authored with
+  // the asia-indonesia-2026 prefix are credited in useKitchenDishCounts (set is region-only).
+  indonesian: new Set(['pan_indonesian', 'java', 'sumatra', 'bali', 'sulawesi']),
 };
 
 // Region family a given kitchen may draw from.
@@ -146,6 +150,12 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
   // South Asian pool. Names carry باكستاني which now maps to 'pan_pakistani'.
   pakistani: new Set([
     'pan_pakistani', 'asian_shared', 'punjab', 'sindh', 'kpk', 'balochistan', 'gilgit_baltistan',
+  ]),
+  // Indonesian family mirrors the Indian/Pakistani pattern: own pan region + regional
+  // anchors across the archipelago + the shared South-East Asian pool. Names carry
+  // إندونيسي which now maps to 'pan_indonesian'.
+  indonesian: new Set([
+    'pan_indonesian', 'asian_shared', 'java', 'sumatra', 'bali', 'sulawesi',
   ]),
 };
 
