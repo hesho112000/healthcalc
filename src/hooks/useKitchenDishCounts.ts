@@ -83,6 +83,11 @@ export function useKitchenDishCounts(): Record<string, number> {
         out.nigerian += rows.filter(
           (r) => r.region === 'african_shared' && (r.source ?? '').startsWith('africa-nigeria-2026'),
         ).length;
+        // Ethiopia's card mirrors Nigeria: credits its own African-shared pool rows,
+        // identified by the africa-ethiopia-2026 source prefix.
+        out.ethiopian += rows.filter(
+          (r) => r.region === 'african_shared' && (r.source ?? '').startsWith('africa-ethiopia-2026'),
+        ).length;
         if (!cancelled) setCounts(out);
       } catch {
         if (!cancelled) setCounts({});

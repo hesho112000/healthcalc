@@ -39,6 +39,7 @@ const TOKEN_REGIONS: Record<string, string> = {
   اندونيسي: 'pan_indonesian', اندونيسيه: 'pan_indonesian',
   ماليزي: 'pan_malaysian', ماليزيه: 'pan_malaysian',
   نيجيري: 'pan_nigerian', نيجيريه: 'pan_nigerian',
+  اثيوبي: 'pan_ethiopian', اثيوبيه: 'pan_ethiopian',
 };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -117,6 +118,9 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
   // Nigeria's card counts its own region-tagged rows; african_shared rows authored with
   // the africa-nigeria-2026 prefix are credited in useKitchenDishCounts (set is region-only).
   nigerian: new Set(['pan_nigerian', 'yoruba', 'igbo', 'hausa', 'efik_calabar', 'niger_delta']),
+  // Ethiopia's card counts its own region-tagged rows; african_shared rows authored with
+  // the africa-ethiopia-2026 prefix are credited in useKitchenDishCounts (set is region-only).
+  ethiopian: new Set(['pan_ethiopian', 'amhara', 'oromia', 'tigray', 'addis_ababa', 'afar', 'sidama']),
 };
 
 // Region family a given kitchen may draw from.
@@ -175,6 +179,12 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
   // carry نيجيري which now maps to 'pan_nigerian'.
   nigerian: new Set([
     'pan_nigerian', 'african_shared', 'yoruba', 'igbo', 'hausa', 'efik_calabar', 'niger_delta',
+  ]),
+  // Ethiopian family mirrors Nigeria: own pan region + regional anchors (Amhara, Oromia,
+  // Tigray, Addis Ababa, Afar, Sidama) + the shared East African pool. Names carry إثيوبي
+  // (normalized اثيوبي) which now maps to 'pan_ethiopian'.
+  ethiopian: new Set([
+    'pan_ethiopian', 'african_shared', 'amhara', 'oromia', 'tigray', 'addis_ababa', 'afar', 'sidama',
   ]),
 };
 
