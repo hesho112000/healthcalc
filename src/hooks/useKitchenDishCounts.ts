@@ -73,6 +73,11 @@ export function useKitchenDishCounts(): Record<string, number> {
         out.indonesian += rows.filter(
           (r) => r.region === 'asian_shared' && (r.source ?? '').startsWith('asia-indonesia-2026'),
         ).length;
+        // Malaysia's card mirrors Indonesia: credits its own Asian-shared pool rows,
+        // identified by the asia-malaysia-2026 source prefix.
+        out.malaysian += rows.filter(
+          (r) => r.region === 'asian_shared' && (r.source ?? '').startsWith('asia-malaysia-2026'),
+        ).length;
         if (!cancelled) setCounts(out);
       } catch {
         if (!cancelled) setCounts({});

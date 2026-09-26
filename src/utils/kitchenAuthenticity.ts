@@ -37,6 +37,7 @@ const TOKEN_REGIONS: Record<string, string> = {
   تركي: 'global', تركيه: 'global',
   باكستاني: 'pan_pakistani', باكستانيه: 'pan_pakistani',
   اندونيسي: 'pan_indonesian', اندونيسيه: 'pan_indonesian',
+  ماليزي: 'pan_malaysian', ماليزيه: 'pan_malaysian',
 };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -109,6 +110,9 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
   // Indonesia's card counts its own region-tagged rows; asian_shared rows authored with
   // the asia-indonesia-2026 prefix are credited in useKitchenDishCounts (set is region-only).
   indonesian: new Set(['pan_indonesian', 'java', 'sumatra', 'bali', 'sulawesi']),
+  // Malaysia's card counts its own region-tagged rows; asian_shared rows authored with
+  // the asia-malaysia-2026 prefix are credited in useKitchenDishCounts (set is region-only).
+  malaysian: new Set(['pan_malaysian', 'peninsular_malaysia', 'borneo']),
 };
 
 // Region family a given kitchen may draw from.
@@ -156,6 +160,11 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
   // إندونيسي which now maps to 'pan_indonesian'.
   indonesian: new Set([
     'pan_indonesian', 'asian_shared', 'java', 'sumatra', 'bali', 'sulawesi',
+  ]),
+  // Malaysian family mirrors Indonesia: own pan region + Peninsular/Borneo anchors
+  // + the shared South-East Asian pool. Names carry ماليزي which maps to 'pan_malaysian'.
+  malaysian: new Set([
+    'pan_malaysian', 'asian_shared', 'peninsular_malaysia', 'borneo',
   ]),
 };
 
