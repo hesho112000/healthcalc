@@ -381,6 +381,25 @@ const LIBYAN_REGION_META: { id: string; emoji: string; en: string; ar: string }[
   { id: 'kufra', emoji: '🌴', en: 'Kufra', ar: 'الكفرة' },
 ];
 
+const SYRIAN_REGION_META: { id: string; emoji: string; en: string; ar: string }[] = [
+  { id: 'all', emoji: '🇸🇾', en: 'All Syrian', ar: 'كل المطبخ السوري' },
+  { id: 'pan_syrian', emoji: '🥘', en: 'General Syrian', ar: 'عام (كل سوريا)' },
+  { id: 'levantine_shared', emoji: '🕊️', en: 'Levant Shared', ar: 'شامي مشترك' },
+  { id: 'mena_shared', emoji: '🌍', en: 'MENA Shared', ar: 'شرق أوسطي مشترك' },
+  { id: 'damascus', emoji: '🕌', en: 'Damascus', ar: 'دمشق' },
+  { id: 'aleppo', emoji: '🏛️', en: 'Aleppo', ar: 'حلب' },
+  { id: 'homs', emoji: '🏙️', en: 'Homs', ar: 'حمص' },
+  { id: 'hama', emoji: '🌊', en: 'Hama', ar: 'حماة' },
+  { id: 'lataqia', emoji: '⚓', en: 'Latakia', ar: 'اللاذقية' },
+  { id: 'tartus', emoji: '🏖️', en: 'Tartus', ar: 'طرطوس' },
+  { id: 'dayr_ez_zawr', emoji: '🏜️', en: 'Deir ez-Zor', ar: 'دير الزور' },
+  { id: 'hasakah', emoji: '🌾', en: 'Hasakah', ar: 'الحسكة' },
+  { id: 'swaida', emoji: '🗻', en: 'Sweida', ar: 'السويداء' },
+  { id: 'daraa', emoji: '🌿', en: 'Daraa', ar: 'درعا' },
+  { id: 'idlib', emoji: '🕊️', en: 'Idlib', ar: 'إدلب' },
+  { id: 'raqqa', emoji: '🏺', en: 'Raqqa', ar: 'الرقة' },
+];
+
 const LEBANESE_REGION_META: { id: string; emoji: string; en: string; ar: string }[] = [
   { id: 'all', emoji: '🇱🇧', en: 'All Lebanese', ar: 'كل المطبخ اللبناني' },
   { id: 'pan_lebanese', emoji: '🥘', en: 'General Lebanese', ar: 'عام (كل لبنان)' },
@@ -1883,7 +1902,7 @@ const WeightLossPage: React.FC = () => {
               <div className="space-y-2">
                 {(() => {
                   const picked = kitchens.find((x) => x.id === cuisineSel);
-                  const hasRegions = !!picked && (picked.id === 'kuwaiti' || picked.id === 'qatar' || picked.id === 'bahraini' || picked.id === 'omani' || picked.id === 'moroccan' || picked.id === 'egyptian' || picked.id === 'tunisian' || picked.id === 'algerian' || picked.id === 'libyan' || picked.id === 'lebanese' || (Array.isArray(picked.regions) && picked.regions.length > 0));
+                  const hasRegions = !!picked && (picked.id === 'kuwaiti' || picked.id === 'qatar' || picked.id === 'bahraini' || picked.id === 'omani' || picked.id === 'moroccan' || picked.id === 'egyptian' || picked.id === 'tunisian' || picked.id === 'algerian' || picked.id === 'libyan' || picked.id === 'lebanese' || picked.id === 'syrian' || (Array.isArray(picked.regions) && picked.regions.length > 0));
                   if (!hasRegions) return null;
                   return (
                     <div className="rounded-[20px] border-2 border-[#EFEBE4] bg-white p-4">
@@ -1891,7 +1910,7 @@ const WeightLossPage: React.FC = () => {
                         {language === 'ar' ? '🏷️ اختر المنطقة (تلقائي: عام)' : '🏷️ Choose a region (default: General)'}
                       </div>
                       <div className="mt-2.5 flex flex-wrap gap-2">
-                        {(picked.id === 'emirati' ? EMIRATI_REGION_META : picked.id === 'saudi' ? SAUDI_REGION_META : picked.id === 'kuwaiti' ? KUWAITI_REGION_META : picked.id === 'qatar' ? QATARI_REGION_META : picked.id === 'bahraini' ? BAHRAINI_REGION_META : picked.id === 'omani' ? OMANI_REGION_META : picked.id === 'moroccan' ? MOROCCAN_REGION_META : picked.id === 'egyptian' ? EGYPTIAN_REGION_META : picked.id === 'tunisian' ? TUNISIAN_REGION_META : picked.id === 'algerian' ? ALGERIAN_REGION_META : picked.id === 'libyan' ? LIBYAN_REGION_META : picked.id === 'lebanese' ? LEBANESE_REGION_META : []).map((r) => {
+                        {(picked.id === 'emirati' ? EMIRATI_REGION_META : picked.id === 'saudi' ? SAUDI_REGION_META : picked.id === 'kuwaiti' ? KUWAITI_REGION_META : picked.id === 'qatar' ? QATARI_REGION_META : picked.id === 'bahraini' ? BAHRAINI_REGION_META : picked.id === 'omani' ? OMANI_REGION_META : picked.id === 'moroccan' ? MOROCCAN_REGION_META : picked.id === 'egyptian' ? EGYPTIAN_REGION_META : picked.id === 'tunisian' ? TUNISIAN_REGION_META : picked.id === 'algerian' ? ALGERIAN_REGION_META : picked.id === 'libyan' ? LIBYAN_REGION_META : picked.id === 'lebanese' ? LEBANESE_REGION_META : picked.id === 'syrian' ? SYRIAN_REGION_META : []).map((r) => {
                           const on = kitchenRegion === r.id;
                           return (
                             <button

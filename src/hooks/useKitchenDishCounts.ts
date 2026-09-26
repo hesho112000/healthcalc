@@ -36,6 +36,13 @@ export function useKitchenDishCounts(): Record<string, number> {
             (r.region === 'levantine_shared' || r.region === 'mena_shared') &&
             (r.source ?? '').startsWith('levant-2026'),
         ).length;
+        // Syria's card mirrors Lebanon: credits its own shared family rows, identified
+        // by the levant-syria-2026 source prefix so Lebanese ones never double-count.
+        out.syrian += rows.filter(
+          (r) =>
+            (r.region === 'levantine_shared' || r.region === 'mena_shared') &&
+            (r.source ?? '').startsWith('levant-syria-'),
+        ).length;
         if (!cancelled) setCounts(out);
       } catch {
         if (!cancelled) setCounts({});
