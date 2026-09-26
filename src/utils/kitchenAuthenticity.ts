@@ -38,6 +38,7 @@ const TOKEN_REGIONS: Record<string, string> = {
   باكستاني: 'pan_pakistani', باكستانيه: 'pan_pakistani',
   اندونيسي: 'pan_indonesian', اندونيسيه: 'pan_indonesian',
   ماليزي: 'pan_malaysian', ماليزيه: 'pan_malaysian',
+  نيجيري: 'pan_nigerian', نيجيريه: 'pan_nigerian',
 };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -113,6 +114,9 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
   // Malaysia's card counts its own region-tagged rows; asian_shared rows authored with
   // the asia-malaysia-2026 prefix are credited in useKitchenDishCounts (set is region-only).
   malaysian: new Set(['pan_malaysian', 'peninsular_malaysia', 'borneo']),
+  // Nigeria's card counts its own region-tagged rows; african_shared rows authored with
+  // the africa-nigeria-2026 prefix are credited in useKitchenDishCounts (set is region-only).
+  nigerian: new Set(['pan_nigerian', 'yoruba', 'igbo', 'hausa', 'efik_calabar', 'niger_delta']),
 };
 
 // Region family a given kitchen may draw from.
@@ -165,6 +169,12 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
   // + the shared South-East Asian pool. Names carry ماليزي which maps to 'pan_malaysian'.
   malaysian: new Set([
     'pan_malaysian', 'asian_shared', 'peninsular_malaysia', 'borneo',
+  ]),
+  // Nigerian family mirrors the South Asian pattern: own pan region + regional anchors
+  // (Hausa/Yoruba/Igbo/Efik-Calabar/Niger-Delta) + the shared West African pool. Names
+  // carry نيجيري which now maps to 'pan_nigerian'.
+  nigerian: new Set([
+    'pan_nigerian', 'african_shared', 'yoruba', 'igbo', 'hausa', 'efik_calabar', 'niger_delta',
   ]),
 };
 

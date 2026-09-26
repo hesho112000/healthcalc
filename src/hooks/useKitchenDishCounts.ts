@@ -78,6 +78,11 @@ export function useKitchenDishCounts(): Record<string, number> {
         out.malaysian += rows.filter(
           (r) => r.region === 'asian_shared' && (r.source ?? '').startsWith('asia-malaysia-2026'),
         ).length;
+        // Nigeria's card mirrors the South Asian cards: credits its own African-shared
+        // pool rows, identified by the africa-nigeria-2026 source prefix.
+        out.nigerian += rows.filter(
+          (r) => r.region === 'african_shared' && (r.source ?? '').startsWith('africa-nigeria-2026'),
+        ).length;
         if (!cancelled) setCounts(out);
       } catch {
         if (!cancelled) setCounts({});
