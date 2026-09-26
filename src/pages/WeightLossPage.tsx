@@ -11,7 +11,7 @@ import { ExerciseList } from '../components/wizard/ExerciseList';
 import AddDishModal from '../components/wizard/AddDishModal';
 import { useAuth } from '../context/AuthContext';
 import { savePlan, saveProfile } from '../services/supabaseData';
-import { useDishes } from '../hooks/useDishes';
+import { useKitchenDishes } from '../hooks/useKitchenDishes';
 import { useKitchenDishCounts } from '../hooks/useKitchenDishCounts';
 import { generateWeeklyPlan } from '../utils/mealPlanGenerator';
 import type { PlanDay, PlanDish, PlanMealType } from '../utils/mealPlanGenerator';
@@ -819,11 +819,11 @@ const WeightLossPage: React.FC = () => {
     [age, height, weight, targetWeight, timeline],
   );
 
-  const { kitchen: saudiKitchen, loading: saudiLoading, error: saudiError } = useDishes();
+  const { kitchens: supabaseKitchens } = useKitchenDishes();
   const kitchenCounts = useKitchenDishCounts();
   const kitchens = useMemo<KitchenInfo[]>(
-    () => (saudiKitchen ? [saudiKitchen, ...kitchensRegistry.filter((k) => k.id !== 'saudi')] : kitchensRegistry),
-    [saudiKitchen],
+    () => kitchensRegistry.map((k) => supabaseKitchens[k.id] ?? k),
+    [supabaseKitchens],
   );
 
   const selectedKitchen = useMemo<KitchenInfo>(
