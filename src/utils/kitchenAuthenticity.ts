@@ -25,6 +25,7 @@ const TOKEN_REGIONS: Record<string, string> = {
   مصري: 'pan_egyptian', مصريه: 'pan_egyptian',
   تونسي: 'pan_tunisian', تونسيه: 'pan_tunisian',
   جزائري: 'pan_algerian', جزائريه: 'pan_algerian',
+  ليبي: 'pan_libyan', ليبيه: 'pan_libyan',
   لبناني: 'mena_shared', لبنانيه: 'mena_shared',
   سوري: 'mena_shared', سوريه: 'mena_shared',
   شامي: 'mena_shared', شاميه: 'mena_shared',
@@ -81,6 +82,7 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
   egyptian: new Set(['pan_egyptian', 'alexandria', 'delta', 'upper_egypt', 'sinai', 'nubia']),
   tunisian: new Set(['pan_tunisian', 'tunis', 'sfax', 'sousse', 'nabeul', 'gabes', 'medenine', 'bizerte']),
   algerian: new Set(['pan_algerian', 'alger', 'oran', 'constantine', 'annaba', 'tlemcen', 'bejaia', 'kabylie']),
+  libyan: new Set(['pan_libyan', 'tripoli', 'benghazi', 'misrata', 'zwara', 'sabratha', 'ghadames', 'kufra']),
 };
 
 // Region family a given kitchen may draw from.
@@ -95,6 +97,7 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
   egyptian: new Set(['pan_egyptian', 'mena_shared', 'cairo', 'alexandria', 'delta', 'upper_egypt', 'sinai', 'nubia']),
   tunisian: new Set(['pan_tunisian', 'maghreb_shared', 'tunis', 'sfax', 'sousse', 'nabeul', 'gabes', 'medenine', 'bizerte']),
   algerian: new Set(['pan_algerian', 'maghreb_shared', 'alger', 'oran', 'constantine', 'annaba', 'tlemcen', 'bejaia', 'kabylie']),
+  libyan: new Set(['pan_libyan', 'maghreb_shared', 'tripoli', 'benghazi', 'misrata', 'zwara', 'sabratha', 'ghadames', 'kufra']),
 };
 
 // True when a dish may be served in the given kitchen's plans.
