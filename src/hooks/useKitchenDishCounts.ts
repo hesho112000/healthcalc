@@ -13,23 +13,29 @@ export function useKitchenDishCounts(): Record<string, number> {
     let cancelled = false;
     (async () => {
       const out: Record<string, number> = {};
-      const regions: (string | null)[] = [];
+      const rows: { region: string | null; source: string | null }[] = [];
       const PAGE = 1000;
       try {
         for (let from = 0; ; from += PAGE) {
           const { data, error } = await supabaseClient!
             .from('dishes')
-            .select('region')
+            .select('region, source')
             .order('id', { ascending: true })
             .range(from, from + PAGE - 1);
           if (error) throw error;
-          const rows = (data ?? []) as { region: string | null }[];
-          regions.push(...rows.map((r) => r.region));
-          if (rows.length < PAGE) break;
+          rows.push(...((data ?? []) as { region: string | null; source: string | null }[]));
+          if ((data ?? []).length < PAGE) break;
         }
         for (const [id, set] of Object.entries(KITCHEN_COUNT_REGIONS)) {
-          out[id] = regions.reduce((n, region) => n + (set.has(region) ? 1 : 0), 0);
+          out[id] = rows.reduce((n, r) => n + (set.has(r.region) ? 1 : 0), 0);
         }
+        // Lebanon's card credits its shared Levantine/MENA family rows — only the
+        // ones authored with the levant-2026 source prefix (own set is region-only).
+        out.lebanese += rows.filter(
+          (r) =>
+            (r.region === 'levantine_shared' || r.region === 'mena_shared') &&
+            (r.source ?? '').startsWith('levant-2026'),
+        ).length;
         if (!cancelled) setCounts(out);
       } catch {
         if (!cancelled) setCounts({});

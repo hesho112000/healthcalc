@@ -856,10 +856,10 @@ const WeightLossPage: React.FC = () => {
     for (const r of REGIONS) {
       out[r.id] = r.ids
         .map((id) => kitchens.find((k) => k.id === id))
-        .filter((k): k is KitchenInfo => !!k && k.dishes.length > 0);
+        .filter((k): k is KitchenInfo => !!k && (k.dishes.length > 0 || (kitchenCounts[k.id] ?? 0) > 0));
     }
     return out;
-  }, [kitchens]);
+  }, [kitchens, kitchenCounts]);
   const browseKitchens = useMemo<KitchenInfo[]>(() => {
     if (cuisineSel) {
       const k = kitchens.find((x) => x.id === cuisineSel);
@@ -1824,7 +1824,7 @@ const WeightLossPage: React.FC = () => {
                       </div>
                     ) : null;
                   })()}
-                  <div className="mt-3 grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  <div className="mt-3 flex flex-wrap justify-center gap-3">
                     {regionKitchens[regionSel].map((k) => {
                       const on = selectedKitchenId === k.id;
                       return (
@@ -1834,7 +1834,7 @@ const WeightLossPage: React.FC = () => {
                             chooseKitchen(k);
                             setCuisineSel(k.id);
                           }}
-                          className={`rounded-[20px] border-2 p-4 flex flex-col items-center text-center cursor-pointer min-w-0 transition-all active:scale-95 ${on ? 'border-[#D4AF37] bg-[#FFFBEF] shadow-[0_0_0_4px_rgba(212,175,55,0.15)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
+                          className={`w-[calc(50%-6px)] sm:w-[calc(33.333%-8px)] rounded-[20px] border-2 p-4 flex flex-col items-center text-center cursor-pointer min-w-0 transition-all active:scale-95 ${on ? 'border-[#D4AF37] bg-[#FFFBEF] shadow-[0_0_0_4px_rgba(212,175,55,0.15)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
                         >
                           <span className="text-[34px] leading-none">{k.flag}</span>
                           <span className={`mt-2 text-[14px] font-extrabold leading-none truncate max-w-full text-[#0F4C3A]`}>{k.country}</span>

@@ -71,6 +71,9 @@ export function hasForeignNationalityFor(kitchenId: string, name: string | null 
 // Regions counted as a kitchen's OWN dishes for the cuisine-card counts.
 // Shared pools (gulf_shared/mena_shared/maghreb_shared) are excluded; the
 // unlabeled Saudi legacy rows (region = null) are attributed to saudi.
+// Lebanon's card additionally credits its shared Levantine/MENA family rows in
+// useKitchenDishCounts (only ones authored with the levant-2026 source prefix),
+// so the live card count shows all 300 rows migrated for LB.
 export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> = {
   saudi: new Set(['pan_saudi', 'hijazi', 'najdi', 'janubi', 'sharqi', null]),
   emirati: new Set(['pan_emirati', 'ras_al_khaimah']),
