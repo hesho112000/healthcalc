@@ -928,7 +928,6 @@ const WeightLossPage: React.FC = () => {
     const diet = getDiet(goal, dietId);
     const wk = WORKOUTS.find((x) => x.id === workout) ?? WORKOUTS[0];
     const bmi = +(w / Math.pow(h / 100, 2)).toFixed(1);
-    console.log('[DEBUG]', { weight: w, height: h, age: a, gender: sex, bmi });
     const bmr = sex === 'male' ? 10 * w + 6.25 * h - 5 * a + 5 : 10 * w + 6.25 * h - 5 * a - 161;
     const tdeeBase = bmr * ACTIVITY[step2Data.activityLevel].factor;
     const exBurnMid = EXERCISE_TYPES.filter((e) => exerciseTypes.includes(e.id)).map((e) => {

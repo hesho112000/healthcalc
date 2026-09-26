@@ -15,7 +15,7 @@ const App: React.FC = () => {
       <AdminProvider>
         <AuthProvider>
           <SubscriptionProvider>
-            <Router basename="/healthcalc">
+            <Router basename="/healthcalc" future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
             <div className="min-h-screen flex flex-col">
               <Header />
               <main className="flex-1">
