@@ -188,6 +188,16 @@ function toFoodItem(d: KitchenDish): FoodItem {
   };
 }
 
+// True for genuinely calorie-free drinks (plain water / black coffee / unsweetened tea).
+function isZeroCalBeverage(d: KitchenDish): boolean {
+  const n = d.name;
+  if (/^ماء\s*$|^water$/i.test(n)) return true;
+  const isTea = /شاي|\btea\b/i.test(n);
+  const isCoffee = /قهوة|قهوه|\bcoffee\b/i.test(n);
+  if (!isTea && !isCoffee) return false;
+  return !/حليب|لبن|milk|مكثف|سكر|sugar|عسل|honey|قشطة|cream|كريمة|condensed/i.test(n);
+}
+
 function mealKeysOf(d: KitchenDish): PlanMealType[] {
   if (Array.isArray(d.mealTypes) && d.mealTypes.length) {
     const ks = d.mealTypes.filter((m): m is PlanMealType => (MEAL_ORDER as readonly string[]).includes(m));
@@ -238,6 +248,7 @@ function seededShuffle<T>(arr: readonly T[], seed: number): T[] {
 function buildPool(dishes: KitchenDish[], conditions: SuitabilityCondition[], meal: PlanMealType, regionPriority?: Set<string>): PoolItem[] {
   const out: PoolItem[] = [];
   for (const dish of dishes) {
+    if (dish.cal_serv <= 0 && dish.cal_100 <= 0 && !isZeroCalBeverage(dish)) continue;
     const keys = mealKeysOf(dish);
     if (!keys.includes(meal)) continue;
     if (keys.some((k) => k !== meal)) {
@@ -449,6 +460,50 @@ function gapFillDay(
       bestMeal.totalCal = bestMeal.dishes.reduce((s, x) => s + x.calories, 0);
       changed = true;
     }
+  }
+  // (c) last-resort day-level fallback: when the kitchen pool simply can't reach
+  // 90% of target (e.g. exhausted/over-budget pools), top the roomiest meal up
+  // with generic fillers (apple, yogurt, almonds...) and scale servings, guarding
+  // the 110% ceiling. This keeps every day inside the ±10% band.
+  guard = 0;
+  while (dayTotal() < target * DAY_LOW && guard < MAX_GAP_FILL_STEPS) {
+    guard += 1;
+    const dayRoom = target * DAY_HIGH - dayTotal();
+    if (dayRoom < 1) break;
+    let bestMeal: PlanMeal | null = null;
+    let bestSpace = -1;
+    for (const m of meals) {
+      const space = m.targetCal * DAY_HIGH - m.totalCal;
+      if (space > bestSpace) {
+        bestSpace = space;
+        bestMeal = m;
+      }
+    }
+    if (!bestMeal || bestSpace < 1) break;
+    const inMeal = new Set(bestMeal.dishes.map((x) => x.dish.name));
+    const budget = Math.min(dayRoom, bestSpace);
+    const filler = FILLER_SNACKS.find(
+      (f) => (weekCap <= 0 || (used.get(f.name) ?? 0) < weekCap) && !inMeal.has(f.name) && f.cal_serv <= budget,
+    );
+    if (filler) {
+      pushDish(bestMeal.dishes, filler, ['snacks'], used, dayNames);
+    } else {
+      let scaled = false;
+      for (const d of bestMeal.dishes) {
+        const next = d.servings === 1 ? 1.5 : d.servings === 1.5 ? 2 : 0;
+        if (!next) continue;
+        const bump = Math.round(d.dish.cal_serv * next) - d.calories;
+        if (bump > 0 && bump <= budget) {
+          d.servings = next;
+          d.calories = Math.round(d.dish.cal_serv * next);
+          d.grams = Math.round(d.dish.serv_g * next);
+          scaled = true;
+          break;
+        }
+      }
+      if (!scaled) break;
+    }
+    bestMeal.totalCal = bestMeal.dishes.reduce((s, x) => s + x.calories, 0);
   }
 }
 

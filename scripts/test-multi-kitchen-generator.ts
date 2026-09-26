@@ -51,14 +51,16 @@ async function fetchAllDishes(): Promise<DishRow[]> {
 
 function rowToDish(r: DishRow): KitchenDish {
   const cal100 = r.cal_100 ?? 0;
+  const baseCal = r.base_cal_serv ?? 0;
+  const servingsG = r.base_serving_g ?? 100;
   return {
     name: r.name_ar ?? r.name_en ?? '',
     cal_100: cal100,
     p: r.protein ?? 0,
     c: r.carbs ?? 0,
     f: r.fat ?? 0,
-    serv_g: r.base_serving_g ?? 100,
-    cal_serv: r.base_cal_serv ?? 0,
+    serv_g: servingsG,
+    cal_serv: baseCal > 0 ? baseCal : Math.round((cal100 * servingsG) / 100),
     healthy: cal100 <= 350,
     confidence: r.confidence ?? 70,
     confidence_label: r.confidence_label ?? '70% - تقديري',
