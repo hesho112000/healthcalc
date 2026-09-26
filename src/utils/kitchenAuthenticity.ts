@@ -30,7 +30,7 @@ const TOKEN_REGIONS: Record<string, string> = {
   سوري: 'pan_syrian', سوريه: 'pan_syrian',
   أردني: 'pan_jordanian', أردنيه: 'pan_jordanian',
   شامي: 'mena_shared', شاميه: 'mena_shared',
-  فلسطيني: 'mena_shared', فلسطينيه: 'mena_shared',
+  فلسطيني: 'pan_palestinian', فلسطينيه: 'pan_palestinian',
   يمني: 'mena_shared', يمنيه: 'mena_shared',
   عراقي: 'mena_shared', عراقيه: 'mena_shared',
   هندي: 'global', هنديه: 'global',
@@ -95,6 +95,10 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
     'pan_jordanian', 'amman', 'irbid', 'zarqa', 'balqa', 'mafraq', 'jerash',
     'ajloun', 'karak', 'tafilah', 'maan', 'aqaba', 'madaba',
   ]),
+  palestinian: new Set([
+    'pan_palestinian', 'jerusalem', 'gaza', 'nablus', 'hebron', 'jenin',
+    'tulkarim', 'ramallah', 'bethlehem', 'jaffa', 'haifa', 'safad', 'qalqilya', 'tubas',
+  ]),
 };
 
 // Region family a given kitchen may draw from.
@@ -118,6 +122,11 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
   jordanian: new Set([
     'pan_jordanian', 'levantine_shared', 'mena_shared', 'amman', 'irbid', 'zarqa',
     'balqa', 'mafraq', 'jerash', 'ajloun', 'karak', 'tafilah', 'maan', 'aqaba', 'madaba',
+  ]),
+  palestinian: new Set([
+    'pan_palestinian', 'levantine_shared', 'mena_shared', 'jerusalem', 'gaza', 'nablus',
+    'hebron', 'jenin', 'tulkarim', 'ramallah', 'bethlehem', 'jaffa', 'haifa', 'safad',
+    'qalqilya', 'tubas',
   ]),
 };
 

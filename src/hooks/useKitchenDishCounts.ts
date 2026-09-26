@@ -51,6 +51,13 @@ export function useKitchenDishCounts(): Record<string, number> {
             (r.region === 'levantine_shared' || r.region === 'mena_shared') &&
             (r.source ?? '').startsWith('levant-jordan-'),
         ).length;
+        // Palestine's card mirrors the other Levant cards: credits its own shared
+        // family rows, identified by the levant-palestine- source prefix.
+        out.palestinian += rows.filter(
+          (r) =>
+            (r.region === 'levantine_shared' || r.region === 'mena_shared') &&
+            (r.source ?? '').startsWith('levant-palestine-'),
+        ).length;
         if (!cancelled) setCounts(out);
       } catch {
         if (!cancelled) setCounts({});
