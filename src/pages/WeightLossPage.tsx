@@ -453,6 +453,26 @@ const PALESTINIAN_REGION_META: { id: string; emoji: string; en: string; ar: stri
   { id: 'tubas', emoji: '🏜️', en: 'Tubas', ar: 'طوباس' },
 ];
 
+const INDIAN_REGION_META: { id: string; emoji: string; en: string; ar: string }[] = [
+  { id: 'all', emoji: '🇮🇳', en: 'All Indian', ar: 'كل المطبخ الهندي' },
+  { id: 'pan_indian', emoji: '🥘', en: 'General Indian', ar: 'عام (كل الهند)' },
+  { id: 'asian_shared', emoji: '🌏', en: 'South Asian Shared', ar: 'آسيوي مشترك' },
+  { id: 'punjab', emoji: '🌾', en: 'Punjab', ar: 'البنجاب' },
+  { id: 'delhi', emoji: '🏛️', en: 'Delhi', ar: 'دلهي' },
+  { id: 'lucknow', emoji: '🏺', en: 'Lucknow', ar: 'لكناو' },
+  { id: 'tamil_nadu', emoji: '🛕', en: 'Tamil Nadu', ar: 'تاميل نادو' },
+  { id: 'kerala', emoji: '🌴', en: 'Kerala', ar: 'كيرالا' },
+  { id: 'karnataka', emoji: '🏞️', en: 'Karnataka', ar: 'كارناتاكا' },
+  { id: 'hyderabad', emoji: '🕌', en: 'Hyderabad', ar: 'حيدر أباد' },
+  { id: 'kashmir', emoji: '🏔️', en: 'Kashmir', ar: 'كشمير' },
+  { id: 'rajasthan', emoji: '🏜️', en: 'Rajasthan', ar: 'راجستان' },
+  { id: 'gujarat', emoji: '🦁', en: 'Gujarat', ar: 'غوجارات' },
+  { id: 'maharashtra', emoji: '🗿', en: 'Maharashtra', ar: 'مهاراشترا' },
+  { id: 'goa', emoji: '🏖️', en: 'Goa', ar: 'غوا' },
+  { id: 'bengal', emoji: '🐟', en: 'Bengal', ar: 'البنغال' },
+  { id: 'bihar', emoji: '🌅', en: 'Bihar', ar: 'بيهار' },
+];
+
 const MEAL_LABELS: Record<string, string> = {
   breakfast: 'فطار 🍳',
   lunch: 'غدا 🍲',
@@ -1941,7 +1961,7 @@ const WeightLossPage: React.FC = () => {
               <div className="space-y-2">
                 {(() => {
                   const picked = kitchens.find((x) => x.id === cuisineSel);
-                  const hasRegions = !!picked && (picked.id === 'kuwaiti' || picked.id === 'qatar' || picked.id === 'bahraini' || picked.id === 'omani' || picked.id === 'moroccan' || picked.id === 'egyptian' || picked.id === 'tunisian' || picked.id === 'algerian' || picked.id === 'libyan' || picked.id === 'lebanese' || picked.id === 'syrian' || picked.id === 'jordanian' || picked.id === 'palestinian' || (Array.isArray(picked.regions) && picked.regions.length > 0));
+                  const hasRegions = !!picked && (picked.id === 'kuwaiti' || picked.id === 'qatar' || picked.id === 'bahraini' || picked.id === 'omani' || picked.id === 'moroccan' || picked.id === 'egyptian' || picked.id === 'tunisian' || picked.id === 'algerian' || picked.id === 'libyan' || picked.id === 'lebanese' || picked.id === 'syrian' || picked.id === 'jordanian' || picked.id === 'palestinian' || picked.id === 'indian' || (Array.isArray(picked.regions) && picked.regions.length > 0));
                   if (!hasRegions) return null;
                   return (
                     <div className="rounded-[20px] border-2 border-[#EFEBE4] bg-white p-4">
@@ -1949,7 +1969,7 @@ const WeightLossPage: React.FC = () => {
                         {language === 'ar' ? '🏷️ اختر المنطقة (تلقائي: عام)' : '🏷️ Choose a region (default: General)'}
                       </div>
                       <div className="mt-2.5 flex flex-wrap gap-2">
-                        {(picked.id === 'emirati' ? EMIRATI_REGION_META : picked.id === 'saudi' ? SAUDI_REGION_META : picked.id === 'kuwaiti' ? KUWAITI_REGION_META : picked.id === 'qatar' ? QATARI_REGION_META : picked.id === 'bahraini' ? BAHRAINI_REGION_META : picked.id === 'omani' ? OMANI_REGION_META : picked.id === 'moroccan' ? MOROCCAN_REGION_META : picked.id === 'egyptian' ? EGYPTIAN_REGION_META : picked.id === 'tunisian' ? TUNISIAN_REGION_META : picked.id === 'algerian' ? ALGERIAN_REGION_META : picked.id === 'libyan' ? LIBYAN_REGION_META : picked.id === 'lebanese' ? LEBANESE_REGION_META : picked.id === 'syrian' ? SYRIAN_REGION_META : picked.id === 'jordanian' ? JORDANIAN_REGION_META : picked.id === 'palestinian' ? PALESTINIAN_REGION_META : []).map((r) => {
+                        {(picked.id === 'emirati' ? EMIRATI_REGION_META : picked.id === 'saudi' ? SAUDI_REGION_META : picked.id === 'kuwaiti' ? KUWAITI_REGION_META : picked.id === 'qatar' ? QATARI_REGION_META : picked.id === 'bahraini' ? BAHRAINI_REGION_META : picked.id === 'omani' ? OMANI_REGION_META : picked.id === 'moroccan' ? MOROCCAN_REGION_META : picked.id === 'egyptian' ? EGYPTIAN_REGION_META : picked.id === 'tunisian' ? TUNISIAN_REGION_META : picked.id === 'algerian' ? ALGERIAN_REGION_META : picked.id === 'libyan' ? LIBYAN_REGION_META : picked.id === 'lebanese' ? LEBANESE_REGION_META : picked.id === 'syrian' ? SYRIAN_REGION_META : picked.id === 'jordanian' ? JORDANIAN_REGION_META : picked.id === 'palestinian' ? PALESTINIAN_REGION_META : picked.id === 'indian' ? INDIAN_REGION_META : []).map((r) => {
                           const on = kitchenRegion === r.id;
                           return (
                             <button

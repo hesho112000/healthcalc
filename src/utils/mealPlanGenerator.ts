@@ -549,6 +549,7 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
     if (kitchenId === 'lebanese') return d.region === 'pan_lebanese' ? 0 : d.region === 'levantine_shared' || d.region === 'mena_shared' ? 1 : 2;
     if (kitchenId === 'syrian') return d.region === 'pan_syrian' ? 0 : d.region === 'levantine_shared' || d.region === 'mena_shared' ? 1 : 2;
     if (kitchenId === 'jordanian') return d.region === 'pan_jordanian' ? 0 : d.region === 'levantine_shared' || d.region === 'mena_shared' ? 1 : 2;
+    if (kitchenId === 'indian') return d.region === 'pan_indian' ? 0 : d.region === 'asian_shared' ? 2 : 1;
     return -1;
   };
   const isGeneralDish = (d: KitchenDish) => generalRank(d) >= 0;

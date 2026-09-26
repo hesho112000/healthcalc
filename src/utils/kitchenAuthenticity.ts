@@ -38,8 +38,8 @@ const TOKEN_REGIONS: Record<string, string> = {
   باكستاني: 'global', باكستانيه: 'global',
 };
 
-// Tokens that LOOK like nationalities but are common Arabic nouns.
-const NO_RETAG_TOKENS = new Set(['صيني', 'صينيه', 'سوداني', 'سودانيه']);
+// Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
+const NO_RETAG_TOKENS = new Set(['صيني', 'صينيه', 'سوداني', 'سودانيه', 'شامي', 'شاميه']);
 const TAMARIND_HINDI = /تمر\s*(?:ال)?هندي/;
 
 export const LEVANTINE_BARE = new Set(['تبوله', 'فتوش']);
@@ -99,6 +99,9 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
     'pan_palestinian', 'jerusalem', 'gaza', 'nablus', 'hebron', 'jenin',
     'tulkarim', 'ramallah', 'bethlehem', 'jaffa', 'haifa', 'safad', 'qalqilya', 'tubas',
   ]),
+  // India's card counts its own region-tagged rows; asian_shared rows authored with the
+  // asia-india-2026 prefix are credited in useKitchenDishCounts (set is region-only).
+  indian: new Set(['pan_indian', 'tamil_nadu', 'kerala', 'karnataka', 'hyderabad', 'punjab', 'delhi', 'lucknow', 'kashmir', 'rajasthan', 'gujarat', 'maharashtra', 'goa', 'bengal', 'bihar']),
 };
 
 // Region family a given kitchen may draw from.
@@ -127,6 +130,15 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
     'pan_palestinian', 'levantine_shared', 'mena_shared', 'jerusalem', 'gaza', 'nablus',
     'hebron', 'jenin', 'tulkarim', 'ramallah', 'bethlehem', 'jaffa', 'haifa', 'safad',
     'qalqilya', 'tubas',
+  ]),
+  // India's OWN rows are pan_indian + regional anchors + asian_shared. The
+  // 'global' token is deliberately in India's own family: every Indian-authored name
+  // carries the هندي nationality adjective which normalizes to 'global', so excluding
+  // it would block all 400+ live Indian rows as "foreign" to themselves.
+  indian: new Set([
+    'pan_indian', 'asian_shared', 'global', 'tamil_nadu', 'kerala', 'karnataka',
+    'hyderabad', 'punjab', 'delhi', 'lucknow', 'kashmir', 'rajasthan', 'gujarat',
+    'maharashtra', 'goa', 'bengal', 'bihar',
   ]),
 };
 

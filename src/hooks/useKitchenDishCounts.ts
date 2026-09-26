@@ -58,6 +58,11 @@ export function useKitchenDishCounts(): Record<string, number> {
             (r.region === 'levantine_shared' || r.region === 'mena_shared') &&
             (r.source ?? '').startsWith('levant-palestine-'),
         ).length;
+        // India's card credits its own Asian-shared pool rows, identified by the
+        // asia-india-2026 source prefix so other kitchens never double-count them.
+        out.indian += rows.filter(
+          (r) => r.region === 'asian_shared' && (r.source ?? '').startsWith('asia-india-2026'),
+        ).length;
         if (!cancelled) setCounts(out);
       } catch {
         if (!cancelled) setCounts({});
