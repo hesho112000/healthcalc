@@ -390,7 +390,7 @@ dishes.push(
 dishes.push(
   R('ساموسة لحم مقلية هندية', 'Fried meat samosa', 'Samosa de viande frite', 'Samosa de carne frita', 'Indische frittierte Fleisch-Samosa', 'street_snacks', 'snacks', 'asian_shared', 265),
   R('ساموسة خضار مقلية هندية', 'Fried veg samosa', 'Samosa de légumes frite', 'Samosa de verduras frita', 'Indische frittierte Gemüse-Samosa', 'street_snacks', 'snacks', 'asian_shared', 220),
-  R('ماسالا تشاي بالزنجبيل والهيل', 'Ginger cardamom masala chai', 'Chai masala au gingembre et cardamome', 'Chai masala de jengibre y cardamomo', 'Masala-Chai mit Ingwer und Kardamom', 'beverages', 'snacks', 'asian_shared', 45),
+  R('ماسالا تشاي هندية بالزنجبيل والهيل', 'Ginger cardamom masala chai', 'Chai masala au gingembre et cardamome', 'Chai masala de jengibre y cardamomo', 'Masala-Chai mit Ingwer und Kardamom', 'beverages', 'snacks', 'asian_shared', 45),
   R('كولفي فستق هندي', 'Pistachio kulfi', 'Kulfi aux pistaches', 'Kulfi de pistacho', 'Indisches Pistazien-Kulfi', 'desserts_sweets', 'snacks', 'asian_shared', 255),
   R('رز بسمتي سادة هندي', 'Plain steamed basmati rice', 'Riz basmati cuit à la vapeur', 'Arroz basmati al vapor', 'Indischer gedämpfter Basmati-Reis', 'rice_biryani', 'lunch', 'asian_shared', 130),
   R('دال أصفر سادة هندية', 'Plain yellow dal', 'Dal jaune nature', 'Dal amarillo simple', 'Einfaches gelbes indisches Dal', 'dals_legumes', 'lunch', 'asian_shared', 95),

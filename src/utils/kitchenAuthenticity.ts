@@ -33,9 +33,9 @@ const TOKEN_REGIONS: Record<string, string> = {
   فلسطيني: 'pan_palestinian', فلسطينيه: 'pan_palestinian',
   يمني: 'mena_shared', يمنيه: 'mena_shared',
   عراقي: 'mena_shared', عراقيه: 'mena_shared',
-  هندي: 'global', هنديه: 'global',
+  هندي: 'pan_indian', هنديه: 'pan_indian',
   تركي: 'global', تركيه: 'global',
-  باكستاني: 'global', باكستانيه: 'global',
+  باكستاني: 'pan_pakistani', باكستانيه: 'pan_pakistani',
 };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -102,6 +102,9 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
   // India's card counts its own region-tagged rows; asian_shared rows authored with the
   // asia-india-2026 prefix are credited in useKitchenDishCounts (set is region-only).
   indian: new Set(['pan_indian', 'tamil_nadu', 'kerala', 'karnataka', 'hyderabad', 'punjab', 'delhi', 'lucknow', 'kashmir', 'rajasthan', 'gujarat', 'maharashtra', 'goa', 'bengal', 'bihar']),
+  // Pakistan's card counts its own region-tagged rows; asian_shared rows authored with
+  // the asia-pakistan-2026 prefix are credited in useKitchenDishCounts (set is region-only).
+  pakistani: new Set(['pan_pakistani', 'punjab', 'sindh', 'kpk', 'balochistan', 'gilgit_baltistan']),
 };
 
 // Region family a given kitchen may draw from.
@@ -131,14 +134,18 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
     'hebron', 'jenin', 'tulkarim', 'ramallah', 'bethlehem', 'jaffa', 'haifa', 'safad',
     'qalqilya', 'tubas',
   ]),
-  // India's OWN rows are pan_indian + regional anchors + asian_shared. The
-  // 'global' token is deliberately in India's own family: every Indian-authored name
-  // carries the هندي nationality adjective which normalizes to 'global', so excluding
-  // it would block all 400+ live Indian rows as "foreign" to themselves.
+  // India's OWN rows are pan_indian + regional anchors + asian_shared. Every
+  // Indian-authored name carries the هندي nationality adjective (which now maps to
+  // 'pan_indian'), so the guard accepts them without needing a 'global' escape hatch.
   indian: new Set([
-    'pan_indian', 'asian_shared', 'global', 'tamil_nadu', 'kerala', 'karnataka',
+    'pan_indian', 'asian_shared', 'tamil_nadu', 'kerala', 'karnataka',
     'hyderabad', 'punjab', 'delhi', 'lucknow', 'kashmir', 'rajasthan', 'gujarat',
     'maharashtra', 'goa', 'bengal', 'bihar',
+  ]),
+  // Pakistani family mirrors India: own pan region + provincial anchors + the shared
+  // South Asian pool. Names carry باكستاني which now maps to 'pan_pakistani'.
+  pakistani: new Set([
+    'pan_pakistani', 'asian_shared', 'punjab', 'sindh', 'kpk', 'balochistan', 'gilgit_baltistan',
   ]),
 };
 
