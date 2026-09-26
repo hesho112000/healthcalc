@@ -381,6 +381,20 @@ const LIBYAN_REGION_META: { id: string; emoji: string; en: string; ar: string }[
   { id: 'kufra', emoji: '🌴', en: 'Kufra', ar: 'الكفرة' },
 ];
 
+const LEBANESE_REGION_META: { id: string; emoji: string; en: string; ar: string }[] = [
+  { id: 'all', emoji: '🇱🇧', en: 'All Lebanese', ar: 'كل المطبخ اللبناني' },
+  { id: 'pan_lebanese', emoji: '🥘', en: 'General Lebanese', ar: 'عام (كل لبنان)' },
+  { id: 'levantine_shared', emoji: '🕊️', en: 'Levant Shared', ar: 'شامي مشترك' },
+  { id: 'mena_shared', emoji: '🌍', en: 'MENA Shared', ar: 'شرق أوسطي مشترك' },
+  { id: 'beirut', emoji: '🏙️', en: 'Beirut', ar: 'بيروت' },
+  { id: 'tarablus', emoji: '🏛️', en: 'Tripoli (Lebanon)', ar: 'طرابلس الشام' },
+  { id: 'sidon', emoji: '⚓', en: 'Sidon', ar: 'صيدا' },
+  { id: 'jbeil', emoji: '🏺', en: 'Byblos (Jbeil)', ar: 'جبيل' },
+  { id: 'baalbek', emoji: '🏛️', en: 'Baalbek', ar: 'بعلبك' },
+  { id: 'zahle', emoji: '🍷', en: 'Zahle', ar: 'زحلة' },
+  { id: 'jezzine', emoji: '🌲', en: 'Jezzine', ar: 'جزين' },
+];
+
 const MEAL_LABELS: Record<string, string> = {
   breakfast: 'فطار 🍳',
   lunch: 'غدا 🍲',
@@ -1869,7 +1883,7 @@ const WeightLossPage: React.FC = () => {
               <div className="space-y-2">
                 {(() => {
                   const picked = kitchens.find((x) => x.id === cuisineSel);
-                  const hasRegions = !!picked && (picked.id === 'kuwaiti' || picked.id === 'qatar' || picked.id === 'bahraini' || picked.id === 'omani' || picked.id === 'moroccan' || picked.id === 'egyptian' || picked.id === 'tunisian' || picked.id === 'algerian' || picked.id === 'libyan' || (Array.isArray(picked.regions) && picked.regions.length > 0));
+                  const hasRegions = !!picked && (picked.id === 'kuwaiti' || picked.id === 'qatar' || picked.id === 'bahraini' || picked.id === 'omani' || picked.id === 'moroccan' || picked.id === 'egyptian' || picked.id === 'tunisian' || picked.id === 'algerian' || picked.id === 'libyan' || picked.id === 'lebanese' || (Array.isArray(picked.regions) && picked.regions.length > 0));
                   if (!hasRegions) return null;
                   return (
                     <div className="rounded-[20px] border-2 border-[#EFEBE4] bg-white p-4">
@@ -1877,7 +1891,7 @@ const WeightLossPage: React.FC = () => {
                         {language === 'ar' ? '🏷️ اختر المنطقة (تلقائي: عام)' : '🏷️ Choose a region (default: General)'}
                       </div>
                       <div className="mt-2.5 flex flex-wrap gap-2">
-                        {(picked.id === 'emirati' ? EMIRATI_REGION_META : picked.id === 'saudi' ? SAUDI_REGION_META : picked.id === 'kuwaiti' ? KUWAITI_REGION_META : picked.id === 'qatar' ? QATARI_REGION_META : picked.id === 'bahraini' ? BAHRAINI_REGION_META : picked.id === 'omani' ? OMANI_REGION_META : picked.id === 'moroccan' ? MOROCCAN_REGION_META : picked.id === 'egyptian' ? EGYPTIAN_REGION_META : picked.id === 'tunisian' ? TUNISIAN_REGION_META : picked.id === 'algerian' ? ALGERIAN_REGION_META : picked.id === 'libyan' ? LIBYAN_REGION_META : []).map((r) => {
+                        {(picked.id === 'emirati' ? EMIRATI_REGION_META : picked.id === 'saudi' ? SAUDI_REGION_META : picked.id === 'kuwaiti' ? KUWAITI_REGION_META : picked.id === 'qatar' ? QATARI_REGION_META : picked.id === 'bahraini' ? BAHRAINI_REGION_META : picked.id === 'omani' ? OMANI_REGION_META : picked.id === 'moroccan' ? MOROCCAN_REGION_META : picked.id === 'egyptian' ? EGYPTIAN_REGION_META : picked.id === 'tunisian' ? TUNISIAN_REGION_META : picked.id === 'algerian' ? ALGERIAN_REGION_META : picked.id === 'libyan' ? LIBYAN_REGION_META : picked.id === 'lebanese' ? LEBANESE_REGION_META : []).map((r) => {
                           const on = kitchenRegion === r.id;
                           return (
                             <button
