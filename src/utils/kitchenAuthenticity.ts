@@ -44,6 +44,7 @@ const TOKEN_REGIONS: Record<string, string> = {
    افريقي: 'pan_south_african', افريقيه: 'pan_south_african',
    غاني: 'pan_ghanaian', غانيه: 'pan_ghanaian',
    رواندي: 'pan_rwandan', روانديه: 'pan_rwandan',
+   سيشيلي: 'pan_seychellois', سيشيليه: 'pan_seychellois',
  };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -137,6 +138,9 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
    // Rwanda's card counts its own region-tagged rows; african_shared rows authored with
    // the africa-rwanda-2026 prefix are credited in useKitchenDishCounts (set is region-only).
    rwandan: new Set(['pan_rwandan', 'kigali', 'butare', 'musanze', 'rwamagana', 'gisenyi']),
+   // Seychelles' card counts its own region-tagged rows; african_shared rows authored with
+   // the africa-seychelles-2026 prefix are credited in useKitchenDishCounts (set is region-only).
+   seychellois: new Set(['pan_seychellois', 'mahe', 'praslin', 'la_digue', 'outer_islands']),
  };
 
 // Region family a given kitchen may draw from.
@@ -225,6 +229,12 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
    // (normalized رواندي) which now maps to 'pan_rwandan'.
    rwandan: new Set([
      'pan_rwandan', 'african_shared', 'kigali', 'butare', 'musanze', 'rwamagana', 'gisenyi',
+   ]),
+   // Seychellois family mirrors Ghana: own pan_seychellois + regional anchors (Mahe, Praslin,
+   // La Digue, Outer Islands) + the shared African/Indian Ocean pool. Names carry سيشيلي
+   // (normalized سيشيلي, and the feminine سيشيليه) which now map to 'pan_seychellois'.
+   seychellois: new Set([
+     'pan_seychellois', 'african_shared', 'mahe', 'praslin', 'la_digue', 'outer_islands',
    ]),
  };
 
