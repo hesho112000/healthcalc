@@ -372,7 +372,7 @@
       "fat": 3.7
     },
     {
-      "name_ar": "خبز الموز الهندي كيني",
+      "name_ar": "خبز الموز الكيني",
       "name_en": "Plantain bread Kenyan",
       "name_fr": "Pain de plantain kényan",
       "name_es": "Pan de plátano keniano",
@@ -1156,11 +1156,11 @@
       "fat": 4.3
     },
     {
-      "name_ar": "يخنة خضار أفريقي كيني",
-      "name_en": "Mixed African vegetable stew Kenyan",
-      "name_fr": "Ragoût de légumes africain kényan",
-      "name_es": "Guiso de verduras africano keniano",
-      "name_de": "Afrikanischer Gemüseeintopf kenianisch",
+      "name_ar": "يخنة خضار مشكّلة كيني",
+      "name_en": "Mixed vegetable stew Kenyan",
+      "name_fr": "Ragoût de légumes mixé kényan",
+      "name_es": "Guiso de verduras mixto keniano",
+      "name_de": "Gemischter Gemüseeintopf kenianisch",
       "category": "vegetarian_mains",
       "mealType": "lunch",
       "region": "pan_kenyan",
