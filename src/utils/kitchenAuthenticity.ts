@@ -43,6 +43,7 @@ const TOKEN_REGIONS: Record<string, string> = {
    كيني: 'pan_kenyan', كينيه: 'pan_kenyan',
    افريقي: 'pan_south_african', افريقيه: 'pan_south_african',
    غاني: 'pan_ghanaian', غانيه: 'pan_ghanaian',
+   رواندي: 'pan_rwandan', روانديه: 'pan_rwandan',
  };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -133,6 +134,9 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
    // Ghana's card counts its own region-tagged rows; african_shared rows authored
    // with the africa-ghana-2026 prefix are credited in useKitchenDishCounts (set is region-only).
    ghanaian: new Set(['pan_ghanaian', 'accra', 'kumasi', 'tamale']),
+   // Rwanda's card counts its own region-tagged rows; african_shared rows authored with
+   // the africa-rwanda-2026 prefix are credited in useKitchenDishCounts (set is region-only).
+   rwandan: new Set(['pan_rwandan', 'kigali', 'butare', 'musanze', 'rwamagana', 'gisenyi']),
  };
 
 // Region family a given kitchen may draw from.
@@ -215,6 +219,12 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
    // 'pan_ghanaian'.
    ghanaian: new Set([
      'pan_ghanaian', 'african_shared', 'accra', 'kumasi', 'tamale',
+   ]),
+   // Rwandan family mirrors Ghana: own pan_rwandan + regional anchors (Kigali, Butare,
+   // Musanze, Rwamagana, Gisenyi) + the shared East African pool. Names carry رواندي
+   // (normalized رواندي) which now maps to 'pan_rwandan'.
+   rwandan: new Set([
+     'pan_rwandan', 'african_shared', 'kigali', 'butare', 'musanze', 'rwamagana', 'gisenyi',
    ]),
  };
 
