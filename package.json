@@ -10,7 +10,8 @@
     "start": "concurrently \"npm run dev:api\" \"npm run dev:ui\"",
     "build": "vite build",
     "preview": "vite preview",
-    "validate:nutrition": "node nutrition-validator.js"
+    "validate:nutrition": "node nutrition-validator.js",
+    "test:kitchens": "esbuild scripts/test-multi-kitchen-generator.ts --bundle --platform=node --format=esm --target=node22 --external:@supabase/supabase-js --external:dotenv --log-level=warning --outfile=node_modules/.cache/kitchens-e2e.mjs && node node_modules/.cache/kitchens-e2e.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.116.0",
