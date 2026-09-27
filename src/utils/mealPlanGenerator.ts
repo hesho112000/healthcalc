@@ -555,6 +555,7 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
     if (kitchenId === 'malaysian') return d.region === 'pan_malaysian' ? 0 : d.region === 'asian_shared' ? 2 : 1;
     if (kitchenId === 'nigerian') return d.region === 'pan_nigerian' ? 0 : d.region === 'african_shared' ? 2 : 1;
     if (kitchenId === 'ethiopian') return d.region === 'pan_ethiopian' ? 0 : d.region === 'african_shared' ? 2 : 1;
+    if (kitchenId === 'kenyan') return d.region === 'pan_kenyan' ? 0 : d.region === 'african_shared' ? 2 : 1;
     return -1;
   };
   const isGeneralDish = (d: KitchenDish) => generalRank(d) >= 0;

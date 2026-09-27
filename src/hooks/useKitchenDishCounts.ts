@@ -88,6 +88,11 @@ export function useKitchenDishCounts(): Record<string, number> {
         out.ethiopian += rows.filter(
           (r) => r.region === 'african_shared' && (r.source ?? '').startsWith('africa-ethiopia-2026'),
         ).length;
+        // Kenya's card mirrors Ethiopia: credits its own African-shared pool rows,
+        // identified by the africa-kenya-2026 source prefix.
+        out.kenyan += rows.filter(
+          (r) => r.region === 'african_shared' && (r.source ?? '').startsWith('africa-kenya-2026'),
+        ).length;
         if (!cancelled) setCounts(out);
       } catch {
         if (!cancelled) setCounts({});

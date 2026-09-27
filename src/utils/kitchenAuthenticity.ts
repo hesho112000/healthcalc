@@ -40,6 +40,7 @@ const TOKEN_REGIONS: Record<string, string> = {
   ماليزي: 'pan_malaysian', ماليزيه: 'pan_malaysian',
   نيجيري: 'pan_nigerian', نيجيريه: 'pan_nigerian',
   اثيوبي: 'pan_ethiopian', اثيوبيه: 'pan_ethiopian',
+  كيني: 'pan_kenyan', كينيه: 'pan_kenyan',
 };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -121,6 +122,9 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
   // Ethiopia's card counts its own region-tagged rows; african_shared rows authored with
   // the africa-ethiopia-2026 prefix are credited in useKitchenDishCounts (set is region-only).
   ethiopian: new Set(['pan_ethiopian', 'amhara', 'oromia', 'tigray', 'addis_ababa', 'afar', 'sidama']),
+  // Kenya's card counts its own region-tagged rows; african_shared rows authored with
+  // the africa-kenya-2026 prefix are credited in useKitchenDishCounts (set is region-only).
+  kenyan: new Set(['pan_kenyan', 'nairobi', 'mombasa', 'kisumu', 'nakuru', 'nyeri']),
 };
 
 // Region family a given kitchen may draw from.
@@ -185,6 +189,12 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
   // (normalized اثيوبي) which now maps to 'pan_ethiopian'.
   ethiopian: new Set([
     'pan_ethiopian', 'african_shared', 'amhara', 'oromia', 'tigray', 'addis_ababa', 'afar', 'sidama',
+  ]),
+  // Kenyan family mirrors Ethiopia: own pan_kenyan + regional anchors (Nairobi, Mombasa,
+  // Kisumu, Nakuru, Nyeri) + the shared East African pool. Names carry كيني/كينيه which now
+  // map to 'pan_kenyan'.
+  kenyan: new Set([
+    'pan_kenyan', 'african_shared', 'nairobi', 'mombasa', 'kisumu', 'nakuru', 'nyeri',
   ]),
 };
 
