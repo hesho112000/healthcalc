@@ -39,9 +39,10 @@ const TOKEN_REGIONS: Record<string, string> = {
   اندونيسي: 'pan_indonesian', اندونيسيه: 'pan_indonesian',
   ماليزي: 'pan_malaysian', ماليزيه: 'pan_malaysian',
   نيجيري: 'pan_nigerian', نيجيريه: 'pan_nigerian',
-  اثيوبي: 'pan_ethiopian', اثيوبيه: 'pan_ethiopian',
-  كيني: 'pan_kenyan', كينيه: 'pan_kenyan',
-};
+   اثيوبي: 'pan_ethiopian', اثيوبيه: 'pan_ethiopian',
+   كيني: 'pan_kenyan', كينيه: 'pan_kenyan',
+   افريقي: 'pan_south_african', افريقيه: 'pan_south_african',
+ };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
 const NO_RETAG_TOKENS = new Set(['صيني', 'صينيه', 'سوداني', 'سودانيه', 'شامي', 'شاميه']);
@@ -122,10 +123,13 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
   // Ethiopia's card counts its own region-tagged rows; african_shared rows authored with
   // the africa-ethiopia-2026 prefix are credited in useKitchenDishCounts (set is region-only).
   ethiopian: new Set(['pan_ethiopian', 'amhara', 'oromia', 'tigray', 'addis_ababa', 'afar', 'sidama']),
-  // Kenya's card counts its own region-tagged rows; african_shared rows authored with
-  // the africa-kenya-2026 prefix are credited in useKitchenDishCounts (set is region-only).
-  kenyan: new Set(['pan_kenyan', 'nairobi', 'mombasa', 'kisumu', 'nakuru', 'nyeri']),
-};
+   // Kenya's card counts its own region-tagged rows; african_shared rows authored with
+   // the africa-kenya-2026 prefix are credited in useKitchenDishCounts (set is region-only).
+   kenyan: new Set(['pan_kenyan', 'nairobi', 'mombasa', 'kisumu', 'nakuru', 'nyeri']),
+   // South Africa's card counts its own region-tagged rows; african_shared rows authored
+   // with the africa-south-africa-2026 prefix are credited in useKitchenDishCounts (set is region-only).
+   'south-african': new Set(['pan_south_african', 'cape_town', 'johannesburg', 'durban', 'pretoria', 'port_elizabeth']),
+ };
 
 // Region family a given kitchen may draw from.
 export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
@@ -190,13 +194,19 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
   ethiopian: new Set([
     'pan_ethiopian', 'african_shared', 'amhara', 'oromia', 'tigray', 'addis_ababa', 'afar', 'sidama',
   ]),
-  // Kenyan family mirrors Ethiopia: own pan_kenyan + regional anchors (Nairobi, Mombasa,
-  // Kisumu, Nakuru, Nyeri) + the shared East African pool. Names carry كيني/كينيه which now
-  // map to 'pan_kenyan'.
-  kenyan: new Set([
-    'pan_kenyan', 'african_shared', 'nairobi', 'mombasa', 'kisumu', 'nakuru', 'nyeri',
-  ]),
-};
+   // Kenyan family mirrors Ethiopia: own pan_kenyan + regional anchors (Nairobi, Mombasa,
+   // Kisumu, Nakuru, Nyeri) + the shared East African pool. Names carry كيني/كينيه which now
+   // map to 'pan_kenyan'.
+   kenyan: new Set([
+     'pan_kenyan', 'african_shared', 'nairobi', 'mombasa', 'kisumu', 'nakuru', 'nyeri',
+   ]),
+   // South African family mirrors Kenya/Nigeria/Ethiopia: own pan_south_african + regional
+   // anchors (Cape Town, Johannesburg, Durban, Pretoria, Port Elizabeth) + the shared
+   // African pool. Names carry افريقي/افريقيه which now maps to 'pan_south_african'.
+   'south-african': new Set([
+     'pan_south_african', 'african_shared', 'cape_town', 'johannesburg', 'durban', 'pretoria', 'port_elizabeth',
+   ]),
+ };
 
 // True when a dish may be served in the given kitchen's plans.
 export function isAuthenticForKitchen(kitchenId: string, region: string | null | undefined, name: string | null | undefined): boolean {
