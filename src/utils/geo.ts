@@ -33,6 +33,7 @@ const GEO_ENTRIES: GeoEntry[] = [
   { re: /^Africa\/Accra/i, cuisine: 'ghanaian', countryEn: 'Ghana', countryAr: 'غانا' },
   { re: /^Indian\/Mahe/i, cuisine: 'seychellois', countryEn: 'Seychelles', countryAr: 'سيشل' },
   { re: /^Indian\/Mauritius/i, cuisine: 'mauritian', countryEn: 'Mauritius', countryAr: 'موريشيوس' },
+  { re: /^Africa\/Libreville/i, cuisine: 'gabonese', countryEn: 'Gabon', countryAr: 'غابون' },
   { re: /^Africa\//i, cuisine: 'african', countryEn: 'Africa', countryAr: 'أفريقيا' },
   { re: /^Asia\/Riyadh/i, cuisine: 'saudi', countryEn: 'Saudi Arabia', countryAr: 'السعودية' },
   { re: /^Asia\/Dubai/i, cuisine: 'emirati', countryEn: 'United Arab Emirates', countryAr: 'الإمارات' },

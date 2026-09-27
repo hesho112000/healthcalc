@@ -64,6 +64,7 @@ import { ETHIOPIAN_FULL, type EthiopianFullDish } from '../data/ethiopian-full';
 import { GHANAIAN_FULL, type GhanaianFullDish } from '../data/ghanaian-full';
 import { SEYCHELLOIS_FULL, type SeychelloisFullDish } from '../data/seychellois-full';
 import { MAURITIAN_FULL, type MauritianFullDish } from '../data/mauritian-full';
+import { GABONESE_FULL, type GaboneseFullDish } from '../data/gabonese-full';
 
 export type { Cuisine, MealType } from './cuisineCatalog';
 
@@ -503,7 +504,7 @@ const fullFoodBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 
   return 'drink';
 };
 
-const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish | AlgerianFullDish | MoroccanFullDish | SaudiFullDish | EmiratiFullDish | KuwaitiFullDish | QatarFullDish | BahrainiFullDish | OmaniFullDish | IndianFullDish | PakistaniFullDish | IndonesianFullDish | MalaysianFullDish | ChineseFullDish | JapaneseFullDish | KoreanFullDish | ThaiFullDish | ItalianFullDish | FrenchFullDish | SpanishFullDish | GreekFullDish | TurkishFullDish | BritishFullDish | SwissFullDish | MexicanFullDish | AmericanFullDish | CubanFullDish | CostaRicanFullDish | JamaicanFullDish | BrazilianFullDish | PeruvianFullDish | ColombianFullDish | ChileanFullDish | VenezuelanFullDish | AustralianFullDish | NewZealandFullDish | SouthAfricanFullDish | RwandanFullDish | KenyanFullDish | NigerianFullDish | EthiopianFullDish | SeychelloisFullDish | MauritianFullDish, cuisineId: string): FoodItem => {
+const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish | AlgerianFullDish | MoroccanFullDish | SaudiFullDish | EmiratiFullDish | KuwaitiFullDish | QatarFullDish | BahrainiFullDish | OmaniFullDish | IndianFullDish | PakistaniFullDish | IndonesianFullDish | MalaysianFullDish | ChineseFullDish | JapaneseFullDish | KoreanFullDish | ThaiFullDish | ItalianFullDish | FrenchFullDish | SpanishFullDish | GreekFullDish | TurkishFullDish | BritishFullDish | SwissFullDish | MexicanFullDish | AmericanFullDish | CubanFullDish | CostaRicanFullDish | JamaicanFullDish | BrazilianFullDish | PeruvianFullDish | ColombianFullDish | ChileanFullDish | VenezuelanFullDish | AustralianFullDish | NewZealandFullDish | SouthAfricanFullDish | RwandanFullDish | KenyanFullDish | NigerianFullDish | EthiopianFullDish | SeychelloisFullDish | MauritianFullDish | GaboneseFullDish, cuisineId: string): FoodItem => {
   const base = fullFoodBase(e.mealType);
   return {
     id: e.id,
@@ -615,6 +616,7 @@ const toEthiopianFood = (e: EthiopianFullDish): FoodItem => toFullFood(e, 'ethio
 const toGhanaianFood = (e: GhanaianFullDish): FoodItem => toFullFood(e, 'ghanaian');
 const toSeychelloisFood = (e: SeychelloisFullDish): FoodItem => toFullFood(e, 'seychellois');
 const toMauritianFood = (e: MauritianFullDish): FoodItem => toFullFood(e, 'mauritian');
+const toGaboneseFood = (e: GaboneseFullDish): FoodItem => toFullFood(e, 'gabonese');
 
 interface LevantJsonDish {
   id: string;
@@ -686,7 +688,7 @@ const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   };
 });
 
-const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'kuwaiti', 'qatar', 'bahraini', 'omani', 'indian', 'pakistani', 'indonesian', 'malaysian', 'chinese', 'japanese', 'korean', 'thai', 'italian', 'french', 'spanish', 'greek', 'turkish', 'british', 'swiss', 'mexican', 'american', 'cuban', 'costa_rican', 'jamaican', 'brazilian', 'peruvian', 'colombian', 'chilean', 'venezuelan', 'australian', 'new_zealand', 'lebanese', 'palestinian', 'syrian', 'jordanian', 'south_african', 'rwandan', 'kenyan', 'nigerian', 'ethiopian', 'ghanaian', 'seychellois', 'mauritian', 'mediterranean', 'keto', 'high_protein', 'vegetarian', 'vegan', 'gluten_free', 'low_carb', 'dash', 'intermittent_fasting', 'paleo'];
+const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'kuwaiti', 'qatar', 'bahraini', 'omani', 'indian', 'pakistani', 'indonesian', 'malaysian', 'chinese', 'japanese', 'korean', 'thai', 'italian', 'french', 'spanish', 'greek', 'turkish', 'british', 'swiss', 'mexican', 'american', 'cuban', 'costa_rican', 'jamaican', 'brazilian', 'peruvian', 'colombian', 'chilean', 'venezuelan', 'australian', 'new_zealand', 'lebanese', 'palestinian', 'syrian', 'jordanian', 'south_african', 'rwandan', 'kenyan', 'nigerian', 'ethiopian', 'ghanaian', 'seychellois', 'mauritian', 'gabonese', 'mediterranean', 'keto', 'high_protein', 'vegetarian', 'vegan', 'gluten_free', 'low_carb', 'dash', 'intermittent_fasting', 'paleo'];
 
 export const FOODS_DATABASE: FoodItem[] = [
   ...ENRICHED_ALL
@@ -742,6 +744,7 @@ export const FOODS_DATABASE: FoodItem[] = [
   ...GHANAIAN_FULL.map(toGhanaianFood),
   ...SEYCHELLOIS_FULL.map(toSeychelloisFood),
   ...MAURITIAN_FULL.map(toMauritianFood),
+  ...GABONESE_FULL.map(toGaboneseFood),
   ...(mediterraneanDietJson as LevantJsonDish[]).map(toMediterraneanFood),
   ...(ketoDietJson as LevantJsonDish[]).map(toKetoFood),
   ...(highProteinDietJson as LevantJsonDish[]).map(toHighProteinFood),

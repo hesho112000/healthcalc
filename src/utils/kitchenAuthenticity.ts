@@ -45,8 +45,9 @@ const TOKEN_REGIONS: Record<string, string> = {
    غاني: 'pan_ghanaian', غانيه: 'pan_ghanaian',
    رواندي: 'pan_rwandan', روانديه: 'pan_rwandan',
    سيشيلي: 'pan_seychellois', سيشيليه: 'pan_seychellois',
-   موريشوسي: 'pan_mauritian', موريشوسيه: 'pan_mauritian',
- };
+    موريشوسي: 'pan_mauritian', موريشوسيه: 'pan_mauritian',
+    غابوني: 'pan_gabonese', غابونيه: 'pan_gabonese',
+  };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
 const NO_RETAG_TOKENS = new Set(['صيني', 'صينيه', 'سوداني', 'سودانيه', 'شامي', 'شاميه']);
@@ -144,8 +145,11 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
    seychellois: new Set(['pan_seychellois', 'mahe', 'praslin', 'la_digue', 'outer_islands']),
    // Mauritius' card counts its own region-tagged rows; african_shared rows authored with
    // the africa-mauritius-2026 prefix are credited in useKitchenDishCounts (set is region-only).
-   mauritian: new Set(['pan_mauritian', 'port_louis', 'curepipe', 'quatre_bornes', 'vacoas', 'mahebourg', 'flacq']),
- };
+    mauritian: new Set(['pan_mauritian', 'port_louis', 'curepipe', 'quatre_bornes', 'vacoas', 'mahebourg', 'flacq']),
+    // Gabon's card counts its own region-tagged rows; african_shared rows authored with
+    // the africa-gabon-2026 prefix are credited in useKitchenDishCounts (set is region-only).
+    gabonese: new Set(['pan_gabonese', 'libreville', 'port_gentil', 'franceville', 'lambarene', 'oyem', 'moanda', 'mayumba']),
+  };
 
 // Region family a given kitchen may draw from.
 export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
@@ -244,11 +248,19 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
     // Curepipe, Quatre Bornes, Vacoas, Mahebourg, Flacq) + the shared African/Indian Ocean
     // pool. Names carry موريشوسي (normalized موريشوسي, and the feminine موريشوسيه) which now
     // map to 'pan_mauritian'.
-    mauritian: new Set([
-      'pan_mauritian', 'african_shared', 'port_louis', 'curepipe', 'quatre_bornes',
-      'vacoas', 'mahebourg', 'flacq',
-    ]),
- };
+     mauritian: new Set([
+       'pan_mauritian', 'african_shared', 'port_louis', 'curepipe', 'quatre_bornes',
+       'vacoas', 'mahebourg', 'flacq',
+     ]),
+     // Gabonese family mirrors Ghana: own pan_gabonese + regional anchors (Libreville,
+     // Port-Gentil, Franceville, Lambarene, Oyem, Moanda, Mayumba) + the shared Central
+     // African pool. Names carry غابوني (normalized غابوني, and the feminine غابونيه)
+     // which now map to 'pan_gabonese'.
+     gabonese: new Set([
+       'pan_gabonese', 'african_shared', 'libreville', 'port_gentil', 'franceville',
+       'lambarene', 'oyem', 'moanda', 'mayumba',
+     ]),
+  };
 
 // True when a dish may be served in the given kitchen's plans.
 export function isAuthenticForKitchen(kitchenId: string, region: string | null | undefined, name: string | null | undefined): boolean {
