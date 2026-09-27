@@ -45,6 +45,7 @@ const TOKEN_REGIONS: Record<string, string> = {
    غاني: 'pan_ghanaian', غانيه: 'pan_ghanaian',
    رواندي: 'pan_rwandan', روانديه: 'pan_rwandan',
    سيشيلي: 'pan_seychellois', سيشيليه: 'pan_seychellois',
+   موريشوسي: 'pan_mauritian', موريشوسيه: 'pan_mauritian',
  };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -141,6 +142,9 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
    // Seychelles' card counts its own region-tagged rows; african_shared rows authored with
    // the africa-seychelles-2026 prefix are credited in useKitchenDishCounts (set is region-only).
    seychellois: new Set(['pan_seychellois', 'mahe', 'praslin', 'la_digue', 'outer_islands']),
+   // Mauritius' card counts its own region-tagged rows; african_shared rows authored with
+   // the africa-mauritius-2026 prefix are credited in useKitchenDishCounts (set is region-only).
+   mauritian: new Set(['pan_mauritian', 'port_louis', 'curepipe', 'quatre_bornes', 'vacoas', 'mahebourg', 'flacq']),
  };
 
 // Region family a given kitchen may draw from.
@@ -236,6 +240,14 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
    seychellois: new Set([
      'pan_seychellois', 'african_shared', 'mahe', 'praslin', 'la_digue', 'outer_islands',
    ]),
+    // Mauritian family mirrors Ghana: own pan_mauritian + regional anchors (Port Louis,
+    // Curepipe, Quatre Bornes, Vacoas, Mahebourg, Flacq) + the shared African/Indian Ocean
+    // pool. Names carry موريشوسي (normalized موريشوسي, and the feminine موريشوسيه) which now
+    // map to 'pan_mauritian'.
+    mauritian: new Set([
+      'pan_mauritian', 'african_shared', 'port_louis', 'curepipe', 'quatre_bornes',
+      'vacoas', 'mahebourg', 'flacq',
+    ]),
  };
 
 // True when a dish may be served in the given kitchen's plans.

@@ -113,6 +113,11 @@ export function useKitchenDishCounts(): Record<string, number> {
         out.seychellois += rows.filter(
           (r) => r.region === 'african_shared' && (r.source ?? '').startsWith('africa-seychelles-2026'),
         ).length;
+        // Mauritius' card mirrors Ghana: credits its own African-shared pool rows,
+        // identified by the africa-mauritius-2026 source prefix.
+        out.mauritian += rows.filter(
+          (r) => r.region === 'african_shared' && (r.source ?? '').startsWith('africa-mauritius-2026'),
+        ).length;
         if (!cancelled) setCounts(out);
       } catch {
         if (!cancelled) setCounts({});
