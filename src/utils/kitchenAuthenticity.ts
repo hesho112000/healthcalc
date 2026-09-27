@@ -42,6 +42,7 @@ const TOKEN_REGIONS: Record<string, string> = {
    اثيوبي: 'pan_ethiopian', اثيوبيه: 'pan_ethiopian',
    كيني: 'pan_kenyan', كينيه: 'pan_kenyan',
    افريقي: 'pan_south_african', افريقيه: 'pan_south_african',
+   غاني: 'pan_ghanaian', غانيه: 'pan_ghanaian',
  };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -129,6 +130,9 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
    // South Africa's card counts its own region-tagged rows; african_shared rows authored
    // with the africa-south-africa-2026 prefix are credited in useKitchenDishCounts (set is region-only).
    'south-african': new Set(['pan_south_african', 'cape_town', 'johannesburg', 'durban', 'pretoria', 'port_elizabeth']),
+   // Ghana's card counts its own region-tagged rows; african_shared rows authored
+   // with the africa-ghana-2026 prefix are credited in useKitchenDishCounts (set is region-only).
+   ghanaian: new Set(['pan_ghanaian', 'accra', 'kumasi', 'tamale']),
  };
 
 // Region family a given kitchen may draw from.
@@ -205,6 +209,12 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
    // African pool. Names carry افريقي/افريقيه which now maps to 'pan_south_african'.
    'south-african': new Set([
      'pan_south_african', 'african_shared', 'cape_town', 'johannesburg', 'durban', 'pretoria', 'port_elizabeth',
+   ]),
+   // Ghanaian family mirrors South Africa: own pan_ghanaian + regional anchors (Accra,
+   // Kumasi, Tamale) + the shared African pool. Names carry غاني/غانيه which now map to
+   // 'pan_ghanaian'.
+   ghanaian: new Set([
+     'pan_ghanaian', 'african_shared', 'accra', 'kumasi', 'tamale',
    ]),
  };
 

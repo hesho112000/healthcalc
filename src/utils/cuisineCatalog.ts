@@ -545,6 +545,7 @@ export const CUISINE_GROUPS: CuisineGroup[] = [
       { id: 'kenyan', nameAr: 'كيني', nameEn: 'Kenyan' },
       { id: 'nigerian', nameAr: 'نيجيري', nameEn: 'Nigerian' },
       { id: 'ethiopian', nameAr: 'إثيوبي', nameEn: 'Ethiopian' },
+      { id: 'ghanaian', nameAr: 'غاني', nameEn: 'Ghanaian' },
     ],
   },
   {
@@ -576,6 +577,7 @@ export const CUISINE_FLAGS: Record<string, string> = {
   new_zealand: '🇳🇿',
   lebanese: '🇱🇧', palestinian: '🇵🇸', syrian: '🇸🇾', jordanian: '🇯🇴',
   south_african: '🇿🇦', rwandan: '🇷🇼', kenyan: '🇰🇪', nigerian: '🇳🇬', ethiopian: '🇪🇹',
+  ghanaian: '🇬🇭',
   african: '🌍', mediterranean: 'MED', keto: 'KETO', high_protein: 'HP', vegetarian: 'VEG', vegan: 'VEGAN', gluten_free: 'GF', low_carb: 'LC', dash: 'DASH', intermittent_fasting: 'IF', paleo: 'PALEO',
 };
 

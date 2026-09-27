@@ -102,6 +102,7 @@ const CITY_BY_ID: Record<string, string> = {
   thai: 'بانكوك 🇹🇭',
   spanish: 'مدريد 🇪🇸',
   'south-african': 'كيب تاون 🇿🇦',
+  ghanaian: 'أكرا 🇬🇭',
   turkish: 'اسطنبول 🇹🇷',
   venezuelan: 'كراكاس 🇻🇪',
 };
@@ -163,6 +164,7 @@ const COUNTRY_BY_ID: Record<string, string> = {
   thai: 'تايلاند 🇹🇭',
   spanish: 'إسبانيا 🇪🇸',
   'south-african': 'جنوب أفريقيا 🇿🇦',
+  ghanaian: 'غانا 🇬🇭',
   turkish: 'تركيا 🇹🇷',
   venezuelan: 'فنزويلا 🇻🇪',
 };
@@ -213,6 +215,7 @@ const NAME_BY_ID: Record<string, string> = {
   thai: 'المطبخ التايلاندي',
   spanish: 'المطبخ الإسباني',
   'south-african': 'المطبخ الجنوب أفريقي',
+  ghanaian: 'المطبخ الغاني',
   turkish: 'المطبخ التركي',
   venezuelan: 'المطبخ الفنزويلي',
 };
