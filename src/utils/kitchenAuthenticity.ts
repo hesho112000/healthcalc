@@ -50,6 +50,7 @@ const TOKEN_REGIONS: Record<string, string> = {
     بوتسواناوي: 'pan_botswanan', بوتسواناويه: 'pan_botswanan',
     فلبيني: 'pan_filipino', فلبينيه: 'pan_filipino',
     تايلندي: 'pan_thai',
+    فيتنامي: 'pan_vietnamese',
   };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -161,6 +162,9 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
     // The Thai card counts its own region-tagged rows; asian_shared rows authored
     // with the asia-thailand-2026 prefix are credited in useKitchenDishCounts.
     thai: new Set(['pan_thai', 'bangkok', 'chiang_mai', 'isan', 'hua_hin', 'pattaya', 'phuket', 'songkhla', 'krabi']),
+    // The Vietnamese card counts its own region-tagged rows; asian_shared rows authored
+    // with the asia-vietnam-2026 prefix are credited in useKitchenDishCounts.
+    vietnamese: new Set(['pan_vietnamese']),
   };
 
 // Region family a given kitchen may draw from.
@@ -295,6 +299,12 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
      thai: new Set([
        'pan_thai', 'asian_shared', 'bangkok', 'chiang_mai', 'isan', 'hua_hin', 'pattaya',
        'phuket', 'songkhla', 'krabi',
+     ]),
+     // Vietnamese family: own pan_vietnamese + the shared Asian pool. Names
+     // carry فيتنامي (base rows) and فيتنامي أصيل (expansion rows) which now
+     // map to 'pan_vietnamese'.
+     vietnamese: new Set([
+       'pan_vietnamese', 'asian_shared',
      ]),
   };
 
