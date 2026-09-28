@@ -47,6 +47,7 @@ const TOKEN_REGIONS: Record<string, string> = {
    سيشيلي: 'pan_seychellois', سيشيليه: 'pan_seychellois',
     موريشوسي: 'pan_mauritian', موريشوسيه: 'pan_mauritian',
     غابوني: 'pan_gabonese', غابونيه: 'pan_gabonese',
+    بوتسواناوي: 'pan_botswanan', بوتسواناويه: 'pan_botswanan',
   };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -149,6 +150,9 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
     // Gabon's card counts its own region-tagged rows; african_shared rows authored with
     // the africa-gabon-2026 prefix are credited in useKitchenDishCounts (set is region-only).
     gabonese: new Set(['pan_gabonese', 'libreville', 'port_gentil', 'franceville', 'lambarene', 'oyem', 'moanda', 'mayumba']),
+    // Botswana's card counts its own region-tagged rows; african_shared rows authored with
+    // the africa-botswana-2026 prefix are credited in useKitchenDishCounts (set is region-only).
+    botswanan: new Set(['pan_botswanan', 'gaborone', 'francistown', 'maun', 'serowe', 'molepoloni', 'palapye', 'kanye', 'jwaneng']),
   };
 
 // Region family a given kitchen may draw from.
@@ -259,6 +263,14 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
      gabonese: new Set([
        'pan_gabonese', 'african_shared', 'libreville', 'port_gentil', 'franceville',
        'lambarene', 'oyem', 'moanda', 'mayumba',
+     ]),
+     // Botswanan family mirrors Gabon: own pan_botswanan + regional anchors (Gaborone,
+     // Francistown, Maun, Serowe, Molepoloni, Palapye, Kanye, Jwaneng) + the shared
+     // African pool. Names carry بوتسواناوي (normalized بوتسواناوي, and the feminine
+     // بوتسواناويه) which now map to 'pan_botswanan'.
+     botswanan: new Set([
+       'pan_botswanan', 'african_shared', 'gaborone', 'francistown', 'maun', 'serowe',
+       'molepoloni', 'palapye', 'kanye', 'jwaneng',
      ]),
   };
 

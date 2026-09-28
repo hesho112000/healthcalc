@@ -123,6 +123,11 @@ export function useKitchenDishCounts(): Record<string, number> {
         out.gabonese += rows.filter(
           (r) => r.region === 'african_shared' && (r.source ?? '').startsWith('africa-gabon-2026'),
         ).length;
+        // Botswana's card mirrors Gabon: credits its own African-shared pool rows,
+        // identified by the africa-botswana-2026 source prefix.
+        out.botswanan += rows.filter(
+          (r) => r.region === 'african_shared' && (r.source ?? '').startsWith('africa-botswana-2026'),
+        ).length;
         if (!cancelled) setCounts(out);
       } catch {
         if (!cancelled) setCounts({});
