@@ -1,0 +1,48 @@
+// Thai expansion part 2 of 5: noodle_dishes (22) + soups_stews (18) = 40 rows.
+import { R, T } from './rows.mjs';
+
+export default [
+  // --- noodle_dishes (22) ---
+  R(`نودلز القارب بالكاري ${T}`, 'Boat noodles with curry', 'Nouilles en bol au curry', 'Fideos de barco con curry', 'Boot-Nudeln mit Curry', 'noodle_dishes', 'lunch', 'bangkok', 13, 22, 6),
+  R(`نودلز خاو لاي ${T}`, 'Khao lai noodle soup', 'Soupe de nouilles khao lai', 'Sopa de fideos khao lai', 'Khao-Lai-Nudelsuppe', 'noodle_dishes', 'lunch', 'bangkok', 12, 21, 5),
+  R(`باد تااي بالجمبري والصويا ${T}`, 'Pad Thai with prawns', 'Pad thaï aux crevettes et soja', 'Pad thaï con camarones y soja', 'Pad Thai mit Garnelen', 'noodle_dishes', 'lunch', 'pan_thai', 15, 31, 8),
+  R(`باد تااي بالخضار ${T}`, 'Pad Thai with vegetables', 'Pad thaï aux légumes', 'Pad thaï con verduras', 'Pad Thai mit Gemüse', 'noodle_dishes', 'lunch', 'pan_thai', 9, 33, 7),
+  R(`نودلز هوكين ${T}`, 'Hokkien noodles', 'Nouilles Hokkien', 'Fideos Hokkien', 'Hokkien-Nudeln', 'noodle_dishes', 'lunch', 'phuket', 12, 29, 7),
+  R(`نودلز بالثوم ${T}`, 'Garlic noodles', 'Nouilles à l ail', 'Fideos con ajo', 'Knoblauchnudeln', 'noodle_dishes', 'dinner', 'pan_thai', 7, 31, 8),
+  R(`نودلز بالسلمون والأعشاب ${T}`, 'Salmon noodles with herbs', 'Nouilles au saumon aux herbes', 'Fideos con salmón y hierbas', 'Nudeln mit Lachs und Kräutern', 'noodle_dishes', 'lunch', 'krabi', 15, 26, 7),
+  R(`نودلز الروبيان بالمرقة الحامضة ${T}`, 'Prawn noodles in sour broth', 'Nouilles aux crevettes en bouillon acide', 'Fideos con camarones en caldo agrio', 'Garnelennudeln in saurer Brühe', 'noodle_dishes', 'lunch', 'krabi', 14, 24, 5),
+  R(`نودلز توم يام ${T}`, 'Tom yum noodles', 'Nouilles tom yum', 'Fideos tom yum', 'Tom-Yum-Nudeln', 'noodle_dishes', 'lunch', 'pan_thai', 12, 25, 4),
+  R(`نودلز بالدجاج والثوم المعمر ${T}`, 'Chicken noodles with garlic chives', 'Nouilles au poulet et ciboulette', 'Fideos con pollo y cebolleta', 'Hühnernudeln mit Schnittlauch', 'noodle_dishes', 'lunch', 'chiang_mai', 14, 25, 5),
+  R(`نودلز الروبيان الحار ${T}`, 'Hot and spicy prawn noodles', 'Nouilles aux crevettes épicées', 'Fideos con camarones picantes', 'Scharfe Garnelennudeln', 'noodle_dishes', 'dinner', 'pattaya', 14, 25, 7),
+  R(`باد سي إيو بالجمبري ${T}`, 'Pad see ew with prawns', 'Pad see ew aux crevettes', 'Pad see ew con camarones', 'Pad see ew mit Garnelen', 'noodle_dishes', 'lunch', 'pan_thai', 16, 28, 9),
+  R(`نودلز لاتيا ${T}`, 'Latia glass noodle soup', 'Soupe de vermicelles latia', 'Sopa de fideos latia', 'Latia-Reisnudelsuppe', 'noodle_dishes', 'lunch', 'songkhla', 11, 22, 5),
+  R(`بومي حرير بالجمبري والخضار ${T}`, 'Vermicelli with prawns and vegetables', 'Vermicelles aux crevettes et légumes', 'Fideos finos con camarones y verduras', 'Reisnudeln mit Garnelen und Gemüse', 'noodle_dishes', 'lunch', 'krabi', 12, 28, 6),
+  R(`نودلز ببروث الخيزران ${T}`, 'Bamboo-shoot rice noodles', 'Nouilles de riz aux pousses de bambou', 'Fideos de arroz con brotes de bambú', 'Reisnudeln mit Bambosprossen', 'noodle_dishes', 'lunch', 'pan_thai', 7, 27, 4),
+  R(`تشاو مين بالدجاج ${T}`, 'Thai-style chow mein', 'Chow mein thaïlandais', 'Chow mein tailandés', 'Thailändisches Chow mein', 'noodle_dishes', 'dinner', 'bangkok', 13, 29, 9),
+  R(`نودلز بزبدة الثوم بالدجاج ${T}`, 'Garlic butter noodles with chicken', 'Nouilles au beurre d ail et poulet', 'Fideos con mantequilla de ajo y pollo', 'Nudeln mit Knoblauchbutter und Huhn', 'noodle_dishes', 'dinner', 'pan_thai', 15, 28, 11),
+  R(`نودلز بالسجق الشمالي ${T}`, 'Northern sausage noodles', 'Nouilles à la saucisse du nord', 'Fideos con salchicha del norte', 'Nudeln mit nördlicher Wurst', 'noodle_dishes', 'lunch', 'asian_shared', 14, 24, 8),
+  R(`نودلز بالصلصة الحلوة والخضار ${T}`, 'Sweet sauce noodles with vegetables', 'Nouilles à la sauce sucrée', 'Fideos con salsa dulce y verduras', 'Nudeln mit süßer Soße', 'noodle_dishes', 'dinner', 'phuket', 7, 31, 8),
+  R(`مي غورينغ ${T}`, 'Mee goreng', 'Mee goreng', 'Mie goreng', 'Mee Goreng', 'noodle_dishes', 'dinner', 'songkhla', 9, 30, 9),
+  R(`نودلز سوم تم ${T}`, 'Som tam noodle salad', 'Salade de nouilles som tam', 'Ensalada de fideos som tam', 'Som-Tam-Nudelsalat', 'noodle_dishes', 'lunch', 'isan', 6, 26, 5),
+  R(`نودلز البانانغ ${T}`, 'Panang noodle soup', 'Soupe de nouilles panang', 'Sopa de fideos panang', 'Panang-Nudelsuppe', 'noodle_dishes', 'lunch', 'pan_thai', 12, 25, 7),
+
+  // --- soups_stews (18) ---
+  R(`غاينغ هونغ لاي بالدجاج ${T}`, 'Gaeng hung lay chicken', 'Gaeng hung lay au poulet', 'Gaeng hung lay con pollo', 'Gaeng Hung Lay mit Huhn', 'soups_stews', 'dinner', 'chiang_mai', 15, 14, 11),
+  R(`غاينغ هونغ لاي باللحم ${T}`, 'Gaeng hung lay beef', 'Gaeng hung lay au boeuf', 'Gaeng hung lay con ternera', 'Gaeng Hung Lay mit Rindfleisch', 'soups_stews', 'dinner', 'chiang_mai', 16, 13, 12),
+  R(`كاري على الطريقة الفيتنامية ${T}`, 'Vietnamese-style curry', 'Curry style vietnamien', 'Curry al estilo vietnamita', 'Curry im vietnamesischen Stil', 'soups_stews', 'dinner', 'pan_thai', 14, 12, 10),
+  R(`كاري البانانغ الأحمر ${T}`, 'Red panang curry', 'Curry panang rouge', 'Curry panang rojo', 'Rotes Panang-Curry', 'soups_stews', 'dinner', 'phuket', 14, 10, 11),
+  R(`توم يام الكريمي ${T}`, 'Creamy tom yum', 'Tom yum crémeux', 'Tom yum cremoso', 'Cremiger Tom Yum', 'soups_stews', 'dinner', 'pan_thai', 12, 6, 9),
+  R(`توم يام بالفطر ${T}`, 'Tom yum with mushrooms', 'Tom yum aux champignons', 'Tom yum con champiñones', 'Tom Yum mit Pilzen', 'soups_stews', 'dinner', 'pan_thai', 8, 6, 5),
+  R(`كاري الذرة الأخضر ${T}`, 'Green corn curry', 'Curry au maïs vert', 'Curry de maíz verde', 'Curry mit grünem Mais', 'soups_stews', 'dinner', 'pan_thai', 9, 15, 7),
+  R(`شوربة الميسو ${T}`, 'Miso soup', 'Soupe au miso', 'Sopa de miso', 'Miso-Suppe', 'soups_stews', 'dinner', 'pan_thai', 8, 8, 4),
+  R(`شوربة الدجاج بالقرفة ${T}`, 'Cinnamon chicken soup', 'Soupe de poulet à la cannelle', 'Sopa de pollo con canela', 'Hühnersuppe mit Zimt', 'soups_stews', 'dinner', 'pan_thai', 12, 5, 5),
+  R(`كاري الفطر على البخار ${T}`, 'Steamed mushroom curry', 'Curry aux champignons à la vapeur', 'Curry de champiñones al vapor', 'Im Dampf garter Pilzcurry', 'soups_stews', 'dinner', 'pan_thai', 6, 11, 7),
+  R(`الكاري الجنوبي بجوز الهند ${T}`, 'Southern coconut curry', 'Curry du sud au lait de coco', 'Curry sureño con coco', 'Südlicher Kokoscurry', 'soups_stews', 'dinner', 'songkhla', 13, 12, 11),
+  R(`توم كا بالقرنبل ${T}`, 'Tom kha with galangal', 'Tom kha au galanga', 'Tom kha con galangal', 'Tom Kha mit Galanga', 'soups_stews', 'dinner', 'pan_thai', 10, 5, 6),
+  R(`الكاري الأصفر ${T}`, 'Yellow curry', 'Curry jaune', 'Curry amarillo', 'Gelber Curry', 'soups_stews', 'dinner', 'pan_thai', 13, 11, 9),
+  R(`شوربة الفطر والأعشاب البحرية ${T}`, 'Mushroom and seaweed soup', 'Soupe champignons et algues', 'Sopa de hongos y algas', 'Pilz-Algen-Suppe', 'soups_stews', 'dinner', 'krabi', 4, 7, 3),
+  R(`شوربة رأس السمك في الجنوب ${T}`, 'Southern fish head soup', 'Soupe de tête de poisson du sud', 'Sopa de cabeza de pescado del sur', 'Südliche Fischkopfsuppe', 'soups_stews', 'dinner', 'phuket', 14, 5, 7),
+  R(`غاينغ جاو ${T}`, 'Gaeng jao red curry', 'Gaeng jao curry rouge', 'Gaeng jao curry rojo', 'Gaeng Jao Rotes Curry', 'soups_stews', 'dinner', 'isan', 12, 8, 9),
+  R(`كاري الفاصوليا الخضراء ${T}`, 'Green bean curry', 'Curry de haricots verts', 'Curry de ejotes', 'Curry mit grünen Bohnen', 'soups_stews', 'dinner', 'pan_thai', 5, 11, 6),
+  R(`مرق الدجاج بالليمون الأخضر ${T}`, 'Lemony chicken stock', 'Bouillon au citron vert et poulet', 'Caldo de lima y pollo', 'Zitronen-Hühnerbrühe', 'soups_stews', 'dinner', 'krabi', 11, 3, 5),
+];

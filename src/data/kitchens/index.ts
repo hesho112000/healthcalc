@@ -222,7 +222,7 @@ const NAME_BY_ID: Record<string, string> = {
   qatar: 'المطبخ القطري',
   rwandan: 'المطبخ الرواندي',
   swiss: 'المطبخ السويسري',
-  thai: 'المطبخ التايلاندي',
+  thai: 'المطبخ التايلندي',
   spanish: 'المطبخ الإسباني',
   'south-african': 'المطبخ الجنوب أفريقي',
   ghanaian: 'المطبخ الغاني',

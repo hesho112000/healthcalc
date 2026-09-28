@@ -1,0 +1,168 @@
+// Thai base 100 builder (premium re-authoring).
+// Aggregates scripts/thai-base-data/part*.mjs, validates them, and writes:
+//   - src/data/thai-full.ts           (app data file, ThaiFullDish shape preserved)
+//   - scripts/thai-100-proposal.json   (proposal/migration source)
+// READ-ONLY with respect to Supabase.
+// kcal is COMPUTED, never hand-typed: round(4P + 4C + 9F).
+import { writeFileSync } from 'node:fs';
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const HERE = dirname(fileURLToPath(import.meta.url));
+const PARTS = [
+  'part1.mjs', 'part2.mjs', 'part3.mjs', 'part4.mjs', 'part5.mjs',
+  'part6.mjs', 'part7.mjs', 'part8.mjs', 'part9.mjs',
+];
+
+const rows = [];
+for (const p of PARTS) {
+  const mod = await import(new URL(`./thai-base-data/${p}`, import.meta.url));
+  rows.push(...mod.default);
+}
+
+const errors = [];
+const push = (m) => errors.push(m);
+
+const EXPECT_CAT = {
+  breakfast_items: 8, rice_dishes: 12, noodle_dishes: 14, soups_stews: 12,
+  poultry_mains: 10, meat_mains: 9, fish_seafood: 11, vegetable_mains: 6,
+  banana_coconut: 4, rice_cakes_sweets: 5, street_snacks: 4,
+  condiments_sauces: 3, beverages: 2,
+};
+const MEALS = ['breakfast', 'lunch', 'dinner', 'snacks'];
+
+if (rows.length !== 100) push(`row count is ${rows.length}, expected 100`);
+
+const byCat = {};
+const byMeal = {};
+for (const r of rows) {
+  byCat[r.category] = (byCat[r.category] || 0) + 1;
+  byMeal[r.mealType] = (byMeal[r.mealType] || 0) + 1;
+}
+for (const [c, n] of Object.entries(EXPECT_CAT)) {
+  if ((byCat[c] || 0) !== n) push(`category ${c}: ${byCat[c] || 0}, expected ${n}`);
+}
+for (const c of Object.keys(byCat)) if (!(c in EXPECT_CAT)) push(`unexpected category ${c}`);
+
+const ALLOWED_AR = /^[؀-ۿ ‎ً-ْ]+$/;
+const PORK = /(pork|ham|bacon|swine|cerdo|schwein|chorizo|lomo|หมู)/i;
+const ALCOHOL = /(beer|wine|rum|vodka|whisky|whiskey|lager|birre|cerveza|bier|wein|alkohol|champagne|cider)/i;
+const NON_LATIN = /[؀-ۿ฀-๿]/;
+const seenEn = new Map();
+const seenAr = new Map();
+
+for (const [i, r] of rows.entries()) {
+  const tag = `#${i + 1} ${r.nameEn || '?'}`;
+
+  for (const k of ['nameAr', 'nameEn', 'nameFr', 'nameEs', 'nameDe']) {
+    if (!r[k] || typeof r[k] !== 'string' || !r[k].trim()) push(`${tag}: missing ${k}`);
+  }
+  if (r.nameAr && !ALLOWED_AR.test(r.nameAr)) push(`${tag}: bad script in nameAr -> ${r.nameAr}`);
+  if (r.nameAr && !r.nameAr.includes('تايلندي')) push(`${tag}: nameAr missing تايلندي -> ${r.nameAr}`);
+  const n = (r.nameAr.match(/تايلندي/g) || []).length;
+  if (n !== 1) push(`${tag}: تايلندي appears ${n} times -> ${r.nameAr}`);
+  if (r.nameAr && !r.nameAr.endsWith('تايلندي')) push(`${tag}: nameAr must end with تايلندي -> ${r.nameAr}`);
+
+  for (const k of ['nameEn', 'nameFr', 'nameEs', 'nameDe']) {
+    if (r[k] && NON_LATIN.test(r[k])) push(`${tag}: ${k} contains Arabic/Thai script -> ${r[k]}`);
+  }
+
+  if (PORK.test(r.nameEn)) push(`${tag}: pork reference -> ${r.nameEn}`);
+  if (ALCOHOL.test(r.nameEn)) push(`${tag}: alcohol reference -> ${r.nameEn}`);
+
+  if (r.grams !== 100) push(`${tag}: grams=${r.grams}, expected 100`);
+  for (const k of ['protein', 'carbs', 'fat']) {
+    if (typeof r[k] !== 'number' || Number.isNaN(r[k])) push(`${tag}: ${k} not a number`);
+  }
+  if (r.protein > 40) push(`${tag}: protein ${r.protein} out of range`);
+  if (r.carbs > 50) push(`${tag}: carbs ${r.carbs} out of range`);
+  if (r.fat > 30) push(`${tag}: fat ${r.fat} out of range`);
+
+  const atwater = Math.round(4 * r.protein + 4 * r.carbs + 9 * r.fat);
+  if (r.kcal !== atwater) push(`${tag}: kcal ${r.kcal} != Atwater ${atwater}`);
+  if (r.kcal < 20 || r.kcal > 900) push(`${tag}: kcal ${r.kcal} out of range`);
+
+  if (!MEALS.includes(r.mealType)) push(`${tag}: bad mealType ${r.mealType}`);
+  if (!(r.category in EXPECT_CAT)) push(`${tag}: unknown category ${r.category}`);
+
+  const ek = (r.nameEn || '').toLowerCase().trim();
+  const ak = (r.nameAr || '').trim();
+  if (seenEn.has(ek)) push(`${tag}: duplicate nameEn "${ek}" (also #${seenEn.get(ek)})`);
+  else seenEn.set(ek, i + 1);
+  if (seenAr.has(ak)) push(`${tag}: duplicate nameAr (also #${seenAr.get(ak)})`);
+  else seenAr.set(ak, i + 1);
+}
+
+// Stable sequential ids, matching the previous file's convention.
+rows.forEach((r, i) => { r.id = String(i + 1); });
+
+console.log('rows:', rows.length);
+console.log('categories:', JSON.stringify(byCat));
+console.log('meal types:', JSON.stringify(byMeal));
+console.log('kcal range:', Math.min(...rows.map((r) => r.kcal)), '-', Math.max(...rows.map((r) => r.kcal)));
+
+if (errors.length) {
+  console.log('\nFAILED with ' + errors.length + ' error(s):');
+  for (const e of errors) console.log(' -', e);
+  process.exit(1);
+}
+
+const header = `// Thai kitchen - 100 genuine Thai daily dishes, 5 languages each.
+// Authored from scratch (premium pass) in scripts/thai-base-data/part*.mjs.
+// Generated by scripts/build-thai-base-100.js - do not hand-edit kcal, it is
+// computed as round(4P + 4C + 9F) so the set is Atwater-consistent by construction.
+// Every Arabic name carries the تايلندي token (nationality guard -> pan_thai).
+// Halal: no pork, no alcohol.
+export interface ThaiFullDish {
+  id: string;
+  nameAr: string;
+  nameEn: string;
+  nameFr: string;
+  nameEs: string;
+  nameDe: string;
+  mealType: 'breakfast' | 'lunch' | 'dinner' | 'snacks' | 'side' | 'salad' | 'fruit';
+  grams: number;
+  kcal: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+  cooking?: string;
+  ref?: string;
+  note?: string;
+}
+
+export const THAI_FULL: ThaiFullDish[] = [
+`;
+
+const body = rows
+  .map((r) => '  ' + JSON.stringify({
+    id: r.id,
+    nameAr: r.nameAr,
+    nameEn: r.nameEn,
+    nameFr: r.nameFr,
+    nameEs: r.nameEs,
+    nameDe: r.nameDe,
+    mealType: r.mealType,
+    grams: r.grams,
+    kcal: r.kcal,
+    protein: r.protein,
+    carbs: r.carbs,
+    fat: r.fat,
+    cooking: r.cooking,
+  }))
+  .join(',\n');
+
+writeFileSync(resolve(HERE, '../src/data/thai-full.ts'), `${header}${body}\n];\n`, 'utf8');
+
+const proposal = {
+  kitchen: 'thai',
+  phase: 'base',
+  count: rows.length,
+  generated_at: new Date().toISOString(),
+  by_category: byCat,
+  by_meal_type: byMeal,
+  dishes: rows,
+};
+writeFileSync(resolve(HERE, 'thai-100-proposal.json'), JSON.stringify(proposal, null, 2), 'utf8');
+
+console.log('\nOK: wrote src/data/thai-full.ts and scripts/thai-100-proposal.json');
