@@ -48,6 +48,7 @@ const TOKEN_REGIONS: Record<string, string> = {
     موريشوسي: 'pan_mauritian', موريشوسيه: 'pan_mauritian',
     غابوني: 'pan_gabonese', غابونيه: 'pan_gabonese',
     بوتسواناوي: 'pan_botswanan', بوتسواناويه: 'pan_botswanan',
+    فلبيني: 'pan_filipino', فلبينيه: 'pan_filipino',
   };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -153,6 +154,9 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
     // Botswana's card counts its own region-tagged rows; african_shared rows authored with
     // the africa-botswana-2026 prefix are credited in useKitchenDishCounts (set is region-only).
     botswanan: new Set(['pan_botswanan', 'gaborone', 'francistown', 'maun', 'serowe', 'molepoloni', 'palapye', 'kanye', 'jwaneng']),
+    // The Filipino card counts its own region-tagged rows; asian_shared rows authored
+    // with the asia-philippines-2026 prefix are credited in useKitchenDishCounts.
+    filipino: new Set(['pan_filipino', 'manila', 'cebu', 'davao', 'iloilo', 'bacolod', 'baguio', 'cagayan_de_oro', 'zamboanga', 'bicol']),
   };
 
 // Region family a given kitchen may draw from.
@@ -271,6 +275,14 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
      botswanan: new Set([
        'pan_botswanan', 'african_shared', 'gaborone', 'francistown', 'maun', 'serowe',
        'molepoloni', 'palapye', 'kanye', 'jwaneng',
+     ]),
+     // Filipino family: own pan_filipino + regional anchors (Manila, Cebu, Davao,
+     // Iloilo, Bacolod, Baguio, Cagayan de Oro, Zamboanga, Bicol) + the shared Asian
+     // pool. Names carry فلبيني (normalized فلبيني, and the feminine فلبينيه) which
+     // now map to 'pan_filipino'.
+     filipino: new Set([
+       'pan_filipino', 'asian_shared', 'manila', 'cebu', 'davao', 'iloilo', 'bacolod',
+       'baguio', 'cagayan_de_oro', 'zamboanga', 'bicol',
      ]),
   };
 

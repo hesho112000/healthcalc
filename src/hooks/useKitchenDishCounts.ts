@@ -128,6 +128,11 @@ export function useKitchenDishCounts(): Record<string, number> {
         out.botswanan += rows.filter(
           (r) => r.region === 'african_shared' && (r.source ?? '').startsWith('africa-botswana-2026'),
         ).length;
+        // The Filipino card mirrors the shared-pool kitchens: credits its own
+        // asian_shared pool rows, identified by the asia-philippines-2026 source prefix.
+        out.filipino += rows.filter(
+          (r) => r.region === 'asian_shared' && (r.source ?? '').startsWith('asia-philippines-2026'),
+        ).length;
         if (!cancelled) setCounts(out);
       } catch {
         if (!cancelled) setCounts({});
