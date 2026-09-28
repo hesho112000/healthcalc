@@ -1,0 +1,36 @@
+// Chinese expansion part 2 of 6: noodle_dishes (30) = 30 rows.
+// All dishes are distinct from the base 200 and part1. Halal: no pork, no alcohol.
+import { R, T } from './rows.mjs';
+
+export default [
+  R(`تشاو مين بالدجاج بالزنجبيل ${T}`, 'Ginger chicken chow mein', 'Chow mein poulet gingembre', 'Chow mein pollo jengibre', 'Huhn-Chow-Mein mit Ingwer', 'noodle_dishes', 'lunch', 'pan_chinese', 13, 23, 7),
+  R(`تشاو مين بالدجاج بالثوم ${T}`, 'Garlic chicken chow mein', 'Chow mein poulet ail', 'Chow mein pollo ajo', 'Huhn-Chow-Mein mit Knoblauch', 'noodle_dishes', 'lunch', 'pan_chinese', 12, 24, 6),
+  R(`تشاو مين بالدجاج بالبصل ${T}`, 'Onion chicken chow mein', 'Chow mein poulet oignon', 'Chow mein pollo cebolla', 'Huhn-Chow-Mein mit Zwiebel', 'noodle_dishes', 'lunch', 'pan_chinese', 13, 22, 7),
+  R(`تشاو مين بالدجاج بالكزبرة ${T}`, 'Cilantro chicken chow mein', 'Chow mein poulet coriandre', 'Chow mein pollo cilantro', 'Huhn-Chow-Mein mit Koriander', 'noodle_dishes', 'lunch', 'pan_chinese', 12, 23, 6),
+  R(`تشاو مين بالدجاج بالليمون ${T}`, 'Lemon chicken chow mein', 'Chow mein poulet citron', 'Chow mein pollo limón', 'Huhn-Chow-Mein mit Zitrone', 'noodle_dishes', 'lunch', 'pan_chinese', 13, 21, 7),
+  R(`تشاو مين بالدجاج بالفلفل ${T}`, 'Pepper chicken chow mein', 'Chow mein poulet poivre', 'Chow mein pollo pimienta', 'Huhn-Chow-Mein mit Pfeffer', 'noodle_dishes', 'lunch', 'pan_chinese', 12, 22, 6),
+  R(`تشاو مين بالدجاج بالكاري ${T}`, 'Curry chicken chow mein', 'Chow mein poulet curry', 'Chow mein pollo curry', 'Huhn-Chow-Mein mit Curry', 'noodle_dishes', 'lunch', 'pan_chinese', 13, 23, 7),
+  R(`تشاو مين بالدجاج بالطماطم ${T}`, 'Tomato chicken chow mein', 'Chow mein poulet tomate', 'Chow mein pollo tomate', 'Huhn-Chow-Mein mit Tomate', 'noodle_dishes', 'lunch', 'pan_chinese', 12, 24, 6),
+  R(`تشاو مين بالدجاج بالفطر ${T}`, 'Mushroom chicken chow mein', 'Chow mein poulet champignons', 'Chow mein pollo hongos', 'Huhn-Chow-Mein mit Pilzen', 'noodle_dishes', 'lunch', 'pan_chinese', 13, 22, 7),
+  R(`تشاو مين بالدجاج بالذرة ${T}`, 'Corn chicken chow mein', 'Chow mein poulet mais', 'Chow mein pollo maíz', 'Huhn-Chow-Mein mit Mais', 'noodle_dishes', 'lunch', 'pan_chinese', 12, 23, 6),
+  R(`تشاو مين بالدجاج بالبطاطس ${T}`, 'Potato chicken chow mein', 'Chow mein poulet pomme de terre', 'Chow mein pollo papa', 'Huhn-Chow-Mein mit Kartoffel', 'noodle_dishes', 'lunch', 'pan_chinese', 13, 21, 7),
+  R(`تشاو مين بالدجاج بالجزر ${T}`, 'Carrot chicken chow mein', 'Chow mein poulet carotte', 'Chow mein pollo zanahoria', 'Huhn-Chow-Mein mit Karotte', 'noodle_dishes', 'lunch', 'pan_chinese', 12, 22, 6),
+  R(`تشاو مين بالدجاج بالسبانخ ${T}`, 'Spinach chicken chow mein', 'Chow mein poulet epinards', 'Chow mein pollo espinacas', 'Huhn-Chow-Mein mit Spinat', 'noodle_dishes', 'lunch', 'pan_chinese', 13, 20, 7),
+  R(`تشاو مين بالدجاج بالبروكلي ${T}`, 'Broccoli chicken chow mein', 'Chow mein poulet brocoli', 'Chow mein pollo brócoli', 'Huhn-Chow-Mein mit Brokkoli', 'noodle_dishes', 'lunch', 'pan_chinese', 12, 21, 6),
+  R(`تشاو مين بالدجاج بالبازلاء ${T}`, 'Pea chicken chow mein', 'Chow mein poulet petits pois', 'Chow mein pollo guisantes', 'Huhn-Chow-Mein mit Erbsen', 'noodle_dishes', 'lunch', 'pan_chinese', 13, 22, 7),
+  R(`تشاو مين بالدجاج بالخضار المشكلة ${T}`, 'Mixed vegetable chicken chow mein', 'Chow mein poulet legumes varies', 'Chow mein pollo verduras mixtas', 'Huhn-Chow-Mein mit gemischtem Gemüse', 'noodle_dishes', 'lunch', 'pan_chinese', 12, 23, 6),
+  R(`لو مين باللحم بالزنجبيل ${T}`, 'Ginger beef lo mein', 'Lo mein boeuf gingembre', 'Lo mein ternera jengibre', 'Rind-Lo-Mein mit Ingwer', 'noodle_dishes', 'lunch', 'pan_chinese', 14, 21, 8),
+  R(`لو مين باللحم بالثوم ${T}`, 'Garlic beef lo mein', 'Lo mein boeuf ail', 'Lo mein ternera ajo', 'Rind-Lo-Mein mit Knoblauch', 'noodle_dishes', 'lunch', 'pan_chinese', 13, 22, 7),
+  R(`لو مين باللحم بالبصل ${T}`, 'Onion beef lo mein', 'Lo mein boeuf oignon', 'Lo mein ternera cebolla', 'Rind-Lo-Mein mit Zwiebel', 'noodle_dishes', 'lunch', 'pan_chinese', 14, 20, 8),
+  R(`لو مين باللحم بالكزبرة ${T}`, 'Cilantro beef lo mein', 'Lo mein boeuf coriandre', 'Lo mein ternera cilantro', 'Rind-Lo-Mein mit Koriander', 'noodle_dishes', 'lunch', 'pan_chinese', 13, 21, 7),
+  R(`لو مين باللحم بالليمون ${T}`, 'Lemon beef lo mein', 'Lo mein boeuf citron', 'Lo mein ternera limón', 'Rind-Lo-Mein mit Zitrone', 'noodle_dishes', 'lunch', 'pan_chinese', 14, 19, 8),
+  R(`لو مين باللحم بالفلفل ${T}`, 'Pepper beef lo mein', 'Lo mein boeuf poivre', 'Lo mein ternera pimienta', 'Rind-Lo-Mein mit Pfeffer', 'noodle_dishes', 'lunch', 'pan_chinese', 13, 20, 7),
+  R(`لو مين باللحم بالكاري ${T}`, 'Curry beef lo mein', 'Lo mein boeuf curry', 'Lo mein ternera curry', 'Rind-Lo-Mein mit Curry', 'noodle_dishes', 'lunch', 'pan_chinese', 14, 21, 8),
+  R(`لو مين باللحم بالطماطم ${T}`, 'Tomato beef lo mein', 'Lo mein boeuf tomate', 'Lo mein ternera tomate', 'Rind-Lo-Mein mit Tomate', 'noodle_dishes', 'lunch', 'pan_chinese', 13, 22, 7),
+  R(`لو مين باللحم بالفطر ${T}`, 'Mushroom beef lo mein', 'Lo mein boeuf champignons', 'Lo mein ternera hongos', 'Rind-Lo-Mein mit Pilzen', 'noodle_dishes', 'lunch', 'pan_chinese', 14, 20, 8),
+  R(`لو مين باللحم بالذرة ${T}`, 'Corn beef lo mein', 'Lo mein boeuf mais', 'Lo mein ternera maíz', 'Rind-Lo-Mein mit Mais', 'noodle_dishes', 'lunch', 'pan_chinese', 13, 21, 7),
+  R(`لو مين باللحم بالبطاطس ${T}`, 'Potato beef lo mein', 'Lo mein boeuf pomme de terre', 'Lo mein ternera papa', 'Rind-Lo-Mein mit Kartoffel', 'noodle_dishes', 'lunch', 'pan_chinese', 14, 19, 8),
+  R(`لو مين باللحم بالجزر ${T}`, 'Carrot beef lo mein', 'Lo mein boeuf carotte', 'Lo mein ternera zanahoria', 'Rind-Lo-Mein mit Karotte', 'noodle_dishes', 'lunch', 'pan_chinese', 13, 20, 7),
+  R(`لو مين باللحم بالسبانخ ${T}`, 'Spinach beef lo mein', 'Lo mein boeuf epinards', 'Lo mein ternera espinacas', 'Rind-Lo-Mein mit Spinat', 'noodle_dishes', 'lunch', 'pan_chinese', 14, 18, 8),
+  R(`لو مين باللحم بالبروكلي ${T}`, 'Broccoli beef lo mein', 'Lo mein boeuf brocoli', 'Lo mein ternera brócoli', 'Rind-Lo-Mein mit Brokkoli', 'noodle_dishes', 'lunch', 'pan_chinese', 13, 19, 7),
+];

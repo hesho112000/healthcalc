@@ -754,6 +754,7 @@ export const FOODS_DATABASE: FoodItem[] = [
   ...BOTSWANAN_FULL.map(toBotswananFood),
   ...FILIPINO_FULL.map(toFilipinoFood),
   ...VIETNAMESE_FULL.map(toVietnameseFood),
+  ...CHINESE_FULL.map(toChineseFood),
   ...(mediterraneanDietJson as LevantJsonDish[]).map(toMediterraneanFood),
   ...(ketoDietJson as LevantJsonDish[]).map(toKetoFood),
   ...(highProteinDietJson as LevantJsonDish[]).map(toHighProteinFood),
