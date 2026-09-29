@@ -61,6 +61,12 @@ const TOKEN_REGIONS: Record<string, string> = {
     // with the masculine 'كوري' (expansion rows use 'كوري أصيل', which still resolves),
     // so every Korean row is mappable without touching the Thai kitchen.
     كوري: 'pan_korean',
+    // Taiwan: 'تايوان' is unambiguous - the token is the endonym and appears in
+    // every one of the 300 Taiwan rows, and no other kitchen uses it. The feminine
+    // 'تايوانية' is registered as its normalized form 'تايوانيه' so it cannot
+    // re-grab rows that nationalityRegion() has already resolved to another kitchen.
+    تايوان: 'pan_taiwanese',
+    تايوانيه: 'pan_taiwanese',
   };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -196,6 +202,13 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
       'pan_korean', 'seoul', 'busan', 'jeju', 'jeonju', 'andong', 'goryeong', 'gangneung',
       'incheon', 'daegu', 'gwangju', 'daejeon', 'ulsan', 'suwon', 'chuncheon', 'mokpo',
       'yeosu', 'pohang', 'gyeongju', 'tongyeong', 'sunchang', 'boseong', 'namhae',
+    ]),
+    // The Taiwan card counts its own region-tagged rows: the pan bucket plus all 12
+    // regional anchors. asian_shared is deliberately absent, matching the Korean
+    // treatment - the Taiwan pass kept asian_shared at 0.
+    taiwanese: new Set([
+      'pan_taiwanese', 'taipei', 'tainan', 'taichung', 'kaohsiung', 'hsinchu',
+      'hualien', 'taitung', 'keelung', 'chiayi', 'nantou', 'yilan', 'pingtung',
     ]),
   };
 
@@ -354,7 +367,16 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
         'pan_korean', 'asian_shared', 'seoul', 'busan', 'jeju', 'jeonju', 'andong',
         'goryeong', 'gangneung', 'incheon', 'daegu', 'gwangju', 'daejeon', 'ulsan',
         'suwon', 'chuncheon', 'mokpo', 'yeosu', 'pohang', 'gyeongju', 'tongyeong',
-        'sunchang', 'boseong', 'namhae',
+         'sunchang', 'boseong', 'namhae',
+       ]),
+      // Taiwan family: own pan_taiwanese + all 12 regional anchors (Taipei, Tainan,
+      // Taichung, Kaohsiung, Hsinchu, Hualien, Taitung, Keelung, Chiayi, Nantou,
+      // Yilan, Pingtung). asian_shared is included for future rows but currently
+      // holds 0 Taiwan dishes. Names carry تايوان (base) and تايوان أصيل (expansion),
+      // both of which map to 'pan_taiwanese'.
+      taiwanese: new Set([
+        'pan_taiwanese', 'asian_shared', 'taipei', 'tainan', 'taichung', 'kaohsiung',
+        'hsinchu', 'hualien', 'taitung', 'keelung', 'chiayi', 'nantou', 'yilan', 'pingtung',
       ]),
   };
 

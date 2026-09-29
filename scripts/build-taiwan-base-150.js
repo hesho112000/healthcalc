@@ -1,0 +1,237 @@
+// Validates the Taiwan base 150 and emits:
+//   - scripts/taiwan-150-proposal.json
+//   - src/data/taiwan-full.ts
+//
+// Mirrors scripts/build-korean-base-200.js. kcal is never hand-typed: the row
+// helper computes it as round(4P + 4C + 9F) and this script RE-DERIVES it
+// independently, so a drifting macro is a hard failure rather than a silent
+// pass. (The Korean build needed damping for a handful of rows; if any Taiwan
+// row drifts, this script tells us instead of quietly clamping it.)
+import 'dotenv/config';
+import { createClient } from '@supabase/supabase-js';
+import { writeFileSync, existsSync } from 'node:fs';
+import { resolve, join } from 'node:path';
+import { pathToFileURL } from 'node:url';
+
+const BASE = './taiwan-base-data';
+const OUT_JSON = 'scripts/taiwan-150-proposal.json';
+const OUT_TS = 'src/data/taiwan-full.ts';
+
+const CATEGORIES = new Set([
+  'breakfast_items', 'rice_dishes', 'noodle_dishes', 'soups_stews', 'poultry_mains',
+  'meat_mains', 'fish_seafood', 'vegetable_mains', 'street_snacks', 'rice_cakes_sweets',
+  'condiments_sauces', 'beverages',
+]);
+const MEALS = new Set(['breakfast', 'lunch', 'dinner', 'snack']);
+const REGIONS = new Set([
+  'pan_taiwanese', 'asian_shared', 'taipei', 'tainan', 'taichung', 'kaohsiung',
+  'hsinchu', 'hualien', 'taitung', 'keelung', 'chiayi', 'nantou', 'yilan', 'pingtung',
+]);
+const TOKENS = ['تايوان'];
+
+let rows = [];
+const BASE_ABS = resolve(process.cwd(), 'scripts', 'taiwan-base-data');
+for (let i = 1; i <= 20; i++) {
+  const file = join(BASE_ABS, `part${i}.mjs`);
+  if (!existsSync(file)) break;
+  const m = await import(pathToFileURL(file).href);
+  rows = rows.concat(m.default);
+}
+
+const errors = [];
+const warn = [];
+const seenAr = new Map();
+const seenEn = new Map();
+
+rows.forEach((r, i) => {
+  const tag = `#${i + 1} ${r.nameEn || r.nameAr}`;
+  for (const [k, v] of Object.entries(r)) {
+    if (k === 'id') continue; // assigned by the builder
+    if (v === undefined || v === null || v === '') errors.push(`${tag}: empty field ${k}`);
+  }
+  // text corruption guard: no U+FFFD, no stray '?', no latin leaking into Arabic field
+  for (const k of ['nameAr', 'nameEn', 'nameFr', 'nameEs', 'nameDe']) {
+    const v = r[k];
+    if (typeof v !== 'string') { errors.push(`${tag}: ${k} not a string`); continue; }
+    if (v.includes('\uFFFD')) errors.push(`${tag}: ${k} contains U+FFFD (corrupted)`);
+    if (/\?/.test(v)) errors.push(`${tag}: ${k} contains '?' (corrupted)`);
+  }
+  // Latin/Cyrillic leaking into the Arabic name is the classic authoring corruption.
+  const ar = r.nameAr || '';
+  if (/[A-Za-z]/.test(ar)) errors.push(`${tag}: nameAr contains latin chars -> "${ar}"`);
+  // all five languages must be non-empty and distinct
+  for (const k of ['nameEn', 'nameFr', 'nameEs', 'nameDe']) {
+    if (r[k] === ar) errors.push(`${tag}: ${k} identical to nameAr (untranslated)`);
+  }
+  if (!CATEGORIES.has(r.category)) errors.push(`${tag}: bad category "${r.category}"`);
+  if (!MEALS.has(r.mealType)) errors.push(`${tag}: bad mealType "${r.mealType}"`);
+  if (!REGIONS.has(r.region)) errors.push(`${tag}: bad region "${r.region}"`);
+  if (r.region === 'asian_shared') errors.push(`${tag}: asian_shared must stay at 0 (Korea rule)`);
+  if (r.grams !== 100) errors.push(`${tag}: grams must be 100, got ${r.grams}`);
+
+  // macros
+  for (const k of ['protein', 'carbs', 'fat']) {
+    if (typeof r[k] !== 'number' || r[k] < 0) errors.push(`${tag}: bad ${k}`);
+    if (r[k] > 100) errors.push(`${tag}: ${k} > 100 (impossible)`);
+  }
+  if (r.protein + r.carbs + r.fat > 100) errors.push(`${tag}: macros sum > 100g`);
+  // independent Atwater re-derivation
+  const expect = Math.round(4 * r.protein + 4 * r.carbs + 9 * r.fat);
+  if (r.kcal !== expect) errors.push(`${tag}: Atwater drift kcal=${r.kcal} expected ${expect}`);
+
+  // nationality token
+  const toks = TOKENS.filter((t) => ar.includes(t));
+  if (toks.length !== 1) errors.push(`${tag}: expected exactly 1 token, found ${toks.length}`);
+
+  // duplicate names
+  const kar = ar.replace(/\s+/g, ' ').trim();
+  if (seenAr.has(kar)) errors.push(`${tag}: duplicate Arabic name with ${seenAr.get(kar)}`);
+  seenAr.set(kar, tag);
+  const ken = r.nameEn.toLowerCase().replace(/\s+/g, ' ').trim();
+  if (seenEn.has(ken)) errors.push(`${tag}: duplicate English name "${ken}" with ${seenEn.get(ken)}`);
+  seenEn.set(ken, tag);
+});
+
+if (rows.length !== 150) errors.push(`expected 150 rows, got ${rows.length}`);
+
+// ---------- live DB duplicate check ----------
+const url = process.env.SUPABASE_URL;
+const key = process.env['asia_migration'] ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
+if (url && key) {
+  const supabase = createClient(url, key, { auth: { persistSession: false } });
+  const live = [];
+  let from = 0;
+  for (;;) {
+    const { data, error } = await supabase.from('dishes').select('name_ar,name_en,source').order('id').range(from, from + 999);
+    if (error) throw error;
+    live.push(...data);
+    if (data.length < 1000) break;
+    from += 1000;
+  }
+  // Exclude rows this migration already wrote, so a re-run is not a self-clash.
+  const foreign = live.filter((r) => !(r.source ?? '').startsWith('asia-taiwan-2026'));
+  const liveAr = new Set(foreign.map((r) => (r.name_ar || '').replace(/\s+/g, ' ').trim()));
+  const liveEn = new Set(foreign.map((r) => (r.name_en || '').toLowerCase().replace(/\s+/g, ' ').trim()));
+  // Arabic names must be globally unique: the nationality scanner and the UI key
+  // off them, so a clash would corrupt an existing kitchen.
+  for (const r of rows) {
+    if (liveAr.has(r.nameAr.replace(/\s+/g, ' ').trim())) errors.push(`live DB duplicate Arabic: ${r.nameAr}`);
+  }
+  // English names are per-kitchen labels, not global keys. Generic pan-cuisine
+  // names ("Beef noodle soup", "Soy sauce") legitimately recur across kitchens,
+  // so these are REPORTED, not fatal. Korean's builder does the same thing by
+  // scoping its duplicate check to the dataset.
+  let enClash = 0;
+  for (const r of rows) {
+    if (liveEn.has(r.nameEn.toLowerCase().replace(/\s+/g, ' ').trim())) enClash++;
+  }
+  if (enClash) warn.push(`${enClash} English name(s) also exist in other kitchens (expected for generic pan-cuisine names; Arabic names are unique)`);
+  console.log(`live DB rows scanned: ${live.length}`);
+} else {
+  warn.push('no Supabase creds; skipped live duplicate check');
+}
+
+// ---------- report ----------
+const byCat = {};
+const byRegion = {};
+for (const r of rows) {
+  byCat[r.category] = (byCat[r.category] || 0) + 1;
+  byRegion[r.region] = (byRegion[r.region] || 0) + 1;
+}
+console.log('rows:', rows.length);
+console.log('by category:', JSON.stringify(byCat));
+console.log('by region  :', JSON.stringify(byRegion));
+console.log('asian_shared count:', byRegion.asian_shared || 0);
+for (const w of warn) console.log('WARN:', w);
+if (errors.length) {
+  console.log(`\nFAILED with ${errors.length} error(s):`);
+  for (const e of errors.slice(0, 60)) console.log('  -', e);
+  process.exit(1);
+}
+console.log('\nVALIDATION PASSED');
+
+// ---------- emit ----------
+// Both Taiwan proposals use the SAME envelope as the Korean ones so
+// migrate-taiwan*.js can share the injector shape.
+const SOURCE = 'asia-taiwan-2026 - Verified against Taiwanese culinary heritage';
+const toDb = (r, prefix) => ({
+  name_ar: r.nameAr,
+  name_en: r.nameEn,
+  name_fr: r.nameFr,
+  name_es: r.nameEs,
+  name_de: r.nameDe,
+  category: r.category,
+  mealType: r.mealType,
+  region: r.region,
+  cal_100: r.kcal,
+  protein: r.protein,
+  carbs: r.carbs,
+  fat: r.fat,
+  source: SOURCE,
+});
+
+const payload = rows.map((r, i) => ({
+  id: `taiwan-base-${String(i + 1).padStart(3, '0')}`,
+  ...toDb(r),
+  grams: r.grams,
+  cooking: r.cooking,
+}));
+writeFileSync(OUT_JSON, JSON.stringify({ dishes: payload }, null, 2) + '\n', 'utf8');
+
+const esc = (s) => String(s).replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+// The TS kitchen file keeps the app's camelCase shape (nameAr / kcal), matching
+// korean-full.ts, so it is emitted from the raw rows rather than the DB-shaped payload.
+const body = rows
+  .map(
+    (r, i) => `    {
+      "id": "taiwan-base-${String(i + 1).padStart(3, '0')}",
+      "nameAr": "${esc(r.nameAr)}",
+      "nameEn": "${esc(r.nameEn)}",
+      "nameFr": "${esc(r.nameFr)}",
+      "nameEs": "${esc(r.nameEs)}",
+      "nameDe": "${esc(r.nameDe)}",
+      "category": "${esc(r.category)}",
+      "mealType": "${esc(r.mealType)}",
+      "grams": ${r.grams},
+      "kcal": ${r.kcal},
+      "protein": ${r.protein},
+      "carbs": ${r.carbs},
+      "fat": ${r.fat},
+      "cooking": "${esc(r.cooking)}",
+      "region": "${esc(r.region)}"
+    }`
+  )
+  .join(',\n');
+
+writeFileSync(
+  OUT_TS,
+  `// AUTO-GENERATED by scripts/build-taiwan-base-150.js - do not edit by hand.
+// Taiwan base kitchen, ${payload.length} dishes, 100 g serving basis.
+// kcal = round(4*protein + 4*carbs + 9*fat) (Atwater), verified by the builder.
+// Halal: no pork, no alcohol, no blood, no wild game.
+// Token: تايوان -> pan_taiwanese. asian_shared intentionally 0.
+export interface KitchenDish {
+  id: string;
+  nameAr: string;
+  nameEn: string;
+  nameFr: string;
+  nameEs: string;
+  nameDe: string;
+  category: string;
+  mealType: string;
+  grams: number;
+  kcal: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+  cooking?: string;
+  region?: string;
+}
+
+export const TAIWAN_FULL: KitchenDish[] = [
+${body}
+];
+`,
+  'utf8'
+);
+console.log(`wrote ${OUT_JSON} and ${OUT_TS}`);

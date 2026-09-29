@@ -22,6 +22,7 @@ import { MALAYSIAN_FULL, type MalaysianFullDish } from '../data/malaysian-full';
 import { CHINESE_FULL, type ChineseFullDish } from '../data/chinese-full';
 import { JAPANESE_FULL, type JapaneseFullDish } from '../data/japanese-full';
 import { KOREAN_FULL, type KoreanFullDish } from '../data/korean-full';
+import { TAIWAN_FULL, type KitchenDish as TaiwanFullDish } from '../data/taiwan-full';
 import { THAI_FULL, type ThaiFullDish } from '../data/thai-full';
 import { VIETNAMESE_FULL, type VietnameseFullDish } from '../data/vietnamese-full';
 import { ITALIAN_FULL, type ItalianFullDish } from '../data/italian-full';
@@ -589,6 +590,7 @@ const toChineseFood = (e: ChineseFullDish): FoodItem => toFullFood(e, 'chinese')
 const toJapaneseFood = (e: JapaneseFullDish): FoodItem => toFullFood(e, 'japanese');
 
 const toKoreanFood = (e: KoreanFullDish): FoodItem => toFullFood(e, 'korean');
+const toTaiwaneseFood = (e: TaiwanFullDish): FoodItem => toFullFood(e, 'taiwanese');
 
 const toThaiFood = (e: ThaiFullDish): FoodItem => toFullFood(e, 'thai');
 const toVietnameseFood = (e: VietnameseFullDish): FoodItem => toFullFood(e, 'vietnamese');
@@ -694,7 +696,7 @@ const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   };
 });
 
-const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'kuwaiti', 'qatar', 'bahraini', 'omani', 'indian', 'pakistani', 'indonesian', 'malaysian', 'chinese', 'japanese', 'korean', 'thai', 'vietnamese', 'italian', 'french', 'spanish', 'greek', 'turkish', 'british', 'swiss', 'mexican', 'american', 'cuban', 'costa_rican', 'jamaican', 'brazilian', 'peruvian', 'colombian', 'chilean', 'venezuelan', 'australian', 'new_zealand', 'lebanese', 'palestinian', 'syrian', 'jordanian', 'south_african', 'rwandan', 'kenyan', 'nigerian', 'ethiopian', 'ghanaian', 'seychellois', 'mauritian', 'gabonese', 'botswanan', 'filipino', 'mediterranean', 'keto', 'high_protein', 'vegetarian', 'vegan', 'gluten_free', 'low_carb', 'dash', 'intermittent_fasting', 'paleo'];
+const FULL_CUISINES = ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'kuwaiti', 'qatar', 'bahraini', 'omani', 'indian', 'pakistani', 'indonesian', 'malaysian', 'chinese', 'japanese', 'korean', 'taiwanese', 'thai', 'vietnamese', 'italian', 'french', 'spanish', 'greek', 'turkish', 'british', 'swiss', 'mexican', 'american', 'cuban', 'costa_rican', 'jamaican', 'brazilian', 'peruvian', 'colombian', 'chilean', 'venezuelan', 'australian', 'new_zealand', 'lebanese', 'palestinian', 'syrian', 'jordanian', 'south_african', 'rwandan', 'kenyan', 'nigerian', 'ethiopian', 'ghanaian', 'seychellois', 'mauritian', 'gabonese', 'botswanan', 'filipino', 'mediterranean', 'keto', 'high_protein', 'vegetarian', 'vegan', 'gluten_free', 'low_carb', 'dash', 'intermittent_fasting', 'paleo'];
 
 export const FOODS_DATABASE: FoodItem[] = [
   ...ENRICHED_ALL
@@ -718,6 +720,7 @@ export const FOODS_DATABASE: FoodItem[] = [
   ...CHINESE_FULL.map(toChineseFood),
   ...JAPANESE_FULL.map(toJapaneseFood),
   ...KOREAN_FULL.map(toKoreanFood),
+  ...TAIWAN_FULL.map(toTaiwaneseFood),
   ...THAI_FULL.map(toThaiFood),
   ...ITALIAN_FULL.map(toItalianFood),
   ...FRENCH_FULL.map(toFrenchFood),

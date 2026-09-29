@@ -469,6 +469,7 @@ export const CUISINE_GROUPS: CuisineGroup[] = [
       { id: 'malaysian', nameAr: 'ماليزي', nameEn: 'Malaysian' },
       { id: 'chinese', nameAr: 'صيني', nameEn: 'Chinese' },
       { id: 'korean', nameAr: 'كوري', nameEn: 'Korean' },
+      { id: 'taiwanese', nameAr: 'تايواني', nameEn: 'Taiwanese' },
       { id: 'japanese', nameAr: 'ياباني', nameEn: 'Japanese' },
       { id: 'thai', nameAr: 'تايلندي', nameEn: 'Thai' },
       { id: 'vietnamese', nameAr: 'فيتنامي', nameEn: 'Vietnamese' },
@@ -576,7 +577,7 @@ export const CUISINE_GROUPS: CuisineGroup[] = [
 export const CUISINE_FLAGS: Record<string, string> = {
   egyptian: '🇪🇬', libyan: '🇱🇾', tunisian: '🇹🇳', algerian: '🇩🇿', moroccan: '🇲🇦',
   saudi: '🇸🇦', emirati: '🇦🇪', omani: '🇴🇲', kuwaiti: '🇰🇼', qatar: '🇶🇦', bahraini: '🇧🇭',
-  indian: '🇮🇳', pakistani: '🇵🇰', indonesian: '🇮🇩', malaysian: '🇲🇾', chinese: '🇨🇳', korean: '🇰🇷', japanese: '🇯🇵',   thai: '🇹🇭',   vietnamese: '🇻🇳',  filipino: '🇵🇭',
+  indian: '🇮🇳', pakistani: '🇵🇰', indonesian: '🇮🇩', malaysian: '🇲🇾', chinese: '🇨🇳', korean: '🇰🇷', taiwanese: '🇹🇼', japanese: '🇯🇵',   thai: '🇹🇭',   vietnamese: '🇻🇳',  filipino: '🇵🇭',
   italian: '🇮🇹', french: '🇫🇷', spanish: '🇪🇸', greek: '🇬🇷', turkish: '🇹🇷', german: '🇩🇪', british: '🇬🇧', swiss: '🇨🇭',
   american: '🇺🇸', mexican: '🇲🇽', canadian: '🇨🇦', cuban: '🇨🇺', jamaican: '🇯🇲', costa_rican: '🇨🇷',
   brazilian: '🇧🇷', argentinian: '🇦🇷', peruvian: '🇵🇪', colombian: '🇨🇴', chilean: '🇨🇱', venezuelan: '🇻🇪',

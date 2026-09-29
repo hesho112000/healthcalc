@@ -576,6 +576,14 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
         if (d.region === 'asian_shared') return 2;
         return 1;
       }
+      // Taiwan: own pan_taiwanese rows first, then its 12 regional anchors
+      // (Taipei, Tainan, ...), then the (currently empty) asian_shared pool.
+      // Same shape as the Korean branch.
+      if (kitchenId === 'taiwanese') {
+        if (d.region === 'pan_taiwanese') return 0;
+        if (d.region === 'asian_shared') return 2;
+        return 1;
+      }
      return -1;
   };
   const isGeneralDish = (d: KitchenDish) => generalRank(d) >= 0;

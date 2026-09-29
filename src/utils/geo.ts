@@ -49,6 +49,7 @@ const GEO_ENTRIES: GeoEntry[] = [
   { re: /^Asia\/Shanghai|^Asia\/Hong_Kong/i, cuisine: 'chinese', countryEn: 'China', countryAr: 'الصين' },
   { re: /^Asia\/Tokyo/i, cuisine: 'japanese', countryEn: 'Japan', countryAr: 'اليابان' },
   { re: /^Asia\/Seoul/i, cuisine: 'korean', countryEn: 'South Korea', countryAr: 'كوريا' },
+  { re: /^Asia\/Taipei/i, cuisine: 'taiwanese', countryEn: 'Taiwan', countryAr: 'تايوان' },
   { re: /^Asia\/Bangkok/i, cuisine: 'thai', countryEn: 'Thailand', countryAr: 'تايلند' },
   { re: /^Asia\/Hanoi|^Asia\/Ho_Chi_Minh/i, cuisine: 'vietnamese', countryEn: 'Vietnam', countryAr: 'فيتنام' },
   { re: /^Asia\/Beijing|^Asia\/Shanghai|^Asia\/Guangzhou/i, cuisine: 'chinese', countryEn: 'China', countryAr: 'الصين' },
