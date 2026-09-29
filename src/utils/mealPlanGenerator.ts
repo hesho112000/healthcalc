@@ -567,7 +567,15 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
      if (kitchenId === 'thai') return d.region === 'pan_thai' ? 0 : d.region === 'asian_shared' ? 2 : 1;
      if (kitchenId === 'vietnamese') return d.region === 'pan_vietnamese' ? 0 : d.region === 'asian_shared' ? 2 : 1;
      if (kitchenId === 'chinese') return d.region === 'pan_chinese' ? 0 : d.region === 'asian_shared' ? 2 : 1;
-     if (kitchenId === 'japanese') return d.region === 'pan_japanese' ? 0 : d.region === 'asian_shared' ? 2 : 1;
+      if (kitchenId === 'japanese') return d.region === 'pan_japanese' ? 0 : d.region === 'asian_shared' ? 2 : 1;
+      // Korean: own pan_korean rows first, then its regional anchors (Seoul, Busan, ...),
+      // then the (currently empty) asian_shared pool. Ranking the whole regional family
+      // above shared mirrors the Japanese branch.
+      if (kitchenId === 'korean') {
+        if (d.region === 'pan_korean') return 0;
+        if (d.region === 'asian_shared') return 2;
+        return 1;
+      }
      return -1;
   };
   const isGeneralDish = (d: KitchenDish) => generalRank(d) >= 0;

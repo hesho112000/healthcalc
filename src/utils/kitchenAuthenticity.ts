@@ -53,11 +53,26 @@ const TOKEN_REGIONS: Record<string, string> = {
     فيتنامي: 'pan_vietnamese',
     ياباني: 'pan_japanese',
     صيني: 'pan_chinese',
+    // Korean: MASCULINE 'كوري' only, deliberately NO feminine 'كوريه'.
+    // A pre-existing Thai row is named 'كاري على الطريقة الفيتنامية تايلندي أصيل'
+    // ("Vietnamese-style curry", pan_thai). Registering the feminine form would make
+    // that Thai row resolve to pan_korean and hasForeignNationalityFor('thai', ...)
+    // would REJECT one of Thailand's own 300 dishes. All 400 Korean rows are authored
+    // with the masculine 'كوري' (expansion rows use 'كوري أصيل', which still resolves),
+    // so every Korean row is mappable without touching the Thai kitchen.
+    كوري: 'pan_korean',
   };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
 const NO_RETAG_TOKENS = new Set(['صيني', 'صينيه', 'سوداني', 'سودانيه', 'شامي', 'شاميه']);
 const TAMARIND_HINDI = /تمر\s*(?:ال)?هندي/;
+// 'كوري' is a real Korean nationality token, but it is ALSO the South-Indian dish
+// prefix in "Kori ..." names (Kori ruti / Kori dosa / Kori gassi), e.g. the live
+// Karnataka row 'كوري روتي لايت هندي'. nationalityRegion() returns the FIRST token it
+// can map, so without this guard that Indian row would resolve to pan_korean and the
+// Indian kitchen would reject one of its own dishes. Neutralize the word 'كوري' when it
+// heads one of these dish names, exactly like TAMARIND_HINDI does for 'تمر هندي'.
+const KORI_SOUTH_INDIAN = /كوري\s*(?:روتي|دوسا|غاسي|راث)/;
 
 export const LEVANTINE_BARE = new Set(['تبوله', 'فتوش']);
 
@@ -66,6 +81,7 @@ export function nationalityRegion(name: string | null | undefined): string | nul
   if (!name) return null;
   let norm = normalizeArabicName(name);
   if (TAMARIND_HINDI.test(norm)) norm = norm.replace(TAMARIND_HINDI, 'تمر');
+  if (KORI_SOUTH_INDIAN.test(norm)) norm = norm.replace(KORI_SOUTH_INDIAN, '');
   for (const t of norm.split(/\s+/)) {
     if (NO_RETAG_TOKENS.has(t)) continue;
     const base = t.replace(/^ال/, '');
@@ -173,6 +189,14 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
 // The Chinese card counts its own region-tagged rows; asian_shared rows authored
     // with the asia-china-2026 prefix are credited in useKitchenDishCounts.
     chinese: new Set(['pan_chinese', 'asian_shared']),
+    // The Korean card counts its own region-tagged rows. asian_shared is deliberately
+    // absent from the set: the Korean pass kept asian_shared at 0 (no dish was forced
+    // into the shared pool), so crediting it here would only mis-tag future rows.
+    korean: new Set([
+      'pan_korean', 'seoul', 'busan', 'jeju', 'jeonju', 'andong', 'goryeong', 'gangneung',
+      'incheon', 'daegu', 'gwangju', 'daejeon', 'ulsan', 'suwon', 'chuncheon', 'mokpo',
+      'yeosu', 'pohang', 'gyeongju', 'tongyeong', 'sunchang', 'boseong', 'namhae',
+    ]),
   };
 
 // Region family a given kitchen may draw from.
@@ -317,9 +341,21 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
      // Chinese family: own pan_chinese + the shared Asian pool. Names
      // carry صيني (base rows) and صيني أصيل (expansion rows) which now
      // map to 'pan_chinese'.
-     chinese: new Set([
-       'pan_chinese', 'asian_shared',
-     ]),
+      chinese: new Set([
+        'pan_chinese', 'asian_shared',
+      ]),
+      // Korean family: own pan_korean + regional anchors (Seoul, Busan, Jeju, Jeonju,
+      // Andong, Goryeong, Gangneung, Incheon, Daegu, Gwangju, Daejeon, Ulsan, Suwon,
+      // Chuncheon, Mokpo, Yeosu, Pohang, Gyeongju, Tongyeong, Sunchang, Boseong, Namhae).
+      // asian_shared is included for future rows but currently holds 0 Korean dishes.
+      // Names carry كوري (base rows) and كوري أصيل (expansion rows), which both now
+      // map to 'pan_korean'.
+      korean: new Set([
+        'pan_korean', 'asian_shared', 'seoul', 'busan', 'jeju', 'jeonju', 'andong',
+        'goryeong', 'gangneung', 'incheon', 'daegu', 'gwangju', 'daejeon', 'ulsan',
+        'suwon', 'chuncheon', 'mokpo', 'yeosu', 'pohang', 'gyeongju', 'tongyeong',
+        'sunchang', 'boseong', 'namhae',
+      ]),
   };
 
 // True when a dish may be served in the given kitchen's plans.

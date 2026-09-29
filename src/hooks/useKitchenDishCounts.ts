@@ -148,6 +148,13 @@ export function useKitchenDishCounts(): Record<string, number> {
         out.chinese += rows.filter(
           (r) => r.region === 'asian_shared' && (r.source ?? '').startsWith('asia-china-2026'),
         ).length;
+        // The Korean card mirrors the shared-pool kitchens: credits its own
+        // asian_shared pool rows, identified by the asia-korea-2026 source prefix.
+        // Currently 0 (asian_shared deliberately left empty), but kept so the count
+        // stays correct if any shared rows are ever added.
+        out.korean += rows.filter(
+          (r) => r.region === 'asian_shared' && (r.source ?? '').startsWith('asia-korea-2026'),
+        ).length;
         if (!cancelled) setCounts(out);
       } catch {
         if (!cancelled) setCounts({});

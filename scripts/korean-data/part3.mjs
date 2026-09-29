@@ -1,0 +1,43 @@
+import { E, T } from './rows.mjs';
+
+export default [
+  // poultry_mains (16)
+  E(`دجاج أندونغ المطهو ${T}`, 'Andong braised chicken', 'Poulet braise d Andong', 'Pollo guisado de Andong', 'Andong-Schmorrhuhn', 'poultry_mains', 'dinner', 21, 12, 9, 'simmered', 'andong'),
+  E(`دجاج مطهو بصلصة الصويا ${T}`, 'Soy braised chicken', 'Poulet braise a la sauce soja', 'Pollo guisado en salsa de soja', 'Soja-Schmorrhuhn', 'poultry_mains', 'dinner', 22, 8, 10, 'simmered', 'pan_korean'),
+  E(`دجاج غالبي مع كعك الأرز ${T}`, 'Chicken galbi with rice cakes', 'Galbi de poulet au gateau de riz', 'Galbi de pollo con pastel de arroz', 'Haehnchen-Galbi mit Reiskuchen', 'poultry_mains', 'dinner', 20, 20, 9, 'stir-fried', 'chuncheon'),
+  E(`بولغوغي الدجاج بالجبن ${T}`, 'Cheese chicken bulgogi', 'Bulgogi de poulet au fromage', 'Bulgogi de pollo con queso', 'Kaese-Haehnchen-Bulgogi', 'poultry_mains', 'dinner', 22, 10, 12, 'stir-fried', 'pan_korean'),
+  E(`دجاج مشوي بالجينسنغ ${T}`, 'Ginseng roasted chicken', 'Poulet roti au ginseng', 'Pollo asado con ginseng', 'Ginseng-Brathaehnchen', 'poultry_mains', 'dinner', 24, 6, 11, 'grilled', 'pan_korean'),
+  E(`دجاج مقلي بصلصة الصويا والثوم ${T}`, 'Soy garlic fried chicken', 'Poulet frit ail et soja', 'Pollo frito con ajo y soja', 'Knoblauch-Soja-Frittiertes-Haehnchen', 'poultry_mains', 'dinner', 20, 18, 15, 'fried', 'pan_korean'),
+  E(`دجاج مقلي بصلصة حارة ${T}`, 'Spicy glazed fried chicken', 'Poulet frit glace epice', 'Pollo frito glaseado picante', 'Scharf glasiertes Frittiertes-Haehnchen', 'poultry_mains', 'dinner', 19, 20, 16, 'fried', 'pan_korean'),
+  E(`أسياخ الدجاج المشوية ${T}`, 'Grilled chicken skewers', 'Brochettes de poulet grille', 'Brochetas de pollo a la parrilla', 'Gegrillte Haehnchenspiesse', 'poultry_mains', 'dinner', 23, 5, 10, 'grilled', 'pan_korean'),
+  E(`يخنة الدجاج بالبطاطس ${T}`, 'Chicken and potato stew', 'Ragout de poulet et pommes de terre', 'Guiso de pollo y patata', 'Haehnchen-Kartoffel-Eintopf', 'poultry_mains', 'dinner', 19, 16, 9, 'simmered', 'pan_korean'),
+  E(`أقدام الدجاج الحارة ${T}`, 'Spicy chicken feet', 'Pieds de poulet epices', 'Patas de pollo picantes', 'Scharfe Haehnchenfuesse', 'poultry_mains', 'snacks', 18, 4, 10, 'stir-fried', 'daegu'),
+  E(`صدر الدجاج المدخن ${T}`, 'Smoked chicken breast', 'Poitrine de poulet fumee', 'Pecho de pollo ahumado', 'Geraeucherte Haehnchenbrust', 'poultry_mains', 'dinner', 26, 3, 5, 'grilled', 'pan_korean'),
+  E(`كرات الدجاج على الأسياخ ${T}`, 'Chicken meatball skewers', 'Brochettes de boulettes de poulet', 'Brochetas de albondigas de pollo', 'Haehnchenfleischbällchen-Spiesse', 'poultry_mains', 'dinner', 18, 9, 11, 'grilled', 'pan_korean'),
+  E(`دجاج بالكاري ${T}`, 'Curry chicken', 'Poulet au curry', 'Pollo al curry', 'Curry-Haehnchen', 'poultry_mains', 'dinner', 20, 12, 10, 'simmered', 'pan_korean'),
+  E(`إسكالوب الدجاج ${T}`, 'Chicken cutlet', 'Escalope de poulet', 'Escalope de pollo', 'Haehnchen-Schnitzel', 'poultry_mains', 'dinner', 19, 18, 12, 'fried', 'pan_korean'),
+  E(`دجاج بصلصة الصويا اللامعة ${T}`, 'Soy glazed chicken', 'Poulet glace au soja', 'Pollo glaseado con soja', 'Soja-glasiertes Haehnchen', 'poultry_mains', 'dinner', 21, 12, 10, 'stir-fried', 'pan_korean'),
+  E(`دجاج بالعسل والزبدة ${T}`, 'Honey butter chicken', 'Poulet au miel et beurre', 'Pollo con miel y mantequilla', 'Honig-Butter-Haehnchen', 'poultry_mains', 'dinner', 18, 22, 14, 'fried', 'pan_korean'),
+
+  // meat_mains (20)
+  E(`شرائح بولغوغي البقر ${T}`, 'Bulgogi beef slices', 'Lamelles de boeuf bulgogi', 'Lonchas de ternera bulgogi', 'Bulgogi-Rindfleischscheiben', 'meat_mains', 'dinner', 22, 8, 13, 'grilled', 'seoul'),
+  E(`بولغوغي البقر الحار ${T}`, 'Spicy beef bulgogi', 'Bulgogi de boeuf epice', 'Bulgogi de ternera picante', 'Scharfes Rindfleisch-Bulgogi', 'meat_mains', 'dinner', 22, 9, 13, 'stir-fried', 'pan_korean'),
+  E(`ضلوع البقر المطهوة ${T}`, 'Galbi jjim braised short ribs', 'Cotes de boeuf braisees', 'Costillas de ternera guisadas', 'Geschmorte Rinderrippen', 'meat_mains', 'dinner', 24, 10, 16, 'simmered', 'seoul'),
+  E(`تارتار البقر بالكمثرى ${T}`, 'Beef tartare with Asian pear', 'Tartare de boeuf a la poire', 'Tartar de ternera con pera', 'Rindertatar mit Birne', 'meat_mains', 'dinner', 20, 6, 10, 'raw', 'seoul'),
+  E(`ستيك ضلع البقر ${T}`, 'Beef rib eye steak', 'Steak de faux-filet', 'Filete de costilla de ternera', 'Rinder-Ribeye-Steak', 'meat_mains', 'dinner', 26, 2, 18, 'grilled', 'pan_korean'),
+  E(`لسان البقر المشوي ${T}`, 'Grilled beef tongue', 'Langue de boeuf grillee', 'Lengua de ternera a la parrilla', 'Gegrillte Rinderzunge', 'meat_mains', 'dinner', 21, 3, 14, 'grilled', 'pan_korean'),
+  E(`لحم البقر المقلي بالخضار ${T}`, 'Stir-fried beef and vegetables', 'Boeuf saute aux legumes', 'Ternera salteada con verduras', 'Rindfleisch mit Gemuese', 'meat_mains', 'dinner', 20, 12, 11, 'stir-fried', 'pan_korean'),
+  E(`جابتشاي البقر ${T}`, 'Beef japchae glass noodles', 'Vermicelles japchae au boeuf', 'Fideos japchae con ternera', 'Rindfleisch-Japchae', 'meat_mains', 'dinner', 16, 24, 9, 'stir-fried', 'seoul'),
+  E(`البقر الحار مع الحبار ${T}`, 'Spicy stir-fried beef and squid', 'Boeuf et calmar sautes epices', 'Ternera y calamar salteados picantes', 'Scharfes Rindfleisch mit Tintenfisch', 'meat_mains', 'dinner', 22, 9, 12, 'stir-fried', 'pan_korean'),
+  E(`أقراص لحم البقر ${T}`, 'Beef wanja patties', 'Galettes de boeuf', 'Tortitas de ternera', 'Rindfleisch-Patties', 'meat_mains', 'dinner', 18, 8, 13, 'pan-fried', 'pan_korean'),
+  E(`كرات اللحم بصلصة الصويا ${T}`, 'Beef meatballs in soy', 'Boulettes de boeuf au soja', 'Albondigas de ternera en soja', 'Rindfleischbällchen in Soja', 'meat_mains', 'dinner', 19, 10, 13, 'simmered', 'pan_korean'),
+  E(`قديد البقر ${T}`, 'Korean beef jerky', 'Boeuf seche coreen', 'Cecina de ternera coreana', 'Koreanisches Rindfleisch-Jerky', 'meat_mains', 'snacks', 35, 8, 6, 'grilled', 'pan_korean'),
+  E(`البقر المطهو بصلصة الصويا ${T}`, 'Soy braised beef', 'Boeuf braise au soja', 'Ternera guisada en soja', 'Soja-geschmortes Rindfleisch', 'meat_mains', 'dinner', 24, 7, 14, 'simmered', 'pan_korean'),
+  E(`البقر المشوي بالثوم ${T}`, 'Grilled beef with garlic', 'Boeuf grille a l ail', 'Ternera a la parrilla con ajo', 'Gegrilltes Rindfleisch mit Knoblauch', 'meat_mains', 'dinner', 25, 3, 16, 'grilled', 'pan_korean'),
+  E(`بولغوغي البقر بالفطر ${T}`, 'Beef bulgogi with mushrooms', 'Bulgogi de boeuf aux champignons', 'Bulgogi de ternera con setas', 'Rindfleisch-Bulgogi mit Pilzen', 'meat_mains', 'dinner', 21, 9, 12, 'stir-fried', 'pan_korean'),
+  E(`البقر المطهو مع الفجل ${T}`, 'Beef and radish braise', 'Boeuf braise au radis', 'Ternera guisada con rabano', 'Rindfleisch-Rettich-Schmorgericht', 'meat_mains', 'dinner', 22, 8, 13, 'simmered', 'pan_korean'),
+  E(`ستيك أقراص البقر ${T}`, 'Beef patty steak', 'Steak de galette de boeuf', 'Filete de tortita de ternera', 'Rindfleisch-Patty-Steak', 'meat_mains', 'dinner', 23, 5, 17, 'pan-fried', 'pan_korean'),
+  E(`البقر المشوي المتبل ${T}`, 'Grilled marinated beef', 'Boeuf marine grille', 'Ternera marinada a la parrilla', 'Gegrilltes mariniertes Rindfleisch', 'meat_mains', 'dinner', 24, 6, 15, 'grilled', 'pan_korean'),
+  E(`يخنة البقر الحارة ${T}`, 'Spicy beef stew', 'Ragout de boeuf epice', 'Guiso picante de ternera', 'Scharfer Rindfleischeintopf', 'meat_mains', 'dinner', 21, 11, 13, 'simmered', 'pan_korean'),
+  E(`أسياخ البقر المشوية ${T}`, 'Beef skewers', 'Brochettes de boeuf', 'Brochetas de ternera', 'Rindfleischspiesse', 'meat_mains', 'dinner', 23, 4, 15, 'grilled', 'pan_korean'),
+];
