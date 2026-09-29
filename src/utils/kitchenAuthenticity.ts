@@ -51,6 +51,7 @@ const TOKEN_REGIONS: Record<string, string> = {
     فلبيني: 'pan_filipino', فلبينيه: 'pan_filipino',
     تايلندي: 'pan_thai',
     فيتنامي: 'pan_vietnamese',
+    ياباني: 'pan_japanese',
     صيني: 'pan_chinese',
   };
 
@@ -166,9 +167,12 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
     // The Vietnamese card counts its own region-tagged rows; asian_shared rows authored
     // with the asia-vietnam-2026 prefix are credited in useKitchenDishCounts.
     vietnamese: new Set(['pan_vietnamese']),
-    // The Chinese card counts its own region-tagged rows; asian_shared rows authored
+    // The Japanese card counts its own region-tagged rows; asian_shared rows authored
+    // with the asia-japan-2026 prefix are credited in useKitchenDishCounts.
+    japanese: new Set(['pan_japanese', 'tokyo', 'osaka', 'kyoto', 'hokkaido', 'fukuoka', 'sapporo', 'sendai', 'nagoya']),
+// The Chinese card counts its own region-tagged rows; asian_shared rows authored
     // with the asia-china-2026 prefix are credited in useKitchenDishCounts.
-    chinese: new Set(['pan_chinese']),
+    chinese: new Set(['pan_chinese', 'asian_shared']),
   };
 
 // Region family a given kitchen may draw from.

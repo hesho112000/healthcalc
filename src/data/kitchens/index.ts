@@ -122,6 +122,7 @@ const COUNTRY_BY_WORD: Record<string, string> = {
   'أردني': 'الأردن 🇯🇴',
   'مغربي': 'المغرب 🇲🇦',
   'سعودي': 'السعودية 🇸🇦',
+  'ياباني': 'اليابان 🇯🇵',
 };
 
 const COUNTRY_BY_ID: Record<string, string> = {
@@ -193,6 +194,7 @@ const NAME_BY_ID: Record<string, string> = {
   bahraini: 'المطبخ البحريني',
   australian: 'المطبخ الأسترالي',
   chinese: 'المطبخ الصيني',
+  japanese: 'المطبخ الياباني',
   british: 'المطبخ البريطاني',
   brazilian: 'المطبخ البرازيلي',
   chilean: 'المطبخ التشيلي',
@@ -206,7 +208,6 @@ const NAME_BY_ID: Record<string, string> = {
   indian: 'المطبخ الهندي',
   indonesian: 'المطبخ الإندونيسي',
   malaysian: 'المطبخ الماليزي',
-  japanese: 'المطبخ الياباني',
   greek: 'المطبخ اليوناني',
   jamaican: 'المطبخ الجامايكي',
   kenyan: 'المطبخ الكيني',
@@ -228,9 +229,9 @@ const NAME_BY_ID: Record<string, string> = {
   vietnamese: 'المطبخ الفيتنامي',
   spanish: 'المطبخ الإسباني',
   'south-african': 'المطبخ الجنوب أفريقي',
-  ghanaian: 'المطبخ الغاني',
+ghanaian: 'المطبخ الغاني',
   seychellois: 'المطبخ السيشيلي',
-  mauritian: 'المطبخ الموريشوسي',
+  mauritian: 'المطبخ الموريشيوسي',
   gabonese: 'المطبخ الغابوني',
   botswanan: 'المطبخ البوتسواناوي',
   filipino: 'المطبخ الفلبيني',
