@@ -2,7 +2,7 @@ import { B, diasporaFor } from './rows.mjs';
 
 export default [
   // ---- new_england (4) ----
-  B('فطيرة جبن أمريكية', 'Cheesecake', 'Cheesecake americain', 'Tarta de queso americana', 'Amerikanischer Käsekuchen', 'rice_cakes_sweets', 'snack', 8, 24, 18, 'baked', 'new_england', diasporaFor('new_england')),
+  B('فطيرة جبن أمريكية', 'Classic Cheesecake', 'Cheesecake americain', 'Tarta de queso americana', 'Amerikanischer Käsekuchen', 'rice_cakes_sweets', 'snack', 8, 24, 18, 'baked', 'new_england', diasporaFor('new_england')),
   B('شوربة طماطم أمريكية', 'Tomato soup', 'Soupe de tomate americaine', 'Sopa de tomate americana', 'Amerikanische Tomatensuppe', 'soups_stews', 'lunch', 3, 14, 4, 'simmered', 'new_england', diasporaFor('new_england')),
   B('بودينغ أرز أمريكي', 'Rice pudding', 'Pudding de riz americain', 'Arroz con leche americano', 'Amerikanischer Reispudding', 'rice_cakes_sweets', 'snack', 4, 24, 6, 'simmered', 'new_england', diasporaFor('new_england')),
   B('دونات أمريكية', 'Donuts', 'Beignets americains', 'Donas americana', 'Amerikanische Donuts', 'street_snacks', 'snack', 5, 28, 12, 'deep-fried', 'new_england', diasporaFor('new_england')),
