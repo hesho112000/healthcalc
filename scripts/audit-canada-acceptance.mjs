@@ -68,7 +68,8 @@ for (const r of ca) {
   const isBev =
     r.region === 'beverages' ||
     (r.name_ar ?? '').includes('قهوة') ||
-    /\bcoffee\b/i.test(r.name_en ?? '');
+    (r.name_ar ?? '').includes('شاي') ||
+    /\b(?:coffee|tea|water)\b/i.test(r.name_en ?? '');
   if (r.protein + r.carbs + r.fat <= 0 && !isBev) not100++;
 }
 ok(drift === 0, `${drift} row(s) with Atwater drift`);
@@ -132,13 +133,21 @@ function hasWord(hay, w) {
   if (isAscii(w)) return new RegExp(`(?<![A-Za-z])${w}(?![A-Za-z])`, 'i').test(hay);
   return new RegExp(`(^|[^ء-ي])${w}($|[^ء-ي])`).test(hay);
 }
+function isNegatedPork(name, term) {
+  if (term === 'pork') return /\b(?:no|without)\s+pork\b|\bpork[- ]free\b/i.test(name);
+  if (term === 'خنزير' || term === 'لحم الخنزير') return /بدون\s+(?:لحم\s+)?(?:ال)?خنزير/.test(name);
+  return false;
+}
 let halal = 0;
 for (const r of ca) {
-  const hay = `${r.name_ar ?? ''} ${r.name_en ?? ''} ${r.name_fr ?? ''} ${r.name_es ?? ''} ${r.name_de ?? ''}`;
+  const names = [r.name_ar, r.name_en, r.name_fr, r.name_es, r.name_de].filter((n) => typeof n === 'string');
+  const hay = names.join(' ');
   const qual = HALAL_QUALIFIERS.some((q) => hasWord(hay, q));
   for (const [cat, words] of Object.entries(BANNED)) {
     for (const w of words) {
-      if (!hasWord(hay, w)) continue;
+      const matchingNames = names.filter((name) => hasWord(name, w));
+      if (!matchingNames.length) continue;
+      if (cat === 'pork' && matchingNames.every((name) => isNegatedPork(name, w))) continue;
       if (cat === 'pork' && qual) continue;
       if (w === 'cider' && isAppleCider(hay)) continue;
       fails.push(`halal: ${cat} "${w}" in "${r.name_en}"`);
