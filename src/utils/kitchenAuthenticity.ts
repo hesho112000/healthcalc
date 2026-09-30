@@ -70,6 +70,9 @@ const TOKEN_REGIONS: Record<string, string> = {
   أمريكي: 'pan_american', امريكي: 'pan_american',
   أمريكية: 'pan_american', امريكيه: 'pan_american',
   كندي: 'pan_canadian', كنديه: 'pan_canadian', كانادي: 'pan_canadian', كاناديه: 'pan_canadian',
+  أسترالي: 'pan_australasian', استرالي: 'pan_australasian',
+  أسترالية: 'pan_australasian', استراليه: 'pan_australasian',
+  نيوزيلندي: 'pan_australasian', نيوزيلندية: 'pan_australasian', نيوزيلنديه: 'pan_australasian',
   };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -221,6 +224,11 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
     canadian: new Set([
       'pan_canadian', 'quebec', 'ontario', 'british_columbia', 'prairies',
       'atlantic_canada', 'northern_canada', 'indigenous_canada',
+    ]),
+    australasian: new Set([
+      'pan_australasian', 'nsw', 'victoria', 'queensland', 'western_australia',
+      'south_australia', 'tasmania', 'northern_territory', 'auckland', 'wellington',
+      'canterbury', 'otago', 'maori',
     ]),
   };
 
@@ -395,10 +403,15 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
          'texas', 'southwest', 'california', 'pacific_northwest', 'midwest', 'hawaii',
          'alaska', 'soul_food', 'bbq', 'native_american',
        ]),
-       canadian: new Set([
-         'pan_canadian', 'quebec', 'ontario', 'british_columbia', 'prairies',
-         'atlantic_canada', 'northern_canada', 'indigenous_canada',
-       ]),
+        canadian: new Set([
+          'pan_canadian', 'quebec', 'ontario', 'british_columbia', 'prairies',
+          'atlantic_canada', 'northern_canada', 'indigenous_canada',
+        ]),
+        australasian: new Set([
+          'pan_australasian', 'nsw', 'victoria', 'queensland', 'western_australia',
+          'south_australia', 'tasmania', 'northern_territory', 'auckland', 'wellington',
+          'canterbury', 'otago', 'maori',
+        ]),
   };
 
 // True when a dish may be served in the given kitchen's plans.
