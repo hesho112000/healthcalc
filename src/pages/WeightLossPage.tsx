@@ -700,6 +700,26 @@ const GHANAIAN_REGION_META: { id: string; emoji: string; en: string; ar: string 
   { id: 'pingtung', emoji: '🥭', en: 'Pingtung', ar: 'بينغتونغ' },
 ];
 
+const AMERICAN_REGION_META: { id: string; emoji: string; en: string; ar: string }[] = [
+  { id: 'all', emoji: '🇺🇸', en: 'All American', ar: 'كل المطبخ الأمريكي' },
+  { id: 'pan_american', emoji: '🥘', en: 'General American', ar: 'عام (كل أمريكا)' },
+  { id: 'new_england', emoji: '🦞', en: 'New England', ar: 'نيو إنجلاند' },
+  { id: 'mid_atlantic', emoji: '🗽', en: 'Mid-Atlantic', ar: 'المحيط الأوسط' },
+  { id: 'south', emoji: '🍗', en: 'Southern', ar: 'الجنوب' },
+  { id: 'deep_south', emoji: '🌽', en: 'Deep South', ar: 'الجنوب العميق' },
+  { id: 'cajun', emoji: '🫕', en: 'Cajun', ar: 'كاجون' },
+  { id: 'texas', emoji: '🤠', en: 'Texas', ar: 'تكساس' },
+  { id: 'southwest', emoji: '🌵', en: 'Southwest', ar: 'الجنوب الغربي' },
+  { id: 'california', emoji: '🥑', en: 'California', ar: 'كاليفورنيا' },
+  { id: 'pacific_northwest', emoji: '🌲', en: 'Pacific Northwest', ar: 'المحيط الهادئ الشمالي' },
+  { id: 'midwest', emoji: '🌾', en: 'Midwest', ar: 'وسط الغرب' },
+  { id: 'hawaii', emoji: '🌺', en: 'Hawaii', ar: 'هاواي' },
+  { id: 'alaska', emoji: '🐟', en: 'Alaska', ar: 'ألاسكا' },
+  { id: 'soul_food', emoji: '🍞', en: 'Soul Food', ar: 'طعام الروح' },
+  { id: 'bbq', emoji: '🔥', en: 'BBQ', ar: 'الشواء' },
+  { id: 'native_american', emoji: '🪶', en: 'Native American', ar: 'الأصليون الأمريكيون' },
+];
+
  const MEAL_LABELS: Record<string, string> = {
   breakfast: 'فطار 🍳',
   lunch: 'غدا 🍲',
@@ -2188,7 +2208,7 @@ const WeightLossPage: React.FC = () => {
               <div className="space-y-2">
                 {(() => {
                   const picked = kitchens.find((x) => x.id === cuisineSel);
-                  const hasRegions = !!picked && (picked.id === 'kuwaiti' || picked.id === 'qatar' || picked.id === 'bahraini' || picked.id === 'omani' || picked.id === 'moroccan' || picked.id === 'egyptian' || picked.id === 'tunisian' || picked.id === 'algerian' || picked.id === 'libyan' || picked.id === 'lebanese' || picked.id === 'syrian' || picked.id === 'jordanian' || picked.id === 'palestinian' || picked.id === 'indian' || picked.id === 'pakistani' || picked.id === 'indonesian' || picked.id === 'malaysian' || picked.id === 'nigerian' || picked.id === 'ethiopian' || picked.id === 'kenyan' || picked.id === 'south-african' || picked.id === 'ghanaian' || picked.id === 'rwandan' || picked.id === 'seychellois' || picked.id === 'mauritian' || picked.id === 'gabonese' || picked.id === 'botswanan' || picked.id === 'filipino' || picked.id === 'thai' || picked.id === 'vietnamese' || picked.id === 'chinese' || picked.id === 'japanese' || picked.id === 'korean' || (Array.isArray(picked.regions) && picked.regions.length > 0));
+                  const hasRegions = !!picked && (picked.id === 'kuwaiti' || picked.id === 'qatar' || picked.id === 'bahraini' || picked.id === 'omani' || picked.id === 'moroccan' || picked.id === 'egyptian' || picked.id === 'tunisian' || picked.id === 'algerian' || picked.id === 'libyan' || picked.id === 'lebanese' || picked.id === 'syrian' || picked.id === 'jordanian' || picked.id === 'palestinian' || picked.id === 'indian' || picked.id === 'pakistani' || picked.id === 'indonesian' || picked.id === 'malaysian' || picked.id === 'nigerian' || picked.id === 'ethiopian' || picked.id === 'kenyan' || picked.id === 'south-african' || picked.id === 'ghanaian' || picked.id === 'rwandan' || picked.id === 'seychellois' || picked.id === 'mauritian' || picked.id === 'gabonese' || picked.id === 'botswanan' || picked.id === 'filipino' || picked.id === 'thai' || picked.id === 'vietnamese' || picked.id === 'chinese' || picked.id === 'japanese' || picked.id === 'korean' || picked.id === 'american' || (Array.isArray(picked.regions) && picked.regions.length > 0));
                   if (!hasRegions) return null;
                   return (
                     <div className="rounded-[20px] border-2 border-[#EFEBE4] bg-white p-4">
@@ -2196,7 +2216,7 @@ const WeightLossPage: React.FC = () => {
                         {language === 'ar' ? '🏷️ اختر المنطقة (تلقائي: عام)' : '🏷️ Choose a region (default: General)'}
                       </div>
                       <div className="mt-2.5 flex flex-wrap gap-2">
-                        {(picked.id === 'emirati' ? EMIRATI_REGION_META : picked.id === 'saudi' ? SAUDI_REGION_META : picked.id === 'kuwaiti' ? KUWAITI_REGION_META : picked.id === 'qatar' ? QATARI_REGION_META : picked.id === 'bahraini' ? BAHRAINI_REGION_META : picked.id === 'omani' ? OMANI_REGION_META : picked.id === 'moroccan' ? MOROCCAN_REGION_META : picked.id === 'egyptian' ? EGYPTIAN_REGION_META : picked.id === 'tunisian' ? TUNISIAN_REGION_META : picked.id === 'algerian' ? ALGERIAN_REGION_META : picked.id === 'libyan' ? LIBYAN_REGION_META : picked.id === 'lebanese' ? LEBANESE_REGION_META : picked.id === 'syrian' ? SYRIAN_REGION_META : picked.id === 'jordanian' ? JORDANIAN_REGION_META : picked.id === 'palestinian' ? PALESTINIAN_REGION_META : picked.id === 'indian' ? INDIAN_REGION_META : picked.id === 'pakistani' ? PAKISTANI_REGION_META : picked.id === 'indonesian' ? INDONESIAN_REGION_META : picked.id === 'malaysian' ? MALAYSIAN_REGION_META : picked.id === 'nigerian' ? NIGERIAN_REGION_META : picked.id === 'ethiopian' ? ETHIOPIAN_REGION_META : picked.id === 'kenyan' ? KENYAN_REGION_META : picked.id === 'south-african' ? SOUTH_AFRICAN_REGION_META : picked.id === 'ghanaian' ? GHANAIAN_REGION_META : picked.id === 'rwandan' ? RWANDAN_REGION_META : picked.id === 'seychellois' ? SEYCHELLOIS_REGION_META : picked.id === 'mauritian' ? MAURITIAN_REGION_META : picked.id === 'gabonese' ? GABONESE_REGION_META : picked.id === 'botswanan' ? BOTSWANAN_REGION_META : picked.id === 'filipino' ? FILIPINO_REGION_META : picked.id === 'thai' ? THAI_REGION_META : picked.id === 'vietnamese' ? VIETNAMESE_REGION_META : picked.id === 'chinese' ? CHINESE_REGION_META : picked.id === 'japanese' ? JAPANESE_REGION_META : picked.id === 'korean' ? KOREAN_REGION_META : picked.id === 'taiwanese' ? TAIWANESE_REGION_META : []).map((r) => {
+                        {(picked.id === 'emirati' ? EMIRATI_REGION_META : picked.id === 'saudi' ? SAUDI_REGION_META : picked.id === 'kuwaiti' ? KUWAITI_REGION_META : picked.id === 'qatar' ? QATARI_REGION_META : picked.id === 'bahraini' ? BAHRAINI_REGION_META : picked.id === 'omani' ? OMANI_REGION_META : picked.id === 'moroccan' ? MOROCCAN_REGION_META : picked.id === 'egyptian' ? EGYPTIAN_REGION_META : picked.id === 'tunisian' ? TUNISIAN_REGION_META : picked.id === 'algerian' ? ALGERIAN_REGION_META : picked.id === 'libyan' ? LIBYAN_REGION_META : picked.id === 'lebanese' ? LEBANESE_REGION_META : picked.id === 'syrian' ? SYRIAN_REGION_META : picked.id === 'jordanian' ? JORDANIAN_REGION_META : picked.id === 'palestinian' ? PALESTINIAN_REGION_META : picked.id === 'indian' ? INDIAN_REGION_META : picked.id === 'pakistani' ? PAKISTANI_REGION_META : picked.id === 'indonesian' ? INDONESIAN_REGION_META : picked.id === 'malaysian' ? MALAYSIAN_REGION_META : picked.id === 'nigerian' ? NIGERIAN_REGION_META : picked.id === 'ethiopian' ? ETHIOPIAN_REGION_META : picked.id === 'kenyan' ? KENYAN_REGION_META : picked.id === 'south-african' ? SOUTH_AFRICAN_REGION_META : picked.id === 'ghanaian' ? GHANAIAN_REGION_META : picked.id === 'rwandan' ? RWANDAN_REGION_META : picked.id === 'seychellois' ? SEYCHELLOIS_REGION_META : picked.id === 'mauritian' ? MAURITIAN_REGION_META : picked.id === 'gabonese' ? GABONESE_REGION_META : picked.id === 'botswanan' ? BOTSWANAN_REGION_META : picked.id === 'filipino' ? FILIPINO_REGION_META : picked.id === 'thai' ? THAI_REGION_META : picked.id === 'vietnamese' ? VIETNAMESE_REGION_META : picked.id === 'chinese' ? CHINESE_REGION_META : picked.id === 'japanese' ? JAPANESE_REGION_META : picked.id === 'korean' ? KOREAN_REGION_META : picked.id === 'taiwanese' ? TAIWANESE_REGION_META : picked.id === 'american' ? AMERICAN_REGION_META : []).map((r) => {
                           const on = kitchenRegion === r.id;
                           return (
                             <button

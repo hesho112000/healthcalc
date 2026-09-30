@@ -161,6 +161,15 @@ export function useKitchenDishCounts(): Record<string, number> {
         out.taiwanese += rows.filter(
           (r) => r.region === 'asian_shared' && (r.source ?? '').startsWith('asia-taiwan-2026'),
         ).length;
+        // The American card mirrors the Taiwanese card: credits its own americas-usa-2026
+        // rows that live outside its own region set (shared pools / future shared rows),
+        // identified by the source prefix so no other kitchen's rows are pulled in.
+        // Own region-tagged rows are already counted by KITCHEN_COUNT_REGIONS.american.
+        out.american += rows.filter(
+          (r) =>
+            (r.source ?? '').startsWith('americas-usa-2026') &&
+            !KITCHEN_COUNT_REGIONS.american.has(r.region),
+        ).length;
         if (!cancelled) setCounts(out);
       } catch {
         if (!cancelled) setCounts({});
