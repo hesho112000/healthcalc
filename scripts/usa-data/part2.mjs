@@ -2,7 +2,7 @@ import { B, diasporaFor } from '../usa-base-data/rows.mjs';
 
 export default [
   // ---- new_england (4) ----
-  B('فطيرة جبن أمريكية أصيلة', 'Cheesecake', 'Cheesecake americain', 'Tarta de queso americana', 'Amerikanischer Käsekuchen', 'rice_cakes_sweets', 'snack', 8, 24, 18, 'baked', 'new_england', diasporaFor('new_england')),
+  B('فطيرة جبن أمريكية أصيلة', 'Classic Cheesecake', 'Cheesecake americain', 'Tarta de queso americana', 'Amerikanischer Käsekuchen', 'rice_cakes_sweets', 'snack', 8, 24, 18, 'baked', 'new_england', diasporaFor('new_england')),
   B('شوربة طماطم أمريكية أصيلة', 'Tomato soup', 'Soupe de tomate americaine', 'Sopa de tomate americana', 'Amerikanische Tomatensuppe', 'soups_stews', 'lunch', 3, 14, 4, 'simmered', 'new_england', diasporaFor('new_england')),
   B('بودينغ أرز أمريكي أصيل', 'Rice pudding', 'Pudding de riz americain', 'Arroz con leche americano', 'Amerikanischer Reispudding', 'rice_cakes_sweets', 'snack', 4, 24, 6, 'simmered', 'new_england', diasporaFor('new_england')),
   B('دونات أمريكية أصيلة', 'Donuts', 'Beignets americains', 'Donas americana', 'Amerikanische Donuts', 'street_snacks', 'snack', 5, 28, 12, 'deep-fried', 'new_england', diasporaFor('new_england')),
@@ -12,7 +12,7 @@ export default [
   B('بيتزا نيويورك أمريكي أصيل', 'New York pizza', 'Pizza de New York americaine', 'Pizza de Nueva York americana', 'Amerikanische New-York-Pizza', 'street_snacks', 'lunch', 14, 32, 12, 'baked', 'mid_atlantic', diasporaFor('mid_atlantic')),
   B('كراب كيك ماريلاند أمريكي أصيل', 'Maryland crab cake', 'Galette de crabe du Maryland americaine', 'Pastelito de cangrejo de Maryland americano', 'Amerikanischer Maryland-Krabbenkuchen', 'fish_seafood', 'lunch', 14, 12, 12, 'pan-fried', 'mid_atlantic', diasporaFor('mid_atlantic')),
   B('بافالو وينغز أمريكي أصيل', 'Buffalo wings', 'Ailes de Buffalo americaines', 'Alitas de Buffalo americano', 'Amerikanische Buffalo-Wings', 'poultry_mains', 'lunch', 18, 4, 16, 'deep-fried', 'mid_atlantic', diasporaFor('mid_atlantic')),
-  B('باستrami ساندويتش أمريكي أصيل', 'Pastrami sandwich', 'Sandwich au pastrami americain', 'Sándwich de pastrami americano', 'Amerikanischer Pastrami-Sandwich', 'meat_mains', 'lunch', 18, 20, 12, 'steamed', 'mid_atlantic', diasporaFor('mid_atlantic')),
+  B('ساندويتش بسطرمة أمريكي', 'Pastrami sandwich', 'Sandwich au pastrami americain', 'Sándwich de pastrami americano', 'Amerikanischer Pastrami-Sandwich', 'meat_mains', 'lunch', 18, 20, 12, 'steamed', 'mid_atlantic', diasporaFor('mid_atlantic')),
   B('ريز بيلاف أمريكي أصيل', 'Rice pilaf', 'Pilaf de riz americain', 'Pilaf de arroz americano', 'Amerikanischer Reispilaf', 'rice_dishes', 'lunch', 5, 28, 4, 'simmered', 'mid_atlantic', diasporaFor('mid_atlantic')),
   B('تشيز كيك نيويورك أمريكي أصيل', 'New York cheesecake', 'Cheesecake de New York americain', 'Tarta de queso de Nueva York americana', 'Amerikanischer New-York-Käsekuchen', 'rice_cakes_sweets', 'snack', 8, 24, 18, 'baked', 'mid_atlantic', diasporaFor('mid_atlantic')),
   B('أونيون رينغز أمريكي أصيل', 'Onion rings', 'Rondelles d oignon americaines', 'Aros de cebolla americano', 'Amerikanische Onion Rings', 'street_snacks', 'snack', 4, 24, 12, 'deep-fried', 'mid_atlantic', diasporaFor('mid_atlantic')),
