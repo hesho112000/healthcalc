@@ -183,7 +183,7 @@ const body = rows
       "fat": ${r.fat},
       "cooking": "${esc(r.cooking)}",
       "region": "${esc(r.region)}",
-      "diaspora_priority": ${JSON.stringify(r.diaspora_priority).replace(/"/g, '\\"')}
+      "diaspora_priority": [${r.diaspora_priority.map((t) => `'${String(t).replace(/'/g, "\\'")}'`).join(', ')}]
     }`
   )
   .join(',\n');

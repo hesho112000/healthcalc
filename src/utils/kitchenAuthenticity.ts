@@ -67,6 +67,8 @@ const TOKEN_REGIONS: Record<string, string> = {
     // re-grab rows that nationalityRegion() has already resolved to another kitchen.
     تايوان: 'pan_taiwanese',
     تايوانيه: 'pan_taiwanese',
+    أمريكي: 'pan_american', امريكي: 'pan_american',
+    أمريكية: 'pan_american', امريكيه: 'pan_american',
   };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -209,6 +211,11 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
     taiwanese: new Set([
       'pan_taiwanese', 'taipei', 'tainan', 'taichung', 'kaohsiung', 'hsinchu',
       'hualien', 'taitung', 'keelung', 'chiayi', 'nantou', 'yilan', 'pingtung',
+    ]),
+    american: new Set([
+      'pan_american', 'new_england', 'mid_atlantic', 'south', 'deep_south', 'cajun',
+      'texas', 'southwest', 'california', 'pacific_northwest', 'midwest', 'hawaii',
+      'alaska', 'soul_food', 'bbq', 'native_american',
     ]),
   };
 
@@ -377,6 +384,11 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
       taiwanese: new Set([
         'pan_taiwanese', 'asian_shared', 'taipei', 'tainan', 'taichung', 'kaohsiung',
         'hsinchu', 'hualien', 'taitung', 'keelung', 'chiayi', 'nantou', 'yilan', 'pingtung',
+      ]),
+      american: new Set([
+        'pan_american', 'new_england', 'mid_atlantic', 'south', 'deep_south', 'cajun',
+        'texas', 'southwest', 'california', 'pacific_northwest', 'midwest', 'hawaii',
+        'alaska', 'soul_food', 'bbq', 'native_american',
       ]),
   };
 

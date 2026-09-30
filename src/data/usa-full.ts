@@ -39,7 +39,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "griddled",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-002",
@@ -57,7 +57,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 9,
       "cooking": "baked",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-003",
@@ -75,7 +75,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 7,
       "cooking": "griddled",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-004",
@@ -93,7 +93,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 3,
       "cooking": "simmered",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-005",
@@ -111,7 +111,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "griddled",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-006",
@@ -129,7 +129,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "pan-fried",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-007",
@@ -147,7 +147,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 1,
       "cooking": "simmered",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-008",
@@ -165,7 +165,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "pan-fried",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-009",
@@ -183,7 +183,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "pan-fried",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-010",
@@ -201,7 +201,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "boiled",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-011",
@@ -219,7 +219,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 18,
       "cooking": "grilled",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-012",
@@ -237,7 +237,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "grilled",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-013",
@@ -255,7 +255,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 16,
       "cooking": "deep-fried",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-014",
@@ -273,7 +273,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 15,
       "cooking": "baked",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-015",
@@ -291,7 +291,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "baked",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-016",
@@ -309,7 +309,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "raw",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-017",
@@ -327,7 +327,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "baked",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-018",
@@ -345,7 +345,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 18,
       "cooking": "grilled",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-019",
@@ -363,7 +363,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 20,
       "cooking": "smoked",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-020",
@@ -381,7 +381,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "roasted",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-021",
@@ -399,7 +399,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "grilled",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-022",
@@ -417,7 +417,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "deep-fried",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-023",
@@ -435,7 +435,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "raw",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-024",
@@ -453,7 +453,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 4,
       "cooking": "simmered",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-025",
@@ -471,7 +471,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "simmered",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-026",
@@ -489,7 +489,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "baked",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-027",
@@ -507,7 +507,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "boiled",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-028",
@@ -525,7 +525,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "grilled",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-029",
@@ -543,7 +543,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "grilled",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-030",
@@ -561,7 +561,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "roasted",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-031",
@@ -579,7 +579,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "baked",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-032",
@@ -597,7 +597,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "baked",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-033",
@@ -615,7 +615,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "baked",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-034",
@@ -633,7 +633,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 18,
       "cooking": "baked",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-035",
@@ -651,7 +651,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "frozen",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-036",
@@ -669,7 +669,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 0,
       "cooking": "simmered",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-037",
@@ -687,7 +687,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 0,
       "cooking": "simmered",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-038",
@@ -705,7 +705,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "mixed",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-039",
@@ -723,7 +723,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 0,
       "cooking": "brewed",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-040",
@@ -741,7 +741,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 0,
       "cooking": "mixed",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-041",
@@ -759,7 +759,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "simmered",
       "region": "new_england",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-042",
@@ -777,7 +777,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "steamed",
       "region": "new_england",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-043",
@@ -795,7 +795,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "pan-fried",
       "region": "new_england",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-044",
@@ -813,7 +813,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 2,
       "cooking": "baked",
       "region": "new_england",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-045",
@@ -831,7 +831,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 3,
       "cooking": "baked",
       "region": "new_england",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-046",
@@ -849,7 +849,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 0,
       "cooking": "pressed",
       "region": "new_england",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-047",
@@ -867,7 +867,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "baked",
       "region": "new_england",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-048",
@@ -885,7 +885,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "smoked",
       "region": "new_england",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-049",
@@ -903,7 +903,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 4,
       "cooking": "steamed",
       "region": "new_england",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-050",
@@ -921,7 +921,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "baked",
       "region": "new_england",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-051",
@@ -939,7 +939,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "baked",
       "region": "pan_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-052",
@@ -957,7 +957,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 18,
       "cooking": "baked",
       "region": "new_england",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-053",
@@ -975,7 +975,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 4,
       "cooking": "simmered",
       "region": "new_england",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-054",
@@ -993,7 +993,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "simmered",
       "region": "new_england",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-055",
@@ -1011,7 +1011,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "deep-fried",
       "region": "new_england",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-056",
@@ -1029,7 +1029,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 18,
       "cooking": "griddled",
       "region": "mid_atlantic",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-057",
@@ -1047,7 +1047,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 4,
       "cooking": "baked",
       "region": "mid_atlantic",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-058",
@@ -1065,7 +1065,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "baked",
       "region": "mid_atlantic",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-059",
@@ -1083,7 +1083,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "pan-fried",
       "region": "mid_atlantic",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-060",
@@ -1101,7 +1101,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 16,
       "cooking": "deep-fried",
       "region": "mid_atlantic",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-061",
@@ -1119,7 +1119,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "steamed",
       "region": "mid_atlantic",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-062",
@@ -1137,7 +1137,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 4,
       "cooking": "simmered",
       "region": "mid_atlantic",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-063",
@@ -1155,7 +1155,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 18,
       "cooking": "baked",
       "region": "mid_atlantic",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-064",
@@ -1173,7 +1173,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "deep-fried",
       "region": "mid_atlantic",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-065",
@@ -1191,7 +1191,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 16,
       "cooking": "baked",
       "region": "mid_atlantic",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-066",
@@ -1209,7 +1209,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "simmered",
       "region": "mid_atlantic",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-067",
@@ -1227,7 +1227,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "baked",
       "region": "mid_atlantic",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-068",
@@ -1245,7 +1245,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "boiled",
       "region": "mid_atlantic",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-069",
@@ -1263,7 +1263,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "baked",
       "region": "mid_atlantic",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-070",
@@ -1281,7 +1281,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 16,
       "cooking": "deep-fried",
       "region": "south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-071",
@@ -1299,7 +1299,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "baked",
       "region": "south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-072",
@@ -1317,7 +1317,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 2,
       "cooking": "simmered",
       "region": "south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-073",
@@ -1335,7 +1335,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 2,
       "cooking": "simmered",
       "region": "south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-074",
@@ -1353,7 +1353,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "pan-fried",
       "region": "south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-075",
@@ -1371,7 +1371,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "deep-fried",
       "region": "south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-076",
@@ -1389,7 +1389,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "baked",
       "region": "south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-077",
@@ -1407,7 +1407,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "baked",
       "region": "south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-078",
@@ -1425,7 +1425,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "simmered",
       "region": "south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-079",
@@ -1443,7 +1443,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 15,
       "cooking": "baked",
       "region": "south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-080",
@@ -1461,7 +1461,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "baked",
       "region": "south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-081",
@@ -1479,7 +1479,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "baked",
       "region": "south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-082",
@@ -1497,7 +1497,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 2,
       "cooking": "simmered",
       "region": "south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-083",
@@ -1515,7 +1515,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "baked",
       "region": "south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-084",
@@ -1533,7 +1533,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "simmered",
       "region": "deep_south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-085",
@@ -1551,7 +1551,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "simmered",
       "region": "deep_south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-086",
@@ -1569,7 +1569,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "simmered",
       "region": "deep_south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-087",
@@ -1587,7 +1587,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "deep-fried",
       "region": "deep_south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-088",
@@ -1605,7 +1605,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "baked",
       "region": "deep_south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-089",
@@ -1623,7 +1623,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "baked",
       "region": "deep_south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-090",
@@ -1641,7 +1641,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 16,
       "cooking": "grilled",
       "region": "deep_south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-091",
@@ -1659,7 +1659,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "baked",
       "region": "deep_south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-092",
@@ -1677,7 +1677,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "boiled",
       "region": "deep_south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-093",
@@ -1695,7 +1695,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "boiled",
       "region": "deep_south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-094",
@@ -1713,7 +1713,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "baked",
       "region": "deep_south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-095",
@@ -1731,7 +1731,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 4,
       "cooking": "simmered",
       "region": "deep_south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-096",
@@ -1749,7 +1749,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "grilled",
       "region": "deep_south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-097",
@@ -1767,7 +1767,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "simmered",
       "region": "deep_south",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-098",
@@ -1785,7 +1785,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "simmered",
       "region": "cajun",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"cajun\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'cajun']
     },
     {
       "id": "usa-base-099",
@@ -1803,7 +1803,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 4,
       "cooking": "simmered",
       "region": "cajun",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"cajun\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'cajun']
     },
     {
       "id": "usa-base-100",
@@ -1821,7 +1821,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "steamed",
       "region": "cajun",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"cajun\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'cajun']
     },
     {
       "id": "usa-base-101",
@@ -1839,7 +1839,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 16,
       "cooking": "grilled",
       "region": "cajun",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"cajun\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'cajun']
     },
     {
       "id": "usa-base-102",
@@ -1857,7 +1857,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "simmered",
       "region": "cajun",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"cajun\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'cajun']
     },
     {
       "id": "usa-base-103",
@@ -1875,7 +1875,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "simmered",
       "region": "cajun",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"cajun\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'cajun']
     },
     {
       "id": "usa-base-104",
@@ -1893,7 +1893,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "simmered",
       "region": "cajun",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"cajun\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'cajun']
     },
     {
       "id": "usa-base-105",
@@ -1911,7 +1911,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "fried",
       "region": "cajun",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"cajun\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'cajun']
     },
     {
       "id": "usa-base-106",
@@ -1929,7 +1929,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "boiled",
       "region": "cajun",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"cajun\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'cajun']
     },
     {
       "id": "usa-base-107",
@@ -1947,7 +1947,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 16,
       "cooking": "smoked",
       "region": "cajun",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"cajun\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'cajun']
     },
     {
       "id": "usa-base-108",
@@ -1965,7 +1965,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "boiled",
       "region": "cajun",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"cajun\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'cajun']
     },
     {
       "id": "usa-base-109",
@@ -1983,7 +1983,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "baked",
       "region": "cajun",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"cajun\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'cajun']
     },
     {
       "id": "usa-base-110",
@@ -2001,7 +2001,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "simmered",
       "region": "cajun",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"cajun\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'cajun']
     },
     {
       "id": "usa-base-111",
@@ -2019,7 +2019,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "grilled",
       "region": "cajun",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"cajun\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'cajun']
     },
     {
       "id": "usa-base-112",
@@ -2037,7 +2037,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 20,
       "cooking": "smoked",
       "region": "texas",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"tex_mex\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'tex_mex']
     },
     {
       "id": "usa-base-113",
@@ -2055,7 +2055,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 20,
       "cooking": "smoked",
       "region": "texas",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"tex_mex\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'tex_mex']
     },
     {
       "id": "usa-base-114",
@@ -2073,7 +2073,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "simmered",
       "region": "texas",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"tex_mex\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'tex_mex']
     },
     {
       "id": "usa-base-115",
@@ -2091,7 +2091,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "griddled",
       "region": "texas",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"tex_mex\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'tex_mex']
     },
     {
       "id": "usa-base-116",
@@ -2109,7 +2109,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "grilled",
       "region": "texas",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"tex_mex\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'tex_mex']
     },
     {
       "id": "usa-base-117",
@@ -2127,7 +2127,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "baked",
       "region": "texas",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"tex_mex\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'tex_mex']
     },
     {
       "id": "usa-base-118",
@@ -2145,7 +2145,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "baked",
       "region": "texas",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"tex_mex\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'tex_mex']
     },
     {
       "id": "usa-base-119",
@@ -2163,7 +2163,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "baked",
       "region": "texas",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"tex_mex\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'tex_mex']
     },
     {
       "id": "usa-base-120",
@@ -2181,7 +2181,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 16,
       "cooking": "grilled",
       "region": "texas",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"tex_mex\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'tex_mex']
     },
     {
       "id": "usa-base-121",
@@ -2199,7 +2199,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "grilled",
       "region": "texas",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"tex_mex\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'tex_mex']
     },
     {
       "id": "usa-base-122",
@@ -2217,7 +2217,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "raw",
       "region": "texas",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"tex_mex\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'tex_mex']
     },
     {
       "id": "usa-base-123",
@@ -2235,7 +2235,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "baked",
       "region": "texas",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"tex_mex\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'tex_mex']
     },
     {
       "id": "usa-base-124",
@@ -2253,7 +2253,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "grilled",
       "region": "texas",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"tex_mex\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'tex_mex']
     },
     {
       "id": "usa-base-125",
@@ -2271,7 +2271,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 18,
       "cooking": "baked",
       "region": "texas",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"tex_mex\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'tex_mex']
     },
     {
       "id": "usa-base-126",
@@ -2289,7 +2289,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "grilled",
       "region": "southwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"native_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'native_american']
     },
     {
       "id": "usa-base-127",
@@ -2307,7 +2307,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "grilled",
       "region": "southwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"native_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'native_american']
     },
     {
       "id": "usa-base-128",
@@ -2325,7 +2325,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "baked",
       "region": "southwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"native_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'native_american']
     },
     {
       "id": "usa-base-129",
@@ -2343,7 +2343,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "steamed",
       "region": "southwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"native_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'native_american']
     },
     {
       "id": "usa-base-130",
@@ -2361,7 +2361,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "simmered",
       "region": "southwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"native_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'native_american']
     },
     {
       "id": "usa-base-131",
@@ -2379,7 +2379,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 16,
       "cooking": "grilled",
       "region": "southwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"native_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'native_american']
     },
     {
       "id": "usa-base-132",
@@ -2397,7 +2397,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "fried",
       "region": "southwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"native_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'native_american']
     },
     {
       "id": "usa-base-133",
@@ -2415,7 +2415,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "deep-fried",
       "region": "southwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"native_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'native_american']
     },
     {
       "id": "usa-base-134",
@@ -2433,7 +2433,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "mashed",
       "region": "southwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"native_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'native_american']
     },
     {
       "id": "usa-base-135",
@@ -2451,7 +2451,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 0,
       "cooking": "mixed",
       "region": "southwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"native_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'native_american']
     },
     {
       "id": "usa-base-136",
@@ -2469,7 +2469,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "grilled",
       "region": "southwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"native_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'native_american']
     },
     {
       "id": "usa-base-137",
@@ -2487,7 +2487,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "griddled",
       "region": "southwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"native_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'native_american']
     },
     {
       "id": "usa-base-138",
@@ -2505,7 +2505,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "baked",
       "region": "southwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"native_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'native_american']
     },
     {
       "id": "usa-base-139",
@@ -2523,7 +2523,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "baked",
       "region": "southwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"native_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'native_american']
     },
     {
       "id": "usa-base-140",
@@ -2541,7 +2541,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "rolled",
       "region": "california",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-141",
@@ -2559,7 +2559,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "grilled",
       "region": "california",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-142",
@@ -2577,7 +2577,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "toasted",
       "region": "california",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-143",
@@ -2595,7 +2595,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "simmered",
       "region": "california",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-144",
@@ -2613,7 +2613,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 2,
       "cooking": "baked",
       "region": "california",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-145",
@@ -2631,7 +2631,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "deep-fried",
       "region": "california",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-146",
@@ -2649,7 +2649,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "baked",
       "region": "california",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-147",
@@ -2667,7 +2667,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "raw",
       "region": "california",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-148",
@@ -2685,7 +2685,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "grilled",
       "region": "california",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-149",
@@ -2703,7 +2703,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "baked",
       "region": "california",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-150",
@@ -2721,7 +2721,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "boiled",
       "region": "california",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-151",
@@ -2739,7 +2739,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 1,
       "cooking": "blended",
       "region": "california",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-152",
@@ -2757,7 +2757,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "grilled",
       "region": "california",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-153",
@@ -2775,7 +2775,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "grilled",
       "region": "california",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"italian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'italian_american']
     },
     {
       "id": "usa-base-154",
@@ -2793,7 +2793,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "grilled",
       "region": "pacific_northwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-155",
@@ -2811,7 +2811,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "steamed",
       "region": "pacific_northwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-156",
@@ -2829,7 +2829,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 4,
       "cooking": "raw",
       "region": "pacific_northwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-157",
@@ -2847,7 +2847,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "simmered",
       "region": "pacific_northwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-158",
@@ -2865,7 +2865,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "baked",
       "region": "pacific_northwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-159",
@@ -2883,7 +2883,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 16,
       "cooking": "roasted",
       "region": "pacific_northwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-160",
@@ -2901,7 +2901,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "smoked",
       "region": "pacific_northwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-161",
@@ -2919,7 +2919,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "grilled",
       "region": "pacific_northwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-162",
@@ -2937,7 +2937,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 0,
       "cooking": "raw",
       "region": "pacific_northwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-163",
@@ -2955,7 +2955,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 0,
       "cooking": "raw",
       "region": "pacific_northwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-164",
@@ -2973,7 +2973,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "aged",
       "region": "pacific_northwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-165",
@@ -2991,7 +2991,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 0,
       "cooking": "brewed",
       "region": "pacific_northwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-166",
@@ -3009,7 +3009,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "grilled",
       "region": "pacific_northwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-167",
@@ -3027,7 +3027,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "baked",
       "region": "pacific_northwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-168",
@@ -3045,7 +3045,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "baked",
       "region": "midwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-169",
@@ -3063,7 +3063,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 16,
       "cooking": "grilled",
       "region": "midwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-170",
@@ -3081,7 +3081,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "deep-fried",
       "region": "midwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-171",
@@ -3099,7 +3099,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 3,
       "cooking": "grilled",
       "region": "midwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-172",
@@ -3117,7 +3117,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "baked",
       "region": "midwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-173",
@@ -3135,7 +3135,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "baked",
       "region": "midwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-174",
@@ -3153,7 +3153,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "grilled",
       "region": "midwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-175",
@@ -3171,7 +3171,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 18,
       "cooking": "grilled",
       "region": "midwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-176",
@@ -3189,7 +3189,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "boiled",
       "region": "midwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-177",
@@ -3207,7 +3207,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "raw",
       "region": "midwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-178",
@@ -3225,7 +3225,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 18,
       "cooking": "baked",
       "region": "midwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-179",
@@ -3243,7 +3243,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "simmered",
       "region": "midwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-180",
@@ -3261,7 +3261,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 15,
       "cooking": "baked",
       "region": "midwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-181",
@@ -3279,7 +3279,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "deep-fried",
       "region": "midwest",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-182",
@@ -3297,7 +3297,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "grilled",
       "region": "hawaii",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"asian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'asian_american']
     },
     {
       "id": "usa-base-183",
@@ -3315,7 +3315,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "grilled",
       "region": "hawaii",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"asian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'asian_american']
     },
     {
       "id": "usa-base-184",
@@ -3333,7 +3333,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "raw",
       "region": "hawaii",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"asian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'asian_american']
     },
     {
       "id": "usa-base-185",
@@ -3351,7 +3351,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 4,
       "cooking": "simmered",
       "region": "hawaii",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"asian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'asian_american']
     },
     {
       "id": "usa-base-186",
@@ -3369,7 +3369,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "deep-fried",
       "region": "hawaii",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"asian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'asian_american']
     },
     {
       "id": "usa-base-187",
@@ -3387,7 +3387,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 0,
       "cooking": "shaved",
       "region": "hawaii",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"asian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'asian_american']
     },
     {
       "id": "usa-base-188",
@@ -3405,7 +3405,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "grilled",
       "region": "hawaii",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"asian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'asian_american']
     },
     {
       "id": "usa-base-189",
@@ -3423,7 +3423,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "smoked",
       "region": "hawaii",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"asian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'asian_american']
     },
     {
       "id": "usa-base-190",
@@ -3441,7 +3441,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 1,
       "cooking": "steamed",
       "region": "hawaii",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"asian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'asian_american']
     },
     {
       "id": "usa-base-191",
@@ -3459,7 +3459,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "simmered",
       "region": "hawaii",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"asian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'asian_american']
     },
     {
       "id": "usa-base-192",
@@ -3477,7 +3477,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "grilled",
       "region": "hawaii",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"asian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'asian_american']
     },
     {
       "id": "usa-base-193",
@@ -3495,7 +3495,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "baked",
       "region": "hawaii",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"asian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'asian_american']
     },
     {
       "id": "usa-base-194",
@@ -3513,7 +3513,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 1,
       "cooking": "blended",
       "region": "hawaii",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"asian_american\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'asian_american']
     },
     {
       "id": "usa-base-195",
@@ -3531,7 +3531,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "grilled",
       "region": "alaska",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-196",
@@ -3549,7 +3549,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "steamed",
       "region": "alaska",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-197",
@@ -3567,7 +3567,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "grilled",
       "region": "alaska",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-198",
@@ -3585,7 +3585,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 16,
       "cooking": "grilled",
       "region": "alaska",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-199",
@@ -3603,7 +3603,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "griddled",
       "region": "alaska",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-200",
@@ -3621,7 +3621,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "mixed",
       "region": "alaska",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-201",
@@ -3639,7 +3639,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "smoked",
       "region": "alaska",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-202",
@@ -3657,7 +3657,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 20,
       "cooking": "smoked",
       "region": "alaska",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-203",
@@ -3675,7 +3675,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "baked",
       "region": "alaska",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-204",
@@ -3693,7 +3693,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "simmered",
       "region": "alaska",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-205",
@@ -3711,7 +3711,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "grilled",
       "region": "alaska",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-206",
@@ -3729,7 +3729,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "boiled",
       "region": "alaska",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-207",
@@ -3747,7 +3747,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "simmered",
       "region": "alaska",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-208",
@@ -3765,7 +3765,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 1,
       "cooking": "blended",
       "region": "alaska",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-209",
@@ -3783,7 +3783,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 16,
       "cooking": "deep-fried",
       "region": "soul_food",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"soul_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'soul_food']
     },
     {
       "id": "usa-base-210",
@@ -3801,7 +3801,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 2,
       "cooking": "simmered",
       "region": "soul_food",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"soul_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'soul_food']
     },
     {
       "id": "usa-base-211",
@@ -3819,7 +3819,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "baked",
       "region": "soul_food",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"soul_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'soul_food']
     },
     {
       "id": "usa-base-212",
@@ -3837,7 +3837,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "baked",
       "region": "soul_food",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"soul_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'soul_food']
     },
     {
       "id": "usa-base-213",
@@ -3855,7 +3855,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 2,
       "cooking": "simmered",
       "region": "soul_food",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"soul_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'soul_food']
     },
     {
       "id": "usa-base-214",
@@ -3873,7 +3873,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "baked",
       "region": "soul_food",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"soul_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'soul_food']
     },
     {
       "id": "usa-base-215",
@@ -3891,7 +3891,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "baked",
       "region": "soul_food",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"soul_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'soul_food']
     },
     {
       "id": "usa-base-216",
@@ -3909,7 +3909,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "deep-fried",
       "region": "soul_food",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"soul_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'soul_food']
     },
     {
       "id": "usa-base-217",
@@ -3927,7 +3927,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "grilled",
       "region": "soul_food",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"soul_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'soul_food']
     },
     {
       "id": "usa-base-218",
@@ -3945,7 +3945,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 15,
       "cooking": "baked",
       "region": "soul_food",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"soul_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'soul_food']
     },
     {
       "id": "usa-base-219",
@@ -3963,7 +3963,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "boiled",
       "region": "soul_food",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"soul_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'soul_food']
     },
     {
       "id": "usa-base-220",
@@ -3981,7 +3981,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "baked",
       "region": "soul_food",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"soul_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'soul_food']
     },
     {
       "id": "usa-base-221",
@@ -3999,7 +3999,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "baked",
       "region": "soul_food",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"soul_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'soul_food']
     },
     {
       "id": "usa-base-222",
@@ -4017,7 +4017,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "baked",
       "region": "soul_food",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"soul_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'soul_food']
     },
     {
       "id": "usa-base-223",
@@ -4035,7 +4035,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 20,
       "cooking": "smoked",
       "region": "bbq",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"bbq\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'bbq']
     },
     {
       "id": "usa-base-224",
@@ -4053,7 +4053,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 20,
       "cooking": "smoked",
       "region": "bbq",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"bbq\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'bbq']
     },
     {
       "id": "usa-base-225",
@@ -4071,7 +4071,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "smoked",
       "region": "bbq",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"bbq\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'bbq']
     },
     {
       "id": "usa-base-226",
@@ -4089,7 +4089,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "smoked",
       "region": "bbq",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"bbq\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'bbq']
     },
     {
       "id": "usa-base-227",
@@ -4107,7 +4107,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 0,
       "cooking": "simmered",
       "region": "bbq",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"bbq\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'bbq']
     },
     {
       "id": "usa-base-228",
@@ -4125,7 +4125,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 16,
       "cooking": "smoked",
       "region": "bbq",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"bbq\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'bbq']
     },
     {
       "id": "usa-base-229",
@@ -4143,7 +4143,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 16,
       "cooking": "smoked",
       "region": "bbq",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"bbq\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'bbq']
     },
     {
       "id": "usa-base-230",
@@ -4161,7 +4161,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 8,
       "cooking": "raw",
       "region": "bbq",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"bbq\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'bbq']
     },
     {
       "id": "usa-base-231",
@@ -4179,7 +4179,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 2,
       "cooking": "baked",
       "region": "bbq",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"bbq\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'bbq']
     },
     {
       "id": "usa-base-232",
@@ -4197,7 +4197,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "baked",
       "region": "bbq",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"bbq\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'bbq']
     },
     {
       "id": "usa-base-233",
@@ -4215,7 +4215,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "grilled",
       "region": "bbq",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"bbq\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'bbq']
     },
     {
       "id": "usa-base-234",
@@ -4233,7 +4233,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "baked",
       "region": "bbq",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"bbq\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'bbq']
     },
     {
       "id": "usa-base-235",
@@ -4251,7 +4251,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "simmered",
       "region": "bbq",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"bbq\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'bbq']
     },
     {
       "id": "usa-base-236",
@@ -4269,7 +4269,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 18,
       "cooking": "baked",
       "region": "bbq",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\",\"bbq\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food', 'bbq']
     },
     {
       "id": "usa-base-237",
@@ -4287,7 +4287,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "deep-fried",
       "region": "native_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-238",
@@ -4305,7 +4305,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "fried",
       "region": "native_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-239",
@@ -4323,7 +4323,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 2,
       "cooking": "simmered",
       "region": "native_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-240",
@@ -4341,7 +4341,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 3,
       "cooking": "simmered",
       "region": "native_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-241",
@@ -4359,7 +4359,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 3,
       "cooking": "simmered",
       "region": "native_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-242",
@@ -4377,7 +4377,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 14,
       "cooking": "dried",
       "region": "native_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-243",
@@ -4395,7 +4395,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 2,
       "cooking": "simmered",
       "region": "native_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-244",
@@ -4413,7 +4413,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "baked",
       "region": "native_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-245",
@@ -4431,7 +4431,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 12,
       "cooking": "grilled",
       "region": "native_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-246",
@@ -4449,7 +4449,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 15,
       "cooking": "baked",
       "region": "native_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-247",
@@ -4467,7 +4467,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "boiled",
       "region": "native_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-248",
@@ -4485,7 +4485,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 6,
       "cooking": "simmered",
       "region": "native_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-249",
@@ -4503,7 +4503,7 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 10,
       "cooking": "baked",
       "region": "native_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     },
     {
       "id": "usa-base-250",
@@ -4521,6 +4521,6 @@ export const USA_FULL: KitchenDish[] = [
       "fat": 1,
       "cooking": "blended",
       "region": "native_american",
-      "diaspora_priority": [\"american\",\"western\",\"comfort_food\"]
+      "diaspora_priority": ['american', 'western', 'comfort_food']
     }
 ];
