@@ -589,6 +589,11 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
         if (d.region === 'asian_shared') return 2;
         return 1;
       }
+      if (kitchenId === 'canadian') {
+        if (d.region === 'pan_canadian') return 0;
+        if (d.region === 'asian_shared') return 2;
+        return 1;
+      }
       return -1;
   };
   const isGeneralDish = (d: KitchenDish) => generalRank(d) >= 0;

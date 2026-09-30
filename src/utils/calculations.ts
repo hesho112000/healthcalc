@@ -34,6 +34,7 @@ import { BRITISH_FULL, type BritishFullDish } from '../data/british-full';
 import { SWISS_FULL, type SwissFullDish } from '../data/swiss-full';
 import { MEXICAN_FULL, type MexicanFullDish } from '../data/mexican-full';
 import { AMERICAN_FULL, type AmericanFullDish } from '../data/american-full';
+import { CANADA_FULL, type KitchenDish as CanadianFullDish } from '../data/canada-full';
 import { CUBAN_FULL, type CubanFullDish } from '../data/cuban-full';
 import { COSTA_RICAN_FULL, type CostaRicanFullDish } from '../data/costa-rican-full';
 import { JAMAICAN_FULL, type JamaicanFullDish } from '../data/jamaican-full';
@@ -604,6 +605,8 @@ const toSwissFood = (e: SwissFullDish): FoodItem => toFullFood(e, 'swiss');
 
 const toMexicanFood = (e: MexicanFullDish): FoodItem => toFullFood(e, 'mexican');
 const toAmericanFood = (e: AmericanFullDish): FoodItem => toFullFood(e, 'american');
+const toCanadianFood = (e: CanadianFullDish): FoodItem =>
+  toFullFood({ ...e, mealType: e.mealType as AmericanFullDish['mealType'] }, 'canadian');
 const toCubanFood = (e: CubanFullDish): FoodItem => toFullFood(e, 'cuban');
 const toCostaRicanFood = (e: CostaRicanFullDish): FoodItem => toFullFood(e, 'costa_rican');
 const toJamaicanFood = (e: JamaicanFullDish): FoodItem => toFullFood(e, 'jamaican');
@@ -731,6 +734,7 @@ export const FOODS_DATABASE: FoodItem[] = [
   ...SWISS_FULL.map(toSwissFood),
   ...MEXICAN_FULL.map(toMexicanFood),
   ...AMERICAN_FULL.map(toAmericanFood),
+  ...CANADA_FULL.map(toCanadianFood),
   ...CUBAN_FULL.map(toCubanFood),
   ...COSTA_RICAN_FULL.map(toCostaRicanFood),
   ...JAMAICAN_FULL.map(toJamaicanFood),
