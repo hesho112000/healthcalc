@@ -1,6 +1,6 @@
-// Injector for the 250 USA base rows authored in src/data/usa-full.ts.
-// Reads the TS kitchen file, regex-extracts the USA_FULL array, and inserts
-// each row into the live dishes table. Dedupes by exact name_ar.
+// Injector for the 250 USA base rows authored in scripts/usa-250-proposal.json
+// (emitted by scripts/build-usa-base-250.js). Reads the JSON proposal and
+// inserts each row into the live dishes table. Dedupes by exact name_ar.
 // Source tag: americas-usa-2026.
 //
 // HALAL: no pork, no alcohol, no blood, no wild game. The base set was
@@ -35,13 +35,12 @@ const MEAL = {
   snacks: 'lunch', side: 'lunch', salad: 'snacks', fruit: 'snacks',
 };
 
-const raw = fs.readFileSync(path.join(ROOT, 'src/data/usa-full.ts'), 'utf8');
-const m = raw.match(/export const USA_FULL: KitchenDish\[\] = (\[[\s\S]*?\])\s*;/);
-if (!m) {
-  console.error('Could not find USA_FULL array in src/data/usa-full.ts');
+const prop = JSON.parse(fs.readFileSync(path.join(ROOT, 'scripts/usa-250-proposal.json'), 'utf8'));
+const rows = prop.dishes;
+if (!Array.isArray(rows) || !rows.length) {
+  console.error('No dishes found in scripts/usa-250-proposal.json');
   process.exit(1);
 }
-const rows = JSON.parse(m[1]);
 
 const TOTAL = rows.length;
 let inserted = 0;
@@ -52,23 +51,23 @@ const atwaterFixed = [];
 
 for (let i = 0; i < TOTAL; i++) {
   const r = rows[i];
-  const nameAr = (r.nameAr ?? '').trim();
+  const nameAr = (r.name_ar ?? '').trim();
   const p100 = Number(r.protein) || 0;
   const c100 = Number(r.carbs) || 0;
   const f100 = Number(r.fat) || 0;
   const g = Number(r.grams) || 100;
   const atwaterCal = Math.round(4 * p100 + 4 * c100 + 9 * f100);
-  let cal100 = Number(r.kcal) || 0;
+  let cal100 = Number(r.cal_100) || 0;
   if (cal100 !== atwaterCal) {
     atwaterFixed.push(`${nameAr} (${cal100}->${atwaterCal})`);
     cal100 = atwaterCal;
   }
   if (cal100 > 900) cal100 = 900;
   const baseCalServ = Math.round(cal100 * (g / 100) * 10) / 10;
-  const nameEn = (r.nameEn ?? '').trim();
-  const nameFr = (r.nameFr ?? '').trim();
-  const nameEs = (r.nameEs ?? '').trim();
-  const nameDe = (r.nameDe ?? '').trim();
+  const nameEn = (r.name_en ?? '').trim();
+  const nameFr = (r.name_fr ?? '').trim();
+  const nameEs = (r.name_es ?? '').trim();
+  const nameDe = (r.name_de ?? '').trim();
   if (![nameAr, nameEn, nameFr, nameEs, nameDe].every((v) => typeof v === 'string' && v.trim().length > 0)) {
     console.error(`Row ${i + 1}: empty language field`);
     failed++;

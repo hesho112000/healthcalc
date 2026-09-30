@@ -41,8 +41,9 @@ ok(us.length === 500, `expected 500 USA rows, found ${us.length}`);
 
 let badToken = 0, badRegion = 0, foreignSrc = 0;
 for (const r of us) {
-  const toks = (r.name_ar ?? '').trim().split(/\s+/);
-  if (!toks.includes('أمريكي')) badToken++;
+  // Substring match, same as the build scripts' includes('أمريكي'): matches the
+  // masculine 'أمريكي', the feminine 'أمريكية', and any other derived form.
+  if (!(r.name_ar ?? '').includes('أمريكي')) badToken++;
   if (!USA_REGIONS.has(r.region)) badRegion++;
   if (!(r.source ?? '').startsWith(SOURCE)) foreignSrc++;
 }
@@ -61,7 +62,13 @@ let drift = 0, not100 = 0;
 for (const r of us) {
   const expect = Math.round(4 * r.protein + 4 * r.carbs + 9 * r.fat);
   if (r.cal_100 !== expect) drift++;
-  if (r.protein + r.carbs + r.fat <= 0) not100++;
+  // Empty-calorie beverages (coffee etc.) legitimately carry 0/0/0 macros.
+  // The dishes table has no category column, so identify them by region or name.
+  const isBev =
+    r.region === 'beverages' ||
+    (r.name_ar ?? '').includes('قهوة') ||
+    /\bcoffee\b/i.test(r.name_en ?? '');
+  if (r.protein + r.carbs + r.fat <= 0 && !isBev) not100++;
 }
 ok(drift === 0, `${drift} row(s) with Atwater drift`);
 ok(not100 === 0, `${not100} row(s) with no macros`);
@@ -99,6 +106,10 @@ const BANNED = {
   game: ['غزال', 'أرنب', 'خنزير بري', 'ديك بري', 'ظبي', 'venison', 'rabbit', 'hare', 'wild boar', 'pheasant', 'wild duck', 'quail', 'grouse', 'elk', 'moose'],
 };
 const HALAL_QUALIFIERS = ['لحم البقر', 'دجاج', 'ديك رومي', 'لحم الضأن', 'سمك', 'تونة', 'سلمون', 'روبيان', 'جمبري', 'توفو', 'خضار', 'نباتي', 'beef', 'chicken', 'turkey', 'lamb', 'fish', 'salmon', 'tuna', 'shrimp', 'prawn', 'tofu', 'vegetable', 'vegan', 'plant-based'];
+// Non-alcoholic apple cider is halal: whitelist the 'cider' alcohol hit when the
+// row is explicitly apple-based (English or Arabic context). Hard cider with no
+// apple context stays flagged by the ban list.
+const isAppleCider = (hay) => /\bapple\b/i.test(hay) || hay.includes('تفاح');
 const isAscii = (w) => /^[A-Za-z]/.test(w);
 function hasWord(hay, w) {
   if (isAscii(w)) return new RegExp(`(?<![A-Za-z])${w}(?![A-Za-z])`, 'i').test(hay);
@@ -112,6 +123,7 @@ for (const r of us) {
     for (const w of words) {
       if (!hasWord(hay, w)) continue;
       if (cat === 'pork' && qual) continue;
+      if (w === 'cider' && isAppleCider(hay)) continue;
       fails.push(`halal: ${cat} "${w}" in "${r.name_en}"`);
       halal++;
     }
