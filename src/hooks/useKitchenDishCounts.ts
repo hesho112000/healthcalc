@@ -170,6 +170,12 @@ export function useKitchenDishCounts(): Record<string, number> {
             (r.source ?? '').startsWith('americas-usa-2026') &&
             !KITCHEN_COUNT_REGIONS.american.has(r.region),
         ).length;
+        // Canada's card credits Canada-source rows outside its own region set.
+        out.canadian += rows.filter(
+          (r) =>
+            (r.source ?? '').startsWith('americas-canada-2026') &&
+            !KITCHEN_COUNT_REGIONS.canadian.has(r.region),
+        ).length;
         if (!cancelled) setCounts(out);
       } catch {
         if (!cancelled) setCounts({});
