@@ -70,10 +70,15 @@ const TOKEN_REGIONS: Record<string, string> = {
   أمريكي: 'pan_american', امريكي: 'pan_american',
   أمريكية: 'pan_american', امريكيه: 'pan_american',
   كندي: 'pan_canadian', كنديه: 'pan_canadian', كانادي: 'pan_canadian', كاناديه: 'pan_canadian',
-  أسترالي: 'pan_australasian', استرالي: 'pan_australasian',
-  أسترالية: 'pan_australasian', استراليه: 'pan_australasian',
-  نيوزيلندي: 'pan_australasian', نيوزيلندية: 'pan_australasian', نيوزيلنديه: 'pan_australasian',
-  };
+   أسترالي: 'pan_australasian', استرالي: 'pan_australasian',
+   أسترالية: 'pan_australasian', استراليه: 'pan_australasian',
+   نيوزيلندي: 'pan_australasian', نيوزيلندية: 'pan_australasian', نيوزيلنديه: 'pan_australasian',
+   بريطاني: 'pan_british',
+   البريطانية: 'pan_british',
+   انجلسي: 'pan_british',
+   انجلسيه: 'pan_british',
+   بريطانى: 'pan_british',
+   };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
 const NO_RETAG_TOKENS = new Set(['صيني', 'صينيه', 'سوداني', 'سودانيه', 'شامي', 'شاميه']);
@@ -225,12 +230,17 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
       'pan_canadian', 'quebec', 'ontario', 'british_columbia', 'prairies',
       'atlantic_canada', 'northern_canada', 'indigenous_canada',
     ]),
-    australasian: new Set([
-      'pan_australasian', 'nsw', 'victoria', 'queensland', 'western_australia',
-      'south_australia', 'tasmania', 'northern_territory', 'auckland', 'wellington',
-      'canterbury', 'otago', 'maori',
-    ]),
-  };
+         australasian: new Set([
+           'pan_australasian', 'nsw', 'victoria', 'queensland', 'western_australia',
+           'south_australia', 'tasmania', 'northern_territory', 'auckland', 'wellington',
+           'canterbury', 'otago', 'maori'],
+         ),
+         british: new Set([
+           'pan_british', 'london', 'south_east', 'south_west', 'east_anglia',
+           'midlands', 'north_west', 'yorkshire', 'north_east',
+           'lowlands', 'highlands', 'wales', 'ulster'],
+         ),
+   };
 
 // Region family a given kitchen may draw from.
 export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
@@ -407,12 +417,17 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
           'pan_canadian', 'quebec', 'ontario', 'british_columbia', 'prairies',
           'atlantic_canada', 'northern_canada', 'indigenous_canada',
         ]),
-        australasian: new Set([
-          'pan_australasian', 'nsw', 'victoria', 'queensland', 'western_australia',
-          'south_australia', 'tasmania', 'northern_territory', 'auckland', 'wellington',
-          'canterbury', 'otago', 'maori',
-        ]),
-  };
+         australasian: new Set([
+           'pan_australasian', 'nsw', 'victoria', 'queensland', 'western_australia',
+           'south_australia', 'tasmania', 'northern_territory', 'auckland', 'wellington',
+           'canterbury', 'otago', 'maori'],
+         ),
+         british: new Set([
+           'pan_british', 'london', 'south_east', 'south_west', 'east_anglia',
+           'midlands', 'north_west', 'yorkshire', 'north_east',
+           'lowlands', 'highlands', 'wales', 'ulster'],
+         ),
+   };
 
 // True when a dish may be served in the given kitchen's plans.
 export function isAuthenticForKitchen(kitchenId: string, region: string | null | undefined, name: string | null | undefined): boolean {
