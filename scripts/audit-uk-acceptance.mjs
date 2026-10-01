@@ -93,7 +93,15 @@ for (const r of uk) {
     /\b(?:water|tea|coffee|juice|lemonade|cordial|squash)\b/i.test(r.name_en ?? '') ||
     (r.name_ar ?? '').includes('شاي') ||
     (r.name_ar ?? '').includes('ماء');
-  if (r.protein + r.carbs + r.fat <= 0 && !isBev) not100++;
+  // Seasonings (salt, pepper, spices) are legitimately 0/0/0, same class of
+  // exemption as the zero-calorie beverages above.
+  const isSeasoning =
+    /\b(?:salt|pepper|spice|spices|seasoning|seasonings)\b/i.test(r.name_en ?? '') ||
+    (r.name_ar ?? '').includes('ملح') ||
+    (r.name_ar ?? '').includes('فلفل') ||
+    (r.name_ar ?? '').includes('بهارات') ||
+    (r.name_ar ?? '').includes('توابل');
+  if (r.protein + r.carbs + r.fat <= 0 && !isBev && !isSeasoning) not100++;
 }
 ok(drift === 0, `${drift} row(s) with Atwater drift`);
 ok(not100 === 0, `${not100} row(s) with no macros`);
