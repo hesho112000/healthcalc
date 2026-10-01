@@ -176,6 +176,10 @@ export function useKitchenDishCounts(): Record<string, number> {
             (r.source ?? '').startsWith('americas-canada-2026') &&
             !KITCHEN_COUNT_REGIONS.canadian.has(r.region),
         ).length;
+        // Britan's card mirrors Australasia: credit source-tagged shared-pool rows.
+        out.british += rows.filter(
+          (r) => r.region === 'asian_shared' && (r.source ?? '').startsWith('europe-uk-2026'),
+        ).length;
         // Australasia's card mirrors Taiwan: credit source-tagged shared-pool rows.
         out.australasian += rows.filter(
           (r) => r.region === 'asian_shared' && (r.source ?? '').startsWith('oceania-australasia-2026'),
