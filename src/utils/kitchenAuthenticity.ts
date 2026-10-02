@@ -122,11 +122,25 @@ const TOKEN_REGIONS: Record<string, string> = {
      سالزبورغي: 'pan_austrian', سالزبورغيه: 'pan_austrian',
      شتيرياني: 'pan_austrian', شتيريانيه: 'pan_austrian',
      كارينثياني: 'pan_austrian', كارينثيانيه: 'pan_austrian',
-     نمساوي_عالي: 'pan_austrian', نمساويه_عاليه: 'pan_austrian',
-     نمساوي_سفلي: 'pan_austrian', نمساويه_سفليه: 'pan_austrian',
-     بورغنلاندي: 'pan_austrian', بورغنلانديه: 'pan_austrian',
-     فورارلبرغي: 'pan_austrian', فورارلبرغيه: 'pan_austrian',
-    };
+      نمساوي_عالي: 'pan_austrian', نمساويه_عاليه: 'pan_austrian',
+      نمساوي_سفلي: 'pan_austrian', نمساويه_سفليه: 'pan_austrian',
+      بورغنلاندي: 'pan_austrian', بورغنلانديه: 'pan_austrian',
+      فورارلبرغي: 'pan_austrian', فورارلبرغيه: 'pan_austrian',
+      // France: the national and twelve regional demonyms resolve to pan_french.
+      فرنسي: 'pan_french', فرنسية: 'pan_french', فرنسى: 'pan_french', فرنسيه: 'pan_french',
+      باريسي: 'pan_french', باريسيه: 'pan_french',
+      نورماندي: 'pan_french', نورمانديه: 'pan_french',
+      بروفنسي: 'pan_french', بروفنسيه: 'pan_french',
+      ليوني: 'pan_french', ليونيه: 'pan_french',
+      بوردوي: 'pan_french', بوردويه: 'pan_french',
+      الزاسي: 'pan_french', الزاسيه: 'pan_french',
+      بريتوني: 'pan_french', بريتونيه: 'pan_french',
+      بورغندي: 'pan_french', بورغنديه: 'pan_french',
+      تولوزي: 'pan_french', تولوزيه: 'pan_french',
+      مارسيلي: 'pan_french', مارسيليه: 'pan_french',
+      لواروي: 'pan_french', لوارويه: 'pan_french',
+      كورسيكي: 'pan_french', كورسيكيه: 'pan_french',
+     };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
 const NO_RETAG_TOKENS = new Set(['صيني', 'صينيه', 'سوداني', 'سودانيه', 'شامي', 'شاميه']);
@@ -300,11 +314,15 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
              'pan_swiss', 'zurich', 'bern', 'geneva', 'lucerne', 'basel', 'lausanne',
              'ticino', 'valais', 'grisons', 'vaud', 'aargau', 'st_gallen'],
            ),
-           austrian: new Set([
-             'pan_austrian', 'vienna', 'tyrol', 'salzburg', 'styria', 'carinthia',
-             'upper_austria', 'lower_austria', 'burgenland', 'vorarlberg',
-           ]),
-    };
+            austrian: new Set([
+              'pan_austrian', 'vienna', 'tyrol', 'salzburg', 'styria', 'carinthia',
+              'upper_austria', 'lower_austria', 'burgenland', 'vorarlberg',
+            ]),
+            french: new Set([
+              'pan_french', 'paris', 'normandy', 'provence', 'lyon', 'bordeaux',
+              'alsace', 'brittany', 'burgundy', 'toulouse', 'marseille', 'loire', 'corsica',
+            ]),
+     };
 
  // Region family a given kitchen may draw from.
 export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
@@ -508,11 +526,15 @@ vietnamese: new Set([
              'pan_swiss', 'zurich', 'bern', 'geneva', 'lucerne', 'basel', 'lausanne',
              'ticino', 'valais', 'grisons', 'vaud', 'aargau', 'st_gallen'],
            ),
-           austrian: new Set([
-             'pan_austrian', 'vienna', 'tyrol', 'salzburg', 'styria', 'carinthia',
-             'upper_austria', 'lower_austria', 'burgenland', 'vorarlberg',
-           ]),
-    };
+            austrian: new Set([
+              'pan_austrian', 'vienna', 'tyrol', 'salzburg', 'styria', 'carinthia',
+              'upper_austria', 'lower_austria', 'burgenland', 'vorarlberg',
+            ]),
+            french: new Set([
+              'pan_french', 'paris', 'normandy', 'provence', 'lyon', 'bordeaux',
+              'alsace', 'brittany', 'burgundy', 'toulouse', 'marseille', 'loire', 'corsica',
+            ]),
+     };
 
  // True when a dish may be served in the given kitchen's plans.
 export function isAuthenticForKitchen(kitchenId: string, region: string | null | undefined, name: string | null | undefined): boolean {
