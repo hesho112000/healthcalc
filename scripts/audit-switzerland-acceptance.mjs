@@ -76,8 +76,8 @@ const sw = rows.filter((r) => (r.source ?? '').startsWith(SOURCE));
 console.log(`total live rows                 : ${rows.length}`);
 console.log(`Switzerland rows (source prefix) : ${sw.length}`);
 
-// Expected total after the 125 base + 125 expansion rows land on the current 13,072.
-ok(rows.length === 13072, `expected 13072 live rows, found ${rows.length}`);
+// Expected total after the 125 base + 125 expansion rows land on the current 13,322.
+ok(rows.length === 13322, `expected 13322 live rows, found ${rows.length}`);
 ok(sw.length === 250, `expected 250 Switzerland rows, found ${sw.length}`);
 
 let badToken = 0, badTokenMatch = 0, badRegion = 0, foreignSrc = 0, shared = 0, badDiaspora = 0;
