@@ -100,8 +100,21 @@ const TOKEN_REGIONS: Record<string, string> = {
    براندنبورغي: 'pan_german', براندنبورغيه: 'pan_german',
    شوابي: 'pan_german', شوابيه: 'pan_german',
    سارلاندي: 'pan_german', سارلانديه: 'pan_german',
-   بريميني: 'pan_german', بريمينيه: 'pan_german',
-   };
+بريميني: 'pan_german', بريمينيه: 'pan_german',
+    سويسري: 'pan_swiss', سويسريه: 'pan_swiss',
+    زوريخي: 'pan_swiss', زوريخيه: 'pan_swiss',
+    برني: 'pan_swiss', برنيه: 'pan_swiss',
+    جنيفي: 'pan_swiss', جنيفيه: 'pan_swiss',
+    لوسيرني: 'pan_swiss', لوسيرنيه: 'pan_swiss',
+    بازلي: 'pan_swiss', بازليه: 'pan_swiss',
+    لوزاني: 'pan_swiss', لوزانيه: 'pan_swiss',
+    تيسيني: 'pan_swiss', تيسينيه: 'pan_swiss',
+    فاليزي: 'pan_swiss', فاليزيه: 'pan_swiss',
+    غريزوني: 'pan_swiss', غريزونيه: 'pan_swiss',
+    فودي: 'pan_swiss', فوديه: 'pan_swiss',
+    ارغاوي: 'pan_swiss', ارغاويه: 'pan_swiss',
+    سانت_غاليني: 'pan_swiss', سانت_غالينيه: 'pan_swiss',
+    };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
 const NO_RETAG_TOKENS = new Set(['صيني', 'صينيه', 'سوداني', 'سودانيه', 'شامي', 'شاميه']);
@@ -269,11 +282,15 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
          german: new Set([
            'pan_german', 'bavaria', 'berlin', 'hamburg', 'hesse', 'rhineland',
            'saxony', 'lower_saxony', 'thuringia', 'brandenburg',
-           'baden_wurttemberg', 'saarland', 'bremen'],
-         ),
+'baden_wurttemberg', 'saarland', 'bremen'],
+          ),
+          swiss: new Set([
+            'pan_swiss', 'zurich', 'bern', 'geneva', 'lucerne', 'basel', 'lausanne',
+            'ticino', 'valais', 'grisons', 'vaud', 'aargau', 'st_gallen'],
+          ),
    };
 
-// Region family a given kitchen may draw from.
+ // Region family a given kitchen may draw from.
 export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
   saudi: new Set(['pan_saudi', 'gulf_shared', 'hijazi', 'najdi', 'janubi', 'sharqi']),
   emirati: new Set(['pan_emirati', 'gulf_shared']),
@@ -469,11 +486,15 @@ vietnamese: new Set([
          german: new Set([
            'pan_german', 'bavaria', 'berlin', 'hamburg', 'hesse', 'rhineland',
            'saxony', 'lower_saxony', 'thuringia', 'brandenburg',
-           'baden_wurttemberg', 'saarland', 'bremen'],
-         ),
+'baden_wurttemberg', 'saarland', 'bremen'],
+          ),
+          swiss: new Set([
+            'pan_swiss', 'zurich', 'bern', 'geneva', 'lucerne', 'basel', 'lausanne',
+            'ticino', 'valais', 'grisons', 'vaud', 'aargau', 'st_gallen'],
+          ),
    };
 
-// True when a dish may be served in the given kitchen's plans.
+ // True when a dish may be served in the given kitchen's plans.
 export function isAuthenticForKitchen(kitchenId: string, region: string | null | undefined, name: string | null | undefined): boolean {
   const fam = KITCHEN_REGION_FAMILIES[kitchenId];
   if (fam && region && !fam.has(region)) return false;
