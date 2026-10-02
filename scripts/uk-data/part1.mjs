@@ -33,7 +33,7 @@ export default [
   B('حساء العدس الأحمر', 'Red Lentil Soup', 'Soupe de lentilles rouges', 'Sopa de lentejas rojas', 'Rote-Linsen-Suppe', 'soups_stews', 'lunch', 6, 14, 2, 'simmering', P, diasporaFor(P)),
   B('حساء الجزر والزنجبيل', 'Carrot and Ginger Soup', 'Soupe carottes-gingembre', 'Sopa de zanahoria y jengibre', 'Möhren-Ingwer-Suppe', 'soups_stews', 'lunch', 2, 10, 3, 'simmering', P, diasporaFor(P)),
   B('معدوسة بالخبز', 'Mulligatawny Soup', 'Mulligatawny soup', 'Sopa Mulligatawny', 'Mulligatawny-Suppe', 'soups_stews', 'lunch', 5, 10, 5, 'simmering', P, diasporaFor(P)),
-  B('حساء البصل الفرنسي', 'French Onion Soup', 'Soupe a l oignon gratinee', 'Sopa de cebolla gratinada', 'Franzosische Zwiebelsuppe', 'soups_stews', 'lunch', 4, 12, 8, 'baking', P, diasporaFor(P)),
+  B('حساء البصل التقليدي', 'Traditional Onion Soup', 'Soupe a l oignon gratinee', 'Sopa de cebolla gratinada', 'Franzosische Zwiebelsuppe', 'soups_stews', 'lunch', 4, 12, 8, 'baking', P, diasporaFor(P)),
   B('سموذي الفواكه المختلط', 'Mixed Fruit Smoothie', 'Smoothie aux fruits', 'Batido de frutas', 'Obst-Smoothie', 'beverages', 'breakfast', 1, 14, 1, 'blending', P, diasporaFor(P)),
   B('شاي أخضر بالنعناع', 'Mint Tea', 'Tisane a la menthe', 'Té de menta', 'Pfefferminztee', 'beverages', 'snack', 0, 1, 0, 'brewing', P, diasporaFor(P)),
   B('شاي أحمر بالليمون', 'Black Tea with Lemon', 'The noir au citron', 'Té negro con limón', 'Schwarzer Tee mit Zitrone', 'beverages', 'snack', 0, 1, 0, 'brewing', P, diasporaFor(P)),
