@@ -409,9 +409,13 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
      // Vietnamese family: own pan_vietnamese + the shared Asian pool. Names
      // carry فيتنامي (base rows) and فيتنامي أصيل (expansion rows) which now
      // map to 'pan_vietnamese'.
-     vietnamese: new Set([
-       'pan_vietnamese', 'asian_shared',
-     ]),
+vietnamese: new Set([
+        'pan_vietnamese', 'asian_shared',
+      ]),
+      japanese: new Set([
+        'pan_japanese', 'tokyo', 'osaka', 'kyoto', 'hokkaido', 'fukuoka', 'sapporo',
+        'sendai', 'nagoya',
+      ]),
      // Chinese family: own pan_chinese + the shared Asian pool. Names
      // carry صيني (base rows) and صيني أصيل (expansion rows) which now
      // map to 'pan_chinese'.

@@ -5,6 +5,20 @@ import { KITCHEN_COUNT_REGIONS } from '../utils/kitchenAuthenticity';
 // Live per-kitchen dish counts fetched from the dishes table via the region-tag
 // mapping in KITCHEN_COUNT_REGIONS. Returns {} until loaded, when Supabase is
 // unconfigured, or on error — callers fall back to their local registry totals.
+// Registry ids (derived from the src/data/<file>-full.ts names) that differ from
+// the canonical KITCHEN_COUNT_REGIONS id for the same kitchen.
+export const KITCHEN_ID_ALIAS: Record<string, string> = {
+  germany: 'german',
+  canada: 'canadian',
+  australasia: 'australasian',
+  australian: 'australasian',
+  'new-zealand': 'australasian',
+  usa: 'american',
+  uk: 'british',
+  switzerland: 'swiss',
+  taiwan: 'taiwanese',
+};
+
 export function useKitchenDishCounts(): Record<string, number> {
   const [counts, setCounts] = useState<Record<string, number>>({});
 
@@ -188,6 +202,9 @@ export function useKitchenDishCounts(): Record<string, number> {
         out.german += rows.filter(
           (r) => r.region === 'asian_shared' && (r.source ?? '').startsWith('europe-germany-2026'),
         ).length;
+        for (const [alias, canonical] of Object.entries(KITCHEN_ID_ALIAS)) {
+          if (out[canonical] !== undefined) out[alias] = out[canonical];
+        }
         if (!cancelled) setCounts(out);
       } catch {
         if (!cancelled) setCounts({});

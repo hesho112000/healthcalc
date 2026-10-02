@@ -271,9 +271,10 @@ interface RegionDef {
 const REGIONS: RegionDef[] = [
   { id: 'africa', emoji: '🌍', en: 'Africa', ar: 'أفريقيا', ids: ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'nigerian', 'ethiopian', 'kenyan', 'rwandan', 'seychellois', 'mauritian', 'gabonese', 'botswanan', 'south-african', 'ghanaian'] },
   { id: 'middle-east', emoji: '🕌', en: 'Middle East & Gulf', ar: 'الشرق الأوسط والخليج', ids: ['saudi', 'emirati', 'omani', 'kuwaiti', 'qatar', 'bahraini', 'lebanese', 'palestinian', 'syrian', 'jordanian'] },
-  { id: 'asia', emoji: '🌏', en: 'Asia', ar: 'آسيا', ids: ['indian', 'pakistani', 'indonesian', 'malaysian', 'chinese', 'japanese', 'korean', 'thai', 'vietnamese', 'filipino', 'australian', 'new-zealand'] },
-  { id: 'americas', emoji: '🌎', en: 'Americas', ar: 'الأمريكتان', ids: ['american', 'mexican', 'jamaican', 'cuban', 'costa-rican', 'brazilian', 'peruvian', 'colombian', 'chilean', 'venezuelan'] },
-  { id: 'europe', emoji: '🏰', en: 'Europe', ar: 'أوروبا', ids: ['italian', 'french', 'spanish', 'greek', 'turkish', 'british', 'swiss'] },
+  { id: 'asia', emoji: '🌏', en: 'Asia', ar: 'آسيا', ids: ['indian', 'pakistani', 'indonesian', 'malaysian', 'chinese', 'japanese', 'korean', 'thai', 'vietnamese', 'filipino'] },
+  { id: 'oceania', emoji: '🌏', en: 'Oceania', ar: 'أوقيانوسيا', ids: ['australasia'] },
+  { id: 'americas', emoji: '🌎', en: 'Americas', ar: 'الأمريكتان', ids: ['usa', 'canada', 'mexican', 'jamaican', 'cuban', 'costa-rican', 'brazilian', 'peruvian', 'colombian', 'chilean', 'venezuelan'] },
+  { id: 'europe', emoji: '🏰', en: 'Europe', ar: 'أوروبا', ids: ['italian', 'french', 'spanish', 'greek', 'turkish', 'uk', 'swiss', 'germany'] },
   { id: 'special-diets', emoji: '🌿', en: 'Special Diets', ar: 'أنظمة غذائية خاصة', ids: ['diet-keto', 'diet-vegan', 'diet-vegetarian', 'diet-high-protein', 'diet-mediterranean', 'diet-low-carb', 'diet-dash', 'diet-gluten-free', 'diet-intermittent-fasting', 'diet-paleo'] },
 ];
 
