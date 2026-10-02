@@ -82,6 +82,25 @@ const TOKEN_REGIONS: Record<string, string> = {
    // 'ألمانية'/'الألمانية' normalize to 'المانيه'. Only the normalized forms are
    // registered, matching the australasian entries above.
    الماني: 'pan_german', المانيه: 'pan_german',
+   // Germany gives every one of its 13 anchors its own demonym, but they all
+   // belong to the same kitchen, so all 13 map to 'pan_german'. Registering them
+   // is what makes hasForeignNationalityFor('german', ...) resolve for the 255
+   // non-pan rows instead of returning null.
+   // The feminine forms end in ة, which normalizeArabicName() folds to ه and
+   // which therefore stays distinct from the masculine ending ي - so both are
+   // registered rather than collapsing to one key per demonym.
+   بافاري: 'pan_german', بافاريه: 'pan_german',
+   برليني: 'pan_german', برلينيه: 'pan_german',
+   هامبورغي: 'pan_german', هامبورغيه: 'pan_german',
+   هيسي: 'pan_german', هيسيه: 'pan_german',
+   راينلاندي: 'pan_german', راينلانديه: 'pan_german',
+   ساكسوني: 'pan_german', ساكسونيه: 'pan_german',
+   هانزياتي: 'pan_german', هانزياتيه: 'pan_german',
+   تورينغي: 'pan_german', تورينغيه: 'pan_german',
+   براندنبورغي: 'pan_german', براندنبورغيه: 'pan_german',
+   شوابي: 'pan_german', شوابيه: 'pan_german',
+   سارلاندي: 'pan_german', سارلانديه: 'pan_german',
+   بريميني: 'pan_german', بريمينيه: 'pan_german',
    };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
