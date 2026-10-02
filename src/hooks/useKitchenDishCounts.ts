@@ -184,6 +184,10 @@ export function useKitchenDishCounts(): Record<string, number> {
         out.australasian += rows.filter(
           (r) => r.region === 'asian_shared' && (r.source ?? '').startsWith('oceania-australasia-2026'),
         ).length;
+        // Germany's card mirrors Britain/Australasia: credit source-tagged shared-pool rows.
+        out.german += rows.filter(
+          (r) => r.region === 'asian_shared' && (r.source ?? '').startsWith('europe-germany-2026'),
+        ).length;
         if (!cancelled) setCounts(out);
       } catch {
         if (!cancelled) setCounts({});

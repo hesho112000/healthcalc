@@ -766,6 +766,25 @@ const BRITISH_REGION_META: { id: string; emoji: string; en: string; ar: string }
   { id: 'ulster', emoji: '🍀', en: 'Ulster', ar: 'ألستر' },
 ];
 
+// Germany's 13 anchors: pan_german plus the 12 Laender that carry their own
+// demonym (bavarian, Berliner, Hamburgisch, ...). asian_shared stays 0.
+const GERMAN_REGION_META: { id: string; emoji: string; en: string; ar: string }[] = [
+  { id: 'all', emoji: '🇩🇪', en: 'All German', ar: 'كل المطبخ الألماني' },
+  { id: 'pan_german', emoji: '🥘', en: 'General German', ar: 'عام (كل ألمانيا)' },
+  { id: 'bavaria', emoji: '🍺', en: 'Bavaria', ar: 'بافاريا' },
+  { id: 'berlin', emoji: '🧱', en: 'Berlin', ar: 'برلين' },
+  { id: 'hamburg', emoji: '🏴', en: 'Hamburg', ar: 'هامبورغ' },
+  { id: 'hesse', emoji: '🍷', en: 'Hesse', ar: 'هيسه' },
+  { id: 'rhineland', emoji: '🏰', en: 'Rhineland', ar: 'راينلاند' },
+  { id: 'saxony', emoji: '🎼', en: 'Saxony', ar: 'ساكسونيا' },
+  { id: 'lower_saxony', emoji: '🌾', en: 'Lower Saxony', ar: 'ساكسونيا السفلى' },
+  { id: 'thuringia', emoji: '🎄', en: 'Thuringia', ar: 'تورينغيا' },
+  { id: 'brandenburg', emoji: '🏛️', en: 'Brandenburg', ar: 'براندنبورغ' },
+  { id: 'baden_wurttemberg', emoji: '🚗', en: 'Baden-Württemberg', ar: 'بادن فورتمبيرغ' },
+  { id: 'saarland', emoji: '⛏️', en: 'Saarland', ar: 'سارلاند' },
+  { id: 'bremen', emoji: '⚓', en: 'Bremen', ar: 'بريمن' },
+];
+
  const MEAL_LABELS: Record<string, string> = {
   breakfast: 'فطار 🍳',
   lunch: 'غدا 🍲',
@@ -2254,7 +2273,7 @@ const WeightLossPage: React.FC = () => {
               <div className="space-y-2">
                 {(() => {
                   const picked = kitchens.find((x) => x.id === cuisineSel);
-                   const hasRegions = !!picked && (picked.id === 'kuwaiti' || picked.id === 'qatar' || picked.id === 'bahraini' || picked.id === 'omani' || picked.id === 'moroccan' || picked.id === 'egyptian' || picked.id === 'tunisian' || picked.id === 'algerian' || picked.id === 'libyan' || picked.id === 'lebanese' || picked.id === 'syrian' || picked.id === 'jordanian' || picked.id === 'palestinian' || picked.id === 'indian' || picked.id === 'pakistani' || picked.id === 'indonesian' || picked.id === 'malaysian' || picked.id === 'nigerian' || picked.id === 'ethiopian' || picked.id === 'kenyan' || picked.id === 'south-african' || picked.id === 'ghanaian' || picked.id === 'rwandan' || picked.id === 'seychellois' || picked.id === 'mauritian' || picked.id === 'gabonese' || picked.id === 'botswanan' || picked.id === 'filipino' || picked.id === 'thai' || picked.id === 'vietnamese' || picked.id === 'chinese' || picked.id === 'japanese' || picked.id === 'korean' || picked.id === 'american' || picked.id === 'canadian' || picked.id === 'british' || picked.id === 'australasian' || (Array.isArray(picked.regions) && picked.regions.length > 0));
+                   const hasRegions = !!picked && (picked.id === 'kuwaiti' || picked.id === 'qatar' || picked.id === 'bahraini' || picked.id === 'omani' || picked.id === 'moroccan' || picked.id === 'egyptian' || picked.id === 'tunisian' || picked.id === 'algerian' || picked.id === 'libyan' || picked.id === 'lebanese' || picked.id === 'syrian' || picked.id === 'jordanian' || picked.id === 'palestinian' || picked.id === 'indian' || picked.id === 'pakistani' || picked.id === 'indonesian' || picked.id === 'malaysian' || picked.id === 'nigerian' || picked.id === 'ethiopian' || picked.id === 'kenyan' || picked.id === 'south-african' || picked.id === 'ghanaian' || picked.id === 'rwandan' || picked.id === 'seychellois' || picked.id === 'mauritian' || picked.id === 'gabonese' || picked.id === 'botswanan' || picked.id === 'filipino' || picked.id === 'thai' || picked.id === 'vietnamese' || picked.id === 'chinese' || picked.id === 'japanese' || picked.id === 'korean' || picked.id === 'american' || picked.id === 'canadian' || picked.id === 'british' || picked.id === 'australasian' || picked.id === 'german' || (Array.isArray(picked.regions) && picked.regions.length > 0));
                   if (!hasRegions) return null;
                   return (
                     <div className="rounded-[20px] border-2 border-[#EFEBE4] bg-white p-4">
@@ -2262,7 +2281,7 @@ const WeightLossPage: React.FC = () => {
                         {language === 'ar' ? '🏷️ اختر المنطقة (تلقائي: عام)' : '🏷️ Choose a region (default: General)'}
                       </div>
                       <div className="mt-2.5 flex flex-wrap gap-2">
-                         {(picked.id === 'emirati' ? EMIRATI_REGION_META : picked.id === 'saudi' ? SAUDI_REGION_META : picked.id === 'kuwaiti' ? KUWAITI_REGION_META : picked.id === 'qatar' ? QATARI_REGION_META : picked.id === 'bahraini' ? BAHRAINI_REGION_META : picked.id === 'omani' ? OMANI_REGION_META : picked.id === 'moroccan' ? MOROCCAN_REGION_META : picked.id === 'egyptian' ? EGYPTIAN_REGION_META : picked.id === 'tunisian' ? TUNISIAN_REGION_META : picked.id === 'algerian' ? ALGERIAN_REGION_META : picked.id === 'libyan' ? LIBYAN_REGION_META : picked.id === 'lebanese' ? LEBANESE_REGION_META : picked.id === 'syrian' ? SYRIAN_REGION_META : picked.id === 'jordanian' ? JORDANIAN_REGION_META : picked.id === 'palestinian' ? PALESTINIAN_REGION_META : picked.id === 'indian' ? INDIAN_REGION_META : picked.id === 'pakistani' ? PAKISTANI_REGION_META : picked.id === 'indonesian' ? INDONESIAN_REGION_META : picked.id === 'malaysian' ? MALAYSIAN_REGION_META : picked.id === 'nigerian' ? NIGERIAN_REGION_META : picked.id === 'ethiopian' ? ETHIOPIAN_REGION_META : picked.id === 'kenyan' ? KENYAN_REGION_META : picked.id === 'south-african' ? SOUTH_AFRICAN_REGION_META : picked.id === 'ghanaian' ? GHANAIAN_REGION_META : picked.id === 'rwandan' ? RWANDAN_REGION_META : picked.id === 'seychellois' ? SEYCHELLOIS_REGION_META : picked.id === 'mauritian' ? MAURITIAN_REGION_META : picked.id === 'gabonese' ? GABONESE_REGION_META : picked.id === 'botswanan' ? BOTSWANAN_REGION_META : picked.id === 'filipino' ? FILIPINO_REGION_META : picked.id === 'thai' ? THAI_REGION_META : picked.id === 'vietnamese' ? VIETNAMESE_REGION_META : picked.id === 'chinese' ? CHINESE_REGION_META : picked.id === 'japanese' ? JAPANESE_REGION_META : picked.id === 'korean' ? KOREAN_REGION_META : picked.id === 'taiwanese' ? TAIWANESE_REGION_META : picked.id === 'american' ? AMERICAN_REGION_META : picked.id === 'canadian' ? CANADIAN_REGION_META : picked.id === 'british' ? BRITISH_REGION_META : picked.id === 'australasian' ? AUSTRALASIAN_REGION_META : []).map((r) => {
+                         {(picked.id === 'emirati' ? EMIRATI_REGION_META : picked.id === 'saudi' ? SAUDI_REGION_META : picked.id === 'kuwaiti' ? KUWAITI_REGION_META : picked.id === 'qatar' ? QATARI_REGION_META : picked.id === 'bahraini' ? BAHRAINI_REGION_META : picked.id === 'omani' ? OMANI_REGION_META : picked.id === 'moroccan' ? MOROCCAN_REGION_META : picked.id === 'egyptian' ? EGYPTIAN_REGION_META : picked.id === 'tunisian' ? TUNISIAN_REGION_META : picked.id === 'algerian' ? ALGERIAN_REGION_META : picked.id === 'libyan' ? LIBYAN_REGION_META : picked.id === 'lebanese' ? LEBANESE_REGION_META : picked.id === 'syrian' ? SYRIAN_REGION_META : picked.id === 'jordanian' ? JORDANIAN_REGION_META : picked.id === 'palestinian' ? PALESTINIAN_REGION_META : picked.id === 'indian' ? INDIAN_REGION_META : picked.id === 'pakistani' ? PAKISTANI_REGION_META : picked.id === 'indonesian' ? INDONESIAN_REGION_META : picked.id === 'malaysian' ? MALAYSIAN_REGION_META : picked.id === 'nigerian' ? NIGERIAN_REGION_META : picked.id === 'ethiopian' ? ETHIOPIAN_REGION_META : picked.id === 'kenyan' ? KENYAN_REGION_META : picked.id === 'south-african' ? SOUTH_AFRICAN_REGION_META : picked.id === 'ghanaian' ? GHANAIAN_REGION_META : picked.id === 'rwandan' ? RWANDAN_REGION_META : picked.id === 'seychellois' ? SEYCHELLOIS_REGION_META : picked.id === 'mauritian' ? MAURITIAN_REGION_META : picked.id === 'gabonese' ? GABONESE_REGION_META : picked.id === 'botswanan' ? BOTSWANAN_REGION_META : picked.id === 'filipino' ? FILIPINO_REGION_META : picked.id === 'thai' ? THAI_REGION_META : picked.id === 'vietnamese' ? VIETNAMESE_REGION_META : picked.id === 'chinese' ? CHINESE_REGION_META : picked.id === 'japanese' ? JAPANESE_REGION_META : picked.id === 'korean' ? KOREAN_REGION_META : picked.id === 'taiwanese' ? TAIWANESE_REGION_META : picked.id === 'american' ? AMERICAN_REGION_META : picked.id === 'canadian' ? CANADIAN_REGION_META : picked.id === 'british' ? BRITISH_REGION_META : picked.id === 'australasian' ? AUSTRALASIAN_REGION_META : picked.id === 'german' ? GERMAN_REGION_META : []).map((r) => {
                           const on = kitchenRegion === r.id;
                           return (
                             <button
