@@ -26,7 +26,7 @@ import { TAIWAN_FULL, type KitchenDish as TaiwanFullDish } from '../data/taiwan-
 import { THAI_FULL, type ThaiFullDish } from '../data/thai-full';
 import { VIETNAMESE_FULL, type VietnameseFullDish } from '../data/vietnamese-full';
 import { ITALIAN_FULL, type ItalianFullDish } from '../data/italian-full';
-import { FRENCH_FULL, type FrenchFullDish } from '../data/french-full';
+import { FRANCE_FULL, type KitchenDish as FrenchFullDish } from '../data/france-full';
 import { SPANISH_FULL, type SpanishFullDish } from '../data/spanish-full';
 import { GREEK_FULL, type GreekFullDish } from '../data/greek-full';
 import { TURKISH_FULL, type TurkishFullDish } from '../data/turkish-full';
@@ -601,7 +601,8 @@ const toTaiwaneseFood = (e: TaiwanFullDish): FoodItem => toFullFood(e, 'taiwanes
 const toThaiFood = (e: ThaiFullDish): FoodItem => toFullFood(e, 'thai');
 const toVietnameseFood = (e: VietnameseFullDish): FoodItem => toFullFood(e, 'vietnamese');
 const toItalianFood = (e: ItalianFullDish): FoodItem => toFullFood(e, 'italian');
-const toFrenchFood = (e: FrenchFullDish): FoodItem => toFullFood(e, 'french');
+const toFrenchFood = (e: FrenchFullDish): FoodItem =>
+  toFullFood({ ...e, mealType: e.mealType as AmericanFullDish['mealType'] }, 'french');
 const toSpanishFood = (e: SpanishFullDish): FoodItem => toFullFood(e, 'spanish');
 const toGreekFood = (e: GreekFullDish): FoodItem => toFullFood(e, 'greek');
 const toTurkishFood = (e: TurkishFullDish): FoodItem => toFullFood(e, 'turkish');
@@ -741,7 +742,7 @@ export const FOODS_DATABASE: FoodItem[] = [
   ...TAIWAN_FULL.map(toTaiwaneseFood),
   ...THAI_FULL.map(toThaiFood),
   ...ITALIAN_FULL.map(toItalianFood),
-  ...FRENCH_FULL.map(toFrenchFood),
+  ...FRANCE_FULL.map(toFrenchFood),
   ...SPANISH_FULL.map(toSpanishFood),
   ...GREEK_FULL.map(toGreekFood),
   ...TURKISH_FULL.map(toTurkishFood),
