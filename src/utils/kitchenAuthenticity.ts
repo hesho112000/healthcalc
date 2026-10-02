@@ -78,6 +78,10 @@ const TOKEN_REGIONS: Record<string, string> = {
    انجلسي: 'pan_british',
    انجلسيه: 'pan_british',
    بريطانى: 'pan_british',
+   // Germany: 'ألماني' and 'الماني' both normalize to 'الماني', and the feminine
+   // 'ألمانية'/'الألمانية' normalize to 'المانيه'. Only the normalized forms are
+   // registered, matching the australasian entries above.
+   الماني: 'pan_german', المانيه: 'pan_german',
    };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -239,6 +243,14 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
            'pan_british', 'london', 'south_east', 'south_west', 'east_anglia',
            'midlands', 'north_west', 'yorkshire', 'north_east',
            'lowlands', 'highlands', 'wales', 'ulster'],
+         ),
+         // The German card counts its own region-tagged rows across all 13 anchors.
+         // asian_shared is deliberately absent, matching the Korean/Taiwan treatment -
+         // the Germany pass kept asian_shared at 0.
+         german: new Set([
+           'pan_german', 'bavaria', 'berlin', 'hamburg', 'hesse', 'rhineland',
+           'saxony', 'lower_saxony', 'thuringia', 'brandenburg',
+           'baden_wurttemberg', 'saarland', 'bremen'],
          ),
    };
 
@@ -426,6 +438,15 @@ export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
            'pan_british', 'london', 'south_east', 'south_west', 'east_anglia',
            'midlands', 'north_west', 'yorkshire', 'north_east',
            'lowlands', 'highlands', 'wales', 'ulster'],
+         ),
+         // German family: own pan_german + all 12 Laender anchors (Bavaria, Berlin,
+         // Hamburg, Hesse, Rhineland, Saxony, Lower Saxony, Thuringia, Brandenburg,
+         // Baden-Wuerttemberg, Saarland, Bremen). asian_shared is deliberately absent,
+         // matching the Korean/Taiwan treatment - the Germany pass kept it at 0.
+         german: new Set([
+           'pan_german', 'bavaria', 'berlin', 'hamburg', 'hesse', 'rhineland',
+           'saxony', 'lower_saxony', 'thuringia', 'brandenburg',
+           'baden_wurttemberg', 'saarland', 'bremen'],
          ),
    };
 
