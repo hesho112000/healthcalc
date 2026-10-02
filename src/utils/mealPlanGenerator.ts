@@ -604,6 +604,15 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
         if (d.region === 'asian_shared') return 2;
         return 1;
       }
+      // German: own pan_german rows first, then its 12 regional anchors (Bavaria,
+      // Berlin, Hamburg, Hesse, Rhineland, Saxony, Lower Saxony, Thuringia,
+      // Brandenburg, Baden-Wuerttemberg, Saarland, Bremen), then the (currently
+      // empty) asian_shared pool. Same shape as the British branch.
+      if (kitchenId === 'german') {
+        if (d.region === 'pan_german') return 0;
+        if (d.region === 'asian_shared') return 2;
+        return 1;
+      }
       return -1;
   };
   const isGeneralDish = (d: KitchenDish) => generalRank(d) >= 0;
