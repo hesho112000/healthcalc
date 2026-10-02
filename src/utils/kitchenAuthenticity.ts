@@ -113,7 +113,19 @@ const TOKEN_REGIONS: Record<string, string> = {
     غريزوني: 'pan_swiss', غريزونيه: 'pan_swiss',
     فودي: 'pan_swiss', فوديه: 'pan_swiss',
     ارغاوي: 'pan_swiss', ارغاويه: 'pan_swiss',
-    سانت_غاليني: 'pan_swiss', سانت_غالينيه: 'pan_swiss',
+     سانت_غاليني: 'pan_swiss', سانت_غالينيه: 'pan_swiss',
+     // Austria: the national and nine regional demonyms all resolve to the
+     // pan-Austrian family; feminine forms are stored in their normalized form.
+     نمساوي: 'pan_austrian', نمساوية: 'pan_austrian', نمساوى: 'pan_austrian', نمساويه: 'pan_austrian',
+     فييني: 'pan_austrian', فيينيه: 'pan_austrian',
+     تيرولي: 'pan_austrian', تيروليه: 'pan_austrian',
+     سالزبورغي: 'pan_austrian', سالزبورغيه: 'pan_austrian',
+     شتيرياني: 'pan_austrian', شتيريانيه: 'pan_austrian',
+     كارينثياني: 'pan_austrian', كارينثيانيه: 'pan_austrian',
+     نمساوي_عالي: 'pan_austrian', نمساويه_عاليه: 'pan_austrian',
+     نمساوي_سفلي: 'pan_austrian', نمساويه_سفليه: 'pan_austrian',
+     بورغنلاندي: 'pan_austrian', بورغنلانديه: 'pan_austrian',
+     فورارلبرغي: 'pan_austrian', فورارلبرغيه: 'pan_austrian',
     };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -284,11 +296,15 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
            'saxony', 'lower_saxony', 'thuringia', 'brandenburg',
 'baden_wurttemberg', 'saarland', 'bremen'],
           ),
-          swiss: new Set([
-            'pan_swiss', 'zurich', 'bern', 'geneva', 'lucerne', 'basel', 'lausanne',
-            'ticino', 'valais', 'grisons', 'vaud', 'aargau', 'st_gallen'],
-          ),
-   };
+           swiss: new Set([
+             'pan_swiss', 'zurich', 'bern', 'geneva', 'lucerne', 'basel', 'lausanne',
+             'ticino', 'valais', 'grisons', 'vaud', 'aargau', 'st_gallen'],
+           ),
+           austrian: new Set([
+             'pan_austrian', 'vienna', 'tyrol', 'salzburg', 'styria', 'carinthia',
+             'upper_austria', 'lower_austria', 'burgenland', 'vorarlberg',
+           ]),
+    };
 
  // Region family a given kitchen may draw from.
 export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
@@ -488,11 +504,15 @@ vietnamese: new Set([
            'saxony', 'lower_saxony', 'thuringia', 'brandenburg',
 'baden_wurttemberg', 'saarland', 'bremen'],
           ),
-          swiss: new Set([
-            'pan_swiss', 'zurich', 'bern', 'geneva', 'lucerne', 'basel', 'lausanne',
-            'ticino', 'valais', 'grisons', 'vaud', 'aargau', 'st_gallen'],
-          ),
-   };
+           swiss: new Set([
+             'pan_swiss', 'zurich', 'bern', 'geneva', 'lucerne', 'basel', 'lausanne',
+             'ticino', 'valais', 'grisons', 'vaud', 'aargau', 'st_gallen'],
+           ),
+           austrian: new Set([
+             'pan_austrian', 'vienna', 'tyrol', 'salzburg', 'styria', 'carinthia',
+             'upper_austria', 'lower_austria', 'burgenland', 'vorarlberg',
+           ]),
+    };
 
  // True when a dish may be served in the given kitchen's plans.
 export function isAuthenticForKitchen(kitchenId: string, region: string | null | undefined, name: string | null | undefined): boolean {
