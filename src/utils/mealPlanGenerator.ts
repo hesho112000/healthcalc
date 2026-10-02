@@ -613,6 +613,15 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
         if (d.region === 'asian_shared') return 2;
         return 1;
       }
+      // Swiss: own pan_swiss rows first, then its 12 canton anchors (Zurich, Bern,
+      // Geneva, Lucerne, Basel, Lausanne, Ticino, Valais, Grisons, Vaud, Aargau,
+      // St. Gallen), then the (currently empty) asian_shared pool. Same shape as
+      // the German branch.
+      if (kitchenId === 'swiss') {
+        if (d.region === 'pan_swiss') return 0;
+        if (d.region === 'asian_shared') return 2;
+        return 1;
+      }
       return -1;
   };
   const isGeneralDish = (d: KitchenDish) => generalRank(d) >= 0;
