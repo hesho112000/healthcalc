@@ -157,6 +157,22 @@ const TOKEN_REGIONS: Record<string, string> = {
      هولندي_شمالي: 'pan_benelux', هولنديه_شماليه: 'pan_benelux',
      لوكسمبورغي_جنوبي: 'pan_benelux', لوكسمبورغيه_جنوبيه: 'pan_benelux',
      ارديني: 'pan_benelux', اردينيه: 'pan_benelux',
+     // Italy: the national and twelve regional demonyms resolve to pan_italian.
+     ايطالي: 'pan_italian', ايطالية: 'pan_italian', ايطاليه: 'pan_italian',
+     إيطالي: 'pan_italian', إيطالية: 'pan_italian', إيطاليه: 'pan_italian',
+     طلياني: 'pan_italian', طليانية: 'pan_italian', طليانيه: 'pan_italian',
+     روماني: 'pan_italian', رومانيه: 'pan_italian',
+     ميلاني: 'pan_italian', ميلانيه: 'pan_italian',
+     نابولي: 'pan_italian', نابوليه: 'pan_italian',
+     صقلي: 'pan_italian', صقليه: 'pan_italian',
+     توسكاني: 'pan_italian', توسكانيه: 'pan_italian',
+     بندقي: 'pan_italian', بندقيه: 'pan_italian',
+     فلورنسي: 'pan_italian', فلورنسيه: 'pan_italian',
+     بولوني: 'pan_italian', بولونيه: 'pan_italian',
+     توريني: 'pan_italian', تورينيه: 'pan_italian',
+     جنوي: 'pan_italian', جنويه: 'pan_italian',
+     سرديني: 'pan_italian', سردينيه: 'pan_italian',
+     بوليزي: 'pan_italian', بوليزيه: 'pan_italian',
      };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -343,6 +359,11 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
               'pan_benelux', 'brussels', 'flanders', 'wallonia', 'antwerp',
               'amsterdam', 'rotterdam', 'hague', 'utrecht', 'holland_north',
               'luxembourg_city', 'luxembourg_south', 'ardennes',
+            ]),
+            italian: new Set([
+              'pan_italian', 'rome', 'milan', 'naples', 'sicily', 'tuscany',
+              'venice', 'florence', 'bologna', 'turin', 'genoa', 'sardinia',
+              'puglia',
             ]),
      };
 
@@ -560,6 +581,11 @@ vietnamese: new Set([
               'pan_benelux', 'brussels', 'flanders', 'wallonia', 'antwerp',
               'amsterdam', 'rotterdam', 'hague', 'utrecht', 'holland_north',
               'luxembourg_city', 'luxembourg_south', 'ardennes',
+            ]),
+            italian: new Set([
+              'pan_italian', 'rome', 'milan', 'naples', 'sicily', 'tuscany',
+              'venice', 'florence', 'bologna', 'turin', 'genoa', 'sardinia',
+              'puglia',
             ]),
      };
 
