@@ -219,6 +219,10 @@ const TAMARIND_HINDI = /تمر\s*(?:ال)?هندي/;
 // Indian kitchen would reject one of its own dishes. Neutralize the word 'كوري' when it
 // heads one of these dish names, exactly like TAMARIND_HINDI does for 'تمر هندي'.
 const KORI_SOUTH_INDIAN = /كوري\s*(?:روتي|دوسا|غاسي|راث)/;
+// 'يوناني' is the Greek demonym, but the legacy USDA 'زبادي يوناني' (Greek yogurt)
+// snack rows carry no region and live in many kitchens; neutralize the compound
+// exactly like TAMARIND_HINDI does for 'تمر هندي'.
+const GREEK_YOGURT = /زبادي\s*(?:ال)?يونان[يى]/;
 
 export const LEVANTINE_BARE = new Set(['تبوله', 'فتوش']);
 
@@ -228,6 +232,7 @@ export function nationalityRegion(name: string | null | undefined): string | nul
   let norm = normalizeArabicName(name);
   if (TAMARIND_HINDI.test(norm)) norm = norm.replace(TAMARIND_HINDI, 'تمر');
   if (KORI_SOUTH_INDIAN.test(norm)) norm = norm.replace(KORI_SOUTH_INDIAN, '');
+  if (GREEK_YOGURT.test(norm)) norm = norm.replace(GREEK_YOGURT, 'زبادي');
   for (const t of norm.split(/\s+/)) {
     if (NO_RETAG_TOKENS.has(t)) continue;
     const base = t.replace(/^ال/, '');
