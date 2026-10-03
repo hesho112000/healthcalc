@@ -34,7 +34,6 @@ const TOKEN_REGIONS: Record<string, string> = {
   يمني: 'mena_shared', يمنيه: 'mena_shared',
   عراقي: 'mena_shared', عراقيه: 'mena_shared',
   هندي: 'pan_indian', هنديه: 'pan_indian',
-  تركي: 'global', تركيه: 'global',
   باكستاني: 'pan_pakistani', باكستانيه: 'pan_pakistani',
   اندونيسي: 'pan_indonesian', اندونيسيه: 'pan_indonesian',
   ماليزي: 'pan_malaysian', ماليزيه: 'pan_malaysian',
@@ -207,6 +206,30 @@ const TOKEN_REGIONS: Record<string, string> = {
       إبيري: 'pan_greek', إبيرية: 'pan_greek', إبيريه: 'pan_greek',
       ابيري: 'pan_greek', ابيرية: 'pan_greek', ابيريه: 'pan_greek',
       مقدوني_يوناني: 'pan_greek', مقدونية_يونانية: 'pan_greek', مقدونيه_يونانيه: 'pan_greek',
+      // Turkey: the national and fifteen regional demonyms resolve to pan_turkish.
+      تركي: 'pan_turkish', تركية: 'pan_turkish', تركيه: 'pan_turkish',
+      إسطنبولي: 'pan_turkish', إسطنبولية: 'pan_turkish', إسطنبوليه: 'pan_turkish',
+      اسطنبولي: 'pan_turkish', اسطنبولية: 'pan_turkish', اسطنبوليه: 'pan_turkish',
+      أنقري: 'pan_turkish', أنقرية: 'pan_turkish', أنقريه: 'pan_turkish',
+      انقري: 'pan_turkish', انقرية: 'pan_turkish', انقريه: 'pan_turkish',
+      إزميري: 'pan_turkish', إزميرية: 'pan_turkish', إزميريه: 'pan_turkish',
+      ازميري: 'pan_turkish', ازميرية: 'pan_turkish', ازميريه: 'pan_turkish',
+      بورصي: 'pan_turkish', بورصية: 'pan_turkish', بورصيه: 'pan_turkish',
+      أنطالي: 'pan_turkish', أنطالية: 'pan_turkish', أنطاليه: 'pan_turkish',
+      انطالي: 'pan_turkish', انطالية: 'pan_turkish', انطاليه: 'pan_turkish',
+      عنتابي: 'pan_turkish', عنتابية: 'pan_turkish', عنتابيه: 'pan_turkish',
+      قوني: 'pan_turkish', قونية: 'pan_turkish', قونيه: 'pan_turkish',
+      أدني: 'pan_turkish', أدنية: 'pan_turkish', أدنيه: 'pan_turkish',
+      ادني: 'pan_turkish', ادنية: 'pan_turkish', ادنيه: 'pan_turkish',
+      طرابزوني: 'pan_turkish', طرابزونية: 'pan_turkish', طرابزونيه: 'pan_turkish',
+      دياربكري: 'pan_turkish', دياربكرية: 'pan_turkish', دياربكريه: 'pan_turkish',
+      قيصري: 'pan_turkish', قيصرية: 'pan_turkish', قيصريه: 'pan_turkish',
+      مارديني: 'pan_turkish', ماردينية: 'pan_turkish', ماردينيه: 'pan_turkish',
+      أورفاوي: 'pan_turkish', أورفاوية: 'pan_turkish', أورفاويه: 'pan_turkish',
+      اورفاوي: 'pan_turkish', اورفاوية: 'pan_turkish', اورفاويه: 'pan_turkish',
+      وانلي: 'pan_turkish', وانلية: 'pan_turkish', وانليه: 'pan_turkish',
+      أسكي_شهيرلي: 'pan_turkish', أسكي_شهيرلية: 'pan_turkish', أسكي_شهيرليه: 'pan_turkish',
+      اسكي_شهيرلي: 'pan_turkish', اسكي_شهيرلية: 'pan_turkish', اسكي_شهيرليه: 'pan_turkish',
       };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -223,6 +246,10 @@ const KORI_SOUTH_INDIAN = /كوري\s*(?:روتي|دوسا|غاسي|راث)/;
 // snack rows carry no region and live in many kitchens; neutralize the compound
 // exactly like TAMARIND_HINDI does for 'تمر هندي'.
 const GREEK_YOGURT = /زبادي\s*(?:ال)?يونان[يى]/;
+// 'تركي' is the Turkish demonym, but it ALSO means the turkey bird in 'لحم تركي'
+// (Canadian smoked-turkey sandwiches) and heads the compound 'قهوة تركية'
+// (Turkish coffee, a Tunisian live row). Neutralize both exactly like GREEK_YOGURT.
+const TURKEY_BIRD_COFFEE = /لحم\s*تركي[هة]?|قهوة\s*تركي[هة]?/;
 
 export const LEVANTINE_BARE = new Set(['تبوله', 'فتوش']);
 
@@ -233,6 +260,7 @@ export function nationalityRegion(name: string | null | undefined): string | nul
   if (TAMARIND_HINDI.test(norm)) norm = norm.replace(TAMARIND_HINDI, 'تمر');
   if (KORI_SOUTH_INDIAN.test(norm)) norm = norm.replace(KORI_SOUTH_INDIAN, '');
   if (GREEK_YOGURT.test(norm)) norm = norm.replace(GREEK_YOGURT, 'زبادي');
+  if (TURKEY_BIRD_COFFEE.test(norm)) norm = norm.replace(TURKEY_BIRD_COFFEE, '');
   for (const t of norm.split(/\s+/)) {
     if (NO_RETAG_TOKENS.has(t)) continue;
     const base = t.replace(/^ال/, '');
@@ -412,6 +440,11 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
             greek: new Set([
               'pan_greek', 'athens', 'thessaloniki', 'crete', 'santorini',
               'mykonos', 'corfu', 'rhodes', 'peloponnese', 'epirus', 'macedonia_gr',
+            ]),
+            turkish: new Set([
+              'pan_turkish', 'istanbul', 'ankara', 'izmir', 'bursa', 'antalya',
+              'gaziantep', 'konya', 'adana', 'trabzon', 'diyarbakir', 'kayseri',
+              'mardin', 'sanliurfa', 'van', 'eskisehir',
             ]),
      };
 
@@ -643,6 +676,11 @@ vietnamese: new Set([
             greek: new Set([
               'pan_greek', 'athens', 'thessaloniki', 'crete', 'santorini',
               'mykonos', 'corfu', 'rhodes', 'peloponnese', 'epirus', 'macedonia_gr',
+            ]),
+            turkish: new Set([
+              'pan_turkish', 'istanbul', 'ankara', 'izmir', 'bursa', 'antalya',
+              'gaziantep', 'konya', 'adana', 'trabzon', 'diyarbakir', 'kayseri',
+              'mardin', 'sanliurfa', 'van', 'eskisehir',
             ]),
      };
 
