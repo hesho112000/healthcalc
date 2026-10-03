@@ -190,8 +190,24 @@ const TOKEN_REGIONS: Record<string, string> = {
      أراغوني: 'pan_spanish', أراغونية: 'pan_spanish', أراغونيه: 'pan_spanish',
      كتالوني: 'pan_spanish', كتالونية: 'pan_spanish', كتالونيه: 'pan_spanish',
      كناري: 'pan_spanish', كنارية: 'pan_spanish', كناريه: 'pan_spanish',
-     بلياري: 'pan_spanish', بليارية: 'pan_spanish', بلياريه: 'pan_spanish',
-     };
+      بلياري: 'pan_spanish', بليارية: 'pan_spanish', بلياريه: 'pan_spanish',
+      // Greece: the national and ten regional demonyms resolve to pan_greek.
+      يوناني: 'pan_greek', يونانية: 'pan_greek', يونانيه: 'pan_greek',
+      إغريقي: 'pan_greek', إغريقية: 'pan_greek', إغريقيه: 'pan_greek',
+      اغريقي: 'pan_greek', اغريقية: 'pan_greek', اغريقيه: 'pan_greek',
+      أثيني: 'pan_greek', أثينية: 'pan_greek', أثينيه: 'pan_greek',
+      اثيني: 'pan_greek', اثينية: 'pan_greek', اثينيه: 'pan_greek',
+      سالونيكي: 'pan_greek', سالونيكية: 'pan_greek', سالونيكيه: 'pan_greek',
+      كريتي: 'pan_greek', كريتية: 'pan_greek', كريتيه: 'pan_greek',
+      سانتوريني: 'pan_greek', سانتورينية: 'pan_greek', سانتورينيه: 'pan_greek',
+      ميكوني: 'pan_greek', ميكونية: 'pan_greek', ميكونيه: 'pan_greek',
+      كورفي: 'pan_greek', كورفية: 'pan_greek', كورفيه: 'pan_greek',
+      رودسي: 'pan_greek', رودسية: 'pan_greek', رودسيه: 'pan_greek',
+      بيلوبونيزي: 'pan_greek', بيلوبونيزية: 'pan_greek', بيلوبونيزيه: 'pan_greek',
+      إبيري: 'pan_greek', إبيرية: 'pan_greek', إبيريه: 'pan_greek',
+      ابيري: 'pan_greek', ابيرية: 'pan_greek', ابيريه: 'pan_greek',
+      مقدوني_يوناني: 'pan_greek', مقدونية_يونانية: 'pan_greek', مقدونيه_يونانيه: 'pan_greek',
+      };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
 const NO_RETAG_TOKENS = new Set(['صيني', 'صينيه', 'سوداني', 'سودانيه', 'شامي', 'شاميه']);
@@ -387,6 +403,10 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
               'pan_spanish', 'madrid', 'barcelona', 'valencia', 'seville',
               'basque', 'galicia', 'andalusia', 'castile', 'aragon', 'catalonia',
               'canary_islands', 'balearic',
+            ]),
+            greek: new Set([
+              'pan_greek', 'athens', 'thessaloniki', 'crete', 'santorini',
+              'mykonos', 'corfu', 'rhodes', 'peloponnese', 'epirus', 'macedonia_gr',
             ]),
      };
 
@@ -614,6 +634,10 @@ vietnamese: new Set([
               'pan_spanish', 'madrid', 'barcelona', 'valencia', 'seville',
               'basque', 'galicia', 'andalusia', 'castile', 'aragon', 'catalonia',
               'canary_islands', 'balearic',
+            ]),
+            greek: new Set([
+              'pan_greek', 'athens', 'thessaloniki', 'crete', 'santorini',
+              'mykonos', 'corfu', 'rhodes', 'peloponnese', 'epirus', 'macedonia_gr',
             ]),
      };
 
