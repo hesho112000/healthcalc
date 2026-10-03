@@ -636,6 +636,13 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
         if (d.region === 'asian_shared') return 2;
         return 1;
       }
+      // Benelux: own pan_benelux rows first, then regional anchors, then the
+      // (currently empty) asian_shared pool. Same shape as the French branch.
+      if (kitchenId === 'benelux') {
+        if (d.region === 'pan_benelux') return 0;
+        if (d.region === 'asian_shared') return 2;
+        return 1;
+      }
       return -1;
   };
   const isGeneralDish = (d: KitchenDish) => generalRank(d) >= 0;
