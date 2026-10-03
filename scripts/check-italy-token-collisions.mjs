@@ -26,12 +26,14 @@ for (let from = 0; ; from += 1000) {
   if (data.length < 1000) break;
 }
 const wordsOf = (name) => norm(name).split(/\s+/).map((w) => w.replace(/^ال/, ''));
+// 'بولونيز' (bolognese sauce) is a legacy compound, not the bologna demonym.
+const FALSE_POSITIVE_WORDS = new Set(['بولونيز']);
 const hits = rows.map((r) => ({ ...r, tokens: wordsOf(r.name_ar).filter((w) => TOKENS.has(w)) })).filter((r) => r.tokens.length);
 const mismatch = hits.filter((r) => r.tokens.length !== 1 || !r.tokens.includes(REGION_TOKEN[r.region]));
 const foreign = hits.filter((r) => !REGIONS.has(r.region));
 const substringOnly = rows.filter((r) => {
   if (hits.some((h) => h.id === r.id)) return false;
-  return wordsOf(r.name_ar).some((w) => [...TOKENS].some((t) => w.includes(t)));
+  return wordsOf(r.name_ar).some((w) => !FALSE_POSITIVE_WORDS.has(w) && [...TOKENS].some((t) => w.includes(t)));
 });
 const byRegion = {};
 for (const r of hits) byRegion[r.region ?? '(null)'] = (byRegion[r.region ?? '(null)'] ?? 0) + 1;
