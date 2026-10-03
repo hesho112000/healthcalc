@@ -140,6 +140,23 @@ const TOKEN_REGIONS: Record<string, string> = {
       مارسيلي: 'pan_french', مارسيليه: 'pan_french',
       لواروي: 'pan_french', لوارويه: 'pan_french',
       كورسيكي: 'pan_french', كورسيكيه: 'pan_french',
+     // Benelux: the national and twelve regional demonyms resolve to pan_benelux.
+     بنيلوكسي: 'pan_benelux', بنيلوكسية: 'pan_benelux', بنيلوكسيه: 'pan_benelux',
+     بنلوكسي: 'pan_benelux', بنلوكسية: 'pan_benelux', بنلوكسيه: 'pan_benelux',
+     بلجيكي: 'pan_benelux', بلجيكية: 'pan_benelux', بلجيكيه: 'pan_benelux',
+     هولندي: 'pan_benelux', هولندية: 'pan_benelux', هولنديه: 'pan_benelux',
+     لوكسمبورغي: 'pan_benelux', لوكسمبورغية: 'pan_benelux', لوكسمبورغيه: 'pan_benelux',
+     بروكسلي: 'pan_benelux', بروكسليه: 'pan_benelux',
+     فلمنكي: 'pan_benelux', فلمنكيه: 'pan_benelux',
+     والوني: 'pan_benelux', والونيه: 'pan_benelux',
+     انتويربي: 'pan_benelux', انتويربيه: 'pan_benelux',
+     امستردامي: 'pan_benelux', امسترداميه: 'pan_benelux',
+     روتردامي: 'pan_benelux', روترداميه: 'pan_benelux',
+     لاهايي: 'pan_benelux', لاهاييه: 'pan_benelux',
+     اوتريختي: 'pan_benelux', اوتريختيه: 'pan_benelux',
+     هولندي_شمالي: 'pan_benelux', هولنديه_شماليه: 'pan_benelux',
+     لوكسمبورغي_جنوبي: 'pan_benelux', لوكسمبورغيه_جنوبيه: 'pan_benelux',
+     ارديني: 'pan_benelux', اردينيه: 'pan_benelux',
      };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -321,6 +338,11 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
             french: new Set([
               'pan_french', 'paris', 'normandy', 'provence', 'lyon', 'bordeaux',
               'alsace', 'brittany', 'burgundy', 'toulouse', 'marseille', 'loire', 'corsica',
+            ]),
+            benelux: new Set([
+              'pan_benelux', 'brussels', 'flanders', 'wallonia', 'antwerp',
+              'amsterdam', 'rotterdam', 'hague', 'utrecht', 'holland_north',
+              'luxembourg_city', 'luxembourg_south', 'ardennes',
             ]),
      };
 
@@ -533,6 +555,11 @@ vietnamese: new Set([
             french: new Set([
               'pan_french', 'paris', 'normandy', 'provence', 'lyon', 'bordeaux',
               'alsace', 'brittany', 'burgundy', 'toulouse', 'marseille', 'loire', 'corsica',
+            ]),
+            benelux: new Set([
+              'pan_benelux', 'brussels', 'flanders', 'wallonia', 'antwerp',
+              'amsterdam', 'rotterdam', 'hague', 'utrecht', 'holland_north',
+              'luxembourg_city', 'luxembourg_south', 'ardennes',
             ]),
      };
 
