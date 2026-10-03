@@ -173,6 +173,24 @@ const TOKEN_REGIONS: Record<string, string> = {
      جنوي: 'pan_italian', جنويه: 'pan_italian',
      سرديني: 'pan_italian', سردينيه: 'pan_italian',
      بوليزي: 'pan_italian', بوليزيه: 'pan_italian',
+     // Spain: the national and twelve regional demonyms resolve to pan_spanish.
+     اسباني: 'pan_spanish', اسبانية: 'pan_spanish', اسبانى: 'pan_spanish', اسبانيه: 'pan_spanish',
+     إسباني: 'pan_spanish', إسبانية: 'pan_spanish', إسبانى: 'pan_spanish', إسبانيه: 'pan_spanish',
+     مدريدي: 'pan_spanish', مدريدية: 'pan_spanish', مدريديه: 'pan_spanish',
+     برشلوني: 'pan_spanish', برشلونية: 'pan_spanish', برشلونيه: 'pan_spanish',
+     فالنسي: 'pan_spanish', فالنسية: 'pan_spanish', فالنسيه: 'pan_spanish',
+     اشبيلي: 'pan_spanish', اشبيلية: 'pan_spanish', اشبيليه: 'pan_spanish',
+     إشبيلي: 'pan_spanish', إشبيلية: 'pan_spanish', إشبيليه: 'pan_spanish',
+     باسكي: 'pan_spanish', باسكية: 'pan_spanish', باسكيه: 'pan_spanish',
+     غاليسي: 'pan_spanish', غاليسية: 'pan_spanish', غاليسيه: 'pan_spanish',
+     اندلسي: 'pan_spanish', اندلسية: 'pan_spanish', اندلسيه: 'pan_spanish',
+     أندلسي: 'pan_spanish', أندلسية: 'pan_spanish', أندلسيه: 'pan_spanish',
+     قشتالي: 'pan_spanish', قشتالية: 'pan_spanish', قشتاليه: 'pan_spanish',
+     اراغوني: 'pan_spanish', اراغونية: 'pan_spanish', اراغونيه: 'pan_spanish',
+     أراغوني: 'pan_spanish', أراغونية: 'pan_spanish', أراغونيه: 'pan_spanish',
+     كتالوني: 'pan_spanish', كتالونية: 'pan_spanish', كتالونيه: 'pan_spanish',
+     كناري: 'pan_spanish', كنارية: 'pan_spanish', كناريه: 'pan_spanish',
+     بلياري: 'pan_spanish', بليارية: 'pan_spanish', بلياريه: 'pan_spanish',
      };
 
 // Tokens that LOOK like nationalities but are common Arabic nouns (nose-ambiguity guard).
@@ -364,6 +382,11 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
               'pan_italian', 'rome', 'milan', 'naples', 'sicily', 'tuscany',
               'venice', 'florence', 'bologna', 'turin', 'genoa', 'sardinia',
               'puglia',
+            ]),
+            spanish: new Set([
+              'pan_spanish', 'madrid', 'barcelona', 'valencia', 'seville',
+              'basque', 'galicia', 'andalusia', 'castile', 'aragon', 'catalonia',
+              'canary_islands', 'balearic',
             ]),
      };
 
@@ -586,6 +609,11 @@ vietnamese: new Set([
               'pan_italian', 'rome', 'milan', 'naples', 'sicily', 'tuscany',
               'venice', 'florence', 'bologna', 'turin', 'genoa', 'sardinia',
               'puglia',
+            ]),
+            spanish: new Set([
+              'pan_spanish', 'madrid', 'barcelona', 'valencia', 'seville',
+              'basque', 'galicia', 'andalusia', 'castile', 'aragon', 'catalonia',
+              'canary_islands', 'balearic',
             ]),
      };
 
