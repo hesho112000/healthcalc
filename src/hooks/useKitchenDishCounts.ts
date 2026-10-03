@@ -214,6 +214,10 @@ export function useKitchenDishCounts(): Record<string, number> {
         out.benelux += rows.filter(
           (r) => r.region === 'asian_shared' && (r.source ?? '').startsWith('europe-benelux-2026'),
         ).length;
+        // Italy's card mirrors Benelux: credit source-tagged shared-pool rows.
+        out.italian += rows.filter(
+          (r) => r.region === 'asian_shared' && (r.source ?? '').startsWith('europe-italy-2026'),
+        ).length;
         // Switzerland's card mirrors Germany: credit source-tagged shared-pool rows.
         out.swiss += rows.filter(
           (r) => r.region === 'asian_shared' && (r.source ?? '').startsWith('europe-switzerland-2026'),
