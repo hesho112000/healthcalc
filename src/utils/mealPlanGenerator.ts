@@ -657,6 +657,13 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
         if (d.region === 'asian_shared') return 2;
         return 1;
       }
+      // Greek: own pan_greek rows first, then regional anchors, then the
+      // (currently empty) asian_shared pool. Same shape as the Spanish branch.
+      if (kitchenId === 'greek') {
+        if (d.region === 'pan_greek') return 0;
+        if (d.region === 'asian_shared') return 2;
+        return 1;
+      }
       return -1;
   };
   const isGeneralDish = (d: KitchenDish) => generalRank(d) >= 0;

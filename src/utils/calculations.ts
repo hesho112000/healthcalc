@@ -39,6 +39,7 @@ import { AUSTRIA_FULL, type KitchenDish as AustrianFullDish } from '../data/aust
 import { BENELUX_FULL, type KitchenDish as BeneluxFullDish } from '../data/benelux-full';
 import { ITALY_FULL, type KitchenDish as ItalyFullDish } from '../data/italy-full';
 import { SPAIN_FULL, type KitchenDish as SpainFullDish } from '../data/spain-full';
+import { GREECE_FULL, type KitchenDish as GreeceFullDish } from '../data/greece-full';
 import { MEXICAN_FULL, type MexicanFullDish } from '../data/mexican-full';
 import { AMERICAN_FULL, type AmericanFullDish } from '../data/american-full';
 import { CANADA_FULL, type KitchenDish as CanadianFullDish } from '../data/canada-full';
@@ -627,6 +628,9 @@ const toItalyFullFood = (e: ItalyFullDish): FoodItem =>
 // Named toSpainFullFood because toSpanishFood already maps the legacy SPANISH_FULL set.
 const toSpainFullFood = (e: SpainFullDish): FoodItem =>
   toFullFood({ ...e, mealType: e.mealType as AmericanFullDish['mealType'] }, 'spanish');
+// Named toGreekFullFood because toGreekFood already maps the legacy GREEK_FULL set.
+const toGreekFullFood = (e: GreeceFullDish): FoodItem =>
+  toFullFood({ ...e, mealType: e.mealType as AmericanFullDish['mealType'] }, 'greek');
 
 const toMexicanFood = (e: MexicanFullDish): FoodItem => toFullFood(e, 'mexican');
 const toAmericanFood = (e: AmericanFullDish): FoodItem => toFullFood(e, 'american');
@@ -762,6 +766,7 @@ export const FOODS_DATABASE: FoodItem[] = [
   ...BENELUX_FULL.map(toBeneluxFood),
   ...ITALY_FULL.map(toItalyFullFood),
   ...SPAIN_FULL.map(toSpainFullFood),
+  ...GREECE_FULL.map(toGreekFullFood),
   ...MEXICAN_FULL.map(toMexicanFood),
   ...AMERICAN_FULL.map(toAmericanFood),
   ...CANADA_FULL.map(toCanadianFood),
