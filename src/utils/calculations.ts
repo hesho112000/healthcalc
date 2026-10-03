@@ -757,7 +757,6 @@ export const FOODS_DATABASE: FoodItem[] = [
   ...TAIWAN_FULL.map(toTaiwaneseFood),
   ...THAI_FULL.map(toThaiFood),
   ...FRANCE_FULL.map(toFrenchFood),
-  ...GREEK_FULL.map(toGreekFood),
   ...TURKISH_FULL.map(toTurkishFood),
   ...UK_FULL.map(toUKFood),
   ...GERMANY_FULL.map(toGermanFood),
