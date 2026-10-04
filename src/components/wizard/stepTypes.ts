@@ -43,6 +43,12 @@ export const CUISINE_CARDS: Array<{ id: string; flag: string; label: string }> =
   { id: 'Lebanese', flag: '🇱🇧', label: 'Lebanese' },
   { id: 'American', flag: '🇺🇸', label: 'American' },
   { id: 'Italian', flag: '🇮🇹', label: 'Italian' },
+  { id: 'Austrian', flag: '🇦🇹', label: 'Austrian' },
+  { id: 'Benelux', flag: '🇳🇱', label: 'Benelux' },
+  { id: 'Norwegian', flag: '🇳🇴', label: 'Norwegian' },
+  { id: 'Swedish', flag: '🇸🇪', label: 'Swedish' },
+  { id: 'Danish', flag: '🇩🇰', label: 'Danish' },
+  { id: 'Finnish', flag: '🇫🇮', label: 'Finnish' },
 ];
 
 export const EXERCISE_TYPE_CATEGORIES: Array<{ id: string; key: TKey; emoji: string }> = [

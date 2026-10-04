@@ -446,6 +446,13 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
               'gaziantep', 'konya', 'adana', 'trabzon', 'diyarbakir', 'kayseri',
               'mardin', 'sanliurfa', 'van', 'eskisehir',
             ]),
+            // Nordic kitchens: no local data files yet — region sets follow the
+            // same B-block pattern so useKitchenDishCounts can count their
+            // pan_* rows once they exist in the dishes table.
+            norwegian: new Set(['pan_norwegian']),
+            swedish: new Set(['pan_swedish']),
+            danish: new Set(['pan_danish']),
+            finnish: new Set(['pan_finnish']),
      };
 
  // Region family a given kitchen may draw from.

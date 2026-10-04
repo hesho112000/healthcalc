@@ -17,6 +17,8 @@ export const KITCHEN_ID_ALIAS: Record<string, string> = {
   uk: 'british',
   switzerland: 'swiss',
   taiwan: 'taiwanese',
+  turkey: 'turkish',
+  austria: 'austrian',
 };
 
 export function useKitchenDishCounts(): Record<string, number> {
