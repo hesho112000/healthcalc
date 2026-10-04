@@ -44,6 +44,8 @@ export const BASE_REGIONAL_RECIPES = {
   chicken_stew: profile('يخنة الدجاج بالخضار', 'Chicken and Vegetable Stew', 'Mijoté de poulet aux légumes', 'Guiso de pollo con verduras', 'Hähnchen-Gemüse-Eintopf', 'poultry_mains', 'dinner', 19, 6, 7, 'stewing'),
   fish_soup_potato: profile('شوربة السمك بالبطاطس', 'Fish Soup with Potatoes', 'Soupe de poisson aux pommes de terre', 'Sopa de pescado con patatas', 'Fischsuppe mit Kartoffeln', 'soups_stews', 'lunch', 11, 8, 4, 'simmering'),
   wholegrain_porridge: profile('عصيدة الحبوب الكاملة', 'Wholegrain Porridge', 'Bouillie de céréales complètes', 'Gachas de cereales integrales', 'Vollkornbrei', 'breakfast_items', 'breakfast', 5, 23, 4, 'simmering'),
+  baked_salmon_dill: profile('سلمون مخبوز بالليمون والشبت', 'Baked Salmon with Lemon and Dill', 'Saumon au four au citron et à l’aneth', 'Salmón al horno con limón y eneldo', 'Ofenlachs mit Zitrone und Dill', 'fish_seafood', 'dinner', 22, 1, 12, 'baking'),
+  root_soup_herbs: profile('شوربة الجذور بالأعشاب', 'Root Vegetable Soup with Herbs', 'Soupe de légumes-racines aux herbes', 'Sopa de verduras de raíz con hierbas', 'Wurzelgemüsesuppe mit Kräutern', 'soups_stews', 'lunch', 3, 13, 3, 'simmering'),
 };
 
 export const BASE_NATIONAL_RECIPES = {
@@ -137,6 +139,21 @@ export const BASE_NATIONAL_RECIPES = {
   frokost_grot_eple: profile('عصيدة الشوفان بالتفاح والقرفة', 'Oat Porridge with Apple and Cinnamon', 'Bouillie d’avoine aux pommes et à la cannelle', 'Gachas de avena con manzana y canela', 'Haferbrei mit Apfel und Zimt', 'breakfast_items', 'breakfast', 5, 24, 4, 'simmering'),
   knekkebrod_rokt_laks: profile('خبز مقرمش بالسلمون المدخن', 'Crispbread with Smoked Salmon', 'Knekkebrød au saumon fumé', 'Knekkebrød con salmón ahumado', 'Knäckebrot mit Räucherlachs', 'breakfast_items', 'breakfast', 12, 18, 8, 'assembling'),
   smoothie_bol: profile('وعاء السموذي بالشوفان والتوت', 'Oat Smoothie Bowl with Berries', 'Bol de smoothie à l’avoine et aux baies', 'Bol de batido de avena con bayas', 'Hafer-Smoothie-Bowl mit Beeren', 'breakfast_items', 'breakfast', 6, 22, 5, 'blending'),
+  laks_tartar: profile('تارتار السلمون بالشبت', 'Salmon Tartare with Dill', 'Tartare de saumon à l’aneth', 'Tartar de salmón con eneldo', 'Lachstartar mit Dill', 'fish_seafood', 'snack', 17, 2, 10, 'assembling'),
+  torsk_lime: profile('قد بالليمون الأخضر والأعشاب', 'Cod with Lime and Herbs', 'Cabillaud au citron vert et aux herbes', 'Bacalao con lima y hierbas', 'Kabeljau mit Limette und Kräutern', 'fish_seafood', 'dinner', 19, 2, 4, 'pan_frying'),
+  orret_ovn_urter: profile('تراوت مخبوز بالأعشاب', 'Baked Trout with Herbs', 'Truite au four aux herbes', 'Trucha al horno con hierbas', 'Ofenforelle mit Kräutern', 'fish_seafood', 'dinner', 21, 1, 9, 'baking'),
+  sei_erter: profile('ساي مع البازلاء بالكريمة', 'Saithe with Creamed Peas', 'Lieu noir aux petits pois à la crème', 'Carbonero con guisantes en crema', 'Seelachs mit Sahneerbsen', 'fish_seafood', 'dinner', 18, 8, 6, 'simmering'),
+  reke_avokado_salat: profile('سلطة الروبيان بالأفوكادو', 'Shrimp Salad with Avocado', 'Salade de crevettes à l’avocat', 'Ensalada de gambas con aguacate', 'Garnelensalat mit Avocado', 'fish_seafood', 'lunch', 12, 5, 9, 'tossing'),
+  muslinger_suppe: profile('شوربة بلح البحر بالكريمة', 'Creamy Mussel Soup', 'Soupe de moules à la crème', 'Sopa de mejillones cremosa', 'Muschelcremesuppe', 'soups_stews', 'dinner', 10, 6, 6, 'simmering'),
+  laks_gryte_dill: profile('يخنة السلمون بالشبت', 'Salmon Stew with Dill', 'Mijoté de saumon à l’aneth', 'Guiso de salmón con eneldo', 'Lachseintopf mit Dill', 'fish_seafood', 'dinner', 17, 5, 8, 'stewing'),
+  kylling_gulrot_gryte: profile('يخنة الدجاج بالجزر والكراث', 'Chicken Stew with Carrots and Leeks', 'Mijoté de poulet aux carottes et poireaux', 'Guiso de pollo con zanahorias y puerros', 'Hähncheneintopf mit Karotten und Lauch', 'poultry_mains', 'dinner', 19, 7, 7, 'stewing'),
+  kalkun_gryte: profile('يخنة ديك رومي بالخضار', 'Turkey Stew with Vegetables', 'Mijoté de dinde aux légumes', 'Guiso de pavo con verduras', 'Puteneintopf mit Gemüse', 'poultry_mains', 'dinner', 20, 6, 7, 'stewing'),
+  oksegryte_bygg: profile('يخنة لحم بقري بالشعير حلال', 'Halal Beef and Barley Stew', 'Ragoût de bœuf halal à l’orge', 'Estofado de ternera halal con cebada', 'Halal-Rindereintopf mit Gerste', 'meat_mains', 'dinner', 15, 16, 8, 'stewing'),
+  lammegryte_gulrot: profile('يخنة ضأن بالجزر حلال', 'Halal Lamb Stew with Carrots', 'Mijoté d’agneau halal aux carottes', 'Guiso de cordero halal con zanahorias', 'Halal-Lammeintopf mit Karotten', 'meat_mains', 'dinner', 18, 7, 11, 'stewing'),
+  rodbet_suppe: profile('شوربة البنجر بالزبادي', 'Beetroot Soup with Yogurt', 'Soupe de betterave au yaourt', 'Sopa de remolacha con yogur', 'Rote-Bete-Suppe mit Joghurt', 'soups_stews', 'lunch', 3, 10, 4, 'simmering'),
+  selleri_suppe: profile('شوربة الكرفس بالبطاطس', 'Celeriac and Potato Soup', 'Soupe de céleri-rave aux pommes de terre', 'Sopa de apionabo con patatas', 'Sellerie-Kartoffel-Suppe', 'soups_stews', 'lunch', 3, 12, 4, 'simmering'),
+  havre_grot_blabaer: profile('عصيدة الشوفان بالتوت الأزرق', 'Oat Porridge with Blueberries', 'Bouillie d’avoine aux myrtilles', 'Gachas de avena con arándanos', 'Haferbrei mit Blaubeeren', 'breakfast_items', 'breakfast', 5, 23, 4, 'simmering'),
+  rugbrod_rekesalat: profile('خبز الجاودار بسلطة الروبيان', 'Rye Bread with Shrimp Salad', 'Pain de seigle à la salade de crevettes', 'Pan de centeno con ensalada de gambas', 'Roggenbrot mit Garnelensalat', 'breakfast_items', 'breakfast', 11, 19, 6, 'assembling'),
 };
 
 export const EXPANSION_REGIONAL_RECIPES = { ...BASE_REGIONAL_RECIPES };
@@ -232,6 +249,21 @@ export const EXPANSION_NATIONAL_RECIPES = {
   solbaer_fromasj: profile('موس الكشمش الأسود بالكريمة', 'Blackcurrant Cream Mousse', 'Mousse aux cassis', 'Mousse de grosellas negras', 'Johannisbeercreme', 'rice_cakes_sweets', 'snack', 2, 15, 7, 'whipping'),
   havre_kjeks: profile('بسكويت الشوفان', 'Oat Biscuits', 'Biscuits à l’avoine', 'Galletas de avena', 'Haferkekse', 'rice_cakes_sweets', 'snack', 5, 34, 12, 'baking'),
   kardemomme_kake: profile('كعكة الهيل باللبن', 'Cardamom Buttermilk Cake', 'Gâteau à la cardamome et au babeurre', 'Pastel de cardamomo con suero', 'Kardamom-Buttermilch-Kuchen', 'rice_cakes_sweets', 'snack', 5, 30, 9, 'baking'),
+  laks_paprika: profile('سلمون بالفلفل المشوي', 'Salmon with Roasted Peppers', 'Saumon aux poivrons rôtis', 'Salmón con pimientos asados', 'Lachs mit gerösteter Paprika', 'fish_seafood', 'dinner', 22, 3, 12, 'pan_frying'),
+  torsk_brokkoli: profile('قد بالبروكلي بالبخار', 'Steamed Cod with Broccoli', 'Cabillaud vapeur au brocoli', 'Bacalao al vapor con brócoli', 'Gedämpfter Kabeljau mit Brokkoli', 'fish_seafood', 'dinner', 19, 3, 4, 'steaming'),
+  orret_nepe: profile('تراوت مع هريس اللفت', 'Trout with Swede Purée', 'Truite à la purée de rutabaga', 'Trucha con puré de nabo', 'Forelle mit Steckrübenpüree', 'fish_seafood', 'dinner', 21, 5, 9, 'pan_frying'),
+  hyse_gryte: profile('يخنة الهادوك بالجزر', 'Haddock Stew with Carrots', 'Mijoté d’aiglefin aux carottes', 'Guiso de eglefino con zanahorias', 'Schellfisch-Eintopf mit Karotten', 'fish_seafood', 'dinner', 15, 7, 5, 'stewing'),
+  krabbe_pasta: profile('باستا السلطعون بالليمون', 'Crab Pasta with Lemon', 'Pâtes au crabe et au citron', 'Pasta con cangrejo y limón', 'Krabbennudeln mit Zitrone', 'noodle_dishes', 'dinner', 13, 25, 6, 'simmering'),
+  fiskeboller_karry: profile('كرات السمك بصلصة الكاري', 'Fish Balls in Curry Sauce', 'Boulettes de poisson à la sauce curry', 'Bolitas de pescado en salsa de curry', 'Fischbällchen in Currysoße', 'fish_seafood', 'dinner', 12, 8, 7, 'simmering'),
+  kylling_karry_gryte: profile('يخنة الدجاج بالكاري الخفيف', 'Mild Chicken Curry Stew', 'Mijoté de poulet au curry doux', 'Guiso de pollo al curry suave', 'Milder Hähnchen-Curry-Eintopf', 'poultry_mains', 'dinner', 19, 8, 8, 'stewing'),
+  kylling_brokkoli_grateng: profile('غراتن الدجاج بالبروكلي', 'Chicken and Broccoli Gratin', 'Gratin de poulet au brocoli', 'Gratinado de pollo con brócoli', 'Hähnchen-Brokkoli-Gratin', 'poultry_mains', 'dinner', 20, 8, 9, 'baking'),
+  kalv_boller_dill: profile('كرات عجل بالشبت حلال', 'Halal Veal Meatballs with Dill', 'Boulettes de veau halal à l’aneth', 'Albóndigas de ternera halal con eneldo', 'Halal-Kalbsbällchen mit Dill', 'meat_mains', 'dinner', 16, 4, 9, 'simmering'),
+  biff_erter_gryte: profile('يخنة لحم بقري بالبازلاء حلال', 'Halal Beef Stew with Peas', 'Ragoût de bœuf halal aux petits pois', 'Estofado de ternera halal con guisantes', 'Halal-Rindereintopf mit Erbsen', 'meat_mains', 'dinner', 17, 9, 9, 'stewing'),
+  potet_grateng: profile('غراتن البطاطس بالجبن', 'Potato Gratin with Cheese', 'Gratin de pommes de terre au fromage', 'Gratinado de patatas con queso', 'Kartoffelgratin mit Käse', 'vegetable_mains', 'dinner', 5, 18, 10, 'baking'),
+  rotkal_salat_eple: profile('سلطة الكرنب الأحمر بالتفاح', 'Red Cabbage Salad with Apple', 'Salade de chou rouge à la pomme', 'Ensalada de col roja con manzana', 'Rotkohlsalat mit Apfel', 'vegetable_mains', 'lunch', 2, 10, 4, 'tossing'),
+  brokkoli_suppe: profile('شوربة البروكلي بالكريمة', 'Creamy Broccoli Soup', 'Soupe de brocoli à la crème', 'Sopa de brócoli cremosa', 'Brokkolicremesuppe', 'soups_stews', 'lunch', 4, 8, 5, 'simmering'),
+  kavring: profile('كافرينغ بالزبيب', 'Kavring Dark Rye Bread with Raisins', 'Kavring aux raisins secs', 'Kavring con pasas', 'Kavring mit Rosinen', 'breakfast_items', 'breakfast', 6, 34, 5, 'baking'),
+  multe_yoghurt: profile('زبادي بالتوت السحابي', 'Yogurt with Cloudberries', 'Yaourt aux mûres arctiques', 'Yogur con moras árticas', 'Joghurt mit Moltebeeren', 'breakfast_items', 'breakfast', 6, 18, 4, 'assembling'),
 };
 
 export function B(profileRow, region) {
