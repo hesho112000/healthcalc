@@ -40,6 +40,14 @@ export const BASE_REGIONAL_RECIPES = {
   fish_soup_potato: profile('شوربة السمك بالبطاطس', 'Fish Soup with Potatoes', 'Soupe de poisson aux pommes de terre', 'Sopa de pescado con patatas', 'Fischsuppe mit Kartoffeln', 'soups_stews', 'lunch', 11, 8, 4, 'simmering'),
   pea_soup_carrot: profile('شوربة البازلاء بالجزر', 'Pea Soup with Carrots', 'Soupe de pois aux carottes', 'Sopa de guisantes con zanahorias', 'Erbsensuppe mit Karotten', 'soups_stews', 'lunch', 7, 17, 3, 'simmering'),
   rye_cheese: profile('خبز الجاودار بالجبن', 'Rye Bread with Cheese', 'Pain de seigle au fromage', 'Pan de centeno con queso', 'Roggenbrot mit Käse', 'breakfast_items', 'breakfast', 8, 26, 7, 'assembling'),
+  savukala_peruna: profile('سمك مدخن بالبطاطس الجديدة', 'Smoked Fish with New Potatoes', 'Poisson fumé aux pommes de terre nouvelles', 'Pescado ahumado con patatas nuevas', 'Geräucherter Fisch mit neuen Kartoffeln', 'fish_seafood', 'dinner', 18, 12, 9, 'grilling'),
+  rontonen: profile('رونتونن معجنات التوت', 'Rönttönen Berry Pastries', 'Rönttönen aux baies', 'Rönttönen de bayas', 'Rönttönen mit Beeren', 'rice_cakes_sweets', 'snack', 3, 25, 7, 'baking'),
+  vispipuuro: profile('فيسيبيورو عصيدة التوت المخفوقة', 'Vispipuuro Whipped Bilberry Porridge', 'Bouillie fouettée aux myrtilles', 'Gachas batidas de arándano', 'Gerührter Blaubeerbrei', 'breakfast_items', 'breakfast', 3, 20, 2, 'simmering'),
+  hilla_kiisseli: profile('كييسلي التوت السحابي', 'Cloudberry Kiisseli', 'Kiisseli à la mûre arctique', 'Kiisseli de mora de los pantanos', 'Moltebeeren-Kiisseli', 'rice_cakes_sweets', 'snack', 1, 18, 0, 'simmering'),
+  karpalo_kiisseli: profile('كييسلي التوت البري', 'Cranberry Kiisseli', 'Kiisseli aux canneberges', 'Kiisseli de arándano rojo', 'Preiselbeer-Kiisseli', 'rice_cakes_sweets', 'snack', 1, 17, 0, 'simmering'),
+  tattaripuuro: profile('عصيدة الحنطة السوداء', 'Buckwheat Porridge', 'Bouillie de sarrasin', 'Gachas de trigo sarraceno', 'Buchweizenbrei', 'breakfast_items', 'breakfast', 5, 21, 3, 'simmering'),
+  hapankorppu: profile('خبز الجاودار المقرمش', 'Rye Crispbread', 'Pain croustillant de seigle', 'Pan crujiente de centeno', 'Knäckebrot aus Roggen', 'breakfast_items', 'breakfast', 8, 58, 3, 'baking'),
+  janssoninkiusaus: profile('غراتن البطاطس بالأنشوجة', 'Potato Anchovy Casserole', 'Gratin de pommes de terre aux anchois', 'Gratin de patatas con anchoas', 'Kartoffel-Sardellen-Auflauf', 'fish_seafood', 'lunch', 6, 14, 7, 'baking'),
 };
 
 export const BASE_NATIONAL_RECIPES = {
@@ -53,6 +61,16 @@ export const BASE_NATIONAL_RECIPES = {
   riisipuuro: profile('عصيدة الأرز بالقرفة', 'Riisipuuro Rice Porridge with Cinnamon', 'Riisipuuro à la cannelle', 'Riisipuuro con canela', 'Riisipuuro mit Zimt', 'breakfast_items', 'breakfast', 4, 24, 3, 'simmering'),
   karjalanpiirakka: profile('فطائر كاريليا بالأرز وزبدة البيض', 'Karjalanpiirakka Karelian Pasties with Egg Butter', 'Karjalanpiirakka au beurre d’œuf', 'Karjalanpiirakka con mantequilla de huevo', 'Karjalanpiirakka mit Eibutter', 'breakfast_items', 'breakfast', 7, 26, 8, 'baking'),
   munakas_sieni: profile('أومليت الفطر الفنلندي', 'Finnish Mushroom Omelette', 'Omelette finlandaise aux champignons', 'Tortilla finlandesa de setas', 'Finnisches Pilzomelett', 'breakfast_items', 'breakfast', 9, 2, 9, 'pan_frying'),
+  kaalilaatikko: profile('كاليلااتيكو كسرات الملفوف بحلال اللحم البقري', 'Kaalilaatikko Halal Beef Cabbage Casserole', 'Kaalilaatikko au bœuf halal', 'Kaalilaatikko con ternera halal', 'Kaalilaatikko, Halal-Rinder-Kohl-Auflauf', 'meat_mains', 'dinner', 10, 14, 5, 'baking'),
+  maksalaatikko: profile('ماكسالاتيكو غراتن الكبد والأرز', 'Maksalaatikko Liver and Rice Casserole', 'Maksalaatikko au foie et au riz', 'Maksalaatikko de hígado y arroz', 'Maksalaatikko, Leber-Reis-Auflauf', 'meat_mains', 'dinner', 14, 16, 6, 'baking'),
+  riisilaatikko: profile('ريسيلااتيكو غراتن الأرز بحلال اللحم البقري', 'Riisilaatikko Halal Beef Rice Casserole', 'Riisilaatikko au bœuf halal', 'Riisilaatikko con ternera halal', 'Riisilaatikko, Halal-Rinder-Auflauf', 'meat_mains', 'dinner', 11, 22, 5, 'baking'),
+  lanttulaatikko: profile('لانتولااتيكو غراتن اللفت', 'Lanttulaatikko Rutabaga Casserole', 'Lanttulaatikko aux rutabagas', 'Lanttulaatikko de nabicol', 'Lanttulaatikko, Steckrüben-Auflauf', 'vegetable_mains', 'dinner', 3, 14, 3, 'baking'),
+  mannapuuro: profile('عصيدة السميد', 'Semolina Porridge', 'Bouillie de semoule', 'Gachas de sémola', 'Grießbrei', 'breakfast_items', 'breakfast', 4, 23, 2, 'simmering'),
+  kalakakku: profile('كرات السمك بالجاودار', 'Finnish Fish Cakes', 'Galettes de poisson finlandaises', 'Tortitas de pescado finlandesas', 'Finnische Fischfrikadellen', 'fish_seafood', 'lunch', 13, 10, 6, 'pan_frying'),
+  lohimureke: profile('لوهيمووريكه قالب السلمون', 'Lohimureke Salmon Loaf', 'Lohimureke au saumon', 'Lohimureke de salmón', 'Lohimureke, Lachsauflauf', 'fish_seafood', 'dinner', 17, 3, 9, 'baking'),
+  kaalikeitto: profile('شوربة الملفوف', 'Cabbage Soup', 'Soupe au chou', 'Sopa de col', 'Kohlsuppe', 'soups_stews', 'lunch', 5, 12, 2, 'simmering'),
+  piimapannukakku: profile('بانوكاكو بييما بالفرن', 'Buttermilk Oven Pancake', 'Pannukakku au piimä', 'Pannukakku de suero de leche', 'Pannukakku mit Piimä', 'breakfast_items', 'breakfast', 6, 30, 5, 'baking'),
+  lohiperunavuoka: profile('لوهيبيرونافووكا السلمون والبطاطس', 'Salmon and Potato Casserole', 'Gratin de saumon et pommes de terre', 'Gratin de salmón y patatas', 'Lachs-Kartoffel-Auflauf', 'fish_seafood', 'dinner', 15, 13, 8, 'baking'),
 };
 
 export const EXPANSION_REGIONAL_RECIPES = { ...BASE_REGIONAL_RECIPES };
@@ -68,6 +86,16 @@ export const EXPANSION_NATIONAL_RECIPES = {
   graavilohi_ruis: profile('جرافلوهي على خبز الجاودار', 'Graavilohi Cured Salmon on Rye Bread', 'Graavilohi au pain de seigle', 'Graavilohi en pan de centeno', 'Graavilohi auf Roggenbrot', 'street_snacks', 'lunch', 14, 17, 8, 'assembling'),
   mustikkapiirakka: profile('فطيرة التوت الأزرق بالزبادي', 'Mustikkapiirakka Blueberry Pie with Yogurt', 'Mustikkapiirakka au yaourt', 'Mustikkapiirakka con yogur', 'Mustikkapiirakka mit Joghurt', 'rice_cakes_sweets', 'snack', 4, 26, 8, 'baking'),
   korvapuusti: profile('كورفابوستي بالقرفة', 'Korvapuusti Cinnamon Ears', 'Korvapuusti à la cannelle', 'Korvapuusti con canela', 'Korvapuusti, Zimtschnecken', 'rice_cakes_sweets', 'breakfast', 6, 40, 11, 'baking'),
+  rosolli: profile('روسولي سلطة البنجر', 'Rosolli Beet Salad', 'Rosolli, salade de betterave', 'Rosolli, ensalada de remolacha', 'Rosolli, Rote-Bete-Salat', 'vegetable_mains', 'lunch', 3, 12, 4, 'assembling'),
+  sillisalaatti: profile('سلطة الرنجة', 'Herring Salad', 'Salade de hareng', 'Ensalada de arenque', 'Heringssalat', 'fish_seafood', 'lunch', 9, 6, 7, 'assembling'),
+  uunilohi: profile('أونيلوكي سلمون بالفرن', 'Oven-Baked Salmon', 'Saumon au four', 'Salmón al horno', 'Lachs aus dem Ofen', 'fish_seafood', 'dinner', 20, 0, 11, 'baking'),
+  lihakeitto: profile('ليهاكيتو شوربة اللحم البقري حلال', 'Lihakeitto Halal Beef Soup', 'Lihakeitto au bœuf halal', 'Lihakeitto con ternera halal', 'Lihakeitto, Halal-Rind-Suppe', 'soups_stews', 'dinner', 9, 8, 3, 'simmering'),
+  silakkapihvi: profile('شرائح الرنجة المقلية', 'Fried Baltic Herring Patties', 'Galettes de hareng de la Baltique', 'Tortitas de arenque del Báltico', 'Ostseehering-Frikadellen', 'fish_seafood', 'dinner', 14, 8, 8, 'pan_frying'),
+  kaalipiirakka: profile('كاليبييراكا فطيرة الملفوف', 'Cabbage Pie', 'Tourte au chou', 'Empanada de col', 'Kohlkuchen', 'vegetable_mains', 'lunch', 6, 18, 6, 'baking'),
+  pannukakku: profile('بانوكاكو فطيرة الفرن الفنلندية', 'Finnish Oven Pancake', 'Pannukakku finlandais', 'Pannukakku finlandés', 'Finnischer Ofenpfannkuchen', 'breakfast_items', 'breakfast', 5, 25, 4, 'baking'),
+  runebergintorttu: profile('تورت روبنبرغ', 'Runeberg Tortes', 'Tortes Runeberg', 'Tartas Runeberg', 'Runeberg-Törtchen', 'rice_cakes_sweets', 'snack', 5, 30, 9, 'baking'),
+  pulla: profile('بولا خبز الهيل', 'Cardamom Bread', 'Pulla à la cardamome', 'Pulla de cardamomo', 'Kardamombrot Pulla', 'rice_cakes_sweets', 'breakfast', 7, 45, 8, 'baking'),
+  lohipasteija: profile('لوهيباستييا معجنات السلمون', 'Salmon Pastries', 'Pâtisseries au saumon', 'Pasteles de salmón', 'Lachs-Pasteten', 'fish_seafood', 'snack', 11, 12, 8, 'baking'),
 };
 
 export function B(profileRow, region) {
