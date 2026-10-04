@@ -133,11 +133,11 @@ const CITY_BY_ID: Record<string, string> = {
   usa: 'نيويورك 🇺🇸',
   canada: 'أوتاوا 🇨🇦',
   australasia: 'سيدني 🇦🇺',
-  norwegian: 'أوسلو 🇳🇴',
-  swedish: 'ستوكهولم 🇸🇪',
-  danish: 'كوبنهاغن 🇩🇰',
-  finnish: 'هلسنكي 🇫🇮',
-  ukrainian: 'كييف 🇺🇦',
+  norway: 'أوسلو 🇳🇴',
+  sweden: 'ستوكهولم 🇸🇪',
+  denmark: 'كوبنهاغن 🇩🇰',
+  finland: 'هلسنكي 🇫🇮',
+  ukraine: 'كييف 🇺🇦',
   venezuelan: 'كراكاس 🇻🇪',
 };
 
@@ -216,11 +216,11 @@ const COUNTRY_BY_ID: Record<string, string> = {
   usa: 'الولايات المتحدة 🇺🇸',
   canada: 'كندا 🇨🇦',
   australasia: 'أستراليا ونيوزيلندا 🇦🇺',
-  norwegian: 'النرويج 🇳🇴',
-  swedish: 'السويد 🇸🇪',
-  danish: 'الدنمارك 🇩🇰',
-  finnish: 'فنلندا 🇫🇮',
-  ukrainian: 'أوكرانيا 🇺🇦',
+  norway: 'النرويج 🇳🇴',
+  sweden: 'السويد 🇸🇪',
+  denmark: 'الدنمارك 🇩🇰',
+  finland: 'فنلندا 🇫🇮',
+  ukraine: 'أوكرانيا 🇺🇦',
   venezuelan: 'فنزويلا 🇻🇪',
 };
 
@@ -287,11 +287,11 @@ ghanaian: 'المطبخ الغاني',
   usa: 'المطبخ الأمريكي',
   canada: 'المطبخ الكندي',
   australasia: 'المطبخ الأسترالي والنيوزيلندي',
-  norwegian: 'المطبخ النرويجي',
-  swedish: 'المطبخ السويدي',
-  danish: 'المطبخ الدنماركي',
-  finnish: 'المطبخ الفنلندي',
-  ukrainian: 'المطبخ الأوكراني',
+  norway: 'المطبخ النرويجي',
+  sweden: 'المطبخ السويدي',
+  denmark: 'المطبخ الدنماركي',
+  finland: 'المطبخ الفنلندي',
+  ukraine: 'المطبخ الأوكراني',
   venezuelan: 'المطبخ الفنزويلي',
 };
 
@@ -306,8 +306,8 @@ const CITY_EN_BY_ID: Record<string, string> = {
   rwandan: 'Kigali', swiss: 'Geneva', thai: 'Bangkok', vietnamese: 'Hanoi', spanish: 'Madrid', 'south-african': 'Cape Town',
   ghanaian: 'Accra', seychellois: 'Victoria', mauritian: 'Port Louis', gabonese: 'Libreville', botswanan: 'Gaborone',
   filipino: 'Manila', turkish: 'Istanbul', turkey: 'Istanbul', uk: 'London', germany: 'Berlin', austria: 'Vienna',
-  benelux: 'Amsterdam', usa: 'New York', canada: 'Ottawa', australasia: 'Sydney', norwegian: 'Oslo', swedish: 'Stockholm',
-  danish: 'Copenhagen', finnish: 'Helsinki', ukrainian: 'Kyiv', venezuelan: 'Caracas',
+  benelux: 'Amsterdam', usa: 'New York', canada: 'Ottawa', australasia: 'Sydney', norway: 'Oslo', sweden: 'Stockholm',
+  denmark: 'Copenhagen', finland: 'Helsinki', ukraine: 'Kyiv', venezuelan: 'Caracas',
 };
 
 const COUNTRY_EN_BY_ID: Record<string, string> = {
@@ -322,8 +322,8 @@ const COUNTRY_EN_BY_ID: Record<string, string> = {
   spanish: 'Spain', 'south-african': 'South Africa', ghanaian: 'Ghana', seychellois: 'Seychelles', mauritian: 'Mauritius',
   gabonese: 'Gabon', botswanan: 'Botswana', filipino: 'Philippines', turkish: 'Turkey', turkey: 'Turkey', uk: 'United Kingdom',
   germany: 'Germany', austria: 'Austria', benelux: 'Benelux', usa: 'United States', canada: 'Canada',
-  australasia: 'Australia & New Zealand', norwegian: 'Norway', swedish: 'Sweden', danish: 'Denmark', finnish: 'Finland',
-  ukrainian: 'Ukraine',
+  australasia: 'Australia & New Zealand', norway: 'Norway', sweden: 'Sweden', denmark: 'Denmark', finland: 'Finland',
+  ukraine: 'Ukraine',
   venezuelan: 'Venezuela',
 };
 
@@ -344,8 +344,8 @@ const KITCHEN_EN_BY_ID: Record<string, string> = {
   gabonese: 'Gabonese Kitchen', botswanan: 'Botswanan Kitchen', filipino: 'Filipino Kitchen', turkish: 'Turkish Kitchen',
   turkey: 'Turkish Kitchen', uk: 'British Kitchen', germany: 'German Kitchen', austria: 'Austrian Kitchen',
   benelux: 'Benelux Kitchen', usa: 'American Kitchen', canada: 'Canadian Kitchen', australasia: 'Australasian Kitchen',
-  norwegian: 'Norwegian Kitchen', swedish: 'Swedish Kitchen', danish: 'Danish Kitchen', finnish: 'Finnish Kitchen',
-  ukrainian: 'Ukrainian Kitchen',
+  norway: 'Norwegian Kitchen', sweden: 'Swedish Kitchen', denmark: 'Danish Kitchen', finland: 'Finnish Kitchen',
+  ukraine: 'Ukrainian Kitchen',
   venezuelan: 'Venezuelan Kitchen',
 };
 
