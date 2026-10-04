@@ -2624,8 +2624,8 @@ const WeightLossPage: React.FC = () => {
               <div className="px-5 md:px-6 py-4 text-white flex items-center gap-3" style={{ background: 'linear-gradient(135deg,#0F4C3A,#14532D 60%,#1f6b52)' }}>
                 <span className="w-11 h-11 rounded-full bg-white/15 border border-white/20 flex items-center justify-center text-white font-extrabold text-[15px] tracking-wider shrink-0">HC</span>
                 <div className="flex-1 min-w-0">
-                  <div className="text-[17px] md:text-[19px] font-extrabold leading-tight truncate">{t('wizard.step5.title')}</div>
-                  <div className="text-white/75 text-[12px] leading-[14px] mt-0.5 truncate">{t('wizard.step5.subtitle')}</div>
+                  <div className="text-[17px] md:text-[19px] font-extrabold leading-tight break-words">{t('wizard.step5.title')}</div>
+                  <div className="text-white/75 text-[12px] leading-[14px] mt-0.5 break-words">{t('wizard.step5.subtitle')}</div>
                 </div>
                 <span className="wiz-progress-badge shrink-0 hidden sm:inline-flex">{t('wizard.step5.eyebrow')}</span>
               </div>
