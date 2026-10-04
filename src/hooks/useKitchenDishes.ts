@@ -3,6 +3,7 @@ import { supabaseClient, hasSupabaseConfig } from '../lib/supabaseClient';
 import type { KitchenDish, KitchenInfo } from '../data/kitchens';
 import { kitchensRegistry } from '../data/kitchens';
 import { isAuthenticForKitchen, KITCHEN_REGION_FAMILIES } from '../utils/kitchenAuthenticity';
+import { KITCHEN_ID_ALIAS } from './useKitchenDishCounts';
 
 interface DishRow {
   id: string;
@@ -152,11 +153,17 @@ export function useKitchenDishes(): UseKitchenDishesResult {
   const kitchens = useMemo<Record<string, KitchenInfo>>(() => {
     const out: Record<string, KitchenInfo> = {};
     for (const k of kitchensRegistry) {
-      if (!KITCHEN_FAMILY_IDS.includes(k.id)) continue;
+      // Registry ids come from the src/data/<file>-full.ts basenames, so a few
+      // differ from the canonical KITCHEN_REGION_FAMILIES / KITCHEN_COUNT_REGIONS
+      // id for the same kitchen (turkey -> turkish, germany -> german, ...).
+      // Normalise before any family lookup, but keep k.id as the output key so
+      // downstream KITCHEN_ID_ALIAS consumers still resolve.
+      const canonicalId = KITCHEN_ID_ALIAS[k.id] ?? k.id;
+      if (!KITCHEN_FAMILY_IDS.includes(canonicalId)) continue;
       // Unlabeled legacy rows (region = null) are all Saudi-era content, so only
       // Saudi may draw from them. Every other kitchen gets region-tagged family rows.
       const pool = (r: DishRow) =>
-        r.region != null ? isAuthenticForKitchen(k.id, r.region, r.name_ar) : k.id === 'saudi' && isAuthenticForKitchen('saudi', null, r.name_ar);
+        r.region != null ? isAuthenticForKitchen(canonicalId, r.region, r.name_ar) : canonicalId === 'saudi' && isAuthenticForKitchen('saudi', null, r.name_ar);
       const dishes = rows.filter(pool).map(rowToDish);
       if (!dishes.length) continue;
       out[k.id] = {

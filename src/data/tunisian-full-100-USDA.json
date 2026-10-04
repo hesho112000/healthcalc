@@ -5562,7 +5562,7 @@
    "name_en": "Couscous & Mesfouf",
    "name_fr": "Couscous et Mesfouf",
    "name_es": "Cuscús y Mesfouf",
-   "name_de": "Couscous & Mesfouf"
+   "name_de": "Couscous & Mesfouf (Kuskus und Gemüse)"
   },
   {
    "id": "seafood",
@@ -9236,9 +9236,9 @@
      "confidence_label": "70% - تقديري",
      "confidence_color": "orange",
      "name_en": "Kaak El Jraia",
-     "name_fr": "Kaak El Jraia",
-     "name_es": "Kaak El Jraia",
-     "name_de": "Kaak El Jraia",
+     "name_fr": "Kaak El Jraia (pain du vendredi)",
+     "name_es": "Kaak El Jraia (pan del viernes)",
+     "name_de": "Kaak El Jraia (Freitagsbrot)",
      "fiber_g": 1.5,
      "sugar_g": 20.0,
      "sodium_mg": 80,

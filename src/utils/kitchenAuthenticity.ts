@@ -446,13 +446,29 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
               'gaziantep', 'konya', 'adana', 'trabzon', 'diyarbakir', 'kayseri',
               'mardin', 'sanliurfa', 'van', 'eskisehir',
             ]),
-            // Nordic kitchens: no local data files yet — region sets follow the
-            // same B-block pattern so useKitchenDishCounts can count their
-            // pan_* rows once they exist in the dishes table.
-            norwegian: new Set(['pan_norwegian']),
-            swedish: new Set(['pan_swedish']),
-            danish: new Set(['pan_danish']),
-            finnish: new Set(['pan_finnish']),
+            // Nordic + Ukraine kitchens: the src/data/<country>-full.ts files carry a
+// pan_<demonym> row plus nine regional anchors each, so the family sets must
+// list all ten or useKitchenDishes drops the anchors from the live pool.
+            norwegian: new Set([
+              'pan_norwegian', 'oslo', 'bergen', 'stavanger', 'trondheim',
+              'tromso', 'bodo', 'alesund', 'lofoten', 'kristiansand',
+            ]),
+            swedish: new Set([
+              'pan_swedish', 'stockholm', 'gothenburg', 'malmo', 'uppsala',
+              'visby', 'orebro', 'linkoping', 'umea', 'kiruna',
+            ]),
+            danish: new Set([
+              'pan_danish', 'copenhagen', 'aarhus', 'odense', 'aalborg',
+              'roskilde', 'helsingor', 'esbjerg', 'skagen', 'ronne',
+            ]),
+            finnish: new Set([
+              'pan_finnish', 'helsinki', 'tampere', 'turku', 'oulu',
+              'jyvaskyla', 'kuopio', 'rovaniemi', 'vaasa', 'pori',
+            ]),
+            ukrainian: new Set([
+              'pan_ukrainian', 'kyiv', 'lviv', 'odesa', 'kharkiv',
+              'dnipro', 'chernihiv', 'poltava', 'vinnytsia', 'zaporizhzhia',
+            ]),
      };
 
  // Region family a given kitchen may draw from.
@@ -689,6 +705,14 @@ vietnamese: new Set([
               'gaziantep', 'konya', 'adana', 'trabzon', 'diyarbakir', 'kayseri',
               'mardin', 'sanliurfa', 'van', 'eskisehir',
             ]),
+            // NOTE: the Nordic + Ukraine kitchens (norwegian, swedish, danish,
+            // finnish, ukrainian) are deliberately NOT listed here yet. They have
+            // static src/data/<country>-full.ts files only, with no rows in the
+            // live dishes table, so they resolve through the static registry path
+            // in useKitchenDishes. Adding them here would make
+            // scripts/test-multi-kitchen-generator.ts (which enumerates these keys
+            // and asserts a non-empty live pool) fail. Add them together with the
+            // corresponding Supabase rows.
      };
 
  // True when a dish may be served in the given kitchen's plans.

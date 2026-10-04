@@ -666,7 +666,9 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
       }
       // Turkish: own pan_turkish rows first, then regional anchors, then the
       // (currently empty) asian_shared pool. Same shape as the Greek branch.
-      if (kitchenId === 'turkish') {
+      // options.kitchens[].id is the registry id ('turkey'), while the region
+      // family and pan_* prefixes use the canonical id ('turkish'), so accept both.
+      if (kitchenId === 'turkey' || kitchenId === 'turkish') {
         if (d.region === 'pan_turkish') return 0;
         if (d.region === 'asian_shared') return 2;
         return 1;

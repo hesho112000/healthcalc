@@ -19,6 +19,12 @@ export const KITCHEN_ID_ALIAS: Record<string, string> = {
   taiwan: 'taiwanese',
   turkey: 'turkish',
   austria: 'austrian',
+  // src/data/<country>-full.ts basenames vs the canonical demonym ids.
+  norway: 'norwegian',
+  sweden: 'swedish',
+  denmark: 'danish',
+  finland: 'finnish',
+  ukraine: 'ukrainian',
 };
 
 export function useKitchenDishCounts(): Record<string, number> {
