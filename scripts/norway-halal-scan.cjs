@@ -77,9 +77,13 @@ if (require.main === module) {
     const { existsSync } = require('node:fs');
     const { pathToFileURL } = require('node:url');
     const load = async (dir) => {
-      const file = resolve(__dirname, dir, 'part1-1.mjs');
-      if (!existsSync(file)) throw new Error(`Missing ${file}`);
-      return (await import(pathToFileURL(file).href)).default;
+      const rows = [];
+      for (const part of ['part1-1.mjs', 'part1-2.mjs']) {
+        const file = resolve(__dirname, dir, part);
+        if (!existsSync(file)) throw new Error(`Missing ${file}`);
+        rows.push(...(await import(pathToFileURL(file).href)).default);
+      }
+      return rows;
     };
     const base = await load('norway-base-data');
     const expansion = await load('norway-data');
@@ -90,7 +94,7 @@ if (require.main === module) {
     console.log(`traditional high-risk dishes excluded or altered: ${EXCLUDED_TRADITIONAL.length}`);
     console.log(`halal violations: ${problems.length}`);
     for (const p of problems) console.log(`  HALAL [${p.kind}] "${p.term}" -> ${p.nameAr} | ${p.nameEn}`);
-    if (base.length !== 50 || expansion.length !== 50 || problems.length) process.exitCode = 1;
+    if (base.length !== 100 || expansion.length !== 100 || problems.length) process.exitCode = 1;
     else console.log('\nCLEAN: 0 halal violations');
   };
   run().catch((error) => { console.error(error); process.exitCode = 1; });
