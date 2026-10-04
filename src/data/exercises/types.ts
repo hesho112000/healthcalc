@@ -43,6 +43,7 @@ export interface Exercise {
   nameEn: string;
   nameFr: string;
   nameEs: string;
+  nameDe?: string;
   nameAr: string;
   equipment: ExerciseEquipment;
   muscleGroup: MuscleGroup;
