@@ -1279,6 +1279,7 @@ const WeightLossPage: React.FC = () => {
   });
   const [autoBuildMode, setAutoBuildMode] = useState(false);
   const [mealTab, setMealTab] = useState<MealKey>('breakfast');
+  const [openMealAccordion, setOpenMealAccordion] = useState<MealKey | null>('breakfast');
   const [regionSel, setRegionSel] = useState<string | null>(null);
   const [cuisineSel, setCuisineSel] = useState<string | null>(null);
   const [kitchenRegion, setKitchenRegion] = useState<string>('all');
@@ -1364,7 +1365,7 @@ const WeightLossPage: React.FC = () => {
   );
 
   const selectedKitchen = useMemo<KitchenInfo>(
-    () => kitchens.find((k) => k.id === selectedKitchenId) ?? kitchens[0],
+    () => kitchens.find((k) => k.id === selectedKitchenId) ?? kitchens.find((k) => k.id === 'diet-mediterranean') ?? kitchens.find((k) => k.id === 'egyptian') ?? kitchens[0],
     [selectedKitchenId, kitchens],
   );
 
@@ -1384,10 +1385,7 @@ const WeightLossPage: React.FC = () => {
       ),
     [selectedKitchenCats, selectedKitchen],
   );
-  const countryKitchens = useMemo<KitchenInfo[]>(() => {
-    const e = kitchens.find((k) => k.id === 'egyptian');
-    return e && e.dishes.length ? [e] : [selectedKitchen];
-  }, [selectedKitchen, kitchens]);
+  const countryKitchens = useMemo<KitchenInfo[]>(() => [selectedKitchen], [selectedKitchen]);
   const regionKitchens = useMemo<Record<string, KitchenInfo[]>>(() => {
     const out: Record<string, KitchenInfo[]> = {};
     for (const r of REGIONS) {
@@ -2702,6 +2700,10 @@ const WeightLossPage: React.FC = () => {
                 <div className="mt-1.5 text-[11px] font-bold text-[#D4AF37]">+250ml</div>
               </div>
 
+              <div className="min-h-[250px] rounded-[18px] border border-dashed border-[#E3E0D8] bg-white/70 flex items-center justify-center text-[10px] font-semibold uppercase tracking-[0.14em] text-[#A4AAA5]">
+                Advertisement
+              </div>
+
               <div className="rounded-[22px] p-5 border border-[#E8E2D4] bg-white">
                 <div className="flex items-center justify-between gap-2">
                   <div className="text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#6B7A75]">🍽️ {t('wizard.step5.statMealsDone')}</div>
@@ -2747,22 +2749,32 @@ const WeightLossPage: React.FC = () => {
                   const emoji = step5Meals.find((s) => s.key === meal.mealType)?.emoji ?? '🍽️';
                   const mealCal = meal.dishes.reduce((s, x) => s + x.calories, 0);
                   const done = idx < 4 ? mealsDone[idx] : false;
+                  const isOpen = openMealAccordion === meal.mealType;
                   return (
                     <div
                       key={meal.mealType}
                       className={`rounded-[18px] border-2 p-4 transition-colors ${done ? 'border-[#0F4C3A] bg-[#F2F8F4]' : 'border-[#EFEBE4] bg-white'}`}
                     >
-                      <div className="flex items-center gap-3 min-w-0">
-                        <span className="w-11 h-11 rounded-[14px] bg-[#F4F1EB] flex items-center justify-center text-[18px] shrink-0">{emoji}</span>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <span className="text-[13px] font-extrabold text-[#0F4C3A]">{t((meal.mealType === 'lunch' ? 'mealLunch' : meal.mealType === 'dinner' ? 'mealDinner' : meal.mealType === 'breakfast' ? 'mealBreakfast' : 'mealSnack') as any)}</span>
-                            <span className="text-[11px] text-[#8A938E]">{mealTime(meal.mealType)}</span>
-                          </div>
-                          <div className="mt-0.5 text-[12px] text-[#6B7A75]">
-                            <span className="num font-bold text-[#B8860B]">{mealCal}</span> kcal
-                          </div>
-                        </div>
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          aria-expanded={isOpen}
+                          aria-controls={`meal-panel-${meal.mealType}`}
+                          onClick={() => setOpenMealAccordion((open) => open === meal.mealType ? null : meal.mealType)}
+                          className="flex flex-1 items-center gap-3 min-w-0 text-start"
+                        >
+                          <span className="w-11 h-11 rounded-[14px] bg-[#F4F1EB] flex items-center justify-center text-[18px] shrink-0">{emoji}</span>
+                          <span className="flex-1 min-w-0">
+                            <span className="flex items-center gap-2 flex-wrap">
+                              <span className="text-[13px] font-extrabold text-[#0F4C3A]">{t((meal.mealType === 'lunch' ? 'mealLunch' : meal.mealType === 'dinner' ? 'mealDinner' : meal.mealType === 'breakfast' ? 'mealBreakfast' : 'mealSnack') as any)}</span>
+                              <span className="text-[11px] text-[#8A938E]">{mealTime(meal.mealType)}</span>
+                            </span>
+                            <span className="mt-0.5 block text-[12px] text-[#6B7A75]">
+                              <span className="num font-bold text-[#B8860B]">{mealCal}</span> kcal
+                            </span>
+                          </span>
+                          <span aria-hidden="true" className="text-[18px] font-bold text-[#8A938E] shrink-0">{isOpen ? '−' : '+'}</span>
+                        </button>
                         {idx < 4 && (
                           <button
                             type="button"
@@ -2777,7 +2789,7 @@ const WeightLossPage: React.FC = () => {
                           </button>
                         )}
                       </div>
-                      <div className="mt-3 space-y-1.5">
+                      <div id={`meal-panel-${meal.mealType}`} hidden={!isOpen} className="mt-3 space-y-1.5">
                         {meal.dishes.map((d, di) => {
                           const rowKey = `${di}-${d.dish.name}`;
                           const leaveKey = `d${selectedPlanDay - 1}-m${idx}-x${di}-${d.dish.name}`;
@@ -2851,6 +2863,12 @@ const WeightLossPage: React.FC = () => {
               )}
             </div>
 
+              {planType !== 'nutrition' && (
+                <div className="min-h-[250px] rounded-[18px] border border-dashed border-[#E3E0D8] bg-white/70 flex items-center justify-center text-[10px] font-semibold uppercase tracking-[0.14em] text-[#A4AAA5]">
+                  Advertisement
+                </div>
+              )}
+
             {planType !== 'nutrition' && (
               <div className="rounded-[26px] bg-white border border-[#EFEBE4] shadow-[0_10px_30px_rgba(15,76,58,0.06)] p-5 md:p-6">
                 <div className="flex items-center justify-between gap-2">
@@ -2871,7 +2889,7 @@ const WeightLossPage: React.FC = () => {
                       <div key={ex.id} className="flex items-center gap-2.5 rounded-[14px] border border-[#EFEBE4] bg-[#FDFBF7] px-3 py-2.5 min-w-0">
                         <span className="text-[15px] leading-none shrink-0">{ex.emoji}</span>
                         <span className="truncate text-[12px] font-bold flex-1 min-w-0">{ex.name}</span>
-                        <span className="shrink-0 text-[10.5px] font-bold bg-white border border-[#E9E5DB] px-2 py-0.5 rounded-full">{ex.sets !== '1' ? `${ex.sets} × ${ex.reps}` : ex.reps} · {ex.dur}</span>
+                        <span className="shrink-0 text-[10.5px] font-bold bg-white border border-[#E9E5DB] px-2 py-0.5 rounded-full">{ex.dur}</span>
                       </div>
                     ))}
                   </div>
@@ -2936,6 +2954,10 @@ const WeightLossPage: React.FC = () => {
                 </div>
               </div>
             )}
+
+            <p className="rounded-[16px] border border-[#EFEBE4] bg-white/70 px-4 py-3 text-[11px] leading-relaxed text-[#7D8782]">
+              This site is for educational purposes only and does not substitute professional medical advice. Always consult with a qualified healthcare provider.
+            </p>
 
             <div className="no-print save-bar rounded-t-[20px]">
               <div className="flex items-center gap-2 min-w-0 flex-1">
