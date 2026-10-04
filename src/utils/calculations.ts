@@ -29,7 +29,6 @@ import { ITALIAN_FULL, type ItalianFullDish } from '../data/italian-full';
 import { FRANCE_FULL, type KitchenDish as FrenchFullDish } from '../data/france-full';
 import { SPANISH_FULL, type SpanishFullDish } from '../data/spanish-full';
 import { GREEK_FULL, type GreekFullDish } from '../data/greek-full';
-import { TURKISH_FULL, type TurkishFullDish } from '../data/turkish-full';
 import { BRITISH_FULL, type BritishFullDish } from '../data/british-full';
 import { UK_FULL, type KitchenDish as UKFullDish } from '../data/uk-full';
 import { GERMANY_FULL, type KitchenDish as GermanFullDish } from '../data/germany-full';
@@ -519,7 +518,7 @@ const fullFoodBase = (mt: string): 'breakfast' | 'lunch' | 'dinner' | 'fruit' | 
   return 'drink';
 };
 
-const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish | AlgerianFullDish | MoroccanFullDish | SaudiFullDish | EmiratiFullDish | KuwaitiFullDish | QatarFullDish | BahrainiFullDish | OmaniFullDish | IndianFullDish | PakistaniFullDish | IndonesianFullDish | MalaysianFullDish | ChineseFullDish | JapaneseFullDish | KoreanFullDish | ThaiFullDish | ItalianFullDish | FrenchFullDish | SpanishFullDish | GreekFullDish | TurkishFullDish | BritishFullDish | SwissFullDish | MexicanFullDish | AmericanFullDish | CubanFullDish | CostaRicanFullDish | JamaicanFullDish | BrazilianFullDish | PeruvianFullDish | ColombianFullDish | ChileanFullDish | VenezuelanFullDish | AustralianFullDish | NewZealandFullDish | SouthAfricanFullDish | RwandanFullDish | KenyanFullDish | NigerianFullDish | EthiopianFullDish | SeychelloisFullDish | MauritianFullDish | GaboneseFullDish, cuisineId: string): FoodItem => {
+const toFullFood = (e: EgyptianFullDish | LibyanFullDish | TunisianFullDish | AlgerianFullDish | MoroccanFullDish | SaudiFullDish | EmiratiFullDish | KuwaitiFullDish | QatarFullDish | BahrainiFullDish | OmaniFullDish | IndianFullDish | PakistaniFullDish | IndonesianFullDish | MalaysianFullDish | ChineseFullDish | JapaneseFullDish | KoreanFullDish | ThaiFullDish | ItalianFullDish | FrenchFullDish | SpanishFullDish | GreekFullDish | BritishFullDish | SwissFullDish | MexicanFullDish | AmericanFullDish | CubanFullDish | CostaRicanFullDish | JamaicanFullDish | BrazilianFullDish | PeruvianFullDish | ColombianFullDish | ChileanFullDish | VenezuelanFullDish | AustralianFullDish | NewZealandFullDish | SouthAfricanFullDish | RwandanFullDish | KenyanFullDish | NigerianFullDish | EthiopianFullDish | SeychelloisFullDish | MauritianFullDish | GaboneseFullDish, cuisineId: string): FoodItem => {
   const base = fullFoodBase(e.mealType);
   return {
     id: e.id,
@@ -610,7 +609,6 @@ const toFrenchFood = (e: FrenchFullDish): FoodItem =>
   toFullFood({ ...e, mealType: e.mealType as AmericanFullDish['mealType'] }, 'french');
 const toSpanishFood = (e: SpanishFullDish): FoodItem => toFullFood(e, 'spanish');
 const toGreekFood = (e: GreekFullDish): FoodItem => toFullFood(e, 'greek');
-const toTurkishFood = (e: TurkishFullDish): FoodItem => toFullFood(e, 'turkish');
 const toBritishFood = (e: BritishFullDish): FoodItem => toFullFood(e, 'british');
 const toUKFood = (e: UKFullDish): FoodItem =>
   toFullFood({ ...e, mealType: e.mealType as AmericanFullDish['mealType'] }, 'british');
@@ -632,7 +630,7 @@ const toSpainFullFood = (e: SpainFullDish): FoodItem =>
 // Named toGreekFullFood because toGreekFood already maps the legacy GREEK_FULL set.
 const toGreekFullFood = (e: GreeceFullDish): FoodItem =>
   toFullFood({ ...e, mealType: e.mealType as AmericanFullDish['mealType'] }, 'greek');
-// Named toTurkishFullFood because toTurkishFood already maps the legacy TURKISH_FULL set.
+// Maps the europe-turkey-2026 set; the legacy TURKISH_FULL set was removed.
 const toTurkishFullFood = (e: TurkeyFullDish): FoodItem =>
   toFullFood({ ...e, mealType: e.mealType as AmericanFullDish['mealType'] }, 'turkish');
 
