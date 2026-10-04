@@ -1,41 +1,10 @@
-// Strict halal gate for the Spain kitchen. Wine-braised classics (Zarzuela,
-// Rabo de Toro, Salsa Verde) are permitted only when the same title explicitly
-// states the non-alcoholic substitution. Cured-pork classics (Fabada, Cocido,
-// Callos) are permitted only as named halal-beef versions with no pork mention.
-const PORK = [
-  'pork', 'pig', 'porc', 'porcine', 'cerdo', 'jamón', 'jamon', 'chorizo',
-  'lomo', 'panceta', 'pancetta', 'morcilla', 'tocino', 'lard', 'lardo',
-  'manteca', 'sobrasada', 'butifarra', 'chicharrón', 'chicharron', 'cochinillo',
-  'salchichón', 'salchichon', 'fuet', 'lacón', 'lacon', 'bacon', 'ham',
-  'jambon', 'speck', 'salami', 'salame', 'sausage', 'salchicha', 'saucisse',
-  'wurst', 'prosciutto', 'guanciale', 'schinken',
-  'خنزير', 'لحم الخنزير', 'شحم الخنزير', 'جامبون', 'شوريزو', 'لحم مقدد',
-];
-const ALCOHOL = [
-  'alcohol', 'wine', 'vino', 'vin', 'wein', 'rioja', 'sherry', 'jerez',
-  'sangria', 'cava', 'brandy', 'coñac', 'cognac', 'rum', 'ron', 'liqueur',
-  'licor', 'liquor', 'vermut', 'vermouth', 'cerveza', 'beer', 'sidra', 'cider',
-  'txakoli', 'txacoli', 'albariño', 'albarino', 'fino', 'manzanilla',
-  'amontillado', 'oloroso', 'moscatel',
-  'كحول', 'خمر', 'نبيذ',
-];
-const BLOOD = [
-  'blood', 'blood sausage', 'morcilla', 'sangre', 'sang', 'boudin',
-  'black pudding', 'blutwurst', 'دم',
-];
-const LIVER = [
-  'liver', 'hígado', 'higado', 'foie', 'foie gras', 'leber', 'كبد', 'كبدة',
-];
-const GAME = [
-  'game', 'game meat', 'venison', 'rabbit', 'hare', 'conejo', 'liebre', 'lapin',
-  'lièvre', 'lievre', 'perdiz', 'partridge', 'codorniz', 'quail', 'pheasant',
-  'faisán', 'faisan', 'venado', 'ciervo', 'jabalí', 'jabali', 'wild boar',
-  'boar', 'sanglier', 'caza', 'gibier',
-  'غزال', 'أرنب', 'خنزير بري',
-];
+// Strict halal gate for the Spain kitchen. Uses the shared halal core
+// (scripts/halal-core.cjs) with Spain-specific pork (jamón, chorizo, ...)
+// and alcohol (sherry, cava, ...) extras. Liver stays banned for Spain.
+const { makeScan, hasTerm } = require('./halal-core.cjs');
 
 // Classic Spanish preparations intentionally excluded or materially altered to
-// meet the strict ban list (pork/cured meats, wine/sherry, blood, liver, game).
+// meet the strict ban list (pork/cured meats, wine/sherry, blood, liver).
 const EXCLUDED_TRADITIONAL = [
   'jamón ibérico de bellota', 'jamón serrano con pan', 'jamón con melón',
   'croquetas de jamón', 'huevos rotos con jamón', 'salmorejo con jamón',
@@ -52,44 +21,24 @@ const EXCLUDED_TRADITIONAL = [
   'merluza en salsa verde al vino', 'zarzuela al brandy',
   'peras al vino tinto', 'sorbete de cava', 'sangría clásica',
   'tinto de verano', 'torrijas al vino', 'bizcochos borrachos',
-  'conejo al ajillo', 'perdiz estofada', 'codornices a la plancha',
-  'jabalí estofado', 'faisán asado', 'hígado encebollado',
+  'hígado encebollado',
 ];
 
-const escape = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const hasTerm = (text, term) => new RegExp(`(^|[^\\p{L}])${escape(term)}(?=$|[^\\p{L}])`, 'iu').test(text);
+const scan = makeScan({
+  extraPork: [
+    'chorizo', 'lomo', 'tocino', 'manteca', 'sobrasada', 'butifarra',
+    'chicharrón', 'chicharron', 'cochinillo', 'salchichón', 'salchichon',
+    'fuet', 'lacón', 'lacon', 'شوريزو',
+  ],
+  extraAlcohol: [
+    'rioja', 'sherry', 'jerez', 'sangria', 'cava', 'txakoli', 'txacoli',
+    'albariño', 'albarino', 'fino', 'manzanilla', 'amontillado', 'oloroso',
+    'moscatel',
+  ],
+  banLiver: true,
+});
 
-const SAUSAGE_TERMS = new Set(['sausage', 'saucisse', 'salchicha', 'chorizo', 'wurst']);
-const CURING_TERMS = new Set(['bacon', 'ham', 'jambon', 'jamón', 'jamon', 'speck', 'pancetta', 'panceta', 'prosciutto', 'guanciale']);
-const NEGATED_ALCOHOL = /\b(?:no|without|sans|senza|sin|ohne)\s+(?:(?:red|white)\s+)?(?:wine|vino|vin|wein|sherry|jerez|brandy|alcohol)\b|non[-\s]?alcoholic|alcohol[-\s]?free|sin alcohol/i;
-
-function scan(rows) {
-  const problems = [];
-  for (const row of rows) {
-    const names = [row.nameAr, row.nameEn, row.nameFr, row.nameEs, row.nameDe].filter((v) => typeof v === 'string');
-    for (const name of names) {
-      for (const term of PORK) {
-        if (!hasTerm(name, term)) continue;
-        if (SAUSAGE_TERMS.has(term) && /halal/i.test(name)) continue;
-        if (CURING_TERMS.has(term) && /turkey|dinde|pavo|pute|halal/i.test(name)) continue;
-        problems.push({ kind: 'pork', term, nameAr: row.nameAr, nameEn: row.nameEn });
-      }
-      for (const term of ALCOHOL) {
-        if (!hasTerm(name, term)) continue;
-        if (NEGATED_ALCOHOL.test(name)) continue;
-        problems.push({ kind: 'alcohol', term, nameAr: row.nameAr, nameEn: row.nameEn });
-      }
-      for (const [kind, terms] of [['blood', BLOOD], ['liver', LIVER], ['game', GAME]]) {
-        for (const term of terms) {
-          if (hasTerm(name, term)) problems.push({ kind, term, nameAr: row.nameAr, nameEn: row.nameEn });
-        }
-      }
-    }
-  }
-  return problems;
-}
-
-module.exports = { scan, PORK, ALCOHOL, BLOOD, LIVER, GAME, EXCLUDED_TRADITIONAL };
+module.exports = { scan, EXCLUDED_TRADITIONAL, hasTerm };
 
 if (require.main === module) {
   const run = async () => {

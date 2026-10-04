@@ -1,75 +1,23 @@
-// Strict halal gate for the Norway kitchen. Norwegian classics are largely
-// halal (fish, lamb), but cured pork (svin, bacon, medisterkaker), game
-// (reindeer, elk, moose, whale, grouse), blood (blodpølse) and alcohol
-// (akevitt, øl, wine sauces) are banned.
-const PORK = [
-  'pork', 'pig', 'porc', 'porcine', 'svin', 'svinekjøtt', 'svineknoke',
-  'bacon', 'spekk', 'ham', 'jambon', 'salami', 'salame', 'sausage',
-  'saucisse', 'salchicha', 'wurst', 'prosciutto', 'guanciale', 'pancetta',
-  'lard', 'lardo', 'medisterkaker', 'ribbe',
-  'خنزير', 'لحم الخنزير', 'شحم الخنزير', 'جامبون', 'لحم مقدد',
-];
-const ALCOHOL = [
-  'alcohol', 'wine', 'vino', 'vin', 'wein', 'øl', 'beer', 'akevitt',
-  'aquavit', 'brandy', 'cognac', 'rum', 'liqueur', 'licor', 'liquor',
-  'vermut', 'vermouth', 'cider', 'whisky', 'whiskey', 'vodka', 'gløgg',
-  'كحول', 'خمر', 'نبيذ',
-];
-const BLOOD = [
-  'blood', 'blood sausage', 'blod', 'blodpølse', 'morcilla', 'sangre',
-  'sang', 'boudin', 'black pudding', 'دم',
-];
-const GAME = [
-  'game', 'game meat', 'venison', 'reindeer', 'reinsdyr', 'moose', 'elg',
-  'elk', 'deer', 'hjort', 'rådyr', 'grouse', 'ptarmigan', 'rype', 'hare',
-  'rabbit', 'wild boar', 'boar', 'sanglier', 'whale', 'hval', 'hvalkjøtt',
-  'gibier', 'غزال', 'أرنب', 'حوت',
-];
+// Strict halal gate for the Norway kitchen. Uses the shared halal core
+// (scripts/halal-core.cjs) with Norway-specific pork (svin, spekk,
+// medisterkaker) and alcohol (akevitt, øl, gløgg) extras. Game meats
+// (reindeer, elk, whale) are halal and ALLOWED per the shared core.
+const { makeScan, hasTerm } = require('./halal-core.cjs');
 
 // Classic Norwegian preparations intentionally excluded or materially altered
-// to meet the strict ban list (pork/svin, akevitt/øl/wine, blood, game).
+// to meet the strict ban list (pork/svin, akevitt/øl/wine, blood).
 const EXCLUDED_TRADITIONAL = [
   'ribbe (pork belly)', 'svinestek', 'medisterkaker (pork patties)',
-  'svinekoteletter', 'reinsdyrstek (reindeer roast)', 'elgbiff (elk steak)',
-  'hjortegryte (venison stew)', 'hvalbiff (whale steak)', 'rypestekt (grouse)',
-  'blodpølse (blood sausage)', 'akevittmarinert laks', 'øl-batter torsk',
-  'kjøtt i vinsaus',
+  'svinekoteletter', 'blodpølse (blood sausage)', 'akevittmarinert laks',
+  'øl-batter torsk', 'kjøtt i vinsaus',
 ];
 
-const escape = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const hasTerm = (text, term) => new RegExp(`(^|[^\\p{L}])${escape(term)}(?=$|[^\\p{L}])`, 'iu').test(text);
+const scan = makeScan({
+  extraPork: ['svin', 'svinekjøtt', 'svineknoke', 'medisterkaker', 'ribbe'],
+  extraAlcohol: ['akevitt', 'aquavit', 'gløgg'],
+});
 
-const SAUSAGE_TERMS = new Set(['sausage', 'saucisse', 'salchicha', 'wurst']);
-const CURING_TERMS = new Set(['bacon', 'ham', 'jambon', 'spekk', 'pancetta', 'prosciutto', 'guanciale']);
-const NEGATED_ALCOHOL = /\b(?:no|without|sans|senza|sin|ohne)\s+(?:(?:red|white)\s+)?(?:wine|vino|vin|wein|øl|beer|akevitt|aquavit|brandy|alcohol)\b|non[-\s]?alcoholic|alcohol[-\s]?free|sin alcohol/i;
-
-function scan(rows) {
-  const problems = [];
-  for (const row of rows) {
-    const names = [row.nameAr, row.nameEn, row.nameFr, row.nameEs, row.nameDe].filter((v) => typeof v === 'string');
-    for (const name of names) {
-      for (const term of PORK) {
-        if (!hasTerm(name, term)) continue;
-        if (SAUSAGE_TERMS.has(term) && /halal/i.test(name)) continue;
-        if (CURING_TERMS.has(term) && /turkey|dinde|pavo|pute|halal/i.test(name)) continue;
-        problems.push({ kind: 'pork', term, nameAr: row.nameAr, nameEn: row.nameEn });
-      }
-      for (const term of ALCOHOL) {
-        if (!hasTerm(name, term)) continue;
-        if (NEGATED_ALCOHOL.test(name)) continue;
-        problems.push({ kind: 'alcohol', term, nameAr: row.nameAr, nameEn: row.nameEn });
-      }
-      for (const [kind, terms] of [['blood', BLOOD], ['game', GAME]]) {
-        for (const term of terms) {
-          if (hasTerm(name, term)) problems.push({ kind, term, nameAr: row.nameAr, nameEn: row.nameEn });
-        }
-      }
-    }
-  }
-  return problems;
-}
-
-module.exports = { scan, PORK, ALCOHOL, BLOOD, GAME, EXCLUDED_TRADITIONAL };
+module.exports = { scan, EXCLUDED_TRADITIONAL, hasTerm };
 
 if (require.main === module) {
   const run = async () => {
