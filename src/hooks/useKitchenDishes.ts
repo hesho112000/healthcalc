@@ -8,6 +8,9 @@ interface DishRow {
   id: string;
   name_ar: string | null;
   name_en: string | null;
+  name_fr: string | null;
+  name_es: string | null;
+  name_de: string | null;
   cal_100: number | null;
   protein: number | null;
   carbs: number | null;
@@ -45,6 +48,9 @@ function rowToDish(r: DishRow): KitchenDish {
     name: r.name_ar ?? r.name_en ?? '',
     nameAr: r.name_ar ?? undefined,
     nameEn: r.name_en ?? undefined,
+    nameFr: r.name_fr ?? undefined,
+    nameEs: r.name_es ?? undefined,
+    nameDe: r.name_de ?? undefined,
     cal_100: cal100,
     p: r.protein ?? 0,
     c: r.carbs ?? 0,

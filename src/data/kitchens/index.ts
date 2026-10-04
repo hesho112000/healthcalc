@@ -137,6 +137,7 @@ const CITY_BY_ID: Record<string, string> = {
   swedish: 'ستوكهولم 🇸🇪',
   danish: 'كوبنهاغن 🇩🇰',
   finnish: 'هلسنكي 🇫🇮',
+  ukrainian: 'كييف 🇺🇦',
   venezuelan: 'كراكاس 🇻🇪',
 };
 
@@ -219,6 +220,7 @@ const COUNTRY_BY_ID: Record<string, string> = {
   swedish: 'السويد 🇸🇪',
   danish: 'الدنمارك 🇩🇰',
   finnish: 'فنلندا 🇫🇮',
+  ukrainian: 'أوكرانيا 🇺🇦',
   venezuelan: 'فنزويلا 🇻🇪',
 };
 
@@ -289,6 +291,7 @@ ghanaian: 'المطبخ الغاني',
   swedish: 'المطبخ السويدي',
   danish: 'المطبخ الدنماركي',
   finnish: 'المطبخ الفنلندي',
+  ukrainian: 'المطبخ الأوكراني',
   venezuelan: 'المطبخ الفنزويلي',
 };
 
@@ -304,7 +307,7 @@ const CITY_EN_BY_ID: Record<string, string> = {
   ghanaian: 'Accra', seychellois: 'Victoria', mauritian: 'Port Louis', gabonese: 'Libreville', botswanan: 'Gaborone',
   filipino: 'Manila', turkish: 'Istanbul', turkey: 'Istanbul', uk: 'London', germany: 'Berlin', austria: 'Vienna',
   benelux: 'Amsterdam', usa: 'New York', canada: 'Ottawa', australasia: 'Sydney', norwegian: 'Oslo', swedish: 'Stockholm',
-  danish: 'Copenhagen', finnish: 'Helsinki', venezuelan: 'Caracas',
+  danish: 'Copenhagen', finnish: 'Helsinki', ukrainian: 'Kyiv', venezuelan: 'Caracas',
 };
 
 const COUNTRY_EN_BY_ID: Record<string, string> = {
@@ -320,6 +323,7 @@ const COUNTRY_EN_BY_ID: Record<string, string> = {
   gabonese: 'Gabon', botswanan: 'Botswana', filipino: 'Philippines', turkish: 'Turkey', turkey: 'Turkey', uk: 'United Kingdom',
   germany: 'Germany', austria: 'Austria', benelux: 'Benelux', usa: 'United States', canada: 'Canada',
   australasia: 'Australia & New Zealand', norwegian: 'Norway', swedish: 'Sweden', danish: 'Denmark', finnish: 'Finland',
+  ukrainian: 'Ukraine',
   venezuelan: 'Venezuela',
 };
 
@@ -341,6 +345,7 @@ const KITCHEN_EN_BY_ID: Record<string, string> = {
   turkey: 'Turkish Kitchen', uk: 'British Kitchen', germany: 'German Kitchen', austria: 'Austrian Kitchen',
   benelux: 'Benelux Kitchen', usa: 'American Kitchen', canada: 'Canadian Kitchen', australasia: 'Australasian Kitchen',
   norwegian: 'Norwegian Kitchen', swedish: 'Swedish Kitchen', danish: 'Danish Kitchen', finnish: 'Finnish Kitchen',
+  ukrainian: 'Ukrainian Kitchen',
   venezuelan: 'Venezuelan Kitchen',
 };
 
