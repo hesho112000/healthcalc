@@ -56,6 +56,10 @@ export const BASE_REGIONAL_RECIPES = {
   rieska: profile('ريسكا خبز الشعير', 'Barley Flatbread', 'Pain plat à l’orge', 'Pan plano de cebada', 'Gerstenfladenbrot', 'breakfast_items', 'breakfast', 7, 50, 2, 'baking'),
   savusiika: profile('سافوسييكا سمك أبيض مدخن', 'Smoked Whitefish', 'Corégone fumé', 'Pescado blanco ahumado', 'Geräucherte Felchen', 'fish_seafood', 'dinner', 19, 0, 8, 'grilling'),
   porkkanalaatikko: profile('بوركانالاتيكو غراتن الجزر', 'Carrot Casserole', 'Gratin de carottes', 'Gratin de zanahorias', 'Karotten-Auflauf', 'vegetable_mains', 'dinner', 3, 14, 4, 'baking'),
+  perunarieska: profile('بيروناييسكا خبز البطاطس المسطح', 'Potato Flatbread', 'Pain plat aux pommes de terre', 'Pan plano de patata', 'Kartoffelfladenbrot', 'breakfast_items', 'breakfast', 5, 42, 3, 'baking'),
+  nokkoskeitto: profile('شوربة نبات القراص', 'Nettle Soup', 'Soupe aux orties', 'Sopa de ortigas', 'Brennnesselsuppe', 'soups_stews', 'lunch', 5, 9, 2, 'simmering'),
+  marjapuuro: profile('مارجابوورو عصيدة التوت', 'Berry Porridge', 'Bouillie aux baies', 'Gachas de bayas', 'Beerenbrei', 'breakfast_items', 'breakfast', 3, 21, 2, 'simmering'),
+  kasviskeitto: profile('شوربة الخضار', 'Vegetable Soup', 'Soupe de légumes', 'Sopa de verduras', 'Gemüsesuppe', 'soups_stews', 'lunch', 3, 11, 2, 'simmering'),
 };
 
 export const BASE_NATIONAL_RECIPES = {
@@ -89,6 +93,11 @@ export const BASE_NATIONAL_RECIPES = {
   kanakeitto: profile('كاناكيتو شوربة الدجاج حلال', 'Halal Chicken Soup', 'Soupe au poulet halal', 'Sopa de pollo halal', 'Hähnchensuppe halal', 'soups_stews', 'lunch', 8, 10, 3, 'simmering'),
   kalkkunapaisti: profile('بايستي الديك الرومي حلال', 'Halal Roast Turkey', 'Dinde rôtie halal', 'Pavo asado halal', 'Truthahnbraten halal', 'poultry_mains', 'dinner', 24, 0, 8, 'roasting'),
   ahvenpaistos: profile('آهفينبايستوس سمك الفرخ المقلي', 'Pan-Fried Perch', 'Perche poêlée', 'Perca frita', 'Barsch gebraten', 'fish_seafood', 'dinner', 19, 0, 8, 'pan_frying'),
+  munakokkeli: profile('موناكوكييلي بيض مخفوق', 'Scrambled Eggs', 'Œufs brouillés', 'Huevos revueltos', 'Rührei', 'breakfast_items', 'breakfast', 11, 1, 10, 'pan_frying'),
+  sorsapaisti: profile('بايستي البط البري', 'Roast Wild Duck', 'Canard sauvage rôti', 'Pato salvaje asado', 'Wildentenbraten', 'poultry_mains', 'dinner', 23, 0, 12, 'roasting'),
+  katkarapukeitto: profile('شوربة الروبيان', 'Shrimp Soup', 'Soupe aux crevettes', 'Sopa de gambas', 'Garnelensuppe', 'soups_stews', 'lunch', 8, 6, 3, 'simmering'),
+  lihapiirakka: profile('ليهابييراكا فطيرة اللحم البقري حلال', 'Halal Beef Meat Pie', 'Tourte de bœuf halal', 'Tarta de ternera halal', 'Halal-Rinderpastete', 'meat_mains', 'dinner', 12, 18, 8, 'baking'),
+  perunaletut: profile('بيروناييتس فطائر البطاطس', 'Potato Pancakes', 'Galettes de pommes de terre', 'Tortitas de patata', 'Kartoffelpuffer', 'street_snacks', 'lunch', 4, 20, 6, 'pan_frying'),
 };
 
 export const EXPANSION_REGIONAL_RECIPES = { ...BASE_REGIONAL_RECIPES };
@@ -124,6 +133,11 @@ export const EXPANSION_NATIONAL_RECIPES = {
   lammaskeitto: profile('لامباكيتو شوربة لحم الضأن حلال', 'Halal Lamb Soup', 'Soupe d’agneau halal', 'Sopa de cordero halal', 'Lammsuppe halal', 'soups_stews', 'dinner', 9, 10, 4, 'simmering'),
   kantarellit: profile('كانتريلا مخبوزة بالزبدة', 'Baked Chanterelles', 'Chanterelles au four', 'Rebozuelos al horno', 'Pfifferlinge aus dem Ofen', 'vegetable_mains', 'dinner', 3, 8, 5, 'baking'),
   silakkalaatikko: profile('سيلاكالاتيكو غراتن الرنجة', 'Herring Casserole', 'Gratin de hareng', 'Gratin de arenque', 'Hering-Auflauf', 'fish_seafood', 'dinner', 12, 10, 7, 'baking'),
+  kalapaistos: profile('كالابيستوس غراتن السمك', 'Fish Gratin', 'Gratin de poisson', 'Gratin de pescado', 'Fisch-Auflauf', 'fish_seafood', 'dinner', 15, 10, 7, 'baking'),
+  saaristolaisleipa: profile('سااريستولايسلييبا خبز الجزيرة', 'Island Rye Bread', 'Pain de seigle insulaire', 'Pan de centeno isleño', 'Inselroggenbrot', 'breakfast_items', 'breakfast', 7, 50, 2, 'baking'),
+  pinaattilaatikko: profile('بيناآتيلااتيكو غراتن السبانخ', 'Spinach Casserole', 'Gratin d’épinards', 'Gratin de espinacas', 'Spinat-Auflauf', 'vegetable_mains', 'dinner', 5, 8, 7, 'baking'),
+  kuhakeitto: profile('كوهويبتو شوربة الكوا', 'Pike-Perch Soup', 'Soupe de sandre', 'Sopa de lucioperca', 'Zandersuppe', 'soups_stews', 'lunch', 9, 7, 3, 'simmering'),
+  jauhelihapihvi: profile('كرات اللحم البقري حلال', 'Halal Beef Patties', 'Boulettes de bœuf halal', 'Albóndigas de ternera halal', 'Halal-Frikadellen vom Rind', 'meat_mains', 'dinner', 16, 6, 10, 'pan_frying'),
 };
 
 export function B(profileRow, region) {
