@@ -3,8 +3,15 @@
 // *-full-100-USDA.json (categories + confidence). All other kitchens come from the
 // *-full.ts adapters (flattened to the same normalized shape, confidence 70%).
 
+import type { Language } from '../../types';
+
 export interface KitchenDish {
   name: string;
+  nameAr?: string;
+  nameEn?: string;
+  nameFr?: string;
+  nameEs?: string;
+  nameDe?: string;
   cal_100: number;
   p: number;
   c: number;
@@ -25,6 +32,10 @@ export interface KitchenDish {
 export interface KitchenCategory {
   id: string;
   name_ar: string;
+  nameEn?: string;
+  nameFr?: string;
+  nameEs?: string;
+  nameDe?: string;
   count: number;
   dishes: KitchenDish[];
 }
@@ -34,6 +45,9 @@ export interface KitchenInfo {
   kitchen: string;
   city: string;
   country: string;
+  kitchenEn?: string;
+  cityEn?: string;
+  countryEn?: string;
   flag: string;
   total: number;
   conf100: number;
@@ -278,6 +292,70 @@ ghanaian: 'المطبخ الغاني',
   venezuelan: 'المطبخ الفنزويلي',
 };
 
+const CITY_EN_BY_ID: Record<string, string> = {
+  egyptian: 'Cairo', tunisian: 'Tunis', syrian: 'Damascus', palestinian: 'Jerusalem', lebanese: 'Beirut', jordanian: 'Amman',
+  algerian: 'Algiers', american: 'New York', bahraini: 'Manama', australian: 'Sydney', chinese: 'Beijing', british: 'London',
+  brazilian: 'São Paulo', chilean: 'Santiago', colombian: 'Bogotá', 'costa-rican': 'San José', cuban: 'Havana', emirati: 'Dubai',
+  ethiopian: 'Addis Ababa', french: 'Paris', italian: 'Rome', indian: 'Mumbai', indonesian: 'Jakarta', japanese: 'Tokyo',
+  greek: 'Athens', jamaican: 'Kingston', kenyan: 'Nairobi', korean: 'Seoul', taiwanese: 'Taipei', kuwaiti: 'Kuwait City',
+  mexican: 'Mexico City', libyan: 'Tripoli', malaysian: 'Kuala Lumpur', moroccan: 'Casablanca', 'new-zealand': 'Auckland',
+  omani: 'Muscat', pakistani: 'Karachi', peruvian: 'Lima', saudi: 'Riyadh', nigerian: 'Lagos', qatar: 'Doha',
+  rwandan: 'Kigali', swiss: 'Geneva', thai: 'Bangkok', vietnamese: 'Hanoi', spanish: 'Madrid', 'south-african': 'Cape Town',
+  ghanaian: 'Accra', seychellois: 'Victoria', mauritian: 'Port Louis', gabonese: 'Libreville', botswanan: 'Gaborone',
+  filipino: 'Manila', turkish: 'Istanbul', turkey: 'Istanbul', uk: 'London', germany: 'Berlin', austria: 'Vienna',
+  benelux: 'Amsterdam', usa: 'New York', canada: 'Ottawa', australasia: 'Sydney', norwegian: 'Oslo', swedish: 'Stockholm',
+  danish: 'Copenhagen', finnish: 'Helsinki', venezuelan: 'Caracas',
+};
+
+const COUNTRY_EN_BY_ID: Record<string, string> = {
+  egyptian: 'Egypt', tunisian: 'Tunisia', syrian: 'Syria', palestinian: 'Palestine', lebanese: 'Lebanon', jordanian: 'Jordan',
+  algerian: 'Algeria', american: 'United States', bahraini: 'Bahrain', australian: 'Australia', chinese: 'China',
+  british: 'United Kingdom', brazilian: 'Brazil', chilean: 'Chile', colombian: 'Colombia', 'costa-rican': 'Costa Rica',
+  cuban: 'Cuba', emirati: 'UAE', ethiopian: 'Ethiopia', french: 'France', italian: 'Italy', indian: 'India',
+  indonesian: 'Indonesia', japanese: 'Japan', greek: 'Greece', jamaican: 'Jamaica', kenyan: 'Kenya', korean: 'Korea',
+  taiwanese: 'Taiwan', kuwaiti: 'Kuwait', mexican: 'Mexico', libyan: 'Libya', malaysian: 'Malaysia', moroccan: 'Morocco',
+  'new-zealand': 'New Zealand', omani: 'Oman', pakistani: 'Pakistan', peruvian: 'Peru', saudi: 'Saudi Arabia',
+  nigerian: 'Nigeria', qatar: 'Qatar', rwandan: 'Rwanda', swiss: 'Switzerland', thai: 'Thailand', vietnamese: 'Vietnam',
+  spanish: 'Spain', 'south-african': 'South Africa', ghanaian: 'Ghana', seychellois: 'Seychelles', mauritian: 'Mauritius',
+  gabonese: 'Gabon', botswanan: 'Botswana', filipino: 'Philippines', turkish: 'Turkey', turkey: 'Turkey', uk: 'United Kingdom',
+  germany: 'Germany', austria: 'Austria', benelux: 'Benelux', usa: 'United States', canada: 'Canada',
+  australasia: 'Australia & New Zealand', norwegian: 'Norway', swedish: 'Sweden', danish: 'Denmark', finnish: 'Finland',
+  venezuelan: 'Venezuela',
+};
+
+const KITCHEN_EN_BY_ID: Record<string, string> = {
+  egyptian: 'Egyptian Kitchen', tunisian: 'Tunisian Kitchen', syrian: 'Syrian Kitchen', palestinian: 'Palestinian Kitchen',
+  lebanese: 'Lebanese Kitchen', jordanian: 'Jordanian Kitchen', algerian: 'Algerian Kitchen', american: 'American Kitchen',
+  bahraini: 'Bahraini Kitchen', australian: 'Australian Kitchen', chinese: 'Chinese Kitchen', japanese: 'Japanese Kitchen',
+  british: 'British Kitchen', brazilian: 'Brazilian Kitchen', chilean: 'Chilean Kitchen', colombian: 'Colombian Kitchen',
+  'costa-rican': 'Costa Rican Kitchen', cuban: 'Cuban Kitchen', emirati: 'Emirati Kitchen', ethiopian: 'Ethiopian Kitchen',
+  french: 'French Kitchen', italian: 'Italian Kitchen', indian: 'Indian Kitchen', indonesian: 'Indonesian Kitchen',
+  malaysian: 'Malaysian Kitchen', greek: 'Greek Kitchen', jamaican: 'Jamaican Kitchen', kenyan: 'Kenyan Kitchen',
+  korean: 'Korean Kitchen', taiwanese: 'Taiwanese Kitchen', kuwaiti: 'Kuwaiti Kitchen', mexican: 'Mexican Kitchen',
+  libyan: 'Libyan Kitchen', moroccan: 'Moroccan Kitchen', 'new-zealand': 'New Zealand Kitchen', omani: 'Omani Kitchen',
+  pakistani: 'Pakistani Kitchen', peruvian: 'Peruvian Kitchen', saudi: 'Saudi Kitchen', nigerian: 'Nigerian Kitchen',
+  qatar: 'Qatari Kitchen', rwandan: 'Rwandan Kitchen', swiss: 'Swiss Kitchen', thai: 'Thai Kitchen',
+  vietnamese: 'Vietnamese Kitchen', spanish: 'Spanish Kitchen', 'south-african': 'South African Kitchen',
+  ghanaian: 'Ghanaian Kitchen', seychellois: 'Seychellois Kitchen', mauritian: 'Mauritian Kitchen',
+  gabonese: 'Gabonese Kitchen', botswanan: 'Botswanan Kitchen', filipino: 'Filipino Kitchen', turkish: 'Turkish Kitchen',
+  turkey: 'Turkish Kitchen', uk: 'British Kitchen', germany: 'German Kitchen', austria: 'Austrian Kitchen',
+  benelux: 'Benelux Kitchen', usa: 'American Kitchen', canada: 'Canadian Kitchen', australasia: 'Australasian Kitchen',
+  norwegian: 'Norwegian Kitchen', swedish: 'Swedish Kitchen', danish: 'Danish Kitchen', finnish: 'Finnish Kitchen',
+  venezuelan: 'Venezuelan Kitchen',
+};
+
+const DIET_NAME_EN: Record<string, string> = {
+  keto: 'Keto Kitchen', vegan: 'Vegan Kitchen', vegetarian: 'Vegetarian Kitchen', 'high-protein': 'High-Protein Kitchen',
+  mediterranean: 'Mediterranean Kitchen', 'low-carb': 'Low-Carb Diet', dash: 'DASH Diet', 'gluten-free': 'Gluten-Free Diet',
+  'intermittent-fasting': 'Intermittent Fasting Diet', paleo: 'Paleo Diet',
+};
+
+const DIET_COUNTRY_EN: Record<string, string> = {
+  keto: 'USA - Keto 🇺🇸', vegan: 'Global - Vegan 🌱', vegetarian: 'Global - Vegetarian 🌿', 'high-protein': 'Global - Protein 💪',
+  mediterranean: 'Greece - Mediterranean 🫒', 'low-carb': 'Diet - Low Carb 🥬', dash: 'USA - DASH 🫀',
+  'gluten-free': 'Global - Gluten-Free 🌾', 'intermittent-fasting': 'Global - Intermittent Fasting ⏱️', paleo: 'Global - Paleo 🏹',
+};
+
 function basenameId(path: string): string {
   const file = path.split('/').pop() || '';
   return file.replace(/\.(json|ts)$/, '').replace(/-full(?:-100-USDA)?$/, '').replace(/-kitchen$/, '');
@@ -302,6 +380,11 @@ function toKitchenDish(raw: any): KitchenDish | null {
   if ('cal_100' in raw) {
     return {
       name: raw.name ?? '',
+      nameAr: raw.name ?? raw.nameAr ?? raw.name_ar ?? undefined,
+      nameEn: raw.nameEn ?? raw.name_en ?? undefined,
+      nameFr: raw.nameFr ?? raw.name_fr ?? undefined,
+      nameEs: raw.nameEs ?? raw.name_es ?? undefined,
+      nameDe: raw.nameDe ?? raw.name_de ?? undefined,
       cal_100: raw.cal_100 ?? 0,
       p: raw.p ?? 0,
       c: raw.c ?? 0,
@@ -323,6 +406,11 @@ function toKitchenDish(raw: any): KitchenDish | null {
   const cal100 = Math.max(0, Math.round((kcal * 100) / grams));
   return {
     name: raw.name_ar ?? raw.nameAr ?? raw.name_en ?? raw.nameEn ?? '',
+    nameAr: raw.name_ar ?? raw.nameAr ?? undefined,
+    nameEn: raw.nameEn ?? raw.name_en ?? undefined,
+    nameFr: raw.nameFr ?? raw.name_fr ?? undefined,
+    nameEs: raw.nameEs ?? raw.name_es ?? undefined,
+    nameDe: raw.nameDe ?? raw.name_de ?? undefined,
     cal_100: cal100,
     p: raw.protein ?? 0,
     c: raw.carbs ?? 0,
@@ -383,6 +471,9 @@ function buildDiet(path: string, mod: any): KitchenInfo {
     kitchen: name,
     city: name,
     country,
+    kitchenEn: DIET_NAME_EN[base] ?? `${base} diet`,
+    cityEn: DIET_NAME_EN[base] ?? `${base} diet`,
+    countryEn: DIET_COUNTRY_EN[base] ?? 'Global diet 🌍',
     flag: country.split(' ').pop() ?? '🏳️',
     total: dishes.length,
     conf100: 0,
@@ -400,6 +491,10 @@ function buildRich(path: string, mod: any): KitchenInfo {
   const categories: KitchenCategory[] = (data.categories ?? []).map((c: any) => ({
     id: c.id ?? '',
     name_ar: c.name_ar ?? '',
+    nameEn: c.name?.en ?? c.nameEn ?? c.name_en ?? undefined,
+    nameFr: c.name?.fr ?? c.nameFr ?? c.name_fr ?? undefined,
+    nameEs: c.name?.es ?? c.nameEs ?? c.name_es ?? undefined,
+    nameDe: c.name?.de ?? c.nameDe ?? c.name_de ?? undefined,
     count: c.count ?? c.dishes?.length ?? 0,
     dishes: (c.dishes ?? []).map(toKitchenDish).filter((d: KitchenDish | null): d is KitchenDish => !!d),
   }));
@@ -413,6 +508,9 @@ function buildRich(path: string, mod: any): KitchenInfo {
     kitchen: name,
     city,
     country,
+    kitchenEn: typeof data.kitchen_en === 'string' ? data.kitchen_en : KITCHEN_EN_BY_ID[id],
+    cityEn: CITY_EN_BY_ID[id],
+    countryEn: COUNTRY_EN_BY_ID[id],
     flag: country.split(' ').pop() ?? '🏳️',
     total: data.total_dishes ?? dishes.length,
     conf100: dishes.filter((d) => d.confidence === 100).length,
@@ -440,6 +538,9 @@ function buildBasic(path: string, mod: any): KitchenInfo {
     kitchen: name,
     city,
     country,
+    kitchenEn: KITCHEN_EN_BY_ID[id],
+    cityEn: CITY_EN_BY_ID[id],
+    countryEn: COUNTRY_EN_BY_ID[id],
     flag: country.split(' ').pop() ?? '🏳️',
     total: dishes.length,
     conf100: 0,
@@ -471,3 +572,36 @@ function assemble(): KitchenInfo[] {
 
 export const kitchensRegistry: KitchenInfo[] = assemble();
 export const totalDishesAll = kitchensRegistry.reduce((s, k) => s + k.total, 0);
+
+export function getDishName(dish: KitchenDish | null | undefined, lang: Language): string {
+  if (!dish) return '';
+  if (lang === 'ar') return dish.nameAr ?? dish.name ?? dish.nameEn ?? '';
+  if (lang === 'fr') return dish.nameFr ?? dish.nameEn ?? dish.name ?? '';
+  if (lang === 'es') return dish.nameEs ?? dish.nameEn ?? dish.name ?? '';
+  if (lang === 'de') return dish.nameDe ?? dish.nameEn ?? dish.name ?? '';
+  return dish.nameEn ?? dish.name ?? '';
+}
+
+export function getCategoryName(cat: KitchenCategory | null | undefined, lang: Language): string {
+  if (!cat) return '';
+  if (lang === 'ar') return cat.name_ar ?? cat.nameEn ?? '';
+  if (lang === 'fr') return cat.nameFr ?? cat.nameEn ?? cat.name_ar ?? '';
+  if (lang === 'es') return cat.nameEs ?? cat.nameEn ?? cat.name_ar ?? '';
+  if (lang === 'de') return cat.nameDe ?? cat.nameEn ?? cat.name_ar ?? '';
+  return cat.nameEn ?? cat.name_ar ?? '';
+}
+
+export function getKitchenName(k: KitchenInfo | null | undefined, lang: Language): string {
+  if (!k) return '';
+  return lang === 'ar' ? k.kitchen : (k.kitchenEn ?? k.kitchen);
+}
+
+export function getKitchenCountry(k: KitchenInfo | null | undefined, lang: Language): string {
+  if (!k) return '';
+  return lang === 'ar' ? k.country : (k.countryEn ?? k.country);
+}
+
+export function getKitchenCity(k: KitchenInfo | null | undefined, lang: Language): string {
+  if (!k) return '';
+  return lang === 'ar' ? k.city : (k.cityEn ?? k.city);
+}

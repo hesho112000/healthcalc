@@ -43,6 +43,8 @@ function rowToDish(r: DishRow): KitchenDish {
   const servingsG = r.base_serving_g ?? 100;
   return {
     name: r.name_ar ?? r.name_en ?? '',
+    nameAr: r.name_ar ?? undefined,
+    nameEn: r.name_en ?? undefined,
     cal_100: cal100,
     p: r.protein ?? 0,
     c: r.carbs ?? 0,
@@ -156,6 +158,9 @@ export function useKitchenDishes(): UseKitchenDishesResult {
         kitchen: k.kitchen,
         city: k.city,
         country: k.country,
+        kitchenEn: k.kitchenEn,
+        cityEn: k.cityEn,
+        countryEn: k.countryEn,
         flag: k.flag,
         total: dishes.length,
         conf100: dishes.filter((d) => d.confidence === 100).length,

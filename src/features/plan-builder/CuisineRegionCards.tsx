@@ -1,6 +1,12 @@
 import React, { useMemo } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { CUISINE_GROUPS, CUISINE_FLAGS, type Cuisine } from '../../utils/cuisineCatalog';
+import type { Language } from '../../types';
+
+const getCuisineLabel = (item: { nameEn: string; nameAr: string }, lang: Language): string => {
+  if (lang === 'ar') return item.nameAr;
+  return item.nameEn;
+};
 
 const DEFAULT_CUISINE = 'egyptian';
 
@@ -63,7 +69,7 @@ const CuisineRegionCards: React.FC<CuisineRegionCardsProps> = ({ selected, onCha
           {selectedName ? (
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-blue-50 text-blue-700 font-bold">
               <span>{selectedName.flag}</span>
-              <span>{language === 'ar' ? selectedName.nameAr : selectedName.nameEn}</span>
+              <span>{getCuisineLabel(selectedName, language)}</span>
             </span>
           ) : (
             <span className="text-xs text-gray-400">{t('cuNone')}</span>
@@ -83,7 +89,7 @@ const CuisineRegionCards: React.FC<CuisineRegionCardsProps> = ({ selected, onCha
           <div key={region.nameEn} className={`bg-white rounded-xl border border-t-4 border-gray-200 shadow-sm p-4 hover:shadow-md transition-shadow ${region.accent}`}>
             <div className="flex items-center gap-2 mb-3">
               <span className="text-lg leading-none">{region.icon}</span>
-              <span className="text-sm font-extrabold text-gray-800">{language === 'ar' ? region.nameAr : region.nameEn}</span>
+              <span className="text-sm font-extrabold text-gray-800">{getCuisineLabel(region, language)}</span>
             </div>
             <div className="flex flex-wrap gap-2">
               {region.cuisines.map((c) => {
@@ -99,7 +105,7 @@ const CuisineRegionCards: React.FC<CuisineRegionCardsProps> = ({ selected, onCha
                         : 'bg-white text-gray-600 border-gray-200 hover:border-blue-300 hover:text-blue-600'
                     }`}
                   >
-                    {c.flag} {language === 'ar' ? c.nameAr : c.nameEn}
+                    {c.flag} {getCuisineLabel(c, language)}
                   </button>
                 );
               })}

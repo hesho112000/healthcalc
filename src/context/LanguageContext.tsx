@@ -1,6 +1,14 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { Language } from '../types';
 import { translations } from '../i18n/translations';
+
+const SUPPORTED: Language[] = ['en', 'fr', 'es', 'ar', 'de'];
+
+function resolveInitialLanguage(): Language {
+  const saved = localStorage.getItem('healthcalc-lang');
+  if (saved && (SUPPORTED as string[]).includes(saved)) return saved as Language;
+  return 'en';
+}
 
 interface LanguageContextType {
   language: Language;
@@ -20,19 +28,16 @@ const languageConfig: Record<Language, { dir: 'ltr' | 'rtl' }> = {
 };
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>(() => {
-    const saved = localStorage.getItem('healthcalc-lang');
-    const lang = (saved as Language) || 'en';
-    document.documentElement.dir = languageConfig[lang].dir;
-    document.documentElement.lang = lang;
-    return lang;
-  });
+  const [language, setLanguage] = useState<Language>(resolveInitialLanguage);
+
+  useEffect(() => {
+    document.documentElement.dir = languageConfig[language].dir;
+    document.documentElement.lang = language;
+  }, [language]);
 
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang);
     localStorage.setItem('healthcalc-lang', lang);
-    document.documentElement.dir = languageConfig[lang].dir;
-    document.documentElement.lang = lang;
   };
 
   const t = (key: keyof typeof translations.en): string => {

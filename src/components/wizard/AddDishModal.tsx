@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import type { KitchenDish } from '../../data/kitchens';
+import { getDishName } from '../../data/kitchens';
 import type { PlanMealType } from '../../utils/mealPlanGenerator';
+import type { Language } from '../../types';
 
 interface AddDishModalProps {
   open: boolean;
@@ -74,14 +76,14 @@ const AddDishModal: React.FC<AddDishModalProps> = ({ open, mode, mealLabel, pool
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    let list = pool.filter((d) => !q || d.name.toLowerCase().includes(q));
+    let list = pool.filter((d) => !q || getDishName(d, language as Language).toLowerCase().includes(q) || d.name.toLowerCase().includes(q));
     if (isSwap && currentDish) {
       const lo = currentDish.calories * 0.8;
       const hi = currentDish.calories * 1.2;
       list = list.filter((d) => d.cal_serv >= lo && d.cal_serv <= hi);
     }
     return list;
-  }, [pool, query, isSwap, currentDish]);
+  }, [pool, query, isSwap, currentDish, language]);
 
   if (!open) return null;
 
@@ -164,7 +166,7 @@ const AddDishModal: React.FC<AddDishModalProps> = ({ open, mode, mealLabel, pool
             ))
           ) : filtered.length ? (
             filtered.map((d) => {
-              const isCurrent = isSwap && currentDish ? d.name === currentDish.name : false;
+              const isCurrent = isSwap && currentDish ? getDishName(d, language as Language) === currentDish.name : false;
               return (
                 <button
                   key={d.name}
@@ -184,7 +186,7 @@ const AddDishModal: React.FC<AddDishModalProps> = ({ open, mode, mealLabel, pool
                   <span className="w-11 h-11 rounded-[12px] bg-[#F4F1EB] flex items-center justify-center text-[20px] shrink-0">🍲</span>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-1.5 min-w-0">
-                      <span className="font-bold text-[13px] text-[#0F4C3A] truncate">{d.name}</span>
+                      <span className="font-bold text-[13px] text-[#0F4C3A] truncate">{getDishName(d, language as Language)}</span>
                       {isCurrent && (
                         <span className="text-[10px] font-bold bg-[#D4AF37] text-[#0F4C3A] px-2 py-0.5 rounded-full shrink-0">
                           {language === 'ar' ? 'الحالي' : 'Current'}

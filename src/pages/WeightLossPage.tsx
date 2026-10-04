@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
-import { kitchensRegistry, totalDishesAll } from '../data/kitchens';
+import { kitchensRegistry, totalDishesAll, getDishName, getCategoryName, getKitchenName, getKitchenCountry } from '../data/kitchens';
 import type { KitchenInfo, KitchenDish, KitchenCategory } from '../data/kitchens';
 import { getWizardExercisesByType } from '../data/exercises';
 import type { ExerciseItem } from '../data/exercises';
@@ -1430,10 +1430,10 @@ const WeightLossPage: React.FC = () => {
         if (healthyOnly && !r.dish.healthy) return false;
         if (!r.meals.includes(mealTab)) return false;
         const q = dishSearch.trim();
-        if (q && !r.dish.name.includes(q) && !r.cat.name_ar.includes(q)) return false;
+        if (q && !getDishName(r.dish, language).toLowerCase().includes(q.toLowerCase()) && !getCategoryName(r.cat, language).toLowerCase().includes(q.toLowerCase()) && !r.dish.name.includes(q) && !r.cat.name_ar.includes(q)) return false;
         return true;
       }),
-    [dishRows, healthyOnly, mealTab, dishSearch],
+    [dishRows, healthyOnly, mealTab, dishSearch, language],
   );
   const dishMealOf = useMemo(() => {
     const m = new Map<string, MealKey[]>();
@@ -1833,8 +1833,8 @@ const WeightLossPage: React.FC = () => {
           kitchen: selectedKitchenId,
           diet: dietId,
           mealLines: (weeklyPlan[selectedPlanDay - 1]?.meals ?? []).map((m) => ({
-            meal: m.label,
-            dish: m.dishes.map((d) => d.dish.name).join('، '),
+            meal: t((m.mealType === 'lunch' ? 'mealLunch' : m.mealType === 'dinner' ? 'mealDinner' : m.mealType === 'breakfast' ? 'mealBreakfast' : 'mealSnack') as any),
+            dish: m.dishes.map((d) => getDishName(d.dish, language)).join('، '),
             grams: Math.round(m.dishes.reduce((s, d) => s + d.grams, 0)),
           })),
           savedAt: Date.now(),
@@ -2374,9 +2374,9 @@ const WeightLossPage: React.FC = () => {
                           className={`w-[calc(50%-6px)] sm:w-[calc(33.333%-8px)] rounded-[20px] border-2 p-4 flex flex-col items-center text-center cursor-pointer min-w-0 transition-all active:scale-95 ${on ? 'border-[#D4AF37] bg-[#FFFBEF] shadow-[0_0_0_4px_rgba(212,175,55,0.15)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
                         >
                           <span className="text-[34px] leading-none">{k.flag}</span>
-                          <span className={`mt-2 text-[14px] font-extrabold leading-none truncate max-w-full text-[#0F4C3A]`}>{k.country}</span>
-                          <span className="mt-1 text-[11px] text-[#6B7A75] leading-tight truncate max-w-full">{k.kitchen}</span>
-                          {k.sample && <span className="mt-1.5 text-[10.5px] text-[#8A938E] truncate max-w-full">🍽 {k.sample.name}</span>}
+                          <span className={`mt-2 text-[14px] font-extrabold leading-none truncate max-w-full text-[#0F4C3A]`}>{getKitchenCountry(k, language)}</span>
+                          <span className="mt-1 text-[11px] text-[#6B7A75] leading-tight truncate max-w-full">{getKitchenName(k, language)}</span>
+                          {k.sample && <span className="mt-1.5 text-[10.5px] text-[#8A938E] truncate max-w-full">🍽 {getDishName(k.sample, language)}</span>}
                           <span className={`mt-2 text-[11px] font-bold px-2.5 py-1 rounded-full ${on ? 'bg-[#D4AF37] text-[#0F4C3A]' : 'bg-[#F4F1EB] text-[#6B7A75]'}`}>
                             {t('wizard.step3.dishCount').replace('{n}', String(kitchenCounts[k.id] ?? k.total))}
                           </span>
@@ -2403,9 +2403,9 @@ const WeightLossPage: React.FC = () => {
                     return k ? (
                       <div className="mt-3 rounded-[20px] border-2 border-[#D4AF37] bg-[#FFFBEF] p-4 flex flex-col items-center text-center">
                         <span className="text-[34px] leading-none">{k.flag}</span>
-                        <span className="mt-2 text-[14px] font-extrabold leading-none truncate max-w-full text-[#0F4C3A]">{k.country}</span>
-                        <span className="mt-1 text-[11px] text-[#6B7A75] leading-tight truncate max-w-full">{k.kitchen}</span>
-                        {k.sample && <span className="mt-1.5 text-[10.5px] text-[#8A938E] truncate max-w-full">🍽 {k.sample.name}</span>}
+                        <span className="mt-2 text-[14px] font-extrabold leading-none truncate max-w-full text-[#0F4C3A]">{getKitchenCountry(k, language)}</span>
+                        <span className="mt-1 text-[11px] text-[#6B7A75] leading-tight truncate max-w-full">{getKitchenName(k, language)}</span>
+                        {k.sample && <span className="mt-1.5 text-[10.5px] text-[#8A938E] truncate max-w-full">🍽 {getDishName(k.sample, language)}</span>}
                         <span className="mt-2 text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#D4AF37] text-[#0F4C3A]">
                           {t('wizard.step3.dishCount').replace('{n}', String(kitchenCounts[k.id] ?? k.total))}
                         </span>
@@ -2635,7 +2635,7 @@ const WeightLossPage: React.FC = () => {
                   <span className="shrink-0">←</span> {t('wizard.step5.backToEdit')}
                 </button>
                 <div className="text-[11.5px] text-[#8A938E] min-w-0 truncate text-end">
-                  <span className="num">{numbers!.targetCal}</span> kcal · {selectedKitchen.flag} {selectedKitchen.kitchen}
+                  <span className="num">{numbers!.targetCal}</span> kcal · {selectedKitchen.flag} {getKitchenName(selectedKitchen, language)}
                 </div>
               </div>
 
@@ -2756,7 +2756,7 @@ const WeightLossPage: React.FC = () => {
                         <span className="w-11 h-11 rounded-[14px] bg-[#F4F1EB] flex items-center justify-center text-[18px] shrink-0">{emoji}</span>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 flex-wrap">
-                            <span className="text-[13px] font-extrabold text-[#0F4C3A]">{meal.label}</span>
+                            <span className="text-[13px] font-extrabold text-[#0F4C3A]">{t((meal.mealType === 'lunch' ? 'mealLunch' : meal.mealType === 'dinner' ? 'mealDinner' : meal.mealType === 'breakfast' ? 'mealBreakfast' : 'mealSnack') as any)}</span>
                             <span className="text-[11px] text-[#8A938E]">{mealTime(meal.mealType)}</span>
                           </div>
                           <div className="mt-0.5 text-[12px] text-[#6B7A75]">
@@ -2789,7 +2789,7 @@ const WeightLossPage: React.FC = () => {
                                 removingDish === leaveKey ? 'dish-leave' : 'dish-enter'
                               } ${swapFlash === flashKey ? 'dish-swap-flash' : ''}`}
                             >
-                              <span className="font-semibold text-[#0F4C3A] min-w-0 truncate">• {d.dish.name}</span>
+                              <span className="font-semibold text-[#0F4C3A] min-w-0 truncate">• {getDishName(d.dish, language)}</span>
                               <span className="flex items-center gap-1.5 shrink-0 text-[#8A938E]">
                                 <span className="flex items-center gap-1 min-w-0">
                                   <span className="num font-bold text-[#B8860B]">{d.calories}</span>
@@ -2889,7 +2889,7 @@ const WeightLossPage: React.FC = () => {
                     <span className="w-9 h-9 rounded-[12px] bg-[#F4F1EB] flex items-center justify-center text-[16px] shrink-0">🍽️</span>
                     <div>
                       <div className="text-[15px] font-extrabold">{t('wizard.step5.planTitle')}</div>
-                      <div className="text-[11px] text-[#8A938E]">{selectedKitchen.flag} {selectedKitchen.country}</div>
+                      <div className="text-[11px] text-[#8A938E]">{selectedKitchen.flag} {getKitchenCountry(selectedKitchen, language)}</div>
                     </div>
                   </div>
                   <span className="text-[11px] font-bold bg-[#FFF8E7] text-[#B8860B] px-3 py-1 rounded-full shrink-0">
@@ -3048,9 +3048,9 @@ const WeightLossPage: React.FC = () => {
             open={!!dishModal}
             mode={dishModal.mode}
             mealType={dishModal.mealType}
-            mealLabel={meal ? meal.label : mealLabel(dishModal.mealType)}
+            mealLabel={meal ? t((meal.mealType === 'lunch' ? 'mealLunch' : meal.mealType === 'dinner' ? 'mealDinner' : meal.mealType === 'breakfast' ? 'mealBreakfast' : 'mealSnack') as any) : mealLabel(dishModal.mealType)}
             pool={dishPoolByMeal(dishModal.mealType)}
-            currentDish={cur ? { calories: cur.calories, name: cur.dish.name } : null}
+            currentDish={cur ? { calories: cur.calories, name: getDishName(cur.dish, language) } : null}
             language={language}
             onClose={() => setDishModal(null)}
             onSelect={(dish) => {
