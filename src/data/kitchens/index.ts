@@ -272,7 +272,7 @@ const NAME_BY_ID: Record<string, string> = {
   korean: 'المطبخ الكوري',
   taiwanese: 'المطبخ التايواني',
   kuwaiti: 'المطبخ الكويتي',
-  mexican: 'المطبخ المكسيكي',
+  mexican: 'المكسيك',
   libyan: 'المطبخ الليبي',
   moroccan: 'المطبخ المغربي',
   'new-zealand': 'المطبخ النيوزيلندي',
@@ -347,6 +347,7 @@ const COUNTRY_EN_BY_ID: Record<string, string> = {
 
 const KITCHEN_DESCRIPTION_BY_ID: Record<string, string> = {
   'eastern-european': 'Polish, Russian, Czech, Hungarian',
+  mexican: 'Tacos, Burritos, Guacamole',
 };
 
 const KITCHEN_EN_BY_ID: Record<string, string> = {
@@ -357,7 +358,7 @@ const KITCHEN_EN_BY_ID: Record<string, string> = {
   'costa-rican': 'Costa Rican Kitchen', cuban: 'Cuban Kitchen', emirati: 'Emirati Kitchen', ethiopian: 'Ethiopian Kitchen',
   french: 'French Kitchen', italian: 'Italian Kitchen', indian: 'Indian Kitchen', indonesian: 'Indonesian Kitchen',
   malaysian: 'Malaysian Kitchen', greek: 'Greek Kitchen', jamaican: 'Jamaican Kitchen', kenyan: 'Kenyan Kitchen',
-  korean: 'Korean Kitchen', taiwanese: 'Taiwanese Kitchen', kuwaiti: 'Kuwaiti Kitchen', mexican: 'Mexican Kitchen',
+   korean: 'Korean Kitchen', taiwanese: 'Taiwanese Kitchen', kuwaiti: 'Kuwaiti Kitchen', mexican: 'Mexico',
   libyan: 'Libyan Kitchen', moroccan: 'Moroccan Kitchen', 'new-zealand': 'New Zealand Kitchen', omani: 'Omani Kitchen',
   pakistani: 'Pakistani Kitchen', peruvian: 'Peruvian Kitchen', saudi: 'Saudi Kitchen', nigerian: 'Nigerian Kitchen',
   qatar: 'Qatari Kitchen', rwandan: 'Rwandan Kitchen', swiss: 'Swiss Kitchen', thai: 'Thai Kitchen',
@@ -386,7 +387,8 @@ const DIET_COUNTRY_EN: Record<string, string> = {
 
 function basenameId(path: string): string {
   const file = path.split('/').pop() || '';
-  return file.replace(/\.(json|ts)$/, '').replace(/-full(?:-100-USDA)?$/, '').replace(/-kitchen$/, '');
+  const id = file.replace(/\.(json|ts)$/, '').replace(/-full(?:-100-USDA)?$/, '').replace(/-kitchen$/, '');
+  return id === 'mexico' ? 'mexican' : id;
 }
 
 function matchCountry(name: string, id: string): string {

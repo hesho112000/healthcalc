@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { supabaseClient, hasSupabaseConfig } from '../lib/supabaseClient';
 import { KITCHEN_COUNT_REGIONS } from '../utils/kitchenAuthenticity';
 import { EASTERN_EUROPEAN_FULL } from '../data/eastern-european-full';
+import { MEXICO_FULL } from '../data/mexico-full';
 
 // Live per-kitchen dish counts fetched from the dishes table via the region-tag
 // mapping in KITCHEN_COUNT_REGIONS. Returns {} until loaded, when Supabase is
@@ -30,11 +31,12 @@ export const KITCHEN_ID_ALIAS: Record<string, string> = {
 
 // These kitchens are served from local full datasets and are not migrated to
 // the Supabase dishes table. Leave their counts absent so cards use k.total.
-const LOCAL_ONLY_KITCHEN_IDS = new Set(['norwegian', 'swedish', 'danish', 'finnish', 'ukrainian', 'eastern-european']);
+const LOCAL_ONLY_KITCHEN_IDS = new Set(['norwegian', 'swedish', 'danish', 'finnish', 'ukrainian', 'eastern-european', 'mexican']);
 
 export function useKitchenDishCounts(): Record<string, number> {
   const [counts, setCounts] = useState<Record<string, number>>({
     'eastern-european': EASTERN_EUROPEAN_FULL.length,
+    mexican: MEXICO_FULL.length,
   });
 
   useEffect(() => {
@@ -60,6 +62,7 @@ export function useKitchenDishCounts(): Record<string, number> {
           out[id] = rows.reduce((n, r) => n + (set.has(r.region) ? 1 : 0), 0);
         }
         out['eastern-european'] = EASTERN_EUROPEAN_FULL.length;
+        out.mexican = MEXICO_FULL.length;
         // Lebanon's card credits its shared Levantine/MENA family rows — only the
         // ones authored with the levant-2026 source prefix (own set is region-only).
         out.lebanese += rows.filter(
