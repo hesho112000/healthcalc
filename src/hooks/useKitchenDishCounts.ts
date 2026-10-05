@@ -27,6 +27,10 @@ export const KITCHEN_ID_ALIAS: Record<string, string> = {
   ukraine: 'ukrainian',
 };
 
+// These kitchens are served from local full datasets and are not migrated to
+// the Supabase dishes table. Leave their counts absent so cards use k.total.
+const LOCAL_ONLY_KITCHEN_IDS = new Set(['norwegian', 'swedish', 'danish', 'finnish', 'ukrainian']);
+
 export function useKitchenDishCounts(): Record<string, number> {
   const [counts, setCounts] = useState<Record<string, number>>({});
 
@@ -49,6 +53,7 @@ export function useKitchenDishCounts(): Record<string, number> {
           if ((data ?? []).length < PAGE) break;
         }
         for (const [id, set] of Object.entries(KITCHEN_COUNT_REGIONS)) {
+          if (LOCAL_ONLY_KITCHEN_IDS.has(id)) continue;
           out[id] = rows.reduce((n, r) => n + (set.has(r.region) ? 1 : 0), 0);
         }
         // Lebanon's card credits its shared Levantine/MENA family rows — only the
