@@ -2,7 +2,7 @@
 
 export default buildRows(
   [
-    'ukrainian_pork_sausage',
+    'ukrainian_chicken_sausage',
     'deruny_potato_pancakes',
     'kasha_grechnevaya',
     'okroshka_classic',
