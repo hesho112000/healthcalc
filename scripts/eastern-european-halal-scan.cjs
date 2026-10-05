@@ -1,4 +1,4 @@
-const { makeScan } = require('./halal-core.cjs');
+const { CORE_PORK, hasTerm, makeScan } = require('./halal-core.cjs');
 const { pathToFileURL } = require('node:url');
 const { resolve } = require('node:path');
 
@@ -13,8 +13,14 @@ const scan = makeScan({
   ],
   extraBlood: ['кровь', 'krew', 'krev', 'vér', 'sânge', 'sange'],
 });
+const PORK_TERMS = [...new Set([...CORE_PORK, ...[
+  'свинина', 'свин', 'сало', 'wieprzowina', 'wieprz', 'słonina', 'slonina',
+  'vepřové', 'veprove', 'vepř', 'vepr', 'sertéshús', 'sertes', 'porc', 'slănină', 'slanina',
+]])];
 
-const PARTS = ['part1-1.mjs', 'part1-2.mjs', 'part1-3.mjs', 'part1-4.mjs'];
+const PARTS = [1, 2].flatMap((part) =>
+  Array.from({ length: 4 }, (_, index) => `part${part}-${index + 1}.mjs`),
+);
 
 async function loadParts(directory) {
   const batches = [];
@@ -35,6 +41,9 @@ async function run() {
   const expansion = expansionParts.flat();
   const all = [...base, ...expansion];
   const violations = scan(all);
+  const porkIdViolations = all.flatMap((row) =>
+    PORK_TERMS.filter((term) => hasTerm(row.id, term)).map((term) => ({ id: row.id, term })),
+  );
   const missingLocales = all.filter((row) => ['nameAr', 'nameEn', 'nameFr', 'nameEs', 'nameDe'].some((key) => !row[key]?.trim()));
   const duplicateIds = all.length - new Set(all.map((row) => row.id)).size;
   const partSizes = baseParts.map((rows, index) => rows.length + expansionParts[index].length);
@@ -47,14 +56,15 @@ async function run() {
   console.log(`recipe profiles defined: ${RECIPE_IDS.length}`);
   console.log(`missing translations: ${missingLocales.length}`);
   console.log(`duplicate ids: ${duplicateIds}`);
+  console.log(`pork keywords in ids: ${porkIdViolations.length}`);
   console.log(`halal violations: ${violations.length}`);
   for (const issue of violations) console.log(`  HALAL [${issue.kind}] "${issue.term}" -> ${issue.nameAr} | ${issue.nameEn}`);
 
-  if (base.length !== 50 || expansion.length !== 50 || all.length !== 100 || RECIPE_IDS.length !== 100 || invalidParts || missingLocales.length || duplicateIds || violations.length) {
+  if (base.length !== 100 || expansion.length !== 100 || all.length !== 200 || RECIPE_IDS.length !== 200 || invalidParts || missingLocales.length || duplicateIds || porkIdViolations.length || violations.length) {
     process.exitCode = 1;
     return;
   }
-  console.log('\nCLEAN: 100 five-language rows, 0 halal violations');
+  console.log('\nCLEAN: 200 five-language rows, 0 halal violations');
 }
 
 if (require.main === module) run().catch((error) => {
