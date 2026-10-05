@@ -1,0 +1,167 @@
+export const LANGUAGES = ['ar', 'en', 'fr', 'es', 'de'];
+
+export const REGIONS = [
+  { id: 'pan_ukrainian', ar: 'مطابخ أوكرانيا', en: 'Ukrainian', fr: 'Cuisine ukrainienne', es: 'Cocina ucraniana', de: 'Ukrainische Küche' },
+  { id: 'kyiv', ar: 'مطابخ كييف', en: 'Kyiv-style', fr: 'À la kiévienne', es: 'Al estilo de Kyiv', de: 'Kiewer Art' },
+  { id: 'lviv', ar: 'مطابخ لفيف', en: 'Lviv-style', fr: 'À la lvivienne', es: 'Al estilo de Lviv', de: 'Lemberger Art' },
+  { id: 'odesa', ar: 'مطابخ أوديسا', en: 'Odesa-style', fr: 'À la manière d’Odesa', es: 'Al estilo de Odesa', de: 'Odessaer Art' },
+  { id: 'kharkiv', ar: 'مطابخ خاركيف', en: 'Kharkiv-style', fr: 'À la kharkivienne', es: 'Al estilo de Járkov', de: 'Charkiwer Art' },
+  { id: 'poltava', ar: 'مطابخ بولتافا', en: 'Poltava-style', fr: 'À la poltavienne', es: 'Al estilo de Poltava', de: 'Poltawer Art' },
+  { id: 'dnipro', ar: 'مطابخ دنيبرو', en: 'Dnipro-style', fr: 'À la dniprovienne', es: 'Al estilo de Dnipró', de: 'Dniproer Art' },
+  { id: 'chernihiv', ar: 'مطابخ تشيرنيهيف', en: 'Chernihiv-style', fr: 'À la tchernihivienne', es: 'Al estilo de Cherníhiv', de: 'Tschernihiw-Art' },
+  { id: 'zaporizhzhia', ar: 'مطابخ زابوريجيا', en: 'Zaporizhzhia-style', fr: 'À la zaporogue', es: 'Al estilo de Zaporiyia', de: 'Saporischschjaer Art' },
+  { id: 'vinnytsia', ar: 'مطابخ فينيتسيا', en: 'Vinnytsia-style', fr: 'À la vinnytsienne', es: 'Al estilo de Vínnitsa', de: 'Winnyzjaer Art' },
+];
+
+export const PROFILES = [
+  {
+    id: 'chicken_borscht', part: 1, region: 'pan_ukrainian',
+    names: { ar: 'بورش بالدجاج', en: 'Chicken Borscht', fr: 'Bortsch au poulet', es: 'Borsch de pollo', de: 'Borschtsch mit Hähnchen' },
+    category: 'soups_stews', mealType: 'lunch', cooking: 'simmering',
+    kcal: 104, protein: 8, carbs: 9, fat: 4,
+  },
+  {
+    id: 'potato_varenyky', part: 1, region: 'pan_ukrainian',
+    names: { ar: 'فارينيكي بحشوة البطاطس', en: 'Potato Varenyky', fr: 'Varenyky aux pommes de terre', es: 'Varenyky de patata', de: 'Wareniki mit Kartoffelfüllung' },
+    category: 'vegetable_mains', mealType: 'lunch', cooking: 'simmering',
+    kcal: 159, protein: 5, carbs: 28, fat: 3,
+  },
+  {
+    id: 'beef_holubtsi', part: 1, region: 'pan_ukrainian',
+    names: { ar: 'هولوبتسي باللحم البقري', en: 'Beef Holubtsi Cabbage Rolls', fr: 'Holubtsi au bœuf', es: 'Holubtsi de ternera', de: 'Holubtsi mit Rindfleisch' },
+    category: 'meat_mains', mealType: 'dinner', cooking: 'simmering',
+    kcal: 147, protein: 11, carbs: 10, fat: 7,
+  },
+  {
+    id: 'cottage_cheese_syrnyky', part: 1, region: 'pan_ukrainian',
+    names: { ar: 'سيرنيكي بالجبن القريش', en: 'Cottage Cheese Syrnyky', fr: 'Syrnyky au fromage frais', es: 'Syrnyky de requesón', de: 'Syrnyky mit Quark' },
+    category: 'breakfast_items', mealType: 'breakfast', cooking: 'pan_frying',
+    kcal: 182, protein: 12, carbs: 20, fat: 6,
+  },
+  {
+    id: 'chicken_kyiv', part: 1, region: 'pan_ukrainian',
+    names: { ar: 'دجاج كييف', en: 'Chicken Kyiv', fr: 'Poulet Kyiv', es: 'Pollo Kyiv', de: 'Hähnchen Kyiv' },
+    category: 'poultry_mains', mealType: 'dinner', cooking: 'baking',
+    kcal: 220, protein: 20, carbs: 8, fat: 12,
+  },
+  {
+    id: 'mushroom_halushky', part: 1, region: 'pan_ukrainian',
+    names: { ar: 'هالوشكي بالفطر', en: 'Mushroom Halushky', fr: 'Halouchky aux cèpes', es: 'Halushky con setas', de: 'Haluschky mit Pilzen' },
+    category: 'vegetable_mains', mealType: 'lunch', cooking: 'simmering',
+    kcal: 189, protein: 6, carbs: 30, fat: 5,
+  },
+  {
+    id: 'mushroom_stew', part: 1, region: 'pan_ukrainian',
+    names: { ar: 'يخنة الفطر', en: 'Ukrainian Mushroom Stew', fr: 'Ragoût ukrainien aux cèpes', es: 'Estofado ucraniano de setas', de: 'Ukrainischer Pilzeintopf' },
+    category: 'vegetable_mains', mealType: 'dinner', cooking: 'stewing',
+    kcal: 88, protein: 4, carbs: 9, fat: 4,
+  },
+  {
+    id: 'rye_bread', part: 1, region: 'pan_ukrainian',
+    names: { ar: 'خبز الجاودار الأوكراني', en: 'Ukrainian Rye Bread', fr: 'Pain de seigle ukrainien', es: 'Pan de centeno ucraniano', de: 'Ukrainisches Roggenbrot' },
+    category: 'breakfast_items', mealType: 'breakfast', cooking: 'baking',
+    kcal: 226, protein: 7, carbs: 45, fat: 2,
+  },
+  {
+    id: 'chicken_soup', part: 1, region: 'pan_ukrainian',
+    names: { ar: 'شوربة الدجاج الأوكرانية', en: 'Ukrainian Chicken Soup', fr: 'Soupe ukrainienne au poulet', es: 'Sopa ucraniana de pollo', de: 'Ukrainische Hähnchensuppe' },
+    category: 'soups_stews', mealType: 'lunch', cooking: 'simmering',
+    kcal: 95, protein: 8, carbs: 9, fat: 3,
+  },
+  {
+    id: 'chicken_olivie', part: 1, region: 'pan_ukrainian',
+    names: { ar: 'سلطة أوليفييه بالدجاج', en: 'Olivier Salad with Chicken', fr: 'Salade Olivier au poulet', es: 'Ensalada Olivier con pollo', de: 'Olivier-Salat mit Hähnchen' },
+    category: 'street_snacks', mealType: 'lunch', cooking: 'assembling',
+    kcal: 140, protein: 9, carbs: 8, fat: 8,
+  },
+  {
+    id: 'beef_buckwheat', part: 2, region: 'pan_ukrainian',
+    names: { ar: 'حنطة سوداء باللحم البقري', en: 'Buckwheat with Beef', fr: 'Sarrasin au bœuf', es: 'Trigo sarraceno con ternera', de: 'Buchweizen mit Rindfleisch' },
+    category: 'meat_mains', mealType: 'dinner', cooking: 'simmering',
+    kcal: 215, protein: 16, carbs: 22, fat: 7,
+  },
+  {
+    id: 'beef_beet_soup', part: 2, region: 'pan_ukrainian',
+    names: { ar: 'شوربة الشمندر باللحم البقري', en: 'Beet Soup with Beef', fr: 'Soupe de betterave au bœuf', es: 'Sopa de remolacha con ternera', de: 'Rote-Bete-Suppe mit Rindfleisch' },
+    category: 'soups_stews', mealType: 'lunch', cooking: 'simmering',
+    kcal: 83, protein: 6, carbs: 8, fat: 3,
+  },
+  {
+    id: 'garlic_pampushky', part: 2, region: 'pan_ukrainian',
+    names: { ar: 'بامبوشكي بالثوم', en: 'Garlic Pampushky', fr: 'Pampouchky à l’ail', es: 'Pampushky al ajo', de: 'Pampuschky mit Knoblauch' },
+    category: 'street_snacks', mealType: 'snack', cooking: 'baking',
+    kcal: 248, protein: 6, carbs: 38, fat: 8,
+  },
+  {
+    id: 'beef_stuffed_peppers', part: 2, region: 'pan_ukrainian',
+    names: { ar: 'فلفل محشو باللحم البقري والأرز', en: 'Peppers Stuffed with Beef and Rice', fr: 'Poivrons farcis au bœuf et au riz', es: 'Pimientos rellenos de ternera y arroz', de: 'Paprika gefüllt mit Rindfleisch und Reis' },
+    category: 'meat_mains', mealType: 'dinner', cooking: 'baking',
+    kcal: 162, protein: 13, carbs: 14, fat: 6,
+  },
+  {
+    id: 'millet_porridge', part: 2, region: 'pan_ukrainian',
+    names: { ar: 'عصيدة الدخن بالحليب', en: 'Millet Porridge with Milk', fr: 'Bouillie de millet au lait', es: 'Gachas de mijo con leche', de: 'Hirsebrei mit Milch' },
+    category: 'breakfast_items', mealType: 'breakfast', cooking: 'simmering',
+    kcal: 123, protein: 4, carbs: 20, fat: 3,
+  },
+  {
+    id: 'turkey_meatballs', part: 2, region: 'pan_ukrainian',
+    names: { ar: 'كرات الديك الرومي', en: 'Turkey Meatballs', fr: 'Boulettes de dinde', es: 'Albóndigas de pavo', de: 'Putenbällchen' },
+    category: 'meat_mains', mealType: 'dinner', cooking: 'pan_frying',
+    kcal: 165, protein: 17, carbs: 4, fat: 9,
+  },
+  {
+    id: 'pumpkin_soup', part: 2, region: 'pan_ukrainian',
+    names: { ar: 'شوربة اليقطين', en: 'Ukrainian Pumpkin Soup', fr: 'Soupe ukrainienne au potiron', es: 'Sopa ucraniana de calabaza', de: 'Ukrainische Kürbissuppe' },
+    category: 'soups_stews', mealType: 'lunch', cooking: 'simmering',
+    kcal: 88, protein: 3, carbs: 10, fat: 4,
+  },
+  {
+    id: 'chicken_cutlets', part: 2, region: 'pan_ukrainian',
+    names: { ar: 'أقراص الدجاج الأوكرانية', en: 'Ukrainian Chicken Cutlets', fr: 'Galettes ukrainiennes au poulet', es: 'Tortitas ucranianas de pollo', de: 'Ukrainische Hähnchenfrikadellen' },
+    category: 'poultry_mains', mealType: 'lunch', cooking: 'pan_frying',
+    kcal: 171, protein: 18, carbs: 9, fat: 7,
+  },
+  {
+    id: 'fish_cutlets', part: 2, region: 'pan_ukrainian',
+    names: { ar: 'أقراص السمك الأوكرانية', en: 'Ukrainian Fish Cutlets', fr: 'Galettes ukrainiennes au poisson', es: 'Tortitas ucranianas de pescado', de: 'Ukrainische Fischfrikadellen' },
+    category: 'fish_seafood', mealType: 'lunch', cooking: 'pan_frying',
+    kcal: 155, protein: 14, carbs: 9, fat: 7,
+  },
+  {
+    id: 'vegetable_stew', part: 2, region: 'pan_ukrainian',
+    names: { ar: 'يخنة الخضار الأوكرانية', en: 'Ukrainian Vegetable Stew', fr: 'Ragoût ukrainien de légumes', es: 'Estofado ucraniano de verduras', de: 'Ukrainischer Gemüseeintopf' },
+    category: 'vegetable_mains', mealType: 'dinner', cooking: 'stewing',
+    kcal: 137, protein: 5, carbs: 18, fat: 5,
+  },
+  {
+    id: 'cherry_varenyky', part: 3, region: 'pan_ukrainian',
+    names: { ar: 'فارينيكي بالكرز', en: 'Cherry Varenyky', fr: 'Varenyky aux cerises', es: 'Varenyky de cereza', de: 'Wareniki mit Kirschen' },
+    category: 'rice_cakes_sweets', mealType: 'snack', cooking: 'simmering',
+    kcal: 176, protein: 5, carbs: 30, fat: 4,
+  },
+  {
+    id: 'beef_stroganoff', part: 3, region: 'pan_ukrainian',
+    names: { ar: 'ستروغانوف باللحم البقري', en: 'Beef Stroganoff', fr: 'Bœuf Stroganoff', es: 'Stroganoff de ternera', de: 'Rindfleisch-Stroganoff' },
+    category: 'meat_mains', mealType: 'dinner', cooking: 'simmering',
+    kcal: 191, protein: 19, carbs: 4, fat: 11,
+  },
+  {
+    id: 'kutia_rice', part: 3, region: 'pan_ukrainian',
+    names: { ar: 'كوتيا بالأرز والزبيب', en: 'Rice Kutia with Raisins', fr: 'Koutia au riz et aux raisins secs', es: 'Kutia de arroz con pasas', de: 'Kutja mit Reis und Rosinen' },
+    category: 'rice_cakes_sweets', mealType: 'snack', cooking: 'simmering',
+    kcal: 156, protein: 4, carbs: 26, fat: 4,
+  },
+  {
+    id: 'paska_bread', part: 3, region: 'pan_ukrainian',
+    names: { ar: 'باسكا خبز أوكراني احتفالي', en: 'Ukrainian Paska Bread', fr: 'Pain ukrainien Paska', es: 'Pan ucraniano Paska', de: 'Ukrainisches Paska-Brot' },
+    category: 'rice_cakes_sweets', mealType: 'breakfast', cooking: 'baking',
+    kcal: 281, protein: 8, carbs: 42, fat: 9,
+  },
+  {
+    id: 'apple_compote', part: 3, region: 'pan_ukrainian',
+    names: { ar: 'شراب التفاح المطهو', en: 'Apple Compote Drink', fr: 'Compote de pommes à boire', es: 'Compota de manzana para beber', de: 'Apfelkompott-Getränk' },
+    category: 'beverages', mealType: 'snack', cooking: 'simmering',
+    kcal: 48, protein: 0, carbs: 12, fat: 0,
+  },
+];
