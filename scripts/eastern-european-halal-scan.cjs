@@ -20,7 +20,7 @@ const PORK_TERMS = [...new Set([...CORE_PORK, ...[
 
 const PARTS = [1, 2, 3, 4].flatMap((part) =>
   Array.from({ length: 4 }, (_, index) => `part${part}-${index + 1}.mjs`),
-).concat(['part5-1.mjs', 'part5-2.mjs']);
+).concat(['part5-1.mjs', 'part5-2.mjs', 'part5-3.mjs', 'part5-4.mjs']);
 
 async function loadParts(directory) {
   const batches = [];
@@ -60,11 +60,11 @@ async function run() {
   console.log(`halal violations: ${violations.length}`);
   for (const issue of violations) console.log(`  HALAL [${issue.kind}] "${issue.term}" -> ${issue.nameAr} | ${issue.nameEn}`);
 
-  if (base.length !== 225 || expansion.length !== 225 || all.length !== 450 || RECIPE_IDS.length !== 450 || invalidParts || missingLocales.length || duplicateIds || porkIdViolations.length || violations.length) {
+  if (base.length !== 250 || expansion.length !== 250 || all.length !== 500 || RECIPE_IDS.length !== 500 || invalidParts || missingLocales.length || duplicateIds || porkIdViolations.length || violations.length) {
     process.exitCode = 1;
     return;
   }
-  console.log('\nCLEAN: 450 five-language rows, 0 halal violations');
+  console.log('\nCLEAN: 500 five-language rows, 0 halal violations');
 }
 
 if (require.main === module) run().catch((error) => {
