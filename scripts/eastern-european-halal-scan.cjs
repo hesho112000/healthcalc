@@ -18,7 +18,7 @@ const PORK_TERMS = [...new Set([...CORE_PORK, ...[
   'vepřové', 'veprove', 'vepř', 'vepr', 'sertéshús', 'sertes', 'porc', 'slănină', 'slanina',
 ]])];
 
-const PARTS = [1, 2].flatMap((part) =>
+const PARTS = [1, 2, 3].flatMap((part) =>
   Array.from({ length: 4 }, (_, index) => `part${part}-${index + 1}.mjs`),
 );
 
@@ -60,11 +60,11 @@ async function run() {
   console.log(`halal violations: ${violations.length}`);
   for (const issue of violations) console.log(`  HALAL [${issue.kind}] "${issue.term}" -> ${issue.nameAr} | ${issue.nameEn}`);
 
-  if (base.length !== 100 || expansion.length !== 100 || all.length !== 200 || RECIPE_IDS.length !== 200 || invalidParts || missingLocales.length || duplicateIds || porkIdViolations.length || violations.length) {
+  if (base.length !== 150 || expansion.length !== 150 || all.length !== 300 || RECIPE_IDS.length !== 300 || invalidParts || missingLocales.length || duplicateIds || porkIdViolations.length || violations.length) {
     process.exitCode = 1;
     return;
   }
-  console.log('\nCLEAN: 200 five-language rows, 0 halal violations');
+  console.log('\nCLEAN: 300 five-language rows, 0 halal violations');
 }
 
 if (require.main === module) run().catch((error) => {
