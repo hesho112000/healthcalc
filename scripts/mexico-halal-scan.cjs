@@ -14,7 +14,7 @@ const EXTRA_ALCOHOL = [
 const PORK_TERMS = [...new Set([...CORE_PORK, ...EXTRA_PORK])];
 const ALCOHOL_TERMS = [...new Set([...CORE_ALCOHOL, ...EXTRA_ALCOHOL])];
 const SCAN = makeScan({ extraPork: EXTRA_PORK, extraAlcohol: EXTRA_ALCOHOL });
-const PHASES = [1, 2];
+const PHASES = [1, 2, 3];
 const PARTS = [1, 2, 3, 4];
 
 async function load(directory) {
@@ -61,11 +61,11 @@ async function run() {
   for (const issue of [...idViolations, ...violations]) console.error(`HALAL [${issue.kind}] ${issue.term} -> ${issue.id || issue.nameEn}`);
   for (const row of macroErrors) console.error(`MACRO ${row.id}`);
 
-  if (base.length !== 100 || data.length !== 100 || all.length !== 200 || invalidPairs.length || missingLocales.length || duplicateIds || duplicateEnglishNames || macroErrors.length || idViolations.length || violations.length) {
+  if (base.length !== 150 || data.length !== 150 || all.length !== 300 || invalidPairs.length || missingLocales.length || duplicateIds || duplicateEnglishNames || macroErrors.length || idViolations.length || violations.length) {
     process.exitCode = 1;
     return;
   }
-  console.log('\nCLEAN: 200 five-language Mexican dishes across Phases A Parts 1 and 2, 0 halal violations');
+  console.log('\nCLEAN: 300 five-language Mexican dishes across Phase A Parts 1, 2 and 3, 0 halal violations');
 }
 
 if (require.main === module) run().catch((error) => {
