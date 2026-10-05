@@ -40,6 +40,19 @@ export interface KitchenCategory {
   dishes: KitchenDish[];
 }
 
+export const KITCHEN_REGION_KITCHEN_IDS = {
+  'north-america': ['usa', 'canada', 'mexican', 'cuban', 'jamaican', 'costa-rican'],
+  'south-america': ['argentinian', 'colombian', 'peruvian', 'chilean', 'brazilian', 'venezuelan'],
+} as const;
+
+export type KitchenRegionId = keyof typeof KITCHEN_REGION_KITCHEN_IDS;
+
+const KITCHEN_REGION_BY_ID = new Map<string, KitchenRegionId>(
+  Object.entries(KITCHEN_REGION_KITCHEN_IDS).flatMap(([regionId, kitchenIds]) =>
+    kitchenIds.map((kitchenId) => [kitchenId, regionId as KitchenRegionId]),
+  ),
+);
+
 export interface KitchenInfo {
   id: string;
   kitchen: string;
@@ -59,6 +72,7 @@ export interface KitchenInfo {
   categories: KitchenCategory[];
   portion_guide?: string;
   regions?: string[];
+  regionId?: KitchenRegionId;
   rich: boolean;
 }
 
@@ -535,6 +549,7 @@ function buildRich(path: string, mod: any): KitchenInfo {
     categories,
     portion_guide: data.portion_guide,
     regions: Array.isArray(data.regions) ? data.regions.filter((r: unknown): r is string => typeof r === 'string') : undefined,
+    regionId: KITCHEN_REGION_BY_ID.get(id),
     rich: true,
   };
 }
@@ -564,6 +579,7 @@ function buildBasic(path: string, mod: any): KitchenInfo {
     sample: dishes[0] ?? null,
     dishes,
     categories: [],
+    regionId: KITCHEN_REGION_BY_ID.get(id),
     rich: false,
   };
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
-import { kitchensRegistry, totalDishesAll, getDishName, getCategoryName, getKitchenName, getKitchenCountry } from '../data/kitchens';
+import { kitchensRegistry, totalDishesAll, getDishName, getCategoryName, getKitchenName, getKitchenCountry, KITCHEN_REGION_KITCHEN_IDS } from '../data/kitchens';
 import type { KitchenInfo, KitchenDish, KitchenCategory } from '../data/kitchens';
 import { getWizardExercisesByType } from '../data/exercises';
 import type { ExerciseItem } from '../data/exercises';
@@ -266,6 +266,7 @@ interface RegionDef {
   en: string;
   ar: string;
   ids: string[];
+  translationKey?: 'region.north-america' | 'region.south-america';
 }
 
 const REGIONS: RegionDef[] = [
@@ -273,7 +274,8 @@ const REGIONS: RegionDef[] = [
   { id: 'middle-east', emoji: '🕌', en: 'Middle East & Gulf', ar: 'الشرق الأوسط والخليج', ids: ['saudi', 'emirati', 'omani', 'kuwaiti', 'qatar', 'bahraini', 'lebanese', 'palestinian', 'syrian', 'jordanian'] },
   { id: 'asia', emoji: '🌏', en: 'Asia', ar: 'آسيا', ids: ['indian', 'pakistani', 'indonesian', 'malaysian', 'chinese', 'japanese', 'korean', 'thai', 'vietnamese', 'filipino'] },
   { id: 'oceania', emoji: '🌏', en: 'Oceania', ar: 'أوقيانوسيا', ids: ['australasia'] },
-  { id: 'americas', emoji: '🌎', en: 'Americas', ar: 'الأمريكتان', ids: ['usa', 'canada', 'mexican', 'jamaican', 'cuban', 'costa-rican', 'brazilian', 'peruvian', 'colombian', 'chilean', 'venezuelan'] },
+  { id: 'north-america', emoji: '🌎', en: 'North America', ar: 'أمريكا الشمالية', translationKey: 'region.north-america', ids: [...KITCHEN_REGION_KITCHEN_IDS['north-america']] },
+  { id: 'south-america', emoji: '🌎', en: 'South America', ar: 'أمريكا الجنوبية', translationKey: 'region.south-america', ids: [...KITCHEN_REGION_KITCHEN_IDS['south-america']] },
   { id: 'europe', emoji: '🏰', en: 'Europe', ar: 'أوروبا', ids: ['italian', 'french', 'spanish', 'greek', 'turkey', 'uk', 'swiss', 'germany', 'austria', 'benelux', 'norway', 'sweden', 'denmark', 'finland', 'ukraine', 'eastern-european'] },
   { id: 'special-diets', emoji: '🌿', en: 'Special Diets', ar: 'أنظمة غذائية خاصة', ids: ['diet-keto', 'diet-vegan', 'diet-vegetarian', 'diet-high-protein', 'diet-mediterranean', 'diet-low-carb', 'diet-dash', 'diet-gluten-free', 'diet-intermittent-fasting', 'diet-paleo'] },
 ];
@@ -1242,6 +1244,8 @@ const WeightLossPage: React.FC = () => {
   const { t, language } = useLanguage();
   const kitchenLabel = (k: KitchenInfo) =>
     k.id === 'eastern-european' ? t('kitchen.eastern-european.name') : getKitchenName(k, language);
+  const regionLabel = (region: RegionDef) =>
+    region.translationKey ? t(region.translationKey) : language === 'ar' ? region.ar : region.en;
   const { user } = useAuth();
   const [step, setStep] = useState<Step>(1);
   const [planType, setPlanType] = useState<PlanType>('both');
@@ -2334,7 +2338,7 @@ const WeightLossPage: React.FC = () => {
                         className="rounded-[20px] border-2 border-[#EFEBE4] bg-white hover:border-[#D4AF37] p-4 flex flex-col items-center text-center cursor-pointer min-w-0 transition-all active:scale-95"
                       >
                         <span className="text-[34px] leading-none">{r.emoji}</span>
-                        <span className="mt-2 text-[14px] font-extrabold leading-none truncate max-w-full text-[#0F4C3A]">{language === 'ar' ? r.ar : r.en}</span>
+                        <span className="mt-2 text-[14px] font-extrabold leading-none truncate max-w-full text-[#0F4C3A]">{regionLabel(r)}</span>
                         <span className="mt-1 text-[11px] text-[#6B7A75]">
                           {kits.length} {language === 'ar' ? 'مطبخ' : 'cuisines'}
                         </span>
@@ -2356,7 +2360,7 @@ const WeightLossPage: React.FC = () => {
                     return r ? (
                       <div className="mt-3 flex items-center gap-2">
                         <span className="text-[24px] leading-none">{r.emoji}</span>
-                        <span className="text-[16px] font-extrabold text-[#0F4C3A]">{language === 'ar' ? r.ar : r.en}</span>
+                        <span className="text-[16px] font-extrabold text-[#0F4C3A]">{regionLabel(r)}</span>
                         <span className="text-[11px] font-bold bg-[#F4F1EB] text-[#6B7A75] px-2.5 py-1 rounded-full">{regionKitchens[r.id].length}</span>
                       </div>
                     ) : null;
@@ -2397,7 +2401,7 @@ const WeightLossPage: React.FC = () => {
                     ←{' '}
                     {language === 'ar'
                       ? `العودة إلى ${REGIONS.find((x) => x.id === regionSel)?.ar ?? ''}`
-                      : `Back to ${REGIONS.find((x) => x.id === regionSel)?.en ?? ''}`}
+                      : `Back to ${REGIONS.find((x) => x.id === regionSel) ? regionLabel(REGIONS.find((x) => x.id === regionSel)!) : ''}`}
                   </button>
                   {(() => {
                     const k = kitchens.find((x) => x.id === cuisineSel);

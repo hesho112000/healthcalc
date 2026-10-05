@@ -3,6 +3,8 @@ import { Language } from '../types';
 type TranslationKeys = {
   'kitchen.eastern-european.name': string;
   'kitchen.eastern-european.description': string;
+  'region.north-america': string;
+  'region.south-america': string;
   // Header
   searchPlaceholder: string;
   searchResultsTitle: string;
@@ -4610,6 +4612,8 @@ export const translations: Record<Language, TranslationKeys> = {
     foodLibSearchPlaceholder: 'e.g. tamales, koshari, sushi...',
     foodLibCuisineLabel: 'Cuisine',
     foodLibAllCuisines: 'All cuisines',
+    'region.north-america': 'North America',
+    'region.south-america': 'South America',
     foodLibSortLabel: 'Sort',
     foodLibSortCalories: 'Lowest calories',
     foodLibSortHighProtein: 'Highest protein',
@@ -7080,6 +7084,8 @@ export const translations: Record<Language, TranslationKeys> = {
     foodLibSearchPlaceholder: 'ex. tamales, couscous, sushi...',
     foodLibCuisineLabel: 'Cuisine',
     foodLibAllCuisines: 'Toutes les cuisines',
+    'region.north-america': 'Amérique du Nord',
+    'region.south-america': 'Amérique du Sud',
     foodLibSortLabel: 'Trier',
     foodLibSortCalories: 'Moins de calories',
     foodLibSortHighProtein: 'Plus de protéines',
@@ -9520,6 +9526,8 @@ export const translations: Record<Language, TranslationKeys> = {
     foodLibSearchPlaceholder: 'ej. tamales, cuscús, sushi...',
     foodLibCuisineLabel: 'Cocina',
     foodLibAllCuisines: 'Todas las cocinas',
+    'region.north-america': 'América del Norte',
+    'region.south-america': 'América del Sur',
     foodLibSortLabel: 'Ordenar',
     foodLibSortCalories: 'Menos calorías',
     foodLibSortHighProtein: 'Más proteína',
@@ -11960,6 +11968,8 @@ export const translations: Record<Language, TranslationKeys> = {
     foodLibSearchPlaceholder: 'فول، كشري، كبسة، سوشي...',
     foodLibCuisineLabel: 'المطبخ',
     foodLibAllCuisines: 'كل المطابخ',
+    'region.north-america': 'أمريكا الشمالية',
+    'region.south-america': 'أمريكا الجنوبية',
     foodLibSortLabel: 'ترتيب',
     foodLibSortCalories: 'الأقل سعرات',
     foodLibSortHighProtein: 'الأعلى بروتين',
@@ -14411,6 +14421,8 @@ export const translations: Record<Language, TranslationKeys> = {
     foodLibSearchPlaceholder: 'z. B. Tamales, Koshari, Sushi ...',
     foodLibCuisineLabel: 'Küche',
     foodLibAllCuisines: 'Alle Küchen',
+    'region.north-america': 'Nordamerika',
+    'region.south-america': 'Südamerika',
     foodLibSortLabel: 'Sortieren',
     foodLibSortCalories: 'Wenigste Kalorien',
     foodLibSortHighProtein: 'Meiste Proteine',
