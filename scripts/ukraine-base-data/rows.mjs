@@ -55,6 +55,23 @@ export const BASE_NATIONAL_RECIPES = {
   uzvar: profile('أوزفار مشروب الفواكه المجففة', 'Uzvar Dried Fruit Drink', 'Uzvar aux fruits secs', 'Uzvar de frutas secas', 'Uzvar mit Trockenfrüchten', 'beverages', 'snack', 0, 12, 0, 'simmering'),
 };
 
+  bukovynski_borscht: profile('O'U^O�O"Oc OU,O'U^O�U?USU+O3U�US', 'Bukovynian Borscht', 'Borsch bukovinien', 'Borsch de Bucovina', 'Bukowina-Borscht', 'soups_stews', 'lunch', 6, 8, 4, 'simmering'),
+  zaporozka_solyanka: profile('O3U^U,USU+USU�O OU,O3U^U,USO_U+O3U�US', 'Zaporozhian Solyanka', 'Solyanka zaporogue', 'Solyanka de Zaporiyia', 'Saporischja-Solyanka', 'soups_stews', 'lunch', 8, 7, 5, 'simmering'),
+  chernihivsky_deruny: profile('U,O�U^O+U+US OU,O�O'U^O+USU+O3U�US', 'Chernihiv Deruny', 'Deruny de Tchernihiv', 'Deruny de Chernihiv', 'Tschernihiw-Deruny', 'vegetable_mains', 'lunch', 5, 19, 5, 'pan_frying'),
+  poltavsky_borscht: profile('O'U^O�O"Oc OU,O"U^U,O�OU?U?USU+O3U�US', 'Poltava Borscht', 'Borsch poltavien', 'Borsch de Poltava', 'Poltawa-Borscht', 'soups_stews', 'lunch', 6, 8, 4, 'simmering'),
+  galician_pierogi: profile('O"OU,U,U+U,O3U+US OU,U.U?U^O�U,US', 'Galician Pierogi', 'Pierogi galiciens', 'Pierogi gallegos', 'Galizische Pierogi', 'vegetable_mains', 'lunch', 7, 24, 6, 'simmering'),
+  odesa_mussels: profile('U�O�U,O�O_USUSU� U,O,O3O_USUS OU,O�U^O_USO3OU?USO3U^O+', 'Halal Odesa Mussels-style Dish', 'Plat de moules Odesa', 'Plato estilo Odesa', 'Odessa-Muschelgericht', 'fish_seafood', 'lunch', 12, 6, 5, 'stewing'),
+  dnipro_cutlets: profile('U�O�OO� OU,O_U+USO"O�U^', 'Dnipro Cutlets', 'Cotelettes de Dnipro', 'Chuletas de Dnipr', 'Dnipro-Koteletts', 'meat_mains', 'lunch', 14, 8, 8, 'pan_frying'),
+  kharkiv_pelmeni: profile('O"O'U^O,U,O+US OU,OrOO�U�U?USU+O3U�US O-U,OU,', 'Kharkiv Pelmeni with Halal Beef', 'Pelmeni de Kharkiv au halal', 'Pelmeni de Jarkov halal', 'Charkiw-Pelmeni mit Halal-Rind', 'meat_mains', 'dinner', 15, 16, 7, 'simmering'),
+  podolsky_golubtsi: profile('U�U^U,U^O"O3US OU,O"U^O_U^U,U?O3U�US', 'Podolia Golubtsi', 'Golubtsi de Podolie', 'Golubtsi de Podolia', 'Podolien-Golubtsi', 'vegetable_mains', 'dinner', 9, 13, 6, 'simmering'),
+  slobozhansky_kasha: profile('U�O�O'U^ OU,O3U,U^O"U^USU�O3U�US', 'Sloboda Kasha', 'Kacha slobodienne', 'Kasha de Slobozhanschyna', 'Sloboda-Kasha', 'breakfast_items', 'breakfast', 6, 22, 5, 'simmering'),
+  volynsky_buckwheat: profile('OU,O-U+O�Oc OU,O?U^U,U+O3U�US', 'Volyn Buckwheat', 'Sarrasin de Volhynie', 'AlforfA3n de Volinia', 'Wolhynien-Buchweizen', 'vegetable_mains', 'lunch', 8, 23, 4, 'simmering'),
+  karpatsky_pampushky: profile('O"OU.O"U^O'U�US OU,O�OO�U,O�O3U�US', 'Carpathian Pampushky', 'Pampushky carpathiques', 'Pampushky cA!rpatas', 'Karpaten-Pampushky', 'street_snacks', 'snack', 5, 36, 7, 'baking'),
+  sumsky_olivie: profile('O3U,O�Oc O3U^O.U?O3U�US O-U,OU,', 'Sumy Olivie with Halal Chicken', 'Olivie de Soumy au poulet halal', 'Olivie de Sumy halal', 'Sumy-Olivie mit Halal-HAhnchen', 'street_snacks', 'lunch', 8, 8, 8, 'assembling'),
+  kremenchuk_cutlets: profile('U�O�OO� OU,O�U^U,O.O+U^O+U�US', 'Kremenchuk Cutlets', 'Cotelettes de Kremenchuk', 'Chuletas de Kremenchuk', 'Krementschuk-Koteletts', 'meat_mains', 'dinner', 13, 7, 9, 'pan_frying'),
+  vinnitsa_deruny: profile('U,O�U^O+U+US OU,U?USU+USO�O3U�US', 'Vinnytsia Deruny', 'Deruny de Vinnytsia', 'Deruny de Vinnitsa', 'Winnyzja-Deruny', 'vegetable_mains', 'lunch', 5, 19, 5, 'pan_frying'),
+  zhytomyr_kasha: profile('U�O�O'U^ OU,U?USO�U^U.U�U^US', 'Zhytomyr Kasha', 'Kacha de Jytomyr', 'Kasha de Zhitomir', 'Schytomyr-Kasha', 'breakfast_items', 'breakfast', 6, 21, 5, 'simmering'),
+
 export const EXPANSION_REGIONAL_RECIPES = { ...BASE_REGIONAL_RECIPES };
 
 export const EXPANSION_NATIONAL_RECIPES = {
