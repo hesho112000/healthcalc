@@ -1,6 +1,8 @@
 import { Language } from '../types';
 
 type TranslationKeys = {
+  'kitchen.eastern-european.name': string;
+  'kitchen.eastern-european.description': string;
   // Header
   searchPlaceholder: string;
   searchResultsTitle: string;
@@ -2474,6 +2476,8 @@ type TranslationKeys = {
 
 export const translations: Record<Language, TranslationKeys> = {
   en: {
+    'kitchen.eastern-european.name': 'Eastern European',
+    'kitchen.eastern-european.description': 'Polish, Russian, Czech, Hungarian',
     // Advanced Care Wizard
     'wizard.eyebrow': 'ADVANCED CARE',
     'wizard.subtitle': 'Build a personalized condition-specific plan in 6 simple steps.',
@@ -4942,6 +4946,8 @@ export const translations: Record<Language, TranslationKeys> = {
 
   },
   fr: {
+    'kitchen.eastern-european.name': 'Europe de l’Est',
+    'kitchen.eastern-european.description': 'Pologne, Russie, Tchéquie, Hongrie',
     // Advanced Care Wizard
     'wizard.eyebrow': 'SOINS AVANCÉS',
     'wizard.subtitle': 'Construisez un plan personnalisé par pathologie en 6 étapes simples.',
@@ -7380,6 +7386,8 @@ export const translations: Record<Language, TranslationKeys> = {
     pmEmail: 'E-mail'
   },
   es: {
+    'kitchen.eastern-european.name': 'Europa del Este',
+    'kitchen.eastern-european.description': 'Polonia, Rusia, Chequia, Hungría',
     // Advanced Care Wizard
     'wizard.eyebrow': 'CUIDADO AVANZADO',
     'wizard.subtitle': 'Crea un plan personalizado por condición en 6 pasos sencillos.',
@@ -9818,6 +9826,8 @@ export const translations: Record<Language, TranslationKeys> = {
     pmEmail: 'Correo'
   },
   ar: {
+    'kitchen.eastern-european.name': 'أوروبا الشرقية',
+    'kitchen.eastern-european.description': 'بولندا وروسيا والتشيك والمجر',
     // Advanced Care Wizard
     'wizard.eyebrow': 'الرعاية المتقدمة',
     'wizard.subtitle': 'أنشئ خطة مخصصة حسب كل حالة في 6 خطوات بسيطة.',
@@ -12267,6 +12277,8 @@ export const translations: Record<Language, TranslationKeys> = {
   },
 
   de: {
+    'kitchen.eastern-european.name': 'Osteuropa',
+    'kitchen.eastern-european.description': 'Polen, Russland, Tschechien, Ungarn',
     // Advanced Care Wizard
     'wizard.eyebrow': 'ADVANCED CARE',
     'wizard.subtitle': 'Erstellen Sie in 6 einfachen Schritten einen personalisierten Plan für Ihre Erkrankung.',

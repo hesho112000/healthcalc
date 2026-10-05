@@ -274,7 +274,7 @@ const REGIONS: RegionDef[] = [
   { id: 'asia', emoji: '🌏', en: 'Asia', ar: 'آسيا', ids: ['indian', 'pakistani', 'indonesian', 'malaysian', 'chinese', 'japanese', 'korean', 'thai', 'vietnamese', 'filipino'] },
   { id: 'oceania', emoji: '🌏', en: 'Oceania', ar: 'أوقيانوسيا', ids: ['australasia'] },
   { id: 'americas', emoji: '🌎', en: 'Americas', ar: 'الأمريكتان', ids: ['usa', 'canada', 'mexican', 'jamaican', 'cuban', 'costa-rican', 'brazilian', 'peruvian', 'colombian', 'chilean', 'venezuelan'] },
-  { id: 'europe', emoji: '🏰', en: 'Europe', ar: 'أوروبا', ids: ['italian', 'french', 'spanish', 'greek', 'turkey', 'uk', 'swiss', 'germany', 'austria', 'benelux', 'norway', 'sweden', 'denmark', 'finland', 'ukraine'] },
+  { id: 'europe', emoji: '🏰', en: 'Europe', ar: 'أوروبا', ids: ['italian', 'french', 'spanish', 'greek', 'turkey', 'uk', 'swiss', 'germany', 'austria', 'benelux', 'norway', 'sweden', 'denmark', 'finland', 'ukraine', 'eastern-european'] },
   { id: 'special-diets', emoji: '🌿', en: 'Special Diets', ar: 'أنظمة غذائية خاصة', ids: ['diet-keto', 'diet-vegan', 'diet-vegetarian', 'diet-high-protein', 'diet-mediterranean', 'diet-low-carb', 'diet-dash', 'diet-gluten-free', 'diet-intermittent-fasting', 'diet-paleo'] },
 ];
 
@@ -1240,6 +1240,8 @@ const BodyFigure: React.FC<{ kind: Sex }> = ({ kind }) => (
 const WeightLossPage: React.FC = () => {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
+  const kitchenLabel = (k: KitchenInfo) =>
+    k.id === 'eastern-european' ? t('kitchen.eastern-european.name') : getKitchenName(k, language);
   const { user } = useAuth();
   const [step, setStep] = useState<Step>(1);
   const [planType, setPlanType] = useState<PlanType>('both');
@@ -2373,7 +2375,8 @@ const WeightLossPage: React.FC = () => {
                         >
                           <span className="text-[34px] leading-none">{k.flag}</span>
                           <span className={`mt-2 text-[14px] font-extrabold leading-none truncate max-w-full text-[#0F4C3A]`}>{getKitchenCountry(k, language)}</span>
-                          <span className="mt-1 text-[11px] text-[#6B7A75] leading-tight truncate max-w-full">{getKitchenName(k, language)}</span>
+                          <span className="mt-1 text-[11px] text-[#6B7A75] leading-tight truncate max-w-full">{kitchenLabel(k)}</span>
+                          {k.id === 'eastern-european' && <span className="mt-1 text-[10px] text-[#8A938E]">{t('kitchen.eastern-european.description')}</span>}
                           {k.sample && <span className="mt-1.5 text-[10.5px] text-[#8A938E] truncate max-w-full">🍽 {getDishName(k.sample, language)}</span>}
                           <span className={`mt-2 text-[11px] font-bold px-2.5 py-1 rounded-full ${on ? 'bg-[#D4AF37] text-[#0F4C3A]' : 'bg-[#F4F1EB] text-[#6B7A75]'}`}>
                             {t('wizard.step3.dishCount').replace('{n}', String(kitchenCounts[k.id] ?? k.total))}
@@ -2402,7 +2405,8 @@ const WeightLossPage: React.FC = () => {
                       <div className="mt-3 rounded-[20px] border-2 border-[#D4AF37] bg-[#FFFBEF] p-4 flex flex-col items-center text-center">
                         <span className="text-[34px] leading-none">{k.flag}</span>
                         <span className="mt-2 text-[14px] font-extrabold leading-none truncate max-w-full text-[#0F4C3A]">{getKitchenCountry(k, language)}</span>
-                        <span className="mt-1 text-[11px] text-[#6B7A75] leading-tight truncate max-w-full">{getKitchenName(k, language)}</span>
+                        <span className="mt-1 text-[11px] text-[#6B7A75] leading-tight truncate max-w-full">{kitchenLabel(k)}</span>
+                        {k.id === 'eastern-european' && <span className="mt-1 text-[10px] text-[#8A938E]">{t('kitchen.eastern-european.description')}</span>}
                         {k.sample && <span className="mt-1.5 text-[10.5px] text-[#8A938E] truncate max-w-full">🍽 {getDishName(k.sample, language)}</span>}
                         <span className="mt-2 text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#D4AF37] text-[#0F4C3A]">
                           {t('wizard.step3.dishCount').replace('{n}', String(kitchenCounts[k.id] ?? k.total))}
@@ -2633,7 +2637,7 @@ const WeightLossPage: React.FC = () => {
                   <span className="shrink-0">←</span> {t('wizard.step5.backToEdit')}
                 </button>
                 <div className="text-[11.5px] text-[#8A938E] min-w-0 truncate text-end">
-                  <span className="num">{numbers!.targetCal}</span> kcal · {selectedKitchen.flag} {getKitchenName(selectedKitchen, language)}
+                  <span className="num">{numbers!.targetCal}</span> kcal · {selectedKitchen.flag} {kitchenLabel(selectedKitchen)}
                 </div>
               </div>
 

@@ -48,6 +48,7 @@ export interface KitchenInfo {
   kitchenEn?: string;
   cityEn?: string;
   countryEn?: string;
+  description?: string;
   flag: string;
   total: number;
   conf100: number;
@@ -221,6 +222,7 @@ const COUNTRY_BY_ID: Record<string, string> = {
   denmark: 'الدنمارك 🇩🇰',
   finland: 'فنلندا 🇫🇮',
   ukraine: 'أوكرانيا 🇺🇦',
+  'eastern-european': 'أوروبا الشرقية 🇵🇱',
   venezuelan: 'فنزويلا 🇻🇪',
 };
 
@@ -292,6 +294,7 @@ ghanaian: 'المطبخ الغاني',
   denmark: 'المطبخ الدنماركي',
   finland: 'المطبخ الفنلندي',
   ukraine: 'المطبخ الأوكراني',
+  'eastern-european': 'أوروبا الشرقية',
   venezuelan: 'المطبخ الفنزويلي',
 };
 
@@ -324,7 +327,12 @@ const COUNTRY_EN_BY_ID: Record<string, string> = {
   germany: 'Germany', austria: 'Austria', benelux: 'Benelux', usa: 'United States', canada: 'Canada',
   australasia: 'Australia & New Zealand', norway: 'Norway', sweden: 'Sweden', denmark: 'Denmark', finland: 'Finland',
   ukraine: 'Ukraine',
+  'eastern-european': 'Eastern Europe',
   venezuelan: 'Venezuela',
+};
+
+const KITCHEN_DESCRIPTION_BY_ID: Record<string, string> = {
+  'eastern-european': 'Polish, Russian, Czech, Hungarian',
 };
 
 const KITCHEN_EN_BY_ID: Record<string, string> = {
@@ -346,6 +354,7 @@ const KITCHEN_EN_BY_ID: Record<string, string> = {
   benelux: 'Benelux Kitchen', usa: 'American Kitchen', canada: 'Canadian Kitchen', australasia: 'Australasian Kitchen',
   norway: 'Norwegian Kitchen', sweden: 'Swedish Kitchen', denmark: 'Danish Kitchen', finland: 'Finnish Kitchen',
   ukraine: 'Ukrainian Kitchen',
+  'eastern-european': 'Eastern European',
   venezuelan: 'Venezuelan Kitchen',
 };
 
@@ -546,6 +555,7 @@ function buildBasic(path: string, mod: any): KitchenInfo {
     kitchenEn: KITCHEN_EN_BY_ID[id],
     cityEn: CITY_EN_BY_ID[id],
     countryEn: COUNTRY_EN_BY_ID[id],
+    description: KITCHEN_DESCRIPTION_BY_ID[id],
     flag: country.split(' ').pop() ?? '🏳️',
     total: dishes.length,
     conf100: 0,
