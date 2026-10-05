@@ -93,6 +93,7 @@ const CITY_BY_ID: Record<string, string> = {
   lebanese: 'بيروت 🇱🇧',
   jordanian: 'عمّان 🇯🇴',
   algerian: 'الجزائر 🇩🇿',
+  argentinian: 'بوينس آيرس 🇦🇷',
   american: 'نيويورك 🇺🇸',
   bahraini: 'المنامة 🇧🇭',
   australian: 'سيدني 🇦🇺',
@@ -176,6 +177,7 @@ const COUNTRY_BY_ID: Record<string, string> = {
   lebanese: 'لبنان 🇱🇧',
   jordanian: 'الأردن 🇯🇴',
   algerian: 'الجزائر 🇩🇿',
+  argentinian: 'الأرجنتين 🇦🇷',
   american: 'الولايات المتحدة 🇺🇸',
   bahraini: 'البحرين 🇧🇭',
   australian: 'أستراليا 🇦🇺',
@@ -255,6 +257,7 @@ const NAME_BY_ID: Record<string, string> = {
   japanese: 'المطبخ الياباني',
   british: 'المطبخ البريطاني',
   brazilian: 'المطبخ البرازيلي',
+  argentinian: 'الأرجنتين',
   chilean: 'المطبخ التشيلي',
   colombian: 'المطبخ الكولومبي',
   'costa-rican': 'المطبخ الكوستاريكي',
@@ -315,7 +318,7 @@ ghanaian: 'المطبخ الغاني',
 const CITY_EN_BY_ID: Record<string, string> = {
   egyptian: 'Cairo', tunisian: 'Tunis', syrian: 'Damascus', palestinian: 'Jerusalem', lebanese: 'Beirut', jordanian: 'Amman',
   algerian: 'Algiers', american: 'New York', bahraini: 'Manama', australian: 'Sydney', chinese: 'Beijing', british: 'London',
-  brazilian: 'São Paulo', chilean: 'Santiago', colombian: 'Bogotá', 'costa-rican': 'San José', cuban: 'Havana', emirati: 'Dubai',
+  brazilian: 'São Paulo', argentinian: 'Buenos Aires', chilean: 'Santiago', colombian: 'Bogotá', 'costa-rican': 'San José', cuban: 'Havana', emirati: 'Dubai',
   ethiopian: 'Addis Ababa', french: 'Paris', italian: 'Rome', indian: 'Mumbai', indonesian: 'Jakarta', japanese: 'Tokyo',
   greek: 'Athens', jamaican: 'Kingston', kenyan: 'Nairobi', korean: 'Seoul', taiwanese: 'Taipei', kuwaiti: 'Kuwait City',
   mexican: 'Mexico City', libyan: 'Tripoli', malaysian: 'Kuala Lumpur', moroccan: 'Casablanca', 'new-zealand': 'Auckland',
@@ -330,7 +333,7 @@ const CITY_EN_BY_ID: Record<string, string> = {
 const COUNTRY_EN_BY_ID: Record<string, string> = {
   egyptian: 'Egypt', tunisian: 'Tunisia', syrian: 'Syria', palestinian: 'Palestine', lebanese: 'Lebanon', jordanian: 'Jordan',
   algerian: 'Algeria', american: 'United States', bahraini: 'Bahrain', australian: 'Australia', chinese: 'China',
-  british: 'United Kingdom', brazilian: 'Brazil', chilean: 'Chile', colombian: 'Colombia', 'costa-rican': 'Costa Rica',
+  british: 'United Kingdom', brazilian: 'Brazil', argentinian: 'Argentina', chilean: 'Chile', colombian: 'Colombia', 'costa-rican': 'Costa Rica',
   cuban: 'Cuba', emirati: 'UAE', ethiopian: 'Ethiopia', french: 'France', italian: 'Italy', indian: 'India',
   indonesian: 'Indonesia', japanese: 'Japan', greek: 'Greece', jamaican: 'Jamaica', kenyan: 'Kenya', korean: 'Korea',
   taiwanese: 'Taiwan', kuwaiti: 'Kuwait', mexican: 'Mexico', libyan: 'Libya', malaysian: 'Malaysia', moroccan: 'Morocco',
@@ -348,13 +351,14 @@ const COUNTRY_EN_BY_ID: Record<string, string> = {
 const KITCHEN_DESCRIPTION_BY_ID: Record<string, string> = {
   'eastern-european': 'Polish, Russian, Czech, Hungarian',
   mexican: 'Tacos, Burritos, Guacamole',
+  argentinian: 'Asado, Empanadas, Chimichurri',
 };
 
 const KITCHEN_EN_BY_ID: Record<string, string> = {
   egyptian: 'Egyptian Kitchen', tunisian: 'Tunisian Kitchen', syrian: 'Syrian Kitchen', palestinian: 'Palestinian Kitchen',
   lebanese: 'Lebanese Kitchen', jordanian: 'Jordanian Kitchen', algerian: 'Algerian Kitchen', american: 'American Kitchen',
   bahraini: 'Bahraini Kitchen', australian: 'Australian Kitchen', chinese: 'Chinese Kitchen', japanese: 'Japanese Kitchen',
-  british: 'British Kitchen', brazilian: 'Brazilian Kitchen', chilean: 'Chilean Kitchen', colombian: 'Colombian Kitchen',
+   british: 'British Kitchen', brazilian: 'Brazilian Kitchen', argentinian: 'Argentina', chilean: 'Chilean Kitchen', colombian: 'Colombian Kitchen',
   'costa-rican': 'Costa Rican Kitchen', cuban: 'Cuban Kitchen', emirati: 'Emirati Kitchen', ethiopian: 'Ethiopian Kitchen',
   french: 'French Kitchen', italian: 'Italian Kitchen', indian: 'Indian Kitchen', indonesian: 'Indonesian Kitchen',
   malaysian: 'Malaysian Kitchen', greek: 'Greek Kitchen', jamaican: 'Jamaican Kitchen', kenyan: 'Kenyan Kitchen',
@@ -388,7 +392,9 @@ const DIET_COUNTRY_EN: Record<string, string> = {
 function basenameId(path: string): string {
   const file = path.split('/').pop() || '';
   const id = file.replace(/\.(json|ts)$/, '').replace(/-full(?:-100-USDA)?$/, '').replace(/-kitchen$/, '');
-  return id === 'mexico' ? 'mexican' : id;
+  if (id === 'mexico') return 'mexican';
+  if (id === 'argentina') return 'argentinian';
+  return id;
 }
 
 function matchCountry(name: string, id: string): string {
