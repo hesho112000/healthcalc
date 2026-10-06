@@ -7,6 +7,8 @@ type TranslationKeys = {
   'kitchen.mexican.description': string;
   'kitchen.argentinian.name': string;
   'kitchen.argentinian.description': string;
+  'kitchen.colombian.name': string;
+  'kitchen.colombian.description': string;
   'region.north-america': string;
   'region.south-america': string;
   // Header
@@ -2488,6 +2490,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'kitchen.mexican.description': 'Tacos, Burritos, Guacamole',
     'kitchen.argentinian.name': 'Argentina',
     'kitchen.argentinian.description': 'Asado, Empanadas, Chimichurri',
+    'kitchen.colombian.name': 'Colombia',
+    'kitchen.colombian.description': 'Arepas, Bandeja Paisa, Ajiaco',
     // Advanced Care Wizard
     'wizard.eyebrow': 'ADVANCED CARE',
     'wizard.subtitle': 'Build a personalized condition-specific plan in 6 simple steps.',
@@ -4964,6 +4968,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'kitchen.mexican.description': 'Tacos, burritos, guacamole',
     'kitchen.argentinian.name': 'Argentine',
     'kitchen.argentinian.description': 'Asado, empanadas, chimichurri',
+    'kitchen.colombian.name': 'Colombie',
+    'kitchen.colombian.description': 'Arepas, bandeja paisa, ajiaco',
     // Advanced Care Wizard
     'wizard.eyebrow': 'SOINS AVANCÉS',
     'wizard.subtitle': 'Construisez un plan personnalisé par pathologie en 6 étapes simples.',
@@ -7410,6 +7416,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'kitchen.mexican.description': 'Tacos, burritos y guacamole',
     'kitchen.argentinian.name': 'Argentina',
     'kitchen.argentinian.description': 'Asado, empanadas y chimichurri',
+    'kitchen.colombian.name': 'Colombia',
+    'kitchen.colombian.description': 'Arepas, bandeja paisa y ajiaco',
     // Advanced Care Wizard
     'wizard.eyebrow': 'CUIDADO AVANZADO',
     'wizard.subtitle': 'Crea un plan personalizado por condición en 6 pasos sencillos.',
@@ -9856,6 +9864,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'kitchen.mexican.description': 'تاكو وبوريتو وغواكامولي',
     'kitchen.argentinian.name': 'الأرجنتين',
     'kitchen.argentinian.description': 'أسادو وإمبانادا وتشيميتشوري',
+    'kitchen.colombian.name': 'كولومبيا',
+    'kitchen.colombian.description': 'أريبا وبانديخا بايسا وأخياكو',
     // Advanced Care Wizard
     'wizard.eyebrow': 'الرعاية المتقدمة',
     'wizard.subtitle': 'أنشئ خطة مخصصة حسب كل حالة في 6 خطوات بسيطة.',
@@ -12313,6 +12323,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'kitchen.mexican.description': 'Tacos, Burritos und Guacamole',
     'kitchen.argentinian.name': 'Argentinien',
     'kitchen.argentinian.description': 'Asado, Empanadas und Chimichurri',
+    'kitchen.colombian.name': 'Kolumbien',
+    'kitchen.colombian.description': 'Arepas, Bandeja Paisa und Ajiaco',
     // Advanced Care Wizard
     'wizard.eyebrow': 'ADVANCED CARE',
     'wizard.subtitle': 'Erstellen Sie in 6 einfachen Schritten einen personalisierten Plan für Ihre Erkrankung.',

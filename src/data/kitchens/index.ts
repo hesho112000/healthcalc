@@ -259,7 +259,7 @@ const NAME_BY_ID: Record<string, string> = {
   brazilian: 'المطبخ البرازيلي',
   argentinian: 'الأرجنتين',
   chilean: 'المطبخ التشيلي',
-  colombian: 'المطبخ الكولومبي',
+  colombian: 'كولومبيا',
   'costa-rican': 'المطبخ الكوستاريكي',
   cuban: 'المطبخ الكوبي',
   emirati: 'المطبخ الإماراتي',
@@ -352,13 +352,14 @@ const KITCHEN_DESCRIPTION_BY_ID: Record<string, string> = {
   'eastern-european': 'Polish, Russian, Czech, Hungarian',
   mexican: 'Tacos, Burritos, Guacamole',
   argentinian: 'Asado, Empanadas, Chimichurri',
+  colombian: 'Arepas, Bandeja Paisa, Ajiaco',
 };
 
 const KITCHEN_EN_BY_ID: Record<string, string> = {
   egyptian: 'Egyptian Kitchen', tunisian: 'Tunisian Kitchen', syrian: 'Syrian Kitchen', palestinian: 'Palestinian Kitchen',
   lebanese: 'Lebanese Kitchen', jordanian: 'Jordanian Kitchen', algerian: 'Algerian Kitchen', american: 'American Kitchen',
   bahraini: 'Bahraini Kitchen', australian: 'Australian Kitchen', chinese: 'Chinese Kitchen', japanese: 'Japanese Kitchen',
-   british: 'British Kitchen', brazilian: 'Brazilian Kitchen', argentinian: 'Argentina', chilean: 'Chilean Kitchen', colombian: 'Colombian Kitchen',
+   british: 'British Kitchen', brazilian: 'Brazilian Kitchen', argentinian: 'Argentina', chilean: 'Chilean Kitchen', colombian: 'Colombia',
   'costa-rican': 'Costa Rican Kitchen', cuban: 'Cuban Kitchen', emirati: 'Emirati Kitchen', ethiopian: 'Ethiopian Kitchen',
   french: 'French Kitchen', italian: 'Italian Kitchen', indian: 'Indian Kitchen', indonesian: 'Indonesian Kitchen',
   malaysian: 'Malaysian Kitchen', greek: 'Greek Kitchen', jamaican: 'Jamaican Kitchen', kenyan: 'Kenyan Kitchen',
@@ -394,6 +395,7 @@ function basenameId(path: string): string {
   const id = file.replace(/\.(json|ts)$/, '').replace(/-full(?:-100-USDA)?$/, '').replace(/-kitchen$/, '');
   if (id === 'mexico') return 'mexican';
   if (id === 'argentina') return 'argentinian';
+  if (id === 'colombia') return 'colombian';
   return id;
 }
 
