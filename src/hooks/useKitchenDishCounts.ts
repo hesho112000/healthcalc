@@ -7,6 +7,11 @@ import { ARGENTINA_FULL } from '../data/argentina-full';
 import { COLOMBIA_FULL } from '../data/colombia-full';
 import { PERU_FULL } from '../data/peru-full';
 import { CHILE_FULL } from '../data/chile-full';
+import { NORWAY_FULL } from '../data/norway-full';
+import { SWEDEN_FULL } from '../data/sweden-full';
+import { DENMARK_FULL } from '../data/denmark-full';
+import { FINLAND_FULL } from '../data/finland-full';
+import { UKRAINE_FULL } from '../data/ukraine-full';
 
 // Live per-kitchen dish counts fetched from the dishes table via the region-tag
 // mapping in KITCHEN_COUNT_REGIONS. Returns {} until loaded, when Supabase is
@@ -33,19 +38,32 @@ export const KITCHEN_ID_ALIAS: Record<string, string> = {
   ukraine: 'ukrainian',
 };
 
-// These kitchens are served from local full datasets and are not migrated to
-// the Supabase dishes table. Leave their counts absent so cards use k.total.
-const LOCAL_ONLY_KITCHEN_IDS = new Set(['norwegian', 'swedish', 'danish', 'finnish', 'ukrainian', 'eastern-european', 'mexican', 'argentinian', 'colombian', 'peruvian', 'chilean']);
+// These kitchens use local full datasets rather than Supabase dish counts.
+const LOCAL_ONLY_KITCHEN_COUNTS: Record<string, number> = {
+  norwegian: NORWAY_FULL.length,
+  swedish: SWEDEN_FULL.length,
+  danish: DENMARK_FULL.length,
+  finnish: FINLAND_FULL.length,
+  ukrainian: UKRAINE_FULL.length,
+  'eastern-european': EASTERN_EUROPEAN_FULL.length,
+  mexican: MEXICO_FULL.length,
+  argentinian: ARGENTINA_FULL.length,
+  colombian: COLOMBIA_FULL.length,
+  peruvian: PERU_FULL.length,
+  chilean: CHILE_FULL.length,
+};
+const LOCAL_ONLY_KITCHEN_COUNTS_WITH_ALIASES = {
+  ...LOCAL_ONLY_KITCHEN_COUNTS,
+  ...Object.fromEntries(
+    Object.entries(KITCHEN_ID_ALIAS)
+      .filter(([, canonical]) => Object.prototype.hasOwnProperty.call(LOCAL_ONLY_KITCHEN_COUNTS, canonical))
+      .map(([alias, canonical]) => [alias, LOCAL_ONLY_KITCHEN_COUNTS[canonical]]),
+  ),
+};
+const LOCAL_ONLY_KITCHEN_IDS = new Set(Object.keys(LOCAL_ONLY_KITCHEN_COUNTS_WITH_ALIASES));
 
 export function useKitchenDishCounts(): Record<string, number> {
-  const [counts, setCounts] = useState<Record<string, number>>({
-    'eastern-european': EASTERN_EUROPEAN_FULL.length,
-    mexican: MEXICO_FULL.length,
-    argentinian: ARGENTINA_FULL.length,
-    colombian: COLOMBIA_FULL.length,
-    peruvian: PERU_FULL.length,
-    chilean: CHILE_FULL.length,
-  });
+  const [counts, setCounts] = useState<Record<string, number>>({ ...LOCAL_ONLY_KITCHEN_COUNTS_WITH_ALIASES });
 
   useEffect(() => {
     if (!hasSupabaseConfig()) return;
@@ -69,12 +87,7 @@ export function useKitchenDishCounts(): Record<string, number> {
           if (LOCAL_ONLY_KITCHEN_IDS.has(id)) continue;
           out[id] = rows.reduce((n, r) => n + (set.has(r.region) ? 1 : 0), 0);
         }
-        out['eastern-european'] = EASTERN_EUROPEAN_FULL.length;
-        out.mexican = MEXICO_FULL.length;
-        out.argentinian = ARGENTINA_FULL.length;
-        out.colombian = COLOMBIA_FULL.length;
-        out.peruvian = PERU_FULL.length;
-        out.chilean = CHILE_FULL.length;
+        Object.assign(out, LOCAL_ONLY_KITCHEN_COUNTS_WITH_ALIASES);
         // Lebanon's card credits its shared Levantine/MENA family rows — only the
         // ones authored with the levant-2026 source prefix (own set is region-only).
         out.lebanese += rows.filter(
@@ -271,7 +284,7 @@ export function useKitchenDishCounts(): Record<string, number> {
         }
         if (!cancelled) setCounts(out);
       } catch {
-        if (!cancelled) setCounts({});
+        if (!cancelled) setCounts({ ...LOCAL_ONLY_KITCHEN_COUNTS_WITH_ALIASES });
       }
     })();
     return () => {
