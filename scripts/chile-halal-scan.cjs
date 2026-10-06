@@ -3,14 +3,16 @@ const { pathToFileURL } = require('node:url');
 const { resolve } = require('node:path');
 
 const SCAN = makeScan();
-const PARTS = [1, 2, 3, 4];
+const PHASE_PARTS = { 1: [1, 2, 3, 4], 2: [1, 2] };
 
 async function load(directory) {
   const batches = [];
-  for (const index of PARTS) {
-    const file = `part1-${index}.mjs`;
-    const module = await import(pathToFileURL(resolve(__dirname, directory, file)).href);
-    batches.push(module.default);
+  for (const currentPhase of Object.keys(PHASE_PARTS).map(Number)) {
+    for (const index of PHASE_PARTS[currentPhase]) {
+      const file = `part${currentPhase}-${index}.mjs`;
+      const module = await import(pathToFileURL(resolve(__dirname, directory, file)).href);
+      batches.push(module.default);
+    }
   }
   return batches;
 }
@@ -42,11 +44,11 @@ async function run() {
   for (const issue of violations) console.error(`SCAN [${issue.kind}] ${issue.id || issue.nameEn}`);
   for (const row of macroErrors) console.error(`MACRO ${row.id}`);
 
-  if (base.length !== 50 || data.length !== 50 || all.length !== 100 || invalidPairs.length || missingLocales.length || duplicateIds || duplicateEnglishNames || macroErrors.length || violations.length) {
+  if (base.length !== 75 || data.length !== 75 || all.length !== 150 || invalidPairs.length || missingLocales.length || duplicateIds || duplicateEnglishNames || macroErrors.length || violations.length) {
     process.exitCode = 1;
     return;
   }
-  console.log('\nCLEAN: 100 five-language Chilean dishes, 0 halal violations');
+  console.log('\nCLEAN: 150 five-language Chilean dishes across Phase A Parts 1 and 2, 0 halal violations');
 }
 
 if (require.main === module) run().catch((error) => {
