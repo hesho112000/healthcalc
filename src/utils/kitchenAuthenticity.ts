@@ -69,6 +69,8 @@ const TOKEN_REGIONS: Record<string, string> = {
   أمريكي: 'pan_american', امريكي: 'pan_american',
   أمريكية: 'pan_american', امريكيه: 'pan_american',
   مكسيكي: 'pan_mexican', مكسيكيه: 'pan_mexican',
+  أرجنتيني: 'pan_argentinian', ارجنتيني: 'pan_argentinian',
+  أرجنتينية: 'pan_argentinian', ارجنتينيه: 'pan_argentinian',
   كندي: 'pan_canadian', كنديه: 'pan_canadian', كانادي: 'pan_canadian', كاناديه: 'pan_canadian',
    أسترالي: 'pan_australasian', استرالي: 'pan_australasian',
    أسترالية: 'pan_australasian', استراليه: 'pan_australasian',
@@ -393,6 +395,10 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
       'pan_mexican', 'central_mexico', 'oaxaca', 'veracruz', 'puebla', 'jalisco',
       'northern_mexico', 'yucatan', 'chiapas', 'baja_california',
     ]),
+    argentinian: new Set([
+      'pan_argentinian', 'buenos_aires', 'cordoba', 'salta', 'mendoza', 'corrientes',
+      'patagonia', 'chaco', 'tucuman', 'misiones', 'santiago_del_estero',
+    ]),
     canadian: new Set([
       'pan_canadian', 'quebec', 'ontario', 'british_columbia', 'prairies',
       'atlantic_canada', 'northern_canada', 'indigenous_canada',
@@ -654,6 +660,10 @@ vietnamese: new Set([
        mexican: new Set([
          'pan_mexican', 'central_mexico', 'oaxaca', 'veracruz', 'puebla', 'jalisco',
          'northern_mexico', 'yucatan', 'chiapas', 'baja_california',
+       ]),
+       argentinian: new Set([
+         'pan_argentinian', 'buenos_aires', 'cordoba', 'salta', 'mendoza', 'corrientes',
+         'patagonia', 'chaco', 'tucuman', 'misiones', 'santiago_del_estero',
        ]),
         canadian: new Set([
           'pan_canadian', 'quebec', 'ontario', 'british_columbia', 'prairies',
