@@ -6,6 +6,7 @@ import { MEXICO_FULL } from '../data/mexico-full';
 import { ARGENTINA_FULL } from '../data/argentina-full';
 import { COLOMBIA_FULL } from '../data/colombia-full';
 import { PERU_FULL } from '../data/peru-full';
+import { CHILE_FULL } from '../data/chile-full';
 
 // Live per-kitchen dish counts fetched from the dishes table via the region-tag
 // mapping in KITCHEN_COUNT_REGIONS. Returns {} until loaded, when Supabase is
@@ -34,7 +35,7 @@ export const KITCHEN_ID_ALIAS: Record<string, string> = {
 
 // These kitchens are served from local full datasets and are not migrated to
 // the Supabase dishes table. Leave their counts absent so cards use k.total.
-const LOCAL_ONLY_KITCHEN_IDS = new Set(['norwegian', 'swedish', 'danish', 'finnish', 'ukrainian', 'eastern-european', 'mexican', 'argentinian', 'colombian', 'peruvian']);
+const LOCAL_ONLY_KITCHEN_IDS = new Set(['norwegian', 'swedish', 'danish', 'finnish', 'ukrainian', 'eastern-european', 'mexican', 'argentinian', 'colombian', 'peruvian', 'chilean']);
 
 export function useKitchenDishCounts(): Record<string, number> {
   const [counts, setCounts] = useState<Record<string, number>>({
@@ -43,6 +44,7 @@ export function useKitchenDishCounts(): Record<string, number> {
     argentinian: ARGENTINA_FULL.length,
     colombian: COLOMBIA_FULL.length,
     peruvian: PERU_FULL.length,
+    chilean: CHILE_FULL.length,
   });
 
   useEffect(() => {
@@ -72,6 +74,7 @@ export function useKitchenDishCounts(): Record<string, number> {
         out.argentinian = ARGENTINA_FULL.length;
         out.colombian = COLOMBIA_FULL.length;
         out.peruvian = PERU_FULL.length;
+        out.chilean = CHILE_FULL.length;
         // Lebanon's card credits its shared Levantine/MENA family rows — only the
         // ones authored with the levant-2026 source prefix (own set is region-only).
         out.lebanese += rows.filter(
