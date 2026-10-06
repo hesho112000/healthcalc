@@ -530,6 +530,7 @@ function buildDiet(path: string, mod: any): KitchenInfo {
 
 function buildRich(path: string, mod: any): KitchenInfo {
   const data = mod.default ?? mod;
+  const flatDishes: any[] | null = Array.isArray(data) ? data : null;
   const categories: KitchenCategory[] = (data.categories ?? []).map((c: any) => ({
     id: c.id ?? '',
     name_ar: c.name_ar ?? '',
@@ -540,7 +541,9 @@ function buildRich(path: string, mod: any): KitchenInfo {
     count: c.count ?? c.dishes?.length ?? 0,
     dishes: (c.dishes ?? []).map(toKitchenDish).filter((d: KitchenDish | null): d is KitchenDish => !!d),
   }));
-  const dishes = categories.flatMap((c) => c.dishes);
+  const dishes = flatDishes
+    ? flatDishes.map(toKitchenDish).filter((d: KitchenDish | null): d is KitchenDish => !!d)
+    : categories.flatMap((c) => c.dishes);
   const id = basenameId(path);
   const name = typeof data.kitchen === 'string' ? data.kitchen : NAME_BY_ID[id] ?? id;
   const city = matchCity(name, id);
