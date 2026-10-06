@@ -73,6 +73,7 @@ const TOKEN_REGIONS: Record<string, string> = {
   أرجنتينية: 'pan_argentinian', ارجنتينيه: 'pan_argentinian',
   كولومبي: 'pan_colombian', كولومبيه: 'pan_colombian',
   بيروفي: 'pan_peruvian', بيروفيه: 'pan_peruvian',
+  تشيلي: 'pan_chilean', تشيليه: 'pan_chilean',
   كندي: 'pan_canadian', كنديه: 'pan_canadian', كانادي: 'pan_canadian', كاناديه: 'pan_canadian',
    أسترالي: 'pan_australasian', استرالي: 'pan_australasian',
    أسترالية: 'pan_australasian', استراليه: 'pan_australasian',
@@ -409,6 +410,10 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
       'pan_peruvian', 'lima', 'huancayo', 'arequipa', 'cusco', 'ica', 'piura', 'amazonas',
       'callao', 'puno', 'cajamarca', 'ancash', 'lambayeque', 'loreto', 'ayacucho',
     ]),
+    chilean: new Set([
+      'pan_chilean', 'santiago', 'valparaiso', 'maule', 'bio_bio', 'coquimbo',
+      'araucania', 'los_lagos', 'atacama', 'magallanes', 'aysen', 'arica',
+    ]),
     canadian: new Set([
       'pan_canadian', 'quebec', 'ontario', 'british_columbia', 'prairies',
       'atlantic_canada', 'northern_canada', 'indigenous_canada',
@@ -682,6 +687,10 @@ vietnamese: new Set([
        peruvian: new Set([
          'pan_peruvian', 'lima', 'huancayo', 'arequipa', 'cusco', 'ica', 'piura', 'amazonas',
          'callao', 'puno', 'cajamarca', 'ancash', 'lambayeque', 'loreto', 'ayacucho',
+       ]),
+       chilean: new Set([
+         'pan_chilean', 'santiago', 'valparaiso', 'maule', 'bio_bio', 'coquimbo',
+         'araucania', 'los_lagos', 'atacama', 'magallanes', 'aysen', 'arica',
        ]),
         canadian: new Set([
           'pan_canadian', 'quebec', 'ontario', 'british_columbia', 'prairies',

@@ -594,7 +594,7 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
         return 1;
       }
       if (kitchenId === 'argentinian') return 1;
-      if (kitchenId === 'colombian' || kitchenId === 'peruvian') return 1;
+      if (kitchenId === 'colombian' || kitchenId === 'peruvian' || kitchenId === 'chilean') return 1;
       if (kitchenId === 'canadian') {
         if (d.region === 'pan_canadian') return 0;
         if (d.region === 'asian_shared') return 2;
