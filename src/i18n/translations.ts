@@ -9,6 +9,8 @@ type TranslationKeys = {
   'kitchen.argentinian.description': string;
   'kitchen.colombian.name': string;
   'kitchen.colombian.description': string;
+  'kitchen.peruvian.name': string;
+  'kitchen.peruvian.description': string;
   'region.north-america': string;
   'region.south-america': string;
   // Header
@@ -2492,6 +2494,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'kitchen.argentinian.description': 'Asado, Empanadas, Chimichurri',
     'kitchen.colombian.name': 'Colombia',
     'kitchen.colombian.description': 'Arepas, Bandeja Paisa, Ajiaco',
+    'kitchen.peruvian.name': 'Peru',
+    'kitchen.peruvian.description': 'Ceviche, Lomo Saltado, Causa',
     // Advanced Care Wizard
     'wizard.eyebrow': 'ADVANCED CARE',
     'wizard.subtitle': 'Build a personalized condition-specific plan in 6 simple steps.',
@@ -4970,6 +4974,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'kitchen.argentinian.description': 'Asado, empanadas, chimichurri',
     'kitchen.colombian.name': 'Colombie',
     'kitchen.colombian.description': 'Arepas, bandeja paisa, ajiaco',
+    'kitchen.peruvian.name': 'Pérou',
+    'kitchen.peruvian.description': 'Ceviche, lomo saltado, causa',
     // Advanced Care Wizard
     'wizard.eyebrow': 'SOINS AVANCÉS',
     'wizard.subtitle': 'Construisez un plan personnalisé par pathologie en 6 étapes simples.',
@@ -7418,6 +7424,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'kitchen.argentinian.description': 'Asado, empanadas y chimichurri',
     'kitchen.colombian.name': 'Colombia',
     'kitchen.colombian.description': 'Arepas, bandeja paisa y ajiaco',
+    'kitchen.peruvian.name': 'Perú',
+    'kitchen.peruvian.description': 'Ceviche, lomo saltado y causa',
     // Advanced Care Wizard
     'wizard.eyebrow': 'CUIDADO AVANZADO',
     'wizard.subtitle': 'Crea un plan personalizado por condición en 6 pasos sencillos.',
@@ -9866,6 +9874,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'kitchen.argentinian.description': 'أسادو وإمبانادا وتشيميتشوري',
     'kitchen.colombian.name': 'كولومبيا',
     'kitchen.colombian.description': 'أريبا وبانديخا بايسا وأخياكو',
+    'kitchen.peruvian.name': 'بيرو',
+    'kitchen.peruvian.description': 'سيفيتشي، لومو سالتادو، كاوسا',
     // Advanced Care Wizard
     'wizard.eyebrow': 'الرعاية المتقدمة',
     'wizard.subtitle': 'أنشئ خطة مخصصة حسب كل حالة في 6 خطوات بسيطة.',
@@ -12325,6 +12335,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'kitchen.argentinian.description': 'Asado, Empanadas und Chimichurri',
     'kitchen.colombian.name': 'Kolumbien',
     'kitchen.colombian.description': 'Arepas, Bandeja Paisa und Ajiaco',
+    'kitchen.peruvian.name': 'Peru',
+    'kitchen.peruvian.description': 'Ceviche, Lomo Saltado und Causa',
     // Advanced Care Wizard
     'wizard.eyebrow': 'ADVANCED CARE',
     'wizard.subtitle': 'Erstellen Sie in 6 einfachen Schritten einen personalisierten Plan für Ihre Erkrankung.',

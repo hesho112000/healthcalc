@@ -281,7 +281,7 @@ const NAME_BY_ID: Record<string, string> = {
   'new-zealand': 'المطبخ النيوزيلندي',
   omani: 'المطبخ العماني',
   pakistani: 'المطبخ الباكستاني',
-  peruvian: 'المطبخ البيروفي',
+  peruvian: 'بيرو',
   saudi: 'المطبخ السعودي',
   nigerian: 'المطبخ النيجيري',
   qatar: 'المطبخ القطري',
@@ -353,6 +353,7 @@ const KITCHEN_DESCRIPTION_BY_ID: Record<string, string> = {
   mexican: 'Tacos, Burritos, Guacamole',
   argentinian: 'Asado, Empanadas, Chimichurri',
   colombian: 'Arepas, Bandeja Paisa, Ajiaco',
+  peruvian: 'Ceviche, Lomo Saltado, Causa',
 };
 
 const KITCHEN_EN_BY_ID: Record<string, string> = {
@@ -365,7 +366,7 @@ const KITCHEN_EN_BY_ID: Record<string, string> = {
   malaysian: 'Malaysian Kitchen', greek: 'Greek Kitchen', jamaican: 'Jamaican Kitchen', kenyan: 'Kenyan Kitchen',
    korean: 'Korean Kitchen', taiwanese: 'Taiwanese Kitchen', kuwaiti: 'Kuwaiti Kitchen', mexican: 'Mexico',
   libyan: 'Libyan Kitchen', moroccan: 'Moroccan Kitchen', 'new-zealand': 'New Zealand Kitchen', omani: 'Omani Kitchen',
-  pakistani: 'Pakistani Kitchen', peruvian: 'Peruvian Kitchen', saudi: 'Saudi Kitchen', nigerian: 'Nigerian Kitchen',
+  pakistani: 'Pakistani Kitchen', peruvian: 'Peru', saudi: 'Saudi Kitchen', nigerian: 'Nigerian Kitchen',
   qatar: 'Qatari Kitchen', rwandan: 'Rwandan Kitchen', swiss: 'Swiss Kitchen', thai: 'Thai Kitchen',
   vietnamese: 'Vietnamese Kitchen', spanish: 'Spanish Kitchen', 'south-african': 'South African Kitchen',
   ghanaian: 'Ghanaian Kitchen', seychellois: 'Seychellois Kitchen', mauritian: 'Mauritian Kitchen',
@@ -396,6 +397,7 @@ function basenameId(path: string): string {
   if (id === 'mexico') return 'mexican';
   if (id === 'argentina') return 'argentinian';
   if (id === 'colombia') return 'colombian';
+  if (id === 'peru') return 'peruvian';
   return id;
 }
 
@@ -602,7 +604,7 @@ function assemble(): KitchenInfo[] {
   const richIds = new Set(out.map((k) => k.id));
   for (const [path, mod] of Object.entries(tsModules)) {
     const id = basenameId(path);
-    if (richIds.has(id)) continue;
+    if (richIds.has(id) || path.endsWith('/peruvian-full.ts')) continue;
     out.push(buildBasic(path, mod));
   }
   for (const [path, mod] of Object.entries(dietModules)) {

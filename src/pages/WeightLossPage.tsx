@@ -1243,7 +1243,7 @@ const WeightLossPage: React.FC = () => {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
   const kitchenLabel = (k: KitchenInfo) =>
-    k.id === 'colombian' ? t('kitchen.colombian.name') : k.id === 'mexican' ? t('kitchen.mexican.name') : k.id === 'argentinian' ? t('kitchen.argentinian.name') : k.id === 'eastern-european' ? t('kitchen.eastern-european.name') : getKitchenName(k, language);
+    k.id === 'peruvian' ? t('kitchen.peruvian.name') : k.id === 'colombian' ? t('kitchen.colombian.name') : k.id === 'mexican' ? t('kitchen.mexican.name') : k.id === 'argentinian' ? t('kitchen.argentinian.name') : k.id === 'eastern-european' ? t('kitchen.eastern-european.name') : getKitchenName(k, language);
   const regionLabel = (region: RegionDef) =>
     region.translationKey ? t(region.translationKey) : language === 'ar' ? region.ar : region.en;
   const { user } = useAuth();
@@ -2384,6 +2384,7 @@ const WeightLossPage: React.FC = () => {
                           {k.id === 'mexican' && <span className="mt-1 text-[10px] text-[#8A938E]">{t('kitchen.mexican.description')}</span>}
                           {k.id === 'argentinian' && <span className="mt-1 text-[10px] text-[#8A938E]">{t('kitchen.argentinian.description')}</span>}
                           {k.id === 'colombian' && <span className="mt-1 text-[10px] text-[#8A938E]">{t('kitchen.colombian.description')}</span>}
+                          {k.id === 'peruvian' && <span className="mt-1 text-[10px] text-[#8A938E]">{t('kitchen.peruvian.description')}</span>}
                           {k.sample && <span className="mt-1.5 text-[10.5px] text-[#8A938E] truncate max-w-full">🍽 {getDishName(k.sample, language)}</span>}
                           <span className={`mt-2 text-[11px] font-bold px-2.5 py-1 rounded-full ${on ? 'bg-[#D4AF37] text-[#0F4C3A]' : 'bg-[#F4F1EB] text-[#6B7A75]'}`}>
                             {t('wizard.step3.dishCount').replace('{n}', String(kitchenCounts[k.id] ?? k.total))}
@@ -2417,6 +2418,7 @@ const WeightLossPage: React.FC = () => {
                         {k.id === 'mexican' && <span className="mt-1 text-[10px] text-[#8A938E]">{t('kitchen.mexican.description')}</span>}
                         {k.id === 'argentinian' && <span className="mt-1 text-[10px] text-[#8A938E]">{t('kitchen.argentinian.description')}</span>}
                         {k.id === 'colombian' && <span className="mt-1 text-[10px] text-[#8A938E]">{t('kitchen.colombian.description')}</span>}
+                        {k.id === 'peruvian' && <span className="mt-1 text-[10px] text-[#8A938E]">{t('kitchen.peruvian.description')}</span>}
                         {k.sample && <span className="mt-1.5 text-[10.5px] text-[#8A938E] truncate max-w-full">🍽 {getDishName(k.sample, language)}</span>}
                         <span className="mt-2 text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#D4AF37] text-[#0F4C3A]">
                           {t('wizard.step3.dishCount').replace('{n}', String(kitchenCounts[k.id] ?? k.total))}
