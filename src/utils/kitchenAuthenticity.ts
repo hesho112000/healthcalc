@@ -68,6 +68,7 @@ const TOKEN_REGIONS: Record<string, string> = {
     تايوانيه: 'pan_taiwanese',
   أمريكي: 'pan_american', امريكي: 'pan_american',
   أمريكية: 'pan_american', امريكيه: 'pan_american',
+  مكسيكي: 'pan_mexican', مكسيكيه: 'pan_mexican',
   كندي: 'pan_canadian', كنديه: 'pan_canadian', كانادي: 'pan_canadian', كاناديه: 'pan_canadian',
    أسترالي: 'pan_australasian', استرالي: 'pan_australasian',
    أسترالية: 'pan_australasian', استراليه: 'pan_australasian',
@@ -388,6 +389,10 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
       'texas', 'southwest', 'california', 'pacific_northwest', 'midwest', 'hawaii',
       'alaska', 'soul_food', 'bbq', 'native_american',
     ]),
+    mexican: new Set([
+      'pan_mexican', 'central_mexico', 'oaxaca', 'veracruz', 'puebla', 'jalisco',
+      'northern_mexico', 'yucatan', 'chiapas', 'baja_california',
+    ]),
     canadian: new Set([
       'pan_canadian', 'quebec', 'ontario', 'british_columbia', 'prairies',
       'atlantic_canada', 'northern_canada', 'indigenous_canada',
@@ -645,6 +650,10 @@ vietnamese: new Set([
          'pan_american', 'new_england', 'mid_atlantic', 'south', 'deep_south', 'cajun',
          'texas', 'southwest', 'california', 'pacific_northwest', 'midwest', 'hawaii',
          'alaska', 'soul_food', 'bbq', 'native_american',
+        ]),
+       mexican: new Set([
+         'pan_mexican', 'central_mexico', 'oaxaca', 'veracruz', 'puebla', 'jalisco',
+         'northern_mexico', 'yucatan', 'chiapas', 'baja_california',
        ]),
         canadian: new Set([
           'pan_canadian', 'quebec', 'ontario', 'british_columbia', 'prairies',

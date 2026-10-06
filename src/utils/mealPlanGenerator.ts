@@ -589,6 +589,10 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
         if (d.region === 'asian_shared') return 2;
         return 1;
       }
+      if (kitchenId === 'mexican') {
+        if (d.region === 'pan_mexican') return 0;
+        return 1;
+      }
       if (kitchenId === 'canadian') {
         if (d.region === 'pan_canadian') return 0;
         if (d.region === 'asian_shared') return 2;

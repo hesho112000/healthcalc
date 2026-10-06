@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { supabaseClient, hasSupabaseConfig } from '../lib/supabaseClient';
 import { KITCHEN_COUNT_REGIONS } from '../utils/kitchenAuthenticity';
 import { EASTERN_EUROPEAN_FULL } from '../data/eastern-european-full';
-import { MEXICO_FULL } from '../data/mexico-full';
 import { ARGENTINA_FULL } from '../data/argentina-full';
 import { COLOMBIA_FULL } from '../data/colombia-full';
 import { PERU_FULL } from '../data/peru-full';
@@ -46,7 +45,6 @@ const LOCAL_ONLY_KITCHEN_COUNTS: Record<string, number> = {
   finnish: FINLAND_FULL.length,
   ukrainian: UKRAINE_FULL.length,
   'eastern-european': EASTERN_EUROPEAN_FULL.length,
-  mexican: MEXICO_FULL.length,
   argentinian: ARGENTINA_FULL.length,
   colombian: COLOMBIA_FULL.length,
   peruvian: PERU_FULL.length,
