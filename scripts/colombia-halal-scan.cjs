@@ -16,14 +16,17 @@ const EXTRA_ALCOHOL = [
 const PORK_TERMS = [...new Set([...CORE_PORK, ...EXTRA_PORK])];
 const ALCOHOL_TERMS = [...new Set([...CORE_ALCOHOL, ...EXTRA_ALCOHOL])];
 const SCAN = makeScan({ extraPork: EXTRA_PORK, extraAlcohol: EXTRA_ALCOHOL });
+const PHASES = [1, 2];
 const PARTS = [1, 2, 3, 4];
 
 async function load(directory) {
   const batches = [];
-  for (const index of PARTS) {
-    const file = `part1-${index}.mjs`;
-    const module = await import(pathToFileURL(resolve(__dirname, directory, file)).href);
-    batches.push(module.default);
+  for (const phase of PHASES) {
+    for (const index of PARTS) {
+      const file = `part${phase}-${index}.mjs`;
+      const module = await import(pathToFileURL(resolve(__dirname, directory, file)).href);
+      batches.push(module.default);
+    }
   }
   return batches;
 }
@@ -60,11 +63,11 @@ async function run() {
   for (const issue of [...idViolations, ...violations]) console.error(`HALAL [${issue.kind}] ${issue.term} -> ${issue.id || issue.nameEn}`);
   for (const row of macroErrors) console.error(`MACRO ${row.id}`);
 
-  if (base.length !== 50 || data.length !== 50 || all.length !== 100 || invalidPairs.length || missingLocales.length || duplicateIds || duplicateEnglishNames || macroErrors.length || idViolations.length || violations.length) {
+  if (base.length !== 100 || data.length !== 100 || all.length !== 200 || invalidPairs.length || missingLocales.length || duplicateIds || duplicateEnglishNames || macroErrors.length || idViolations.length || violations.length) {
     process.exitCode = 1;
     return;
   }
-  console.log('\nCLEAN: 100 five-language Colombian dishes, 0 halal violations');
+  console.log('\nCLEAN: 200 five-language Colombian dishes across Phase A Parts 1 and 2, 0 halal violations');
 }
 
 if (require.main === module) run().catch((error) => {
