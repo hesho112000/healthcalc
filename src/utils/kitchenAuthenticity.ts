@@ -74,6 +74,8 @@ const TOKEN_REGIONS: Record<string, string> = {
   كولومبي: 'pan_colombian', كولومبيه: 'pan_colombian',
   بيروفي: 'pan_peruvian', بيروفيه: 'pan_peruvian',
   تشيلي: 'pan_chilean', تشيليه: 'pan_chilean',
+  نرويجي: 'pan_norwegian', نرويجيه: 'pan_norwegian',
+  سويدي: 'pan_swedish', سويديه: 'pan_swedish',
   كندي: 'pan_canadian', كنديه: 'pan_canadian', كانادي: 'pan_canadian', كاناديه: 'pan_canadian',
    أسترالي: 'pan_australasian', استرالي: 'pan_australasian',
    أسترالية: 'pan_australasian', استراليه: 'pan_australasian',
@@ -751,14 +753,15 @@ vietnamese: new Set([
               'gaziantep', 'konya', 'adana', 'trabzon', 'diyarbakir', 'kayseri',
               'mardin', 'sanliurfa', 'van', 'eskisehir',
             ]),
-            // NOTE: the Nordic + Ukraine kitchens (norwegian, swedish, danish,
-            // finnish, ukrainian) are deliberately NOT listed here yet. They have
-            // static src/data/<country>-full.ts files only, with no rows in the
-            // live dishes table, so they resolve through the static registry path
-            // in useKitchenDishes. Adding them here would make
-            // scripts/test-multi-kitchen-generator.ts (which enumerates these keys
-            // and asserts a non-empty live pool) fail. Add them together with the
-            // corresponding Supabase rows.
+            norwegian: new Set([
+              'pan_norwegian', 'oslo', 'bergen', 'stavanger', 'trondheim',
+              'tromso', 'bodo', 'alesund', 'lofoten', 'kristiansand',
+            ]),
+            swedish: new Set([
+              'pan_swedish', 'stockholm', 'gothenburg', 'malmo', 'uppsala',
+              'visby', 'orebro', 'linkoping', 'umea', 'kiruna',
+            ]),
+            // Danish, Finnish, and Ukrainian remain on static data until migrated.
      };
 
  // True when a dish may be served in the given kitchen's plans.
