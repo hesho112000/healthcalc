@@ -84,10 +84,10 @@ const PaywallModal: React.FC<PaywallModalProps> = ({ open, feature, onClose, onU
             <Lock size={24} strokeWidth={2.2} />
           </span>
           <h3 className="mt-4 text-[28px] font-extrabold leading-none text-[#0F4C3A]">
-            {t('paywall.title')}
+            {t('planPrompt.title')}
           </h3>
           <p className="mt-3 text-base text-[#6B7A75]">
-            {TTS(t, 'paywall.subtitle', { requiredTier: planName })}
+            {TTS(t, 'planPrompt.subtitle', { requiredTier: planName })}
           </p>
         </div>
 
@@ -109,14 +109,14 @@ const PaywallModal: React.FC<PaywallModalProps> = ({ open, feature, onClose, onU
                   </span>
                 )}
                 <div className="text-sm font-extrabold text-[#0F4C3A]">
-                  {t(`paywall.tier.${tier}` as TKey)}
+                  {t(`planPrompt.tier.${tier}` as TKey)}
                 </div>
                 <div className="mt-2 flex items-end gap-1">
                   <span className="text-2xl font-extrabold text-[#0F4C3A] tabular-nums">
                     {TIER_PRICE[tier]}
                   </span>
                   <span className="mb-0.5 text-[11px] font-bold text-[#6B7A75]">
-                    {t('paywall.perMonth')}
+                    {t('planPrompt.perMonth')}
                   </span>
                 </div>
                 <ul className="mt-4 space-y-2.5">
@@ -140,10 +140,10 @@ const PaywallModal: React.FC<PaywallModalProps> = ({ open, feature, onClose, onU
             onClick={() => onUpgrade(requiredTier)}
             className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#D4AF37] px-8 py-4 text-base font-extrabold text-[#0F4C3A] hover:bg-[#c9a12f] shadow-[0_10px_26px_rgba(212,175,55,0.35)] transition-all"
           >
-            {t('paywall.cta.startTrial')}
+            {t('planPrompt.cta.startTrial')}
             <ArrowRight size={19} strokeWidth={2.5} className="rtl:rotate-180" />
           </button>
-          <p className="mt-3 text-xs font-semibold text-[#6B7A75]">{t('paywall.trust')}</p>
+          <p className="mt-3 text-xs font-semibold text-[#6B7A75]">{t('planPrompt.trust')}</p>
         </div>
       </div>
     </div>

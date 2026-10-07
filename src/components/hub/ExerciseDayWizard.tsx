@@ -63,7 +63,7 @@ const ExerciseDayWizard: React.FC<ExerciseDayWizardProps> = ({ conditions, paid,
         {!paid && (
           <span className="inline-flex items-center gap-1 rounded-full bg-[#D4AF37]/15 text-[#0F4C3A] px-2.5 py-1 text-[10px] font-extrabold">
             <Lock size={11} />
-            {t('hub.badge.premium')}
+            {t('hub.badge.member')}
           </span>
         )}
       </div>

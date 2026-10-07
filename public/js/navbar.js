@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded',()=>{
- const navbar=document.querySelector('.premium-navbar');
+ const navbar=document.querySelector('.site-navbar');
  const hamburger=document.querySelector('.nav-hamburger');
  const drawer=document.querySelector('.nav-drawer');
  const overlay=document.querySelector('.nav-overlay');

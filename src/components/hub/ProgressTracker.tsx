@@ -235,7 +235,7 @@ const ProgressTracker: React.FC<ProgressTrackerProps> = ({ paid, onUnlock, initi
               className="inline-flex items-center gap-2 rounded-full bg-[#FDFBF7] border border-[#D4AF37]/40 px-5 py-2.5 text-xs font-bold text-[#0F4C3A] shadow-sm hover:bg-[#F4F1EB] transition"
             >
               <Lock size={14} />
-              {t('hub.unlockPremium')}
+              {t('hub.viewFeatures')}
             </button>
           </div>
           <div className="blur-sm select-none">

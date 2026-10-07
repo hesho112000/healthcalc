@@ -431,7 +431,7 @@ const LegacyAdvancedCarePage: React.FC = () => {
                 <div className="absolute top-3 right-3">
                   {isSelected ? <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-amber-100 text-amber-700">✓ {t('pmActive')}</span>
                     : condition.isFree ? <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700 border border-emerald-200/60">{t('ltpFree')}</span>
-                    : <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-amber-50 text-amber-600 border border-amber-200/60">🔒 {t('pmPremium')}</span>}
+                    : <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-amber-50 text-amber-600 border border-amber-200/60">🔒 {t('memberLabel')}</span>}
                 </div>
                 <div className={`w-14 h-14 bg-gradient-to-br ${condition.color} rounded-2xl flex items-center justify-center mb-4 text-white text-2xl shadow-sm`}>{condition.icon}</div>
                 <h3 className="font-bold text-gray-900 mb-3 pr-16">{condition.name}</h3>

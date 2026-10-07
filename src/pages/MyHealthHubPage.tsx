@@ -187,7 +187,7 @@ const MyHealthHubPage: React.FC = () => {
   const handleUpgrade = (tier: Tier) => {
     upgrade(tier);
     setPaywall(null);
-    note(t('paywall.cta.startTrial'));
+    note(t('planPrompt.cta.startTrial'));
   };
 
   const note = (message: string) => {
@@ -351,7 +351,7 @@ const MyHealthHubPage: React.FC = () => {
         <div className="flex flex-wrap items-center gap-2">
           <span className="inline-flex items-center gap-2 text-xs font-bold text-[#0F4C3A] bg-[#D4AF37]/15 rounded-full px-3 py-1.5">
             <Sparkles size={13} />
-            {paid ? t('hub.badge.premium') : t('hub.badge.free')}
+            {paid ? t('hub.badge.member') : t('hub.badge.free')}
           </span>
           <button
             type="button"

@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="premium-footer" dir={dir}>
+    <footer className="site-footer" dir={dir}>
       <div className="footer-container">
         <div className="footer-grid">
           <div className="footer-col">

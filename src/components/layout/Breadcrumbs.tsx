@@ -36,7 +36,7 @@ const Breadcrumbs: React.FC = () => {
     '/workout-plan': t('workoutPlan'),
     '/weight-loss': t('weightLoss'),
     '/diabetes': t('diabetes'),
-    ...(ENABLE_PREMIUM ? { '/premium': t('premium') } : {}),
+    ...(ENABLE_PREMIUM ? { '/premium': t('healthPlanLabel') } : {}),
     '/login': t('headerSignIn'),
     '/register': t('headerSignUp'),
     '/dashboard': t('headerDashboard'),

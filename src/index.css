@@ -569,7 +569,7 @@ html[lang='ar'] textarea {
 }
 
 
-/* ---------- Premium Header (Redesign) ---------- */
+/* ---------- Header (Redesign) ---------- */
 .app-header { position: sticky; top: 0; z-index: 50; height: 72px; background: #FFFFFF; border-bottom: 1px solid rgba(15,76,58,.08); box-shadow: 0 2px 12px rgba(15,76,58,.04); }
 .app-header-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .app-header-logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; color: #0F4C3A; text-decoration: none; white-space: nowrap; }
@@ -665,10 +665,10 @@ select.wiz-input { -webkit-appearance: none; appearance: none; background-image:
 .cta-continue { width: 100%; max-width: 768px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 10px; background: #0F4C3A; color: #fff; font-weight: 800; font-size: 20px; line-height: 1; border: none; border-radius: 30px; padding: 20px 32px; box-shadow: 0 10px 26px rgba(15,76,58,.35); cursor: pointer; text-decoration: none; transition: transform .2s ease, background .2s ease, box-shadow .2s ease; }
   .cta-continue:hover { transform: translateY(-2px); background: #0b3a2c; box-shadow: 0 14px 34px rgba(15,76,58,.42); }
 
-/* ---------- Premium Footer (Emerald dark) ---------- */
-.premium-footer { background: #0F4C3A; color: #fff; position: relative; overflow: hidden; }
-.premium-footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: rgba(212,175,55,.4); }
-.premium-footer::after { content: ''; position: absolute; width: 24rem; height: 24rem; left: -12rem; bottom: -14rem; border: 1px solid rgba(212,175,55,.22); border-radius: 50%; box-shadow: 0 0 0 3rem rgba(212,175,55,.05); pointer-events: none; }
+/* ---------- Footer (Emerald dark) ---------- */
+.site-footer { background: #0F4C3A; color: #fff; position: relative; overflow: hidden; }
+.site-footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: rgba(212,175,55,.4); }
+.site-footer::after { content: ''; position: absolute; width: 24rem; height: 24rem; left: -12rem; bottom: -14rem; border: 1px solid rgba(212,175,55,.22); border-radius: 50%; box-shadow: 0 0 0 3rem rgba(212,175,55,.05); pointer-events: none; }
 .footer-container { max-width: 1120px; margin: 0 auto; padding: 56px 24px 24px; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.6fr; gap: 40px; }
 .footer-col h4 { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #D4AF37; margin: 0 0 18px; font-weight: 800; }
