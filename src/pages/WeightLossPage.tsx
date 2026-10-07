@@ -1331,7 +1331,6 @@ const WeightLossPage: React.FC = () => {
   const [emailSending, setEmailSending] = useState(false);
   const [emailDone, setEmailDone] = useState('');
   const [autoBuilding, setAutoBuilding] = useState(false);
-  const [expandedMealPlan, setExpandedMealPlan] = useState<MealKey | null>(null);
   const [collapsedSaved, setCollapsedSaved] = useState<Set<MealKey>>(new Set());
   const [showAllSaved, setShowAllSaved] = useState<Set<MealKey>>(new Set());
   const [toast, setToast] = useState('');
