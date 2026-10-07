@@ -2689,8 +2689,8 @@ const WeightLossPage: React.FC = () => {
               </div>
             </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="rounded-[22px] p-5 text-white relative overflow-hidden" style={{ background: 'linear-gradient(135deg,#D4AF37,#C9A032 70%,#b3922c)' }}>
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-3 lg:grid-cols-3 lg:gap-4">
+              <div className="min-w-0 rounded-[22px] p-5 text-white relative overflow-hidden" style={{ background: 'linear-gradient(135deg,#D4AF37,#C9A032 70%,#b3922c)' }}>
                 <div className="text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#3a2f05]/80">{t('wizard.step5.dailyTarget')}</div>
                 <div className="mt-2 flex items-baseline gap-1">
                   <span className="num text-[34px] font-black text-[#0F4C3A] leading-none">{numbers!.targetCal}</span>
@@ -2707,7 +2707,7 @@ const WeightLossPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="rounded-[22px] p-5 border border-[#E8E2D4] bg-white">
+              <div className="min-w-0 rounded-[22px] p-5 border border-[#E8E2D4] bg-white">
                 <div className="flex items-center justify-between gap-2">
                   <div className="text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#6B7A75]">💧 {t('wizard.step5.statWater')}</div>
                   <span className="num text-[17px] font-extrabold text-[#0F4C3A]">{t('wizard.step5.water').replace('{cur}', water.toFixed(1)).replace('{goal}', waterGoal.toFixed(1))}</span>
@@ -2722,14 +2722,7 @@ const WeightLossPage: React.FC = () => {
                 <div className="mt-1.5 text-[11px] font-bold text-[#D4AF37]">+250ml</div>
               </div>
 
-              <div
-                data-ad-slot="weight-loss-meal-plan"
-                role="complementary"
-                aria-label={language === 'ar' ? 'مساحة إعلانية' : 'Advertisement'}
-                className="min-h-[250px] w-full shrink-0 sm:col-span-3"
-              />
-
-              <div className="rounded-[22px] p-5 border border-[#E8E2D4] bg-white">
+              <div className="min-w-0 rounded-[22px] p-5 border border-[#E8E2D4] bg-white">
                 <div className="flex items-center justify-between gap-2">
                   <div className="text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#6B7A75]">🍽️ {t('wizard.step5.statMealsDone')}</div>
                   <span className="num w-9 h-9 rounded-full bg-[#FFF8E7] border border-[#E9D9A8] text-[#B8860B] flex items-center justify-center text-[14px] font-extrabold">{doneCount}/4</span>
@@ -2740,7 +2733,17 @@ const WeightLossPage: React.FC = () => {
                 <div className="mt-2 text-[12px] font-semibold text-[#6B7A75]">
                   {t('wizard.step5.completed').replace('{n}', String(doneCount))}
                 </div>
-                </div>
+              </div>
+            </div>
+
+              <div className="-my-5">
+                <div
+                  data-ad-slot="weight-loss-meal-plan"
+                  role="complementary"
+                  aria-label={language === 'ar' ? 'مساحة إعلانية' : 'Advertisement'}
+                  className="ad-slot w-full"
+                  style={{ minHeight: '100px', margin: '20px 0' }}
+                />
               </div>
 
               <div id="step5-daily-plan" className="rounded-[26px] bg-white border border-[#EFEBE4] shadow-[0_10px_30px_rgba(15,76,58,0.06)] p-5 md:p-6">
