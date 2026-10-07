@@ -9,6 +9,7 @@ import type { ExerciseItem } from '../data/exercises';
 import { ExerciseTypeSelector } from '../components/wizard/ExerciseTypeSelector';
 import { ExerciseList } from '../components/wizard/ExerciseList';
 import AddDishModal from '../components/wizard/AddDishModal';
+import MealCard from '../components/meal-plan/MealCard';
 import Flag, { getCountryCode } from '../components/common/Flag';
 import { useAuth } from '../context/AuthContext';
 import { savePlan, saveProfile } from '../services/supabaseData';
@@ -1992,13 +1993,6 @@ const WeightLossPage: React.FC = () => {
   const ACTIVITY_LABEL = (x: ActivityKey): string => t(('wizard.activity.' + x) as any);
   const ACTIVITY_DESC = (x: ActivityKey): string => t(('wizard.activity.' + x + '.desc') as any);
 
-  const step5Meals: { key: MealKey; emoji: string }[] = [
-    { key: 'breakfast', emoji: '🌅' },
-    { key: 'lunch', emoji: '🌞' },
-    { key: 'dinner', emoji: '🌙' },
-    { key: 'snacks', emoji: '🍪' },
-  ];
-
   const inputDefault = 'wiz-input';
   const cardBase = 'rounded-[26px] bg-white border border-[#EFEBE4] shadow-[0_10px_30px_rgba(15,76,58,0.06)]';
 
@@ -2770,110 +2764,40 @@ const WeightLossPage: React.FC = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {(weeklyPlan[selectedPlanDay - 1]?.meals ?? []).map((meal, idx) => {
-                  const emoji = step5Meals.find((s) => s.key === meal.mealType)?.emoji ?? '🍽️';
                   const mealCal = meal.dishes.reduce((s, x) => s + x.calories, 0);
-                  const done = idx < 4 ? mealsDone[idx] : false;
-                  const isEmpty = meal.dishes.length === 0;
-                  const isOpen = !isEmpty && openMealAccordion === meal.mealType;
+                  const isOpen = openMealAccordion === meal.mealType;
+                  const title = t((meal.mealType === 'lunch' ? 'mealLunch' : meal.mealType === 'dinner' ? 'mealDinner' : meal.mealType === 'breakfast' ? 'mealBreakfast' : 'mealSnack') as any);
                   return (
-                    <div
+                    <MealCard
                       key={meal.mealType}
-                      className={`rounded-[18px] border-2 p-4 transition-colors ${done ? 'border-[#0F4C3A] bg-[#F2F8F4]' : 'border-[#EFEBE4] bg-white'}`}
-                    >
-                      <div className="flex items-center gap-2">
-                        <button
-                          type="button"
-                          aria-expanded={isOpen}
-                          aria-controls={isOpen ? `meal-panel-${meal.mealType}` : undefined}
-                          onClick={() => {
-                            if (isEmpty) {
-                              setOpenMealAccordion(null);
-                              setDishModal({ mode: 'add', dayIndex: selectedPlanDay - 1, mealIndex: idx, mealType: meal.mealType, dishIndex: 0 });
-                              return;
-                            }
-                            setOpenMealAccordion((open) => open === meal.mealType ? null : meal.mealType);
-                          }}
-                          className="flex flex-1 items-center gap-3 min-w-0 text-start"
-                        >
-                          <span className="w-11 h-11 rounded-[14px] bg-[#F4F1EB] flex items-center justify-center text-[18px] shrink-0">{emoji}</span>
-                          <span className="flex-1 min-w-0">
-                            <span className="flex items-center gap-2 flex-wrap">
-                              <span className="text-[13px] font-extrabold text-[#0F4C3A]">{t((meal.mealType === 'lunch' ? 'mealLunch' : meal.mealType === 'dinner' ? 'mealDinner' : meal.mealType === 'breakfast' ? 'mealBreakfast' : 'mealSnack') as any)}</span>
-                              <span className="text-[11px] text-[#8A938E]">{mealTime(meal.mealType)}</span>
-                            </span>
-                            <span className="mt-0.5 block text-[12px] text-[#6B7A75]">
-                              <span className="num font-bold text-[#B8860B]">{mealCal}</span> kcal
-                            </span>
-                            {isEmpty && <span className="mt-1 block text-[11px] text-[#9AA19D]">{language === 'ar' ? 'لا توجد أطباق بعد' : 'No dishes yet'}</span>}
-                          </span>
-                          <span aria-hidden="true" className="text-[18px] font-bold text-[#8A938E] shrink-0">{isOpen ? '−' : '+'}</span>
-                        </button>
-                        {idx < 4 && (
-                          <button
-                            type="button"
-                            aria-label={done ? (language === 'ar' ? 'إلغاء إكمال الوجبة' : 'Unmark meal done') : (language === 'ar' ? 'تحديد الوجبة كمكتملة' : 'Mark meal done')}
-                            onClick={() => {
-                              haptic(6);
-                              setMealsDone((prev) => prev.map((v, i) => (i === idx ? !v : v)));
-                            }}
-                            className={`w-7 h-7 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ml-2 ${done ? 'bg-[#0F4C3A] border-[#0F4C3A] text-white' : 'border-[#C8C4B8] bg-white'}`}
-                          >
-                            {done ? '✓' : ''}
-                          </button>
-                        )}
-                      </div>
-                      {isOpen && <div id={`meal-panel-${meal.mealType}`} className="mt-3 space-y-1.5">
-                        {meal.dishes.map((d, di) => {
-                          const rowKey = `${di}-${d.dish.name}`;
-                          const leaveKey = `d${selectedPlanDay - 1}-m${idx}-x${di}-${d.dish.name}`;
-                          const flashKey = `d${selectedPlanDay - 1}-m${idx}-s-${d.dish.name}`;
-                          return (
-                            <div
-                              key={rowKey}
-                              className={`flex items-center justify-between gap-2 text-[12px] min-w-0 group rounded-[12px] px-2 py-1 ${
-                                removingDish === leaveKey ? 'dish-leave' : 'dish-enter'
-                              } ${swapFlash === flashKey ? 'dish-swap-flash' : ''}`}
-                            >
-                              <span className="font-semibold text-[#0F4C3A] min-w-0 truncate">• {getDishName(d.dish, language)}</span>
-                              <span className="flex items-center gap-1.5 shrink-0 text-[#8A938E]">
-                                <span className="flex items-center gap-1 min-w-0">
-                                  <span className="num font-bold text-[#B8860B]">{d.calories}</span>
-                                  <span>kcal</span>
-                                  <span className="text-[#C8C4B8]">·</span>
-                                  <span className="num font-bold text-[#6B7A75]">{Math.round(d.grams)}g</span>
-                                </span>
-                                <button
-                                  type="button"
-                                  aria-label={language === 'ar' ? 'تبديل الطبق' : 'Swap dish'}
-                                  title={language === 'ar' ? 'تبديل الطبق' : 'Swap dish'}
-                                  onClick={() => setDishModal({ mode: 'swap', dayIndex: selectedPlanDay - 1, mealIndex: idx, mealType: meal.mealType, dishIndex: di })}
-                                  className="w-7 h-7 rounded-full flex items-center justify-center text-[12px] border border-[#E9E5DB] bg-white hover:border-[#D4AF37] hover:bg-[#FFFBEF] text-[#0F4C3A] transition-all active:scale-95 shrink-0"
-                                >
-                                  🔄
-                                </button>
-                                <button
-                                  type="button"
-                                  aria-label={language === 'ar' ? 'إزالة الطبق' : 'Remove dish'}
-                                  title={language === 'ar' ? 'إزالة الطبق' : 'Remove dish'}
-                                  onClick={() => handleRemoveDish(selectedPlanDay - 1, idx, di)}
-                                  className="w-7 h-7 rounded-full flex items-center justify-center text-[12px] border border-[#E9E5DB] bg-white hover:border-red-300 hover:bg-red-50 text-[#9AA19D] hover:text-red-500 transition-all active:scale-95 shrink-0"
-                                >
-                                  ✕
-                                </button>
-                              </span>
-                            </div>
-                          );
-                        })}
-                        <button
-                          type="button"
-                          aria-label={language === 'ar' ? 'أضف طبقاً' : 'Add dish'}
-                          onClick={() => setDishModal({ mode: 'add', dayIndex: selectedPlanDay - 1, mealIndex: idx, mealType: meal.mealType, dishIndex: 0 })}
-                          className="w-full h-9 rounded-[12px] border-2 border-dashed border-[#E3E0D8] text-[12px] font-bold text-[#0F4C3A] hover:border-[#D4AF37] hover:bg-[#FFFBEF] flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
-                        >
-                          <span>+</span> {language === 'ar' ? 'أضف طبقاً' : 'Add dish'}
-                        </button>
-                      </div>}
-                    </div>
+                      mealType={meal.mealType}
+                      title={title}
+                      time={mealTime(meal.mealType)}
+                      calories={mealCal}
+                      dishes={meal.dishes.map((dish, dishIndex) => {
+                        const leaveKey = `d${selectedPlanDay - 1}-m${idx}-x${dishIndex}-${dish.dish.name}`;
+                        const flashKey = `d${selectedPlanDay - 1}-m${idx}-s-${dish.dish.name}`;
+                        return {
+                          id: `${dishIndex}-${dish.dish.name}`,
+                          name: getDishName(dish.dish, language),
+                          grams: Math.round(dish.grams),
+                          calories: dish.calories,
+                          rowClassName: `${removingDish === leaveKey ? 'dish-leave' : 'dish-enter'} ${swapFlash === flashKey ? 'dish-swap-flash' : ''}`,
+                        };
+                      })}
+                      isExpanded={isOpen}
+                      isDone={mealsDone[idx] ?? false}
+                      showDoneControl={idx < 4}
+                      isArabic={language === 'ar'}
+                      onToggle={() => setOpenMealAccordion((open) => open === meal.mealType ? null : meal.mealType)}
+                      onAddDish={() => setDishModal({ mode: 'add', dayIndex: selectedPlanDay - 1, mealIndex: idx, mealType: meal.mealType, dishIndex: 0 })}
+                      onSwapDish={(dishIndex) => setDishModal({ mode: 'swap', dayIndex: selectedPlanDay - 1, mealIndex: idx, mealType: meal.mealType, dishIndex })}
+                      onRemoveDish={(dishIndex) => handleRemoveDish(selectedPlanDay - 1, idx, dishIndex)}
+                      onDoneChange={(done) => {
+                        haptic(6);
+                        setMealsDone((prev) => prev.map((value, mealIndex) => (mealIndex === idx ? done : value)));
+                      }}
+                    />
                   );
                 })}
               </div>
