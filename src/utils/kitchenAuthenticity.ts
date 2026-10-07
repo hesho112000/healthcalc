@@ -499,9 +499,15 @@ export const KITCHEN_COUNT_REGIONS: Record<string, ReadonlySet<string | null>> =
               'pan_ukrainian', 'kyiv', 'lviv', 'odesa', 'kharkiv',
               'dnipro', 'chernihiv', 'poltava', 'vinnytsia', 'zaporizhzhia',
             ]),
-     };
+            'eastern-european': new Set([
+              'russia', 'poland', 'hungary', 'romania', 'czechia', 'bulgaria',
+              'slovakia', 'lithuania', 'latvia', 'estonia', 'belarus', 'moldova',
+              'slovenia', 'bosnia', 'croatia', 'georgia', 'armenia', 'serbia',
+              'albania', 'north_macedonia', 'ukraine', 'montenegro',
+            ]),
+      };
 
- // Region family a given kitchen may draw from.
+  // Region family a given kitchen may draw from.
 export const KITCHEN_REGION_FAMILIES: Record<string, ReadonlySet<string>> = {
   saudi: new Set(['pan_saudi', 'gulf_shared', 'hijazi', 'najdi', 'janubi', 'sharqi']),
   emirati: new Set(['pan_emirati', 'gulf_shared']),
@@ -771,12 +777,22 @@ vietnamese: new Set([
               'pan_finnish', 'helsinki', 'tampere', 'turku', 'oulu',
               'jyvaskyla', 'kuopio', 'rovaniemi', 'vaasa', 'pori',
             ]),
-            // Ukrainian remains on static data until migrated.
-     };
+            ukrainian: new Set([
+              'pan_ukrainian', 'kyiv', 'lviv', 'odesa', 'kharkiv',
+              'dnipro', 'chernihiv', 'poltava', 'vinnytsia', 'zaporizhzhia',
+            ]),
+            'eastern-european': new Set([
+              'russia', 'poland', 'hungary', 'romania', 'czechia', 'bulgaria',
+              'slovakia', 'lithuania', 'latvia', 'estonia', 'belarus', 'moldova',
+              'slovenia', 'bosnia', 'croatia', 'georgia', 'armenia', 'serbia',
+              'albania', 'north_macedonia', 'ukraine', 'montenegro',
+            ]),
+      };
 
  // True when a dish may be served in the given kitchen's plans.
 export function isAuthenticForKitchen(kitchenId: string, region: string | null | undefined, name: string | null | undefined): boolean {
   const fam = KITCHEN_REGION_FAMILIES[kitchenId];
+  if (kitchenId === 'eastern-european') return !!region && !!fam?.has(region);
   if (fam && region && !fam.has(region)) return false;
   if (kitchenId === 'saudi' && LEVANTINE_BARE.has(normalizeArabicName(name ?? ''))) return false;
   return !hasForeignNationalityFor(kitchenId, name);
