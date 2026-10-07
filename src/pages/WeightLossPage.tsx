@@ -2689,7 +2689,7 @@ const WeightLossPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="rounded-[22px] p-5 text-white relative overflow-hidden" style={{ background: 'linear-gradient(135deg,#D4AF37,#C9A032 70%,#b3922c)' }}>
                 <div className="text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#3a2f05]/80">{t('wizard.step5.dailyTarget')}</div>
                 <div className="mt-2 flex items-baseline gap-1">
@@ -2733,10 +2733,17 @@ const WeightLossPage: React.FC = () => {
                 <div className="mt-2 text-[12px] font-semibold text-[#6B7A75]">
                   {t('wizard.step5.completed').replace('{n}', String(doneCount))}
                 </div>
+                </div>
               </div>
-            </div>
 
-            <div id="step5-daily-plan" className="rounded-[26px] bg-white border border-[#EFEBE4] shadow-[0_10px_30px_rgba(15,76,58,0.06)] p-5 md:p-6">
+              <div
+                data-ad-slot="weight-loss-meal-plan"
+                role="complementary"
+                aria-label={language === 'ar' ? 'مساحة إعلانية' : 'Advertisement'}
+                className="min-h-[250px] w-full shrink-0"
+              />
+
+              <div id="step5-daily-plan" className="rounded-[26px] bg-white border border-[#EFEBE4] shadow-[0_10px_30px_rgba(15,76,58,0.06)] p-5 md:p-6">
               <div className="flex items-center justify-between gap-2 mb-4">
                 <h3 className="text-[16px] font-extrabold">🍱 {t('wizard.step5.statMealsDone')}</h3>
                 <span className={`text-[11px] font-bold px-3 py-1 rounded-full ${(() => {
@@ -2782,6 +2789,7 @@ const WeightLossPage: React.FC = () => {
                           name: getDishName(dish.dish, language),
                           grams: Math.round(dish.grams),
                           calories: dish.calories,
+                          imageUrl: 'imageUrl' in dish.dish && typeof dish.dish.imageUrl === 'string' ? dish.dish.imageUrl : undefined,
                           rowClassName: `${removingDish === leaveKey ? 'dish-leave' : 'dish-enter'} ${swapFlash === flashKey ? 'dish-swap-flash' : ''}`,
                         };
                       })}
