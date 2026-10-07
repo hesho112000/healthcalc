@@ -1247,6 +1247,9 @@ const WeightLossPage: React.FC = () => {
   const regionLabel = (region: RegionDef) =>
     region.translationKey ? t(region.translationKey) : language === 'ar' ? region.ar : region.en;
   const { user } = useAuth();
+  const profileInitials = user?.name?.trim() && user.name !== 'Guest'
+    ? user.name.trim().split(/\s+/).slice(0, 2).map((part) => part.charAt(0)).join('').toUpperCase()
+    : 'HC';
   const [step, setStep] = useState<Step>(1);
   const [planType, setPlanType] = useState<PlanType>('both');
   const [age, setAge] = useState<string>(() => readWizardInput().age ?? '26');
@@ -2636,21 +2639,20 @@ const WeightLossPage: React.FC = () => {
 
         {step === 5 && (
           <div className="mt-6 max-w-[940px] mx-auto flex flex-col gap-5">
-            <div className="rounded-[26px] overflow-hidden border border-[#EFEBE4] shadow-[0_14px_40px_rgba(15,76,58,0.1)]">
-              <div className="px-5 md:px-6 py-4 text-white flex items-center gap-3" style={{ background: 'linear-gradient(135deg,#0F4C3A,#14532D 60%,#1f6b52)' }}>
-                <span className="w-11 h-11 rounded-full bg-white/15 border border-white/20 flex items-center justify-center text-white font-extrabold text-[15px] tracking-wider shrink-0">HC</span>
+            <div className="rounded-[26px] border border-[#EFEBE4] bg-white shadow-[0_14px_40px_rgba(15,76,58,0.1)]">
+              <div className="rounded-t-[25px] px-4 sm:px-5 md:px-6 py-4 text-white flex items-start sm:items-center gap-3" style={{ background: 'linear-gradient(135deg,#0F4C3A,#14532D 60%,#1f6b52)' }}>
+                <span aria-hidden="true" className="w-11 h-11 rounded-full bg-white/15 border border-white/20 flex items-center justify-center text-white font-extrabold text-[15px] tracking-wider shrink-0">{profileInitials}</span>
                 <div className="flex-1 min-w-0">
-                  <div className="text-[17px] md:text-[19px] font-extrabold leading-tight break-words">{t('wizard.step5.title')}</div>
-                  <div className="text-white/75 text-[12px] leading-[14px] mt-0.5 break-words">{t('wizard.step5.subtitle')}</div>
+                  <div className="text-[16px] sm:text-[17px] md:text-[19px] font-extrabold leading-snug break-words">{t('wizard.step5.title')}</div>
+                  <div className="text-white/75 text-[12px] leading-relaxed mt-0.5 break-words">{t('wizard.step5.subtitle')}</div>
                 </div>
-                <span className="wiz-progress-badge shrink-0 hidden sm:inline-flex">{t('wizard.step5.eyebrow')}</span>
               </div>
 
               <div className="bg-white px-4 md:px-6 py-3 flex items-center justify-between gap-2 border-b border-[#F0ECE2]">
                 <button type="button" onClick={() => setStep(4)} className="rounded-full bg-[#F4F1EB] text-[#0F4C3A] text-[12px] font-bold px-4 py-2 flex items-center gap-1 hover:bg-[#ECE8DD] min-w-0">
                   <span className="shrink-0">←</span> {t('wizard.step5.backToEdit')}
                 </button>
-                <div className="text-[11.5px] text-[#8A938E] min-w-0 truncate text-end">
+                <div className="text-[11.5px] text-[#8A938E] min-w-0 break-words text-end">
                   <span className="num">{numbers!.targetCal}</span> kcal · {selectedKitchen.flag} {kitchenLabel(selectedKitchen)}
                 </div>
               </div>
