@@ -242,6 +242,31 @@ const COUNTRY_BY_ID: Record<string, string> = {
   venezuelan: 'فنزويلا 🇻🇪',
 };
 
+const FLAG_CODE_BY_ID: Record<string, string> = {
+  algeria: 'dz', algerian: 'dz', american: 'us', argentina: 'ar', argentinian: 'ar',
+  australia: 'au', australian: 'au', australasia: 'au', austria: 'at', austrian: 'at',
+  bahraini: 'bh', benelux: 'nl', botswanan: 'bw', brazilian: 'br', british: 'gb',
+  canada: 'ca', canadian: 'ca', chile: 'cl', chilean: 'cl', chinese: 'cn',
+  colombia: 'co', colombian: 'co', 'costa-rican': 'cr', cuban: 'cu', danish: 'dk', denmark: 'dk',
+  'eastern-european': 'pl', egyptian: 'eg', emirati: 'ae', ethiopian: 'et',
+  filipino: 'ph', finland: 'fi', finnish: 'fi', france: 'fr', french: 'fr',
+  gabonese: 'ga', german: 'de', germany: 'de', ghanaian: 'gh', greek: 'gr',
+  greece: 'gr', indian: 'in', indonesian: 'id', italian: 'it', italy: 'it',
+  jamaican: 'jm', japanese: 'jp', kenyan: 'ke', korean: 'kr', kuwaiti: 'kw',
+  lebanese: 'lb', libyan: 'ly', malaysian: 'my', mauritian: 'mu', mexican: 'mx',
+  mexico: 'mx', moroccan: 'ma', 'new-zealand': 'nz', nigerian: 'ng', norway: 'no',
+  norwegian: 'no', omani: 'om', pakistan: 'pk', pakistani: 'pk', palestinian: 'ps',
+  peru: 'pe', peruvian: 'pe', qatar: 'qa', rwandan: 'rw', saudi: 'sa',
+  seychellois: 'sc', 'south-african': 'za', spain: 'es', spanish: 'es', sweden: 'se',
+  swedish: 'se', swiss: 'ch', switzerland: 'ch', syrian: 'sy', taiwanese: 'tw',
+  thai: 'th', turkey: 'tr', turkish: 'tr', tunisian: 'tn', uk: 'gb', ukraine: 'ua',
+  ukrainian: 'ua', usa: 'us', venezuelan: 've', vietnamese: 'vn',
+};
+
+const DIET_FLAG_CODE_BY_ID: Record<string, string> = {
+  dash: 'us', keto: 'us', mediterranean: 'gr',
+};
+
 const NAME_BY_ID: Record<string, string> = {
   egyptian: 'المطبخ المصري',
   tunisian: 'المطبخ التونسي',
@@ -405,16 +430,20 @@ function basenameId(path: string): string {
 
 function matchCountry(name: string, id: string): string {
   for (const [word, country] of Object.entries(COUNTRY_BY_WORD)) {
-    if (name.includes(word)) return country;
+    if (name.includes(word)) return stripFlagSuffix(country);
   }
-  return COUNTRY_BY_ID[id] ?? CITY_BY_ID[id] ?? name;
+  return stripFlagSuffix(COUNTRY_BY_ID[id] ?? CITY_BY_ID[id] ?? name);
 }
 
 function matchCity(name: string, id: string): string {
   for (const [word, city] of Object.entries(CITY_BY_WORD)) {
-    if (name.includes(word)) return city;
+    if (name.includes(word)) return stripFlagSuffix(city);
   }
-  return CITY_BY_ID[id] ?? 'مدينة';
+  return stripFlagSuffix(CITY_BY_ID[id] ?? 'مدينة');
+}
+
+function stripFlagSuffix(value: string): string {
+  return value.replace(/\s*[\u{1F1E6}-\u{1F1FF}]{2}$/u, '').trim();
 }
 
 function toKitchenDish(raw: any): KitchenDish | null {
@@ -507,7 +536,7 @@ function buildDiet(path: string, mod: any): KitchenInfo {
   const dishes = list.map(toKitchenDish).filter((d: KitchenDish | null): d is KitchenDish => !!d);
   const base = (path.split('/').pop() || '').replace(/\.json$/, '').replace(/-diet-100-medical$/, '');
   const name = DIET_NAME[base] ?? `دايت ${base}`;
-  const country = DIET_COUNTRY[base] ?? 'عالمي دايت 🌍';
+  const country = stripFlagSuffix(DIET_COUNTRY[base] ?? 'عالمي دايت 🌍');
   return {
     id: `diet-${base}`,
     kitchen: name,
@@ -515,8 +544,8 @@ function buildDiet(path: string, mod: any): KitchenInfo {
     country,
     kitchenEn: DIET_NAME_EN[base] ?? `${base} diet`,
     cityEn: DIET_NAME_EN[base] ?? `${base} diet`,
-    countryEn: DIET_COUNTRY_EN[base] ?? 'Global diet 🌍',
-    flag: country.split(' ').pop() ?? '🏳️',
+    countryEn: stripFlagSuffix(DIET_COUNTRY_EN[base] ?? 'Global diet 🌍'),
+    flag: FLAG_CODE_BY_ID[base] ?? DIET_FLAG_CODE_BY_ID[base] ?? '',
     total: dishes.length,
     conf100: 0,
     conf85: 0,
@@ -556,7 +585,7 @@ function buildRich(path: string, mod: any): KitchenInfo {
     kitchenEn: typeof data.kitchen_en === 'string' ? data.kitchen_en : KITCHEN_EN_BY_ID[id],
     cityEn: CITY_EN_BY_ID[id],
     countryEn: COUNTRY_EN_BY_ID[id],
-    flag: country.split(' ').pop() ?? '🏳️',
+    flag: FLAG_CODE_BY_ID[id] ?? '',
     total: data.total_dishes ?? dishes.length,
     conf100: dishes.filter((d) => d.confidence === 100).length,
     conf85: dishes.filter((d) => d.confidence === 85).length,
@@ -577,8 +606,8 @@ function buildBasic(path: string, mod: any): KitchenInfo {
   const rawList: any[] = (entry?.[1] as any[]) ?? [];
   const dishes = rawList.map(toKitchenDish).filter((d: KitchenDish | null): d is KitchenDish => !!d);
   const name = NAME_BY_ID[id] ?? id;
-  const city = CITY_BY_ID[id] ?? name;
-  const country = COUNTRY_BY_ID[id] ?? city;
+  const city = stripFlagSuffix(CITY_BY_ID[id] ?? name);
+  const country = stripFlagSuffix(COUNTRY_BY_ID[id] ?? city);
   return {
     id,
     kitchen: name,
@@ -588,7 +617,7 @@ function buildBasic(path: string, mod: any): KitchenInfo {
     cityEn: CITY_EN_BY_ID[id],
     countryEn: COUNTRY_EN_BY_ID[id],
     description: KITCHEN_DESCRIPTION_BY_ID[id],
-    flag: country.split(' ').pop() ?? '🏳️',
+    flag: FLAG_CODE_BY_ID[id] ?? '',
     total: dishes.length,
     conf100: 0,
     conf85: 0,

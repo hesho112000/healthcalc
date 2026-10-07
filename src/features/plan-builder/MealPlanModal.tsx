@@ -4,6 +4,7 @@ import { Cuisine, CUISINE_META } from '../../utils/calculations_expanded';
 import { buildMealRowsForCuisine } from '../../utils/calculations';
 import { useLanguage } from '../../context/LanguageContext';
 import { getMealName, getFoodItemText } from '../../utils/mealLabels';
+import Flag, { isCountryCode } from '../../components/common/Flag';
 
 interface ModalDayData {
   meals: Array<{ meal: string; calories: number; protein: number; carbs: number; fat: number; items: string[]; icon?: string; description?: string; tips?: string; nameAr?: string; nameEn?: string; verified?: boolean; saturatedFat?: number; cholesterol?: number }>;
@@ -53,7 +54,7 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
   const displayCalories = targetCalories > 0 ? targetCalories : Math.round(activeMealPlan.reduce((sum, m) => sum + (m.calories || 0), 0));
   const cuisineMeta = CUISINE_META[activeCuisine];
   const cuisineLabel = cuisineMeta
-    ? `${cuisineMeta.flag || ''} ${language === 'ar' ? cuisineMeta.label_ar : cuisineMeta.label_en}`
+    ? language === 'ar' ? cuisineMeta.label_ar : cuisineMeta.label_en
     : activeCuisine;
 
   const [completed, setCompleted] = useState<boolean[]>([]);
@@ -197,7 +198,12 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
             <span className="text-xs font-bold text-gray-500 shrink-0">🍽️</span>
             <div className="flex items-center gap-2 text-sm text-gray-600 flex-wrap">
               <span className="font-semibold">{t('cuisine')}:</span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-blue-50 text-blue-700 font-bold">{cuisineLabel}</span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-blue-50 text-blue-700 font-bold">
+                {cuisineMeta && isCountryCode(cuisineMeta.flag)
+                  ? <Flag countryCode={cuisineMeta.flag} alt={`${cuisineLabel} flag`} className="h-3.5 w-5" />
+                  : cuisineMeta?.flag}
+                {cuisineLabel}
+              </span>
               <span className="text-[10px] text-gray-400">({t('changeFromMain')})</span>
             </div>
           </div>

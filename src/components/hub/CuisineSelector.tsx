@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { readHubPlan, tk } from './data';
 import LockedCard from './LockedCard';
+import Flag from '../common/Flag';
 
 interface CuisineSelectorProps {
   paid: boolean;
@@ -9,19 +10,19 @@ interface CuisineSelectorProps {
   onNote: (message: string) => void;
 }
 
-const CUISINES: Array<{ id: string; flag: string }> = [
-  { id: 'Egyptian', flag: '🇪🇬' },
-  { id: 'Tunisian', flag: '🇹🇳' },
-  { id: 'Saudi', flag: '🇸🇦' },
-  { id: 'Lebanese', flag: '🇱🇧' },
-  { id: 'American', flag: '🇺🇸' },
-  { id: 'Italian', flag: '🇮🇹' },
-  { id: 'Austrian', flag: '🇦🇹' },
-  { id: 'Benelux', flag: '🇳🇱' },
-  { id: 'Norwegian', flag: '🇳🇴' },
-  { id: 'Swedish', flag: '🇸🇪' },
-  { id: 'Danish', flag: '🇩🇰' },
-  { id: 'Finnish', flag: '🇫🇮' },
+const CUISINES: Array<{ id: string; countryCode: string }> = [
+  { id: 'Egyptian', countryCode: 'eg' },
+  { id: 'Tunisian', countryCode: 'tn' },
+  { id: 'Saudi', countryCode: 'sa' },
+  { id: 'Lebanese', countryCode: 'lb' },
+  { id: 'American', countryCode: 'us' },
+  { id: 'Italian', countryCode: 'it' },
+  { id: 'Austrian', countryCode: 'at' },
+  { id: 'Benelux', countryCode: 'nl' },
+  { id: 'Norwegian', countryCode: 'no' },
+  { id: 'Swedish', countryCode: 'se' },
+  { id: 'Danish', countryCode: 'dk' },
+  { id: 'Finnish', countryCode: 'fi' },
 ];
 
 const readStoredCuisine = (): string => {
@@ -62,7 +63,7 @@ const CuisineSelector: React.FC<CuisineSelectorProps> = ({ paid, onUnlock, onNot
           <p className="mt-1 text-sm text-[#6B7A75]">{t(tk('hub.cuisine.change'))}</p>
         </div>
         <div className="flex flex-wrap gap-2">
-          {CUISINES.map(({ id, flag }) => {
+          {CUISINES.map(({ id, countryCode }) => {
             const active = cuisine === id;
             return (
               <button
@@ -75,7 +76,7 @@ const CuisineSelector: React.FC<CuisineSelectorProps> = ({ paid, onUnlock, onNot
                     : 'border-[#EFEBE4] bg-white text-[#4A5A55] hover:border-[#0F4C3A]/40'
                 }`}
               >
-                <span className="mr-1.5">{flag}</span>
+                <Flag countryCode={countryCode} alt={`${id} flag`} className="mr-1.5 h-3.5 w-5" />
                 {id}
               </button>
             );

@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { CUISINE_GROUPS, CUISINE_FLAGS, type Cuisine } from '../../utils/cuisineCatalog';
 import type { Language } from '../../types';
+import Flag, { isCountryCode } from '../../components/common/Flag';
 
 const getCuisineLabel = (item: { nameEn: string; nameAr: string }, lang: Language): string => {
   if (lang === 'ar') return item.nameAr;
@@ -42,7 +43,7 @@ const CuisineRegionCards: React.FC<CuisineRegionCardsProps> = ({ selected, onCha
       id: item.id,
       nameEn: item.nameEn,
       nameAr: item.nameAr,
-      flag: CUISINE_FLAGS[item.id] || '🍽️',
+      flag: CUISINE_FLAGS[item.id] || '',
     })),
   })), []);
 
@@ -68,7 +69,9 @@ const CuisineRegionCards: React.FC<CuisineRegionCardsProps> = ({ selected, onCha
           </span>
           {selectedName ? (
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-blue-50 text-blue-700 font-bold">
-              <span>{selectedName.flag}</span>
+              {isCountryCode(selectedName.flag)
+                ? <Flag countryCode={selectedName.flag} alt={`${getCuisineLabel(selectedName, language)} flag`} className="h-3.5 w-5" />
+                : selectedName.flag && <span>{selectedName.flag}</span>}
               <span>{getCuisineLabel(selectedName, language)}</span>
             </span>
           ) : (
@@ -105,7 +108,10 @@ const CuisineRegionCards: React.FC<CuisineRegionCardsProps> = ({ selected, onCha
                         : 'bg-white text-gray-600 border-gray-200 hover:border-blue-300 hover:text-blue-600'
                     }`}
                   >
-                    {c.flag} {getCuisineLabel(c, language)}
+                    {isCountryCode(c.flag)
+                      ? <Flag countryCode={c.flag} alt={`${getCuisineLabel(c, language)} flag`} className="h-3 w-4" />
+                      : c.flag}
+                    {' '}{getCuisineLabel(c, language)}
                   </button>
                 );
               })}

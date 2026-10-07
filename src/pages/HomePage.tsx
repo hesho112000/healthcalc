@@ -9,6 +9,7 @@ import TrustBar from '../components/sections/TrustBar';
 import TrustStats from '../components/sections/TrustStats';
 import HowItWorks from '../components/sections/HowItWorks';
 import StartFreeDropdown from '../components/layout/StartFreeDropdown';
+import Flag from '../components/common/Flag';
 import { ENABLE_PREMIUM } from '../config/featureFlags';
 
 const conditions = [
@@ -22,9 +23,11 @@ const conditions = [
   ['🌿', 'IBS', 'قولون', '/premium'],
 ];
 
-const cuisines = [
-  ['🇪🇬', 'Egyptian'], ['🇮🇳', 'Indian'], ['🇸🇦', 'Arabic'], ['🇬🇷', 'Mediterranean'],
-  ['🌏', 'Asian'], ['🇺🇸', 'American'], ['🥗', 'Vegetarian'], ['🥑', 'Keto'],
+const cuisines: Array<{ name: string; countryCode?: string; icon?: string }> = [
+  { countryCode: 'eg', name: 'Egyptian' }, { countryCode: 'in', name: 'Indian' },
+  { countryCode: 'sa', name: 'Arabic' }, { countryCode: 'gr', name: 'Mediterranean' },
+  { icon: '🌏', name: 'Asian' }, { countryCode: 'us', name: 'American' },
+  { icon: '🥗', name: 'Vegetarian' }, { icon: '🥑', name: 'Keto' },
 ];
 
 const HomePage: React.FC = () => {
@@ -82,7 +85,7 @@ const HomePage: React.FC = () => {
       <section className="section-wrap section-tint">
         <div className="explainer-grid reverse">
           <div className="section-intro"><span className="step-pill pink">{t('homeStep2')}</span><h2>{t('homeStep2Title')}</h2><p>{t('homeStep2Desc')}</p>
-            <div className="cuisine-grid">{cuisines.map(([flag, name]) => <span key={name}>{flag} {name}</span>)}</div>
+            <div className="cuisine-grid">{cuisines.map(({ countryCode, icon, name }) => <span key={name}>{countryCode ? <Flag countryCode={countryCode} alt={`${name} flag`} /> : icon} {name}</span>)}</div>
             <Link to="/weight-loss" className="btn-primary">{t('homeSeePlan')} <span>→</span></Link>
           </div>
           <SectionIllustration kind="plan" />

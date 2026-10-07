@@ -3,15 +3,16 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { Language } from '../types';
 import SeoLandingPage, { SeoPageData } from './SeoLandingPage';
 import { allSeoPages } from '../data/seo';
+import Flag from './common/Flag';
 
 const SUPPORTED_LANGS: Language[] = ['en', 'fr', 'es', 'ar'];
 
-const langLabels: Record<Language, { native: string; flag: string }> = {
-  en: { native: 'English', flag: '🇺🇸' },
-  fr: { native: 'Français', flag: '🇫🇷' },
-  es: { native: 'Español', flag: '🇪🇸' },
-  ar: { native: 'العربية', flag: '🇸🇦' },
-  de: { native: 'Deutsch', flag: '🇩🇪' },
+const langLabels: Record<Language, { native: string; countryCode: string }> = {
+  en: { native: 'English', countryCode: 'us' },
+  fr: { native: 'Français', countryCode: 'fr' },
+  es: { native: 'Español', countryCode: 'es' },
+  ar: { native: 'العربية', countryCode: 'sa' },
+  de: { native: 'Deutsch', countryCode: 'de' },
 };
 
 const LocalizedSeoPage: React.FC = () => {
@@ -57,7 +58,7 @@ const LanguageSwitcherBar: React.FC<{ currentLang: Language; slug: string }> = (
                   : 'text-gray-400 hover:text-white hover:bg-gray-800'
               }`}
             >
-              <span>{langLabels[l].flag}</span>
+              <Flag countryCode={langLabels[l].countryCode} alt={`Flag of ${langLabels[l].native}`} className="h-3.5 w-5" />
               <span className="hidden sm:inline">{langLabels[l].native}</span>
             </Link>
           ))}

@@ -418,7 +418,7 @@ export const CUISINE_OPTIONS: Array<{ key: Cuisine; label_ar: string; label_en: 
     key: i.id,
     label_ar: i.nameAr,
     label_en: i.nameEn,
-    flag: CUISINE_FLAGS[i.id] || '🍽️',
+    flag: CUISINE_FLAGS[i.id] || '',
   })));
 
 export const FOODS_DATABASE_RAW: FoodItem[] = [
@@ -813,18 +813,17 @@ export const FOODS_DATABASE: FoodItem[] = [
 
 const CUISINE_COLORS = ['bg-blue-100 text-blue-700', 'bg-red-100 text-red-700', 'bg-yellow-100 text-yellow-700', 'bg-green-100 text-green-700', 'bg-orange-100 text-orange-700', 'bg-amber-100 text-amber-700', 'bg-[#EAF2EE] text-[#0F4C3A]', 'bg-rose-100 text-rose-700', 'bg-lime-100 text-lime-700', 'bg-purple-100 text-purple-700', 'bg-indigo-100 text-indigo-700', 'bg-[#FFF8E7] text-[#B8860B]'];
 
-export const CUISINE_META: Record<string, { label: string; emoji: string; color: string; flag: string; label_ar: string; label_en: string }> =
+export const CUISINE_META: Record<string, { label: string; color: string; flag: string; label_ar: string; label_en: string }> =
   CUISINE_GROUPS.flatMap((g) => g.items).reduce((acc, item, idx) => {
     acc[item.id] = {
       label: item.nameEn,
-      emoji: CUISINE_FLAGS[item.id] || '🍽️',
       color: CUISINE_COLORS[idx % CUISINE_COLORS.length],
-      flag: CUISINE_FLAGS[item.id] || '🍽️',
+      flag: CUISINE_FLAGS[item.id] || '',
       label_ar: item.nameAr,
       label_en: item.nameEn,
     };
     return acc;
-  }, {} as Record<string, { label: string; emoji: string; color: string; flag: string; label_ar: string; label_en: string }>);
+  }, {} as Record<string, { label: string; color: string; flag: string; label_ar: string; label_en: string }>);
 
 export { CUISINE_GROUPS, CUISINE_FLAGS, REGIONAL_FOODS } from './cuisineCatalog';
 

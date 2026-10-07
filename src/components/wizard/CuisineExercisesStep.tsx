@@ -1,6 +1,7 @@
 import React from 'react';
 import type { TKey } from './stepTypes';
 import { CUISINE_CARDS, EXERCISE_TYPE_CATEGORIES } from './stepTypes';
+import Flag from '../common/Flag';
 
 type T = (key: TKey) => string;
 
@@ -29,7 +30,7 @@ const CuisineExercisesStep: React.FC<CuisineExercisesStepProps> = ({
     <div>
       <h3 className="text-sm font-bold text-[#0F4C3A] mb-2">{t(tk('wizard.cuisine'))}</h3>
       <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
-        {CUISINE_CARDS.map(({ id, flag, label }) => {
+        {CUISINE_CARDS.map(({ id, countryCode, label }) => {
           const active = cuisine === id;
           return (
             <button
@@ -40,7 +41,7 @@ const CuisineExercisesStep: React.FC<CuisineExercisesStepProps> = ({
                 active ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]' : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'
               }`}
             >
-              <span className="text-2xl block">{flag}</span>
+              <Flag countryCode={countryCode} alt={`${label} flag`} className="h-6 w-8 block mx-auto" />
               <span className={`text-xs font-bold mt-1 block ${active ? 'text-[#0F4C3A]' : 'text-slate-900'}`}>{label}</span>
             </button>
           );

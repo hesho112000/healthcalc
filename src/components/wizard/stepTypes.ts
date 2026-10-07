@@ -36,19 +36,19 @@ export interface WizardGoal {
 
 export type LabValues = Record<string, string>;
 
-export const CUISINE_CARDS: Array<{ id: string; flag: string; label: string }> = [
-  { id: 'Egyptian', flag: '🇪🇬', label: 'Egyptian' },
-  { id: 'Tunisian', flag: '🇹🇳', label: 'Tunisian' },
-  { id: 'Saudi', flag: '🇸🇦', label: 'Saudi' },
-  { id: 'Lebanese', flag: '🇱🇧', label: 'Lebanese' },
-  { id: 'American', flag: '🇺🇸', label: 'American' },
-  { id: 'Italian', flag: '🇮🇹', label: 'Italian' },
-  { id: 'Austrian', flag: '🇦🇹', label: 'Austrian' },
-  { id: 'Benelux', flag: '🇳🇱', label: 'Benelux' },
-  { id: 'Norwegian', flag: '🇳🇴', label: 'Norwegian' },
-  { id: 'Swedish', flag: '🇸🇪', label: 'Swedish' },
-  { id: 'Danish', flag: '🇩🇰', label: 'Danish' },
-  { id: 'Finnish', flag: '🇫🇮', label: 'Finnish' },
+export const CUISINE_CARDS: Array<{ id: string; countryCode: string; label: string }> = [
+  { id: 'Egyptian', countryCode: 'eg', label: 'Egyptian' },
+  { id: 'Tunisian', countryCode: 'tn', label: 'Tunisian' },
+  { id: 'Saudi', countryCode: 'sa', label: 'Saudi' },
+  { id: 'Lebanese', countryCode: 'lb', label: 'Lebanese' },
+  { id: 'American', countryCode: 'us', label: 'American' },
+  { id: 'Italian', countryCode: 'it', label: 'Italian' },
+  { id: 'Austrian', countryCode: 'at', label: 'Austrian' },
+  { id: 'Benelux', countryCode: 'nl', label: 'Benelux' },
+  { id: 'Norwegian', countryCode: 'no', label: 'Norwegian' },
+  { id: 'Swedish', countryCode: 'se', label: 'Swedish' },
+  { id: 'Danish', countryCode: 'dk', label: 'Danish' },
+  { id: 'Finnish', countryCode: 'fi', label: 'Finnish' },
 ];
 
 export const EXERCISE_TYPE_CATEGORIES: Array<{ id: string; key: TKey; emoji: string }> = [

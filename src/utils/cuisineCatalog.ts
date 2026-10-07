@@ -581,23 +581,18 @@ export const CUISINE_GROUPS: CuisineGroup[] = [
 ];
 
 export const CUISINE_FLAGS: Record<string, string> = {
-  egyptian: '🇪🇬', libyan: '🇱🇾', tunisian: '🇹🇳', algerian: '🇩🇿', moroccan: '🇲🇦',
-  saudi: '🇸🇦', emirati: '🇦🇪', omani: '🇴🇲', kuwaiti: '🇰🇼', qatar: '🇶🇦', bahraini: '🇧🇭',
-  indian: '🇮🇳', pakistani: '🇵🇰', indonesian: '🇮🇩', malaysian: '🇲🇾', chinese: '🇨🇳', korean: '🇰🇷', taiwanese: '🇹🇼', japanese: '🇯🇵',   thai: '🇹🇭',   vietnamese: '🇻🇳',  filipino: '🇵🇭',
-  italian: '🇮🇹', french: '🇫🇷', spanish: '🇪🇸', greek: '🇬🇷', turkish: '🇹🇷', german: '🇩🇪', british: '🇬🇧', swiss: '🇨🇭',
-  austrian: '🇦🇹', benelux: '🇳🇱', norwegian: '🇳🇴', swedish: '🇸🇪', danish: '🇩🇰', finnish: '🇫🇮',
-  american: '🇺🇸', mexican: '🇲🇽', canadian: '🇨🇦', cuban: '🇨🇺', jamaican: '🇯🇲', costa_rican: '🇨🇷',
-  brazilian: '🇧🇷', argentinian: '🇦🇷', peruvian: '🇵🇪', colombian: '🇨🇴', chilean: '🇨🇱', venezuelan: '🇻🇪',
-  australian: '🇦🇺',
-  new_zealand: '🇳🇿',
-  lebanese: '🇱🇧', palestinian: '🇵🇸', syrian: '🇸🇾', jordanian: '🇯🇴',
-  south_african: '🇿🇦', rwandan: '🇷🇼', kenyan: '🇰🇪', nigerian: '🇳🇬', ethiopian: '🇪🇹',
-  ghanaian: '🇬🇭',
-  seychellois: '🇸🇨',
-  mauritian: '🇲🇺',
-  gabonese: '🇬🇦',
-  botswanan: '🇧🇼',
-  african: '🌍', mediterranean: 'MED', keto: 'KETO', high_protein: 'HP', vegetarian: 'VEG', vegan: 'VEGAN', gluten_free: 'GF', low_carb: 'LC', dash: 'DASH', intermittent_fasting: 'IF', paleo: 'PALEO',
+  egyptian: 'eg', libyan: 'ly', tunisian: 'tn', algerian: 'dz', moroccan: 'ma',
+  saudi: 'sa', emirati: 'ae', omani: 'om', kuwaiti: 'kw', qatar: 'qa', bahraini: 'bh',
+  indian: 'in', pakistani: 'pk', indonesian: 'id', malaysian: 'my', chinese: 'cn', korean: 'kr', taiwanese: 'tw', japanese: 'jp', thai: 'th', vietnamese: 'vn', filipino: 'ph',
+  italian: 'it', french: 'fr', spanish: 'es', greek: 'gr', turkish: 'tr', german: 'de', british: 'gb', swiss: 'ch',
+  austrian: 'at', benelux: 'nl', norwegian: 'no', swedish: 'se', danish: 'dk', finnish: 'fi',
+  american: 'us', mexican: 'mx', canadian: 'ca', cuban: 'cu', jamaican: 'jm', costa_rican: 'cr',
+  brazilian: 'br', argentinian: 'ar', peruvian: 'pe', colombian: 'co', chilean: 'cl', venezuelan: 've',
+  australian: 'au', new_zealand: 'nz',
+  lebanese: 'lb', palestinian: 'ps', syrian: 'sy', jordanian: 'jo',
+  south_african: 'za', rwandan: 'rw', kenyan: 'ke', nigerian: 'ng', ethiopian: 'et',
+  ghanaian: 'gh', seychellois: 'sc', mauritian: 'mu', gabonese: 'ga', botswanan: 'bw',
+  african: '🌍', mediterranean: 'gr', keto: 'us', high_protein: '', vegetarian: '', vegan: '', gluten_free: '', low_carb: '', dash: 'us', intermittent_fasting: '', paleo: '',
 };
 
 export const REGIONAL_FOODS: Record<string, RegionalFood[]> = {

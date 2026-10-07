@@ -9,6 +9,7 @@ import type { ExerciseItem } from '../data/exercises';
 import { ExerciseTypeSelector } from '../components/wizard/ExerciseTypeSelector';
 import { ExerciseList } from '../components/wizard/ExerciseList';
 import AddDishModal from '../components/wizard/AddDishModal';
+import Flag, { getCountryCode } from '../components/common/Flag';
 import { useAuth } from '../context/AuthContext';
 import { savePlan, saveProfile } from '../services/supabaseData';
 import { useKitchenDishes } from '../hooks/useKitchenDishes';
@@ -268,6 +269,13 @@ interface RegionDef {
   ids: string[];
   translationKey?: 'region.north-america' | 'region.south-america';
 }
+
+const RegionMarker: React.FC<{ value: string; label: string; className?: string }> = ({ value, label, className = '' }) => {
+  const countryCode = getCountryCode(value);
+  return countryCode
+    ? <Flag countryCode={countryCode} alt={`${label} flag`} className={className} />
+    : <span className={className}>{value}</span>;
+};
 
 const REGIONS: RegionDef[] = [
   { id: 'africa', emoji: '🌍', en: 'Africa', ar: 'أفريقيا', ids: ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'nigerian', 'ethiopian', 'kenyan', 'rwandan', 'seychellois', 'mauritian', 'gabonese', 'botswanan', 'south-african', 'ghanaian'] },
@@ -2340,7 +2348,7 @@ const WeightLossPage: React.FC = () => {
                         }}
                         className="rounded-[20px] border-2 border-[#EFEBE4] bg-white hover:border-[#D4AF37] p-4 flex flex-col items-center text-center cursor-pointer min-w-0 transition-all active:scale-95"
                       >
-                        <span className="text-[34px] leading-none">{r.emoji}</span>
+                        <RegionMarker value={r.emoji} label={regionLabel(r)} className="text-[34px] leading-none" />
                         <span className="mt-2 text-[14px] font-extrabold leading-none truncate max-w-full text-[#0F4C3A]">{regionLabel(r)}</span>
                         <span className="mt-1 text-[11px] text-[#6B7A75]">
                           {kits.length} {language === 'ar' ? 'مطبخ' : 'cuisines'}
@@ -2362,7 +2370,7 @@ const WeightLossPage: React.FC = () => {
                     const r = REGIONS.find((x) => x.id === regionSel);
                     return r ? (
                       <div className="mt-3 flex items-center gap-2">
-                        <span className="text-[24px] leading-none">{r.emoji}</span>
+                        <RegionMarker value={r.emoji} label={language === 'ar' ? r.ar : r.en} className="text-[24px] leading-none" />
                         <span className="text-[16px] font-extrabold text-[#0F4C3A]">{regionLabel(r)}</span>
                         <span className="text-[11px] font-bold bg-[#F4F1EB] text-[#6B7A75] px-2.5 py-1 rounded-full">{regionKitchens[r.id].length}</span>
                       </div>
@@ -2380,7 +2388,7 @@ const WeightLossPage: React.FC = () => {
                           }}
                           className={`w-[calc(50%-6px)] sm:w-[calc(33.333%-8px)] rounded-[20px] border-2 p-4 flex flex-col items-center text-center cursor-pointer min-w-0 transition-all active:scale-95 ${on ? 'border-[#D4AF37] bg-[#FFFBEF] shadow-[0_0_0_4px_rgba(212,175,55,0.15)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
                         >
-                          <span className="text-[34px] leading-none">{k.flag}</span>
+                          <Flag countryCode={k.flag} alt={getKitchenCountry(k, language)} className="h-[34px] w-[44px]" />
                           <span className={`mt-2 text-[14px] font-extrabold leading-none truncate max-w-full text-[#0F4C3A]`}>{getKitchenCountry(k, language)}</span>
                           <span className="mt-1 text-[11px] text-[#6B7A75] leading-tight truncate max-w-full">{kitchenLabel(k)}</span>
                           {k.id === 'eastern-european' && <span className="mt-1 text-[10px] text-[#8A938E]">{t('kitchen.eastern-european.description')}</span>}
@@ -2415,7 +2423,7 @@ const WeightLossPage: React.FC = () => {
                     const k = kitchens.find((x) => x.id === cuisineSel);
                     return k ? (
                       <div className="mt-3 rounded-[20px] border-2 border-[#D4AF37] bg-[#FFFBEF] p-4 flex flex-col items-center text-center">
-                        <span className="text-[34px] leading-none">{k.flag}</span>
+                        <Flag countryCode={k.flag} alt={getKitchenCountry(k, language)} className="h-[34px] w-[44px]" />
                         <span className="mt-2 text-[14px] font-extrabold leading-none truncate max-w-full text-[#0F4C3A]">{getKitchenCountry(k, language)}</span>
                         <span className="mt-1 text-[11px] text-[#6B7A75] leading-tight truncate max-w-full">{kitchenLabel(k)}</span>
                         {k.id === 'eastern-european' && <span className="mt-1 text-[10px] text-[#8A938E]">{t('kitchen.eastern-european.description')}</span>}
@@ -2457,7 +2465,7 @@ const WeightLossPage: React.FC = () => {
                               onClick={() => setKitchenRegion(r.id)}
                               className={`rounded-full border-2 px-3 py-1.5 text-[12px] font-bold flex items-center gap-1.5 transition-all active:scale-95 ${on ? 'border-[#D4AF37] bg-[#FFFBEF] text-[#0F4C3A] shadow-[0_0_0_3px_rgba(212,175,55,0.15)]' : 'border-[#EFEBE4] bg-white text-[#6B7A75] hover:border-[#D4AF37]'}`}
                             >
-                              <span>{r.emoji}</span>
+                              <RegionMarker value={r.emoji} label={language === 'ar' ? r.ar : r.en} />
                               <span>{language === 'ar' ? r.ar : r.en}</span>
                             </button>
                           );
@@ -2653,7 +2661,7 @@ const WeightLossPage: React.FC = () => {
                   <span className="shrink-0">←</span> {t('wizard.step5.backToEdit')}
                 </button>
                 <div className="text-[11.5px] text-[#8A938E] min-w-0 break-words text-end">
-                  <span className="num">{numbers!.targetCal}</span> kcal · {selectedKitchen.flag} {kitchenLabel(selectedKitchen)}
+                  <span className="num">{numbers!.targetCal}</span> kcal · <Flag countryCode={selectedKitchen.flag} alt={getKitchenCountry(selectedKitchen, language)} className="h-3.5 w-5" /> {kitchenLabel(selectedKitchen)}
                 </div>
               </div>
 
@@ -2927,7 +2935,7 @@ const WeightLossPage: React.FC = () => {
                     <span className="w-9 h-9 rounded-[12px] bg-[#F4F1EB] flex items-center justify-center text-[16px] shrink-0">🍽️</span>
                     <div>
                       <div className="text-[15px] font-extrabold">{t('wizard.step5.planTitle')}</div>
-                      <div className="text-[11px] text-[#8A938E]">{selectedKitchen.flag} {getKitchenCountry(selectedKitchen, language)}</div>
+                      <div className="text-[11px] text-[#8A938E] flex items-center gap-1"><Flag countryCode={selectedKitchen.flag} alt={getKitchenCountry(selectedKitchen, language)} className="h-3 w-4" /> {getKitchenCountry(selectedKitchen, language)}</div>
                     </div>
                   </div>
                   <span className="text-[11px] font-bold bg-[#FFF8E7] text-[#B8860B] px-3 py-1 rounded-full shrink-0">

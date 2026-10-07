@@ -6,6 +6,7 @@ import { useAdmin } from '../../context/AdminContext';
 import { useAuth } from '../../context/AuthContext';
 import { translations } from '../../i18n/translations';
 import type { Language } from '../../types';
+import Flag from '../common/Flag';
 import { ENABLE_PREMIUM } from '../../config/featureFlags';
 
 const hasPlanData = (): boolean => {
@@ -17,12 +18,12 @@ const hasPlanData = (): boolean => {
   }
 };
 
-const languageOptions: { code: Language; flag: string; label: string }[] = [
-  { code: 'en', flag: '🇬🇧', label: 'English' },
-  { code: 'ar', flag: '🇸🇦', label: 'العربية' },
-  { code: 'es', flag: '🇪🇸', label: 'Español' },
-  { code: 'fr', flag: '🇫🇷', label: 'Français' },
-  { code: 'de', flag: '🇩🇪', label: 'Deutsch' },
+const languageOptions: { code: Language; countryCode: string; label: string }[] = [
+  { code: 'en', countryCode: 'gb', label: 'English' },
+  { code: 'ar', countryCode: 'sa', label: 'العربية' },
+  { code: 'es', countryCode: 'es', label: 'Español' },
+  { code: 'fr', countryCode: 'fr', label: 'Français' },
+  { code: 'de', countryCode: 'de', label: 'Deutsch' },
 ];
 
 const Header: React.FC = () => {
@@ -173,7 +174,7 @@ const Header: React.FC = () => {
                         setLangOpen(false);
                       }}
                     >
-                      <span>{opt.flag}</span> {opt.label}
+                      <Flag countryCode={opt.countryCode} alt={`Flag of ${opt.label}`} className="h-3.5 w-5" /> {opt.label}
                       {language === opt.code && <span className="app-header-lang-check">✓</span>}
                     </button>
                   ))}
@@ -289,7 +290,7 @@ const Header: React.FC = () => {
                         setLangOpen(false);
                       }}
                     >
-                      <span>{opt.flag}</span> {opt.label}
+                      <Flag countryCode={opt.countryCode} alt={`Flag of ${opt.label}`} className="h-3.5 w-5" /> {opt.label}
                       {language === opt.code && <span className="app-header-lang-check">✓</span>}
                     </button>
                   ))}

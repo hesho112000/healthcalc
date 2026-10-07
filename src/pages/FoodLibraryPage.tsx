@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { FOODS_DATABASE, CUISINE_META, Cuisine, FoodItem } from '../utils/calculations_expanded';
+import Flag, { isCountryCode } from '../components/common/Flag';
 import { useLanguage } from '../context/LanguageContext';
 import { getPortionMeasure } from '../utils/cuisineCatalog';
 
@@ -84,7 +85,7 @@ const FoodLibraryPage: React.FC = () => {
                 <option value="all">🌍 {t('foodLibAllCuisines')} ({FOODS_DATABASE.length})</option>
                 {Object.entries(CUISINE_META).map(([key, meta]) => (
                   <option key={key} value={key}>
-                    {meta.flag} {cuisineName(meta)}
+                    {cuisineName(meta)}
                   </option>
                 ))}
               </select>
@@ -146,7 +147,10 @@ const FoodLibraryPage: React.FC = () => {
                 selectedCuisine === key ? 'bg-green-500 text-white border-green-500' : `bg-white hover:bg-gray-50 ${meta.color}`
               }`}
             >
-              <span>{meta.flag}</span> {cuisineName(meta)}
+              {isCountryCode(meta.flag)
+                ? <Flag countryCode={meta.flag} alt={`${cuisineName(meta)} flag`} className="h-3.5 w-5" />
+                : <span>{meta.flag}</span>}
+              {cuisineName(meta)}
             </button>
           ))}
         </div>
@@ -184,7 +188,10 @@ const FoodLibraryPage: React.FC = () => {
                       <div className="flex flex-wrap gap-1">
                         {food.cuisine.slice(0, 2).map((c) => (
                           <span key={c} className="text-[11px] px-2 py-0.5 rounded-full bg-gray-100 border">
-                            {CUISINE_META[c]?.flag} {CUISINE_META[c] ? cuisineName(CUISINE_META[c]) : c}
+                            {CUISINE_META[c] && isCountryCode(CUISINE_META[c].flag)
+                              ? <Flag countryCode={CUISINE_META[c].flag} alt={`${cuisineName(CUISINE_META[c])} flag`} className="h-3 w-4" />
+                              : CUISINE_META[c]?.flag}
+                            {' '}{CUISINE_META[c] ? cuisineName(CUISINE_META[c]) : c}
                           </span>
                         ))}
                       </div>
