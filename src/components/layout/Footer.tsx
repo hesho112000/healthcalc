@@ -68,7 +68,6 @@ const Footer: React.FC = () => {
 
         <div className="footer-bottom">
           <span>{t('footerRights')}</span>
-          <span>{t('footerMade')}</span>
         </div>
       </div>
     </footer>

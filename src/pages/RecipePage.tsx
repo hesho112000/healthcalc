@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, ArrowRight, Check, ChefHat, Clock, Flame } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { ENABLE_PREMIUM } from '../config/featureFlags';
 import SEO from '../components/seo/SEO';
 import { getRecipeBySlug, lt } from '../data/recipes';
 
@@ -149,7 +150,7 @@ const RecipePage: React.FC = () => {
           </ol>
         </section>
 
-        <section className="mt-10 relative overflow-hidden rounded-[32px] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] px-8 py-12 text-center shadow-[0_24px_60px_rgba(15,76,58,0.25)]">
+        {ENABLE_PREMIUM && <section className="mt-10 relative overflow-hidden rounded-[32px] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] px-8 py-12 text-center shadow-[0_24px_60px_rgba(15,76,58,0.25)]">
           <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(70%_140%_at_50%_0%,rgba(212,175,55,0.18),rgba(255,255,255,0)_60%)]" />
           <div className="relative">
             <div className="mx-auto w-12 h-12 rounded-2xl bg-[#D4AF37] text-[#0F4C3A] flex items-center justify-center">
@@ -164,7 +165,7 @@ const RecipePage: React.FC = () => {
               <ArrowRight size={17} className="rtl:rotate-180" />
             </Link>
           </div>
-        </section>
+        </section>}
       </div>
     </div>
   );

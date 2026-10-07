@@ -14,6 +14,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
+import { ENABLE_PREMIUM } from '../../config/featureFlags';
 
 type FreeTitleKey = 'howItWorks.free.step1.title' | 'howItWorks.free.step2.title' | 'howItWorks.free.step3.title';
 type FreeDescKey = 'howItWorks.free.step1.desc' | 'howItWorks.free.step2.desc' | 'howItWorks.free.step3.desc';
@@ -67,7 +68,7 @@ const HowItWorks: React.FC = () => {
         </div>
 
         <div className="relative mt-12 lg:mt-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-stretch">
+          <div className={`grid grid-cols-1 ${ENABLE_PREMIUM ? 'lg:grid-cols-2' : 'max-w-2xl mx-auto'} gap-10 lg:gap-14 items-stretch`}>
             <div className="relative flex flex-col bg-white rounded-3xl p-10 px-8 border-t-4 border-t-[#0F4C3A] shadow-[0_6px_20px_rgba(15,76,58,0.06)]">
               <span className="self-start rounded-full bg-[#0F4C3A] text-white text-[11px] font-bold px-3 py-1 tracking-wide">
                 {t('howItWorks.free.badge')}
@@ -100,7 +101,8 @@ const HowItWorks: React.FC = () => {
               </div>
             </div>
 
-            <div className="relative flex flex-col rounded-3xl p-10 px-8 border-2 border-[#D4AF37] bg-gradient-to-b from-[#FDFBF7] to-[rgba(15,76,58,0.03)] shadow-[0_10px_30px_rgba(212,175,55,0.15)]">
+            {ENABLE_PREMIUM && (
+              <div className="relative flex flex-col rounded-3xl p-10 px-8 border-2 border-[#D4AF37] bg-gradient-to-b from-[#FDFBF7] to-[rgba(15,76,58,0.03)] shadow-[0_10px_30px_rgba(212,175,55,0.15)]">
               <span className="absolute -top-3.5 end-8 rounded-full bg-[#D4AF37] text-[#0F4C3A] text-[10px] font-extrabold tracking-wide px-3 py-1">
                 {t('howItWorks.advanced.floatingBadge')}
               </span>
@@ -133,14 +135,15 @@ const HowItWorks: React.FC = () => {
                 </Link>
                 <span className="text-[12px] text-[#6B7A75]">{t('howItWorks.advanced.note')}</span>
               </div>
-            </div>
+              </div>
+            )}
           </div>
 
-          <div className="flex justify-center lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:z-10">
+          {ENABLE_PREMIUM && <div className="flex justify-center lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:z-10">
             <span className="w-10 h-10 rounded-full bg-white border-2 border-[#D4AF37] text-[#0F4C3A] text-[13px] font-extrabold flex items-center justify-center">
               {t('howItWorks.or')}
             </span>
-          </div>
+          </div>}
         </div>
 
         <div className="mt-12 flex justify-center">

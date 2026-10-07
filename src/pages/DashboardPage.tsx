@@ -4,6 +4,7 @@ import HealthMetricsWidget from '../features/health-tools/HealthMetricsWidget';
 import { useLanguage } from '../context/LanguageContext';
 import CheckoutModal from '../components/CheckoutModal';
 import { supabase } from '../lib/supabase';
+import { ENABLE_PREMIUM } from '../config/featureFlags';
 
 const DashboardPage: React.FC = () => {
   const { user, updateUser } = useAuth();
@@ -61,7 +62,7 @@ const DashboardPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#f8fafc]">
-      <CheckoutModal isOpen={showCheckout} onClose={() => setShowCheckout(false)} onSuccess={() => setShowCheckout(false)} price="$15/year" />
+      {ENABLE_PREMIUM && <CheckoutModal isOpen={showCheckout} onClose={() => setShowCheckout(false)} onSuccess={() => setShowCheckout(false)} price="$15/year" />}
       <div className="bg-gradient-to-r from-primary-600 to-primary-700 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-14">
           <div className="flex items-center justify-between gap-4 flex-wrap">
@@ -71,10 +72,10 @@ const DashboardPage: React.FC = () => {
               </div>
               <div>
                 <h1 className="text-xl md:text-2xl font-extrabold tracking-tight">{t('dashWelcome')} {user?.name}</h1>
-                <p className="text-primary-200 text-sm">{user?.email} · {isPremium ? `✨ ${t('premium')}` : t('dashFreePlan')}{user?.subscription_end_date && isPremium ? ` · ${t('dashRenews')} ${fmtDate(user.subscription_end_date)}` : ''}</p>
+                <p className="text-primary-200 text-sm">{user?.email}{ENABLE_PREMIUM && <> · {isPremium ? `✨ ${t('premium')}` : t('dashFreePlan')}{user?.subscription_end_date && isPremium ? ` · ${t('dashRenews')} ${fmtDate(user.subscription_end_date)}` : ''}</>}</p>
               </div>
             </div>
-            {!isPremium && (
+            {ENABLE_PREMIUM && !isPremium && (
               <button onClick={() => setShowCheckout(true)} className="px-4 py-2 bg-gradient-to-r from-amber-400 to-orange-400 text-white text-xs font-bold rounded-xl hover:from-amber-500 hover:to-orange-500 transition-all shadow-sm flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                 {t('upgradeToPremium') || 'Upgrade — $15/year'}
@@ -133,7 +134,7 @@ const DashboardPage: React.FC = () => {
                   <input type="email" value={user?.email || ''} className="input-field bg-gray-50" disabled />
                   <p className="text-[11px] text-gray-400 mt-1">{t('dashEmailCantChange')}</p>
                 </div>
-                <div>
+                {ENABLE_PREMIUM && <div>
                   <label className="label">{t('dashSubscription')}</label>
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className={`badge ${isPremium ? 'badge-amber' : 'bg-gray-100 text-gray-600'}`}>
@@ -148,7 +149,7 @@ const DashboardPage: React.FC = () => {
                       <button type="button" onClick={() => setShowCheckout(true)} className="text-xs text-amber-600 font-semibold hover:underline">{t('dashUpgrade')} →</button>
                     )}
                   </div>
-                </div>
+                </div>}
                 <button type="submit" className="btn-primary">{t('dashSaveChanges')}</button>
               </form>
             </div>

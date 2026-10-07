@@ -5,13 +5,14 @@ import { translations } from '../i18n/translations';
 import ProtectedRoute from '../components/ProtectedRoute';
 import AdminProtectedRoute from '../components/AdminProtectedRoute';
 import LoadingFallback from '../components/LoadingFallback';
+import { ENABLE_PREMIUM } from '../config/featureFlags';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const AdminLoginPage = lazy(() => import('../pages/AdminLoginPage'));
 const AdminDashboardPage = lazy(() => import('../pages/AdminDashboardPage'));
 const WeightLossPage = lazy(() => import('../pages/WeightLossPage'));
 const DiabetesPage = lazy(() => import('../pages/DiabetesPage'));
-const LegacyAdvancedCarePage = lazy(() => import('../pages/LegacyAdvancedCarePage'));
+const LegacyAdvancedCarePage = ENABLE_PREMIUM ? lazy(() => import('../pages/LegacyAdvancedCarePage')) : null;
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
@@ -23,14 +24,14 @@ const FitnessPage = lazy(() => import('../pages/FitnessPage'));
 const WorkoutPlanPage = lazy(() => import('../pages/WorkoutPlanPage'));
 const SmartwatchSyncPage = lazy(() => import('../pages/SmartwatchSyncPage'));
 const FoodLibraryPage = lazy(() => import('../pages/FoodLibraryPage'));
-const HealthUniversePage = lazy(() => import('../pages/HealthUniversePage'));
-const AdvancedLabPage = lazy(() => import('../pages/AdvancedLabPage'));
-const AdvancedCareWizardPage = lazy(() => import('../pages/AdvancedCareWizardPage'));
+const HealthUniversePage = ENABLE_PREMIUM ? lazy(() => import('../pages/HealthUniversePage')) : null;
+const AdvancedLabPage = ENABLE_PREMIUM ? lazy(() => import('../pages/AdvancedLabPage')) : null;
+const AdvancedCareWizardPage = ENABLE_PREMIUM ? lazy(() => import('../pages/AdvancedCareWizardPage')) : null;
 const SignupPage = lazy(() => import('../pages/SignupPage'));
 const PlanDashboardPage = lazy(() => import('../pages/PlanDashboardPage'));
-const MyHealthHubPage = lazy(() => import('../pages/MyHealthHubPage'));
-const SubscriptionPage = lazy(() => import('../pages/SubscriptionPage'));
-const OrganHubPage = lazy(() => import('../pages/OrganHubPage'));
+const MyHealthHubPage = ENABLE_PREMIUM ? lazy(() => import('../pages/MyHealthHubPage')) : null;
+const SubscriptionPage = ENABLE_PREMIUM ? lazy(() => import('../pages/SubscriptionPage')) : null;
+const OrganHubPage = ENABLE_PREMIUM ? lazy(() => import('../pages/OrganHubPage')) : null;
 const SearchPage = lazy(() => import('../pages/SearchPage'));
 const AboutPage = lazy(() => import('../pages/AboutPage'));
 const ResourcesPage = lazy(() => import('../pages/ResourcesPage'));
@@ -75,7 +76,7 @@ export const AppRoutes: React.FC = () => (
       <Route path="/" element={<HomePage />} />
       <Route path="/weight-loss" element={<WeightLossPage />} />
       <Route path="/diabetes" element={<DiabetesPage />} />
-      <Route path="/premium" element={<LegacyAdvancedCarePage />} />
+      {LegacyAdvancedCarePage && <Route path="/premium" element={<LegacyAdvancedCarePage />} />}
       <Route path="/fitness" element={<FitnessPage />} />
       <Route path="/bmi" element={<FitnessPage />} />
       <Route path="/bmr" element={<FitnessPage />} />
@@ -84,14 +85,14 @@ export const AppRoutes: React.FC = () => (
       <Route path="/workout-plan" element={<WorkoutPlanPage />} />
       <Route path="/smartwatch-sync" element={<SmartwatchSyncPage />} />
       <Route path="/food-library" element={<FoodLibraryPage />} />
-      <Route path="/advanced-care" element={<HealthUniversePage />} />
-      <Route path="/advanced-care/:organId" element={<OrganHubPage />} />
-      <Route path="/advanced-care/lab" element={<AdvancedLabPage />} />
-      <Route path="/advanced-care/wizard" element={<AdvancedCareWizardPage />} />
-      <Route path="/advanced-care/wizard/signup" element={<SignupPage />} />
+      {HealthUniversePage && <Route path="/advanced-care" element={<HealthUniversePage />} />}
+      {OrganHubPage && <Route path="/advanced-care/:organId" element={<OrganHubPage />} />}
+      {AdvancedLabPage && <Route path="/advanced-care/lab" element={<AdvancedLabPage />} />}
+      {AdvancedCareWizardPage && <Route path="/advanced-care/wizard" element={<AdvancedCareWizardPage />} />}
+      {ENABLE_PREMIUM && <Route path="/advanced-care/wizard/signup" element={<SignupPage />} />}
       <Route path="/dashboard/plan" element={<PlanDashboardPage />} />
-      <Route path="/my-health-hub" element={<MyHealthHubPage />} />
-      <Route path="/subscription" element={<SubscriptionPage />} />
+      {MyHealthHubPage && <Route path="/my-health-hub" element={<MyHealthHubPage />} />}
+      {SubscriptionPage && <Route path="/subscription" element={<SubscriptionPage />} />}
       <Route path="/search" element={<SearchPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />

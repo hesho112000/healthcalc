@@ -11,6 +11,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { ENABLE_PREMIUM } from '../config/featureFlags';
 import SEO from '../components/seo/SEO';
 
 const SPLIT = (title: string) => {
@@ -158,7 +159,7 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 pb-20">
+      {ENABLE_PREMIUM && <section className="max-w-6xl mx-auto px-6 pb-20">
         <div className="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] px-8 py-14 text-center shadow-[0_24px_60px_rgba(15,76,58,0.25)]">
           <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(70%_140%_at_50%_0%,rgba(212,175,55,0.18),rgba(255,255,255,0)_60%)]" />
           <h2 className="relative text-3xl md:text-4xl font-extrabold text-[#FDFBF7] tracking-tight">
@@ -172,7 +173,7 @@ const AboutPage: React.FC = () => {
             <ArrowRight size={18} className="rtl:rotate-180" />
           </Link>
         </div>
-      </section>
+      </section>}
     </div>
   );
 };

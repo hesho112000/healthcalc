@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
+import { ENABLE_PREMIUM } from '../../config/featureFlags';
 
 interface StartFreeDropdownProps {
   buttonClassName?: string;
@@ -16,15 +17,19 @@ const StartFreeDropdown: React.FC<StartFreeDropdownProps> = ({ buttonClassName, 
   const items: { path: string; icon: string; label: string }[] = [
     { path: '/fitness', icon: '📊', label: t('ddFitness') },
     { path: '/weight-loss', icon: '⚖️', label: t('ddWeight') },
-    { path: '/premium', icon: '🏥', label: t('ddAdvancedCare') },
+    ...(ENABLE_PREMIUM ? [
+      { path: '/premium', icon: '🏥', label: t('ddAdvancedCare') },
+    ] : []),
     { path: '/diabetes', icon: '🩸', label: t('ddDiabetesCare') },
-    { path: '/premium', icon: '❤️', label: t('ddHypertensionCare') },
-    { path: '/premium', icon: '🧪', label: t('ddCholesterolCare') },
-    { path: '/premium', icon: '🦶', label: t('ddGoutCare') },
-    { path: '/premium', icon: '🌀', label: t('ddIbsCare') },
-    { path: '/premium', icon: '🫀', label: t('ddLiverCare') },
-    { path: '/premium', icon: '🫘', label: t('ddKidneyCare') },
-    { path: '/premium', icon: '🦋', label: t('ddThyroidCare') },
+    ...(ENABLE_PREMIUM ? [
+      { path: '/premium', icon: '❤️', label: t('ddHypertensionCare') },
+      { path: '/premium', icon: '🧪', label: t('ddCholesterolCare') },
+      { path: '/premium', icon: '🦶', label: t('ddGoutCare') },
+      { path: '/premium', icon: '🌀', label: t('ddIbsCare') },
+      { path: '/premium', icon: '🫀', label: t('ddLiverCare') },
+      { path: '/premium', icon: '🫘', label: t('ddKidneyCare') },
+      { path: '/premium', icon: '🦋', label: t('ddThyroidCare') },
+    ] : []),
     { path: '/smartwatch-sync', icon: '⌚', label: t('ddSmartwatch') },
   ];
 

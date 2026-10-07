@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
+import { ENABLE_PREMIUM } from '../../config/featureFlags';
 
 interface Crumb { label: string; path?: string; }
 
@@ -35,7 +36,7 @@ const Breadcrumbs: React.FC = () => {
     '/workout-plan': t('workoutPlan'),
     '/weight-loss': t('weightLoss'),
     '/diabetes': t('diabetes'),
-    '/premium': t('premium'),
+    ...(ENABLE_PREMIUM ? { '/premium': t('premium') } : {}),
     '/login': t('headerSignIn'),
     '/register': t('headerSignUp'),
     '/dashboard': t('headerDashboard'),

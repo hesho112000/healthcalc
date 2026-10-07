@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth, ENABLE_PHONE_AUTH } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
+import { ENABLE_PREMIUM } from '../config/featureFlags';
 import SEO from '../components/seo/SEO';
 
 const GoogleIcon: React.FC = () => (
@@ -41,7 +42,7 @@ const RegisterPage: React.FC = () => {
     setLoading(true);
     try {
       await signUp(form.name, form.email, form.password);
-      navigate('/my-health-hub');
+      navigate(ENABLE_PREMIUM ? '/my-health-hub' : '/dashboard');
     } catch (err: any) {
       setError(err.message || t('authRegisterFailed'));
     } finally {
@@ -80,7 +81,7 @@ const RegisterPage: React.FC = () => {
     setLoading(true);
     try {
       await verifyOtp(phone, otp);
-      navigate('/my-health-hub');
+      navigate(ENABLE_PREMIUM ? '/my-health-hub' : '/dashboard');
     } catch (err: any) {
       setError(err.message || t('authRegisterFailed'));
     } finally {

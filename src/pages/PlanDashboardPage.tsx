@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { ENABLE_PREMIUM } from '../config/featureFlags';
 import { translations } from '../i18n/translations';
 import { FOODS_DATABASE } from '../utils/calculations';
 import { EXERCISES_DATABASE } from '../data/exercises/index';
@@ -175,9 +176,9 @@ const PlanDashboardPage: React.FC = () => {
           </div>
           <h1 className="text-2xl font-extrabold text-[#0F4C3A] mb-3">{t('dash.plan.empty')}</h1>
           <p className="text-sm text-[#6B7A75] mb-8 leading-relaxed">{t('dash.plan.noPlan')}</p>
-          <Link to="/advanced-care/wizard" className="inline-block bg-[#D4AF37] text-[#0F4C3A] font-bold rounded-full px-8 py-3.5 hover:bg-[#c9a52e] transition">
+          {ENABLE_PREMIUM && <Link to="/advanced-care/wizard" className="inline-block bg-[#D4AF37] text-[#0F4C3A] font-bold rounded-full px-8 py-3.5 hover:bg-[#c9a52e] transition">
             {t('dash.plan.emptyCta')}
-          </Link>
+          </Link>}
         </div>
       </div>
     );
@@ -315,9 +316,9 @@ const PlanDashboardPage: React.FC = () => {
           </div>
 
           <div className="space-y-3">
-            <Link to="/advanced-care/wizard" className="block w-full text-center bg-[#D4AF37] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#c9a52e] transition">
+            {ENABLE_PREMIUM && <Link to="/advanced-care/wizard" className="block w-full text-center bg-[#D4AF37] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#c9a52e] transition">
               {t('dash.plan.adjust')}
-            </Link>
+            </Link>}
             <button type="button" onClick={handleDownloadPdf} className="block w-full text-center bg-[#FDFBF7] border-2 border-[#0F4C3A] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#0F4C3A]/5 transition">
               {t('dash.plan.download')}
             </button>

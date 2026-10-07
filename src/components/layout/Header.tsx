@@ -6,6 +6,7 @@ import { useAdmin } from '../../context/AdminContext';
 import { useAuth } from '../../context/AuthContext';
 import { translations } from '../../i18n/translations';
 import type { Language } from '../../types';
+import { ENABLE_PREMIUM } from '../../config/featureFlags';
 
 const hasPlanData = (): boolean => {
   try {
@@ -77,8 +78,8 @@ const Header: React.FC = () => {
   const links: { to: string; exact?: boolean; key: string }[] = [
     { to: '/', key: 'nav.home', exact: true },
     { to: '/fitness', key: 'nav.calculators' },
-    { to: '/advanced-care', key: 'nav.advancedCare' },
-    ...(hubReady ? [{ to: '/my-health-hub', key: 'nav.myHealthHub' }] : []),
+    ...(ENABLE_PREMIUM ? [{ to: '/advanced-care', key: 'nav.advancedCare' }] : []),
+    ...(ENABLE_PREMIUM && hubReady ? [{ to: '/my-health-hub', key: 'nav.myHealthHub' }] : []),
     { to: '/resources', key: 'nav.resources' },
     { to: '/about', key: 'nav.about' },
     { to: '/contact', key: 'nav.contact' },
@@ -197,13 +198,13 @@ const Header: React.FC = () => {
                 </button>
                 {userOpen && (
                   <div className="absolute top-full mt-2 end-0 z-50 min-w-[200px] rounded-2xl bg-white border border-[#EFEBE4] shadow-[0_12px_32px_rgba(15,76,58,0.12)] p-2">
-                    <Link
+                    {ENABLE_PREMIUM && <Link
                       to="/my-health-hub"
                       onClick={() => setUserOpen(false)}
                       className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-start text-sm font-bold text-[#0F4C3A] hover:bg-[#FDFBF7] transition-colors"
                     >
                       🫀 {t('nav.myHealthHub')}
-                    </Link>
+                    </Link>}
                     <Link
                       to="/dashboard"
                       onClick={() => setUserOpen(false)}
@@ -298,9 +299,9 @@ const Header: React.FC = () => {
 
             {user ? (
               <div className="flex flex-col gap-1 border-t border-[#EFEBE4] pt-3">
-                <Link to="/my-health-hub" className="app-header-login" onClick={() => setMobileOpen(false)}>
+                {ENABLE_PREMIUM && <Link to="/my-health-hub" className="app-header-login" onClick={() => setMobileOpen(false)}>
                   🫀 {t('nav.myHealthHub')}
-                </Link>
+                </Link>}
                 <Link to="/dashboard" className="app-header-login" onClick={() => setMobileOpen(false)}>
                   👤 {t('nav.profile')}
                 </Link>

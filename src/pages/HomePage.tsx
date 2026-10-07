@@ -9,6 +9,7 @@ import TrustBar from '../components/sections/TrustBar';
 import TrustStats from '../components/sections/TrustStats';
 import HowItWorks from '../components/sections/HowItWorks';
 import StartFreeDropdown from '../components/layout/StartFreeDropdown';
+import { ENABLE_PREMIUM } from '../config/featureFlags';
 
 const conditions = [
   ['🩸', 'Diabetes', 'سكر', '/diabetes'],
@@ -88,15 +89,17 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section className="section-wrap">
-        <div className="explainer-grid">
-          <SectionIllustration kind="care" />
-          <div className="section-intro"><span className="step-pill purple">{t('homeStep3')}</span><h2>{t('homeStep3Title')}</h2><p>{t('homeStep3Desc')}</p>
-            <div className="condition-grid">{conditions.map(([icon, en, ar, path]) => <Link to={path} key={en}><span>{icon}</span><b>{language === 'ar' ? ar : en}</b></Link>)}</div>
-            <Link to="/advanced-care" className="btn-primary">{t('homeExploreCare')} <span>→</span></Link>
+      {ENABLE_PREMIUM && (
+        <section className="section-wrap">
+          <div className="explainer-grid">
+            <SectionIllustration kind="care" />
+            <div className="section-intro"><span className="step-pill purple">{t('homeStep3')}</span><h2>{t('homeStep3Title')}</h2><p>{t('homeStep3Desc')}</p>
+              <div className="condition-grid">{conditions.map(([icon, en, ar, path]) => <Link to={path} key={en}><span>{icon}</span><b>{language === 'ar' ? ar : en}</b></Link>)}</div>
+              <Link to="/advanced-care" className="btn-primary">{t('homeExploreCare')} <span>→</span></Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <HowItWorks />
 
