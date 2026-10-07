@@ -2722,6 +2722,13 @@ const WeightLossPage: React.FC = () => {
                 <div className="mt-1.5 text-[11px] font-bold text-[#D4AF37]">+250ml</div>
               </div>
 
+              <div
+                data-ad-slot="weight-loss-meal-plan"
+                role="complementary"
+                aria-label={language === 'ar' ? 'مساحة إعلانية' : 'Advertisement'}
+                className="min-h-[250px] w-full shrink-0 sm:col-span-3"
+              />
+
               <div className="rounded-[22px] p-5 border border-[#E8E2D4] bg-white">
                 <div className="flex items-center justify-between gap-2">
                   <div className="text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#6B7A75]">🍽️ {t('wizard.step5.statMealsDone')}</div>
@@ -2735,13 +2742,6 @@ const WeightLossPage: React.FC = () => {
                 </div>
                 </div>
               </div>
-
-              <div
-                data-ad-slot="weight-loss-meal-plan"
-                role="complementary"
-                aria-label={language === 'ar' ? 'مساحة إعلانية' : 'Advertisement'}
-                className="min-h-[250px] w-full shrink-0"
-              />
 
               <div id="step5-daily-plan" className="rounded-[26px] bg-white border border-[#EFEBE4] shadow-[0_10px_30px_rgba(15,76,58,0.06)] p-5 md:p-6">
               <div className="flex items-center justify-between gap-2 mb-4">
@@ -2769,7 +2769,7 @@ const WeightLossPage: React.FC = () => {
                   })()}
                 </span>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-0">
                 {(weeklyPlan[selectedPlanDay - 1]?.meals ?? []).map((meal, idx) => {
                   const mealCal = meal.dishes.reduce((s, x) => s + x.calories, 0);
                   const isOpen = openMealAccordion === meal.mealType;
