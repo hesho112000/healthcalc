@@ -76,6 +76,8 @@ const TOKEN_REGIONS: Record<string, string> = {
   تشيلي: 'pan_chilean', تشيليه: 'pan_chilean',
   نرويجي: 'pan_norwegian', نرويجيه: 'pan_norwegian',
   سويدي: 'pan_swedish', سويديه: 'pan_swedish',
+  دنماركي: 'pan_danish', دنماركيه: 'pan_danish',
+  فنلندي: 'pan_finnish', فنلنديه: 'pan_finnish',
   كندي: 'pan_canadian', كنديه: 'pan_canadian', كانادي: 'pan_canadian', كاناديه: 'pan_canadian',
    أسترالي: 'pan_australasian', استرالي: 'pan_australasian',
    أسترالية: 'pan_australasian', استراليه: 'pan_australasian',
@@ -761,7 +763,15 @@ vietnamese: new Set([
               'pan_swedish', 'stockholm', 'gothenburg', 'malmo', 'uppsala',
               'visby', 'orebro', 'linkoping', 'umea', 'kiruna',
             ]),
-            // Danish, Finnish, and Ukrainian remain on static data until migrated.
+            danish: new Set([
+              'pan_danish', 'copenhagen', 'aarhus', 'odense', 'aalborg',
+              'roskilde', 'helsingor', 'esbjerg', 'skagen', 'ronne',
+            ]),
+            finnish: new Set([
+              'pan_finnish', 'helsinki', 'tampere', 'turku', 'oulu',
+              'jyvaskyla', 'kuopio', 'rovaniemi', 'vaasa', 'pori',
+            ]),
+            // Ukrainian remains on static data until migrated.
      };
 
  // True when a dish may be served in the given kitchen's plans.

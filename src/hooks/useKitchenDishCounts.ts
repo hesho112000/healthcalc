@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { supabaseClient, hasSupabaseConfig } from '../lib/supabaseClient';
 import { KITCHEN_COUNT_REGIONS } from '../utils/kitchenAuthenticity';
 import { EASTERN_EUROPEAN_FULL } from '../data/eastern-european-full';
-import { DENMARK_FULL } from '../data/denmark-full';
-import { FINLAND_FULL } from '../data/finland-full';
 import { UKRAINE_FULL } from '../data/ukraine-full';
 
 // Live per-kitchen dish counts fetched from the dishes table via the region-tag
@@ -33,8 +31,6 @@ export const KITCHEN_ID_ALIAS: Record<string, string> = {
 
 // These kitchens use local full datasets rather than Supabase dish counts.
 const LOCAL_ONLY_KITCHEN_COUNTS: Record<string, number> = {
-  danish: DENMARK_FULL.length,
-  finnish: FINLAND_FULL.length,
   ukrainian: UKRAINE_FULL.length,
   'eastern-european': EASTERN_EUROPEAN_FULL.length,
 };
