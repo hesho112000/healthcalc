@@ -1296,7 +1296,7 @@ const WeightLossPage: React.FC = () => {
   });
   const [autoBuildMode, setAutoBuildMode] = useState(false);
   const [mealTab, setMealTab] = useState<MealKey>('breakfast');
-  const [openMealAccordion, setOpenMealAccordion] = useState<MealKey | null>('breakfast');
+  const [openMealAccordion, setOpenMealAccordion] = useState<MealKey | null>(null);
   const [regionSel, setRegionSel] = useState<string | null>(null);
   const [cuisineSel, setCuisineSel] = useState<string | null>(null);
   const [kitchenRegion, setKitchenRegion] = useState<string>('all');
@@ -1741,6 +1741,7 @@ const WeightLossPage: React.FC = () => {
       });
       setWeeklyPlan(plan);
       setSelectedPlanDay(1);
+      setOpenMealAccordion(null);
       setAutoBuilding(false);
       setStep(5);
       notify(`Generated 7-day plan: ${plan.length} days`);
@@ -2674,7 +2675,7 @@ const WeightLossPage: React.FC = () => {
                   <div className="text-[11px] text-[#8A938E] font-semibold shrink-0">{t('wizard.step5.dayOf').replace('{n}', String(selectedPlanDay))}</div>
                 </div>
                 <div className="mt-3 flex items-center gap-2">
-                  <button type="button" onClick={() => setSelectedPlanDay((s) => Math.max(1, s - 1))} className="w-9 h-9 rounded-full bg-white border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] hover:border-[#D4AF37] shrink-0">‹</button>
+                  <button type="button" onClick={() => { setOpenMealAccordion(null); setSelectedPlanDay((s) => Math.max(1, s - 1)); }} className="w-9 h-9 rounded-full bg-white border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] hover:border-[#D4AF37] shrink-0">‹</button>
                   <div className="flex-1 flex gap-2 overflow-x-auto no-scrollbar justify-between min-w-0">
                     {[1, 2, 3, 4, 5, 6, 7].map((d) => {
                       const ad = d === selectedPlanDay;
@@ -2682,7 +2683,7 @@ const WeightLossPage: React.FC = () => {
                         <button
                           key={d}
                           type="button"
-                          onClick={() => setSelectedPlanDay(d)}
+                          onClick={() => { setOpenMealAccordion(null); setSelectedPlanDay(d); }}
                           className={`relative w-9 h-9 min-w-[36px] rounded-xl flex items-center justify-center text-[13px] font-bold transition-all ${ad ? 'bg-[#D4AF37] text-[#0F4C3A] shadow-[0_4px_10px_rgba(212,175,55,0.4)]' : 'bg-white border border-[#E9E5DB] text-[#6B7A75] hover:border-[#D4AF37]'}`}
                         >
                           <span className="num">{d}</span>
@@ -2690,7 +2691,7 @@ const WeightLossPage: React.FC = () => {
                       );
                     })}
                   </div>
-                  <button type="button" onClick={() => setSelectedPlanDay((s) => Math.min(7, s + 1))} className="w-9 h-9 rounded-full bg-white border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] hover:border-[#D4AF37] shrink-0">›</button>
+                  <button type="button" onClick={() => { setOpenMealAccordion(null); setSelectedPlanDay((s) => Math.min(7, s + 1)); }} className="w-9 h-9 rounded-full bg-white border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] hover:border-[#D4AF37] shrink-0">›</button>
                 </div>
               </div>
             </div>
@@ -2726,10 +2727,6 @@ const WeightLossPage: React.FC = () => {
                   <button type="button" onClick={() => setWater((s) => Math.min(waterGoal, +(s + 0.25).toFixed(2)))} className="w-7 h-7 rounded-full bg-[#F4F1EB] border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] text-[14px] font-bold">+</button>
                 </div>
                 <div className="mt-1.5 text-[11px] font-bold text-[#D4AF37]">+250ml</div>
-              </div>
-
-              <div className="min-h-[250px] rounded-[18px] border border-dashed border-[#E3E0D8] bg-white/70 flex items-center justify-center text-[10px] font-semibold uppercase tracking-[0.14em] text-[#A4AAA5]">
-                Advertisement
               </div>
 
               <div className="rounded-[22px] p-5 border border-[#E8E2D4] bg-white">
@@ -2777,7 +2774,8 @@ const WeightLossPage: React.FC = () => {
                   const emoji = step5Meals.find((s) => s.key === meal.mealType)?.emoji ?? '🍽️';
                   const mealCal = meal.dishes.reduce((s, x) => s + x.calories, 0);
                   const done = idx < 4 ? mealsDone[idx] : false;
-                  const isOpen = openMealAccordion === meal.mealType;
+                  const isEmpty = meal.dishes.length === 0;
+                  const isOpen = !isEmpty && openMealAccordion === meal.mealType;
                   return (
                     <div
                       key={meal.mealType}
@@ -2787,8 +2785,15 @@ const WeightLossPage: React.FC = () => {
                         <button
                           type="button"
                           aria-expanded={isOpen}
-                          aria-controls={`meal-panel-${meal.mealType}`}
-                          onClick={() => setOpenMealAccordion((open) => open === meal.mealType ? null : meal.mealType)}
+                          aria-controls={isOpen ? `meal-panel-${meal.mealType}` : undefined}
+                          onClick={() => {
+                            if (isEmpty) {
+                              setOpenMealAccordion(null);
+                              setDishModal({ mode: 'add', dayIndex: selectedPlanDay - 1, mealIndex: idx, mealType: meal.mealType, dishIndex: 0 });
+                              return;
+                            }
+                            setOpenMealAccordion((open) => open === meal.mealType ? null : meal.mealType);
+                          }}
                           className="flex flex-1 items-center gap-3 min-w-0 text-start"
                         >
                           <span className="w-11 h-11 rounded-[14px] bg-[#F4F1EB] flex items-center justify-center text-[18px] shrink-0">{emoji}</span>
@@ -2800,6 +2805,7 @@ const WeightLossPage: React.FC = () => {
                             <span className="mt-0.5 block text-[12px] text-[#6B7A75]">
                               <span className="num font-bold text-[#B8860B]">{mealCal}</span> kcal
                             </span>
+                            {isEmpty && <span className="mt-1 block text-[11px] text-[#9AA19D]">{language === 'ar' ? 'لا توجد أطباق بعد' : 'No dishes yet'}</span>}
                           </span>
                           <span aria-hidden="true" className="text-[18px] font-bold text-[#8A938E] shrink-0">{isOpen ? '−' : '+'}</span>
                         </button>
@@ -2817,7 +2823,7 @@ const WeightLossPage: React.FC = () => {
                           </button>
                         )}
                       </div>
-                      <div id={`meal-panel-${meal.mealType}`} hidden={!isOpen} className="mt-3 space-y-1.5">
+                      {isOpen && <div id={`meal-panel-${meal.mealType}`} className="mt-3 space-y-1.5">
                         {meal.dishes.map((d, di) => {
                           const rowKey = `${di}-${d.dish.name}`;
                           const leaveKey = `d${selectedPlanDay - 1}-m${idx}-x${di}-${d.dish.name}`;
@@ -2867,7 +2873,7 @@ const WeightLossPage: React.FC = () => {
                         >
                           <span>+</span> {language === 'ar' ? 'أضف طبقاً' : 'Add dish'}
                         </button>
-                      </div>
+                      </div>}
                     </div>
                   );
                 })}
@@ -2892,12 +2898,6 @@ const WeightLossPage: React.FC = () => {
             </div>
 
               {planType !== 'nutrition' && (
-                <div className="min-h-[250px] rounded-[18px] border border-dashed border-[#E3E0D8] bg-white/70 flex items-center justify-center text-[10px] font-semibold uppercase tracking-[0.14em] text-[#A4AAA5]">
-                  Advertisement
-                </div>
-              )}
-
-            {planType !== 'nutrition' && (
               <div className="rounded-[26px] bg-white border border-[#EFEBE4] shadow-[0_10px_30px_rgba(15,76,58,0.06)] p-5 md:p-6">
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
@@ -2956,7 +2956,7 @@ const WeightLossPage: React.FC = () => {
                       <button
                         key={i}
                         type="button"
-                        onClick={() => setSelectedPlanDay(i + 1)}
+                        onClick={() => { setOpenMealAccordion(null); setSelectedPlanDay(i + 1); }}
                         className={`rounded-[12px] py-2 text-center transition-all ${active ? 'bg-[#0F4C3A] text-white shadow-md' : 'bg-[#F4F1EB] text-[#6B7A75] hover:bg-[#EDE8DF]'}`}
                       >
                         <div className="text-[10px] font-extrabold">{t('wizard.step5.day').replace('{n}', String(i + 1))}</div>
