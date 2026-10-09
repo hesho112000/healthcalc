@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Activity, Clock, HeartPulse, Moon, RefreshCw, Smartphone, Watch } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
+import { useUserProfile } from '../hooks/useUserProfile';
 import SectionIllustration from '../components/illustrations/SectionIllustration';
 import HealthFingerprint from '../components/illustrations/HealthFingerprint';
 import FloatingStats from '../components/illustrations/FloatingStats';
@@ -33,6 +34,9 @@ const cuisines: Array<{ name: string; countryCode?: string; icon?: string }> = [
 
 const HomePage: React.FC = () => {
   const { t, dir, language } = useLanguage();
+  const { profile, updateProfile, resetProfile } = useUserProfile();
+  const inputClass = 'mixed-text mt-1 block w-full border-0 bg-transparent p-0 text-sm font-bold text-[#0F4C3A] outline-none focus:ring-0';
+  const selectClass = 'mt-1 w-full min-w-0 rounded-lg border border-[#E4E8E2] bg-white px-2 py-1.5 text-xs font-semibold text-[#0F4C3A] outline-none focus:border-[#0F4C3A]';
   const watchBenefits = language === 'ar'
     ? [
         { icon: RefreshCw, text: 'مزامنة نشاطك اليومي تلقائيًا' },
@@ -86,9 +90,51 @@ const HomePage: React.FC = () => {
         <div className="explainer-grid">
           <SectionIllustration kind="calculator" />
           <div className="feature-panel">
-            <div className="mock-inputs"><div><label>{t('homeMockAge')}</label><strong className="mixed-text">{t('homeMockAgeVal')}</strong></div><div><label>{t('homeMockHeight')}</label><strong className="mixed-text">{t('homeMockHeightVal')}</strong></div><div><label>{t('homeMockWeight')}</label><strong className="mixed-text">{t('homeMockWeightVal')}</strong></div></div>
+            <div className="mock-inputs">
+              <div>
+                <label htmlFor="home-profile-age">{t('homeMockAge')} (years)</label>
+                <input id="home-profile-age" type="number" min={10} max={120} inputMode="numeric" className={inputClass} value={profile.age ?? ''} placeholder="28" onChange={(event) => updateProfile({ age: event.target.value ? Number(event.target.value) : null })} />
+              </div>
+              <div>
+                <label htmlFor="home-profile-height">{t('homeMockHeight')} (cm)</label>
+                <input id="home-profile-height" type="number" min={100} max={250} inputMode="decimal" className={inputClass} value={profile.height ?? ''} placeholder="172" onChange={(event) => updateProfile({ height: event.target.value ? Number(event.target.value) : null })} />
+              </div>
+              <div>
+                <label htmlFor="home-profile-weight">{t('homeMockWeight')} (kg)</label>
+                <input id="home-profile-weight" type="number" min={20} max={300} inputMode="decimal" className={inputClass} value={profile.weight ?? ''} placeholder="74" onChange={(event) => updateProfile({ weight: event.target.value ? Number(event.target.value) : null })} />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+              <label className="min-w-0 text-[10px] font-extrabold tracking-wide text-[#6B7A75]" htmlFor="home-profile-gender">
+                {t('gender')}
+                <select id="home-profile-gender" className={selectClass} value={profile.gender ?? ''} onChange={(event) => updateProfile({ gender: event.target.value === 'male' || event.target.value === 'female' ? event.target.value : null })}>
+                  <option value="">{language === 'ar' ? 'اختر' : 'Select'}</option>
+                  <option value="male">{t('male')}</option>
+                  <option value="female">{t('female')}</option>
+                </select>
+              </label>
+              <label className="min-w-0 text-[10px] font-extrabold tracking-wide text-[#6B7A75]" htmlFor="home-profile-activity">
+                {t('activityLevel')}
+                <select id="home-profile-activity" className={selectClass} value={profile.activityLevel ?? ''} onChange={(event) => updateProfile({ activityLevel: (event.target.value || null) as typeof profile.activityLevel })}>
+                  <option value="">{language === 'ar' ? 'اختر' : 'Select'}</option>
+                  {(['sedentary', 'light', 'moderate', 'active', 'very_active'] as const).map((level) => <option key={level} value={level}>{t(`wizard.activity.${level}` as any)}</option>)}
+                </select>
+              </label>
+              <label className="min-w-0 text-[10px] font-extrabold tracking-wide text-[#6B7A75]" htmlFor="home-profile-goal">
+                {t('goal')}
+                <select id="home-profile-goal" className={selectClass} value={profile.goal ?? ''} onChange={(event) => updateProfile({ goal: (event.target.value || null) as typeof profile.goal })}>
+                  <option value="">{language === 'ar' ? 'اختر' : 'Select'}</option>
+                  {(['lose', 'gain_muscle', 'gain_weight', 'wellness', 'athletic'] as const).map((goalKey) => <option key={goalKey} value={goalKey}>{t(`wizard.step4.goalTypes.${goalKey === 'gain_muscle' ? 'gainMuscle' : goalKey === 'gain_weight' ? 'gainWeight' : goalKey}` as any)}</option>)}
+                </select>
+              </label>
+            </div>
             <div className="feature-list">{[t('homeFeat1'), t('homeFeat2'), t('homeFeat3')].map((x) => <span key={x}>✓ {x}</span>)}</div>
-            <Link to="/fitness" className="btn-primary">{t('homeTryCalc')} <span>→</span></Link>
+            <div className="flex flex-wrap items-center gap-3">
+              <Link to="/fitness" className="btn-primary">{t('homeTryCalc')} <span>→</span></Link>
+              <button type="button" onClick={resetProfile} className="rounded-full px-3 py-2 text-xs font-semibold text-[#6B7A75] hover:bg-[#F4F1EB]">
+                {language === 'ar' ? 'مسح البيانات' : 'Reset data'}
+              </button>
+            </div>
             <p className="panel-note">{t('homePanelNote')}</p>
           </div>
         </div>

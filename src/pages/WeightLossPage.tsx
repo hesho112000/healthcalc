@@ -15,6 +15,7 @@ import { useAuth } from '../context/AuthContext';
 import { savePlan, saveProfile } from '../services/supabaseData';
 import { useKitchenDishes } from '../hooks/useKitchenDishes';
 import { useKitchenDishCounts, KITCHEN_ID_ALIAS } from '../hooks/useKitchenDishCounts';
+import { useUserProfile, type UserProfile } from '../hooks/useUserProfile';
 import { generateWeeklyPlan } from '../utils/mealPlanGenerator';
 import type { PlanDay, PlanDish, PlanMealType } from '../utils/mealPlanGenerator';
 
@@ -80,23 +81,10 @@ const ACTIVITY: Record<ActivityKey, { factor: number; label: string; desc: strin
 
 const ACTIVITY_ORDER: ActivityKey[] = ['sedentary', 'light', 'moderate', 'active', 'very_active'];
 
-const readWizardInput = (): { age?: string; height?: string; weight?: string; sex?: Sex; activityLevel?: ActivityKey } => {
-  try {
-    const raw = localStorage.getItem('fitness-inputs') || localStorage.getItem('fitness-wizard-input');
-    if (!raw) return {};
-    const d = JSON.parse(raw);
-    const out: { age?: string; height?: string; weight?: string; sex?: Sex; activityLevel?: ActivityKey } = {};
-    if (d && d.age !== undefined && d.age !== null && d.age !== '') out.age = String(d.age);
-    const heightRaw = d && (d.height !== undefined ? d.height : d.heightCm);
-    const weightRaw = d && (d.weight !== undefined ? d.weight : d.weightKg);
-    if (d && heightRaw !== undefined && heightRaw !== null && heightRaw !== '') out.height = String(heightRaw);
-    if (d && weightRaw !== undefined && weightRaw !== null && weightRaw !== '') out.weight = String(weightRaw);
-    if (d && (d.gender === 'male' || d.gender === 'female')) out.sex = d.gender as Sex;
-    if (d && ACTIVITY[d.activityLevel as ActivityKey]) out.activityLevel = d.activityLevel as ActivityKey;
-    return out;
-  } catch {
-    return {};
-  }
+const firstIncompleteWizardStep = (profile: UserProfile): Step => {
+  if (profile.age === null || profile.gender === null || profile.height === null || profile.weight === null) return 1;
+  if (profile.activityLevel === null) return 2;
+  return 3;
 };
 
 const WORKOUTS: Workout[] = [
@@ -1251,6 +1239,7 @@ const BodyFigure: React.FC<{ kind: Sex }> = ({ kind }) => (
 const WeightLossPage: React.FC = () => {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
+  const { profile, updateProfile } = useUserProfile();
   const kitchenLabel = (k: KitchenInfo) =>
     k.id === 'chilean' ? t('kitchen.chilean.name') : k.id === 'peruvian' ? t('kitchen.peruvian.name') : k.id === 'colombian' ? t('kitchen.colombian.name') : k.id === 'mexican' ? t('kitchen.mexican.name') : k.id === 'argentinian' ? t('kitchen.argentinian.name') : k.id === 'eastern-european' ? t('kitchen.eastern-european.name') : getKitchenName(k, language);
   const regionLabel = (region: RegionDef) =>
@@ -1259,14 +1248,19 @@ const WeightLossPage: React.FC = () => {
   const profileInitials = user?.name?.trim() && user.name !== 'Guest'
     ? user.name.trim().split(/\s+/).slice(0, 2).map((part) => part.charAt(0)).join('').toUpperCase()
     : 'HC';
-  const [step, setStep] = useState<Step>(1);
+  const [step, setStep] = useState<Step>(() => firstIncompleteWizardStep(profile));
   const [planType, setPlanType] = useState<PlanType>('both');
-  const [age, setAge] = useState<string>(() => readWizardInput().age ?? '26');
-  const [sex, setSex] = useState<Sex>(() => readWizardInput().sex ?? 'male');
-  const [height, setHeight] = useState<string>(() => readWizardInput().height ?? '175');
-  const [weight, setWeight] = useState<string>(() => readWizardInput().weight ?? '70');
-  const [goal, setGoal] = useState<GoalKey>('lose');
-  const [targetWeight, setTargetWeight] = useState('75');
+  const [age, setAge] = useState<string>(() => profile.age === null ? '' : String(profile.age));
+  const [sex, setSex] = useState<Sex>(() => profile.gender ?? 'male');
+  const [height, setHeight] = useState<string>(() => profile.height === null ? '' : String(profile.height));
+  const [weight, setWeight] = useState<string>(() => profile.weight === null ? '' : String(profile.weight));
+  const [goal, setGoal] = useState<GoalKey>(() => profile.goal ?? 'lose');
+  const [editingGoal, setEditingGoal] = useState(() => profile.goal === null);
+  const [editingSavedProfile, setEditingSavedProfile] = useState(false);
+  const [targetWeight, setTargetWeight] = useState(() => {
+    if (profile.weight === null) return '';
+    return String(profile.goal === 'gain_muscle' || profile.goal === 'gain_weight' ? profile.weight + 5 : Math.max(30, profile.weight - 5));
+  });
   const [timeline, setTimeline] = useState('12');
   const [selectedKitchenId, setSelectedKitchenId] = useState<string>('egyptian');
   const [workout, setWorkout] = useState('full_body');
@@ -1291,7 +1285,7 @@ const WeightLossPage: React.FC = () => {
   const [categoryMode, setCategoryMode] = useState<'manual' | 'auto'>('manual');
   const [exerciseMode, setExerciseMode] = useState<'manual' | 'auto'>('auto');
   const [step2Data, setStep2Data] = useState<{ activityLevel: ActivityKey; exerciseType: string | null; selectedExercises: string[] }>({
-    activityLevel: readWizardInput().activityLevel ?? 'moderate',
+    activityLevel: profile.activityLevel ?? 'moderate',
     exerciseType: null,
     selectedExercises: [],
   });
@@ -1308,7 +1302,7 @@ const WeightLossPage: React.FC = () => {
   const [selectedDishKeys, setSelectedDishKeys] = useState<string[]>([]);
   const [assignedDishes, setAssignedDishes] = useState<Record<string, MealKey[]>>({});
   const [editField, setEditField] = useState<'age' | 'height' | 'weight' | null>(null);
-  const [dietId, setDietId] = useState('normal_lose');
+  const [dietId, setDietId] = useState(() => profile.dietaryPreferences[0] ?? 'normal_lose');
   const [weeklyPlan, setWeeklyPlan] = useState<PlanDay[]>(() => {
     try {
       const raw = localStorage.getItem(`hc_weekly_plan_${'egyptian'}`);
@@ -1591,11 +1585,24 @@ const WeightLossPage: React.FC = () => {
   const next = () => {
     if (!isValid()) return;
     if (step === 1) {
-      setStep(2);
+      updateProfile({
+        age: parsed.age || null,
+        gender: sex,
+        height: parsed.height || null,
+        weight: parsed.weight || null,
+      });
+      setStep(editingSavedProfile || !profile.activityLevel ? 2 : 3);
       return;
     }
     if (step === 2) {
+      updateProfile({ activityLevel: step2Data.activityLevel });
+      setEditingSavedProfile(false);
       setStep(3);
+      return;
+    }
+    if (step === 3) {
+      updateProfile({ goal, dietaryPreferences: [dietId] });
+      setStep(4);
       return;
     }
     const s = step >= 5 ? 1 : ((step + 1) as Step);
@@ -1795,6 +1802,8 @@ const WeightLossPage: React.FC = () => {
   const changeGoal = (g: GoalKey) => {
     setGoal(g);
     setDietId(DIETS[g][0].id);
+    setEditingGoal(false);
+    updateProfile({ goal: g, dietaryPreferences: [DIETS[g][0].id] });
   };
 
   const notify = (m: string, undo?: { label: string; action: () => void }) => {
@@ -2067,7 +2076,11 @@ const WeightLossPage: React.FC = () => {
                     id="wz-age"
                     inputMode="numeric"
                     value={age}
-                    onChange={(e) => setAge(e.target.value.replace(/\D/g, ''))}
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/\D/g, '');
+                      setAge(value);
+                      updateProfile({ age: value ? Number(value) : null });
+                    }}
                     className={`${inputDefault} pr-16`}
                   />
                   <span className="absolute inset-y-0 end-4 flex items-center text-[13px] font-bold text-[#A0A8A4]">{t('wizard.unit.years')}</span>
@@ -2083,7 +2096,10 @@ const WeightLossPage: React.FC = () => {
                       <button
                         key={x}
                         type="button"
-                        onClick={() => setSex(x)}
+                        onClick={() => {
+                          setSex(x);
+                          updateProfile({ gender: x });
+                        }}
                         className={`relative flex flex-col items-center justify-center pt-4 pb-3 rounded-[20px] border-2 transition-all min-w-0 ${on ? 'border-[#0F4C3A] bg-[#0F4C3A] shadow-[0_8px_18px_rgba(15,76,58,0.25)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
                       >
                         <span className={`flex items-center justify-center w-[72px] h-[72px] rounded-full transition-colors ${on ? 'bg-white/15 border border-white/25' : 'bg-[#F4F1EB]'}`}>
@@ -2107,7 +2123,11 @@ const WeightLossPage: React.FC = () => {
                       id="wz-height"
                       inputMode="numeric"
                       value={height}
-                      onChange={(e) => setHeight(e.target.value.replace(/\D/g, ''))}
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/\D/g, '');
+                        setHeight(value);
+                        updateProfile({ height: value ? Number(value) : null });
+                      }}
                       className={`${inputDefault} pr-16`}
                     />
                     <span className="absolute inset-y-0 end-4 flex items-center text-[13px] font-bold text-[#A0A8A4]">{t('wizard.unit.cm')}</span>
@@ -2120,7 +2140,11 @@ const WeightLossPage: React.FC = () => {
                       id="wz-weight"
                       inputMode="decimal"
                       value={weight}
-                      onChange={(e) => setWeight(e.target.value.replace(/[^0-9.]/g, ''))}
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/[^0-9.]/g, '');
+                        setWeight(value);
+                        updateProfile({ weight: value ? Number(value) : null });
+                      }}
                       className={`${inputDefault} pr-16`}
                     />
                     <span className="absolute inset-y-0 end-4 flex items-center text-[13px] font-bold text-[#A0A8A4]">{t('wizard.unit.kg')}</span>
@@ -2199,7 +2223,10 @@ const WeightLossPage: React.FC = () => {
                     <button
                       key={x}
                       type="button"
-                      onClick={() => setStep2Data((d) => ({ ...d, activityLevel: x }))}
+                      onClick={() => {
+                        setStep2Data((d) => ({ ...d, activityLevel: x }));
+                        updateProfile({ activityLevel: x });
+                      }}
                       className={`px-[18px] py-2 rounded-full text-[13px] font-bold flex items-center gap-1.5 transition-all active:scale-95 ${on ? 'bg-[#0F4C3A] text-white shadow-[0_6px_14px_rgba(15,76,58,0.25)]' : 'bg-[#F4F1EB] text-[#6B7A75] hover:bg-[#ECE8DD]'}`}
                     >
                       <span className="shrink-0">{opt.emoji}</span>
@@ -2249,7 +2276,10 @@ const WeightLossPage: React.FC = () => {
                     <button
                       key={x}
                       type="button"
-                      onClick={() => setStep2Data((d) => ({ ...d, activityLevel: x }))}
+                      onClick={() => {
+                        setStep2Data((d) => ({ ...d, activityLevel: x }));
+                        updateProfile({ activityLevel: x });
+                      }}
                       className={`px-[18px] py-2 rounded-full text-[13px] font-bold flex items-center gap-1.5 transition-all active:scale-95 ${on ? 'bg-[#0F4C3A] text-white shadow-[0_6px_14px_rgba(15,76,58,0.25)]' : 'bg-[#F4F1EB] text-[#6B7A75] hover:bg-[#ECE8DD]'}`}
                     >
                       <span className="shrink-0">{opt.emoji}</span>
@@ -2515,26 +2545,58 @@ const WeightLossPage: React.FC = () => {
 
         {step === 3 && (
           <div className="mt-6 space-y-5">
-            <div className={`${cardBase} p-6`}>
-              <h2 className="text-[18px] font-extrabold">{t('wizard.step4.goal')}</h2>
-              <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
-                {GOAL_ORDER.map((g) => {
-                  const on = goal === g;
-                  return (
-                    <button
-                      key={g}
-                      type="button"
-                      onClick={() => changeGoal(g)}
-                      className={`relative rounded-[18px] border-2 px-2 py-4 flex flex-col items-center justify-center gap-2 transition-all active:scale-95 ${on ? 'border-[#0F4C3A] bg-[#0F4C3A] text-white shadow-[0_8px_18px_rgba(15,76,58,0.22)]' : 'border-[#EFEBE4] bg-white text-[#0F4C3A] hover:border-[#D4AF37]'}`}
-                    >
-                      <span className="text-[24px] leading-none">{GOAL_ICONS[g]}</span>
-                      <span className={`text-[12px] font-bold text-center leading-tight ${on ? 'text-white' : 'text-[#0F4C3A]'}`}>{goalLabel(g)}</span>
-                      {on && <span className="absolute top-2 end-2 w-5 h-5 rounded-full bg-[#D4AF37] text-[#0F4C3A] flex items-center justify-center text-[11px] font-bold">✓</span>}
-                    </button>
-                  );
-                })}
+            {(profile.age !== null || profile.height !== null || profile.weight !== null || profile.activityLevel !== null) && (
+              <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#DDE9DF] bg-[#F3F8F3] px-4 py-3">
+                <div className="min-w-0">
+                  <p className="text-xs font-extrabold text-[#0F4C3A]">{language === 'ar' ? 'إجاباتك المحفوظة' : 'Using your saved answers'}</p>
+                  <p className="mt-1 break-words text-xs text-[#52635A]">
+                    {[profile.age !== null ? `${profile.age} ${language === 'ar' ? 'سنة' : 'yrs'}` : null,
+                      profile.gender ? t(profile.gender) : null,
+                      profile.height !== null ? `${profile.height} cm` : null,
+                      profile.weight !== null ? `${profile.weight} kg` : null,
+                      profile.activityLevel ? t(`wizard.activity.${profile.activityLevel}` as any) : null,
+                      profile.goal ? goalLabel(profile.goal) : null]
+                      .filter(Boolean)
+                      .join(' · ')}
+                  </p>
+                </div>
+                <button type="button" onClick={() => { setEditingSavedProfile(true); setStep(1); }} className="min-h-11 shrink-0 rounded-full border border-[#0F4C3A]/20 bg-white px-4 text-xs font-bold text-[#0F4C3A] hover:bg-[#E9F2EA]">
+                  {language === 'ar' ? 'تعديل' : 'Edit'}
+                </button>
               </div>
-            </div>
+            )}
+            {profile.goal && !editingGoal ? (
+              <div className={`${cardBase} flex flex-wrap items-center justify-between gap-4 p-6`}>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wide text-[#6B7A75]">{language === 'ar' ? 'هدفك المحفوظ' : 'Saved goal'}</p>
+                  <p className="mt-1 text-[18px] font-extrabold text-[#0F4C3A]">{GOAL_ICONS[profile.goal]} {goalLabel(profile.goal)}</p>
+                </div>
+                <button type="button" onClick={() => setEditingGoal(true)} className="min-h-11 rounded-full border border-[#0F4C3A]/20 bg-white px-4 text-xs font-bold text-[#0F4C3A] hover:bg-[#E9F2EA]">
+                  {language === 'ar' ? 'تعديل الهدف' : 'Edit goal'}
+                </button>
+              </div>
+            ) : (
+              <div className={`${cardBase} p-6`}>
+                <h2 className="text-[18px] font-extrabold">{t('wizard.step4.goal')}</h2>
+                <div className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
+                  {GOAL_ORDER.map((g) => {
+                    const on = goal === g;
+                    return (
+                      <button
+                        key={g}
+                        type="button"
+                        onClick={() => changeGoal(g)}
+                        className={`relative rounded-[18px] border-2 px-2 py-4 flex flex-col items-center justify-center gap-2 transition-all active:scale-95 ${on ? 'border-[#0F4C3A] bg-[#0F4C3A] text-white shadow-[0_8px_18px_rgba(15,76,58,0.22)]' : 'border-[#EFEBE4] bg-white text-[#0F4C3A] hover:border-[#D4AF37]'}`}
+                      >
+                        <span className="text-[24px] leading-none">{GOAL_ICONS[g]}</span>
+                        <span className={`text-[12px] font-bold text-center leading-tight ${on ? 'text-white' : 'text-[#0F4C3A]'}`}>{goalLabel(g)}</span>
+                        {on && <span className="absolute top-2 end-2 w-5 h-5 rounded-full bg-[#D4AF37] text-[#0F4C3A] flex items-center justify-center text-[11px] font-bold">✓</span>}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             <div className={`${cardBase} p-6`}>
               <div className="grid grid-cols-2 gap-4">
@@ -2593,7 +2655,10 @@ const WeightLossPage: React.FC = () => {
                     <button
                       key={d.id}
                       type="button"
-                      onClick={() => setDietId(d.id)}
+                      onClick={() => {
+                        setDietId(d.id);
+                        updateProfile({ dietaryPreferences: [d.id] });
+                      }}
                       className={`relative rounded-[18px] border-2 p-4 text-start transition-all min-w-0 ${on ? 'border-[#D4AF37] bg-[#FFFBEF] shadow-[0_0_0_4px_rgba(212,175,55,0.15)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
                     >
                       {idx === 1 && (

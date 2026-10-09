@@ -5,8 +5,9 @@ import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import FitnessHeroVisual from '../components/illustrations/FitnessHeroVisual';
+import { useUserProfile, type UserGoal, type UserProfile } from '../hooks/useUserProfile';
 
-interface FormData { age: string; gender: 'male' | 'female'; heightCm: string; weightKg: string; activityLevel: string }
+interface FormData { age: string; gender: 'male' | 'female'; heightCm: string; weightKg: string; activityLevel: string; goal: UserGoal | '' }
 
 const ACT: Record<string, number> = { sedentary: 1.2, light: 1.375, moderate: 1.55, active: 1.725, very_active: 1.9 };
 const ACT_ORDER = ['sedentary', 'light', 'moderate', 'active', 'very_active'];
@@ -62,10 +63,18 @@ const vo2Color = (k: string) => (k === 'fcVo2Poor' ? '#ef4444' : k === 'fcVo2Fai
 const bfColor = (k: string) => (k === 'fcBfLevelObese' ? '#ef4444' : k === 'fcBfLevelAverage' ? '#f59e0b' : '#0F4C3A');
 
 const FitnessPage: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const navigate = useNavigate();
-  const [form, setForm] = useState<FormData>({ age: '', gender: 'male', heightCm: '', weightKg: '', activityLevel: 'moderate' });
-  const [calculated, setCalculated] = useState(false);
+  const { profile, updateProfile, resetProfile } = useUserProfile();
+  const [form, setForm] = useState<FormData>(() => ({
+    age: profile.age === null ? '' : String(profile.age),
+    gender: profile.gender ?? 'male',
+    heightCm: profile.height === null ? '' : String(profile.height),
+    weightKg: profile.weight === null ? '' : String(profile.weight),
+    activityLevel: profile.activityLevel ?? 'moderate',
+    goal: profile.goal ?? '',
+  }));
+  const [calculated, setCalculated] = useState(() => profile.age !== null && profile.height !== null && profile.weight !== null);
   const [error, setError] = useState('');
   const resultsRef = useRef<HTMLDivElement>(null);
 
@@ -92,16 +101,6 @@ const FitnessPage: React.FC = () => {
     return { bmi, bmr, maintain, lose, maxHr, bodyFat, vo2, whr, zones };
   }, [form]);
 
-  const saveProfile = useCallback(() => {
-    localStorage.setItem('hc_calc_profile', JSON.stringify({
-      age: +form.age || 0,
-      gender: form.gender,
-      heightCm: +form.heightCm || 0,
-      weightKg: +form.weightKg || 0,
-      activityLevel: form.activityLevel,
-    }));
-  }, [form]);
-
   const validate = useCallback(() => {
     const age = parseInt(form.age, 10);
     const height = parseInt(form.heightCm, 10);
@@ -112,16 +111,17 @@ const FitnessPage: React.FC = () => {
     return '';
   }, [form]);
 
-  const persistFitnessInputs = useCallback(() => {
-    localStorage.setItem('fitness-inputs', JSON.stringify({
-      age: String(form.age),
-      height: String(form.heightCm),
-      weight: String(form.weightKg),
+  const saveSharedProfile = () => {
+    const updated: Partial<UserProfile> = {
+      age: +form.age || null,
       gender: form.gender,
-      activityLevel: form.activityLevel,
-      savedAt: new Date().toISOString(),
-    }));
-  }, [form]);
+      height: +form.heightCm || null,
+      weight: +form.weightKg || null,
+      activityLevel: form.activityLevel as UserProfile['activityLevel'],
+      goal: form.goal || null,
+    };
+    updateProfile(updated);
+  };
 
   const handleBridge = useCallback(() => {
     const validationError = validate();
@@ -130,26 +130,17 @@ const FitnessPage: React.FC = () => {
       return;
     }
     setError('');
-    saveProfile();
-    persistFitnessInputs();
+    saveSharedProfile();
     localStorage.setItem('hc_calculator_bridge', JSON.stringify({
       age: +form.age,
       gender: form.gender,
       height: +form.heightCm,
       weight: +form.weightKg,
       activityLevel: form.activityLevel,
-      goal: 'lose_weight',
+      goal: form.goal === 'lose' ? 'lose_weight' : form.goal || profile.goal || 'lose_weight',
       bmi: metrics?.bmi,
       bmr: metrics?.bmr,
       tdee: metrics?.maintain,
-      savedAt: new Date().toISOString(),
-    }));
-    localStorage.setItem('fitness-wizard-input', JSON.stringify({
-      age: String(form.age),
-      heightCm: String(form.heightCm),
-      weightKg: String(form.weightKg),
-      gender: form.gender,
-      activityLevel: form.activityLevel,
       savedAt: new Date().toISOString(),
     }));
     if (metrics) {
@@ -157,7 +148,7 @@ const FitnessPage: React.FC = () => {
       localStorage.setItem('userBMR', String(metrics.bmr));
     }
     navigate('/weight-loss');
-  }, [form, metrics, validate, saveProfile, persistFitnessInputs, navigate]);
+  }, [form, metrics, profile.goal, validate, updateProfile, navigate]);
 
   const handleCalculate = useCallback(() => {
     const validationError = validate();
@@ -166,13 +157,24 @@ const FitnessPage: React.FC = () => {
       return;
     }
     setError('');
-    saveProfile();
-    persistFitnessInputs();
+    saveSharedProfile();
     setCalculated(true);
     setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
-  }, [validate, saveProfile, persistFitnessInputs]);
+  }, [validate, saveSharedProfile]);
 
-  const patch = (p: Partial<FormData>) => setForm((f) => ({ ...f, ...p }));
+  const patch = (p: Partial<FormData>) => {
+    const next = { ...form, ...p };
+    setForm(next);
+    const updated: Partial<UserProfile> = {
+      age: +next.age || null,
+      gender: next.gender,
+      height: +next.heightCm || null,
+      weight: +next.weightKg || null,
+      activityLevel: next.activityLevel as UserProfile['activityLevel'],
+      goal: next.goal || null,
+    };
+    updateProfile(updated);
+  };
 
   const bmiStatusD = metrics ? bmiStatus(metrics.bmi) : null;
   const bmiPct = metrics ? Math.max(4, Math.min(100, ((metrics.bmi - 14) / 26) * 100)) : 0;
@@ -275,6 +277,18 @@ const FitnessPage: React.FC = () => {
               </select>
             </div>
 
+            <div className="mt-5">
+              <label className="wiz-label" htmlFor="fitness-goal">{t('goal')}</label>
+              <select id="fitness-goal" className="wiz-input" value={form.goal} onChange={(e) => patch({ goal: e.target.value as UserGoal | '' })}>
+                <option value="">{language === 'ar' ? 'اختر هدفًا' : 'Choose a goal'}</option>
+                <option value="lose">{t('wizard.step4.goalTypes.lose')}</option>
+                <option value="gain_muscle">{t('wizard.step4.goalTypes.gainMuscle')}</option>
+                <option value="gain_weight">{t('wizard.step4.goalTypes.gainWeight')}</option>
+                <option value="wellness">{t('wizard.step4.goalTypes.wellness')}</option>
+                <option value="athletic">{t('wizard.step4.goalTypes.athletic')}</option>
+              </select>
+            </div>
+
             <div className="mt-8">
               {error && <p className="mb-4 text-center text-[13px] font-bold text-[#ef4444]">{error}</p>}
               <button type="button" className="cta-calc" onClick={handleCalculate}>
@@ -282,6 +296,18 @@ const FitnessPage: React.FC = () => {
               </button>
             </div>
             <p className="mt-5 text-center text-[12px] text-[#A0A8A4]">{t('fcProfileNote')}</p>
+            <button
+              type="button"
+              onClick={() => {
+                resetProfile();
+                setForm({ age: '', gender: 'male', heightCm: '', weightKg: '', activityLevel: 'moderate', goal: '' });
+                setCalculated(false);
+                setError('');
+              }}
+              className="mx-auto mt-3 block rounded-full px-4 py-2 text-xs font-semibold text-[#6B7A75] hover:bg-[#F4F1EB]"
+            >
+              {language === 'ar' ? 'مسح البيانات المحفوظة' : 'Reset saved data'}
+            </button>
           </div>
         </section>
 
