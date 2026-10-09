@@ -159,23 +159,23 @@ const MealCard: FC<MealCardProps> = ({
                       <span className="whitespace-nowrap font-mono text-sm tabular-nums text-gray-600">{dish.calories} kcal</span>
                       <button
                         type="button"
-                        aria-label={isArabic ? 'تبديل الطبق' : `Swap ${dish.name}`}
-                        title={isArabic ? 'تبديل الطبق' : 'Swap dish'}
+                        aria-label={isArabic ? 'تغيير الوجبة' : 'Change meal'}
+                        title={isArabic ? 'تغيير الوجبة' : 'Change meal'}
                         disabled={!isExpanded}
                         tabIndex={isExpanded ? 0 : -1}
                         onClick={() => onSwapDish(dishIndex)}
-                        className="flex h-11 w-11 touch-manipulation items-center justify-center rounded-full text-gray-500 transition-colors hover:bg-amber-50 hover:text-amber-700 active:scale-95 disabled:pointer-events-none sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100"
+                        className="flex h-11 w-11 touch-manipulation items-center justify-center rounded-full border border-[#E5E7EB] bg-white text-[#6B7280] transition-colors hover:bg-[#F9FAFB] hover:text-[#0F4C3A] active:scale-95 disabled:pointer-events-none"
                       >
                         <RefreshCw aria-hidden="true" size={16} />
                       </button>
                       <button
                         type="button"
-                        aria-label={isArabic ? 'إزالة الطبق' : `Remove ${dish.name}`}
+                        aria-label={isArabic ? 'إزالة الطبق' : 'Remove dish'}
                         title={isArabic ? 'إزالة الطبق' : 'Remove dish'}
                         disabled={!isExpanded}
                         tabIndex={isExpanded ? 0 : -1}
                         onClick={() => onRemoveDish(dishIndex)}
-                        className="flex h-11 w-11 touch-manipulation items-center justify-center rounded-full text-gray-500 transition-colors hover:bg-rose-50 hover:text-rose-600 active:scale-95 disabled:pointer-events-none sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100"
+                        className="flex h-11 w-11 touch-manipulation items-center justify-center rounded-full bg-[#F3F4F6] text-[#6B7280] transition-colors hover:bg-[#E5E7EB] hover:text-[#EF4444] active:scale-95 disabled:pointer-events-none"
                       >
                         <X aria-hidden="true" size={18} />
                       </button>
