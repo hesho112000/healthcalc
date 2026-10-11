@@ -19,7 +19,7 @@ import { useUserProfile, type UserProfile } from '../hooks/useUserProfile';
 import { generateWeeklyPlan } from '../utils/mealPlanGenerator';
 import type { PlanDay, PlanDish, PlanMealType } from '../utils/mealPlanGenerator';
 
-type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 type Sex = 'male' | 'female';
 type PlanType = 'nutrition' | 'fitness' | 'both';
 type ActivityKey = 'sedentary' | 'light' | 'moderate' | 'active' | 'very_active';
@@ -84,7 +84,9 @@ const ACTIVITY_ORDER: ActivityKey[] = ['sedentary', 'light', 'moderate', 'active
 const firstIncompleteWizardStep = (profile: UserProfile): Step => {
   if (profile.age === null || profile.gender === null || profile.height === null || profile.weight === null) return 1;
   if (profile.activityLevel === null) return 2;
-  return profile.dietaryPreferences.length ? 4 : 3;
+  if (!profile.dietaryPreferences.length) return 3;
+  if (!profile.healthConditions.length || profile.dietAffectingMedication === null) return 4;
+  return 6;
 };
 
 const WORKOUTS: Workout[] = [
@@ -1304,6 +1306,8 @@ const WeightLossPage: React.FC = () => {
   const [editField, setEditField] = useState<'age' | 'height' | 'weight' | null>(null);
   const [dietId, setDietId] = useState(() => profile.dietIntensity ?? 'normal_lose');
   const [dietaryPreferences, setDietaryPreferences] = useState<string[]>(() => profile.dietaryPreferences);
+  const [healthConditions, setHealthConditions] = useState<string[]>(() => profile.healthConditions);
+  const [dietAffectingMedication, setDietAffectingMedication] = useState<boolean | null>(() => profile.dietAffectingMedication);
   const [weeklyPlan, setWeeklyPlan] = useState<PlanDay[]>(() => {
     try {
       const raw = localStorage.getItem(`hc_weekly_plan_${'egyptian'}`);
@@ -1480,10 +1484,12 @@ const WeightLossPage: React.FC = () => {
     { n: 1, label: t('wizard.steps.info') },
     { n: 2, label: language === 'ar' ? 'النشاط' : 'Lifestyle' },
     { n: 3, label: language === 'ar' ? 'الغذاء' : 'Diet' },
-    { n: 4, label: t('wizard.steps.goals') },
-    { n: 5, label: language === 'ar' ? 'السعرات' : 'Calories' },
-    { n: 6, label: t('wizard.steps.kitchen') },
-    { n: 7, label: t('wizard.steps.blueprint') },
+    { n: 4, label: language === 'ar' ? 'الصحة' : 'Health' },
+    { n: 5, label: language === 'ar' ? 'التوصيات' : 'Advice' },
+    { n: 6, label: t('wizard.steps.goals') },
+    { n: 7, label: language === 'ar' ? 'السعرات' : 'Calories' },
+    { n: 8, label: t('wizard.steps.kitchen') },
+    { n: 9, label: t('wizard.steps.blueprint') },
   ];
   const visIdx = visibleSteps.findIndex((x) => x.n === step);
   const progressPct = visibleSteps.length > 1 ? Math.max(0, Math.min(100, (visIdx / (visibleSteps.length - 1)) * 100)) : 0;
@@ -1491,18 +1497,22 @@ const WeightLossPage: React.FC = () => {
     if (step === 1) return t('wizard.step1.title');
     if (step === 2) return language === 'ar' ? 'نمط الحياة والنشاط' : 'Lifestyle & Activity';
     if (step === 3) return language === 'ar' ? 'تفضيلاتك الغذائية' : 'Dietary Preferences';
-    if (step === 4) return t('wizard.step3.title');
-    if (step === 5) return language === 'ar' ? 'هدف السعرات' : 'Calorie Target';
-    if (step === 6) return t('wizard.step4.title');
+    if (step === 4) return language === 'ar' ? 'الحالات الصحية' : 'Health Conditions';
+    if (step === 5) return language === 'ar' ? 'توصياتك الشخصية' : 'Your Recommendations';
+    if (step === 6) return t('wizard.step3.title');
+    if (step === 7) return language === 'ar' ? 'هدف السعرات' : 'Calorie Target';
+    if (step === 8) return t('wizard.step4.title');
     return t('wizard.step5.title');
   })();
   const stepEyebrow = (() => {
     if (step === 1) return t('wizard.step1.eyebrow');
     if (step === 2) return language === 'ar' ? 'نمط الحياة والنشاط' : 'LIFESTYLE & ACTIVITY';
     if (step === 3) return language === 'ar' ? 'تفضيلاتك الغذائية' : 'DIETARY PREFERENCES';
-    if (step === 4) return language === 'ar' ? 'أهدافك' : 'YOUR GOALS';
-    if (step === 5) return language === 'ar' ? 'وتيرة مناسبة لك' : 'CHOOSE YOUR PACE';
-    if (step === 6) return language === 'ar' ? 'اختر مطبخك' : 'CHOOSE YOUR CUISINE';
+    if (step === 4) return language === 'ar' ? 'صحتك وسلامتك' : 'YOUR HEALTH & SAFETY';
+    if (step === 5) return language === 'ar' ? 'مبنية على إجاباتك' : 'BASED ON YOUR PROFILE';
+    if (step === 6) return language === 'ar' ? 'أهدافك' : 'YOUR GOALS';
+    if (step === 7) return language === 'ar' ? 'وتيرة مناسبة لك' : 'CHOOSE YOUR PACE';
+    if (step === 8) return language === 'ar' ? 'اختر مطبخك' : 'CHOOSE YOUR CUISINE';
     return language === 'ar' ? 'خطتك الشخصية' : 'YOUR PERSONAL PLAN';
   })();
 
@@ -1548,6 +1558,19 @@ const WeightLossPage: React.FC = () => {
 
   const diet = numbers ? numbers.diet : getDiet(goal, dietId);
 
+  const recommendedDiet = healthConditions.includes('diabetes')
+    ? language === 'ar' ? 'قليل الكربوهيدرات' : 'Low-Carb'
+    : dietaryPreferences.includes('vegetarian') || dietaryPreferences.includes('vegan')
+      ? language === 'ar' ? 'نباتي متوازن' : 'Vegetarian Balanced'
+      : dietaryPreferences.includes('low_carb') || dietaryPreferences.includes('keto')
+        ? language === 'ar' ? 'قليل الكربوهيدرات' : 'Low-Carb'
+        : healthConditions.includes('hypertension') || healthConditions.includes('high_cholesterol') || dietaryPreferences.includes('mediterranean')
+          ? language === 'ar' ? 'حمية البحر المتوسط' : 'Mediterranean'
+          : language === 'ar' ? 'متوازن على نمط البحر المتوسط' : 'Balanced Mediterranean';
+  const recommendedExercise = step2Data.activityLevel === 'sedentary'
+    ? language === 'ar' ? 'مشي 20 دقيقة يومياً' : '20-minute walk daily'
+    : language === 'ar' ? 'مشي سريع 30 دقيقة + تمارين قوة 3 مرات أسبوعياً' : '30-minute brisk walk + strength training 3x/week';
+
   const goalViolation = (): string => {
     if (goal === 'lose') {
       if (parsed.target && parsed.weight && parsed.target >= parsed.weight) return t('wizard.step4.hintLose');
@@ -1564,7 +1587,8 @@ const WeightLossPage: React.FC = () => {
     if (step === 1) {
       return parsed.age >= 12 && parsed.age <= 80 && parsed.height >= 120 && parsed.height <= 220 && parsed.weight >= 30 && parsed.weight <= 250;
     }
-    if (step === 4) {
+    if (step === 4) return healthConditions.length > 0 && dietAffectingMedication !== null;
+    if (step === 6) {
       const base =
         parsed.target >= 30 &&
         parsed.target <= 250 &&
@@ -1604,16 +1628,25 @@ const WeightLossPage: React.FC = () => {
       return;
     }
     if (step === 4) {
-      updateProfile({ goal });
+      updateProfile({ healthConditions, dietAffectingMedication });
       setStep(5);
       return;
     }
     if (step === 5) {
-      updateProfile({ dietIntensity: dietId });
       setStep(6);
       return;
     }
-    if (step === 6) setStep(7);
+    if (step === 6) {
+      updateProfile({ goal });
+      setStep(7);
+      return;
+    }
+    if (step === 7) {
+      updateProfile({ dietIntensity: dietId });
+      setStep(8);
+      return;
+    }
+    if (step === 8) setStep(9);
   };
   const back = () => {
     const s = Math.max(1, step - 1) as Step;
@@ -1753,7 +1786,7 @@ const WeightLossPage: React.FC = () => {
       setSelectedPlanDay(1);
       setOpenMealAccordion(null);
       setAutoBuilding(false);
-      setStep(7);
+      setStep(9);
       notify(`Generated 7-day plan: ${plan.length} days`);
     }, 1500);
   };
@@ -1817,6 +1850,16 @@ const WeightLossPage: React.FC = () => {
         : [...dietaryPreferences.filter((preference) => preference !== 'none'), id];
     setDietaryPreferences(next);
     updateProfile({ dietaryPreferences: next });
+  };
+
+  const toggleHealthCondition = (id: string) => {
+    const next = id === 'none'
+      ? healthConditions.includes('none') ? [] : ['none']
+      : healthConditions.includes(id)
+        ? healthConditions.filter((condition) => condition !== id)
+        : [...healthConditions.filter((condition) => condition !== 'none'), id];
+    setHealthConditions(next);
+    updateProfile({ healthConditions: next });
   };
 
   const notify = (m: string, undo?: { label: string; action: () => void }) => {
@@ -2413,7 +2456,132 @@ const WeightLossPage: React.FC = () => {
           </div>
         )}
 
-        {step === 6 && (
+        {step === 4 && (
+          <div className="mt-6 space-y-5">
+            <div className={`${cardBase} p-6`}>
+              <div className="flex items-center gap-3">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F4F1EB] text-[22px]">🩺</span>
+                <div>
+                  <h2 className="text-[18px] font-extrabold">{language === 'ar' ? 'هل لديك أي من هذه الحالات؟' : 'Do any of these conditions apply to you?'}</h2>
+                  <p className="mt-1 text-[13px] text-[#6B7A75]">{language === 'ar' ? 'اختر كل ما ينطبق.' : 'Select all that apply.'}</p>
+                </div>
+              </div>
+
+              <div className="mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                {[
+                  { id: 'diabetes', en: 'Diabetes', ar: 'السكري', emoji: '🩸' },
+                  { id: 'hypertension', en: 'Hypertension', ar: 'ارتفاع ضغط الدم', emoji: '❤️' },
+                  { id: 'high_cholesterol', en: 'High Cholesterol', ar: 'ارتفاع الكوليسترول', emoji: '🫀' },
+                  { id: 'thyroid', en: 'Thyroid issues', ar: 'مشكلات الغدة الدرقية', emoji: '🦋' },
+                  { id: 'ibs_digestive', en: 'IBS / Digestive issues', ar: 'القولون العصبي / مشكلات الهضم', emoji: '🌿' },
+                  { id: 'none', en: 'None of the above', ar: 'لا شيء مما سبق', emoji: '✓' },
+                ].map((condition) => {
+                  const on = healthConditions.includes(condition.id);
+                  return (
+                    <button
+                      key={condition.id}
+                      type="button"
+                      aria-pressed={on}
+                      onClick={() => toggleHealthCondition(condition.id)}
+                      className={`flex min-h-[58px] items-center gap-3 rounded-[16px] border-2 px-4 py-3 text-start text-[13px] font-bold transition-all ${on ? 'border-[#0F4C3A] bg-[#EAF3ED] text-[#0F4C3A]' : 'border-[#EFEBE4] bg-white text-[#6B7A75] hover:border-[#D4AF37]'}`}
+                    >
+                      <span className="text-[18px]">{condition.emoji}</span>
+                      <span className="flex-1">{language === 'ar' ? condition.ar : condition.en}</span>
+                      {on && <span aria-hidden="true" className="text-[#B8860B]">✓</span>}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className={`${cardBase} p-6`}>
+              <h2 className="text-[16px] font-extrabold">{language === 'ar' ? 'هل تتناول دواءً يؤثر في نظامك الغذائي؟' : 'Are you on any medication that affects diet?'}</h2>
+              <div className="mt-4 grid grid-cols-2 gap-3">
+                {[
+                  { value: true, label: language === 'ar' ? 'نعم' : 'Yes' },
+                  { value: false, label: language === 'ar' ? 'لا' : 'No' },
+                ].map((answer) => {
+                  const on = dietAffectingMedication === answer.value;
+                  return (
+                    <button
+                      key={answer.label}
+                      type="button"
+                      aria-pressed={on}
+                      onClick={() => {
+                        setDietAffectingMedication(answer.value);
+                        updateProfile({ dietAffectingMedication: answer.value });
+                      }}
+                      className={`min-h-[50px] rounded-[14px] border-2 text-[14px] font-bold transition-all ${on ? 'border-[#0F4C3A] bg-[#0F4C3A] text-white' : 'border-[#EFEBE4] bg-white text-[#6B7A75] hover:border-[#D4AF37]'}`}
+                    >
+                      {answer.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <p className="rounded-[16px] border border-[#E9D9A8] bg-[#FFF8E7] px-4 py-3 text-[12px] leading-relaxed text-[#6B5A28]">
+              {language === 'ar'
+                ? 'تقدم HealthCalc إرشادات معلوماتية فقط. استشر طبيبك دائماً قبل إجراء أي تغييرات.'
+                : 'HealthCalc provides informational guidance only. Always consult your doctor before making changes.'}
+            </p>
+
+            <div className="flex gap-3">
+              <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">{t('wizard.back')}</button>
+              <button type="button" onClick={next} disabled={!isValid()} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold disabled:cursor-not-allowed disabled:opacity-40">{t('wizard.continue')}</button>
+            </div>
+          </div>
+        )}
+
+        {step === 5 && (
+          <div className="mt-6 space-y-5">
+            <p className="rounded-[20px] border border-[#DDE9DF] bg-[#F3F8F3] px-5 py-4 text-[14px] font-semibold leading-relaxed text-[#0F4C3A]">
+              {language === 'ar' ? 'بناءً على ملفك، نوصي بما يلي.' : 'Based on your profile, we recommend the following.'}
+            </p>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              <div className={`${cardBase} p-5`}>
+                <div className="text-[12px] font-extrabold uppercase tracking-wide text-[#8A938E]">🥗 {language === 'ar' ? 'نوع الحمية المقترح' : 'Recommended Diet Type'}</div>
+                <div className="mt-3 text-[18px] font-extrabold text-[#0F4C3A]">{recommendedDiet}</div>
+                <p className="mt-2 text-[12px] leading-relaxed text-[#6B7A75]">
+                  {healthConditions.includes('diabetes')
+                    ? language === 'ar' ? 'اختيرت مراعاةً لمعلوماتك الصحية؛ ناقش أي تغيير مع طبيبك.' : 'Selected with your health information in mind; discuss dietary changes with your doctor.'
+                    : dietaryPreferences.includes('vegetarian') || dietaryPreferences.includes('vegan')
+                      ? language === 'ar' ? 'يراعي تفضيلاتك الغذائية المحفوظة.' : 'Based on your saved dietary preferences.'
+                      : language === 'ar' ? 'نهج متوازن يتماشى مع ملفك.' : 'A balanced approach based on your profile.'}
+                </p>
+              </div>
+
+              <div className={`${cardBase} p-5`}>
+                <div className="text-[12px] font-extrabold uppercase tracking-wide text-[#8A938E]">🔥 {language === 'ar' ? 'السعرات اليومية المقترحة' : 'Recommended Daily Calories'}</div>
+                <div className="mt-3 flex items-baseline gap-1">
+                  <span className="num text-[32px] font-black text-[#0F4C3A]">{numbers?.targetCal ?? 0}</span>
+                  <span className="text-[13px] font-bold text-[#6B7A75]">kcal/day</span>
+                </div>
+                {numbers && <p className="mt-2 text-[12px] leading-relaxed text-[#6B7A75]">{language === 'ar' ? 'احتياج المحافظة المحسوب' : 'Calculated maintenance'}: <span className="num font-bold">{numbers.tdeeBase}</span> kcal/day</p>}
+              </div>
+
+              <div className={`${cardBase} p-5`}>
+                <div className="text-[12px] font-extrabold uppercase tracking-wide text-[#8A938E]">🏃 {language === 'ar' ? 'التمرين المقترح' : 'Recommended Exercise'}</div>
+                <div className="mt-3 text-[16px] font-extrabold leading-snug text-[#0F4C3A]">{recommendedExercise}</div>
+                <p className="mt-2 text-[12px] leading-relaxed text-[#6B7A75]">{language === 'ar' ? 'ابدأ بوتيرة مريحة وعدّلها بما يناسبك.' : 'Start at a comfortable pace and adjust to suit you.'}</p>
+              </div>
+            </div>
+
+            {dietAffectingMedication && (
+              <p className="rounded-[16px] border border-[#E9D9A8] bg-[#FFF8E7] px-4 py-3 text-[12px] leading-relaxed text-[#6B5A28]">
+                {language === 'ar' ? 'بما أنك تتناول دواءً قد يؤثر في نظامك الغذائي، راجع طبيبك قبل تطبيق التوصيات.' : 'Since you take medication that may affect diet, check with your doctor before following these recommendations.'}
+              </p>
+            )}
+
+            <div className="flex gap-3">
+              <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">{t('wizard.back')}</button>
+              <button type="button" onClick={next} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">{t('wizard.continue')}</button>
+            </div>
+          </div>
+        )}
+
+        {step === 8 && (
           <div className="mt-6 space-y-5">
 
             <div className={`${cardBase} p-6`}>
@@ -2607,7 +2775,7 @@ const WeightLossPage: React.FC = () => {
           </div>
         )}
 
-        {step === 4 && (
+        {step === 6 && (
           <div className="mt-6 space-y-5">
             {(profile.age !== null || profile.height !== null || profile.weight !== null || profile.activityLevel !== null) && (
               <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#DDE9DF] bg-[#F3F8F3] px-4 py-3">
@@ -2713,7 +2881,7 @@ const WeightLossPage: React.FC = () => {
           </div>
         )}
 
-        {step === 5 && (
+        {step === 7 && (
           <div className="mt-6 space-y-5">
             <div className={`${cardBase} p-6`}>
               <div className="flex items-center justify-between gap-2 flex-wrap">
@@ -2769,7 +2937,7 @@ const WeightLossPage: React.FC = () => {
           </div>
         )}
 
-        {step === 7 && (
+        {step === 9 && (
           <div className="mt-6 max-w-[940px] mx-auto flex flex-col gap-5">
             <div className="rounded-[26px] border border-[#EFEBE4] bg-white shadow-[0_14px_40px_rgba(15,76,58,0.1)]">
               <div className="rounded-t-[25px] px-4 sm:px-5 md:px-6 py-4 text-white flex items-start sm:items-center gap-3" style={{ background: 'linear-gradient(135deg,#0F4C3A,#14532D 60%,#1f6b52)' }}>
@@ -2781,7 +2949,7 @@ const WeightLossPage: React.FC = () => {
               </div>
 
               <div className="bg-white px-4 md:px-6 py-3 flex items-center justify-between gap-2 border-b border-[#F0ECE2]">
-                <button type="button" onClick={() => setStep(6)} className="rounded-full bg-[#F4F1EB] text-[#0F4C3A] text-[12px] font-bold px-4 py-2 flex items-center gap-1 hover:bg-[#ECE8DD] min-w-0">
+                <button type="button" onClick={() => setStep(8)} className="rounded-full bg-[#F4F1EB] text-[#0F4C3A] text-[12px] font-bold px-4 py-2 flex items-center gap-1 hover:bg-[#ECE8DD] min-w-0">
                   <span className="shrink-0">←</span> {t('wizard.step5.backToEdit')}
                 </button>
                 <div className="text-[11.5px] text-[#8A938E] min-w-0 break-words text-end">
@@ -3042,7 +3210,7 @@ const WeightLossPage: React.FC = () => {
                 </div>
                 <div className="mt-4 flex flex-wrap gap-3">
                   <button type="button" onClick={() => document.getElementById('step5-daily-plan')?.scrollIntoView({ behavior: 'smooth', block: 'start' })} className="h-10 rounded-[14px] px-4 bg-[#0F4C3A] text-white text-[12px] font-bold hover:bg-[#0a3a2c] transition-all shrink-0">🗓️ {t('wizard.step5.viewFullPlan')}</button>
-                  <button type="button" onClick={() => setStep(6)} className="h-10 rounded-[14px] px-4 bg-white border border-[#E3E0D8] text-[12px] font-bold text-[#0F4C3A] hover:border-[#D4AF37] transition-all shrink-0">🍳 {t('wizard.step5.changeCuisineBtn')}</button>
+                  <button type="button" onClick={() => setStep(8)} className="h-10 rounded-[14px] px-4 bg-white border border-[#E3E0D8] text-[12px] font-bold text-[#0F4C3A] hover:border-[#D4AF37] transition-all shrink-0">🍳 {t('wizard.step5.changeCuisineBtn')}</button>
                 </div>
               </div>
             )}

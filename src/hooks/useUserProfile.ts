@@ -14,6 +14,7 @@ export interface UserProfile {
   dietaryPreferences: string[];
   dietIntensity: string | null;
   healthConditions: string[];
+  dietAffectingMedication: boolean | null;
 }
 
 export const USER_PROFILE_STORAGE_KEY = 'healthcalc_user_profile';
@@ -29,6 +30,7 @@ const EMPTY_PROFILE: UserProfile = {
   dietaryPreferences: [],
   dietIntensity: null,
   healthConditions: [],
+  dietAffectingMedication: null,
 };
 
 const LEGACY_DIET_INTENSITIES = new Set([
@@ -87,6 +89,9 @@ const normalizeProfile = (value: unknown): UserProfile => {
     healthConditions: asStringList(data.healthConditions).length
       ? asStringList(data.healthConditions)
       : asStringList(data.conditions),
+    dietAffectingMedication: typeof data.dietAffectingMedication === 'boolean'
+      ? data.dietAffectingMedication
+      : null,
   };
 };
 
