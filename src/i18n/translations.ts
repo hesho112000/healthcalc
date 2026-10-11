@@ -196,6 +196,13 @@ type TranslationKeys = {
   heroTitleLine1: string;
   heroTitleLine2: string;
   heroCta: string;
+  heroSecondaryCta: string;
+  heroStatDishesValue: string;
+  heroStatDishesLabel: string;
+  heroStatKitchensValue: string;
+  heroStatKitchensLabel: string;
+  heroStatLanguagesValue: string;
+  heroStatLanguagesLabel: string;
   trustRating: string;
   trustRatingValue: string;
   trustUsers: string;
@@ -204,6 +211,12 @@ type TranslationKeys = {
   trustDoctorLabel: string;
   trustLanguages: string;
   trustLanguagesValue: string;
+  watchHeadline: string;
+  watchEmailPlaceholder: string;
+  watchNotify: string;
+  watchPrivacyNote: string;
+  watchThanksTitle: string;
+  watchThanksDesc: string;
   // Footer
   brandName: string;
   // Home
@@ -214,7 +227,6 @@ type TranslationKeys = {
   homeHeroDailyTarget: string;
   homeHeroStreak: string;
   homeHeroStreakDays: string;
-  homeProgressLabel: string;
   homeStep1: string;
   homeStep1Title: string;
   homeStep1Desc: string;
@@ -4185,7 +4197,14 @@ export const translations: Record<Language, TranslationKeys> = {
     heroEyebrow: 'Your Biological Fingerprint',
     heroTitleLine1: 'Understand Your Body.',
     heroTitleLine2: 'Transform Your Health.',
-    heroCta: 'Calculate My Biological Age',
+    heroCta: 'Calculate My Plan',
+    heroSecondaryCta: 'See How It Works',
+    heroStatDishesValue: '18,000+',
+    heroStatDishesLabel: 'Dishes',
+    heroStatKitchensValue: '34',
+    heroStatKitchensLabel: 'World Kitchens',
+    heroStatLanguagesValue: '5',
+    heroStatLanguagesLabel: 'Languages',
     trustRating: 'User Rating',
     trustRatingValue: '4.9 / 5',
     trustUsers: 'Active Users',
@@ -4201,7 +4220,12 @@ export const translations: Record<Language, TranslationKeys> = {
     homeHeroDailyTarget: 'Daily Target',
     homeHeroStreak: 'Streak',
     homeHeroStreakDays: '7 days',
-    homeProgressLabel: 'Plan Progress · Step 1 of 5',
+    watchHeadline: 'Be the first to sync your Apple Watch, Fitbit, or Garmin.',
+    watchEmailPlaceholder: 'Enter your email',
+    watchNotify: 'Get Notified',
+    watchPrivacyNote: "We'll email you when it's live. No spam.",
+    watchThanksTitle: "You're on the list!",
+    watchThanksDesc: "We'll email you the moment smartwatch sync is live.",
     homeStep1: 'STEP 1 · ASSESS',
     homeStep1Title: '1. Health & Fitness Calculator',
     homeStep1Desc: 'Enter your profile once and get instant BMI, BMR, daily calories, water, and protein targets with transparent formulas.',
@@ -6666,7 +6690,14 @@ export const translations: Record<Language, TranslationKeys> = {
     heroEyebrow: 'Votre empreinte biologique',
     heroTitleLine1: 'Comprenez votre corps.',
     heroTitleLine2: 'Transformez votre santé.',
-    heroCta: 'Calculez mon âge biologique',
+    heroCta: 'Calculez mon plan',
+    heroSecondaryCta: 'Voir comment ça marche',
+    heroStatDishesValue: '18 000+',
+    heroStatDishesLabel: 'Plats',
+    heroStatKitchensValue: '34',
+    heroStatKitchensLabel: 'Cuisines du monde',
+    heroStatLanguagesValue: '5',
+    heroStatLanguagesLabel: 'Langues',
     trustRating: 'Évaluation des utilisateurs',
     trustRatingValue: '4.9 / 5',
     trustUsers: 'Utilisateurs actifs',
@@ -6682,7 +6713,12 @@ export const translations: Record<Language, TranslationKeys> = {
     homeHeroDailyTarget: 'Daily Target',
     homeHeroStreak: 'Streak',
     homeHeroStreakDays: '7 days',
-    homeProgressLabel: 'Plan Progress · Step 1 of 5',
+    watchHeadline: 'Soyez le premier à synchroniser votre Apple Watch, Fitbit ou Garmin.',
+    watchEmailPlaceholder: 'Entrez votre e-mail',
+    watchNotify: 'Me prévenir',
+    watchPrivacyNote: 'Nous vous enverrons un e-mail dès que ce sera disponible. Pas de spam.',
+    watchThanksTitle: 'C\'est noté !',
+    watchThanksDesc: 'Nous vous enverrons un e-mail dès que la synchronisation sera disponible.',
     homeStep1: 'STEP 1 · ASSESS',
     homeStep1Title: '1. Health & Fitness Calculator',
     homeStep1Desc: 'Enter your profile once and get instant BMI, BMR, daily calories, water, and protein targets with transparent formulas.',
@@ -9117,7 +9153,14 @@ export const translations: Record<Language, TranslationKeys> = {
     heroEyebrow: 'Tu huella biológica',
     heroTitleLine1: 'Entiende tu cuerpo.',
     heroTitleLine2: 'Transforma tu salud.',
-    heroCta: 'Calcula mi edad biológica',
+    heroCta: 'Calcular mi plan',
+    heroSecondaryCta: 'Ver cómo funciona',
+    heroStatDishesValue: '18,000+',
+    heroStatDishesLabel: 'Platos',
+    heroStatKitchensValue: '34',
+    heroStatKitchensLabel: 'Cocinas del mundo',
+    heroStatLanguagesValue: '5',
+    heroStatLanguagesLabel: 'Idiomas',
     trustRating: 'Valoración de usuarios',
     trustRatingValue: '4.9 / 5',
     trustUsers: 'Usuarios activos',
@@ -9133,7 +9176,12 @@ export const translations: Record<Language, TranslationKeys> = {
     homeHeroDailyTarget: 'Daily Target',
     homeHeroStreak: 'Streak',
     homeHeroStreakDays: '7 days',
-    homeProgressLabel: 'Plan Progress · Step 1 of 5',
+    watchHeadline: 'Sé el primero en sincronizar tu Apple Watch, Fitbit o Garmin.',
+    watchEmailPlaceholder: 'Introduce tu correo electrónico',
+    watchNotify: 'Avisarme',
+    watchPrivacyNote: 'Te enviaremos un correo cuando esté disponible. Sin spam.',
+    watchThanksTitle: '¡Estás en la lista!',
+    watchThanksDesc: 'Te enviaremos un correo en cuanto la sincronización esté disponible.',
     homeStep1: 'STEP 1 · ASSESS',
     homeStep1Title: '1. Health & Fitness Calculator',
     homeStep1Desc: 'Enter your profile once and get instant BMI, BMR, daily calories, water, and protein targets with transparent formulas.',
@@ -11568,7 +11616,14 @@ export const translations: Record<Language, TranslationKeys> = {
     heroEyebrow: 'بصمتك الحيوية',
     heroTitleLine1: 'افهم جسدك.',
     heroTitleLine2: 'غيّر صحتك.',
-    heroCta: 'احسب عمرى الحيوي',
+    heroCta: 'احسب خطّتي',
+    heroSecondaryCta: 'شاهد كيف يعمل',
+    heroStatDishesValue: '+18,000',
+    heroStatDishesLabel: 'طبق',
+    heroStatKitchensValue: '34',
+    heroStatKitchensLabel: 'مطبخ عالمي',
+    heroStatLanguagesValue: '5',
+    heroStatLanguagesLabel: 'لغات',
     trustRating: 'تقييم المستخدمين',
     trustRatingValue: '4.9 / 5',
     trustUsers: 'مستخدمون نشطون',
@@ -11584,7 +11639,12 @@ export const translations: Record<Language, TranslationKeys> = {
     homeHeroDailyTarget: 'الهدف اليومي',
     homeHeroStreak: 'أيام متتالية',
     homeHeroStreakDays: '7 أيام',
-    homeProgressLabel: 'تقدم الخطة · الخطوة 1 من 5',
+    watchHeadline: 'كن أول من يزامن Apple Watch أو Fitbit أو Garmin.',
+    watchEmailPlaceholder: 'أدخل بريدك الإلكتروني',
+    watchNotify: 'أبلغني',
+    watchPrivacyNote: 'سنتواصل معك عبر البريد عند التوفّر. بدون رسائل مزعجة.',
+    watchThanksTitle: 'أنت في القائمة!',
+    watchThanksDesc: 'سنرسل لك بريدًا إلكترونيًا فور توفّر مزامنة الساعة.',
     homeStep1: 'الخطوة 1 · تقييم',
     homeStep1Title: '1. حاسبة اللياقة الصحية والتمارين',
     homeStep1Desc: 'أدخل بياناتك مرة واحدة واحصل فوراً على BMI وBMR وسعراتك اليومية وأهداف الماء والبروتين بمعادلات واضحة.',
@@ -14030,7 +14090,14 @@ export const translations: Record<Language, TranslationKeys> = {
     heroEyebrow: 'Ihr biologischer Fingerabdruck',
     heroTitleLine1: 'Verstehen Sie Ihren Körper.',
     heroTitleLine2: 'Verwandeln Sie Ihre Gesundheit.',
-    heroCta: 'Mein biologisches Alter berechnen',
+    heroCta: 'Meinen Plan berechnen',
+    heroSecondaryCta: 'So funktioniert es',
+    heroStatDishesValue: '18.000+',
+    heroStatDishesLabel: 'Gerichte',
+    heroStatKitchensValue: '34',
+    heroStatKitchensLabel: 'Küchen weltweit',
+    heroStatLanguagesValue: '5',
+    heroStatLanguagesLabel: 'Sprachen',
     trustRating: 'Nutzerbewertung',
     trustRatingValue: '4,9 / 5',
     trustUsers: 'Aktive Nutzer',
@@ -14046,7 +14113,12 @@ export const translations: Record<Language, TranslationKeys> = {
     homeHeroDailyTarget: 'Tägliches Ziel',
     homeHeroStreak: 'Serie',
     homeHeroStreakDays: '7 Tage',
-    homeProgressLabel: 'Planfortschritt · Schritt 1 von 5',
+    watchHeadline: 'Synchronisieren Sie als Erster Apple Watch, Fitbit oder Garmin.',
+    watchEmailPlaceholder: 'E-Mail eingeben',
+    watchNotify: 'Benachrichtigen',
+    watchPrivacyNote: 'Wir informieren Sie per E-Mail, sobald es verfügbar ist. Kein Spam.',
+    watchThanksTitle: 'Sie sind auf der Liste!',
+    watchThanksDesc: 'Wir senden Ihnen eine E-Mail, sobald die Smartwatch-Synchronisierung verfügbar ist.',
     homeStep1: 'SCHRITT 1 · EINSCHÄTZUNG',
     homeStep1Title: '1. Gesundheits- & Fitness-Rechner',
     homeStep1Desc: 'Geben Sie Ihr Profil einmal ein und erhalten Sie sofort BMI, BMR, tägliche Kalorien sowie Wasser- und Proteinziele mit transparenten Formeln.',

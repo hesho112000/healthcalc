@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Activity, Clock, HeartPulse, Moon, RefreshCw, Smartphone, Watch } from 'lucide-react';
+import { Activity, ArrowRight, CheckCircle2, Globe, HeartPulse, Languages, Moon, RefreshCw, Smartphone, Star, UtensilsCrossed, Watch } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
 import { useUserProfile } from '../hooks/useUserProfile';
@@ -48,6 +48,21 @@ const HomePage: React.FC = () => {
         { icon: HeartPulse, text: 'Track heart rate & sleep quality' },
         { icon: Activity, text: 'Adjust your meal plan based on real data' },
       ];
+  const [watchEmail, setWatchEmail] = useState('');
+  const [watchJoined, setWatchJoined] = useState(false);
+
+  const handleWatchNotify = (event: React.FormEvent) => {
+    event.preventDefault();
+    const email = watchEmail.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+    try {
+      const saved: string[] = JSON.parse(localStorage.getItem('hf_watch_notify') || '[]');
+      if (!saved.includes(email)) saved.push(email);
+      localStorage.setItem('hf_watch_notify', JSON.stringify(saved));
+    } catch {}
+    setWatchJoined(true);
+  };
+
   return (
     <div className="home-shell" dir={dir}>
       <SEO title={t('seo.home.title')} description={t('seo.home.description')} url="/" />
@@ -62,11 +77,28 @@ const HomePage: React.FC = () => {
                 <span className="hero-title-line2">{t('heroTitleLine2')}</span>
               </h1>
               <p>{t('heroSubtitle')}</p>
-              <div className="hero-progress" role="progressbar" aria-label={t('homeProgressLabel')} aria-valuemin={0} aria-valuemax={5} aria-valuenow={1}>
-                <span className="hero-progress-label">{t('homeProgressLabel')}</span>
-                <span className="hero-progress-track"><i style={{ width: '20%' }} /></span>
+              <div className="hero-stats" aria-label="HealthFingerprint in numbers">
+                <div className="hero-stat">
+                  <span className="hero-stat-icon"><UtensilsCrossed aria-hidden="true" size={19} /></span>
+                  <span className="min-w-0"><b>{t('heroStatDishesValue')}</b><small>{t('heroStatDishesLabel')}</small></span>
+                </div>
+                <div className="hero-stat">
+                  <span className="hero-stat-icon"><Globe aria-hidden="true" size={19} /></span>
+                  <span className="min-w-0"><b>{t('heroStatKitchensValue')}</b><small>{t('heroStatKitchensLabel')}</small></span>
+                </div>
+                <div className="hero-stat">
+                  <span className="hero-stat-icon"><Languages aria-hidden="true" size={19} /></span>
+                  <span className="min-w-0"><b>{t('heroStatLanguagesValue')}</b><small>{t('heroStatLanguagesLabel')}</small></span>
+                </div>
+                <div className="hero-stat">
+                  <span className="hero-stat-icon"><Star aria-hidden="true" size={19} /></span>
+                  <span className="min-w-0"><b>{t('trustRatingValue')}</b><small>{t('trustRating')}</small></span>
+                </div>
               </div>
-              <Link to="/fitness" className="hero-cta">{t('heroCta')} 🔥</Link>
+              <div className="hero-actions">
+                <Link to="/fitness" className="hero-cta">{t('heroCta')} <ArrowRight aria-hidden="true" size={20} className="rtl:rotate-180" /></Link>
+                <a href="#how-it-works" className="hero-link">{t('heroSecondaryCta')}</a>
+              </div>
               <div className="hero-trust">
                 <span>⭐ {t('trustRatingValue')}</span>
                 <span className="hero-trust-sep">·</span>
@@ -221,7 +253,7 @@ const HomePage: React.FC = () => {
               {language === 'ar' ? 'مزامنة الساعة الذكية' : 'SMART WATCH SYNC'}
             </span>
             <h2 className="mt-4 text-balance text-[30px] font-extrabold leading-tight tracking-tight text-[#111827] sm:text-[36px]">
-              {language === 'ar' ? 'زامن ساعتك الذكية' : 'Sync Your Wearable'}
+              {t('watchHeadline')}
             </h2>
             <p className="mt-3 max-w-[56ch] text-[15px] leading-relaxed text-[#4B5563] sm:text-base">
               {language === 'ar'
@@ -251,10 +283,36 @@ const HomePage: React.FC = () => {
               </div>
             </div>
 
-            <div role="status" className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full border border-[#D4A017]/40 bg-[#FFF8E5] px-5 py-2.5 text-sm font-bold text-[#806313]">
-              <Clock aria-hidden="true" size={17} />
-              {language === 'ar' ? 'قريبًا' : 'Coming Soon'}
-            </div>
+            {watchJoined ? (
+              <div role="status" aria-live="polite" className="mt-6 flex max-w-md items-center gap-3 rounded-2xl border border-[#059669]/25 bg-[#F0FAF3] px-5 py-4">
+                <CheckCircle2 aria-hidden="true" size={22} className="shrink-0 text-[#059669]" />
+                <span>
+                  <span className="block text-[15px] font-extrabold text-[#0F4C3A]">{t('watchThanksTitle')}</span>
+                  <span className="mt-0.5 block text-[13px] font-medium text-[#6B7A75]">{t('watchThanksDesc')}</span>
+                </span>
+              </div>
+            ) : (
+              <form onSubmit={handleWatchNotify} className="mt-6 max-w-md">
+                <label htmlFor="watch-email" className="sr-only">{t('watchEmailPlaceholder')}</label>
+                <div className="flex flex-col gap-2.5 sm:flex-row">
+                  <input
+                    id="watch-email"
+                    type="email"
+                    required
+                    autoComplete="email"
+                    inputMode="email"
+                    value={watchEmail}
+                    onChange={(event) => setWatchEmail(event.target.value)}
+                    placeholder={t('watchEmailPlaceholder')}
+                    className="min-w-0 flex-1 rounded-full border border-[#0F4C3A]/15 bg-white px-5 py-3 text-sm font-medium text-[#111827] shadow-sm outline-none transition focus:border-[#059669] focus:ring-2 focus:ring-[#059669]/20"
+                  />
+                  <button type="submit" className="btn-primary shrink-0">
+                    {t('watchNotify')} <ArrowRight aria-hidden="true" size={16} className="rtl:rotate-180" />
+                  </button>
+                </div>
+                <p className="mt-2.5 text-xs text-[#6B7A75]">{t('watchPrivacyNote')}</p>
+              </form>
+            )}
           </div>
         </div>
       </section>

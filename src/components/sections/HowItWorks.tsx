@@ -59,7 +59,7 @@ const HowItWorks: React.FC = () => {
   const arrow = <ArrowRight size={18} strokeWidth={2.5} className="rtl:rotate-180" />;
 
   return (
-    <section className="howitworks-section py-12 lg:py-24">
+    <section id="how-it-works" className="howitworks-section scroll-mt-28 py-12 lg:py-24">
       <div className="max-w-[1120px] mx-auto px-5">
         <div className="text-center max-w-2xl mx-auto">
           <span className="trust2-eyebrow">{t('howItWorks.eyebrow')}</span>
