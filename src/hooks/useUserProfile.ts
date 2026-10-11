@@ -3,16 +3,24 @@ import { useEffect, useState } from 'react';
 export type UserGender = 'male' | 'female';
 export type UserActivityLevel = 'sedentary' | 'light' | 'moderate' | 'active' | 'very_active';
 export type UserGoal = 'lose' | 'gain_muscle' | 'gain_weight' | 'wellness' | 'athletic';
+export type WizardGoalSelection = 'lose_weight' | 'maintain_weight' | 'build_muscle' | 'improve_health';
+export type UserPlanType = 'nutrition' | 'fitness' | 'both';
 
 export interface UserProfile {
   age: number | null;
   gender: UserGender | null;
   height: number | null;
   weight: number | null;
+  targetWeight: number | null;
+  timelineWeeks: number | null;
   goal: UserGoal | null;
+  wizardGoal: WizardGoalSelection | null;
+  planType: UserPlanType | null;
   activityLevel: UserActivityLevel | null;
+  exerciseTypes: string[];
   dietaryPreferences: string[];
   dietIntensity: string | null;
+  kitchenPreference: string | null;
   healthConditions: string[];
   dietAffectingMedication: boolean | null;
 }
@@ -25,10 +33,16 @@ const EMPTY_PROFILE: UserProfile = {
   gender: null,
   height: null,
   weight: null,
+  targetWeight: null,
+  timelineWeeks: null,
   goal: null,
+  wizardGoal: null,
+  planType: null,
   activityLevel: null,
+  exerciseTypes: [],
   dietaryPreferences: [],
   dietIntensity: null,
+  kitchenPreference: null,
   healthConditions: [],
   dietAffectingMedication: null,
 };
@@ -70,22 +84,34 @@ const normalizeProfile = (value: unknown): UserProfile => {
       : null;
   const rawGender = data.gender ?? data.sex;
   const rawActivity = data.activityLevel;
+  const rawWizardGoal = data.wizardGoal;
+  const rawPlanType = data.planType;
 
   return {
     age: asNumber(data.age),
     gender: rawGender === 'male' || rawGender === 'female' ? rawGender : null,
     height: asNumber(data.height ?? data.heightCm),
     weight: asNumber(data.weight ?? data.weightKg),
+    targetWeight: asNumber(data.targetWeight),
+    timelineWeeks: asNumber(data.timelineWeeks),
     goal,
+    wizardGoal: typeof rawWizardGoal === 'string' && ['lose_weight', 'maintain_weight', 'build_muscle', 'improve_health'].includes(rawWizardGoal)
+      ? rawWizardGoal as WizardGoalSelection
+      : null,
+    planType: rawPlanType === 'nutrition' || rawPlanType === 'fitness' || rawPlanType === 'both'
+      ? rawPlanType
+      : null,
     activityLevel: typeof rawActivity === 'string' && ['sedentary', 'light', 'moderate', 'active', 'very_active'].includes(rawActivity)
       ? rawActivity as UserActivityLevel
       : null,
+    exerciseTypes: asStringList(data.exerciseTypes),
     dietaryPreferences: savedPreferences.filter((item) => !LEGACY_DIET_INTENSITIES.has(item)),
     dietIntensity: typeof data.dietIntensity === 'string'
       ? data.dietIntensity
       : typeof data.dietId === 'string' && data.dietId
         ? data.dietId
         : legacyDietIntensity ?? null,
+    kitchenPreference: typeof data.kitchenPreference === 'string' ? data.kitchenPreference : null,
     healthConditions: asStringList(data.healthConditions).length
       ? asStringList(data.healthConditions)
       : asStringList(data.conditions),
