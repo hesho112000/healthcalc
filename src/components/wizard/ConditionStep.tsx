@@ -31,7 +31,7 @@ const ConditionStep: React.FC<ConditionStepProps> = ({ t, selected, onToggle, on
               aria-pressed={active}
               className={`rounded-2xl border bg-white p-4 text-center transition ${
                 active
-                  ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]'
+                  ? 'border-[#D4A017] bg-[#D4A017]/5 ring-1 ring-[#D4A017]'
                   : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'
               }`}
             >
@@ -40,7 +40,7 @@ const ConditionStep: React.FC<ConditionStepProps> = ({ t, selected, onToggle, on
                 {condName(id)}
               </strong>
               {active && (
-                <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#D4AF37] text-xs text-[#0F4C3A] font-bold">
+                <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#D4A017] text-xs text-[#0F4C3A] font-bold">
                   ✓
                 </span>
               )}
@@ -70,7 +70,7 @@ const ConditionStep: React.FC<ConditionStepProps> = ({ t, selected, onToggle, on
         type="button"
         disabled={!selected.length}
         onClick={onContinue}
-        className="w-full mt-6 bg-[#D4AF37] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#c9a52e] transition disabled:opacity-40"
+        className="w-full mt-6 bg-[#D4A017] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#B8860B] transition disabled:opacity-40"
       >
         {t(tk('wizard.care.next'))}
       </button>

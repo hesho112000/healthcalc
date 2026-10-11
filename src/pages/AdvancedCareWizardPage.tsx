@@ -51,7 +51,7 @@ import type { TKey, LabValues, WizardGoal, WizardLifestyle, WeightGoalKey, Lifes
 import { WEIGHT_GOALS, LIFESTYLE_GOALS } from '../components/wizard/stepTypes';
 
 const EMERALD = '#0F4C3A';
-const GOLD = '#D4AF37';
+const GOLD = '#D4A017';
 const CREAM = '#FDFBF7';
 const BEIGE = '#F4F1EB';
 const BORDER = '#EFEBE4';
@@ -672,12 +672,12 @@ const AdvancedCareWizardPage: React.FC = () => {
   h1 { font-size: 24px; color: #0F4C3A; margin: 0 0 4px; }
   .muted { color: #6B7A75; font-size: 13px; }
   .card { background: #ffffff; border: 1px solid #EFEBE4; border-radius: 16px; padding: 20px; margin-top: 20px; }
-  .h { color: #D4AF37; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+  .h { color: #D4A017; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
   table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 10px; }
-  th { text-align: start; color: #0F4C3A; border-bottom: 2px solid #D4AF37; padding: 8px; }
+  th { text-align: start; color: #0F4C3A; border-bottom: 2px solid #D4A017; padding: 8px; }
   td { padding: 8px; border-bottom: 1px solid #EFEBE4; text-align: start; }
   .total { margin-top: 20px; background: #0F4C3A; color: #FDFBF7; border-radius: 12px; padding: 12px 16px; font-weight: 700; display: flex; justify-content: space-between; }
-  .tag { display: inline-block; background: #D4AF37; color: #0F4C3A; border-radius: 9999px; padding: 4px 12px; font-size: 12px; font-weight: 700; margin: 2px 4px 2px 0; }
+  .tag { display: inline-block; background: #D4A017; color: #0F4C3A; border-radius: 9999px; padding: 4px 12px; font-size: 12px; font-weight: 700; margin: 2px 4px 2px 0; }
 </style>
 </head>
 <body>
@@ -798,7 +798,7 @@ ${conditionTags}
         </div>
 
         {hasPreSelected && (
-          <div className="mb-8 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#D4AF37]/60 bg-[#D4AF37]/10 p-4 text-sm text-[#0F4C3A] font-semibold leading-relaxed">
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#D4A017]/60 bg-[#D4A017]/10 p-4 text-sm text-[#0F4C3A] font-semibold leading-relaxed">
             <span>{t(tk('wizard.preSelectedBanner'))}</span>
             {step !== 1 && (
               <button
@@ -815,7 +815,7 @@ ${conditionTags}
         {step === 7 ? (
           <div className="space-y-8" key={step}>
             {resolution && resolution.conflictDetected && selected.length > 1 && (
-              <div className="rounded-2xl border border-[#D4AF37]/60 bg-[#D4AF37]/10 p-4 text-sm text-[#0F4C3A] font-semibold leading-relaxed">
+              <div className="rounded-2xl border border-[#D4A017]/60 bg-[#D4A017]/10 p-4 text-sm text-[#0F4C3A] font-semibold leading-relaxed">
                 {t(tk('wizard.conflict.banner')).replace('{condition}', focusConditionName)}
               </div>
             )}
@@ -873,7 +873,7 @@ ${conditionTags}
               {railS && (
                 <>
                   <div className="rounded-[24px] bg-[#0F4C3A] text-[#FDFBF7] p-5 shadow-[0_18px_44px_-18px_rgba(15,76,58,0.5)]">
-                    <span className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[2px] text-[#D4AF37]">
+                    <span className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[2px] text-[#D4A017]">
                       ✨ {t(tk('wizard.rail.hdr'))}
                     </span>
                     <p className="mt-3 text-[13px] leading-relaxed text-[#FDFBF7]/90">
@@ -881,7 +881,7 @@ ${conditionTags}
                     </p>
                   </div>
 
-                  <div className="rounded-[24px] border border-[#D4AF37]/50 bg-[#D4AF37]/10 p-5">
+                  <div className="rounded-[24px] border border-[#D4A017]/50 bg-[#D4A017]/10 p-5">
                     <span className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[2px] text-[#6b4f0c]">
                       💡 {t(tk('wizard.rail.tipHdr'))}
                     </span>

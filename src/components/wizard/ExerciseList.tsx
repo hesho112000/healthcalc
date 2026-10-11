@@ -79,8 +79,8 @@ export const ExerciseList: React.FC<Props> = ({ selectedType, selectedExerciseId
                 onClick={() => onToggleExercise(ex)}
                 className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-all active:scale-90 text-[16px] font-extrabold ${
                   isSelected
-                    ? 'bg-[#D4AF37] text-[#0F4C3A] shadow-[0_2px_10px_rgba(212,175,55,0.4)]'
-                    : 'bg-[#FFF8E7] text-[#D4AF37] border border-[#D4AF37]/30 hover:bg-[#D4AF37] hover:text-white'
+                    ? 'bg-[#D4A017] text-[#0F4C3A] shadow-[0_2px_10px_rgba(212,160,23,0.4)]'
+                    : 'bg-[#FFF8E7] text-[#D4A017] border border-[#D4A017]/30 hover:bg-[#D4A017] hover:text-white'
                 }`}
                 aria-label={isSelected ? 'Added' : 'Add'}
               >

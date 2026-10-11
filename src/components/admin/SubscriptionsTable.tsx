@@ -11,7 +11,7 @@ interface SubscriptionsTableProps {
 const TIER_FILTERS: TierFilter[] = ['all', 'free', 'basic', 'pro', 'elite'];
 
 const STATUS_TONE: Record<string, string> = {
-  active: 'bg-[#F4F1EB] text-[#0F4C3A] border-[#D4AF37]',
+  active: 'bg-[#F4F1EB] text-[#0F4C3A] border-[#D4A017]',
   cancelled: 'bg-[#FDFBF7] text-[#6B7A75] border-[#EFEBE4]',
   expired: 'bg-[#FDFBF7] text-[#6B7A75] border-[#EFEBE4]',
 };
@@ -84,7 +84,7 @@ const SubscriptionsTable: React.FC<SubscriptionsTableProps> = ({ subscriptions }
                     <span className="font-bold text-[#0F4C3A]">{s.user_name || s.user_email || s.user_id}</span>
                   </td>
                   <td className={td}>
-                    <span className="inline-block rounded-full border border-[#D4AF37] bg-[#F4F1EB] px-2.5 py-0.5 text-xs font-bold text-[#0F4C3A]">
+                    <span className="inline-block rounded-full border border-[#D4A017] bg-[#F4F1EB] px-2.5 py-0.5 text-xs font-bold text-[#0F4C3A]">
                       {t(`admin.subscriptions.filter.${s.tier}` as keyof typeof import('../../i18n/translations').translations.en)}
                     </span>
                   </td>

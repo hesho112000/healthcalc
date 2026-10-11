@@ -37,7 +37,7 @@ const SubstitutionHint: React.FC<SubstitutionHintProps> = ({ paid, onUnlock }) =
 
   return (
     <section className="rounded-3xl border border-[#EFEBE4] bg-white p-6 md:p-8">
-      <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">{t(tk('hub.substitution'))}</span>
+      <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4A017]">{t(tk('hub.substitution'))}</span>
       {suggestion ? (
         <div className="mt-3 space-y-3">
           <p className="text-sm text-[#4A5A55] leading-relaxed">
@@ -55,7 +55,7 @@ const SubstitutionHint: React.FC<SubstitutionHintProps> = ({ paid, onUnlock }) =
           <button
             type="button"
             onClick={() => setIndex((i) => i + 1)}
-            className="rounded-full border border-[#D4AF37]/60 text-[#0F4C3A] text-xs font-bold px-4 py-2 hover:bg-[#D4AF37]/10 transition"
+            className="rounded-full border border-[#D4A017]/60 text-[#0F4C3A] text-xs font-bold px-4 py-2 hover:bg-[#D4A017]/10 transition"
           >
             ↻ {t(tk('wizard.step2.regenerate'))}
           </button>

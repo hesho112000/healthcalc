@@ -93,7 +93,7 @@ const WhatsIncluded: React.FC<WhatsIncludedProps> = ({ exerciseCount, mealCount,
 
       <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
         {cards.map((card) => (
-          <div key={card.id} className="flex flex-col rounded-[24px] border border-[#EFEBE4] bg-white p-6 transition hover:border-[#D4AF37] hover:shadow-[0_18px_50px_rgba(15,76,58,0.1)]">
+          <div key={card.id} className="flex flex-col rounded-[24px] border border-[#EFEBE4] bg-white p-6 transition hover:border-[#D4A017] hover:shadow-[0_18px_50px_rgba(15,76,58,0.1)]">
             <span className="inline-flex w-12 h-12 items-center justify-center rounded-2xl bg-[#F4F1EB] text-2xl">
               {card.emoji}
             </span>
@@ -104,7 +104,7 @@ const WhatsIncluded: React.FC<WhatsIncludedProps> = ({ exerciseCount, mealCount,
               <button
                 type="button"
                 onClick={() => setPreview(card.id)}
-                className="text-[13px] font-extrabold text-[#B8860B] transition hover:text-[#D4AF37]"
+                className="text-[13px] font-extrabold text-[#B8860B] transition hover:text-[#D4A017]"
               >
                 {t(tk('wizard.blueprint.included.preview'))} →
               </button>
@@ -154,7 +154,7 @@ const WhatsIncluded: React.FC<WhatsIncludedProps> = ({ exerciseCount, mealCount,
                         <b className="block text-sm text-slate-900">{item.name}</b>
                         <small className="text-xs text-[#4A5A55]">{t(tk(slotKey(item.slot)))} · {item.kcal} kcal</small>
                       </div>
-                      <span className="shrink-0 rounded-full bg-[#D4AF37] px-2.5 py-1 text-[11px] font-bold text-[#0F4C3A]">
+                      <span className="shrink-0 rounded-full bg-[#D4A017] px-2.5 py-1 text-[11px] font-bold text-[#0F4C3A]">
                         {item.kcal} kcal
                       </span>
                     </div>

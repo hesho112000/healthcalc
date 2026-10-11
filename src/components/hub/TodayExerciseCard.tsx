@@ -41,7 +41,7 @@ const TodayExerciseCard: React.FC = () => {
               className={`w-full flex items-center gap-3 rounded-2xl border px-3 py-2.5 text-start transition ${
                 done
                   ? 'border-[#0F4C3A]/30 bg-[#0F4C3A]/5 opacity-70'
-                  : 'border-[#EFEBE4] bg-[#FDFBF7] hover:border-[#D4AF37]/60'
+                  : 'border-[#EFEBE4] bg-[#FDFBF7] hover:border-[#D4A017]/60'
               }`}
             >
               <span
@@ -56,13 +56,13 @@ const TodayExerciseCard: React.FC = () => {
                   {exerciseName(ex, lang)}
                 </span>
                 <span className="block text-[11px] text-[#6B7A75]">
-                  {ex.duration} · <Flame size={11} className="inline text-[#D4AF37]" /> {ex.calories} kcal
+                  {ex.duration} · <Flame size={11} className="inline text-[#D4A017]" /> {ex.calories} kcal
                 </span>
               </span>
               {done ? (
                 <CheckCircle2 size={18} className="shrink-0 text-[#0F4C3A]" />
               ) : (
-                <span className="h-5 w-5 shrink-0 rounded-full border-2 border-[#D4AF37]" />
+                <span className="h-5 w-5 shrink-0 rounded-full border-2 border-[#D4A017]" />
               )}
             </button>
           );
@@ -72,7 +72,7 @@ const TodayExerciseCard: React.FC = () => {
       <button
         type="button"
         onClick={() => markAllExercises(key, exercises.map((ex) => ex.id))}
-        className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#D4AF37] px-4 py-3 text-xs font-extrabold text-[#0F4C3A] hover:bg-[#c9a52e] transition"
+        className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#D4A017] px-4 py-3 text-xs font-extrabold text-[#0F4C3A] hover:bg-[#B8860B] transition"
       >
         <CheckCircle2 size={15} strokeWidth={2.5} />
         {t('hub.exercise.markAllDone')}

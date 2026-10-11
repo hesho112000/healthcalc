@@ -28,7 +28,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ name, conditions, profile
     <section className="rounded-3xl bg-white border border-[#EFEBE4] p-6 md:p-8">
       <div className="flex flex-col md:flex-row md:items-center gap-6">
         <div className="flex items-center gap-4 shrink-0">
-          <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] flex items-center justify-center text-3xl font-extrabold text-[#D4AF37]">
+          <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] flex items-center justify-center text-3xl font-extrabold text-[#D4A017]">
             {name ? name.charAt(0).toUpperCase() : '👤'}
           </div>
           <div>

@@ -80,25 +80,25 @@ const SignupPage: React.FC = () => {
             </div>
             <div>
               <span className="text-xl font-extrabold text-[#0F4C3A]">Health</span>
-              <span className="text-xl font-extrabold text-[#D4AF37]">Calc</span>
+              <span className="text-xl font-extrabold text-[#D4A017]">Calc</span>
             </div>
           </Link>
           <h1 className="text-2xl font-extrabold text-[#0F4C3A] tracking-tight">{t('wizard.signup.title')}</h1>
         </div>
 
         {plan && (
-          <div className="mb-6 rounded-[20px] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] border-2 border-[#D4AF37] p-5 text-[#FDFBF7]">
+          <div className="mb-6 rounded-[20px] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] border-2 border-[#D4A017] p-5 text-[#FDFBF7]">
             <div className="grid grid-cols-3 gap-3 text-center">
               <div>
-                <div className="text-xl font-extrabold text-[#D4AF37]">{plan.conditions?.length ?? 0}</div>
+                <div className="text-xl font-extrabold text-[#D4A017]">{plan.conditions?.length ?? 0}</div>
                 <div className="text-[11px] text-[#FDFBF7]/80 mt-0.5">{t('wizard.step6.planHeader')}</div>
               </div>
               <div>
-                <div className="text-xl font-extrabold text-[#D4AF37]">{plan.calories ?? 0}</div>
+                <div className="text-xl font-extrabold text-[#D4A017]">{plan.calories ?? 0}</div>
                 <div className="text-[11px] text-[#FDFBF7]/80 mt-0.5">{t('wizard.step6.summary.calories').replace('{kcal}', '')}</div>
               </div>
               <div>
-                <div className="text-xl font-extrabold text-[#D4AF37]">{plan.foodNames?.length ?? 0}</div>
+                <div className="text-xl font-extrabold text-[#D4A017]">{plan.foodNames?.length ?? 0}</div>
                 <div className="text-[11px] text-[#FDFBF7]/80 mt-0.5">{t('wizard.preview.meals').replace('{count}', String(plan.foodNames?.length ?? 0))}</div>
               </div>
             </div>
@@ -124,7 +124,7 @@ const SignupPage: React.FC = () => {
                 placeholder="John Doe"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4AF37] bg-[#F4F1EB]/40 text-slate-900"
+                className="w-full rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900"
               />
             </div>
 
@@ -136,7 +136,7 @@ const SignupPage: React.FC = () => {
                 placeholder="you@example.com"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4AF37] bg-[#F4F1EB]/40 text-slate-900"
+                className="w-full rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900"
               />
             </div>
 
@@ -150,7 +150,7 @@ const SignupPage: React.FC = () => {
                   placeholder="••••••••"
                   value={form.password}
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
-                  className="w-full rounded-xl border border-[#EFEBE4] px-4 py-3 pr-14 outline-none focus:border-[#D4AF37] bg-[#F4F1EB]/40 text-slate-900"
+                  className="w-full rounded-xl border border-[#EFEBE4] px-4 py-3 pr-14 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900"
                 />
                 <button
                   type="button"
@@ -169,7 +169,7 @@ const SignupPage: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full bg-[#D4AF37] text-[#0F4C3A] font-bold rounded-full px-6 py-3.5 hover:bg-[#c9a52e] transition"
+              className="w-full bg-[#D4A017] text-[#0F4C3A] font-bold rounded-full px-6 py-3.5 hover:bg-[#B8860B] transition"
             >
               {t('wizard.signup.cta')}
             </button>

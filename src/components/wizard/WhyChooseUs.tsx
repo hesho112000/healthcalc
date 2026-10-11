@@ -25,8 +25,8 @@ const WhyChooseUs: React.FC = () => {
 
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {cards.map((card) => (
-          <div key={card.titleKey} className="rounded-[24px] border border-[#EFEBE4] bg-white p-6 transition hover:border-[#D4AF37] hover:shadow-[0_18px_50px_rgba(15,76,58,0.1)]">
-            <span className="inline-flex w-12 h-12 items-center justify-center rounded-2xl bg-[#D4AF37]/15 text-2xl">
+          <div key={card.titleKey} className="rounded-[24px] border border-[#EFEBE4] bg-white p-6 transition hover:border-[#D4A017] hover:shadow-[0_18px_50px_rgba(15,76,58,0.1)]">
+            <span className="inline-flex w-12 h-12 items-center justify-center rounded-2xl bg-[#D4A017]/15 text-2xl">
               {card.emoji}
             </span>
             <h3 className="mt-4 text-[17px] font-extrabold text-[#0F4C3A]">{t(tk(card.titleKey))}</h3>

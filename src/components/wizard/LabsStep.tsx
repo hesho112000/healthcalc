@@ -70,7 +70,7 @@ const LabsStep: React.FC<LabsStepProps> = ({ t, selected, hasLabs, setHasLabs, l
               onClick={() => setHasLabs(value === 'true')}
               className={`rounded-2xl border bg-white p-5 text-left transition ${
                 active
-                  ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]'
+                  ? 'border-[#D4A017] bg-[#D4A017]/5 ring-1 ring-[#D4A017]'
                   : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'
               }`}
             >
@@ -95,7 +95,7 @@ const LabsStep: React.FC<LabsStepProps> = ({ t, selected, hasLabs, setHasLabs, l
                 value={labs[key] || ''}
                 onChange={(e) => setLabs({ ...labs, [key]: e.target.value })}
                 placeholder={LAB_FIELD_HINTS.has(key) ? t(tk(`advanced.lab.field.${key}.hint`)) : '—'}
-                className="w-full mt-2 rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4AF37] bg-[#F4F1EB]/40 text-slate-900"
+                className="w-full mt-2 rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900"
               />
               {LAB_FIELD_HINTS.has(key) && (
                 <small className="text-[#4A5A55] font-normal">{t(tk(`advanced.lab.field.${key}.hint`))}</small>
@@ -106,12 +106,12 @@ const LabsStep: React.FC<LabsStepProps> = ({ t, selected, hasLabs, setHasLabs, l
       )}
 
       {hasLabs === false && activeFields.length > 0 && (
-        <div className="rounded-2xl bg-[#D4AF37]/10 border border-[#D4AF37]/40 p-4">
+        <div className="rounded-2xl bg-[#D4A017]/10 border border-[#D4A017]/40 p-4">
           <p className="text-sm font-bold text-[#0F4C3A] mb-2">{t(tk('wizard.recommendedTests'))}</p>
           <ul className="space-y-1">
             {activeFields.map((key) => (
               <li key={key} className="text-sm text-[#4A5A55] flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D4A017] shrink-0" />
                 {t(tk(`wizard.lab.${key}`))} ({LAB_FIELD_UNITS[key]})
               </li>
             ))}
@@ -122,7 +122,7 @@ const LabsStep: React.FC<LabsStepProps> = ({ t, selected, hasLabs, setHasLabs, l
       <p className="text-xs text-[#4A5A55] bg-[#F4F1EB]/60 rounded-xl p-3">{t(tk('wizard.labNote'))}</p>
 
       {hasLabs === true && (
-        <div className={`p-4 rounded-2xl text-sm font-bold ${labReady ? 'bg-[#0F4C3A]/10 text-[#0F4C3A]' : 'bg-[#D4AF37]/15 text-[#0F4C3A]'}`}>
+        <div className={`p-4 rounded-2xl text-sm font-bold ${labReady ? 'bg-[#0F4C3A]/10 text-[#0F4C3A]' : 'bg-[#D4A017]/15 text-[#0F4C3A]'}`}>
           {labReady ? '✓ ' + t(tk('wizard.step6.planHeader')) : t(tk('wizard.step6.empty'))}
         </div>
       )}
@@ -131,7 +131,7 @@ const LabsStep: React.FC<LabsStepProps> = ({ t, selected, hasLabs, setHasLabs, l
         type="button"
         disabled={hasLabs === null || (hasLabs === true && !labReady)}
         onClick={onContinue}
-        className="w-full mt-4 bg-[#D4AF37] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#c9a52e] transition disabled:opacity-40"
+        className="w-full mt-4 bg-[#D4A017] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#B8860B] transition disabled:opacity-40"
       >
         {t(tk('wizard.care.next'))}
       </button>

@@ -64,7 +64,7 @@ const Achievements: React.FC<AchievementsProps> = ({ paid, onUnlock, onNote }) =
     <div
       className={`flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-bold ${
         active
-          ? 'border-[#D4AF37]/60 bg-[#D4AF37]/10 text-[#0F4C3A]'
+          ? 'border-[#D4A017]/60 bg-[#D4A017]/10 text-[#0F4C3A]'
           : 'border-[#EFEBE4] bg-[#F4F1EB]/50 text-[#6B7A75]'
       }`}
     >
@@ -77,11 +77,11 @@ const Achievements: React.FC<AchievementsProps> = ({ paid, onUnlock, onNote }) =
     <section className="rounded-3xl border border-[#EFEBE4] bg-white p-6 md:p-8">
       <div className="flex flex-wrap items-center justify-between gap-5">
         <div className="flex items-start gap-4">
-          <span className="w-12 h-12 rounded-2xl bg-[#D4AF37]/15 flex items-center justify-center shrink-0">
-            <Award size={20} className="text-[#D4AF37]" />
+          <span className="w-12 h-12 rounded-2xl bg-[#D4A017]/15 flex items-center justify-center shrink-0">
+            <Award size={20} className="text-[#D4A017]" />
           </span>
           <div>
-            <span className="block text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">{t(tk('hub.streaks'))}</span>
+            <span className="block text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4A017]">{t(tk('hub.streaks'))}</span>
             <p className="mt-1 text-xs text-[#6B7A75]">
               {t(tk('hub.streaks.day')).replace('{count}', String(streak))}
             </p>

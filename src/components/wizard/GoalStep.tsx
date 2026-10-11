@@ -89,7 +89,7 @@ const GoalStep: React.FC<GoalStepProps> = ({
                 onClick={() => toggleWeightGoal(id)}
                 className={`rounded-2xl border bg-white p-3.5 text-left transition ${
                   active
-                    ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]'
+                    ? 'border-[#D4A017] bg-[#D4A017]/5 ring-1 ring-[#D4A017]'
                     : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'
                 }`}
               >
@@ -118,7 +118,7 @@ const GoalStep: React.FC<GoalStepProps> = ({
               value={goal.targetWeight}
               placeholder={String(profile.weight)}
               onChange={(e) => onChange({ targetWeight: e.target.value })}
-              className="w-full mt-2 rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4AF37] bg-[#F4F1EB]/40 text-slate-900"
+              className="w-full mt-2 rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900"
             />
             {goal.targetWeight && targetWeight > 0 && !targetIsValid && (
               <span className="mt-1.5 block text-[11px] font-bold text-[#B91C1C]">
@@ -127,7 +127,7 @@ const GoalStep: React.FC<GoalStepProps> = ({
             )}
           </label>
           <label className="block text-sm font-semibold text-slate-900">
-            {t(tk('wizard.timeline'))} <output className="ml-2 text-[#D4AF37] font-bold">{goal.timelineMonths} {t(tk('wizard.months'))}</output>
+            {t(tk('wizard.timeline'))} <output className="ml-2 text-[#D4A017] font-bold">{goal.timelineMonths} {t(tk('wizard.months'))}</output>
             <input
               type="range"
               min="1"
@@ -155,7 +155,7 @@ const GoalStep: React.FC<GoalStepProps> = ({
                 onClick={() => toggleLifestyleGoal(id)}
                 className={`rounded-2xl border bg-white p-3.5 text-left transition ${
                   active
-                    ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]'
+                    ? 'border-[#D4A017] bg-[#D4A017]/5 ring-1 ring-[#D4A017]'
                     : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'
                 }`}
               >
@@ -178,7 +178,7 @@ const GoalStep: React.FC<GoalStepProps> = ({
                 type="button"
                 onClick={() => onChange({ intensity: id })}
                 className={`rounded-2xl border bg-white p-3.5 text-center transition ${
-                  active ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]' : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'
+                  active ? 'border-[#D4A017] bg-[#D4A017]/5 ring-1 ring-[#D4A017]' : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'
                 }`}
               >
                 <span className="text-xl block">{emoji}</span>
@@ -200,7 +200,7 @@ const GoalStep: React.FC<GoalStepProps> = ({
         type="button"
         disabled={!ready}
         onClick={onContinue}
-        className="w-full mt-2 bg-[#D4AF37] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#c9a52e] transition disabled:opacity-40"
+        className="w-full mt-2 bg-[#D4A017] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#B8860B] transition disabled:opacity-40"
       >
         {t(tk('wizard.care.next'))}
       </button>

@@ -156,7 +156,7 @@ const OrganHubPage: React.FC = () => {
         <button
           type="button"
           onClick={() => navigate('/advanced-care')}
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F4C3A] hover:text-[#D4AF37] transition-colors mb-5"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F4C3A] hover:text-[#D4A017] transition-colors mb-5"
         >
           <ArrowRight size={14} strokeWidth={2.5} className="rtl:rotate-180" />
           {t(tk('hub.backToUniverse'))}
@@ -173,14 +173,14 @@ const OrganHubPage: React.FC = () => {
             <h1 className="mt-5 text-3xl md:text-5xl font-extrabold leading-tight">
               {headerTitle}
             </h1>
-            <p className="mt-2 text-sm font-bold text-[#D4AF37] uppercase tracking-[2px]">
+            <p className="mt-2 text-sm font-bold text-[#D4A017] uppercase tracking-[2px]">
               {headerKicker}
             </p>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#FDFBF7]/85">
               {headerDesc}
             </p>
             {isMental && (
-              <p className="mt-3 text-xs font-bold text-[#D4AF37]/90">
+              <p className="mt-3 text-xs font-bold text-[#D4A017]/90">
                 {t(tk('organHub.mentalWellness.subtitle'))}
               </p>
             )}
@@ -200,7 +200,7 @@ const OrganHubPage: React.FC = () => {
               <button
                 type="button"
                 onClick={goWizard}
-                className="inline-flex items-center gap-2 rounded-full bg-[#D4AF37] text-[#0F4C3A] px-6 py-3 text-sm font-extrabold shadow-[0_10px_26px_rgba(212,175,55,0.4)] transition hover:bg-[#c9a52e]"
+                className="inline-flex items-center gap-2 rounded-full bg-[#D4A017] text-[#0F4C3A] px-6 py-3 text-sm font-extrabold shadow-[0_10px_26px_rgba(212,160,23,0.4)] transition hover:bg-[#B8860B]"
               >
                 {t(tk('organHub.continueWizard'))}
                 <ArrowRight size={16} strokeWidth={2.5} className="rtl:rotate-180" />
@@ -212,7 +212,7 @@ const OrganHubPage: React.FC = () => {
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 mt-8 space-y-6">
         {!dataReady ? (
-          <section className="rounded-3xl border border-[#D4AF37]/50 bg-white p-8 md:p-12 text-center">
+          <section className="rounded-3xl border border-[#D4A017]/50 bg-white p-8 md:p-12 text-center">
             <span className="text-5xl">📋</span>
             <h2 className="mt-4 text-2xl font-extrabold text-[#0F4C3A]">
               {t(tk('organHub.emptyTitle'))}
@@ -223,7 +223,7 @@ const OrganHubPage: React.FC = () => {
             <button
               type="button"
               onClick={goWizard}
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#D4AF37] text-[#0F4C3A] px-7 py-3 text-sm font-extrabold shadow-[0_10px_26px_rgba(212,175,55,0.4)] transition hover:bg-[#c9a52e]"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#D4A017] text-[#0F4C3A] px-7 py-3 text-sm font-extrabold shadow-[0_10px_26px_rgba(212,160,23,0.4)] transition hover:bg-[#B8860B]"
             >
               {t(tk('organHub.emptyCta'))}
               <ArrowRight size={16} strokeWidth={2.5} className="rtl:rotate-180" />
@@ -232,7 +232,7 @@ const OrganHubPage: React.FC = () => {
         ) : (
           <>
             <section className="rounded-3xl border border-[#EFEBE4] bg-white p-6 md:p-8">
-              <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">
+              <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4A017]">
                 {t(tk('hub.healthScore'))}
               </span>
               <div className="mt-4 flex flex-wrap items-center gap-6">
@@ -246,7 +246,7 @@ const OrganHubPage: React.FC = () => {
                             status === 'healthy'
                               ? 'border-[#0F4C3A]/30 bg-[#0F4C3A]/5 text-[#0F4C3A]'
                               : status === 'warning'
-                                ? 'border-[#D4AF37]/50 bg-[#D4AF37]/10 text-[#6b4f0c]'
+                                ? 'border-[#D4A017]/50 bg-[#D4A017]/10 text-[#6b4f0c]'
                                 : 'border-[#B91C1C]/30 bg-[#B91C1C]/5 text-[#B91C1C]'
                           }`}
                         >
@@ -282,7 +282,7 @@ const OrganHubPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={goAddData}
-                      className="inline-flex items-center gap-1.5 rounded-full bg-[#D4AF37] text-[#0F4C3A] px-5 py-2.5 text-xs font-extrabold shadow-[0_8px_18px_rgba(212,175,55,0.35)] transition hover:bg-[#c9a52e]"
+                      className="inline-flex items-center gap-1.5 rounded-full bg-[#D4A017] text-[#0F4C3A] px-5 py-2.5 text-xs font-extrabold shadow-[0_8px_18px_rgba(212,160,23,0.35)] transition hover:bg-[#B8860B]"
                     >
                       {t(tk('score.addData'))}
                       <ArrowRight size={14} strokeWidth={2.5} className="rtl:rotate-180" />
@@ -297,7 +297,7 @@ const OrganHubPage: React.FC = () => {
 
             <div className="grid lg:grid-cols-2 gap-6">
               <section className="rounded-3xl border border-[#EFEBE4] bg-white p-6 md:p-8">
-                <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">
+                <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4A017]">
                   {exerciseHeader}
                 </span>
                 <div className="mt-4 space-y-3">
@@ -320,7 +320,7 @@ const OrganHubPage: React.FC = () => {
               </section>
 
               <section className="rounded-3xl border border-[#EFEBE4] bg-white p-6 md:p-8">
-                <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">
+                <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4A017]">
                   {nutritionHeader}
                 </span>
                 <div className="mt-4 space-y-3">
@@ -348,7 +348,7 @@ const OrganHubPage: React.FC = () => {
             {isMental && (
               <div className="grid lg:grid-cols-2 gap-6">
                 <section className="rounded-3xl border border-[#EFEBE4] bg-white p-6 md:p-8">
-                  <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">
+                  <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4A017]">
                     {t(tk('organHub.mentalWellness.labs'))}
                   </span>
                   <div className="mt-4 space-y-3">
@@ -372,7 +372,7 @@ const OrganHubPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => navigate('/advanced-care/wizard?conditions=mental-wellness&step=3')}
-                    className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0F4C3A] hover:text-[#D4AF37] transition-colors"
+                    className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0F4C3A] hover:text-[#D4A017] transition-colors"
                   >
                     {t(tk('organHub.addLabs'))}
                     <ArrowRight size={14} strokeWidth={2.5} className="rtl:rotate-180" />
@@ -380,7 +380,7 @@ const OrganHubPage: React.FC = () => {
                 </section>
 
                 <section className="rounded-3xl border border-[#EFEBE4] bg-white p-6 md:p-8">
-                  <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">
+                  <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4A017]">
                     {t(tk('hub.progressTracker'))}
                   </span>
                   <div className="mt-4 space-y-3">
@@ -406,7 +406,7 @@ const OrganHubPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => navigate('/advanced-care/wizard?conditions=mental-wellness&step=4')}
-                    className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0F4C3A] hover:text-[#D4AF37] transition-colors"
+                    className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0F4C3A] hover:text-[#D4A017] transition-colors"
                   >
                     {t(tk('organHub.addProgress'))}
                     <ArrowRight size={14} strokeWidth={2.5} className="rtl:rotate-180" />

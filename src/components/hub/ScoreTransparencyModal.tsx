@@ -47,13 +47,13 @@ const ScoreTransparencyModal: React.FC<ScoreTransparencyModalProps> = ({
       >
         <div className="flex items-start justify-between gap-4">
           <div>
-            <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">
+            <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4A017]">
               {t('score.howCalculated')}
             </span>
             <h3 className="mt-1 flex items-center gap-2 text-lg font-extrabold text-[#0F4C3A]">
               <span className="text-2xl">{organ.icon}</span>
               {t(organ.nameKey)}
-              <span className="text-2xl font-extrabold text-[#D4AF37] tabular-nums">{score}</span>
+              <span className="text-2xl font-extrabold text-[#D4A017] tabular-nums">{score}</span>
             </h3>
           </div>
           <button

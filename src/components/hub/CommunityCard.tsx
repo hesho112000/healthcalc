@@ -40,17 +40,17 @@ const CommunityCard: React.FC<CommunityCardProps> = ({ paid, onUnlock, onNote })
       <div className="flex flex-wrap items-center justify-between gap-5">
         <div className="flex items-start gap-4">
           <span className="w-12 h-12 rounded-2xl bg-[#FDFBF7]/10 flex items-center justify-center shrink-0">
-            <Users size={20} className="text-[#D4AF37]" />
+            <Users size={20} className="text-[#D4A017]" />
           </span>
           <div>
-            <span className="block text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">{t(tk('hub.community'))}</span>
+            <span className="block text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4A017]">{t(tk('hub.community'))}</span>
             <p className="mt-1 text-sm text-[#FDFBF7]/80 max-w-sm leading-relaxed">{t(tk('hub.community.sub'))}</p>
           </div>
         </div>
         <button
           type="button"
           onClick={join}
-          className="rounded-full bg-[#D4AF37] text-[#0F4C3A] font-extrabold px-6 py-2.5 text-sm shadow-[0_10px_26px_-10px_rgba(212,175,55,0.7)] transition hover:bg-[#c9a52e]"
+          className="rounded-full bg-[#D4A017] text-[#0F4C3A] font-extrabold px-6 py-2.5 text-sm shadow-[0_10px_26px_-10px_rgba(212,160,23,0.7)] transition hover:bg-[#B8860B]"
         >
           {t(tk('hub.community.join'))} →
         </button>

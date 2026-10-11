@@ -39,7 +39,7 @@ const ProjectionCard: React.FC<ProjectionCardProps> = ({ paid, onUnlock }) => {
     <section className="rounded-3xl border border-[#EFEBE4] bg-white p-6 md:p-8" aria-label={t(tk('hub.projection'))}>
       <div className="flex flex-wrap items-center justify-between gap-5">
         <div>
-          <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">{t(tk('hub.projection'))}</span>
+          <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4A017]">{t(tk('hub.projection'))}</span>
           <p className="mt-1 text-sm text-[#6B7A75] max-w-md leading-relaxed">
             {overall !== null && projected !== null
               ? t(tk('hub.projection.body')).replace('{from}', String(overall)).replace('{to}', String(projected))
@@ -51,7 +51,7 @@ const ProjectionCard: React.FC<ProjectionCardProps> = ({ paid, onUnlock }) => {
             <ScoreRing score={overall} size={104} stroke={9} />
             <span className="mt-1 text-[11px] font-bold text-[#6B7A75]">{t(tk('wizard.results.today'))}</span>
           </div>
-          <span className="text-2xl font-extrabold text-[#D4AF37]">→</span>
+          <span className="text-2xl font-extrabold text-[#D4A017]">→</span>
           <div className="flex flex-col items-center">
             <ScoreRing score={projected} size={104} stroke={9} />
             <span className="mt-1 text-[11px] font-bold text-[#6B7A75]">{t(tk('wizard.results.month3'))}</span>

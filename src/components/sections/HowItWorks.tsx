@@ -102,14 +102,14 @@ const HowItWorks: React.FC = () => {
             </div>
 
             {ENABLE_PREMIUM && (
-              <div className="relative flex flex-col rounded-3xl p-10 px-8 border-2 border-[#D4AF37] bg-gradient-to-b from-[#FDFBF7] to-[rgba(15,76,58,0.03)] shadow-[0_10px_30px_rgba(212,175,55,0.15)]">
-              <span className="absolute -top-3.5 end-8 rounded-full bg-[#D4AF37] text-[#0F4C3A] text-[10px] font-extrabold tracking-wide px-3 py-1">
+              <div className="relative flex flex-col rounded-3xl p-10 px-8 border-2 border-[#D4A017] bg-gradient-to-b from-[#FDFBF7] to-[rgba(15,76,58,0.03)] shadow-[0_10px_30px_rgba(212,160,23,0.15)]">
+              <span className="absolute -top-3.5 end-8 rounded-full bg-[#D4A017] text-[#0F4C3A] text-[10px] font-extrabold tracking-wide px-3 py-1">
                 {t('howItWorks.advanced.floatingBadge')}
               </span>
-              <span className="self-start rounded-full bg-[#D4AF37] text-[#0F4C3A] text-[11px] font-bold px-3 py-1 tracking-wide">
+              <span className="self-start rounded-full bg-[#D4A017] text-[#0F4C3A] text-[11px] font-bold px-3 py-1 tracking-wide">
                 {t('howItWorks.advanced.badge')}
               </span>
-              <span className="w-20 h-20 rounded-full bg-[#D4AF37] text-[#0F4C3A] flex items-center justify-center mt-6">
+              <span className="w-20 h-20 rounded-full bg-[#D4A017] text-[#0F4C3A] flex items-center justify-center mt-6">
                 <HeartPulse size={34} strokeWidth={2.2} />
               </span>
               <h3 className="text-[#0F4C3A] text-[24px] font-extrabold mt-5">{t('howItWorks.advanced.title')}</h3>
@@ -118,7 +118,7 @@ const HowItWorks: React.FC = () => {
               <div className="mt-7 space-y-5 flex-1">
                 {advancedSteps.map(({ icon: Icon, titleKey, descKey }) => (
                   <div key={titleKey} className="flex items-start gap-3">
-                    <span className="w-9 h-9 shrink-0 rounded-full bg-[rgba(212,175,55,0.12)] text-[#D4AF37] flex items-center justify-center mt-0.5">
+                    <span className="w-9 h-9 shrink-0 rounded-full bg-[rgba(212,160,23,0.12)] text-[#D4A017] flex items-center justify-center mt-0.5">
                       <Icon size={16} strokeWidth={2.2} />
                     </span>
                     <div>
@@ -140,7 +140,7 @@ const HowItWorks: React.FC = () => {
           </div>
 
           {ENABLE_PREMIUM && <div className="flex justify-center lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:z-10">
-            <span className="w-10 h-10 rounded-full bg-white border-2 border-[#D4AF37] text-[#0F4C3A] text-[13px] font-extrabold flex items-center justify-center">
+            <span className="w-10 h-10 rounded-full bg-white border-2 border-[#D4A017] text-[#0F4C3A] text-[13px] font-extrabold flex items-center justify-center">
               {t('howItWorks.or')}
             </span>
           </div>}

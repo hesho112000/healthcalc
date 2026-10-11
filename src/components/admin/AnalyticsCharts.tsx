@@ -23,8 +23,8 @@ interface AnalyticsChartsProps {
   tierDistribution: ChartPoint[];
 }
 
-const TIER_COLORS = ['#0F4C3A', '#D4AF37', '#F4F1EB', '#6B7A75'];
-const CONDITION_COLORS = ['#0F4C3A', '#D4AF37', '#6B7A75', '#8A9A5B', '#C9A12F'];
+const TIER_COLORS = ['#0F4C3A', '#D4A017', '#F4F1EB', '#6B7A75'];
+const CONDITION_COLORS = ['#0F4C3A', '#D4A017', '#6B7A75', '#8A9A5B', '#C9A12F'];
 
 const AnalyticsCharts: React.FC<AnalyticsChartsProps> = ({
   newUsers30d,
@@ -45,7 +45,7 @@ const AnalyticsCharts: React.FC<AnalyticsChartsProps> = ({
               contentStyle={{ borderRadius: 12, border: '1px solid #EFEBE4', fontSize: 12 }}
               itemStyle={{ color: '#0F4C3A' }}
             />
-            <Line type="monotone" dataKey="value" stroke="#0F4C3A" strokeWidth={2.5} dot={{ r: 3, fill: '#D4AF37' }} activeDot={{ r: 5 }} />
+            <Line type="monotone" dataKey="value" stroke="#0F4C3A" strokeWidth={2.5} dot={{ r: 3, fill: '#D4A017' }} activeDot={{ r: 5 }} />
           </LineChart>
         </ResponsiveContainer>
       ),
@@ -65,7 +65,7 @@ const AnalyticsCharts: React.FC<AnalyticsChartsProps> = ({
                 contentStyle={{ borderRadius: 12, border: '1px solid #EFEBE4', fontSize: 12 }}
                 itemStyle={{ color: '#0F4C3A' }}
               />
-              <Bar dataKey="value" fill="#D4AF37" radius={[6, 6, 0, 0]}>
+              <Bar dataKey="value" fill="#D4A017" radius={[6, 6, 0, 0]}>
                 {popularConditions.map((_, i) => (
                   <Cell key={i} fill={CONDITION_COLORS[i % CONDITION_COLORS.length]} />
                 ))}

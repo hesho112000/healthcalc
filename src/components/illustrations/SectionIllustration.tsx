@@ -3,7 +3,7 @@ import React from 'react';
 export type SectionIllustrationKind = 'calculator' | 'plan' | 'care' | 'smartwatch';
 
 const Emerald = '#0F4C3A';
-const Gold = '#D4AF37';
+const Gold = '#D4A017';
 const Beige = '#F4F1EB';
 const White = '#FFFFFF';
 

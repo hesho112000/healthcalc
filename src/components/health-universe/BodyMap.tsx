@@ -109,21 +109,21 @@ const BodyMap: React.FC<BodyMapProps> = ({ selectedConditions = [], interactive 
                 onMouseLeave={() => setHovered(null)}
                 className={`group relative flex h-[18px] w-[18px] items-center justify-center rounded-full before:absolute before:rounded-full before:inset-[-13px] before:content-[''] sm:h-6 sm:w-6 sm:before:inset-[-10px] transition-all duration-200 active:scale-95 ${
                   selected
-                    ? 'border-[3px] border-[#D4AF37] bg-[#0F4C3A] shadow-[0_4px_14px_rgba(212,175,55,0.55)]'
-                    : 'border-2 border-white bg-[#D4AF37] shadow-[0_4px_12px_rgba(212,175,55,0.45)] hover:scale-110'
+                    ? 'border-[3px] border-[#D4A017] bg-[#0F4C3A] shadow-[0_4px_14px_rgba(212,160,23,0.55)]'
+                    : 'border-2 border-white bg-[#D4A017] shadow-[0_4px_12px_rgba(212,160,23,0.45)] hover:scale-110'
                 } ${selected ? 'hu-selected' : ''} ${hovered === dot.key && !selected ? 'hu-active' : ''}`}
               >
                 <span className="select-none text-[10px]">{dot.emoji}</span>
 
                 {selected && (
-                  <span className="absolute -bottom-1 -end-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#D4AF37] shadow-[0_2px_6px_rgba(212,175,55,0.6)] sm:h-[18px] sm:w-[18px]">
+                  <span className="absolute -bottom-1 -end-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#D4A017] shadow-[0_2px_6px_rgba(212,160,23,0.6)] sm:h-[18px] sm:w-[18px]">
                     <Check size={10} strokeWidth={3.5} className="text-[#FDFBF7]" />
                   </span>
                 )}
               </button>
 
               {hovered === dot.key && (
-                <span className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 whitespace-nowrap rounded-full border border-[#D4AF37]/40 bg-[#0F4C3A] px-3 py-1.5 text-xs font-bold text-[#FDFBF7] shadow-[0_6px_18px_rgba(15,76,58,0.28)]">
+                <span className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 whitespace-nowrap rounded-full border border-[#D4A017]/40 bg-[#0F4C3A] px-3 py-1.5 text-xs font-bold text-[#FDFBF7] shadow-[0_6px_18px_rgba(15,76,58,0.28)]">
                   {t(dotNameKey(dot.id))}
                   {selected ? ` · ${t('universe.cta.added')}` : ''}
                 </span>

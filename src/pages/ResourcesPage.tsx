@@ -33,13 +33,13 @@ type Category = 'all' | 'articles' | 'recipes' | 'exercises';
 
 const ART_GRADIENTS = [
   'from-[#0F4C3A] to-[#1a6b53]',
-  'from-[#D4AF37] to-[#c9a52e]',
+  'from-[#D4A017] to-[#B8860B]',
   'from-[#1a6b53] to-[#2a7a5d]',
   'from-[#0F4C3A] to-[#2a7a5d]',
-  'from-[#c9a52e] to-[#D4AF37]',
+  'from-[#B8860B] to-[#D4A017]',
   'from-[#1a6b53] to-[#3a8f6f]',
   'from-[#0F4C3A] to-[#1a6b53]',
-  'from-[#D4AF37] to-[#b89230]',
+  'from-[#D4A017] to-[#b89230]',
   'from-[#2a7a5d] to-[#0F4C3A]',
 ];
 
@@ -83,7 +83,7 @@ const ResourcesPage: React.FC = () => {
   const SectionHeading: React.FC<{ title: string }> = ({ title }) => (
     <div className="mb-6 flex items-center gap-3">
       <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#0F4C3A]">{title}</h2>
-      <div className="h-px flex-1 bg-gradient-to-r from-[#D4AF37]/50 to-transparent rtl:bg-gradient-to-l" />
+      <div className="h-px flex-1 bg-gradient-to-r from-[#D4A017]/50 to-transparent rtl:bg-gradient-to-l" />
     </div>
   );
 
@@ -91,7 +91,7 @@ const ResourcesPage: React.FC = () => {
     <div className="min-h-screen bg-[#FDFBF7]" dir={dir}>
       <SEO title={t('seo.resources.title')} description={t('seo.resources.description')} url="/resources" />
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(60%_120%_at_50%_0%,rgba(212,175,55,0.12),rgba(255,255,255,0)_60%)]" />
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(60%_120%_at_50%_0%,rgba(212,160,23,0.12),rgba(255,255,255,0)_60%)]" />
         <div className="relative max-w-4xl mx-auto px-6 pt-20 pb-10 text-center">
           <span className="hero-eyebrow">{t('resources.hero.eyebrow')}</span>
           <h1 className="hero-title mx-auto">
@@ -149,7 +149,7 @@ const ResourcesPage: React.FC = () => {
                         {t(k(`resources.article.${id}.desc`))}
                       </p>
                       <div className="mt-4 flex items-center justify-between">
-                        <span className="text-xs font-bold text-[#D4AF37]">
+                        <span className="text-xs font-bold text-[#D4A017]">
                           {t(k(`resources.article.${id}.readTime`))}
                         </span>
                         <span className="inline-flex items-center gap-1 text-sm font-extrabold text-[#0F4C3A]">
@@ -179,12 +179,12 @@ const ResourcesPage: React.FC = () => {
                   >
                     <div className="h-32 bg-gradient-to-br from-[#F4F1EB] to-[#E9E5DB] relative flex items-center justify-center">
                       <span className="text-5xl drop-shadow-sm">{RECIPE_EMOJIS[i]}</span>
-                      <span className="absolute top-3 start-3 rounded-full bg-[#D4AF37] px-3 py-1 text-[10px] font-extrabold tracking-wide uppercase text-[#0F4C3A]">
+                      <span className="absolute top-3 start-3 rounded-full bg-[#D4A017] px-3 py-1 text-[10px] font-extrabold tracking-wide uppercase text-[#0F4C3A]">
                         {t('resources.tag.recipe')}
                       </span>
                     </div>
                     <div className="p-6">
-                      <p className="text-[10px] font-extrabold tracking-[0.18em] uppercase text-[#D4AF37]">
+                      <p className="text-[10px] font-extrabold tracking-[0.18em] uppercase text-[#D4A017]">
                         {t(k(`resources.recipe.${id}.cuisine`))}
                       </p>
                       <h3 className="mt-1 text-base font-extrabold text-[#0F4C3A] leading-snug">
@@ -192,7 +192,7 @@ const ResourcesPage: React.FC = () => {
                       </h3>
                       <div className="mt-3 flex items-center gap-4 text-xs font-bold text-[#6B7A75]">
                         <span className="inline-flex items-center gap-1">
-                          <Flame size={14} className="text-[#D4AF37]" />
+                          <Flame size={14} className="text-[#D4A017]" />
                           {t(k(`resources.recipe.${id}.calories`))}
                         </span>
                         <span className="inline-flex items-center gap-1">
@@ -226,7 +226,7 @@ const ResourcesPage: React.FC = () => {
                     className="group rounded-3xl border border-[#EFEBE4] bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(15,76,58,0.10)]"
                   >
                     <div className="flex items-start justify-between gap-3">
-                      <div className="w-12 h-12 rounded-2xl bg-[#0F4C3A] text-[#D4AF37] flex items-center justify-center shrink-0">
+                      <div className="w-12 h-12 rounded-2xl bg-[#0F4C3A] text-[#D4A017] flex items-center justify-center shrink-0">
                         <Icon size={22} />
                       </div>
                       <span className="rounded-full bg-[#F4F1EB] px-3 py-1 text-[10px] font-extrabold tracking-wide uppercase text-[#0F4C3A]">
@@ -244,7 +244,7 @@ const ResourcesPage: React.FC = () => {
                         <Clock size={13} />
                         {t(k(`resources.exercise.${id}.duration`))}
                       </span>
-                      <span className="rounded-full bg-[#D4AF37]/15 px-3 py-1 text-xs font-bold text-[#0F4C3A]">
+                      <span className="rounded-full bg-[#D4A017]/15 px-3 py-1 text-xs font-bold text-[#0F4C3A]">
                         {t(k(`resources.exercise.${id}.difficulty`))}
                       </span>
                     </div>
@@ -262,9 +262,9 @@ const ResourcesPage: React.FC = () => {
 
       <section className="max-w-6xl mx-auto px-6 pb-20">
         <div className="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] px-8 py-14 text-center shadow-[0_24px_60px_rgba(15,76,58,0.25)]">
-          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(70%_140%_at_50%_0%,rgba(212,175,55,0.18),rgba(255,255,255,0)_60%)]" />
+          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(70%_140%_at_50%_0%,rgba(212,160,23,0.18),rgba(255,255,255,0)_60%)]" />
           <div className="relative mx-auto max-w-2xl">
-            <div className="mx-auto w-14 h-14 rounded-2xl bg-[#D4AF37] text-[#0F4C3A] flex items-center justify-center">
+            <div className="mx-auto w-14 h-14 rounded-2xl bg-[#D4A017] text-[#0F4C3A] flex items-center justify-center">
               <Mail size={24} />
             </div>
             <h2 className="mt-5 text-3xl font-extrabold text-[#FDFBF7] tracking-tight">
@@ -275,7 +275,7 @@ const ResourcesPage: React.FC = () => {
             </p>
             {subscribed ? (
               <div className="mt-7 inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-6 py-3 text-sm font-bold text-[#FDFBF7]">
-                <Check size={16} className="text-[#D4AF37]" />
+                <Check size={16} className="text-[#D4A017]" />
                 {t('resources.newsletter.done')}
               </div>
             ) : (
@@ -286,11 +286,11 @@ const ResourcesPage: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={t('resources.newsletter.placeholder')}
-                  className="flex-1 rounded-full border border-white/25 bg-white/10 px-5 py-3.5 text-sm text-[#FDFBF7] placeholder-[#D8E6DF]/70 outline-none focus:border-[#D4AF37]"
+                  className="flex-1 rounded-full border border-white/25 bg-white/10 px-5 py-3.5 text-sm text-[#FDFBF7] placeholder-[#D8E6DF]/70 outline-none focus:border-[#D4A017]"
                 />
                 <button
                   type="submit"
-                  className="rounded-full bg-[#D4AF37] px-8 py-3.5 text-sm font-extrabold text-[#0F4C3A] shadow-[0_10px_30px_rgba(212,175,55,0.4)] hover:bg-[#C9A032] transition-colors"
+                  className="rounded-full bg-[#D4A017] px-8 py-3.5 text-sm font-extrabold text-[#0F4C3A] shadow-[0_10px_30px_rgba(212,160,23,0.4)] hover:bg-[#B8860B] transition-colors"
                 >
                   {t('resources.newsletter.cta')}
                 </button>

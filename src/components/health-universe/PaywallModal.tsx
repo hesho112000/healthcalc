@@ -99,12 +99,12 @@ const PaywallModal: React.FC<PaywallModalProps> = ({ open, feature, onClose, onU
                 key={tier}
                 className={`relative rounded-3xl border p-5 ${
                   isRequired
-                    ? 'border-[#D4AF37] bg-[#FDFBF7] shadow-[0_12px_28px_rgba(212,175,55,0.25)]'
+                    ? 'border-[#D4A017] bg-[#FDFBF7] shadow-[0_12px_28px_rgba(212,160,23,0.25)]'
                     : 'border-[#EFEBE4] bg-white'
                 }`}
               >
                 {isRequired && (
-                  <span className="absolute -top-2.5 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 rounded-full bg-[#D4AF37] px-3 py-0.5 text-[10px] font-extrabold text-[#0F4C3A]">
+                  <span className="absolute -top-2.5 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 rounded-full bg-[#D4A017] px-3 py-0.5 text-[10px] font-extrabold text-[#0F4C3A]">
                     {t(FEATURES[feature].labelKey)}
                   </span>
                 )}
@@ -138,7 +138,7 @@ const PaywallModal: React.FC<PaywallModalProps> = ({ open, feature, onClose, onU
           <button
             type="button"
             onClick={() => onUpgrade(requiredTier)}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#D4AF37] px-8 py-4 text-base font-extrabold text-[#0F4C3A] hover:bg-[#c9a12f] shadow-[0_10px_26px_rgba(212,175,55,0.35)] transition-all"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#D4A017] px-8 py-4 text-base font-extrabold text-[#0F4C3A] hover:bg-[#c9a12f] shadow-[0_10px_26px_rgba(212,160,23,0.35)] transition-all"
           >
             {t('planPrompt.cta.startTrial')}
             <ArrowRight size={19} strokeWidth={2.5} className="rtl:rotate-180" />

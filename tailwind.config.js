@@ -41,8 +41,10 @@ export default {
           muted: '#64748B',
         },
         brand: {
-          gold: '#D4AF37',
-          goldDark: '#C9A52E',
+          green: '#059669',
+          greenDark: '#047857',
+          gold: '#D4A017',
+          goldDark: '#B8860B',
           cream: '#FDFBF7',
           beige: '#F4F1EB',
           emerald: '#0F4C3A',

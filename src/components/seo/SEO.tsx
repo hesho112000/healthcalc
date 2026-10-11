@@ -32,7 +32,7 @@ const SEO: React.FC<SEOProps> = ({
   locale,
 }) => {
   const { language } = useLanguage();
-  const fullTitle = `${title} | HealthCalc`;
+  const fullTitle = `${title} | Health Fingerprint`;
   const fullUrl = url ? `${BASE_URL}${url}` : BASE_URL;
   const currentLocale = locale || language || 'en';
 
@@ -49,7 +49,7 @@ const SEO: React.FC<SEOProps> = ({
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
       <meta property="og:url" content={fullUrl} />
-      <meta property="og:site_name" content="HealthCalc" />
+      <meta property="og:site_name" content="Health Fingerprint" />
       <meta property="og:locale" content={currentLocale} />
 
       <meta name="twitter:card" content="summary_large_image" />

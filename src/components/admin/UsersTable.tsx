@@ -15,7 +15,7 @@ const TierBadge: React.FC<{ tier: string }> = ({ tier }) => {
   const { t } = useLanguage();
   const tone =
     tier === 'pro' || tier === 'elite'
-      ? 'bg-[#F4F1EB] text-[#0F4C3A] border-[#D4AF37]'
+      ? 'bg-[#F4F1EB] text-[#0F4C3A] border-[#D4A017]'
       : tier === 'basic'
         ? 'bg-[#FDFBF7] text-[#6B7A75] border-[#EFEBE4]'
         : 'bg-[#FDFBF7] text-[#6B7A75] border-[#EFEBE4]';
@@ -89,7 +89,7 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onDelete, onEdit }) => {
               setPage(1);
             }}
             placeholder={t('admin.users.searchPlaceholder')}
-            className="w-full rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] py-2.5 ps-9 pe-3 text-sm font-semibold text-[#0F4C3A] placeholder-[#94A3B8] outline-none focus:border-[#D4AF37]"
+            className="w-full rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] py-2.5 ps-9 pe-3 text-sm font-semibold text-[#0F4C3A] placeholder-[#94A3B8] outline-none focus:border-[#D4A017]"
           />
         </div>
         <p className="text-xs font-bold text-[#6B7A75]">
@@ -244,7 +244,7 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onDelete, onEdit }) => {
                   type="text"
                   value={editName}
                   onChange={(e) => setEditName(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] px-3 py-2.5 text-sm font-semibold text-[#0F4C3A] outline-none focus:border-[#D4AF37]"
+                  className="mt-1 w-full rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] px-3 py-2.5 text-sm font-semibold text-[#0F4C3A] outline-none focus:border-[#D4A017]"
                 />
               </label>
               <label className="block">
@@ -253,7 +253,7 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onDelete, onEdit }) => {
                   type="number"
                   value={editAge}
                   onChange={(e) => setEditAge(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] px-3 py-2.5 text-sm font-semibold text-[#0F4C3A] outline-none focus:border-[#D4AF37]"
+                  className="mt-1 w-full rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] px-3 py-2.5 text-sm font-semibold text-[#0F4C3A] outline-none focus:border-[#D4A017]"
                 />
               </label>
             </div>

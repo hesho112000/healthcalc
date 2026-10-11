@@ -63,7 +63,7 @@ const WeightTrendChart: React.FC = () => {
                 {targetValid && (
                   <ReferenceLine
                     y={target}
-                    stroke="#D4AF37"
+                    stroke="#D4A017"
                     strokeDasharray="5 4"
                     strokeWidth={1.5}
                     label={{ value: t('hub.trend.target'), position: 'insideTopRight', fontSize: 10, fill: '#8A6D1C' }}
@@ -79,7 +79,7 @@ const WeightTrendChart: React.FC = () => {
                   stroke="#0F4C3A"
                   strokeWidth={2.5}
                   dot={{ r: 3, fill: '#0F4C3A', strokeWidth: 0 }}
-                  activeDot={{ r: 5, fill: '#D4AF37', stroke: '#0F4C3A' }}
+                  activeDot={{ r: 5, fill: '#D4A017', stroke: '#0F4C3A' }}
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -100,14 +100,14 @@ const WeightTrendChart: React.FC = () => {
               </span>
             )}
             {targetValid && (
-              <span className="rounded-full bg-[#D4AF37]/15 px-3 py-1 text-[11px] font-bold text-[#8A6D1C]">
+              <span className="rounded-full bg-[#D4A017]/15 px-3 py-1 text-[11px] font-bold text-[#8A6D1C]">
                 {t('hub.trend.target')}: {target} kg
               </span>
             )}
           </div>
         </>
       ) : (
-        <div className="rounded-2xl border border-dashed border-[#D4AF37]/50 bg-[#D4AF37]/5 px-4 py-8 text-center">
+        <div className="rounded-2xl border border-dashed border-[#D4A017]/50 bg-[#D4A017]/5 px-4 py-8 text-center">
           <p className="text-xs font-bold text-[#8A6D1C]">{t('hub.trend.empty')}</p>
         </div>
       )}

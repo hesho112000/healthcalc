@@ -45,7 +45,7 @@ const WeeklyReport: React.FC<WeeklyReportProps> = ({ paid, onUnlock, onNote }) =
             <FileText size={20} className="text-[#0F4C3A]" />
           </span>
           <div>
-            <span className="block text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">{t(tk('hub.weekly'))}</span>
+            <span className="block text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4A017]">{t(tk('hub.weekly'))}</span>
             <p className="mt-1 text-sm text-[#6B7A75] max-w-sm leading-relaxed">{t(tk('hub.weekly.sub'))}</p>
           </div>
         </div>

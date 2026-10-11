@@ -140,7 +140,7 @@ const AddDishModal: React.FC<AddDishModalProps> = ({ open, mode, mealLabel, pool
           </button>
         </div>
 
-        <div className="mt-3 h-[44px] bg-[#F4F1EB] rounded-[14px] flex items-center px-4 border-2 border-transparent focus-within:border-[#D4AF37] shrink-0">
+        <div className="mt-3 h-[44px] bg-[#F4F1EB] rounded-[14px] flex items-center px-4 border-2 border-transparent focus-within:border-[#D4A017] shrink-0">
           <input
             ref={inputRef}
             value={query}
@@ -179,8 +179,8 @@ const AddDishModal: React.FC<AddDishModalProps> = ({ open, mode, mealLabel, pool
                   }}
                   className={`w-full flex items-center gap-3 p-3 rounded-[16px] border-2 text-start transition-all min-w-0 dish-enter ${
                     isCurrent
-                      ? 'border-[#D4AF37] bg-[#FFFBEF] cursor-default'
-                      : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37] active:scale-[0.99]'
+                      ? 'border-[#D4A017] bg-[#FFFBEF] cursor-default'
+                      : 'border-[#EFEBE4] bg-white hover:border-[#D4A017] active:scale-[0.99]'
                   }`}
                 >
                   <span className="w-11 h-11 rounded-[12px] bg-[#F4F1EB] flex items-center justify-center text-[20px] shrink-0">🍲</span>
@@ -188,7 +188,7 @@ const AddDishModal: React.FC<AddDishModalProps> = ({ open, mode, mealLabel, pool
                     <div className="flex items-center gap-1.5 min-w-0">
                       <span className="font-bold text-[13px] text-[#0F4C3A] truncate">{getDishName(d, language as Language)}</span>
                       {isCurrent && (
-                        <span className="text-[10px] font-bold bg-[#D4AF37] text-[#0F4C3A] px-2 py-0.5 rounded-full shrink-0">
+                        <span className="text-[10px] font-bold bg-[#D4A017] text-[#0F4C3A] px-2 py-0.5 rounded-full shrink-0">
                           {language === 'ar' ? 'الحالي' : 'Current'}
                         </span>
                       )}
@@ -202,7 +202,7 @@ const AddDishModal: React.FC<AddDishModalProps> = ({ open, mode, mealLabel, pool
                     {!isCurrent && (
                       <span
                         className={`w-8 h-8 rounded-full flex items-center justify-center text-[15px] text-white shadow-sm ${
-                          isSwap ? 'bg-[#0F4C3A]' : 'bg-[#D4AF37]'
+                          isSwap ? 'bg-[#0F4C3A]' : 'bg-[#D4A017]'
                         }`}
                       >
                         {isSwap ? '🔄' : '+'}

@@ -84,7 +84,7 @@ const AddFoodModal: React.FC<AddFoodModalProps> = ({ open, slot, onClose, onAdde
         </div>
 
         <div className="px-5 pt-4">
-          <div className="flex items-center gap-2 rounded-2xl border border-[#EFEBE4] bg-white px-4 py-2.5 focus-within:border-[#D4AF37]">
+          <div className="flex items-center gap-2 rounded-2xl border border-[#EFEBE4] bg-white px-4 py-2.5 focus-within:border-[#D4A017]">
             <Search size={16} className="text-[#6B7A75]" />
             <input
               autoFocus
@@ -118,7 +118,7 @@ const AddFoodModal: React.FC<AddFoodModalProps> = ({ open, slot, onClose, onAdde
                     {getPortionMeasure(food.portion, lang)} · {food.calories} kcal · P {food.protein} / C {food.carbs} / F {food.fat}
                   </span>
                 </span>
-                <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-[#D4AF37] px-2.5 py-1 text-[11px] font-extrabold text-[#0F4C3A]">
+                <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-[#D4A017] px-2.5 py-1 text-[11px] font-extrabold text-[#0F4C3A]">
                   <Plus size={12} strokeWidth={3} />
                   {t('hub.meals.add')}
                 </span>

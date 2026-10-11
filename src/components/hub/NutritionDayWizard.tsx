@@ -62,7 +62,7 @@ const NutritionDayWizard: React.FC<NutritionDayWizardProps> = ({ conditions, pai
           {t('hub.nutritionPlan')}
         </h2>
         {!paid && (
-          <span className="inline-flex items-center gap-1 rounded-full bg-[#D4AF37]/15 text-[#0F4C3A] px-2.5 py-1 text-[10px] font-extrabold">
+          <span className="inline-flex items-center gap-1 rounded-full bg-[#D4A017]/15 text-[#0F4C3A] px-2.5 py-1 text-[10px] font-extrabold">
             <Lock size={11} />
             {t('hub.badge.member')}
           </span>
@@ -77,7 +77,7 @@ const NutritionDayWizard: React.FC<NutritionDayWizardProps> = ({ conditions, pai
               key={d}
               type="button"
               onClick={() => handleDay(d)}
-              className={`shrink-0 rounded-xl px-3 py-2 text-xs font-bold transition ${active ? (paid ? 'bg-[#0F4C3A] text-[#FDFBF7]' : 'bg-[#D4AF37] text-[#0F4C3A]') : locked ? 'bg-[#F4F1EB]/50 text-[#6B7A75]' : 'bg-[#F4F1EB]/50 text-[#0F4C3A] hover:bg-[#F4F1EB]'}`}
+              className={`shrink-0 rounded-xl px-3 py-2 text-xs font-bold transition ${active ? (paid ? 'bg-[#0F4C3A] text-[#FDFBF7]' : 'bg-[#D4A017] text-[#0F4C3A]') : locked ? 'bg-[#F4F1EB]/50 text-[#6B7A75]' : 'bg-[#F4F1EB]/50 text-[#0F4C3A] hover:bg-[#F4F1EB]'}`}
             >
               {locked ? <Lock size={12} className="mx-auto" /> : tt(t, 'hub.day', { n: String(d) })}
             </button>
@@ -98,10 +98,10 @@ const NutritionDayWizard: React.FC<NutritionDayWizardProps> = ({ conditions, pai
                     key={food.name_en}
                     type="button"
                     onClick={() => toggle(food.name_en)}
-                    className={`w-full flex items-center justify-between gap-3 rounded-xl border p-3 transition ${active ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]' : 'border-[#EFEBE4] bg-[#F4F1EB]/30'}`}
+                    className={`w-full flex items-center justify-between gap-3 rounded-xl border p-3 transition ${active ? 'border-[#D4A017] bg-[#D4A017]/5 ring-1 ring-[#D4A017]' : 'border-[#EFEBE4] bg-[#F4F1EB]/30'}`}
                   >
                     <span className="flex items-center gap-3 min-w-0">
-                      <span className={`h-5 w-5 rounded-md border flex items-center justify-center text-xs font-bold shrink-0 ${active ? 'bg-[#0F4C3A] border-[#0F4C3A] text-[#FDFBF7]' : 'border-[#D4AF37] text-transparent'}`}>
+                      <span className={`h-5 w-5 rounded-md border flex items-center justify-center text-xs font-bold shrink-0 ${active ? 'bg-[#0F4C3A] border-[#0F4C3A] text-[#FDFBF7]' : 'border-[#D4A017] text-transparent'}`}>
                         ✓
                       </span>
                       <span className="text-base">🍽️</span>
@@ -122,7 +122,7 @@ const NutritionDayWizard: React.FC<NutritionDayWizardProps> = ({ conditions, pai
         <button
           type="button"
           onClick={logAll}
-          className="inline-flex items-center gap-2 rounded-full bg-[#D4AF37] text-[#0F4C3A] px-5 py-2.5 text-xs font-bold hover:bg-[#c9a52e] transition"
+          className="inline-flex items-center gap-2 rounded-full bg-[#D4A017] text-[#0F4C3A] px-5 py-2.5 text-xs font-bold hover:bg-[#B8860B] transition"
         >
           <Check size={14} />
           {t('hub.logAll')}

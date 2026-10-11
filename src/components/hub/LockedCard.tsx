@@ -25,7 +25,7 @@ const LockedCard: React.FC<LockedCardProps> = ({ title, subtitle, onUnlock }) =>
       <button
         type="button"
         onClick={onUnlock}
-        className="relative rounded-full bg-[#D4AF37] text-[#0F4C3A] px-6 py-2.5 text-sm font-extrabold shadow-[0_10px_26px_-10px_rgba(212,175,55,0.7)] transition hover:bg-[#c9a52e]"
+        className="relative rounded-full bg-[#D4A017] text-[#0F4C3A] px-6 py-2.5 text-sm font-extrabold shadow-[0_10px_26px_-10px_rgba(212,160,23,0.7)] transition hover:bg-[#B8860B]"
       >
         {t(tk('hub.cta.trial'))}
       </button>

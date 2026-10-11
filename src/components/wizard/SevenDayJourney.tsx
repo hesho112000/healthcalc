@@ -103,7 +103,7 @@ const SevenDayJourney: React.FC<SevenDayJourneyProps> = ({ foods, exercises }) =
                   {dayPlan.meals.map((meal) => (
                     <div key={meal.slot + meal.name} className="flex items-center justify-between gap-3 rounded-2xl border border-[#EFEBE4] bg-[#FDFBF7] p-3">
                       <div className="flex items-center gap-3">
-                        <span className="rounded-full bg-[#D4AF37]/15 px-2.5 py-1 text-[11px] font-bold text-[#0F4C3A]">
+                        <span className="rounded-full bg-[#D4A017]/15 px-2.5 py-1 text-[11px] font-bold text-[#0F4C3A]">
                           {t(tk(slotKey(meal.slot)))}
                         </span>
                         <b className="text-sm text-slate-900">{meal.name}</b>

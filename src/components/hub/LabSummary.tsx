@@ -65,7 +65,7 @@ const LabSummary: React.FC<LabSummaryProps> = ({ paid, onUnlock }) => {
           <button
             type="button"
             onClick={onUnlock}
-            className="inline-flex items-center gap-1.5 rounded-full bg-[#D4AF37]/15 text-[#0F4C3A] px-3 py-1.5 text-xs font-bold hover:bg-[#D4AF37]/25 transition"
+            className="inline-flex items-center gap-1.5 rounded-full bg-[#D4A017]/15 text-[#0F4C3A] px-3 py-1.5 text-xs font-bold hover:bg-[#D4A017]/25 transition"
           >
             <Lock size={13} />
             {t('hub.labs.seeFull')}
@@ -73,7 +73,7 @@ const LabSummary: React.FC<LabSummaryProps> = ({ paid, onUnlock }) => {
         )}
       </div>
       {labRows.length === 0 ? (
-        <Link to="/advanced-care" className="block rounded-2xl border border-dashed border-[#D4AF37]/50 bg-[#FDFBF7] p-5 text-sm font-semibold text-[#0F4C3A] text-center hover:bg-[#F4F1EB] transition">
+        <Link to="/advanced-care" className="block rounded-2xl border border-dashed border-[#D4A017]/50 bg-[#FDFBF7] p-5 text-sm font-semibold text-[#0F4C3A] text-center hover:bg-[#F4F1EB] transition">
           {t('universe.score.enterLabs')}
         </Link>
       ) : (
@@ -88,11 +88,11 @@ const LabSummary: React.FC<LabSummaryProps> = ({ paid, onUnlock }) => {
                 ? 'bg-[#0F4C3A]/10 text-[#0F4C3A]'
                 : status === 'high'
                   ? ref.invert
-                    ? 'bg-[#D4AF37]/15 text-[#0F4C3A]'
+                    ? 'bg-[#D4A017]/15 text-[#0F4C3A]'
                     : 'bg-[#B91C1C]/10 text-[#B91C1C]'
                   : ref.invert
                     ? 'bg-[#B91C1C]/10 text-[#B91C1C]'
-                    : 'bg-[#D4AF37]/15 text-[#0F4C3A]';
+                    : 'bg-[#D4A017]/15 text-[#0F4C3A]';
             return (
               <div key={`${row.cond}:${row.key}`}>
                 <button
@@ -118,9 +118,9 @@ const LabSummary: React.FC<LabSummaryProps> = ({ paid, onUnlock }) => {
             );
           })}
           {!paid && lockedLabCount > 0 && (
-            <div className="relative rounded-xl border border-[#D4AF37]/40 bg-[#D4AF37]/5 p-3 overflow-hidden">
+            <div className="relative rounded-xl border border-[#D4A017]/40 bg-[#D4A017]/5 p-3 overflow-hidden">
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                <div className="flex items-center gap-2 rounded-full bg-[#FDFBF7] border border-[#D4AF37]/40 px-4 py-2 text-xs font-bold text-[#0F4C3A] shadow-sm">
+                <div className="flex items-center gap-2 rounded-full bg-[#FDFBF7] border border-[#D4A017]/40 px-4 py-2 text-xs font-bold text-[#0F4C3A] shadow-sm">
                   <Lock size={13} />
                   +{lockedLabCount} {t('hub.labs.seeFull')}
                 </div>

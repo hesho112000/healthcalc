@@ -41,7 +41,7 @@ const AboutPage: React.FC = () => {
     <div className="min-h-screen bg-[#FDFBF7]" dir={dir}>
       <SEO title={t('seo.about.title')} description={t('seo.about.description')} url="/about" />
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(60%_120%_at_50%_0%,rgba(212,175,55,0.12),rgba(255,255,255,0)_60%)]" />
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(60%_120%_at_50%_0%,rgba(212,160,23,0.12),rgba(255,255,255,0)_60%)]" />
         <div className="relative max-w-4xl mx-auto px-6 pt-20 pb-12 text-center">
           <span className="hero-eyebrow">{t('about.hero.eyebrow')}</span>
           <h1 className="hero-title mx-auto">
@@ -79,14 +79,14 @@ const AboutPage: React.FC = () => {
                     key={i}
                     className="rounded-2xl bg-white/10 border border-white/15 flex flex-col items-center justify-center gap-2 py-8"
                   >
-                    <div className="w-12 h-12 rounded-2xl bg-[#D4AF37] text-[#0F4C3A] flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-2xl bg-[#D4A017] text-[#0F4C3A] flex items-center justify-center">
                       <Icon size={22} />
                     </div>
                     <span className="text-2xl">{emoji}</span>
                   </div>
                 ))}
               </div>
-              <div className="mt-6 flex items-center justify-center gap-2 text-xs font-extrabold tracking-[0.2em] text-[#D4AF37] uppercase">
+              <div className="mt-6 flex items-center justify-center gap-2 text-xs font-extrabold tracking-[0.2em] text-[#D4A017] uppercase">
                 <ScrollText size={16} /> {t('about.hero.eyebrow')}
               </div>
             </div>
@@ -119,13 +119,13 @@ const AboutPage: React.FC = () => {
           <span className="hero-eyebrow justify-center">{t('about.approach.title')}</span>
         </div>
         <div className="mt-10 relative grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="hidden md:block absolute top-8 end-0 start-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent" />
+          <div className="hidden md:block absolute top-8 end-0 start-0 h-px bg-gradient-to-r from-transparent via-[#D4A017]/50 to-transparent" />
           {steps.map((step, i) => (
             <div key={i} className="relative rounded-3xl border border-[#EFEBE4] bg-white p-7 text-center shadow-[0_10px_30px_rgba(15,76,58,0.05)]">
-              <span className="absolute top-5 start-6 text-4xl font-extrabold text-[#D4AF37]/25">
+              <span className="absolute top-5 start-6 text-4xl font-extrabold text-[#D4A017]/25">
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <div className="mx-auto w-14 h-14 rounded-2xl bg-[#0F4C3A] text-[#D4AF37] flex items-center justify-center">
+              <div className="mx-auto w-14 h-14 rounded-2xl bg-[#0F4C3A] text-[#D4A017] flex items-center justify-center">
                 <step.icon size={24} />
               </div>
               <h3 className="mt-4 text-lg font-extrabold text-[#0F4C3A]">{step.title}</h3>
@@ -153,21 +153,21 @@ const AboutPage: React.FC = () => {
       </section>
 
       <section className="max-w-4xl mx-auto px-6 pb-14">
-        <div className="flex items-start gap-3 rounded-3xl border border-[#D4AF37]/40 bg-[#FDFBF7] p-6 shadow-[0_10px_30px_rgba(15,76,58,0.06)]">
-          <ShieldAlert size={22} className="shrink-0 mt-0.5 text-[#D4AF37]" />
+        <div className="flex items-start gap-3 rounded-3xl border border-[#D4A017]/40 bg-[#FDFBF7] p-6 shadow-[0_10px_30px_rgba(15,76,58,0.06)]">
+          <ShieldAlert size={22} className="shrink-0 mt-0.5 text-[#D4A017]" />
           <p className="text-sm text-[#4A5A55] leading-relaxed">{t('about.disclaimer')}</p>
         </div>
       </section>
 
       {ENABLE_PREMIUM && <section className="max-w-6xl mx-auto px-6 pb-20">
         <div className="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] px-8 py-14 text-center shadow-[0_24px_60px_rgba(15,76,58,0.25)]">
-          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(70%_140%_at_50%_0%,rgba(212,175,55,0.18),rgba(255,255,255,0)_60%)]" />
+          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(70%_140%_at_50%_0%,rgba(212,160,23,0.18),rgba(255,255,255,0)_60%)]" />
           <h2 className="relative text-3xl md:text-4xl font-extrabold text-[#FDFBF7] tracking-tight">
             {t('about.cta.title')}
           </h2>
           <Link
             to="/advanced-care"
-            className="relative mt-7 inline-flex items-center gap-2 rounded-full bg-[#D4AF37] px-8 py-4 text-base font-extrabold text-[#0F4C3A] shadow-[0_10px_30px_rgba(212,175,55,0.45)] hover:bg-[#C9A032] transition-colors"
+            className="relative mt-7 inline-flex items-center gap-2 rounded-full bg-[#D4A017] px-8 py-4 text-base font-extrabold text-[#0F4C3A] shadow-[0_10px_30px_rgba(212,160,23,0.45)] hover:bg-[#B8860B] transition-colors"
           >
             {t('about.cta.button')}
             <ArrowRight size={18} className="rtl:rotate-180" />

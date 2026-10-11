@@ -67,7 +67,7 @@ const SmartReminders: React.FC<SmartRemindersProps> = ({ paid, onUnlock, onNote 
           <BellRing size={20} className="text-[#0F4C3A]" />
         </span>
         <div>
-          <span className="block text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">{t(tk('hub.reminders'))}</span>
+          <span className="block text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4A017]">{t(tk('hub.reminders'))}</span>
           <p className="mt-1 text-sm text-[#6B7A75]">{t(tk('hub.reminders.sub'))}</p>
         </div>
       </div>

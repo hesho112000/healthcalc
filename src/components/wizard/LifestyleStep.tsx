@@ -50,7 +50,7 @@ const LifestyleStep: React.FC<LifestyleStepProps> = ({ t, lifestyle, onChange, o
                 type="button"
                 onClick={() => onChange({ activity: typedId })}
                 className={`w-full rounded-2xl border bg-white p-3.5 text-left transition ${
-                  active ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]' : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'
+                  active ? 'border-[#D4A017] bg-[#D4A017]/5 ring-1 ring-[#D4A017]' : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'
                 }`}
               >
                 <span className="flex items-center gap-3">
@@ -75,7 +75,7 @@ const LifestyleStep: React.FC<LifestyleStepProps> = ({ t, lifestyle, onChange, o
                 type="button"
                 onClick={() => onChange({ sleep: id })}
                 className={`rounded-2xl border bg-white p-3 text-center transition ${
-                  active ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]' : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'
+                  active ? 'border-[#D4A017] bg-[#D4A017]/5 ring-1 ring-[#D4A017]' : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'
                 }`}
               >
                 <span className="text-xl block">{emoji}</span>
@@ -97,7 +97,7 @@ const LifestyleStep: React.FC<LifestyleStepProps> = ({ t, lifestyle, onChange, o
                 type="button"
                 onClick={() => onChange({ stress: id })}
                 className={`rounded-2xl border bg-white p-3 text-center transition ${
-                  active ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]' : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'
+                  active ? 'border-[#D4A017] bg-[#D4A017]/5 ring-1 ring-[#D4A017]' : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'
                 }`}
               >
                 <span className="text-xl block">{emoji}</span>
@@ -113,7 +113,7 @@ const LifestyleStep: React.FC<LifestyleStepProps> = ({ t, lifestyle, onChange, o
         type="button"
         disabled={!ready}
         onClick={onContinue}
-        className="w-full mt-4 bg-[#D4AF37] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#c9a52e] transition disabled:opacity-40"
+        className="w-full mt-4 bg-[#D4A017] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#B8860B] transition disabled:opacity-40"
       >
         {t(tk('wizard.care.next'))}
       </button>

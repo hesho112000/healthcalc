@@ -184,15 +184,15 @@ const HomePage: React.FC = () => {
             </div>
             <div className="relative z-10 flex items-center gap-2 sm:gap-4">
               <div className="relative flex h-[148px] w-[88px] items-center justify-center rounded-[27px] border-[5px] border-[#0F4C3A] bg-white shadow-[0_14px_30px_rgba(15,76,58,0.16)] sm:h-[170px] sm:w-[100px]">
-                <span className="absolute -top-6 h-7 w-12 rounded-t-xl bg-[#D4AF37]/70" />
-                <span className="absolute -bottom-6 h-7 w-12 rounded-b-xl bg-[#D4AF37]/70" />
+                <span className="absolute -top-6 h-7 w-12 rounded-t-xl bg-[#D4A017]/70" />
+                <span className="absolute -bottom-6 h-7 w-12 rounded-b-xl bg-[#D4A017]/70" />
                 <div className="flex h-full w-full flex-col items-center justify-center rounded-[21px] bg-[#F8FAF7] text-[#0F4C3A]">
                   <Watch aria-hidden="true" size={40} strokeWidth={1.7} />
                   <span className="mt-1 text-[11px] font-extrabold">8,420</span>
-                  <Activity aria-hidden="true" size={20} className="mt-1 text-[#D4AF37]" />
+                  <Activity aria-hidden="true" size={20} className="mt-1 text-[#D4A017]" />
                 </div>
               </div>
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/50 bg-white text-[#0F4C3A] shadow-sm">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#D4A017]/50 bg-white text-[#0F4C3A] shadow-sm">
                 <RefreshCw aria-hidden="true" size={17} />
               </span>
               <div className="relative h-[180px] w-[100px] rounded-[25px] border-[5px] border-[#0F4C3A] bg-[#0F4C3A] p-1.5 shadow-[0_14px_30px_rgba(15,76,58,0.16)] sm:h-[210px] sm:w-[116px]">
@@ -211,13 +211,13 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
             </div>
-            <span className="absolute bottom-7 left-7 h-2.5 w-2.5 rounded-full bg-[#D4AF37]" />
+            <span className="absolute bottom-7 left-7 h-2.5 w-2.5 rounded-full bg-[#D4A017]" />
             <span className="absolute right-8 top-8 h-3 w-3 rounded-full bg-[#0F4C3A]/20" />
           </div>
 
           <div dir={dir} className="min-w-0 text-start">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/35 bg-white/80 px-3 py-1.5 text-[11px] font-extrabold tracking-[0.12em] text-[#8A6D1B]">
-              <span className="h-2 w-2 rounded-full bg-[#D4AF37]" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#D4A017]/35 bg-white/80 px-3 py-1.5 text-[11px] font-extrabold tracking-[0.12em] text-[#8A6D1B]">
+              <span className="h-2 w-2 rounded-full bg-[#D4A017]" />
               {language === 'ar' ? 'مزامنة الساعة الذكية' : 'SMART WATCH SYNC'}
             </span>
             <h2 className="mt-4 text-balance text-[30px] font-extrabold leading-tight tracking-tight text-[#111827] sm:text-[36px]">
@@ -251,7 +251,7 @@ const HomePage: React.FC = () => {
               </div>
             </div>
 
-            <div role="status" className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full border border-[#D4AF37]/40 bg-[#FFF8E5] px-5 py-2.5 text-sm font-bold text-[#806313]">
+            <div role="status" className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full border border-[#D4A017]/40 bg-[#FFF8E5] px-5 py-2.5 text-sm font-bold text-[#806313]">
               <Clock aria-hidden="true" size={17} />
               {language === 'ar' ? 'قريبًا' : 'Coming Soon'}
             </div>

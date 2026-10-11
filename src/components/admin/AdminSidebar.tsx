@@ -43,7 +43,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ active }) => {
                 isActive ? 'bg-[#0F4C3A] text-[#FDFBF7] shadow-[0_8px_20px_rgba(15,76,58,0.35)]' : 'hover:bg-[#F4F1EB]'
               }`}
             >
-              <span className={`shrink-0 ${isActive ? 'text-[#D4AF37]' : 'text-[#6B7A75]'}`}>{item.icon}</span>
+              <span className={`shrink-0 ${isActive ? 'text-[#D4A017]' : 'text-[#6B7A75]'}`}>{item.icon}</span>
               <span>{t(SECTION_LABEL[item.key])}</span>
             </Link>
           );

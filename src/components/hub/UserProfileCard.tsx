@@ -35,14 +35,14 @@ const UserProfileCard: React.FC<UserProfileCardProps> = ({ name, onEdit }) => {
   const initial = name ? name.charAt(0).toUpperCase() : '👤';
 
   return (
-    <section className="rounded-3xl bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] border-2 border-[#D4AF37] p-6 text-[#FDFBF7] shadow-[0_14px_34px_rgba(15,76,58,0.18)]">
+    <section className="rounded-3xl bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] border-2 border-[#D4A017] p-6 text-[#FDFBF7] shadow-[0_14px_34px_rgba(15,76,58,0.18)]">
       <div className="flex items-center gap-4">
         <div className="w-16 h-16 rounded-2xl bg-[#FDFBF7] flex items-center justify-center text-2xl font-extrabold text-[#0F4C3A]">
           {initial}
         </div>
         <div className="min-w-0">
           <h2 className="text-lg font-extrabold truncate">{name}</h2>
-          <span className="mt-1 inline-flex items-center gap-1.5 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/50 px-2.5 py-0.5 text-[11px] font-bold text-[#D4AF37]">
+          <span className="mt-1 inline-flex items-center gap-1.5 rounded-full bg-[#D4A017]/20 border border-[#D4A017]/50 px-2.5 py-0.5 text-[11px] font-bold text-[#D4A017]">
             <HeartPulse size={11} />
             {t(TIER_KEY[tier] ?? TIER_KEY.free)}
           </span>

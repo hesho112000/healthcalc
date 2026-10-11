@@ -47,7 +47,7 @@ const HealthScoreCards: React.FC<HealthScoreCardsProps> = ({ conditions }) => {
 
   const barColor = (score: number): string => {
     if (score < 50) return '#B91C1C';
-    if (score <= 75) return '#D4AF37';
+    if (score <= 75) return '#D4A017';
     return '#0F4C3A';
   };
 
@@ -76,18 +76,18 @@ const HealthScoreCards: React.FC<HealthScoreCardsProps> = ({ conditions }) => {
         </h2>
         <Link
           to="/advanced-care"
-          className="text-xs font-bold text-[#0F4C3A] underline decoration-[#D4AF37] underline-offset-4"
+          className="text-xs font-bold text-[#0F4C3A] underline decoration-[#D4A017] underline-offset-4"
         >
           {t('universe.score.calcLink')}
         </Link>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div className="rounded-3xl bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] border-2 border-[#D4AF37] p-6 text-[#FDFBF7]">
+        <div className="rounded-3xl bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] border-2 border-[#D4A017] p-6 text-[#FDFBF7]">
           <div className="flex items-center justify-between text-sm text-[#FDFBF7]/80">
             <span className="font-bold">{t('hub.scores.overall')}</span>
-            <Sparkles size={16} className="text-[#D4AF37]" />
+            <Sparkles size={16} className="text-[#D4A017]" />
           </div>
-          <div className="mt-3 text-5xl font-extrabold text-[#D4AF37] tabular-nums">
+          <div className="mt-3 text-5xl font-extrabold text-[#D4A017] tabular-nums">
             {overallScore === null ? '—' : overallScore}
           </div>
           {overallScore === null ? (
@@ -105,7 +105,7 @@ const HealthScoreCards: React.FC<HealthScoreCardsProps> = ({ conditions }) => {
               </p>
               <div className="mt-4 h-2.5 rounded-full bg-[#FDFBF7]/15 overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-[#D4AF37] transition-all duration-500"
+                  className="h-full rounded-full bg-[#D4A017] transition-all duration-500"
                   style={{ width: `${overallScore}%` }}
                 />
               </div>
@@ -113,7 +113,7 @@ const HealthScoreCards: React.FC<HealthScoreCardsProps> = ({ conditions }) => {
           )}
         </div>
         {rows.map(({ organ, score, detail }) => {
-          const color = score === null ? '#D4AF37' : barColor(score);
+          const color = score === null ? '#D4A017' : barColor(score);
           return (
             <div key={organ.id} className="rounded-3xl bg-white border border-[#EFEBE4] p-6 flex flex-col">
               <div className="flex items-center justify-between">
@@ -128,7 +128,7 @@ const HealthScoreCards: React.FC<HealthScoreCardsProps> = ({ conditions }) => {
                   <p className="text-xs text-[#6B7A75]">{t('score.noData')}</p>
                   <Link
                     to={wizardStep3(organ)}
-                    className="mt-1 inline-flex w-fit items-center gap-1 rounded-full bg-[#D4AF37] px-4 py-2 text-xs font-extrabold text-[#0F4C3A] transition hover:bg-[#c9a52e]"
+                    className="mt-1 inline-flex w-fit items-center gap-1 rounded-full bg-[#D4A017] px-4 py-2 text-xs font-extrabold text-[#0F4C3A] transition hover:bg-[#B8860B]"
                   >
                     {t('score.addData')}
                     <ArrowRight size={13} strokeWidth={2.5} className="rtl:rotate-180" />
@@ -148,7 +148,7 @@ const HealthScoreCards: React.FC<HealthScoreCardsProps> = ({ conditions }) => {
                   <button
                     type="button"
                     onClick={() => setOpenModal(organ)}
-                    className="mt-auto pt-4 text-start text-xs font-bold text-[#0F4C3A] underline decoration-[#D4AF37] underline-offset-4"
+                    className="mt-auto pt-4 text-start text-xs font-bold text-[#0F4C3A] underline decoration-[#D4A017] underline-offset-4"
                   >
                     {t('universe.score.calcLink')}
                   </button>

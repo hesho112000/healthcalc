@@ -73,7 +73,7 @@ const ContentManager: React.FC = () => {
             setDraft('');
             setModalOpen(true);
           }}
-          className="inline-flex items-center gap-1.5 rounded-xl bg-[#D4AF37] text-[#0F4C3A] px-4 py-2 text-xs font-extrabold shadow-[0_8px_20px_rgba(212,175,55,0.35)] hover:bg-[#c9a12f] transition-colors"
+          className="inline-flex items-center gap-1.5 rounded-xl bg-[#D4A017] text-[#0F4C3A] px-4 py-2 text-xs font-extrabold shadow-[0_8px_20px_rgba(212,160,23,0.35)] hover:bg-[#c9a12f] transition-colors"
         >
           <Plus size={15} strokeWidth={2.5} /> {t('admin.content.addNew')}
         </button>
@@ -118,7 +118,7 @@ const ContentManager: React.FC = () => {
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
               placeholder={t('admin.content.table.title')}
-              className="mt-4 w-full rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] px-3 py-2.5 text-sm font-semibold text-[#0F4C3A] placeholder-[#94A3B8] outline-none focus:border-[#D4AF37]"
+              className="mt-4 w-full rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] px-3 py-2.5 text-sm font-semibold text-[#0F4C3A] placeholder-[#94A3B8] outline-none focus:border-[#D4A017]"
             />
             <div className="mt-6 flex gap-2">
               <button

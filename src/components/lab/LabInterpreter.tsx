@@ -145,7 +145,7 @@ const LabCard: React.FC<LabCardProps> = ({ condition, onSubmit }) => {
               value={values[field.key] || ''}
               onChange={(e) => apply(field, e.target.value)}
               placeholder={t(field.hintKey)}
-              className="mt-2 w-full rounded-xl border border-transparent bg-[#F4F1EB] px-4 py-3 text-base text-[#0F4C3A] placeholder-[#94A3B8] outline-none transition-all duration-200 focus:border-[#D4AF37] focus:bg-[#FFF] focus:ring-2 focus:ring-[rgba(212,175,55,0.4)]"
+              className="mt-2 w-full rounded-xl border border-transparent bg-[#F4F1EB] px-4 py-3 text-base text-[#0F4C3A] placeholder-[#94A3B8] outline-none transition-all duration-200 focus:border-[#D4A017] focus:bg-[#FFF] focus:ring-2 focus:ring-[rgba(212,160,23,0.4)]"
             />
             <small className="mt-1.5 block text-xs text-[#6B7A75]">{t(field.hintKey)}</small>
           </label>
@@ -180,7 +180,7 @@ const LabCard: React.FC<LabCardProps> = ({ condition, onSubmit }) => {
 
       {submitted && (
         <div className="mt-6 rounded-2xl bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] p-6 text-white shadow-[0_16px_40px_rgba(15,76,58,0.25)] animate-fade-in">
-          <b className="flex items-center gap-2 text-sm font-extrabold uppercase tracking-[1.5px] text-[#D4AF37]">
+          <b className="flex items-center gap-2 text-sm font-extrabold uppercase tracking-[1.5px] text-[#D4A017]">
             <Microscope size={16} strokeWidth={2.4} />
             {t('advanced.lab.interpretation')}
           </b>

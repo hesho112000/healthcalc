@@ -57,7 +57,7 @@ const SettingsPanel: React.FC = () => {
   };
 
   const fieldClass =
-    'mt-1 w-full rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] px-3 py-2.5 text-sm font-semibold text-[#0F4C3A] placeholder-[#94A3B8] outline-none focus:border-[#D4AF37]';
+    'mt-1 w-full rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] px-3 py-2.5 text-sm font-semibold text-[#0F4C3A] placeholder-[#94A3B8] outline-none focus:border-[#D4A017]';
 
   return (
     <div className="rounded-2xl border border-[#EFEBE4] bg-white p-5 shadow-[0_8px_24px_rgba(15,76,58,0.06)]">
@@ -137,7 +137,7 @@ const SettingsPanel: React.FC = () => {
           <button
             type="button"
             onClick={saveAll}
-            className="rounded-xl bg-[#D4AF37] text-[#0F4C3A] px-6 py-2.5 text-sm font-extrabold shadow-[0_8px_20px_rgba(212,175,55,0.35)] hover:bg-[#c9a12f] transition-colors"
+            className="rounded-xl bg-[#D4A017] text-[#0F4C3A] px-6 py-2.5 text-sm font-extrabold shadow-[0_8px_20px_rgba(212,160,23,0.35)] hover:bg-[#c9a12f] transition-colors"
           >
             {t('admin.settings.savePassword')}
           </button>

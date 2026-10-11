@@ -14,7 +14,7 @@ interface Stat {
 
 const stats: Stat[] = [
   { icon: Users, value: '12,450+', labelKey: 'trust2.stat1.label', circle: '#F4F1EB', iconColor: '#0F4C3A', numberColor: '#0F4C3A' },
-  { icon: Star, value: '4.9 / 5', labelKey: 'trust2.stat2.label', circle: '#FFF8E7', iconColor: '#D4AF37', numberColor: '#D4AF37', gold: true },
+  { icon: Star, value: '4.9 / 5', labelKey: 'trust2.stat2.label', circle: '#FFF8E7', iconColor: '#D4A017', numberColor: '#D4A017', gold: true },
   { icon: TrendingDown, value: '3.2 kg', labelKey: 'trust2.stat3.label', circle: '#F4F1EB', iconColor: '#0F4C3A', numberColor: '#0F4C3A' },
   { icon: Heart, value: '92%', labelKey: 'trust2.stat4.label', circle: '#F4F1EB', iconColor: '#0F4C3A', numberColor: '#0F4C3A' },
 ];
@@ -60,7 +60,7 @@ const TrustStats: React.FC = () => {
               className={
                 'text-center rounded-3xl px-6 py-8 bg-white transition-all duration-300 hover:-translate-y-1 shadow-[0_6px_14px_rgba(15,76,58,0.06)] ' +
                 (gold
-                  ? 'border-2 border-[#D4AF37] shadow-[0_8px_20px_rgba(212,175,55,0.25)] hover:shadow-[0_16px_36px_rgba(212,175,55,0.35)]'
+                  ? 'border-2 border-[#D4A017] shadow-[0_8px_20px_rgba(212,160,23,0.25)] hover:shadow-[0_16px_36px_rgba(212,160,23,0.35)]'
                   : 'hover:shadow-[0_16px_36px_rgba(15,76,58,0.14)]')
               }
             >
@@ -92,7 +92,7 @@ const TrustStats: React.FC = () => {
             <div
               key={abbr}
               title={title}
-              className="h-[60px] bg-white border border-[#EFEBE4] rounded-xl px-6 py-4 shadow-[0_2px_6px_rgba(15,76,58,0.04)] hover:border-[#D4AF37] flex items-center justify-center transition-colors duration-200"
+              className="h-[60px] bg-white border border-[#EFEBE4] rounded-xl px-6 py-4 shadow-[0_2px_6px_rgba(15,76,58,0.04)] hover:border-[#D4A017] flex items-center justify-center transition-colors duration-200"
             >
               <span className="num text-[13px] leading-none text-[#0F4C3A] font-extrabold">{abbr}</span>
             </div>
@@ -116,7 +116,7 @@ const TrustStats: React.FC = () => {
               <span className="px-4 py-2 rounded-full bg-[#F4F1EB] text-[#0F4C3A] text-xs font-bold shadow-[0_2px_6px_rgba(15,76,58,0.06)]">
                 {t('trust2.badge.gdpr')}
               </span>
-              <span className="px-4 py-2 rounded-full bg-[#D4AF37] text-[#0F4C3A] text-xs font-bold shadow-[0_2px_6px_rgba(15,76,58,0.06)]">
+              <span className="px-4 py-2 rounded-full bg-[#D4A017] text-[#0F4C3A] text-xs font-bold shadow-[0_2px_6px_rgba(15,76,58,0.06)]">
                 {t('trust2.badge.nhs')}
               </span>
             </div>

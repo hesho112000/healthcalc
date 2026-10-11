@@ -128,9 +128,9 @@ const PlanDashboardPage: React.FC = () => {
   h1 { font-size: 24px; color: #0F4C3A; margin: 0 0 4px; }
   .muted { color: #6B7A75; font-size: 13px; }
   .card { background: #ffffff; border: 1px solid #EFEBE4; border-radius: 16px; padding: 20px; margin-top: 20px; }
-  .h { color: #D4AF37; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+  .h { color: #D4A017; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
   table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 10px; }
-  th { text-align: start; color: #0F4C3A; border-bottom: 2px solid #D4AF37; padding: 8px; }
+  th { text-align: start; color: #0F4C3A; border-bottom: 2px solid #D4A017; padding: 8px; }
   td { padding: 8px; border-bottom: 1px solid #EFEBE4; text-align: start; }
   .total { margin-top: 20px; background: #0F4C3A; color: #FDFBF7; border-radius: 12px; padding: 12px 16px; font-weight: 700; display: flex; justify-content: space-between; }
 </style>
@@ -176,7 +176,7 @@ const PlanDashboardPage: React.FC = () => {
           </div>
           <h1 className="text-2xl font-extrabold text-[#0F4C3A] mb-3">{t('dash.plan.empty')}</h1>
           <p className="text-sm text-[#6B7A75] mb-8 leading-relaxed">{t('dash.plan.noPlan')}</p>
-          {ENABLE_PREMIUM && <Link to="/advanced-care/wizard" className="inline-block bg-[#D4AF37] text-[#0F4C3A] font-bold rounded-full px-8 py-3.5 hover:bg-[#c9a52e] transition">
+          {ENABLE_PREMIUM && <Link to="/advanced-care/wizard" className="inline-block bg-[#D4A017] text-[#0F4C3A] font-bold rounded-full px-8 py-3.5 hover:bg-[#B8860B] transition">
             {t('dash.plan.emptyCta')}
           </Link>}
         </div>
@@ -187,33 +187,33 @@ const PlanDashboardPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#FDFBF7] pb-16" dir={dir}>
       <header className="max-w-6xl mx-auto px-4 sm:px-6 pt-12">
-        <span className="inline-block text-xs font-bold text-[#0F4C3A] bg-[#D4AF37]/15 rounded-full px-3 py-1.5">{t('dash.plan.title').replace('{name}', '')}</span>
+        <span className="inline-block text-xs font-bold text-[#0F4C3A] bg-[#D4A017]/15 rounded-full px-3 py-1.5">{t('dash.plan.title').replace('{name}', '')}</span>
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0F4C3A] mt-3">{t('dash.plan.title').replace('{name}', name)}</h1>
         <p className="text-[#6B7A75] mt-2">{t('dash.plan.subtitle')}</p>
       </header>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 mt-10 grid lg:grid-cols-3 gap-6 items-start">
         <section className="lg:col-span-2 space-y-6">
-          <div className="rounded-[20px] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] border-2 border-[#D4AF37] p-6 text-[#FDFBF7]">
+          <div className="rounded-[20px] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] border-2 border-[#D4A017] p-6 text-[#FDFBF7]">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="rounded-2xl bg-[#FDFBF7]/10 p-3 text-center">
                 <div className="text-2xl">🔥</div>
-                <div className="text-2xl font-extrabold text-[#D4AF37] mt-1">{plan?.calories ?? 0}</div>
+                <div className="text-2xl font-extrabold text-[#D4A017] mt-1">{plan?.calories ?? 0}</div>
                 <div className="text-xs text-[#FDFBF7]/80 mt-0.5">{t('wizard.step6.summary.calories').replace('{kcal}', String(plan?.calories ?? 0))}</div>
               </div>
               <div className="rounded-2xl bg-[#FDFBF7]/10 p-3 text-center">
                 <div className="text-2xl">🍽️</div>
-                <div className="text-2xl font-extrabold text-[#D4AF37] mt-1">{plan?.meals ?? 0}</div>
+                <div className="text-2xl font-extrabold text-[#D4A017] mt-1">{plan?.meals ?? 0}</div>
                 <div className="text-xs text-[#FDFBF7]/80 mt-0.5">{t('wizard.step6.summary.meals').replace('{count}', String(plan?.meals ?? 0))}</div>
               </div>
               <div className="rounded-2xl bg-[#FDFBF7]/10 p-3 text-center">
                 <div className="text-2xl">🍎</div>
-                <div className="text-2xl font-extrabold text-[#D4AF37] mt-1">{plan?.snacks ?? 0}</div>
+                <div className="text-2xl font-extrabold text-[#D4A017] mt-1">{plan?.snacks ?? 0}</div>
                 <div className="text-xs text-[#FDFBF7]/80 mt-0.5">{t('wizard.step6.summary.snacks').replace('{count}', String(plan?.snacks ?? 0))}</div>
               </div>
               <div className="rounded-2xl bg-[#FDFBF7]/10 p-3 text-center">
                 <div className="text-2xl">🏃</div>
-                <div className="text-2xl font-extrabold text-[#D4AF37] mt-1">{exerciseRows.length}</div>
+                <div className="text-2xl font-extrabold text-[#D4A017] mt-1">{exerciseRows.length}</div>
                 <div className="text-xs text-[#FDFBF7]/80 mt-0.5">{t('wizard.step6.summary.exercises').replace('{count}', String(exerciseRows.length))}</div>
               </div>
             </div>
@@ -239,10 +239,10 @@ const PlanDashboardPage: React.FC = () => {
                             key={row.name}
                             type="button"
                             onClick={() => toggleFood(row.name)}
-                            className={`w-full flex items-center justify-between gap-3 rounded-xl border p-3 transition ${active ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]' : 'border-[#EFEBE4] bg-[#F4F1EB]/30'}`}
+                            className={`w-full flex items-center justify-between gap-3 rounded-xl border p-3 transition ${active ? 'border-[#D4A017] bg-[#D4A017]/5 ring-1 ring-[#D4A017]' : 'border-[#EFEBE4] bg-[#F4F1EB]/30'}`}
                           >
                             <span className="flex items-center gap-3">
-                              <span className={`h-5 w-5 rounded-md border flex items-center justify-center text-xs font-bold ${active ? 'bg-[#0F4C3A] border-[#0F4C3A] text-[#FDFBF7]' : 'border-[#D4AF37] text-transparent'}`}>
+                              <span className={`h-5 w-5 rounded-md border flex items-center justify-center text-xs font-bold ${active ? 'bg-[#0F4C3A] border-[#0F4C3A] text-[#FDFBF7]' : 'border-[#D4A017] text-transparent'}`}>
                                 ✓
                               </span>
                               <b className={`text-sm ${active ? 'text-[#6B7A75] line-through' : 'text-slate-900'}`}>{row.name}</b>
@@ -283,7 +283,7 @@ const PlanDashboardPage: React.FC = () => {
               <b className="text-[#0F4C3A]">{mealsDone} / {mealRows.length}</b>
             </div>
             <div className="h-2.5 rounded-full bg-[#F4F1EB] overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-[#D4AF37] to-[#0F4C3A] transition-all duration-500" style={{ width: `${progress}%` }} />
+              <div className="h-full bg-gradient-to-r from-[#D4A017] to-[#0F4C3A] transition-all duration-500" style={{ width: `${progress}%` }} />
             </div>
             <p className="text-center text-xs text-[#6B7A75] mt-1.5">{progress}%</p>
           </div>
@@ -295,7 +295,7 @@ const PlanDashboardPage: React.FC = () => {
               value={weightValue ?? ''}
               onChange={(e) => setWeight(Number(e.target.value))}
               placeholder="—"
-              className="w-full rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4AF37] bg-[#F4F1EB]/40 text-slate-900"
+              className="w-full rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900"
             />
           </div>
 
@@ -316,7 +316,7 @@ const PlanDashboardPage: React.FC = () => {
           </div>
 
           <div className="space-y-3">
-            {ENABLE_PREMIUM && <Link to="/advanced-care/wizard" className="block w-full text-center bg-[#D4AF37] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#c9a52e] transition">
+            {ENABLE_PREMIUM && <Link to="/advanced-care/wizard" className="block w-full text-center bg-[#D4A017] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#B8860B] transition">
               {t('dash.plan.adjust')}
             </Link>}
             <button type="button" onClick={handleDownloadPdf} className="block w-full text-center bg-[#FDFBF7] border-2 border-[#0F4C3A] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#0F4C3A]/5 transition">

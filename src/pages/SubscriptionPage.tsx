@@ -54,12 +54,12 @@ const SubscriptionPage: React.FC = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
           <Link
             to="/my-health-hub"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#FDFBF7]/80 hover:text-[#D4AF37] transition-colors mb-5"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#FDFBF7]/80 hover:text-[#D4A017] transition-colors mb-5"
           >
             <ArrowRight size={14} strokeWidth={2.5} className="rtl:rotate-180" />
             {t(tk('sub.backToHub'))}
           </Link>
-          <span className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[2px] text-[#D4AF37]">
+          <span className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[2px] text-[#D4A017]">
             <ShieldCheck size={14} />
             {t(tk('sub.eyebrow'))}
           </span>
@@ -69,8 +69,8 @@ const SubscriptionPage: React.FC = () => {
       </header>
 
       <main className="max-w-5xl mx-auto px-4 sm:px-6 mt-8 space-y-6 pb-16">
-        <section className="rounded-[32px] border-2 border-[#D4AF37] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] p-8 text-[#FDFBF7]">
-          <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">
+        <section className="rounded-[32px] border-2 border-[#D4A017] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] p-8 text-[#FDFBF7]">
+          <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4A017]">
             {t(tk('sub.currentPlan'))}
           </span>
           <div className="mt-5 grid gap-6 md:grid-cols-3">
@@ -80,7 +80,7 @@ const SubscriptionPage: React.FC = () => {
             </div>
             <div>
               <span className="block text-xs font-bold text-[#FDFBF7]/60">{t(tk('sub.planPrice'))}</span>
-              <b className="mt-1 block text-3xl font-extrabold text-[#D4AF37] tabular-nums">{TIER_PRICE[tier]}</b>
+              <b className="mt-1 block text-3xl font-extrabold text-[#D4A017] tabular-nums">{TIER_PRICE[tier]}</b>
             </div>
             <div>
               <span className="block text-xs font-bold text-[#FDFBF7]/60">{t(tk('sub.nextBilling'))}</span>
@@ -88,7 +88,7 @@ const SubscriptionPage: React.FC = () => {
                 {tier === 'free' ? '—' : formatDate(30)}
               </b>
               <span className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-[#FDFBF7]/10 px-3 py-1 text-xs font-bold">
-                <span className="h-2 w-2 rounded-full bg-[#D4AF37]" />
+                <span className="h-2 w-2 rounded-full bg-[#D4A017]" />
                 {t(tk(tier === 'free' ? 'sub.statusFree' : 'sub.statusActive'))}
               </span>
             </div>
@@ -98,7 +98,7 @@ const SubscriptionPage: React.FC = () => {
               type="button"
               onClick={handleUpgrade}
               disabled={!nextTier}
-              className="inline-flex items-center gap-2 rounded-full bg-[#D4AF37] text-[#0F4C3A] px-6 py-3 text-sm font-extrabold hover:bg-[#c9a52e] transition disabled:opacity-40 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-2 rounded-full bg-[#D4A017] text-[#0F4C3A] px-6 py-3 text-sm font-extrabold hover:bg-[#B8860B] transition disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {t(tk('sub.upgrade'))}
               <ArrowLeft size={15} strokeWidth={2.5} className="rtl:rotate-180" />
@@ -125,7 +125,7 @@ const SubscriptionPage: React.FC = () => {
 
         <div className="grid gap-6 md:grid-cols-2">
           <section className="rounded-3xl border border-[#EFEBE4] bg-white p-6 md:p-8">
-            <span className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">
+            <span className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4A017]">
               <CreditCard size={14} />
               {t(tk('sub.paymentMethod'))}
             </span>
@@ -141,7 +141,7 @@ const SubscriptionPage: React.FC = () => {
           </section>
 
           <section className="rounded-3xl border border-[#EFEBE4] bg-white p-6 md:p-8">
-            <span className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">
+            <span className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4A017]">
               <History size={14} />
               {t(tk('sub.billingHistory'))}
             </span>

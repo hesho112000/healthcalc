@@ -67,10 +67,10 @@ const QuickActions: React.FC = () => {
               className={`flex flex-col items-center gap-2 rounded-2xl border px-3 py-4 text-xs font-bold transition ${
                 isOpen
                   ? 'border-[#0F4C3A] bg-[#0F4C3A]/5 text-[#0F4C3A]'
-                  : 'border-[#EFEBE4] bg-[#FDFBF7] text-[#6B7A75] hover:border-[#D4AF37]/60 hover:text-[#0F4C3A]'
+                  : 'border-[#EFEBE4] bg-[#FDFBF7] text-[#6B7A75] hover:border-[#D4A017]/60 hover:text-[#0F4C3A]'
               }`}
             >
-              <Icon size={20} className={isOpen ? 'text-[#0F4C3A]' : 'text-[#D4AF37]'} />
+              <Icon size={20} className={isOpen ? 'text-[#0F4C3A]' : 'text-[#D4A017]'} />
               {t(action.labelKey)}
             </button>
           );
@@ -90,7 +90,7 @@ const QuickActions: React.FC = () => {
                   flash(t('hub.quickActions.moodLogged'));
                 }}
                 className={`h-10 w-10 rounded-full border text-lg transition ${
-                  day.mood === m ? 'border-[#D4AF37] bg-[#D4AF37]/15 ring-1 ring-[#D4AF37]' : 'border-[#EFEBE4] bg-white hover:bg-[#FDFBF7]'
+                  day.mood === m ? 'border-[#D4A017] bg-[#D4A017]/15 ring-1 ring-[#D4A017]' : 'border-[#EFEBE4] bg-white hover:bg-[#FDFBF7]'
                 }`}
               >
                 {m}
@@ -108,7 +108,7 @@ const QuickActions: React.FC = () => {
             onChange={(e) => setWeightInput(e.target.value)}
             inputMode="decimal"
             placeholder="kg"
-            className="w-24 rounded-xl border border-[#EFEBE4] bg-white px-3 py-2 text-sm text-slate-900 outline-0 focus:border-[#D4AF37]"
+            className="w-24 rounded-xl border border-[#EFEBE4] bg-white px-3 py-2 text-sm text-slate-900 outline-0 focus:border-[#D4A017]"
           />
           <button
             type="button"

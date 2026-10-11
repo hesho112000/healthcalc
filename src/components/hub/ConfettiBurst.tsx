@@ -1,6 +1,6 @@
 import React from 'react';
 
-const COLORS = ['#0F4C3A', '#D4AF37', '#c9a52e', '#1a6b53', '#6B7A75', '#FDFBF7'];
+const COLORS = ['#0F4C3A', '#D4A017', '#B8860B', '#1a6b53', '#6B7A75', '#FDFBF7'];
 
 interface Piece {
   left: number;

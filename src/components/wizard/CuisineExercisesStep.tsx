@@ -38,7 +38,7 @@ const CuisineExercisesStep: React.FC<CuisineExercisesStepProps> = ({
               type="button"
               onClick={() => onCuisine(id)}
               className={`rounded-2xl border bg-white p-3 text-center transition ${
-                active ? 'border-[#D4AF37] bg-[#D4AF37]/5 ring-1 ring-[#D4AF37]' : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'
+                active ? 'border-[#D4A017] bg-[#D4A017]/5 ring-1 ring-[#D4A017]' : 'border-[#EFEBE4] hover:border-[#0F4C3A]/40'
               }`}
             >
               <Flag countryCode={countryCode} alt={`${label} flag`} className="h-6 w-8 block mx-auto" />
@@ -78,7 +78,7 @@ const CuisineExercisesStep: React.FC<CuisineExercisesStepProps> = ({
       <button
         type="button"
         onClick={onAutoSelect}
-        className="rounded-full bg-[#D4AF37] text-[#0F4C3A] font-bold px-4 py-2 text-sm hover:bg-[#c9a52e] transition"
+        className="rounded-full bg-[#D4A017] text-[#0F4C3A] font-bold px-4 py-2 text-sm hover:bg-[#B8860B] transition"
       >
         ✨ {t(tk('wizard.autoSelect'))}
       </button>
@@ -87,7 +87,7 @@ const CuisineExercisesStep: React.FC<CuisineExercisesStepProps> = ({
     <button
       type="button"
       onClick={onBuild}
-      className="w-full mt-2 bg-[#D4AF37] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#c9a52e] transition"
+      className="w-full mt-2 bg-[#D4A017] text-[#0F4C3A] font-bold rounded-full px-6 py-3 hover:bg-[#B8860B] transition"
     >
       {t(tk('wizard.buildPlan'))}
     </button>

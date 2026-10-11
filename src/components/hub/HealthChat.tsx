@@ -67,7 +67,7 @@ const HealthChat: React.FC<HealthChatProps> = ({ paid, onUnlock, name }) => {
         type="button"
         onClick={onUnlock}
         aria-label="Chat"
-        className="fixed bottom-6 end-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#D4AF37] text-[#0F4C3A] shadow-[0_14px_34px_-10px_rgba(212,175,55,0.8)] transition hover:scale-105"
+        className="fixed bottom-6 end-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#D4A017] text-[#0F4C3A] shadow-[0_14px_34px_-10px_rgba(212,160,23,0.8)] transition hover:scale-105"
       >
         <MessageCircle size={22} />
       </button>
@@ -111,13 +111,13 @@ const HealthChat: React.FC<HealthChatProps> = ({ paid, onUnlock, name }) => {
                 if (e.key === 'Enter') send();
               }}
               placeholder={t('hub.chat.placeholder')}
-              className="flex-1 rounded-xl border border-[#EFEBE4] bg-[#F4F1EB]/40 px-4 py-2.5 text-sm outline-none focus:border-[#D4AF37]"
+              className="flex-1 rounded-xl border border-[#EFEBE4] bg-[#F4F1EB]/40 px-4 py-2.5 text-sm outline-none focus:border-[#D4A017]"
             />
             <button
               type="button"
               onClick={send}
               aria-label="Send"
-              className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#D4AF37] text-[#0F4C3A] transition hover:bg-[#c9a52e]"
+              className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#D4A017] text-[#0F4C3A] transition hover:bg-[#B8860B]"
             >
               <Send size={16} />
             </button>
@@ -129,7 +129,7 @@ const HealthChat: React.FC<HealthChatProps> = ({ paid, onUnlock, name }) => {
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-label="Chat"
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-[#D4AF37] text-[#0F4C3A] shadow-[0_14px_34px_-10px_rgba(212,175,55,0.8)] transition hover:scale-105"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-[#D4A017] text-[#0F4C3A] shadow-[0_14px_34px_-10px_rgba(212,160,23,0.8)] transition hover:scale-105"
       >
         {open ? <X size={22} /> : <MessageCircle size={22} />}
       </button>

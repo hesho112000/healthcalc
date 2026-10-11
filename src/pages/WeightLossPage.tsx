@@ -2204,7 +2204,7 @@ const WeightLossPage: React.FC = () => {
                 type="button"
                 onClick={() => (step === 1 ? navigate('/') : back())}
                 aria-label={t('wizard.back')}
-                className="w-10 h-10 rounded-full bg-white border border-[#EFEBE4] shadow-sm flex items-center justify-center text-[#0F4C3A] text-[20px] shrink-0 hover:border-[#D4AF37] transition-all active:scale-95"
+                className="w-10 h-10 rounded-full bg-white border border-[#EFEBE4] shadow-sm flex items-center justify-center text-[#0F4C3A] text-[20px] shrink-0 hover:border-[#D4A017] transition-all active:scale-95"
               >
                 ‹
               </button>
@@ -2230,7 +2230,7 @@ const WeightLossPage: React.FC = () => {
                     <div key={x.n} className="flex min-w-0 flex-1 flex-col items-center gap-1.5">
                       <div
                         className={`w-7 h-7 rounded-full border-[2px] flex items-center justify-center text-[12px] font-bold transition-all ${
-                          done ? 'bg-[#D4AF37] border-[#D4AF37] text-[#0F4C3A]' : active ? 'border-[#0F4C3A] bg-white text-[#0F4C3A]' : 'border-[#E3E0D8] bg-white text-[#A0A8A4]'
+                          done ? 'bg-[#D4A017] border-[#D4A017] text-[#0F4C3A]' : active ? 'border-[#0F4C3A] bg-white text-[#0F4C3A]' : 'border-[#E3E0D8] bg-white text-[#A0A8A4]'
                         }`}
                       >
                         {done ? '✓' : x.n}
@@ -2287,14 +2287,14 @@ const WeightLossPage: React.FC = () => {
                           setSex(x);
                           updateProfile({ gender: x });
                         }}
-                        className={`relative flex flex-col items-center justify-center pt-4 pb-3 rounded-[20px] border-2 transition-all min-w-0 ${on ? 'border-[#0F4C3A] bg-[#0F4C3A] shadow-[0_8px_18px_rgba(15,76,58,0.25)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
+                        className={`relative flex flex-col items-center justify-center pt-4 pb-3 rounded-[20px] border-2 transition-all min-w-0 ${on ? 'border-[#0F4C3A] bg-[#0F4C3A] shadow-[0_8px_18px_rgba(15,76,58,0.25)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4A017]'}`}
                       >
                         <span className={`flex items-center justify-center w-[72px] h-[72px] rounded-full transition-colors ${on ? 'bg-white/15 border border-white/25' : 'bg-[#F4F1EB]'}`}>
                           <BodyFigure kind={x} />
                         </span>
                         <span className={`mt-2 text-[14px] font-bold leading-none ${on ? 'text-white' : 'text-[#6B7A75]'}`}>{t(x)}</span>
                         {on && (
-                          <span className="absolute top-2.5 end-2.5 w-5 h-5 rounded-full bg-[#D4AF37] text-[#0F4C3A] flex items-center justify-center text-[12px] font-bold shadow-sm">✓</span>
+                          <span className="absolute top-2.5 end-2.5 w-5 h-5 rounded-full bg-[#D4A017] text-[#0F4C3A] flex items-center justify-center text-[12px] font-bold shadow-sm">✓</span>
                         )}
                       </button>
                     );
@@ -2364,14 +2364,14 @@ const WeightLossPage: React.FC = () => {
                       key={pt}
                       type="button"
                       onClick={() => setPlanType(pt)}
-                      className={`w-full rounded-[18px] border-2 px-4 py-3.5 text-start transition-all min-w-0 ${on ? 'border-[#D4AF37] bg-[#FFFBEF] shadow-[0_8px_18px_rgba(212,175,55,0.18)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
+                      className={`w-full rounded-[18px] border-2 px-4 py-3.5 text-start transition-all min-w-0 ${on ? 'border-[#D4A017] bg-[#FFFBEF] shadow-[0_8px_18px_rgba(212,160,23,0.18)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4A017]'}`}
                     >
                       <div className="flex items-center gap-2.5">
                         <span className="text-[16px]" style={{ flexShrink: 0 }}>{pt === 'nutrition' ? '🍃' : pt === 'fitness' ? '🏋️' : '🎯'}</span>
                         <span className={`flex-1 text-[14px] font-extrabold ${on ? 'text-[#0F4C3A]' : 'text-[#6B7A75]'}`}>
                           {t(pt === 'nutrition' ? 'wizard.step1.plan.nutrition.title' : pt === 'fitness' ? 'wizard.step1.plan.fitness.title' : 'wizard.step1.plan.both.title')}
                         </span>
-                        {on && <span className="w-6 h-6 rounded-full bg-[#D4AF37] text-[#0F4C3A] flex items-center justify-center text-[12px] font-bold shrink-0">✓</span>}
+                        {on && <span className="w-6 h-6 rounded-full bg-[#D4A017] text-[#0F4C3A] flex items-center justify-center text-[12px] font-bold shrink-0">✓</span>}
                       </div>
                       <p className="mt-1.5 text-[12px] text-[#6B7A75] leading-snug">
                         {t(pt === 'nutrition' ? 'wizard.step1.plan.nutrition.desc' : pt === 'fitness' ? 'wizard.step1.plan.fitness.desc' : 'wizard.step1.plan.both.desc')}
@@ -2493,11 +2493,11 @@ const WeightLossPage: React.FC = () => {
 
             {/* SECTION 4: AUTO-BUILD BANNER */}
             <div
-              className="rounded-[20px] p-6 relative overflow-hidden text-white border-2 border-[#D4AF37]"
-              style={{ background: 'linear-gradient(135deg,#0F4C3A 0%,#1a6b53 100%)', boxShadow: '0 8px 20px rgba(212,175,55,0.35)' }}
+              className="rounded-[20px] p-6 relative overflow-hidden text-white border-2 border-[#D4A017]"
+              style={{ background: 'linear-gradient(135deg,#0F4C3A 0%,#1a6b53 100%)', boxShadow: '0 8px 20px rgba(212,160,23,0.35)' }}
             >
               <div className="absolute -top-10 -end-10 text-[110px] leading-none opacity-[0.08] select-none pointer-events-none">✨</div>
-              <h3 className="text-[17px] font-extrabold text-[#D4AF37]">✨ {t('wizard.exerciseType.autoBuild.title')}</h3>
+              <h3 className="text-[17px] font-extrabold text-[#D4A017]">✨ {t('wizard.exerciseType.autoBuild.title')}</h3>
               <p className="mt-2 text-[13px] text-white/85 leading-relaxed max-w-[520px]">{t('wizard.exerciseType.autoBuild.desc')}</p>
               {autoBuildMode ? (
                 <div className="mt-5 flex items-center gap-3 rounded-[18px] bg-white/10 border border-white/15 px-5 py-4">
@@ -2505,7 +2505,7 @@ const WeightLossPage: React.FC = () => {
                   <div className="flex-1 min-w-0">
                     <p className="text-[13px] font-bold">{t('wizard.exerciseType.autoBuild.loading')}</p>
                     <div className="mt-2 h-[6px] bg-white/20 rounded-full overflow-hidden">
-                      <div className="wiz-loading-bar h-full bg-[#D4AF37] rounded-full" />
+                      <div className="wiz-loading-bar h-full bg-[#D4A017] rounded-full" />
                     </div>
                   </div>
                 </div>
@@ -2513,7 +2513,7 @@ const WeightLossPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={runAutoBuild}
-                  className="mt-5 h-[52px] px-8 rounded-full bg-[#D4AF37] text-[#0F4C3A] font-extrabold text-[15px] flex items-center gap-2 shadow-[0_8px_20px_rgba(212,175,55,0.4)] hover:translate-y-[-1px] transition-all active:scale-95"
+                  className="mt-5 h-[52px] px-8 rounded-full bg-[#D4A017] text-[#0F4C3A] font-extrabold text-[15px] flex items-center gap-2 shadow-[0_8px_20px_rgba(212,160,23,0.4)] hover:translate-y-[-1px] transition-all active:scale-95"
                 >
                   {t('wizard.exerciseType.autoBuild.cta')}
                 </button>
@@ -2528,7 +2528,7 @@ const WeightLossPage: React.FC = () => {
               <button
                 type="button"
                 onClick={next}
-                className="h-[52px] px-8 rounded-full bg-[#D4AF37] text-[#0F4C3A] font-extrabold text-[15px] flex items-center gap-2 shadow-[0_10px_24px_rgba(212,175,55,0.45)] hover:translate-y-[-1px] transition-all active:scale-95"
+                className="h-[52px] px-8 rounded-full bg-[#D4A017] text-[#0F4C3A] font-extrabold text-[15px] flex items-center gap-2 shadow-[0_10px_24px_rgba(212,160,23,0.45)] hover:translate-y-[-1px] transition-all active:scale-95"
               >
                 {t('wizard.exerciseList.cta')}
               </button>
@@ -2567,7 +2567,7 @@ const WeightLossPage: React.FC = () => {
                       type="button"
                       aria-pressed={on}
                       onClick={() => toggleDietaryPreference(option.id)}
-                      className={`flex min-h-[58px] items-center gap-2 rounded-[16px] border-2 px-3 py-2 text-start text-[12.5px] font-bold transition-all ${on ? 'border-[#0F4C3A] bg-[#EAF3ED] text-[#0F4C3A]' : 'border-[#EFEBE4] bg-white text-[#6B7A75] hover:border-[#D4AF37]'}`}
+                      className={`flex min-h-[58px] items-center gap-2 rounded-[16px] border-2 px-3 py-2 text-start text-[12.5px] font-bold transition-all ${on ? 'border-[#0F4C3A] bg-[#EAF3ED] text-[#0F4C3A]' : 'border-[#EFEBE4] bg-white text-[#6B7A75] hover:border-[#D4A017]'}`}
                     >
                       <span className="text-[18px]">{option.emoji}</span>
                       <span className="min-w-0 flex-1">{language === 'ar' ? option.ar : option.en}</span>
@@ -2616,7 +2616,7 @@ const WeightLossPage: React.FC = () => {
                       type="button"
                       aria-pressed={on}
                       onClick={() => toggleHealthCondition(condition.id)}
-                      className={`flex min-h-[58px] items-center gap-3 rounded-[16px] border-2 px-4 py-3 text-start text-[13px] font-bold transition-all ${on ? 'border-[#0F4C3A] bg-[#EAF3ED] text-[#0F4C3A]' : 'border-[#EFEBE4] bg-white text-[#6B7A75] hover:border-[#D4AF37]'}`}
+                      className={`flex min-h-[58px] items-center gap-3 rounded-[16px] border-2 px-4 py-3 text-start text-[13px] font-bold transition-all ${on ? 'border-[#0F4C3A] bg-[#EAF3ED] text-[#0F4C3A]' : 'border-[#EFEBE4] bg-white text-[#6B7A75] hover:border-[#D4A017]'}`}
                     >
                       <span className="text-[18px]">{condition.emoji}</span>
                       <span className="flex-1">{language === 'ar' ? condition.ar : condition.en}</span>
@@ -2644,7 +2644,7 @@ const WeightLossPage: React.FC = () => {
                         setDietAffectingMedication(answer.value);
                         updateProfile({ dietAffectingMedication: answer.value });
                       }}
-                      className={`min-h-[50px] rounded-[14px] border-2 text-[14px] font-bold transition-all ${on ? 'border-[#0F4C3A] bg-[#0F4C3A] text-white' : 'border-[#EFEBE4] bg-white text-[#6B7A75] hover:border-[#D4AF37]'}`}
+                      className={`min-h-[50px] rounded-[14px] border-2 text-[14px] font-bold transition-all ${on ? 'border-[#0F4C3A] bg-[#0F4C3A] text-white' : 'border-[#EFEBE4] bg-white text-[#6B7A75] hover:border-[#D4A017]'}`}
                     >
                       {answer.label}
                     </button>
@@ -2769,7 +2769,7 @@ const WeightLossPage: React.FC = () => {
                           setRegionSel(r.id);
                           setCuisineSel(null);
                         }}
-                        className="rounded-[20px] border-2 border-[#EFEBE4] bg-white hover:border-[#D4AF37] p-4 flex flex-col items-center text-center cursor-pointer min-w-0 transition-all active:scale-95"
+                        className="rounded-[20px] border-2 border-[#EFEBE4] bg-white hover:border-[#D4A017] p-4 flex flex-col items-center text-center cursor-pointer min-w-0 transition-all active:scale-95"
                       >
                         <RegionMarker value={r.emoji} label={regionLabel(r)} className="text-[34px] leading-none" />
                         <span className="mt-2 text-[14px] font-extrabold leading-none truncate max-w-full text-[#0F4C3A]">{regionLabel(r)}</span>
@@ -2809,7 +2809,7 @@ const WeightLossPage: React.FC = () => {
                             chooseKitchen(k);
                             setCuisineSel(k.id);
                           }}
-                          className={`w-[calc(50%-6px)] sm:w-[calc(33.333%-8px)] rounded-[20px] border-2 p-4 flex flex-col items-center text-center cursor-pointer min-w-0 transition-all active:scale-95 ${on ? 'border-[#D4AF37] bg-[#FFFBEF] shadow-[0_0_0_4px_rgba(212,175,55,0.15)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
+                          className={`w-[calc(50%-6px)] sm:w-[calc(33.333%-8px)] rounded-[20px] border-2 p-4 flex flex-col items-center text-center cursor-pointer min-w-0 transition-all active:scale-95 ${on ? 'border-[#D4A017] bg-[#FFFBEF] shadow-[0_0_0_4px_rgba(212,160,23,0.15)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4A017]'}`}
                         >
                           <Flag countryCode={k.flag} alt={getKitchenCountry(k, language)} className="h-[34px] w-[44px]" />
                           <span className={`mt-2 text-[14px] font-extrabold leading-none truncate max-w-full text-[#0F4C3A]`}>{getKitchenCountry(k, language)}</span>
@@ -2821,7 +2821,7 @@ const WeightLossPage: React.FC = () => {
                           {k.id === 'peruvian' && <span className="mt-1 text-[10px] text-[#8A938E]">{t('kitchen.peruvian.description')}</span>}
                           {k.id === 'chilean' && <span className="mt-1 text-[10px] text-[#8A938E]">{t('kitchen.chilean.description')}</span>}
                           {k.sample && <span className="mt-1.5 text-[10.5px] text-[#8A938E] truncate max-w-full">🍽 {getDishName(k.sample, language)}</span>}
-                          <span className={`mt-2 text-[11px] font-bold px-2.5 py-1 rounded-full ${on ? 'bg-[#D4AF37] text-[#0F4C3A]' : 'bg-[#F4F1EB] text-[#6B7A75]'}`}>
+                          <span className={`mt-2 text-[11px] font-bold px-2.5 py-1 rounded-full ${on ? 'bg-[#D4A017] text-[#0F4C3A]' : 'bg-[#F4F1EB] text-[#6B7A75]'}`}>
                             {t('wizard.step3.dishCount').replace('{n}', String(kitchenCounts[k.id] ?? k.total))}
                           </span>
                           {on && <span className="mt-1.5 text-[11px] font-bold text-[#B8860B]">✓ {t('wizard.step2.auto')}</span>}
@@ -2845,7 +2845,7 @@ const WeightLossPage: React.FC = () => {
                   {(() => {
                     const k = kitchens.find((x) => x.id === cuisineSel);
                     return k ? (
-                      <div className="mt-3 rounded-[20px] border-2 border-[#D4AF37] bg-[#FFFBEF] p-4 flex flex-col items-center text-center">
+                      <div className="mt-3 rounded-[20px] border-2 border-[#D4A017] bg-[#FFFBEF] p-4 flex flex-col items-center text-center">
                         <Flag countryCode={k.flag} alt={getKitchenCountry(k, language)} className="h-[34px] w-[44px]" />
                         <span className="mt-2 text-[14px] font-extrabold leading-none truncate max-w-full text-[#0F4C3A]">{getKitchenCountry(k, language)}</span>
                         <span className="mt-1 text-[11px] text-[#6B7A75] leading-tight truncate max-w-full">{kitchenLabel(k)}</span>
@@ -2856,7 +2856,7 @@ const WeightLossPage: React.FC = () => {
                         {k.id === 'peruvian' && <span className="mt-1 text-[10px] text-[#8A938E]">{t('kitchen.peruvian.description')}</span>}
                         {k.id === 'chilean' && <span className="mt-1 text-[10px] text-[#8A938E]">{t('kitchen.chilean.description')}</span>}
                         {k.sample && <span className="mt-1.5 text-[10.5px] text-[#8A938E] truncate max-w-full">🍽 {getDishName(k.sample, language)}</span>}
-                        <span className="mt-2 text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#D4AF37] text-[#0F4C3A]">
+                        <span className="mt-2 text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#D4A017] text-[#0F4C3A]">
                           {t('wizard.step3.dishCount').replace('{n}', String(kitchenCounts[k.id] ?? k.total))}
                         </span>
                       </div>
@@ -2886,7 +2886,7 @@ const WeightLossPage: React.FC = () => {
                               key={r.id}
                               type="button"
                               onClick={() => setKitchenRegion(r.id)}
-                              className={`rounded-full border-2 px-3 py-1.5 text-[12px] font-bold flex items-center gap-1.5 transition-all active:scale-95 ${on ? 'border-[#D4AF37] bg-[#FFFBEF] text-[#0F4C3A] shadow-[0_0_0_3px_rgba(212,175,55,0.15)]' : 'border-[#EFEBE4] bg-white text-[#6B7A75] hover:border-[#D4AF37]'}`}
+                              className={`rounded-full border-2 px-3 py-1.5 text-[12px] font-bold flex items-center gap-1.5 transition-all active:scale-95 ${on ? 'border-[#D4A017] bg-[#FFFBEF] text-[#0F4C3A] shadow-[0_0_0_3px_rgba(212,160,23,0.15)]' : 'border-[#EFEBE4] bg-white text-[#6B7A75] hover:border-[#D4A017]'}`}
                             >
                               <RegionMarker value={r.emoji} label={language === 'ar' ? r.ar : r.en} />
                               <span>{language === 'ar' ? r.ar : r.en}</span>
@@ -2908,7 +2908,7 @@ const WeightLossPage: React.FC = () => {
                   type="button"
                   onClick={() => runAutoKitchen()}
                   disabled={autoBuilding}
-                  className={`w-full h-[56px] rounded-full bg-[#D4AF37] text-[#0F4C3A] font-extrabold text-[15px] flex items-center justify-center gap-2 shadow-[0_10px_24px_rgba(212,175,55,0.45)] transition-all ${autoBuilding ? 'opacity-70 cursor-wait' : 'hover:translate-y-[-1px] active:scale-95'}`}
+                  className={`w-full h-[56px] rounded-full bg-[#D4A017] text-[#0F4C3A] font-extrabold text-[15px] flex items-center justify-center gap-2 shadow-[0_10px_24px_rgba(212,160,23,0.45)] transition-all ${autoBuilding ? 'opacity-70 cursor-wait' : 'hover:translate-y-[-1px] active:scale-95'}`}
                 >
                   {autoBuilding ? (
                     <>
@@ -2982,7 +2982,7 @@ const WeightLossPage: React.FC = () => {
                       type="button"
                       aria-pressed={on}
                       onClick={() => selectWizardGoal(option.id)}
-                      className={`relative flex min-h-[118px] items-start gap-3 rounded-[18px] border-2 p-4 text-start transition-all ${on ? 'border-[#0F4C3A] bg-[#EAF3ED] shadow-[0_0_0_3px_rgba(15,76,58,0.08)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
+                      className={`relative flex min-h-[118px] items-start gap-3 rounded-[18px] border-2 p-4 text-start transition-all ${on ? 'border-[#0F4C3A] bg-[#EAF3ED] shadow-[0_0_0_3px_rgba(15,76,58,0.08)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4A017]'}`}
                     >
                       <span className="text-[25px] leading-none">{option.icon}</span>
                       <span className="min-w-0 flex-1">
@@ -3061,7 +3061,7 @@ const WeightLossPage: React.FC = () => {
                         setDietId(d.id);
                         updateProfile({ dietIntensity: d.id });
                       }}
-                      className={`relative rounded-[18px] border-2 p-4 text-start transition-all min-w-0 ${on ? 'border-[#D4AF37] bg-[#FFFBEF] shadow-[0_0_0_4px_rgba(212,175,55,0.15)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
+                      className={`relative rounded-[18px] border-2 p-4 text-start transition-all min-w-0 ${on ? 'border-[#D4A017] bg-[#FFFBEF] shadow-[0_0_0_4px_rgba(212,160,23,0.15)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4A017]'}`}
                     >
                       {idx === 1 && (
                         <span className="absolute -top-2.5 end-3 text-[9.5px] font-extrabold tracking-wide bg-[#0F4C3A] text-white px-2.5 py-0.5 rounded-full">
@@ -3070,7 +3070,7 @@ const WeightLossPage: React.FC = () => {
                       )}
                       <div className="flex items-center justify-between gap-2">
                         <span className="text-[18px] leading-none">{d.emoji}</span>
-                        {on && <span className="w-5 h-5 rounded-full bg-[#D4AF37] text-[#0F4C3A] flex items-center justify-center text-[11px] font-bold">✓</span>}
+                        {on && <span className="w-5 h-5 rounded-full bg-[#D4A017] text-[#0F4C3A] flex items-center justify-center text-[11px] font-bold">✓</span>}
                       </div>
                       <div className="mt-2 text-[14px] font-extrabold leading-tight">{intensityLabel(d.level)}</div>
                       <div className="mt-0.5 text-[11px] text-[#6B7A75] leading-snug">{intensityTag(d.level)}</div>
@@ -3174,7 +3174,7 @@ const WeightLossPage: React.FC = () => {
             <button type="button" onClick={viewMyPlan} disabled={autoBuilding} className="cta-calc mt-7 disabled:cursor-wait disabled:opacity-60">
               {autoBuilding ? (language === 'ar' ? 'جارٍ إعداد خطتك…' : 'Preparing your plan…') : (language === 'ar' ? 'عرض خطتي' : 'View My Plan')}
             </button>
-            <button type="button" onClick={startOver} className="mt-3 min-h-[48px] w-full rounded-[16px] border border-[#E5E0D5] bg-white text-[14px] font-bold text-[#6B7A75] hover:border-[#D4AF37]">
+            <button type="button" onClick={startOver} className="mt-3 min-h-[48px] w-full rounded-[16px] border border-[#E5E0D5] bg-white text-[14px] font-bold text-[#6B7A75] hover:border-[#D4A017]">
               {language === 'ar' ? 'البدء من جديد' : 'Start Over'}
             </button>
           </div>
@@ -3209,7 +3209,7 @@ const WeightLossPage: React.FC = () => {
                   <div className="text-[11px] text-[#8A938E] font-semibold shrink-0">{t('wizard.step5.dayOf').replace('{n}', String(selectedPlanDay))}</div>
                 </div>
                 <div className="mt-3 flex items-center gap-2">
-                  <button type="button" onClick={() => { setOpenMealAccordion(null); setSelectedPlanDay((s) => Math.max(1, s - 1)); }} className="w-9 h-9 rounded-full bg-white border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] hover:border-[#D4AF37] shrink-0">‹</button>
+                  <button type="button" onClick={() => { setOpenMealAccordion(null); setSelectedPlanDay((s) => Math.max(1, s - 1)); }} className="w-9 h-9 rounded-full bg-white border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] hover:border-[#D4A017] shrink-0">‹</button>
                   <div className="flex-1 flex gap-2 overflow-x-auto no-scrollbar justify-between min-w-0">
                     {[1, 2, 3, 4, 5, 6, 7].map((d) => {
                       const ad = d === selectedPlanDay;
@@ -3218,20 +3218,20 @@ const WeightLossPage: React.FC = () => {
                           key={d}
                           type="button"
                           onClick={() => { setOpenMealAccordion(null); setSelectedPlanDay(d); }}
-                          className={`relative w-9 h-9 min-w-[36px] rounded-xl flex items-center justify-center text-[13px] font-bold transition-all ${ad ? 'bg-[#D4AF37] text-[#0F4C3A] shadow-[0_4px_10px_rgba(212,175,55,0.4)]' : 'bg-white border border-[#E9E5DB] text-[#6B7A75] hover:border-[#D4AF37]'}`}
+                          className={`relative w-9 h-9 min-w-[36px] rounded-xl flex items-center justify-center text-[13px] font-bold transition-all ${ad ? 'bg-[#D4A017] text-[#0F4C3A] shadow-[0_4px_10px_rgba(212,160,23,0.4)]' : 'bg-white border border-[#E9E5DB] text-[#6B7A75] hover:border-[#D4A017]'}`}
                         >
                           <span className="num">{d}</span>
                         </button>
                       );
                     })}
                   </div>
-                  <button type="button" onClick={() => { setOpenMealAccordion(null); setSelectedPlanDay((s) => Math.min(7, s + 1)); }} className="w-9 h-9 rounded-full bg-white border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] hover:border-[#D4AF37] shrink-0">›</button>
+                  <button type="button" onClick={() => { setOpenMealAccordion(null); setSelectedPlanDay((s) => Math.min(7, s + 1)); }} className="w-9 h-9 rounded-full bg-white border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] hover:border-[#D4A017] shrink-0">›</button>
                 </div>
               </div>
             </div>
 
             <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-3 lg:grid-cols-3 lg:gap-4">
-              <div className="min-w-0 rounded-[22px] p-5 text-white relative overflow-hidden" style={{ background: 'linear-gradient(135deg,#D4AF37,#C9A032 70%,#b3922c)' }}>
+              <div className="min-w-0 rounded-[22px] p-5 text-white relative overflow-hidden" style={{ background: 'linear-gradient(135deg,#D4A017,#B8860B 70%,#b3922c)' }}>
                 <div className="text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#3a2f05]/80">{t('wizard.step5.dailyTarget')}</div>
                 <div className="mt-2 flex items-baseline gap-1">
                   <span className="num text-[34px] font-black text-[#0F4C3A] leading-none">{numbers!.targetCal}</span>
@@ -3260,7 +3260,7 @@ const WeightLossPage: React.FC = () => {
                   </div>
                   <button type="button" onClick={() => setWater((s) => Math.min(waterGoal, +(s + 0.25).toFixed(2)))} className="w-7 h-7 rounded-full bg-[#F4F1EB] border border-[#E9E5DB] flex items-center justify-center text-[#0F4C3A] text-[14px] font-bold">+</button>
                 </div>
-                <div className="mt-1.5 text-[11px] font-bold text-[#D4AF37]">+250ml</div>
+                <div className="mt-1.5 text-[11px] font-bold text-[#D4A017]">+250ml</div>
               </div>
 
               <div className="min-w-0 rounded-[22px] p-5 border border-[#E8E2D4] bg-white">
@@ -3269,7 +3269,7 @@ const WeightLossPage: React.FC = () => {
                   <span className="num w-9 h-9 rounded-full bg-[#FFF8E7] border border-[#E9D9A8] text-[#B8860B] flex items-center justify-center text-[14px] font-extrabold">{doneCount}/4</span>
                 </div>
                 <div className="mt-3 h-2.5 rounded-full bg-[#E9E5DB] overflow-hidden">
-                  <div className="h-full rounded-full transition-all" style={{ width: `${(doneCount / 4) * 100}%`, background: 'linear-gradient(90deg,#D4AF37,#C9A032)' }} />
+                  <div className="h-full rounded-full transition-all" style={{ width: `${(doneCount / 4) * 100}%`, background: 'linear-gradient(90deg,#D4A017,#B8860B)' }} />
                 </div>
                 <div className="mt-2 text-[12px] font-semibold text-[#6B7A75]">
                   {t('wizard.step5.completed').replace('{n}', String(doneCount))}
@@ -3356,17 +3356,17 @@ const WeightLossPage: React.FC = () => {
             </div>
 
             <div className="flex flex-wrap gap-2.5">
-              <button type="button" onClick={() => window.print()} className="rounded-full bg-white border border-[#E9E5DB] text-[#0F4C3A] px-5 py-2.5 text-[13px] font-bold flex items-center gap-1.5 hover:border-[#D4AF37] transition-all">
+              <button type="button" onClick={() => window.print()} className="rounded-full bg-white border border-[#E9E5DB] text-[#0F4C3A] px-5 py-2.5 text-[13px] font-bold flex items-center gap-1.5 hover:border-[#D4A017] transition-all">
                 <span>⬇️</span> {t('wizard.step5.downloadPdf')}
               </button>
-              <button type="button" onClick={() => setEmailOpen(true)} className="rounded-full bg-white border border-[#E9E5DB] text-[#0F4C3A] px-5 py-2.5 text-[13px] font-bold flex items-center gap-1.5 hover:border-[#D4AF37] transition-all">
+              <button type="button" onClick={() => setEmailOpen(true)} className="rounded-full bg-white border border-[#E9E5DB] text-[#0F4C3A] px-5 py-2.5 text-[13px] font-bold flex items-center gap-1.5 hover:border-[#D4A017] transition-all">
                 <span>✉️</span> {t('wizard.step5.emailPlan')}
               </button>
-              <button type="button" onClick={() => notify(t('wizard.toast.progress'))} className="rounded-full bg-white border border-[#E9E5DB] text-[#0F4C3A] px-5 py-2.5 text-[13px] font-bold flex items-center gap-1.5 hover:border-[#D4AF37] transition-all">
+              <button type="button" onClick={() => notify(t('wizard.toast.progress'))} className="rounded-full bg-white border border-[#E9E5DB] text-[#0F4C3A] px-5 py-2.5 text-[13px] font-bold flex items-center gap-1.5 hover:border-[#D4A017] transition-all">
                 <span>📊</span> {t('wizard.step5.progressTracker')}
               </button>
               {planType !== 'nutrition' && (
-                <button type="button" onClick={goEditExercises} className="rounded-full bg-white border border-[#E9E5DB] text-[#0F4C3A] px-5 py-2.5 text-[13px] font-bold flex items-center gap-1.5 hover:border-[#D4AF37] transition-all">
+                <button type="button" onClick={goEditExercises} className="rounded-full bg-white border border-[#E9E5DB] text-[#0F4C3A] px-5 py-2.5 text-[13px] font-bold flex items-center gap-1.5 hover:border-[#D4A017] transition-all">
                   <span>🏋️</span> {t('wizard.step5.exerciseChange')}
                 </button>
               )}
@@ -3453,7 +3453,7 @@ const WeightLossPage: React.FC = () => {
                 </div>
                 <div className="mt-4 flex flex-wrap gap-3">
                   <button type="button" onClick={() => document.getElementById('step5-daily-plan')?.scrollIntoView({ behavior: 'smooth', block: 'start' })} className="h-10 rounded-[14px] px-4 bg-[#0F4C3A] text-white text-[12px] font-bold hover:bg-[#0a3a2c] transition-all shrink-0">🗓️ {t('wizard.step5.viewFullPlan')}</button>
-                  <button type="button" onClick={() => { setShowPlan(false); setStep(7); }} className="h-10 rounded-[14px] px-4 bg-white border border-[#E3E0D8] text-[12px] font-bold text-[#0F4C3A] hover:border-[#D4AF37] transition-all shrink-0">🍳 {t('wizard.step5.changeCuisineBtn')}</button>
+                  <button type="button" onClick={() => { setShowPlan(false); setStep(7); }} className="h-10 rounded-[14px] px-4 bg-white border border-[#E3E0D8] text-[12px] font-bold text-[#0F4C3A] hover:border-[#D4A017] transition-all shrink-0">🍳 {t('wizard.step5.changeCuisineBtn')}</button>
                 </div>
               </div>
             )}
@@ -3464,7 +3464,7 @@ const WeightLossPage: React.FC = () => {
 
             <div className="no-print save-bar rounded-t-[20px]">
               <div className="flex items-center gap-2 min-w-0 flex-1">
-                <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse shrink-0" />
+                <span className="w-2 h-2 rounded-full bg-[#D4A017] animate-pulse shrink-0" />
                 <span className="text-[12px] font-bold text-[#6B7A75] truncate">{t('wizard.step5.completed').replace('{n}', String(doneCount))}</span>
               </div>
               <button type="button" onClick={() => notify(t('wizard.toast.closePreview'))} className="text-[12.5px] font-bold text-[#6B7A75] px-3 py-2 rounded-xl hover:bg-[#F4F1EB] shrink-0">
@@ -3489,7 +3489,7 @@ const WeightLossPage: React.FC = () => {
             <button
               type="button"
               onClick={toastUndo.action}
-              className="text-[#D4AF37] font-extrabold text-[12px] uppercase tracking-wide hover:underline shrink-0"
+              className="text-[#D4A017] font-extrabold text-[12px] uppercase tracking-wide hover:underline shrink-0"
             >
               {toastUndo.label}
             </button>
@@ -3523,7 +3523,7 @@ const WeightLossPage: React.FC = () => {
                     setEmailDone('');
                     setEmailSending(false);
                   }}
-                  className="mt-5 w-full h-[48px] rounded-[14px] bg-[#D4AF37] text-[#0F4C3A] text-[14px] font-extrabold"
+                  className="mt-5 w-full h-[48px] rounded-[14px] bg-[#D4A017] text-[#0F4C3A] text-[14px] font-extrabold"
                 >
                   Done
                 </button>
@@ -3539,7 +3539,7 @@ const WeightLossPage: React.FC = () => {
                   onChange={(e) => setEmailText(e.target.value)}
                   placeholder="you@example.com"
                   inputMode="email"
-                  className="mt-1.5 w-full h-[48px] rounded-[14px] border border-[#E9E5DB] px-4 outline-none focus:border-[#D4AF37] focus:ring-[3px] focus:ring-[#D4AF37]/20 bg-white"
+                  className="mt-1.5 w-full h-[48px] rounded-[14px] border border-[#E9E5DB] px-4 outline-none focus:border-[#D4A017] focus:ring-[3px] focus:ring-[#D4A017]/20 bg-white"
                 />
                 <div className="mt-5 flex gap-3">
                   <button
@@ -3553,7 +3553,7 @@ const WeightLossPage: React.FC = () => {
                     type="button"
                     onClick={sendEmail}
                     disabled={emailSending || !emailText.trim()}
-                    className={`flex-1 h-[48px] rounded-[14px] text-[14px] font-extrabold ${emailSending || !emailText.trim() ? 'bg-[#E9E5DB] text-[#A0A8A4]' : 'bg-[#D4AF37] text-[#0F4C3A]'}`}
+                    className={`flex-1 h-[48px] rounded-[14px] text-[14px] font-extrabold ${emailSending || !emailText.trim() ? 'bg-[#E9E5DB] text-[#A0A8A4]' : 'bg-[#D4A017] text-[#0F4C3A]'}`}
                   >
                     {emailSending ? 'Sending…' : 'Send'}
                   </button>

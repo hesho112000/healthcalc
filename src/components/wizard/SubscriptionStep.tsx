@@ -36,7 +36,7 @@ const Cell: React.FC<{ ok: boolean }> = ({ ok }) => (
 
 const SubscriptionStep: React.FC<SubscriptionStepProps> = ({ t, hasFull, onTrial, onPreview, onFree }) => (
   <div className="space-y-8">
-    <section className="rounded-[32px] border-2 border-[#D4AF37] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] p-8 text-center md:p-12">
+    <section className="rounded-[32px] border-2 border-[#D4A017] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] p-8 text-center md:p-12">
       <h2 className="text-2xl font-extrabold tracking-tight text-[#FDFBF7] md:text-[34px]">{t(tk('wizard.subscription.title'))}</h2>
       <p className="mt-3 text-sm text-[#A7C4B8] md:text-[15px]">{t(tk('wizard.subscription.subtitle'))}</p>
 
@@ -44,14 +44,14 @@ const SubscriptionStep: React.FC<SubscriptionStepProps> = ({ t, hasFull, onTrial
         <button
           type="button"
           onClick={onTrial}
-          className="w-full max-w-md rounded-full bg-[#D4AF37] px-8 py-4 font-extrabold text-[#0F4C3A] shadow-[0_14px_34px_-10px_rgba(212,175,55,0.75)] transition hover:bg-[#c9a52e]"
+          className="w-full max-w-md rounded-full bg-[#D4A017] px-8 py-4 font-extrabold text-[#0F4C3A] shadow-[0_14px_34px_-10px_rgba(212,160,23,0.75)] transition hover:bg-[#B8860B]"
         >
           {t(tk('wizard.subscription.trial'))}
         </button>
         <button
           type="button"
           onClick={onPreview}
-          className="w-full max-w-md rounded-full border border-[#D4AF37]/70 text-[#D4AF37] px-8 py-3.5 font-bold transition hover:bg-[#D4AF37]/10"
+          className="w-full max-w-md rounded-full border border-[#D4A017]/70 text-[#D4A017] px-8 py-3.5 font-bold transition hover:bg-[#D4A017]/10"
         >
           {t(tk('wizard.subscription.preview'))}
         </button>
@@ -64,7 +64,7 @@ const SubscriptionStep: React.FC<SubscriptionStepProps> = ({ t, hasFull, onTrial
         </button>
       </div>
       {hasFull && (
-        <p className="mt-5 rounded-full bg-[#FDFBF7]/10 px-5 py-2 text-xs font-bold text-[#D4AF37] inline-block">
+        <p className="mt-5 rounded-full bg-[#FDFBF7]/10 px-5 py-2 text-xs font-bold text-[#D4A017] inline-block">
           ✓ {t(tk('wizard.subscription.trial.sub'))}
         </p>
       )}
@@ -80,7 +80,7 @@ const SubscriptionStep: React.FC<SubscriptionStepProps> = ({ t, hasFull, onTrial
               {TIERS.map((tier) => (
                 <th key={tier} className="text-center font-extrabold text-[#0F4C3A] py-2">
                   {t(tierPlanKey(tier))}
-                  <span className="block text-xs font-bold text-[#D4AF37] tabular-nums">{TIER_PRICE[tier]}</span>
+                  <span className="block text-xs font-bold text-[#D4A017] tabular-nums">{TIER_PRICE[tier]}</span>
                 </th>
               ))}
             </tr>

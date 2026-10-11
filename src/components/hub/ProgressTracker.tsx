@@ -166,7 +166,7 @@ const ProgressTracker: React.FC<ProgressTrackerProps> = ({ paid, onUnlock, initi
                   onChange={(e) => setWeightInput(e.target.value)}
                   inputMode="decimal"
                   placeholder={String(initialWeight ?? 0)}
-                  className="w-32 rounded-xl border border-[#EFEBE4] bg-[#F4F1EB]/30 px-3 py-2 text-sm text-slate-900 outline-0 focus:border-[#D4AF37]"
+                  className="w-32 rounded-xl border border-[#EFEBE4] bg-[#F4F1EB]/30 px-3 py-2 text-sm text-slate-900 outline-0 focus:border-[#D4A017]"
                 />
                 <button type="button" onClick={logWeight} className="rounded-full bg-[#0F4C3A] text-[#FDFBF7] px-4 py-2.5 text-xs font-bold hover:bg-[#1a6b53] transition">{t('hub.logWeight')}</button>
               </div>
@@ -179,7 +179,7 @@ const ProgressTracker: React.FC<ProgressTrackerProps> = ({ paid, onUnlock, initi
                     key={m}
                     type="button"
                     onClick={() => setDay(todayKey, { mood: m })}
-                    className={`h-10 w-10 rounded-full border text-lg transition ${progress[todayKey]?.mood === m ? 'border-[#D4AF37] bg-[#D4AF37]/15 ring-1 ring-[#D4AF37]' : 'border-[#EFEBE4] bg-[#F4F1EB]/40 hover:bg-[#F4F1EB]'}`}
+                    className={`h-10 w-10 rounded-full border text-lg transition ${progress[todayKey]?.mood === m ? 'border-[#D4A017] bg-[#D4A017]/15 ring-1 ring-[#D4A017]' : 'border-[#EFEBE4] bg-[#F4F1EB]/40 hover:bg-[#F4F1EB]'}`}
                   >
                     {m}
                   </button>
@@ -209,7 +209,7 @@ const ProgressTracker: React.FC<ProgressTrackerProps> = ({ paid, onUnlock, initi
             </svg>
             <div className="flex justify-between">
               {chart.days.map((d) => (
-                <span key={d.date} className={`h-2.5 w-2.5 rounded-full ${(d.water ?? 0) > 0 ? 'bg-[#0F4C3A]' : 'bg-[#D4AF37]/50'}`} />
+                <span key={d.date} className={`h-2.5 w-2.5 rounded-full ${(d.water ?? 0) > 0 ? 'bg-[#0F4C3A]' : 'bg-[#D4A017]/50'}`} />
               ))}
             </div>
           </div>
@@ -227,12 +227,12 @@ const ProgressTracker: React.FC<ProgressTrackerProps> = ({ paid, onUnlock, initi
         )}
         </>
       ) : (
-        <div className="relative rounded-2xl border border-[#D4AF37]/40 bg-[#D4AF37]/5 p-6 overflow-hidden">
+        <div className="relative rounded-2xl border border-[#D4A017]/40 bg-[#D4A017]/5 p-6 overflow-hidden">
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
             <button
               type="button"
               onClick={onUnlock}
-              className="inline-flex items-center gap-2 rounded-full bg-[#FDFBF7] border border-[#D4AF37]/40 px-5 py-2.5 text-xs font-bold text-[#0F4C3A] shadow-sm hover:bg-[#F4F1EB] transition"
+              className="inline-flex items-center gap-2 rounded-full bg-[#FDFBF7] border border-[#D4A017]/40 px-5 py-2.5 text-xs font-bold text-[#0F4C3A] shadow-sm hover:bg-[#F4F1EB] transition"
             >
               <Lock size={14} />
               {t('hub.viewFeatures')}

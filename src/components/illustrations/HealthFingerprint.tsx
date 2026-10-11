@@ -17,7 +17,7 @@ const HealthFingerprint: React.FC = () => (
 
     <circle cx="250" cy="250" r="238" fill="url(#fp-glow)" />
 
-    <g stroke="#D4AF37" strokeWidth="2" strokeDasharray="4 6" fill="none" opacity="0.7">
+    <g stroke="#D4A017" strokeWidth="2" strokeDasharray="4 6" fill="none" opacity="0.7">
       <line x1="138" y1="120" x2="176" y2="170" />
       <line x1="362" y1="120" x2="324" y2="170" />
       <line x1="138" y1="380" x2="176" y2="332" />
@@ -28,7 +28,7 @@ const HealthFingerprint: React.FC = () => (
       className="animate-pulse-line"
       d="M118 236 C 158 146, 214 150, 250 236 C 286 322, 342 326, 382 236"
       fill="none"
-      stroke="#D4AF37"
+      stroke="#D4A017"
       strokeWidth="6"
       strokeLinecap="round"
     />
@@ -42,22 +42,22 @@ const HealthFingerprint: React.FC = () => (
     />
 
     <g className="animate-float-slow" style={{ animationDelay: '0s' }}>
-      <circle cx="110" cy="92" r="22" fill="#FFFFFF" stroke="#D4AF37" strokeWidth="2" />
+      <circle cx="110" cy="92" r="22" fill="#FFFFFF" stroke="#D4A017" strokeWidth="2" />
       <text x="110" y="100" textAnchor="middle" fontSize="26">🩸</text>
     </g>
 
     <g className="animate-float-slow" style={{ animationDelay: '1.2s' }}>
-      <circle cx="390" cy="92" r="22" fill="#FFFFFF" stroke="#D4AF37" strokeWidth="2" />
+      <circle cx="390" cy="92" r="22" fill="#FFFFFF" stroke="#D4A017" strokeWidth="2" />
       <text x="390" y="100" textAnchor="middle" fontSize="26">❤️</text>
     </g>
 
     <g className="animate-float-slow" style={{ animationDelay: '2.1s' }}>
-      <circle cx="110" cy="408" r="22" fill="#FFFFFF" stroke="#D4AF37" strokeWidth="2" />
+      <circle cx="110" cy="408" r="22" fill="#FFFFFF" stroke="#D4A017" strokeWidth="2" />
       <text x="110" y="416" textAnchor="middle" fontSize="26">⚖️</text>
     </g>
 
     <g className="animate-float-slow" style={{ animationDelay: '0.9s' }}>
-      <circle cx="390" cy="408" r="22" fill="#FFFFFF" stroke="#D4AF37" strokeWidth="2" />
+      <circle cx="390" cy="408" r="22" fill="#FFFFFF" stroke="#D4A017" strokeWidth="2" />
       <text x="390" y="416" textAnchor="middle" fontSize="26">🦶</text>
     </g>
   </svg>

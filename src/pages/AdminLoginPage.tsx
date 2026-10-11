@@ -57,7 +57,7 @@ const AdminLoginPage: React.FC = () => {
                   setError(false);
                 }}
                 placeholder={t('admin.login.password')}
-                className="mt-2 w-full rounded-2xl border border-transparent bg-[#F4F1EB] px-4 py-3.5 text-base text-[#0F4C3A] placeholder-[#94A3B8] outline-none transition-all duration-200 focus:border-[#D4AF37] focus:bg-[#FFF] focus:ring-2 focus:ring-[rgba(212,175,55,0.4)]"
+                className="mt-2 w-full rounded-2xl border border-transparent bg-[#F4F1EB] px-4 py-3.5 text-base text-[#0F4C3A] placeholder-[#94A3B8] outline-none transition-all duration-200 focus:border-[#D4A017] focus:bg-[#FFF] focus:ring-2 focus:ring-[rgba(212,160,23,0.4)]"
               />
             </label>
 
@@ -67,7 +67,7 @@ const AdminLoginPage: React.FC = () => {
 
             <button
               type="submit"
-              className="mt-5 w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-[#D4AF37] text-[#0F4C3A] hover:bg-[#c9a12f] shadow-[0_10px_26px_rgba(212,175,55,0.35)] px-6 py-3.5 text-sm font-extrabold transition-all"
+              className="mt-5 w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-[#D4A017] text-[#0F4C3A] hover:bg-[#c9a12f] shadow-[0_10px_26px_rgba(212,160,23,0.35)] px-6 py-3.5 text-sm font-extrabold transition-all"
             >
               <KeyRound size={18} strokeWidth={2.2} />
               {t('admin.login.unlock')}

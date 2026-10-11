@@ -57,7 +57,7 @@ function whrRisk(g: 'male' | 'female', whr: number): string {
   return 'fcWhrLevelHigh';
 }
 
-const HR_COLORS = ['#0F4C3A', '#D4AF37', '#fb923c', '#ef4444'];
+const HR_COLORS = ['#0F4C3A', '#D4A017', '#fb923c', '#ef4444'];
 const riskColor = (k: string) => (k === 'fcWhrLevelLow' ? '#0F4C3A' : k === 'fcWhrLevelModerate' ? '#f59e0b' : '#ef4444');
 const vo2Color = (k: string) => (k === 'fcVo2Poor' ? '#ef4444' : k === 'fcVo2Fair' ? '#f59e0b' : k === 'fcVo2Good' ? '#0F4C3A' : k === 'fcVo2Excellent' ? '#3b82f6' : '#8b5cf6');
 const bfColor = (k: string) => (k === 'fcBfLevelObese' ? '#ef4444' : k === 'fcBfLevelAverage' ? '#f59e0b' : '#0F4C3A');
@@ -206,12 +206,12 @@ const FitnessPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-16">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-10 items-center">
             <div className="page-hero-copy">
-              <span className="block text-[12px] font-extrabold uppercase tracking-[2px] text-[#D4AF37] mb-3">
+              <span className="block text-[12px] font-extrabold uppercase tracking-[2px] text-[#D4A017] mb-3">
                 {t('fitnessPage.eyebrow')}
               </span>
               <h1 className="text-4xl md:text-[48px] font-extrabold tracking-tight leading-[1.08]">
                 <span className="block text-[#0F4C3A]">{t('fitnessPage.titleLine1')}</span>
-                <span className="block text-[#D4AF37]">{t('fitnessPage.titleLine2')}</span>
+                <span className="block text-[#D4A017]">{t('fitnessPage.titleLine2')}</span>
               </h1>
               <p className="mt-4 text-lg text-[#6B7A75] leading-relaxed">{t('fitnessPage.subtitle')}</p>
               <div className="flex flex-wrap gap-2 mt-6">
@@ -336,15 +336,15 @@ const FitnessPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="rounded-3xl p-7 border border-[#D4AF37] shadow-[0_12px_30px_rgba(15,76,58,0.18)]" style={{ background: 'linear-gradient(135deg,#0F4C3A,#14532D 60%,#1f6b52)' }}>
+              <div className="rounded-3xl p-7 border border-[#D4A017] shadow-[0_12px_30px_rgba(15,76,58,0.18)]" style={{ background: 'linear-gradient(135deg,#0F4C3A,#14532D 60%,#1f6b52)' }}>
                 <div className="flex items-center justify-between">
                   <span className="inline-flex items-center gap-2.5">
-                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/10 text-[#D4AF37]"><Flame size={20} strokeWidth={2.3} /></span>
+                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/10 text-[#D4A017]"><Flame size={20} strokeWidth={2.3} /></span>
                     <span className="text-[12px] font-extrabold uppercase tracking-[0.14em] text-white/80">TDEE</span>
                   </span>
                 </div>
                 <div className="mt-4 flex items-baseline gap-2">
-                  <span className="num text-[40px] leading-none font-extrabold text-[#D4AF37]">{metrics.maintain.toLocaleString()}</span>
+                  <span className="num text-[40px] leading-none font-extrabold text-[#D4A017]">{metrics.maintain.toLocaleString()}</span>
                   <span className="text-[12px] font-semibold text-white/70">kcal/day</span>
                 </div>
                 <div className="mt-4 flex gap-2">
@@ -418,7 +418,7 @@ const FitnessPage: React.FC = () => {
             <div className={`${resultCard} mt-5`} style={{ direction: 'ltr' }}>
               <div className="flex items-center justify-between">
                 <span className="inline-flex items-center gap-2.5">
-                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[rgba(212,175,55,0.18)] text-[#B8860B]"><HeartPulse size={20} strokeWidth={2.3} /></span>
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[rgba(212,160,23,0.18)] text-[#B8860B]"><HeartPulse size={20} strokeWidth={2.3} /></span>
                   <span className="text-[12px] font-extrabold uppercase tracking-[0.14em] text-[#6B7A75]">{t('fcHrTitle')}</span>
                 </span>
                 <span className="rounded-full bg-[#F4F1EB] text-[#0F4C3A] text-[12px] font-extrabold px-4 py-1.5">

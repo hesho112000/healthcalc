@@ -32,7 +32,7 @@ const StickyPlanBar: React.FC<StickyPlanBarProps> = ({ subtitle, onSave, onDownl
           <button
             type="button"
             onClick={onSave}
-            className="shrink-0 rounded-full bg-[#D4AF37] px-7 py-3 text-sm font-extrabold text-[#0F4C3A] shadow-[0_10px_24px_-8px_rgba(212,175,55,0.6)] transition hover:bg-[#c9a52e]"
+            className="shrink-0 rounded-full bg-[#D4A017] px-7 py-3 text-sm font-extrabold text-[#0F4C3A] shadow-[0_10px_24px_-8px_rgba(212,160,23,0.6)] transition hover:bg-[#B8860B]"
           >
             {t(tk('advanced.finalCta.cta'))}
           </button>

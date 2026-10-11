@@ -111,7 +111,7 @@ const Header: React.FC = () => {
                 aria-haspopup="menu"
                 aria-expanded={adminOpen}
                 onClick={() => setAdminOpen((o) => !o)}
-                className="inline-flex items-center gap-1 rounded-full bg-[#D4AF37] text-[#0F4C3A] px-2.5 py-1 text-[10px] font-extrabold tracking-wide whitespace-nowrap hover:shadow-[0_4px_14px_rgba(212,175,55,0.45)] transition-shadow"
+                className="inline-flex items-center gap-1 rounded-full bg-[#D4A017] text-[#0F4C3A] px-2.5 py-1 text-[10px] font-extrabold tracking-wide whitespace-nowrap hover:shadow-[0_4px_14px_rgba(212,160,23,0.45)] transition-shadow"
               >
                 🔑 {t('admin.badge.label')}
               </button>
@@ -189,9 +189,9 @@ const Header: React.FC = () => {
                   aria-haspopup="menu"
                   aria-expanded={userOpen}
                   onClick={() => setUserOpen((o) => !o)}
-                  className="inline-flex items-center gap-2 rounded-full bg-[#F4F1EB] text-[#0F4C3A] px-2 py-1 text-xs font-bold border border-[#EFEBE4] hover:border-[#D4AF37] transition-colors whitespace-nowrap"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#F4F1EB] text-[#0F4C3A] px-2 py-1 text-xs font-bold border border-[#EFEBE4] hover:border-[#D4A017] transition-colors whitespace-nowrap"
                 >
-                  <span className="w-6 h-6 rounded-full bg-[#D4AF37] text-[#0F4C3A] text-[10px] font-extrabold flex items-center justify-center shrink-0">
+                  <span className="w-6 h-6 rounded-full bg-[#D4A017] text-[#0F4C3A] text-[10px] font-extrabold flex items-center justify-center shrink-0">
                     {displayName.charAt(0)?.toUpperCase() || '🩺'}
                   </span>
                   <span className="max-w-[110px] truncate">{displayName}</span>

@@ -26,7 +26,7 @@ const Ring: React.FC<{ goal: Goal }> = ({ goal }) => {
   const pct = ring(goal.current, goal.target);
   const r = 26;
   const c = 2 * Math.PI * r;
-  const statusColor = pct >= 100 ? '#0F4C3A' : pct >= 75 ? '#D4AF37' : '#B91C1C';
+  const statusColor = pct >= 100 ? '#0F4C3A' : pct >= 75 ? '#D4A017' : '#B91C1C';
   return (
     <div className="flex flex-col items-center gap-1.5">
       <div className="relative">
@@ -79,9 +79,9 @@ const DailyGoalsCard: React.FC<DailyGoalsCardProps> = ({ baseCalories }) => {
   const goals: Goal[] = useMemo(
     () => [
       { key: 'calories', label: t('hub.goals.calories'), target: baseCalories ?? 2100, current: totals.calories, unit: '', color: '#0F4C3A' },
-      { key: 'protein', label: t('hub.goals.protein'), target: 145, current: totals.protein, unit: 'g', color: '#D4AF37' },
+      { key: 'protein', label: t('hub.goals.protein'), target: 145, current: totals.protein, unit: 'g', color: '#D4A017' },
       { key: 'carbs', label: t('hub.goals.carbs'), target: 260, current: totals.carbs, unit: 'g', color: '#0F4C3A' },
-      { key: 'fat', label: t('hub.goals.fat'), target: 70, current: totals.fat, unit: 'g', color: '#D4AF37' },
+      { key: 'fat', label: t('hub.goals.fat'), target: 70, current: totals.fat, unit: 'g', color: '#D4A017' },
     ],
     [baseCalories, totals, t],
   );
@@ -101,7 +101,7 @@ const DailyGoalsCard: React.FC<DailyGoalsCardProps> = ({ baseCalories }) => {
       </div>
       <div className="mt-4 rounded-2xl bg-[#F4F1EB]/60 px-4 py-3 flex items-center justify-between">
         <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#6B7A75]">
-          <Flame size={14} className="text-[#D4AF37]" />
+          <Flame size={14} className="text-[#D4A017]" />
           {tt(t, 'hub.goals.remaining', { n: String(remaining) })}
         </span>
         <span className="text-xs font-bold text-[#0F4C3A] tabular-nums">

@@ -283,12 +283,12 @@ const AdminDashboardPage: React.FC = () => {
       <header className="border-b border-[#0B3A2B] bg-[#0F4C3A]">
         <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-3 px-4 py-4">
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FDFBF7]/10 text-[#D4AF37]">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FDFBF7]/10 text-[#D4A017]">
               <ShieldCheck size={20} />
             </span>
             <div>
               <h1 className="text-xl font-extrabold text-[#FDFBF7] leading-tight">{t('admin.title')}</h1>
-              <p className="text-xs font-bold text-[#D4AF37]">
+              <p className="text-xs font-bold text-[#D4A017]">
                 {t('admin.loggedInAs')} · {t('admin.badge.label')}
               </p>
             </div>
@@ -296,7 +296,7 @@ const AdminDashboardPage: React.FC = () => {
           <button
             type="button"
             onClick={handleLogout}
-            className="inline-flex items-center gap-2 rounded-xl bg-[#D4AF37] text-[#0F4C3A] px-4 py-2 text-sm font-extrabold shadow-[0_8px_20px_rgba(212,175,55,0.35)] hover:bg-[#c9a12f] transition-colors"
+            className="inline-flex items-center gap-2 rounded-xl bg-[#D4A017] text-[#0F4C3A] px-4 py-2 text-sm font-extrabold shadow-[0_8px_20px_rgba(212,160,23,0.35)] hover:bg-[#c9a12f] transition-colors"
           >
             <LogOut size={16} strokeWidth={2.5} /> {t('admin.logout')}
           </button>
@@ -309,7 +309,7 @@ const AdminDashboardPage: React.FC = () => {
         <main className="min-w-0 flex-1">
           {loading ? (
             <div className="flex min-h-[50vh] items-center justify-center">
-              <div className="h-9 w-9 animate-spin rounded-full border-2 border-[#D4AF37] border-t-transparent" />
+              <div className="h-9 w-9 animate-spin rounded-full border-2 border-[#D4A017] border-t-transparent" />
             </div>
           ) : (
             <>

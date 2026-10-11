@@ -59,7 +59,7 @@ const CuisineSelector: React.FC<CuisineSelectorProps> = ({ paid, onUnlock, onNot
     <section className="rounded-3xl border border-[#EFEBE4] bg-white p-6 md:p-8">
       <div className="flex flex-wrap items-center justify-between gap-5">
         <div>
-          <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4AF37]">{t(tk('hub.cuisine'))}</span>
+          <span className="text-[11px] font-extrabold uppercase tracking-[2px] text-[#D4A017]">{t(tk('hub.cuisine'))}</span>
           <p className="mt-1 text-sm text-[#6B7A75]">{t(tk('hub.cuisine.change'))}</p>
         </div>
         <div className="flex flex-wrap gap-2">

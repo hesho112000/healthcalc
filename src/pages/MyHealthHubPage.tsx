@@ -264,11 +264,11 @@ const MyHealthHubPage: React.FC = () => {
   @page { margin: 24px; }
   body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; color: #0F4C3A; margin: 0; padding: 32px; background: #FDFBF7; }
   h1 { font-size: 24px; margin: 0 0 4px; }
-  h3 { font-size: 11px; margin: 0 0 8px; color: #D4AF37; text-transform: uppercase; letter-spacing: 1px; }
+  h3 { font-size: 11px; margin: 0 0 8px; color: #D4A017; text-transform: uppercase; letter-spacing: 1px; }
   p { color: #6B7A75; font-size: 13px; margin: 0 0 16px; }
   .card { background: #fff; border: 1px solid #EFEBE4; border-radius: 16px; padding: 20px; margin-top: 16px; }
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  th { text-align: start; color: #0F4C3A; border-bottom: 2px solid #D4AF37; padding: 8px; }
+  th { text-align: start; color: #0F4C3A; border-bottom: 2px solid #D4A017; padding: 8px; }
   td { padding: 8px; border-bottom: 1px solid #EFEBE4; text-align: start; }
 </style>
 </head>
@@ -326,7 +326,7 @@ const MyHealthHubPage: React.FC = () => {
           <p className="text-base text-[#6B7A75] mb-8 leading-relaxed">{t('hub.noData')}</p>
           <Link
             to="/advanced-care/wizard"
-            className="inline-flex items-center gap-2 bg-[#D4AF37] text-[#0F4C3A] font-bold rounded-full px-8 py-3.5 hover:bg-[#c9a52e] transition"
+            className="inline-flex items-center gap-2 bg-[#D4A017] text-[#0F4C3A] font-bold rounded-full px-8 py-3.5 hover:bg-[#B8860B] transition"
           >
             {t('hub.startWizard')}
             <ArrowRight size={18} strokeWidth={2.5} className="rtl:rotate-180" />
@@ -343,13 +343,13 @@ const MyHealthHubPage: React.FC = () => {
       <header className="max-w-6xl mx-auto px-4 sm:px-6 pt-12">
         <Link
           to="/advanced-care"
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F4C3A] hover:text-[#D4AF37] transition-colors mb-4"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F4C3A] hover:text-[#D4A017] transition-colors mb-4"
         >
           <ArrowRight size={14} strokeWidth={2.5} className="rtl:rotate-180" />
           {t('hub.backToUniverse')}
         </Link>
         <div className="flex flex-wrap items-center gap-2">
-          <span className="inline-flex items-center gap-2 text-xs font-bold text-[#0F4C3A] bg-[#D4AF37]/15 rounded-full px-3 py-1.5">
+          <span className="inline-flex items-center gap-2 text-xs font-bold text-[#0F4C3A] bg-[#D4A017]/15 rounded-full px-3 py-1.5">
             <Sparkles size={13} />
             {paid ? t('hub.badge.member') : t('hub.badge.free')}
           </span>
@@ -387,10 +387,10 @@ const MyHealthHubPage: React.FC = () => {
             <button
               type="button"
               onClick={scrollToLabs}
-              className="w-full flex items-center justify-between gap-3 rounded-3xl border border-[#EFEBE4] bg-white px-5 py-4 text-start shadow-[0_8px_24px_rgba(15,76,58,0.06)] hover:border-[#D4AF37]/60 transition"
+              className="w-full flex items-center justify-between gap-3 rounded-3xl border border-[#EFEBE4] bg-white px-5 py-4 text-start shadow-[0_8px_24px_rgba(15,76,58,0.06)] hover:border-[#D4A017]/60 transition"
             >
               <span className="inline-flex items-center gap-2.5 text-sm font-extrabold text-[#0F4C3A]">
-                <span className="h-9 w-9 rounded-xl bg-[#F4F1EB] text-[#D4AF37] flex items-center justify-center">
+                <span className="h-9 w-9 rounded-xl bg-[#F4F1EB] text-[#D4A017] flex items-center justify-center">
                   <FlaskConical size={17} />
                 </span>
                 {t('hub.quickActions.labLink')}
@@ -436,7 +436,7 @@ const MyHealthHubPage: React.FC = () => {
           initialWeight={profile?.weight}
         />
 
-        <section className="rounded-3xl bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] border-2 border-[#D4AF37] p-6 md:p-8 text-[#FDFBF7]">
+        <section className="rounded-3xl bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] border-2 border-[#D4A017] p-6 md:p-8 text-[#FDFBF7]">
           <div className="flex flex-col md:flex-row md:items-center gap-4">
             <div className="md:me-auto">
               <h2 className="text-lg font-extrabold">{t('hub.subtitle')}</h2>
@@ -446,7 +446,7 @@ const MyHealthHubPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => (paid ? adjustPlan() : gate('hubAllDays'))}
-                className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-extrabold transition ${paid ? 'bg-[#0F4C3A] text-[#FDFBF7] ring-2 ring-[#FDFBF7]/30 hover:ring-[#D4AF37]' : 'bg-white/10 text-[#FDFBF7]'}`}
+                className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-extrabold transition ${paid ? 'bg-[#0F4C3A] text-[#FDFBF7] ring-2 ring-[#FDFBF7]/30 hover:ring-[#D4A017]' : 'bg-white/10 text-[#FDFBF7]'}`}
               >
                 {!paid && <Lock size={15} />}
                 {t('hub.adjustPlan')}
@@ -454,7 +454,7 @@ const MyHealthHubPage: React.FC = () => {
               <button
                 type="button"
                 onClick={handleDownloadPdf}
-                className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-extrabold transition ${paid ? 'bg-[#D4AF37] text-[#0F4C3A] hover:bg-[#c9a52e]' : 'bg-white/10 text-[#FDFBF7]'}`}
+                className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-extrabold transition ${paid ? 'bg-[#D4A017] text-[#0F4C3A] hover:bg-[#B8860B]' : 'bg-white/10 text-[#FDFBF7]'}`}
               >
                 {!paid && <Lock size={15} />}
                 <FileDown size={16} />
@@ -464,7 +464,7 @@ const MyHealthHubPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => gate('hubAllDays')}
-                  className="inline-flex items-center gap-2 rounded-full bg-[#D4AF37] text-[#0F4C3A] px-6 py-3 text-sm font-extrabold hover:bg-[#c9a52e] shadow-[0_10px_26px_rgba(212,175,55,0.35)] transition"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#D4A017] text-[#0F4C3A] px-6 py-3 text-sm font-extrabold hover:bg-[#B8860B] shadow-[0_10px_26px_rgba(212,160,23,0.35)] transition"
                 >
                   <Play size={16} fill="currentColor" />
                   {t('hub.cta.trial')}

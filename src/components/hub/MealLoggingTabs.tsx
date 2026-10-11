@@ -61,7 +61,7 @@ const MealLoggingTabs: React.FC = () => {
             {bySlot[slot.key].length > 0 && (
               <span
                 className={`ms-1 inline-flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[10px] font-extrabold tabular-nums ${
-                  activeSlot === slot.key ? 'bg-[#D4AF37] text-[#0F4C3A]' : 'bg-[#D4AF37]/20 text-[#8A6D1C]'
+                  activeSlot === slot.key ? 'bg-[#D4A017] text-[#0F4C3A]' : 'bg-[#D4A017]/20 text-[#8A6D1C]'
                 }`}
               >
                 {bySlot[slot.key].length}
@@ -83,7 +83,7 @@ const MealLoggingTabs: React.FC = () => {
           <button
             type="button"
             onClick={() => setModalOpen(true)}
-            className="w-full rounded-2xl border-2 border-dashed border-[#D4AF37]/50 bg-[#D4AF37]/5 px-4 py-6 text-xs font-bold text-[#8A6D1C] hover:bg-[#D4AF37]/10 transition"
+            className="w-full rounded-2xl border-2 border-dashed border-[#D4A017]/50 bg-[#D4A017]/5 px-4 py-6 text-xs font-bold text-[#8A6D1C] hover:bg-[#D4A017]/10 transition"
           >
             {t('hub.meals.empty')} — {t('hub.meals.addFood')}
           </button>

@@ -61,7 +61,7 @@ const HealthScoreCard: React.FC<HealthScoreCardProps> = ({ conditions }) => {
 
   const barColor = (score: number): string => {
     if (score < 50) return '#B91C1C';
-    if (score <= 75) return '#D4AF37';
+    if (score <= 75) return '#D4A017';
     return '#0F4C3A';
   };
 
@@ -72,12 +72,12 @@ const HealthScoreCard: React.FC<HealthScoreCardProps> = ({ conditions }) => {
         {t('hub.healthScore')}
       </h3>
 
-      <div className="rounded-2xl bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] border-2 border-[#D4AF37] p-5 text-[#FDFBF7]">
+      <div className="rounded-2xl bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] border-2 border-[#D4A017] p-5 text-[#FDFBF7]">
         <div className="flex items-center justify-between text-xs text-[#FDFBF7]/80">
           <span className="font-bold">{t('hub.scores.overall')}</span>
-          <Sparkles size={15} className="text-[#D4AF37]" />
+          <Sparkles size={15} className="text-[#D4A017]" />
         </div>
-        <div className="mt-2 text-4xl font-extrabold text-[#D4AF37] tabular-nums">
+        <div className="mt-2 text-4xl font-extrabold text-[#D4A017] tabular-nums">
           {overallScore === null ? '—' : overallScore}
         </div>
         {overallScore === null ? (
@@ -87,7 +87,7 @@ const HealthScoreCard: React.FC<HealthScoreCardProps> = ({ conditions }) => {
             <p className="mt-1 text-xs font-bold text-[#FDFBF7]/90">{statusLabel(overallScore)}</p>
             <div className="mt-3 h-2.5 rounded-full bg-[#FDFBF7]/15 overflow-hidden">
               <div
-                className="h-full rounded-full bg-[#D4AF37] transition-all duration-500"
+                className="h-full rounded-full bg-[#D4A017] transition-all duration-500"
                 style={{ width: `${overallScore}%` }}
               />
             </div>
@@ -100,7 +100,7 @@ const HealthScoreCard: React.FC<HealthScoreCardProps> = ({ conditions }) => {
           <p className="text-xs text-[#6B7A75]">{t('score.noData')}</p>
         )}
         {rows.map(({ organ, score }) => {
-          const color = score === null ? '#D4AF37' : barColor(score);
+          const color = score === null ? '#D4A017' : barColor(score);
           return (
             <div key={organ.id}>
               <div className="flex items-center justify-between text-xs">

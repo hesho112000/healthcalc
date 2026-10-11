@@ -36,7 +36,7 @@ const ArticlePage: React.FC = () => {
           <h1 className="text-2xl font-extrabold text-gray-900">{t('article.notFound')}</h1>
           <Link
             to="/resources"
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#D4AF37] px-6 py-3 text-sm font-extrabold text-[#0F4C3A] hover:bg-[#C9A032] transition-colors"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#D4A017] px-6 py-3 text-sm font-extrabold text-[#0F4C3A] hover:bg-[#B8860B] transition-colors"
           >
             <ArrowLeft size={16} className="rtl:rotate-180" />
             {t('article.backToResources')}
@@ -70,7 +70,7 @@ const ArticlePage: React.FC = () => {
       </Helmet>
       <div className="max-w-[720px] mx-auto px-6 pt-16 pb-20">
         <div className="flex flex-wrap items-center gap-2 text-sm text-[#6B7A75]">
-          <Link to="/resources" className="font-bold text-[#0F4C3A] hover:text-[#D4AF37] transition-colors">
+          <Link to="/resources" className="font-bold text-[#0F4C3A] hover:text-[#D4A017] transition-colors">
             {t('nav.resources')}
           </Link>
           <span aria-hidden="true">/</span>
@@ -79,7 +79,7 @@ const ArticlePage: React.FC = () => {
 
         <Link
           to="/resources"
-          className="mt-6 inline-flex items-center gap-2 text-sm font-extrabold text-[#0F4C3A] hover:text-[#D4AF37] transition-colors"
+          className="mt-6 inline-flex items-center gap-2 text-sm font-extrabold text-[#0F4C3A] hover:text-[#D4A017] transition-colors"
         >
           <ArrowLeft size={16} className="rtl:rotate-180" />
           {t('article.backToResources')}
@@ -99,7 +99,7 @@ const ArticlePage: React.FC = () => {
           </h1>
           <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-[#6B7A75]">
             <span className="inline-flex items-center gap-1.5 font-semibold">
-              <Clock size={15} className="text-[#D4AF37]" />
+              <Clock size={15} className="text-[#D4A017]" />
               {article.readTime} {t('article.readTime')}
             </span>
             <span className="font-semibold">{article.publishedAt}</span>
@@ -130,7 +130,7 @@ const ArticlePage: React.FC = () => {
               ),
               li: ({ children }) => (
                 <li className="flex items-start gap-2.5 text-[15px] leading-relaxed text-[#4A5A55]">
-                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#D4AF37]" />
+                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#D4A017]" />
                   <span>{children}</span>
                 </li>
               ),
@@ -143,14 +143,14 @@ const ArticlePage: React.FC = () => {
         </article>
 
         <aside className="mt-12 rounded-[28px] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] p-7 sm:p-8 shadow-[0_18px_44px_rgba(15,76,58,0.18)]">
-          <div className="flex items-center gap-2 text-[#D4AF37]">
+          <div className="flex items-center gap-2 text-[#D4A017]">
             <Check size={18} />
             <h2 className="text-lg font-extrabold uppercase tracking-wide">{t('article.keyTakeaways')}</h2>
           </div>
           <ul className="mt-5 space-y-3.5">
             {takeaways.map((point, i) => (
               <li key={i} className="flex items-start gap-3 text-[15px] leading-relaxed text-[#FDFBF7]">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#D4AF37]" />
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#D4A017]" />
                 <span>{point}</span>
               </li>
             ))}
@@ -179,15 +179,15 @@ const ArticlePage: React.FC = () => {
         </section>
 
         {ENABLE_PREMIUM && <section className="mt-12 relative overflow-hidden rounded-[32px] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] px-8 py-12 text-center shadow-[0_24px_60px_rgba(15,76,58,0.25)]">
-          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(70%_140%_at_50%_0%,rgba(212,175,55,0.18),rgba(255,255,255,0)_60%)]" />
+          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(70%_140%_at_50%_0%,rgba(212,160,23,0.18),rgba(255,255,255,0)_60%)]" />
           <div className="relative">
-            <div className="mx-auto w-12 h-12 rounded-2xl bg-[#D4AF37] text-[#0F4C3A] flex items-center justify-center">
+            <div className="mx-auto w-12 h-12 rounded-2xl bg-[#D4A017] text-[#0F4C3A] flex items-center justify-center">
               <TrendingUp size={22} />
             </div>
             <h3 className="mt-4 text-2xl font-extrabold text-[#FDFBF7] tracking-tight">{t('article.cta.title')}</h3>
             <Link
               to="/advanced-care"
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#D4AF37] px-8 py-4 text-sm font-extrabold text-[#0F4C3A] shadow-[0_10px_30px_rgba(212,175,55,0.45)] hover:bg-[#C9A032] transition-colors"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#D4A017] px-8 py-4 text-sm font-extrabold text-[#0F4C3A] shadow-[0_10px_30px_rgba(212,160,23,0.45)] hover:bg-[#B8860B] transition-colors"
             >
               {t('article.cta.button')}
               <ArrowRight size={17} className="rtl:rotate-180" />

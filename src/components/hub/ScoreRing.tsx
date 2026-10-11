@@ -2,7 +2,7 @@ import React from 'react';
 
 export const hubScoreColor = (score: number): string => {
   if (score >= 80) return '#0F4C3A';
-  if (score >= 60) return '#D4AF37';
+  if (score >= 60) return '#D4A017';
   return '#B91C1C';
 };
 
