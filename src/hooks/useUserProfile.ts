@@ -12,6 +12,7 @@ export interface UserProfile {
   goal: UserGoal | null;
   activityLevel: UserActivityLevel | null;
   dietaryPreferences: string[];
+  dietIntensity: string | null;
   healthConditions: string[];
 }
 
@@ -26,8 +27,17 @@ const EMPTY_PROFILE: UserProfile = {
   goal: null,
   activityLevel: null,
   dietaryPreferences: [],
+  dietIntensity: null,
   healthConditions: [],
 };
+
+const LEGACY_DIET_INTENSITIES = new Set([
+  'normal_lose', 'medium_lose', 'harsh_lose',
+  'lean_bulk', 'moderate_bulk', 'aggressive_bulk',
+  'normal_gain', 'medium_gain', 'harsh_gain',
+  'well_balanced', 'well_deficit', 'well_surplus',
+  'ath_endurance', 'ath_strength', 'ath_peak',
+]);
 
 type ProfileRecord = Record<string, unknown>;
 
@@ -48,6 +58,8 @@ const asStringList = (value: unknown): string[] => (
 const normalizeProfile = (value: unknown): UserProfile => {
   const record = asRecord(value) ?? {};
   const data = { ...(asRecord(record.profile) ?? {}), ...record };
+  const savedPreferences = asStringList(data.dietaryPreferences);
+  const legacyDietIntensity = savedPreferences.find((item) => LEGACY_DIET_INTENSITIES.has(item));
   const rawGoal = typeof data.goal === 'string' ? data.goal : null;
   const goal = rawGoal === 'lose_weight' || rawGoal === 'weight_loss'
     ? 'lose'
@@ -66,9 +78,12 @@ const normalizeProfile = (value: unknown): UserProfile => {
     activityLevel: typeof rawActivity === 'string' && ['sedentary', 'light', 'moderate', 'active', 'very_active'].includes(rawActivity)
       ? rawActivity as UserActivityLevel
       : null,
-    dietaryPreferences: asStringList(data.dietaryPreferences).length
-      ? asStringList(data.dietaryPreferences)
-      : typeof data.dietId === 'string' && data.dietId ? [data.dietId] : [],
+    dietaryPreferences: savedPreferences.filter((item) => !LEGACY_DIET_INTENSITIES.has(item)),
+    dietIntensity: typeof data.dietIntensity === 'string'
+      ? data.dietIntensity
+      : typeof data.dietId === 'string' && data.dietId
+        ? data.dietId
+        : legacyDietIntensity ?? null,
     healthConditions: asStringList(data.healthConditions).length
       ? asStringList(data.healthConditions)
       : asStringList(data.conditions),

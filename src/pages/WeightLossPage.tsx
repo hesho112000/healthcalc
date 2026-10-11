@@ -19,7 +19,7 @@ import { useUserProfile, type UserProfile } from '../hooks/useUserProfile';
 import { generateWeeklyPlan } from '../utils/mealPlanGenerator';
 import type { PlanDay, PlanDish, PlanMealType } from '../utils/mealPlanGenerator';
 
-type Step = 1 | 2 | 3 | 4 | 5;
+type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 type Sex = 'male' | 'female';
 type PlanType = 'nutrition' | 'fitness' | 'both';
 type ActivityKey = 'sedentary' | 'light' | 'moderate' | 'active' | 'very_active';
@@ -84,7 +84,7 @@ const ACTIVITY_ORDER: ActivityKey[] = ['sedentary', 'light', 'moderate', 'active
 const firstIncompleteWizardStep = (profile: UserProfile): Step => {
   if (profile.age === null || profile.gender === null || profile.height === null || profile.weight === null) return 1;
   if (profile.activityLevel === null) return 2;
-  return 3;
+  return profile.dietaryPreferences.length ? 4 : 3;
 };
 
 const WORKOUTS: Workout[] = [
@@ -1302,7 +1302,8 @@ const WeightLossPage: React.FC = () => {
   const [selectedDishKeys, setSelectedDishKeys] = useState<string[]>([]);
   const [assignedDishes, setAssignedDishes] = useState<Record<string, MealKey[]>>({});
   const [editField, setEditField] = useState<'age' | 'height' | 'weight' | null>(null);
-  const [dietId, setDietId] = useState(() => profile.dietaryPreferences[0] ?? 'normal_lose');
+  const [dietId, setDietId] = useState(() => profile.dietIntensity ?? 'normal_lose');
+  const [dietaryPreferences, setDietaryPreferences] = useState<string[]>(() => profile.dietaryPreferences);
   const [weeklyPlan, setWeeklyPlan] = useState<PlanDay[]>(() => {
     try {
       const raw = localStorage.getItem(`hc_weekly_plan_${'egyptian'}`);
@@ -1475,37 +1476,34 @@ const WeightLossPage: React.FC = () => {
     [plannedExercises, selectedExerciseSearch],
   );
 
-  const visibleSteps: { n: Step; label: string }[] =
-    planType === 'fitness'
-      ? [
-          { n: 1, label: t('wizard.steps.info') },
-          { n: 2, label: t('wizard.steps.body') },
-          { n: 3, label: t('wizard.steps.goals') },
-          { n: 4, label: t('wizard.steps.kitchen') },
-          { n: 5, label: t('wizard.steps.blueprint') },
-        ]
-      : [
-          { n: 1, label: t('wizard.steps.info') },
-          { n: 2, label: t('wizard.steps.body') },
-          { n: 3, label: t('wizard.steps.goals') },
-          { n: 4, label: t('wizard.steps.kitchen') },
-          { n: 5, label: t('wizard.steps.blueprint') },
-        ];
+  const visibleSteps: { n: Step; label: string }[] = [
+    { n: 1, label: t('wizard.steps.info') },
+    { n: 2, label: language === 'ar' ? 'النشاط' : 'Lifestyle' },
+    { n: 3, label: language === 'ar' ? 'الغذاء' : 'Diet' },
+    { n: 4, label: t('wizard.steps.goals') },
+    { n: 5, label: language === 'ar' ? 'السعرات' : 'Calories' },
+    { n: 6, label: t('wizard.steps.kitchen') },
+    { n: 7, label: t('wizard.steps.blueprint') },
+  ];
   const visIdx = visibleSteps.findIndex((x) => x.n === step);
   const progressPct = visibleSteps.length > 1 ? Math.max(0, Math.min(100, (visIdx / (visibleSteps.length - 1)) * 100)) : 0;
   const stepTitle = (() => {
     if (step === 1) return t('wizard.step1.title');
-    if (step === 2) return t('wizard.step2.title');
-    if (step === 3) return t('wizard.step3.title');
-    if (step === 4) return t('wizard.step4.title');
+    if (step === 2) return language === 'ar' ? 'نمط الحياة والنشاط' : 'Lifestyle & Activity';
+    if (step === 3) return language === 'ar' ? 'تفضيلاتك الغذائية' : 'Dietary Preferences';
+    if (step === 4) return t('wizard.step3.title');
+    if (step === 5) return language === 'ar' ? 'هدف السعرات' : 'Calorie Target';
+    if (step === 6) return t('wizard.step4.title');
     return t('wizard.step5.title');
   })();
   const stepEyebrow = (() => {
     if (step === 1) return t('wizard.step1.eyebrow');
-    if (step === 2) return t('wizard.step2.eyebrow');
-    if (step === 3) return t('wizard.step3.eyebrow');
-    if (step === 4) return t('wizard.step4.eyebrow');
-    return t('wizard.step5.eyebrow');
+    if (step === 2) return language === 'ar' ? 'نمط الحياة والنشاط' : 'LIFESTYLE & ACTIVITY';
+    if (step === 3) return language === 'ar' ? 'تفضيلاتك الغذائية' : 'DIETARY PREFERENCES';
+    if (step === 4) return language === 'ar' ? 'أهدافك' : 'YOUR GOALS';
+    if (step === 5) return language === 'ar' ? 'وتيرة مناسبة لك' : 'CHOOSE YOUR PACE';
+    if (step === 6) return language === 'ar' ? 'اختر مطبخك' : 'CHOOSE YOUR CUISINE';
+    return language === 'ar' ? 'خطتك الشخصية' : 'YOUR PERSONAL PLAN';
   })();
 
   const numbers = useMemo(() => {
@@ -1591,7 +1589,7 @@ const WeightLossPage: React.FC = () => {
         height: parsed.height || null,
         weight: parsed.weight || null,
       });
-      setStep(editingSavedProfile || !profile.activityLevel ? 2 : 3);
+      setStep(2);
       return;
     }
     if (step === 2) {
@@ -1601,18 +1599,23 @@ const WeightLossPage: React.FC = () => {
       return;
     }
     if (step === 3) {
-      updateProfile({ goal, dietaryPreferences: [dietId] });
+      updateProfile({ dietaryPreferences });
       setStep(4);
       return;
     }
-    const s = step >= 5 ? 1 : ((step + 1) as Step);
-    setStep(s);
-  };
-  const back = () => {
-    if (step === 4 && planType === 'fitness') {
-      setStep(3);
+    if (step === 4) {
+      updateProfile({ goal });
+      setStep(5);
       return;
     }
+    if (step === 5) {
+      updateProfile({ dietIntensity: dietId });
+      setStep(6);
+      return;
+    }
+    if (step === 6) setStep(7);
+  };
+  const back = () => {
     const s = Math.max(1, step - 1) as Step;
     setStep(s);
   };
@@ -1750,7 +1753,7 @@ const WeightLossPage: React.FC = () => {
       setSelectedPlanDay(1);
       setOpenMealAccordion(null);
       setAutoBuilding(false);
-      setStep(5);
+      setStep(7);
       notify(`Generated 7-day plan: ${plan.length} days`);
     }, 1500);
   };
@@ -1803,7 +1806,17 @@ const WeightLossPage: React.FC = () => {
     setGoal(g);
     setDietId(DIETS[g][0].id);
     setEditingGoal(false);
-    updateProfile({ goal: g, dietaryPreferences: [DIETS[g][0].id] });
+    updateProfile({ goal: g, dietIntensity: DIETS[g][0].id });
+  };
+
+  const toggleDietaryPreference = (id: string) => {
+    const next = id === 'none'
+      ? dietaryPreferences.includes('none') ? [] : ['none']
+      : dietaryPreferences.includes(id)
+        ? dietaryPreferences.filter((preference) => preference !== id)
+        : [...dietaryPreferences.filter((preference) => preference !== 'none'), id];
+    setDietaryPreferences(next);
+    updateProfile({ dietaryPreferences: next });
   };
 
   const notify = (m: string, undo?: { label: string; action: () => void }) => {
@@ -2008,8 +2021,7 @@ const WeightLossPage: React.FC = () => {
   return (
     <div className="wiz-page min-h-screen text-[#0F4C3A] overflow-x-hidden antialiased bg-[#FDFBF7]">
       <SEO title={t('seo.weightLoss.title')} description={t('seo.weightLoss.description')} url="/weight-loss" />
-      {step !== 5 && (
-        <header className="sticky top-0 z-40 bg-[#FDFBF7]/92 backdrop-blur-md border-b border-[#EFEBE4]">
+      <header className="sticky top-0 z-40 bg-[#FDFBF7]/92 backdrop-blur-md border-b border-[#EFEBE4]">
           <div className="max-w-[880px] mx-auto px-4 md:px-6 pt-4 pb-3">
             <div className="flex items-center gap-3 min-w-0">
               <button
@@ -2039,7 +2051,7 @@ const WeightLossPage: React.FC = () => {
                   const done = step > x.n;
                   const active = step === x.n;
                   return (
-                    <div key={x.n} className="flex flex-col items-center gap-1.5">
+                    <div key={x.n} className="flex min-w-0 flex-1 flex-col items-center gap-1.5">
                       <div
                         className={`w-7 h-7 rounded-full border-[2px] flex items-center justify-center text-[12px] font-bold transition-all ${
                           done ? 'bg-[#D4AF37] border-[#D4AF37] text-[#0F4C3A]' : active ? 'border-[#0F4C3A] bg-white text-[#0F4C3A]' : 'border-[#E3E0D8] bg-white text-[#A0A8A4]'
@@ -2047,15 +2059,14 @@ const WeightLossPage: React.FC = () => {
                       >
                         {done ? '✓' : x.n}
                       </div>
-                      <span className={`text-[10.5px] font-semibold tracking-wide ${active ? 'text-[#0F4C3A]' : done ? 'text-[#6B7A75]' : 'text-[#A0A8A4]'}`}>{x.label}</span>
+                      <span className={`hidden max-w-full truncate text-center text-[10.5px] font-semibold tracking-wide sm:block ${active ? 'text-[#0F4C3A]' : done ? 'text-[#6B7A75]' : 'text-[#A0A8A4]'}`}>{x.label}</span>
                     </div>
                   );
                 })}
               </div>
             </div>
           </div>
-        </header>
-      )}
+      </header>
 
       <main className="w-full mx-auto px-4 md:px-6 pb-32 md:pb-16 max-w-[880px]">
         {step === 1 && (
@@ -2349,7 +2360,60 @@ const WeightLossPage: React.FC = () => {
           </div>
         )}
 
-        {step === 4 && (
+        {step === 3 && (
+          <div className="mt-6 space-y-5">
+            <div className={`${cardBase} p-6`}>
+              <div className="flex items-center gap-3">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F4F1EB] text-[22px]">🥗</span>
+                <div>
+                  <h2 className="text-[18px] font-extrabold">{language === 'ar' ? 'كيف تفضل أن تأكل؟' : 'How do you prefer to eat?'}</h2>
+                  <p className="mt-1 text-[13px] text-[#6B7A75]">{language === 'ar' ? 'اختر كل ما ينطبق، وسنراعي تفضيلاتك في خطتك.' : 'Select all that apply. We will use these preferences in your plan.'}</p>
+                </div>
+              </div>
+
+              <div className="mt-5 grid grid-cols-2 gap-2.5 sm:grid-cols-3">
+                {[
+                  { id: 'none', emoji: '🍽️', en: 'No restrictions', ar: 'لا تفضيلات محددة' },
+                  { id: 'vegetarian', emoji: '🥚', en: 'Vegetarian', ar: 'نباتي' },
+                  { id: 'vegan', emoji: '🌱', en: 'Vegan', ar: 'نباتي صرف' },
+                  { id: 'pescatarian', emoji: '🐟', en: 'Pescatarian', ar: 'نباتي مع السمك' },
+                  { id: 'mediterranean', emoji: '🫒', en: 'Mediterranean', ar: 'متوسطي' },
+                  { id: 'low_carb', emoji: '🥑', en: 'Low carb', ar: 'قليل الكربوهيدرات' },
+                  { id: 'keto', emoji: '🥩', en: 'Keto', ar: 'كيتو' },
+                  { id: 'gluten_free', emoji: '🌾', en: 'Gluten-free', ar: 'خالٍ من الغلوتين' },
+                  { id: 'dairy_free', emoji: '🥛', en: 'Dairy-free', ar: 'خالٍ من الألبان' },
+                  { id: 'halal', emoji: '☪️', en: 'Halal', ar: 'حلال' },
+                ].map((option) => {
+                  const on = dietaryPreferences.includes(option.id);
+                  return (
+                    <button
+                      key={option.id}
+                      type="button"
+                      aria-pressed={on}
+                      onClick={() => toggleDietaryPreference(option.id)}
+                      className={`flex min-h-[58px] items-center gap-2 rounded-[16px] border-2 px-3 py-2 text-start text-[12.5px] font-bold transition-all ${on ? 'border-[#0F4C3A] bg-[#EAF3ED] text-[#0F4C3A]' : 'border-[#EFEBE4] bg-white text-[#6B7A75] hover:border-[#D4AF37]'}`}
+                    >
+                      <span className="text-[18px]">{option.emoji}</span>
+                      <span className="min-w-0 flex-1">{language === 'ar' ? option.ar : option.en}</span>
+                      {on && <span aria-hidden="true" className="text-[#B8860B]">✓</span>}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="flex gap-3">
+              <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
+                {t('wizard.back')}
+              </button>
+              <button type="button" onClick={next} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
+                {t('wizard.continue')}
+              </button>
+            </div>
+          </div>
+        )}
+
+        {step === 6 && (
           <div className="mt-6 space-y-5">
 
             <div className={`${cardBase} p-6`}>
@@ -2543,7 +2607,7 @@ const WeightLossPage: React.FC = () => {
           </div>
         )}
 
-        {step === 3 && (
+        {step === 4 && (
           <div className="mt-6 space-y-5">
             {(profile.age !== null || profile.height !== null || profile.weight !== null || profile.activityLevel !== null) && (
               <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#DDE9DF] bg-[#F3F8F3] px-4 py-3">
@@ -2638,26 +2702,37 @@ const WeightLossPage: React.FC = () => {
               {!numbers && <div className="mt-3 text-[12px] text-[#A0A8A4]">{t('fcProfileNote')}</div>}
             </div>
 
+            <div className="flex gap-3">
+              <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
+                {t('wizard.back')}
+              </button>
+              <button type="button" onClick={next} disabled={!isValid()} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold disabled:opacity-40 disabled:cursor-not-allowed">
+                {t('wizard.next')}
+              </button>
+            </div>
+          </div>
+        )}
+
+        {step === 5 && (
+          <div className="mt-6 space-y-5">
             <div className={`${cardBase} p-6`}>
               <div className="flex items-center justify-between gap-2 flex-wrap">
                 <div>
-                  <h2 className="text-[18px] font-extrabold">
-                    {GOAL_ICONS[goal]} {t('wizard.step4.intensity')}
-                  </h2>
+                  <h2 className="text-[18px] font-extrabold">{GOAL_ICONS[goal]} {t('wizard.step4.intensity')}</h2>
                   <p className="mt-1 text-[12.5px] text-[#6B7A75]">{t('wizard.step4.intensitySub')}</p>
                 </div>
               </div>
-
-              <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
                 {DIETS[goal].map((d, idx) => {
                   const on = dietId === d.id;
                   return (
                     <button
                       key={d.id}
                       type="button"
+                      aria-pressed={on}
                       onClick={() => {
                         setDietId(d.id);
-                        updateProfile({ dietaryPreferences: [d.id] });
+                        updateProfile({ dietIntensity: d.id });
                       }}
                       className={`relative rounded-[18px] border-2 p-4 text-start transition-all min-w-0 ${on ? 'border-[#D4AF37] bg-[#FFFBEF] shadow-[0_0_0_4px_rgba(212,175,55,0.15)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4AF37]'}`}
                     >
@@ -2672,39 +2747,29 @@ const WeightLossPage: React.FC = () => {
                       </div>
                       <div className="mt-2 text-[14px] font-extrabold leading-tight">{intensityLabel(d.level)}</div>
                       <div className="mt-0.5 text-[11px] text-[#6B7A75] leading-snug">{intensityTag(d.level)}</div>
-                      <div className="mt-2 inline-flex items-center text-[12px] font-bold text-[#B8860B] bg-[#FFF8E7] px-2.5 py-1 rounded-full">
-                        {deltaT(goal, d)}
-                      </div>
+                      <div className="mt-2 inline-flex items-center text-[12px] font-bold text-[#B8860B] bg-[#FFF8E7] px-2.5 py-1 rounded-full">{deltaT(goal, d)}</div>
                       {d.warning && <div className="mt-2 text-[10.5px] font-semibold text-red-600 leading-snug">⚠️ {t('wizard.step4.consultDoctor')}</div>}
                     </button>
                   );
                 })}
               </div>
             </div>
-
             {numbers && (
               <div className={`${cardBase} p-6`}>
                 <h2 className="text-[16px] font-extrabold">📈 {t('wizard.step4.projection')}</h2>
                 <p className="mt-2 text-[14px] text-[#6B7A75] leading-relaxed break-words">{projectionText}</p>
-                <div className="mt-2 text-[13px] font-semibold text-[#0F4C3A]">
-                  {t('wizard.step4.targetCal').replace('{n}', String(numbers.targetCal))}
-                </div>
+                <div className="mt-2 text-[13px] font-semibold text-[#0F4C3A]">{t('wizard.step4.targetCal').replace('{n}', String(numbers.targetCal))}</div>
                 <div className="mt-2 text-[12px] text-[#8A938E]">{numbers.wk.name} · {ACTIVITY_LABEL(step2Data.activityLevel)}</div>
               </div>
             )}
-
             <div className="flex gap-3">
-              <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
-                {t('wizard.back')}
-              </button>
-              <button type="button" onClick={next} disabled={!isValid()} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold disabled:opacity-40 disabled:cursor-not-allowed">
-                {t('wizard.next')}
-              </button>
+              <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">{t('wizard.back')}</button>
+              <button type="button" onClick={next} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">{t('wizard.continue')}</button>
             </div>
           </div>
         )}
 
-        {step === 5 && (
+        {step === 7 && (
           <div className="mt-6 max-w-[940px] mx-auto flex flex-col gap-5">
             <div className="rounded-[26px] border border-[#EFEBE4] bg-white shadow-[0_14px_40px_rgba(15,76,58,0.1)]">
               <div className="rounded-t-[25px] px-4 sm:px-5 md:px-6 py-4 text-white flex items-start sm:items-center gap-3" style={{ background: 'linear-gradient(135deg,#0F4C3A,#14532D 60%,#1f6b52)' }}>
@@ -2716,7 +2781,7 @@ const WeightLossPage: React.FC = () => {
               </div>
 
               <div className="bg-white px-4 md:px-6 py-3 flex items-center justify-between gap-2 border-b border-[#F0ECE2]">
-                <button type="button" onClick={() => setStep(4)} className="rounded-full bg-[#F4F1EB] text-[#0F4C3A] text-[12px] font-bold px-4 py-2 flex items-center gap-1 hover:bg-[#ECE8DD] min-w-0">
+                <button type="button" onClick={() => setStep(6)} className="rounded-full bg-[#F4F1EB] text-[#0F4C3A] text-[12px] font-bold px-4 py-2 flex items-center gap-1 hover:bg-[#ECE8DD] min-w-0">
                   <span className="shrink-0">←</span> {t('wizard.step5.backToEdit')}
                 </button>
                 <div className="text-[11.5px] text-[#8A938E] min-w-0 break-words text-end">
@@ -2977,7 +3042,7 @@ const WeightLossPage: React.FC = () => {
                 </div>
                 <div className="mt-4 flex flex-wrap gap-3">
                   <button type="button" onClick={() => document.getElementById('step5-daily-plan')?.scrollIntoView({ behavior: 'smooth', block: 'start' })} className="h-10 rounded-[14px] px-4 bg-[#0F4C3A] text-white text-[12px] font-bold hover:bg-[#0a3a2c] transition-all shrink-0">🗓️ {t('wizard.step5.viewFullPlan')}</button>
-                  <button type="button" onClick={() => setStep(4)} className="h-10 rounded-[14px] px-4 bg-white border border-[#E3E0D8] text-[12px] font-bold text-[#0F4C3A] hover:border-[#D4AF37] transition-all shrink-0">🍳 {t('wizard.step5.changeCuisineBtn')}</button>
+                  <button type="button" onClick={() => setStep(6)} className="h-10 rounded-[14px] px-4 bg-white border border-[#E3E0D8] text-[12px] font-bold text-[#0F4C3A] hover:border-[#D4AF37] transition-all shrink-0">🍳 {t('wizard.step5.changeCuisineBtn')}</button>
                 </div>
               </div>
             )}
