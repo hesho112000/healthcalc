@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Activity, ArrowRight, CheckCircle2, Cross, Droplet, Dumbbell, Globe, HeartPulse, Hourglass, Languages, Moon, RefreshCw, Salad, Smartphone, Sparkles, Star, Target, Timer, TrendingDown, Users, UtensilsCrossed, Watch } from 'lucide-react';
+import { Activity, ArrowRight, Bean, BookOpen, Check, CheckCircle2, Cross, Droplet, Dumbbell, Filter, Flame, Footprints, Globe, HeartPulse, Hourglass, Languages, Leaf, Moon, RefreshCw, Salad, Smartphone, Sparkles, Star, Target, Timer, TrendingDown, Users, UtensilsCrossed, Watch } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import type { ArticleCategory } from '../data/articles';
 import { useLanguage } from '../context/LanguageContext';
@@ -15,15 +15,15 @@ import StartFreeDropdown from '../components/layout/StartFreeDropdown';
 import Flag from '../components/common/Flag';
 import { ENABLE_PREMIUM } from '../config/featureFlags';
 
-const conditions = [
-  ['🩸', 'Diabetes', 'سكر', '/diabetes'],
-  ['💗', 'Hypertension', 'ضغط', '/premium'],
-  ['🫀', 'Cholesterol', 'كوليسترول', '/premium'],
-  ['🦶', 'Gout', 'نقرس', '/premium'],
-  ['🧡', 'Liver health', 'كبد', '/premium'],
-  ['🫘', 'Kidney care', 'كلى', '/premium'],
-  ['🦋', 'Thyroid', 'غدة درقية', '/premium'],
-  ['🌿', 'IBS', 'قولون', '/premium'],
+const conditions: Array<{ icon: LucideIcon; en: string; ar: string; path: string }> = [
+  { icon: Droplet, en: 'Diabetes', ar: 'سكر', path: '/diabetes' },
+  { icon: HeartPulse, en: 'Hypertension', ar: 'ضغط', path: '/premium' },
+  { icon: Activity, en: 'Cholesterol', ar: 'كوليسترول', path: '/premium' },
+  { icon: Footprints, en: 'Gout', ar: 'نقرس', path: '/premium' },
+  { icon: Filter, en: 'Liver health', ar: 'كبد', path: '/premium' },
+  { icon: Bean, en: 'Kidney care', ar: 'كلى', path: '/premium' },
+  { icon: Flame, en: 'Thyroid', ar: 'غدة درقية', path: '/premium' },
+  { icon: Leaf, en: 'IBS', ar: 'قولون', path: '/premium' },
 ];
 
 type TrustLabelKey = 'trustsec.stat1.label' | 'trustsec.stat2.label' | 'trustsec.stat3.label' | 'trustsec.stat4.label';
@@ -214,11 +214,11 @@ const HomePage: React.FC = () => {
                 <a href="#how-it-works" className="hero-link">{t('heroSecondaryCta')}</a>
               </div>
               <div className="hero-trust">
-                <span>⭐ {t('trustRatingValue')}</span>
+                <span><Star size={14} strokeWidth={2.5} aria-hidden="true" />{t('trustRatingValue')}</span>
                 <span className="hero-trust-sep">·</span>
-                <span>👥 {t('trustUsersValue')} · {t('trustUsers')}</span>
+                <span><Users size={14} strokeWidth={2.5} aria-hidden="true" /> {t('trustUsersValue')} · {t('trustUsers')}</span>
                 <span className="hero-trust-sep">·</span>
-                <span>📚 {t('trustDoctor')}</span>
+                <span><BookOpen size={14} strokeWidth={2.5} aria-hidden="true" /> {t('trustDoctor')}</span>
               </div>
             </div>
             <div className="hero-visual">
@@ -274,9 +274,9 @@ const HomePage: React.FC = () => {
                 </select>
               </label>
             </div>
-            <div className="feature-list">{[t('homeFeat1'), t('homeFeat2'), t('homeFeat3')].map((x) => <span key={x}>✓ {x}</span>)}</div>
+            <div className="feature-list">{[t('homeFeat1'), t('homeFeat2'), t('homeFeat3')].map((x) => <span key={x}><Check size={15} strokeWidth={3} aria-hidden="true" /> {x}</span>)}</div>
             <div className="flex flex-wrap items-center gap-3">
-              <Link to="/fitness" className="btn-primary">{t('homeTryCalc')} <span>→</span></Link>
+              <Link to="/fitness" className="btn-primary">{t('homeTryCalc')} <ArrowRight size={16} className="rtl:rotate-180" aria-hidden="true" /></Link>
               <button type="button" onClick={resetProfile} className="rounded-full px-3 py-2 text-xs font-semibold text-[#6B7A75] hover:bg-[#F4F1EB]">
                 {language === 'ar' ? 'مسح البيانات' : 'Reset data'}
               </button>
@@ -329,8 +329,8 @@ const HomePage: React.FC = () => {
           <div className="explainer-grid">
             <SectionIllustration kind="care" />
             <div className="section-intro"><span className="step-pill purple">{t('homeStep3')}</span><h2>{t('homeStep3Title')}</h2><p>{t('homeStep3Desc')}</p>
-              <div className="condition-grid">{conditions.map(([icon, en, ar, path]) => <Link to={path} key={en}><span>{icon}</span><b>{language === 'ar' ? ar : en}</b></Link>)}</div>
-              <Link to="/advanced-care" className="btn-primary">{t('homeExploreCare')} <span>→</span></Link>
+              <div className="condition-grid">{conditions.map(({ icon: Icon, en, ar, path }) => <Link to={path} key={en}><span><Icon size={20} strokeWidth={2.25} aria-hidden="true" /></span><b>{language === 'ar' ? ar : en}</b></Link>)}</div>
+              <Link to="/advanced-care" className="btn-primary">{t('homeExploreCare')} <ArrowRight size={16} className="rtl:rotate-180" aria-hidden="true" /></Link>
             </div>
           </div>
         </section>
