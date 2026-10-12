@@ -891,3 +891,30 @@ select.wiz-input { -webkit-appearance: none; appearance: none; background-image:
   .kitchen-tile { animation: none; transition: none; }
   .kitchen-tile:hover { transform: none; }
 }
+
+/* ---------- Home: why users trust us ---------- */
+.trustsec-head { display: flex; flex-direction: column; align-items: center; gap: 12px; max-width: 680px; margin: 0 auto 32px; text-align: center; }
+.trustsec-title { margin: 0; font-size: clamp(26px, 4.5vw, 40px); line-height: 1.2; color: var(--hc-emerald); letter-spacing: -.02em; }
+.trustsec-sub { margin: 0; color: var(--hc-body); font-size: 16px; line-height: 1.7; }
+.trustsec-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.trustsec-card {
+  display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;
+  padding: 28px 20px; border-radius: 24px; background: #fff;
+  border: 1px solid rgba(15, 76, 58, .08); box-shadow: 0 4px 16px rgba(15, 76, 58, .05);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.trustsec-card:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(15, 76, 58, .14); }
+.trustsec-icon { display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 999px; background: rgba(5, 150, 105, .1); color: var(--hc-emerald); }
+.trustsec-card:nth-child(2) .trustsec-icon { background: rgba(212, 160, 23, .14); color: var(--hc-gold-dark); }
+.trustsec-num { font-size: clamp(30px, 5vw, 40px); font-weight: 800; line-height: 1; color: var(--hc-emerald); font-variant-numeric: tabular-nums; }
+.trustsec-card:nth-child(2) .trustsec-num { color: var(--hc-gold-dark); }
+.trustsec-label { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--hc-muted); }
+.trustsec-sources { margin-top: 34px; padding-top: 26px; border-top: 1px solid #E9E2D6; text-align: center; }
+.trustsec-sources-title { margin: 0 0 16px; font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--hc-emerald); }
+.trustsec-sources-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 28px; }
+.trustsec-source { font-size: 15px; font-weight: 800; letter-spacing: .02em; color: #9AA3A0; filter: grayscale(1); opacity: .78; transition: color .2s ease, opacity .2s ease; }
+.trustsec-source:hover { color: var(--hc-emerald); opacity: 1; }
+.trustsec-sources-note { margin: 16px 0 0; font-size: 12px; color: var(--hc-muted); }
+.trustsec-disclaimer { margin: 26px auto 0; max-width: 620px; text-align: center; font-size: 12px; color: var(--hc-muted); }
+@media (min-width: 640px) { .trustsec-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .trustsec-card { transition: none; } }

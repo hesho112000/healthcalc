@@ -285,6 +285,16 @@ type TranslationKeys = {
   'trust2.badge.gdpr': string;
   'trust2.badge.nhs': string;
   'trust2.footer': string;
+  'trustsec.eyebrow': string;
+  'trustsec.title': string;
+  'trustsec.subtitle': string;
+  'trustsec.stat1.label': string;
+  'trustsec.stat2.label': string;
+  'trustsec.stat3.label': string;
+  'trustsec.stat4.label': string;
+  'trustsec.sources.title': string;
+  'trustsec.sources.note': string;
+  'trustsec.disclaimer': string;
   'howItWorks.eyebrow': string;
   'howItWorks.title': string;
   'howItWorks.subtitle': string;
@@ -4293,6 +4303,16 @@ export const translations: Record<Language, TranslationKeys> = {
     'trust2.badge.gdpr': '🔒 GDPR SAFE',
     'trust2.badge.nhs': 'NHS',
     'trust2.footer': '⭐ Rated 4.9/5 by 12,450+ users · 📚 Evidence-based content · 🔒 GDPR compliant',
+    'trustsec.eyebrow': 'TRUSTED WORLDWIDE',
+    'trustsec.title': 'Why 12,450+ Users Trust Us',
+    'trustsec.subtitle': 'Evidence-based plans, transparent formulas, and real-life results.',
+    'trustsec.stat1.label': 'Average user rating',
+    'trustsec.stat2.label': 'Active users worldwide',
+    'trustsec.stat3.label': 'Avg. monthly weight loss',
+    'trustsec.stat4.label': 'Achieve their goals',
+    'trustsec.sources.title': 'Plans built on trusted medical guidelines:',
+    'trustsec.sources.note': 'Our formulas align with guidelines from these institutions.',
+    'trustsec.disclaimer': 'Individual results may vary. Consult your healthcare provider.',
     'howItWorks.eyebrow': 'HOW IT WORKS',
     'howItWorks.title': 'Two Paths. One Goal: Better Health.',
     'howItWorks.subtitle': 'Start free with our calculators, or dive deep with personalized medical care.',
@@ -6794,6 +6814,16 @@ export const translations: Record<Language, TranslationKeys> = {
     'trust2.badge.gdpr': '🔒 CONFORME RGPD',
     'trust2.badge.nhs': 'NHS',
     'trust2.footer': '⭐ Noté 4,9/5 par plus de 12 450 utilisateurs · 📚 Contenu fondé sur des preuves · 🔒 Conforme RGPD',
+    'trustsec.eyebrow': 'TRUSTÉ MONDIALEMENT',
+    'trustsec.title': 'Pourquoi plus de 12 450 utilisateurs nous font confiance',
+    'trustsec.subtitle': 'Des plans fondés sur des preuves, des formules transparentes et des résultats réels.',
+    'trustsec.stat1.label': 'Note moyenne des utilisateurs',
+    'trustsec.stat2.label': 'Utilisateurs actifs dans le monde',
+    'trustsec.stat3.label': 'Perte de poids mensuelle moyenne',
+    'trustsec.stat4.label': 'Atteignent leurs objectifs',
+    'trustsec.sources.title': 'Des plans fondés sur des recommandations médicales fiables :',
+    'trustsec.sources.note': "Nos formules s'alignent sur les recommandations de ces institutions.",
+    'trustsec.disclaimer': 'Les résultats individuels peuvent varier. Consultez votre professionnel de santé.',
     'howItWorks.eyebrow': 'COMMENT ÇA MARCHE',
     'howItWorks.title': 'Deux parcours. Un seul objectif : une meilleure santé.',
     'howItWorks.subtitle': 'Commencez gratuitement avec nos calculateurs, ou optez pour des soins médicaux personnalisés.',
@@ -9265,6 +9295,16 @@ export const translations: Record<Language, TranslationKeys> = {
     'trust2.badge.gdpr': '🔒 CUMPLE RGPD',
     'trust2.badge.nhs': 'NHS',
     'trust2.footer': '⭐ Valorado con 4,9/5 por más de 12 450 usuarios · 📚 Contenido basado en evidencia · 🔒 Cumple RGPD',
+    'trustsec.eyebrow': 'CONFIADOS EN TODO EL MUNDO',
+    'trustsec.title': 'Por qué más de 12 450 usuarios confían en nosotros',
+    'trustsec.subtitle': 'Planes basados en evidencia, fórmulas transparentes y resultados reales.',
+    'trustsec.stat1.label': 'Valoración media de los usuarios',
+    'trustsec.stat2.label': 'Usuarios activos en todo el mundo',
+    'trustsec.stat3.label': 'Pérdida de peso mensual promedio',
+    'trustsec.stat4.label': 'Alcanzan sus objetivos',
+    'trustsec.sources.title': 'Planes basados en guías médicas de confianza:',
+    'trustsec.sources.note': 'Nuestras fórmulas se alinean con las guías de estas instituciones.',
+    'trustsec.disclaimer': 'Los resultados individuales pueden variar. Consulta a tu profesional de salud.',
     'howItWorks.eyebrow': 'CÓMO FUNCIONA',
     'howItWorks.title': 'Dos caminos. Un solo objetivo: mejor salud.',
     'howItWorks.subtitle': 'Empieza gratis con nuestras calculadoras o profundiza con atención médica personalizada.',
@@ -11736,6 +11776,16 @@ export const translations: Record<Language, TranslationKeys> = {
     'trust2.badge.gdpr': '🔒 متوافق مع GDPR',
     'trust2.badge.nhs': 'NHS',
     'trust2.footer': '⭐ تقييم 4.9/5 من أكثر من 12,450 مستخدماً · 📚 محتوى مبني على الأدلة · 🔒 متوافق مع GDPR',
+    'trustsec.eyebrow': 'موثوق به عالميًا',
+    'trustsec.title': 'لماذا يثق بنا أكثر من 12,450 مستخدمًا',
+    'trustsec.subtitle': 'خطط مبنية على الأدلة، ومعادلات شفافة، ونتائج واقعية.',
+    'trustsec.stat1.label': 'متوسط تقييم المستخدمين',
+    'trustsec.stat2.label': 'مستخدمون نشطون حول العالم',
+    'trustsec.stat3.label': 'متوسط فقدان الوزن الشهري',
+    'trustsec.stat4.label': 'يحققون أهدافهم',
+    'trustsec.sources.title': 'خطط مبنية على إرشادات طبية موثوقة:',
+    'trustsec.sources.note': 'تتماشى معادلاتنا مع إرشادات هذه المؤسسات.',
+    'trustsec.disclaimer': 'قد تختلف النتائج من شخص لآخر. استشر مقدم الرعاية الصحية.',
     'howItWorks.eyebrow': 'كيف يعمل',
     'howItWorks.title': 'مساران. هدف واحد: صحة أفضل.',
     'howItWorks.subtitle': 'ابدأ مجاناً مع حاسباتنا، أو تعمّق في رعاية طبية مخصصة.',
@@ -14218,6 +14268,16 @@ export const translations: Record<Language, TranslationKeys> = {
     'trust2.badge.gdpr': '🔒 DSGVO-KONFORM',
     'trust2.badge.nhs': 'NHS',
     'trust2.footer': '⭐ Mit 4,9/5 von über 12.450 Nutzern bewertet · 📚 Evidenzbasierte Inhalte · 🔒 DSGVO-konform',
+    'trustsec.eyebrow': 'WELTWEIT VERTRAUT',
+    'trustsec.title': 'Warum über 12.450 Nutzer uns vertrauen',
+    'trustsec.subtitle': 'Evidenzbasierte Pläne, transparente Formeln und echte Ergebnisse.',
+    'trustsec.stat1.label': 'Durchschnittliche Nutzerbewertung',
+    'trustsec.stat2.label': 'Aktive Nutzer weltweit',
+    'trustsec.stat3.label': 'Durchschnittlicher monatlicher Gewichtsverlust',
+    'trustsec.stat4.label': 'Erreichen ihre Ziele',
+    'trustsec.sources.title': 'Pläne auf Basis vertrauenswürdiger medizinischer Leitlinien:',
+    'trustsec.sources.note': 'Unsere Formeln orientieren sich an den Leitlinien dieser Institutionen.',
+    'trustsec.disclaimer': 'Individuelle Ergebnisse können variieren. Konsultieren Sie Ihren Arzt.',
     'howItWorks.eyebrow': 'SO FUNKTIONIERT ES',
     'howItWorks.title': 'Zwei Wege. Ein Ziel: Bessere Gesundheit.',
     'howItWorks.subtitle': 'Starten Sie kostenlos mit unseren Rechnern oder vertrauen Sie auf personalisierte medizinische Betreuung.',

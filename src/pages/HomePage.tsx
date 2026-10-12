@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Activity, ArrowRight, CheckCircle2, Globe, HeartPulse, Languages, Moon, RefreshCw, Smartphone, Star, UtensilsCrossed, Watch } from 'lucide-react';
+import { Activity, ArrowRight, CheckCircle2, Globe, HeartPulse, Languages, Moon, RefreshCw, Smartphone, Star, Target, TrendingDown, Users, UtensilsCrossed, Watch } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
 import { useUserProfile } from '../hooks/useUserProfile';
@@ -8,7 +9,6 @@ import SectionIllustration from '../components/illustrations/SectionIllustration
 import HealthFingerprint from '../components/illustrations/HealthFingerprint';
 import FloatingStats from '../components/illustrations/FloatingStats';
 import TrustBar from '../components/sections/TrustBar';
-import TrustStats from '../components/sections/TrustStats';
 import HowItWorks from '../components/sections/HowItWorks';
 import StartFreeDropdown from '../components/layout/StartFreeDropdown';
 import Flag from '../components/common/Flag';
@@ -24,6 +24,51 @@ const conditions = [
   ['🦋', 'Thyroid', 'غدة درقية', '/premium'],
   ['🌿', 'IBS', 'قولون', '/premium'],
 ];
+
+type TrustLabelKey = 'trustsec.stat1.label' | 'trustsec.stat2.label' | 'trustsec.stat3.label' | 'trustsec.stat4.label';
+
+const trustSignals: Array<{ icon: LucideIcon; value: number; decimals?: number; suffix?: string; labelKey: TrustLabelKey }> = [
+  { icon: Star, value: 4.9, decimals: 1, suffix: '/5', labelKey: 'trustsec.stat1.label' },
+  { icon: Users, value: 12450, suffix: '+', labelKey: 'trustsec.stat2.label' },
+  { icon: TrendingDown, value: 3.2, decimals: 1, suffix: ' kg', labelKey: 'trustsec.stat3.label' },
+  { icon: Target, value: 92, suffix: '%', labelKey: 'trustsec.stat4.label' },
+];
+
+const TRUST_SOURCES = ['WHO', 'ADA', 'NHS', 'Mayo Clinic', 'Harvard Medical'];
+
+const localeFor = (lang: string): string =>
+  lang === 'ar' ? 'ar-EG' : lang === 'fr' ? 'fr-FR' : lang === 'es' ? 'es-ES' : lang === 'de' ? 'de-DE' : 'en-US';
+
+const TrustCountUp: React.FC<{ value: number; decimals?: number; suffix?: string; locale: string }> = ({ value, decimals = 0, suffix = '', locale }) => {
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const [display, setDisplay] = useState(0);
+  const started = useRef(false);
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const reduced = typeof window !== 'undefined' && typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || typeof IntersectionObserver === 'undefined') { setDisplay(value); return; }
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting) || started.current) return;
+      started.current = true;
+      observer.disconnect();
+      const duration = 1200;
+      const start = performance.now();
+      const tick = (now: number) => {
+        const progress = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        setDisplay(value * eased);
+        if (progress < 1) requestAnimationFrame(tick);
+        else setDisplay(value);
+      };
+      requestAnimationFrame(tick);
+    }, { threshold: 0.4 });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [value]);
+  const formatted = display.toLocaleString(locale, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  return <span ref={ref}>{formatted}{suffix}</span>;
+};
 
 const HomePage: React.FC = () => {
   const { t, dir, language } = useLanguage();
@@ -44,9 +89,8 @@ const HomePage: React.FC = () => {
   const [watchEmail, setWatchEmail] = useState('');
   const [watchJoined, setWatchJoined] = useState(false);
 
-  const fmtCount = (n: number): string => n.toLocaleString(
-    language === 'ar' ? 'ar-EG' : language === 'fr' ? 'fr-FR' : language === 'es' ? 'es-ES' : language === 'de' ? 'de-DE' : 'en-US'
-  );
+  const countLocale = localeFor(language);
+  const fmtCount = (n: number): string => n.toLocaleString(countLocale);
   const kitchenSectionRef = useRef<HTMLElement | null>(null);
   const [kitchenData, setKitchenData] = useState<typeof import('../data/kitchens') | null>(null);
   useEffect(() => {
@@ -248,7 +292,33 @@ const HomePage: React.FC = () => {
 
       <HowItWorks />
 
-      <TrustStats />
+      <section className="section-wrap trustsec-section">
+        <div className="trustsec-head">
+          <span className="step-pill gold">{t('trustsec.eyebrow')}</span>
+          <h2 className="trustsec-title">{t('trustsec.title')}</h2>
+          <p className="trustsec-sub">{t('trustsec.subtitle')}</p>
+        </div>
+
+        <div className="trustsec-grid">
+          {trustSignals.map(({ icon: Icon, value, decimals, suffix, labelKey }) => (
+            <div className="trustsec-card" key={labelKey}>
+              <span className="trustsec-icon"><Icon size={24} strokeWidth={2.5} /></span>
+              <span className="trustsec-num"><TrustCountUp value={value} decimals={decimals} suffix={suffix} locale={countLocale} /></span>
+              <span className="trustsec-label">{t(labelKey)}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="trustsec-sources">
+          <p className="trustsec-sources-title">{t('trustsec.sources.title')}</p>
+          <div className="trustsec-sources-row">
+            {TRUST_SOURCES.map((source) => <span className="trustsec-source" key={source}>{source}</span>)}
+          </div>
+          <p className="trustsec-sources-note">{t('trustsec.sources.note')}</p>
+        </div>
+
+        <p className="trustsec-disclaimer">{t('trustsec.disclaimer')}</p>
+      </section>
 
       <section className="section-wrap">
         <div
