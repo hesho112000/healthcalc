@@ -5,6 +5,16 @@ export type UserActivityLevel = 'sedentary' | 'light' | 'moderate' | 'active' | 
 export type UserGoal = 'lose' | 'gain_muscle' | 'gain_weight' | 'wellness' | 'athletic';
 export type WizardGoalSelection = 'lose_weight' | 'maintain_weight' | 'build_muscle' | 'improve_health';
 export type UserPlanType = 'nutrition' | 'fitness' | 'both';
+export type SleepHours = 'under_6' | 'six_to_seven' | 'seven_to_eight' | 'eight_plus';
+export type StressLevel = 'low' | 'medium' | 'high';
+export type WorkType = 'sedentary' | 'light' | 'active' | 'very_active';
+export type SmokingStatus = 'no' | 'occasionally' | 'yes';
+export type MealsPerDay = 'one_to_two' | 'three' | 'four' | 'five_plus';
+export type SnackFrequency = 'never' | 'sometimes' | 'often';
+export type BreakfastType = 'skip' | 'light' | 'full';
+export type MeatFrequency = 'daily' | 'weekly' | 'rarely' | 'never';
+export type VegetablesFrequency = 'daily' | 'weekly' | 'rarely';
+export type SugaryDrinksFrequency = 'never' | 'sometimes' | 'daily';
 
 export interface UserProfile {
   age: number | null;
@@ -23,6 +33,19 @@ export interface UserProfile {
   kitchenPreference: string | null;
   healthConditions: string[];
   dietAffectingMedication: boolean | null;
+  waist: number | null;
+  sleepHours: SleepHours | null;
+  stressLevel: StressLevel | null;
+  workType: WorkType | null;
+  waterGlasses: number | null;
+  smoking: SmokingStatus | null;
+  caffeineCups: number | null;
+  mealsPerDay: MealsPerDay | null;
+  snacksBetweenMeals: SnackFrequency | null;
+  breakfastType: BreakfastType | null;
+  meatFrequency: MeatFrequency | null;
+  vegetablesFrequency: VegetablesFrequency | null;
+  sugaryDrinks: SugaryDrinksFrequency | null;
 }
 
 export const USER_PROFILE_STORAGE_KEY = 'healthcalc_user_profile';
@@ -45,6 +68,19 @@ const EMPTY_PROFILE: UserProfile = {
   kitchenPreference: null,
   healthConditions: [],
   dietAffectingMedication: null,
+  waist: null,
+  sleepHours: null,
+  stressLevel: null,
+  workType: null,
+  waterGlasses: null,
+  smoking: null,
+  caffeineCups: null,
+  mealsPerDay: null,
+  snacksBetweenMeals: null,
+  breakfastType: null,
+  meatFrequency: null,
+  vegetablesFrequency: null,
+  sugaryDrinks: null,
 };
 
 const LEGACY_DIET_INTENSITIES = new Set([
@@ -70,6 +106,20 @@ const asNumber = (value: unknown): number | null => {
 const asStringList = (value: unknown): string[] => (
   Array.isArray(value) ? value.filter((item): item is string => typeof item === 'string') : []
 );
+
+const SLEEP_HOURS_OPTIONS = ['under_6', 'six_to_seven', 'seven_to_eight', 'eight_plus'] as const;
+const STRESS_LEVEL_OPTIONS = ['low', 'medium', 'high'] as const;
+const WORK_TYPE_OPTIONS = ['sedentary', 'light', 'active', 'very_active'] as const;
+const SMOKING_STATUS_OPTIONS = ['no', 'occasionally', 'yes'] as const;
+const MEALS_PER_DAY_OPTIONS = ['one_to_two', 'three', 'four', 'five_plus'] as const;
+const SNACK_FREQUENCY_OPTIONS = ['never', 'sometimes', 'often'] as const;
+const BREAKFAST_TYPE_OPTIONS = ['skip', 'light', 'full'] as const;
+const MEAT_FREQUENCY_OPTIONS = ['daily', 'weekly', 'rarely', 'never'] as const;
+const VEGETABLES_FREQUENCY_OPTIONS = ['daily', 'weekly', 'rarely'] as const;
+const SUGARY_DRINKS_FREQUENCY_OPTIONS = ['never', 'sometimes', 'daily'] as const;
+
+const asEnum = <T extends string>(value: unknown, options: readonly T[]): T | null =>
+  typeof value === 'string' && options.includes(value as T) ? (value as T) : null;
 
 const normalizeProfile = (value: unknown): UserProfile => {
   const record = asRecord(value) ?? {};
@@ -118,6 +168,19 @@ const normalizeProfile = (value: unknown): UserProfile => {
     dietAffectingMedication: typeof data.dietAffectingMedication === 'boolean'
       ? data.dietAffectingMedication
       : null,
+    waist: asNumber(data.waist ?? data.waistCircumference),
+    sleepHours: asEnum(data.sleepHours, SLEEP_HOURS_OPTIONS),
+    stressLevel: asEnum(data.stressLevel, STRESS_LEVEL_OPTIONS),
+    workType: asEnum(data.workType, WORK_TYPE_OPTIONS),
+    waterGlasses: asNumber(data.waterGlasses),
+    smoking: asEnum(data.smoking, SMOKING_STATUS_OPTIONS),
+    caffeineCups: asNumber(data.caffeineCups),
+    mealsPerDay: asEnum(data.mealsPerDay, MEALS_PER_DAY_OPTIONS),
+    snacksBetweenMeals: asEnum(data.snacksBetweenMeals, SNACK_FREQUENCY_OPTIONS),
+    breakfastType: asEnum(data.breakfastType, BREAKFAST_TYPE_OPTIONS),
+    meatFrequency: asEnum(data.meatFrequency, MEAT_FREQUENCY_OPTIONS),
+    vegetablesFrequency: asEnum(data.vegetablesFrequency, VEGETABLES_FREQUENCY_OPTIONS),
+    sugaryDrinks: asEnum(data.sugaryDrinks, SUGARY_DRINKS_FREQUENCY_OPTIONS),
   };
 };
 
