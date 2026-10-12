@@ -17,6 +17,15 @@ export type VegetablesFrequency = 'daily' | 'weekly' | 'rarely';
 export type SugaryDrinksFrequency = 'never' | 'sometimes' | 'daily';
 export type GoalDiscoverySelection = 'lose_weight' | 'maintain_weight' | 'build_muscle' | 'improve_health' | 'not_sure';
 export type BodyConcern = 'belly_fat' | 'love_handles' | 'chest_sagging' | 'arm_fat' | 'thigh_fat' | 'back_fat' | 'skin_laxity' | 'none';
+export type KitchenMode = 'manual' | 'surprise';
+
+export interface UserRecommendations {
+  dietType: string;
+  dailyCalories: number;
+  macroPercentages: { protein: number; carbs: number; fat: number };
+  mealsPerDay: number;
+  exerciseSummary: string[];
+}
 
 export interface UserProfile {
   age: number | null;
@@ -33,6 +42,9 @@ export interface UserProfile {
   dietaryPreferences: string[];
   dietIntensity: string | null;
   kitchenPreference: string | null;
+  selectedKitchen: string | null;
+  kitchenMode: KitchenMode | null;
+  recommendations: UserRecommendations | null;
   healthConditions: string[];
   dietAffectingMedication: boolean | null;
   waist: number | null;
@@ -72,6 +84,9 @@ const EMPTY_PROFILE: UserProfile = {
   dietaryPreferences: [],
   dietIntensity: null,
   kitchenPreference: null,
+  selectedKitchen: null,
+  kitchenMode: null,
+  recommendations: null,
   healthConditions: [],
   dietAffectingMedication: null,
   waist: null,
@@ -178,6 +193,26 @@ const normalizeProfile = (value: unknown): UserProfile => {
         ? data.dietId
         : legacyDietIntensity ?? null,
     kitchenPreference: typeof data.kitchenPreference === 'string' ? data.kitchenPreference : null,
+    selectedKitchen: typeof data.selectedKitchen === 'string' ? data.selectedKitchen : null,
+    kitchenMode: data.kitchenMode === 'manual' || data.kitchenMode === 'surprise' ? data.kitchenMode : null,
+    recommendations: (() => {
+      const saved = asRecord(data.recommendations);
+      const macros = asRecord(saved?.macroPercentages);
+      const dailyCalories = asNumber(saved?.dailyCalories);
+      const mealsPerDay = asNumber(saved?.mealsPerDay);
+      if (!saved || !macros || dailyCalories === null || mealsPerDay === null) return null;
+      const protein = asNumber(macros.protein);
+      const carbs = asNumber(macros.carbs);
+      const fat = asNumber(macros.fat);
+      if (protein === null || carbs === null || fat === null || typeof saved.dietType !== 'string') return null;
+      return {
+        dietType: saved.dietType,
+        dailyCalories,
+        macroPercentages: { protein, carbs, fat },
+        mealsPerDay,
+        exerciseSummary: asStringList(saved.exerciseSummary),
+      };
+    })(),
     healthConditions: asStringList(data.healthConditions).length
       ? asStringList(data.healthConditions)
       : asStringList(data.conditions),

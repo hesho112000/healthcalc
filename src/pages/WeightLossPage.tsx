@@ -19,7 +19,7 @@ import { useAuth } from '../context/AuthContext';
 import { savePlan, saveProfile } from '../services/supabaseData';
 import { useKitchenDishes } from '../hooks/useKitchenDishes';
 import { useKitchenDishCounts, KITCHEN_ID_ALIAS } from '../hooks/useKitchenDishCounts';
-import { useUserProfile, type UserProfile, type WizardGoalSelection, type SleepHours, type StressLevel, type WorkType, type SmokingStatus, type MealsPerDay, type SnackFrequency, type BreakfastType, type MeatFrequency, type VegetablesFrequency, type SugaryDrinksFrequency, type GoalDiscoverySelection, type BodyConcern } from '../hooks/useUserProfile';
+import { useUserProfile, type UserProfile, type WizardGoalSelection, type SleepHours, type StressLevel, type WorkType, type SmokingStatus, type MealsPerDay, type SnackFrequency, type BreakfastType, type MeatFrequency, type VegetablesFrequency, type SugaryDrinksFrequency, type GoalDiscoverySelection, type BodyConcern, type KitchenMode, type UserRecommendations } from '../hooks/useUserProfile';
 import { generateWeeklyPlan } from '../utils/mealPlanGenerator';
 import type { PlanDay, PlanDish, PlanMealType } from '../utils/mealPlanGenerator';
 
@@ -1443,7 +1443,7 @@ const WeightLossPage: React.FC = () => {
     return String(profile.weight);
   });
   const [timeline, setTimeline] = useState(() => profile.timelineWeeks === null ? '12' : String(profile.timelineWeeks));
-  const [selectedKitchenId, setSelectedKitchenId] = useState<string>(() => profile.kitchenPreference ?? 'egyptian');
+  const [selectedKitchenId, setSelectedKitchenId] = useState<string>(() => profile.selectedKitchen ?? profile.kitchenPreference ?? 'egyptian');
   const [workout, setWorkout] = useState('full_body');
   const [exerciseTypes, setExerciseTypes] = useState<string[]>(() => profile.exerciseTypes.length ? profile.exerciseTypes : ['cardio', 'strength']);
   const [exerciseSearch, setExerciseSearch] = useState('');
@@ -1462,7 +1462,8 @@ const WeightLossPage: React.FC = () => {
   });
   const [kitchenSearch, setKitchenSearch] = useState('');
   const [categorySearch, setCategorySearch] = useState('');
-  const [kitchenMode, setKitchenMode] = useState<'manual' | 'auto'>('auto');
+  const [kitchenMode, setKitchenMode] = useState<KitchenMode | null>(() => profile.kitchenMode);
+  const [kitchenSelectionAccepted, setKitchenSelectionAccepted] = useState(false);
   const [categoryMode, setCategoryMode] = useState<'manual' | 'auto'>('manual');
   const [exerciseMode, setExerciseMode] = useState<'manual' | 'auto'>('auto');
   const [step2Data, setStep2Data] = useState<{ activityLevel: ActivityKey; exerciseType: string | null; selectedExercises: string[] }>({
@@ -1585,6 +1586,10 @@ const WeightLossPage: React.FC = () => {
     () => kitchens.find((k) => k.id === selectedKitchenId) ?? kitchens.find((k) => k.id === 'diet-mediterranean') ?? kitchens.find((k) => k.id === 'egyptian') ?? kitchens[0],
     [selectedKitchenId, kitchens],
   );
+  const availableKitchens = useMemo(
+    () => kitchens.filter((k) => k.dishes.length > 0 || k.total > 0 || (kitchenCounts[k.id] ?? 0) > 0).sort((a, b) => kitchenLabel(a).localeCompare(kitchenLabel(b))),
+    [kitchens, kitchenCounts, language],
+  );
 
   const featuredKitchens = useMemo(() => {
     const found = FEATURED_KITCHEN_IDS.map((id) => kitchens.find((k) => k.id === id)).filter((k): k is KitchenInfo => !!k);
@@ -1620,7 +1625,7 @@ const WeightLossPage: React.FC = () => {
     return countryKitchens;
   }, [cuisineSel, countryKitchens, kitchens]);
   const planKitchens = useMemo<KitchenInfo[]>(() => {
-    if (kitchenMode === 'auto' && !countryKitchens.some((k) => k.id === selectedKitchen.id)) return [selectedKitchen];
+    if (kitchenMode === 'surprise' && !countryKitchens.some((k) => k.id === selectedKitchen.id)) return [selectedKitchen];
     return countryKitchens;
   }, [countryKitchens, selectedKitchen, kitchenMode]);
   const dishRows = useMemo(() => {
@@ -1692,8 +1697,8 @@ const WeightLossPage: React.FC = () => {
     { n: 7, label: language === 'ar' ? 'اختيار الأهداف' : 'Goal Selection' },
     { n: 8, label: language === 'ar' ? 'مناطق الاهتمام' : 'Body Concerns' },
     { n: 9, label: language === 'ar' ? 'التمارين المقترحة' : 'Exercise' },
-    { n: 10, label: language === 'ar' ? 'الصحة' : 'Health' },
-    { n: 11, label: language === 'ar' ? 'التوصيات' : 'Advice' },
+    { n: 10, label: language === 'ar' ? 'المطبخ' : 'Kitchen' },
+    { n: 11, label: language === 'ar' ? 'التوصيات' : 'Recommendations' },
     { n: 12, label: language === 'ar' ? 'المعاينة' : 'Preview' },
     { n: 13, label: language === 'ar' ? 'المراجعة' : 'Review' },
   ];
@@ -1711,8 +1716,8 @@ const WeightLossPage: React.FC = () => {
     if (step === 7) return language === 'ar' ? 'اختر أهدافك' : 'Select Your Goals';
     if (step === 8) return language === 'ar' ? 'مناطق الجسم التي تريد تحسينها' : 'Specific Body Areas to Work On';
     if (step === 9) return language === 'ar' ? 'تمارين مقترحة بناءً على أهدافك' : 'Recommended Exercises For Your Goals';
-    if (step === 10) return language === 'ar' ? 'الحالات الصحية' : 'Health Conditions';
-    if (step === 11) return language === 'ar' ? 'توصياتك الشخصية' : 'Your Recommendations';
+    if (step === 10) return language === 'ar' ? 'اختر مطبخك المفضل' : 'Choose Your Cuisine';
+    if (step === 11) return language === 'ar' ? 'توصياتك الشخصية' : 'Your Final Recommendations';
     if (step === 12) return language === 'ar' ? 'معاينة خطتك' : 'Plan Preview';
     return language === 'ar' ? 'مراجعة إجاباتك' : 'Review Your Answers';
   })();
@@ -1726,8 +1731,8 @@ const WeightLossPage: React.FC = () => {
     if (step === 7) return language === 'ar' ? 'اختيار الأهداف' : 'GOAL SELECTION';
     if (step === 8) return language === 'ar' ? 'مناطق الاهتمام' : 'BODY CONCERNS';
     if (step === 9) return language === 'ar' ? 'التمارين' : 'EXERCISE';
-    if (step === 10) return language === 'ar' ? 'صحتك وسلامتك' : 'YOUR HEALTH & SAFETY';
-    if (step === 11) return language === 'ar' ? 'مبنية على إجاباتك' : 'BASED ON YOUR PROFILE';
+    if (step === 10) return language === 'ar' ? 'اختيار المطبخ' : 'KITCHEN SELECTION';
+    if (step === 11) return language === 'ar' ? 'بناءً على إجاباتك' : 'BASED ON YOUR PROFILE';
     if (step === 12) return language === 'ar' ? 'هذه خطتك المقترحة' : 'YOUR PLAN AT A GLANCE';
     return language === 'ar' ? 'تأكد من إجاباتك' : 'CHECK YOUR ANSWERS';
   })();
@@ -1776,28 +1781,24 @@ const WeightLossPage: React.FC = () => {
 
   const recommendedDiet = healthConditions.includes('diabetes')
     ? language === 'ar' ? 'قليل الكربوهيدرات' : 'Low-Carb'
-    : dietaryPreferences.includes('vegetarian') || dietaryPreferences.includes('vegan')
-      ? language === 'ar' ? 'نباتي متوازن' : 'Vegetarian Balanced'
+    : goals.includes('build_muscle')
+      ? language === 'ar' ? 'غني بالبروتين' : 'High-Protein'
       : dietaryPreferences.includes('low_carb') || dietaryPreferences.includes('keto')
         ? language === 'ar' ? 'قليل الكربوهيدرات' : 'Low-Carb'
-        : healthConditions.includes('hypertension') || healthConditions.includes('high_cholesterol') || dietaryPreferences.includes('mediterranean')
-          ? language === 'ar' ? 'حمية البحر المتوسط' : 'Mediterranean'
-          : language === 'ar' ? 'متوازن على نمط البحر المتوسط' : 'Balanced Mediterranean';
+        : dietaryPreferences.includes('vegetarian') || dietaryPreferences.includes('vegan')
+          ? language === 'ar' ? 'نباتي متوازن' : 'Vegetarian Balanced'
+          : healthConditions.includes('hypertension') || healthConditions.includes('high_cholesterol') || dietaryPreferences.includes('mediterranean')
+            ? language === 'ar' ? 'حمية البحر المتوسط' : 'Mediterranean'
+            : language === 'ar' ? 'متوازن على نمط البحر المتوسط' : 'Balanced Mediterranean';
   const recommendedExercise = step2Data.activityLevel === 'sedentary'
     ? language === 'ar' ? 'مشي 20 دقيقة يومياً' : '20-minute walk daily'
     : language === 'ar' ? 'مشي سريع 30 دقيقة + تمارين قوة 3 مرات أسبوعياً' : '30-minute brisk walk + strength training 3x/week';
   const recommendedWizardGoal = recommendWizardGoal(healthConditions, numbers?.bmi ?? null);
   const recommendedGoalCalc = WIZARD_GOAL_CALC[recommendedWizardGoal];
   const recommendedGoalDiet = DIETS[recommendedGoalCalc][0];
-  const recommendedMaintenance = numbers
-    ? Math.round(numbers.tdeeBase + ((numbers.avgExBurn * numbers.wk.days) / 7) * recommendedGoalDiet.workoutMod)
-    : 0;
-  const recommendedDelta = recommendedGoalCalc === 'lose'
-    ? -recommendedGoalDiet.deficit
-    : recommendedGoalCalc === 'wellness'
-      ? (recommendedGoalDiet.deficit ? -recommendedGoalDiet.deficit : recommendedGoalDiet.surplus)
-      : recommendedGoalDiet.surplus;
-  const recommendedDailyCalories = numbers ? recommendedMaintenance + recommendedDelta : 0;
+  const recommendedMaintenance = numbers?.tdeeWorkout ?? 2000;
+  const recommendedDelta = goals.includes('lose_weight') ? -400 : goals.includes('build_muscle') ? 250 : 0;
+  const recommendedDailyCalories = Math.max(1200, recommendedMaintenance + recommendedDelta);
 
   const goalViolation = (): string => {
     if (goal === 'lose') {
@@ -1835,7 +1836,9 @@ const WeightLossPage: React.FC = () => {
     if (step === 9) {
       return true;
     }
-    if (step === 10) return healthConditions.length > 0 && dietAffectingMedication !== null;
+    if (step === 10) return kitchenMode === 'manual'
+      ? kitchenSelectionAccepted && availableKitchens.some((k) => k.id === selectedKitchenId)
+      : kitchenMode === 'surprise' && kitchenSelectionAccepted && !!recommendedKitchen;
     if (step === 12) return true;
     return true;
   };
@@ -1847,6 +1850,36 @@ const WeightLossPage: React.FC = () => {
     ? ((parsed.weight - parsed.target) / targetWeeks) / 7
     : null;
   const safeLoss = lossKgPerWeek === null ? null : lossKgPerWeek >= 0.5 && lossKgPerWeek <= 1.0;
+  const diabetesConcern = healthConditions.includes('diabetes');
+  const macroProtein = diabetesConcern || goals.includes('build_muscle') || bodyConcerns.includes('belly_fat') ? 35 : 30;
+  const macroCarbs = diabetesConcern ? 30 : bodyConcerns.includes('belly_fat') ? 35 : 40;
+  const mealsPerDayCount: Record<MealsPerDay, number> = { one_to_two: 2, three: 3, four: 4, five_plus: 5 };
+  const finalRecommendations: UserRecommendations = {
+    dietType: recommendedDiet,
+    dailyCalories: recommendedDailyCalories,
+    macroPercentages: { protein: macroProtein, carbs: macroCarbs, fat: 100 - macroProtein - macroCarbs },
+    mealsPerDay: mealsPerDayCount[mealsPerDay],
+    exerciseSummary: exerciseRecommendationTypes,
+  };
+  const recommendedKitchenIds = primaryGoal === 'lose_weight'
+    ? ['diet-mediterranean', 'japanese']
+    : primaryGoal === 'build_muscle'
+      ? ['american', 'turkish']
+      : primaryGoal === 'improve_health'
+        ? ['diet-mediterranean', 'greek']
+        : ['diet-mediterranean', 'greek'];
+  const recommendedKitchen = recommendedKitchenIds
+    .map((id) => availableKitchens.find((k) => k.id === id))
+    .find((k): k is KitchenInfo => !!k)
+    ?? availableKitchens[0]
+    ?? null;
+  const recommendedKitchenBenefit = primaryGoal === 'build_muscle'
+    ? (language === 'ar' ? 'غني بالبروتين' : 'High-protein')
+    : primaryGoal === 'improve_health'
+      ? (language === 'ar' ? 'خيارات متوازنة' : 'Balanced options')
+      : primaryGoal === 'lose_weight'
+        ? (language === 'ar' ? 'خيارات أقل بالسعرات' : 'Lower-calorie options')
+        : (language === 'ar' ? 'خيارات يومية متوازنة' : 'Balanced everyday options');
 
   const saveWizardProfile = () => updateProfile({
     age: parsed.age || null,
@@ -1863,6 +1896,9 @@ const WeightLossPage: React.FC = () => {
     dietaryPreferences,
     dietIntensity: dietId,
     kitchenPreference: selectedKitchenId,
+    selectedKitchen: kitchenMode === 'manual' ? selectedKitchenId : null,
+    kitchenMode,
+    recommendations: finalRecommendations,
     healthConditions,
     dietAffectingMedication,
     waist: waist ? Number(waist) : null,
@@ -1959,12 +1995,16 @@ const WeightLossPage: React.FC = () => {
       return;
     }
     if (step === 10) {
-      updateProfile({ healthConditions, dietAffectingMedication, activityLevel: step2Data.activityLevel, exerciseTypes });
+      updateProfile({
+        kitchenMode,
+        selectedKitchen: kitchenMode === 'manual' ? selectedKitchenId : null,
+        kitchenPreference: selectedKitchenId,
+      });
       setStep(11);
       return;
     }
     if (step === 11) {
-      updateProfile({ goal, wizardGoal, targetWeight: parsed.target || null, timelineWeeks: parsed.timeline || null, dietIntensity: dietId });
+      updateProfile({ goal, wizardGoal, targetWeight: parsed.target || null, timelineWeeks: parsed.timeline || null, dietIntensity: dietId, recommendations: finalRecommendations });
       setStep(12);
       return;
     }
@@ -2075,28 +2115,39 @@ const WeightLossPage: React.FC = () => {
   };
 
   const autoPickKitchen = () => {
-    const map: Record<GoalKey, string> = {
-      gain_muscle: 'diet-high-protein',
-      lose: 'diet-low-carb',
-      gain_weight: 'egyptian',
-      wellness: 'diet-mediterranean',
-      athletic: 'diet-high-protein',
-    };
-    const id = map[goal];
-    if (featuredKitchens.some((k) => k.id === id)) chooseKitchen(featuredKitchens.find((k) => k.id === id)!);
-    setKitchenMode('auto');
+    selectSurpriseMode();
   };
 
   const chooseKitchen = (k: KitchenInfo) => {
     if (selectedKitchenId !== k.id) setWeeklyPlan([]);
     setSelectedKitchenId(k.id);
-    updateProfile({ kitchenPreference: k.id });
+    updateProfile({ kitchenPreference: k.id, selectedKitchen: k.id, kitchenMode: 'manual' });
     setKitchenMode('manual');
+    setKitchenSelectionAccepted(true);
     setCategorySearch('');
     setExpandedCat(null);
     setSelectedDishKeys([]);
     setAssignedDishes({});
     setKitchenRegion('all');
+  };
+
+  const selectSurpriseMode = () => {
+    setKitchenMode('surprise');
+    setKitchenSelectionAccepted(false);
+    if (!recommendedKitchen) return;
+    if (selectedKitchenId !== recommendedKitchen.id) setWeeklyPlan([]);
+    setSelectedKitchenId(recommendedKitchen.id);
+    setRegionSel(null);
+    setCuisineSel(null);
+    setKitchenRegion('all');
+  };
+
+  const acceptSurpriseKitchen = () => {
+    if (!recommendedKitchen) return;
+    setKitchenSelectionAccepted(true);
+    if (selectedKitchenId !== recommendedKitchen.id) setWeeklyPlan([]);
+    setSelectedKitchenId(recommendedKitchen.id);
+    updateProfile({ kitchenPreference: recommendedKitchen.id, selectedKitchen: null, kitchenMode: 'surprise' });
   };
 
   const runAutoKitchen = (openPlan = false) => {
@@ -2214,16 +2265,6 @@ const WeightLossPage: React.FC = () => {
       setStep(9);
     }
   };
-  const toggleHealthCondition = (id: string) => {
-    const next = id === 'none'
-      ? healthConditions.includes('none') ? [] : ['none']
-      : healthConditions.includes(id)
-        ? healthConditions.filter((condition) => condition !== id && condition !== 'none')
-        : [...healthConditions.filter((condition) => condition !== 'none'), id];
-    setHealthConditions(next);
-    updateProfile({ healthConditions: next });
-  };
-
   const recommendedActivityLevel: ActivityKey = ['sedentary', 'light'].includes(step2Data.activityLevel) ? 'light' : 'moderate';
   const exerciseMovementSuggestions = [
     ...(goals.includes('build_muscle') ? [{ en: 'Progressive overload', ar: 'زيادة الحمل التدريجي' }] : []),
@@ -2309,12 +2350,15 @@ const WeightLossPage: React.FC = () => {
     setGoalDiscovery(null);
     setGoals([]);
     setBodyConcerns([]);
+    setExerciseRecommendationTypes(recommendExerciseTypes(['lose_weight'], []));
+    setAdjustingExerciseRecommendations(false);
     setStep2Data({ activityLevel: 'moderate', exerciseType: null, selectedExercises: [] });
     setExerciseTypes(['cardio', 'strength']);
     setPlannedExercises([]);
     setEditingSavedProfile(false);
     setSelectedKitchenId('egyptian');
-    setKitchenMode('auto');
+    setKitchenMode(null);
+    setKitchenSelectionAccepted(false);
     setKitchenRegion('all');
     setWeeklyPlan([]);
     setSelectedDishKeys([]);
@@ -3103,6 +3147,89 @@ const WeightLossPage: React.FC = () => {
 
         {step === 11 && (
           <div className="mt-6 space-y-5">
+            <div className="rounded-[18px] border border-[#DDE9DF] bg-[#F3F8F3] px-4 py-4 sm:px-5">
+              <div className="flex items-center gap-2 text-[#0F4C3A]"><Sparkles size={18} /><h2 className="text-[16px] font-extrabold">{language === 'ar' ? 'ملخص توصياتك الشخصية' : 'Your Personalized Recommendations'}</h2></div>
+              <p className="mt-1 text-[12px] leading-relaxed text-[#52635A]">{language === 'ar' ? 'تم إعدادها بناءً على أهدافك وقياساتك وعاداتك واختياراتك.' : 'Based on your goals, measurements, habits, and choices.'}</p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div className={`${cardBase} p-4`}>
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex min-w-0 items-center gap-2"><Salad size={18} className="shrink-0 text-[#0F4C3A]" /><h3 className="text-[13px] font-extrabold">{language === 'ar' ? 'نوع النظام الغذائي' : 'Recommended Diet Type'}</h3></div>
+                  <button type="button" onClick={() => setStep(5)} className="min-h-9 shrink-0 rounded-full border border-[#0F4C3A]/20 px-3 text-[11px] font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
+                </div>
+                <p className="mt-3 text-[17px] font-extrabold text-[#0F4C3A]">{finalRecommendations.dietType}</p>
+                {diabetesConcern && <p className="mt-1 text-[11px] text-[#6B7A75]">{language === 'ar' ? 'اختير منخفض الكربوهيدرات لمراعاة السكري.' : 'Low-carb selected to account for diabetes.'}</p>}
+              </div>
+
+              <div className={`${cardBase} p-4`}>
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex min-w-0 items-center gap-2"><Activity size={18} className="shrink-0 text-[#0F4C3A]" /><h3 className="text-[13px] font-extrabold">{language === 'ar' ? 'السعرات اليومية' : 'Daily Calorie Target'}</h3></div>
+                  <button type="button" onClick={() => setStep(7)} className="min-h-9 shrink-0 rounded-full border border-[#0F4C3A]/20 px-3 text-[11px] font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
+                </div>
+                <p className="num mt-3 text-[26px] font-black text-[#0F4C3A]">{finalRecommendations.dailyCalories}<span className="ms-1 text-[11px] font-bold text-[#6B7A75]">kcal/day</span></p>
+                <p className="mt-1 text-[11px] text-[#6B7A75]">
+                  {numbers ? `BMR ${numbers.bmr} · TDEE ${numbers.tdeeWorkout}` : (language === 'ar' ? 'تقدير أولي، حدّث قياساتك لمزيد من الدقة.' : 'Estimate; add measurements for better accuracy.')}
+                  {goals.includes('lose_weight') ? (language === 'ar' ? ' · عجز 400 سعرة' : ' · 400 kcal deficit') : goals.includes('build_muscle') ? (language === 'ar' ? ' · فائض 250 سعرة' : ' · 250 kcal surplus') : ''}
+                </p>
+              </div>
+
+              <div className={`${cardBase} p-4`}>
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex min-w-0 items-center gap-2"><Beef size={18} className="shrink-0 text-[#0F4C3A]" /><h3 className="text-[13px] font-extrabold">{language === 'ar' ? 'توزيع المغذيات الكبرى' : 'Macro Breakdown'}</h3></div>
+                  <button type="button" onClick={() => setStep(7)} className="min-h-9 shrink-0 rounded-full border border-[#0F4C3A]/20 px-3 text-[11px] font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
+                </div>
+                <div className="mt-4 flex h-4 overflow-hidden rounded-full bg-[#F4F1EB]" role="img" aria-label={`${finalRecommendations.macroPercentages.protein}% protein, ${finalRecommendations.macroPercentages.carbs}% carbs, ${finalRecommendations.macroPercentages.fat}% fat`}>
+                  <span style={{ width: `${finalRecommendations.macroPercentages.protein}%` }} className="bg-[#0F4C3A]" />
+                  <span style={{ width: `${finalRecommendations.macroPercentages.carbs}%` }} className="bg-[#D4A017]" />
+                  <span style={{ width: `${finalRecommendations.macroPercentages.fat}%` }} className="bg-[#6A9FB5]" />
+                </div>
+                <div className="mt-3 grid grid-cols-3 gap-1 text-[10px] font-bold text-[#52635A]">
+                  <span>{language === 'ar' ? 'بروتين' : 'Protein'} {finalRecommendations.macroPercentages.protein}%</span>
+                  <span className="text-center">{language === 'ar' ? 'كربوهيدرات' : 'Carbs'} {finalRecommendations.macroPercentages.carbs}%</span>
+                  <span className="text-end">{language === 'ar' ? 'دهون' : 'Fat'} {finalRecommendations.macroPercentages.fat}%</span>
+                </div>
+                {bodyConcerns.includes('belly_fat') && <p className="mt-2 text-[11px] text-[#6B7A75]">{language === 'ar' ? 'بروتين أعلى وكربوهيدرات معتدلة.' : 'Higher protein with moderate carbohydrates.'}</p>}
+              </div>
+
+              <div className={`${cardBase} p-4`}>
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex min-w-0 items-center gap-2"><UtensilsCrossed size={18} className="shrink-0 text-[#0F4C3A]" /><h3 className="text-[13px] font-extrabold">{language === 'ar' ? 'الوجبات يومياً' : 'Meals per Day'}</h3></div>
+                  <button type="button" onClick={() => setStep(5)} className="min-h-9 shrink-0 rounded-full border border-[#0F4C3A]/20 px-3 text-[11px] font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
+                </div>
+                <p className="mt-3 text-[23px] font-black text-[#0F4C3A]">{finalRecommendations.mealsPerDay}<span className="ms-1 text-[12px] font-bold text-[#6B7A75]">{language === 'ar' ? 'وجبات' : 'meals'}</span></p>
+              </div>
+
+              <div className={`${cardBase} p-4 sm:col-span-2`}>
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex min-w-0 items-center gap-2"><Dumbbell size={18} className="shrink-0 text-[#0F4C3A]" /><h3 className="text-[13px] font-extrabold">{language === 'ar' ? 'ملخص التمارين' : 'Exercise Summary'}</h3></div>
+                  <button type="button" onClick={() => setStep(9)} className="min-h-9 shrink-0 rounded-full border border-[#0F4C3A]/20 px-3 text-[11px] font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
+                </div>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {finalRecommendations.exerciseSummary.map((id) => {
+                    const option = EXERCISE_RECOMMENDATION_OPTIONS.find((exercise) => exercise.id === id);
+                    return option ? <span key={id} className="rounded-full bg-[#EAF3ED] px-3 py-2 text-[11px] font-bold text-[#0F4C3A]">{language === 'ar' ? option.ar : option.en}</span> : null;
+                  })}
+                  {finalRecommendations.exerciseSummary.length === 0 && <span className="text-[12px] text-[#6B7A75]">{language === 'ar' ? 'لم يتم اختيار تمارين.' : 'No exercises selected.'}</span>}
+                  {exerciseMovementSuggestions.map((suggestion) => <span key={suggestion.en} className="rounded-full border border-[#DDE9DF] bg-white px-3 py-2 text-[11px] font-semibold text-[#52635A]">{language === 'ar' ? suggestion.ar : suggestion.en}</span>)}
+                </div>
+              </div>
+
+              <div className={`${cardBase} p-4 sm:col-span-2`}>
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex min-w-0 items-center gap-2"><Flag countryCode={selectedKitchen.flag} alt={getKitchenCountry(selectedKitchen, language)} className="h-6 w-8 shrink-0" /><h3 className="text-[13px] font-extrabold">{language === 'ar' ? 'مطبخ خطة الوجبات' : 'Meal Plan Cuisine'}</h3></div>
+                  <button type="button" onClick={() => setStep(10)} className="min-h-9 shrink-0 rounded-full border border-[#0F4C3A]/20 px-3 text-[11px] font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
+                </div>
+                <p className="mt-2 text-[15px] font-extrabold text-[#0F4C3A]">{kitchenLabel(selectedKitchen)}</p>
+              </div>
+            </div>
+
+            <WizardFooter onBack={back} onNext={next} backLabel={t('wizard.back')} nextLabel={language === 'ar' ? 'متابعة' : 'Continue'} />
+          </div>
+        )}
+
+        {step === 11 && kitchenMode === null && (
+          <div className="mt-6 space-y-5">
             <div className={`${cardBase} p-6`}>
               <div className="flex items-start justify-between gap-3">
                 <div>
@@ -3325,47 +3452,63 @@ const WeightLossPage: React.FC = () => {
 
         {step === 10 && (
           <div className="mt-6 space-y-5">
-            <div className={`${cardBase} p-6`}>
+            <div className={`${cardBase} p-5 sm:p-6`}>
               <div className="flex items-center gap-3">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#EAF3ED] text-[#0F4C3A]"><ShieldCheck size={22} /></span>
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#EAF3ED] text-[#0F4C3A]"><UtensilsCrossed size={21} /></span>
                 <div>
-                  <h2 className="text-[18px] font-extrabold">{language === 'ar' ? 'الحالات الصحية' : 'Health Conditions'}</h2>
-                  <p className="mt-1 text-[12.5px] text-[#6B7A75]">{language === 'ar' ? 'اختر كل ما ينطبق عليك.' : 'Select all that apply.'}</p>
+                  <h2 className="text-[18px] font-extrabold">{language === 'ar' ? 'أي مطبخ تفضله لخطة وجباتك؟' : 'Which cuisine would you like for your meal plan?'}</h2>
+                  <p className="mt-1 text-[12.5px] text-[#6B7A75]">{language === 'ar' ? 'اختر بنفسك أو دعنا نفاجئك باختيار يناسب هدفك.' : 'Choose a cuisine or let us recommend one for your goal.'}</p>
                 </div>
               </div>
-              <div className="mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-                {[
-                  { id: 'diabetes', en: 'Diabetes', ar: 'السكري' },
-                  { id: 'hypertension', en: 'Hypertension', ar: 'ارتفاع ضغط الدم' },
-                  { id: 'high_cholesterol', en: 'High Cholesterol', ar: 'ارتفاع الكوليسترول' },
-                  { id: 'thyroid', en: 'Thyroid issues', ar: 'مشكلات الغدة الدرقية' },
-                  { id: 'ibs_digestive', en: 'IBS / Digestive issues', ar: 'القولون العصبي / مشكلات الهضم' },
-                  { id: 'none', en: 'None of the above', ar: 'لا شيء مما سبق' },
-                ].map((condition) => (
-                  <OptionChip key={condition.id} on={healthConditions.includes(condition.id)} onClick={() => toggleHealthCondition(condition.id)}>
-                    {language === 'ar' ? condition.ar : condition.en}
-                  </OptionChip>
-                ))}
+
+              <div className="mt-5 grid grid-cols-2 gap-2.5">
+                <OptionChip on={kitchenMode === 'manual'} onClick={() => { setKitchenMode('manual'); setKitchenSelectionAccepted(false); setRegionSel(null); setCuisineSel(null); setKitchenRegion('all'); }} className="w-full">
+                  <UtensilsCrossed size={16} />{language === 'ar' ? 'اختر يدوياً' : 'Choose Manually'}
+                </OptionChip>
+                <OptionChip on={kitchenMode === 'surprise'} onClick={selectSurpriseMode} className="w-full">
+                  <Sparkles size={16} />{language === 'ar' ? 'فاجئني' : 'Surprise Me'}
+                </OptionChip>
               </div>
+
+              {kitchenMode === 'manual' && (
+                <div className="mt-5">
+                  <h3 className="text-[14px] font-extrabold">{language === 'ar' ? 'اختر مطبخاً' : 'Select a cuisine'}</h3>
+                  <div className="mt-3 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-4">
+                    {availableKitchens.map((k) => {
+                      const selected = selectedKitchenId === k.id;
+                      const dishCount = kitchenCounts[k.id] ?? k.total;
+                      return (
+                        <button key={k.id} type="button" aria-pressed={selected} onClick={() => chooseKitchen(k)} className={`flex min-h-[122px] min-w-0 flex-col items-center justify-center rounded-[16px] border-2 p-3 text-center transition-all active:scale-95 ${selected ? 'border-[#D4A017] bg-[#FFFBEF] shadow-[0_0_0_3px_rgba(212,160,23,0.12)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4A017]'}`}>
+                          <Flag countryCode={k.flag} alt={getKitchenCountry(k, language)} className="h-7 w-9 shrink-0" />
+                          <span className="mt-2 w-full truncate text-[12px] font-extrabold text-[#0F4C3A]">{kitchenLabel(k)}</span>
+                          <span className="mt-1 rounded-full bg-[#F4F1EB] px-2 py-1 text-[10px] font-bold text-[#6B7A75]">{t('wizard.step3.dishCount').replace('{n}', String(dishCount))}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {availableKitchens.length === 0 && <p className="mt-3 text-sm text-[#6B7A75]">{language === 'ar' ? 'لا تتوفر مطابخ حالياً.' : 'No cuisines are currently available.'}</p>}
+                </div>
+              )}
+
+              {kitchenMode === 'surprise' && recommendedKitchen && (
+                <div className="mt-5 rounded-[18px] border border-[#DDE9DF] bg-[#F3F8F3] p-4 sm:p-5">
+                  <div className="flex items-start gap-3">
+                    <Flag countryCode={recommendedKitchen.flag} alt={getKitchenCountry(recommendedKitchen, language)} className="mt-1 h-8 w-10 shrink-0" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-[10px] font-extrabold uppercase tracking-wide text-[#6B7A75]">{language === 'ar' ? 'مقترح لهدفك' : 'Recommended for your goal'}</p>
+                      <h3 className="mt-1 text-[17px] font-extrabold text-[#0F4C3A]">{kitchenLabel(recommendedKitchen)}</h3>
+                      <p className="mt-1 text-[12px] text-[#52635A]">{recommendedKitchenBenefit}</p>
+                      <p className="mt-1 text-[11px] text-[#6B7A75]">{t('wizard.step3.dishCount').replace('{n}', String(kitchenCounts[recommendedKitchen.id] ?? recommendedKitchen.total))}</p>
+                    </div>
+                  </div>
+                  <div className="mt-4 flex gap-3">
+                    <button type="button" onClick={acceptSurpriseKitchen} className="btn-primary min-h-[48px] flex-1 rounded-[14px] text-[13px] font-bold">{language === 'ar' ? 'قبول التوصية' : 'Accept'}</button>
+                    <button type="button" onClick={() => { setKitchenMode('manual'); setKitchenSelectionAccepted(false); }} className="btn-secondary min-h-[48px] flex-1 rounded-[14px] text-[13px] font-bold">{language === 'ar' ? 'تغيير' : 'Change'}</button>
+                  </div>
+                </div>
+              )}
             </div>
 
-            <div className={`${cardBase} p-6`}>
-              <h2 className="text-[16px] font-extrabold">{language === 'ar' ? 'هل تتناول دواءً يؤثر في نظامك الغذائي؟' : 'Are you on any medication that affects diet?'}</h2>
-              <div className="mt-4 grid grid-cols-2 gap-3">
-                {[
-                  { value: true, label: language === 'ar' ? 'نعم' : 'Yes' },
-                  { value: false, label: language === 'ar' ? 'لا' : 'No' },
-                ].map((answer) => (
-                  <OptionChip key={answer.label} on={dietAffectingMedication === answer.value} onClick={() => { setDietAffectingMedication(answer.value); updateProfile({ dietAffectingMedication: answer.value }); }}>
-                    {answer.label}
-                  </OptionChip>
-                ))}
-              </div>
-            </div>
-
-            <p className="rounded-[16px] border border-[#E9D9A8] bg-[#FFF8E7] px-4 py-3 text-[12px] leading-relaxed text-[#6B5A28]">
-              {language === 'ar' ? 'تقدم HealthCalc إرشادات معلوماتية فقط. استشر طبيبك دائماً قبل إجراء أي تغييرات.' : 'HealthCalc provides informational guidance only. Always consult your doctor before making changes.'}
-            </p>
             <WizardFooter onBack={back} onNext={next} nextDisabled={!isValid()} backLabel={t('wizard.back')} nextLabel={t('wizard.continue')} />
           </div>
         )}
@@ -3559,7 +3702,7 @@ const WeightLossPage: React.FC = () => {
             <div className={`${cardBase} p-5`}>
               <div className="flex items-center justify-between gap-3">
                 <h2 className="text-[16px] font-extrabold">🩺 {language === 'ar' ? 'الصحة والأدوية' : 'Health & Medication'}</h2>
-                <button type="button" onClick={() => setStep(10)} className="min-h-10 rounded-full border border-[#0F4C3A]/20 bg-white px-4 text-xs font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
+                <span className="text-[11px] font-semibold text-[#8A938E]">{language === 'ar' ? 'من ملفك' : 'From profile'}</span>
               </div>
               <p className="mt-2 text-[13px] font-semibold">{healthConditions.map(healthConditionLabel).join(' · ')}</p>
               <p className="mt-1 text-[11.5px] text-[#6B7A75]">{language === 'ar' ? 'دواء يؤثر في النظام الغذائي' : 'Medication that affects diet'}: {dietAffectingMedication ? (language === 'ar' ? 'نعم' : 'Yes') : (language === 'ar' ? 'لا' : 'No')}</p>
