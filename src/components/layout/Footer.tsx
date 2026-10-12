@@ -27,10 +27,10 @@ const Footer: React.FC = () => {
 
           <div className="footer-col">
             <h4>{t('footerPlatform')}</h4>
-            <Link to="/plan">{t('footerPlan')}</Link>
-            <Link to="/tracking">{t('footerTracking')}</Link>
-            <Link to="/diabetes">{t('footerDiabetes')}</Link>
-            <Link to="/bio-age">{t('footerBioAge')}</Link>
+            <Link to="/weight-loss">{t('footerPlan')}</Link>
+            <Link to="/fitness">{t('footerCalories')}</Link>
+            <Link to="/fitness">{t('footerBmi')}</Link>
+            <Link to="/food-library">{t('footerFoodLibrary')}</Link>
           </div>
 
           <div className="footer-col">
