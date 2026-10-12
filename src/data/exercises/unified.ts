@@ -283,9 +283,7 @@ const REVIEWED_UNCHANGED_LOANWORDS: Record<string, Array<'de' | 'fr' | 'es'>> = 
 };
 
 const PENDING_TRANSLATION = '';
-const PENDING_REVIEW: Pick<UnifiedExercise, 'calories' | 'refs' | 'reviewStatus'> = {
-  calories: 0,
-  refs: [],
+const PENDING_REVIEW: Pick<UnifiedExercise, 'reviewStatus'> = {
   reviewStatus: 'needs_review',
 };
 
@@ -294,61 +292,61 @@ const LEGACY_UNIQUE_EXERCISES: UnifiedExercise[] = [
     id: 'legacy-strength-barbell-row', type: 'strength' as const, category: 'strength' as ExerciseType,
     name: 'Barbell Row', nameEn: 'Barbell Row', nameFr: PENDING_TRANSLATION, nameEs: PENDING_TRANSLATION, nameDe: PENDING_TRANSLATION, nameAr: PENDING_TRANSLATION,
     equipment: 'barbell', muscleGroup: 'back', goals: ['gain_muscle', 'maintain'], difficulty: 'intermediate',
-    sets: 3, reps: '8-12', sourceSets: '3×8-12', duration: '15 min', sourceFile: 'legacy-unique', ...PENDING_REVIEW,
+    sets: 3, reps: '8-12', sourceSets: '3×8-12', duration: '15 min', sourceFile: 'legacy-unique', calories: 100, refs: [], ...PENDING_REVIEW,
   },
   {
     id: 'legacy-strength-triceps-dip', type: 'strength' as const, category: 'strength' as ExerciseType,
     name: 'Triceps Dip', nameEn: 'Triceps Dip', nameFr: PENDING_TRANSLATION, nameEs: PENDING_TRANSLATION, nameDe: PENDING_TRANSLATION, nameAr: PENDING_TRANSLATION,
     equipment: 'bodyweight', muscleGroup: 'triceps', goals: ['gain_muscle', 'maintain'], difficulty: 'intermediate',
-    sets: 3, reps: '8-12', sourceSets: '3×8-12', duration: '12 min', sourceFile: 'legacy-unique', ...PENDING_REVIEW,
+    sets: 3, reps: '8-12', sourceSets: '3×8-12', duration: '12 min', sourceFile: 'legacy-unique', calories: 70, refs: [], ...PENDING_REVIEW,
   },
   {
     id: 'legacy-crossfit-wall-ball', type: 'functional', category: 'functional',
     name: 'Wall Ball', nameEn: 'Wall Ball', nameFr: PENDING_TRANSLATION, nameEs: PENDING_TRANSLATION, nameDe: PENDING_TRANSLATION, nameAr: PENDING_TRANSLATION,
     equipment: 'medicine_ball', muscleGroup: 'full_body', goals: ['lose_weight', 'gain_muscle'], difficulty: 'intermediate',
-    sets: 4, reps: '12', sourceSets: '4×12', duration: '12 min', sourceFile: 'legacy-unique', ...PENDING_REVIEW,
+    sets: 4, reps: '12', sourceSets: '4×12', duration: '12 min', sourceFile: 'legacy-unique', calories: 120, refs: [], ...PENDING_REVIEW,
   },
   {
     id: 'legacy-crossfit-clean-and-jerk', type: 'functional', category: 'functional',
     name: 'Clean & Jerk', nameEn: 'Clean & Jerk', nameFr: PENDING_TRANSLATION, nameEs: PENDING_TRANSLATION, nameDe: PENDING_TRANSLATION, nameAr: PENDING_TRANSLATION,
     equipment: 'barbell', muscleGroup: 'full_body', goals: ['gain_muscle'], difficulty: 'advanced',
-    sets: 5, reps: '3', sourceSets: '5×3', duration: '15 min', sourceFile: 'legacy-unique', ...PENDING_REVIEW,
+    sets: 5, reps: '3', sourceSets: '5×3', duration: '15 min', sourceFile: 'legacy-unique', calories: 150, refs: [], ...PENDING_REVIEW,
   },
   {
     id: 'legacy-crossfit-snatch', type: 'functional', category: 'functional',
     name: 'Snatch', nameEn: 'Snatch', nameFr: PENDING_TRANSLATION, nameEs: PENDING_TRANSLATION, nameDe: PENDING_TRANSLATION, nameAr: PENDING_TRANSLATION,
     equipment: 'barbell', muscleGroup: 'full_body', goals: ['gain_muscle'], difficulty: 'advanced',
-    sets: 5, reps: '3', sourceSets: '5×3', duration: '15 min', sourceFile: 'legacy-unique', ...PENDING_REVIEW,
+    sets: 5, reps: '3', sourceSets: '5×3', duration: '15 min', sourceFile: 'legacy-unique', calories: 150, refs: [], ...PENDING_REVIEW,
   },
   {
     id: 'legacy-crossfit-thruster', type: 'functional', category: 'functional',
     name: 'Thruster', nameEn: 'Thruster', nameFr: PENDING_TRANSLATION, nameEs: PENDING_TRANSLATION, nameDe: PENDING_TRANSLATION, nameAr: PENDING_TRANSLATION,
     equipment: 'barbell', muscleGroup: 'full_body', goals: ['lose_weight', 'gain_muscle'], difficulty: 'advanced',
-    sets: 4, reps: '8', sourceSets: '4×8', duration: '15 min', sourceFile: 'legacy-unique', ...PENDING_REVIEW,
+    sets: 4, reps: '8', sourceSets: '4×8', duration: '15 min', sourceFile: 'legacy-unique', calories: 140, refs: [], ...PENDING_REVIEW,
   },
   {
     id: 'legacy-crossfit-ring-dip', type: 'functional', category: 'functional',
     name: 'Ring Dip', nameEn: 'Ring Dip', nameFr: PENDING_TRANSLATION, nameEs: PENDING_TRANSLATION, nameDe: PENDING_TRANSLATION, nameAr: PENDING_TRANSLATION,
     equipment: 'rings', muscleGroup: 'triceps', goals: ['gain_muscle'], difficulty: 'advanced',
-    sets: 3, reps: '6-8', sourceSets: '3×6-8', duration: '12 min', sourceFile: 'legacy-unique', ...PENDING_REVIEW,
+    sets: 3, reps: '6-8', sourceSets: '3×6-8', duration: '12 min', sourceFile: 'legacy-unique', calories: 100, refs: [], ...PENDING_REVIEW,
   },
   {
     id: 'legacy-crossfit-handstand-push-up', type: 'functional', category: 'functional',
     name: 'Handstand Push-Up', nameEn: 'Handstand Push-Up', nameFr: PENDING_TRANSLATION, nameEs: PENDING_TRANSLATION, nameDe: PENDING_TRANSLATION, nameAr: PENDING_TRANSLATION,
     equipment: 'bodyweight', muscleGroup: 'shoulders', goals: ['gain_muscle'], difficulty: 'advanced',
-    sets: 3, reps: '5', sourceSets: '3×5', duration: '12 min', sourceFile: 'legacy-unique', ...PENDING_REVIEW,
+    sets: 3, reps: '5', sourceSets: '3×5', duration: '12 min', sourceFile: 'legacy-unique', calories: 100, refs: [], ...PENDING_REVIEW,
   },
   {
     id: 'legacy-crossfit-pistol-squat', type: 'functional', category: 'functional',
     name: 'Pistol Squat', nameEn: 'Pistol Squat', nameFr: PENDING_TRANSLATION, nameEs: PENDING_TRANSLATION, nameDe: PENDING_TRANSLATION, nameAr: PENDING_TRANSLATION,
     equipment: 'bodyweight', muscleGroup: 'quads', goals: ['gain_muscle', 'maintain'], difficulty: 'advanced',
-    sets: 3, reps: '6 per side', sourceSets: '3×6 per side', duration: '12 min', sourceFile: 'legacy-unique', ...PENDING_REVIEW,
+    sets: 3, reps: '6 per side', sourceSets: '3×6 per side', duration: '12 min', sourceFile: 'legacy-unique', calories: 100, refs: [], ...PENDING_REVIEW,
   },
   {
     id: 'legacy-crossfit-double-unders', type: 'hiit' as const, category: 'hiit' as ExerciseType,
     name: 'Double Unders', nameEn: 'Double Unders', nameFr: PENDING_TRANSLATION, nameEs: PENDING_TRANSLATION, nameDe: PENDING_TRANSLATION, nameAr: PENDING_TRANSLATION,
     equipment: 'jump_rope', muscleGroup: 'cardio_system', goals: ['lose_weight', 'cardio_health'], difficulty: 'advanced',
-    sets: 5, reps: '30 seconds', sourceSets: '5×30 seconds', duration: '12 min', sourceFile: 'legacy-unique', ...PENDING_REVIEW,
+    sets: 5, reps: '30 seconds', sourceSets: '5×30 seconds', duration: '12 min', sourceFile: 'legacy-unique', calories: 120, refs: [], ...PENDING_REVIEW,
   },
 ];
 
