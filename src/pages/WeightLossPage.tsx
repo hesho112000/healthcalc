@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  ArrowRight, Beef, Briefcase, Check, ChevronLeft, Cigarette, Coffee, Cookie, CupSoda, Droplets, Info, Minus, Moon,
-  Play, Plus, Ruler, Salad, ShieldCheck, Smile, Sparkles, Sun, Timer, User, UtensilsCrossed,
+  Activity, ArrowRight, Beef, Briefcase, Check, ChevronLeft, Cigarette, Coffee, Cookie, CupSoda, Droplets, Dumbbell, Info, Minus, Moon,
+  Play, Plus, Ruler, Salad, ShieldCheck, Smile, Sparkles, Sun, Target, Timer, User, UtensilsCrossed,
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
@@ -66,17 +66,6 @@ const GOAL_DISCOVERY_OPTIONS: { id: GoalDiscoverySelection; icon: string; en: st
   { id: 'not_sure', icon: '🤔', en: 'Not sure — help me decide', ar: 'لست متأكداً — ساعدني في الاختيار' },
 ];
 
-const BODY_CONCERN_OPTIONS: { id: BodyConcern; en: string; ar: string }[] = [
-  { id: 'belly_fat', en: 'Belly Fat', ar: 'دهون البطن' },
-  { id: 'love_handles', en: 'Love Handles', ar: 'دهون الجانبين' },
-  { id: 'chest_sagging', en: 'Chest Sagging', ar: 'ترهل الصدر' },
-  { id: 'arm_fat', en: 'Arm Fat', ar: 'دهون الذراعين' },
-  { id: 'thigh_fat', en: 'Thigh Fat', ar: 'دهون الفخذين' },
-  { id: 'back_fat', en: 'Back Fat', ar: 'دهون الظهر' },
-  { id: 'skin_laxity', en: 'General Skin Laxity', ar: 'ترهل الجلد العام' },
-  { id: 'none', en: 'None', ar: 'لا شيء' },
-];
-
 const TIMELINE_OPTIONS: { weeks: number; en: string; ar: string }[] = [
   { weeks: 4, en: '1 month', ar: 'شهر واحد' },
   { weeks: 13, en: '3 months', ar: '3 أشهر' },
@@ -88,19 +77,30 @@ const PRIMARY_GOAL_ORDER: WizardGoalSelection[] = ['lose_weight', 'build_muscle'
 const primaryGoalSelection = (goals: WizardGoalSelection[]): WizardGoalSelection =>
   PRIMARY_GOAL_ORDER.find((g) => goals.includes(g)) ?? 'maintain_weight';
 
-const recommendExerciseTypes = (goals: WizardGoalSelection[], concerns: BodyConcern[]): string[] => {
-  const picks = new Set<string>();
-  if (goals.includes('lose_weight')) { picks.add('cardio'); picks.add('hiit'); }
-  if (goals.includes('build_muscle')) { picks.add('strength'); picks.add('calisthenics'); }
-  if (goals.includes('improve_health')) { picks.add('yoga'); picks.add('pilates'); }
-  if (goals.includes('maintain_weight') || !goals.length) { picks.add('cardio'); picks.add('yoga'); }
+const EXERCISE_RECOMMENDATION_OPTIONS = [
+  { id: 'cardio', en: 'Cardio', ar: 'تمارين القلب', Icon: Activity },
+  { id: 'strength', en: 'Strength', ar: 'تمارين القوة', Icon: Dumbbell },
+  { id: 'hiit', en: 'HIIT', ar: 'تمارين عالية الكثافة', Icon: Activity },
+  { id: 'core', en: 'Core', ar: 'تمارين الجذع', Icon: Target },
+  { id: 'flexibility', en: 'Flexibility', ar: 'المرونة', Icon: Activity },
+] as const;
+
+type ExerciseRecommendationType = typeof EXERCISE_RECOMMENDATION_OPTIONS[number]['id'];
+
+const recommendExerciseTypes = (goals: WizardGoalSelection[], concerns: BodyConcern[]): ExerciseRecommendationType[] => {
+  const picks = new Set<ExerciseRecommendationType>();
+  if (goals.includes('lose_weight')) ['cardio', 'hiit', 'strength'].forEach((id) => picks.add(id as ExerciseRecommendationType));
+  if (goals.includes('build_muscle')) picks.add('strength');
+  if (goals.includes('improve_health')) ['cardio', 'strength', 'flexibility'].forEach((id) => picks.add(id as ExerciseRecommendationType));
+  if (goals.includes('maintain_weight') || !goals.length) ['cardio', 'strength', 'flexibility'].forEach((id) => picks.add(id as ExerciseRecommendationType));
   concerns.forEach((concern) => {
-    if (concern === 'belly_fat' || concern === 'love_handles') { picks.add('hiit'); picks.add('pilates'); }
-    if (concern === 'chest_sagging' || concern === 'arm_fat' || concern === 'back_fat') picks.add('strength');
-    if (concern === 'thigh_fat') { picks.add('cycling'); picks.add('cardio'); }
-    if (concern === 'skin_laxity') { picks.add('strength'); picks.add('yoga'); }
+    if (concern === 'belly_fat') ['core', 'cardio'].forEach((id) => picks.add(id as ExerciseRecommendationType));
+    if (concern === 'love_handles') ['core', 'cardio'].forEach((id) => picks.add(id as ExerciseRecommendationType));
+    if (['chest_sagging', 'arm_fat', 'thigh_fat', 'back_fat'].includes(concern)) picks.add('strength');
+    if (concern === 'back_fat') picks.add('flexibility');
   });
-  return [...picks].filter((id) => EXERCISE_TYPES.some((e) => e.id === id));
+  if (picks.size < 3) ['cardio', 'strength', 'flexibility'].forEach((id) => picks.add(id as ExerciseRecommendationType));
+  return [...picks].slice(0, 4);
 };
 
 interface Workout {
@@ -1503,6 +1503,11 @@ const WeightLossPage: React.FC = () => {
   const [goalDiscovery, setGoalDiscovery] = useState<GoalDiscoverySelection | null>(() => profile.goalDiscovery ?? null);
   const [goals, setGoals] = useState<WizardGoalSelection[]>(() => profile.goals.length ? profile.goals : (profile.wizardGoal ? [profile.wizardGoal] : []));
   const [bodyConcerns, setBodyConcerns] = useState<BodyConcern[]>(() => profile.bodyConcerns);
+  const [exerciseRecommendationTypes, setExerciseRecommendationTypes] = useState<ExerciseRecommendationType[]>(() => {
+    const saved = profile.exerciseRecommendations.filter((id): id is ExerciseRecommendationType => EXERCISE_RECOMMENDATION_OPTIONS.some((option) => option.id === id));
+    return saved.length ? saved : recommendExerciseTypes(profile.goals.length ? profile.goals : (profile.wizardGoal ? [profile.wizardGoal] : []), profile.bodyConcerns);
+  });
+  const [adjustingExerciseRecommendations, setAdjustingExerciseRecommendations] = useState(false);
   const [weeklyPlan, setWeeklyPlan] = useState<PlanDay[]>(() => {
     try {
       const raw = localStorage.getItem(`hc_weekly_plan_${profile.kitchenPreference ?? 'egyptian'}`);
@@ -1943,16 +1948,13 @@ const WeightLossPage: React.FC = () => {
     }
     if (step === 8) {
       updateProfile({ bodyConcerns });
+      setExerciseRecommendationTypes(recommendExerciseTypes(goals.length ? goals : [primaryGoal], bodyConcerns));
+      setAdjustingExerciseRecommendations(false);
       setStep(9);
       return;
     }
     if (step === 9) {
-      const rec = recommendExerciseTypes(goals.length ? goals : [primaryGoal], bodyConcerns);
-      if (rec.length) {
-        setExerciseTypes(rec);
-        setStep2Data(d => ({ ...d, selectedExercises: rec, exerciseType: rec.includes('strength') || rec.includes('cardio') ? (rec.includes('strength') ? 'strength' : 'cardio') : d.exerciseType }));
-        updateProfile({ exerciseTypes: rec, activityLevel: step2Data.activityLevel });
-      }
+      acceptExerciseRecommendations();
       setStep(10);
       return;
     }
@@ -2199,14 +2201,55 @@ const WeightLossPage: React.FC = () => {
   };
 
   const toggleBodyConcern = (id: BodyConcern) => {
-    setBodyConcerns((prev) => {
-      if (id === 'none') {
-        return prev.includes('none') ? [] : ['none'];
-      }
-      const filtered = prev.filter((c) => c !== 'none');
-      if (filtered.includes(id)) return filtered.filter((c) => c !== id);
-      return [...filtered, id];
+    const next: BodyConcern[] = id === 'none'
+      ? bodyConcerns.includes('none') ? [] : ['none']
+      : bodyConcerns.includes(id)
+        ? bodyConcerns.filter((concern) => concern !== id && concern !== 'none')
+        : [...bodyConcerns.filter((concern) => concern !== 'none'), id];
+    setBodyConcerns(next);
+    updateProfile({ bodyConcerns: next });
+    if (id === 'none' && !bodyConcerns.includes('none')) {
+      setExerciseRecommendationTypes(recommendExerciseTypes(goals.length ? goals : [primaryGoal], next));
+      setAdjustingExerciseRecommendations(false);
+      setStep(9);
+    }
+  };
+  const toggleHealthCondition = (id: string) => {
+    const next = id === 'none'
+      ? healthConditions.includes('none') ? [] : ['none']
+      : healthConditions.includes(id)
+        ? healthConditions.filter((condition) => condition !== id && condition !== 'none')
+        : [...healthConditions.filter((condition) => condition !== 'none'), id];
+    setHealthConditions(next);
+    updateProfile({ healthConditions: next });
+  };
+
+  const recommendedActivityLevel: ActivityKey = ['sedentary', 'light'].includes(step2Data.activityLevel) ? 'light' : 'moderate';
+  const exerciseMovementSuggestions = [
+    ...(goals.includes('build_muscle') ? [{ en: 'Progressive overload', ar: 'زيادة الحمل التدريجي' }] : []),
+    ...(bodyConcerns.includes('belly_fat') ? [{ en: 'Core training', ar: 'تمارين الجذع' }] : []),
+    ...(bodyConcerns.includes('chest_sagging') ? [{ en: 'Push-ups', ar: 'تمارين الضغط' }, { en: 'Chest press', ar: 'ضغط الصدر' }] : []),
+    ...(bodyConcerns.includes('love_handles') ? [{ en: 'Oblique exercises', ar: 'تمارين العضلات المائلة' }] : []),
+    ...(bodyConcerns.includes('arm_fat') ? [{ en: 'Triceps', ar: 'العضلة ثلاثية الرؤوس' }, { en: 'Biceps', ar: 'العضلة ذات الرأسين' }] : []),
+    ...(bodyConcerns.includes('thigh_fat') ? [{ en: 'Squats', ar: 'القرفصاء' }, { en: 'Lunges', ar: 'الاندفاع' }] : []),
+    ...(bodyConcerns.includes('back_fat') ? [{ en: 'Rows', ar: 'تمارين التجديف' }, { en: 'Mobility', ar: 'تمارين الحركة' }] : []),
+  ];
+  const weeklyExerciseFocus = exerciseRecommendationTypes.includes('cardio') && exerciseRecommendationTypes.includes('strength')
+    ? (language === 'ar' ? '٣ مرات كارديو + مرتان قوة' : '3x cardio + 2x strength')
+    : exerciseRecommendationTypes.includes('strength')
+      ? (language === 'ar' ? '٣ مرات قوة + مرتان مرونة' : '3x strength + 2x flexibility')
+      : (language === 'ar' ? '٤ مرات كارديو + مرة مرونة' : '4x cardio + 1x flexibility');
+  const toggleExerciseRecommendation = (id: ExerciseRecommendationType) => {
+    setExerciseRecommendationTypes((current) => {
+      if (current.includes(id)) return current.filter((type) => type !== id);
+      return current.length < 4 ? [...current, id] : current;
     });
+  };
+  const acceptExerciseRecommendations = () => {
+    const mappedExerciseTypes = exerciseRecommendationTypes.map((id) => id === 'core' ? 'pilates' : id === 'flexibility' ? 'yoga' : id);
+    setExerciseTypes(mappedExerciseTypes);
+    setStep2Data((current) => ({ ...current, activityLevel: recommendedActivityLevel, selectedExercises: mappedExerciseTypes }));
+    updateProfile({ exerciseRecommendations: exerciseRecommendationTypes, exerciseTypes: mappedExerciseTypes, activityLevel: recommendedActivityLevel });
   };
 
   const notify = (m: string, undo?: { label: string; action: () => void }) => {
@@ -2510,8 +2553,8 @@ const WeightLossPage: React.FC = () => {
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between gap-2">
                   <span className="wiz-progress-badge truncate">{stepEyebrow}</span>
-                  <span className="text-[12px] font-bold text-[#6B7A75] whitespace-nowrap shrink-0">
-                    {t('wizard.stepOf')} <span className="num">{visibleStepNumber}</span> {t('wizard.of')} <span className="num">{wizardSteps.length}</span>
+                   <span className="text-[12px] font-bold text-[#6B7A75] whitespace-nowrap shrink-0">
+                     {t('wizard.stepOf')} <span className="num">{step}</span> {t('wizard.of')} <span className="num">13</span>
                   </span>
                 </div>
                 <h1 className="mt-2 text-[22px] md:text-[26px] font-extrabold leading-tight text-[#0F4C3A]">{stepTitle}</h1>
@@ -2962,130 +3005,99 @@ const WeightLossPage: React.FC = () => {
           <div className="mt-6 space-y-5">
             <div className={`${cardBase} p-6`}>
               <div className="flex items-center gap-3">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F4F1EB] text-[22px]">🩺</span>
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#EAF3ED] text-[#0F4C3A]"><Target size={22} /></span>
                 <div>
-                  <h2 className="text-[18px] font-extrabold">{language === 'ar' ? 'هل لديك أي من هذه الحالات؟' : 'Do any of these conditions apply to you?'}</h2>
-                  <p className="mt-1 text-[13px] text-[#6B7A75]">{language === 'ar' ? 'اختر كل ما ينطبق.' : 'Select all that apply.'}</p>
+                  <h2 className="text-[18px] font-extrabold">{language === 'ar' ? 'هل لديك منطقة محددة تريد العمل عليها؟' : 'Do you have a specific body area you want to work on?'}</h2>
+                  <p className="mt-1 text-[13px] text-[#6B7A75]">{language === 'ar' ? 'هذا السؤال اختياري. اختر كل ما ينطبق.' : 'This is optional. Select all that apply.'}</p>
                 </div>
               </div>
 
-              <div className="mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+              <div className="mt-5 grid grid-cols-2 gap-2.5">
                 {[
-                  { id: 'diabetes', en: 'Diabetes', ar: 'السكري', emoji: '🩸' },
-                  { id: 'hypertension', en: 'Hypertension', ar: 'ارتفاع ضغط الدم', emoji: '❤️' },
-                  { id: 'high_cholesterol', en: 'High Cholesterol', ar: 'ارتفاع الكوليسترول', emoji: '🫀' },
-                  { id: 'thyroid', en: 'Thyroid issues', ar: 'مشكلات الغدة الدرقية', emoji: '🦋' },
-                  { id: 'ibs_digestive', en: 'IBS / Digestive issues', ar: 'القولون العصبي / مشكلات الهضم', emoji: '🌿' },
-                  { id: 'none', en: 'None of the above', ar: 'لا شيء مما سبق', emoji: '✓' },
-                ].map((condition) => {
-                  const on = healthConditions.includes(condition.id);
+                  { id: 'belly_fat' as const, en: 'Belly Fat', ar: 'الكرش' },
+                  { id: 'love_handles' as const, en: 'Love Handles', ar: 'الجوانب' },
+                  { id: 'chest_sagging' as const, en: 'Chest Sagging', ar: 'ترهل الصدر' },
+                  { id: 'arm_fat' as const, en: 'Arm Fat', ar: 'الذراعين' },
+                  { id: 'thigh_fat' as const, en: 'Thigh Fat', ar: 'الفخذين' },
+                  { id: 'back_fat' as const, en: 'Back Fat', ar: 'الظهر' },
+                  { id: 'none' as const, en: 'None of the above', ar: 'لا شيء مما سبق' },
+                ].map((concern) => {
+                  const on = bodyConcerns.includes(concern.id);
                   return (
-                    <button
-                      key={condition.id}
-                      type="button"
-                      aria-pressed={on}
-                      onClick={() => toggleBodyConcern(condition.id as any)}
-                      className={`flex min-h-[58px] items-center gap-3 rounded-[16px] border-2 px-4 py-3 text-start text-[13px] font-bold transition-all ${on ? 'border-[#0F4C3A] bg-[#EAF3ED] text-[#0F4C3A]' : 'border-[#EFEBE4] bg-white text-[#6B7A75] hover:border-[#D4A017]'}`}
+                    <OptionChip
+                      key={concern.id}
+                      on={on}
+                      onClick={() => toggleBodyConcern(concern.id)}
+                      className={concern.id === 'none' ? 'col-span-2' : ''}
                     >
-                      <span className="text-[18px]">{condition.emoji}</span>
-                      <span className="flex-1">{language === 'ar' ? condition.ar : condition.en}</span>
-                      {on && <span aria-hidden="true" className="text-[#B8860B]">✓</span>}
-                    </button>
+                      {language === 'ar' ? concern.ar : concern.en}
+                    </OptionChip>
                   );
                 })}
               </div>
             </div>
 
-            <div className={`${cardBase} p-6`}>
-              <h2 className="text-[16px] font-extrabold">{language === 'ar' ? 'هل تتناول دواءً يؤثر في نظامك الغذائي؟' : 'Are you on any medication that affects diet?'}</h2>
-              <div className="mt-4 grid grid-cols-2 gap-3">
-                {[
-                  { value: true, label: language === 'ar' ? 'نعم' : 'Yes' },
-                  { value: false, label: language === 'ar' ? 'لا' : 'No' },
-                ].map((answer) => {
-                  const on = dietAffectingMedication === answer.value;
-                  return (
-                    <button
-                      key={answer.label}
-                      type="button"
-                      aria-pressed={on}
-                      onClick={() => {
-                        setDietAffectingMedication(answer.value);
-                        updateProfile({ dietAffectingMedication: answer.value });
-                      }}
-                      className={`min-h-[50px] rounded-[14px] border-2 text-[14px] font-bold transition-all ${on ? 'border-[#0F4C3A] bg-[#0F4C3A] text-white' : 'border-[#EFEBE4] bg-white text-[#6B7A75] hover:border-[#D4A017]'}`}
-                    >
-                      {answer.label}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            <p className="rounded-[16px] border border-[#E9D9A8] bg-[#FFF8E7] px-4 py-3 text-[12px] leading-relaxed text-[#6B5A28]">
-              {language === 'ar'
-                ? 'تقدم HealthCalc إرشادات معلوماتية فقط. استشر طبيبك دائماً قبل إجراء أي تغييرات.'
-                : 'HealthCalc provides informational guidance only. Always consult your doctor before making changes.'}
-            </p>
-
-            <div className="flex gap-3">
-              <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">{t('wizard.back')}</button>
-              <button type="button" onClick={next} disabled={!isValid()} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold disabled:cursor-not-allowed disabled:opacity-40">{t('wizard.continue')}</button>
-            </div>
+            <WizardFooter onBack={back} onNext={next} nextDisabled={!isValid()} backLabel={t('wizard.back')} nextLabel={t('wizard.continue')} />
           </div>
         )}
 
         {step === 9 && (
           <div className="mt-6 space-y-5">
-            <p className="rounded-[20px] border border-[#DDE9DF] bg-[#F3F8F3] px-5 py-4 text-[14px] font-semibold leading-relaxed text-[#0F4C3A]">
-              {language === 'ar' ? 'بناءً على ملفك، نوصي بما يلي.' : 'Based on your profile, we recommend the following.'}
+            <div className={`${cardBase} p-5 sm:p-6`}>
+              <div className="flex items-center gap-3">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#EAF3ED] text-[#0F4C3A]"><Dumbbell size={22} /></span>
+                <div>
+                  <h2 className="text-[18px] font-extrabold">{language === 'ar' ? 'تمارين مقترحة بناءً على أهدافك' : 'Exercise recommendations based on your goals'}</h2>
+                  <p className="mt-1 text-[12.5px] text-[#6B7A75]">{language === 'ar' ? 'توصيات مخصصة يمكنك قبولها أو تعديلها.' : 'Personalized suggestions you can accept or adjust.'}</p>
+                </div>
+              </div>
+
+              <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                <div className="rounded-[16px] bg-[#F4F1EB] p-4">
+                  <div className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-wide text-[#8A938E]"><Activity size={16} />{language === 'ar' ? 'مستوى النشاط المقترح' : 'Recommended Activity Level'}</div>
+                  <p className="mt-2 text-[16px] font-extrabold text-[#0F4C3A]">{ACTIVITY_LABEL(recommendedActivityLevel)}</p>
+                </div>
+                <div className="rounded-[16px] bg-[#F4F1EB] p-4">
+                  <div className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-wide text-[#8A938E]"><Target size={16} />{language === 'ar' ? 'التركيز الأسبوعي' : 'Weekly Focus'}</div>
+                  <p className="mt-2 text-[14px] font-extrabold text-[#0F4C3A]">{weeklyExerciseFocus}</p>
+                </div>
+                <div className="rounded-[16px] bg-[#F4F1EB] p-4">
+                  <div className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-wide text-[#8A938E]"><Timer size={16} />{language === 'ar' ? 'مدة الجلسة' : 'Session Duration'}</div>
+                  <p className="mt-2 text-[16px] font-extrabold text-[#0F4C3A]">{recommendedActivityLevel === 'light' ? 20 : 30} {language === 'ar' ? 'دقيقة' : 'min'}</p>
+                </div>
+              </div>
+
+              <div className="mt-5">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-[14px] font-extrabold">{language === 'ar' ? 'أنواع التمارين' : 'Exercise Types'}</h3>
+                  <button type="button" aria-pressed={adjustingExerciseRecommendations} onClick={() => setAdjustingExerciseRecommendations((editing) => !editing)} className="min-h-10 rounded-full border border-[#0F4C3A]/20 bg-white px-4 text-xs font-bold text-[#0F4C3A] hover:bg-[#E9F2EA]">
+                    {adjustingExerciseRecommendations ? (language === 'ar' ? 'إنهاء التعديل' : 'Done Adjusting') : (language === 'ar' ? 'تعديل' : 'Adjust')}
+                  </button>
+                </div>
+                <div className="mt-3 grid grid-cols-2 gap-2.5 sm:grid-cols-3">
+                  {EXERCISE_RECOMMENDATION_OPTIONS.map(({ id, en, ar, Icon }) => (
+                    <OptionChip key={id} on={exerciseRecommendationTypes.includes(id)} onClick={() => { if (adjustingExerciseRecommendations) toggleExerciseRecommendation(id); }} className="w-full">
+                      <Icon size={16} />{language === 'ar' ? ar : en}
+                    </OptionChip>
+                  ))}
+                </div>
+              </div>
+
+              {exerciseMovementSuggestions.length > 0 && (
+                <div className="mt-5">
+                  <h3 className="text-[13px] font-extrabold">{language === 'ar' ? 'تركيز إضافي مقترح' : 'Additional focus suggestions'}</h3>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {exerciseMovementSuggestions.map((suggestion) => <span key={suggestion.en} className="rounded-full border border-[#DDE9DF] bg-[#F3F8F3] px-3 py-2 text-[11px] font-bold text-[#0F4C3A]">{language === 'ar' ? suggestion.ar : suggestion.en}</span>)}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <p className="rounded-[16px] border border-[#E9D9A8] bg-[#FFF8E7] px-4 py-3 text-[12px] leading-relaxed text-[#6B5A28]">
+              {language === 'ar' ? 'استشر دائماً مختصاً قبل البدء ببرنامج تمارين جديد.' : 'Always consult a professional before starting a new exercise program.'}
             </p>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-              <div className={`${cardBase} p-5`}>
-                <div className="text-[12px] font-extrabold uppercase tracking-wide text-[#8A938E]">🥗 {language === 'ar' ? 'نوع الحمية المقترح' : 'Recommended Diet Type'}</div>
-                <div className="mt-3 text-[18px] font-extrabold text-[#0F4C3A]">{recommendedDiet}</div>
-                <p className="mt-2 text-[12px] leading-relaxed text-[#6B7A75]">
-                  {healthConditions.includes('diabetes')
-                    ? language === 'ar' ? 'اختيرت مراعاةً لمعلوماتك الصحية؛ ناقش أي تغيير مع طبيبك.' : 'Selected with your health information in mind; discuss dietary changes with your doctor.'
-                    : dietaryPreferences.includes('vegetarian') || dietaryPreferences.includes('vegan')
-                      ? language === 'ar' ? 'يراعي تفضيلاتك الغذائية المحفوظة.' : 'Based on your saved dietary preferences.'
-                      : language === 'ar' ? 'نهج متوازن يتماشى مع ملفك.' : 'A balanced approach based on your profile.'}
-                </p>
-              </div>
-
-              <div className={`${cardBase} p-5`}>
-                <div className="text-[12px] font-extrabold uppercase tracking-wide text-[#8A938E]">🔥 {language === 'ar' ? 'السعرات اليومية المقترحة' : 'Recommended Daily Calories'}</div>
-                <div className="mt-3 flex items-baseline gap-1">
-                  <span className="num text-[32px] font-black text-[#0F4C3A]">{recommendedDailyCalories}</span>
-                  <span className="text-[13px] font-bold text-[#6B7A75]">kcal/day</span>
-                </div>
-                {numbers && <p className="mt-2 text-[12px] leading-relaxed text-[#6B7A75]">{language === 'ar' ? 'احتياج المحافظة المحسوب' : 'Calculated maintenance'}: <span className="num font-bold">{recommendedMaintenance}</span> kcal/day</p>}
-              </div>
-
-              <div className={`${cardBase} p-5`}>
-                <div className="text-[12px] font-extrabold uppercase tracking-wide text-[#8A938E]">🏃 {language === 'ar' ? 'التمرين المقترح' : 'Recommended Exercise'}</div>
-                <div className="mt-3 text-[16px] font-extrabold leading-snug text-[#0F4C3A]">{recommendedExercise}</div>
-                <p className="mt-2 text-[12px] leading-relaxed text-[#6B7A75]">{language === 'ar' ? 'ابدأ بوتيرة مريحة وعدّلها بما يناسبك.' : 'Start at a comfortable pace and adjust to suit you.'}</p>
-              </div>
-
-              <div className={`${cardBase} p-5`}>
-                <div className="text-[12px] font-extrabold uppercase tracking-wide text-[#8A938E]">🎯 {language === 'ar' ? 'الهدف المقترح' : 'Recommended Goal'}</div>
-                <div className="mt-3 text-[18px] font-extrabold text-[#0F4C3A]">{wizardGoalLabel(recommendedWizardGoal)}</div>
-                <p className="mt-2 text-[12px] leading-relaxed text-[#6B7A75]">{language === 'ar' ? 'يمكنك قبول هذا الهدف أو اختيار هدف آخر في الخطوة التالية.' : 'Accept this goal or choose a different one in the next step.'}</p>
-              </div>
-            </div>
-
-            {dietAffectingMedication && (
-              <p className="rounded-[16px] border border-[#E9D9A8] bg-[#FFF8E7] px-4 py-3 text-[12px] leading-relaxed text-[#6B5A28]">
-                {language === 'ar' ? 'بما أنك تتناول دواءً قد يؤثر في نظامك الغذائي، راجع طبيبك قبل تطبيق التوصيات.' : 'Since you take medication that may affect diet, check with your doctor before following these recommendations.'}
-              </p>
-            )}
-
-            <div className="flex gap-3">
-              <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">{t('wizard.back')}</button>
-              <button type="button" onClick={next} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">{t('wizard.continue')}</button>
-            </div>
+            <WizardFooter onBack={back} onNext={next} backLabel={t('wizard.back')} nextLabel={adjustingExerciseRecommendations ? (language === 'ar' ? 'حفظ ومتابعة' : 'Save & Continue') : (language === 'ar' ? 'قبول ومتابعة' : 'Accept & Continue')} />
           </div>
         )}
 
@@ -3313,13 +3325,60 @@ const WeightLossPage: React.FC = () => {
 
         {step === 10 && (
           <div className="mt-6 space-y-5">
+            <div className={`${cardBase} p-6`}>
+              <div className="flex items-center gap-3">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#EAF3ED] text-[#0F4C3A]"><ShieldCheck size={22} /></span>
+                <div>
+                  <h2 className="text-[18px] font-extrabold">{language === 'ar' ? 'الحالات الصحية' : 'Health Conditions'}</h2>
+                  <p className="mt-1 text-[12.5px] text-[#6B7A75]">{language === 'ar' ? 'اختر كل ما ينطبق عليك.' : 'Select all that apply.'}</p>
+                </div>
+              </div>
+              <div className="mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                {[
+                  { id: 'diabetes', en: 'Diabetes', ar: 'السكري' },
+                  { id: 'hypertension', en: 'Hypertension', ar: 'ارتفاع ضغط الدم' },
+                  { id: 'high_cholesterol', en: 'High Cholesterol', ar: 'ارتفاع الكوليسترول' },
+                  { id: 'thyroid', en: 'Thyroid issues', ar: 'مشكلات الغدة الدرقية' },
+                  { id: 'ibs_digestive', en: 'IBS / Digestive issues', ar: 'القولون العصبي / مشكلات الهضم' },
+                  { id: 'none', en: 'None of the above', ar: 'لا شيء مما سبق' },
+                ].map((condition) => (
+                  <OptionChip key={condition.id} on={healthConditions.includes(condition.id)} onClick={() => toggleHealthCondition(condition.id)}>
+                    {language === 'ar' ? condition.ar : condition.en}
+                  </OptionChip>
+                ))}
+              </div>
+            </div>
+
+            <div className={`${cardBase} p-6`}>
+              <h2 className="text-[16px] font-extrabold">{language === 'ar' ? 'هل تتناول دواءً يؤثر في نظامك الغذائي؟' : 'Are you on any medication that affects diet?'}</h2>
+              <div className="mt-4 grid grid-cols-2 gap-3">
+                {[
+                  { value: true, label: language === 'ar' ? 'نعم' : 'Yes' },
+                  { value: false, label: language === 'ar' ? 'لا' : 'No' },
+                ].map((answer) => (
+                  <OptionChip key={answer.label} on={dietAffectingMedication === answer.value} onClick={() => { setDietAffectingMedication(answer.value); updateProfile({ dietAffectingMedication: answer.value }); }}>
+                    {answer.label}
+                  </OptionChip>
+                ))}
+              </div>
+            </div>
+
+            <p className="rounded-[16px] border border-[#E9D9A8] bg-[#FFF8E7] px-4 py-3 text-[12px] leading-relaxed text-[#6B5A28]">
+              {language === 'ar' ? 'تقدم HealthCalc إرشادات معلوماتية فقط. استشر طبيبك دائماً قبل إجراء أي تغييرات.' : 'HealthCalc provides informational guidance only. Always consult your doctor before making changes.'}
+            </p>
+            <WizardFooter onBack={back} onNext={next} nextDisabled={!isValid()} backLabel={t('wizard.back')} nextLabel={t('wizard.continue')} />
+          </div>
+        )}
+
+        {false && step === 10 && (
+          <div className="mt-6 space-y-5">
             {(profile.age !== null || profile.height !== null || profile.weight !== null || profile.activityLevel !== null) && (
               <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#DDE9DF] bg-[#F3F8F3] px-4 py-3">
                 <div className="min-w-0">
                   <p className="text-xs font-extrabold text-[#0F4C3A]">{language === 'ar' ? 'إجاباتك المحفوظة' : 'Using your saved answers'}</p>
                   <p className="mt-1 break-words text-xs text-[#52635A]">
                     {[profile.age !== null ? `${profile.age} ${language === 'ar' ? 'سنة' : 'yrs'}` : null,
-                      profile.gender ? t(profile.gender) : null,
+                       profile.gender ? t(profile.gender as 'male' | 'female') : null,
                       profile.height !== null ? `${profile.height} cm` : null,
                       profile.weight !== null ? `${profile.weight} kg` : null,
                       profile.activityLevel ? t(`wizard.activity.${profile.activityLevel}` as any) : null,
@@ -3409,7 +3468,7 @@ const WeightLossPage: React.FC = () => {
           </div>
         )}
 
-        {step === 10 && (
+        {false && step === 10 && (
           <div className="mt-6 space-y-5">
             <div className={`${cardBase} p-6`}>
               <div className="flex items-center justify-between gap-2 flex-wrap">
@@ -3454,8 +3513,8 @@ const WeightLossPage: React.FC = () => {
               <div className={`${cardBase} p-6`}>
                 <h2 className="text-[16px] font-extrabold">📈 {t('wizard.step4.projection')}</h2>
                 <p className="mt-2 text-[14px] text-[#6B7A75] leading-relaxed break-words">{projectionText}</p>
-                <div className="mt-2 text-[13px] font-semibold text-[#0F4C3A]">{t('wizard.step4.targetCal').replace('{n}', String(numbers.targetCal))}</div>
-                <div className="mt-2 text-[12px] text-[#8A938E]">{numbers.wk.name} · {ACTIVITY_LABEL(step2Data.activityLevel)}</div>
+                <div className="mt-2 text-[13px] font-semibold text-[#0F4C3A]">{t('wizard.step4.targetCal').replace('{n}', String(numbers!.targetCal))}</div>
+                <div className="mt-2 text-[12px] text-[#8A938E]">{numbers!.wk.name} · {ACTIVITY_LABEL(step2Data.activityLevel)}</div>
               </div>
             )}
             <div className="flex gap-3">
@@ -3500,7 +3559,7 @@ const WeightLossPage: React.FC = () => {
             <div className={`${cardBase} p-5`}>
               <div className="flex items-center justify-between gap-3">
                 <h2 className="text-[16px] font-extrabold">🩺 {language === 'ar' ? 'الصحة والأدوية' : 'Health & Medication'}</h2>
-                <button type="button" onClick={() => setStep(8)} className="min-h-10 rounded-full border border-[#0F4C3A]/20 bg-white px-4 text-xs font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
+                <button type="button" onClick={() => setStep(10)} className="min-h-10 rounded-full border border-[#0F4C3A]/20 bg-white px-4 text-xs font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
               </div>
               <p className="mt-2 text-[13px] font-semibold">{healthConditions.map(healthConditionLabel).join(' · ')}</p>
               <p className="mt-1 text-[11.5px] text-[#6B7A75]">{language === 'ar' ? 'دواء يؤثر في النظام الغذائي' : 'Medication that affects diet'}: {dietAffectingMedication ? (language === 'ar' ? 'نعم' : 'Yes') : (language === 'ar' ? 'لا' : 'No')}</p>
@@ -3509,7 +3568,7 @@ const WeightLossPage: React.FC = () => {
             <div className={`${cardBase} p-5`}>
               <div className="flex items-center justify-between gap-3">
                 <h2 className="text-[16px] font-extrabold">🎯 {language === 'ar' ? 'الهدف' : 'Goal'}</h2>
-                <button type="button" onClick={() => setStep(10)} className="min-h-10 rounded-full border border-[#0F4C3A]/20 bg-white px-4 text-xs font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
+                <button type="button" onClick={() => setStep(7)} className="min-h-10 rounded-full border border-[#0F4C3A]/20 bg-white px-4 text-xs font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
               </div>
               <p className="mt-2 text-[13px] font-semibold">{wizardGoalLabel(wizardGoal)}</p>
               <p className="mt-1 text-[11.5px] text-[#6B7A75]">{parsed.target} kg · {parsed.timeline} {t('wizard.unit.weeks')}</p>

@@ -51,6 +51,7 @@ export interface UserProfile {
   goalDiscovery: GoalDiscoverySelection | null;
   goals: WizardGoalSelection[];
   bodyConcerns: BodyConcern[];
+  exerciseRecommendations: string[];
 }
 
 export const USER_PROFILE_STORAGE_KEY = 'healthcalc_user_profile';
@@ -89,6 +90,7 @@ const EMPTY_PROFILE: UserProfile = {
   goalDiscovery: null,
   goals: [],
   bodyConcerns: [],
+  exerciseRecommendations: [],
 };
 
 const LEGACY_DIET_INTENSITIES = new Set([
@@ -198,6 +200,7 @@ const normalizeProfile = (value: unknown): UserProfile => {
     goalDiscovery: asEnum(data.goalDiscovery, GOAL_DISCOVERY_OPTIONS),
     goals: asEnumList(data.goals, MULTI_GOAL_OPTIONS),
     bodyConcerns: asEnumList(data.bodyConcerns, BODY_CONCERN_OPTIONS),
+    exerciseRecommendations: asStringList(data.exerciseRecommendations),
   };
 };
 
