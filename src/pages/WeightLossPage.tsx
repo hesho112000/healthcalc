@@ -19,7 +19,7 @@ import { useAuth } from '../context/AuthContext';
 import { savePlan, saveProfile } from '../services/supabaseData';
 import { useKitchenDishes } from '../hooks/useKitchenDishes';
 import { useKitchenDishCounts, KITCHEN_ID_ALIAS } from '../hooks/useKitchenDishCounts';
-import { useUserProfile, type UserProfile, type WizardGoalSelection, type SleepHours, type StressLevel, type WorkType, type SmokingStatus, type MealsPerDay, type SnackFrequency, type BreakfastType, type MeatFrequency, type VegetablesFrequency, type SugaryDrinksFrequency } from '../hooks/useUserProfile';
+import { useUserProfile, type UserProfile, type WizardGoalSelection, type SleepHours, type StressLevel, type WorkType, type SmokingStatus, type MealsPerDay, type SnackFrequency, type BreakfastType, type MeatFrequency, type VegetablesFrequency, type SugaryDrinksFrequency, type GoalDiscoverySelection, type BodyConcern } from '../hooks/useUserProfile';
 import { generateWeeklyPlan } from '../utils/mealPlanGenerator';
 import type { PlanDay, PlanDish, PlanMealType } from '../utils/mealPlanGenerator';
 
@@ -49,6 +49,58 @@ const initialWizardGoal = (profile: UserProfile): WizardGoalSelection => {
   if (profile.goal === 'wellness') return 'maintain_weight';
   const bmi = profile.height && profile.weight ? profile.weight / Math.pow(profile.height / 100, 2) : null;
   return recommendWizardGoal(profile.healthConditions, bmi);
+};
+
+const GOAL_SELECTION_OPTIONS: { id: WizardGoalSelection; icon: string; en: string; ar: string; enDesc: string; arDesc: string }[] = [
+  { id: 'lose_weight', icon: '⚖️', en: 'Lose Weight', ar: 'إنقاص الوزن', enDesc: 'Steady, sustainable fat loss', arDesc: 'خسارة دهون ثابتة ومستدامة' },
+  { id: 'maintain_weight', icon: '🌿', en: 'Maintain Weight', ar: 'الحفاظ على الوزن', enDesc: 'Build healthy habits and hold steady', arDesc: 'عادات صحية والحفاظ على وزنك' },
+  { id: 'build_muscle', icon: '💪', en: 'Build Muscle', ar: 'بناء العضلات', enDesc: 'Strength training with more protein', arDesc: 'تمارين قوة مع بروتين أعلى' },
+  { id: 'improve_health', icon: '🩺', en: 'Improve Specific Health', ar: 'تحسين حالة صحية محددة', enDesc: 'Personalize habits for your health needs', arDesc: 'عادات مخصصة لاحتياجاتك الصحية' },
+];
+
+const GOAL_DISCOVERY_OPTIONS: { id: GoalDiscoverySelection; icon: string; en: string; ar: string }[] = [
+  { id: 'lose_weight', icon: '⚖️', en: 'Lose Weight', ar: 'إنقاص الوزن' },
+  { id: 'maintain_weight', icon: '🌿', en: 'Maintain Weight', ar: 'الحفاظ على الوزن' },
+  { id: 'build_muscle', icon: '💪', en: 'Build Muscle', ar: 'بناء العضلات' },
+  { id: 'improve_health', icon: '🩺', en: 'Improve Specific Health', ar: 'تحسين حالة صحية محددة' },
+  { id: 'not_sure', icon: '🤔', en: 'Not sure — help me decide', ar: 'لست متأكداً — ساعدني في الاختيار' },
+];
+
+const BODY_CONCERN_OPTIONS: { id: BodyConcern; en: string; ar: string }[] = [
+  { id: 'belly_fat', en: 'Belly Fat', ar: 'دهون البطن' },
+  { id: 'love_handles', en: 'Love Handles', ar: 'دهون الجانبين' },
+  { id: 'chest_sagging', en: 'Chest Sagging', ar: 'ترهل الصدر' },
+  { id: 'arm_fat', en: 'Arm Fat', ar: 'دهون الذراعين' },
+  { id: 'thigh_fat', en: 'Thigh Fat', ar: 'دهون الفخذين' },
+  { id: 'back_fat', en: 'Back Fat', ar: 'دهون الظهر' },
+  { id: 'skin_laxity', en: 'General Skin Laxity', ar: 'ترهل الجلد العام' },
+  { id: 'none', en: 'None', ar: 'لا شيء' },
+];
+
+const TIMELINE_OPTIONS: { weeks: number; en: string; ar: string }[] = [
+  { weeks: 4, en: '1 month', ar: 'شهر واحد' },
+  { weeks: 13, en: '3 months', ar: '3 أشهر' },
+  { weeks: 26, en: '6 months', ar: '6 أشهر' },
+  { weeks: 52, en: '1 year', ar: 'سنة واحدة' },
+];
+
+const PRIMARY_GOAL_ORDER: WizardGoalSelection[] = ['lose_weight', 'build_muscle', 'improve_health', 'maintain_weight'];
+const primaryGoalSelection = (goals: WizardGoalSelection[]): WizardGoalSelection =>
+  PRIMARY_GOAL_ORDER.find((g) => goals.includes(g)) ?? 'maintain_weight';
+
+const recommendExerciseTypes = (goals: WizardGoalSelection[], concerns: BodyConcern[]): string[] => {
+  const picks = new Set<string>();
+  if (goals.includes('lose_weight')) { picks.add('cardio'); picks.add('hiit'); }
+  if (goals.includes('build_muscle')) { picks.add('strength'); picks.add('calisthenics'); }
+  if (goals.includes('improve_health')) { picks.add('yoga'); picks.add('pilates'); }
+  if (goals.includes('maintain_weight') || !goals.length) { picks.add('cardio'); picks.add('yoga'); }
+  concerns.forEach((concern) => {
+    if (concern === 'belly_fat' || concern === 'love_handles') { picks.add('hiit'); picks.add('pilates'); }
+    if (concern === 'chest_sagging' || concern === 'arm_fat' || concern === 'back_fat') picks.add('strength');
+    if (concern === 'thigh_fat') { picks.add('cycling'); picks.add('cardio'); }
+    if (concern === 'skin_laxity') { picks.add('strength'); picks.add('yoga'); }
+  });
+  return [...picks].filter((id) => EXERCISE_TYPES.some((e) => e.id === id));
 };
 
 interface Workout {
@@ -1448,6 +1500,9 @@ const WeightLossPage: React.FC = () => {
   const [meatFrequency, setMeatFrequency] = useState<MeatFrequency>(() => profile.meatFrequency ?? 'daily');
   const [vegetablesFrequency, setVegetablesFrequency] = useState<VegetablesFrequency>(() => profile.vegetablesFrequency ?? 'daily');
   const [sugaryDrinks, setSugaryDrinks] = useState<SugaryDrinksFrequency>(() => profile.sugaryDrinks ?? 'sometimes');
+  const [goalDiscovery, setGoalDiscovery] = useState<GoalDiscoverySelection | null>(() => profile.goalDiscovery ?? null);
+  const [goals, setGoals] = useState<WizardGoalSelection[]>(() => profile.goals.length ? profile.goals : (profile.wizardGoal ? [profile.wizardGoal] : []));
+  const [bodyConcerns, setBodyConcerns] = useState<BodyConcern[]>(() => profile.bodyConcerns);
   const [weeklyPlan, setWeeklyPlan] = useState<PlanDay[]>(() => {
     try {
       const raw = localStorage.getItem(`hc_weekly_plan_${profile.kitchenPreference ?? 'egyptian'}`);
@@ -1628,14 +1683,14 @@ const WeightLossPage: React.FC = () => {
     { n: 3, label: language === 'ar' ? 'القياسات' : 'Measurements' },
     { n: 4, label: language === 'ar' ? 'نمط الحياة' : 'Lifestyle' },
     { n: 5, label: language === 'ar' ? 'عادات الأكل' : 'Eating' },
-    { n: 6, label: language === 'ar' ? 'النشاط' : 'Activity' },
-    { n: 7, label: language === 'ar' ? 'الغذاء' : 'Diet' },
-    { n: 8, label: language === 'ar' ? 'الصحة' : 'Health' },
-    { n: 9, label: language === 'ar' ? 'التوصيات' : 'Advice' },
-    { n: 10, label: language === 'ar' ? 'الهدف' : 'Goal' },
-    { n: 11, label: language === 'ar' ? 'المعاينة' : 'Preview' },
-    { n: 12, label: language === 'ar' ? 'المراجعة' : 'Review' },
-    { n: 13, label: language === 'ar' ? 'جاهز' : 'Ready' },
+    { n: 6, label: language === 'ar' ? 'اكتشاف الهدف' : 'Goal Discovery' },
+    { n: 7, label: language === 'ar' ? 'اختيار الأهداف' : 'Goal Selection' },
+    { n: 8, label: language === 'ar' ? 'مناطق الاهتمام' : 'Body Concerns' },
+    { n: 9, label: language === 'ar' ? 'التمارين المقترحة' : 'Exercise' },
+    { n: 10, label: language === 'ar' ? 'الصحة' : 'Health' },
+    { n: 11, label: language === 'ar' ? 'التوصيات' : 'Advice' },
+    { n: 12, label: language === 'ar' ? 'المعاينة' : 'Preview' },
+    { n: 13, label: language === 'ar' ? 'المراجعة' : 'Review' },
   ];
   const visibleSteps = fromCalculator ? wizardSteps.filter((x) => x.n >= 4) : wizardSteps;
   const visIdx = Math.max(0, visibleSteps.findIndex((x) => x.n === step));
@@ -1647,14 +1702,14 @@ const WeightLossPage: React.FC = () => {
     if (step === 3) return language === 'ar' ? 'قياسات الجسم' : 'Body Measurements';
     if (step === 4) return language === 'ar' ? 'نمط الحياة' : 'Lifestyle';
     if (step === 5) return language === 'ar' ? 'العادات الغذائية الحالية' : 'Current Dietary Habits';
-    if (step === 6) return language === 'ar' ? 'نمط الحياة والنشاط' : 'Lifestyle & Activity';
-    if (step === 7) return language === 'ar' ? 'تفضيلاتك الغذائية' : 'Dietary Preferences';
-    if (step === 8) return language === 'ar' ? 'الحالات الصحية' : 'Health Conditions';
-    if (step === 9) return language === 'ar' ? 'توصياتك الشخصية' : 'Your Recommendations';
-    if (step === 10) return language === 'ar' ? 'اختر هدفك' : 'Choose Your Goal';
-    if (step === 11) return language === 'ar' ? 'معاينة خطتك' : 'Plan Preview';
-    if (step === 12) return language === 'ar' ? 'المراجعة النهائية' : 'Final Review';
-    return language === 'ar' ? 'خطتك الشخصية جاهزة!' : 'Your Personalized Plan is Ready!';
+    if (step === 6) return language === 'ar' ? 'ما الذي ترغب في تحقيقه؟' : 'What would you like to achieve?';
+    if (step === 7) return language === 'ar' ? 'اختر أهدافك' : 'Select Your Goals';
+    if (step === 8) return language === 'ar' ? 'مناطق الجسم التي تريد تحسينها' : 'Specific Body Areas to Work On';
+    if (step === 9) return language === 'ar' ? 'تمارين مقترحة بناءً على أهدافك' : 'Recommended Exercises For Your Goals';
+    if (step === 10) return language === 'ar' ? 'الحالات الصحية' : 'Health Conditions';
+    if (step === 11) return language === 'ar' ? 'توصياتك الشخصية' : 'Your Recommendations';
+    if (step === 12) return language === 'ar' ? 'معاينة خطتك' : 'Plan Preview';
+    return language === 'ar' ? 'مراجعة إجاباتك' : 'Review Your Answers';
   })();
   const stepEyebrow = (() => {
     if (step === 1) return language === 'ar' ? 'مرحباً بك' : 'WELCOME';
@@ -1662,14 +1717,14 @@ const WeightLossPage: React.FC = () => {
     if (step === 3) return language === 'ar' ? 'قياسات الجسم' : 'BODY MEASUREMENTS';
     if (step === 4) return language === 'ar' ? 'نمط حياتك' : 'LIFESTYLE';
     if (step === 5) return language === 'ar' ? 'عاداتك الغذائية الحالية' : 'CURRENT EATING HABITS';
-    if (step === 6) return language === 'ar' ? 'نمط الحياة والنشاط' : 'LIFESTYLE & ACTIVITY';
-    if (step === 7) return language === 'ar' ? 'تفضيلاتك الغذائية' : 'DIETARY PREFERENCES';
-    if (step === 8) return language === 'ar' ? 'صحتك وسلامتك' : 'YOUR HEALTH & SAFETY';
-    if (step === 9) return language === 'ar' ? 'مبنية على إجاباتك' : 'BASED ON YOUR PROFILE';
-    if (step === 10) return language === 'ar' ? 'الخطوة الأخيرة لتخصيص خطتك' : 'PERSONALIZE YOUR PLAN';
-    if (step === 11) return language === 'ar' ? 'هذه خطتك المقترحة' : 'YOUR PLAN AT A GLANCE';
-    if (step === 12) return language === 'ar' ? 'تأكد من إجاباتك' : 'CHECK YOUR ANSWERS';
-    return language === 'ar' ? 'اكتمل إعداد خطتك' : 'READY TO GET STARTED';
+    if (step === 6) return language === 'ar' ? 'اكتشاف الهدف' : 'GOAL DISCOVERY';
+    if (step === 7) return language === 'ar' ? 'اختيار الأهداف' : 'GOAL SELECTION';
+    if (step === 8) return language === 'ar' ? 'مناطق الاهتمام' : 'BODY CONCERNS';
+    if (step === 9) return language === 'ar' ? 'التمارين' : 'EXERCISE';
+    if (step === 10) return language === 'ar' ? 'صحتك وسلامتك' : 'YOUR HEALTH & SAFETY';
+    if (step === 11) return language === 'ar' ? 'مبنية على إجاباتك' : 'BASED ON YOUR PROFILE';
+    if (step === 12) return language === 'ar' ? 'هذه خطتك المقترحة' : 'YOUR PLAN AT A GLANCE';
+    return language === 'ar' ? 'تأكد من إجاباتك' : 'CHECK YOUR ANSWERS';
   })();
 
   const numbers = useMemo(() => {
@@ -1758,22 +1813,35 @@ const WeightLossPage: React.FC = () => {
     if (step === 3) {
       return parsed.height >= 120 && parsed.height <= 220 && parsed.weight >= 30 && parsed.weight <= 250;
     }
-    if (step === 8) return healthConditions.length > 0 && dietAffectingMedication !== null;
-    if (step === 10) {
-      const base =
-        parsed.target >= 30 &&
-        parsed.target <= 250 &&
-        parsed.timeline >= 2 &&
-        parsed.timeline <= 52 &&
-        parsed.weight >= 30 &&
-        parsed.weight <= 250;
-      if (!base) return false;
-      if (goal === 'lose') return parsed.target < parsed.weight;
-      if (goal === 'gain_muscle' || goal === 'gain_weight') return parsed.target > parsed.weight;
+    if (step === 6) {
+      if (!goalDiscovery) return false;
       return true;
     }
+    if (step === 7) {
+      if (goals.length === 0 || goals.length > 3) return false;
+      const hasLose = goals.includes('lose_weight');
+      const hasMaintain = goals.includes('maintain_weight');
+      if (hasLose && hasMaintain) return false;
+      return true;
+    }
+    if (step === 8) {
+      return true;
+    }
+    if (step === 9) {
+      return true;
+    }
+    if (step === 10) return healthConditions.length > 0 && dietAffectingMedication !== null;
+    if (step === 12) return true;
     return true;
   };
+
+  const primaryGoal = primaryGoalSelection(goals.length ? goals : (wizardGoal ? [wizardGoal] : []));
+  const hasConflictGoals = goals.includes('lose_weight') && goals.includes('maintain_weight');
+  const targetWeeks = TIMELINE_OPTIONS.find((t) => t.weeks === parsed.timeline) ? parsed.timeline : 12;
+  const lossKgPerWeek = parsed.weight && parsed.target && parsed.target < parsed.weight && targetWeeks > 0
+    ? ((parsed.weight - parsed.target) / targetWeeks) / 7
+    : null;
+  const safeLoss = lossKgPerWeek === null ? null : lossKgPerWeek >= 0.5 && lossKgPerWeek <= 1.0;
 
   const saveWizardProfile = () => updateProfile({
     age: parsed.age || null,
@@ -1805,6 +1873,9 @@ const WeightLossPage: React.FC = () => {
     meatFrequency,
     vegetablesFrequency,
     sugaryDrinks,
+    goalDiscovery,
+    goals,
+    bodyConcerns,
   });
 
   const next = () => {
@@ -1829,43 +1900,80 @@ const WeightLossPage: React.FC = () => {
       return;
     }
     if (step === 5) {
-      updateProfile({ mealsPerDay, snacksBetweenMeals, breakfastType, meatFrequency, vegetablesFrequency, sugaryDrinks });
+      updateProfile({ mealsPerDay, snacksBetweenMeals, breakfastType, meatFrequency, vegetablesFrequency, sugaryDrinks, dietaryPreferences });
       setStep(6);
       return;
     }
     if (step === 6) {
-      updateProfile({ activityLevel: step2Data.activityLevel, exerciseTypes });
-      setEditingSavedProfile(false);
+      const recommended = goalDiscovery;
+      let selected = goals;
+      if (recommended === 'not_sure') {
+        const bmi = numbers?.bmi ?? null;
+        selected = [recommendWizardGoal(healthConditions, bmi)];
+      }
+      else selected = recommended ? [recommended] : goals;
+      if (selected.length === 1) {
+        const sel = selected[0];
+        setGoals(selected);
+        setWizardGoal(sel);
+        setGoal(WIZARD_GOAL_CALC[sel]);
+        updateProfile({ goalDiscovery, goals: selected, wizardGoal: sel, goal: WIZARD_GOAL_CALC[sel] });
+      } else {
+        updateProfile({ goalDiscovery, goals });
+      }
       setStep(7);
       return;
     }
     if (step === 7) {
-      updateProfile({ dietaryPreferences });
+      const w = primaryGoal;
+      setWizardGoal(w);
+      setGoal(WIZARD_GOAL_CALC[w]);
+      if (w === 'lose_weight') {
+        const t = Math.max(30, parsed.weight - 5);
+        setTargetWeight(String(t));
+      } else if (w === 'build_muscle') {
+        setTargetWeight(String(parsed.weight + 5));
+      } else {
+        setTargetWeight(String(parsed.weight));
+      }
+      setTimeline(String(targetWeeks));
+      updateProfile({ goals, wizardGoal: w, goal: WIZARD_GOAL_CALC[w] });
       setStep(8);
       return;
     }
     if (step === 8) {
-      updateProfile({ healthConditions, dietAffectingMedication });
+      updateProfile({ bodyConcerns });
       setStep(9);
       return;
     }
     if (step === 9) {
-      if (!profile.wizardGoal) selectWizardGoal(recommendedWizardGoal);
+      const rec = recommendExerciseTypes(goals.length ? goals : [primaryGoal], bodyConcerns);
+      if (rec.length) {
+        setExerciseTypes(rec);
+        setStep2Data(d => ({ ...d, selectedExercises: rec, exerciseType: rec.includes('strength') || rec.includes('cardio') ? (rec.includes('strength') ? 'strength' : 'cardio') : d.exerciseType }));
+        updateProfile({ exerciseTypes: rec, activityLevel: step2Data.activityLevel });
+      }
       setStep(10);
       return;
     }
     if (step === 10) {
-      updateProfile({ goal, wizardGoal, targetWeight: parsed.target || null, timelineWeeks: parsed.timeline || null, dietIntensity: dietId });
+      updateProfile({ healthConditions, dietAffectingMedication, activityLevel: step2Data.activityLevel, exerciseTypes });
       setStep(11);
       return;
     }
     if (step === 11) {
-      updateProfile({ kitchenPreference: selectedKitchenId });
+      updateProfile({ goal, wizardGoal, targetWeight: parsed.target || null, timelineWeeks: parsed.timeline || null, dietIntensity: dietId });
       setStep(12);
       return;
     }
     if (step === 12) {
       saveWizardProfile();
+      runAutoKitchen(true);
+      setShowPlan(true);
+      setStep(13);
+      return;
+    }
+    if (step === 13) {
       setStep(13);
     }
   };
@@ -1961,7 +2069,7 @@ const WeightLossPage: React.FC = () => {
   };
 
   const goEditExercises = () => {
-    setStep(6);
+    setStep(9);
   };
 
   const autoPickKitchen = () => {
@@ -2059,15 +2167,25 @@ const WeightLossPage: React.FC = () => {
     setExpandedCat((prev) => (prev === id ? null : id));
   };
 
-  const selectWizardGoal = (selection: WizardGoalSelection) => {
-    const g = WIZARD_GOAL_CALC[selection];
-    setWizardGoal(selection);
-    setGoal(g);
-    setDietId(DIETS[g][0].id);
-    if (selection === 'lose_weight') setTargetWeight(String(Math.max(30, parsed.weight - 5)));
-    else if (selection === 'build_muscle') setTargetWeight(String(parsed.weight + 5));
-    else setTargetWeight(String(parsed.weight));
-    updateProfile({ wizardGoal: selection, goal: g, dietIntensity: DIETS[g][0].id });
+  const toggleGoalSelection = (id: WizardGoalSelection) => {
+    setGoals((prev) => {
+      if (prev.includes(id)) {
+        return prev.filter((g) => g !== id);
+      }
+      if (prev.length >= 3) return prev;
+      return [...prev, id];
+    });
+  };
+  const acceptDiscovery = () => {
+    if (!goalDiscovery) return;
+    let sel: WizardGoalSelection[] = [];
+    if (goalDiscovery === 'not_sure') {
+      const bmi = numbers?.bmi ?? null;
+      sel = [recommendWizardGoal(healthConditions, bmi)];
+    } else {
+      sel = [goalDiscovery as WizardGoalSelection];
+    }
+    setGoals(sel);
   };
 
   const toggleDietaryPreference = (id: string) => {
@@ -2080,14 +2198,15 @@ const WeightLossPage: React.FC = () => {
     updateProfile({ dietaryPreferences: next });
   };
 
-  const toggleHealthCondition = (id: string) => {
-    const next = id === 'none'
-      ? healthConditions.includes('none') ? [] : ['none']
-      : healthConditions.includes(id)
-        ? healthConditions.filter((condition) => condition !== id)
-        : [...healthConditions.filter((condition) => condition !== 'none'), id];
-    setHealthConditions(next);
-    updateProfile({ healthConditions: next });
+  const toggleBodyConcern = (id: BodyConcern) => {
+    setBodyConcerns((prev) => {
+      if (id === 'none') {
+        return prev.includes('none') ? [] : ['none'];
+      }
+      const filtered = prev.filter((c) => c !== 'none');
+      if (filtered.includes(id)) return filtered.filter((c) => c !== id);
+      return [...filtered, id];
+    });
   };
 
   const notify = (m: string, undo?: { label: string; action: () => void }) => {
@@ -2144,6 +2263,9 @@ const WeightLossPage: React.FC = () => {
     setMeatFrequency('daily');
     setVegetablesFrequency('daily');
     setSugaryDrinks('sometimes');
+    setGoalDiscovery(null);
+    setGoals([]);
+    setBodyConcerns([]);
     setStep2Data({ activityLevel: 'moderate', exerciseType: null, selectedExercises: [] });
     setExerciseTypes(['cardio', 'strength']);
     setPlannedExercises([]);
@@ -2353,6 +2475,9 @@ const WeightLossPage: React.FC = () => {
       mediterranean: { en: 'Mediterranean', ar: 'متوسطي' }, low_carb: { en: 'Low carb', ar: 'قليل الكربوهيدرات' },
       keto: { en: 'Keto', ar: 'كيتو' }, gluten_free: { en: 'Gluten-free', ar: 'خالٍ من الغلوتين' },
       dairy_free: { en: 'Dairy-free', ar: 'خالٍ من الألبان' }, halal: { en: 'Halal', ar: 'حلال' },
+      lose_weight: { en: 'Lose Weight', ar: 'إنقاص الوزن' }, maintain_weight: { en: 'Maintain Weight', ar: 'الحفاظ على الوزن' },
+      build_muscle: { en: 'Build Muscle', ar: 'بناء العضلات' }, improve_health: { en: 'Improve Specific Health', ar: 'تحسين حالة صحية محددة' },
+      not_sure: { en: 'Not sure — help me decide', ar: 'لست متأكداً — ساعدني في الاختيار' },
     };
     return labels[id] ? language === 'ar' ? labels[id].ar : labels[id].en : id;
   };
@@ -2754,150 +2879,7 @@ const WeightLossPage: React.FC = () => {
           </div>
         )}
 
-        {step === 6 && planType === 'nutrition' && (
-          <div className="mt-6 space-y-5">
-            <div className={`${cardBase} p-6`}>
-              <div className="flex items-center justify-between gap-2">
-                <div>
-                  <h2 className="text-[18px] font-extrabold">{t('wizard.step2.activity')}</h2>
-                  <p className="mt-1 text-[13px] text-[#6B7A75]">{t('wizard.step2.activitySub')}</p>
-                </div>
-                <span className="text-[30px] leading-none shrink-0">{ACTIVITY[step2Data.activityLevel].emoji}</span>
-              </div>
 
-              <div className="mt-4 flex flex-wrap gap-2">
-                {ACTIVITY_ORDER.map((x) => {
-                  const opt = ACTIVITY[x];
-                  const on = step2Data.activityLevel === x;
-                  return (
-                    <button
-                      key={x}
-                      type="button"
-                      onClick={() => {
-                        setStep2Data((d) => ({ ...d, activityLevel: x }));
-                        updateProfile({ activityLevel: x });
-                      }}
-                      className={`px-[18px] py-2 rounded-full text-[13px] font-bold flex items-center gap-1.5 transition-all active:scale-95 ${on ? 'bg-[#0F4C3A] text-white shadow-[0_6px_14px_rgba(15,76,58,0.25)]' : 'bg-[#F4F1EB] text-[#6B7A75] hover:bg-[#ECE8DD]'}`}
-                    >
-                      <span className="shrink-0">{opt.emoji}</span>
-                      {ACTIVITY_LABEL(x)}
-                    </button>
-                  );
-                })}
-              </div>
-              <p className="mt-3 text-[12.5px] font-medium text-[#6B7A75]">💬 {ACTIVITY_DESC(step2Data.activityLevel)}</p>
-            </div>
-
-            {numbers && (
-              <div className={`${cardBase} p-6`}>
-                <p className="text-[13px] text-[#6B7A75] leading-relaxed">{t('wizard.step2.onlyNutrition')}</p>
-                <div className="mt-4 rounded-[14px] bg-[#F4F1EB] p-3.5 text-[12px] text-[#6B7A75] leading-relaxed">
-                  <div className="font-bold text-[#0F4C3A]">{t('wizard.step2.tdeePreview')}</div>
-                  <div className="mt-1">
-                    {t('wizard.step2.maintenance')}: <b className="num">{numbers.tdeeBase}</b> kcal/day
-                  </div>
-                  <div className="mt-0.5">{macrosT(numbers.protein, numbers.carbs, numbers.fat)}</div>
-                </div>
-              </div>
-            )}
-
-            <div className="flex gap-3">
-              <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
-                {t('wizard.back')}
-              </button>
-              <button type="button" onClick={next} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
-                {t('wizard.continue')}
-              </button>
-            </div>
-          </div>
-        )}
-
-        {step === 6 && (planType === 'fitness' || planType === 'both') && (
-          <div className="mt-6 flex flex-col gap-5">
-            {/* SECTION 1: ACTIVITY LEVEL (Compact Row) */}
-            <div className={`${cardBase} p-5`}>
-              <h2 className="text-[18px] font-extrabold text-[#0F4C3A]">{t('wizard.step2.activity')}</h2>
-              <p className="mt-1 text-[13px] text-[#6B7A75]">{t('wizard.step2.activitySub')}</p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {ACTIVITY_ORDER.map((x) => {
-                  const opt = ACTIVITY[x];
-                  const on = step2Data.activityLevel === x;
-                  return (
-                    <button
-                      key={x}
-                      type="button"
-                      onClick={() => {
-                        setStep2Data((d) => ({ ...d, activityLevel: x }));
-                        updateProfile({ activityLevel: x });
-                      }}
-                      className={`px-[18px] py-2 rounded-full text-[13px] font-bold flex items-center gap-1.5 transition-all active:scale-95 ${on ? 'bg-[#0F4C3A] text-white shadow-[0_6px_14px_rgba(15,76,58,0.25)]' : 'bg-[#F4F1EB] text-[#6B7A75] hover:bg-[#ECE8DD]'}`}
-                    >
-                      <span className="shrink-0">{opt.emoji}</span>
-                      {ACTIVITY_LABEL(x)}
-                    </button>
-                  );
-                })}
-              </div>
-              <p className="mt-3 text-[12.5px] font-medium text-[#6B7A75]">💬 {ACTIVITY_DESC(step2Data.activityLevel)}</p>
-            </div>
-
-            {/* SECTION 2: EXERCISE TYPE (Horizontal Scroll) */}
-            <ExerciseTypeSelector selectedType={step2Data.exerciseType} onSelectType={selectExerciseType} />
-
-            {/* SECTION 3: EXERCISE LIST (Inline) */}
-            {step2Data.exerciseType && (
-              <ExerciseList
-                key={step2Data.exerciseType}
-                selectedType={step2Data.exerciseType}
-                selectedExerciseIds={step2Data.selectedExercises}
-                onToggleExercise={toggleWizardExercise}
-              />
-            )}
-
-            {/* SECTION 4: AUTO-BUILD BANNER */}
-            <div
-              className="rounded-[20px] p-6 relative overflow-hidden text-white border-2 border-[#D4A017]"
-              style={{ background: 'linear-gradient(135deg,#0F4C3A 0%,#1a6b53 100%)', boxShadow: '0 8px 20px rgba(212,160,23,0.35)' }}
-            >
-              <div className="absolute -top-10 -end-10 text-[110px] leading-none opacity-[0.08] select-none pointer-events-none">✨</div>
-              <h3 className="text-[17px] font-extrabold text-[#D4A017]">✨ {t('wizard.exerciseType.autoBuild.title')}</h3>
-              <p className="mt-2 text-[13px] text-white/85 leading-relaxed max-w-[520px]">{t('wizard.exerciseType.autoBuild.desc')}</p>
-              {autoBuildMode ? (
-                <div className="mt-5 flex items-center gap-3 rounded-[18px] bg-white/10 border border-white/15 px-5 py-4">
-                  <span className="text-[20px] animate-bounce select-none">🤖</span>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-[13px] font-bold">{t('wizard.exerciseType.autoBuild.loading')}</p>
-                    <div className="mt-2 h-[6px] bg-white/20 rounded-full overflow-hidden">
-                      <div className="wiz-loading-bar h-full bg-[#D4A017] rounded-full" />
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <button
-                  type="button"
-                  onClick={runAutoBuild}
-                  className="mt-5 h-[52px] px-8 rounded-full bg-[#D4A017] text-[#0F4C3A] font-extrabold text-[15px] flex items-center gap-2 shadow-[0_8px_20px_rgba(212,160,23,0.4)] hover:translate-y-[-1px] transition-all active:scale-95"
-                >
-                  {t('wizard.exerciseType.autoBuild.cta')}
-                </button>
-              )}
-            </div>
-
-            {/* SECTION 5: STICKY FOOTER */}
-            <div className="no-print step2-footer">
-              <button type="button" onClick={back} className="h-[52px] px-6 rounded-full border-2 border-[#0F4C3A] text-[#0F4C3A] text-[15px] font-bold bg-transparent hover:bg-[#F4F1EB] transition-all active:scale-95">
-                {t('wizard.back')}
-              </button>
-              <button
-                type="button"
-                onClick={next}
-                className="h-[52px] px-8 rounded-full bg-[#D4A017] text-[#0F4C3A] font-extrabold text-[15px] flex items-center gap-2 shadow-[0_10px_24px_rgba(212,160,23,0.45)] hover:translate-y-[-1px] transition-all active:scale-95"
-              >
-                {t('wizard.exerciseList.cta')}
-              </button>
-            </div>
-          </div>
-        )}
 
         {step === 7 && (
           <div className="mt-6 space-y-5">
@@ -2978,7 +2960,7 @@ const WeightLossPage: React.FC = () => {
                       key={condition.id}
                       type="button"
                       aria-pressed={on}
-                      onClick={() => toggleHealthCondition(condition.id)}
+                      onClick={() => toggleBodyConcern(condition.id as any)}
                       className={`flex min-h-[58px] items-center gap-3 rounded-[16px] border-2 px-4 py-3 text-start text-[13px] font-bold transition-all ${on ? 'border-[#0F4C3A] bg-[#EAF3ED] text-[#0F4C3A]' : 'border-[#EFEBE4] bg-white text-[#6B7A75] hover:border-[#D4A017]'}`}
                     >
                       <span className="text-[18px]">{condition.emoji}</span>
@@ -3091,7 +3073,7 @@ const WeightLossPage: React.FC = () => {
                   <h2 className="text-[18px] font-extrabold">{language === 'ar' ? 'معاينة خطتك' : 'Your Plan Preview'}</h2>
                   <p className="mt-1 text-[12.5px] text-[#6B7A75]">{language === 'ar' ? 'ملخص سريع قبل المراجعة النهائية.' : 'A quick summary before your final review.'}</p>
                 </div>
-                <button type="button" onClick={() => setStep(10)} className="min-h-10 rounded-full border border-[#0F4C3A]/20 bg-white px-4 text-xs font-bold text-[#0F4C3A] hover:bg-[#E9F2EA]">{language === 'ar' ? 'تعديل الهدف' : 'Edit'}</button>
+                <button type="button" onClick={() => setStep(12)} className="min-h-10 rounded-full border border-[#0F4C3A]/20 bg-white px-4 text-xs font-bold text-[#0F4C3A] hover:bg-[#E9F2EA]">{language === 'ar' ? 'تعديل الهدف' : 'Edit'}</button>
               </div>
               <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
                 <div className="rounded-[16px] bg-[#F4F1EB] p-3">
@@ -3344,7 +3326,7 @@ const WeightLossPage: React.FC = () => {
                       key={option.id}
                       type="button"
                       aria-pressed={on}
-                      onClick={() => selectWizardGoal(option.id)}
+                      onClick={() => toggleGoalSelection(option.id)}
                       className={`relative flex min-h-[118px] items-start gap-3 rounded-[18px] border-2 p-4 text-start transition-all ${on ? 'border-[#0F4C3A] bg-[#EAF3ED] shadow-[0_0_0_3px_rgba(15,76,58,0.08)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4A017]'}`}
                     >
                       <span className="text-[25px] leading-none">{option.icon}</span>

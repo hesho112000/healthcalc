@@ -15,6 +15,8 @@ export type BreakfastType = 'skip' | 'light' | 'full';
 export type MeatFrequency = 'daily' | 'weekly' | 'rarely' | 'never';
 export type VegetablesFrequency = 'daily' | 'weekly' | 'rarely';
 export type SugaryDrinksFrequency = 'never' | 'sometimes' | 'daily';
+export type GoalDiscoverySelection = 'lose_weight' | 'maintain_weight' | 'build_muscle' | 'improve_health' | 'not_sure';
+export type BodyConcern = 'belly_fat' | 'love_handles' | 'chest_sagging' | 'arm_fat' | 'thigh_fat' | 'back_fat' | 'skin_laxity' | 'none';
 
 export interface UserProfile {
   age: number | null;
@@ -46,6 +48,9 @@ export interface UserProfile {
   meatFrequency: MeatFrequency | null;
   vegetablesFrequency: VegetablesFrequency | null;
   sugaryDrinks: SugaryDrinksFrequency | null;
+  goalDiscovery: GoalDiscoverySelection | null;
+  goals: WizardGoalSelection[];
+  bodyConcerns: BodyConcern[];
 }
 
 export const USER_PROFILE_STORAGE_KEY = 'healthcalc_user_profile';
@@ -81,6 +86,9 @@ const EMPTY_PROFILE: UserProfile = {
   meatFrequency: null,
   vegetablesFrequency: null,
   sugaryDrinks: null,
+  goalDiscovery: null,
+  goals: [],
+  bodyConcerns: [],
 };
 
 const LEGACY_DIET_INTENSITIES = new Set([
@@ -117,9 +125,15 @@ const BREAKFAST_TYPE_OPTIONS = ['skip', 'light', 'full'] as const;
 const MEAT_FREQUENCY_OPTIONS = ['daily', 'weekly', 'rarely', 'never'] as const;
 const VEGETABLES_FREQUENCY_OPTIONS = ['daily', 'weekly', 'rarely'] as const;
 const SUGARY_DRINKS_FREQUENCY_OPTIONS = ['never', 'sometimes', 'daily'] as const;
+const GOAL_DISCOVERY_OPTIONS = ['lose_weight', 'maintain_weight', 'build_muscle', 'improve_health', 'not_sure'] as const;
+const MULTI_GOAL_OPTIONS = ['lose_weight', 'maintain_weight', 'build_muscle', 'improve_health'] as const;
+const BODY_CONCERN_OPTIONS = ['belly_fat', 'love_handles', 'chest_sagging', 'arm_fat', 'thigh_fat', 'back_fat', 'skin_laxity', 'none'] as const;
 
 const asEnum = <T extends string>(value: unknown, options: readonly T[]): T | null =>
   typeof value === 'string' && options.includes(value as T) ? (value as T) : null;
+
+const asEnumList = <T extends string>(value: unknown, options: readonly T[]): T[] =>
+  Array.isArray(value) ? value.filter((item): item is T => typeof item === 'string' && options.includes(item as T)) : [];
 
 const normalizeProfile = (value: unknown): UserProfile => {
   const record = asRecord(value) ?? {};
@@ -181,6 +195,9 @@ const normalizeProfile = (value: unknown): UserProfile => {
     meatFrequency: asEnum(data.meatFrequency, MEAT_FREQUENCY_OPTIONS),
     vegetablesFrequency: asEnum(data.vegetablesFrequency, VEGETABLES_FREQUENCY_OPTIONS),
     sugaryDrinks: asEnum(data.sugaryDrinks, SUGARY_DRINKS_FREQUENCY_OPTIONS),
+    goalDiscovery: asEnum(data.goalDiscovery, GOAL_DISCOVERY_OPTIONS),
+    goals: asEnumList(data.goals, MULTI_GOAL_OPTIONS),
+    bodyConcerns: asEnumList(data.bodyConcerns, BODY_CONCERN_OPTIONS),
   };
 };
 
