@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Activity, ArrowRight, Beef, Briefcase, Check, ChevronLeft, Cigarette, Coffee, Cookie, CupSoda, Droplets, Dumbbell, Info, Minus, Moon,
-  Play, Plus, Ruler, Salad, ShieldCheck, Smile, Sparkles, Sun, Target, Timer, User, UtensilsCrossed,
+  PartyPopper, Play, Plus, Ruler, Salad, ShieldCheck, Smile, Sparkles, Sun, Target, Timer, User, UtensilsCrossed,
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
@@ -19,7 +19,7 @@ import { useAuth } from '../context/AuthContext';
 import { savePlan, saveProfile } from '../services/supabaseData';
 import { useKitchenDishes } from '../hooks/useKitchenDishes';
 import { useKitchenDishCounts, KITCHEN_ID_ALIAS } from '../hooks/useKitchenDishCounts';
-import { useUserProfile, type UserProfile, type WizardGoalSelection, type SleepHours, type StressLevel, type WorkType, type SmokingStatus, type MealsPerDay, type SnackFrequency, type BreakfastType, type MeatFrequency, type VegetablesFrequency, type SugaryDrinksFrequency, type GoalDiscoverySelection, type BodyConcern, type KitchenMode, type UserRecommendations } from '../hooks/useUserProfile';
+import { useUserProfile, type UserProfile, type WizardGoalSelection, type SleepHours, type StressLevel, type WorkType, type SmokingStatus, type MealsPerDay, type SnackFrequency, type BreakfastType, type MeatFrequency, type VegetablesFrequency, type SugaryDrinksFrequency, type GoalDiscoverySelection, type BodyConcern, type KitchenMode, type UserRecommendations, type UserPlanPreview } from '../hooks/useUserProfile';
 import { generateWeeklyPlan } from '../utils/mealPlanGenerator';
 import type { PlanDay, PlanDish, PlanMealType } from '../utils/mealPlanGenerator';
 
@@ -1521,6 +1521,7 @@ const WeightLossPage: React.FC = () => {
     }
     return [];
   });
+  const [planPreview, setPlanPreview] = useState<UserPlanPreview | null>(() => profile.planPreview);
   const [selectedPlanDay, setSelectedPlanDay] = useState(1);
   const [dishModal, setDishModal] = useState<{ mode: 'add' | 'swap'; dayIndex: number; mealIndex: number; mealType: PlanMealType; dishIndex: number } | null>(null);
   const [removingDish, setRemovingDish] = useState<string | null>(null);
@@ -1533,6 +1534,7 @@ const WeightLossPage: React.FC = () => {
   const [emailDone, setEmailDone] = useState('');
   const [autoBuilding, setAutoBuilding] = useState(false);
   const [showPlan, setShowPlan] = useState(false);
+  const [showStartOverConfirm, setShowStartOverConfirm] = useState(false);
   const [collapsedSaved, setCollapsedSaved] = useState<Set<MealKey>>(new Set());
   const [showAllSaved, setShowAllSaved] = useState<Set<MealKey>>(new Set());
   const [toast, setToast] = useState('');
@@ -1718,8 +1720,8 @@ const WeightLossPage: React.FC = () => {
     if (step === 9) return language === 'ar' ? 'تمارين مقترحة بناءً على أهدافك' : 'Recommended Exercises For Your Goals';
     if (step === 10) return language === 'ar' ? 'اختر مطبخك المفضل' : 'Choose Your Cuisine';
     if (step === 11) return language === 'ar' ? 'توصياتك الشخصية' : 'Your Final Recommendations';
-    if (step === 12) return language === 'ar' ? 'معاينة خطتك' : 'Plan Preview';
-    return language === 'ar' ? 'مراجعة إجاباتك' : 'Review Your Answers';
+    if (step === 12) return language === 'ar' ? 'معاينة خطتك' : 'Your Plan Preview';
+    return language === 'ar' ? 'خطتك الشخصية جاهزة!' : 'Your Personalized Plan is Ready!';
   })();
   const stepEyebrow = (() => {
     if (step === 1) return language === 'ar' ? 'مرحباً بك' : 'WELCOME';
@@ -1733,8 +1735,8 @@ const WeightLossPage: React.FC = () => {
     if (step === 9) return language === 'ar' ? 'التمارين' : 'EXERCISE';
     if (step === 10) return language === 'ar' ? 'اختيار المطبخ' : 'KITCHEN SELECTION';
     if (step === 11) return language === 'ar' ? 'بناءً على إجاباتك' : 'BASED ON YOUR PROFILE';
-    if (step === 12) return language === 'ar' ? 'هذه خطتك المقترحة' : 'YOUR PLAN AT A GLANCE';
-    return language === 'ar' ? 'تأكد من إجاباتك' : 'CHECK YOUR ANSWERS';
+    if (step === 12) return language === 'ar' ? 'معاينة الخطة' : 'PLAN PREVIEW';
+    return language === 'ar' ? 'الخطة مكتملة' : 'PLAN COMPLETE';
   })();
 
   const numbers = useMemo(() => {
@@ -1839,7 +1841,7 @@ const WeightLossPage: React.FC = () => {
     if (step === 10) return kitchenMode === 'manual'
       ? kitchenSelectionAccepted && availableKitchens.some((k) => k.id === selectedKitchenId)
       : kitchenMode === 'surprise' && kitchenSelectionAccepted && !!recommendedKitchen;
-    if (step === 12) return true;
+    if (step === 12) return !!planPreview && !autoBuilding;
     return true;
   };
 
@@ -1899,6 +1901,7 @@ const WeightLossPage: React.FC = () => {
     selectedKitchen: kitchenMode === 'manual' ? selectedKitchenId : null,
     kitchenMode,
     recommendations: finalRecommendations,
+    planPreview,
     healthConditions,
     dietAffectingMedication,
     waist: waist ? Number(waist) : null,
@@ -2006,12 +2009,11 @@ const WeightLossPage: React.FC = () => {
     if (step === 11) {
       updateProfile({ goal, wizardGoal, targetWeight: parsed.target || null, timelineWeeks: parsed.timeline || null, dietIntensity: dietId, recommendations: finalRecommendations });
       setStep(12);
+      runAutoKitchen(false);
       return;
     }
     if (step === 12) {
       saveWizardProfile();
-      runAutoKitchen(true);
-      setShowPlan(true);
       setStep(13);
       return;
     }
@@ -2150,8 +2152,43 @@ const WeightLossPage: React.FC = () => {
     updateProfile({ kitchenPreference: recommendedKitchen.id, selectedKitchen: null, kitchenMode: 'surprise' });
   };
 
+  const createPlanPreview = (day: PlanDay): UserPlanPreview => {
+    let proteinGrams = 0;
+    let carbGrams = 0;
+    let fatGrams = 0;
+    const meals = day.meals.map((meal) => {
+      const dishes = meal.dishes.slice(0, 2).map((planned) => {
+        proteinGrams += planned.dish.p * planned.grams / 100;
+        carbGrams += planned.dish.c * planned.grams / 100;
+        fatGrams += planned.dish.f * planned.grams / 100;
+        return { name: planned.dish.name, nameAr: planned.dish.nameAr ?? null, calories: planned.calories };
+      });
+      return { mealType: meal.mealType, calories: dishes.reduce((total, dish) => total + dish.calories, 0), dishes };
+    });
+    const macroCalories = { protein: proteinGrams * 4, carbs: carbGrams * 4, fat: fatGrams * 9 };
+    const macroTotal = macroCalories.protein + macroCalories.carbs + macroCalories.fat || 1;
+    const protein = Math.round(macroCalories.protein / macroTotal * 100);
+    const carbs = Math.round(macroCalories.carbs / macroTotal * 100);
+    return {
+      kitchenId: selectedKitchenId,
+      meals,
+      totalCalories: meals.reduce((total, meal) => total + meal.calories, 0),
+      macroPercentages: { protein, carbs, fat: 100 - protein - carbs },
+    };
+  };
+
+  const savePlanPreview = (day: PlanDay) => {
+    const preview = createPlanPreview(day);
+    setPlanPreview(preview);
+    updateProfile({ planPreview: preview });
+  };
+
   const runAutoKitchen = (openPlan = false) => {
     if (autoBuilding) return;
+    if (!openPlan) {
+      setPlanPreview(null);
+      updateProfile({ planPreview: null });
+    }
     setAutoBuilding(true);
     window.setTimeout(() => {
       const plan = generateWeeklyPlan({
@@ -2159,14 +2196,15 @@ const WeightLossPage: React.FC = () => {
         height: parseInt(height, 10),
         weight: parseFloat(weight),
         gender: sex,
-        targetCalories: numbers ? numbers.targetCal : 2000,
+        targetCalories: finalRecommendations.dailyCalories,
         goal,
         kitchens: [selectedKitchen],
         region: kitchenRegion === 'all' ? undefined : kitchenRegion,
         varietyAcrossDays: true,
-        maxDishesPerMeal: 5,
+        maxDishesPerMeal: 2,
       });
       setWeeklyPlan(plan);
+      if (plan[0]) savePlanPreview(plan[0]);
       setSelectedPlanDay(1);
       setOpenMealAccordion(null);
       setAutoBuilding(false);
@@ -2174,6 +2212,21 @@ const WeightLossPage: React.FC = () => {
       if (openPlan) setShowPlan(true);
       notify(`Generated 7-day plan: ${plan.length} days`);
     }, 1500);
+  };
+
+  const regeneratePlanPreview = () => {
+    if (weeklyPlan.length < 2) {
+      runAutoKitchen(false);
+      return;
+    }
+    const swapIndex = 1 + Math.floor(Math.random() * (weeklyPlan.length - 1));
+    const nextPlan = [...weeklyPlan];
+    const dayOne = nextPlan[0];
+    const alternate = nextPlan[swapIndex];
+    nextPlan[0] = { ...alternate, day: 1, label: dayOne.label };
+    nextPlan[swapIndex] = { ...dayOne, day: alternate.day, label: alternate.label };
+    setWeeklyPlan(nextPlan);
+    savePlanPreview(nextPlan[0]);
   };
 
   const addDish = (key: string) => {
@@ -2320,6 +2373,7 @@ const WeightLossPage: React.FC = () => {
   const startOver = () => {
     resetProfile();
     setShowPlan(false);
+    setShowStartOverConfirm(false);
     setStep(1);
     setPlanType('both');
     setAge('');
@@ -2361,6 +2415,7 @@ const WeightLossPage: React.FC = () => {
     setKitchenSelectionAccepted(false);
     setKitchenRegion('all');
     setWeeklyPlan([]);
+    setPlanPreview(null);
     setSelectedDishKeys([]);
     setAssignedDishes({});
     setRegionSel(null);
@@ -3668,86 +3723,206 @@ const WeightLossPage: React.FC = () => {
         )}
 
         {step === 12 && (
-          <div className="mt-6 space-y-4">
-            <div className={`${cardBase} p-5`}>
-              <div className="flex items-center justify-between gap-3">
-                <h2 className="text-[16px] font-extrabold">👤 {language === 'ar' ? 'المعلومات الأساسية' : 'Basic Information'}</h2>
-                <button type="button" onClick={() => setStep(2)} className="min-h-10 rounded-full border border-[#0F4C3A]/20 bg-white px-4 text-xs font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
+          <div className="mt-6 space-y-5">
+            <div className={`${cardBase} p-5 sm:p-6`}>
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex min-w-0 items-start gap-3">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#EAF3ED] text-[#0F4C3A]"><UtensilsCrossed size={21} /></span>
+                  <div>
+                    <h2 className="text-[18px] font-extrabold">{language === 'ar' ? 'اليوم الأول' : 'Day 1 Sample'}</h2>
+                    <p className="mt-1 text-[12px] text-[#6B7A75]">{kitchenLabel(selectedKitchen)}</p>
+                  </div>
+                </div>
+                <Flag countryCode={selectedKitchen.flag} alt={getKitchenCountry(selectedKitchen, language)} className="h-8 w-10 shrink-0" />
               </div>
-              <div className="mt-3 grid grid-cols-2 gap-3 text-[13px] sm:grid-cols-4">
-                <div><span className="block text-[10px] font-bold text-[#8A938E]">{t('age')}</span><span className="font-bold">{parsed.age} {t('wizard.unit.years')}</span></div>
-                <div><span className="block text-[10px] font-bold text-[#8A938E]">{t('gender')}</span><span className="font-bold">{t(sex)}</span></div>
-                <div><span className="block text-[10px] font-bold text-[#8A938E]">{t('weightLabel')}</span><span className="num font-bold">{parsed.weight} kg</span></div>
-                <div><span className="block text-[10px] font-bold text-[#8A938E]">{t('height')}</span><span className="num font-bold">{parsed.height} cm</span></div>
-              </div>
+
+              {autoBuilding && !planPreview ? (
+                <div className="mt-6 flex min-h-36 flex-col items-center justify-center gap-3 text-[13px] font-semibold text-[#6B7A75]">
+                  <span className="h-7 w-7 animate-spin rounded-full border-[3px] border-[#0F4C3A] border-t-transparent" />
+                  {language === 'ar' ? 'جارٍ إعداد معاينة اليوم الأول…' : 'Preparing your Day 1 preview…'}
+                </div>
+              ) : planPreview ? (
+                <div className="mt-5 space-y-3">
+                  {planPreview.meals.map((meal) => {
+                    const MealIcon = meal.mealType === 'breakfast' ? Sun : meal.mealType === 'lunch' ? Salad : meal.mealType === 'dinner' ? Moon : Cookie;
+                    const mealTitle = meal.mealType === 'breakfast'
+                      ? (language === 'ar' ? 'الإفطار' : 'Breakfast')
+                      : meal.mealType === 'lunch'
+                        ? (language === 'ar' ? 'الغداء' : 'Lunch')
+                        : meal.mealType === 'dinner'
+                          ? (language === 'ar' ? 'العشاء' : 'Dinner')
+                          : (language === 'ar' ? 'وجبة خفيفة' : 'Snack');
+                    return (
+                      <section key={meal.mealType} className="rounded-[16px] border border-[#EFEBE4] bg-white p-4">
+                        <div className="flex items-center justify-between gap-2">
+                          <h3 className="flex items-center gap-2 text-[14px] font-extrabold text-[#0F4C3A]"><MealIcon size={17} />{mealTitle}</h3>
+                          <span className="num whitespace-nowrap text-[12px] font-bold text-[#6B7A75]">{meal.calories} kcal</span>
+                        </div>
+                        <ul className="mt-3 space-y-2">
+                          {meal.dishes.map((dish, index) => (
+                            <li key={`${dish.name}-${index}`} className="flex items-start justify-between gap-3 text-[12px]">
+                              <span className="min-w-0 font-semibold text-[#52635A]">{language === 'ar' ? dish.nameAr ?? dish.name : dish.name}</span>
+                              <span className="num shrink-0 text-[#8A938E]">{dish.calories} kcal</span>
+                            </li>
+                          ))}
+                          {meal.dishes.length === 0 && <li className="text-[12px] text-[#8A938E]">{language === 'ar' ? 'لا توجد أطباق متاحة لهذه الوجبة.' : 'No dishes available for this meal.'}</li>}
+                        </ul>
+                      </section>
+                    );
+                  })}
+                </div>
+              ) : (
+                <p className="mt-5 rounded-[14px] bg-[#FFF8E7] px-4 py-3 text-[12px] text-[#6B5A28]">{language === 'ar' ? 'تعذر إعداد المعاينة. أعد إنشاء الخطة.' : 'The preview could not be prepared. Regenerate the plan to try again.'}</p>
+              )}
             </div>
 
-            <div className={`${cardBase} p-5`}>
-              <div className="flex items-center justify-between gap-3">
-                <h2 className="text-[16px] font-extrabold">🏃 {language === 'ar' ? 'نمط الحياة والنشاط' : 'Lifestyle & Activity'}</h2>
-                <button type="button" onClick={() => setStep(6)} className="min-h-10 rounded-full border border-[#0F4C3A]/20 bg-white px-4 text-xs font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
+            {planPreview && (
+              <div className={`${cardBase} p-5 sm:p-6`}>
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <h2 className="text-[15px] font-extrabold">{language === 'ar' ? 'إجمالي اليوم والمغذيات' : 'Daily Total & Macros'}</h2>
+                    <p className="num mt-1 text-[22px] font-black text-[#0F4C3A]">{planPreview.totalCalories} kcal</p>
+                  </div>
+                  <span className="text-[11px] text-[#6B7A75]">{language === 'ar' ? 'اليوم الأول' : 'Day 1'}</span>
+                </div>
+                <div className="mt-4 flex h-4 overflow-hidden rounded-full bg-[#F4F1EB]" role="img" aria-label={language === 'ar' ? `بروتين ${planPreview.macroPercentages.protein}%، كربوهيدرات ${planPreview.macroPercentages.carbs}%، دهون ${planPreview.macroPercentages.fat}%` : `${planPreview.macroPercentages.protein}% protein, ${planPreview.macroPercentages.carbs}% carbs, ${planPreview.macroPercentages.fat}% fat`}>
+                  <span style={{ width: `${planPreview.macroPercentages.protein}%` }} className="bg-[#0F4C3A]" />
+                  <span style={{ width: `${planPreview.macroPercentages.carbs}%` }} className="bg-[#D4A017]" />
+                  <span style={{ width: `${planPreview.macroPercentages.fat}%` }} className="bg-[#6A9FB5]" />
+                </div>
+                <div className="mt-3 grid grid-cols-3 gap-1 text-[10px] font-bold text-[#52635A]">
+                  <span>{language === 'ar' ? 'بروتين' : 'Protein'} {planPreview.macroPercentages.protein}%</span>
+                  <span className="text-center">{language === 'ar' ? 'كربوهيدرات' : 'Carbs'} {planPreview.macroPercentages.carbs}%</span>
+                  <span className="text-end">{language === 'ar' ? 'دهون' : 'Fat'} {planPreview.macroPercentages.fat}%</span>
+                </div>
               </div>
-              <p className="mt-2 text-[13px] font-semibold">{ACTIVITY_LABEL(step2Data.activityLevel)}</p>
-              <p className="mt-1 text-[11.5px] text-[#6B7A75]">{EXERCISE_TYPES.filter((type) => exerciseTypes.includes(type.id)).map((type) => language === 'ar' ? type.name : type.en).join(' · ') || (language === 'ar' ? 'لم يتم اختيار تمارين' : 'No exercises selected')}</p>
+            )}
+
+            <div className="grid grid-cols-2 gap-3">
+              <button type="button" onClick={regeneratePlanPreview} disabled={autoBuilding} className="min-h-12 rounded-[14px] border-2 border-[#0F4C3A] bg-white px-3 text-[12px] font-bold text-[#0F4C3A] disabled:opacity-50">
+                {language === 'ar' ? 'إعادة إنشاء الخطة' : 'Regenerate Plan'}
+              </button>
+              <button type="button" onClick={() => setStep(10)} className="min-h-12 rounded-[14px] border-2 border-[#EFEBE4] bg-white px-3 text-[12px] font-bold text-[#52635A]">
+                {language === 'ar' ? 'تغيير المطبخ' : 'Change Kitchen'}
+              </button>
             </div>
 
-            <div className={`${cardBase} p-5`}>
-              <div className="flex items-center justify-between gap-3">
-                <h2 className="text-[16px] font-extrabold">🥗 {language === 'ar' ? 'التفضيلات الغذائية' : 'Dietary Preferences'}</h2>
-                <button type="button" onClick={() => setStep(7)} className="min-h-10 rounded-full border border-[#0F4C3A]/20 bg-white px-4 text-xs font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
-              </div>
-              <p className="mt-2 text-[13px] font-semibold">{dietaryPreferences.length ? dietaryPreferences.map(dietaryPreferenceLabel).join(' · ') : dietaryPreferenceLabel('none')}</p>
-            </div>
-
-            <div className={`${cardBase} p-5`}>
-              <div className="flex items-center justify-between gap-3">
-                <h2 className="text-[16px] font-extrabold">🩺 {language === 'ar' ? 'الصحة والأدوية' : 'Health & Medication'}</h2>
-                <span className="text-[11px] font-semibold text-[#8A938E]">{language === 'ar' ? 'من ملفك' : 'From profile'}</span>
-              </div>
-              <p className="mt-2 text-[13px] font-semibold">{healthConditions.map(healthConditionLabel).join(' · ')}</p>
-              <p className="mt-1 text-[11.5px] text-[#6B7A75]">{language === 'ar' ? 'دواء يؤثر في النظام الغذائي' : 'Medication that affects diet'}: {dietAffectingMedication ? (language === 'ar' ? 'نعم' : 'Yes') : (language === 'ar' ? 'لا' : 'No')}</p>
-            </div>
-
-            <div className={`${cardBase} p-5`}>
-              <div className="flex items-center justify-between gap-3">
-                <h2 className="text-[16px] font-extrabold">🎯 {language === 'ar' ? 'الهدف' : 'Goal'}</h2>
-                <button type="button" onClick={() => setStep(7)} className="min-h-10 rounded-full border border-[#0F4C3A]/20 bg-white px-4 text-xs font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
-              </div>
-              <p className="mt-2 text-[13px] font-semibold">{wizardGoalLabel(wizardGoal)}</p>
-              <p className="mt-1 text-[11.5px] text-[#6B7A75]">{parsed.target} kg · {parsed.timeline} {t('wizard.unit.weeks')}</p>
-            </div>
-
-            <div className={`${cardBase} p-5`}>
-              <div className="flex items-center justify-between gap-3">
-                <h2 className="text-[16px] font-extrabold">📊 {language === 'ar' ? 'معاينة الخطة' : 'Plan Preview'}</h2>
-                <button type="button" onClick={() => setStep(11)} className="min-h-10 rounded-full border border-[#0F4C3A]/20 bg-white px-4 text-xs font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
-              </div>
-              <div className="mt-3 grid grid-cols-2 gap-3 text-[12px] sm:grid-cols-4">
-                <div><span className="block text-[10px] font-bold text-[#8A938E]">{language === 'ar' ? 'السعرات' : 'Calories'}</span><span className="num font-extrabold">{numbers?.targetCal ?? 0} kcal/day</span></div>
-                <div><span className="block text-[10px] font-bold text-[#8A938E]">{language === 'ar' ? 'المغذيات الكبرى' : 'Macros'}</span><span className="font-extrabold">P {numbers?.protein ?? 0}g · C {numbers?.carbs ?? 0}g · F {numbers?.fat ?? 0}g</span></div>
-                <div><span className="block text-[10px] font-bold text-[#8A938E]">{language === 'ar' ? 'الوجبات' : 'Meals'}</span><span className="font-extrabold">4 {language === 'ar' ? 'يومياً' : 'per day'}</span></div>
-                <div><span className="block text-[10px] font-bold text-[#8A938E]">{language === 'ar' ? 'المطبخ' : 'Kitchen'}</span><span className="truncate font-extrabold">{kitchenLabel(selectedKitchen)}</span></div>
-              </div>
-            </div>
-
-            <div className="flex gap-3">
-              <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">{t('wizard.back')}</button>
-              <button type="button" onClick={next} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">{language === 'ar' ? 'تأكيد الإجابات' : 'Confirm Answers'}</button>
-            </div>
+            <WizardFooter onBack={back} onNext={next} nextDisabled={!isValid()} backLabel={t('wizard.back')} nextLabel={language === 'ar' ? 'التالي' : 'Next'} />
           </div>
         )}
 
         {step === 13 && !showPlan && (
-          <div className="mx-auto mt-10 max-w-[640px] rounded-[28px] border border-[#E8E2D4] bg-white p-7 text-center shadow-[0_16px_44px_rgba(15,76,58,0.09)] sm:mt-16 sm:p-10">
-            <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#EAF3ED] text-[30px] text-[#0F4C3A]">✓</span>
-            <h2 className="mt-5 text-[25px] font-extrabold leading-tight text-[#0F4C3A]">{language === 'ar' ? 'خطتك الشخصية جاهزة!' : 'Your Personalized Plan is Ready!'}</h2>
-            <p className="mt-2 text-[13px] leading-relaxed text-[#6B7A75]">{language === 'ar' ? 'تم حفظ إجاباتك. يمكنك الآن استعراض خطتك الأسبوعية المخصصة.' : 'Your answers are saved. You can now view your personalized weekly plan.'}</p>
-            <button type="button" onClick={viewMyPlan} disabled={autoBuilding} className="cta-calc mt-7 disabled:cursor-wait disabled:opacity-60">
-              {autoBuilding ? (language === 'ar' ? 'جارٍ إعداد خطتك…' : 'Preparing your plan…') : (language === 'ar' ? 'عرض خطتي' : 'View My Plan')}
-            </button>
-            <button type="button" onClick={startOver} className="mt-3 min-h-[48px] w-full rounded-[16px] border border-[#E5E0D5] bg-white text-[14px] font-bold text-[#6B7A75] hover:border-[#D4A017]">
-              {language === 'ar' ? 'البدء من جديد' : 'Start Over'}
-            </button>
+          <div className="mt-6 space-y-5 pb-8">
+            <div className={`${cardBase} p-6 text-center sm:p-8`}>
+              <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#EAF3ED] text-[#0F4C3A]"><PartyPopper size={28} /></span>
+              <h2 className="mt-4 text-[23px] font-extrabold leading-tight text-[#0F4C3A]">{language === 'ar' ? 'خطتك الشخصية جاهزة!' : 'Your Personalized Plan is Ready!'}</h2>
+              <p className="mt-2 text-[13px] leading-relaxed text-[#6B7A75]">{language === 'ar' ? 'بناءً على 13 معلومة، أعددنا خطة تناسبك.' : "Based on 13 data points, we've built a plan just for you."}</p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <section className={`${cardBase} p-4`}>
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="flex items-center gap-2 text-[13px] font-extrabold"><User size={17} />{language === 'ar' ? 'المعلومات الأساسية' : 'Basic Info'}</h3>
+                  <button type="button" onClick={() => setStep(2)} className="min-h-9 rounded-full border border-[#0F4C3A]/20 px-3 text-[11px] font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
+                </div>
+                <p className="mt-3 text-[12px] leading-relaxed text-[#52635A]">{parsed.age} {t('wizard.unit.years')} · {t(sex)} · {parsed.weight} kg · {parsed.height} cm</p>
+              </section>
+
+              <section className={`${cardBase} p-4`}>
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="flex items-center gap-2 text-[13px] font-extrabold"><Moon size={17} />{language === 'ar' ? 'نمط الحياة' : 'Lifestyle'}</h3>
+                  <button type="button" onClick={() => setStep(4)} className="min-h-9 rounded-full border border-[#0F4C3A]/20 px-3 text-[11px] font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
+                </div>
+                <p className="mt-3 text-[12px] leading-relaxed text-[#52635A]">
+                  {language === 'ar' ? 'النوم' : 'Sleep'}: {language === 'ar' ? ({ under_6: 'أقل من 6 ساعات', six_to_seven: '6 إلى 7 ساعات', seven_to_eight: '7 إلى 8 ساعات', eight_plus: '8 ساعات أو أكثر' } as const)[sleepHours] : sleepHours.replace(/_/g, ' ')} · {language === 'ar' ? 'التوتر' : 'Stress'}: {language === 'ar' ? ({ low: 'منخفض', medium: 'متوسط', high: 'مرتفع' } as const)[stressLevel] : stressLevel} · {language === 'ar' ? 'النشاط' : 'Activity'}: {ACTIVITY_LABEL(step2Data.activityLevel)}
+                </p>
+              </section>
+
+              <section className={`${cardBase} p-4`}>
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="flex items-center gap-2 text-[13px] font-extrabold"><Target size={17} />{language === 'ar' ? 'الأهداف' : 'Goals'}</h3>
+                  <button type="button" onClick={() => setStep(7)} className="min-h-9 rounded-full border border-[#0F4C3A]/20 px-3 text-[11px] font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
+                </div>
+                <p className="mt-3 text-[12px] leading-relaxed text-[#52635A]">{(goals.length ? goals : [wizardGoal]).map(wizardGoalLabel).join(' · ')} · {parsed.timeline} {t('wizard.unit.weeks')}</p>
+              </section>
+
+              {bodyConcerns.some((concern) => concern !== 'none') && (
+                <section className={`${cardBase} p-4`}>
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="flex items-center gap-2 text-[13px] font-extrabold"><Target size={17} />{language === 'ar' ? 'مناطق الجسم' : 'Body Concerns'}</h3>
+                    <button type="button" onClick={() => setStep(8)} className="min-h-9 rounded-full border border-[#0F4C3A]/20 px-3 text-[11px] font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
+                  </div>
+                  <p className="mt-3 text-[12px] leading-relaxed text-[#52635A]">{bodyConcerns.filter((concern) => concern !== 'none').map((concern) => {
+                    const labels: Partial<Record<BodyConcern, string>> = {
+                      belly_fat: language === 'ar' ? 'الكرش' : 'Belly Fat',
+                      love_handles: language === 'ar' ? 'الجوانب' : 'Love Handles',
+                      chest_sagging: language === 'ar' ? 'ترهل الصدر' : 'Chest Sagging',
+                      arm_fat: language === 'ar' ? 'الذراعين' : 'Arm Fat',
+                      thigh_fat: language === 'ar' ? 'الفخذين' : 'Thigh Fat',
+                      back_fat: language === 'ar' ? 'الظهر' : 'Back Fat',
+                      skin_laxity: language === 'ar' ? 'ترهل الجلد' : 'Skin Laxity',
+                    };
+                    return labels[concern] ?? concern;
+                  }).join(' · ')}</p>
+                </section>
+              )}
+
+              <section className={`${cardBase} p-4`}>
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="flex items-center gap-2 text-[13px] font-extrabold"><Dumbbell size={17} />{language === 'ar' ? 'خطة التمارين' : 'Exercise Plan'}</h3>
+                  <button type="button" onClick={() => setStep(9)} className="min-h-9 rounded-full border border-[#0F4C3A]/20 px-3 text-[11px] font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
+                </div>
+                <p className="mt-3 text-[12px] leading-relaxed text-[#52635A]">{finalRecommendations.exerciseSummary.map((id) => {
+                  const option = EXERCISE_RECOMMENDATION_OPTIONS.find((exercise) => exercise.id === id);
+                  return option ? (language === 'ar' ? option.ar : option.en) : id;
+                }).join(' · ') || (language === 'ar' ? 'لم يتم تحديد تمارين' : 'No exercise types selected')}</p>
+              </section>
+
+              <section className={`${cardBase} p-4`}>
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="flex items-center gap-2 text-[13px] font-extrabold"><UtensilsCrossed size={17} />{language === 'ar' ? 'المطبخ' : 'Kitchen'}</h3>
+                  <button type="button" onClick={() => setStep(10)} className="min-h-9 rounded-full border border-[#0F4C3A]/20 px-3 text-[11px] font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
+                </div>
+                <p className="mt-3 flex items-center gap-2 text-[12px] font-semibold text-[#52635A]"><Flag countryCode={selectedKitchen.flag} alt={getKitchenCountry(selectedKitchen, language)} className="h-5 w-7 shrink-0" />{kitchenLabel(selectedKitchen)}</p>
+              </section>
+
+              <section className={`${cardBase} p-4 sm:col-span-2`}>
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="flex items-center gap-2 text-[13px] font-extrabold"><Activity size={17} />{language === 'ar' ? 'الأهداف اليومية' : 'Daily Targets'}</h3>
+                  <button type="button" onClick={() => setStep(11)} className="min-h-9 rounded-full border border-[#0F4C3A]/20 px-3 text-[11px] font-bold text-[#0F4C3A]">{language === 'ar' ? 'تعديل' : 'Edit'}</button>
+                </div>
+                <p className="num mt-3 text-[21px] font-black text-[#0F4C3A]">{finalRecommendations.dailyCalories} kcal/day</p>
+                <div className="mt-3 flex h-3.5 overflow-hidden rounded-full bg-[#F4F1EB]" role="img" aria-label={`${finalRecommendations.macroPercentages.protein}% protein, ${finalRecommendations.macroPercentages.carbs}% carbs, ${finalRecommendations.macroPercentages.fat}% fat`}>
+                  <span style={{ width: `${finalRecommendations.macroPercentages.protein}%` }} className="bg-[#0F4C3A]" />
+                  <span style={{ width: `${finalRecommendations.macroPercentages.carbs}%` }} className="bg-[#D4A017]" />
+                  <span style={{ width: `${finalRecommendations.macroPercentages.fat}%` }} className="bg-[#6A9FB5]" />
+                </div>
+                <p className="mt-2 text-[10px] font-bold text-[#52635A]">{language === 'ar' ? `بروتين ${finalRecommendations.macroPercentages.protein}% · كربوهيدرات ${finalRecommendations.macroPercentages.carbs}% · دهون ${finalRecommendations.macroPercentages.fat}%` : `Protein ${finalRecommendations.macroPercentages.protein}% · Carbs ${finalRecommendations.macroPercentages.carbs}% · Fat ${finalRecommendations.macroPercentages.fat}%`}</p>
+              </section>
+            </div>
+
+            <div className={`${cardBase} p-5 text-center`}>
+              <button type="button" onClick={viewMyPlan} disabled={autoBuilding} className="cta-calc disabled:cursor-wait disabled:opacity-60">
+                {autoBuilding ? (language === 'ar' ? 'جارٍ إعداد خطتك…' : 'Preparing your plan…') : (language === 'ar' ? 'عرض الخطة كاملة' : 'View Full Plan')}
+              </button>
+              <button type="button" onClick={() => setShowStartOverConfirm(true)} className="mt-3 min-h-[46px] w-full rounded-[14px] border border-[#E5E0D5] bg-white text-[13px] font-bold text-[#6B7A75] hover:border-[#D4A017]">
+                {language === 'ar' ? 'البدء من جديد' : 'Start Over'}
+              </button>
+              <p className="mt-3 text-[11px] text-[#8A938E]">{language === 'ar' ? 'يمكنك تعديل خطتك في أي وقت من لوحة التحكم.' : 'You can edit your plan anytime from your dashboard.'}</p>
+            </div>
+
+            {showStartOverConfirm && (
+              <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/45 p-4" role="presentation">
+                <section role="dialog" aria-modal="true" aria-labelledby="start-over-title" className="w-full max-w-[380px] rounded-[22px] border border-[#EFEBE4] bg-white p-5 shadow-2xl">
+                  <h2 id="start-over-title" className="text-[17px] font-extrabold text-[#0F4C3A]">{language === 'ar' ? 'البدء من جديد؟' : 'Start over?'}</h2>
+                  <p className="mt-2 text-[12px] leading-relaxed text-[#6B7A75]">{language === 'ar' ? 'سيتم مسح إجابات المعالج والخطة المحفوظة.' : 'This will clear your wizard answers and saved preview.'}</p>
+                  <div className="mt-5 flex gap-3">
+                    <button type="button" onClick={() => setShowStartOverConfirm(false)} className="btn-secondary min-h-11 flex-1 rounded-[13px] text-[12px] font-bold">{language === 'ar' ? 'إلغاء' : 'Cancel'}</button>
+                    <button type="button" onClick={startOver} className="min-h-11 flex-1 rounded-[13px] bg-[#0F4C3A] px-3 text-[12px] font-bold text-white">{language === 'ar' ? 'تأكيد البدء من جديد' : 'Confirm Start Over'}</button>
+                  </div>
+                </section>
+              </div>
+            )}
           </div>
         )}
 

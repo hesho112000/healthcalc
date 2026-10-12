@@ -27,6 +27,19 @@ export interface UserRecommendations {
   exerciseSummary: string[];
 }
 
+export type PreviewMealType = 'breakfast' | 'lunch' | 'dinner' | 'snacks';
+
+export interface UserPlanPreview {
+  kitchenId: string;
+  meals: {
+    mealType: PreviewMealType;
+    calories: number;
+    dishes: { name: string; nameAr: string | null; calories: number }[];
+  }[];
+  totalCalories: number;
+  macroPercentages: { protein: number; carbs: number; fat: number };
+}
+
 export interface UserProfile {
   age: number | null;
   gender: UserGender | null;
@@ -45,6 +58,7 @@ export interface UserProfile {
   selectedKitchen: string | null;
   kitchenMode: KitchenMode | null;
   recommendations: UserRecommendations | null;
+  planPreview: UserPlanPreview | null;
   healthConditions: string[];
   dietAffectingMedication: boolean | null;
   waist: number | null;
@@ -87,6 +101,7 @@ const EMPTY_PROFILE: UserProfile = {
   selectedKitchen: null,
   kitchenMode: null,
   recommendations: null,
+  planPreview: null,
   healthConditions: [],
   dietAffectingMedication: null,
   waist: null,
@@ -152,6 +167,32 @@ const asEnum = <T extends string>(value: unknown, options: readonly T[]): T | nu
 const asEnumList = <T extends string>(value: unknown, options: readonly T[]): T[] =>
   Array.isArray(value) ? value.filter((item): item is T => typeof item === 'string' && options.includes(item as T)) : [];
 
+const normalizePlanPreview = (value: unknown): UserPlanPreview | null => {
+  const record = asRecord(value);
+  const macros = asRecord(record?.macroPercentages);
+  const totalCalories = asNumber(record?.totalCalories);
+  const protein = asNumber(macros?.protein);
+  const carbs = asNumber(macros?.carbs);
+  const fat = asNumber(macros?.fat);
+  if (!record || typeof record.kitchenId !== 'string' || !Array.isArray(record.meals) || totalCalories === null || protein === null || carbs === null || fat === null) return null;
+
+  const meals = record.meals.flatMap((value) => {
+    const meal = asRecord(value);
+    const calories = asNumber(meal?.calories);
+    if (!meal || !['breakfast', 'lunch', 'dinner', 'snacks'].includes(String(meal.mealType)) || !Array.isArray(meal.dishes) || calories === null) return [];
+    const dishes = meal.dishes.flatMap((value) => {
+      const dish = asRecord(value);
+      const dishCalories = asNumber(dish?.calories);
+      if (!dish || typeof dish.name !== 'string' || dishCalories === null) return [];
+      return [{ name: dish.name, nameAr: typeof dish.nameAr === 'string' ? dish.nameAr : null, calories: dishCalories }];
+    });
+    return [{ mealType: meal.mealType as PreviewMealType, calories, dishes }];
+  });
+
+  if (meals.length !== 4) return null;
+  return { kitchenId: record.kitchenId, meals, totalCalories, macroPercentages: { protein, carbs, fat } };
+};
+
 const normalizeProfile = (value: unknown): UserProfile => {
   const record = asRecord(value) ?? {};
   const data = { ...(asRecord(record.profile) ?? {}), ...record };
@@ -213,6 +254,7 @@ const normalizeProfile = (value: unknown): UserProfile => {
         exerciseSummary: asStringList(saved.exerciseSummary),
       };
     })(),
+    planPreview: normalizePlanPreview(data.planPreview),
     healthConditions: asStringList(data.healthConditions).length
       ? asStringList(data.healthConditions)
       : asStringList(data.conditions),
