@@ -2885,51 +2885,75 @@ const WeightLossPage: React.FC = () => {
           <div className="mt-6 space-y-5">
             <div className={`${cardBase} p-6`}>
               <div className="flex items-center gap-3">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F4F1EB] text-[22px]">🥗</span>
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0F4C3A] text-white">
+                  <Sparkles size={20} />
+                </span>
                 <div>
-                  <h2 className="text-[18px] font-extrabold">{language === 'ar' ? 'كيف تفضل أن تأكل؟' : 'How do you prefer to eat?'}</h2>
-                  <p className="mt-1 text-[13px] text-[#6B7A75]">{language === 'ar' ? 'اختر كل ما ينطبق، وسنراعي تفضيلاتك في خطتك.' : 'Select all that apply. We will use these preferences in your plan.'}</p>
+                  <h2 className="text-[18px] font-extrabold leading-none">{language === 'ar' ? 'اختر أهدافك' : 'Select Your Goals'}</h2>
+                  <p className="mt-1 text-[12.5px] text-[#6B7A75]">{language === 'ar' ? 'يمكنك اختيار 1-3 أهداف.' : 'You can select 1–3 goals.'}</p>
                 </div>
               </div>
 
-              <div className="mt-5 grid grid-cols-2 gap-2.5 sm:grid-cols-3">
-                {[
-                  { id: 'none', emoji: '🍽️', en: 'No restrictions', ar: 'لا تفضيلات محددة' },
-                  { id: 'vegetarian', emoji: '🥚', en: 'Vegetarian', ar: 'نباتي' },
-                  { id: 'vegan', emoji: '🌱', en: 'Vegan', ar: 'نباتي صرف' },
-                  { id: 'pescatarian', emoji: '🐟', en: 'Pescatarian', ar: 'نباتي مع السمك' },
-                  { id: 'mediterranean', emoji: '🫒', en: 'Mediterranean', ar: 'متوسطي' },
-                  { id: 'low_carb', emoji: '🥑', en: 'Low carb', ar: 'قليل الكربوهيدرات' },
-                  { id: 'keto', emoji: '🥩', en: 'Keto', ar: 'كيتو' },
-                  { id: 'gluten_free', emoji: '🌾', en: 'Gluten-free', ar: 'خالٍ من الغلوتين' },
-                  { id: 'dairy_free', emoji: '🥛', en: 'Dairy-free', ar: 'خالٍ من الألبان' },
-                  { id: 'halal', emoji: '☪️', en: 'Halal', ar: 'حلال' },
-                ].map((option) => {
-                  const on = dietaryPreferences.includes(option.id);
+              <div className="mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                {GOAL_SELECTION_OPTIONS.map((option) => {
+                  const on = goals.includes(option.id);
+                  const disabled = !on && goals.length >= 3;
                   return (
                     <button
                       key={option.id}
                       type="button"
                       aria-pressed={on}
-                      onClick={() => toggleDietaryPreference(option.id)}
-                      className={`flex min-h-[58px] items-center gap-2 rounded-[16px] border-2 px-3 py-2 text-start text-[12.5px] font-bold transition-all ${on ? 'border-[#0F4C3A] bg-[#EAF3ED] text-[#0F4C3A]' : 'border-[#EFEBE4] bg-white text-[#6B7A75] hover:border-[#D4A017]'}`}
+                      onClick={() => toggleGoalSelection(option.id)}
+                      disabled={disabled}
+                      className={`flex min-h-[58px] items-center gap-3 rounded-[16px] border-2 px-4 py-3 text-start text-[13px] font-bold transition-all ${on ? 'border-[#0F4C3A] bg-[#EAF3ED] text-[#0F4C3A]' : 'border-[#EFEBE4] bg-white text-[#6B7A75] hover:border-[#D4A017]'} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
                     >
-                      <span className="text-[18px]">{option.emoji}</span>
-                      <span className="min-w-0 flex-1">{language === 'ar' ? option.ar : option.en}</span>
+                      <span className="text-[18px]">{option.icon}</span>
+                      <span className="flex-1">{language === 'ar' ? option.ar : option.en}</span>
                       {on && <span aria-hidden="true" className="text-[#B8860B]">✓</span>}
                     </button>
                   );
                 })}
               </div>
+
+              {hasConflictGoals && (
+                <div className="mt-4 rounded-[16px] border border-red-200 bg-red-50 px-4 py-3 text-[12px] font-semibold text-red-600 leading-snug">
+                  {language === 'ar' ? 'لا يمكن اختيار "إنقاص الوزن" و"الحفاظ على الوزن" معاً.' : '"Lose Weight" and "Maintain Weight" cannot be selected together.'}
+                </div>
+              )}
             </div>
 
+            {goals.includes('lose_weight') && (
+              <div className={`${cardBase} p-6`}>
+                <h2 className="text-[18px] font-extrabold">{language === 'ar' ? 'الوزن المستهدف والمدة' : 'Target Weight & Timeline'}</h2>
+                <p className="mt-1 text-[12.5px] text-[#6B7A75]">{language === 'ar' ? 'حدد وزنك المستهدف والمدة المناسبة.' : 'Set your target weight and desired timeline.'}</p>
+                <div className="mt-5 grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="wiz-label" htmlFor="targetWeight">{t('wizard.step4.targetWeight')}</label>
+                    <input id="targetWeight" value={targetWeight} onChange={(e) => setTargetWeight(e.target.value.replace(/[^0-9.]/g, ''))} inputMode="decimal" className={`${inputDefault} pr-12`} />
+                  </div>
+                  <div>
+                    <label className="wiz-label" htmlFor="timeline">{t('wizard.step4.timeline')}</label>
+                    <input id="timeline" value={timeline} onChange={(e) => setTimeline(e.target.value.replace(/\D/g, ''))} inputMode="numeric" className={`${inputDefault} pr-16`} />
+                  </div>
+                </div>
+                {lossKgPerWeek !== null && (
+                  <div className="mt-3 rounded-[14px] bg-[#F4F1EB] px-4 py-3 text-[12px] text-[#6B7A75] leading-relaxed">
+                    {language === 'ar' ? 'خسارة ' : 'Losing '}
+                    <span className="num font-bold text-[#0F4C3A]">{(lossKgPerWeek * targetWeeks / (targetWeeks > 0 ? targetWeeks : 1)).toFixed(1)}</span>
+                    {language === 'ar' ? ' كجم في ' : ' kg in '}
+                    {targetWeeks}
+                    {language === 'ar' ? ' أسبوع = ' : ' weeks = '}
+                    <span className="num font-bold text-[#0F4C3A]">{lossKgPerWeek.toFixed(2)}</span>
+                    {language === 'ar' ? ' كجم/أسبوع. ' : ' kg/week. '}
+                    {safeLoss ? (language === 'ar' ? 'معدل آمن.' : 'Safe rate.') : (language === 'ar' ? 'قد يكون المعدل مرتفعاً — راجع طبيبك.' : 'Rate may be high — consult your doctor.')}
+                  </div>
+                )}
+              </div>
+            )}
+
             <div className="flex gap-3">
-              <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
-                {t('wizard.back')}
-              </button>
-              <button type="button" onClick={next} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">
-                {t('wizard.continue')}
-              </button>
+              <button type="button" onClick={back} className="btn-secondary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold">{t('wizard.back')}</button>
+              <button type="button" onClick={next} disabled={!isValid()} className="btn-primary flex-1 h-[54px] rounded-[16px] text-[15px] font-bold disabled:cursor-not-allowed disabled:opacity-40">{t('wizard.continue')}</button>
             </div>
           </div>
         )}
