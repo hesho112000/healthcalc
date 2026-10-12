@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Activity, ArrowRight, CheckCircle2, Globe, HeartPulse, Languages, Moon, RefreshCw, Smartphone, Star, UtensilsCrossed, Watch } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -25,13 +25,6 @@ const conditions = [
   ['🌿', 'IBS', 'قولون', '/premium'],
 ];
 
-const cuisines: Array<{ name: string; countryCode?: string; icon?: string }> = [
-  { countryCode: 'eg', name: 'Egyptian' }, { countryCode: 'in', name: 'Indian' },
-  { countryCode: 'sa', name: 'Arabic' }, { countryCode: 'gr', name: 'Mediterranean' },
-  { icon: '🌏', name: 'Asian' }, { countryCode: 'us', name: 'American' },
-  { icon: '🥗', name: 'Vegetarian' }, { icon: '🥑', name: 'Keto' },
-];
-
 const HomePage: React.FC = () => {
   const { t, dir, language } = useLanguage();
   const { profile, updateProfile, resetProfile } = useUserProfile();
@@ -50,6 +43,37 @@ const HomePage: React.FC = () => {
       ];
   const [watchEmail, setWatchEmail] = useState('');
   const [watchJoined, setWatchJoined] = useState(false);
+
+  const fmtCount = (n: number): string => n.toLocaleString(
+    language === 'ar' ? 'ar-EG' : language === 'fr' ? 'fr-FR' : language === 'es' ? 'es-ES' : language === 'de' ? 'de-DE' : 'en-US'
+  );
+  const kitchenSectionRef = useRef<HTMLElement | null>(null);
+  const [kitchenData, setKitchenData] = useState<typeof import('../data/kitchens') | null>(null);
+  useEffect(() => {
+    const node = kitchenSectionRef.current;
+    if (!node) return;
+    let cancelled = false;
+    const load = () => {
+      import('../data/kitchens')
+        .then((mod) => { if (!cancelled) setKitchenData(mod); })
+        .catch(() => {});
+    };
+    if (typeof IntersectionObserver === 'undefined') { load(); return; }
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) { observer.disconnect(); load(); }
+    }, { rootMargin: '320px' });
+    observer.observe(node);
+    return () => { cancelled = true; observer.disconnect(); };
+  }, []);
+  const countryKitchens = useMemo(
+    () => (kitchenData ? kitchenData.kitchensRegistry.filter((k) => !k.id.startsWith('diet-')).sort((a, b) => b.total - a.total) : []),
+    [kitchenData]
+  );
+  const heroKitchen = countryKitchens[0];
+  const heroSamples = useMemo(() => {
+    if (!kitchenData || !countryKitchens[0]) return [];
+    return Array.from(new Set(countryKitchens[0].dishes.map((d) => kitchenData.getDishName(d, language)).filter(Boolean))).slice(0, 3);
+  }, [kitchenData, countryKitchens, language]);
 
   const handleWatchNotify = (event: React.FormEvent) => {
     event.preventDefault();
@@ -172,14 +196,42 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section className="section-wrap section-tint">
-        <div className="explainer-grid reverse">
-          <div className="section-intro"><span className="step-pill pink">{t('homeStep2')}</span><h2>{t('homeStep2Title')}</h2><p>{t('homeStep2Desc')}</p>
-            <div className="cuisine-grid">{cuisines.map(({ countryCode, icon, name }) => <span key={name}>{countryCode ? <Flag countryCode={countryCode} alt={`${name} flag`} /> : icon} {name}</span>)}</div>
-            <Link to="/weight-loss" className="btn-primary">{t('homeSeePlan')} <span>→</span></Link>
+      <section className="section-wrap section-tint" ref={kitchenSectionRef}>
+        {kitchenData && heroKitchen ? (
+          <>
+            <div className="kitchen-head">
+              <span className="step-pill gold">{t('kitchensEyebrow')}</span>
+              <h2 className="kitchen-title">{countryKitchens.length} {t('kitchensTitleKitchens')}<span className="kitchen-title-dot">·</span>{fmtCount(kitchenData.totalDishesAll)} {t('kitchensTitleDishes')}</h2>
+              <p className="kitchen-sub">{t('kitchensSubtitle')}</p>
+              <Link to="/weight-loss" className="btn-primary">{t('kitchensViewAll')} <ArrowRight size={16} className="rtl:rotate-180" /></Link>
+            </div>
+
+            <div className="kitchen-bento">
+              <Link to="/weight-loss" className="kitchen-tile kitchen-tile-hero">
+                <span className="kitchen-flag-wrap"><Flag countryCode={heroKitchen.flag} alt={kitchenData.getKitchenCountry(heroKitchen, language)} className="h-10 w-14" /></span>
+                <span className="kitchen-featured-label">{t('kitchensFeatured')}</span>
+                <h3 className="kitchen-tile-name">{kitchenData.getKitchenName(heroKitchen, language)}</h3>
+                <p className="kitchen-tile-meta">{kitchenData.getKitchenCountry(heroKitchen, language)} · {fmtCount(heroKitchen.total)} {t('kitchensDishes')}</p>
+                <ul className="kitchen-samples">{heroSamples.map((s) => <li key={s}>{s}</li>)}</ul>
+                <span className="kitchen-cta">{t('kitchensExplore').replace('{kitchen}', kitchenData.getKitchenName(heroKitchen, language))} <ArrowRight size={16} className="rtl:rotate-180" /></span>
+              </Link>
+              {countryKitchens.slice(1, 4).map((k, i) => (
+                <Link to="/weight-loss" key={k.id} className={`kitchen-tile kitchen-tile-small${i === 2 ? ' kitchen-tile-wide' : ''}`}>
+                  <span className="kitchen-flag-wrap"><Flag countryCode={k.flag} alt={kitchenData.getKitchenCountry(k, language)} className="h-7 w-10" /></span>
+                  <h4 className="kitchen-tile-name small">{kitchenData.getKitchenName(k, language)}</h4>
+                  <p className="kitchen-tile-meta">{fmtCount(k.total)} {t('kitchensDishes')}</p>
+                </Link>
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="kitchen-bento kitchen-bento-loading" aria-hidden="true">
+            <div className="kitchen-tile kitchen-tile-hero" />
+            <div className="kitchen-tile kitchen-tile-small" />
+            <div className="kitchen-tile kitchen-tile-small" />
+            <div className="kitchen-tile kitchen-tile-small kitchen-tile-wide" />
           </div>
-          <SectionIllustration kind="plan" />
-        </div>
+        )}
       </section>
 
       {ENABLE_PREMIUM && (

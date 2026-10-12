@@ -834,3 +834,60 @@ select.wiz-input { -webkit-appearance: none; appearance: none; background-image:
   animation: shimmer 1.2s ease-in-out infinite;
   border-radius: 16px;
 }
+
+/* ---------- Home: featured kitchens bento ---------- */
+.step-pill.gold { color: var(--hc-gold-dark); background: rgba(212, 160, 23, .13); }
+.kitchen-head { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 22px; }
+.kitchen-title { margin: 0; font-size: clamp(24px, 4.2vw, 38px); line-height: 1.2; color: var(--hc-emerald); letter-spacing: -.02em; }
+.kitchen-title-dot { color: var(--hc-gold); padding: 0 6px; }
+.kitchen-sub { margin: 0; max-width: 640px; color: var(--hc-body); font-size: 15px; line-height: 1.7; }
+.kitchen-bento { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.kitchen-tile {
+  position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px;
+  min-height: 170px; padding: 20px; border-radius: 22px;
+  background: #fff; border: 1px solid rgba(15, 76, 58, .08); box-shadow: 0 4px 16px rgba(15, 76, 58, .05);
+  text-decoration: none; transition: transform .18s ease, box-shadow .18s ease;
+  animation: kitchen-in .5s ease both;
+}
+.kitchen-tile:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(15, 76, 58, .14); }
+.kitchen-tile-hero {
+  justify-content: space-between; min-height: 300px; border: none;
+  background: linear-gradient(155deg, #0F4C3A 0%, #047857 55%, #059669 100%);
+  color: #FDFBF7; box-shadow: 0 10px 26px rgba(4, 120, 87, .22);
+}
+.kitchen-tile-hero:hover { box-shadow: 0 18px 40px rgba(4, 120, 87, .3); }
+.kitchen-flag-wrap { display: block; align-self: flex-start; }
+.kitchen-tile-hero .kitchen-flag-wrap { padding: 4px; border-radius: 12px; background: rgba(253, 251, 247, .14); }
+.kitchen-featured-label { font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--hc-gold); }
+.kitchen-tile-name { margin: 0; font-size: 24px; line-height: 1.15; color: inherit; letter-spacing: -.01em; }
+.kitchen-tile-name.small { font-size: 17px; color: var(--hc-emerald); }
+.kitchen-tile-meta { margin: 0; font-size: 13px; color: var(--hc-muted); }
+.kitchen-tile-hero .kitchen-tile-meta { color: rgba(253, 251, 247, .85); }
+.kitchen-samples { margin: 2px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.kitchen-samples li { font-size: 12px; font-weight: 600; color: var(--hc-emerald); background: rgba(5, 150, 105, .08); padding: 4px 10px; border-radius: 999px; }
+.kitchen-tile-hero .kitchen-samples li { color: #FDFBF7; background: rgba(253, 251, 247, .12); }
+.kitchen-cta { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 14px; font-weight: 800; color: var(--hc-gold); }
+.kitchen-cta svg { transition: transform .18s ease; }
+.kitchen-tile-hero:hover .kitchen-cta svg { transform: translateX(3px); }
+[dir="rtl"] .kitchen-tile-hero:hover .kitchen-cta svg { transform: translateX(-3px); }
+.kitchen-bento-loading .kitchen-tile { border: 1px dashed rgba(15, 76, 58, .14); background: #F4F1EB; box-shadow: none; animation: none; }
+
+@keyframes kitchen-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.kitchen-bento .kitchen-tile:nth-child(2) { animation-delay: .07s; }
+.kitchen-bento .kitchen-tile:nth-child(3) { animation-delay: .14s; }
+.kitchen-bento .kitchen-tile:nth-child(4) { animation-delay: .21s; }
+
+@media (min-width: 640px) {
+  .kitchen-bento { grid-template-columns: repeat(2, 1fr); }
+  .kitchen-tile-hero { grid-column: 1 / -1; min-height: 260px; }
+  .kitchen-tile-wide { grid-column: 1 / -1; }
+}
+@media (min-width: 1024px) {
+  .kitchen-bento { grid-template-columns: repeat(3, 1fr); }
+  .kitchen-tile { min-height: 200px; }
+  .kitchen-tile-hero { grid-column: span 2; grid-row: span 2; min-height: 420px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kitchen-tile { animation: none; transition: none; }
+  .kitchen-tile:hover { transform: none; }
+}

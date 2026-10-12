@@ -217,6 +217,14 @@ type TranslationKeys = {
   watchPrivacyNote: string;
   watchThanksTitle: string;
   watchThanksDesc: string;
+  kitchensEyebrow: string;
+  kitchensTitleKitchens: string;
+  kitchensTitleDishes: string;
+  kitchensSubtitle: string;
+  kitchensViewAll: string;
+  kitchensExplore: string;
+  kitchensDishes: string;
+  kitchensFeatured: string;
   // Footer
   brandName: string;
   // Home
@@ -4226,6 +4234,14 @@ export const translations: Record<Language, TranslationKeys> = {
     watchPrivacyNote: "We'll email you when it's live. No spam.",
     watchThanksTitle: "You're on the list!",
     watchThanksDesc: "We'll email you the moment smartwatch sync is live.",
+    kitchensEyebrow: 'Explore the World',
+    kitchensTitleKitchens: 'World Kitchens',
+    kitchensTitleDishes: 'Dishes',
+    kitchensSubtitle: 'From Egyptian Koshary to Japanese Sushi. Halal-friendly, science-based.',
+    kitchensViewAll: 'View All Kitchens',
+    kitchensExplore: 'Explore {kitchen}',
+    kitchensDishes: 'dishes',
+    kitchensFeatured: 'Signature Kitchen',
     homeStep1: 'STEP 1 · ASSESS',
     homeStep1Title: '1. Health & Fitness Calculator',
     homeStep1Desc: 'Enter your profile once and get instant BMI, BMR, daily calories, water, and protein targets with transparent formulas.',
@@ -6719,6 +6735,14 @@ export const translations: Record<Language, TranslationKeys> = {
     watchPrivacyNote: 'Nous vous enverrons un e-mail dès que ce sera disponible. Pas de spam.',
     watchThanksTitle: 'C\'est noté !',
     watchThanksDesc: 'Nous vous enverrons un e-mail dès que la synchronisation sera disponible.',
+    kitchensEyebrow: 'Explorez le monde',
+    kitchensTitleKitchens: 'Cuisines du monde',
+    kitchensTitleDishes: 'plats',
+    kitchensSubtitle: "Du kochari égyptien au sushi japonais. Adapté halal, fondé sur la science.",
+    kitchensViewAll: 'Voir toutes les cuisines',
+    kitchensExplore: 'Explorer {kitchen}',
+    kitchensDishes: 'plats',
+    kitchensFeatured: 'Cuisine signature',
     homeStep1: 'STEP 1 · ASSESS',
     homeStep1Title: '1. Health & Fitness Calculator',
     homeStep1Desc: 'Enter your profile once and get instant BMI, BMR, daily calories, water, and protein targets with transparent formulas.',
@@ -9182,6 +9206,14 @@ export const translations: Record<Language, TranslationKeys> = {
     watchPrivacyNote: 'Te enviaremos un correo cuando esté disponible. Sin spam.',
     watchThanksTitle: '¡Estás en la lista!',
     watchThanksDesc: 'Te enviaremos un correo en cuanto la sincronización esté disponible.',
+    kitchensEyebrow: 'Explora el mundo',
+    kitchensTitleKitchens: 'Cocinas del mundo',
+    kitchensTitleDishes: 'platos',
+    kitchensSubtitle: 'Del koshari egipcio al sushi japonés. Amigable con halal, basado en ciencia.',
+    kitchensViewAll: 'Ver todas las cocinas',
+    kitchensExplore: 'Explorar {kitchen}',
+    kitchensDishes: 'platos',
+    kitchensFeatured: 'Cocina destacada',
     homeStep1: 'STEP 1 · ASSESS',
     homeStep1Title: '1. Health & Fitness Calculator',
     homeStep1Desc: 'Enter your profile once and get instant BMI, BMR, daily calories, water, and protein targets with transparent formulas.',
@@ -11645,6 +11677,14 @@ export const translations: Record<Language, TranslationKeys> = {
     watchPrivacyNote: 'سنتواصل معك عبر البريد عند التوفّر. بدون رسائل مزعجة.',
     watchThanksTitle: 'أنت في القائمة!',
     watchThanksDesc: 'سنرسل لك بريدًا إلكترونيًا فور توفّر مزامنة الساعة.',
+    kitchensEyebrow: 'استكشف العالم',
+    kitchensTitleKitchens: 'مطبخًا من العالم',
+    kitchensTitleDishes: 'طبقًا',
+    kitchensSubtitle: 'من الكشري المصري إلى السوشي الياباني. حلال ومناسب، مبني على العلم.',
+    kitchensViewAll: 'عرض كل المطابخ',
+    kitchensExplore: 'استكشف {kitchen}',
+    kitchensDishes: 'طبق',
+    kitchensFeatured: 'المطبخ المميز',
     homeStep1: 'الخطوة 1 · تقييم',
     homeStep1Title: '1. حاسبة اللياقة الصحية والتمارين',
     homeStep1Desc: 'أدخل بياناتك مرة واحدة واحصل فوراً على BMI وBMR وسعراتك اليومية وأهداف الماء والبروتين بمعادلات واضحة.',
@@ -14119,6 +14159,14 @@ export const translations: Record<Language, TranslationKeys> = {
     watchPrivacyNote: 'Wir informieren Sie per E-Mail, sobald es verfügbar ist. Kein Spam.',
     watchThanksTitle: 'Sie sind auf der Liste!',
     watchThanksDesc: 'Wir senden Ihnen eine E-Mail, sobald die Smartwatch-Synchronisierung verfügbar ist.',
+    kitchensEyebrow: 'Entdecken Sie die Welt',
+    kitchensTitleKitchens: 'Küchen weltweit',
+    kitchensTitleDishes: 'Gerichte',
+    kitchensSubtitle: 'Vom ägyptischen Koshari bis zum japanischen Sushi. Halal-freundlich, wissenschaftsbasiert.',
+    kitchensViewAll: 'Alle Küchen ansehen',
+    kitchensExplore: '{kitchen} entdecken',
+    kitchensDishes: 'Gerichte',
+    kitchensFeatured: 'Signature-Küche',
     homeStep1: 'SCHRITT 1 · EINSCHÄTZUNG',
     homeStep1Title: '1. Gesundheits- & Fitness-Rechner',
     homeStep1Desc: 'Geben Sie Ihr Profil einmal ein und erhalten Sie sofort BMI, BMR, tägliche Kalorien sowie Wasser- und Proteinziele mit transparenten Formeln.',
