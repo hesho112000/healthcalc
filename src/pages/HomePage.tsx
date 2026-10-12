@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Activity, ArrowRight, CheckCircle2, Globe, HeartPulse, Languages, Moon, RefreshCw, Smartphone, Star, Target, TrendingDown, Users, UtensilsCrossed, Watch } from 'lucide-react';
+import { Activity, ArrowRight, CheckCircle2, Cross, Droplet, Dumbbell, Globe, HeartPulse, Hourglass, Languages, Moon, RefreshCw, Salad, Smartphone, Sparkles, Star, Target, Timer, TrendingDown, Users, UtensilsCrossed, Watch } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import type { ArticleCategory } from '../data/articles';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
 import { useUserProfile } from '../hooks/useUserProfile';
@@ -70,6 +71,14 @@ const TrustCountUp: React.FC<{ value: number; decimals?: number; suffix?: string
   return <span ref={ref}>{formatted}{suffix}</span>;
 };
 
+const CATEGORY_ICON: Record<ArticleCategory, LucideIcon> = {
+  diabetes: Droplet,
+  heart: HeartPulse,
+  nutrition: Salad,
+  lifestyle: Sparkles,
+  fitness: Dumbbell,
+};
+
 const HomePage: React.FC = () => {
   const { t, dir, language } = useLanguage();
   const { profile, updateProfile, resetProfile } = useUserProfile();
@@ -118,6 +127,43 @@ const HomePage: React.FC = () => {
     if (!kitchenData || !countryKitchens[0]) return [];
     return Array.from(new Set(countryKitchens[0].dishes.map((d) => kitchenData.getDishName(d, language)).filter(Boolean))).slice(0, 3);
   }, [kitchenData, countryKitchens, language]);
+
+  const [fastingEmail, setFastingEmail] = useState('');
+  const [fastingJoined, setFastingJoined] = useState(false);
+  const blogSectionRef = useRef<HTMLElement | null>(null);
+  const [articlesData, setArticlesData] = useState<typeof import('../data/articles') | null>(null);
+  useEffect(() => {
+    const node = blogSectionRef.current;
+    if (!node) return;
+    let cancelled = false;
+    const load = () => {
+      import('../data/articles')
+        .then((mod) => { if (!cancelled) setArticlesData(mod); })
+        .catch(() => {});
+    };
+    if (typeof IntersectionObserver === 'undefined') { load(); return; }
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) { observer.disconnect(); load(); }
+    }, { rootMargin: '320px' });
+    observer.observe(node);
+    return () => { cancelled = true; observer.disconnect(); };
+  }, []);
+  const latestArticles = useMemo(
+    () => (articlesData ? [...articlesData.ARTICLES].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)).slice(0, 3) : []),
+    [articlesData]
+  );
+
+  const handleFastingNotify = (event: React.FormEvent) => {
+    event.preventDefault();
+    const email = fastingEmail.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+    try {
+      const saved: string[] = JSON.parse(localStorage.getItem('hf_fasting_notify') || '[]');
+      if (!saved.includes(email)) saved.push(email);
+      localStorage.setItem('hf_fasting_notify', JSON.stringify(saved));
+    } catch {}
+    setFastingJoined(true);
+  };
 
   const handleWatchNotify = (event: React.FormEvent) => {
     event.preventDefault();
@@ -318,6 +364,78 @@ const HomePage: React.FC = () => {
         </div>
 
         <p className="trustsec-disclaimer">{t('trustsec.disclaimer')}</p>
+      </section>
+
+      <section className="section-wrap">
+        <div className="fasting-card">
+          <div className="fasting-copy">
+            <span className="step-pill gold">{t('fastingHub.eyebrow')}</span>
+            <h2 className="fasting-title">{t('fastingHub.title')}</h2>
+            <p className="fasting-sub">{t('fastingHub.subtitle')}</p>
+            <ul className="fasting-chips">
+              <li><Moon size={18} /><span>{t('fastingHub.chip1')}</span></li>
+              <li><Cross size={18} /><span>{t('fastingHub.chip2')}</span></li>
+              <li><Timer size={18} /><span>{t('fastingHub.chip3')}</span></li>
+            </ul>
+            {fastingJoined ? (
+              <div className="fasting-thanks" aria-live="polite">
+                <CheckCircle2 size={20} />
+                <div>
+                  <b>{t('fastingHub.thanksTitle')}</b>
+                  <p>{t('fastingHub.thanksDesc')}</p>
+                </div>
+              </div>
+            ) : (
+              <form className="fasting-form" onSubmit={handleFastingNotify}>
+                <input
+                  type="email"
+                  required
+                  value={fastingEmail}
+                  onChange={(event) => setFastingEmail(event.target.value)}
+                  placeholder={t('fastingHub.notifyPlaceholder')}
+                  aria-label={t('fastingHub.notifyPlaceholder')}
+                  className="fasting-input"
+                />
+                <button type="submit" className="btn-primary">{t('fastingHub.notify')} <ArrowRight size={16} className="rtl:rotate-180" /></button>
+              </form>
+            )}
+            <p className="fasting-note">{t('fastingHub.privacyNote')}</p>
+          </div>
+          <div className="fasting-glow" aria-hidden="true"><Hourglass size={132} strokeWidth={1.1} /></div>
+        </div>
+      </section>
+
+      <section className="section-wrap" ref={blogSectionRef}>
+        <div className="trustsec-head">
+          <span className="step-pill gold">{t('homeBlog.eyebrow')}</span>
+          <h2 className="trustsec-title">{t('homeBlog.title')}</h2>
+        </div>
+        {articlesData ? (
+          <div className="blog-grid">
+            {latestArticles.map((article) => {
+              const CategoryIcon = CATEGORY_ICON[article.category];
+              return (
+                <Link to={`/resources/article/${article.slug}`} className="blog-card" key={article.id}>
+                  <span className="blog-thumb"><CategoryIcon size={26} strokeWidth={2} /></span>
+                  <span className="blog-cat">{t(`article.category.${article.category}` as any)}</span>
+                  <h3 className="blog-title">{articlesData.lt(article.title, language)}</h3>
+                  <p className="blog-excerpt">{articlesData.lt(article.excerpt, language)}</p>
+                  <span className="blog-meta">{article.readTime} {t('homeBlog.minRead')}</span>
+                  <span className="blog-more">{t('common.readMore')} <ArrowRight size={15} className="rtl:rotate-180" /></span>
+                </Link>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="blog-grid" aria-hidden="true">
+            <div className="blog-card blog-card-skeleton" />
+            <div className="blog-card blog-card-skeleton" />
+            <div className="blog-card blog-card-skeleton" />
+          </div>
+        )}
+        <div className="blog-cta">
+          <Link to="/resources" className="btn-primary">{t('homeBlog.viewAll')} <ArrowRight size={16} className="rtl:rotate-180" /></Link>
+        </div>
       </section>
 
       <section className="section-wrap">

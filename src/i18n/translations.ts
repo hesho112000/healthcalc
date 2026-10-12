@@ -295,6 +295,21 @@ type TranslationKeys = {
   'trustsec.sources.title': string;
   'trustsec.sources.note': string;
   'trustsec.disclaimer': string;
+  'fastingHub.eyebrow': string;
+  'fastingHub.title': string;
+  'fastingHub.subtitle': string;
+  'fastingHub.chip1': string;
+  'fastingHub.chip2': string;
+  'fastingHub.chip3': string;
+  'fastingHub.notifyPlaceholder': string;
+  'fastingHub.notify': string;
+  'fastingHub.privacyNote': string;
+  'fastingHub.thanksTitle': string;
+  'fastingHub.thanksDesc': string;
+  'homeBlog.eyebrow': string;
+  'homeBlog.title': string;
+  'homeBlog.viewAll': string;
+  'homeBlog.minRead': string;
   'howItWorks.eyebrow': string;
   'howItWorks.title': string;
   'howItWorks.subtitle': string;
@@ -4313,6 +4328,21 @@ export const translations: Record<Language, TranslationKeys> = {
     'trustsec.sources.title': 'Plans built on trusted medical guidelines:',
     'trustsec.sources.note': 'Our formulas align with guidelines from these institutions.',
     'trustsec.disclaimer': 'Individual results may vary. Consult your healthcare provider.',
+    'fastingHub.eyebrow': 'COMING SOON',
+    'fastingHub.title': 'Fasting Hub',
+    'fastingHub.subtitle': 'Ramadan, Lent, and Intermittent Fasting — all in one place.',
+    'fastingHub.chip1': 'Ramadan · Prayer Times · Suhoor & Iftar plans',
+    'fastingHub.chip2': 'Lent · Advent · Daniel Fast',
+    'fastingHub.chip3': 'Intermittent Fasting (16:8, 5:2, OMAD) + Timer',
+    'fastingHub.notifyPlaceholder': 'Your email address',
+    'fastingHub.notify': 'Get Notified',
+    'fastingHub.privacyNote': "We'll only email you when Fasting Hub launches.",
+    'fastingHub.thanksTitle': "You're on the list!",
+    'fastingHub.thanksDesc': "We'll notify you as soon as Fasting Hub is ready.",
+    'homeBlog.eyebrow': 'FROM THE BLOG',
+    'homeBlog.title': 'Latest Health Insights',
+    'homeBlog.viewAll': 'View All Articles',
+    'homeBlog.minRead': 'min read',
     'howItWorks.eyebrow': 'HOW IT WORKS',
     'howItWorks.title': 'Two Paths. One Goal: Better Health.',
     'howItWorks.subtitle': 'Start free with our calculators, or dive deep with personalized medical care.',
@@ -6824,6 +6854,21 @@ export const translations: Record<Language, TranslationKeys> = {
     'trustsec.sources.title': 'Des plans fondés sur des recommandations médicales fiables :',
     'trustsec.sources.note': "Nos formules s'alignent sur les recommandations de ces institutions.",
     'trustsec.disclaimer': 'Les résultats individuels peuvent varier. Consultez votre professionnel de santé.',
+    'fastingHub.eyebrow': 'BIENTÔT DISPONIBLE',
+    'fastingHub.title': 'Espace Jeûne',
+    'fastingHub.subtitle': 'Ramadan, Carême et jeûne intermittent — au même endroit.',
+    'fastingHub.chip1': 'Ramadan · Horaires de prière · Plans Suhoor & Iftar',
+    'fastingHub.chip2': 'Carême · Avent · Jeûne de Daniel',
+    'fastingHub.chip3': 'Jeûne intermittent (16:8, 5:2, OMAD) + Minuteur',
+    'fastingHub.notifyPlaceholder': 'Votre adresse e-mail',
+    'fastingHub.notify': 'Être averti',
+    'fastingHub.privacyNote': "Nous vous écrirons uniquement au lancement de l'Espace Jeûne.",
+    'fastingHub.thanksTitle': 'Vous êtes inscrit !',
+    'fastingHub.thanksDesc': "Nous vous préviendrons dès que l'Espace Jeûne sera prêt.",
+    'homeBlog.eyebrow': 'DU BLOG',
+    'homeBlog.title': 'Dernières actualités santé',
+    'homeBlog.viewAll': 'Voir tous les articles',
+    'homeBlog.minRead': 'min de lecture',
     'howItWorks.eyebrow': 'COMMENT ÇA MARCHE',
     'howItWorks.title': 'Deux parcours. Un seul objectif : une meilleure santé.',
     'howItWorks.subtitle': 'Commencez gratuitement avec nos calculateurs, ou optez pour des soins médicaux personnalisés.',
@@ -9305,6 +9350,21 @@ export const translations: Record<Language, TranslationKeys> = {
     'trustsec.sources.title': 'Planes basados en guías médicas de confianza:',
     'trustsec.sources.note': 'Nuestras fórmulas se alinean con las guías de estas instituciones.',
     'trustsec.disclaimer': 'Los resultados individuales pueden variar. Consulta a tu profesional de salud.',
+    'fastingHub.eyebrow': 'PRÓXIMAMENTE',
+    'fastingHub.title': 'Centro de Ayuno',
+    'fastingHub.subtitle': 'Ramadán, Cuaresma y ayuno intermitente — todo en un solo lugar.',
+    'fastingHub.chip1': 'Ramadán · Horarios de oración · Planes de Suhoor e Iftar',
+    'fastingHub.chip2': 'Cuaresma · Adviento · Ayuno de Daniel',
+    'fastingHub.chip3': 'Ayuno intermitente (16:8, 5:2, OMAD) + Temporizador',
+    'fastingHub.notifyPlaceholder': 'Tu correo electrónico',
+    'fastingHub.notify': 'Avísame',
+    'fastingHub.privacyNote': 'Solo te escribiremos cuando se lance el Centro de Ayuno.',
+    'fastingHub.thanksTitle': '¡Estás en la lista!',
+    'fastingHub.thanksDesc': 'Te avisaremos en cuanto el Centro de Ayuno esté listo.',
+    'homeBlog.eyebrow': 'DEL BLOG',
+    'homeBlog.title': 'Últimas novedades de salud',
+    'homeBlog.viewAll': 'Ver todos los artículos',
+    'homeBlog.minRead': 'min de lectura',
     'howItWorks.eyebrow': 'CÓMO FUNCIONA',
     'howItWorks.title': 'Dos caminos. Un solo objetivo: mejor salud.',
     'howItWorks.subtitle': 'Empieza gratis con nuestras calculadoras o profundiza con atención médica personalizada.',
@@ -11786,6 +11846,21 @@ export const translations: Record<Language, TranslationKeys> = {
     'trustsec.sources.title': 'خطط مبنية على إرشادات طبية موثوقة:',
     'trustsec.sources.note': 'تتماشى معادلاتنا مع إرشادات هذه المؤسسات.',
     'trustsec.disclaimer': 'قد تختلف النتائج من شخص لآخر. استشر مقدم الرعاية الصحية.',
+    'fastingHub.eyebrow': 'قريبًا',
+    'fastingHub.title': 'مركز الصيام',
+    'fastingHub.subtitle': 'رمضان والصوم الكبير والصيام المتقطع — في مكان واحد.',
+    'fastingHub.chip1': 'رمضان · مواقيت الصلاة · خطط السحور والإفطار',
+    'fastingHub.chip2': 'الصوم الكبير · الأدفنت · صوم دانيال',
+    'fastingHub.chip3': 'الصيام المتقطع (16:8، 5:2، OMAD) + مؤقت',
+    'fastingHub.notifyPlaceholder': 'بريدك الإلكتروني',
+    'fastingHub.notify': 'أبلغني',
+    'fastingHub.privacyNote': 'سنراسلك فقط عند إطلاق مركز الصيام.',
+    'fastingHub.thanksTitle': 'أنت على القائمة!',
+    'fastingHub.thanksDesc': 'سنبلغك فور جاهزية مركز الصيام.',
+    'homeBlog.eyebrow': 'من المدونة',
+    'homeBlog.title': 'أحدث المقالات الصحية',
+    'homeBlog.viewAll': 'عرض كل المقالات',
+    'homeBlog.minRead': 'دقيقة قراءة',
     'howItWorks.eyebrow': 'كيف يعمل',
     'howItWorks.title': 'مساران. هدف واحد: صحة أفضل.',
     'howItWorks.subtitle': 'ابدأ مجاناً مع حاسباتنا، أو تعمّق في رعاية طبية مخصصة.',
@@ -14278,6 +14353,21 @@ export const translations: Record<Language, TranslationKeys> = {
     'trustsec.sources.title': 'Pläne auf Basis vertrauenswürdiger medizinischer Leitlinien:',
     'trustsec.sources.note': 'Unsere Formeln orientieren sich an den Leitlinien dieser Institutionen.',
     'trustsec.disclaimer': 'Individuelle Ergebnisse können variieren. Konsultieren Sie Ihren Arzt.',
+    'fastingHub.eyebrow': 'DEMNÄCHST',
+    'fastingHub.title': 'Fasten-Hub',
+    'fastingHub.subtitle': 'Ramadan, Fastenzeit und Intervallfasten — alles an einem Ort.',
+    'fastingHub.chip1': 'Ramadan · Gebetszeiten · Suhoor- & Iftar-Pläne',
+    'fastingHub.chip2': 'Fastenzeit · Advent · Daniel-Fasten',
+    'fastingHub.chip3': 'Intervallfasten (16:8, 5:2, OMAD) + Timer',
+    'fastingHub.notifyPlaceholder': 'Ihre E-Mail-Adresse',
+    'fastingHub.notify': 'Benachrichtige mich',
+    'fastingHub.privacyNote': 'Wir schreiben Ihnen nur, wenn der Fasten-Hub startet.',
+    'fastingHub.thanksTitle': 'Sie stehen auf der Liste!',
+    'fastingHub.thanksDesc': 'Wir benachrichtigen Sie, sobald der Fasten-Hub bereit ist.',
+    'homeBlog.eyebrow': 'AUS DEM BLOG',
+    'homeBlog.title': 'Neueste Gesundheitstipps',
+    'homeBlog.viewAll': 'Alle Artikel ansehen',
+    'homeBlog.minRead': 'Min. Lesezeit',
     'howItWorks.eyebrow': 'SO FUNKTIONIERT ES',
     'howItWorks.title': 'Zwei Wege. Ein Ziel: Bessere Gesundheit.',
     'howItWorks.subtitle': 'Starten Sie kostenlos mit unseren Rechnern oder vertrauen Sie auf personalisierte medizinische Betreuung.',
