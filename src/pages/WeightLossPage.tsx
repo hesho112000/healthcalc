@@ -8,10 +8,8 @@ import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
 import { kitchensRegistry, totalDishesAll, getDishName, getCategoryName, getKitchenName, getKitchenCountry, KITCHEN_REGION_KITCHEN_IDS } from '../data/kitchens';
 import type { KitchenInfo, KitchenDish, KitchenCategory } from '../data/kitchens';
-import { getWizardExercisesByType } from '../data/exercises';
-import type { ExerciseItem } from '../data/exercises';
-import { ExerciseTypeSelector } from '../components/wizard/ExerciseTypeSelector';
-import { ExerciseList } from '../components/wizard/ExerciseList';
+import { UNIFIED_EXERCISES } from '../data/exercises/unified';
+import type { UnifiedExercise } from '../data/exercises/unified';
 import AddDishModal from '../components/wizard/AddDishModal';
 import MealCard from '../components/meal-plan/MealCard';
 import Flag, { getCountryCode } from '../components/common/Flag';
@@ -20,7 +18,7 @@ import { savePlan, saveProfile } from '../services/supabaseData';
 import { useKitchenDishes } from '../hooks/useKitchenDishes';
 import { useKitchenDishCounts, KITCHEN_ID_ALIAS } from '../hooks/useKitchenDishCounts';
 import { useUserProfile, type UserProfile, type WizardGoalSelection, type SleepHours, type StressLevel, type WorkType, type SmokingStatus, type MealsPerDay, type SnackFrequency, type BreakfastType, type MeatFrequency, type VegetablesFrequency, type SugaryDrinksFrequency, type GoalDiscoverySelection, type BodyConcern, type KitchenMode, type UserRecommendations, type UserPlanPreview } from '../hooks/useUserProfile';
-import { generateWeeklyPlan } from '../utils/mealPlanGenerator';
+import { generateWeeklyPlan, MEAL_ORDER as PLAN_MEAL_ORDER } from '../utils/mealPlanGenerator';
 import type { PlanDay, PlanDish, PlanMealType } from '../utils/mealPlanGenerator';
 
 type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
@@ -81,7 +79,7 @@ const EXERCISE_RECOMMENDATION_OPTIONS = [
   { id: 'cardio', en: 'Cardio', ar: 'تمارين القلب', Icon: Activity },
   { id: 'strength', en: 'Strength', ar: 'تمارين القوة', Icon: Dumbbell },
   { id: 'hiit', en: 'HIIT', ar: 'تمارين عالية الكثافة', Icon: Activity },
-  { id: 'core', en: 'Core', ar: 'تمارين الجذع', Icon: Target },
+  { id: 'balance', en: 'Balance', ar: 'التوازن', Icon: Target },
   { id: 'flexibility', en: 'Flexibility', ar: 'المرونة', Icon: Activity },
 ] as const;
 
@@ -94,8 +92,8 @@ const recommendExerciseTypes = (goals: WizardGoalSelection[], concerns: BodyConc
   if (goals.includes('improve_health')) ['cardio', 'strength', 'flexibility'].forEach((id) => picks.add(id as ExerciseRecommendationType));
   if (goals.includes('maintain_weight') || !goals.length) ['cardio', 'strength', 'flexibility'].forEach((id) => picks.add(id as ExerciseRecommendationType));
   concerns.forEach((concern) => {
-    if (concern === 'belly_fat') ['core', 'cardio'].forEach((id) => picks.add(id as ExerciseRecommendationType));
-    if (concern === 'love_handles') ['core', 'cardio'].forEach((id) => picks.add(id as ExerciseRecommendationType));
+    if (concern === 'belly_fat') ['balance', 'cardio'].forEach((id) => picks.add(id as ExerciseRecommendationType));
+    if (concern === 'love_handles') ['balance', 'cardio'].forEach((id) => picks.add(id as ExerciseRecommendationType));
     if (['chest_sagging', 'arm_fat', 'thigh_fat', 'back_fat'].includes(concern)) picks.add('strength');
     if (concern === 'back_fat') picks.add('flexibility');
   });
@@ -105,22 +103,12 @@ const recommendExerciseTypes = (goals: WizardGoalSelection[], concerns: BodyConc
 
 interface Workout {
   id: string;
-  name: string;
+  nameKey: string;
   days: number;
-  dur: string;
-  focus: string;
   burn: number;
-  level: string;
 }
 
-interface ExerciseType {
-  id: string;
-  name: string;
-  en: string;
-  emoji: string;
-  burn: string;
-  focus: string;
-}
+type WizardExerciseCategory = 'cardio' | 'strength' | 'hiit' | 'flexibility' | 'balance';
 
 interface PlannedExercise {
   id: string;
@@ -129,7 +117,6 @@ interface PlannedExercise {
   sets: string;
   reps: string;
   dur: string;
-  emoji: string;
 }
 
 interface DietIntensity {
@@ -147,6 +134,43 @@ interface DietIntensity {
   healthyOnly: boolean;
   warning?: string;
 }
+
+const LEGACY_EXERCISE_TYPE_MAP: Record<string, WizardExerciseCategory> = {
+  cardio: 'cardio',
+  strength: 'strength',
+  hiit: 'hiit',
+  flexibility: 'flexibility',
+  balance: 'balance',
+  yoga: 'flexibility',
+  pilates: 'flexibility',
+  tai_chi: 'balance',
+  crossfit: 'hiit',
+  swimming: 'cardio',
+  cycling: 'cardio',
+  running: 'cardio',
+  boxing: 'hiit',
+  dance: 'cardio',
+  calisthenics: 'strength',
+  functional: 'strength',
+  mindbody: 'balance',
+  core: 'balance',
+};
+
+const normalizeExerciseCategories = (types: string[]): WizardExerciseCategory[] =>
+  [...new Set(types.map((type) => LEGACY_EXERCISE_TYPE_MAP[type]).filter((type): type is WizardExerciseCategory => !!type))];
+
+const hasFourFilledMeals = (value: unknown, expectedTarget?: number): value is PlanDay[] =>
+  Array.isArray(value) && value.length === 7 && value.every((day) => {
+    if (!Array.isArray(day?.meals) || day.meals.length !== PLAN_MEAL_ORDER.length || !Number.isFinite(day.targetCal) || day.targetCal <= 0) return false;
+    const mealsTotal = day.meals.reduce((sum: number, meal: { dishes?: Array<{ calories?: number }> }) =>
+      sum + (meal.dishes ?? []).reduce((mealSum, dish) => mealSum + (Number(dish?.calories) || 0), 0), 0);
+    if (Math.abs(mealsTotal - day.totalCal) > 1 || Math.abs(day.totalCal - day.targetCal) > day.targetCal * 0.03) return false;
+    if (expectedTarget !== undefined && Math.abs(day.targetCal - expectedTarget) > expectedTarget * 0.03) return false;
+    return PLAN_MEAL_ORDER.every((mealType) => {
+      const meal = day.meals.find((item: { mealType?: PlanMealType }) => item?.mealType === mealType);
+      return Array.isArray(meal?.dishes) && meal.dishes.some((dish: { calories?: number }) => Number(dish?.calories) > 0);
+    });
+  });
 
 const ACTIVITY: Record<ActivityKey, { factor: number; label: string; desc: string; emoji: string }> = {
   sedentary: { factor: 1.2, label: 'خامل', desc: 'مكتبي - بدون رياضة', emoji: '🛋️' },
@@ -220,61 +244,21 @@ const enteredFromCalculator = (profile: UserProfile): boolean => hasBasicInfo(pr
 const initialWizardStep = (profile: UserProfile): Step => (enteredFromCalculator(profile) ? 4 : 1);
 
 const WORKOUTS: Workout[] = [
-  { id: 'full_body', name: 'Full Body 3x', days: 3, dur: '45د', focus: 'كل الجسم', burn: 150, level: 'مبتدئ' },
-  { id: 'upper_lower', name: 'Upper/Lower 4x', days: 4, dur: '50د', focus: 'علوي/سفلي', burn: 200, level: 'متوسط' },
-  { id: 'ppl', name: 'PPL 5x', days: 5, dur: '60د', focus: 'Push Pull Legs', burn: 250, level: 'متقدم' },
-  { id: 'bodyweight_only', name: 'وزن الجسم فقط 3x', days: 3, dur: '30د', focus: 'بدون أدوات', burn: 160, level: 'مبتدئ' },
-  { id: 'bro_split', name: 'Bro Split 5x', days: 5, dur: '60د', focus: 'عضلة يومياً', burn: 220, level: 'متقدم' },
-  { id: 'custom', name: 'مخصص بحسب روتينك', days: 4, dur: '45د', focus: 'حسب اختيارك', burn: 180, level: 'مخصص' },
+  { id: 'full_body', nameKey: 'wizard.workout.fullBody', days: 3, burn: 150 },
+  { id: 'upper_lower', nameKey: 'wizard.workout.upperLower', days: 4, burn: 200 },
+  { id: 'ppl', nameKey: 'wizard.workout.pushPullLegs', days: 5, burn: 250 },
+  { id: 'bodyweight_only', nameKey: 'wizard.workout.bodyweight', days: 3, burn: 160 },
+  { id: 'bro_split', nameKey: 'wizard.workout.broSplit', days: 5, burn: 220 },
+  { id: 'custom', nameKey: 'wizard.workout.custom', days: 4, burn: 180 },
 ];
 
-const EXERCISE_TYPES: ExerciseType[] = [
-  { id: 'cardio', name: 'كارديو', en: 'Cardio', emoji: '🏃', burn: '300-500', focus: 'حرق دهون' },
-  { id: 'strength', name: 'قوة وحديد', en: 'Strength', emoji: '🏋️', burn: '200-350', focus: 'بناء عضل' },
-  { id: 'hiit', name: 'هايت HIIT', en: 'HIIT', emoji: '⚡', burn: '400-600', focus: 'حرق سريع' },
-  { id: 'yoga', name: 'يوجا', en: 'Yoga', emoji: '🧘', burn: '150-250', focus: 'مرونة وتوازن' },
-  { id: 'pilates', name: 'بيلاتس', en: 'Pilates', emoji: '🤸', burn: '200-300', focus: 'قوة مركزية' },
-  { id: 'tai_chi', name: 'تاي تشي', en: 'Tai Chi', emoji: '☯️', burn: '150-200', focus: 'توازن وهدوء' },
-  { id: 'crossfit', name: 'كروس فيت', en: 'CrossFit', emoji: '💥', burn: '350-500', focus: 'لياقة وظيفية' },
-  { id: 'swimming', name: 'سباحة', en: 'Swimming', emoji: '🏊', burn: '300-450', focus: 'كل الجسم' },
-  { id: 'cycling', name: 'دراجة', en: 'Cycling', emoji: '🚴', burn: '250-400', focus: 'أرجل وكارديو' },
-  { id: 'running', name: 'جري', en: 'Running', emoji: '🏃‍♂️', burn: '350-500', focus: 'تحمل' },
-  { id: 'boxing', name: 'ملاكمة', en: 'Boxing', emoji: '🥊', burn: '400-600', focus: 'قوة ورد فعل' },
-  { id: 'dance', name: 'رقص زومبا', en: 'Dance', emoji: '💃', burn: '250-400', focus: 'حرق ومرح' },
-  { id: 'calisthenics', name: 'وزن الجسم', en: 'Calisthenics', emoji: '🤾', burn: '200-350', focus: 'قوة بدون معدات' },
+const EXERCISE_TYPES: { id: WizardExerciseCategory; burn: string }[] = [
+  { id: 'cardio', burn: '300-500' },
+  { id: 'strength', burn: '200-350' },
+  { id: 'hiit', burn: '400-600' },
+  { id: 'flexibility', burn: '150-250' },
+  { id: 'balance', burn: '150-250' },
 ];
-
-const EXERCISE_PRESETS: Record<string, PlannedExercise[]> = {
-  cardio: [
-    { id: 'cx1', type: 'cardio', name: 'جري خفيف', sets: '1', reps: '-', dur: '20 د', emoji: '🏃' },
-    { id: 'cx2', type: 'cardio', name: 'نط حبل', sets: '3', reps: '60 ث', dur: '12 د', emoji: '🤸' },
-  ],
-  strength: [
-    { id: 'st1', type: 'strength', name: 'سكوات بار', sets: '4', reps: '8-12', dur: '15 د', emoji: '🏋️' },
-    { id: 'st2', type: 'strength', name: 'ديدليفت', sets: '4', reps: '6-10', dur: '15 د', emoji: '🏋️' },
-    { id: 'st3', type: 'strength', name: 'بنش برس', sets: '4', reps: '8-10', dur: '12 د', emoji: '🏋️' },
-  ],
-  hiit: [
-    { id: 'hi1', type: 'hiit', name: 'بيربي Burpee', sets: '4', reps: '15', dur: '8 د', emoji: '⚡' },
-    { id: 'hi2', type: 'hiit', name: 'Mountain Climber', sets: '3', reps: '30 ث', dur: '6 د', emoji: '⚡' },
-  ],
-  yoga: [
-    { id: 'yo1', type: 'yoga', name: 'تحية الشمس', sets: '3', reps: '5', dur: '10 د', emoji: '🧘' },
-    { id: 'yo2', type: 'yoga', name: 'وضعية المحارب', sets: '2', reps: '30 ث', dur: '6 د', emoji: '🧘' },
-  ],
-  pilates: [{ id: 'pi1', type: 'pilates', name: 'The Hundred', sets: '3', reps: '10', dur: '8 د', emoji: '🤸' }],
-  tai_chi: [{ id: 'ta1', type: 'tai_chi', name: 'تاي تشي تنفس', sets: '1', reps: '-', dur: '20 د', emoji: '☯️' }],
-  crossfit: [{ id: 'cr1', type: 'crossfit', name: 'WOD فرح', sets: '5', reps: 'AMRAP', dur: '20 د', emoji: '💥' }],
-  swimming: [{ id: 'sw1', type: 'swimming', name: 'سباحة حرة 400م', sets: '2', reps: '-', dur: '25 د', emoji: '🏊' }],
-  cycling: [{ id: 'cy1', type: 'cycling', name: 'دراجة ثابتة', sets: '1', reps: '-', dur: '30 د', emoji: '🚴' }],
-  running: [{ id: 'rn1', type: 'running', name: 'جري فترات', sets: '6', reps: '400م', dur: '25 د', emoji: '🏃‍♂️' }],
-  boxing: [{ id: 'bx1', type: 'boxing', name: 'شادو بوكسينج', sets: '3', reps: '3 د', dur: '12 د', emoji: '🥊' }],
-  dance: [{ id: 'dn1', type: 'dance', name: 'زومبا', sets: '1', reps: '-', dur: '30 د', emoji: '💃' }],
-  calisthenics: [
-    { id: 'ca1', type: 'calisthenics', name: 'بوش أب', sets: '4', reps: '15', dur: '8 د', emoji: '🤾' },
-    { id: 'ca2', type: 'calisthenics', name: 'بول أب', sets: '4', reps: '8', dur: '8 د', emoji: '🤾' },
-  ],
-};
 
 const DIETS: Record<GoalKey, DietIntensity[]> = {
   lose: [
@@ -1434,8 +1418,19 @@ const WeightLossPage: React.FC = () => {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
   const { profile, updateProfile, resetProfile } = useUserProfile();
-  const kitchenLabel = (k: KitchenInfo) =>
-    k.id === 'chilean' ? t('kitchen.chilean.name') : k.id === 'peruvian' ? t('kitchen.peruvian.name') : k.id === 'colombian' ? t('kitchen.colombian.name') : k.id === 'mexican' ? t('kitchen.mexican.name') : k.id === 'argentinian' ? t('kitchen.argentinian.name') : k.id === 'eastern-european' ? t('kitchen.eastern-european.name') : getKitchenName(k, language);
+  const kitchenLabel = (k: KitchenInfo) => {
+    const translated = k.id === 'chilean' ? t('kitchen.chilean.name')
+      : k.id === 'peruvian' ? t('kitchen.peruvian.name')
+        : k.id === 'colombian' ? t('kitchen.colombian.name')
+          : k.id === 'mexican' ? t('kitchen.mexican.name')
+            : k.id === 'argentinian' ? t('kitchen.argentinian.name')
+              : k.id === 'eastern-european' ? t('kitchen.eastern-european.name')
+                : null;
+    if (translated) return translated;
+    if (language === 'ar') return k.kitchen || `مطبخ ${k.country}`;
+    if (language === 'en') return k.kitchenEn || `${k.countryEn ?? k.country} Kitchen`;
+    return getKitchenName(k, language) || k.kitchenEn || `${k.countryEn ?? k.country} Kitchen`;
+  };
   const regionLabel = (region: RegionDef) =>
     region.translationKey ? t(region.translationKey) : language === 'ar' ? region.ar : region.en;
   const { user } = useAuth();
@@ -1461,20 +1456,57 @@ const WeightLossPage: React.FC = () => {
   const [timeline, setTimeline] = useState(() => profile.timelineWeeks === null ? '12' : String(profile.timelineWeeks));
   const [selectedKitchenId, setSelectedKitchenId] = useState<string>(() => profile.selectedKitchen ?? profile.kitchenPreference ?? 'egyptian');
   const [workout, setWorkout] = useState('full_body');
-  const [exerciseTypes, setExerciseTypes] = useState<string[]>(() => profile.exerciseTypes.length ? profile.exerciseTypes : ['cardio', 'strength']);
+  const [exerciseTypes, setExerciseTypes] = useState<string[]>(() => {
+    const normalized = normalizeExerciseCategories(profile.exerciseTypes);
+    return normalized.length ? normalized : ['cardio', 'strength'];
+  });
   const [exerciseSearch, setExerciseSearch] = useState('');
   const [selectedExerciseSearch, setSelectedExerciseSearch] = useState('');
+  const getUnifiedExercisesByType = (typeId: WizardExerciseCategory) => UNIFIED_EXERCISES.filter((exercise) => exercise.type === typeId);
+  const localizedExerciseName = (exercise: UnifiedExercise) =>
+    language === 'ar' ? exercise.nameAr
+      : language === 'fr' ? exercise.nameFr
+        : language === 'es' ? exercise.nameEs
+          : language === 'de' ? exercise.nameDe || exercise.nameEn
+            : exercise.nameEn;
+  const toPlannedShape = (exercise: UnifiedExercise): PlannedExercise => {
+    const durationMinutes = Number(exercise.duration.match(/\d+/)?.[0]) || 10;
+    const reps = exercise.reps !== undefined
+      ? String(exercise.reps)
+      : exercise.repsMin !== undefined && exercise.repsMax !== undefined
+        ? `${exercise.repsMin}-${exercise.repsMax}`
+        : exercise.timedDuration !== undefined
+          ? `${exercise.timedDuration} sec`
+          : exercise.timedDurationMin !== undefined && exercise.timedDurationMax !== undefined
+            ? `${exercise.timedDurationMin}-${exercise.timedDurationMax} sec`
+            : '';
+    return {
+      id: exercise.id,
+      type: exercise.type,
+      name: localizedExerciseName(exercise),
+      sets: exercise.sets === null ? '' : String(exercise.sets),
+      reps,
+      dur: t('wizard.exerciseList.duration').replace(/^⏱\s*/, '').replace('{n}', String(durationMinutes)),
+    };
+  };
   const [plannedExercises, setPlannedExercises] = useState<PlannedExercise[]>(() => {
     const saved = localStorage.getItem('hc_planned_exercises');
     if (saved) {
       try {
         const p = JSON.parse(saved);
-        if (Array.isArray(p) && p.length) return p as PlannedExercise[];
+        if (Array.isArray(p)) {
+          const migrated = p.flatMap((item: { id?: unknown }) => {
+            if (typeof item?.id !== 'string') return [];
+            const exercise = UNIFIED_EXERCISES.find((entry) => entry.id === item.id);
+            return exercise ? [toPlannedShape(exercise)] : [];
+          });
+          if (migrated.length) return migrated;
+        }
       } catch {
         /* ignore */
       }
     }
-    return [...(EXERCISE_PRESETS.cardio ?? []), ...(EXERCISE_PRESETS.strength ?? [])];
+    return (['cardio', 'strength'] as const).flatMap((type) => getUnifiedExercisesByType(type).slice(0, 2).map(toPlannedShape));
   });
   const [kitchenSearch, setKitchenSearch] = useState('');
   const [categorySearch, setCategorySearch] = useState('');
@@ -1529,10 +1561,10 @@ const WeightLossPage: React.FC = () => {
   const [adjustingExerciseRecommendations, setAdjustingExerciseRecommendations] = useState(false);
   const [weeklyPlan, setWeeklyPlan] = useState<PlanDay[]>(() => {
     try {
-      const raw = localStorage.getItem(`hc_weekly_plan_${profile.kitchenPreference ?? 'egyptian'}`);
+      const raw = localStorage.getItem(`hc_weekly_plan_${profile.selectedKitchen ?? profile.kitchenPreference ?? 'egyptian'}`);
       if (raw) {
-        const p = JSON.parse(raw) as PlanDay[];
-        if (Array.isArray(p) && p.length === 7) return p;
+        const p = JSON.parse(raw);
+        if (hasFourFilledMeals(p)) return p;
       }
     } catch {
       /* ignore */
@@ -1792,7 +1824,7 @@ const WeightLossPage: React.FC = () => {
     const tdeeWorkout = Math.round(tdeeBase + burnAvg);
     const delta =
       goal === 'lose' ? -diet.deficit : goal === 'wellness' ? (diet.deficit ? -diet.deficit : diet.surplus) : diet.surplus;
-    const targetCal = Math.round(tdeeWorkout + delta);
+    const targetCal = Math.max(1200, Math.round(tdeeWorkout + delta));
     const protein = Math.round(w * diet.proteinFactor);
     const fat = Math.round(w * (diet.level === 'normal' ? 0.8 : 0.7));
     const carbs = Math.max(0, Math.round((targetCal - protein * 4 - fat * 9) / 4));
@@ -1828,15 +1860,12 @@ const WeightLossPage: React.FC = () => {
           : healthConditions.includes('hypertension') || healthConditions.includes('high_cholesterol') || dietaryPreferences.includes('mediterranean')
             ? language === 'ar' ? 'حمية البحر المتوسط' : 'Mediterranean'
             : language === 'ar' ? 'متوازن على نمط البحر المتوسط' : 'Balanced Mediterranean';
-  const recommendedExercise = step2Data.activityLevel === 'sedentary'
-    ? language === 'ar' ? 'مشي 20 دقيقة يومياً' : '20-minute walk daily'
-    : language === 'ar' ? 'مشي سريع 30 دقيقة + تمارين قوة 3 مرات أسبوعياً' : '30-minute brisk walk + strength training 3x/week';
   const recommendedWizardGoal = recommendWizardGoal(healthConditions, numbers?.bmi ?? null);
   const recommendedGoalCalc = WIZARD_GOAL_CALC[recommendedWizardGoal];
   const recommendedGoalDiet = DIETS[recommendedGoalCalc][0];
   const recommendedMaintenance = numbers?.tdeeWorkout ?? 2000;
   const recommendedDelta = goals.includes('lose_weight') ? -400 : goals.includes('build_muscle') ? 250 : 0;
-  const recommendedDailyCalories = Math.max(1200, recommendedMaintenance + recommendedDelta);
+  const recommendedDailyCalories = numbers?.targetCal ?? Math.max(1200, recommendedMaintenance + recommendedDelta);
 
   const goalViolation = (): string => {
     if (goal === 'lose') {
@@ -2063,28 +2092,31 @@ const WeightLossPage: React.FC = () => {
   };
 
   const selectExerciseType = (typeId: string) => {
-    setStep2Data((d) => ({ ...d, exerciseType: typeId }));
-    setExerciseTypes((prev) => (prev.includes(typeId) ? prev : [...prev, typeId]));
+    const category = LEGACY_EXERCISE_TYPE_MAP[typeId];
+    if (!category) return;
+    setStep2Data((d) => ({ ...d, exerciseType: category }));
+    setExerciseTypes((prev) => (prev.includes(category) ? prev : [...prev, category]));
   };
 
   const autoPickExercises = (silent = false) => {
-    const picks: string[] =
+    const picks: WizardExerciseCategory[] =
       goal === 'gain_muscle'
-        ? ['strength', 'calisthenics', 'swimming']
+        ? ['strength', 'cardio', 'balance']
         : goal === 'gain_weight'
-          ? ['strength', 'yoga', 'swimming']
+          ? ['strength', 'cardio', 'balance']
           : goal === 'wellness'
-            ? ['yoga', 'pilates', 'tai_chi', 'dance']
+            ? ['flexibility', 'balance', 'cardio']
             : goal === 'athletic'
-              ? ['strength', 'running', 'boxing', 'swimming']
+              ? ['strength', 'cardio', 'hiit', 'balance']
               : ['cardio', 'hiit', 'strength'];
-    if (step2Data.activityLevel === 'sedentary' || step2Data.activityLevel === 'light') {
-      const trimmed = picks.filter((p) => !['hiit', 'boxing'].includes(p));
-      setExerciseTypes(trimmed.length >= 3 ? trimmed.slice(0, 3) : picks.slice(0, 3));
-    } else {
-      setExerciseTypes(picks.slice(0, 4));
-    }
-    setPlannedExercises((prev) => [...prev.filter((p) => !picks.includes(p.type)), ...picks.flatMap((p) => EXERCISE_PRESETS[p] ?? [])]);
+    const selectedPicks = step2Data.activityLevel === 'sedentary' || step2Data.activityLevel === 'light'
+      ? picks.filter((type) => type !== 'hiit').slice(0, 3)
+      : picks.slice(0, 4);
+    setExerciseTypes(selectedPicks);
+    setPlannedExercises((prev) => [
+      ...prev.filter((exercise) => !selectedPicks.includes(exercise.type as WizardExerciseCategory)),
+      ...selectedPicks.flatMap((type) => getUnifiedExercisesByType(type).slice(0, 2).map(toPlannedShape)),
+    ]);
     setWorkout(goal === 'lose' ? 'full_body' : goal === 'gain_muscle' || goal === 'gain_weight' ? 'ppl' : 'upper_lower');
     setExerciseMode('auto');
     if (!silent) notify(t('wizard.toast.autoExercises'));
@@ -2099,17 +2131,7 @@ const WeightLossPage: React.FC = () => {
     setPlannedExercises((prev) => prev.filter((p) => p.id !== id));
   };
 
-  const toPlannedShape = (ex: ExerciseItem): PlannedExercise => ({
-    id: ex.id,
-    type: ex.typeId,
-    name: ex.name,
-    sets: '3',
-    reps: '12',
-    dur: `${ex.minutes} min`,
-    emoji: ex.emoji,
-  });
-
-  const toggleWizardExercise = (ex: ExerciseItem) => {
+  const toggleWizardExercise = (ex: UnifiedExercise) => {
     const on = step2Data.selectedExercises.includes(ex.id);
     setStep2Data((d) => ({ ...d, selectedExercises: on ? d.selectedExercises.filter((id) => id !== ex.id) : [...d.selectedExercises, ex.id] }));
     setPlannedExercises((prev) => {
@@ -2123,22 +2145,21 @@ const WeightLossPage: React.FC = () => {
     if (autoBuildMode) return;
     setAutoBuildMode(true);
     window.setTimeout(() => {
-      const map: Record<GoalKey, string[]> = {
-        lose: ['cardio', 'hiit', 'running'],
-        gain_muscle: ['strength', 'crossfit', 'swimming'],
-        gain_weight: ['strength', 'yoga', 'swimming'],
-        wellness: ['yoga', 'pilates', 'tai_chi', 'dance'],
-        athletic: ['strength', 'running', 'boxing', 'swimming'],
+      const map: Record<GoalKey, WizardExerciseCategory[]> = {
+        lose: ['cardio', 'hiit', 'strength'],
+        gain_muscle: ['strength', 'cardio', 'balance'],
+        gain_weight: ['strength', 'cardio', 'balance'],
+        wellness: ['flexibility', 'balance', 'cardio'],
+        athletic: ['strength', 'cardio', 'hiit', 'balance'],
       };
       const all = map[goal];
       const typePicks =
         step2Data.activityLevel === 'sedentary' || step2Data.activityLevel === 'light'
-          ? all.filter((p) => !['hiit', 'boxing', 'crossfit'].includes(p)).slice(0, 3)
+          ? all.filter((type) => type !== 'hiit').slice(0, 3)
           : all;
-      const picked: ExerciseItem[] = [];
-      for (const tid of typePicks) {
-        picked.push(...getWizardExercisesByType(tid).filter((e) => e.difficulty !== 'hard').slice(0, 2));
-      }
+      const picked = typePicks.flatMap((type) => getUnifiedExercisesByType(type)
+        .filter((exercise) => exercise.difficulty !== 'advanced')
+        .slice(0, 2));
       const ids = picked.map((e) => e.id);
       setStep2Data((d) => ({ ...d, selectedExercises: ids, exerciseType: typePicks[0] }));
       setPlannedExercises(picked.map(toPlannedShape));
@@ -2252,7 +2273,7 @@ const WeightLossPage: React.FC = () => {
   };
 
   const regeneratePlanPreview = () => {
-    if (weeklyPlan.length < 2) {
+    if (!hasFourFilledMeals(weeklyPlan, finalRecommendations.dailyCalories)) {
       runAutoKitchen(false);
       return;
     }
@@ -2366,10 +2387,10 @@ const WeightLossPage: React.FC = () => {
     ...(bodyConcerns.includes('back_fat') ? [{ en: 'Rows', ar: 'تمارين التجديف' }, { en: 'Mobility', ar: 'تمارين الحركة' }] : []),
   ];
   const weeklyExerciseFocus = exerciseRecommendationTypes.includes('cardio') && exerciseRecommendationTypes.includes('strength')
-    ? (language === 'ar' ? '٣ مرات كارديو + مرتان قوة' : '3x cardio + 2x strength')
+    ? t('wizard.step9.weeklyFocus.cardioStrength')
     : exerciseRecommendationTypes.includes('strength')
-      ? (language === 'ar' ? '٣ مرات قوة + مرتان مرونة' : '3x strength + 2x flexibility')
-      : (language === 'ar' ? '٤ مرات كارديو + مرة مرونة' : '4x cardio + 1x flexibility');
+      ? t('wizard.step9.weeklyFocus.strengthFlexibility')
+      : t('wizard.step9.weeklyFocus.cardioFlexibility');
   const toggleExerciseRecommendation = (id: ExerciseRecommendationType) => {
     setExerciseRecommendationTypes((current) => {
       if (current.includes(id)) return current.filter((type) => type !== id);
@@ -2377,7 +2398,7 @@ const WeightLossPage: React.FC = () => {
     });
   };
   const acceptExerciseRecommendations = () => {
-    const mappedExerciseTypes = exerciseRecommendationTypes.map((id) => id === 'core' ? 'pilates' : id === 'flexibility' ? 'yoga' : id);
+    const mappedExerciseTypes = [...exerciseRecommendationTypes];
     setExerciseTypes(mappedExerciseTypes);
     setStep2Data((current) => ({ ...current, activityLevel: recommendedActivityLevel, selectedExercises: mappedExerciseTypes }));
     updateProfile({ exerciseRecommendations: exerciseRecommendationTypes, exerciseTypes: mappedExerciseTypes, activityLevel: recommendedActivityLevel });
@@ -2467,7 +2488,7 @@ const WeightLossPage: React.FC = () => {
 
   const viewMyPlan = () => {
     saveWizardProfile();
-    if (weeklyPlan.length) {
+    if (hasFourFilledMeals(weeklyPlan, finalRecommendations.dailyCalories)) {
       setShowPlan(true);
       return;
     }
@@ -2620,6 +2641,7 @@ const WeightLossPage: React.FC = () => {
 
   const waterGoal = numbers ? +Math.max(2, Math.min(3.5, parsed.weight * 0.033)).toFixed(1) : 2.3;
   const doneCount = mealsDone.filter(Boolean).length;
+  const selectedDayMeals = weeklyPlan[selectedPlanDay - 1]?.meals ?? [];
   const projectionText = !numbers
     ? ''
     : `${parsed.weight}${t('wizard.unit.kg')} → ${parsed.target}${t('wizard.unit.kg')} · ${parsed.timeline} ${t('wizard.unit.weeks')}`;
@@ -3860,7 +3882,7 @@ const WeightLossPage: React.FC = () => {
                 <h2 className="text-[16px] font-extrabold">📈 {t('wizard.step4.projection')}</h2>
                 <p className="mt-2 text-[14px] text-[#6B7A75] leading-relaxed break-words">{projectionText}</p>
                 <div className="mt-2 text-[13px] font-semibold text-[#0F4C3A]">{t('wizard.step4.targetCal').replace('{n}', String(numbers!.targetCal))}</div>
-                <div className="mt-2 text-[12px] text-[#8A938E]">{numbers!.wk.name} · {ACTIVITY_LABEL(step2Data.activityLevel)}</div>
+                 <div className="mt-2 text-[12px] text-[#8A938E]">{t(numbers!.wk.nameKey as any)} · {ACTIVITY_LABEL(step2Data.activityLevel)}</div>
               </div>
             )}
             <div className="flex gap-3">
@@ -4208,7 +4230,7 @@ const WeightLossPage: React.FC = () => {
                 </span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-0">
-                {(weeklyPlan[selectedPlanDay - 1]?.meals ?? []).map((meal, idx) => {
+                {hasFourFilledMeals(weeklyPlan, finalRecommendations.dailyCalories) ? selectedDayMeals.map((meal, idx) => {
                   const mealCal = meal.dishes.reduce((s, x) => s + x.calories, 0);
                   const isOpen = openMealAccordion === meal.mealType;
                   const title = t((meal.mealType === 'lunch' ? 'mealLunch' : meal.mealType === 'dinner' ? 'mealDinner' : meal.mealType === 'breakfast' ? 'mealBreakfast' : 'mealSnack') as any);
@@ -4245,7 +4267,14 @@ const WeightLossPage: React.FC = () => {
                       }}
                     />
                   );
-                })}
+                }) : (
+                  <div role="status" className="col-span-full rounded-2xl border border-dashed border-[#D8D2C4] bg-[#FAF8F3] px-4 py-6 text-center">
+                    <p className="text-sm font-semibold text-[#6B7A75]">{t('wizard.step5.planPreparing')}</p>
+                    <button type="button" disabled={autoBuilding} onClick={() => runAutoKitchen(true)} className="mt-3 min-h-11 rounded-xl bg-[#0F4C3A] px-4 text-xs font-bold text-white disabled:opacity-50">
+                      {t('wizard.step5.rebuildPlan')}
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -4273,7 +4302,7 @@ const WeightLossPage: React.FC = () => {
                     <span className="w-9 h-9 rounded-[12px] bg-[#F4F1EB] flex items-center justify-center text-[16px] shrink-0">🏋️</span>
                     <div>
                       <div className="text-[15px] font-extrabold">{t('wizard.step5.fitnessPlan')}</div>
-                      <div className="text-[11px] text-[#8A938E]">{numbers!.wk.name}</div>
+                       <div className="text-[11px] text-[#8A938E]">{t(numbers!.wk.nameKey as any)}</div>
                     </div>
                   </div>
                   <span className="text-[11px] font-bold bg-[#FFF8E7] text-[#B8860B] px-3 py-1 rounded-full shrink-0">
@@ -4282,13 +4311,16 @@ const WeightLossPage: React.FC = () => {
                 </div>
                 {plannedExercises.length ? (
                   <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {plannedExercises.map((ex) => (
-                      <div key={ex.id} className="flex items-center gap-2.5 rounded-[14px] border border-[#EFEBE4] bg-[#FDFBF7] px-3 py-2.5 min-w-0">
-                        <span className="text-[15px] leading-none shrink-0">{ex.emoji}</span>
-                        <span className="truncate text-[12px] font-bold flex-1 min-w-0">{ex.name}</span>
-                        <span className="shrink-0 text-[10.5px] font-bold bg-white border border-[#E9E5DB] px-2 py-0.5 rounded-full">{ex.dur}</span>
-                      </div>
-                    ))}
+                    {plannedExercises.map((ex) => {
+                      const exercise = UNIFIED_EXERCISES.find((item) => item.id === ex.id);
+                      return (
+                        <div key={ex.id} className="flex items-center gap-2.5 rounded-[14px] border border-[#EFEBE4] bg-[#FDFBF7] px-3 py-2.5 min-w-0">
+                          <Dumbbell aria-hidden="true" size={16} className="shrink-0 text-[#6B7A75]" />
+                          <span className="truncate text-[12px] font-bold flex-1 min-w-0">{exercise ? localizedExerciseName(exercise) : ex.name}</span>
+                          <span className="shrink-0 text-[10.5px] font-bold bg-white border border-[#E9E5DB] px-2 py-0.5 rounded-full">{ex.dur}</span>
+                        </div>
+                      );
+                    })}
                   </div>
                 ) : (
                   <div className="mt-3 text-[12px] text-[#8A938E]">{t('wizard.step5.noExercises')}</div>

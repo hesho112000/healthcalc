@@ -438,6 +438,8 @@ type TranslationKeys = {
   'wizard.exerciseType.name.cardio': string;
   'wizard.exerciseType.name.strength': string;
   'wizard.exerciseType.name.hiit': string;
+  'wizard.exerciseType.name.flexibility': string;
+  'wizard.exerciseType.name.balance': string;
   'wizard.exerciseType.name.yoga': string;
   'wizard.exerciseType.name.pilates': string;
   'wizard.exerciseType.name.tai_chi': string;
@@ -559,11 +561,22 @@ type TranslationKeys = {
   'wizard.step5.progressTracker': string;
   'wizard.step5.exerciseChange': string;
   'wizard.step5.fitnessPlan': string;
+  'wizard.workout.fullBody': string;
+  'wizard.workout.upperLower': string;
+  'wizard.workout.pushPullLegs': string;
+  'wizard.workout.bodyweight': string;
+  'wizard.workout.broSplit': string;
+  'wizard.workout.custom': string;
+  'wizard.step9.weeklyFocus.cardioStrength': string;
+  'wizard.step9.weeklyFocus.strengthFlexibility': string;
+  'wizard.step9.weeklyFocus.cardioFlexibility': string;
   'wizard.step5.exercisesCount': string;
   'wizard.step5.nutritionPlan': string;
   'wizard.step5.dishesCount': string;
   'wizard.step5.noExercises': string;
   'wizard.step5.noDishes': string;
+  'wizard.step5.planPreparing': string;
+  'wizard.step5.rebuildPlan': string;
   'wizard.step5.editExercises': string;
   'wizard.step5.changeCuisine': string;
   'wizard.step5.showDetails': string;
@@ -4470,6 +4483,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.exerciseType.name.cardio': 'Cardio',
     'wizard.exerciseType.name.strength': 'Strength',
     'wizard.exerciseType.name.hiit': 'HIIT',
+    'wizard.exerciseType.name.flexibility': 'Flexibility',
+    'wizard.exerciseType.name.balance': 'Balance',
     'wizard.exerciseType.name.yoga': 'Yoga',
     'wizard.exerciseType.name.pilates': 'Pilates',
     'wizard.exerciseType.name.tai_chi': 'Tai Chi',
@@ -4591,11 +4606,22 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.step5.progressTracker': '📊 Progress Tracker',
     'wizard.step5.exerciseChange': '🏋️ Exercise Change',
     'wizard.step5.fitnessPlan': 'Fitness Plan',
+    'wizard.workout.fullBody': 'Full Body · 3 days/week',
+    'wizard.workout.upperLower': 'Upper/Lower · 4 days/week',
+    'wizard.workout.pushPullLegs': 'Push/Pull/Legs · 5 days/week',
+    'wizard.workout.bodyweight': 'Bodyweight Only · 3 days/week',
+    'wizard.workout.broSplit': 'Bro Split · 5 days/week',
+    'wizard.workout.custom': 'Custom Weekly Routine',
+    'wizard.step9.weeklyFocus.cardioStrength': '3x cardio + 2x strength',
+    'wizard.step9.weeklyFocus.strengthFlexibility': '3x strength + 2x flexibility',
+    'wizard.step9.weeklyFocus.cardioFlexibility': '4x cardio + 1x flexibility',
     'wizard.step5.exercisesCount': '{n} exercises',
     'wizard.step5.nutritionPlan': 'Nutrition Plan',
     'wizard.step5.dishesCount': '{n} dishes',
     'wizard.step5.noExercises': 'Add exercises from the Body step.',
     'wizard.step5.noDishes': 'Choose dishes from the Kitchen step.',
+    'wizard.step5.planPreparing': 'Your four meals are not available yet.',
+    'wizard.step5.rebuildPlan': 'Regenerate meals',
     'wizard.step5.editExercises': '(edit exercises)',
     'wizard.step5.changeCuisine': '(change cuisine)',
     'wizard.step5.showDetails': 'Show Details',
@@ -6996,6 +7022,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.exerciseType.name.cardio': 'Cardio',
     'wizard.exerciseType.name.strength': 'Force',
     'wizard.exerciseType.name.hiit': 'HIIT',
+    'wizard.exerciseType.name.flexibility': 'Souplesse',
+    'wizard.exerciseType.name.balance': 'Équilibre',
     'wizard.exerciseType.name.yoga': 'Yoga',
     'wizard.exerciseType.name.pilates': 'Pilates',
     'wizard.exerciseType.name.tai_chi': 'Tai Chi',
@@ -7117,11 +7145,22 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.step5.progressTracker': '📊 Suivi de progression',
     'wizard.step5.exerciseChange': '🏋️ Modifier les exercices',
     'wizard.step5.fitnessPlan': 'Plan fitness',
+    'wizard.workout.fullBody': 'Corps entier · 3 jours/semaine',
+    'wizard.workout.upperLower': 'Haut/Bas · 4 jours/semaine',
+    'wizard.workout.pushPullLegs': 'Poussée/Tirage/Jambes · 5 jours/semaine',
+    'wizard.workout.bodyweight': 'Poids du corps · 3 jours/semaine',
+    'wizard.workout.broSplit': 'Split par groupe · 5 jours/semaine',
+    'wizard.workout.custom': 'Routine hebdomadaire personnalisée',
+    'wizard.step9.weeklyFocus.cardioStrength': '3x cardio + 2x force',
+    'wizard.step9.weeklyFocus.strengthFlexibility': '3x force + 2x souplesse',
+    'wizard.step9.weeklyFocus.cardioFlexibility': '4x cardio + 1x souplesse',
     'wizard.step5.exercisesCount': '{n} exercices',
     'wizard.step5.nutritionPlan': 'Plan nutrition',
     'wizard.step5.dishesCount': '{n} plats',
     'wizard.step5.noExercises': 'Ajoutez des exercices à l’étape Corps.',
     'wizard.step5.noDishes': 'Choisissez des plats à l’étape Cuisine.',
+    'wizard.step5.planPreparing': 'Vos quatre repas ne sont pas encore disponibles.',
+    'wizard.step5.rebuildPlan': 'Régénérer les repas',
     'wizard.step5.editExercises': '(modifier les exercices)',
     'wizard.step5.changeCuisine': '(changer de cuisine)',
     'wizard.step5.showDetails': 'Afficher les détails',
@@ -9492,6 +9531,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.exerciseType.name.cardio': 'Cardio',
     'wizard.exerciseType.name.strength': 'Fuerza',
     'wizard.exerciseType.name.hiit': 'HIIT',
+    'wizard.exerciseType.name.flexibility': 'Flexibilidad',
+    'wizard.exerciseType.name.balance': 'Equilibrio',
     'wizard.exerciseType.name.yoga': 'Yoga',
     'wizard.exerciseType.name.pilates': 'Pilates',
     'wizard.exerciseType.name.tai_chi': 'Tai Chi',
@@ -9613,11 +9654,22 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.step5.progressTracker': '📊 Seguimiento de progreso',
     'wizard.step5.exerciseChange': '🏋️ Cambiar ejercicios',
     'wizard.step5.fitnessPlan': 'Plan de fitness',
+    'wizard.workout.fullBody': 'Cuerpo completo · 3 días/semana',
+    'wizard.workout.upperLower': 'Tren superior/inferior · 4 días/semana',
+    'wizard.workout.pushPullLegs': 'Empuje/Tirón/Piernas · 5 días/semana',
+    'wizard.workout.bodyweight': 'Peso corporal · 3 días/semana',
+    'wizard.workout.broSplit': 'Rutina por grupos · 5 días/semana',
+    'wizard.workout.custom': 'Rutina semanal personalizada',
+    'wizard.step9.weeklyFocus.cardioStrength': '3x cardio + 2x fuerza',
+    'wizard.step9.weeklyFocus.strengthFlexibility': '3x fuerza + 2x flexibilidad',
+    'wizard.step9.weeklyFocus.cardioFlexibility': '4x cardio + 1x flexibilidad',
     'wizard.step5.exercisesCount': '{n} ejercicios',
     'wizard.step5.nutritionPlan': 'Plan de nutrición',
     'wizard.step5.dishesCount': '{n} platos',
     'wizard.step5.noExercises': 'Añade ejercicios desde el paso Cuerpo.',
     'wizard.step5.noDishes': 'Elige platos desde el paso Cocina.',
+    'wizard.step5.planPreparing': 'Tus cuatro comidas aún no están disponibles.',
+    'wizard.step5.rebuildPlan': 'Regenerar comidas',
     'wizard.step5.editExercises': '(editar ejercicios)',
     'wizard.step5.changeCuisine': '(cambiar cocina)',
     'wizard.step5.showDetails': 'Ver detalles',
@@ -11988,6 +12040,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.exerciseType.name.cardio': 'كارديو',
     'wizard.exerciseType.name.strength': 'قوة',
     'wizard.exerciseType.name.hiit': 'هيت',
+    'wizard.exerciseType.name.flexibility': 'المرونة',
+    'wizard.exerciseType.name.balance': 'التوازن',
     'wizard.exerciseType.name.yoga': 'يوجا',
     'wizard.exerciseType.name.pilates': 'بيلاتس',
     'wizard.exerciseType.name.tai_chi': 'تاي تشي',
@@ -12109,11 +12163,22 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.step5.progressTracker': '📊 متابعة التقدم',
     'wizard.step5.exerciseChange': '🏋️ تعديل التمارين',
     'wizard.step5.fitnessPlan': 'خطة اللياقة',
+    'wizard.workout.fullBody': 'كامل الجسم · 3 أيام أسبوعياً',
+    'wizard.workout.upperLower': 'علوي/سفلي · 4 أيام أسبوعياً',
+    'wizard.workout.pushPullLegs': 'دفع/سحب/أرجل · 5 أيام أسبوعياً',
+    'wizard.workout.bodyweight': 'وزن الجسم فقط · 3 أيام أسبوعياً',
+    'wizard.workout.broSplit': 'تقسيم العضلات · 5 أيام أسبوعياً',
+    'wizard.workout.custom': 'روتين أسبوعي مخصص',
+    'wizard.step9.weeklyFocus.cardioStrength': '3 مرات كارديو + مرتان قوة',
+    'wizard.step9.weeklyFocus.strengthFlexibility': '3 مرات قوة + مرتان مرونة',
+    'wizard.step9.weeklyFocus.cardioFlexibility': '4 مرات كارديو + مرة مرونة',
     'wizard.step5.exercisesCount': '{n} تمرين',
     'wizard.step5.nutritionPlan': 'خطة التغذية',
     'wizard.step5.dishesCount': '{n} طبق',
     'wizard.step5.noExercises': 'أضف تمارين من خطوة الجسم.',
     'wizard.step5.noDishes': 'اختر أطباقاً من خطوة المطبخ.',
+    'wizard.step5.planPreparing': 'وجباتك الأربع غير متاحة بعد.',
+    'wizard.step5.rebuildPlan': 'إعادة إنشاء الوجبات',
     'wizard.step5.editExercises': '(تعديل التمارين)',
     'wizard.step5.changeCuisine': '(تغيير المطبخ)',
     'wizard.step5.showDetails': 'إظهار التفاصيل',
@@ -14495,6 +14560,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.exerciseType.name.cardio': 'Cardio',
     'wizard.exerciseType.name.strength': 'Kraft',
     'wizard.exerciseType.name.hiit': 'HIIT',
+    'wizard.exerciseType.name.flexibility': 'Beweglichkeit',
+    'wizard.exerciseType.name.balance': 'Balance',
     'wizard.exerciseType.name.yoga': 'Yoga',
     'wizard.exerciseType.name.pilates': 'Pilates',
     'wizard.exerciseType.name.tai_chi': 'Tai Chi',
@@ -14616,11 +14683,22 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.step5.progressTracker': '📊 Fortschritts-Tracker',
     'wizard.step5.exerciseChange': '🏋️ Übungen ändern',
     'wizard.step5.fitnessPlan': 'Fitnessplan',
+    'wizard.workout.fullBody': 'Ganzkörper · 3 Tage/Woche',
+    'wizard.workout.upperLower': 'Ober-/Unterkörper · 4 Tage/Woche',
+    'wizard.workout.pushPullLegs': 'Drücken/Ziehen/Beine · 5 Tage/Woche',
+    'wizard.workout.bodyweight': 'Nur Körpergewicht · 3 Tage/Woche',
+    'wizard.workout.broSplit': 'Muskelgruppen-Split · 5 Tage/Woche',
+    'wizard.workout.custom': 'Individueller Wochenplan',
+    'wizard.step9.weeklyFocus.cardioStrength': '3x Cardio + 2x Kraft',
+    'wizard.step9.weeklyFocus.strengthFlexibility': '3x Kraft + 2x Beweglichkeit',
+    'wizard.step9.weeklyFocus.cardioFlexibility': '4x Cardio + 1x Beweglichkeit',
     'wizard.step5.exercisesCount': '{n} Übungen',
     'wizard.step5.nutritionPlan': 'Ernährungsplan',
     'wizard.step5.dishesCount': '{n} Gerichte',
     'wizard.step5.noExercises': 'Füge Übungen im Körper-Schritt hinzu.',
     'wizard.step5.noDishes': 'Wähle Gerichte im Küchen-Schritt.',
+    'wizard.step5.planPreparing': 'Deine vier Mahlzeiten sind noch nicht verfügbar.',
+    'wizard.step5.rebuildPlan': 'Mahlzeiten neu erstellen',
     'wizard.step5.editExercises': '(Übungen bearbeiten)',
     'wizard.step5.changeCuisine': '(Küche ändern)',
     'wizard.step5.showDetails': 'Details anzeigen',

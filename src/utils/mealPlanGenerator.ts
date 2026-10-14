@@ -61,8 +61,8 @@ const MEAL_LABELS: Record<PlanMealType, string> = {
 
 const DAY_LABELS = ['السبت', 'الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة'];
 
-const DAY_LOW = 0.9;
-const DAY_HIGH = 1.1;
+const DAY_LOW = 0.97;
+const DAY_HIGH = 1.03;
 const MEAL_LOW = 0.8;
 const MAX_GAP_FILL_STEPS = 12;
 const MIN_REGION_DISHES = 7;
@@ -388,9 +388,9 @@ function fillMeal(pool: PoolItem[], chosen: PlanDish[], budget: number, maxDishe
   }
 }
 
-// Day-level gap fill: a day under 90% of target gets one extra dish (repeats
+// Day-level gap fill: a day under 97% of target gets one extra dish (repeats
 // allowed) and/or its existing dishes scaled to 1.5x/2x servings until the day
-// reaches >= 90% (never exceeding 110%).
+// reaches >= 97% (never exceeding 103%).
 function gapFillDay(
   meals: PlanMeal[],
   target: number,
@@ -462,9 +462,9 @@ function gapFillDay(
     }
   }
   // (c) last-resort day-level fallback: when the kitchen pool simply can't reach
-  // 90% of target (e.g. exhausted/over-budget pools), top the roomiest meal up
+  // 97% of target (e.g. exhausted/over-budget pools), top the roomiest meal up
   // with generic fillers (apple, yogurt, almonds...) and scale servings, guarding
-  // the 110% ceiling. This keeps every day inside the ±10% band.
+  // the 103% ceiling. A final precision pass below reconciles rounding.
   guard = 0;
   while (dayTotal() < target * DAY_LOW && guard < MAX_GAP_FILL_STEPS) {
     guard += 1;
@@ -505,6 +505,62 @@ function gapFillDay(
     }
     bestMeal.totalCal = bestMeal.dishes.reduce((s, x) => s + x.calories, 0);
   }
+}
+
+function fitDayToTarget(
+  meals: PlanMeal[],
+  target: number,
+  pools: Record<PlanMealType, PoolItem[]>,
+  used: Map<string, number>,
+  dayNames: Set<string>,
+) {
+  for (const [index, mealType] of MEAL_ORDER.entries()) {
+    let meal = meals.find((item) => item.mealType === mealType);
+    if (!meal) {
+      meal = {
+        mealType,
+        label: MEAL_LABELS[mealType],
+        dishes: [],
+        totalCal: 0,
+        targetCal: Math.round(target * MEAL_ALLOCATION[mealType]),
+      };
+      meals.push(meal);
+    }
+
+    if (!meal.dishes.some((dish) => dish.calories > 0)) {
+      const poolDish = (pools[mealType] ?? []).find((item) => item.dish.cal_serv > 0 && !dayNames.has(item.dish.name))?.dish;
+      const filler = FILLER_SNACKS.find((dish) => !dayNames.has(dish.name)) ?? FILLER_SNACKS[index % FILLER_SNACKS.length];
+      meal.dishes = [];
+      pushDish(meal.dishes, poolDish ?? filler, [mealType], used, dayNames);
+    }
+  }
+
+  meals.splice(0, meals.length, ...MEAL_ORDER.map((mealType) => meals.find((meal) => meal.mealType === mealType)!));
+  let total = meals.reduce((sum, meal) => sum + meal.dishes.reduce((mealSum, dish) => mealSum + dish.calories, 0), 0);
+  if (total <= 0) return;
+
+  const scale = target / total;
+  for (const meal of meals) {
+    for (const dish of meal.dishes) {
+      if (dish.calories <= 0) continue;
+      dish.servings *= scale;
+      dish.calories = Math.round(dish.dish.cal_serv * dish.servings);
+      dish.grams = Math.round(dish.dish.serv_g * dish.servings);
+    }
+  }
+
+  total = meals.reduce((sum, meal) => sum + meal.dishes.reduce((mealSum, dish) => mealSum + dish.calories, 0), 0);
+  const adjustment = target - total;
+  if (adjustment !== 0) {
+    const largestDish = meals.flatMap((meal) => meal.dishes).filter((dish) => dish.calories > 0).sort((a, b) => b.calories - a.calories)[0];
+    if (largestDish) {
+      largestDish.calories += adjustment;
+      largestDish.servings = largestDish.calories / largestDish.dish.cal_serv;
+      largestDish.grams = Math.round(largestDish.dish.serv_g * largestDish.servings);
+    }
+  }
+
+  for (const meal of meals) meal.totalCal = meal.dishes.reduce((sum, dish) => sum + dish.calories, 0);
 }
 
 export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
@@ -746,8 +802,9 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
       // Day-level gap fill: if still under 90%, add a dish / scale servings.
       if (dayTotal < target * DAY_LOW) {
         gapFillDay(meals, target, pools, dayUsed, used, coopts, WEEK_MAX_USES);
-        dayTotal = meals.reduce((s, m) => s + m.totalCal, 0);
       }
+      fitDayToTarget(meals, target, pools, used, dayUsed);
+      dayTotal = meals.reduce((s, m) => s + m.totalCal, 0);
       const inRange = dayTotal >= target * DAY_LOW && dayTotal <= target * DAY_HIGH;
       best = { meals, dayTotal, inRange };
       if (inRange) break;
@@ -778,7 +835,7 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
     const pct = Math.round((d.totalCal / target) * 100);
     console.log(`  Day ${d.day}: ${d.totalCal} (${pct}%) ${within(d) ? 'OK' : 'UNDER'}`);
   }
-  console.log(`  Days within +/-10%: ${okDays}/7`);
+  console.log(`  Days within +/-3%: ${okDays}/7`);
 
   const isDev = typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.DEV;
   if (isDev) {
