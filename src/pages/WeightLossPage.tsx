@@ -2219,7 +2219,7 @@ const WeightLossPage: React.FC = () => {
         proteinGrams += planned.dish.p * planned.grams / 100;
         carbGrams += planned.dish.c * planned.grams / 100;
         fatGrams += planned.dish.f * planned.grams / 100;
-        return { name: planned.dish.name, nameAr: planned.dish.nameAr ?? null, calories: planned.calories };
+        return { name: getDishName(planned.dish, language), nameAr: planned.dish.nameAr ?? null, calories: planned.calories };
       });
       return { mealType: meal.mealType, calories: dishes.reduce((total, dish) => total + dish.calories, 0), dishes };
     });
@@ -2239,6 +2239,15 @@ const WeightLossPage: React.FC = () => {
     const preview = createPlanPreview(day);
     setPlanPreview(preview);
     updateProfile({ planPreview: preview });
+  };
+
+  const localizedPreviewDishName = (previewDish: UserPlanPreview['meals'][number]['dishes'][number]) => {
+    const sourceDish = weeklyPlan[0]?.meals
+      .flatMap((meal) => meal.dishes)
+      .find(({ dish }) => dish.name === previewDish.name || dish.nameAr === previewDish.nameAr || dish.nameEn === previewDish.name || dish.nameFr === previewDish.name || dish.nameEs === previewDish.name || dish.nameDe === previewDish.name)
+      ?.dish
+      ?? selectedKitchen.dishes.find((dish) => dish.name === previewDish.name || dish.nameAr === previewDish.nameAr || dish.nameEn === previewDish.name || dish.nameFr === previewDish.name || dish.nameEs === previewDish.name || dish.nameDe === previewDish.name);
+    return sourceDish ? getDishName(sourceDish, language) : previewDish.name;
   };
 
   const runAutoKitchen = (openPlan = false) => {
@@ -3931,7 +3940,7 @@ const WeightLossPage: React.FC = () => {
                         <ul className="mt-3 space-y-2">
                           {meal.dishes.map((dish, index) => (
                             <li key={`${dish.name}-${index}`} className="flex items-start justify-between gap-3 text-[12px]">
-                              <span className="min-w-0 font-semibold text-[#52635A]">{language === 'ar' ? dish.nameAr ?? dish.name : dish.name}</span>
+                              <span className="min-w-0 font-semibold text-[#52635A]">{localizedPreviewDishName(dish)}</span>
                               <span className="num shrink-0 text-[#8A938E]">{dish.calories} kcal</span>
                             </li>
                           ))}
