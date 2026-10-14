@@ -93,7 +93,7 @@ export const flexibilityExercises: Exercise[] = [
     tipEn: 'Lean into a wall with the back heel down.', tipFr: 'Appui au mur, talon arrière au sol.', tipEs: 'Apóyate en la pared con el talón abajo.', tipAr: 'اتكئ على الحائط مع إبقاء الكعب الخلفي على الأرض.',
   },
   {
-    id: 'fl14', type: 'flexibility', nameEn: 'World\'s Greatest Stretch', nameFr: 'Étirement du monde entier', nameEs: 'El mejor estiramiento del mundo', nameAr: 'أفضل تمدد في العالم',
+    id: 'fl14', type: 'flexibility', nameEn: 'World\'s Greatest Stretch', nameFr: 'Étirement du monde entier', nameEs: 'El mejor estiramiento del mundo', nameDe: 'Die beste Dehnung der Welt', nameAr: 'أفضل تمدد في العالم',
     equipment: 'mat', muscleGroup: 'full_body', goals: ['mobility', 'maintain'], difficulty: 'intermediate',
     calories: 35, duration: '10 min', sets: '2×10 per side',
     refs: ['ACSM Guidelines 11th ed.'],
@@ -121,14 +121,14 @@ export const flexibilityExercises: Exercise[] = [
     tipEn: 'Restorative pose that gently stretches and calms.', tipFr: 'Pose restauratrice, douce et calmante.', tipEs: 'Postura reparadora, suave y calmante.', tipAr: 'وضعية استشفائية تمدد بلطف وتهدئ الأعصاب.',
   },
   {
-    id: 'fl18', type: 'flexibility', nameEn: 'Child\'s Pose', nameFr: 'Pose de l\'enfant', nameEs: 'Postura del niño', nameAr: 'وضعية الطفل',
+    id: 'fl18', type: 'flexibility', nameEn: 'Child\'s Pose', nameFr: 'Pose de l\'enfant', nameEs: 'Postura del niño', nameDe: 'Kindeshaltung', nameAr: 'وضعية الطفل',
     equipment: 'mat', muscleGroup: 'back', goals: ['mobility', 'maintain'], difficulty: 'beginner',
     calories: 15, duration: '5 min', sets: '1×5min',
     refs: ['Harvard Health 2024'],
     tipEn: 'Arms extended, forehead down, breathe slowly.', tipFr: 'Bras tendus, front au sol, respiration lente.', tipEs: 'Brazos extendidos, frente abajo, respira lento.', tipAr: 'مدّ الذراعين، الجبهة على الأرض، تنفس ببطء.',
   },
   {
-    id: 'fl19', type: 'flexibility', nameEn: 'Thread the Needle', nameFr: 'Enfile l\'aiguille', nameEs: 'Enhebrar la aguja', nameAr: 'تمرين الإبرة',
+    id: 'fl19', type: 'flexibility', nameEn: 'Thread the Needle', nameFr: 'Enfile l\'aiguille', nameEs: 'Enhebrar la aguja', nameDe: 'Nadel einfädeln', nameAr: 'تمرين الإبرة',
     equipment: 'mat', muscleGroup: 'shoulders', goals: ['mobility', 'posture'], difficulty: 'beginner',
     calories: 25, duration: '6 min', sets: '2×12 per side',
     refs: ['ACSM Guidelines 11th ed.'],

@@ -30,7 +30,7 @@ export const functionalExercises: Exercise[] = [
     tipEn: 'Tall posture, heavy but walkable load.', tipFr: 'Posture droite, charge marchable.', tipEs: 'Postura erguida, carga caminable.', tipAr: 'وضعية مستقيمة مع حمل يمكن السير به.',
   },
   {
-    id: 'fu5', type: 'functional', nameEn: 'Bear Crawl', nameFr: 'Marche de l\'ours', nameEs: 'Reptación de oso', nameAr: 'زحف الدب',
+    id: 'fu5', type: 'functional', nameEn: 'Bear Crawl', nameFr: 'Marche de l\'ours', nameEs: 'Reptación de oso', nameDe: 'Bärenkrabbeln', nameAr: 'زحف الدب',
     equipment: 'bodyweight', muscleGroup: 'full_body', goals: ['lose_weight', 'maintain'], difficulty: 'intermediate',
     calories: 130, duration: '12 min', sets: '3×15m', contraindications: [CONTRA_WRIST],
     refs: ['ACSM Guidelines 11th ed.'],

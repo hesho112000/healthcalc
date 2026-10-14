@@ -16,7 +16,7 @@ export const balanceExercises: Exercise[] = [
     tipEn: 'Eyes forward, arms out for stability.', tipFr: 'Regard devant, bras écartés.', tipEs: 'Mirada al frente, brazos abiertos.', tipAr: 'انظر للأمام وافتح الذراعين للتوازن.',
   },
   {
-    id: 'ba3', type: 'balance', nameEn: 'Yoga Tree Pose', nameFr: 'Posture de l\'arbre', nameEs: 'Postura del árbol', nameAr: 'وضعية الشجرة في اليوغا',
+    id: 'ba3', type: 'balance', nameEn: 'Yoga Tree Pose', nameFr: 'Posture de l\'arbre', nameEs: 'Postura del árbol', nameDe: 'Yoga-Baumhaltung', nameAr: 'وضعية الشجرة في اليوغا',
     equipment: 'bodyweight', muscleGroup: 'mobility', goals: ['maintain', 'mobility'], difficulty: 'beginner',
     calories: 45, duration: '10 min', sets: '2×30s per side',
     refs: ['Harvard Health 2024'],
@@ -205,7 +205,7 @@ export const balanceExercises: Exercise[] = [
     tipEn: 'Side bend on one leg, top arm reaching up.', tipFr: 'Flexion latérale sur un pied, bras au ciel.', tipEs: 'Flexión lateral en una pierna, brazo arriba.', tipAr: 'انثنِ جانبياً على رجل واحدة مع مدّ الذراع للأعلى.',
   },
   {
-    id: 'ba30', type: 'balance', nameEn: 'Agility Ladder Balance Drills', nameFr: 'Échelle d\'agilité', nameEs: 'Escalera de agilidad', nameAr: 'تمرينات سلم الرشاقة',
+    id: 'ba30', type: 'balance', nameEn: 'Agility Ladder Balance Drills', nameFr: 'Échelle d\'agilité', nameEs: 'Escalera de agilidad', nameDe: 'Koordinationsleiter-Gleichgewichtsübungen', nameAr: 'تمرينات سلم الرشاقة',
     equipment: 'mat', muscleGroup: 'mobility', goals: ['lose_weight', 'maintain'], difficulty: 'intermediate',
     calories: 90, duration: '12 min', sets: '2×15',
     refs: ['ACSM Guidelines 11th ed.'],

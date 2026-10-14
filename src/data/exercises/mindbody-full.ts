@@ -114,7 +114,7 @@ export const mindbodyExercises: Exercise[] = [
     tipEn: 'Rest while resonating sounds wash over you.', tipFr: 'Repos sous des sons résonnants.', tipEs: 'Descansa dejando que los sonidos te envuelvan.', tipAr: 'استرخِ ودع الأصوات الرنّانة تغمرك.',
   },
   {
-    id: 'mb17', type: 'mindbody', nameEn: 'Chakra Balance Flow', nameFr: 'Flux d\'équilibre énergétique', nameEs: 'Flujo de equilibrio energético', nameAr: 'تدفق موازنة الطاقات',
+    id: 'mb17', type: 'mindbody', nameEn: 'Chakra Balance Flow', nameFr: 'Flux d\'équilibre énergétique', nameEs: 'Flujo de equilibrio energético', nameDe: 'Chakra-Ausgleichsfluss', nameAr: 'تدفق موازنة الطاقات',
     equipment: 'mat', muscleGroup: 'mind', goals: ['maintain'], difficulty: 'beginner',
     calories: 30, duration: '15 min', sets: '1×15min',
     refs: ['Harvard Health 2024'],

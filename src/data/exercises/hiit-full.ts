@@ -142,7 +142,7 @@ export const hiitExercises: Exercise[] = [
     tipEn: 'Explosive hip extension; finish press overhead.', tipFr: 'Extension explosive des hanches puis développé.', tipEs: 'Extensión explosiva de cadera y press arriba.', tipAr: 'مدّ الوركين بانفجار ثم ارفع فوق الرأس.',
   },
   {
-    id: 'hi21', type: 'hiit', nameEn: 'Bear Crawl Sprints', nameFr: 'Marche de l\'ours sprints', nameEs: 'Reptación de oso a sprint', nameAr: 'زحف الدب السريع',
+    id: 'hi21', type: 'hiit', nameEn: 'Bear Crawl Sprints', nameFr: 'Marche de l\'ours sprints', nameEs: 'Reptación de oso a sprint', nameDe: 'Bärengang-Sprints', nameAr: 'زحف الدب السريع',
     equipment: 'bodyweight', muscleGroup: 'full_body', goals: ['lose_weight'], difficulty: 'intermediate',
     calories: 200, duration: '12 min', sets: '3×20m', contraindications: [CONTRA_WRIST],
     refs: ['ACSM Guidelines 11th ed.'],
