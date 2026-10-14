@@ -8,8 +8,8 @@ import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
 import { kitchensRegistry, totalDishesAll, getDishName, getCategoryName, getKitchenName, getKitchenCountry, KITCHEN_REGION_KITCHEN_IDS } from '../data/kitchens';
 import type { KitchenInfo, KitchenDish, KitchenCategory } from '../data/kitchens';
-import { UNIFIED_EXERCISES } from '../data/exercises/unified';
 import type { UnifiedExercise } from '../data/exercises/unified';
+import { useUnifiedExercises } from '../hooks/useUnifiedExercises';
 import AddDishModal from '../components/wizard/AddDishModal';
 import MealCard from '../components/meal-plan/MealCard';
 import Flag, { getCountryCode } from '../components/common/Flag';
@@ -1418,6 +1418,7 @@ const WeightLossPage: React.FC = () => {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
   const { profile, updateProfile, resetProfile } = useUserProfile();
+  const { exercises: unifiedExercises, loading: unifiedExercisesLoading } = useUnifiedExercises();
   const kitchenLabel = (k: KitchenInfo) => {
     const translated = k.id === 'chilean' ? t('kitchen.chilean.name')
       : k.id === 'peruvian' ? t('kitchen.peruvian.name')
@@ -1462,7 +1463,7 @@ const WeightLossPage: React.FC = () => {
   });
   const [exerciseSearch, setExerciseSearch] = useState('');
   const [selectedExerciseSearch, setSelectedExerciseSearch] = useState('');
-  const getUnifiedExercisesByType = (typeId: WizardExerciseCategory) => UNIFIED_EXERCISES.filter((exercise) => exercise.type === typeId);
+  const getUnifiedExercisesByType = (typeId: WizardExerciseCategory) => unifiedExercises.filter((exercise) => exercise.type === typeId);
   const localizedExerciseName = (exercise: UnifiedExercise) =>
     language === 'ar' ? exercise.nameAr
       : language === 'fr' ? exercise.nameFr
@@ -1497,7 +1498,7 @@ const WeightLossPage: React.FC = () => {
         if (Array.isArray(p)) {
           const migrated = p.flatMap((item: { id?: unknown }) => {
             if (typeof item?.id !== 'string') return [];
-            const exercise = UNIFIED_EXERCISES.find((entry) => entry.id === item.id);
+            const exercise = unifiedExercises.find((entry) => entry.id === item.id);
             return exercise ? [toPlannedShape(exercise)] : [];
           });
           if (migrated.length) return migrated;
@@ -1591,9 +1592,8 @@ const WeightLossPage: React.FC = () => {
   const [toastUndo, setToastUndo] = useState<{ label: string; action: () => void } | null>(null);
 
   useEffect(() => {
-    autoPickExercises(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (!unifiedExercisesLoading) autoPickExercises(true);
+  }, [unifiedExercisesLoading]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -4321,7 +4321,7 @@ const WeightLossPage: React.FC = () => {
                 {plannedExercises.length ? (
                   <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {plannedExercises.map((ex) => {
-                      const exercise = UNIFIED_EXERCISES.find((item) => item.id === ex.id);
+                      const exercise = unifiedExercises.find((item) => item.id === ex.id);
                       return (
                         <div key={ex.id} className="flex items-center gap-2.5 rounded-[14px] border border-[#EFEBE4] bg-[#FDFBF7] px-3 py-2.5 min-w-0">
                           <Dumbbell aria-hidden="true" size={16} className="shrink-0 text-[#6B7A75]" />
