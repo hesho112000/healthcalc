@@ -1,4 +1,4 @@
-import type { Exercise, ExerciseDifficulty, ExerciseEquipment, ExerciseType, MuscleGroup } from './types';
+import type { Exercise, ExerciseDifficulty, ExerciseEquipment, ExercisePrescription, ExerciseType, MuscleGroup } from './types';
 import { balanceExercises } from './balance-full';
 import { cardioExercises } from './cardio-full';
 import { flexibilityExercises } from './flexibility-full';
@@ -9,13 +9,10 @@ import { strengthExercises } from './strength-full';
 
 export type UnifiedEquipment = ExerciseEquipment | 'medicine_ball' | 'rings' | 'jump_rope' | 'chair' | 'wall' | 'water' | 'resistance-band' | 'dumbbell' | 'bike' | 'treadmill' | 'rowing-machine';
 
-export interface UnifiedExercise extends Omit<Exercise, 'equipment' | 'sets'> {
+export interface UnifiedExercise extends Omit<Exercise, 'equipment' | 'sets'>, ExercisePrescription {
   name: string;
   category: ExerciseType;
   equipment: UnifiedEquipment;
-  sets: number;
-  reps: string | null;
-  sourceSets: string;
   sourceFile: string;
   aliases?: string[];
   reviewedLoanwords?: Array<'de' | 'fr' | 'es'>;
@@ -24,6 +21,12 @@ export interface UnifiedExercise extends Omit<Exercise, 'equipment' | 'sets'> {
   bodyConcerns?: string[];
   caloriesPerSession?: number;
 }
+
+type LegacyUnifiedExercise = Omit<UnifiedExercise, keyof ExercisePrescription> & {
+  sets: number;
+  reps: string | null;
+  sourceSets: string;
+};
 
 export interface UnifiedExerciseType {
   id: ExerciseType;
@@ -58,18 +61,69 @@ const SOURCE_GROUPS: { sourceFile: string; exercises: Exercise[] }[] = [
   { sourceFile: 'strength-full.ts', exercises: strengthExercises },
 ];
 
+const parseExercisePrescription = (sourceSets: string): ExercisePrescription => {
+  const result: ExercisePrescription = { sets: null, sourceSets };
+  const prescription = sourceSets.match(/^\s*(\d+)\s*[×x]\s*(.+?)\s*$/i);
+  if (!prescription || Number(prescription[1]) < 1) return result;
+
+  const sets = Number(prescription[1]);
+  let value = prescription[2].trim();
+  let restSeconds: number | undefined;
+  const restMatch = value.match(/\brest\s*[:=]?\s*(\d+(?:\.\d+)?)\s*(seconds?|secs?|s)\b|\b(\d+(?:\.\d+)?)\s*(seconds?|secs?|s)\s+rest\b/i);
+  if (restMatch) {
+    restSeconds = Number(restMatch[1] ?? restMatch[3]);
+    value = value.replace(restMatch[0], '').replace(/[(),]/g, '').trim();
+  }
+
+  const perSide = /\bper\s+side\b/i.test(value);
+  value = value.replace(/\bper\s+side\b/i, '').trim();
+
+  const timed = value.match(/^(\d+(?:\.\d+)?)\s*(seconds?|secs?|s|minutes?|mins?|min)$/i);
+  if (timed) {
+    const duration = Number(timed[1]);
+    const unit = timed[2].toLowerCase();
+    return {
+      sets,
+      timedDuration: unit.startsWith('m') ? duration * 60 : duration,
+      ...(perSide ? { perSide: true } : {}),
+      ...(restSeconds !== undefined ? { restSeconds } : {}),
+      sourceSets,
+    };
+  }
+
+  const count = value.match(/^(\d+)(?:\s*[-–]\s*(\d+))?\s*(steps?|meters?|m)?$/i);
+  if (!count) return result;
+
+  const unitText = count[3]?.toLowerCase();
+  const unit: ExercisePrescription['unit'] = unitText?.startsWith('step')
+    ? 'steps'
+    : unitText === 'm' || unitText?.startsWith('meter')
+      ? 'meters'
+      : 'reps';
+  const min = Number(count[1]);
+  const max = count[2] ? Number(count[2]) : undefined;
+  if (max !== undefined && max < min) return result;
+
+  return {
+    sets,
+    ...(max === undefined ? { reps: min } : { repsMin: min, repsMax: max }),
+    unit,
+    ...(perSide ? { perSide: true } : {}),
+    ...(restSeconds !== undefined ? { restSeconds } : {}),
+    sourceSets,
+  };
+};
+
 const canonicalize = (exercise: Exercise, sourceFile: string): UnifiedExercise => {
-  const prescription = exercise.sets.match(/^\s*(\d+)\s*[×x]\s*(.+?)\s*$/i);
-  const prescribedReps = prescription?.[2] ?? null;
+  const prescription = parseExercisePrescription(exercise.sets);
   return {
     ...exercise,
+    ...prescription,
     name: exercise.nameEn,
     category: exercise.type,
     equipment: exercise.equipment,
-    sets: prescription ? Number(prescription[1]) : 1,
-    reps: prescribedReps && !/\bmin(?:ute)?s?\b/i.test(prescribedReps) ? prescribedReps : null,
-    sourceSets: exercise.sets,
     sourceFile,
+    ...(prescription.sets === null ? { reviewStatus: 'needs_review' as const } : {}),
     ...(LEGACY_ALIASES[exercise.id] ? { aliases: [...LEGACY_ALIASES[exercise.id]] } : {}),
   };
 };
@@ -290,7 +344,7 @@ const PENDING_REVIEW: Pick<UnifiedExercise, 'reviewStatus'> = {
   reviewStatus: 'needs_review',
 };
 
-const LEGACY_UNIQUE_EXERCISES: UnifiedExercise[] = [
+const LEGACY_UNIQUE_EXERCISES: LegacyUnifiedExercise[] = [
   {
     id: 'legacy-strength-barbell-row', type: 'strength' as const, category: 'strength' as ExerciseType,
     name: 'Barbell Row', nameEn: 'Barbell Row', nameFr: PENDING_TRANSLATION, nameEs: PENDING_TRANSLATION, nameDe: PENDING_TRANSLATION, nameAr: PENDING_TRANSLATION,
@@ -385,7 +439,7 @@ export const UNIFIED_EXERCISE_TYPES: UnifiedExerciseType[] = [
   },
 ];
 
-const BODY_CONCERN_EXERCISES: UnifiedExercise[] = [
+const BODY_CONCERN_EXERCISES: LegacyUnifiedExercise[] = [
   // 1. Belly Fat (bc1-bc8)
   { id: 'bc1', sourceFile: 'body-concerns', type: 'core' as ExerciseType, category: 'core' as ExerciseType, name: 'Bicycle Crunches', nameEn: 'Bicycle Crunches', nameAr: 'كرانش الدراجة', nameFr: 'Crunchs à vélo', nameEs: 'Abdominales bicicleta', nameDe: 'Fahrrad-Crunches', equipment: 'bodyweight', muscleGroup: 'core', goals: ['lose_weight','maintain'], difficulty: 'intermediate', sets: 3, reps: '12-15', sourceSets: '3×12-15', duration: '12 min', calories: 80, refs: [], ...PENDING_REVIEW },
   { id: 'bc2', sourceFile: 'body-concerns', type: 'core' as ExerciseType, category: 'core' as ExerciseType, name: 'Leg Raises', nameEn: 'Leg Raises', nameAr: 'رفع الساقين', nameFr: 'Relevés de jambes', nameEs: 'Elevación de piernas', nameDe: 'Beinheben', equipment: 'bodyweight', muscleGroup: 'core', goals: ['lose_weight','maintain'], difficulty: 'beginner', sets: 3, reps: '10-12', sourceSets: '3×10-12', duration: '10 min', calories: 70, refs: [], ...PENDING_REVIEW },
@@ -492,14 +546,20 @@ export const UNIFIED_EXERCISES: UnifiedExercise[] = [
   ...SOURCE_GROUPS.flatMap(({ sourceFile, exercises }) => exercises.map((exercise) => canonicalize(exercise, sourceFile))),
   ...LEGACY_UNIQUE_EXERCISES,
   ...BODY_CONCERN_EXERCISES,
-].map((exercise) => ({
-  ...exercise,
-  nameDe: GERMAN_NAME_OVERRIDES[exercise.id] ?? exercise.nameDe ?? '',
-  nameFr: FRENCH_NAME_OVERRIDES[exercise.id] ?? exercise.nameFr,
-  nameEs: SPANISH_NAME_OVERRIDES[exercise.id] ?? exercise.nameEs,
-  ...(REVIEWED_UNCHANGED_LOANWORDS[exercise.id]
-    ? { reviewedLoanwords: [...REVIEWED_UNCHANGED_LOANWORDS[exercise.id]] }
-    : {}),
-}));
+].map((exercise) => {
+  const { reps: _legacyReps, ...exerciseData } = exercise;
+  const prescription = parseExercisePrescription(exercise.sourceSets);
+  return {
+    ...exerciseData,
+    ...prescription,
+    nameDe: GERMAN_NAME_OVERRIDES[exercise.id] ?? exercise.nameDe ?? '',
+    nameFr: FRENCH_NAME_OVERRIDES[exercise.id] ?? exercise.nameFr,
+    nameEs: SPANISH_NAME_OVERRIDES[exercise.id] ?? exercise.nameEs,
+    ...(prescription.sets === null ? { reviewStatus: 'needs_review' as const } : {}),
+    ...(REVIEWED_UNCHANGED_LOANWORDS[exercise.id]
+      ? { reviewedLoanwords: [...REVIEWED_UNCHANGED_LOANWORDS[exercise.id]] }
+      : {}),
+  };
+});
 
 export const UNIFIED_EXERCISE_COUNT = UNIFIED_EXERCISES.length;

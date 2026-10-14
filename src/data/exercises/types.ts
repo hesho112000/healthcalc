@@ -37,6 +37,18 @@ export type MuscleGroup =
   | 'mobility'
   | 'mind';
 
+export interface ExercisePrescription {
+  sets: number | null;
+  reps?: number;
+  repsMin?: number;
+  repsMax?: number;
+  timedDuration?: number;
+  perSide?: boolean;
+  unit?: 'reps' | 'steps' | 'meters';
+  restSeconds?: number;
+  sourceSets: string;
+}
+
 export interface Exercise {
   id: string;
   type: ExerciseType;
