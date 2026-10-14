@@ -3021,7 +3021,39 @@ const WeightLossPage: React.FC = () => {
           </div>
         )}
 
+        {step === 6 && (
+          <div className="mt-6 space-y-5">
+            <div className={`${cardBase} p-6`}>
+              <div className="flex items-center gap-3">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0F4C3A] text-white">
+                  <Sparkles size={20} />
+                </span>
+                <div>
+                  <h2 className="text-[18px] font-extrabold leading-none">{language === 'ar' ? 'ما الذي ترغب في تحقيقه؟' : 'What would you like to achieve?'}</h2>
+                  <p className="mt-1 text-[12.5px] text-[#6B7A75]">{language === 'ar' ? 'اختر ما يناسبك، وسنخصص خطتك بناءً عليه.' : 'Choose what matters most and we’ll tailor your plan around it.'}</p>
+                </div>
+              </div>
 
+              <div className="mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                {GOAL_DISCOVERY_OPTIONS.map((option) => (
+                  <OptionChip
+                    key={option.id}
+                    on={goalDiscovery === option.id}
+                    onClick={() => {
+                      setGoalDiscovery(option.id);
+                      updateProfile({ goalDiscovery: option.id });
+                    }}
+                    className="w-full min-h-[56px]"
+                  >
+                    <span>{option.icon}</span>
+                    <span>{language === 'ar' ? option.ar : option.en}</span>
+                  </OptionChip>
+                ))}
+              </div>
+            </div>
+            <WizardFooter onBack={back} onNext={next} nextDisabled={!isValid()} backLabel={t('wizard.back')} nextLabel={t('wizard.continue')} />
+          </div>
+        )}
 
         {step === 7 && (
           <div className="mt-6 space-y-5">
