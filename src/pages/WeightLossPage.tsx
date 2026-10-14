@@ -408,6 +408,22 @@ const REGIONS: RegionDef[] = [
   { id: 'special-diets', emoji: '🌿', en: 'Special Diets', ar: 'أنظمة غذائية خاصة', ids: ['diet-keto', 'diet-vegan', 'diet-vegetarian', 'diet-high-protein', 'diet-mediterranean', 'diet-low-carb', 'diet-dash', 'diet-gluten-free', 'diet-intermittent-fasting', 'diet-paleo'] },
 ];
 
+type CuisineRegionId = 'europe' | 'asia' | 'americas' | 'mena' | 'africa' | 'oceania';
+
+const CUISINE_REGIONS: { id: CuisineRegionId; en: string; ar: string; ids: string[] }[] = [
+  { id: 'europe', en: 'Europe', ar: 'أوروبا', ids: ['italian', 'french', 'spanish', 'greek', 'turkey', 'uk', 'british', 'swiss', 'germany', 'austria', 'benelux', 'norway', 'sweden', 'denmark', 'finland', 'ukraine', 'eastern-european', 'france', 'greece', 'italy', 'spain', 'switzerland', 'diet-mediterranean'] },
+  { id: 'asia', en: 'Asia', ar: 'آسيا', ids: ['indian', 'pakistani', 'indonesian', 'malaysian', 'chinese', 'japanese', 'korean', 'thai', 'vietnamese', 'filipino', 'taiwan'] },
+  { id: 'americas', en: 'Americas', ar: 'الأمريكتان', ids: [...KITCHEN_REGION_KITCHEN_IDS['north-america'], ...KITCHEN_REGION_KITCHEN_IDS['south-america'], 'american', 'diet-dash', 'diet-keto'] },
+  { id: 'mena', en: 'MENA', ar: 'الشرق الأوسط وشمال أفريقيا', ids: ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'omani', 'kuwaiti', 'qatar', 'bahraini', 'lebanese', 'palestinian', 'syrian', 'jordanian'] },
+  { id: 'africa', en: 'Africa', ar: 'أفريقيا', ids: ['nigerian', 'ethiopian', 'kenyan', 'rwandan', 'seychellois', 'mauritian', 'gabonese', 'botswanan', 'south-african', 'ghanaian'] },
+  { id: 'oceania', en: 'Oceania', ar: 'أوقيانوسيا', ids: ['australasia', 'australian', 'new-zealand'] },
+];
+
+const GLOBAL_DIET_KITCHEN_IDS = ['diet-gluten-free', 'diet-high-protein', 'diet-intermittent-fasting', 'diet-low-carb', 'diet-paleo', 'diet-vegan', 'diet-vegetarian'];
+
+const cuisineRegionForKitchen = (kitchenId: string): CuisineRegionId =>
+  CUISINE_REGIONS.find((region) => region.ids.includes(kitchenId))?.id ?? 'europe';
+
 const SAUDI_REGION_META: { id: string; emoji: string; en: string; ar: string }[] = [
   { id: 'all', emoji: '🇸🇦', en: 'All Saudi', ar: 'كل المطبخ السعودي' },
   { id: 'pan_saudi', emoji: '🥘', en: 'General Saudi', ar: 'عام (كل المناطق)' },
@@ -1477,6 +1493,8 @@ const WeightLossPage: React.FC = () => {
   const [regionSel, setRegionSel] = useState<string | null>(null);
   const [cuisineSel, setCuisineSel] = useState<string | null>(null);
   const [kitchenRegion, setKitchenRegion] = useState<string>('all');
+  const [activeCuisineRegion, setActiveCuisineRegion] = useState<CuisineRegionId>(() => cuisineRegionForKitchen(profile.selectedKitchen ?? profile.kitchenPreference ?? 'egyptian'));
+  const cuisineRegionTabRefs = useRef<Partial<Record<CuisineRegionId, HTMLButtonElement | null>>>({});
   const [dishSearch, setDishSearch] = useState('');
   const [savedSearch, setSavedSearch] = useState('');
   const [healthyOnly, setHealthyOnly] = useState(false);
@@ -1592,6 +1610,24 @@ const WeightLossPage: React.FC = () => {
     () => kitchens.filter((k) => k.dishes.length > 0 || k.total > 0 || (kitchenCounts[k.id] ?? 0) > 0).sort((a, b) => kitchenLabel(a).localeCompare(kitchenLabel(b))),
     [kitchens, kitchenCounts, language],
   );
+  const kitchensByCuisineRegion = useMemo<Record<CuisineRegionId, KitchenInfo[]>>(() => {
+    const uniqueKitchens = new Map<string, KitchenInfo>();
+    for (const kitchen of availableKitchens) {
+      const existing = uniqueKitchens.get(kitchen.id);
+      if (!existing || kitchen.dishes.length > existing.dishes.length) uniqueKitchens.set(kitchen.id, kitchen);
+    }
+
+    return Object.fromEntries(CUISINE_REGIONS.map((region) => [
+      region.id,
+      [...uniqueKitchens.values()]
+        .filter((kitchen) =>
+          (kitchen.regionId && region.id === 'americas') ||
+          region.ids.includes(kitchen.id) ||
+          GLOBAL_DIET_KITCHEN_IDS.includes(kitchen.id),
+        )
+        .sort((a, b) => kitchenLabel(a).localeCompare(kitchenLabel(b))),
+    ])) as Record<CuisineRegionId, KitchenInfo[]>;
+  }, [availableKitchens, language]);
 
   const featuredKitchens = useMemo(() => {
     const found = FEATURED_KITCHEN_IDS.map((id) => kitchens.find((k) => k.id === id)).filter((k): k is KitchenInfo => !!k);
@@ -2123,6 +2159,7 @@ const WeightLossPage: React.FC = () => {
   const chooseKitchen = (k: KitchenInfo) => {
     if (selectedKitchenId !== k.id) setWeeklyPlan([]);
     setSelectedKitchenId(k.id);
+    setActiveCuisineRegion(cuisineRegionForKitchen(k.id));
     updateProfile({ kitchenPreference: k.id, selectedKitchen: k.id, kitchenMode: 'manual' });
     setKitchenMode('manual');
     setKitchenSelectionAccepted(true);
@@ -3548,36 +3585,94 @@ const WeightLossPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="mt-5 grid grid-cols-2 gap-2.5">
-                <OptionChip on={kitchenMode === 'manual'} onClick={() => { setKitchenMode('manual'); setKitchenSelectionAccepted(false); setRegionSel(null); setCuisineSel(null); setKitchenRegion('all'); }} className="w-full">
-                  <UtensilsCrossed size={16} />{language === 'ar' ? 'اختر يدوياً' : 'Choose Manually'}
-                </OptionChip>
-                <OptionChip on={kitchenMode === 'surprise'} onClick={selectSurpriseMode} className="w-full">
-                  <Sparkles size={16} />{language === 'ar' ? 'فاجئني' : 'Surprise Me'}
-                </OptionChip>
-              </div>
-
-              {kitchenMode === 'manual' && (
+              {!kitchenSelectionAccepted && (
                 <div className="mt-5">
-                  <h3 className="text-[14px] font-extrabold">{language === 'ar' ? 'اختر مطبخاً' : 'Select a cuisine'}</h3>
-                  <div className="mt-3 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-4">
-                    {availableKitchens.map((k) => {
-                      const selected = selectedKitchenId === k.id;
-                      const dishCount = kitchenCounts[k.id] ?? k.total;
+                  <div
+                    role="tablist"
+                    aria-label={language === 'ar' ? 'تصفّح المطابخ حسب المنطقة' : 'Browse kitchens by region'}
+                    aria-orientation="horizontal"
+                    className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-2 sm:mx-0 sm:px-0"
+                  >
+                    {CUISINE_REGIONS.map((region, index) => {
+                      const active = activeCuisineRegion === region.id;
+                      const dishTotal = kitchensByCuisineRegion[region.id].reduce((sum, kitchen) => sum + (kitchenCounts[kitchen.id] ?? kitchen.total), 0);
+                      const formatNumber = (value: number) => new Intl.NumberFormat(language === 'ar' ? 'ar' : 'en-US').format(value);
                       return (
-                        <button key={k.id} type="button" aria-pressed={selected} onClick={() => chooseKitchen(k)} className={`flex min-h-[122px] min-w-0 flex-col items-center justify-center rounded-[16px] border-2 p-3 text-center transition-all active:scale-95 ${selected ? 'border-[#D4A017] bg-[#FFFBEF] shadow-[0_0_0_3px_rgba(212,160,23,0.12)]' : 'border-[#EFEBE4] bg-white hover:border-[#D4A017]'}`}>
-                          <Flag countryCode={k.flag} alt={getKitchenCountry(k, language)} className="h-7 w-9 shrink-0" />
-                          <span className="mt-2 w-full truncate text-[12px] font-extrabold text-[#0F4C3A]">{kitchenLabel(k)}</span>
-                          <span className="mt-1 rounded-full bg-[#F4F1EB] px-2 py-1 text-[10px] font-bold text-[#6B7A75]">{t('wizard.step3.dishCount').replace('{n}', String(dishCount))}</span>
+                        <button
+                          key={region.id}
+                          ref={(element) => { cuisineRegionTabRefs.current[region.id] = element; }}
+                          id={`kitchen-region-tab-${region.id}`}
+                          type="button"
+                          role="tab"
+                          aria-selected={active}
+                          aria-controls="kitchen-region-panel"
+                          aria-label={`${language === 'ar' ? region.ar : region.en} · ${formatNumber(dishTotal)} ${language === 'ar' ? 'طبق' : 'dishes'}`}
+                          tabIndex={active ? 0 : -1}
+                          onClick={() => setActiveCuisineRegion(region.id)}
+                          onKeyDown={(event) => {
+                            if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+                            event.preventDefault();
+                            const direction = language === 'ar' ? -1 : 1;
+                            const offset = event.key === 'ArrowRight' ? direction : -direction;
+                            const nextRegion = CUISINE_REGIONS[(index + offset + CUISINE_REGIONS.length) % CUISINE_REGIONS.length];
+                            setActiveCuisineRegion(nextRegion.id);
+                            cuisineRegionTabRefs.current[nextRegion.id]?.focus();
+                          }}
+                          className={`shrink-0 rounded-full px-4 py-2.5 text-[12px] font-extrabold transition-colors ${active ? 'bg-[#059669] text-white shadow-sm' : 'bg-[#F1F3F2] text-[#34433C] hover:bg-[#E5E9E7]'}`}
+                        >
+                          {language === 'ar' ? region.ar : region.en} · {formatNumber(dishTotal)}
                         </button>
                       );
                     })}
                   </div>
-                  {availableKitchens.length === 0 && <p className="mt-3 text-sm text-[#6B7A75]">{language === 'ar' ? 'لا تتوفر مطابخ حالياً.' : 'No cuisines are currently available.'}</p>}
+
+                  <div
+                    id="kitchen-region-panel"
+                    role="tabpanel"
+                    aria-labelledby={`kitchen-region-tab-${activeCuisineRegion}`}
+                    className="mt-3 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-4"
+                  >
+                    <button
+                      type="button"
+                      aria-pressed={kitchenMode === 'surprise'}
+                      aria-label={language === 'ar' ? 'فاجئني، دعنا نختار المطبخ الأنسب لهدفك' : 'Surprise Me. Let us pick the best kitchen for your goals.'}
+                      onClick={selectSurpriseMode}
+                      className={`relative flex min-h-[142px] min-w-0 flex-col items-start justify-center rounded-[16px] border-2 border-[#D4A017] bg-[#FFFBEB] p-3 text-start transition-all hover:-translate-y-0.5 hover:shadow-md ${kitchenMode === 'surprise' ? 'ring-2 ring-[#D4A017]/30' : ''}`}
+                    >
+                      <Sparkles size={19} className="text-[#A47B00]" aria-hidden="true" />
+                      <span className="mt-2 text-[12px] font-extrabold text-[#5B470D]">{language === 'ar' ? 'فاجئني' : 'Surprise Me'}</span>
+                      <span className="mt-1 text-[10px] leading-snug text-[#79672E]">{language === 'ar' ? 'دعنا نختار أفضل مطبخ يناسب أهدافك.' : 'Let us pick the best kitchen for your goals.'}</span>
+                    </button>
+
+                    {kitchensByCuisineRegion[activeCuisineRegion].map((kitchen) => {
+                      const selected = kitchenMode === 'manual' && selectedKitchenId === kitchen.id;
+                      const dishCount = kitchenCounts[kitchen.id] ?? kitchen.total;
+                      const formattedDishCount = new Intl.NumberFormat(language === 'ar' ? 'ar' : 'en-US').format(dishCount);
+                      return (
+                        <button
+                          key={kitchen.id}
+                          type="button"
+                          aria-pressed={selected}
+                          aria-label={`${kitchenLabel(kitchen)}, ${formattedDishCount} ${language === 'ar' ? 'طبق' : 'dishes'}`}
+                          onClick={() => chooseKitchen(kitchen)}
+                          className={`relative flex min-h-[142px] min-w-0 flex-col items-center justify-center rounded-[16px] border-2 p-3 text-center transition-all hover:-translate-y-0.5 hover:shadow-md ${selected ? 'border-green-600 bg-emerald-50 shadow-sm' : 'border-[#E5E9E7] bg-white hover:border-[#A7D9C6]'}`}
+                        >
+                          {selected && <Check size={17} className="absolute end-2.5 top-2.5 text-green-700" aria-hidden="true" />}
+                          <Flag countryCode={kitchen.flag} alt={getKitchenCountry(kitchen, language)} className="h-7 w-9 shrink-0" />
+                          <span className="mt-2 w-full truncate text-[12px] font-extrabold text-[#173B30]">{kitchenLabel(kitchen)}</span>
+                          <span className="mt-1 text-[10px] font-medium text-[#66756E]">{formattedDishCount} {language === 'ar' ? 'طبق' : 'dishes'}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {kitchensByCuisineRegion[activeCuisineRegion].length === 0 && (
+                    <p className="mt-3 text-sm text-[#6B7A75]">{language === 'ar' ? 'لا تتوفر مطابخ حالياً.' : 'No cuisines are currently available in this region.'}</p>
+                  )}
                 </div>
               )}
 
-              {kitchenMode === 'surprise' && recommendedKitchen && (
+              {kitchenMode === 'surprise' && recommendedKitchen && !kitchenSelectionAccepted && (
                 <div className="mt-5 rounded-[18px] border border-[#DDE9DF] bg-[#F3F8F3] p-4 sm:p-5">
                   <div className="flex items-start gap-3">
                     <Flag countryCode={recommendedKitchen.flag} alt={getKitchenCountry(recommendedKitchen, language)} className="mt-1 h-8 w-10 shrink-0" />
@@ -3590,8 +3685,29 @@ const WeightLossPage: React.FC = () => {
                   </div>
                   <div className="mt-4 flex gap-3">
                     <button type="button" onClick={acceptSurpriseKitchen} className="btn-primary min-h-[48px] flex-1 rounded-[14px] text-[13px] font-bold">{language === 'ar' ? 'قبول التوصية' : 'Accept'}</button>
-                    <button type="button" onClick={() => { setKitchenMode('manual'); setKitchenSelectionAccepted(false); }} className="btn-secondary min-h-[48px] flex-1 rounded-[14px] text-[13px] font-bold">{language === 'ar' ? 'تغيير' : 'Change'}</button>
+                    <button type="button" onClick={() => { setKitchenMode('manual'); setActiveCuisineRegion(cuisineRegionForKitchen(recommendedKitchen.id)); }} className="btn-secondary min-h-[48px] flex-1 rounded-[14px] text-[13px] font-bold">{language === 'ar' ? 'تغيير' : 'Change'}</button>
                   </div>
+                </div>
+              )}
+
+              {kitchenSelectionAccepted && (
+                <div className="mt-5 flex items-center gap-3 rounded-[16px] border border-[#DDE9DF] bg-[#F3F8F3] p-3 sm:p-4">
+                  <Flag countryCode={selectedKitchen.flag} alt={getKitchenCountry(selectedKitchen, language)} className="h-7 w-9 shrink-0" />
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-[12px] font-extrabold text-[#173B30]">{kitchenLabel(selectedKitchen)}</p>
+                    <p className="mt-0.5 text-[10px] text-[#66756E]">{new Intl.NumberFormat(language === 'ar' ? 'ar' : 'en-US').format(kitchenCounts[selectedKitchen.id] ?? selectedKitchen.total)} {language === 'ar' ? 'طبق' : 'dishes'}</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setKitchenMode('manual');
+                      setKitchenSelectionAccepted(false);
+                      setActiveCuisineRegion(cuisineRegionForKitchen(selectedKitchen.id));
+                    }}
+                    className="min-h-10 shrink-0 rounded-full border border-[#059669]/30 bg-white px-4 text-[11px] font-extrabold text-[#047857] hover:bg-emerald-50"
+                  >
+                    {language === 'ar' ? 'تغيير' : 'Change'}
+                  </button>
                 </div>
               )}
             </div>
