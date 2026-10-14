@@ -78,13 +78,21 @@ const parseExercisePrescription = (sourceSets: string): ExercisePrescription => 
   const perSide = /\bper\s+side\b/i.test(value);
   value = value.replace(/\bper\s+side\b/i, '').trim();
 
-  const timed = value.match(/^(\d+(?:\.\d+)?)\s*(seconds?|secs?|s|minutes?|mins?|min)$/i);
+  const timed = value.match(/^(\d+(?:\.\d+)?)(?:\s*[-–]\s*(\d+(?:\.\d+)?))?\s*(seconds?|secs?|s|minutes?|mins?|min)$/i);
   if (timed) {
-    const duration = Number(timed[1]);
-    const unit = timed[2].toLowerCase();
+    const durationMin = Number(timed[1]);
+    const durationMax = timed[2] ? Number(timed[2]) : undefined;
+    const unit = timed[3].toLowerCase();
+    const secondsPerUnit = unit.startsWith('m') ? 60 : 1;
+    if (durationMax !== undefined && durationMax < durationMin) return result;
     return {
       sets,
-      timedDuration: unit.startsWith('m') ? duration * 60 : duration,
+      ...(durationMax === undefined
+        ? { timedDuration: durationMin * secondsPerUnit }
+        : {
+            timedDurationMin: durationMin * secondsPerUnit,
+            timedDurationMax: durationMax * secondsPerUnit,
+          }),
       ...(perSide ? { perSide: true } : {}),
       ...(restSeconds !== undefined ? { restSeconds } : {}),
       sourceSets,

@@ -43,6 +43,8 @@ export interface ExercisePrescription {
   repsMin?: number;
   repsMax?: number;
   timedDuration?: number;
+  timedDurationMin?: number;
+  timedDurationMax?: number;
   perSide?: boolean;
   unit?: 'reps' | 'steps' | 'meters';
   restSeconds?: number;
