@@ -7,7 +7,7 @@ import { hiitExercises } from './hiit-full';
 import { mindbodyExercises } from './mindbody-full';
 import { strengthExercises } from './strength-full';
 
-export type UnifiedEquipment = ExerciseEquipment | 'medicine_ball' | 'rings' | 'jump_rope';
+export type UnifiedEquipment = ExerciseEquipment | 'medicine_ball' | 'rings' | 'jump_rope' | 'chair' | 'wall' | 'water';
 
 export interface UnifiedExercise extends Omit<Exercise, 'equipment' | 'sets'> {
   name: string;
@@ -20,6 +20,7 @@ export interface UnifiedExercise extends Omit<Exercise, 'equipment' | 'sets'> {
   aliases?: string[];
   reviewedLoanwords?: Array<'de' | 'fr' | 'es'>;
   reviewStatus?: 'needs_review';
+  targetAudience?: string[];
 }
 
 export interface UnifiedExerciseType {
@@ -432,6 +433,16 @@ const BODY_CONCERN_EXERCISES: UnifiedExercise[] = [
   { id: 'bc38', sourceFile: 'body-concerns', type: 'strength' as ExerciseType, category: 'strength' as ExerciseType, name: 'Glute Bridges', nameEn: 'Glute Bridges', nameAr: 'جسر الألوية', nameFr: 'Pont fessier', nameEs: 'Puente glúteo', nameDe: 'Gesäßbrücke', equipment: 'bodyweight', muscleGroup: 'glutes', goals: ['lose_weight','maintain'], difficulty: 'beginner', sets: 3, reps: '12-15', sourceSets: '3×12-15', duration: '10 min', calories: 70, refs: [], ...PENDING_REVIEW },
   { id: 'bc39', sourceFile: 'body-concerns', type: 'strength' as ExerciseType, category: 'strength' as ExerciseType, name: 'Wall Sits', nameEn: 'Wall Sits', nameAr: 'جلوس على الحائط', nameFr: 'Position murale isométrique', nameEs: 'Sentadilla estática contra pared', nameDe: 'Wandsitzen', equipment: 'bodyweight', muscleGroup: 'quads', goals: ['lose_weight','maintain'], difficulty: 'beginner', sets: 3, reps: '3-5', sourceSets: '3×3-5', duration: '10 min', calories: 60, refs: [], ...PENDING_REVIEW },
   { id: 'bc40', sourceFile: 'body-concerns', type: 'strength' as ExerciseType, category: 'strength' as ExerciseType, name: 'Step-Ups', nameEn: 'Step-Ups', nameAr: 'صعود السلم', nameFr: 'Montées sur step', nameEs: 'Subidas al banco', nameDe: 'Step-ups', equipment: 'bodyweight', muscleGroup: 'quads', goals: ['lose_weight','gain_muscle'], difficulty: 'beginner', sets: 3, reps: '10-12', sourceSets: '3×10-12', duration: '10 min', calories: 70, refs: [], ...PENDING_REVIEW },
+
+  // 6. Low-Impact / Senior Friendly (li1-li8)
+  { id: 'li1', sourceFile: 'low-impact', type: 'strength' as ExerciseType, category: 'strength' as ExerciseType, name: 'Chair Squats', nameEn: 'Chair Squats', nameAr: 'سكوات الكرسي', nameFr: 'Squats sur chaise', nameEs: 'Sentadillas en silla', nameDe: 'Stuhl-Kniebeugen', equipment: 'chair', muscleGroup: 'quads', goals: ['maintain','mobility'], difficulty: 'beginner', sets: 3, reps: '10-12', sourceSets: '3×10-12', duration: '10 min', calories: 50, refs: [], targetAudience: ['seniors','low-impact','beginners'], ...PENDING_REVIEW },
+  { id: 'li2', sourceFile: 'low-impact', type: 'strength' as ExerciseType, category: 'strength' as ExerciseType, name: 'Wall Push-ups', nameEn: 'Wall Push-ups', nameAr: 'ضغط الحائط', nameFr: 'Pompes au mur', nameEs: 'Flexiones en la pared', nameDe: 'Wand-Liegestütze', equipment: 'wall', muscleGroup: 'chest', goals: ['maintain','mobility'], difficulty: 'beginner', sets: 3, reps: '10-12', sourceSets: '3×10-12', duration: '10 min', calories: 40, refs: [], targetAudience: ['seniors','low-impact','beginners'], ...PENDING_REVIEW },
+  { id: 'li3', sourceFile: 'low-impact', type: 'cardio' as ExerciseType, category: 'cardio' as ExerciseType, name: 'Seated Marching', nameEn: 'Seated Marching', nameAr: 'مشي جالس', nameFr: 'Marche assise', nameEs: 'Marcha sentada', nameDe: 'Sitzendes Marschieren', equipment: 'chair', muscleGroup: 'cardio_system', goals: ['cardio_health','mobility'], difficulty: 'beginner', sets: 3, reps: '30-60 sec', sourceSets: '3×30-60 sec', duration: '10 min', calories: 40, refs: [], targetAudience: ['seniors','low-impact','beginners'], ...PENDING_REVIEW },
+  { id: 'li4', sourceFile: 'low-impact', type: 'strength' as ExerciseType, category: 'strength' as ExerciseType, name: 'Standing Calf Raises', nameEn: 'Standing Calf Raises', nameAr: 'رفع العجل واقف', nameFr: 'Relevés de mollets debout', nameEs: 'Elevación de pantorrillas de pie', nameDe: 'Stehende Wadenheben', equipment: 'bodyweight', muscleGroup: 'calves', goals: ['maintain','balance'], difficulty: 'beginner', sets: 3, reps: '12-15', sourceSets: '3×12-15', duration: '8 min', calories: 30, refs: [], targetAudience: ['seniors','low-impact','beginners'], ...PENDING_REVIEW },
+  { id: 'li5', sourceFile: 'low-impact', type: 'flexibility' as ExerciseType, category: 'flexibility' as ExerciseType, name: 'Heel Slides', nameEn: 'Heel Slides', nameAr: 'انزلاق الكعب', nameFr: 'Glissements de talon', nameEs: 'Deslizamientos de talón', nameDe: 'Fersenrutschen', equipment: 'bodyweight', muscleGroup: 'mobility', goals: ['mobility','maintain'], difficulty: 'beginner', sets: 3, reps: '10-12', sourceSets: '3×10-12', duration: '8 min', calories: 25, refs: [], targetAudience: ['seniors','low-impact','beginners'], ...PENDING_REVIEW },
+  { id: 'li6', sourceFile: 'low-impact', type: 'cardio' as ExerciseType, category: 'cardio' as ExerciseType, name: 'Water Aerobics', nameEn: 'Water Aerobics', nameAr: 'تمارين مائية', nameFr: 'Aquagym', nameEs: 'Aeróbic acuático', nameDe: 'Wassergymnastik', equipment: 'water', muscleGroup: 'full_body', goals: ['cardio_health','mobility','maintain'], difficulty: 'beginner', sets: 1, reps: '30 min', sourceSets: '1×30 min', duration: '30 min', calories: 150, refs: [], targetAudience: ['seniors','low-impact','beginners'], ...PENDING_REVIEW },
+  { id: 'li7', sourceFile: 'low-impact', type: 'flexibility' as ExerciseType, category: 'flexibility' as ExerciseType, name: 'Gentle Yoga Flow', nameEn: 'Gentle Yoga Flow', nameAr: 'تدفق يوغا لطيف', nameFr: 'Yoga doux', nameEs: 'Yoga suave', nameDe: 'Sanfter Yoga-Flow', equipment: 'bodyweight', muscleGroup: 'full_body', goals: ['mobility','maintain'], difficulty: 'beginner', sets: 1, reps: '15-20 min', sourceSets: '1×15-20 min', duration: '20 min', calories: 60, refs: [], targetAudience: ['seniors','low-impact','beginners'], ...PENDING_REVIEW },
+  { id: 'li8', sourceFile: 'low-impact', type: 'mindbody' as ExerciseType, category: 'mindbody' as ExerciseType, name: 'Tai Chi Walking', nameEn: 'Tai Chi Walking', nameAr: 'مشي تاي تشي', nameFr: 'Marche Tai Chi', nameEs: 'Caminata Tai Chi', nameDe: 'Tai Chi Gehen', equipment: 'bodyweight', muscleGroup: 'full_body', goals: ['balance','mobility','mind_body'], difficulty: 'beginner', sets: 1, reps: '15-20 min', sourceSets: '1×15-20 min', duration: '20 min', calories: 70, refs: [], targetAudience: ['seniors','low-impact','beginners'], ...PENDING_REVIEW },
 ];
 
 
