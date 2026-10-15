@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T07:35:14.816Z",
+  "generatedAt": "2026-10-15T07:49:34.893Z",
   "summary": {
     "counts": {
       "kitchens": 92,
@@ -357,8 +357,6 @@
         "file": "costa-rican-full.ts",
         "record": "costa-rican",
         "details": [
-          "nameAr",
-          "nameEn",
           "nameFr",
           "nameEs",
           "nameDe",
@@ -419,13 +417,10 @@
         "file": "eastern-european-full.ts",
         "record": "eastern-european",
         "details": [
-          "nameAr",
-          "nameEn",
           "nameFr",
           "nameEs",
           "nameDe",
           "descriptionAr",
-          "descriptionEn",
           "descriptionFr",
           "descriptionEs",
           "descriptionDe"
@@ -588,8 +583,6 @@
         "file": "gluten-free-diet-100-medical.json",
         "record": "gluten-free",
         "details": [
-          "nameAr",
-          "nameEn",
           "nameFr",
           "nameEs",
           "nameDe",
@@ -637,8 +630,6 @@
         "file": "high-protein-diet-100-medical.json",
         "record": "high-protein",
         "details": [
-          "nameAr",
-          "nameEn",
           "nameFr",
           "nameEs",
           "nameDe",
@@ -684,8 +675,6 @@
         "file": "intermittent-fasting-diet-100-medical.json",
         "record": "intermittent-fasting",
         "details": [
-          "nameAr",
-          "nameEn",
           "nameFr",
           "nameEs",
           "nameDe",
@@ -868,8 +857,6 @@
         "file": "low-carb-diet-100-medical.json",
         "record": "low-carb",
         "details": [
-          "nameAr",
-          "nameEn",
           "nameFr",
           "nameEs",
           "nameDe",
@@ -979,8 +966,6 @@
         "file": "new-zealand-full.ts",
         "record": "new-zealand",
         "details": [
-          "nameAr",
-          "nameEn",
           "nameFr",
           "nameEs",
           "nameDe",
@@ -1160,8 +1145,6 @@
         "file": "south-african-full.ts",
         "record": "south-african",
         "details": [
-          "nameAr",
-          "nameEn",
           "nameFr",
           "nameEs",
           "nameDe",

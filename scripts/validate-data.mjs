@@ -199,7 +199,16 @@ function getObjectMap(source, name) {
   if (!match) return {};
   const start = source.indexOf('{', match.index + match[0].length - 1);
   const end = findBalancedEnd(source, start, '{', '}');
-  return end < 0 ? {} : parseObject(source.slice(start, end));
+  if (end < 0) return {};
+  const raw = source.slice(start, end);
+  const result = parseObject(raw);
+  const property = /(?:^|[,{])\s*(?:'([^']+)'|"([^"]+)"|([\w$-]+))\s*:\s*(?:'((?:\\.|[^'\\])*)'|"((?:\\.|[^"\\])*)")/g;
+  for (let item; (item = property.exec(raw));) {
+    const key = item[1] ?? item[2] ?? item[3];
+    const value = item[4] ?? item[5];
+    result[key] = value.replace(/\\(.)/g, '$1');
+  }
+  return result;
 }
 
 function getTopLevelArrays(source) {
