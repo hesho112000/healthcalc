@@ -11,8 +11,8 @@ const KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 if (!URL || !KEY) throw new Error('Missing Supabase credentials');
 
 const REGIONS = new Set([
-  'pan_peruvian', 'lima', 'huancayo', 'arequipa', 'cusco', 'ica', 'piura', 'amazonas',
-  'callao', 'puno', 'cajamarca', 'ancash', 'lambayeque', 'loreto', 'ayacucho',
+  'pan_peru', 'lima', 'arequipa', 'huancayo', 'cusco', 'piura', 'puno', 'ayacucho',
+  'amazonas', 'cajamarca', 'ancash', 'tacna', 'loreto', 'lambayeque', 'ica', 'callao',
 ]);
 const source = fs.readFileSync(path.join(ROOT, 'src/data/peru-full.ts'), 'utf8');
 const compiled = ts.transpileModule(source, {
@@ -22,8 +22,8 @@ const exports = {};
 new Function('exports', compiled.outputText)(exports);
 const dishes = exports.PERU_FULL;
 
-if (!Array.isArray(dishes) || dishes.length !== 250) {
-  throw new Error(`Expected 250 Peru dishes; found ${dishes?.length ?? 'none'}`);
+if (!Array.isArray(dishes) || dishes.length !== 255) {
+  throw new Error(`Expected 255 Peru dishes; found ${dishes?.length ?? 'none'}`);
 }
 
 const sourceIds = new Set();

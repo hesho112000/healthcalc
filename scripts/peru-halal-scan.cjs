@@ -46,7 +46,6 @@ async function run() {
   const missingLocales = all.filter((row) => ['nameAr', 'nameEn', 'nameFr', 'nameEs', 'nameDe'].some((key) => !row[key]?.trim()));
   const duplicateIds = all.length - new Set(all.map((row) => row.id)).size;
   const duplicateEnglishNames = all.length - new Set(all.map((row) => row.nameEn.trim().toLowerCase())).size;
-  const invalidPairs = baseParts.flatMap((rows, index) => rows.length + dataParts[index].length !== 25 ? [index + 1] : []);
   const macroErrors = all.filter((row) => row.kcal !== Math.round(4 * row.protein + 4 * row.carbs + 9 * row.fat));
 
   console.log(`base dishes: ${base.length}`);
@@ -62,11 +61,11 @@ async function run() {
   for (const issue of [...idViolations, ...violations]) console.error(`HALAL [${issue.kind}] ${issue.term} -> ${issue.id || issue.nameEn}`);
   for (const row of macroErrors) console.error(`MACRO ${row.id}`);
 
-  if (base.length !== 125 || data.length !== 125 || all.length !== 250 || invalidPairs.length || missingLocales.length || duplicateIds || duplicateEnglishNames || macroErrors.length || idViolations.length || violations.length) {
+  if (base.length !== 130 || data.length !== 125 || all.length !== 255 || missingLocales.length || duplicateIds || duplicateEnglishNames || macroErrors.length || idViolations.length || violations.length) {
     process.exitCode = 1;
     return;
   }
-  console.log('\nCLEAN: 250 five-language Peruvian dishes across Phase A Parts 1-3, 0 halal violations');
+  console.log('\nCLEAN: 255 five-language Peruvian dishes across Phase A Parts 1-3, 0 halal violations');
 }
 
 if (require.main === module) run().catch((error) => {

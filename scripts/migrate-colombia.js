@@ -11,8 +11,8 @@ const KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 if (!URL || !KEY) throw new Error('Missing Supabase credentials');
 
 const REGIONS = new Set([
-  'pan_colombian', 'caribe', 'bogota', 'valle', 'antioquia', 'boyaca', 'santander',
-  'cundinamarca', 'narino', 'tolima', 'llanos', 'pacifico',
+  'pan_colombia', 'antioquia', 'bogota', 'caribe', 'pacifico', 'santander',
+  'valle', 'llanos', 'narino', 'tolima', 'boyaca', 'cundinamarca',
 ]);
 const source = fs.readFileSync(path.join(ROOT, 'src/data/colombia-full.ts'), 'utf8');
 const compiled = ts.transpileModule(source, {
@@ -22,11 +22,11 @@ const exports = {};
 new Function('exports', compiled.outputText)(exports);
 const dishes = exports.COLOMBIA_FULL;
 
-if (!Array.isArray(dishes) || dishes.length !== 250) {
-  throw new Error(`Expected 250 Colombia dishes; found ${dishes?.length ?? 'none'}`);
+if (!Array.isArray(dishes) || dishes.length !== 254) {
+  throw new Error(`Expected 254 Colombia dishes; found ${dishes?.length ?? 'none'}`);
 }
 
-const sourceKeys = new Set();
+const sourceIds = new Set();
 for (const [index, dish] of dishes.entries()) {
   const names = [dish.nameAr, dish.nameEn, dish.nameFr, dish.nameEs, dish.nameDe];
   if (names.some((name) => typeof name !== 'string' || !name.trim())) {
@@ -38,9 +38,8 @@ for (const [index, dish] of dishes.entries()) {
   }
   const atwaterCalories = Math.round(4 * dish.protein + 4 * dish.carbs + 9 * dish.fat);
   if (atwaterCalories !== dish.kcal) throw new Error(`Dish ${index + 1} has inconsistent calories`);
-  const key = `${dish.region}\u0000${dish.nameAr.trim()}`;
-  if (sourceKeys.has(key)) throw new Error(`Duplicate Colombia dish key at row ${index + 1}`);
-  sourceKeys.add(key);
+  if (sourceIds.has(dish.id)) throw new Error(`Duplicate Colombia dish id at row ${index + 1}`);
+  sourceIds.add(dish.id);
 }
 
 const supabase = createClient(URL, KEY, { auth: { persistSession: false } });
@@ -48,8 +47,8 @@ const existingRows = [];
 for (let from = 0; ; from += 1000) {
   const { data, error } = await supabase
     .from('dishes')
-    .select('name_ar,region')
-    .in('region', [...REGIONS])
+    .select('source')
+    .like('source', 'colombia-full.ts:%')
     .order('id', { ascending: true })
     .range(from, from + 999);
   if (error) throw new Error(`Existing-row lookup failed: ${error.message}`);
@@ -57,8 +56,8 @@ for (let from = 0; ; from += 1000) {
   if ((data ?? []).length < 1000) break;
 }
 
-const existingKeys = new Set(existingRows.map((row) => `${row.region}\u0000${row.name_ar?.trim() ?? ''}`));
-const pending = dishes.filter((dish) => !existingKeys.has(`${dish.region}\u0000${dish.nameAr.trim()}`));
+const existingSources = new Set(existingRows.map((row) => row.source));
+const pending = dishes.filter((dish) => !existingSources.has(`colombia-full.ts:${dish.id}`));
 const rows = pending.map((dish) => ({
   name_ar: dish.nameAr,
   name_en: dish.nameEn,
