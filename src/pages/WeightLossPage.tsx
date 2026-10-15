@@ -395,7 +395,7 @@ const REGIONS: RegionDef[] = [
 type CuisineRegionId = 'europe' | 'asia' | 'americas' | 'mena' | 'africa' | 'oceania';
 
 const CUISINE_REGIONS: { id: CuisineRegionId; en: string; ar: string; ids: string[] }[] = [
-  { id: 'europe', en: 'Europe', ar: 'أوروبا', ids: ['italian', 'french', 'spanish', 'greek', 'turkey', 'british', 'swiss', 'germany', 'austria', 'benelux', 'norway', 'sweden', 'denmark', 'finland', 'ukraine', 'eastern-european', 'switzerland', 'diet-mediterranean'] },
+  { id: 'europe', en: 'Europe', ar: 'أوروبا', ids: ['italian', 'french', 'spanish', 'greek', 'turkey', 'british', 'swiss', 'germany', 'austria', 'benelux', 'norway', 'sweden', 'denmark', 'finland', 'ukraine', 'eastern-european', 'diet-mediterranean'] },
   { id: 'asia', en: 'Asia', ar: 'آسيا', ids: ['indian', 'pakistani', 'indonesian', 'malaysian', 'chinese', 'japanese', 'korean', 'thai', 'vietnamese', 'filipino', 'taiwan'] },
   { id: 'americas', en: 'Americas', ar: 'الأمريكتان', ids: [...KITCHEN_REGION_KITCHEN_IDS['north-america'], ...KITCHEN_REGION_KITCHEN_IDS['south-america'], 'american', 'diet-dash', 'diet-keto'] },
   { id: 'mena', en: 'MENA', ar: 'الشرق الأوسط وشمال أفريقيا', ids: ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'omani', 'kuwaiti', 'qatar', 'bahraini', 'lebanese', 'palestinian', 'syrian', 'jordanian'] },

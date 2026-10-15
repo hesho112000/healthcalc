@@ -426,6 +426,7 @@ function basenameId(path: string): string {
   if (id === 'spain') return 'spanish';
   if (id === 'uk') return 'british';
   if (id === 'usa') return 'american';
+  if (id === 'switzerland') return 'swiss';
   if (id === 'mexico') return 'mexican';
   if (id === 'argentina') return 'argentinian';
   if (id === 'colombia') return 'colombian';
@@ -648,6 +649,7 @@ const LEGACY_KITCHEN_FILES = new Set([
   'american-full.ts',
   'mexican-full.ts',
   'colombian-full.ts',
+  'swiss-full.ts',
   'peruvian-full.ts',
   'chilean-full.ts',
 ]);

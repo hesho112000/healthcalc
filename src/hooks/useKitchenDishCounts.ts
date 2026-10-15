@@ -13,7 +13,6 @@ export const KITCHEN_ID_ALIAS: Record<string, string> = {
   australasia: 'australasian',
   australian: 'australasian',
   'new-zealand': 'australasian',
-  switzerland: 'swiss',
   taiwan: 'taiwanese',
   turkey: 'turkish',
   austria: 'austrian',
