@@ -51,7 +51,8 @@ const atwaterFixed = [];
 
 for (let i = 0; i < TOTAL; i++) {
   const r = rows[i];
-  const nameAr = (r.name_ar ?? '').trim();
+  const isTurkeyBacon = /turkey bacon/i.test(`${r.name_en ?? ''} ${r.name_fr ?? ''}`);
+  const nameAr = isTurkeyBacon ? 'شرائح ديك رومي مدخنة أمريكية' : (r.name_ar ?? '').trim();
   const p100 = Number(r.protein) || 0;
   const c100 = Number(r.carbs) || 0;
   const f100 = Number(r.fat) || 0;
@@ -64,10 +65,10 @@ for (let i = 0; i < TOTAL; i++) {
   }
   if (cal100 > 900) cal100 = 900;
   const baseCalServ = Math.round(cal100 * (g / 100) * 10) / 10;
-  const nameEn = (r.name_en ?? '').trim();
-  const nameFr = (r.name_fr ?? '').trim();
-  const nameEs = (r.name_es ?? '').trim();
-  const nameDe = (r.name_de ?? '').trim();
+  const nameEn = isTurkeyBacon ? 'American Smoked Turkey Strips' : (r.name_en ?? '').trim();
+  const nameFr = isTurkeyBacon ? 'Lanières de dinde fumée américaines' : (r.name_fr ?? '').trim();
+  const nameEs = isTurkeyBacon ? 'Tiras de pavo ahumadas americanas' : (r.name_es ?? '').trim();
+  const nameDe = isTurkeyBacon ? 'Amerikanische Streifen aus geräuchertem Putenfleisch' : (r.name_de ?? '').trim();
   if (![nameAr, nameEn, nameFr, nameEs, nameDe].every((v) => typeof v === 'string' && v.trim().length > 0)) {
     console.error(`Row ${i + 1}: empty language field`);
     failed++;

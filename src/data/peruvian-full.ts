@@ -3,6 +3,9 @@ export interface PeruvianFullDish {
   id: string;
   nameAr: string;
   nameEn: string;
+  nameFr?: string;
+  nameEs?: string;
+  nameDe?: string;
   mealType: 'breakfast' | 'lunch' | 'dinner' | 'side' | 'salad' | 'fruit';
   grams: number;
   kcal: number;
@@ -14,7 +17,7 @@ export interface PeruvianFullDish {
   note?: string;
 }
 export const PERUVIAN_FULL: PeruvianFullDish[] = [
-  {"id":"pe_pan_con_chicharron_light","nameAr":"بان كون تشيتشارون ساندوتش خنزير لايت بيروفي","nameEn":"Pan con chicharrón pork sandwich light Peruvian","mealType":"breakfast","grams":120,"kcal":195,"protein":10,"carbs":16,"fat":9,"cooking":"pan","ref":"Pan con chicharrón - Lima - national breakfast Peru - Gastón Acurio 2023 - Larousse Perú 2024"},
+  {"id":"pe_shredded_beef_sandwich_light","nameAr":"ساندويتش لحم بقري مفتت لايت بيروفي","nameEn":"Shredded beef sandwich light Peruvian","nameFr":"Sandwich péruvien léger au bœuf effiloché","nameEs":"Sándwich peruano ligero de res deshebrada","nameDe":"Leichtes peruanisches Sandwich mit gezupftem Rindfleisch","mealType":"breakfast","grams":120,"kcal":207,"protein":18,"carbs":18,"fat":7,"cooking":"pan","ref":"Shredded beef sandwich - Lima - Peruvian breakfast - Gastón Acurio 2023 - Larousse Perú 2024"},
   {"id":"pe_tamales_peruanos_light_1","nameAr":"تاماليس بيروفي لايت 1","nameEn":"Tamales peruanos light Peruvian 1","mealType":"breakfast","grams":100,"kcal":145,"protein":3,"carbs":18,"fat":5.5,"cooking":"steamed","ref":"Tamales peruanos - Lima - Peruvian breakfast - Acurio"},
   {"id":"pe_juanes_light_1","nameAr":"خوانيس أرز دجاج لايت بيروفي 1","nameEn":"Juanes rice chicken light Peruvian 1","mealType":"breakfast","grams":120,"kcal":165,"protein":5,"carbs":18,"fat":6.5,"cooking":"steamed","ref":"Juane - Iquitos - Amazon - Peruvian Amazon - Larousse Perú"},
   {"id":"pe_cafe_peruano","nameAr":"قهوة بيروفية","nameEn":"Café peruano Peruvian coffee","mealType":"breakfast","grams":200,"kcal":5,"protein":0.2,"carbs":1,"fat":0,"cooking":"fresh","ref":"Café peruano - Chanchamayo - Peruvian coffee famous - Villa Rica DOP"},
@@ -32,7 +35,7 @@ export const PERUVIAN_FULL: PeruvianFullDish[] = [
   {"id":"pe_anticuchos_corazon_light","nameAr":"أنتيكوتشوس قلب لحم لايت بيروفي","nameEn":"Anticuchos corazón heart meat light Peruvian","mealType":"side","grams":80,"kcal":115,"protein":10,"carbs":1,"fat":6,"cooking":"grilled","ref":"Anticuchos de corazón - Lima - street food - national anticuchos - Gastón Acurio 2023"},
   {"id":"pe_rocoto_relleno_light","nameAr":"روكوتو ريينو فلفل محشي لايت بيروفي","nameEn":"Rocoto relleno stuffed pepper light Peruvian","mealType":"side","grams":150,"kcal":145,"protein":6,"carbs":10,"fat":8,"cooking":"oven","ref":"Rocoto relleno - Arequipa - Arequipa IGP - Larousse Perú"},
   {"id":"pe_seco_carne_light","nameAr":"سيكو كارني لحم كزبرة لايت بيروفي","nameEn":"Seco carne meat cilantro light Peruvian","mealType":"lunch","grams":180,"kcal":215,"protein":18,"carbs":4,"fat":12,"cooking":"boiled","ref":"Seco de carne - Northern Peru - Acurio"},
-  {"id":"pe_adobo_arequipeno_light","nameAr":"أدوبو أريكيبينو خنزير لايت بيروفي","nameEn":"Adobo arequipeño pork light Peruvian","mealType":"lunch","grams":180,"kcal":225,"protein":18,"carbs":2,"fat":14,"cooking":"boiled","ref":"Adobo arequipeño - Arequipa - Arequipa IGP - Larousse Perú 2024"},
+  {"id":"pe_adobo_arequipeno_beef_light","nameAr":"أدوبو أريكيبينو بلحم بقري لايت بيروفي","nameEn":"Beef adobo arequipeño light Peruvian","nameFr":"Adobo léger au bœuf façon Arequipa","nameEs":"Adobo arequipeño ligero de res","nameDe":"Leichtes Adobo mit Rindfleisch nach Arequipa-Art","mealType":"lunch","grams":180,"kcal":234,"protein":32,"carbs":4,"fat":10,"cooking":"boiled","ref":"Beef adobo arequipeño - Arequipa - Larousse Perú 2024"},
   {"id":"pe_carapulcra_light","nameAr":"كارابولكرا بطاطس مجففة لحم لايت بيروفية","nameEn":"Carapulcra dried potato meat light Peruvian","mealType":"lunch","grams":200,"kcal":195,"protein":10,"carbs":18,"fat":8,"cooking":"boiled","ref":"Carapulcra con sopa seca - Lima - Afro-Peruvian - Acurio"},
   {"id":"pe_tacu_tacu_light","nameAr":"تاكو تاكو أرز فاصوليا لايت بيروفي","nameEn":"Tacu tacu rice beans light Peruvian","mealType":"side","grams":150,"kcal":165,"protein":6,"carbs":22,"fat":5,"cooking":"pan","ref":"Tacu tacu - Afro-Peruvian - Lima - national - Acurio 2023"},
   {"id":"pe_arroz_chaufa_light","nameAr":"أرز شوفا مقلي لايت بيروفي صيني","nameEn":"Arroz chaufa fried rice light Peruvian Chifa","mealType":"lunch","grams":200,"kcal":215,"protein":10,"carbs":22,"fat":8,"cooking":"pan","ref":"Arroz chaufa - Chifa - Peruvian Chinese - Lima - Chifa 2024"},

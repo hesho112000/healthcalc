@@ -3,6 +3,9 @@ export interface SwissFullDish {
   id: string;
   nameAr: string;
   nameEn: string;
+  nameFr?: string;
+  nameEs?: string;
+  nameDe?: string;
   mealType: 'breakfast' | 'lunch' | 'dinner' | 'side' | 'salad' | 'fruit';
   grams: number;
   kcal: number;
@@ -40,7 +43,7 @@ export const SWISS_FULL: SwissFullDish[] = [
   {"id":"ch_beef_boiled_ch","nameAr":"لحم بقري مسلوق سويسري","nameEn":"Beef boiled Swiss","mealType":"lunch","grams":150,"kcal":265,"protein":32,"carbs":0,"fat":14.5,"cooking":"boiled","ref":"Boiled beef - Swiss"},
   {"id":"ch_veal_steak_grill","nameAr":"ستيك عجل مشوي سويسري","nameEn":"Veal steak grilled Swiss","mealType":"lunch","grams":150,"kcal":225,"protein":28,"carbs":0,"fat":11,"cooking":"grilled","ref":"Kalb steak - Swiss - Betty Bossi"},
   {"id":"ch_ch_breast_grill_ch","nameAr":"صدر دجاج مشوي سويسري","nameEn":"Chicken breast grilled Swiss","mealType":"lunch","grams":150,"kcal":230,"protein":33,"carbs":0,"fat":9.5,"cooking":"grilled","ref":"Poulet - Swiss"},
-  {"id":"ch_pork_sausage_grill_light_ch","nameAr":"سجق خنزير مشوي لايت سويسري 60جم","nameEn":"Pork sausage grilled light Swiss 60g","mealType":"side","grams":60,"kcal":135,"protein":7,"carbs":0.5,"fat":10,"cooking":"grilled","ref":"Bratwurst - St Gallen - Olma"},
+  {"id":"ch_beef_sausage_grill_light_ch","nameAr":"سجق لحم بقري مشوي لايت سويسري 60جم","nameEn":"Grilled beef sausage light Swiss 60g","nameFr":"Saucisse de bœuf grillée légère suisse, 60 g","nameEs":"Salchicha de res a la parrilla ligera suiza, 60 g","nameDe":"Leichte Schweizer Rinderwurst vom Grill, 60 g","mealType":"side","grams":60,"kcal":114,"protein":10,"carbs":0.5,"fat":8,"cooking":"grilled","ref":"Beef sausage - St Gallen - Olma"},
   {"id":"ch_seabass_grill_ch","nameAr":"سيباس مشوي سويسري","nameEn":"Seabass grilled Swiss","mealType":"lunch","grams":200,"kcal":225,"protein":31,"carbs":0,"fat":10,"cooking":"grilled","ref":"Fish - Swiss lakes"},
   {"id":"ch_trout_grill_ch","nameAr":"تروت مشوي سويسري","nameEn":"Trout grilled Swiss","mealType":"lunch","grams":180,"kcal":185,"protein":24,"carbs":0,"fat":8,"cooking":"grilled","ref":"Forelle - Swiss alpine lakes - Betty Bossi"},
   {"id":"ch_perch_grill_ch","nameAr":"بيرش مشوي سويسري","nameEn":"Perch grilled Swiss lake perch","mealType":"lunch","grams":150,"kcal":135,"protein":22,"carbs":0,"fat":4,"cooking":"grilled","ref":"Egli filets - Lake Zurich - Swiss national fish - Betty Bossi 2023"},
@@ -78,7 +81,7 @@ export const SWISS_FULL: SwissFullDish[] = [
   {"id":"ch_bratwurst_stgallen_60","nameAr":"براتفورست سان جالن لايت سويسرية 60جم","nameEn":"Bratwurst St Gallen light Swiss 60g","mealType":"side","grams":60,"kcal":145,"protein":7,"carbs":0.5,"fat":11,"cooking":"grilled","ref":"St Galler Bratwurst IGP - Olma"},
   {"id":"ch_schublig_light_60","nameAr":"شوبليج سجق لايت سويسري 60جم","nameEn":"Schüblig sausage light Swiss 60g","mealType":"side","grams":60,"kcal":145,"protein":7,"carbs":0.5,"fat":11,"cooking":"boiled","ref":"Schüblig - Zurich - Swiss"},
   {"id":"ch_braetwurst_light_60","nameAr":"برايت فورست سجق لايت سويسري 60جم","nameEn":"Brätwurst light Swiss 60g","mealType":"side","grams":60,"kcal":135,"protein":7,"carbs":0.5,"fat":10,"cooking":"grilled","ref":"Brätwurst - Swiss"},
-  {"id":"ch_landrauchschinken_30","nameAr":"لاندراوخ شينكن لحم مدخن سويسري 30جم","nameEn":"Landrauchschinken smoked ham Swiss 30g","mealType":"side","grams":30,"kcal":75,"protein":8,"carbs":0.2,"fat":4,"cooking":"fresh","ref":"Landrauchschinken - Swiss smoked ham"},
+  {"id":"ch_landrauch_beef_slices_30","nameAr":"شرائح لحم بقري مدخن على الطريقة السويسرية 30جم","nameEn":"Swiss-style smoked beef slices 30g","nameFr":"Tranches de bœuf fumé à la suisse, 30 g","nameEs":"Lonchas de res ahumada al estilo suizo, 30 g","nameDe":"Schweizer Scheiben vom geräucherten Rind, 30 g","mealType":"side","grams":30,"kcal":66,"protein":8,"carbs":0.2,"fat":3.5,"cooking":"fresh","ref":"Swiss-style smoked beef slices"},
   {"id":"ch_mostbroeckli_30","nameAr":"موستبروكلي لحم مدخن سويسري 30جم","nameEn":"Mostbröckli smoked beef Swiss 30g","mealType":"side","grams":30,"kcal":65,"protein":10,"carbs":0.5,"fat":1.5,"cooking":"fresh","ref":"Appenzeller Mostbröckli IGP - Appenzell"},
   {"id":"ch_fleischkaese_light_60","nameAr":"فلايشكايزي لحم رغيف لايت سويسري 60جم","nameEn":"Fleischkäse meat loaf light Swiss 60g","mealType":"side","grams":60,"kcal":125,"protein":7,"carbs":2,"fat":8,"cooking":"oven","ref":"Fleischkäse - Swiss"},
   {"id":"ch_wienerli_light_60","nameAr":"فينيرلي سجق لايت سويسري 60جم","nameEn":"Wienerli sausage light Swiss 60g","mealType":"side","grams":60,"kcal":135,"protein":6,"carbs":1,"fat":10,"cooking":"boiled","ref":"Wienerli - Swiss - kids favorite"},

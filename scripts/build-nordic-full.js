@@ -11,6 +11,77 @@ const COUNTRIES = {
 };
 const NAME_FIELDS = ['nameAr', 'nameEn', 'nameFr', 'nameEs', 'nameDe'];
 const INTERFACE = 'export interface KitchenDish { id: string; nameAr: string; nameEn: string; nameFr: string; nameEs: string; nameDe: string; category: string; mealType: string; grams: number; kcal: number; protein: number; carbs: number; fat: number; cooking?: string; region?: string; diaspora_priority?: string[]; }';
+const NAME_OVERRIDES = {
+  'dk-044': {
+    nameAr: 'بلح البحر بالأعشاب دنماركي',
+    nameEn: 'Danish Mussels with Herbs',
+    nameFr: 'Cuisine danoise : Moules aux herbes',
+    nameEs: 'Cocina danesa: Mejillones con hierbas',
+    nameDe: 'Dänische Küche: Miesmuscheln mit Kräutern',
+  },
+  'dk-045': {
+    nameAr: 'شوربة الكركند بالكريمة دنماركي',
+    nameEn: 'Danish Lobster Bisque with Cream',
+    nameFr: 'Cuisine danoise : Bisque de homard à la crème',
+    nameEs: 'Cocina danesa: Bisque de langosta con crema',
+    nameDe: 'Dänische Küche: Hummerbisque mit Sahne',
+  },
+  'dk-097': {
+    nameAr: 'بلح البحر بالطماطم دنماركي',
+    nameEn: 'Danish Mussels in Tomato Sauce',
+    nameFr: 'Cuisine danoise : Moules à la tomate',
+    nameEs: 'Cocina danesa: Mejillones en salsa de tomate',
+    nameDe: 'Dänische Küche: Miesmuscheln in Tomatensoße',
+  },
+  'dk-124': {
+    nameAr: 'أولبرود بلبن والعسل دنماركي',
+    nameEn: 'Danish Øllebrød Rye Porridge with Milk and Honey',
+    nameFr: 'Cuisine danoise : Øllebrød au lait et au miel',
+    nameEs: 'Cocina danesa: Øllebrød con leche y miel',
+    nameDe: 'Dänische Küche: Øllebrød mit Milch und Honig',
+  },
+  'no-030': {
+    nameAr: 'باكالاو بالطماطم نرويجي',
+    nameEn: 'Norwegian Bacalao Tomato Cod Stew',
+    nameFr: 'Cuisine norvégienne : Bacalao à la tomate',
+    nameEs: 'Cocina noruega: Bacalao con tomate',
+    nameDe: 'Norwegische Küche: Bacalao mit Tomaten',
+  },
+  'no-201': {
+    nameAr: 'بلح البحر بالأعشاب نرويجي',
+    nameEn: 'Norwegian Mussels Steamed with Herbs',
+    nameFr: 'Cuisine norvégienne : Moules aux herbes',
+    nameEs: 'Cocina noruega: Mejillones al vapor con hierbas',
+    nameDe: 'Norwegische Küche: Miesmuscheln mit Kräutern',
+  },
+  'no-202': {
+    nameAr: 'شوربة المأكولات البحرية نرويجي',
+    nameEn: 'Norwegian Seafood Chowder',
+    nameFr: 'Cuisine norvégienne : Chowder de fruits de mer',
+    nameEs: 'Cocina noruega: Chowder de marisco',
+    nameDe: 'Norwegische Küche: Meeresfrüchte-Chowder',
+  },
+  'se-029': {
+    nameAr: 'ستيومانس بيف بالبطاطس حلال سويدي',
+    nameEn: 'Swedish Sjömansbiff Halal Beef and Potato Bake',
+    nameFr: 'Cuisine suédoise : Sjömansbiff au bœuf halal',
+    nameEs: 'Cocina sueca: Sjömansbiff con ternera halal',
+    nameDe: 'Schwedische Küche: Sjömansbiff, Halal-Rind-Kartoffelauflauf',
+  },
+  'se-041': {
+    nameAr: 'يخنة السمك بالزعفران سويدي',
+    nameEn: 'Swedish Saffron Fish Stew',
+    nameFr: 'Cuisine suédoise : Mijoté de poisson au safran',
+    nameEs: 'Cocina sueca: Guiso de pescado con azafrán',
+    nameDe: 'Schwedische Küche: Safran-Fischeintopf',
+  },
+};
+
+function applyNameOverrides(rows) {
+  for (const row of rows) {
+    if (NAME_OVERRIDES[row.id]) Object.assign(row, NAME_OVERRIDES[row.id]);
+  }
+}
 
 function compareParts(left, right) {
   return left.localeCompare(right, undefined, { numeric: true });
@@ -51,6 +122,7 @@ async function buildCountry(countryId) {
     }
     return { ...row, id: `${country.prefix}-${String(index + 1).padStart(3, '0')}` };
   });
+  applyNameOverrides(rows);
   if (rows.length !== 350) throw new Error(`${country.label} expects 350 merged rows; got ${rows.length}`);
 
   const output = resolve(ROOT, 'src', 'data', `${countryId}-full.ts`);

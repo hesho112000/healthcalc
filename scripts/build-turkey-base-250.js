@@ -20,6 +20,15 @@ const TOKEN = Object.fromEntries(REGIONS.map((r, i) => [r, TOKENS[i]]));
 const BASE_DIASPORA = ['turkish', 'middle_eastern', 'mediterranean', 'halal_lifestyle'];
 const EXTRA = { istanbul: 'istanbulite', gaziantep: 'southeastern', trabzon: 'black_sea' };
 const LANG = ['nameAr', 'nameEn', 'nameFr', 'nameEs', 'nameDe'];
+const NAME_OVERRIDES = {
+  'tr-base-249': {
+    nameAr: 'شوربة السمك بالخضار تركي',
+    nameEn: 'Turkish Fish Soup with Vegetables',
+    nameFr: 'Cuisine turque : Soupe de poisson aux légumes',
+    nameEs: 'Cocina turca: Sopa de pescado con verduras',
+    nameDe: 'Türkische Küche: Fischsuppe mit Gemüse',
+  },
+};
 const CATEGORIES = new Set(['breakfast_items', 'rice_dishes', 'noodle_dishes', 'soups_stews', 'poultry_mains', 'meat_mains', 'fish_seafood', 'vegetable_mains', 'street_snacks', 'rice_cakes_sweets', 'condiments_sauces', 'beverages', 'fruit']);
 const MEALS = new Set(['breakfast', 'lunch', 'dinner', 'snack']);
 const fold = (s) => String(s ?? '').replace(/[ً-ْٰ]/g, '').replace(/ـ/g, '').replace(/[أإآ]/g, 'ا').replace(/ؤ/g, 'و').replace(/ئ/g, 'ي').replace(/ى/g, 'ي').replace(/ة/g, 'ه');
@@ -31,6 +40,7 @@ for (let i = 1; i <= 5; i++) {
   if (!existsSync(file)) throw new Error(`Missing ${file}`);
   rows.push(...(await import(pathToFileURL(file).href)).default);
 }
+rows.forEach((r, i) => Object.assign(r, NAME_OVERRIDES[`tr-base-${String(i + 1).padStart(3, '0')}`] ?? {}));
 const errors = [];
 const seen = Object.fromEntries(LANG.map((k) => [k, new Set()]));
 for (const [i, r] of rows.entries()) {

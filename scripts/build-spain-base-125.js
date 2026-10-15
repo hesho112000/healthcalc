@@ -20,6 +20,43 @@ const TOKEN = Object.fromEntries(REGIONS.map((r, i) => [r, TOKENS[i]]));
 const BASE_DIASPORA = ['spanish', 'western', 'comfort_food', 'mediterranean'];
 const EXTRA = { madrid: 'madrilenian', barcelona: 'catalan', andalusia: 'andalusian' };
 const LANG = ['nameAr', 'nameEn', 'nameFr', 'nameEs', 'nameDe'];
+const NAME_OVERRIDES = {
+  'es-base-077': {
+    nameAr: 'يخنة المأكولات البحرية الكتالونية إسباني',
+    nameEn: 'Spanish Zarzuela Seafood Stew',
+    nameFr: 'Cuisine espagnole : Zarzuela de fruits de mer',
+    nameEs: 'Cocina española: Zarzuela de marisco',
+    nameDe: 'Spanische Küche: Zarzuela, Meeresfrüchteeintopf',
+  },
+  'es-base-116': {
+    nameAr: 'ذيل الثور المطهو بالخضار إسباني',
+    nameEn: 'Spanish Rabo de Toro Oxtail Stew',
+    nameFr: 'Cuisine espagnole : Rabo de toro aux légumes',
+    nameEs: 'Cocina española: Rabo de toro con verduras',
+    nameDe: 'Spanische Küche: Rabo de Toro mit Gemüse',
+  },
+  'es-base-117': {
+    nameAr: 'هيك بصلصة خضراء بالمحار إسباني',
+    nameEn: 'Spanish Merluza en Salsa Verde with Clams',
+    nameFr: 'Cuisine espagnole : Merlu en sauce verte aux palourdes',
+    nameEs: 'Cocina española: Merluza en salsa verde con almejas',
+    nameDe: 'Spanische Küche: Merluza in grüner Soße mit Venusmuscheln',
+  },
+  'es-base-123': {
+    nameAr: 'خدود بقر مطهوة بالخضار إسباني',
+    nameEn: 'Spanish Braised Beef Cheeks with Vegetables',
+    nameFr: 'Cuisine espagnole : Joues de bœuf braisées aux légumes',
+    nameEs: 'Cocina española: Carrilleras de ternera con verduras',
+    nameDe: 'Spanische Küche: Geschmorte Rinderbäckchen mit Gemüse',
+  },
+  'es-base-124': {
+    nameAr: 'دجاج بالثوم والليمون إسباني',
+    nameEn: 'Spanish Pollo al Ajillo with Lemon',
+    nameFr: 'Cuisine espagnole : Poulet à l’ail et au citron',
+    nameEs: 'Cocina española: Pollo al ajillo con limón',
+    nameDe: 'Spanische Küche: Knoblauchhähnchen mit Zitrone',
+  },
+};
 const CATEGORIES = new Set(['breakfast_items', 'rice_dishes', 'noodle_dishes', 'soups_stews', 'poultry_mains', 'meat_mains', 'fish_seafood', 'vegetable_mains', 'street_snacks', 'rice_cakes_sweets', 'condiments_sauces', 'beverages', 'fruit']);
 const MEALS = new Set(['breakfast', 'lunch', 'dinner', 'snack']);
 const fold = (s) => String(s ?? '').replace(/[ً-ْٰ]/g, '').replace(/ـ/g, '').replace(/[أإآ]/g, 'ا').replace(/ؤ/g, 'و').replace(/ئ/g, 'ي').replace(/ى/g, 'ي').replace(/ة/g, 'ه');
@@ -31,6 +68,7 @@ for (let i = 1; i <= 3; i++) {
   if (!existsSync(file)) throw new Error(`Missing ${file}`);
   rows.push(...(await import(pathToFileURL(file).href)).default);
 }
+rows.forEach((r, i) => Object.assign(r, NAME_OVERRIDES[`es-base-${String(i + 1).padStart(3, '0')}`] ?? {}));
 const errors = [];
 const seen = Object.fromEntries(LANG.map((k) => [k, new Set()]));
 for (const [i, r] of rows.entries()) {

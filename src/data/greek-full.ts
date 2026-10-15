@@ -3,6 +3,9 @@ export interface GreekFullDish {
   id: string;
   nameAr: string;
   nameEn: string;
+  nameFr?: string;
+  nameEs?: string;
+  nameDe?: string;
   mealType: 'breakfast' | 'lunch' | 'dinner' | 'side' | 'salad' | 'fruit';
   grams: number;
   kcal: number;
@@ -26,7 +29,7 @@ export const GREEK_FULL: GreekFullDish[] = [
   {"id":"gr_pastitsio_light","nameAr":"باستيتسيو لايت يوناني","nameEn":"Pastitsio light Greek","mealType":"lunch","grams":250,"kcal":275,"protein":14,"carbs":22,"fat":14,"cooking":"oven","ref":"Pastitsio - Vefa"},
   {"id":"gr_gemista_light","nameAr":"جيميستا خضار محشي لايت يوناني","nameEn":"Gemista stuffed veg light Greek","mealType":"lunch","grams":250,"kcal":135,"protein":3,"carbs":18,"fat":5,"cooking":"oven","ref":"Gemista summer - Diane Kochilas 2023"},
   {"id":"gr_souvlaki_ch_grill","nameAr":"سوفلاكي دجاج مشوي يوناني","nameEn":"Souvlaki chicken grilled Greek","mealType":"lunch","grams":150,"kcal":195,"protein":22,"carbs":2,"fat":10,"cooking":"grilled","ref":"Souvlaki kotopoulo - Akis 2024"},
-  {"id":"gr_souvlaki_pork_grill","nameAr":"سوفلاكي لحم خنزير مشوي يوناني لايت","nameEn":"Souvlaki pork grilled light Greek","mealType":"lunch","grams":150,"kcal":225,"protein":20,"carbs":2,"fat":14,"cooking":"grilled","ref":"Souvlaki - Larousse Greece"},
+  {"id":"gr_souvlaki_chicken_grill","nameAr":"سوفلاكي دجاج مشوي يوناني لايت","nameEn":"Grilled chicken souvlaki light Greek","nameFr":"Souvlaki léger de poulet grillé à la grecque","nameEs":"Souvlaki ligero de pollo a la parrilla griego","nameDe":"Leichtes griechisches Hähnchen-Souvlaki vom Grill","mealType":"lunch","grams":150,"kcal":208,"protein":32,"carbs":2,"fat":8,"cooking":"grilled","ref":"Chicken souvlaki - Larousse Greece"},
   {"id":"gr_gyros_ch_light","nameAr":"جيروس دجاج لايت يوناني","nameEn":"Gyros chicken light Greek","mealType":"lunch","grams":150,"kcal":215,"protein":20,"carbs":4,"fat":12,"cooking":"grilled","ref":"Gyros kotopoulo light"},
   {"id":"gr_kleftiko_light","nameAr":"كليفتيكو لحم خروف لايت يوناني","nameEn":"Kleftiko lamb light Greek","mealType":"lunch","grams":200,"kcal":285,"protein":22,"carbs":4,"fat":18,"cooking":"oven","ref":"Kleftiko slow lamb - Vefa"},
   {"id":"gr_stifado_light","nameAr":"ستيفادو لحم بقري بصل لايت يوناني","nameEn":"Stifado beef onion light Greek","mealType":"lunch","grams":250,"kcal":245,"protein":22,"carbs":10,"fat":12,"cooking":"boiled","ref":"Stifado beef stew - Diane Kochilas"},
@@ -87,7 +90,7 @@ export const GREEK_FULL: GreekFullDish[] = [
   {"id":"gr_revithada_light","nameAr":"ريفيتادا حمص فرن يونانية لايت","nameEn":"Revithada chickpea oven Greek light","mealType":"lunch","grams":200,"kcal":165,"protein":7,"carbs":20,"fat":4.5,"cooking":"oven","ref":"Revithada Sifnos - Greek - Vefa"},
   {"id":"gr_lavrakia_plaki_light","nameAr":"لافراكي بلاكي سيباس فرن يوناني لايت","nameEn":"Lavrakia plaki sea bass oven light Greek","mealType":"lunch","grams":200,"kcal":185,"protein":22,"carbs":4,"fat":7,"cooking":"oven","ref":"Psari plaki - Greek - Akis"},
   {"id":"gr_giouvetsi_garides","nameAr":"جيوفيتسي روبيان يوناني","nameEn":"Giouvetsi garides shrimp orzo Greek","mealType":"lunch","grams":250,"kcal":225,"protein":16,"carbs":22,"fat":6,"cooking":"oven","ref":"Garides giouvetsi - Greek - Vefa"},
-  {"id":"gr_kotopoulo_krasato_light","nameAr":"كوتوبولو كراساتو دجاج نبيذ يوناني لايت","nameEn":"Kotopoulo krasato chicken wine light Greek","mealType":"lunch","grams":200,"kcal":195,"protein":20,"carbs":4,"fat":10,"cooking":"boiled","ref":"Kotopoulo krasato - Greek - Diane Kochilas"},
+  {"id":"gr_kotopoulo_lemon_light","nameAr":"دجاج يوناني مطهو بمرق الليمون والأعشاب لايت","nameEn":"Greek chicken braised with lemon and herbs light","nameFr":"Poulet grec léger mijoté au citron et aux herbes","nameEs":"Pollo griego ligero guisado con limón y hierbas","nameDe":"Leichtes griechisches Hähnchen mit Zitrone und Kräutern","mealType":"lunch","grams":200,"kcal":212,"protein":30,"carbs":5,"fat":8,"cooking":"boiled","ref":"Kotopoulo krasato-inspired chicken with lemon broth - Diane Kochilas"},
   {"id":"gr_bifteki_grill_light","nameAr":"بيفتيكي لحم مفروم مشوي لايت يوناني","nameEn":"Bifteki minced meat grilled light Greek","mealType":"lunch","grams":120,"kcal":185,"protein":16,"carbs":2,"fat":11,"cooking":"grilled","ref":"Bifteki - Greek - Akis"},
   {"id":"gr_paidakia_grill","nameAr":"بايدااكيا ضلوع خروف مشوية يونانية","nameEn":"Paidakia lamb chops grilled Greek","mealType":"lunch","grams":150,"kcal":295,"protein":22,"carbs":0,"fat":21,"cooking":"grilled","ref":"Paidakia - Greek Easter - Vefa"},
   {"id":"gr_kokoretsi_light_60","nameAr":"كوكوريتسي لايت يوناني 60جم","nameEn":"Kokoretsi light Greek 60g","mealType":"side","grams":60,"kcal":115,"protein":8,"carbs":1,"fat":8,"cooking":"grilled","ref":"Kokoretsi - Greek Easter light"},

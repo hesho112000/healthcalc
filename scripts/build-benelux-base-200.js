@@ -24,6 +24,25 @@ const CATEGORIES = new Set(['breakfast_items', 'rice_dishes', 'noodle_dishes', '
 const MEALS = new Set(['breakfast', 'lunch', 'dinner', 'snack']);
 const fold = (s) => String(s ?? '').replace(/[ً-ْٰ]/g, '').replace(/ـ/g, '').replace(/[أإآ]/g, 'ا').replace(/ؤ/g, 'و').replace(/ئ/g, 'ي').replace(/ى/g, 'ي').replace(/ة/g, 'ه');
 const norm = (s) => String(s ?? '').normalize('NFC').replace(/\s+/g, ' ').trim().toLocaleLowerCase();
+const NAME_OVERRIDES = {
+  'bx-base-040': {
+    nameEn: 'Benelux Carbonnade Flamande with Halal Beef',
+    nameFr: 'Cuisine benelux : Carbonnade flamande au bœuf halal',
+    nameEs: 'Cocina benelux: Carbonada flamenca con ternera halal',
+    nameDe: 'Benelux-Küche: Flämische Carbonnade mit Halal-Rind',
+  },
+  'bx-base-043': {
+    nameEn: 'Benelux Stoofvlees Halal Beef Stew',
+    nameFr: 'Cuisine benelux : Stoofvlees au bœuf halal',
+    nameEs: 'Cocina benelux: Stoofvlees de ternera halal',
+    nameDe: 'Benelux-Küche: Stoofvlees mit Halal-Rind',
+  },
+};
+function applyNameOverrides(items) {
+  for (const item of items) {
+    if (NAME_OVERRIDES[item.id]) Object.assign(item, NAME_OVERRIDES[item.id]);
+  }
+}
 
 const rows = [];
 for (let i = 1; i <= 4; i++) {
@@ -31,6 +50,8 @@ for (let i = 1; i <= 4; i++) {
   if (!existsSync(file)) throw new Error(`Missing ${file}`);
   rows.push(...(await import(pathToFileURL(file).href)).default);
 }
+rows.forEach((row, index) => { row.id = `bx-base-${String(index + 1).padStart(3, '0')}`; });
+applyNameOverrides(rows);
 const errors = [];
 const seen = Object.fromEntries(LANG.map((k) => [k, new Set()]));
 for (const [i, r] of rows.entries()) {
@@ -80,7 +101,7 @@ if (errors.length) {
   process.exit(1);
 }
 const dishes = rows.map((r, i) => ({
-  id: `bx-base-${String(i + 1).padStart(3, '0')}`,
+  id: r.id,
   name_ar: r.nameAr, name_en: r.nameEn, name_fr: r.nameFr, name_es: r.nameEs, name_de: r.nameDe,
   category: r.category, mealType: r.mealType, region: r.region, cal_100: r.kcal,
   protein: r.protein, carbs: r.carbs, fat: r.fat, source: SOURCE,

@@ -240,6 +240,16 @@ function getObjectMap(source, name) {
   return result;
 }
 
+function getNamedObject(source, name) {
+  const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const declaration = new RegExp(`['\"]${escaped}['\"]\\s*:\\s*\\{`);
+  const match = declaration.exec(source);
+  if (!match) return {};
+  const start = source.indexOf('{', match.index + match[0].length - 1);
+  const end = findBalancedEnd(source, start, '{', '}');
+  return end < 0 ? {} : parseObject(source.slice(start, end));
+}
+
 function getTopLevelArrays(source) {
   const arrays = new Map();
   const declaration = /export\s+const\s+([\w$]+)\s*(?::[^=]+)?=\s*\[/g;
@@ -477,26 +487,35 @@ function validateDishes() {
       if (fs.existsSync(jsonPath)) {
         try {
           const source = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
-          records = (source.categories ?? []).flatMap((category) => category.dishes ?? []).map((dish) => ({
-            record: {
-              id: dish.id,
-              nameAr: dish.nameAr ?? dish.name_ar ?? dish.name ?? '',
-              nameEn: dish.nameEn ?? dish.name_en ?? '',
-              nameFr: dish.nameFr ?? dish.name_fr ?? '',
-              nameEs: dish.nameEs ?? dish.name_es ?? '',
-              nameDe: dish.nameDe ?? dish.name_de ?? '',
-              descriptionAr: dish.descriptionAr ?? dish.description_ar ?? '',
-              descriptionEn: dish.descriptionEn ?? dish.description_en ?? '',
-              descriptionFr: dish.descriptionFr ?? dish.description_fr ?? '',
-              descriptionEs: dish.descriptionEs ?? dish.description_es ?? '',
-              descriptionDe: dish.descriptionDe ?? dish.description_de ?? '',
-              kcal: dish.kcal ?? dish.cal_100,
-              protein: dish.protein ?? dish.p,
-              carbs: dish.carbs ?? dish.c,
-              fat: dish.fat ?? dish.f,
-            },
-            name: 'imported-json',
-          }));
+          const egyptianSource = kitchenId === 'egyptian'
+            ? fs.readFileSync(path.join(DATA_DIR, 'egyptian-full.ts'), 'utf8')
+            : '';
+          const egyptianOverrides = egyptianSource
+            ? Object.fromEntries(['Pork Meat', 'Non-Alcoholic Beer', 'Beef Frankfurter', 'Beef Sausage', 'Grilled Beef Sausage', 'Chicken Frankfurter', 'Turkey Frankfurter', 'Meat & Sausage Pizza'].map((name) => [name, getNamedObject(egyptianSource, name)]))
+            : {};
+          records = (source.categories ?? []).flatMap((category) => category.dishes ?? []).map((dish) => {
+            const override = egyptianOverrides[dish.nameEn] ?? {};
+            return {
+              record: {
+                id: dish.id,
+                nameAr: override.nameAr ?? dish.nameAr ?? dish.name_ar ?? dish.name ?? '',
+                nameEn: override.nameEn ?? dish.nameEn ?? dish.name_en ?? '',
+                nameFr: override.nameFr ?? dish.nameFr ?? dish.name_fr ?? '',
+                nameEs: override.nameEs ?? dish.nameEs ?? dish.name_es ?? '',
+                nameDe: override.nameDe ?? dish.nameDe ?? dish.name_de ?? '',
+                descriptionAr: dish.descriptionAr ?? dish.description_ar ?? '',
+                descriptionEn: dish.descriptionEn ?? dish.description_en ?? '',
+                descriptionFr: dish.descriptionFr ?? dish.description_fr ?? '',
+                descriptionEs: dish.descriptionEs ?? dish.description_es ?? '',
+                descriptionDe: dish.descriptionDe ?? dish.description_de ?? '',
+                kcal: override.cal_100 ?? dish.kcal ?? dish.cal_100,
+                protein: override.p ?? dish.protein ?? dish.p,
+                carbs: override.c ?? dish.carbs ?? dish.c,
+                fat: override.f ?? dish.fat ?? dish.f,
+              },
+              name: 'imported-json',
+            };
+          });
         } catch (error) {
           addIssue('dishes', 'invalid-source-json', jsonFile, kitchenId, String(error));
         }

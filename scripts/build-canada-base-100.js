@@ -26,6 +26,19 @@ const REGIONS = new Set([
   'atlantic_canada', 'northern_canada', 'indigenous_canada',
 ]);
 const TOKENS = ['كندي'];
+const NAME_OVERRIDES = {
+  'canada-base-003': {
+    nameAr: 'شرائح لحم بقري مقدد حلال كندي',
+    nameEn: 'Canadian Halal Cured Beef Strips',
+    nameFr: 'Lanières de bœuf salé halal canadiennes',
+    nameEs: 'Tiras de ternera curada halal canadienses',
+    nameDe: 'Kanadische halal gepökelte Rindfleischstreifen',
+  },
+  'canada-base-071': {
+    nameAr: 'سلطة سيزر كندي',
+    nameEn: 'Canadian Caesar Salad',
+  },
+};
 
 let rows = [];
 const BASE_ABS = resolve(process.cwd(), 'scripts', 'canada-base-data');
@@ -35,6 +48,10 @@ for (let i = 1; i <= 20; i++) {
   const m = await import(pathToFileURL(file).href);
   rows = rows.concat(m.default);
 }
+rows.forEach((row, index) => {
+  row.id = `canada-base-${String(index + 1).padStart(3, '0')}`;
+  if (NAME_OVERRIDES[row.id]) Object.assign(row, NAME_OVERRIDES[row.id]);
+});
 
 const errors = [];
 const warn = [];
@@ -156,7 +173,7 @@ const toDb = (r) => ({
 });
 
 const payload = rows.map((r, i) => ({
-  id: `canada-base-${String(i + 1).padStart(3, '0')}`,
+  id: r.id,
   ...toDb(r),
   grams: r.grams,
   cooking: r.cooking,
@@ -167,7 +184,7 @@ const esc = (s) => String(s).replace(/\\/g, '\\\\').replace(/"/g, '\\"');
 const body = rows
   .map(
     (r, i) => `    {
-      "id": "canada-base-${String(i + 1).padStart(3, '0')}",
+      "id": "${r.id}",
       "nameAr": "${esc(r.nameAr)}",
       "nameEn": "${esc(r.nameEn)}",
       "nameFr": "${esc(r.nameFr)}",

@@ -3,6 +3,9 @@ export interface JamaicanFullDish {
   id: string;
   nameAr: string;
   nameEn: string;
+  nameFr?: string;
+  nameEs?: string;
+  nameDe?: string;
   mealType: 'breakfast' | 'lunch' | 'dinner' | 'side' | 'salad' | 'fruit';
   grams: number;
   kcal: number;
@@ -23,7 +26,7 @@ export const JAMAICAN_FULL: JamaicanFullDish[] = [
   {"id":"jm_cornmeal_porridge_light","nameAr":"عصيدة ذرة لايت جامايكية 200مل","nameEn":"Cornmeal porridge light Jamaican 200ml","mealType":"breakfast","grams":200,"kcal":95,"protein":2,"carbs":18,"fat":1,"cooking":"boiled","ref":"Cornmeal porridge - Jamaican breakfast - Donaldson"},
   {"id":"jm_mango_bf_jm","nameAr":"مانجو فطار جامايكي","nameEn":"Mango breakfast Jamaican","mealType":"breakfast","grams":150,"kcal":90,"protein":1.2,"carbs":22.5,"fat":0.6,"cooking":"fresh","ref":"Mango - Jamaican - Julie mango"},
   {"id":"jm_jerk_chicken_light","nameAr":"جيرك تشيكن دجاج متبل لايت جامايكي","nameEn":"Jerk chicken light Jamaican spicy chicken","mealType":"lunch","grams":150,"kcal":195,"protein":20,"carbs":2,"fat":10,"cooking":"grilled","ref":"Jerk chicken - national Jamaican - Boston Bay Jamaica IGP - Enid Donaldson 2023 - Larousse Caribbean 2024 - Walkerswood"},
-  {"id":"jm_jerk_pork_light","nameAr":"جيرك بورك لحم خنزير لايت جامايكي","nameEn":"Jerk pork light Jamaican pork","mealType":"lunch","grams":150,"kcal":235,"protein":18,"carbs":2,"fat":14,"cooking":"grilled","ref":"Jerk pork - Jamaican - Boston - Donaldson"},
+  {"id":"jm_jerk_chicken_alt_light","nameAr":"دجاج جيرك لايت جامايكي","nameEn":"Jerk chicken light Jamaican","nameFr":"Poulet jerk léger jamaïcain","nameEs":"Pollo jerk ligero jamaicano","nameDe":"Leichtes jamaikanisches Jerk-Hähnchen","mealType":"lunch","grams":150,"kcal":208,"protein":32,"carbs":2,"fat":8,"cooking":"grilled","ref":"Jerk chicken - Jamaican - Boston - Donaldson"},
   {"id":"jm_curry_goat_light","nameAr":"كاري جووت لحم ماعز لايت جامايكي","nameEn":"Curry goat light Jamaican goat curry","mealType":"lunch","grams":180,"kcal":215,"protein":20,"carbs":2,"fat":12,"cooking":"boiled","ref":"Curry goat - Jamaican - Indian influence - Donaldson 2023 - national curry"},
   {"id":"jm_oxtail_stew_light","nameAr":"أوكستيل ستو ذيل ثور لايت جامايكي","nameEn":"Oxtail stew light Jamaican oxtail","mealType":"lunch","grams":180,"kcal":225,"protein":18,"carbs":2,"fat":14,"cooking":"boiled","ref":"Oxtail stew - Jamaican national stew - Donaldson 2023"},
   {"id":"jm_brown_stew_chicken_light","nameAr":"براون ستو تشيكن دجاج بني لايت جامايكي","nameEn":"Brown stew chicken light Jamaican","mealType":"lunch","grams":180,"kcal":205,"protein":18,"carbs":4,"fat":10,"cooking":"boiled","ref":"Brown stew chicken - Jamaican - Donaldson"},
@@ -42,7 +45,7 @@ export const JAMAICAN_FULL: JamaicanFullDish[] = [
   {"id":"jm_beef_boiled_jm","nameAr":"لحم بقري مسلوق جامايكي","nameEn":"Beef boiled Jamaican","mealType":"lunch","grams":150,"kcal":265,"protein":32,"carbs":0,"fat":14.5,"cooking":"boiled","ref":"Beef - Jamaican"},
   {"id":"jm_goat_curry_jm","nameAr":"لحم ماعز كاري جامايكي","nameEn":"Goat curry Jamaican","mealType":"lunch","grams":150,"kcal":215,"protein":20,"carbs":2,"fat":12,"cooking":"boiled","ref":"Goat - Jamaican curry"},
   {"id":"jm_ch_breast_grill_jm","nameAr":"صدر دجاج مشوي جامايكي","nameEn":"Chicken breast grilled Jamaican","mealType":"lunch","grams":150,"kcal":230,"protein":33,"carbs":0,"fat":9.5,"cooking":"grilled","ref":"Chicken - Jamaican jerk"},
-  {"id":"jm_pork_grill_jm","nameAr":"لحم خنزير مشوي جامايكي","nameEn":"Pork grilled Jamaican","mealType":"lunch","grams":150,"kcal":265,"protein":22,"carbs":0,"fat":18,"cooking":"grilled","ref":"Pork - Jamaican jerk"},
+  {"id":"jm_beef_grill_jm","nameAr":"لحم بقري مشوي جامايكي","nameEn":"Grilled beef Jamaican","nameFr":"Bœuf grillé jamaïcain","nameEs":"Carne de res a la parrilla jamaicana","nameDe":"Jamaikanisches Rindfleisch vom Grill","mealType":"lunch","grams":150,"kcal":238,"protein":32,"carbs":0.5,"fat":12,"cooking":"grilled","ref":"Beef - Jamaican jerk seasoning"},
   {"id":"jm_seabass_grill_jm","nameAr":"سيباس مشوي جامايكي","nameEn":"Seabass grilled Jamaican","mealType":"lunch","grams":200,"kcal":225,"protein":31,"carbs":0,"fat":10,"cooking":"grilled","ref":"Fish - Jamaican - snapper"},
   {"id":"jm_snapper_grill_jm","nameAr":"نهاش مشوي جامايكي","nameEn":"Snapper grilled Jamaican","mealType":"lunch","grams":200,"kcal":215,"protein":28,"carbs":0,"fat":10,"cooking":"grilled","ref":"Snapper - Jamaican - red snapper"},
   {"id":"jm_shrimp_grill_jm","nameAr":"روبيان مشوي جامايكي","nameEn":"Shrimp grilled Jamaican","mealType":"lunch","grams":150,"kcal":145,"protein":26,"carbs":1,"fat":2.5,"cooking":"grilled","ref":"Shrimp - Jamaican"},
@@ -93,7 +96,7 @@ export const JAMAICAN_FULL: JamaicanFullDish[] = [
   {"id":"jm_sardine_rundown_light","nameAr":"سردين راندون لايت جامايكي","nameEn":"Sardine rundown light Jamaican","mealType":"side","grams":120,"kcal":135,"protein":12,"carbs":2,"fat":7,"cooking":"boiled","ref":"Sardine rundown - Jamaican"},
   {"id":"jm_curry_lobster_light_jm","nameAr":"كاري جراد بحر لايت جامايكي","nameEn":"Curry lobster light Jamaican","mealType":"lunch","grams":150,"kcal":135,"protein":20,"carbs":2,"fat":4,"cooking":"pan","ref":"Curry lobster - Jamaican - Portland"},
   {"id":"jm_pepper_steak_light_jm","nameAr":"بيبر ستيك فلفل ستيك لايت جامايكي","nameEn":"Pepper steak light Jamaican","mealType":"lunch","grams":150,"kcal":195,"protein":18,"carbs":2,"fat":10,"cooking":"pan","ref":"Pepper steak - Jamaican - Donaldson"},
-  {"id":"jm_brown_stew_pork_light","nameAr":"براون ستو بورك لحم خنزير لايت جامايكي","nameEn":"Brown stew pork light Jamaican","mealType":"lunch","grams":150,"kcal":215,"protein":16,"carbs":2,"fat":14,"cooking":"boiled","ref":"Brown stew pork - Jamaican"},
+  {"id":"jm_brown_stew_beef_light","nameAr":"لحم بقري مطهو ببطء بصلصة بنية لايت جامايكي","nameEn":"Brown stew beef light Jamaican","nameFr":"Bœuf mijoté en sauce brune léger jamaïcain","nameEs":"Estofado ligero de res en salsa oscura jamaicano","nameDe":"Leichtes jamaikanisches Rinderschmorgericht in dunkler Sauce","mealType":"lunch","grams":150,"kcal":222,"protein":28,"carbs":5,"fat":10,"cooking":"boiled","ref":"Brown stew beef - Jamaican"},
   {"id":"jm_fricassee_chicken_light","nameAr":"فريكاسي دجاج لايت جامايكي","nameEn":"Fricassee chicken light Jamaican","mealType":"lunch","grams":180,"kcal":195,"protein":18,"carbs":2,"fat":10,"cooking":"boiled","ref":"Fricassee chicken - Jamaican - Donaldson"},
   {"id":"jm_sweet_sour_fish_light","nameAr":"سويت آند ساور فيش سمك لايت جامايكي","nameEn":"Sweet and sour fish light Jamaican","mealType":"lunch","grams":180,"kcal":165,"protein":18,"carbs":6,"fat":6,"cooking":"pan","ref":"Sweet and sour fish - Jamaican Chinese influence"},
   {"id":"jm_coconut_shrimp_light","nameAr":"كوكو نات شريمب روبيان جوز هند لايت جامايكي","nameEn":"Coconut shrimp light Jamaican coconut","mealType":"side","grams":80,"kcal":115,"protein":6,"carbs":6,"fat":6,"cooking":"oven","ref":"Coconut shrimp - Jamaican - light"},

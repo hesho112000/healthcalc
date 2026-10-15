@@ -3,6 +3,9 @@ export interface AmericanFullDish {
   id: string;
   nameAr: string;
   nameEn: string;
+  nameFr?: string;
+  nameEs?: string;
+  nameDe?: string;
   mealType: 'breakfast' | 'lunch' | 'dinner' | 'side' | 'salad' | 'fruit';
   grams: number;
   kcal: number;
@@ -16,7 +19,7 @@ export interface AmericanFullDish {
 export const AMERICAN_FULL: AmericanFullDish[] = [
   {"id":"us_pancakes_maple_light_2","nameAr":"بانكيك ميبل لايت أمريكي 2","nameEn":"Pancakes maple light American 2","mealType":"breakfast","grams":80,"kcal":165,"protein":3,"carbs":24,"fat":5.5,"cooking":"pan","ref":"Pancakes - American breakfast classic - King Arthur Flour 2023 - Joy of Cooking 2024"},
   {"id":"us_waffles_light_1","nameAr":"وافل لايت أمريكي 1","nameEn":"Waffles light American 1","mealType":"breakfast","grams":70,"kcal":145,"protein":3,"carbs":20,"fat":5,"cooking":"oven","ref":"Waffles - American - Betty Crocker 2023"},
-  {"id":"us_bacon_eggs_light","nameAr":"بيكون بيض لايت أمريكي","nameEn":"Bacon eggs light American","mealType":"breakfast","grams":100,"kcal":185,"protein":10,"carbs":1,"fat":14,"cooking":"pan","ref":"Bacon and eggs - American breakfast - Joy of Cooking"},
+  {"id":"us_turkey_egg_scramble_light","nameAr":"بيض مخفوق مع شرائح ديك رومي مدخن لايت أمريكي","nameEn":"Eggs with smoked turkey strips light American","nameFr":"Œufs aux lamelles de dinde fumée, légers","nameEs":"Huevos con tiras de pavo ahumado, ligeros","nameDe":"Eier mit geräucherten Putenstreifen, leicht","mealType":"breakfast","grams":100,"kcal":137,"protein":13,"carbs":1,"fat":9,"cooking":"pan","ref":"Eggs with smoked turkey strips - American breakfast"},
   {"id":"us_french_toast_light_1","nameAr":"فرينش توست لايت أمريكي 1","nameEn":"French toast light American 1","mealType":"breakfast","grams":70,"kcal":135,"protein":4,"carbs":16,"fat":4.5,"cooking":"pan","ref":"French toast - American diner - Betty Crocker"},
   {"id":"us_bagel_cream_cheese_light","nameAr":"بيجل كريم تشيز لايت أمريكي","nameEn":"Bagel cream cheese light American","mealType":"breakfast","grams":80,"kcal":165,"protein":4,"carbs":22,"fat":5,"cooking":"fresh","ref":"Bagel - New York - American breakfast - King Arthur"},
   {"id":"us_oatmeal_berries","nameAr":"شوفان توت أمريكي","nameEn":"Oatmeal berries American","mealType":"breakfast","grams":200,"kcal":135,"protein":5,"carbs":22,"fat":2.5,"cooking":"boiled","ref":"Oatmeal - American healthy breakfast - USDA"},
@@ -69,7 +72,7 @@ export const AMERICAN_FULL: AmericanFullDish[] = [
   {"id":"us_apple_pie_light_80","nameAr":"أبل باي لايت أمريكي 80جم","nameEn":"Apple pie light American 80g","mealType":"side","grams":80,"kcal":135,"protein":1.5,"carbs":20,"fat":4.5,"cooking":"oven","ref":"Apple pie - national American dessert light - Betty Crocker 2023"},
   {"id":"us_brownie_light_40","nameAr":"براوني لايت أمريكي 40جم","nameEn":"Brownie light American 40g","mealType":"side","grams":40,"kcal":115,"protein":1.5,"carbs":14,"fat":5.5,"cooking":"baked","ref":"Brownie - American - Ghirardelli light"},
   {"id":"us_nashville_hot_chicken_light","nameAr":"ناشفيل هوت تشيكن لايت أمريكي","nameEn":"Nashville hot chicken light American","mealType":"lunch","grams":150,"kcal":235,"protein":18,"carbs":6,"fat":14,"cooking":"oven","ref":"Nashville hot chicken - Tennessee - Hattie B's - American 2024"},
-  {"id":"us_pulled_pork_light","nameAr":"بولد بورك لحم خنزير مبشور لايت أمريكي","nameEn":"Pulled pork light American shredded pork","mealType":"lunch","grams":120,"kcal":205,"protein":16,"carbs":4,"fat":11,"cooking":"oven","ref":"Pulled pork - Carolina BBQ - Franklin Barbecue 2023"},
+  {"id":"us_shredded_beef_light","nameAr":"لحم بقري مفتت لايت أمريكي","nameEn":"Shredded beef light American","nameFr":"Bœuf effiloché léger à l'américaine","nameEs":"Carne de res deshebrada ligera al estilo estadounidense","nameDe":"Leichtes amerikanisches Rindfleisch, gezupft","mealType":"lunch","grams":120,"kcal":188,"protein":25,"carbs":4,"fat":8,"cooking":"oven","ref":"Shredded beef - Carolina-style barbecue - Franklin Barbecue 2023"},
   {"id":"us_brisket_light","nameAr":"بريسكت لحم بقري مدخن لايت أمريكي","nameEn":"Brisket smoked light beef American","mealType":"lunch","grams":120,"kcal":225,"protein":18,"carbs":1,"fat":15,"cooking":"oven","ref":"Brisket - Texas BBQ - Franklin Barbecue - Aaron Franklin 2023"},
   {"id":"us_corn_dog_light_1","nameAr":"كورن دوج لايت أمريكي 1","nameEn":"Corn dog light American 1","mealType":"side","grams":80,"kcal":165,"protein":4,"carbs":16,"fat":8,"cooking":"oven","ref":"Corn dog - American fair light"},
   {"id":"us_tater_tots_light","nameAr":"تاتر توتس بطاطس لايت أمريكية","nameEn":"Tater tots potato light American","mealType":"side","grams":80,"kcal":115,"protein":1.5,"carbs":16,"fat":4,"cooking":"oven","ref":"Tater tots - American - Ore-Ida light"},

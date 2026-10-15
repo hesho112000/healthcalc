@@ -27,6 +27,15 @@ const REGIONS = new Set([
   'alaska', 'soul_food', 'bbq', 'native_american',
 ]);
 const TOKENS = ['أمريكي'];
+const NAME_OVERRIDES = {
+  'usa-base-008': {
+    nameAr: 'شرائح ديك رومي مدخنة أمريكية',
+    nameEn: 'American Smoked Turkey Strips',
+    nameFr: 'Lanières de dinde fumée américaines',
+    nameEs: 'Tiras de pavo ahumadas americanas',
+    nameDe: 'Amerikanische Streifen aus geräuchertem Putenfleisch',
+  },
+};
 
 let rows = [];
 const BASE_ABS = resolve(process.cwd(), 'scripts', 'usa-base-data');
@@ -36,6 +45,7 @@ for (let i = 1; i <= 20; i++) {
   const m = await import(pathToFileURL(file).href);
   rows = rows.concat(m.default);
 }
+rows.forEach((r, i) => Object.assign(r, NAME_OVERRIDES[`usa-base-${String(i + 1).padStart(3, '0')}`] ?? {}));
 
 const errors = [];
 const warn = [];

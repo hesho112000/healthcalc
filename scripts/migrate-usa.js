@@ -43,7 +43,8 @@ const atwaterFixed = [];
 
 for (let i = 0; i < TOTAL; i++) {
   const d = prop.dishes[i];
-  const nameAr = d.name_ar.trim();
+  const isTurkeyBacon = /turkey bacon/i.test(`${d.name_en ?? ''} ${d.name_fr ?? ''}`);
+  const nameAr = isTurkeyBacon ? 'شرائح ديك رومي مدخنة أمريكية' : d.name_ar.trim();
   const p = Number(d.protein) || 0;
   const c = Number(d.carbs) || 0;
   const f = Number(d.fat) || 0;
@@ -69,10 +70,10 @@ for (let i = 0; i < TOTAL; i++) {
     }
     const { error } = await supabase.from('dishes').insert({
       name_ar: nameAr,
-      name_en: d.name_en,
-      name_fr: d.name_fr,
-      name_es: d.name_es,
-      name_de: d.name_de,
+      name_en: isTurkeyBacon ? 'American Smoked Turkey Strips' : d.name_en,
+      name_fr: isTurkeyBacon ? 'Lanières de dinde fumée américaines' : d.name_fr,
+      name_es: isTurkeyBacon ? 'Tiras de pavo ahumadas americanas' : d.name_es,
+      name_de: isTurkeyBacon ? 'Amerikanische Streifen aus geräuchertem Putenfleisch' : d.name_de,
       cal_100: cal100,
       protein: p,
       carbs: c,

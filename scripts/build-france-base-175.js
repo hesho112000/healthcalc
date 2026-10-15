@@ -20,6 +20,22 @@ const TOKEN = Object.fromEntries(REGIONS.map((r, i) => [r, TOKENS[i]]));
 const BASE_DIASPORA = ['french', 'western', 'comfort_food'];
 const EXTRA = { paris: 'parisian', provence: 'mediterranean' };
 const LANG = ['nameAr', 'nameEn', 'nameFr', 'nameEs', 'nameDe'];
+const NAME_OVERRIDES = {
+  'fr-base-041': {
+    nameAr: 'بوف بورغينيون بلحم بقري حلال فرنسي',
+    nameEn: 'French Bœuf Bourguignon with Halal Beef',
+    nameFr: 'Cuisine française : Bœuf bourguignon au bœuf halal',
+    nameEs: 'Cocina francesa: Boeuf bourguignon con ternera halal',
+    nameDe: 'Französische Küche: Bœuf Bourguignon mit Halal-Rind',
+  },
+  'fr-base-044': {
+    nameAr: 'كيش لورين بديك رومي مدخن فرنسي',
+    nameEn: 'French Quiche Lorraine with Smoked Turkey (Halal)',
+    nameFr: 'Cuisine française : Quiche lorraine halal à la dinde fumée',
+    nameEs: 'Cocina francesa: Quiche Lorraine halal con pavo ahumado',
+    nameDe: 'Französische Küche: Halale Quiche Lorraine mit geräuchertem Putenfleisch',
+  },
+};
 const CATEGORIES = new Set(['breakfast_items', 'rice_dishes', 'noodle_dishes', 'soups_stews', 'poultry_mains', 'meat_mains', 'fish_seafood', 'vegetable_mains', 'street_snacks', 'rice_cakes_sweets', 'condiments_sauces', 'beverages', 'fruit']);
 const MEALS = new Set(['breakfast', 'lunch', 'dinner', 'snack']);
 const fold = (s) => String(s ?? '').replace(/[ً-ْٰ]/g, '').replace(/ـ/g, '').replace(/[أإآ]/g, 'ا').replace(/ؤ/g, 'و').replace(/ئ/g, 'ي').replace(/ى/g, 'ي').replace(/ة/g, 'ه');
@@ -31,6 +47,7 @@ for (let i = 1; i <= 4; i++) {
   if (!existsSync(file)) throw new Error(`Missing ${file}`);
   rows.push(...(await import(pathToFileURL(file).href)).default);
 }
+rows.forEach((r, i) => Object.assign(r, NAME_OVERRIDES[`fr-base-${String(i + 1).padStart(3, '0')}`] ?? {}));
 const errors = [];
 const seen = Object.fromEntries(LANG.map((k) => [k, new Set()]));
 for (const [i, r] of rows.entries()) {

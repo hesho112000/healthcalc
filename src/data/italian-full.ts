@@ -3,6 +3,9 @@ export interface ItalianFullDish {
   id: string;
   nameAr: string;
   nameEn: string;
+  nameFr?: string;
+  nameEs?: string;
+  nameDe?: string;
   mealType: 'breakfast' | 'lunch' | 'dinner' | 'side' | 'salad' | 'fruit';
   grams: number;
   kcal: number;
@@ -109,7 +112,7 @@ export const ITALIAN_FULL: ItalianFullDish[] = [
   {"id":"it_fegato_veneziana_light","nameAr":"كبدة فينيسية لايت إيطالية","nameEn":"Fegato veneziana light Italian liver","mealType":"lunch","grams":150,"kcal":185,"protein":18,"carbs":6,"fat":8,"cooking":"pan","ref":"Fegato alla veneziana - Veneto light"},
   {"id":"it_coniglio_cacciatora_light","nameAr":"أرنب كاتشاتورا لايت إيطالي","nameEn":"Coniglio cacciatora light Italian rabbit","mealType":"lunch","grams":180,"kcal":215,"protein":24,"carbs":2,"fat":10,"cooking":"boiled","ref":"Coniglio alla cacciatora - Toscana light"},
   {"id":"it_agnello_scottadito","nameAr":"لحم خروف سكوتاديتو إيطالي مشوي","nameEn":"Agnello scottadito grilled Italian lamb","mealType":"lunch","grams":150,"kcal":265,"protein":22,"carbs":0,"fat":18,"cooking":"grilled","ref":"Agnello scottadito - Lazio - Gambero Rosso"},
-  {"id":"it_maiale_porchetta_light","nameAr":"بوركيتا لحم خنزير لايت إيطالية شريحة","nameEn":"Porchetta light slice Italian pork","mealType":"side","grams":60,"kcal":125,"protein":10,"carbs":0.5,"fat":8,"cooking":"oven","ref":"Porchetta di Ariccia IGP light"},
+  {"id":"it_herb_turkey_roast_slice_light","nameAr":"شريحة ديك رومي مشوي بالأعشاب لايت إيطالية","nameEn":"Herb-roasted turkey slice light Italian","nameFr":"Tranche légère de dinde rôtie aux herbes à l'italienne","nameEs":"Loncha ligera de pavo asado con hierbas al estilo italiano","nameDe":"Leichte italienische Putenbratenscheibe mit Kräutern","mealType":"side","grams":60,"kcal":111,"protein":16,"carbs":0.5,"fat":5,"cooking":"oven","ref":"Italian herb-roasted turkey slice - inspired by regional herb roasts"},
   {"id":"it_salsiccia_grill_light","nameAr":"سجق إيطالي مشوي لايت","nameEn":"Salsiccia grilled light Italian sausage","mealType":"side","grams":60,"kcal":135,"protein":8,"carbs":0.5,"fat":10,"cooking":"grilled","ref":"Salsiccia italiana light"},
   {"id":"it_provolone_30","nameAr":"بروفولوني جبن إيطالي 30جم","nameEn":"Provolone cheese Italian 30g","mealType":"side","grams":30,"kcal":105,"protein":7,"carbs":0.5,"fat":8,"cooking":"fresh","ref":"Provolone Valpadana DOP"},
   {"id":"it_mozzarella_buffala_60","nameAr":"موزاريلا بوفالا إيطالية 60جم","nameEn":"Mozzarella bufala Italian 60g","mealType":"side","grams":60,"kcal":135,"protein":7,"carbs":1,"fat":11,"cooking":"fresh","ref":"Mozzarella di bufala campana DOP"},
