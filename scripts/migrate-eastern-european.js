@@ -15,7 +15,6 @@ const REGIONS = new Set([
   'lithuania', 'latvia', 'estonia', 'belarus', 'moldova', 'slovenia', 'bosnia',
   'croatia', 'georgia', 'armenia', 'serbia', 'albania', 'north_macedonia', 'ukraine', 'montenegro',
 ]);
-const EXCLUDED_SOURCE_ROWS = new Set([404]);
 const source = fs.readFileSync(path.join(ROOT, 'src/data/eastern-european-full.ts'), 'utf8');
 const compiled = ts.transpileModule(source, {
   compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
@@ -23,10 +22,10 @@ const compiled = ts.transpileModule(source, {
 const exports = {};
 new Function('exports', compiled.outputText)(exports);
 const sourceDishes = exports.EASTERN_EUROPEAN_FULL;
-const dishes = sourceDishes.filter((_, index) => !EXCLUDED_SOURCE_ROWS.has(index + 1));
+const dishes = sourceDishes;
 
-if (!Array.isArray(sourceDishes) || sourceDishes.length !== 500 || dishes.length !== 499) {
-  throw new Error(`Expected 500 source rows and 499 eligible rows; found ${sourceDishes?.length ?? 'none'} and ${dishes.length}`);
+if (!Array.isArray(sourceDishes) || sourceDishes.length !== 500 || dishes.length !== 500) {
+  throw new Error(`Expected 500 source rows and 500 eligible rows; found ${sourceDishes?.length ?? 'none'} and ${dishes.length}`);
 }
 
 const sourceIds = new Set();

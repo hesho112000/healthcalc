@@ -8869,12 +8869,12 @@ export const EASTERN_EUROPEAN_FULL: KitchenDish[] = [
     ]
   },
   {
-    "id": "ee-ge-elardji-cheese-cornmeal",
-    "nameAr": "عصيدة إلاردجي الجورجية بالذرة والجبن",
-    "nameEn": "Georgian Elardji Cornmeal with Cheese",
-    "nameFr": "Elardji géorgien à la semoule de maïs et au fromage",
-    "nameEs": "Elardji georgiano de maíz y queso",
-    "nameDe": "Georgisches Maisgrieß-Elardji mit Käse",
+    "id": "ee-ge-elarji-cheese-cornmeal",
+    "nameAr": "عصيدة إلارجي الجورجية بالذرة والجبن",
+    "nameEn": "Georgian Elarji Cornmeal with Cheese",
+    "nameFr": "Elarji géorgien à la semoule de maïs et au fromage",
+    "nameEs": "Elarji georgiano de maíz y queso",
+    "nameDe": "Georgisches Maisgrieß-Elarji mit Käse",
     "category": "vegetable_mains",
     "mealType": "side",
     "grams": 100,
