@@ -7,3 +7,5 @@ dist/
 data-sources/ 
 __pycache__/ 
 *.pyc 
+scripts/validation-report.json 
+scripts/cleanup-halal-violations.backup.json 
