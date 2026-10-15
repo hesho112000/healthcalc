@@ -388,14 +388,14 @@ const REGIONS: RegionDef[] = [
   { id: 'oceania', emoji: '🌏', en: 'Oceania', ar: 'أوقيانوسيا', ids: ['australasia'] },
   { id: 'north-america', emoji: '🌎', en: 'North America', ar: 'أمريكا الشمالية', translationKey: 'region.north-america', ids: [...KITCHEN_REGION_KITCHEN_IDS['north-america']] },
   { id: 'south-america', emoji: '🌎', en: 'South America', ar: 'أمريكا الجنوبية', translationKey: 'region.south-america', ids: [...KITCHEN_REGION_KITCHEN_IDS['south-america']] },
-  { id: 'europe', emoji: '🏰', en: 'Europe', ar: 'أوروبا', ids: ['italian', 'french', 'spanish', 'greek', 'turkey', 'uk', 'swiss', 'germany', 'austria', 'benelux', 'norway', 'sweden', 'denmark', 'finland', 'ukraine', 'eastern-european'] },
+  { id: 'europe', emoji: '🏰', en: 'Europe', ar: 'أوروبا', ids: ['italian', 'french', 'spanish', 'greek', 'turkey', 'british', 'swiss', 'germany', 'austria', 'benelux', 'norway', 'sweden', 'denmark', 'finland', 'ukraine', 'eastern-european'] },
   { id: 'special-diets', emoji: '🌿', en: 'Special Diets', ar: 'أنظمة غذائية خاصة', ids: ['diet-keto', 'diet-vegan', 'diet-vegetarian', 'diet-high-protein', 'diet-mediterranean', 'diet-low-carb', 'diet-dash', 'diet-gluten-free', 'diet-intermittent-fasting', 'diet-paleo'] },
 ];
 
 type CuisineRegionId = 'europe' | 'asia' | 'americas' | 'mena' | 'africa' | 'oceania';
 
 const CUISINE_REGIONS: { id: CuisineRegionId; en: string; ar: string; ids: string[] }[] = [
-  { id: 'europe', en: 'Europe', ar: 'أوروبا', ids: ['italian', 'french', 'spanish', 'greek', 'turkey', 'uk', 'british', 'swiss', 'germany', 'austria', 'benelux', 'norway', 'sweden', 'denmark', 'finland', 'ukraine', 'eastern-european', 'france', 'greece', 'italy', 'spain', 'switzerland', 'diet-mediterranean'] },
+  { id: 'europe', en: 'Europe', ar: 'أوروبا', ids: ['italian', 'french', 'spanish', 'greek', 'turkey', 'british', 'swiss', 'germany', 'austria', 'benelux', 'norway', 'sweden', 'denmark', 'finland', 'ukraine', 'eastern-european', 'switzerland', 'diet-mediterranean'] },
   { id: 'asia', en: 'Asia', ar: 'آسيا', ids: ['indian', 'pakistani', 'indonesian', 'malaysian', 'chinese', 'japanese', 'korean', 'thai', 'vietnamese', 'filipino', 'taiwan'] },
   { id: 'americas', en: 'Americas', ar: 'الأمريكتان', ids: [...KITCHEN_REGION_KITCHEN_IDS['north-america'], ...KITCHEN_REGION_KITCHEN_IDS['south-america'], 'american', 'diet-dash', 'diet-keto'] },
   { id: 'mena', en: 'MENA', ar: 'الشرق الأوسط وشمال أفريقيا', ids: ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'omani', 'kuwaiti', 'qatar', 'bahraini', 'lebanese', 'palestinian', 'syrian', 'jordanian'] },

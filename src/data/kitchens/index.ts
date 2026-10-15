@@ -41,7 +41,7 @@ export interface KitchenCategory {
 }
 
 export const KITCHEN_REGION_KITCHEN_IDS = {
-  'north-america': ['usa', 'canada', 'mexican', 'cuban', 'jamaican', 'costa-rican'],
+  'north-america': ['american', 'canada', 'mexican', 'cuban', 'jamaican', 'costa-rican'],
   'south-america': ['argentinian', 'colombian', 'peruvian', 'chilean', 'brazilian', 'venezuelan'],
 } as const;
 
@@ -420,6 +420,12 @@ const DIET_COUNTRY_EN: Record<string, string> = {
 function basenameId(path: string): string {
   const file = path.split('/').pop() || '';
   const id = file.replace(/\.(json|ts)$/, '').replace(/-full(?:-100-USDA)?$/, '').replace(/-kitchen$/, '');
+  if (id === 'france') return 'french';
+  if (id === 'greece') return 'greek';
+  if (id === 'italy') return 'italian';
+  if (id === 'spain') return 'spanish';
+  if (id === 'uk') return 'british';
+  if (id === 'usa') return 'american';
   if (id === 'mexico') return 'mexican';
   if (id === 'argentina') return 'argentinian';
   if (id === 'colombia') return 'colombian';
@@ -630,6 +636,22 @@ function buildBasic(path: string, mod: any): KitchenInfo {
   };
 }
 
+// Legacy 100-row demonym datasets superseded by the richer country-named files
+// (france/greece/italy/spain/uk/usa and the mexico/colombia pairs) that map onto
+// the same canonical id via basenameId(). Skipped so each kitchen renders once.
+const LEGACY_KITCHEN_FILES = new Set([
+  'french-full.ts',
+  'greek-full.ts',
+  'italian-full.ts',
+  'spanish-full.ts',
+  'british-full.ts',
+  'american-full.ts',
+  'mexican-full.ts',
+  'colombian-full.ts',
+  'peruvian-full.ts',
+  'chilean-full.ts',
+]);
+
 function assemble(): KitchenInfo[] {
   const out: KitchenInfo[] = [];
   for (const [path, mod] of Object.entries(jsonModules)) {
@@ -638,7 +660,8 @@ function assemble(): KitchenInfo[] {
   const richIds = new Set(out.map((k) => k.id));
   for (const [path, mod] of Object.entries(tsModules)) {
     const id = basenameId(path);
-    if (richIds.has(id) || path.endsWith('/peruvian-full.ts') || path.endsWith('/chilean-full.ts')) continue;
+    const file = path.split('/').pop() || '';
+    if (richIds.has(id) || LEGACY_KITCHEN_FILES.has(file)) continue;
     out.push(buildBasic(path, mod));
   }
   for (const [path, mod] of Object.entries(dietModules)) {
