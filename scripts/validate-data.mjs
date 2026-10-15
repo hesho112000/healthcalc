@@ -7,10 +7,39 @@ const DATA_DIR = path.join(ROOT, 'src', 'data');
 const REPORT_PATH = path.join(ROOT, 'scripts', 'validation-report.json');
 const LANGUAGES = ['Ar', 'En', 'Fr', 'Es', 'De'];
 const KITCHEN_REGIONS = new Set(['Europe', 'Asia', 'Americas', 'MENA', 'Africa', 'Oceania', 'Diet Plans']);
-const EXERCISE_TYPES = new Set(['cardio', 'strength', 'hiit', 'flexibility', 'balance', 'mindbody', 'functional']);
+const EXERCISE_TYPES = new Set(['cardio', 'strength', 'hiit', 'flexibility', 'balance', 'mindbody', 'functional', 'core']);
 const EXERCISE_DIFFICULTIES = new Set(['beginner', 'intermediate', 'advanced']);
 const DIET_KEYWORDS = /\b(?:diet|keto|vegan|vegetarian|high[ -]?protein|mediterranean|low[ -]?carb|dash|gluten[ -]?free|intermittent[ -]?fasting|paleo)\b/i;
+// Whole-word boundaries avoid matching terms embedded in unrelated names such as "Elardji".
 const HALAL_KEYWORDS = /\b(?:pork|bacon|ham|lard|wine|beer|alcohol)\b/i;
+const CHILE_MERGED_SOURCE_FILES = new Set(['chile-full.ts', 'chilean-full.ts']);
+const KITCHEN_ID_ALIASES = {
+  argentina: 'argentinian',
+  colombia: 'colombian',
+  chile: 'chilean',
+  mexico: 'mexican',
+  peru: 'peruvian',
+  uk: 'british',
+  usa: 'american',
+};
+const SEVERITY_BY_CODE = {
+  'halal-violation': 'CRITICAL',
+  'duplicate-id': 'CRITICAL',
+  'duplicate-name': 'CRITICAL',
+  'similar-name': 'CRITICAL',
+  'missing-name-translations': 'CRITICAL',
+  'invalid-json': 'CRITICAL',
+  'invalid-id': 'CRITICAL',
+  'invalid-region': 'CRITICAL',
+  'invalid-dish-count': 'CRITICAL',
+  'invalid-record': 'CRITICAL',
+  'invalid-macros': 'CRITICAL',
+  'invalid-source-json': 'CRITICAL',
+  'unparsed-source': 'CRITICAL',
+  'missing-descriptions': 'WARNING',
+  'misplaced-diet-kitchen': 'WARNING',
+  'macro-mismatch': 'INFO',
+};
 
 const issues = { kitchens: [], exercises: [], dishes: [] };
 const metrics = {
@@ -20,7 +49,7 @@ const metrics = {
 };
 
 function addIssue(section, code, file, record, details) {
-  issues[section].push({ code, file, record, details });
+  issues[section].push({ severity: SEVERITY_BY_CODE[code] ?? 'CRITICAL', code, file, record, details });
 }
 
 function color(text, value) {
@@ -233,8 +262,7 @@ function normalizeKitchenId(fileName) {
     .replace(/-full(?:-100-USDA)?$/i, '')
     .replace(/-kitchen$/i, '')
     .toLowerCase();
-  const aliases = { mexico: 'mexican', argentina: 'argentinian', colombia: 'colombian', peru: 'peruvian', chile: 'chilean' };
-  return aliases[id] ?? id;
+  return KITCHEN_ID_ALIASES[id] ?? id;
 }
 
 function rawKitchenId(fileName) {
@@ -363,16 +391,18 @@ function validateKitchens(indexSource) {
       metrics.kitchens.invalidRecords++;
     }
     if (seenIds.has(lowerId)) {
-      addIssue('kitchens', 'duplicate-id', kitchen.file, kitchen.id, `Duplicates ${seenIds.get(lowerId)} (case-insensitive).`);
+      const first = seenIds.get(lowerId);
+      const legacy = kitchen.rawId !== kitchen.id ? kitchen : first.rawId !== first.id ? first : kitchen;
+      const canonical = legacy === kitchen ? first : kitchen;
+      addIssue('kitchens', 'duplicate-id', legacy.file, legacy.rawId, `Legacy ID aliases ${canonical.id} in ${canonical.file}.`);
       metrics.kitchens.duplicates++;
-    } else seenIds.set(lowerId, kitchen.file);
+    } else seenIds.set(lowerId, kitchen);
 
-    const missing = [
-      ...LANGUAGES.filter((language) => !String(kitchen.names[language] ?? '').trim()).map((language) => `name${language}`),
-      ...LANGUAGES.filter((language) => !String(kitchen.descriptions[language] ?? '').trim()).map((language) => `description${language}`),
-    ];
-    if (missing.length) {
-      addIssue('kitchens', 'missing-translations', kitchen.file, kitchen.id, missing);
+    const missingNames = LANGUAGES.filter((language) => !String(kitchen.names[language] ?? '').trim()).map((language) => `name${language}`);
+    const missingDescriptions = LANGUAGES.filter((language) => !String(kitchen.descriptions[language] ?? '').trim()).map((language) => `description${language}`);
+    if (missingNames.length) addIssue('kitchens', 'missing-name-translations', kitchen.file, kitchen.id, missingNames);
+    if (missingDescriptions.length) addIssue('kitchens', 'missing-descriptions', kitchen.file, kitchen.id, missingDescriptions);
+    if (missingNames.length || missingDescriptions.length) {
       metrics.kitchens.missingTranslations++;
     }
     for (const language of LANGUAGES) {
@@ -480,11 +510,15 @@ function validateDishes() {
 
     for (const { record, name } of records) {
       const id = String(record.id ?? '');
-      const key = `${kitchenId}:${id.toLowerCase()}`;
-      if (seenIds.has(key)) {
-        addIssue('dishes', 'duplicate-id', file, id, `Duplicate dish ID in kitchen ${kitchenId}; first seen in ${seenIds.get(key)}.`);
-        metrics.dishes.duplicateIds++;
-      } else seenIds.set(key, file);
+      if (id.trim()) {
+        const key = `${kitchenId}:${id.toLowerCase()}`;
+        const firstFile = seenIds.get(key);
+        const chileBuildMirror = CHILE_MERGED_SOURCE_FILES.has(file) && CHILE_MERGED_SOURCE_FILES.has(firstFile);
+        if (firstFile && !chileBuildMirror) {
+          addIssue('dishes', 'duplicate-id', file, id, `Duplicate dish ID in kitchen ${kitchenId}; first seen in ${firstFile}.`);
+          metrics.dishes.duplicateIds++;
+        } else if (!firstFile) seenIds.set(key, file);
+      }
 
       const missingNames = LANGUAGES.filter((language, index) => {
         const value = getDishNameFields(record)[index];
@@ -494,8 +528,9 @@ function validateDishes() {
         const value = getDishDescription(record, language);
         return typeof value !== 'string' || !value.trim();
       }).map((language) => `description${language}`);
+      if (missingNames.length) addIssue('dishes', 'missing-name-translations', file, id || `${name} row`, missingNames);
+      if (missingDescriptions.length) addIssue('dishes', 'missing-descriptions', file, id || `${name} row`, missingDescriptions);
       if (missingNames.length || missingDescriptions.length) {
-        addIssue('dishes', 'missing-translations', file, id || `${name} row`, [...missingNames, ...missingDescriptions]);
         metrics.dishes.missingTranslations++;
       }
 
@@ -570,7 +605,7 @@ function validateExercises(unifiedSource) {
       return typeof value !== 'string' || !value.trim() || /^PENDING(?:_|$)/i.test(value);
     }).map((language) => `name${language}`);
     if (missing.length) {
-      addIssue('exercises', 'missing-translations', file, id, missing);
+      addIssue('exercises', 'missing-name-translations', file, id, missing);
       metrics.exercises.missingTranslations++;
     }
 
@@ -591,22 +626,36 @@ function validateExercises(unifiedSource) {
   return exerciseRecords;
 }
 
-function sectionLine(title, data, count) {
-  const state = count ? color('ISSUES', '31;1') : color('PASS', '32;1');
-  console.log(`${state} ${title}: ${JSON.stringify(data)}`);
+function severityCounts(entries) {
+  return entries.reduce((counts, issue) => {
+    counts[issue.severity]++;
+    return counts;
+  }, { CRITICAL: 0, WARNING: 0, INFO: 0 });
+}
+
+function sectionLine(title, data, entries) {
+  const totals = severityCounts(entries);
+  const status = totals.CRITICAL
+    ? color('CRITICAL', '31;1')
+    : totals.WARNING
+      ? color('WARNING/INFO', '33;1')
+      : color('PASS', '32;1');
+  console.log(`${status} ${title}: ${JSON.stringify({ ...data, issues: totals })}`);
 }
 
 function printSummary() {
-  const counts = Object.fromEntries(Object.entries(issues).map(([section, entries]) => [section, entries.length]));
-  const total = Object.values(counts).reduce((sum, count) => sum + count, 0);
+  const byCategory = Object.fromEntries(Object.entries(issues).map(([section, entries]) => [section, severityCounts(entries)]));
+  const bySeverity = severityCounts(Object.values(issues).flat());
+  const totalIssues = bySeverity.CRITICAL + bySeverity.WARNING + bySeverity.INFO;
   console.log('\n' + color('DATA VALIDATION SUMMARY', '1;36'));
-  console.log('Category   Records   Issues');
-  console.log(`Kitchens   ${String(metrics.kitchens.total).padStart(7)}   ${String(counts.kitchens).padStart(6)}`);
-  console.log(`Exercises  ${String(metrics.exercises.total).padStart(7)}   ${String(counts.exercises).padStart(6)}`);
-  console.log(`Dishes     ${String(metrics.dishes.total).padStart(7)}   ${String(counts.dishes).padStart(6)}`);
-  console.log(`TOTAL      ${String(metrics.kitchens.total + metrics.exercises.total + metrics.dishes.total).padStart(7)}   ${String(total).padStart(6)}`);
+  console.log('Category   Records   Critical   Warning   Info');
+  for (const [category, total] of [['Kitchens', metrics.kitchens.total], ['Exercises', metrics.exercises.total], ['Dishes', metrics.dishes.total]]) {
+    const counts = byCategory[category.toLowerCase()];
+    console.log(`${category.padEnd(10)} ${String(total).padStart(7)}   ${String(counts.CRITICAL).padStart(8)}   ${String(counts.WARNING).padStart(7)}   ${String(counts.INFO).padStart(4)}`);
+  }
+  console.log(`TOTAL      ${String(metrics.kitchens.total + metrics.exercises.total + metrics.dishes.total).padStart(7)}   ${String(bySeverity.CRITICAL).padStart(8)}   ${String(bySeverity.WARNING).padStart(7)}   ${String(bySeverity.INFO).padStart(4)}`);
   console.log(`Detailed report: ${path.relative(ROOT, REPORT_PATH)}`);
-  return { counts, total };
+  return { byCategory, bySeverity, totalIssues };
 }
 
 function main() {
@@ -622,13 +671,13 @@ function main() {
     missingTranslations: metrics.kitchens.missingTranslations,
     misplacedDietKitchens: metrics.kitchens.misplacedDietKitchens,
     invalidRecords: metrics.kitchens.invalidRecords,
-  }, issues.kitchens.length);
+  }, issues.kitchens);
   sectionLine('EXERCISES', {
     total: metrics.exercises.total,
     missingTranslations: metrics.exercises.missingTranslations,
     invalidRecords: metrics.exercises.invalidRecords,
     duplicates: metrics.exercises.duplicates,
-  }, issues.exercises.length);
+  }, issues.exercises);
   sectionLine('DISHES', {
     total: metrics.dishes.total,
     kitchens: metrics.dishes.perKitchen,
@@ -637,7 +686,7 @@ function main() {
     invalidMacros: metrics.dishes.invalidMacros,
     macroMismatches: metrics.dishes.macroMismatches,
     duplicateIds: metrics.dishes.duplicateIds,
-  }, issues.dishes.length);
+  }, issues.dishes);
 
   const summary = printSummary();
   const report = {
@@ -647,7 +696,7 @@ function main() {
     issues,
   };
   fs.writeFileSync(REPORT_PATH, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
-  process.exitCode = summary.total ? 1 : 0;
+  process.exitCode = summary.bySeverity.CRITICAL ? 1 : 0;
 }
 
 main();
