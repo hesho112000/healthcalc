@@ -1,3 +1,5 @@
+const fs = require('node:fs');
+const ts = require('typescript');
 const { makeScan } = require('./halal-core.cjs');
 const { pathToFileURL } = require('node:url');
 const { resolve } = require('node:path');
@@ -24,7 +26,14 @@ async function run() {
   ]);
   const base = baseParts.flat();
   const data = dataParts.flat();
-  const all = [...base, ...data];
+  const fullSource = fs.readFileSync(resolve(__dirname, '../src/data/chile-full.ts'), 'utf8');
+  const compiled = ts.transpileModule(fullSource, {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+  });
+  const fullExports = {};
+  new Function('exports', compiled.outputText)(fullExports);
+  const all = fullExports.CHILE_FULL;
+  const supplemental = all.length - base.length - data.length;
   const violations = SCAN(all);
   const missingLocales = all.filter((row) => ['nameAr', 'nameEn', 'nameFr', 'nameEs', 'nameDe'].some((key) => !row[key]?.trim()));
   const duplicateIds = all.length - new Set(all.map((row) => row.id)).size;
@@ -34,6 +43,7 @@ async function run() {
 
   console.log(`base dishes: ${base.length}`);
   console.log(`expansion dishes: ${data.length}`);
+  console.log(`supplemental dishes: ${supplemental}`);
   console.log(`total Chilean dishes: ${all.length}`);
   console.log(`paired part sizes: ${baseParts.map((rows, index) => rows.length + dataParts[index].length).join(', ')}`);
   console.log(`five-language completeness: ${all.length - missingLocales.length}/${all.length}`);
@@ -44,11 +54,11 @@ async function run() {
   for (const issue of violations) console.error(`SCAN [${issue.kind}] ${issue.id || issue.nameEn}`);
   for (const row of macroErrors) console.error(`MACRO ${row.id}`);
 
-  if (base.length !== 75 || data.length !== 75 || all.length !== 150 || invalidPairs.length || missingLocales.length || duplicateIds || duplicateEnglishNames || macroErrors.length || violations.length) {
+  if (base.length !== 75 || data.length !== 75 || supplemental !== 100 || all.length !== 250 || invalidPairs.length || missingLocales.length || duplicateIds || duplicateEnglishNames || macroErrors.length || violations.length) {
     process.exitCode = 1;
     return;
   }
-  console.log('\nCLEAN: 150 five-language Chilean dishes across Phase A Parts 1 and 2, 0 halal violations');
+  console.log('\nCLEAN: 250 five-language Chilean dishes, including the 100 supplemental dishes, with 0 halal violations');
 }
 
 if (require.main === module) run().catch((error) => {

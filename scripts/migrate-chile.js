@@ -22,8 +22,8 @@ const exports = {};
 new Function('exports', compiled.outputText)(exports);
 const dishes = exports.CHILE_FULL;
 
-if (!Array.isArray(dishes) || dishes.length !== 150) {
-  throw new Error(`Expected 150 Chile dishes; found ${dishes?.length ?? 'none'}`);
+if (!Array.isArray(dishes) || dishes.length !== 250) {
+  throw new Error(`Expected 250 Chile dishes; found ${dishes?.length ?? 'none'}`);
 }
 
 const sourceIds = new Set();
