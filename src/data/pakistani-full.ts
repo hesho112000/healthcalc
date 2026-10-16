@@ -3,6 +3,9 @@ export interface PakistaniFullDish {
   id: string;
   nameAr: string;
   nameEn: string;
+  nameFr?: string;
+  nameEs?: string;
+  nameDe?: string;
   mealType: 'breakfast' | 'lunch' | 'dinner' | 'side' | 'salad' | 'fruit';
   grams: number;
   kcal: number;
@@ -15,14 +18,14 @@ export interface PakistaniFullDish {
 }
 
 export const PAKISTANI_FULL: PakistaniFullDish[] = [
-  {"id":"pk_paratha_aloo","nameAr":"باراتا ألو باكستانية","nameEn":"Aloo paratha Pakistani","mealType":"breakfast","grams":100,"kcal":245,"protein":5,"carbs":30,"fat":11,"cooking":"pan","ref":"Potato paratha - most common breakfast Pakistan"},
-  {"id":"pk_paratha_qeema","nameAr":"باراتا قيمه باكستانية","nameEn":"Qeema paratha Pakistani","mealType":"breakfast","grams":100,"kcal":265,"protein":8,"carbs":26,"fat":14,"cooking":"pan","ref":"Minced meat paratha"},
-  {"id":"pk_halwa_puri","nameAr":"حلوة بوري باكستانية لايت فرن","nameEn":"Halwa puri oven light Pakistani","mealType":"breakfast","grams":80,"kcal":175,"protein":3,"carbs":24,"fat":7,"cooking":"oven","ref":"Sunday breakfast, fried normally"},
-  {"id":"pk_chana_bf","nameAr":"شانا فطار باكستاني","nameEn":"Chana breakfast Pakistani","mealType":"breakfast","grams":150,"kcal":165,"protein":7,"carbs":22,"fat":4.5,"cooking":"boiled","ref":"Chickpea breakfast"},
-  {"id":"pk_nihari","nameAr":"نهاري باكستاني","nameEn":"Nihari Pakistani","mealType":"breakfast","grams":200,"kcal":285,"protein":18,"carbs":6,"fat":20,"cooking":"boiled","ref":"Slow cooked beef stew - famous breakfast"},
-  {"id":"pk_paya","nameAr":"بايا باكستانية","nameEn":"Paya Pakistani","mealType":"breakfast","grams":200,"kcal":225,"protein":16,"carbs":2,"fat":16,"cooking":"boiled","ref":"Trotters soup"},
-  {"id":"pk_anda_paratha","nameAr":"أندا باراتا باكستانية","nameEn":"Anda paratha Pakistani","mealType":"breakfast","grams":120,"kcal":235,"protein":8,"carbs":24,"fat":11,"cooking":"pan","ref":"Egg paratha"},
-  {"id":"pk_lassi_sweet","nameAr":"لاسي حلوة باكستانية","nameEn":"Sweet lassi Pakistani","mealType":"breakfast","grams":200,"kcal":125,"protein":4,"carbs":18,"fat":3.5,"cooking":"fresh","ref":"Yogurt drink"},
+  {"id":"pk_paratha_aloo","nameAr":"باراتا ألو باكستانية","nameEn":"Aloo paratha Pakistani","nameFr":"Aloo paratha","nameEs":"Aloo paratha","nameDe":"Aloo paratha","mealType":"breakfast","grams":100,"kcal":245,"protein":5,"carbs":30,"fat":11,"cooking":"pan","ref":"Potato paratha - most common breakfast Pakistan"},
+  {"id":"pk_paratha_qeema","nameAr":"باراتا قيمه باكستانية","nameEn":"Qeema paratha Pakistani","nameFr":"Qeema paratha","nameEs":"Qeema paratha","nameDe":"Qeema paratha","mealType":"breakfast","grams":100,"kcal":265,"protein":8,"carbs":26,"fat":14,"cooking":"pan","ref":"Minced meat paratha"},
+  {"id":"pk_halwa_puri","nameAr":"حلوة بوري باكستانية لايت فرن","nameEn":"Halwa puri oven light Pakistani","nameFr":"Halwa puri","nameEs":"Halwa puri","nameDe":"Halwa puri","mealType":"breakfast","grams":80,"kcal":175,"protein":3,"carbs":24,"fat":7,"cooking":"oven","ref":"Sunday breakfast, fried normally"},
+  {"id":"pk_chana_bf","nameAr":"شانا فطار باكستاني","nameEn":"Chana breakfast Pakistani","nameFr":"Chana au petit-déjeuner","nameEs":"Chana para el desayuno","nameDe":"Chana zum Frühstück","mealType":"breakfast","grams":150,"kcal":165,"protein":7,"carbs":22,"fat":4.5,"cooking":"boiled","ref":"Chickpea breakfast"},
+  {"id":"pk_nihari","nameAr":"نهاري باكستاني","nameEn":"Nihari Pakistani","nameFr":"Nihari","nameEs":"Nihari","nameDe":"Nihari","mealType":"breakfast","grams":200,"kcal":285,"protein":18,"carbs":6,"fat":20,"cooking":"boiled","ref":"Slow cooked beef stew - famous breakfast"},
+  {"id":"pk_paya","nameAr":"بايا باكستانية","nameEn":"Paya Pakistani","nameFr":"Paya","nameEs":"Paya","nameDe":"Paya","mealType":"breakfast","grams":200,"kcal":225,"protein":16,"carbs":2,"fat":16,"cooking":"boiled","ref":"Trotters soup"},
+  {"id":"pk_anda_paratha","nameAr":"أندا باراتا باكستانية","nameEn":"Anda paratha Pakistani","nameFr":"Anda paratha","nameEs":"Anda paratha","nameDe":"Anda paratha","mealType":"breakfast","grams":120,"kcal":235,"protein":8,"carbs":24,"fat":11,"cooking":"pan","ref":"Egg paratha"},
+  {"id":"pk_lassi_sweet","nameAr":"لاسي حلوة باكستانية","nameEn":"Sweet lassi Pakistani","nameFr":"Lassi sucré","nameEs":"Lassi dulce","nameDe":"Süßer Lassi","mealType":"breakfast","grams":200,"kcal":125,"protein":4,"carbs":18,"fat":3.5,"cooking":"fresh","ref":"Yogurt drink"},
   {"id":"pk_chai_paratha","nameAr":"شاي باراتا باكستانية","nameEn":"Chai paratha Pakistani","mealType":"breakfast","grams":60,"kcal":145,"protein":2.5,"carbs":20,"fat":5.5,"cooking":"pan","ref":"Tea + paratha"},
   {"id":"pk_rice_white","nameAr":"رز أبيض باكستاني","nameEn":"White rice Pakistani","mealType":"side","grams":150,"kcal":195,"protein":3.5,"carbs":42,"fat":0.6,"cooking":"boiled","ref":"Basmati"},
   {"id":"pk_rice_zeera","nameAr":"رز زيرة باكستاني","nameEn":"Zeera rice Pakistani","mealType":"side","grams":150,"kcal":205,"protein":3.5,"carbs":42,"fat":2,"cooking":"boiled","ref":"Cumin rice"},
