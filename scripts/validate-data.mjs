@@ -21,6 +21,11 @@ const KITCHEN_ID_ALIASES = {
   peru: 'peruvian',
   uk: 'british',
   usa: 'american',
+  france: 'french',
+  greece: 'greek',
+  italy: 'italian',
+  spain: 'spanish',
+  switzerland: 'swiss',
 };
 const SEVERITY_BY_CODE = {
   'halal-violation': 'CRITICAL',
@@ -355,7 +360,7 @@ function validateKitchens(indexSource) {
   const richFiles = fs.readdirSync(DATA_DIR).filter((file) => /-full-100-USDA\.json$/i.test(file));
   const richIds = new Set(richFiles.map(normalizeKitchenId));
   const kitchenFiles = fs.readdirSync(DATA_DIR).filter((file) =>
-    /-full(?:-100-USDA)?\.ts$/i.test(file) && !['chilean-full.ts', 'peruvian-full.ts'].includes(file),
+    /-full(?:-100-USDA)?\.ts$/i.test(file) && !['french-full.ts', 'greek-full.ts', 'italian-full.ts', 'spanish-full.ts', 'swiss-full.ts', 'american-full.ts', 'british-full.ts', 'mexican-full.ts', 'colombian-full.ts', 'chilean-full.ts', 'peruvian-full.ts'].includes(file),
   ).filter((file) => !richIds.has(normalizeKitchenId(file)));
   const dietFiles = fs.readdirSync(DATA_DIR).filter((file) => /-diet-100-medical\.json$/i.test(file));
   const kitchens = [];
