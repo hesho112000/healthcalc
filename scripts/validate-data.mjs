@@ -13,6 +13,22 @@ const DIET_KEYWORDS = /\b(?:diet|keto|vegan|vegetarian|high[ -]?protein|mediterr
 // Whole-word boundaries avoid matching terms embedded in unrelated names such as "Elardji".
 const HALAL_KEYWORDS = /\b(?:pork|bacon|ham|lard|wine|beer|alcohol)\b/i;
 const CHILE_MERGED_SOURCE_FILES = new Set(['chile-full.ts', 'chilean-full.ts']);
+// Legacy 100-row demonym datasets superseded by the richer country-named files that
+// map onto the same canonical id. Mirrors LEGACY_KITCHEN_FILES in src/data/kitchens/index.ts
+// so superseded files are neither counted nor treated as separate kitchens.
+const LEGACY_KITCHEN_FILES = new Set([
+  'french-full.ts',
+  'greek-full.ts',
+  'italian-full.ts',
+  'spanish-full.ts',
+  'swiss-full.ts',
+  'american-full.ts',
+  'british-full.ts',
+  'mexican-full.ts',
+  'colombian-full.ts',
+  'chilean-full.ts',
+  'peruvian-full.ts',
+]);
 const KITCHEN_ID_ALIASES = {
   argentina: 'argentinian',
   colombia: 'colombian',
@@ -360,7 +376,7 @@ function validateKitchens(indexSource) {
   const richFiles = fs.readdirSync(DATA_DIR).filter((file) => /-full-100-USDA\.json$/i.test(file));
   const richIds = new Set(richFiles.map(normalizeKitchenId));
   const kitchenFiles = fs.readdirSync(DATA_DIR).filter((file) =>
-    /-full(?:-100-USDA)?\.ts$/i.test(file) && !['french-full.ts', 'greek-full.ts', 'italian-full.ts', 'spanish-full.ts', 'swiss-full.ts', 'american-full.ts', 'british-full.ts', 'mexican-full.ts', 'colombian-full.ts', 'chilean-full.ts', 'peruvian-full.ts'].includes(file),
+    /-full(?:-100-USDA)?\.ts$/i.test(file) && !LEGACY_KITCHEN_FILES.has(file),
   ).filter((file) => !richIds.has(normalizeKitchenId(file)));
   const dietFiles = fs.readdirSync(DATA_DIR).filter((file) => /-diet-100-medical\.json$/i.test(file));
   const kitchens = [];
@@ -478,7 +494,7 @@ function getDishDescription(record, language) {
 }
 
 function validateDishes() {
-  const files = fs.readdirSync(DATA_DIR).filter((file) => /-full\.ts$/i.test(file)).sort();
+  const files = fs.readdirSync(DATA_DIR).filter((file) => /-full\.ts$/i.test(file) && !LEGACY_KITCHEN_FILES.has(file)).sort();
   const dishesByKitchen = new Map();
   const seenIds = new Map();
 
