@@ -4,6 +4,9 @@ export interface IndonesianFullDish {
   id: string;
   nameAr: string;
   nameEn: string;
+  nameFr?: string;
+  nameEs?: string;
+  nameDe?: string;
   mealType: 'breakfast' | 'lunch' | 'dinner' | 'snack' | 'side' | 'salad' | 'fruit';
   grams: number;
   kcal: number;
@@ -13,14 +16,14 @@ export interface IndonesianFullDish {
 }
 
 export const INDONESIAN_FULL: IndonesianFullDish[] = [
-  {"id":"id_bubur_ayam_indonesian_chicken_porrid_0","nameAr":"بوبور أيام إندونيسية","nameEn":"Bubur ayam Indonesian chicken porridge","mealType":"breakfast","grams":100,"kcal":150,"protein":5.2,"carbs":20.7,"fat":5.2},
-  {"id":"id_bubur_tim_indonesian_plain_congee_1","nameAr":"بوبور تيم إندونيسي","nameEn":"Bubur tim Indonesian plain congee","mealType":"breakfast","grams":100,"kcal":120,"protein":4.1,"carbs":16.6,"fat":4.1},
-  {"id":"id_bubur_kacang_hijau_indonesian_mung_b_2","nameAr":"بوبور كاتشينغ هيجاو إندونيسية","nameEn":"Bubur kacang hijau Indonesian mung bean porridge","mealType":"breakfast","grams":100,"kcal":150,"protein":5.2,"carbs":20.7,"fat":5.2},
-  {"id":"id_nasi_uduk_indonesian_coconut_rice_br_3","nameAr":"ناسي أودوك إندونيسية","nameEn":"Nasi uduk Indonesian coconut rice breakfast","mealType":"breakfast","grams":100,"kcal":220,"protein":7.6,"carbs":30.3,"fat":7.6},
-  {"id":"id_nasi_goreng_kampung_indonesian_villa_4","nameAr":"ناسي غورينغ كامبونغ إندونيسية","nameEn":"Nasi goreng kampung Indonesian village fried rice","mealType":"breakfast","grams":100,"kcal":210,"protein":7.2,"carbs":29,"fat":7.2},
-  {"id":"id_nasi_goreng_spesial_indonesian_speci_5","nameAr":"ناسي غورينغ سبيسيال إندونيسية","nameEn":"Nasi goreng spesial Indonesian special fried rice","mealType":"breakfast","grams":100,"kcal":230,"protein":7.9,"carbs":31.7,"fat":7.9},
-  {"id":"id_mie_goreng_indonesian_fried_noodles_6","nameAr":"مي غورينغ إندونيسية","nameEn":"Mie goreng Indonesian fried noodles","mealType":"breakfast","grams":100,"kcal":200,"protein":6.9,"carbs":27.6,"fat":6.9},
-  {"id":"id_mie_rebus_indonesian_boiled_noodles_7","nameAr":"مي ريبوس إندونيسية","nameEn":"Mie rebus Indonesian boiled noodles","mealType":"breakfast","grams":100,"kcal":180,"protein":6.2,"carbs":24.8,"fat":6.2},
+  {"id":"id_bubur_ayam_indonesian_chicken_porrid_0","nameAr":"بوبور أيام إندونيسية","nameEn":"Bubur ayam Indonesian chicken porridge","nameFr":"Bubur ayam","nameEs":"Bubur ayam","nameDe":"Bubur ayam","mealType":"breakfast","grams":100,"kcal":150,"protein":5.2,"carbs":20.7,"fat":5.2},
+  {"id":"id_bubur_tim_indonesian_plain_congee_1","nameAr":"بوبور تيم إندونيسي","nameEn":"Bubur tim Indonesian plain congee","nameFr":"Bubur tim","nameEs":"Bubur tim","nameDe":"Bubur tim","mealType":"breakfast","grams":100,"kcal":120,"protein":4.1,"carbs":16.6,"fat":4.1},
+  {"id":"id_bubur_kacang_hijau_indonesian_mung_b_2","nameAr":"بوبور كاتشينغ هيجاو إندونيسية","nameEn":"Bubur kacang hijau Indonesian mung bean porridge","nameFr":"Bubur kacang hijau","nameEs":"Bubur kacang hijau","nameDe":"Bubur kacang hijau","mealType":"breakfast","grams":100,"kcal":150,"protein":5.2,"carbs":20.7,"fat":5.2},
+  {"id":"id_nasi_uduk_indonesian_coconut_rice_br_3","nameAr":"ناسي أودوك إندونيسية","nameEn":"Nasi uduk Indonesian coconut rice breakfast","nameFr":"Nasi uduk","nameEs":"Nasi uduk","nameDe":"Nasi uduk","mealType":"breakfast","grams":100,"kcal":220,"protein":7.6,"carbs":30.3,"fat":7.6},
+  {"id":"id_nasi_goreng_kampung_indonesian_villa_4","nameAr":"ناسي غورينغ كامبونغ إندونيسية","nameEn":"Nasi goreng kampung Indonesian village fried rice","nameFr":"Nasi goreng kampung","nameEs":"Nasi goreng kampung","nameDe":"Nasi goreng kampung","mealType":"breakfast","grams":100,"kcal":210,"protein":7.2,"carbs":29,"fat":7.2},
+  {"id":"id_nasi_goreng_spesial_indonesian_speci_5","nameAr":"ناسي غورينغ سبيسيال إندونيسية","nameEn":"Nasi goreng spesial Indonesian special fried rice","nameFr":"Nasi goreng spesial","nameEs":"Nasi goreng spesial","nameDe":"Nasi goreng spesial","mealType":"breakfast","grams":100,"kcal":230,"protein":7.9,"carbs":31.7,"fat":7.9},
+  {"id":"id_mie_goreng_indonesian_fried_noodles_6","nameAr":"مي غورينغ إندونيسية","nameEn":"Mie goreng Indonesian fried noodles","nameFr":"Mie goreng","nameEs":"Mie goreng","nameDe":"Mie goreng","mealType":"breakfast","grams":100,"kcal":200,"protein":6.9,"carbs":27.6,"fat":6.9},
+  {"id":"id_mie_rebus_indonesian_boiled_noodles_7","nameAr":"مي ريبوس إندونيسية","nameEn":"Mie rebus Indonesian boiled noodles","nameFr":"Mie rebus","nameEs":"Mie rebus","nameDe":"Mie rebus","mealType":"breakfast","grams":100,"kcal":180,"protein":6.2,"carbs":24.8,"fat":6.2},
   {"id":"id_bihun_goreng_indonesian_fried_vermic_8","nameAr":"بيهون غورينغ إندونيسية","nameEn":"Bihun goreng Indonesian fried vermicelli","mealType":"breakfast","grams":100,"kcal":191,"protein":6.6,"carbs":26.2,"fat":6.6},
   {"id":"id_ketupat_sayur_indonesian_rice_cake_a_9","nameAr":"كيتوبات سايور إندونيسي","nameEn":"Ketupat sayur Indonesian rice cake and vegetable curry","mealType":"breakfast","grams":100,"kcal":240,"protein":8.3,"carbs":33.1,"fat":8.3},
   {"id":"id_lontong_sayur_indonesian_lontong_and_10","nameAr":"لونتونغ سايور إندونيسي","nameEn":"Lontong sayur Indonesian lontong and vegetable curry","mealType":"breakfast","grams":100,"kcal":230,"protein":7.9,"carbs":31.7,"fat":7.9},
