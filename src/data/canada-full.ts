@@ -1239,7 +1239,7 @@ export const CANADA_FULL: KitchenDish[] = [
       "category": "beverages",
       "mealType": "snack",
       "grams": 100,
-      "kcal": 0,
+      "kcal": 1,
       "protein": 0,
       "carbs": 0,
       "fat": 0,

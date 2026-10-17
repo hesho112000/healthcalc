@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-10-17T14:42:40.750Z",
+  "generatedAt": "2026-10-17T15:37:49.306Z",
   "counters": {
-    "summary.bySeverity.CRITICAL": 2168,
+    "summary.bySeverity.CRITICAL": 1431,
     "summary.bySeverity.WARNING": 12047,
-    "summary.bySeverity.INFO": 618,
+    "summary.bySeverity.INFO": 432,
     "summary.byCategory.kitchens.CRITICAL": 77,
     "summary.byCategory.kitchens.WARNING": 77,
     "summary.byCategory.kitchens.INFO": 0,
     "summary.byCategory.exercises.CRITICAL": 10,
     "summary.byCategory.exercises.WARNING": 0,
     "summary.byCategory.exercises.INFO": 0,
-    "summary.byCategory.dishes.CRITICAL": 2081,
+    "summary.byCategory.dishes.CRITICAL": 1344,
     "summary.byCategory.dishes.WARNING": 11970,
-    "summary.byCategory.dishes.INFO": 618,
+    "summary.byCategory.dishes.INFO": 432,
     "metrics.kitchens.duplicates": 0,
     "metrics.kitchens.missingTranslations": 77,
     "metrics.kitchens.misplacedDietKitchens": 0,
@@ -22,8 +22,8 @@
     "metrics.exercises.duplicates": 0,
     "metrics.dishes.missingTranslations": 11970,
     "metrics.dishes.halalViolations": 0,
-    "metrics.dishes.invalidMacros": 737,
-    "metrics.dishes.macroMismatches": 618,
+    "metrics.dishes.invalidMacros": 0,
+    "metrics.dishes.macroMismatches": 432,
     "metrics.dishes.duplicateIds": 0
   }
 }

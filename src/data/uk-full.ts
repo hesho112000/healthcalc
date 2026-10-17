@@ -2787,7 +2787,7 @@ export const UK_FULL: KitchenDish[] = [
       "category": "condiments_sauces",
       "mealType": "snack",
       "grams": 100,
-      "kcal": 0,
+      "kcal": 1,
       "protein": 0,
       "carbs": 0,
       "fat": 0,

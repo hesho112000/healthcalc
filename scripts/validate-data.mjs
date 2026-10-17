@@ -514,7 +514,25 @@ function validateDishes() {
           const egyptianOverrides = egyptianSource
             ? Object.fromEntries(['Pork Meat', 'Non-Alcoholic Beer', 'Beef Frankfurter', 'Beef Sausage', 'Grilled Beef Sausage', 'Chicken Frankfurter', 'Turkey Frankfurter', 'Meat & Sausage Pizza'].map((name) => [name, getNamedObject(egyptianSource, name)]))
             : {};
-          records = (source.categories ?? []).flatMap((category) => category.dishes ?? []).map((dish) => {
+          const dishes = (source.categories ?? []).flatMap((category) => category.dishes ?? []);
+          // The rich JSON exposes `cal_100` (per 100 g) and `cal_serv` (per serving), but the
+          // `p`/`c`/`f` fields only carry one of those bases. Detect which calorie field the
+          // macros are consistent with so the Atwater check compares like-for-like units
+          // instead of producing false +900% deviations (e.g. the Moroccan JSON).
+          let hundredMatches = 0;
+          let serveMatches = 0;
+          for (const dish of dishes) {
+            const p = Number(dish.protein ?? dish.p);
+            const c = Number(dish.carbs ?? dish.c);
+            const f = Number(dish.fat ?? dish.f);
+            const atwater = (p * 4) + (c * 4) + (f * 9);
+            if (!(atwater > 0)) continue;
+            const matches = (value) => value != null && Math.abs(Number(value) - atwater) / atwater <= 0.2;
+            if (matches(dish.cal_100)) hundredMatches++;
+            if (matches(dish.cal_serv)) serveMatches++;
+          }
+          const macrosPerServing = serveMatches > hundredMatches;
+          records = dishes.map((dish) => {
             const override = egyptianOverrides[dish.nameEn] ?? {};
             return {
               record: {
@@ -529,7 +547,7 @@ function validateDishes() {
                 descriptionFr: dish.descriptionFr ?? dish.description_fr ?? '',
                 descriptionEs: dish.descriptionEs ?? dish.description_es ?? '',
                 descriptionDe: dish.descriptionDe ?? dish.description_de ?? '',
-                kcal: override.cal_100 ?? dish.kcal ?? dish.cal_100,
+                kcal: override.cal_100 ?? (macrosPerServing ? (dish.kcal ?? dish.cal_serv ?? dish.cal_100) : (dish.kcal ?? dish.cal_100 ?? dish.cal_serv)),
                 protein: override.p ?? dish.protein ?? dish.p,
                 carbs: override.c ?? dish.carbs ?? dish.c,
                 fat: override.f ?? dish.fat ?? dish.f,
@@ -579,7 +597,12 @@ function validateDishes() {
       const carbs = record.carbs ?? record.c;
       const fat = record.fat ?? record.f;
       const macros = { calories: Number(calories), protein: Number(protein), carbs: Number(carbs), fat: Number(fat) };
-      const invalidMacros = Object.entries(macros).filter(([, value]) => !Number.isFinite(value) || value <= 0).map(([key]) => key);
+      const invalidMacros = Object.entries(macros).filter(([field, value]) => {
+        if (!Number.isFinite(value)) return true;
+        // Calories must be positive; protein/carbs/fat may legitimately be 0
+        // (e.g. carbs-free meat, fat-free produce, protein-free sugars/oils).
+        return field === 'calories' ? value <= 0 : value < 0;
+      }).map(([key]) => key);
       if (invalidMacros.length) {
         addIssue('dishes', 'invalid-macros', file, id, { invalid: invalidMacros, values: macros });
         metrics.dishes.invalidMacros++;
