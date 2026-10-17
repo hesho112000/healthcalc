@@ -11,8 +11,11 @@
     "build": "vite build",
     "preview": "vite preview",
     "validate": "node scripts/validate-data.mjs",
+    "validate:baseline": "node scripts/check-validation-baseline.mjs",
+    "validate:baseline:update": "node scripts/check-validation-baseline.mjs --update",
     "validate:nutrition": "node nutrition-validator.js",
-    "test:kitchens": "esbuild scripts/test-multi-kitchen-generator.ts --bundle --platform=node --format=esm --target=node22 --external:@supabase/supabase-js --external:dotenv --log-level=warning --outfile=node_modules/.cache/kitchens-e2e.mjs && node node_modules/.cache/kitchens-e2e.mjs"
+    "test:kitchens": "esbuild scripts/test-multi-kitchen-generator.ts --bundle --platform=node --format=esm --target=node22 --external:@supabase/supabase-js --external:dotenv --log-level=warning --outfile=node_modules/.cache/kitchens-e2e.mjs && node node_modules/.cache/kitchens-e2e.mjs",
+    "prepare": "husky"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.116.0",
@@ -31,6 +34,7 @@
     "@vitejs/plugin-react": "^4.2.0",
     "autoprefixer": "^10.4.16",
     "concurrently": "^8.2.2",
+    "husky": "^9.1.7",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5",
     "typescript": "^5.2.2",

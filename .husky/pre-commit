@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+# Pre-commit quality gate for HealthFingerprint.
+# Runs the full validation suite before every commit. Do NOT bypass with --no-verify.
+#
+# Checks: TypeScript typecheck -> production build -> data validation.
+
+run_check() {
+  label="$1"
+  shift
+  printf '\n\033[1m[pre-commit] %s\033[0m\n' "$label"
+  if "$@"; then
+    printf '\033[32m[pre-commit] PASS: %s\033[0m\n' "$label"
+  else
+    printf '\n\033[31m[pre-commit] FAIL: %s\033[0m\n' "$label" >&2
+    printf '[pre-commit] Fix the errors above, re-stage your changes, and commit again.\n' >&2
+    printf '[pre-commit] Hooks must NOT be skipped with --no-verify.\n' >&2
+    exit 1
+  fi
+}
+
+run_check "TypeScript typecheck (tsc --noEmit)" npx tsc --noEmit
+run_check "Production build (npm run build)"     npm run build
+run_check "Data validation (npm run validate:baseline)" npm run validate:baseline
+
+printf '\n\033[32m[pre-commit] All checks passed.\033[0m\n'
