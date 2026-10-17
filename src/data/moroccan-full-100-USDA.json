@@ -1060,7 +1060,7 @@
           "sodium_mg": 180.0,
           "sat_fat_g": 4.8,
           "serv_g": 120,
-          "cal_serv": 215,
+          "cal_serv": 192,
           "serving_unit": "طبق",
           "serving_description": "طبق متوسط 120جم",
           "serving_options": [
@@ -7956,7 +7956,7 @@
           "sodium_mg": 280.0,
           "sat_fat_g": 0.9,
           "serv_g": 250,
-          "cal_serv": 205,
+          "cal_serv": 183,
           "serving_unit": "طبق",
           "serving_description": "طبق متوسط 250جم",
           "serving_options": [
@@ -10068,7 +10068,7 @@
           "sodium_mg": 150.0,
           "sat_fat_g": 0.2,
           "serv_g": 150,
-          "cal_serv": 145,
+          "cal_serv": 131,
           "serving_unit": "قطعة",
           "serving_description": "قطعة 150جم",
           "serving_options": [
@@ -11615,7 +11615,7 @@
           "sodium_mg": 50.0,
           "sat_fat_g": 0.1,
           "serv_g": 150,
-          "cal_serv": 78,
+          "cal_serv": 87,
           "serving_unit": "حبة",
           "serving_description": "حبة متوسطة 150جم",
           "serving_options": [
@@ -11723,7 +11723,7 @@
           "sodium_mg": 50.0,
           "sat_fat_g": 0.0,
           "serv_g": 24,
-          "cal_serv": 67,
+          "cal_serv": 75,
           "serving_unit": "حبة",
           "serving_description": "حبة متوسطة 24جم",
           "serving_options": [
@@ -11831,7 +11831,7 @@
           "sodium_mg": 50.0,
           "sat_fat_g": 0.1,
           "serv_g": 200,
-          "cal_serv": 60,
+          "cal_serv": 68,
           "serving_unit": "حبة",
           "serving_description": "حبة متوسطة 200جم",
           "serving_options": [

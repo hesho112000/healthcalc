@@ -1,0 +1,744 @@
+{
+  "generatedAt": "2026-10-17T16:08:27.850Z",
+  "rules": {
+    "mismatchThresholdPercent": 10,
+    "autoFixBand": "10-25%",
+    "manualReviewBand": ">25%"
+  },
+  "totalOutliers": 103,
+  "outliers": [
+    {
+      "file": "src\\data\\egyptian-full-100-USDA.json",
+      "id": "",
+      "name": "Beef Basterma Meat",
+      "calories": 30,
+      "calculated": 6084,
+      "deviationPercent": 99.5
+    },
+    {
+      "file": "src\\data\\egyptian-full-100-USDA.json",
+      "id": "",
+      "name": "Lentil Soup",
+      "calories": 68,
+      "calculated": 35,
+      "deviationPercent": 96
+    },
+    {
+      "file": "src\\data\\egyptian-full-100-USDA.json",
+      "id": "",
+      "name": "Soy Flour",
+      "calories": 362,
+      "calculated": 199,
+      "deviationPercent": 81.8
+    },
+    {
+      "file": "src\\data\\egyptian-full-100-USDA.json",
+      "id": "",
+      "name": "Dried Lupines",
+      "calories": 355,
+      "calculated": 199,
+      "deviationPercent": 78.4
+    },
+    {
+      "file": "src\\data\\egyptian-full-100-USDA.json",
+      "id": "",
+      "name": "Beef Frankfurter",
+      "calories": 224,
+      "calculated": 1012,
+      "deviationPercent": 77.9
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_99",
+      "calories": 94,
+      "calculated": 54,
+      "deviationPercent": 75.7
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_99",
+      "calories": 94,
+      "calculated": 54,
+      "deviationPercent": 75.7
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_99",
+      "calories": 94,
+      "calculated": 54,
+      "deviationPercent": 75.7
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_98",
+      "calories": 93,
+      "calculated": 54,
+      "deviationPercent": 73.8
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_98",
+      "calories": 93,
+      "calculated": 54,
+      "deviationPercent": 73.8
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_98",
+      "calories": 93,
+      "calculated": 54,
+      "deviationPercent": 73.8
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_97",
+      "calories": 92,
+      "calculated": 54,
+      "deviationPercent": 72
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_97",
+      "calories": 92,
+      "calculated": 54,
+      "deviationPercent": 72
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_97",
+      "calories": 92,
+      "calculated": 54,
+      "deviationPercent": 72
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_96",
+      "calories": 91,
+      "calculated": 54,
+      "deviationPercent": 70.1
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_96",
+      "calories": 91,
+      "calculated": 54,
+      "deviationPercent": 70.1
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_96",
+      "calories": 91,
+      "calculated": 54,
+      "deviationPercent": 70.1
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_95",
+      "calories": 90,
+      "calculated": 54,
+      "deviationPercent": 68.2
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_95",
+      "calories": 90,
+      "calculated": 54,
+      "deviationPercent": 68.2
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_95",
+      "calories": 90,
+      "calculated": 54,
+      "deviationPercent": 68.2
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_94",
+      "calories": 89,
+      "calculated": 54,
+      "deviationPercent": 66.4
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_94",
+      "calories": 89,
+      "calculated": 54,
+      "deviationPercent": 66.4
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_94",
+      "calories": 89,
+      "calculated": 54,
+      "deviationPercent": 66.4
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_93",
+      "calories": 88,
+      "calculated": 54,
+      "deviationPercent": 64.5
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_93",
+      "calories": 88,
+      "calculated": 54,
+      "deviationPercent": 64.5
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_93",
+      "calories": 88,
+      "calculated": 54,
+      "deviationPercent": 64.5
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_92",
+      "calories": 87,
+      "calculated": 54,
+      "deviationPercent": 62.6
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_92",
+      "calories": 87,
+      "calculated": 54,
+      "deviationPercent": 62.6
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_92",
+      "calories": 87,
+      "calculated": 54,
+      "deviationPercent": 62.6
+    },
+    {
+      "file": "src\\data\\brazilian-full.ts",
+      "id": "br_pimenta_20",
+      "calories": 10,
+      "calculated": 6,
+      "deviationPercent": 61.3
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_91",
+      "calories": 86,
+      "calculated": 54,
+      "deviationPercent": 60.7
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_91",
+      "calories": 86,
+      "calculated": 54,
+      "deviationPercent": 60.7
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_91",
+      "calories": 86,
+      "calculated": 54,
+      "deviationPercent": 60.7
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_90",
+      "calories": 85,
+      "calculated": 54,
+      "deviationPercent": 58.9
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_90",
+      "calories": 85,
+      "calculated": 54,
+      "deviationPercent": 58.9
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_90",
+      "calories": 85,
+      "calculated": 54,
+      "deviationPercent": 58.9
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_89",
+      "calories": 84,
+      "calculated": 54,
+      "deviationPercent": 57
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_89",
+      "calories": 84,
+      "calculated": 54,
+      "deviationPercent": 57
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_89",
+      "calories": 84,
+      "calculated": 54,
+      "deviationPercent": 57
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_88",
+      "calories": 83,
+      "calculated": 54,
+      "deviationPercent": 55.1
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_88",
+      "calories": 83,
+      "calculated": 54,
+      "deviationPercent": 55.1
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_88",
+      "calories": 83,
+      "calculated": 54,
+      "deviationPercent": 55.1
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_87",
+      "calories": 82,
+      "calculated": 54,
+      "deviationPercent": 53.3
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_87",
+      "calories": 82,
+      "calculated": 54,
+      "deviationPercent": 53.3
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_87",
+      "calories": 82,
+      "calculated": 54,
+      "deviationPercent": 53.3
+    },
+    {
+      "file": "src\\data\\new-zealand-full.ts",
+      "id": "nz_horopito_pepper_10",
+      "calories": 10,
+      "calculated": 7,
+      "deviationPercent": 51.5
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_86",
+      "calories": 81,
+      "calculated": 54,
+      "deviationPercent": 51.4
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_86",
+      "calories": 81,
+      "calculated": 54,
+      "deviationPercent": 51.4
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_86",
+      "calories": 81,
+      "calculated": 54,
+      "deviationPercent": 51.4
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_85",
+      "calories": 80,
+      "calculated": 54,
+      "deviationPercent": 49.5
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_85",
+      "calories": 80,
+      "calculated": 54,
+      "deviationPercent": 49.5
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_85",
+      "calories": 80,
+      "calculated": 54,
+      "deviationPercent": 49.5
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_84",
+      "calories": 79,
+      "calculated": 54,
+      "deviationPercent": 47.7
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_84",
+      "calories": 79,
+      "calculated": 54,
+      "deviationPercent": 47.7
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_84",
+      "calories": 79,
+      "calculated": 54,
+      "deviationPercent": 47.7
+    },
+    {
+      "file": "src\\data\\jamaican-full.ts",
+      "id": "jm_pepper_sauce_20",
+      "calories": 15,
+      "calculated": 10,
+      "deviationPercent": 47.1
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_83",
+      "calories": 78,
+      "calculated": 54,
+      "deviationPercent": 45.8
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_83",
+      "calories": 78,
+      "calculated": 54,
+      "deviationPercent": 45.8
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_83",
+      "calories": 78,
+      "calculated": 54,
+      "deviationPercent": 45.8
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_82",
+      "calories": 77,
+      "calculated": 54,
+      "deviationPercent": 43.9
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_82",
+      "calories": 77,
+      "calculated": 54,
+      "deviationPercent": 43.9
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_82",
+      "calories": 77,
+      "calculated": 54,
+      "deviationPercent": 43.9
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_81",
+      "calories": 76,
+      "calculated": 54,
+      "deviationPercent": 42.1
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_81",
+      "calories": 76,
+      "calculated": 54,
+      "deviationPercent": 42.1
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_81",
+      "calories": 76,
+      "calculated": 54,
+      "deviationPercent": 42.1
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_80",
+      "calories": 75,
+      "calculated": 54,
+      "deviationPercent": 40.2
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_80",
+      "calories": 75,
+      "calculated": 54,
+      "deviationPercent": 40.2
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_80",
+      "calories": 75,
+      "calculated": 54,
+      "deviationPercent": 40.2
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_79",
+      "calories": 74,
+      "calculated": 54,
+      "deviationPercent": 38.3
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_79",
+      "calories": 74,
+      "calculated": 54,
+      "deviationPercent": 38.3
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_79",
+      "calories": 74,
+      "calculated": 54,
+      "deviationPercent": 38.3
+    },
+    {
+      "file": "src\\data\\egyptian-full-100-USDA.json",
+      "id": "",
+      "name": "Beetroots",
+      "calories": 45,
+      "calculated": 33,
+      "deviationPercent": 36.8
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_78",
+      "calories": 73,
+      "calculated": 54,
+      "deviationPercent": 36.4
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_78",
+      "calories": 73,
+      "calculated": 54,
+      "deviationPercent": 36.4
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_78",
+      "calories": 73,
+      "calculated": 54,
+      "deviationPercent": 36.4
+    },
+    {
+      "file": "src\\data\\egyptian-full-100-USDA.json",
+      "id": "",
+      "name": "Fried Eggplant Sandwich",
+      "calories": 123,
+      "calculated": 193,
+      "deviationPercent": 36.3
+    },
+    {
+      "file": "src\\data\\tunisian-full-100-USDA.json",
+      "id": "",
+      "name": "Strong Turkish-Tunisian Coffee",
+      "calories": 5,
+      "calculated": 4,
+      "deviationPercent": 35.1
+    },
+    {
+      "file": "src\\data\\australian-full.ts",
+      "id": "au_calamari_light_au",
+      "calories": 95,
+      "calculated": 71,
+      "deviationPercent": 34.8
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_77",
+      "calories": 72,
+      "calculated": 54,
+      "deviationPercent": 34.6
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_77",
+      "calories": 72,
+      "calculated": 54,
+      "deviationPercent": 34.6
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_77",
+      "calories": 72,
+      "calculated": 54,
+      "deviationPercent": 34.6
+    },
+    {
+      "file": "src\\data\\egyptian-full-100-USDA.json",
+      "id": "",
+      "name": "Termis (Boiled Lupines)",
+      "calories": 111,
+      "calculated": 83,
+      "deviationPercent": 33.6
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_76",
+      "calories": 71,
+      "calculated": 54,
+      "deviationPercent": 32.7
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_76",
+      "calories": 71,
+      "calculated": 54,
+      "deviationPercent": 32.7
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_76",
+      "calories": 71,
+      "calculated": 54,
+      "deviationPercent": 32.7
+    },
+    {
+      "file": "src\\data\\new-zealand-full.ts",
+      "id": "nz_watercress_soup_light_nz",
+      "calories": 35,
+      "calculated": 27,
+      "deviationPercent": 32.1
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_75",
+      "calories": 70,
+      "calculated": 54,
+      "deviationPercent": 30.8
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_75",
+      "calories": 70,
+      "calculated": 54,
+      "deviationPercent": 30.8
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_75",
+      "calories": 70,
+      "calculated": 54,
+      "deviationPercent": 30.8
+    },
+    {
+      "file": "src\\data\\pakistani-full.ts",
+      "id": "pk_maghaz",
+      "calories": 185,
+      "calculated": 142,
+      "deviationPercent": 30.3
+    },
+    {
+      "file": "src\\data\\egyptian-full-100-USDA.json",
+      "id": "",
+      "name": "Dried Peas",
+      "calories": 345,
+      "calculated": 265,
+      "deviationPercent": 30.2
+    },
+    {
+      "file": "src\\data\\new-zealand-full.ts",
+      "id": "nz_lemon_nz_30",
+      "calories": 9,
+      "calculated": 13,
+      "deviationPercent": 30.2
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_74",
+      "calories": 69,
+      "calculated": 54,
+      "deviationPercent": 29
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_74",
+      "calories": 69,
+      "calculated": 54,
+      "deviationPercent": 29
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_74",
+      "calories": 69,
+      "calculated": 54,
+      "deviationPercent": 29
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_73",
+      "calories": 68,
+      "calculated": 54,
+      "deviationPercent": 27.1
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_73",
+      "calories": 68,
+      "calculated": 54,
+      "deviationPercent": 27.1
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_73",
+      "calories": 68,
+      "calculated": 54,
+      "deviationPercent": 27.1
+    },
+    {
+      "file": "src\\data\\egyptian-full-100-USDA.json",
+      "id": "",
+      "name": "Soybeans",
+      "calories": 426,
+      "calculated": 339,
+      "deviationPercent": 25.6
+    },
+    {
+      "file": "src\\data\\egyptian-full-100-USDA.json",
+      "id": "",
+      "name": "Dried Coconut",
+      "calories": 689,
+      "calculated": 925,
+      "deviationPercent": 25.5
+    },
+    {
+      "file": "src\\data\\bahraini-full.ts",
+      "id": "bh_side_extra_72",
+      "calories": 67,
+      "calculated": 54,
+      "deviationPercent": 25.2
+    },
+    {
+      "file": "src\\data\\kuwaiti-full.ts",
+      "id": "kw_side_extra_72",
+      "calories": 67,
+      "calculated": 54,
+      "deviationPercent": 25.2
+    },
+    {
+      "file": "src\\data\\qatar-full.ts",
+      "id": "qa_side_extra_72",
+      "calories": 67,
+      "calculated": 54,
+      "deviationPercent": 25.2
+    }
+  ]
+}

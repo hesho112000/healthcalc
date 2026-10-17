@@ -70,7 +70,7 @@ export const LIBYAN_FULL: LibyanFullDish[] = [
   {"id":"lib_fish_grilled_mix","nameAr":"حوت مشوي مشكل ليبي","nameEn":"Mixed fish grilled Libyan","mealType":"lunch","grams":200,"kcal":250,"protein":34,"carbs":0,"fat":11,"cooking":"grilled"},
   {"id":"lib_fish_tuna_grilled","nameAr":"تونة مشوية ليبية","nameEn":"Tuna grilled Libyan","mealType":"lunch","grams":180,"kcal":265,"protein":32,"carbs":0,"fat":13.5,"cooking":"grilled"},
   {"id":"lib_fish_sardine","nameAr":"سردين مشوي ليبي","nameEn":"Sardine grilled","mealType":"lunch","grams":150,"kcal":245,"protein":28,"carbs":0,"fat":14,"cooking":"grilled"},
-  {"id":"lib_shrimp_grilled","nameAr":"جمبري مشوي ليبي","nameEn":"Shrimp grilled Libyan","mealType":"lunch","grams":150,"kcal":145,"protein":26,"carbs":1,"fat":2.5,"cooking":"grilled"},
+  {"id":"lib_shrimp_grilled","nameAr":"جمبري مشوي ليبي","nameEn":"Shrimp grilled Libyan","mealType":"lunch","grams":150,"kcal":131,"protein":26,"carbs":1,"fat":2.5,"cooking":"grilled"},
   {"id":"lib_shrimp_mbakbak","nameAr":"جمبري مبكبك","nameEn":"Shrimp mbakbak","mealType":"lunch","grams":300,"kcal":315,"protein":22,"carbs":38,"fat":7.5,"cooking":"boiled"},
   {"id":"lib_calamari_grilled","nameAr":"كاليماري مشوي","nameEn":"Calamari grilled","mealType":"lunch","grams":150,"kcal":135,"protein":22,"carbs":2.5,"fat":3.5,"cooking":"grilled"},
   {"id":"lib_shorba_ads","nameAr":"شوربة عدس ليبية","nameEn":"Lentil soup Libyan","mealType":"dinner","grams":250,"kcal":195,"protein":11.5,"carbs":28,"fat":2.8,"cooking":"boiled"},
@@ -82,9 +82,9 @@ export const LIBYAN_FULL: LibyanFullDish[] = [
   {"id":"lib_ful_dinner","nameAr":"فول عشا ليبي","nameEn":"Foul dinner Libyan","mealType":"dinner","grams":120,"kcal":132,"protein":9.1,"carbs":23.5,"fat":0.5,"cooking":"boiled"},
   {"id":"lib_egg_boiled","nameAr":"بيض مسلوق ليبي","nameEn":"Boiled eggs Libyan","mealType":"dinner","grams":100,"kcal":140,"protein":12.6,"carbs":1.1,"fat":9.5,"cooking":"boiled"},
   {"id":"lib_tuna_water","nameAr":"تونة في ماء ليبية","nameEn":"Tuna water Libyan","mealType":"dinner","grams":100,"kcal":116,"protein":25.5,"carbs":0,"fat":0.8,"cooking":"canned"},
-  {"id":"lib_apple","nameAr":"تفاح ليبي","nameEn":"Apple Libyan","mealType":"fruit","grams":150,"kcal":78,"protein":0.3,"carbs":20.6,"fat":0.4,"cooking":"fresh"},
+  {"id":"lib_apple","nameAr":"تفاح ليبي","nameEn":"Apple Libyan","mealType":"fruit","grams":150,"kcal":87,"protein":0.3,"carbs":20.6,"fat":0.4,"cooking":"fresh"},
   {"id":"lib_orange","nameAr":"برتقال ليبي","nameEn":"Orange Libyan","mealType":"fruit","grams":150,"kcal":70,"protein":1.2,"carbs":17.5,"fat":0.2,"cooking":"fresh"},
-  {"id":"lib_dates_3","nameAr":"تمر 3 حبات ليبي","nameEn":"Dates 3 Libyan","mealType":"fruit","grams":24,"kcal":67,"protein":0.4,"carbs":18,"fat":0.1,"cooking":"fresh"},
+  {"id":"lib_dates_3","nameAr":"تمر 3 حبات ليبي","nameEn":"Dates 3 Libyan","mealType":"fruit","grams":24,"kcal":75,"protein":0.4,"carbs":18,"fat":0.1,"cooking":"fresh"},
   {"id":"lib_banana","nameAr":"موز ليبي","nameEn":"Banana Libyan","mealType":"fruit","grams":100,"kcal":89,"protein":1.1,"carbs":22.8,"fat":0.3,"cooking":"fresh"},
   {"id":"lib_bazin_zekra","nameAr":"بازين بالزكرة ليبي","nameEn":"Bazeen zekra","mealType":"lunch","grams":320,"kcal":445,"protein":22,"carbs":50,"fat":16,"cooking":"boiled"},
   {"id":"lib_rishta","nameAr":"رشدة ليبية","nameEn":"Rishta Libyan","mealType":"lunch","grams":300,"kcal":365,"protein":12,"carbs":52,"fat":11,"cooking":"boiled"},
@@ -110,8 +110,8 @@ export const LIBYAN_FULL: LibyanFullDish[] = [
   {"id":"lib_qarish_zeit","nameAr":"قريش بزيت ليبي","nameEn":"Qarish oil Libyan","mealType":"breakfast","grams":110,"kcal":135,"protein":11,"carbs":3.5,"fat":8,"cooking":"fresh"},
   {"id":"lib_hasa_dajaj","nameAr":"حساء دجاج ليبي","nameEn":"Chicken hasa Libyan","mealType":"dinner","grams":250,"kcal":115,"protein":9,"carbs":8,"fat":4.5,"cooking":"boiled"},
   {"id":"lib_lentil_shorba","nameAr":"شوربة عدس حمراء ليبية","nameEn":"Red lentil shorba","mealType":"dinner","grams":250,"kcal":185,"protein":10,"carbs":26,"fat":3,"cooking":"boiled"},
-  {"id":"lib_mushrooms_grilled","nameAr":"مشروم مشوي ليبي","nameEn":"Mushroom grilled","mealType":"side","grams":100,"kcal":35,"protein":3.5,"carbs":4.5,"fat":0.8,"cooking":"grilled"},
+  {"id":"lib_mushrooms_grilled","nameAr":"مشروم مشوي ليبي","nameEn":"Mushroom grilled","mealType":"side","grams":100,"kcal":39,"protein":3.5,"carbs":4.5,"fat":0.8,"cooking":"grilled"},
   {"id":"lib_egg_omlet","nameAr":"أومليت خضار ليبي","nameEn":"Veg omelet Libyan","mealType":"dinner","grams":150,"kcal":195,"protein":13,"carbs":4,"fat":13.5,"cooking":"pan"},
-  {"id":"lib_ watermelon","nameAr":"دلاع ليبي","nameEn":"Watermelon Libyan","mealType":"fruit","grams":200,"kcal":60,"protein":1.2,"carbs":15,"fat":0.3,"cooking":"fresh"},
-  {"id":"lib_mango","nameAr":"مانجو ليبي","nameEn":"Mango Libyan","mealType":"fruit","grams":150,"kcal":90,"protein":1.2,"carbs":22.5,"fat":0.6,"cooking":"fresh"}
+  {"id":"lib_ watermelon","nameAr":"دلاع ليبي","nameEn":"Watermelon Libyan","mealType":"fruit","grams":200,"kcal":68,"protein":1.2,"carbs":15,"fat":0.3,"cooking":"fresh"},
+  {"id":"lib_mango","nameAr":"مانجو ليبي","nameEn":"Mango Libyan","mealType":"fruit","grams":150,"kcal":100,"protein":1.2,"carbs":22.5,"fat":0.6,"cooking":"fresh"}
 ];
