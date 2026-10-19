@@ -10,7 +10,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Eggs olive oil - MED breakfast - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Eggs olive oil - MED breakfast - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Œufs à l’huile d’olive, petit-déjeuner méditerranéen",
+    "name_es": "Huevos con aceite de oliva, desayuno mediterráneo",
+    "name_de": "Eier mit Olivenöl, mediterranes Frühstück"
   },
   {
     "id": "med_bf_1",
@@ -23,7 +26,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Greek yogurt - MED - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Greek yogurt - MED - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Yaourt grec, petit-déjeuner méditerranéen",
+    "name_es": "Yogur griego, desayuno mediterráneo",
+    "name_de": "Griechischer Joghurt, mediterranes Frühstück"
   },
   {
     "id": "med_bf_2",
@@ -36,7 +42,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Oats fruit MED - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Oats fruit MED - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Flocons d’avoine aux fruits, petit-déjeuner méditerranéen",
+    "name_es": "Avena con fruta, desayuno mediterráneo",
+    "name_de": "Haferflocken mit Obst, mediterranes Frühstück"
   },
   {
     "id": "med_bf_3",
@@ -49,7 +58,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Foul olive oil MED - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Foul olive oil MED - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Foul à l’huile d’olive, petit-déjeuner méditerranéen",
+    "name_es": "Foul con aceite de oliva, desayuno mediterráneo",
+    "name_de": "Foul mit Olivenöl, mediterranes Frühstück"
   },
   {
     "id": "med_bf_4",
@@ -62,7 +74,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Whole wheat bread MED - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Whole wheat bread MED - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Pain complet, petit-déjeuner méditerranéen",
+    "name_es": "Pan integral, desayuno mediterráneo",
+    "name_de": "Vollkornbrot, mediterranes Frühstück"
   },
   {
     "id": "med_bf_5",
@@ -75,7 +90,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Avocado toast MED - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Avocado toast MED - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Tartine d’avocat, petit-déjeuner méditerranéen",
+    "name_es": "Tostada de aguacate, desayuno mediterráneo",
+    "name_de": "Avocado-Toast, mediterranes Frühstück"
   },
   {
     "id": "med_bf_6",
@@ -88,7 +106,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Feta cheese MED IGP - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Feta cheese MED IGP - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Fromage feta, petit-déjeuner méditerranéen",
+    "name_es": "Queso feta, desayuno mediterráneo",
+    "name_de": "Feta-Käse, mediterranes Frühstück"
   },
   {
     "id": "med_bf_7",
@@ -101,7 +122,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Smoked salmon MED - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Smoked salmon MED - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Saumon fumé, petit-déjeuner méditerranéen",
+    "name_es": "Salmón ahumado, desayuno mediterráneo",
+    "name_de": "Räucherlachs, mediterranes Frühstück"
   },
   {
     "id": "med_bf_8",
@@ -114,7 +138,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Hummus MED - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Hummus MED - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Houmous, petit-déjeuner méditerranéen",
+    "name_es": "Hummus, desayuno mediterráneo",
+    "name_de": "Hummus, mediterranes Frühstück"
   },
   {
     "id": "med_bf_9",
@@ -127,7 +154,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Dates MED - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Dates MED - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Dattes, petit-déjeuner méditerranéen",
+    "name_es": "Dátiles, desayuno mediterráneo",
+    "name_de": "Datteln, mediterranes Frühstück"
   },
   {
     "id": "med_bf_10",
@@ -140,7 +170,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Olives MED IGP - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Olives MED IGP - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Olives, petit-déjeuner méditerranéen",
+    "name_es": "Aceitunas, desayuno mediterráneo",
+    "name_de": "Oliven, mediterranes Frühstück"
   },
   {
     "id": "med_bf_11",
@@ -153,7 +186,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Green tea MED - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Green tea MED - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Thé vert, petit-déjeuner méditerranéen",
+    "name_es": "Té verde, desayuno mediterráneo",
+    "name_de": "Grüner Tee, mediterranes Frühstück"
   },
   {
     "id": "med_lunch_0",
@@ -166,7 +202,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 0 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 0 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 0",
+    "name_es": "Almuerzo mediterráneo 0",
+    "name_de": "Mediterranes Mittagessen 0"
   },
   {
     "id": "med_lunch_1",
@@ -179,7 +218,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 1 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 1 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 1",
+    "name_es": "Almuerzo mediterráneo 1",
+    "name_de": "Mediterranes Mittagessen 1"
   },
   {
     "id": "med_lunch_2",
@@ -192,7 +234,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 2 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 2 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 2",
+    "name_es": "Almuerzo mediterráneo 2",
+    "name_de": "Mediterranes Mittagessen 2"
   },
   {
     "id": "med_lunch_3",
@@ -205,7 +250,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 3 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 3 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 3",
+    "name_es": "Almuerzo mediterráneo 3",
+    "name_de": "Mediterranes Mittagessen 3"
   },
   {
     "id": "med_lunch_4",
@@ -218,7 +266,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 4 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 4 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 4",
+    "name_es": "Almuerzo mediterráneo 4",
+    "name_de": "Mediterranes Mittagessen 4"
   },
   {
     "id": "med_lunch_5",
@@ -231,7 +282,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 5 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 5 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 5",
+    "name_es": "Almuerzo mediterráneo 5",
+    "name_de": "Mediterranes Mittagessen 5"
   },
   {
     "id": "med_lunch_6",
@@ -244,7 +298,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 6 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 6 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 6",
+    "name_es": "Almuerzo mediterráneo 6",
+    "name_de": "Mediterranes Mittagessen 6"
   },
   {
     "id": "med_lunch_7",
@@ -257,7 +314,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 7 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 7 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 7",
+    "name_es": "Almuerzo mediterráneo 7",
+    "name_de": "Mediterranes Mittagessen 7"
   },
   {
     "id": "med_lunch_8",
@@ -270,7 +330,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 8 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 8 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 8",
+    "name_es": "Almuerzo mediterráneo 8",
+    "name_de": "Mediterranes Mittagessen 8"
   },
   {
     "id": "med_lunch_9",
@@ -283,7 +346,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 9 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 9 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 9",
+    "name_es": "Almuerzo mediterráneo 9",
+    "name_de": "Mediterranes Mittagessen 9"
   },
   {
     "id": "med_lunch_10",
@@ -296,7 +362,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 10 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 10 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 10",
+    "name_es": "Almuerzo mediterráneo 10",
+    "name_de": "Mediterranes Mittagessen 10"
   },
   {
     "id": "med_lunch_11",
@@ -309,7 +378,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 11 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 11 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 11",
+    "name_es": "Almuerzo mediterráneo 11",
+    "name_de": "Mediterranes Mittagessen 11"
   },
   {
     "id": "med_lunch_12",
@@ -322,7 +394,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 12 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 12 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 12",
+    "name_es": "Almuerzo mediterráneo 12",
+    "name_de": "Mediterranes Mittagessen 12"
   },
   {
     "id": "med_lunch_13",
@@ -335,7 +410,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 13 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 13 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 13",
+    "name_es": "Almuerzo mediterráneo 13",
+    "name_de": "Mediterranes Mittagessen 13"
   },
   {
     "id": "med_lunch_14",
@@ -348,7 +426,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 14 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 14 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 14",
+    "name_es": "Almuerzo mediterráneo 14",
+    "name_de": "Mediterranes Mittagessen 14"
   },
   {
     "id": "med_lunch_15",
@@ -361,7 +442,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 15 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 15 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 15",
+    "name_es": "Almuerzo mediterráneo 15",
+    "name_de": "Mediterranes Mittagessen 15"
   },
   {
     "id": "med_lunch_16",
@@ -374,7 +458,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 16 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 16 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 16",
+    "name_es": "Almuerzo mediterráneo 16",
+    "name_de": "Mediterranes Mittagessen 16"
   },
   {
     "id": "med_lunch_17",
@@ -387,7 +474,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 17 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 17 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 17",
+    "name_es": "Almuerzo mediterráneo 17",
+    "name_de": "Mediterranes Mittagessen 17"
   },
   {
     "id": "med_lunch_18",
@@ -400,7 +490,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 18 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 18 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 18",
+    "name_es": "Almuerzo mediterráneo 18",
+    "name_de": "Mediterranes Mittagessen 18"
   },
   {
     "id": "med_lunch_19",
@@ -413,7 +506,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 19 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 19 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 19",
+    "name_es": "Almuerzo mediterráneo 19",
+    "name_de": "Mediterranes Mittagessen 19"
   },
   {
     "id": "med_lunch_20",
@@ -426,7 +522,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 20 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 20 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 20",
+    "name_es": "Almuerzo mediterráneo 20",
+    "name_de": "Mediterranes Mittagessen 20"
   },
   {
     "id": "med_lunch_21",
@@ -439,7 +538,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 21 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 21 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 21",
+    "name_es": "Almuerzo mediterráneo 21",
+    "name_de": "Mediterranes Mittagessen 21"
   },
   {
     "id": "med_lunch_22",
@@ -452,7 +554,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 22 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 22 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 22",
+    "name_es": "Almuerzo mediterráneo 22",
+    "name_de": "Mediterranes Mittagessen 22"
   },
   {
     "id": "med_lunch_23",
@@ -465,7 +570,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 23 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 23 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 23",
+    "name_es": "Almuerzo mediterráneo 23",
+    "name_de": "Mediterranes Mittagessen 23"
   },
   {
     "id": "med_lunch_24",
@@ -478,7 +586,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Med dish 24 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med dish 24 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Déjeuner méditerranéen 24",
+    "name_es": "Almuerzo mediterráneo 24",
+    "name_de": "Mediterranes Mittagessen 24"
   },
   {
     "id": "med_side_0",
@@ -491,7 +602,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Med side 0 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med side 0 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Accompagnement méditerranéen 0",
+    "name_es": "Guarnición mediterránea 0",
+    "name_de": "Mediterrane Beilage 0"
   },
   {
     "id": "med_side_1",
@@ -504,7 +618,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Med side 1 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med side 1 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Accompagnement méditerranéen 1",
+    "name_es": "Guarnición mediterránea 1",
+    "name_de": "Mediterrane Beilage 1"
   },
   {
     "id": "med_side_2",
@@ -517,7 +634,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Med side 2 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med side 2 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Accompagnement méditerranéen 2",
+    "name_es": "Guarnición mediterránea 2",
+    "name_de": "Mediterrane Beilage 2"
   },
   {
     "id": "med_side_3",
@@ -530,7 +650,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Med side 3 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med side 3 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Accompagnement méditerranéen 3",
+    "name_es": "Guarnición mediterránea 3",
+    "name_de": "Mediterrane Beilage 3"
   },
   {
     "id": "med_side_4",
@@ -543,7 +666,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Med side 4 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med side 4 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Accompagnement méditerranéen 4",
+    "name_es": "Guarnición mediterránea 4",
+    "name_de": "Mediterrane Beilage 4"
   },
   {
     "id": "med_side_5",
@@ -556,7 +682,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Med side 5 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med side 5 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Accompagnement méditerranéen 5",
+    "name_es": "Guarnición mediterránea 5",
+    "name_de": "Mediterrane Beilage 5"
   },
   {
     "id": "med_side_6",
@@ -569,7 +698,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Med side 6 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med side 6 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Accompagnement méditerranéen 6",
+    "name_es": "Guarnición mediterránea 6",
+    "name_de": "Mediterrane Beilage 6"
   },
   {
     "id": "med_side_7",
@@ -582,7 +714,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Med side 7 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med side 7 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Accompagnement méditerranéen 7",
+    "name_es": "Guarnición mediterránea 7",
+    "name_de": "Mediterrane Beilage 7"
   },
   {
     "id": "med_side_8",
@@ -595,7 +730,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Med side 8 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med side 8 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Accompagnement méditerranéen 8",
+    "name_es": "Guarnición mediterránea 8",
+    "name_de": "Mediterrane Beilage 8"
   },
   {
     "id": "med_side_9",
@@ -608,7 +746,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Med side 9 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med side 9 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Accompagnement méditerranéen 9",
+    "name_es": "Guarnición mediterránea 9",
+    "name_de": "Mediterrane Beilage 9"
   },
   {
     "id": "med_side_10",
@@ -621,7 +762,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Med side 10 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med side 10 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Accompagnement méditerranéen 10",
+    "name_es": "Guarnición mediterránea 10",
+    "name_de": "Mediterrane Beilage 10"
   },
   {
     "id": "med_side_11",
@@ -634,7 +778,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Med side 11 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med side 11 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Accompagnement méditerranéen 11",
+    "name_es": "Guarnición mediterránea 11",
+    "name_de": "Mediterrane Beilage 11"
   },
   {
     "id": "med_side_12",
@@ -647,7 +794,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Med side 12 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata"
+    "ref": "Med side 12 - Mediterranean - Keys et al. Mediterranean Diet - Harvard T.H. Chan 2023 PREDIMED - Estruch NEJM 2023 - Mayo Clinic Mediterranean Diet Guidelines 2024 - USDA 2024 - Willett Mediterranean Diet Pyramid - Harvard 2023 - IGP Olive Oil Kalamata",
+    "name_fr": "Accompagnement méditerranéen 12",
+    "name_es": "Guarnición mediterránea 12",
+    "name_de": "Mediterrane Beilage 12"
   },
   {
     "id": "med_side_13",
