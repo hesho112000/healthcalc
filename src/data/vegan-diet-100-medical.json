@@ -10,7 +10,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Oats almond milk vegan breakfast - no animal - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Oats almond milk vegan breakfast - no animal - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Flocons d’avoine au lait d’amande, petit-déjeuner vegan",
+    "name_es": "Avena con leche de almendra, desayuno vegano",
+    "name_de": "Haferflocken mit Mandelmilch, veganes Frühstück"
   },
   {
     "id": "vegan_bf_1",
@@ -23,7 +26,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Tofu scramble vegan 15g protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Tofu scramble vegan 15g protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Tofu brouillé, petit-déjeuner vegan",
+    "name_es": "Tofu revuelto, desayuno vegano",
+    "name_de": "Rührtofu, veganes Frühstück"
   },
   {
     "id": "vegan_bf_2",
@@ -36,7 +42,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Hummus avocado vegan - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Hummus avocado vegan - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Houmous et avocat, petit-déjeuner vegan",
+    "name_es": "Hummus con aguacate, desayuno vegano",
+    "name_de": "Hummus mit Avocado, veganes Frühstück"
   },
   {
     "id": "vegan_bf_3",
@@ -49,7 +58,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "PB banana vegan - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "PB banana vegan - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Beurre de cacahuète et banane, petit-déjeuner vegan",
+    "name_es": "Mantequilla de cacahuete y plátano, desayuno vegano",
+    "name_de": "Erdnussbutter mit Banane, veganes Frühstück"
   },
   {
     "id": "vegan_bf_4",
@@ -62,7 +74,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Chia pudding vegan omega3 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Chia pudding vegan omega3 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Pudding de chia, petit-déjeuner vegan",
+    "name_es": "Pudín de chía, desayuno vegano",
+    "name_de": "Chia-Pudding, veganes Frühstück"
   },
   {
     "id": "vegan_bf_5",
@@ -75,7 +90,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Granola vegan - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Granola vegan - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Granola, petit-déjeuner vegan",
+    "name_es": "Granola, desayuno vegano",
+    "name_de": "Granola, veganes Frühstück"
   },
   {
     "id": "vegan_bf_6",
@@ -88,7 +106,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Smoothie vegan - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Smoothie vegan - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Smoothie, petit-déjeuner vegan",
+    "name_es": "Batido, desayuno vegano",
+    "name_de": "Smoothie, veganes Frühstück"
   },
   {
     "id": "vegan_bf_7",
@@ -101,7 +122,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Avocado toast vegan - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Avocado toast vegan - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Tartine d’avocat, petit-déjeuner vegan",
+    "name_es": "Tostada de aguacate, desayuno vegano",
+    "name_de": "Avocado-Toast, veganes Frühstück"
   },
   {
     "id": "vegan_bf_8",
@@ -114,7 +138,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Foul vegan - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Foul vegan - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Foul (purée de fèves), petit-déjeuner vegan",
+    "name_es": "Foul (puré de habas), desayuno vegano",
+    "name_de": "Foul (Bohnenmus), veganes Frühstück"
   },
   {
     "id": "vegan_bf_9",
@@ -127,7 +154,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Falafel vegan - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Falafel vegan - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Falafel, petit-déjeuner vegan",
+    "name_es": "Falafel, desayuno vegano",
+    "name_de": "Falafel, veganes Frühstück"
   },
   {
     "id": "vegan_bf_10",
@@ -140,7 +170,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Dates almond vegan - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Dates almond vegan - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Dattes et amandes, petit-déjeuner vegan",
+    "name_es": "Dátiles con almendras, desayuno vegano",
+    "name_de": "Datteln mit Mandeln, veganes Frühstück"
   },
   {
     "id": "vegan_bf_11",
@@ -153,7 +186,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Oat milk tea vegan - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Oat milk tea vegan - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Thé au lait d’avoine, petit-déjeuner vegan",
+    "name_es": "Té con leche de avena, desayuno vegano",
+    "name_de": "Tee mit Hafermilch, veganes Frühstück"
   },
   {
     "id": "vegan_lunch_0",
@@ -166,7 +202,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 0 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 0 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 0",
+    "name_es": "Almuerzo vegano 0",
+    "name_de": "Veganes Mittagessen 0"
   },
   {
     "id": "vegan_lunch_1",
@@ -179,7 +218,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 1 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 1 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 1",
+    "name_es": "Almuerzo vegano 1",
+    "name_de": "Veganes Mittagessen 1"
   },
   {
     "id": "vegan_lunch_2",
@@ -192,7 +234,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 2 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 2 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 2",
+    "name_es": "Almuerzo vegano 2",
+    "name_de": "Veganes Mittagessen 2"
   },
   {
     "id": "vegan_lunch_3",
@@ -205,7 +250,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 3 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 3 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 3",
+    "name_es": "Almuerzo vegano 3",
+    "name_de": "Veganes Mittagessen 3"
   },
   {
     "id": "vegan_lunch_4",
@@ -218,7 +266,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 4 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 4 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 4",
+    "name_es": "Almuerzo vegano 4",
+    "name_de": "Veganes Mittagessen 4"
   },
   {
     "id": "vegan_lunch_5",
@@ -231,7 +282,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 5 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 5 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 5",
+    "name_es": "Almuerzo vegano 5",
+    "name_de": "Veganes Mittagessen 5"
   },
   {
     "id": "vegan_lunch_6",
@@ -244,7 +298,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 6 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 6 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 6",
+    "name_es": "Almuerzo vegano 6",
+    "name_de": "Veganes Mittagessen 6"
   },
   {
     "id": "vegan_lunch_7",
@@ -257,7 +314,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 7 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 7 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 7",
+    "name_es": "Almuerzo vegano 7",
+    "name_de": "Veganes Mittagessen 7"
   },
   {
     "id": "vegan_lunch_8",
@@ -270,7 +330,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 8 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 8 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 8",
+    "name_es": "Almuerzo vegano 8",
+    "name_de": "Veganes Mittagessen 8"
   },
   {
     "id": "vegan_lunch_9",
@@ -283,7 +346,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 9 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 9 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 9",
+    "name_es": "Almuerzo vegano 9",
+    "name_de": "Veganes Mittagessen 9"
   },
   {
     "id": "vegan_lunch_10",
@@ -296,7 +362,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 10 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 10 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 10",
+    "name_es": "Almuerzo vegano 10",
+    "name_de": "Veganes Mittagessen 10"
   },
   {
     "id": "vegan_lunch_11",
@@ -309,7 +378,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 11 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 11 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 11",
+    "name_es": "Almuerzo vegano 11",
+    "name_de": "Veganes Mittagessen 11"
   },
   {
     "id": "vegan_lunch_12",
@@ -322,7 +394,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 12 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 12 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 12",
+    "name_es": "Almuerzo vegano 12",
+    "name_de": "Veganes Mittagessen 12"
   },
   {
     "id": "vegan_lunch_13",
@@ -335,7 +410,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 13 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 13 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 13",
+    "name_es": "Almuerzo vegano 13",
+    "name_de": "Veganes Mittagessen 13"
   },
   {
     "id": "vegan_lunch_14",
@@ -348,7 +426,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 14 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 14 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 14",
+    "name_es": "Almuerzo vegano 14",
+    "name_de": "Veganes Mittagessen 14"
   },
   {
     "id": "vegan_lunch_15",
@@ -361,7 +442,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 15 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 15 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 15",
+    "name_es": "Almuerzo vegano 15",
+    "name_de": "Veganes Mittagessen 15"
   },
   {
     "id": "vegan_lunch_16",
@@ -374,7 +458,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 16 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 16 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 16",
+    "name_es": "Almuerzo vegano 16",
+    "name_de": "Veganes Mittagessen 16"
   },
   {
     "id": "vegan_lunch_17",
@@ -387,7 +474,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 17 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 17 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 17",
+    "name_es": "Almuerzo vegano 17",
+    "name_de": "Veganes Mittagessen 17"
   },
   {
     "id": "vegan_lunch_18",
@@ -400,7 +490,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 18 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 18 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 18",
+    "name_es": "Almuerzo vegano 18",
+    "name_de": "Veganes Mittagessen 18"
   },
   {
     "id": "vegan_lunch_19",
@@ -413,7 +506,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 19 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 19 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 19",
+    "name_es": "Almuerzo vegano 19",
+    "name_de": "Veganes Mittagessen 19"
   },
   {
     "id": "vegan_lunch_20",
@@ -426,7 +522,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 20 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 20 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 20",
+    "name_es": "Almuerzo vegano 20",
+    "name_de": "Veganes Mittagessen 20"
   },
   {
     "id": "vegan_lunch_21",
@@ -439,7 +538,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 21 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 21 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 21",
+    "name_es": "Almuerzo vegano 21",
+    "name_de": "Veganes Mittagessen 21"
   },
   {
     "id": "vegan_lunch_22",
@@ -452,7 +554,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 22 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 22 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 22",
+    "name_es": "Almuerzo vegano 22",
+    "name_de": "Veganes Mittagessen 22"
   },
   {
     "id": "vegan_lunch_23",
@@ -465,7 +570,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 23 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 23 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 23",
+    "name_es": "Almuerzo vegano 23",
+    "name_de": "Veganes Mittagessen 23"
   },
   {
     "id": "vegan_lunch_24",
@@ -478,7 +586,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegan lunch 24 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan lunch 24 plant protein - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Déjeuner vegan 24",
+    "name_es": "Almuerzo vegano 24",
+    "name_de": "Veganes Mittagessen 24"
   },
   {
     "id": "vegan_side_0",
@@ -491,7 +602,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegan side 0 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan side 0 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Accompagnement vegan 0",
+    "name_es": "Guarnición vegana 0",
+    "name_de": "Vegane Beilage 0"
   },
   {
     "id": "vegan_side_1",
@@ -504,7 +618,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegan side 1 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan side 1 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Accompagnement vegan 1",
+    "name_es": "Guarnición vegana 1",
+    "name_de": "Vegane Beilage 1"
   },
   {
     "id": "vegan_side_2",
@@ -517,7 +634,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegan side 2 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan side 2 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Accompagnement vegan 2",
+    "name_es": "Guarnición vegana 2",
+    "name_de": "Vegane Beilage 2"
   },
   {
     "id": "vegan_side_3",
@@ -530,7 +650,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegan side 3 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan side 3 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Accompagnement vegan 3",
+    "name_es": "Guarnición vegana 3",
+    "name_de": "Vegane Beilage 3"
   },
   {
     "id": "vegan_side_4",
@@ -543,7 +666,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegan side 4 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan side 4 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Accompagnement vegan 4",
+    "name_es": "Guarnición vegana 4",
+    "name_de": "Vegane Beilage 4"
   },
   {
     "id": "vegan_side_5",
@@ -556,7 +682,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegan side 5 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan side 5 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Accompagnement vegan 5",
+    "name_es": "Guarnición vegana 5",
+    "name_de": "Vegane Beilage 5"
   },
   {
     "id": "vegan_side_6",
@@ -569,7 +698,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegan side 6 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan side 6 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Accompagnement vegan 6",
+    "name_es": "Guarnición vegana 6",
+    "name_de": "Vegane Beilage 6"
   },
   {
     "id": "vegan_side_7",
@@ -582,7 +714,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegan side 7 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan side 7 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Accompagnement vegan 7",
+    "name_es": "Guarnición vegana 7",
+    "name_de": "Vegane Beilage 7"
   },
   {
     "id": "vegan_side_8",
@@ -595,7 +730,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegan side 8 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan side 8 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Accompagnement vegan 8",
+    "name_es": "Guarnición vegana 8",
+    "name_de": "Vegane Beilage 8"
   },
   {
     "id": "vegan_side_9",
@@ -608,7 +746,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegan side 9 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan side 9 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Accompagnement vegan 9",
+    "name_es": "Guarnición vegana 9",
+    "name_de": "Vegane Beilage 9"
   },
   {
     "id": "vegan_side_10",
@@ -621,7 +762,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegan side 10 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan side 10 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Accompagnement vegan 10",
+    "name_es": "Guarnición vegana 10",
+    "name_de": "Vegane Beilage 10"
   },
   {
     "id": "vegan_side_11",
@@ -634,7 +778,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegan side 11 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan side 11 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Accompagnement vegan 11",
+    "name_es": "Guarnición vegana 11",
+    "name_de": "Vegane Beilage 11"
   },
   {
     "id": "vegan_side_12",
@@ -647,7 +794,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegan side 12 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan"
+    "ref": "Vegan side 12 - Vegan - Melina et al. Vegan Diets - AND Position Paper 2023 - Barnard Vegan Review 2023 - Harvard T.H. Chan Vegan Diet 2023 - PCRM Vegan Guidelines - USDA Vegan 2024 - Mayo Clinic Vegan Diet 2024 - The Vegan Society UK - Loma Linda Adventist Vegan",
+    "name_fr": "Accompagnement vegan 12",
+    "name_es": "Guarnición vegana 12",
+    "name_de": "Vegane Beilage 12"
   },
   {
     "id": "vegan_side_13",
