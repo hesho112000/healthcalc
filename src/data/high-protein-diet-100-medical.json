@@ -10,7 +10,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "High protein breakfast 0 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein breakfast 0 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Petit-déjeuner riche en protéines 0",
+    "name_es": "Desayuno rico en proteínas 0",
+    "name_de": "Proteinreiches Frühstück 0"
   },
   {
     "id": "hp_bf_1",
@@ -23,7 +26,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "High protein breakfast 1 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein breakfast 1 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Petit-déjeuner riche en protéines 1",
+    "name_es": "Desayuno rico en proteínas 1",
+    "name_de": "Proteinreiches Frühstück 1"
   },
   {
     "id": "hp_bf_2",
@@ -36,7 +42,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "High protein breakfast 2 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein breakfast 2 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Petit-déjeuner riche en protéines 2",
+    "name_es": "Desayuno rico en proteínas 2",
+    "name_de": "Proteinreiches Frühstück 2"
   },
   {
     "id": "hp_bf_3",
@@ -49,7 +58,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "High protein breakfast 3 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein breakfast 3 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Petit-déjeuner riche en protéines 3",
+    "name_es": "Desayuno rico en proteínas 3",
+    "name_de": "Proteinreiches Frühstück 3"
   },
   {
     "id": "hp_bf_4",
@@ -62,7 +74,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "High protein breakfast 4 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein breakfast 4 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Petit-déjeuner riche en protéines 4",
+    "name_es": "Desayuno rico en proteínas 4",
+    "name_de": "Proteinreiches Frühstück 4"
   },
   {
     "id": "hp_bf_5",
@@ -75,7 +90,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "High protein breakfast 5 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein breakfast 5 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Petit-déjeuner riche en protéines 5",
+    "name_es": "Desayuno rico en proteínas 5",
+    "name_de": "Proteinreiches Frühstück 5"
   },
   {
     "id": "hp_bf_6",
@@ -88,7 +106,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "High protein breakfast 6 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein breakfast 6 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Petit-déjeuner riche en protéines 6",
+    "name_es": "Desayuno rico en proteínas 6",
+    "name_de": "Proteinreiches Frühstück 6"
   },
   {
     "id": "hp_bf_7",
@@ -101,7 +122,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "High protein breakfast 7 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein breakfast 7 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Petit-déjeuner riche en protéines 7",
+    "name_es": "Desayuno rico en proteínas 7",
+    "name_de": "Proteinreiches Frühstück 7"
   },
   {
     "id": "hp_bf_8",
@@ -114,7 +138,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "High protein breakfast 8 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein breakfast 8 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Petit-déjeuner riche en protéines 8",
+    "name_es": "Desayuno rico en proteínas 8",
+    "name_de": "Proteinreiches Frühstück 8"
   },
   {
     "id": "hp_bf_9",
@@ -127,7 +154,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "High protein breakfast 9 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein breakfast 9 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Petit-déjeuner riche en protéines 9",
+    "name_es": "Desayuno rico en proteínas 9",
+    "name_de": "Proteinreiches Frühstück 9"
   },
   {
     "id": "hp_bf_10",
@@ -140,7 +170,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "High protein breakfast 10 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein breakfast 10 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Petit-déjeuner riche en protéines 10",
+    "name_es": "Desayuno rico en proteínas 10",
+    "name_de": "Proteinreiches Frühstück 10"
   },
   {
     "id": "hp_bf_11",
@@ -153,7 +186,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "High protein breakfast 11 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein breakfast 11 30g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Petit-déjeuner riche en protéines 11",
+    "name_es": "Desayuno rico en proteínas 11",
+    "name_de": "Proteinreiches Frühstück 11"
   },
   {
     "id": "hp_lunch_0",
@@ -166,7 +202,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 0 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 0 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 0",
+    "name_es": "Almuerzo rico en proteínas 0",
+    "name_de": "Proteinreiches Mittagessen 0"
   },
   {
     "id": "hp_lunch_1",
@@ -179,7 +218,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 1 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 1 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 1",
+    "name_es": "Almuerzo rico en proteínas 1",
+    "name_de": "Proteinreiches Mittagessen 1"
   },
   {
     "id": "hp_lunch_2",
@@ -192,7 +234,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 2 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 2 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 2",
+    "name_es": "Almuerzo rico en proteínas 2",
+    "name_de": "Proteinreiches Mittagessen 2"
   },
   {
     "id": "hp_lunch_3",
@@ -205,7 +250,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 3 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 3 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 3",
+    "name_es": "Almuerzo rico en proteínas 3",
+    "name_de": "Proteinreiches Mittagessen 3"
   },
   {
     "id": "hp_lunch_4",
@@ -218,7 +266,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 4 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 4 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 4",
+    "name_es": "Almuerzo rico en proteínas 4",
+    "name_de": "Proteinreiches Mittagessen 4"
   },
   {
     "id": "hp_lunch_5",
@@ -231,7 +282,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 5 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 5 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 5",
+    "name_es": "Almuerzo rico en proteínas 5",
+    "name_de": "Proteinreiches Mittagessen 5"
   },
   {
     "id": "hp_lunch_6",
@@ -244,7 +298,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 6 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 6 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 6",
+    "name_es": "Almuerzo rico en proteínas 6",
+    "name_de": "Proteinreiches Mittagessen 6"
   },
   {
     "id": "hp_lunch_7",
@@ -257,7 +314,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 7 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 7 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 7",
+    "name_es": "Almuerzo rico en proteínas 7",
+    "name_de": "Proteinreiches Mittagessen 7"
   },
   {
     "id": "hp_lunch_8",
@@ -270,7 +330,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 8 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 8 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 8",
+    "name_es": "Almuerzo rico en proteínas 8",
+    "name_de": "Proteinreiches Mittagessen 8"
   },
   {
     "id": "hp_lunch_9",
@@ -283,7 +346,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 9 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 9 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 9",
+    "name_es": "Almuerzo rico en proteínas 9",
+    "name_de": "Proteinreiches Mittagessen 9"
   },
   {
     "id": "hp_lunch_10",
@@ -296,7 +362,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 10 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 10 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 10",
+    "name_es": "Almuerzo rico en proteínas 10",
+    "name_de": "Proteinreiches Mittagessen 10"
   },
   {
     "id": "hp_lunch_11",
@@ -309,7 +378,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 11 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 11 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 11",
+    "name_es": "Almuerzo rico en proteínas 11",
+    "name_de": "Proteinreiches Mittagessen 11"
   },
   {
     "id": "hp_lunch_12",
@@ -322,7 +394,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 12 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 12 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 12",
+    "name_es": "Almuerzo rico en proteínas 12",
+    "name_de": "Proteinreiches Mittagessen 12"
   },
   {
     "id": "hp_lunch_13",
@@ -335,7 +410,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 13 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 13 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 13",
+    "name_es": "Almuerzo rico en proteínas 13",
+    "name_de": "Proteinreiches Mittagessen 13"
   },
   {
     "id": "hp_lunch_14",
@@ -348,7 +426,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 14 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 14 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 14",
+    "name_es": "Almuerzo rico en proteínas 14",
+    "name_de": "Proteinreiches Mittagessen 14"
   },
   {
     "id": "hp_lunch_15",
@@ -361,7 +442,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 15 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 15 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 15",
+    "name_es": "Almuerzo rico en proteínas 15",
+    "name_de": "Proteinreiches Mittagessen 15"
   },
   {
     "id": "hp_lunch_16",
@@ -374,7 +458,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 16 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 16 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 16",
+    "name_es": "Almuerzo rico en proteínas 16",
+    "name_de": "Proteinreiches Mittagessen 16"
   },
   {
     "id": "hp_lunch_17",
@@ -387,7 +474,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 17 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 17 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 17",
+    "name_es": "Almuerzo rico en proteínas 17",
+    "name_de": "Proteinreiches Mittagessen 17"
   },
   {
     "id": "hp_lunch_18",
@@ -400,7 +490,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 18 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 18 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 18",
+    "name_es": "Almuerzo rico en proteínas 18",
+    "name_de": "Proteinreiches Mittagessen 18"
   },
   {
     "id": "hp_lunch_19",
@@ -413,7 +506,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 19 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 19 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 19",
+    "name_es": "Almuerzo rico en proteínas 19",
+    "name_de": "Proteinreiches Mittagessen 19"
   },
   {
     "id": "hp_lunch_20",
@@ -426,7 +522,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 20 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 20 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 20",
+    "name_es": "Almuerzo rico en proteínas 20",
+    "name_de": "Proteinreiches Mittagessen 20"
   },
   {
     "id": "hp_lunch_21",
@@ -439,7 +538,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 21 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 21 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 21",
+    "name_es": "Almuerzo rico en proteínas 21",
+    "name_de": "Proteinreiches Mittagessen 21"
   },
   {
     "id": "hp_lunch_22",
@@ -452,7 +554,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 22 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 22 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 22",
+    "name_es": "Almuerzo rico en proteínas 22",
+    "name_de": "Proteinreiches Mittagessen 22"
   },
   {
     "id": "hp_lunch_23",
@@ -465,7 +570,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 23 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 23 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 23",
+    "name_es": "Almuerzo rico en proteínas 23",
+    "name_de": "Proteinreiches Mittagessen 23"
   },
   {
     "id": "hp_lunch_24",
@@ -478,7 +586,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "High protein lunch 24 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein lunch 24 40g protein - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Déjeuner riche en protéines 24",
+    "name_es": "Almuerzo rico en proteínas 24",
+    "name_de": "Proteinreiches Mittagessen 24"
   },
   {
     "id": "hp_side_0",
@@ -491,7 +602,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "High protein side 0 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein side 0 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Accompagnement riche en protéines 0",
+    "name_es": "Guarnición rica en proteínas 0",
+    "name_de": "Proteinreiche Beilage 0"
   },
   {
     "id": "hp_side_1",
@@ -504,7 +618,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "High protein side 1 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein side 1 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Accompagnement riche en protéines 1",
+    "name_es": "Guarnición rica en proteínas 1",
+    "name_de": "Proteinreiche Beilage 1"
   },
   {
     "id": "hp_side_2",
@@ -517,7 +634,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "High protein side 2 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein side 2 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Accompagnement riche en protéines 2",
+    "name_es": "Guarnición rica en proteínas 2",
+    "name_de": "Proteinreiche Beilage 2"
   },
   {
     "id": "hp_side_3",
@@ -530,7 +650,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "High protein side 3 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein side 3 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Accompagnement riche en protéines 3",
+    "name_es": "Guarnición rica en proteínas 3",
+    "name_de": "Proteinreiche Beilage 3"
   },
   {
     "id": "hp_side_4",
@@ -543,7 +666,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "High protein side 4 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein side 4 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Accompagnement riche en protéines 4",
+    "name_es": "Guarnición rica en proteínas 4",
+    "name_de": "Proteinreiche Beilage 4"
   },
   {
     "id": "hp_side_5",
@@ -556,7 +682,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "High protein side 5 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein side 5 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Accompagnement riche en protéines 5",
+    "name_es": "Guarnición rica en proteínas 5",
+    "name_de": "Proteinreiche Beilage 5"
   },
   {
     "id": "hp_side_6",
@@ -569,7 +698,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "High protein side 6 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein side 6 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Accompagnement riche en protéines 6",
+    "name_es": "Guarnición rica en proteínas 6",
+    "name_de": "Proteinreiche Beilage 6"
   },
   {
     "id": "hp_side_7",
@@ -582,7 +714,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "High protein side 7 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein side 7 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Accompagnement riche en protéines 7",
+    "name_es": "Guarnición rica en proteínas 7",
+    "name_de": "Proteinreiche Beilage 7"
   },
   {
     "id": "hp_side_8",
@@ -595,7 +730,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "High protein side 8 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein side 8 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Accompagnement riche en protéines 8",
+    "name_es": "Guarnición rica en proteínas 8",
+    "name_de": "Proteinreiche Beilage 8"
   },
   {
     "id": "hp_side_9",
@@ -608,7 +746,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "High protein side 9 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein side 9 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Accompagnement riche en protéines 9",
+    "name_es": "Guarnición rica en proteínas 9",
+    "name_de": "Proteinreiche Beilage 9"
   },
   {
     "id": "hp_side_10",
@@ -621,7 +762,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "High protein side 10 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein side 10 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Accompagnement riche en protéines 10",
+    "name_es": "Guarnición rica en proteínas 10",
+    "name_de": "Proteinreiche Beilage 10"
   },
   {
     "id": "hp_side_11",
@@ -634,7 +778,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "High protein side 11 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein side 11 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Accompagnement riche en protéines 11",
+    "name_es": "Guarnición rica en proteínas 11",
+    "name_de": "Proteinreiche Beilage 11"
   },
   {
     "id": "hp_side_12",
@@ -647,7 +794,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "High protein side 12 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023"
+    "ref": "High protein side 12 - High Protein - Phillips et al. High Protein Diet - ISSN Position Stand 2023 - 1.6-2.2g/kg - Harvard T.H. Chan High Protein Guidelines 2023 - USDA Protein 2024 - Mayo Clinic High Protein Diet 2024 - ACSM - ISSN Whey Protein 2023",
+    "name_fr": "Accompagnement riche en protéines 12",
+    "name_es": "Guarnición rica en proteínas 12",
+    "name_de": "Proteinreiche Beilage 12"
   },
   {
     "id": "hp_side_13",
