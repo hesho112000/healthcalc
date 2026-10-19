@@ -10,7 +10,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Eggs veg low carb 10g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Eggs veg low carb 10g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Œufs et légumes, petit-déjeuner low carb",
+    "name_es": "Huevos con verduras, desayuno bajo en carbohidratos",
+    "name_de": "Eier mit Gemüse, Low-Carb-Frühstück"
   },
   {
     "id": "lc_bf_1",
@@ -23,7 +26,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Yogurt berries low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Yogurt berries low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Yaourt grec aux baies, petit-déjeuner low carb",
+    "name_es": "Yogur griego con bayas, desayuno bajo en carbohidratos",
+    "name_de": "Griechischer Joghurt mit Beeren, Low-Carb-Frühstück"
   },
   {
     "id": "lc_bf_2",
@@ -36,7 +42,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Avocado salmon low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Avocado salmon low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Avocat et saumon, petit-déjeuner low carb",
+    "name_es": "Aguacate con salmón, desayuno bajo en carbohidratos",
+    "name_de": "Avocado mit Lachs, Low-Carb-Frühstück"
   },
   {
     "id": "lc_bf_3",
@@ -49,7 +58,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Small oats 20g carb low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Small oats 20g carb low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Petite portion d’avoine, petit-déjeuner low carb",
+    "name_es": "Porción pequeña de avena, desayuno bajo en carbohidratos",
+    "name_de": "Kleine Haferflockenportion, Low-Carb-Frühstück"
   },
   {
     "id": "lc_bf_4",
@@ -62,7 +74,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Nuts low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Nuts low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Noix, petit-déjeuner low carb",
+    "name_es": "Frutos secos, desayuno bajo en carbohidratos",
+    "name_de": "Nüsse, Low-Carb-Frühstück"
   },
   {
     "id": "lc_bf_5",
@@ -75,7 +90,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Cottage cheese low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Cottage cheese low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Fromage cottage, petit-déjeuner low carb",
+    "name_es": "Queso cottage, desayuno bajo en carbohidratos",
+    "name_de": "Hüttenkäse, Low-Carb-Frühstück"
   },
   {
     "id": "lc_bf_6",
@@ -88,7 +106,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Sausage veg low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Sausage veg low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Saucisse et légumes, petit-déjeuner low carb",
+    "name_es": "Salchicha con verduras, desayuno bajo en carbohidratos",
+    "name_de": "Wurst mit Gemüse, Low-Carb-Frühstück"
   },
   {
     "id": "lc_bf_7",
@@ -101,7 +122,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Almond pancake low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Almond pancake low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Crêpe aux amandes, petit-déjeuner low carb",
+    "name_es": "Tortita de almendra, desayuno bajo en carbohidratos",
+    "name_de": "Mandelpfannkuchen, Low-Carb-Frühstück"
   },
   {
     "id": "lc_bf_8",
@@ -114,7 +138,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Coffee almond milk low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Coffee almond milk low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Café au lait d’amande, petit-déjeuner low carb",
+    "name_es": "Café con leche de almendra, desayuno bajo en carbohidratos",
+    "name_de": "Kaffee mit Mandelmilch, Low-Carb-Frühstück"
   },
   {
     "id": "lc_bf_9",
@@ -127,7 +154,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Tuna low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Tuna low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Thon, petit-déjeuner low carb",
+    "name_es": "Atún, desayuno bajo en carbohidratos",
+    "name_de": "Thunfisch, Low-Carb-Frühstück"
   },
   {
     "id": "lc_bf_10",
@@ -140,7 +170,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Chicken low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Chicken low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Poulet, petit-déjeuner low carb",
+    "name_es": "Pollo, desayuno bajo en carbohidratos",
+    "name_de": "Hähnchen, Low-Carb-Frühstück"
   },
   {
     "id": "lc_bf_11",
@@ -153,7 +186,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Tea low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Tea low carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Thé, petit-déjeuner low carb",
+    "name_es": "Té, desayuno bajo en carbohidratos",
+    "name_de": "Tee, Low-Carb-Frühstück"
   },
   {
     "id": "lc_lunch_0",
@@ -166,7 +202,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 0 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 0 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 0",
+    "name_es": "Almuerzo bajo en carbohidratos 0",
+    "name_de": "Low-Carb-Mittagessen 0"
   },
   {
     "id": "lc_lunch_1",
@@ -179,7 +218,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 1 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 1 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 1",
+    "name_es": "Almuerzo bajo en carbohidratos 1",
+    "name_de": "Low-Carb-Mittagessen 1"
   },
   {
     "id": "lc_lunch_2",
@@ -192,7 +234,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 2 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 2 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 2",
+    "name_es": "Almuerzo bajo en carbohidratos 2",
+    "name_de": "Low-Carb-Mittagessen 2"
   },
   {
     "id": "lc_lunch_3",
@@ -205,7 +250,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 3 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 3 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 3",
+    "name_es": "Almuerzo bajo en carbohidratos 3",
+    "name_de": "Low-Carb-Mittagessen 3"
   },
   {
     "id": "lc_lunch_4",
@@ -218,7 +266,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 4 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 4 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 4",
+    "name_es": "Almuerzo bajo en carbohidratos 4",
+    "name_de": "Low-Carb-Mittagessen 4"
   },
   {
     "id": "lc_lunch_5",
@@ -231,7 +282,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 5 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 5 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 5",
+    "name_es": "Almuerzo bajo en carbohidratos 5",
+    "name_de": "Low-Carb-Mittagessen 5"
   },
   {
     "id": "lc_lunch_6",
@@ -244,7 +298,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 6 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 6 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 6",
+    "name_es": "Almuerzo bajo en carbohidratos 6",
+    "name_de": "Low-Carb-Mittagessen 6"
   },
   {
     "id": "lc_lunch_7",
@@ -257,7 +314,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 7 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 7 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 7",
+    "name_es": "Almuerzo bajo en carbohidratos 7",
+    "name_de": "Low-Carb-Mittagessen 7"
   },
   {
     "id": "lc_lunch_8",
@@ -270,7 +330,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 8 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 8 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 8",
+    "name_es": "Almuerzo bajo en carbohidratos 8",
+    "name_de": "Low-Carb-Mittagessen 8"
   },
   {
     "id": "lc_lunch_9",
@@ -283,7 +346,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 9 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 9 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 9",
+    "name_es": "Almuerzo bajo en carbohidratos 9",
+    "name_de": "Low-Carb-Mittagessen 9"
   },
   {
     "id": "lc_lunch_10",
@@ -296,7 +362,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 10 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 10 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 10",
+    "name_es": "Almuerzo bajo en carbohidratos 10",
+    "name_de": "Low-Carb-Mittagessen 10"
   },
   {
     "id": "lc_lunch_11",
@@ -309,7 +378,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 11 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 11 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 11",
+    "name_es": "Almuerzo bajo en carbohidratos 11",
+    "name_de": "Low-Carb-Mittagessen 11"
   },
   {
     "id": "lc_lunch_12",
@@ -322,7 +394,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 12 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 12 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 12",
+    "name_es": "Almuerzo bajo en carbohidratos 12",
+    "name_de": "Low-Carb-Mittagessen 12"
   },
   {
     "id": "lc_lunch_13",
@@ -335,7 +410,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 13 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 13 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 13",
+    "name_es": "Almuerzo bajo en carbohidratos 13",
+    "name_de": "Low-Carb-Mittagessen 13"
   },
   {
     "id": "lc_lunch_14",
@@ -348,7 +426,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 14 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 14 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 14",
+    "name_es": "Almuerzo bajo en carbohidratos 14",
+    "name_de": "Low-Carb-Mittagessen 14"
   },
   {
     "id": "lc_lunch_15",
@@ -361,7 +442,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 15 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 15 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 15",
+    "name_es": "Almuerzo bajo en carbohidratos 15",
+    "name_de": "Low-Carb-Mittagessen 15"
   },
   {
     "id": "lc_lunch_16",
@@ -374,7 +458,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 16 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 16 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 16",
+    "name_es": "Almuerzo bajo en carbohidratos 16",
+    "name_de": "Low-Carb-Mittagessen 16"
   },
   {
     "id": "lc_lunch_17",
@@ -387,7 +474,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 17 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 17 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 17",
+    "name_es": "Almuerzo bajo en carbohidratos 17",
+    "name_de": "Low-Carb-Mittagessen 17"
   },
   {
     "id": "lc_lunch_18",
@@ -400,7 +490,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 18 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 18 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 18",
+    "name_es": "Almuerzo bajo en carbohidratos 18",
+    "name_de": "Low-Carb-Mittagessen 18"
   },
   {
     "id": "lc_lunch_19",
@@ -413,7 +506,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 19 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 19 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 19",
+    "name_es": "Almuerzo bajo en carbohidratos 19",
+    "name_de": "Low-Carb-Mittagessen 19"
   },
   {
     "id": "lc_lunch_20",
@@ -426,7 +522,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 20 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 20 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 20",
+    "name_es": "Almuerzo bajo en carbohidratos 20",
+    "name_de": "Low-Carb-Mittagessen 20"
   },
   {
     "id": "lc_lunch_21",
@@ -439,7 +538,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 21 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 21 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 21",
+    "name_es": "Almuerzo bajo en carbohidratos 21",
+    "name_de": "Low-Carb-Mittagessen 21"
   },
   {
     "id": "lc_lunch_22",
@@ -452,7 +554,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 22 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 22 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 22",
+    "name_es": "Almuerzo bajo en carbohidratos 22",
+    "name_de": "Low-Carb-Mittagessen 22"
   },
   {
     "id": "lc_lunch_23",
@@ -465,7 +570,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 23 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 23 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 23",
+    "name_es": "Almuerzo bajo en carbohidratos 23",
+    "name_de": "Low-Carb-Mittagessen 23"
   },
   {
     "id": "lc_lunch_24",
@@ -478,7 +586,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Low carb lunch 24 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb lunch 24 20g carb - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Déjeuner low carb 24",
+    "name_es": "Almuerzo bajo en carbohidratos 24",
+    "name_de": "Low-Carb-Mittagessen 24"
   },
   {
     "id": "lc_side_0",
@@ -491,7 +602,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Low carb side 0 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb side 0 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Accompagnement low carb 0",
+    "name_es": "Guarnición baja en carbohidratos 0",
+    "name_de": "Low-Carb-Beilage 0"
   },
   {
     "id": "lc_side_1",
@@ -504,7 +618,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Low carb side 1 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb side 1 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Accompagnement low carb 1",
+    "name_es": "Guarnición baja en carbohidratos 1",
+    "name_de": "Low-Carb-Beilage 1"
   },
   {
     "id": "lc_side_2",
@@ -517,7 +634,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Low carb side 2 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb side 2 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Accompagnement low carb 2",
+    "name_es": "Guarnición baja en carbohidratos 2",
+    "name_de": "Low-Carb-Beilage 2"
   },
   {
     "id": "lc_side_3",
@@ -530,7 +650,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Low carb side 3 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb side 3 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Accompagnement low carb 3",
+    "name_es": "Guarnición baja en carbohidratos 3",
+    "name_de": "Low-Carb-Beilage 3"
   },
   {
     "id": "lc_side_4",
@@ -543,7 +666,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Low carb side 4 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb side 4 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Accompagnement low carb 4",
+    "name_es": "Guarnición baja en carbohidratos 4",
+    "name_de": "Low-Carb-Beilage 4"
   },
   {
     "id": "lc_side_5",
@@ -556,7 +682,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Low carb side 5 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb side 5 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Accompagnement low carb 5",
+    "name_es": "Guarnición baja en carbohidratos 5",
+    "name_de": "Low-Carb-Beilage 5"
   },
   {
     "id": "lc_side_6",
@@ -569,7 +698,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Low carb side 6 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb side 6 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Accompagnement low carb 6",
+    "name_es": "Guarnición baja en carbohidratos 6",
+    "name_de": "Low-Carb-Beilage 6"
   },
   {
     "id": "lc_side_7",
@@ -582,7 +714,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Low carb side 7 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb side 7 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Accompagnement low carb 7",
+    "name_es": "Guarnición baja en carbohidratos 7",
+    "name_de": "Low-Carb-Beilage 7"
   },
   {
     "id": "lc_side_8",
@@ -595,7 +730,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Low carb side 8 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb side 8 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Accompagnement low carb 8",
+    "name_es": "Guarnición baja en carbohidratos 8",
+    "name_de": "Low-Carb-Beilage 8"
   },
   {
     "id": "lc_side_9",
@@ -608,7 +746,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Low carb side 9 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb side 9 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Accompagnement low carb 9",
+    "name_es": "Guarnición baja en carbohidratos 9",
+    "name_de": "Low-Carb-Beilage 9"
   },
   {
     "id": "lc_side_10",
@@ -621,7 +762,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Low carb side 10 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb side 10 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Accompagnement low carb 10",
+    "name_es": "Guarnición baja en carbohidratos 10",
+    "name_de": "Low-Carb-Beilage 10"
   },
   {
     "id": "lc_side_11",
@@ -634,7 +778,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Low carb side 11 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb side 11 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Accompagnement low carb 11",
+    "name_es": "Guarnición baja en carbohidratos 11",
+    "name_de": "Low-Carb-Beilage 11"
   },
   {
     "id": "lc_side_12",
@@ -647,7 +794,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Low carb side 12 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023"
+    "ref": "Low carb side 12 - Low Carb - Ebbeling et al. Low Carb Diet - BMJ 2023 - Ludwig Low Carb Review JAMA 2023 - Harvard T.H. Chan Low Carbohydrate Diet 2023 - ADA Low Carb Position 2023 - Mayo Clinic Low Carb Diet Guidelines 2024 - USDA Low Carb 2024 - DIETFITS Gardner 2023",
+    "name_fr": "Accompagnement low carb 12",
+    "name_es": "Guarnición baja en carbohidratos 12",
+    "name_de": "Low-Carb-Beilage 12"
   },
   {
     "id": "lc_side_13",
