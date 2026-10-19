@@ -10,7 +10,10 @@
     "carbs": 8,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Beef eggs paleo - no grains dairy legumes - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Beef eggs paleo - no grains dairy legumes - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Bœuf et œufs, petit-déjeuner paléo",
+    "name_es": "Carne de res y huevos, desayuno paleo",
+    "name_de": "Rindfleisch mit Eiern, Paleo-Frühstück"
   },
   {
     "id": "paleo_bf_1",
@@ -23,7 +26,10 @@
     "carbs": 8,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Salmon avocado paleo omega3 - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Salmon avocado paleo omega3 - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Saumon et avocat, petit-déjeuner paléo",
+    "name_es": "Salmón y aguacate, desayuno paleo",
+    "name_de": "Lachs mit Avocado, Paleo-Frühstück"
   },
   {
     "id": "paleo_bf_2",
@@ -36,7 +42,10 @@
     "carbs": 8,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Sweet potato eggs paleo - tuber allowed - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Sweet potato eggs paleo - tuber allowed - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Patate douce et œufs, petit-déjeuner paléo",
+    "name_es": "Batata y huevos, desayuno paleo",
+    "name_de": "Süßkartoffel mit Eiern, Paleo-Frühstück"
   },
   {
     "id": "paleo_bf_3",
@@ -49,7 +58,10 @@
     "carbs": 8,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Nuts berries paleo - no dairy - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Nuts berries paleo - no dairy - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Noix et baies, petit-déjeuner paléo",
+    "name_es": "Frutos secos y bayas, desayuno paleo",
+    "name_de": "Nüsse mit Beeren, Paleo-Frühstück"
   },
   {
     "id": "paleo_bf_4",
@@ -62,7 +74,10 @@
     "carbs": 8,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Bacon eggs paleo - no processed sugar - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Bacon eggs paleo - no processed sugar - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Viande séchée et œufs, petit-déjeuner paléo",
+    "name_es": "Carne curada y huevos, desayuno paleo",
+    "name_de": "Trockenfleisch mit Eiern, Paleo-Frühstück"
   },
   {
     "id": "paleo_bf_5",
@@ -75,7 +90,10 @@
     "carbs": 8,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Chicken veg paleo - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Chicken veg paleo - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Poulet et légumes, petit-déjeuner paléo",
+    "name_es": "Pollo y verduras, desayuno paleo",
+    "name_de": "Hähnchen mit Gemüse, Paleo-Frühstück"
   },
   {
     "id": "paleo_bf_6",
@@ -88,7 +106,10 @@
     "carbs": 8,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Tuna avocado paleo - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Tuna avocado paleo - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Thon et avocat, petit-déjeuner paléo",
+    "name_es": "Atún y aguacate, desayuno paleo",
+    "name_de": "Thunfisch mit Avocado, Paleo-Frühstück"
   },
   {
     "id": "paleo_bf_7",
@@ -101,7 +122,10 @@
     "carbs": 8,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Beef liver paleo - organ meat Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Beef liver paleo - organ meat Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Foie de bœuf, petit-déjeuner paléo",
+    "name_es": "Hígado de res, desayuno paleo",
+    "name_de": "Rinderleber, Paleo-Frühstück"
   },
   {
     "id": "paleo_bf_8",
@@ -114,7 +138,10 @@
     "carbs": 8,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Bone broth paleo - collagen - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Bone broth paleo - collagen - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Bouillon d’os, petit-déjeuner paléo",
+    "name_es": "Caldo de huesos, desayuno paleo",
+    "name_de": "Knochenbrühe, Paleo-Frühstück"
   },
   {
     "id": "paleo_bf_9",
@@ -127,7 +154,10 @@
     "carbs": 8,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Coconut berries smoothie paleo - no dairy milk - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Coconut berries smoothie paleo - no dairy milk - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Smoothie coco et baies, petit-déjeuner paléo",
+    "name_es": "Batido de coco y bayas, desayuno paleo",
+    "name_de": "Kokos-Beeren-Smoothie, Paleo-Frühstück"
   },
   {
     "id": "paleo_bf_10",
@@ -140,7 +170,10 @@
     "carbs": 8,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Eggs spinach paleo - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Eggs spinach paleo - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Œufs et épinards, petit-déjeuner paléo",
+    "name_es": "Huevos y espinacas, desayuno paleo",
+    "name_de": "Eier mit Spinat, Paleo-Frühstück"
   },
   {
     "id": "paleo_bf_11",
@@ -153,7 +186,10 @@
     "carbs": 8,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Fruit nuts paleo - hunter gatherer - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Fruit nuts paleo - hunter gatherer - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Fruits et noix, petit-déjeuner paléo",
+    "name_es": "Frutas y frutos secos, desayuno paleo",
+    "name_de": "Obst mit Nüssen, Paleo-Frühstück"
   },
   {
     "id": "paleo_lunch_0",
@@ -166,7 +202,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 0",
+    "name_es": "Almuerzo paleo a base de carne 0",
+    "name_de": "Paleo-Fleischmittagessen 0"
   },
   {
     "id": "paleo_lunch_1",
@@ -179,7 +218,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 1",
+    "name_es": "Almuerzo paleo a base de carne 1",
+    "name_de": "Paleo-Fleischmittagessen 1"
   },
   {
     "id": "paleo_lunch_2",
@@ -192,7 +234,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 2",
+    "name_es": "Almuerzo paleo a base de carne 2",
+    "name_de": "Paleo-Fleischmittagessen 2"
   },
   {
     "id": "paleo_lunch_3",
@@ -205,7 +250,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 3",
+    "name_es": "Almuerzo paleo a base de carne 3",
+    "name_de": "Paleo-Fleischmittagessen 3"
   },
   {
     "id": "paleo_lunch_4",
@@ -218,7 +266,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 4",
+    "name_es": "Almuerzo paleo a base de carne 4",
+    "name_de": "Paleo-Fleischmittagessen 4"
   },
   {
     "id": "paleo_lunch_5",
@@ -231,7 +282,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 5",
+    "name_es": "Almuerzo paleo a base de carne 5",
+    "name_de": "Paleo-Fleischmittagessen 5"
   },
   {
     "id": "paleo_lunch_6",
@@ -244,7 +298,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 6",
+    "name_es": "Almuerzo paleo a base de carne 6",
+    "name_de": "Paleo-Fleischmittagessen 6"
   },
   {
     "id": "paleo_lunch_7",
@@ -257,7 +314,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 7",
+    "name_es": "Almuerzo paleo a base de carne 7",
+    "name_de": "Paleo-Fleischmittagessen 7"
   },
   {
     "id": "paleo_lunch_8",
@@ -270,7 +330,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 8",
+    "name_es": "Almuerzo paleo a base de carne 8",
+    "name_de": "Paleo-Fleischmittagessen 8"
   },
   {
     "id": "paleo_lunch_9",
@@ -283,7 +346,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 9",
+    "name_es": "Almuerzo paleo a base de carne 9",
+    "name_de": "Paleo-Fleischmittagessen 9"
   },
   {
     "id": "paleo_lunch_10",
@@ -296,7 +362,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 10",
+    "name_es": "Almuerzo paleo a base de carne 10",
+    "name_de": "Paleo-Fleischmittagessen 10"
   },
   {
     "id": "paleo_lunch_11",
@@ -309,7 +378,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 11",
+    "name_es": "Almuerzo paleo a base de carne 11",
+    "name_de": "Paleo-Fleischmittagessen 11"
   },
   {
     "id": "paleo_lunch_12",
@@ -322,7 +394,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 12",
+    "name_es": "Almuerzo paleo a base de carne 12",
+    "name_de": "Paleo-Fleischmittagessen 12"
   },
   {
     "id": "paleo_lunch_13",
@@ -335,7 +410,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 13",
+    "name_es": "Almuerzo paleo a base de carne 13",
+    "name_de": "Paleo-Fleischmittagessen 13"
   },
   {
     "id": "paleo_lunch_14",
@@ -348,7 +426,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 14",
+    "name_es": "Almuerzo paleo a base de carne 14",
+    "name_de": "Paleo-Fleischmittagessen 14"
   },
   {
     "id": "paleo_lunch_15",
@@ -361,7 +442,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 15",
+    "name_es": "Almuerzo paleo a base de carne 15",
+    "name_de": "Paleo-Fleischmittagessen 15"
   },
   {
     "id": "paleo_lunch_16",
@@ -374,7 +458,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 16",
+    "name_es": "Almuerzo paleo a base de carne 16",
+    "name_de": "Paleo-Fleischmittagessen 16"
   },
   {
     "id": "paleo_lunch_17",
@@ -387,7 +474,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 17",
+    "name_es": "Almuerzo paleo a base de carne 17",
+    "name_de": "Paleo-Fleischmittagessen 17"
   },
   {
     "id": "paleo_lunch_18",
@@ -400,7 +490,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 18",
+    "name_es": "Almuerzo paleo a base de carne 18",
+    "name_de": "Paleo-Fleischmittagessen 18"
   },
   {
     "id": "paleo_lunch_19",
@@ -413,7 +506,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 19",
+    "name_es": "Almuerzo paleo a base de carne 19",
+    "name_de": "Paleo-Fleischmittagessen 19"
   },
   {
     "id": "paleo_lunch_20",
@@ -426,7 +522,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 20",
+    "name_es": "Almuerzo paleo a base de carne 20",
+    "name_de": "Paleo-Fleischmittagessen 20"
   },
   {
     "id": "paleo_lunch_21",
@@ -439,7 +538,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 21",
+    "name_es": "Almuerzo paleo a base de carne 21",
+    "name_de": "Paleo-Fleischmittagessen 21"
   },
   {
     "id": "paleo_lunch_22",
@@ -452,7 +554,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 22",
+    "name_es": "Almuerzo paleo a base de carne 22",
+    "name_de": "Paleo-Fleischmittagessen 22"
   },
   {
     "id": "paleo_lunch_23",
@@ -465,7 +570,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 23",
+    "name_es": "Almuerzo paleo a base de carne 23",
+    "name_de": "Paleo-Fleischmittagessen 23"
   },
   {
     "id": "paleo_lunch_24",
@@ -478,7 +586,10 @@
     "carbs": 10,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo meat lunch no grains legumes dairy - Cordain - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Déjeuner paléo à base de viande 24",
+    "name_es": "Almuerzo paleo a base de carne 24",
+    "name_de": "Paleo-Fleischmittagessen 24"
   },
   {
     "id": "paleo_side_0",
@@ -491,7 +602,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Accompagnement paléo de légumes racines 0",
+    "name_es": "Guarnición paleo de tubérculos 0",
+    "name_de": "Paleo-Wurzelgemüse-Beilage 0"
   },
   {
     "id": "paleo_side_1",
@@ -504,7 +618,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Accompagnement paléo de légumes racines 1",
+    "name_es": "Guarnición paleo de tubérculos 1",
+    "name_de": "Paleo-Wurzelgemüse-Beilage 1"
   },
   {
     "id": "paleo_side_2",
@@ -517,7 +634,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Accompagnement paléo de légumes racines 2",
+    "name_es": "Guarnición paleo de tubérculos 2",
+    "name_de": "Paleo-Wurzelgemüse-Beilage 2"
   },
   {
     "id": "paleo_side_3",
@@ -530,7 +650,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Accompagnement paléo de légumes racines 3",
+    "name_es": "Guarnición paleo de tubérculos 3",
+    "name_de": "Paleo-Wurzelgemüse-Beilage 3"
   },
   {
     "id": "paleo_side_4",
@@ -543,7 +666,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Accompagnement paléo de légumes racines 4",
+    "name_es": "Guarnición paleo de tubérculos 4",
+    "name_de": "Paleo-Wurzelgemüse-Beilage 4"
   },
   {
     "id": "paleo_side_5",
@@ -556,7 +682,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Accompagnement paléo de légumes racines 5",
+    "name_es": "Guarnición paleo de tubérculos 5",
+    "name_de": "Paleo-Wurzelgemüse-Beilage 5"
   },
   {
     "id": "paleo_side_6",
@@ -569,7 +698,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Accompagnement paléo de légumes racines 6",
+    "name_es": "Guarnición paleo de tubérculos 6",
+    "name_de": "Paleo-Wurzelgemüse-Beilage 6"
   },
   {
     "id": "paleo_side_7",
@@ -582,7 +714,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Accompagnement paléo de légumes racines 7",
+    "name_es": "Guarnición paleo de tubérculos 7",
+    "name_de": "Paleo-Wurzelgemüse-Beilage 7"
   },
   {
     "id": "paleo_side_8",
@@ -595,7 +730,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Accompagnement paléo de légumes racines 8",
+    "name_es": "Guarnición paleo de tubérculos 8",
+    "name_de": "Paleo-Wurzelgemüse-Beilage 8"
   },
   {
     "id": "paleo_side_9",
@@ -608,7 +746,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Accompagnement paléo de légumes racines 9",
+    "name_es": "Guarnición paleo de tubérculos 9",
+    "name_de": "Paleo-Wurzelgemüse-Beilage 9"
   },
   {
     "id": "paleo_side_10",
@@ -621,7 +762,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Accompagnement paléo de légumes racines 10",
+    "name_es": "Guarnición paleo de tubérculos 10",
+    "name_de": "Paleo-Wurzelgemüse-Beilage 10"
   },
   {
     "id": "paleo_side_11",
@@ -634,7 +778,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Accompagnement paléo de légumes racines 11",
+    "name_es": "Guarnición paleo de tubérculos 11",
+    "name_de": "Paleo-Wurzelgemüse-Beilage 11"
   },
   {
     "id": "paleo_side_12",
@@ -647,7 +794,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024"
+    "ref": "Paleo root veg side - tubers allowed no legumes - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "name_fr": "Accompagnement paléo de légumes racines 12",
+    "name_es": "Guarnición paleo de tubérculos 12",
+    "name_de": "Paleo-Wurzelgemüse-Beilage 12"
   },
   {
     "id": "paleo_side_13",
