@@ -10,7 +10,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "GF oats certified - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF oats certified - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Flocons d’avoine sans gluten, petit-déjeuner",
+    "name_es": "Avena sin gluten, desayuno",
+    "name_de": "Glutenfreie Haferflocken, Frühstück"
   },
   {
     "id": "gf_bf_1",
@@ -23,7 +26,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Eggs veg GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "Eggs veg GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Œufs et légumes sans gluten, petit-déjeuner",
+    "name_es": "Huevos con verduras sin gluten, desayuno",
+    "name_de": "Eier mit Gemüse ohne Gluten, Frühstück"
   },
   {
     "id": "gf_bf_2",
@@ -36,7 +42,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Quinoa GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "Quinoa GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Petit-déjeuner au quinoa sans gluten",
+    "name_es": "Desayuno de quinoa sin gluten",
+    "name_de": "Quinoa-Frühstück ohne Gluten"
   },
   {
     "id": "gf_bf_3",
@@ -49,7 +58,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Rice pudding GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "Rice pudding GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Riz au lait de coco sans gluten, petit-déjeuner",
+    "name_es": "Arroz con leche de coco sin gluten, desayuno",
+    "name_de": "Kokosmilchreis ohne Gluten, Frühstück"
   },
   {
     "id": "gf_bf_4",
@@ -62,7 +74,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Almond bread GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "Almond bread GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Pain aux amandes sans gluten, petit-déjeuner",
+    "name_es": "Pan de almendra sin gluten, desayuno",
+    "name_de": "Mandelbrot ohne Gluten, Frühstück"
   },
   {
     "id": "gf_bf_5",
@@ -75,7 +90,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Rice pancake GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "Rice pancake GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Crêpe de riz sans gluten, petit-déjeuner",
+    "name_es": "Tortita de arroz sin gluten, desayuno",
+    "name_de": "Reispfannkuchen ohne Gluten, Frühstück"
   },
   {
     "id": "gf_bf_6",
@@ -88,7 +106,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Yogurt fruit GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "Yogurt fruit GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Yaourt aux fruits sans gluten, petit-déjeuner",
+    "name_es": "Yogur con fruta sin gluten, desayuno",
+    "name_de": "Joghurt mit Obst ohne Gluten, Frühstück"
   },
   {
     "id": "gf_bf_7",
@@ -101,7 +122,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Sweet potato GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "Sweet potato GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Patate douce sans gluten, petit-déjeuner",
+    "name_es": "Batata sin gluten, desayuno",
+    "name_de": "Süßkartoffel ohne Gluten, Frühstück"
   },
   {
     "id": "gf_bf_8",
@@ -114,7 +138,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Corn GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "Corn GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Maïs sans gluten, petit-déjeuner",
+    "name_es": "Maíz sin gluten, desayuno",
+    "name_de": "Mais ohne Gluten, Frühstück"
   },
   {
     "id": "gf_bf_9",
@@ -127,7 +154,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Nuts GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "Nuts GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Noix sans gluten, petit-déjeuner",
+    "name_es": "Frutos secos sin gluten, desayuno",
+    "name_de": "Nüsse ohne Gluten, Frühstück"
   },
   {
     "id": "gf_bf_10",
@@ -140,7 +170,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Salmon GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "Salmon GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Saumon sans gluten, petit-déjeuner",
+    "name_es": "Salmón sin gluten, desayuno",
+    "name_de": "Lachs ohne Gluten, Frühstück"
   },
   {
     "id": "gf_bf_11",
@@ -153,7 +186,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Tea GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "Tea GF - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Thé sans gluten, petit-déjeuner",
+    "name_es": "Té sin gluten, desayuno",
+    "name_de": "Tee ohne Gluten, Frühstück"
   },
   {
     "id": "gf_lunch_0",
@@ -166,7 +202,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 0 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 0 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 0",
+    "name_es": "Almuerzo sin gluten 0",
+    "name_de": "Glutenfreies Mittagessen 0"
   },
   {
     "id": "gf_lunch_1",
@@ -179,7 +218,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 1 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 1 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 1",
+    "name_es": "Almuerzo sin gluten 1",
+    "name_de": "Glutenfreies Mittagessen 1"
   },
   {
     "id": "gf_lunch_2",
@@ -192,7 +234,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 2 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 2 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 2",
+    "name_es": "Almuerzo sin gluten 2",
+    "name_de": "Glutenfreies Mittagessen 2"
   },
   {
     "id": "gf_lunch_3",
@@ -205,7 +250,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 3 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 3 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 3",
+    "name_es": "Almuerzo sin gluten 3",
+    "name_de": "Glutenfreies Mittagessen 3"
   },
   {
     "id": "gf_lunch_4",
@@ -218,7 +266,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 4 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 4 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 4",
+    "name_es": "Almuerzo sin gluten 4",
+    "name_de": "Glutenfreies Mittagessen 4"
   },
   {
     "id": "gf_lunch_5",
@@ -231,7 +282,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 5 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 5 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 5",
+    "name_es": "Almuerzo sin gluten 5",
+    "name_de": "Glutenfreies Mittagessen 5"
   },
   {
     "id": "gf_lunch_6",
@@ -244,7 +298,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 6 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 6 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 6",
+    "name_es": "Almuerzo sin gluten 6",
+    "name_de": "Glutenfreies Mittagessen 6"
   },
   {
     "id": "gf_lunch_7",
@@ -257,7 +314,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 7 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 7 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 7",
+    "name_es": "Almuerzo sin gluten 7",
+    "name_de": "Glutenfreies Mittagessen 7"
   },
   {
     "id": "gf_lunch_8",
@@ -270,7 +330,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 8 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 8 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 8",
+    "name_es": "Almuerzo sin gluten 8",
+    "name_de": "Glutenfreies Mittagessen 8"
   },
   {
     "id": "gf_lunch_9",
@@ -283,7 +346,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 9 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 9 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 9",
+    "name_es": "Almuerzo sin gluten 9",
+    "name_de": "Glutenfreies Mittagessen 9"
   },
   {
     "id": "gf_lunch_10",
@@ -296,7 +362,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 10 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 10 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 10",
+    "name_es": "Almuerzo sin gluten 10",
+    "name_de": "Glutenfreies Mittagessen 10"
   },
   {
     "id": "gf_lunch_11",
@@ -309,7 +378,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 11 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 11 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 11",
+    "name_es": "Almuerzo sin gluten 11",
+    "name_de": "Glutenfreies Mittagessen 11"
   },
   {
     "id": "gf_lunch_12",
@@ -322,7 +394,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 12 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 12 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 12",
+    "name_es": "Almuerzo sin gluten 12",
+    "name_de": "Glutenfreies Mittagessen 12"
   },
   {
     "id": "gf_lunch_13",
@@ -335,7 +410,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 13 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 13 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 13",
+    "name_es": "Almuerzo sin gluten 13",
+    "name_de": "Glutenfreies Mittagessen 13"
   },
   {
     "id": "gf_lunch_14",
@@ -348,7 +426,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 14 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 14 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 14",
+    "name_es": "Almuerzo sin gluten 14",
+    "name_de": "Glutenfreies Mittagessen 14"
   },
   {
     "id": "gf_lunch_15",
@@ -361,7 +442,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 15 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 15 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 15",
+    "name_es": "Almuerzo sin gluten 15",
+    "name_de": "Glutenfreies Mittagessen 15"
   },
   {
     "id": "gf_lunch_16",
@@ -374,7 +458,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 16 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 16 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 16",
+    "name_es": "Almuerzo sin gluten 16",
+    "name_de": "Glutenfreies Mittagessen 16"
   },
   {
     "id": "gf_lunch_17",
@@ -387,7 +474,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 17 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 17 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 17",
+    "name_es": "Almuerzo sin gluten 17",
+    "name_de": "Glutenfreies Mittagessen 17"
   },
   {
     "id": "gf_lunch_18",
@@ -400,7 +490,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 18 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 18 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 18",
+    "name_es": "Almuerzo sin gluten 18",
+    "name_de": "Glutenfreies Mittagessen 18"
   },
   {
     "id": "gf_lunch_19",
@@ -413,7 +506,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 19 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 19 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 19",
+    "name_es": "Almuerzo sin gluten 19",
+    "name_de": "Glutenfreies Mittagessen 19"
   },
   {
     "id": "gf_lunch_20",
@@ -426,7 +522,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 20 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 20 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 20",
+    "name_es": "Almuerzo sin gluten 20",
+    "name_de": "Glutenfreies Mittagessen 20"
   },
   {
     "id": "gf_lunch_21",
@@ -439,7 +538,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 21 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 21 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 21",
+    "name_es": "Almuerzo sin gluten 21",
+    "name_de": "Glutenfreies Mittagessen 21"
   },
   {
     "id": "gf_lunch_22",
@@ -452,7 +554,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 22 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 22 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 22",
+    "name_es": "Almuerzo sin gluten 22",
+    "name_de": "Glutenfreies Mittagessen 22"
   },
   {
     "id": "gf_lunch_23",
@@ -465,7 +570,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 23 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 23 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 23",
+    "name_es": "Almuerzo sin gluten 23",
+    "name_de": "Glutenfreies Mittagessen 23"
   },
   {
     "id": "gf_lunch_24",
@@ -478,7 +586,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "GF lunch 24 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF lunch 24 no wheat - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Déjeuner sans gluten 24",
+    "name_es": "Almuerzo sin gluten 24",
+    "name_de": "Glutenfreies Mittagessen 24"
   },
   {
     "id": "gf_side_0",
@@ -491,7 +602,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "GF side 0 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF side 0 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Accompagnement sans gluten 0",
+    "name_es": "Guarnición sin gluten 0",
+    "name_de": "Glutenfreie Beilage 0"
   },
   {
     "id": "gf_side_1",
@@ -504,7 +618,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "GF side 1 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF side 1 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Accompagnement sans gluten 1",
+    "name_es": "Guarnición sin gluten 1",
+    "name_de": "Glutenfreie Beilage 1"
   },
   {
     "id": "gf_side_2",
@@ -517,7 +634,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "GF side 2 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF side 2 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Accompagnement sans gluten 2",
+    "name_es": "Guarnición sin gluten 2",
+    "name_de": "Glutenfreie Beilage 2"
   },
   {
     "id": "gf_side_3",
@@ -530,7 +650,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "GF side 3 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF side 3 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Accompagnement sans gluten 3",
+    "name_es": "Guarnición sin gluten 3",
+    "name_de": "Glutenfreie Beilage 3"
   },
   {
     "id": "gf_side_4",
@@ -543,7 +666,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "GF side 4 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF side 4 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Accompagnement sans gluten 4",
+    "name_es": "Guarnición sin gluten 4",
+    "name_de": "Glutenfreie Beilage 4"
   },
   {
     "id": "gf_side_5",
@@ -556,7 +682,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "GF side 5 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF side 5 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Accompagnement sans gluten 5",
+    "name_es": "Guarnición sin gluten 5",
+    "name_de": "Glutenfreie Beilage 5"
   },
   {
     "id": "gf_side_6",
@@ -569,7 +698,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "GF side 6 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF side 6 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Accompagnement sans gluten 6",
+    "name_es": "Guarnición sin gluten 6",
+    "name_de": "Glutenfreie Beilage 6"
   },
   {
     "id": "gf_side_7",
@@ -582,7 +714,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "GF side 7 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF side 7 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Accompagnement sans gluten 7",
+    "name_es": "Guarnición sin gluten 7",
+    "name_de": "Glutenfreie Beilage 7"
   },
   {
     "id": "gf_side_8",
@@ -595,7 +730,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "GF side 8 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF side 8 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Accompagnement sans gluten 8",
+    "name_es": "Guarnición sin gluten 8",
+    "name_de": "Glutenfreie Beilage 8"
   },
   {
     "id": "gf_side_9",
@@ -608,7 +746,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "GF side 9 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF side 9 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Accompagnement sans gluten 9",
+    "name_es": "Guarnición sin gluten 9",
+    "name_de": "Glutenfreie Beilage 9"
   },
   {
     "id": "gf_side_10",
@@ -621,7 +762,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "GF side 10 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF side 10 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Accompagnement sans gluten 10",
+    "name_es": "Guarnición sin gluten 10",
+    "name_de": "Glutenfreie Beilage 10"
   },
   {
     "id": "gf_side_11",
@@ -634,7 +778,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "GF side 11 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF side 11 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Accompagnement sans gluten 11",
+    "name_es": "Guarnición sin gluten 11",
+    "name_de": "Glutenfreie Beilage 11"
   },
   {
     "id": "gf_side_12",
@@ -647,7 +794,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "GF side 12 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK"
+    "ref": "GF side 12 - Gluten Free - Celiac Disease Foundation Gluten Free Diet Guidelines 2023 - Fasano Celiac Review NEJM 2023 - Mayo Clinic Gluten Free Diet 2024 - NIDDK Celiac Guidelines 2023 - FDA Gluten Free Labeling - Harvard T.H. Chan Gluten Free 2023 - AND Gluten Free Position 2023 - Coeliac UK",
+    "name_fr": "Accompagnement sans gluten 12",
+    "name_es": "Guarnición sin gluten 12",
+    "name_de": "Glutenfreie Beilage 12"
   },
   {
     "id": "gf_side_13",
