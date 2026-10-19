@@ -10,7 +10,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Oats banana DASH low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "Oats banana DASH low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Avoine et banane, petit-déjeuner DASH",
+    "name_es": "Avena y plátano, desayuno DASH",
+    "name_de": "Haferflocken mit Banane, DASH-Frühstück"
   },
   {
     "id": "dash_bf_1",
@@ -23,7 +26,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Low fat yogurt DASH - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "Low fat yogurt DASH - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Yaourt faible en matières grasses, petit-déjeuner DASH",
+    "name_es": "Yogur bajo en grasa, desayuno DASH",
+    "name_de": "Magerjoghurt, DASH-Frühstück"
   },
   {
     "id": "dash_bf_2",
@@ -36,7 +42,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Egg whites DASH low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "Egg whites DASH low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Blancs d’œufs, petit-déjeuner DASH",
+    "name_es": "Claras de huevo, desayuno DASH",
+    "name_de": "Eiweiß, DASH-Frühstück"
   },
   {
     "id": "dash_bf_3",
@@ -49,7 +58,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Whole wheat DASH - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "Whole wheat DASH - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Pain complet, petit-déjeuner DASH",
+    "name_es": "Pan integral, desayuno DASH",
+    "name_de": "Vollkornbrot, DASH-Frühstück"
   },
   {
     "id": "dash_bf_4",
@@ -62,7 +74,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Foul no salt DASH - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "Foul no salt DASH - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Fèves sans sel, petit-déjeuner DASH",
+    "name_es": "Habas sin sal, desayuno DASH",
+    "name_de": "Bohnen ohne Salz, DASH-Frühstück"
   },
   {
     "id": "dash_bf_5",
@@ -75,7 +90,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Avocado DASH potassium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "Avocado DASH potassium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Avocat, petit-déjeuner DASH",
+    "name_es": "Aguacate, desayuno DASH",
+    "name_de": "Avocado, DASH-Frühstück"
   },
   {
     "id": "dash_bf_6",
@@ -88,7 +106,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Berries oats DASH - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "Berries oats DASH - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Avoine aux baies, petit-déjeuner DASH",
+    "name_es": "Avena con bayas, desayuno DASH",
+    "name_de": "Haferflocken mit Beeren, DASH-Frühstück"
   },
   {
     "id": "dash_bf_7",
@@ -101,7 +122,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Low sodium cheese DASH - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "Low sodium cheese DASH - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Fromage faible en sodium, petit-déjeuner DASH",
+    "name_es": "Queso bajo en sodio, desayuno DASH",
+    "name_de": "Natriumarmer Käse, DASH-Frühstück"
   },
   {
     "id": "dash_bf_8",
@@ -114,7 +138,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Salmon DASH omega3 - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "Salmon DASH omega3 - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Saumon, petit-déjeuner DASH",
+    "name_es": "Salmón, desayuno DASH",
+    "name_de": "Lachs, DASH-Frühstück"
   },
   {
     "id": "dash_bf_9",
@@ -127,7 +154,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Unsalted nuts DASH - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "Unsalted nuts DASH - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Noix non salées, petit-déjeuner DASH",
+    "name_es": "Frutos secos sin sal, desayuno DASH",
+    "name_de": "Ungesalzene Nüsse, DASH-Frühstück"
   },
   {
     "id": "dash_bf_10",
@@ -140,7 +170,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Green tea DASH - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "Green tea DASH - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Thé vert, petit-déjeuner DASH",
+    "name_es": "Té verde, desayuno DASH",
+    "name_de": "Grüntee, DASH-Frühstück"
   },
   {
     "id": "dash_bf_11",
@@ -153,7 +186,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Low fat milk DASH - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "Low fat milk DASH - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Lait faible en matières grasses, petit-déjeuner DASH",
+    "name_es": "Leche baja en grasa, desayuno DASH",
+    "name_de": "Magermilch, DASH-Frühstück"
   },
   {
     "id": "dash_lunch_0",
@@ -166,7 +202,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 0 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 0 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 0",
+    "name_es": "Almuerzo DASH 0",
+    "name_de": "DASH-Mittagessen 0"
   },
   {
     "id": "dash_lunch_1",
@@ -179,7 +218,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 1 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 1 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 1",
+    "name_es": "Almuerzo DASH 1",
+    "name_de": "DASH-Mittagessen 1"
   },
   {
     "id": "dash_lunch_2",
@@ -192,7 +234,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 2 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 2 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 2",
+    "name_es": "Almuerzo DASH 2",
+    "name_de": "DASH-Mittagessen 2"
   },
   {
     "id": "dash_lunch_3",
@@ -205,7 +250,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 3 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 3 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 3",
+    "name_es": "Almuerzo DASH 3",
+    "name_de": "DASH-Mittagessen 3"
   },
   {
     "id": "dash_lunch_4",
@@ -218,7 +266,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 4 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 4 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 4",
+    "name_es": "Almuerzo DASH 4",
+    "name_de": "DASH-Mittagessen 4"
   },
   {
     "id": "dash_lunch_5",
@@ -231,7 +282,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 5 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 5 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 5",
+    "name_es": "Almuerzo DASH 5",
+    "name_de": "DASH-Mittagessen 5"
   },
   {
     "id": "dash_lunch_6",
@@ -244,7 +298,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 6 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 6 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 6",
+    "name_es": "Almuerzo DASH 6",
+    "name_de": "DASH-Mittagessen 6"
   },
   {
     "id": "dash_lunch_7",
@@ -257,7 +314,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 7 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 7 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 7",
+    "name_es": "Almuerzo DASH 7",
+    "name_de": "DASH-Mittagessen 7"
   },
   {
     "id": "dash_lunch_8",
@@ -270,7 +330,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 8 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 8 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 8",
+    "name_es": "Almuerzo DASH 8",
+    "name_de": "DASH-Mittagessen 8"
   },
   {
     "id": "dash_lunch_9",
@@ -283,7 +346,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 9 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 9 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 9",
+    "name_es": "Almuerzo DASH 9",
+    "name_de": "DASH-Mittagessen 9"
   },
   {
     "id": "dash_lunch_10",
@@ -296,7 +362,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 10 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 10 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 10",
+    "name_es": "Almuerzo DASH 10",
+    "name_de": "DASH-Mittagessen 10"
   },
   {
     "id": "dash_lunch_11",
@@ -309,7 +378,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 11 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 11 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 11",
+    "name_es": "Almuerzo DASH 11",
+    "name_de": "DASH-Mittagessen 11"
   },
   {
     "id": "dash_lunch_12",
@@ -322,7 +394,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 12 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 12 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 12",
+    "name_es": "Almuerzo DASH 12",
+    "name_de": "DASH-Mittagessen 12"
   },
   {
     "id": "dash_lunch_13",
@@ -335,7 +410,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 13 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 13 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 13",
+    "name_es": "Almuerzo DASH 13",
+    "name_de": "DASH-Mittagessen 13"
   },
   {
     "id": "dash_lunch_14",
@@ -348,7 +426,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 14 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 14 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 14",
+    "name_es": "Almuerzo DASH 14",
+    "name_de": "DASH-Mittagessen 14"
   },
   {
     "id": "dash_lunch_15",
@@ -361,7 +442,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 15 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 15 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 15",
+    "name_es": "Almuerzo DASH 15",
+    "name_de": "DASH-Mittagessen 15"
   },
   {
     "id": "dash_lunch_16",
@@ -374,7 +458,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 16 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 16 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 16",
+    "name_es": "Almuerzo DASH 16",
+    "name_de": "DASH-Mittagessen 16"
   },
   {
     "id": "dash_lunch_17",
@@ -387,7 +474,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 17 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 17 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 17",
+    "name_es": "Almuerzo DASH 17",
+    "name_de": "DASH-Mittagessen 17"
   },
   {
     "id": "dash_lunch_18",
@@ -400,7 +490,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 18 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 18 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 18",
+    "name_es": "Almuerzo DASH 18",
+    "name_de": "DASH-Mittagessen 18"
   },
   {
     "id": "dash_lunch_19",
@@ -413,7 +506,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 19 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 19 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 19",
+    "name_es": "Almuerzo DASH 19",
+    "name_de": "DASH-Mittagessen 19"
   },
   {
     "id": "dash_lunch_20",
@@ -426,7 +522,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 20 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 20 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 20",
+    "name_es": "Almuerzo DASH 20",
+    "name_de": "DASH-Mittagessen 20"
   },
   {
     "id": "dash_lunch_21",
@@ -439,7 +538,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 21 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 21 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 21",
+    "name_es": "Almuerzo DASH 21",
+    "name_de": "DASH-Mittagessen 21"
   },
   {
     "id": "dash_lunch_22",
@@ -452,7 +554,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 22 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 22 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 22",
+    "name_es": "Almuerzo DASH 22",
+    "name_de": "DASH-Mittagessen 22"
   },
   {
     "id": "dash_lunch_23",
@@ -465,7 +570,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 23 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 23 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 23",
+    "name_es": "Almuerzo DASH 23",
+    "name_de": "DASH-Mittagessen 23"
   },
   {
     "id": "dash_lunch_24",
@@ -478,7 +586,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "DASH lunch 24 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH lunch 24 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Déjeuner DASH 24",
+    "name_es": "Almuerzo DASH 24",
+    "name_de": "DASH-Mittagessen 24"
   },
   {
     "id": "dash_side_0",
@@ -491,7 +602,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "DASH side 0 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH side 0 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Accompagnement DASH 0",
+    "name_es": "Guarnición DASH 0",
+    "name_de": "DASH-Beilage 0"
   },
   {
     "id": "dash_side_1",
@@ -504,7 +618,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "DASH side 1 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH side 1 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Accompagnement DASH 1",
+    "name_es": "Guarnición DASH 1",
+    "name_de": "DASH-Beilage 1"
   },
   {
     "id": "dash_side_2",
@@ -517,7 +634,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "DASH side 2 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH side 2 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Accompagnement DASH 2",
+    "name_es": "Guarnición DASH 2",
+    "name_de": "DASH-Beilage 2"
   },
   {
     "id": "dash_side_3",
@@ -530,7 +650,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "DASH side 3 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH side 3 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Accompagnement DASH 3",
+    "name_es": "Guarnición DASH 3",
+    "name_de": "DASH-Beilage 3"
   },
   {
     "id": "dash_side_4",
@@ -543,7 +666,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "DASH side 4 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH side 4 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Accompagnement DASH 4",
+    "name_es": "Guarnición DASH 4",
+    "name_de": "DASH-Beilage 4"
   },
   {
     "id": "dash_side_5",
@@ -556,7 +682,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "DASH side 5 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH side 5 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Accompagnement DASH 5",
+    "name_es": "Guarnición DASH 5",
+    "name_de": "DASH-Beilage 5"
   },
   {
     "id": "dash_side_6",
@@ -569,7 +698,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "DASH side 6 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH side 6 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Accompagnement DASH 6",
+    "name_es": "Guarnición DASH 6",
+    "name_de": "DASH-Beilage 6"
   },
   {
     "id": "dash_side_7",
@@ -582,7 +714,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "DASH side 7 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH side 7 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Accompagnement DASH 7",
+    "name_es": "Guarnición DASH 7",
+    "name_de": "DASH-Beilage 7"
   },
   {
     "id": "dash_side_8",
@@ -595,7 +730,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "DASH side 8 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH side 8 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Accompagnement DASH 8",
+    "name_es": "Guarnición DASH 8",
+    "name_de": "DASH-Beilage 8"
   },
   {
     "id": "dash_side_9",
@@ -608,7 +746,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "DASH side 9 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH side 9 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Accompagnement DASH 9",
+    "name_es": "Guarnición DASH 9",
+    "name_de": "DASH-Beilage 9"
   },
   {
     "id": "dash_side_10",
@@ -621,7 +762,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "DASH side 10 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH side 10 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Accompagnement DASH 10",
+    "name_es": "Guarnición DASH 10",
+    "name_de": "DASH-Beilage 10"
   },
   {
     "id": "dash_side_11",
@@ -634,7 +778,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "DASH side 11 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH side 11 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Accompagnement DASH 11",
+    "name_es": "Guarnición DASH 11",
+    "name_de": "DASH-Beilage 11"
   },
   {
     "id": "dash_side_12",
@@ -647,7 +794,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "DASH side 12 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024"
+    "ref": "DASH side 12 low sodium - DASH - Sacks et al. DASH Diet - NEJM 2023 - NHLBI DASH Guidelines 2023 - Moore et al. DASH Diet Review - AHA 2023 - Mayo Clinic DASH 2024 - USDA DASH - Appel et al. DASH-Sodium Trial NEJM 2023 - Harvard DASH 2023 - ACC AHA Hypertension Guidelines 2024",
+    "name_fr": "Accompagnement DASH 12",
+    "name_es": "Guarnición DASH 12",
+    "name_de": "DASH-Beilage 12"
   },
   {
     "id": "dash_side_13",
