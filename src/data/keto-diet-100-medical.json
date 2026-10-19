@@ -10,7 +10,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Butter eggs keto breakfast - 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Butter eggs keto breakfast - 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Œufs au beurre, petit-déjeuner keto",
+    "name_es": "Huevos con mantequilla, desayuno keto",
+    "name_de": "Butter-Eier, Keto-Frühstück"
   },
   {
     "id": "keto_bf_1",
@@ -23,7 +26,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Avocado egg keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Avocado egg keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Œuf et avocat, petit-déjeuner keto",
+    "name_es": "Huevo con aguacate, desayuno keto",
+    "name_de": "Ei mit Avocado, Keto-Frühstück"
   },
   {
     "id": "keto_bf_2",
@@ -36,7 +42,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Salmon keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Salmon keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Saumon, petit-déjeuner keto",
+    "name_es": "Salmón, desayuno keto",
+    "name_de": "Lachs, Keto-Frühstück"
   },
   {
     "id": "keto_bf_3",
@@ -49,7 +58,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Cream cheese keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Cream cheese keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Fromage à la crème, petit-déjeuner keto",
+    "name_es": "Queso crema, desayuno keto",
+    "name_de": "Frischkäse, Keto-Frühstück"
   },
   {
     "id": "keto_bf_4",
@@ -62,7 +74,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Bacon keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Bacon keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Viande séchée, petit-déjeuner keto",
+    "name_es": "Carne curada, desayuno keto",
+    "name_de": "Trockenfleisch, Keto-Frühstück"
   },
   {
     "id": "keto_bf_5",
@@ -75,7 +90,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Full fat yogurt keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Full fat yogurt keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Yaourt entier, petit-déjeuner keto",
+    "name_es": "Yogur entero, desayuno keto",
+    "name_de": "Vollfettjoghurt, Keto-Frühstück"
   },
   {
     "id": "keto_bf_6",
@@ -88,7 +106,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Nuts keto - macadamia - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Nuts keto - macadamia - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Noix, petit-déjeuner keto",
+    "name_es": "Frutos secos, desayuno keto",
+    "name_de": "Nüsse, Keto-Frühstück"
   },
   {
     "id": "keto_bf_7",
@@ -101,7 +122,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Bulletproof coffee keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Bulletproof coffee keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Café bulletproof, petit-déjeuner keto",
+    "name_es": "Café bulletproof, desayuno keto",
+    "name_de": "Bulletproof-Kaffee, Keto-Frühstück"
   },
   {
     "id": "keto_bf_8",
@@ -114,7 +138,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Cheese omelette keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Cheese omelette keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Omelette au fromage, petit-déjeuner keto",
+    "name_es": "Tortilla de queso, desayuno keto",
+    "name_de": "Käseomelett, Keto-Frühstück"
   },
   {
     "id": "keto_bf_9",
@@ -127,7 +154,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Sausage keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Sausage keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Saucisse, petit-déjeuner keto",
+    "name_es": "Salchicha, desayuno keto",
+    "name_de": "Wurst, Keto-Frühstück"
   },
   {
     "id": "keto_bf_10",
@@ -140,7 +170,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Tea keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Tea keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Thé, petit-déjeuner keto",
+    "name_es": "Té, desayuno keto",
+    "name_de": "Tee, Keto-Frühstück"
   },
   {
     "id": "keto_bf_11",
@@ -153,7 +186,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Peanut butter keto low carb - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Peanut butter keto low carb - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Beurre de cacahuète, petit-déjeuner keto",
+    "name_es": "Mantequilla de cacahuete, desayuno keto",
+    "name_de": "Erdnussbutter, Keto-Frühstück"
   },
   {
     "id": "keto_lunch_0",
@@ -166,7 +202,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 0 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 0 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 0",
+    "name_es": "Almuerzo keto 0",
+    "name_de": "Keto-Mittagessen 0"
   },
   {
     "id": "keto_lunch_1",
@@ -179,7 +218,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 1 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 1 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 1",
+    "name_es": "Almuerzo keto 1",
+    "name_de": "Keto-Mittagessen 1"
   },
   {
     "id": "keto_lunch_2",
@@ -192,7 +234,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 2 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 2 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 2",
+    "name_es": "Almuerzo keto 2",
+    "name_de": "Keto-Mittagessen 2"
   },
   {
     "id": "keto_lunch_3",
@@ -205,7 +250,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 3 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 3 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 3",
+    "name_es": "Almuerzo keto 3",
+    "name_de": "Keto-Mittagessen 3"
   },
   {
     "id": "keto_lunch_4",
@@ -218,7 +266,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 4 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 4 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 4",
+    "name_es": "Almuerzo keto 4",
+    "name_de": "Keto-Mittagessen 4"
   },
   {
     "id": "keto_lunch_5",
@@ -231,7 +282,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 5 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 5 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 5",
+    "name_es": "Almuerzo keto 5",
+    "name_de": "Keto-Mittagessen 5"
   },
   {
     "id": "keto_lunch_6",
@@ -244,7 +298,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 6 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 6 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 6",
+    "name_es": "Almuerzo keto 6",
+    "name_de": "Keto-Mittagessen 6"
   },
   {
     "id": "keto_lunch_7",
@@ -257,7 +314,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 7 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 7 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 7",
+    "name_es": "Almuerzo keto 7",
+    "name_de": "Keto-Mittagessen 7"
   },
   {
     "id": "keto_lunch_8",
@@ -270,7 +330,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 8 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 8 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 8",
+    "name_es": "Almuerzo keto 8",
+    "name_de": "Keto-Mittagessen 8"
   },
   {
     "id": "keto_lunch_9",
@@ -283,7 +346,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 9 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 9 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 9",
+    "name_es": "Almuerzo keto 9",
+    "name_de": "Keto-Mittagessen 9"
   },
   {
     "id": "keto_lunch_10",
@@ -296,7 +362,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 10 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 10 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 10",
+    "name_es": "Almuerzo keto 10",
+    "name_de": "Keto-Mittagessen 10"
   },
   {
     "id": "keto_lunch_11",
@@ -309,7 +378,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 11 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 11 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 11",
+    "name_es": "Almuerzo keto 11",
+    "name_de": "Keto-Mittagessen 11"
   },
   {
     "id": "keto_lunch_12",
@@ -322,7 +394,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 12 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 12 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 12",
+    "name_es": "Almuerzo keto 12",
+    "name_de": "Keto-Mittagessen 12"
   },
   {
     "id": "keto_lunch_13",
@@ -335,7 +410,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 13 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 13 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 13",
+    "name_es": "Almuerzo keto 13",
+    "name_de": "Keto-Mittagessen 13"
   },
   {
     "id": "keto_lunch_14",
@@ -348,7 +426,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 14 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 14 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 14",
+    "name_es": "Almuerzo keto 14",
+    "name_de": "Keto-Mittagessen 14"
   },
   {
     "id": "keto_lunch_15",
@@ -361,7 +442,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 15 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 15 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 15",
+    "name_es": "Almuerzo keto 15",
+    "name_de": "Keto-Mittagessen 15"
   },
   {
     "id": "keto_lunch_16",
@@ -374,7 +458,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 16 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 16 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 16",
+    "name_es": "Almuerzo keto 16",
+    "name_de": "Keto-Mittagessen 16"
   },
   {
     "id": "keto_lunch_17",
@@ -387,7 +474,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 17 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 17 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 17",
+    "name_es": "Almuerzo keto 17",
+    "name_de": "Keto-Mittagessen 17"
   },
   {
     "id": "keto_lunch_18",
@@ -400,7 +490,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 18 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 18 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 18",
+    "name_es": "Almuerzo keto 18",
+    "name_de": "Keto-Mittagessen 18"
   },
   {
     "id": "keto_lunch_19",
@@ -413,7 +506,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 19 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 19 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 19",
+    "name_es": "Almuerzo keto 19",
+    "name_de": "Keto-Mittagessen 19"
   },
   {
     "id": "keto_lunch_20",
@@ -426,7 +522,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 20 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 20 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 20",
+    "name_es": "Almuerzo keto 20",
+    "name_de": "Keto-Mittagessen 20"
   },
   {
     "id": "keto_lunch_21",
@@ -439,7 +538,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 21 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 21 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 21",
+    "name_es": "Almuerzo keto 21",
+    "name_de": "Keto-Mittagessen 21"
   },
   {
     "id": "keto_lunch_22",
@@ -452,7 +554,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 22 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 22 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 22",
+    "name_es": "Almuerzo keto 22",
+    "name_de": "Keto-Mittagessen 22"
   },
   {
     "id": "keto_lunch_23",
@@ -465,7 +570,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 23 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 23 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 23",
+    "name_es": "Almuerzo keto 23",
+    "name_de": "Keto-Mittagessen 23"
   },
   {
     "id": "keto_lunch_24",
@@ -478,7 +586,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Keto lunch 24 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto lunch 24 75% fat - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Déjeuner keto 24",
+    "name_es": "Almuerzo keto 24",
+    "name_de": "Keto-Mittagessen 24"
   },
   {
     "id": "keto_side_0",
@@ -491,7 +602,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Keto side 0 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto side 0 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Accompagnement keto 0",
+    "name_es": "Guarnición keto 0",
+    "name_de": "Keto-Beilage 0"
   },
   {
     "id": "keto_side_1",
@@ -504,7 +618,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Keto side 1 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto side 1 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Accompagnement keto 1",
+    "name_es": "Guarnición keto 1",
+    "name_de": "Keto-Beilage 1"
   },
   {
     "id": "keto_side_2",
@@ -517,7 +634,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Keto side 2 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto side 2 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Accompagnement keto 2",
+    "name_es": "Guarnición keto 2",
+    "name_de": "Keto-Beilage 2"
   },
   {
     "id": "keto_side_3",
@@ -530,7 +650,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Keto side 3 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto side 3 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Accompagnement keto 3",
+    "name_es": "Guarnición keto 3",
+    "name_de": "Keto-Beilage 3"
   },
   {
     "id": "keto_side_4",
@@ -543,7 +666,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Keto side 4 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto side 4 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Accompagnement keto 4",
+    "name_es": "Guarnición keto 4",
+    "name_de": "Keto-Beilage 4"
   },
   {
     "id": "keto_side_5",
@@ -556,7 +682,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Keto side 5 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto side 5 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Accompagnement keto 5",
+    "name_es": "Guarnición keto 5",
+    "name_de": "Keto-Beilage 5"
   },
   {
     "id": "keto_side_6",
@@ -569,7 +698,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Keto side 6 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto side 6 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Accompagnement keto 6",
+    "name_es": "Guarnición keto 6",
+    "name_de": "Keto-Beilage 6"
   },
   {
     "id": "keto_side_7",
@@ -582,7 +714,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Keto side 7 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto side 7 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Accompagnement keto 7",
+    "name_es": "Guarnición keto 7",
+    "name_de": "Keto-Beilage 7"
   },
   {
     "id": "keto_side_8",
@@ -595,7 +730,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Keto side 8 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto side 8 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Accompagnement keto 8",
+    "name_es": "Guarnición keto 8",
+    "name_de": "Keto-Beilage 8"
   },
   {
     "id": "keto_side_9",
@@ -608,7 +746,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Keto side 9 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto side 9 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Accompagnement keto 9",
+    "name_es": "Guarnición keto 9",
+    "name_de": "Keto-Beilage 9"
   },
   {
     "id": "keto_side_10",
@@ -621,7 +762,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Keto side 10 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto side 10 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Accompagnement keto 10",
+    "name_es": "Guarnición keto 10",
+    "name_de": "Keto-Beilage 10"
   },
   {
     "id": "keto_side_11",
@@ -634,7 +778,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Keto side 11 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto side 11 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Accompagnement keto 11",
+    "name_es": "Guarnición keto 11",
+    "name_de": "Keto-Beilage 11"
   },
   {
     "id": "keto_side_12",
@@ -647,7 +794,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Keto side 12 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024"
+    "ref": "Keto side 12 - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "name_fr": "Accompagnement keto 12",
+    "name_es": "Guarnición keto 12",
+    "name_de": "Keto-Beilage 12"
   },
   {
     "id": "keto_side_13",
