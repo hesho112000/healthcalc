@@ -59,6 +59,9 @@ export interface KitchenInfo {
   city: string;
   country: string;
   kitchenEn?: string;
+  kitchenFr?: string;
+  kitchenEs?: string;
+  kitchenDe?: string;
   cityEn?: string;
   countryEn?: string;
   description?: string;
@@ -405,10 +408,94 @@ const KITCHEN_EN_BY_ID: Record<string, string> = {
   venezuelan: 'Venezuelan Kitchen',
 };
 
+const KITCHEN_FR_BY_ID: Record<string, string> = {
+  egyptian: 'Cuisine égyptienne', tunisian: 'Cuisine tunisienne', syrian: 'Cuisine syrienne', palestinian: 'Cuisine palestinienne',
+  lebanese: 'Cuisine libanaise', jordanian: 'Cuisine jordanienne', algerian: 'Cuisine algérienne', american: 'Cuisine américaine',
+  bahraini: 'Cuisine bahreïnie', australian: 'Cuisine australienne', chinese: 'Cuisine chinoise', japanese: 'Cuisine japonaise',
+  british: 'Cuisine britannique', brazilian: 'Cuisine brésilienne', argentinian: 'Cuisine argentine', chilean: 'Cuisine chilienne',
+  colombian: 'Cuisine colombienne', 'costa-rican': 'Cuisine costaricienne', cuban: 'Cuisine cubaine', emirati: 'Cuisine émirienne',
+  ethiopian: 'Cuisine éthiopienne', french: 'Cuisine française', italian: 'Cuisine italienne', indian: 'Cuisine indienne',
+  indonesian: 'Cuisine indonésienne', malaysian: 'Cuisine malaisienne', greek: 'Cuisine grecque', jamaican: 'Cuisine jamaïcaine',
+  kenyan: 'Cuisine kényane', korean: 'Cuisine coréenne', kuwaiti: 'Cuisine koweïtienne', mexican: 'Cuisine mexicaine',
+  libyan: 'Cuisine libyenne', moroccan: 'Cuisine marocaine', 'new-zealand': 'Cuisine néo-zélandaise', omani: 'Cuisine omanaise',
+  pakistani: 'Cuisine pakistanaise', peruvian: 'Cuisine péruvienne', saudi: 'Cuisine saoudienne', nigerian: 'Cuisine nigériane',
+  qatar: 'Cuisine qatarienne', rwandan: 'Cuisine rwandaise', swiss: 'Cuisine suisse', thai: 'Cuisine thaïlandaise',
+  vietnamese: 'Cuisine vietnamienne', spanish: 'Cuisine espagnole', 'south-african': 'Cuisine sud-africaine',
+  taiwanese: 'Cuisine taïwanaise',
+  ghanaian: 'Cuisine ghanéenne', seychellois: 'Cuisine seychelloise', mauritian: 'Cuisine mauricienne',
+  gabonese: 'Cuisine gabonaise', botswanan: 'Cuisine botswanaise', filipino: 'Cuisine philippine', turkey: 'Cuisine turque',
+  germany: 'Cuisine allemande', austria: 'Cuisine autrichienne', benelux: 'Cuisine du Benelux', canada: 'Cuisine canadienne',
+  australasia: 'Cuisine australasienne', norway: 'Cuisine norvégienne', sweden: 'Cuisine suédoise', denmark: 'Cuisine danoise',
+  finland: 'Cuisine finlandaise', ukraine: 'Cuisine ukrainienne', 'eastern-european': "Cuisine d'Europe de l'Est",
+  venezuelan: 'Cuisine vénézuélienne',
+};
+
+const KITCHEN_ES_BY_ID: Record<string, string> = {
+  egyptian: 'Cocina egipcia', tunisian: 'Cocina tunecina', syrian: 'Cocina siria', palestinian: 'Cocina palestina',
+  lebanese: 'Cocina libanesa', jordanian: 'Cocina jordana', algerian: 'Cocina argelina', american: 'Cocina estadounidense',
+  bahraini: 'Cocina bareiní', australian: 'Cocina australiana', chinese: 'Cocina china', japanese: 'Cocina japonesa',
+  british: 'Cocina británica', brazilian: 'Cocina brasileña', argentinian: 'Cocina argentina', chilean: 'Cocina chilena',
+  colombian: 'Cocina colombiana', 'costa-rican': 'Cocina costarricense', cuban: 'Cocina cubana', emirati: 'Cocina emiratí',
+  ethiopian: 'Cocina etíope', french: 'Cocina francesa', italian: 'Cocina italiana', indian: 'Cocina india',
+  indonesian: 'Cocina indonesia', malaysian: 'Cocina malasia', greek: 'Cocina griega', jamaican: 'Cocina jamaicana',
+  kenyan: 'Cocina keniana', korean: 'Cocina coreana', kuwaiti: 'Cocina kuwaití', mexican: 'Cocina mexicana',
+  libyan: 'Cocina libia', moroccan: 'Cocina marroquí', 'new-zealand': 'Cocina neozelandesa', omani: 'Cocina omaní',
+  pakistani: 'Cocina pakistaní', peruvian: 'Cocina peruana', saudi: 'Cocina saudí', nigerian: 'Cocina nigeriana',
+  qatar: 'Cocina catarí', rwandan: 'Cocina ruandesa', swiss: 'Cocina suiza', thai: 'Cocina tailandesa',
+  vietnamese: 'Cocina vietnamita', spanish: 'Cocina española', 'south-african': 'Cocina sudafricana',
+  taiwanese: 'Cocina taiwanesa',
+  ghanaian: 'Cocina ghanesa', seychellois: 'Cocina seychellense', mauritian: 'Cocina mauriciana',
+  gabonese: 'Cocina gabonesa', botswanan: 'Cocina botsuanesa', filipino: 'Cocina filipina', turkey: 'Cocina turca',
+  germany: 'Cocina alemana', austria: 'Cocina austriaca', benelux: 'Cocina del Benelux', canada: 'Cocina canadiense',
+  australasia: 'Cocina australasiática', norway: 'Cocina noruega', sweden: 'Cocina sueca', denmark: 'Cocina danesa',
+  finland: 'Cocina finlandesa', ukraine: 'Cocina ucraniana', 'eastern-european': 'Cocina de Europa del Este',
+  venezuelan: 'Cocina venezolana',
+};
+
+const KITCHEN_DE_BY_ID: Record<string, string> = {
+  egyptian: 'Ägyptische Küche', tunisian: 'Tunesische Küche', syrian: 'Syrische Küche', palestinian: 'Palästinensische Küche',
+  lebanese: 'Libanesische Küche', jordanian: 'Jordanische Küche', algerian: 'Algerische Küche', american: 'Amerikanische Küche',
+  bahraini: 'Bahrainische Küche', australian: 'Australische Küche', chinese: 'Chinesische Küche', japanese: 'Japanische Küche',
+  british: 'Britische Küche', brazilian: 'Brasilianische Küche', argentinian: 'Argentinische Küche', chilean: 'Chilenische Küche',
+  colombian: 'Kolumbianische Küche', 'costa-rican': 'Costa-ricanische Küche', cuban: 'Kubanische Küche', emirati: 'Emiratische Küche',
+  ethiopian: 'Äthiopische Küche', french: 'Französische Küche', italian: 'Italienische Küche', indian: 'Indische Küche',
+  indonesian: 'Indonesische Küche', malaysian: 'Malaysische Küche', greek: 'Griechische Küche', jamaican: 'Jamaikanische Küche',
+  kenyan: 'Kenianische Küche', korean: 'Koreanische Küche', kuwaiti: 'Kuwaitische Küche', mexican: 'Mexikanische Küche',
+  libyan: 'Libysche Küche', moroccan: 'Marokkanische Küche', 'new-zealand': 'Neuseeländische Küche', omani: 'Omanische Küche',
+  pakistani: 'Pakistanische Küche', peruvian: 'Peruanische Küche', saudi: 'Saudische Küche', nigerian: 'Nigerianische Küche',
+  qatar: 'Katarische Küche', rwandan: 'Ruandische Küche', swiss: 'Schweizer Küche', thai: 'Thailändische Küche',
+  vietnamese: 'Vietnamesische Küche', spanish: 'Spanische Küche', 'south-african': 'Südafrikanische Küche',
+  taiwanese: 'Taiwanische Küche',
+  ghanaian: 'Ghanaische Küche', seychellois: 'Seychellen-Küche', mauritian: 'Mauritische Küche',
+  gabonese: 'Gabunische Küche', botswanan: 'Botswanische Küche', filipino: 'Philippinische Küche', turkey: 'Türkische Küche',
+  germany: 'Deutsche Küche', austria: 'Österreichische Küche', benelux: 'Benelux-Küche', canada: 'Kanadische Küche',
+  australasia: 'Australasische Küche', norway: 'Norwegische Küche', sweden: 'Schwedische Küche', denmark: 'Dänische Küche',
+  finland: 'Finnische Küche', ukraine: 'Ukrainische Küche', 'eastern-european': 'Osteuropäische Küche',
+  venezuelan: 'Venezolanische Küche',
+};
+
 const DIET_NAME_EN: Record<string, string> = {
   keto: 'Keto Kitchen', vegan: 'Vegan Kitchen', vegetarian: 'Vegetarian Kitchen', 'high-protein': 'High-Protein Kitchen',
   mediterranean: 'Mediterranean Kitchen', 'low-carb': 'Low-Carb Diet', dash: 'DASH Diet', 'gluten-free': 'Gluten-Free Diet',
   'intermittent-fasting': 'Intermittent Fasting Diet', paleo: 'Paleo Diet',
+};
+
+const DIET_NAME_FR: Record<string, string> = {
+  keto: 'Cuisine keto', vegan: 'Cuisine végane', vegetarian: 'Cuisine végétarienne', 'high-protein': 'Cuisine hyperprotéinée',
+  mediterranean: 'Cuisine méditerranéenne', 'low-carb': 'Régime pauvre en glucides', dash: 'Régime DASH',
+  'gluten-free': 'Régime sans gluten', 'intermittent-fasting': 'Régime du jeûne intermittent', paleo: 'Régime paléo',
+};
+
+const DIET_NAME_ES: Record<string, string> = {
+  keto: 'Cocina keto', vegan: 'Cocina vegana', vegetarian: 'Cocina vegetariana', 'high-protein': 'Cocina alta en proteínas',
+  mediterranean: 'Cocina mediterránea', 'low-carb': 'Dieta baja en carbohidratos', dash: 'Dieta DASH',
+  'gluten-free': 'Dieta sin gluten', 'intermittent-fasting': 'Dieta de ayuno intermitente', paleo: 'Dieta paleo',
+};
+
+const DIET_NAME_DE: Record<string, string> = {
+  keto: 'Keto-Küche', vegan: 'Vegane Küche', vegetarian: 'Vegetarische Küche', 'high-protein': 'Proteinreiche Küche',
+  mediterranean: 'Mediterrane Küche', 'low-carb': 'Low-Carb-Diät', dash: 'DASH-Diät',
+  'gluten-free': 'Glutenfreie Diät', 'intermittent-fasting': 'Intervallfasten-Diät', paleo: 'Paleo-Diät',
 };
 
 const DIET_COUNTRY_EN: Record<string, string> = {
@@ -432,6 +519,7 @@ function basenameId(path: string): string {
   if (id === 'colombia') return 'colombian';
   if (id === 'peru') return 'peruvian';
   if (id === 'chile') return 'chilean';
+  if (id === 'taiwan') return 'taiwanese';
   return id;
 }
 
@@ -550,6 +638,9 @@ function buildDiet(path: string, mod: any): KitchenInfo {
     city: name,
     country,
     kitchenEn: DIET_NAME_EN[base] ?? `${base} diet`,
+    kitchenFr: DIET_NAME_FR[base],
+    kitchenEs: DIET_NAME_ES[base],
+    kitchenDe: DIET_NAME_DE[base],
     cityEn: DIET_NAME_EN[base] ?? `${base} diet`,
     countryEn: stripFlagSuffix(DIET_COUNTRY_EN[base] ?? 'Global diet 🌍'),
     flag: FLAG_CODE_BY_ID[base] ?? DIET_FLAG_CODE_BY_ID[base] ?? '',
@@ -590,6 +681,9 @@ function buildRich(path: string, mod: any): KitchenInfo {
     city,
     country,
     kitchenEn: typeof data.kitchen_en === 'string' ? data.kitchen_en : KITCHEN_EN_BY_ID[id],
+    kitchenFr: typeof data.kitchen_fr === 'string' ? data.kitchen_fr : KITCHEN_FR_BY_ID[id],
+    kitchenEs: typeof data.kitchen_es === 'string' ? data.kitchen_es : KITCHEN_ES_BY_ID[id],
+    kitchenDe: typeof data.kitchen_de === 'string' ? data.kitchen_de : KITCHEN_DE_BY_ID[id],
     cityEn: CITY_EN_BY_ID[id],
     countryEn: COUNTRY_EN_BY_ID[id],
     flag: FLAG_CODE_BY_ID[id] ?? '',
@@ -621,6 +715,9 @@ function buildBasic(path: string, mod: any): KitchenInfo {
     city,
     country,
     kitchenEn: KITCHEN_EN_BY_ID[id],
+    kitchenFr: KITCHEN_FR_BY_ID[id],
+    kitchenEs: KITCHEN_ES_BY_ID[id],
+    kitchenDe: KITCHEN_DE_BY_ID[id],
     cityEn: CITY_EN_BY_ID[id],
     countryEn: COUNTRY_EN_BY_ID[id],
     description: KITCHEN_DESCRIPTION_BY_ID[id],
@@ -695,7 +792,11 @@ export function getCategoryName(cat: KitchenCategory | null | undefined, lang: L
 
 export function getKitchenName(k: KitchenInfo | null | undefined, lang: Language): string {
   if (!k) return '';
-  return lang === 'ar' ? k.kitchen : (k.kitchenEn ?? k.kitchen);
+  if (lang === 'ar') return k.kitchen;
+  if (lang === 'fr') return k.kitchenFr ?? k.kitchenEn ?? k.kitchen;
+  if (lang === 'es') return k.kitchenEs ?? k.kitchenEn ?? k.kitchen;
+  if (lang === 'de') return k.kitchenDe ?? k.kitchenEn ?? k.kitchen;
+  return k.kitchenEn ?? k.kitchen;
 }
 
 export function getKitchenCountry(k: KitchenInfo | null | undefined, lang: Language): string {

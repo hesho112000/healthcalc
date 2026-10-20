@@ -42,6 +42,7 @@ const KITCHEN_ID_ALIASES = {
   italy: 'italian',
   spain: 'spanish',
   switzerland: 'swiss',
+  taiwan: 'taiwanese',
 };
 const SEVERITY_BY_CODE = {
   'halal-violation': 'CRITICAL',
@@ -315,9 +316,15 @@ for (const id of ['american', 'argentina', 'argentinian', 'brazilian', 'canada',
 function mapKitchenSource(source, id, sourceData, diet) {
   const arabic = getObjectMap(source, 'NAME_BY_ID');
   const english = getObjectMap(source, 'KITCHEN_EN_BY_ID');
+  const french = getObjectMap(source, 'KITCHEN_FR_BY_ID');
+  const spanish = getObjectMap(source, 'KITCHEN_ES_BY_ID');
+  const german = getObjectMap(source, 'KITCHEN_DE_BY_ID');
   const descriptions = getObjectMap(source, 'KITCHEN_DESCRIPTION_BY_ID');
   const dietArabic = getObjectMap(source, 'DIET_NAME');
   const dietEnglish = getObjectMap(source, 'DIET_NAME_EN');
+  const dietFrench = getObjectMap(source, 'DIET_NAME_FR');
+  const dietSpanish = getObjectMap(source, 'DIET_NAME_ES');
+  const dietGerman = getObjectMap(source, 'DIET_NAME_DE');
   const regionMap = getObjectMap(source, 'KITCHEN_REGION_KITCHEN_IDS');
   const explicitRegion = sourceData?.region ?? sourceData?.region_name ?? sourceData?.regionId;
   let region = diet ? 'Diet Plans' : typeof explicitRegion === 'string' ? explicitRegion : '';
@@ -334,9 +341,9 @@ function mapKitchenSource(source, id, sourceData, diet) {
     names: {
       Ar: (diet ? dietArabic : arabic)[id] ?? sourceData?.kitchen ?? '',
       En: (diet ? dietEnglish : english)[id] ?? sourceData?.kitchen_en ?? '',
-      Fr: sourceData?.kitchen_fr ?? '',
-      Es: sourceData?.kitchen_es ?? '',
-      De: sourceData?.kitchen_de ?? '',
+      Fr: (diet ? dietFrench : french)[id] ?? sourceData?.kitchen_fr ?? '',
+      Es: (diet ? dietSpanish : spanish)[id] ?? sourceData?.kitchen_es ?? '',
+      De: (diet ? dietGerman : german)[id] ?? sourceData?.kitchen_de ?? '',
     },
     descriptions: {
       Ar: sourceData?.description_ar ?? '',
