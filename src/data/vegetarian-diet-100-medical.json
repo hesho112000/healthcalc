@@ -10,7 +10,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Vegetarian breakfast 0 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian breakfast 0 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Petit-déjeuner végétarien 0",
+    "name_es": "Desayuno vegetariano 0",
+    "name_de": "Vegetarisches Frühstück 0"
   },
   {
     "id": "veg_bf_1",
@@ -23,7 +26,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Vegetarian breakfast 1 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian breakfast 1 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Petit-déjeuner végétarien 1",
+    "name_es": "Desayuno vegetariano 1",
+    "name_de": "Vegetarisches Frühstück 1"
   },
   {
     "id": "veg_bf_2",
@@ -36,7 +42,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Vegetarian breakfast 2 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian breakfast 2 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Petit-déjeuner végétarien 2",
+    "name_es": "Desayuno vegetariano 2",
+    "name_de": "Vegetarisches Frühstück 2"
   },
   {
     "id": "veg_bf_3",
@@ -49,7 +58,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Vegetarian breakfast 3 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian breakfast 3 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Petit-déjeuner végétarien 3",
+    "name_es": "Desayuno vegetariano 3",
+    "name_de": "Vegetarisches Frühstück 3"
   },
   {
     "id": "veg_bf_4",
@@ -62,7 +74,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Vegetarian breakfast 4 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian breakfast 4 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Petit-déjeuner végétarien 4",
+    "name_es": "Desayuno vegetariano 4",
+    "name_de": "Vegetarisches Frühstück 4"
   },
   {
     "id": "veg_bf_5",
@@ -75,7 +90,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Vegetarian breakfast 5 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian breakfast 5 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Petit-déjeuner végétarien 5",
+    "name_es": "Desayuno vegetariano 5",
+    "name_de": "Vegetarisches Frühstück 5"
   },
   {
     "id": "veg_bf_6",
@@ -88,7 +106,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Vegetarian breakfast 6 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian breakfast 6 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Petit-déjeuner végétarien 6",
+    "name_es": "Desayuno vegetariano 6",
+    "name_de": "Vegetarisches Frühstück 6"
   },
   {
     "id": "veg_bf_7",
@@ -101,7 +122,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Vegetarian breakfast 7 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian breakfast 7 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Petit-déjeuner végétarien 7",
+    "name_es": "Desayuno vegetariano 7",
+    "name_de": "Vegetarisches Frühstück 7"
   },
   {
     "id": "veg_bf_8",
@@ -114,7 +138,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Vegetarian breakfast 8 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian breakfast 8 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Petit-déjeuner végétarien 8",
+    "name_es": "Desayuno vegetariano 8",
+    "name_de": "Vegetarisches Frühstück 8"
   },
   {
     "id": "veg_bf_9",
@@ -127,7 +154,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Vegetarian breakfast 9 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian breakfast 9 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Petit-déjeuner végétarien 9",
+    "name_es": "Desayuno vegetariano 9",
+    "name_de": "Vegetarisches Frühstück 9"
   },
   {
     "id": "veg_bf_10",
@@ -140,7 +170,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Vegetarian breakfast 10 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian breakfast 10 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Petit-déjeuner végétarien 10",
+    "name_es": "Desayuno vegetariano 10",
+    "name_de": "Vegetarisches Frühstück 10"
   },
   {
     "id": "veg_bf_11",
@@ -153,7 +186,10 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Vegetarian breakfast 11 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian breakfast 11 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Petit-déjeuner végétarien 11",
+    "name_es": "Desayuno vegetariano 11",
+    "name_de": "Vegetarisches Frühstück 11"
   },
   {
     "id": "veg_lunch_0",
@@ -166,7 +202,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 0 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 0 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 0",
+    "name_es": "Almuerzo vegetariano 0",
+    "name_de": "Vegetarisches Mittagessen 0"
   },
   {
     "id": "veg_lunch_1",
@@ -179,7 +218,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 1 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 1 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 1",
+    "name_es": "Almuerzo vegetariano 1",
+    "name_de": "Vegetarisches Mittagessen 1"
   },
   {
     "id": "veg_lunch_2",
@@ -192,7 +234,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 2 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 2 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 2",
+    "name_es": "Almuerzo vegetariano 2",
+    "name_de": "Vegetarisches Mittagessen 2"
   },
   {
     "id": "veg_lunch_3",
@@ -205,7 +250,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 3 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 3 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 3",
+    "name_es": "Almuerzo vegetariano 3",
+    "name_de": "Vegetarisches Mittagessen 3"
   },
   {
     "id": "veg_lunch_4",
@@ -218,7 +266,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 4 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 4 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 4",
+    "name_es": "Almuerzo vegetariano 4",
+    "name_de": "Vegetarisches Mittagessen 4"
   },
   {
     "id": "veg_lunch_5",
@@ -231,7 +282,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 5 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 5 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 5",
+    "name_es": "Almuerzo vegetariano 5",
+    "name_de": "Vegetarisches Mittagessen 5"
   },
   {
     "id": "veg_lunch_6",
@@ -244,7 +298,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 6 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 6 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 6",
+    "name_es": "Almuerzo vegetariano 6",
+    "name_de": "Vegetarisches Mittagessen 6"
   },
   {
     "id": "veg_lunch_7",
@@ -257,7 +314,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 7 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 7 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 7",
+    "name_es": "Almuerzo vegetariano 7",
+    "name_de": "Vegetarisches Mittagessen 7"
   },
   {
     "id": "veg_lunch_8",
@@ -270,7 +330,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 8 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 8 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 8",
+    "name_es": "Almuerzo vegetariano 8",
+    "name_de": "Vegetarisches Mittagessen 8"
   },
   {
     "id": "veg_lunch_9",
@@ -283,7 +346,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 9 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 9 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 9",
+    "name_es": "Almuerzo vegetariano 9",
+    "name_de": "Vegetarisches Mittagessen 9"
   },
   {
     "id": "veg_lunch_10",
@@ -296,7 +362,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 10 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 10 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 10",
+    "name_es": "Almuerzo vegetariano 10",
+    "name_de": "Vegetarisches Mittagessen 10"
   },
   {
     "id": "veg_lunch_11",
@@ -309,7 +378,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 11 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 11 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 11",
+    "name_es": "Almuerzo vegetariano 11",
+    "name_de": "Vegetarisches Mittagessen 11"
   },
   {
     "id": "veg_lunch_12",
@@ -322,7 +394,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 12 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 12 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 12",
+    "name_es": "Almuerzo vegetariano 12",
+    "name_de": "Vegetarisches Mittagessen 12"
   },
   {
     "id": "veg_lunch_13",
@@ -335,7 +410,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 13 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 13 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 13",
+    "name_es": "Almuerzo vegetariano 13",
+    "name_de": "Vegetarisches Mittagessen 13"
   },
   {
     "id": "veg_lunch_14",
@@ -348,7 +426,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 14 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 14 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 14",
+    "name_es": "Almuerzo vegetariano 14",
+    "name_de": "Vegetarisches Mittagessen 14"
   },
   {
     "id": "veg_lunch_15",
@@ -361,7 +442,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 15 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 15 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 15",
+    "name_es": "Almuerzo vegetariano 15",
+    "name_de": "Vegetarisches Mittagessen 15"
   },
   {
     "id": "veg_lunch_16",
@@ -374,7 +458,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 16 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 16 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 16",
+    "name_es": "Almuerzo vegetariano 16",
+    "name_de": "Vegetarisches Mittagessen 16"
   },
   {
     "id": "veg_lunch_17",
@@ -387,7 +474,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 17 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 17 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 17",
+    "name_es": "Almuerzo vegetariano 17",
+    "name_de": "Vegetarisches Mittagessen 17"
   },
   {
     "id": "veg_lunch_18",
@@ -400,7 +490,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 18 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 18 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 18",
+    "name_es": "Almuerzo vegetariano 18",
+    "name_de": "Vegetarisches Mittagessen 18"
   },
   {
     "id": "veg_lunch_19",
@@ -413,7 +506,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 19 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 19 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 19",
+    "name_es": "Almuerzo vegetariano 19",
+    "name_de": "Vegetarisches Mittagessen 19"
   },
   {
     "id": "veg_lunch_20",
@@ -426,7 +522,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 20 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 20 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 20",
+    "name_es": "Almuerzo vegetariano 20",
+    "name_de": "Vegetarisches Mittagessen 20"
   },
   {
     "id": "veg_lunch_21",
@@ -439,7 +538,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 21 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 21 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 21",
+    "name_es": "Almuerzo vegetariano 21",
+    "name_de": "Vegetarisches Mittagessen 21"
   },
   {
     "id": "veg_lunch_22",
@@ -452,7 +554,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 22 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 22 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 22",
+    "name_es": "Almuerzo vegetariano 22",
+    "name_de": "Vegetarisches Mittagessen 22"
   },
   {
     "id": "veg_lunch_23",
@@ -465,7 +570,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 23 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 23 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 23",
+    "name_es": "Almuerzo vegetariano 23",
+    "name_de": "Vegetarisches Mittagessen 23"
   },
   {
     "id": "veg_lunch_24",
@@ -478,7 +586,10 @@
     "carbs": 10,
     "fat": 7,
     "cooking": "grilled",
-    "ref": "Vegetarian lunch 24 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian lunch 24 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Déjeuner végétarien 24",
+    "name_es": "Almuerzo vegetariano 24",
+    "name_de": "Vegetarisches Mittagessen 24"
   },
   {
     "id": "veg_side_0",
@@ -491,7 +602,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegetarian side 0 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian side 0 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Accompagnement végétarien 0",
+    "name_es": "Guarnición vegetariana 0",
+    "name_de": "Vegetarische Beilage 0"
   },
   {
     "id": "veg_side_1",
@@ -504,7 +618,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegetarian side 1 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian side 1 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Accompagnement végétarien 1",
+    "name_es": "Guarnición vegetariana 1",
+    "name_de": "Vegetarische Beilage 1"
   },
   {
     "id": "veg_side_2",
@@ -517,7 +634,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegetarian side 2 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian side 2 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Accompagnement végétarien 2",
+    "name_es": "Guarnición vegetariana 2",
+    "name_de": "Vegetarische Beilage 2"
   },
   {
     "id": "veg_side_3",
@@ -530,7 +650,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegetarian side 3 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian side 3 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Accompagnement végétarien 3",
+    "name_es": "Guarnición vegetariana 3",
+    "name_de": "Vegetarische Beilage 3"
   },
   {
     "id": "veg_side_4",
@@ -543,7 +666,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegetarian side 4 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian side 4 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Accompagnement végétarien 4",
+    "name_es": "Guarnición vegetariana 4",
+    "name_de": "Vegetarische Beilage 4"
   },
   {
     "id": "veg_side_5",
@@ -556,7 +682,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegetarian side 5 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian side 5 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Accompagnement végétarien 5",
+    "name_es": "Guarnición vegetariana 5",
+    "name_de": "Vegetarische Beilage 5"
   },
   {
     "id": "veg_side_6",
@@ -569,7 +698,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegetarian side 6 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian side 6 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Accompagnement végétarien 6",
+    "name_es": "Guarnición vegetariana 6",
+    "name_de": "Vegetarische Beilage 6"
   },
   {
     "id": "veg_side_7",
@@ -582,7 +714,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegetarian side 7 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian side 7 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Accompagnement végétarien 7",
+    "name_es": "Guarnición vegetariana 7",
+    "name_de": "Vegetarische Beilage 7"
   },
   {
     "id": "veg_side_8",
@@ -595,7 +730,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegetarian side 8 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian side 8 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Accompagnement végétarien 8",
+    "name_es": "Guarnición vegetariana 8",
+    "name_de": "Vegetarische Beilage 8"
   },
   {
     "id": "veg_side_9",
@@ -608,7 +746,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegetarian side 9 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian side 9 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Accompagnement végétarien 9",
+    "name_es": "Guarnición vegetariana 9",
+    "name_de": "Vegetarische Beilage 9"
   },
   {
     "id": "veg_side_10",
@@ -621,7 +762,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegetarian side 10 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian side 10 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Accompagnement végétarien 10",
+    "name_es": "Guarnición vegetariana 10",
+    "name_de": "Vegetarische Beilage 10"
   },
   {
     "id": "veg_side_11",
@@ -634,7 +778,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegetarian side 11 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian side 11 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Accompagnement végétarien 11",
+    "name_es": "Guarnición vegetariana 11",
+    "name_de": "Vegetarische Beilage 11"
   },
   {
     "id": "veg_side_12",
@@ -647,7 +794,10 @@
     "carbs": 12,
     "fat": 3,
     "cooking": "boiled",
-    "ref": "Vegetarian side 12 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study"
+    "ref": "Vegetarian side 12 - Vegetarian - Melina et al. Vegetarian Diets - Academy Nutrition Dietetics AND 2023 Position - Harvard T.H. Chan Vegetarian Diet 2023 - USDA Vegetarian 2024 - Mayo Clinic Vegetarian Diet Guidelines 2024 - Loma Linda Vegetarian Study",
+    "name_fr": "Accompagnement végétarien 12",
+    "name_es": "Guarnición vegetariana 12",
+    "name_de": "Vegetarische Beilage 12"
   },
   {
     "id": "veg_side_13",
