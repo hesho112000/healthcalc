@@ -861,7 +861,10 @@
     "fat": 6,
     "cooking": "fresh",
     "ref": "IF light snack 13 200kcal high fiber protein - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Collation légère IF 200 kcal 13",
+    "name_es": "Tentempié ligero IF 200 kcal 13",
+    "name_de": "Leichter IF-Snack 200 kcal 13"
   },
   {
     "id": "if_side_14",
@@ -875,7 +878,10 @@
     "fat": 6,
     "cooking": "fresh",
     "ref": "IF light snack 14 200kcal high fiber protein - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Collation légère IF 200 kcal 14",
+    "name_es": "Tentempié ligero IF 200 kcal 14",
+    "name_de": "Leichter IF-Snack 200 kcal 14"
   },
   {
     "id": "if_side_15",
@@ -889,7 +895,10 @@
     "fat": 6,
     "cooking": "fresh",
     "ref": "IF light snack 15 200kcal high fiber protein - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Collation légère IF 200 kcal 15",
+    "name_es": "Tentempié ligero IF 200 kcal 15",
+    "name_de": "Leichter IF-Snack 200 kcal 15"
   },
   {
     "id": "if_side_16",
@@ -903,7 +912,10 @@
     "fat": 6,
     "cooking": "fresh",
     "ref": "IF light snack 16 200kcal high fiber protein - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Collation légère IF 200 kcal 16",
+    "name_es": "Tentempié ligero IF 200 kcal 16",
+    "name_de": "Leichter IF-Snack 200 kcal 16"
   },
   {
     "id": "if_side_17",
@@ -917,7 +929,10 @@
     "fat": 6,
     "cooking": "fresh",
     "ref": "IF light snack 17 200kcal high fiber protein - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Collation légère IF 200 kcal 17",
+    "name_es": "Tentempié ligero IF 200 kcal 17",
+    "name_de": "Leichter IF-Snack 200 kcal 17"
   },
   {
     "id": "if_side_18",
@@ -931,7 +946,10 @@
     "fat": 6,
     "cooking": "fresh",
     "ref": "IF light snack 18 200kcal high fiber protein - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Collation légère IF 200 kcal 18",
+    "name_es": "Tentempié ligero IF 200 kcal 18",
+    "name_de": "Leichter IF-Snack 200 kcal 18"
   },
   {
     "id": "if_side_19",
@@ -945,7 +963,10 @@
     "fat": 6,
     "cooking": "fresh",
     "ref": "IF light snack 19 200kcal high fiber protein - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Collation légère IF 200 kcal 19",
+    "name_es": "Tentempié ligero IF 200 kcal 19",
+    "name_de": "Leichter IF-Snack 200 kcal 19"
   },
   {
     "id": "if_side_20",
@@ -959,7 +980,10 @@
     "fat": 6,
     "cooking": "fresh",
     "ref": "IF light snack 20 200kcal high fiber protein - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Collation légère IF 200 kcal 20",
+    "name_es": "Tentempié ligero IF 200 kcal 20",
+    "name_de": "Leichter IF-Snack 200 kcal 20"
   },
   {
     "id": "if_side_21",
@@ -973,7 +997,10 @@
     "fat": 6,
     "cooking": "fresh",
     "ref": "IF light snack 21 200kcal high fiber protein - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Collation légère IF 200 kcal 21",
+    "name_es": "Tentempié ligero IF 200 kcal 21",
+    "name_de": "Leichter IF-Snack 200 kcal 21"
   },
   {
     "id": "if_side_22",
@@ -987,7 +1014,10 @@
     "fat": 6,
     "cooking": "fresh",
     "ref": "IF light snack 22 200kcal high fiber protein - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Collation légère IF 200 kcal 22",
+    "name_es": "Tentempié ligero IF 200 kcal 22",
+    "name_de": "Leichter IF-Snack 200 kcal 22"
   },
   {
     "id": "if_side_23",
@@ -1001,7 +1031,10 @@
     "fat": 6,
     "cooking": "fresh",
     "ref": "IF light snack 23 200kcal high fiber protein - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Collation légère IF 200 kcal 23",
+    "name_es": "Tentempié ligero IF 200 kcal 23",
+    "name_de": "Leichter IF-Snack 200 kcal 23"
   },
   {
     "id": "if_side_24",
@@ -1015,7 +1048,10 @@
     "fat": 6,
     "cooking": "fresh",
     "ref": "IF light snack 24 200kcal high fiber protein - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Collation légère IF 200 kcal 24",
+    "name_es": "Tentempié ligero IF 200 kcal 24",
+    "name_de": "Leichter IF-Snack 200 kcal 24"
   },
   {
     "id": "if_salad_0",
@@ -1029,7 +1065,10 @@
     "fat": 4,
     "cooking": "fresh",
     "ref": "IF satiating salad 0 150kcal high volume - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Salade rassasiante IF 0",
+    "name_es": "Ensalada saciante IF 0",
+    "name_de": "Sättigender IF-Salat 0"
   },
   {
     "id": "if_salad_1",
@@ -1043,7 +1082,10 @@
     "fat": 4,
     "cooking": "fresh",
     "ref": "IF satiating salad 1 150kcal high volume - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Salade rassasiante IF 1",
+    "name_es": "Ensalada saciante IF 1",
+    "name_de": "Sättigender IF-Salat 1"
   },
   {
     "id": "if_salad_2",
@@ -1057,7 +1099,10 @@
     "fat": 4,
     "cooking": "fresh",
     "ref": "IF satiating salad 2 150kcal high volume - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Salade rassasiante IF 2",
+    "name_es": "Ensalada saciante IF 2",
+    "name_de": "Sättigender IF-Salat 2"
   },
   {
     "id": "if_salad_3",
@@ -1071,7 +1116,10 @@
     "fat": 4,
     "cooking": "fresh",
     "ref": "IF satiating salad 3 150kcal high volume - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Salade rassasiante IF 3",
+    "name_es": "Ensalada saciante IF 3",
+    "name_de": "Sättigender IF-Salat 3"
   },
   {
     "id": "if_salad_4",
@@ -1085,7 +1133,10 @@
     "fat": 4,
     "cooking": "fresh",
     "ref": "IF satiating salad 4 150kcal high volume - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Salade rassasiante IF 4",
+    "name_es": "Ensalada saciante IF 4",
+    "name_de": "Sättigender IF-Salat 4"
   },
   {
     "id": "if_salad_5",
@@ -1099,7 +1150,10 @@
     "fat": 4,
     "cooking": "fresh",
     "ref": "IF satiating salad 5 150kcal high volume - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Salade rassasiante IF 5",
+    "name_es": "Ensalada saciante IF 5",
+    "name_de": "Sättigender IF-Salat 5"
   },
   {
     "id": "if_salad_6",
@@ -1113,7 +1167,10 @@
     "fat": 4,
     "cooking": "fresh",
     "ref": "IF satiating salad 6 150kcal high volume - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Salade rassasiante IF 6",
+    "name_es": "Ensalada saciante IF 6",
+    "name_de": "Sättigender IF-Salat 6"
   },
   {
     "id": "if_salad_7",
@@ -1127,7 +1184,10 @@
     "fat": 4,
     "cooking": "fresh",
     "ref": "IF satiating salad 7 150kcal high volume - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Salade rassasiante IF 7",
+    "name_es": "Ensalada saciante IF 7",
+    "name_de": "Sättigender IF-Salat 7"
   },
   {
     "id": "if_salad_8",
@@ -1141,7 +1201,10 @@
     "fat": 4,
     "cooking": "fresh",
     "ref": "IF satiating salad 8 150kcal high volume - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Salade rassasiante IF 8",
+    "name_es": "Ensalada saciante IF 8",
+    "name_de": "Sättigender IF-Salat 8"
   },
   {
     "id": "if_salad_9",
@@ -1155,7 +1218,10 @@
     "fat": 4,
     "cooking": "fresh",
     "ref": "IF satiating salad 9 150kcal high volume - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Salade rassasiante IF 9",
+    "name_es": "Ensalada saciante IF 9",
+    "name_de": "Sättigender IF-Salat 9"
   },
   {
     "id": "if_dinner_0",
@@ -1169,7 +1235,10 @@
     "fat": 8,
     "cooking": "grilled",
     "ref": "IF light dinner 0 300kcal last meal before fast - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Dîner léger, dernier repas IF 0",
+    "name_es": "Cena ligera, última comida IF 0",
+    "name_de": "Leichtes IF-Abendessen, letzte Mahlzeit 0"
   },
   {
     "id": "if_dinner_1",
@@ -1183,7 +1252,10 @@
     "fat": 8,
     "cooking": "grilled",
     "ref": "IF light dinner 1 300kcal last meal before fast - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Dîner léger, dernier repas IF 1",
+    "name_es": "Cena ligera, última comida IF 1",
+    "name_de": "Leichtes IF-Abendessen, letzte Mahlzeit 1"
   },
   {
     "id": "if_dinner_2",
@@ -1197,7 +1269,10 @@
     "fat": 8,
     "cooking": "grilled",
     "ref": "IF light dinner 2 300kcal last meal before fast - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Dîner léger, dernier repas IF 2",
+    "name_es": "Cena ligera, última comida IF 2",
+    "name_de": "Leichtes IF-Abendessen, letzte Mahlzeit 2"
   },
   {
     "id": "if_dinner_3",
@@ -1211,7 +1286,10 @@
     "fat": 8,
     "cooking": "grilled",
     "ref": "IF light dinner 3 300kcal last meal before fast - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Dîner léger, dernier repas IF 3",
+    "name_es": "Cena ligera, última comida IF 3",
+    "name_de": "Leichtes IF-Abendessen, letzte Mahlzeit 3"
   },
   {
     "id": "if_dinner_4",
@@ -1225,7 +1303,10 @@
     "fat": 8,
     "cooking": "grilled",
     "ref": "IF light dinner 4 300kcal last meal before fast - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Dîner léger, dernier repas IF 4",
+    "name_es": "Cena ligera, última comida IF 4",
+    "name_de": "Leichtes IF-Abendessen, letzte Mahlzeit 4"
   },
   {
     "id": "if_dinner_5",
@@ -1239,7 +1320,10 @@
     "fat": 8,
     "cooking": "grilled",
     "ref": "IF light dinner 5 300kcal last meal before fast - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Dîner léger, dernier repas IF 5",
+    "name_es": "Cena ligera, última comida IF 5",
+    "name_de": "Leichtes IF-Abendessen, letzte Mahlzeit 5"
   },
   {
     "id": "if_dinner_6",
@@ -1253,7 +1337,10 @@
     "fat": 8,
     "cooking": "grilled",
     "ref": "IF light dinner 6 300kcal last meal before fast - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Dîner léger, dernier repas IF 6",
+    "name_es": "Cena ligera, última comida IF 6",
+    "name_de": "Leichtes IF-Abendessen, letzte Mahlzeit 6"
   },
   {
     "id": "if_dinner_7",
@@ -1267,7 +1354,10 @@
     "fat": 8,
     "cooking": "grilled",
     "ref": "IF light dinner 7 300kcal last meal before fast - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Dîner léger, dernier repas IF 7",
+    "name_es": "Cena ligera, última comida IF 7",
+    "name_de": "Leichtes IF-Abendessen, letzte Mahlzeit 7"
   },
   {
     "id": "if_dinner_8",
@@ -1281,7 +1371,10 @@
     "fat": 8,
     "cooking": "grilled",
     "ref": "IF light dinner 8 300kcal last meal before fast - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Dîner léger, dernier repas IF 8",
+    "name_es": "Cena ligera, última comida IF 8",
+    "name_de": "Leichtes IF-Abendessen, letzte Mahlzeit 8"
   },
   {
     "id": "if_dinner_9",
@@ -1295,7 +1388,10 @@
     "fat": 8,
     "cooking": "grilled",
     "ref": "IF light dinner 9 300kcal last meal before fast - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Dîner léger, dernier repas IF 9",
+    "name_es": "Cena ligera, última comida IF 9",
+    "name_de": "Leichtes IF-Abendessen, letzte Mahlzeit 9"
   },
   {
     "id": "if_dinner_10",
@@ -1309,7 +1405,10 @@
     "fat": 8,
     "cooking": "grilled",
     "ref": "IF light dinner 10 300kcal last meal before fast - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Dîner léger, dernier repas IF 10",
+    "name_es": "Cena ligera, última comida IF 10",
+    "name_de": "Leichtes IF-Abendessen, letzte Mahlzeit 10"
   },
   {
     "id": "if_dinner_11",
@@ -1323,7 +1422,10 @@
     "fat": 8,
     "cooking": "grilled",
     "ref": "IF light dinner 11 300kcal last meal before fast - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Dîner léger, dernier repas IF 11",
+    "name_es": "Cena ligera, última comida IF 11",
+    "name_de": "Leichtes IF-Abendessen, letzte Mahlzeit 11"
   },
   {
     "id": "if_dinner_12",
@@ -1337,7 +1439,10 @@
     "fat": 8,
     "cooking": "grilled",
     "ref": "IF light dinner 12 300kcal last meal before fast - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Dîner léger, dernier repas IF 12",
+    "name_es": "Cena ligera, última comida IF 12",
+    "name_de": "Leichtes IF-Abendessen, letzte Mahlzeit 12"
   },
   {
     "id": "if_fruit_0",
@@ -1351,7 +1456,10 @@
     "fat": 0.5,
     "cooking": "fresh",
     "ref": "Apple IF 95kcal fiber 4g - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Pomme, fruit IF",
+    "name_es": "Manzana, fruta IF",
+    "name_de": "Apfel, IF-Obst"
   },
   {
     "id": "if_fruit_1",
@@ -1365,7 +1473,10 @@
     "fat": 0.5,
     "cooking": "fresh",
     "ref": "Mixed berries IF 70kcal low cal high fiber - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Baies mélangées, fruit IF",
+    "name_es": "Bayas mixtas, fruta IF",
+    "name_de": "Gemischte Beeren, IF-Obst"
   },
   {
     "id": "if_fruit_2",
@@ -1379,7 +1490,10 @@
     "fat": 0.5,
     "cooking": "fresh",
     "ref": "Grapefruit IF 80kcal fat burning - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Pamplemousse, fruit IF",
+    "name_es": "Pomelo, fruta IF",
+    "name_de": "Grapefruit, IF-Obst"
   },
   {
     "id": "if_fruit_3",
@@ -1393,7 +1507,10 @@
     "fat": 0.5,
     "cooking": "fresh",
     "ref": "Kiwi IF 60kcal vitamin C - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Kiwi, fruit IF",
+    "name_es": "Kiwi, fruta IF",
+    "name_de": "Kiwi, IF-Obst"
   },
   {
     "id": "if_fruit_4",
@@ -1407,7 +1524,10 @@
     "fat": 0.5,
     "cooking": "fresh",
     "ref": "Avocado IF 120kcal healthy fat satiety - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Avocat, fruit IF",
+    "name_es": "Aguacate, fruta IF",
+    "name_de": "Avocado, IF-Obst"
   },
   {
     "id": "if_fruit_5",
@@ -1421,7 +1541,10 @@
     "fat": 0.5,
     "cooking": "fresh",
     "ref": "Watermelon IF 60kcal high volume low cal - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Pastèque, fruit IF",
+    "name_es": "Sandía, fruta IF",
+    "name_de": "Wassermelone, IF-Obst"
   },
   {
     "id": "if_fruit_6",
@@ -1435,7 +1558,10 @@
     "fat": 0.5,
     "cooking": "fresh",
     "ref": "Orange IF 70kcal - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Orange, fruit IF",
+    "name_es": "Naranja, fruta IF",
+    "name_de": "Orange, IF-Obst"
   },
   {
     "id": "if_fruit_7",
@@ -1449,7 +1575,10 @@
     "fat": 0.5,
     "cooking": "fresh",
     "ref": "Pear IF 90kcal fiber - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Poire, fruit IF",
+    "name_es": "Pera, fruta IF",
+    "name_de": "Birne, IF-Obst"
   },
   {
     "id": "if_juice_0",
@@ -1463,7 +1592,10 @@
     "fat": 0,
     "cooking": "fresh",
     "ref": "Lemon water fasting 0kcal allowed during fast - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "fasting_period"
+    "tag": "fasting_period",
+    "name_fr": "Eau citronnée, période de jeûne 0 kcal",
+    "name_es": "Agua con limón, período de ayuno 0 kcal",
+    "name_de": "Zitronenwasser, Fastenphase 0 kcal"
   },
   {
     "id": "if_juice_1",
@@ -1477,7 +1609,10 @@
     "fat": 0,
     "cooking": "fresh",
     "ref": "Green tea fasting 0kcal allowed during fast - Mattson - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "fasting_period"
+    "tag": "fasting_period",
+    "name_fr": "Thé vert, période de jeûne 0 kcal",
+    "name_es": "Té verde, período de ayuno 0 kcal",
+    "name_de": "Grüntee, Fastenphase 0 kcal"
   },
   {
     "id": "if_juice_2",
@@ -1491,7 +1626,10 @@
     "fat": 0,
     "cooking": "fresh",
     "ref": "Black coffee fasting 0kcal allowed during fast - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "fasting_period"
+    "tag": "fasting_period",
+    "name_fr": "Café noir, période de jeûne 0 kcal",
+    "name_es": "Café solo, período de ayuno 0 kcal",
+    "name_de": "Schwarzkaffee, Fastenphase 0 kcal"
   },
   {
     "id": "if_juice_3",
@@ -1505,7 +1643,10 @@
     "fat": 0,
     "cooking": "fresh",
     "ref": "Electrolyte water fasting 5kcal allowed - Mayo - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "fasting_period"
+    "tag": "fasting_period",
+    "name_fr": "Eau électrolytique, période de jeûne 5 kcal",
+    "name_es": "Agua con electrólitos, período de ayuno 5 kcal",
+    "name_de": "Elektrolytwasser, Fastenphase 5 kcal"
   },
   {
     "id": "if_juice_4",
@@ -1519,7 +1660,10 @@
     "fat": 0,
     "cooking": "fresh",
     "ref": "Herbal tea fasting 0kcal allowed during fast - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "fasting_period"
+    "tag": "fasting_period",
+    "name_fr": "Infusion d’herbes, période de jeûne 0 kcal",
+    "name_es": "Infusión de hierbas, período de ayuno 0 kcal",
+    "name_de": "Kräutertee, Fastenphase 0 kcal"
   },
   {
     "id": "if_juice_5",
@@ -1533,7 +1677,10 @@
     "fat": 0,
     "cooking": "fresh",
     "ref": "Cucumber mint juice IF 50kcal eating window only - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Jus concombre-menthe, fenêtre alimentaire IF",
+    "name_es": "Zumo de pepino y menta, ventana de alimentación IF",
+    "name_de": "Gurken-Minz-Saft, IF-Essensfenster"
   },
   {
     "id": "if_juice_6",
@@ -1547,6 +1694,9 @@
     "fat": 0,
     "cooking": "fresh",
     "ref": "Green veg juice IF 70kcal eating window - detox - de Cabo et al. Intermittent Fasting - NEJM Review 2023 - Mattson IF Mechanisms 2023 - Varady et al. Intermittent Fasting - JAMA 2023 - ADF TRE Review - Harvard T.H. Chan IF 2023 - Mayo Clinic Intermittent Fasting Guidelines 2024 - NIH IF Guidelines 2024 - ADA IF Position 2023",
-    "tag": "eating_window"
+    "tag": "eating_window",
+    "name_fr": "Jus de légumes verts, fenêtre alimentaire IF",
+    "name_es": "Zumo de verduras verdes, ventana de alimentación IF",
+    "name_de": "Grüner Gemüsesaft, IF-Essensfenster"
   }
 ]
