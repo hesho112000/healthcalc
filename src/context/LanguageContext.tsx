@@ -5,8 +5,24 @@ import { translations } from '../i18n/translations';
 const SUPPORTED: Language[] = ['en', 'fr', 'es', 'ar', 'de'];
 
 function resolveInitialLanguage(): Language {
-  const saved = localStorage.getItem('healthcalc-lang');
-  if (saved && (SUPPORTED as string[]).includes(saved)) return saved as Language;
+  if (typeof window !== 'undefined') {
+    const queryLanguage = new URLSearchParams(window.location.search).get('lang');
+    if (queryLanguage && (SUPPORTED as string[]).includes(queryLanguage)) {
+      try {
+        window.localStorage.setItem('healthcalc-lang', queryLanguage);
+      } catch {
+        // Continue with the URL language when browser storage is unavailable.
+      }
+      return queryLanguage as Language;
+    }
+
+    try {
+      const saved = window.localStorage.getItem('healthcalc-lang');
+      if (saved && (SUPPORTED as string[]).includes(saved)) return saved as Language;
+    } catch {
+      // Fall back to English when browser storage is unavailable.
+    }
+  }
   return 'en';
 }
 
@@ -37,7 +53,11 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang);
-    localStorage.setItem('healthcalc-lang', lang);
+    try {
+      localStorage.setItem('healthcalc-lang', lang);
+    } catch {
+      // Language selection still applies for this session when storage is unavailable.
+    }
   };
 
   const t = (key: keyof typeof translations.en): string => {

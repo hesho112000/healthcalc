@@ -11,7 +11,7 @@ interface SEOProps {
   locale?: string;
 }
 
-const BASE_URL = 'https://hesho112000.github.io/healthcalc';
+const BASE_URL = (import.meta.env.VITE_SITE_URL || 'https://hesho112000.github.io/healthcalc').replace(/\/+$/, '');
 const DEFAULT_IMAGE = `${BASE_URL}/assets/og-image.png`;
 
 const LANGUAGES: Array<{ lang: string; label: string }> = [
@@ -33,7 +33,13 @@ const SEO: React.FC<SEOProps> = ({
 }) => {
   const { language } = useLanguage();
   const fullTitle = `${title} | Health Fingerprint`;
-  const fullUrl = url ? `${BASE_URL}${url}` : BASE_URL;
+  const pageUrl = new URL(`${BASE_URL}${url ?? '/'}`);
+  const localizedUrl = (lang: string) => {
+    const localized = new URL(pageUrl);
+    localized.searchParams.set('lang', lang);
+    return localized.toString();
+  };
+  const canonicalUrl = localizedUrl(language);
   const currentLocale = locale || language || 'en';
 
   return (
@@ -42,13 +48,13 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
       <meta name="robots" content="index, follow" />
-      <link rel="canonical" href={fullUrl} />
+      <link rel="canonical" href={canonicalUrl} />
 
       <meta property="og:type" content={type} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
-      <meta property="og:url" content={fullUrl} />
+      <meta property="og:url" content={canonicalUrl} />
       <meta property="og:site_name" content="Health Fingerprint" />
       <meta property="og:locale" content={currentLocale} />
 
@@ -58,9 +64,9 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="twitter:image" content={image} />
 
       {LANGUAGES.map(({ lang, label }) => (
-        <link key={lang} rel="alternate" hrefLang={lang} href={`${fullUrl}?lang=${lang}`} title={label} />
+        <link key={lang} rel="alternate" hrefLang={lang} href={localizedUrl(lang)} title={label} />
       ))}
-      <link rel="alternate" hrefLang="x-default" href={fullUrl} />
+      <link rel="alternate" hrefLang="x-default" href={localizedUrl('en')} />
     </Helmet>
   );
 };
