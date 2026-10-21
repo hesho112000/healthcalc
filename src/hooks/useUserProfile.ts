@@ -81,10 +81,20 @@ export interface UserProfile {
 }
 
 export const USER_PROFILE_STORAGE_KEY = 'healthcalc_user_profile';
+export const WIZARD_DRAFT_STORAGE_KEY = 'healthcalc_wizard_draft_v1';
+export const WIZARD_STEP_STORAGE_KEY = 'healthcalc_wizard_step_v1';
 const PROFILE_CLEARED_EVENT = 'healthcalc:user-profile-cleared';
 
 const LEGACY_KEYS = ['fitness-inputs', 'fitness-wizard-input', 'hc_calc_profile', 'hc_calculator_bridge'];
-const PROFILE_STORAGE_KEYS = [USER_PROFILE_STORAGE_KEY, ...LEGACY_KEYS, 'healthcalc_conditions', 'userTDEE', 'userBMR'];
+const PROFILE_STORAGE_KEYS = [
+  USER_PROFILE_STORAGE_KEY,
+  WIZARD_DRAFT_STORAGE_KEY,
+  WIZARD_STEP_STORAGE_KEY,
+  ...LEGACY_KEYS,
+  'healthcalc_conditions',
+  'userTDEE',
+  'userBMR',
+];
 
 export const clearUserProfileStorage = (): void => {
   try {

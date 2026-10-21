@@ -17,7 +17,7 @@ import { useAuth } from '../context/AuthContext';
 import { savePlan, saveProfile } from '../services/supabaseData';
 import { useKitchenDishes } from '../hooks/useKitchenDishes';
 import { useKitchenDishCounts, KITCHEN_ID_ALIAS } from '../hooks/useKitchenDishCounts';
-import { useUserProfile, type UserProfile, type WizardGoalSelection, type SleepHours, type StressLevel, type WorkType, type SmokingStatus, type MealsPerDay, type SnackFrequency, type BreakfastType, type MeatFrequency, type VegetablesFrequency, type SugaryDrinksFrequency, type GoalDiscoverySelection, type BodyConcern, type KitchenMode, type UserRecommendations, type UserPlanPreview } from '../hooks/useUserProfile';
+import { useUserProfile, WIZARD_DRAFT_STORAGE_KEY, WIZARD_STEP_STORAGE_KEY, type UserProfile, type WizardGoalSelection, type SleepHours, type StressLevel, type WorkType, type SmokingStatus, type MealsPerDay, type SnackFrequency, type BreakfastType, type MeatFrequency, type VegetablesFrequency, type SugaryDrinksFrequency, type GoalDiscoverySelection, type BodyConcern, type KitchenMode, type UserRecommendations, type UserPlanPreview } from '../hooks/useUserProfile';
 import { generateWeeklyPlan, MEAL_ORDER as PLAN_MEAL_ORDER } from '../utils/mealPlanGenerator';
 import type { PlanDay, PlanDish, PlanMealType } from '../utils/mealPlanGenerator';
 
@@ -241,7 +241,155 @@ const hasBasicInfo = (profile: UserProfile): boolean => profile.age !== null && 
 const hasMeasurements = (profile: UserProfile): boolean => profile.height !== null && profile.weight !== null;
 const enteredFromCalculator = (profile: UserProfile): boolean => hasBasicInfo(profile) && hasMeasurements(profile);
 
-const initialWizardStep = (profile: UserProfile): Step => (enteredFromCalculator(profile) ? 4 : 1);
+type WizardDraft = {
+  step?: number;
+  planType?: PlanType;
+  age?: string;
+  sex?: Sex;
+  height?: string;
+  weight?: string;
+  wizardGoal?: WizardGoalSelection;
+  goal?: GoalKey;
+  targetWeight?: string;
+  timeline?: string;
+  selectedKitchenId?: string;
+  workout?: string;
+  exerciseTypes?: string[];
+  kitchenMode?: KitchenMode | null;
+  kitchenSelectionAccepted?: boolean;
+  categoryMode?: 'manual' | 'auto';
+  exerciseMode?: 'manual' | 'auto';
+  step2Data?: { activityLevel: ActivityKey; exerciseType: string | null; selectedExercises: string[] };
+  autoBuildMode?: boolean;
+  dietId?: string;
+  dietaryPreferences?: string[];
+  healthConditions?: string[];
+  dietAffectingMedication?: boolean | null;
+  waist?: string;
+  sleepHours?: SleepHours;
+  stressLevel?: StressLevel;
+  workType?: WorkType;
+  waterGlasses?: number;
+  smoking?: SmokingStatus;
+  caffeineCups?: number;
+  mealsPerDay?: MealsPerDay;
+  snacksBetweenMeals?: SnackFrequency;
+  breakfastType?: BreakfastType;
+  meatFrequency?: MeatFrequency;
+  vegetablesFrequency?: VegetablesFrequency;
+  sugaryDrinks?: SugaryDrinksFrequency;
+  goalDiscovery?: GoalDiscoverySelection | null;
+  goals?: WizardGoalSelection[];
+  bodyConcerns?: BodyConcern[];
+  exerciseRecommendationTypes?: ExerciseRecommendationType[];
+  adjustingExerciseRecommendations?: boolean;
+  plannedExercises?: PlannedExercise[];
+  selectedDishKeys?: string[];
+  assignedDishes?: Record<string, MealKey[]>;
+  weeklyPlan?: PlanDay[];
+  planPreview?: UserPlanPreview | null;
+  selectedPlanDay?: number;
+  activeCuisineRegion?: CuisineRegionId;
+  kitchenRegion?: string;
+  regionSel?: string | null;
+  cuisineSel?: string | null;
+};
+
+type StoredWizardDraft = { version: 1; step: number; data: WizardDraft };
+
+const readWizardDraft = (): WizardDraft | null => {
+  try {
+    if (typeof localStorage === 'undefined') return null;
+    const raw = localStorage.getItem(WIZARD_DRAFT_STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as Partial<StoredWizardDraft> | null;
+    if (!parsed || parsed.version !== 1 || !Number.isInteger(parsed.step) || parsed.step! < 1 || parsed.step! > 13) return null;
+    if (!parsed.data || typeof parsed.data !== 'object' || Array.isArray(parsed.data)) return null;
+    return { ...parsed.data, step: parsed.step } as WizardDraft;
+  } catch {
+    return null;
+  }
+};
+
+const saveWizardDraft = (step: Step, draft: WizardDraft): void => {
+  try {
+    if (typeof localStorage === 'undefined') return;
+    const stored: StoredWizardDraft = { version: 1, step, data: draft };
+    localStorage.setItem(WIZARD_DRAFT_STORAGE_KEY, JSON.stringify(stored));
+  } catch {
+    /* ignore */
+  }
+};
+
+const clearWizardDraft = (): void => {
+  try {
+    if (typeof localStorage === 'undefined') return;
+    localStorage.removeItem(WIZARD_DRAFT_STORAGE_KEY);
+    localStorage.removeItem(WIZARD_STEP_STORAGE_KEY);
+  } catch {
+    /* ignore */
+  }
+};
+
+const saveWizardStep = (step: Step): void => {
+  try {
+    if (typeof localStorage === 'undefined') return;
+    localStorage.setItem(WIZARD_STEP_STORAGE_KEY, String(step));
+  } catch {
+    /* ignore */
+  }
+};
+
+const initialWizardStep = (profile: UserProfile, draft: WizardDraft | null): Step => {
+  if (typeof draft?.step === 'number' && Number.isInteger(draft.step) && draft.step >= 1 && draft.step <= 13) {
+    return draft.step as Step;
+  }
+  return enteredFromCalculator(profile) ? 4 : 1;
+};
+
+const draftStringList = (value: unknown, fallback: string[] = []): string[] => (
+  Array.isArray(value) && value.every((item) => typeof item === 'string') ? value : fallback
+);
+
+const draftStep2Data = (value: unknown, fallback: { activityLevel: ActivityKey; exerciseType: string | null; selectedExercises: string[] }) => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return fallback;
+  const candidate = value as Record<string, unknown>;
+  const activityLevels: ActivityKey[] = ['sedentary', 'light', 'moderate', 'active', 'very_active'];
+  if (!activityLevels.includes(candidate.activityLevel as ActivityKey)) return fallback;
+  if (candidate.exerciseType !== null && typeof candidate.exerciseType !== 'string') return fallback;
+  if (!Array.isArray(candidate.selectedExercises) || !candidate.selectedExercises.every((item) => typeof item === 'string')) return fallback;
+  return {
+    activityLevel: candidate.activityLevel as ActivityKey,
+    exerciseType: candidate.exerciseType as string | null,
+    selectedExercises: candidate.selectedExercises,
+  };
+};
+
+const draftPlannedExercises = (value: unknown): PlannedExercise[] | null => {
+  if (!Array.isArray(value)) return null;
+  const valid = value.every((item) => item && typeof item === 'object'
+    && ['id', 'type', 'name', 'sets', 'reps', 'dur'].every((field) => typeof (item as Record<string, unknown>)[field] === 'string'));
+  return valid ? value as PlannedExercise[] : null;
+};
+
+const draftWeeklyPlan = (value: unknown): PlanDay[] | null => {
+  try {
+    return hasFourFilledMeals(value) ? value : null;
+  } catch {
+    return null;
+  }
+};
+
+const draftPlanPreview = (value: unknown): UserPlanPreview | null => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  const candidate = value as Partial<UserPlanPreview>;
+  return typeof candidate.kitchenId === 'string'
+    && Array.isArray(candidate.meals)
+    && Number.isFinite(candidate.totalCalories)
+    && candidate.macroPercentages != null
+    ? candidate as UserPlanPreview
+    : null;
+};
 
 const WORKOUTS: Workout[] = [
   { id: 'full_body', nameKey: 'wizard.workout.fullBody', days: 3, burn: 150 },
@@ -1435,26 +1583,30 @@ const WeightLossPage: React.FC = () => {
   const profileInitials = user?.name?.trim() && user.name !== 'Guest'
     ? user.name.trim().split(/\s+/).slice(0, 2).map((part) => part.charAt(0)).join('').toUpperCase()
     : 'HC';
-  const [step, setStep] = useState<Step>(() => initialWizardStep(profile));
-  const [planType, setPlanType] = useState<PlanType>(() => profile.planType ?? 'both');
-  const [age, setAge] = useState<string>(() => profile.age === null ? '' : String(profile.age));
-  const [sex, setSex] = useState<Sex>(() => profile.gender ?? 'male');
-  const [height, setHeight] = useState<string>(() => profile.height === null ? '' : String(profile.height));
-  const [weight, setWeight] = useState<string>(() => profile.weight === null ? '' : String(profile.weight));
-  const [wizardGoal, setWizardGoal] = useState<WizardGoalSelection>(() => initialWizardGoal(profile));
-  const [goal, setGoal] = useState<GoalKey>(() => profile.goal ?? WIZARD_GOAL_CALC[initialWizardGoal(profile)]);
+  const [restoredDraft] = useState<WizardDraft | null>(() => readWizardDraft());
+  const wizardCompletedRef = useRef(false);
+  const [step, setStep] = useState<Step>(() => initialWizardStep(profile, restoredDraft));
+  const [planType, setPlanType] = useState<PlanType>(() => restoredDraft?.planType ?? profile.planType ?? 'both');
+  const [age, setAge] = useState<string>(() => restoredDraft?.age ?? (profile.age === null ? '' : String(profile.age)));
+  const [sex, setSex] = useState<Sex>(() => restoredDraft?.sex ?? profile.gender ?? 'male');
+  const [height, setHeight] = useState<string>(() => restoredDraft?.height ?? (profile.height === null ? '' : String(profile.height)));
+  const [weight, setWeight] = useState<string>(() => restoredDraft?.weight ?? (profile.weight === null ? '' : String(profile.weight)));
+  const [wizardGoal, setWizardGoal] = useState<WizardGoalSelection>(() => restoredDraft?.wizardGoal ?? initialWizardGoal(profile));
+  const [goal, setGoal] = useState<GoalKey>(() => restoredDraft?.goal ?? profile.goal ?? WIZARD_GOAL_CALC[initialWizardGoal(profile)]);
   const [editingSavedProfile, setEditingSavedProfile] = useState(false);
   const [targetWeight, setTargetWeight] = useState(() => {
+    if (restoredDraft?.targetWeight !== undefined) return restoredDraft.targetWeight;
     if (profile.targetWeight !== null) return String(profile.targetWeight);
     if (profile.weight === null) return '';
     if (initialWizardGoal(profile) === 'build_muscle') return String(profile.weight + 5);
     if (initialWizardGoal(profile) === 'lose_weight') return String(Math.max(30, profile.weight - 5));
     return String(profile.weight);
   });
-  const [timeline, setTimeline] = useState(() => profile.timelineWeeks === null ? '12' : String(profile.timelineWeeks));
-  const [selectedKitchenId, setSelectedKitchenId] = useState<string>(() => profile.selectedKitchen ?? profile.kitchenPreference ?? 'egyptian');
-  const [workout, setWorkout] = useState('full_body');
+  const [timeline, setTimeline] = useState(() => restoredDraft?.timeline ?? (profile.timelineWeeks === null ? '12' : String(profile.timelineWeeks)));
+  const [selectedKitchenId, setSelectedKitchenId] = useState<string>(() => restoredDraft?.selectedKitchenId ?? profile.selectedKitchen ?? profile.kitchenPreference ?? 'egyptian');
+  const [workout, setWorkout] = useState(() => restoredDraft?.workout ?? 'full_body');
   const [exerciseTypes, setExerciseTypes] = useState<string[]>(() => {
+    if (Array.isArray(restoredDraft?.exerciseTypes)) return draftStringList(restoredDraft.exerciseTypes);
     const normalized = normalizeExerciseCategories(profile.exerciseTypes);
     return normalized.length ? normalized : ['cardio', 'strength'];
   });
@@ -1488,6 +1640,8 @@ const WeightLossPage: React.FC = () => {
     };
   };
   const [plannedExercises, setPlannedExercises] = useState<PlannedExercise[]>(() => {
+    const draftExercises = draftPlannedExercises(restoredDraft?.plannedExercises);
+    if (draftExercises) return draftExercises;
     const saved = localStorage.getItem('hc_planned_exercises');
     if (saved) {
       try {
@@ -1508,58 +1662,71 @@ const WeightLossPage: React.FC = () => {
   });
   const [kitchenSearch, setKitchenSearch] = useState('');
   const [categorySearch, setCategorySearch] = useState('');
-  const [kitchenMode, setKitchenMode] = useState<KitchenMode | null>(() => profile.kitchenMode);
-  const [kitchenSelectionAccepted, setKitchenSelectionAccepted] = useState(false);
-  const [categoryMode, setCategoryMode] = useState<'manual' | 'auto'>('manual');
-  const [exerciseMode, setExerciseMode] = useState<'manual' | 'auto'>('auto');
-  const [step2Data, setStep2Data] = useState<{ activityLevel: ActivityKey; exerciseType: string | null; selectedExercises: string[] }>({
+  const [kitchenMode, setKitchenMode] = useState<KitchenMode | null>(() => restoredDraft?.kitchenMode !== undefined ? restoredDraft.kitchenMode : profile.kitchenMode);
+  const [kitchenSelectionAccepted, setKitchenSelectionAccepted] = useState(() => restoredDraft?.kitchenSelectionAccepted ?? false);
+  const [categoryMode, setCategoryMode] = useState<'manual' | 'auto'>(() => restoredDraft?.categoryMode ?? 'manual');
+  const [exerciseMode, setExerciseMode] = useState<'manual' | 'auto'>(() => restoredDraft?.exerciseMode ?? 'auto');
+  const [step2Data, setStep2Data] = useState<{ activityLevel: ActivityKey; exerciseType: string | null; selectedExercises: string[] }>(() => draftStep2Data(restoredDraft?.step2Data, {
     activityLevel: profile.activityLevel ?? 'moderate',
     exerciseType: null,
     selectedExercises: [],
-  });
+  }));
   const [autoBuildMode, setAutoBuildMode] = useState(false);
   const [mealTab, setMealTab] = useState<MealKey>('breakfast');
   const [openMealAccordion, setOpenMealAccordion] = useState<MealKey | null>(null);
-  const [regionSel, setRegionSel] = useState<string | null>(null);
-  const [cuisineSel, setCuisineSel] = useState<string | null>(null);
-  const [kitchenRegion, setKitchenRegion] = useState<string>('all');
-  const [activeCuisineRegion, setActiveCuisineRegion] = useState<CuisineRegionId>(() => cuisineRegionForKitchen(profile.selectedKitchen ?? profile.kitchenPreference ?? 'egyptian'));
+  const [regionSel, setRegionSel] = useState<string | null>(() => restoredDraft?.regionSel !== undefined ? restoredDraft.regionSel : null);
+  const [cuisineSel, setCuisineSel] = useState<string | null>(() => restoredDraft?.cuisineSel !== undefined ? restoredDraft.cuisineSel : null);
+  const [kitchenRegion, setKitchenRegion] = useState<string>(() => restoredDraft?.kitchenRegion ?? 'all');
+  const [activeCuisineRegion, setActiveCuisineRegion] = useState<CuisineRegionId>(() => restoredDraft?.activeCuisineRegion ?? cuisineRegionForKitchen(profile.selectedKitchen ?? profile.kitchenPreference ?? 'egyptian'));
   const cuisineRegionTabRefs = useRef<Partial<Record<CuisineRegionId, HTMLButtonElement | null>>>({});
   const [dishSearch, setDishSearch] = useState('');
   const [savedSearch, setSavedSearch] = useState('');
   const [healthyOnly, setHealthyOnly] = useState(false);
   const [expandedCat, setExpandedCat] = useState<string | null>(null);
-  const [selectedDishKeys, setSelectedDishKeys] = useState<string[]>([]);
-  const [assignedDishes, setAssignedDishes] = useState<Record<string, MealKey[]>>({});
+  const [selectedDishKeys, setSelectedDishKeys] = useState<string[]>(() => draftStringList(restoredDraft?.selectedDishKeys));
+  const [assignedDishes, setAssignedDishes] = useState<Record<string, MealKey[]>>(() => {
+    const value = restoredDraft?.assignedDishes;
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
+    const validMealKeys: MealKey[] = ['breakfast', 'lunch', 'dinner', 'snacks'];
+    return Object.fromEntries(Object.entries(value).flatMap(([key, meals]) => {
+      if (!Array.isArray(meals)) return [];
+      const selected = meals.filter((meal): meal is MealKey => validMealKeys.includes(meal));
+      return selected.length ? [[key, selected]] : [];
+    }));
+  });
   const [editField, setEditField] = useState<'age' | 'height' | 'weight' | null>(null);
-  const [dietId, setDietId] = useState(() => profile.dietIntensity ?? 'normal_lose');
-  const [dietaryPreferences, setDietaryPreferences] = useState<string[]>(() => profile.dietaryPreferences);
-  const [healthConditions, setHealthConditions] = useState<string[]>(() => profile.healthConditions);
-  const [dietAffectingMedication, setDietAffectingMedication] = useState<boolean | null>(() => profile.dietAffectingMedication);
-  const [waist, setWaist] = useState<string>(() => profile.waist === null ? '' : String(profile.waist));
-  const [sleepHours, setSleepHours] = useState<SleepHours>(() => profile.sleepHours ?? 'seven_to_eight');
-  const [stressLevel, setStressLevel] = useState<StressLevel>(() => profile.stressLevel ?? 'medium');
-  const [workType, setWorkType] = useState<WorkType>(() => profile.workType ?? 'sedentary');
-  const [waterGlasses, setWaterGlasses] = useState<number>(() => profile.waterGlasses ?? 8);
-  const [smoking, setSmoking] = useState<SmokingStatus>(() => profile.smoking ?? 'no');
-  const [caffeineCups, setCaffeineCups] = useState<number>(() => profile.caffeineCups ?? 1);
-  const [mealsPerDay, setMealsPerDay] = useState<MealsPerDay>(() => profile.mealsPerDay ?? 'three');
-  const [snacksBetweenMeals, setSnacksBetweenMeals] = useState<SnackFrequency>(() => profile.snacksBetweenMeals ?? 'sometimes');
-  const [breakfastType, setBreakfastType] = useState<BreakfastType>(() => profile.breakfastType ?? 'light');
-  const [meatFrequency, setMeatFrequency] = useState<MeatFrequency>(() => profile.meatFrequency ?? 'daily');
-  const [vegetablesFrequency, setVegetablesFrequency] = useState<VegetablesFrequency>(() => profile.vegetablesFrequency ?? 'daily');
-  const [sugaryDrinks, setSugaryDrinks] = useState<SugaryDrinksFrequency>(() => profile.sugaryDrinks ?? 'sometimes');
-  const [goalDiscovery, setGoalDiscovery] = useState<GoalDiscoverySelection | null>(() => profile.goalDiscovery ?? null);
-  const [goals, setGoals] = useState<WizardGoalSelection[]>(() => profile.goals.length ? profile.goals : (profile.wizardGoal ? [profile.wizardGoal] : []));
-  const [bodyConcerns, setBodyConcerns] = useState<BodyConcern[]>(() => profile.bodyConcerns);
+  const [dietId, setDietId] = useState(() => restoredDraft?.dietId ?? profile.dietIntensity ?? 'normal_lose');
+  const [dietaryPreferences, setDietaryPreferences] = useState<string[]>(() => draftStringList(restoredDraft?.dietaryPreferences, profile.dietaryPreferences));
+  const [healthConditions, setHealthConditions] = useState<string[]>(() => draftStringList(restoredDraft?.healthConditions, profile.healthConditions));
+  const [dietAffectingMedication, setDietAffectingMedication] = useState<boolean | null>(() => restoredDraft?.dietAffectingMedication !== undefined ? restoredDraft.dietAffectingMedication : profile.dietAffectingMedication);
+  const [waist, setWaist] = useState<string>(() => restoredDraft?.waist ?? (profile.waist === null ? '' : String(profile.waist)));
+  const [sleepHours, setSleepHours] = useState<SleepHours>(() => restoredDraft?.sleepHours ?? profile.sleepHours ?? 'seven_to_eight');
+  const [stressLevel, setStressLevel] = useState<StressLevel>(() => restoredDraft?.stressLevel ?? profile.stressLevel ?? 'medium');
+  const [workType, setWorkType] = useState<WorkType>(() => restoredDraft?.workType ?? profile.workType ?? 'sedentary');
+  const [waterGlasses, setWaterGlasses] = useState<number>(() => restoredDraft?.waterGlasses ?? profile.waterGlasses ?? 8);
+  const [smoking, setSmoking] = useState<SmokingStatus>(() => restoredDraft?.smoking ?? profile.smoking ?? 'no');
+  const [caffeineCups, setCaffeineCups] = useState<number>(() => restoredDraft?.caffeineCups ?? profile.caffeineCups ?? 1);
+  const [mealsPerDay, setMealsPerDay] = useState<MealsPerDay>(() => restoredDraft?.mealsPerDay ?? profile.mealsPerDay ?? 'three');
+  const [snacksBetweenMeals, setSnacksBetweenMeals] = useState<SnackFrequency>(() => restoredDraft?.snacksBetweenMeals ?? profile.snacksBetweenMeals ?? 'sometimes');
+  const [breakfastType, setBreakfastType] = useState<BreakfastType>(() => restoredDraft?.breakfastType ?? profile.breakfastType ?? 'light');
+  const [meatFrequency, setMeatFrequency] = useState<MeatFrequency>(() => restoredDraft?.meatFrequency ?? profile.meatFrequency ?? 'daily');
+  const [vegetablesFrequency, setVegetablesFrequency] = useState<VegetablesFrequency>(() => restoredDraft?.vegetablesFrequency ?? profile.vegetablesFrequency ?? 'daily');
+  const [sugaryDrinks, setSugaryDrinks] = useState<SugaryDrinksFrequency>(() => restoredDraft?.sugaryDrinks ?? profile.sugaryDrinks ?? 'sometimes');
+  const [goalDiscovery, setGoalDiscovery] = useState<GoalDiscoverySelection | null>(() => restoredDraft?.goalDiscovery !== undefined ? restoredDraft.goalDiscovery : profile.goalDiscovery ?? null);
+  const [goals, setGoals] = useState<WizardGoalSelection[]>(() => Array.isArray(restoredDraft?.goals) ? restoredDraft.goals : profile.goals.length ? profile.goals : (profile.wizardGoal ? [profile.wizardGoal] : []));
+  const [bodyConcerns, setBodyConcerns] = useState<BodyConcern[]>(() => Array.isArray(restoredDraft?.bodyConcerns) ? restoredDraft.bodyConcerns : profile.bodyConcerns);
   const [exerciseRecommendationTypes, setExerciseRecommendationTypes] = useState<ExerciseRecommendationType[]>(() => {
+    if (Array.isArray(restoredDraft?.exerciseRecommendationTypes)) return restoredDraft.exerciseRecommendationTypes;
     const saved = profile.exerciseRecommendations.filter((id): id is ExerciseRecommendationType => EXERCISE_RECOMMENDATION_OPTIONS.some((option) => option.id === id));
     return saved.length ? saved : recommendExerciseTypes(profile.goals.length ? profile.goals : (profile.wizardGoal ? [profile.wizardGoal] : []), profile.bodyConcerns);
   });
   const [adjustingExerciseRecommendations, setAdjustingExerciseRecommendations] = useState(false);
   const [weeklyPlan, setWeeklyPlan] = useState<PlanDay[]>(() => {
+    const draftPlan = draftWeeklyPlan(restoredDraft?.weeklyPlan);
+    if (draftPlan) return draftPlan;
     try {
-      const raw = localStorage.getItem(`hc_weekly_plan_${profile.selectedKitchen ?? profile.kitchenPreference ?? 'egyptian'}`);
+      const kitchenId = restoredDraft?.selectedKitchenId ?? profile.selectedKitchen ?? profile.kitchenPreference ?? 'egyptian';
+      const raw = localStorage.getItem(`hc_weekly_plan_${kitchenId}`);
       if (raw) {
         const p = JSON.parse(raw);
         if (hasFourFilledMeals(p)) return p;
@@ -1569,8 +1736,8 @@ const WeightLossPage: React.FC = () => {
     }
     return [];
   });
-  const [planPreview, setPlanPreview] = useState<UserPlanPreview | null>(() => profile.planPreview);
-  const [selectedPlanDay, setSelectedPlanDay] = useState(1);
+  const [planPreview, setPlanPreview] = useState<UserPlanPreview | null>(() => restoredDraft?.planPreview !== undefined ? draftPlanPreview(restoredDraft.planPreview) : profile.planPreview);
+  const [selectedPlanDay, setSelectedPlanDay] = useState(() => restoredDraft?.selectedPlanDay && restoredDraft.selectedPlanDay >= 1 && restoredDraft.selectedPlanDay <= 7 ? restoredDraft.selectedPlanDay : 1);
   const [dishModal, setDishModal] = useState<{ mode: 'add' | 'swap'; dayIndex: number; mealIndex: number; mealType: PlanMealType; dishIndex: number } | null>(null);
   const [removingDish, setRemovingDish] = useState<string | null>(null);
   const [swapFlash, setSwapFlash] = useState<string | null>(null);
@@ -1589,7 +1756,7 @@ const WeightLossPage: React.FC = () => {
   const [toastUndo, setToastUndo] = useState<{ label: string; action: () => void } | null>(null);
 
   useEffect(() => {
-    if (!unifiedExercisesLoading) autoPickExercises(true);
+    if (!unifiedExercisesLoading && !restoredDraft) autoPickExercises(true);
   }, [unifiedExercisesLoading]);
 
   useEffect(() => {
@@ -1604,6 +1771,113 @@ const WeightLossPage: React.FC = () => {
       /* ignore */
     }
   }, [weeklyPlan, selectedKitchenId]);
+
+  useEffect(() => {
+    if (wizardCompletedRef.current) return;
+    saveWizardStep(step);
+    saveWizardDraft(step, {
+      planType,
+      age,
+      sex,
+      height,
+      weight,
+      wizardGoal,
+      goal,
+      targetWeight,
+      timeline,
+      selectedKitchenId,
+      workout,
+      exerciseTypes,
+      kitchenMode,
+      kitchenSelectionAccepted,
+      categoryMode,
+      exerciseMode,
+      step2Data,
+      dietId,
+      dietaryPreferences,
+      healthConditions,
+      dietAffectingMedication,
+      waist,
+      sleepHours,
+      stressLevel,
+      workType,
+      waterGlasses,
+      smoking,
+      caffeineCups,
+      mealsPerDay,
+      snacksBetweenMeals,
+      breakfastType,
+      meatFrequency,
+      vegetablesFrequency,
+      sugaryDrinks,
+      goalDiscovery,
+      goals,
+      bodyConcerns,
+      exerciseRecommendationTypes,
+      adjustingExerciseRecommendations,
+      plannedExercises,
+      selectedDishKeys,
+      assignedDishes,
+      weeklyPlan,
+      planPreview,
+      selectedPlanDay,
+      activeCuisineRegion,
+      kitchenRegion,
+      regionSel,
+      cuisineSel,
+    });
+  }, [
+    step,
+    planType,
+    age,
+    sex,
+    height,
+    weight,
+    wizardGoal,
+    goal,
+    targetWeight,
+    timeline,
+    selectedKitchenId,
+    workout,
+    exerciseTypes,
+    kitchenMode,
+    kitchenSelectionAccepted,
+    categoryMode,
+    exerciseMode,
+    step2Data,
+    dietId,
+    dietaryPreferences,
+    healthConditions,
+    dietAffectingMedication,
+    waist,
+    sleepHours,
+    stressLevel,
+    workType,
+    waterGlasses,
+    smoking,
+    caffeineCups,
+    mealsPerDay,
+    snacksBetweenMeals,
+    breakfastType,
+    meatFrequency,
+    vegetablesFrequency,
+    sugaryDrinks,
+    goalDiscovery,
+    goals,
+    bodyConcerns,
+    exerciseRecommendationTypes,
+    adjustingExerciseRecommendations,
+    plannedExercises,
+    selectedDishKeys,
+    assignedDishes,
+    weeklyPlan,
+    planPreview,
+    selectedPlanDay,
+    activeCuisineRegion,
+    kitchenRegion,
+    regionSel,
+    cuisineSel,
+  ]);
 
   const haptic = (ms = 12) => {
     try {
@@ -1983,6 +2257,11 @@ const WeightLossPage: React.FC = () => {
     bodyConcerns,
   });
 
+  const completeWizardDraft = () => {
+    wizardCompletedRef.current = true;
+    clearWizardDraft();
+  };
+
   const next = () => {
     if (!isValid()) return;
     if (step === 1) {
@@ -2271,6 +2550,7 @@ const WeightLossPage: React.FC = () => {
       setSelectedPlanDay(1);
       setOpenMealAccordion(null);
       setAutoBuilding(false);
+      if (openPlan) completeWizardDraft();
       setStep(openPlan ? 13 : 12);
       if (openPlan) setShowPlan(true);
       notify(`Generated 7-day plan: ${plan.length} days`);
@@ -2434,6 +2714,8 @@ const WeightLossPage: React.FC = () => {
   };
 
   const startOver = () => {
+    wizardCompletedRef.current = false;
+    clearWizardDraft();
     resetProfile();
     setShowPlan(false);
     setShowStartOverConfirm(false);
@@ -2470,19 +2752,29 @@ const WeightLossPage: React.FC = () => {
     setExerciseRecommendationTypes(recommendExerciseTypes(['lose_weight'], []));
     setAdjustingExerciseRecommendations(false);
     setStep2Data({ activityLevel: 'moderate', exerciseType: null, selectedExercises: [] });
+    setWorkout('full_body');
     setExerciseTypes(['cardio', 'strength']);
+    setCategoryMode('manual');
+    setExerciseMode('auto');
+    setAutoBuildMode(false);
     setPlannedExercises([]);
     setEditingSavedProfile(false);
     setSelectedKitchenId('egyptian');
     setKitchenMode(null);
     setKitchenSelectionAccepted(false);
     setKitchenRegion('all');
+    setActiveCuisineRegion(cuisineRegionForKitchen('egyptian'));
     setWeeklyPlan([]);
     setPlanPreview(null);
+    setSelectedPlanDay(1);
     setSelectedDishKeys([]);
     setAssignedDishes({});
     setRegionSel(null);
     setCuisineSel(null);
+    setKitchenSearch('');
+    setCategorySearch('');
+    setDishSearch('');
+    setSavedSearch('');
     try {
       localStorage.removeItem(`hc_weekly_plan_${selectedKitchenId}`);
       localStorage.removeItem('hc_planned_exercises');
@@ -2494,6 +2786,7 @@ const WeightLossPage: React.FC = () => {
   const viewMyPlan = () => {
     saveWizardProfile();
     if (hasFourFilledMeals(weeklyPlan, finalRecommendations.dailyCalories)) {
+      completeWizardDraft();
       setShowPlan(true);
       return;
     }
@@ -4114,7 +4407,7 @@ const WeightLossPage: React.FC = () => {
               </div>
 
               <div className="bg-white px-4 md:px-6 py-3 flex items-center justify-between gap-2 border-b border-[#F0ECE2]">
-                <button type="button" onClick={() => { setShowPlan(false); setStep(12); }} className="rounded-full bg-[#F4F1EB] text-[#0F4C3A] text-[12px] font-bold px-4 py-2 flex items-center gap-1 hover:bg-[#ECE8DD] min-w-0">
+                <button type="button" onClick={() => { wizardCompletedRef.current = false; setShowPlan(false); setStep(12); }} className="rounded-full bg-[#F4F1EB] text-[#0F4C3A] text-[12px] font-bold px-4 py-2 flex items-center gap-1 hover:bg-[#ECE8DD] min-w-0">
                   <span className="shrink-0">←</span> {t('wizard.step5.backToEdit')}
                 </button>
                 <div className="text-[11.5px] text-[#8A938E] min-w-0 break-words text-end">
