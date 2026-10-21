@@ -19,6 +19,7 @@ const DashboardPage = lazy(() => import('../pages/DashboardPage'));
 const PrivacyPolicy = lazy(() => import('../pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('../pages/TermsOfService'));
 const MedicalDisclaimerPage = lazy(() => import('../pages/MedicalDisclaimerPage'));
+const CookiePolicy = lazy(() => import('../pages/CookiePolicy'));
 const ContactUs = lazy(() => import('../pages/ContactUs'));
 const FitnessPage = lazy(() => import('../pages/FitnessPage'));
 const WorkoutPlanPage = lazy(() => import('../pages/WorkoutPlanPage'));
@@ -124,6 +125,7 @@ export const AppRoutes: React.FC = () => (
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/terms" element={<TermsOfService />} />
       <Route path="/disclaimer" element={<MedicalDisclaimerPage />} />
+      <Route path="/cookies" element={<CookiePolicy />} />
       <Route path="/contact" element={<ContactUs />} />
 
       <Route path="/plan" element={<SimplePage emoji="📋" titleKey="spPlanTitle" descKey="spPlanDesc" />} />

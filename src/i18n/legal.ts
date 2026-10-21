@@ -190,6 +190,84 @@ export const termsOfServiceDocs: Record<Language, LegalDocument> = {
   },
 };
 
+export const cookiePolicyDocs: Record<Language, LegalDocument> = {
+  en: {
+    badge: 'Legal',
+    updated: 'Last updated: January 1, 2026',
+    intro: null,
+    sections: [
+      { heading: '1. What Are Cookies', body: 'Cookies are small text files that are stored on your device when you visit a website. They help the site remember your preferences and understand how you use it. We also use similar technologies such as local storage to remember your settings and consent choices.' },
+      { heading: '2. How We Use Cookies', body: 'HealthCalc.ai uses cookies strictly to operate the site reliably, remember your preferences (such as language, consent, and calculator inputs stored locally in your browser), and measure anonymous usage so we can improve the experience. Health calculations are performed in your browser and are not transmitted to our servers.' },
+      { heading: '3. Types of Cookies We Use', body: 'Strictly Necessary: required for core functionality such as navigation, security, and remembering your cookie consent. Preferences: remember choices such as language and display settings. Analytics: help us understand aggregate, non-identifying usage patterns. Advertising: used by Google AdSense to serve ads, including personalized ads based on your visits to this and other sites.' },
+      { heading: '4. Third-Party Cookies and Advertising', body: 'We use Google AdSense to display advertisements. Google and its partners may use cookies (including the DoubleClick cookie) to serve ads based on your prior visits to this website and other websites. These third parties have their own privacy and cookie policies that we do not control.' },
+      { heading: '5. Managing and Opting Out of Cookies', body: 'You can accept or decline non-essential cookies through our consent banner. You can also control or delete cookies through your browser settings, and you may opt out of personalized advertising by visiting Google Ads Settings (adssettings.google.com). Blocking some cookies may affect site functionality.' },
+      { heading: '6. Consent', body: 'When you first visit HealthCalc.ai, we display a banner asking for your consent to the use of cookies. Your choice is stored locally in your browser. You can change or withdraw your consent at any time by clearing your browser storage or using the banner again.' },
+      { heading: '7. Changes to This Policy', body: 'We may update this Cookie Policy from time to time. We will notify you of any changes by posting the new policy on this page with an updated effective date.' },
+      { heading: '8. Contact Us', body: 'If you have any questions about this Cookie Policy, please contact us at privacy@healthcalc.ai.' },
+    ],
+  },
+  fr: {
+    badge: 'Légal',
+    updated: 'Dernière mise à jour : 1er janvier 2026',
+    intro: null,
+    sections: [
+      { heading: '1. Que sont les cookies', body: 'Les cookies sont de petits fichiers texte stockés sur votre appareil lorsque vous visitez un site web. Ils aident le site à mémoriser vos préférences et à comprendre comment vous l\'utilisez. Nous utilisons également des technologies similaires telles que le stockage local pour mémoriser vos paramètres et vos choix de consentement.' },
+      { heading: '2. Comment nous utilisons les cookies', body: 'HealthCalc.ai utilise les cookies uniquement pour faire fonctionner le site de manière fiable, mémoriser vos préférences (comme la langue, le consentement et les saisies de calcul stockées localement dans votre navigateur) et mesurer une utilisation anonyme afin d\'améliorer l\'expérience. Les calculs de santé sont effectués dans votre navigateur et ne sont pas transmis à nos serveurs.' },
+      { heading: '3. Types de cookies que nous utilisons', body: 'Strictement nécessaires : requis pour les fonctionnalités de base telles que la navigation, la sécurité et la mémorisation de votre consentement aux cookies. Préférences : mémorisent des choix tels que la langue et les paramètres d\'affichage. Analyse : nous aident à comprendre des modèles d\'utilisation agrégés et non identifiants. Publicité : utilisés par Google AdSense pour diffuser des annonces, y compris des annonces personnalisées basées sur vos visites sur ce site et d\'autres sites.' },
+      { heading: '4. Cookies tiers et publicité', body: 'Nous utilisons Google AdSense pour afficher des publicités. Google et ses partenaires peuvent utiliser des cookies (y compris le cookie DoubleClick) pour diffuser des annonces basées sur vos visites antérieures sur ce site et d\'autres sites. Ces tiers ont leurs propres politiques de confidentialité et de cookies que nous ne contrôlons pas.' },
+      { heading: '5. Gérer et refuser les cookies', body: 'Vous pouvez accepter ou refuser les cookies non essentiels via notre bannière de consentement. Vous pouvez également contrôler ou supprimer les cookies via les paramètres de votre navigateur, et vous pouvez désactiver la publicité personnalisée en visitant les paramètres des annonces Google (adssettings.google.com). Le blocage de certains cookies peut affecter le fonctionnement du site.' },
+      { heading: '6. Consentement', body: 'Lors de votre première visite sur HealthCalc.ai, nous affichons une bannière vous demandant votre consentement à l\'utilisation des cookies. Votre choix est stocké localement dans votre navigateur. Vous pouvez modifier ou retirer votre consentement à tout moment en effaçant le stockage de votre navigateur ou en utilisant à nouveau la bannière.' },
+      { heading: '7. Modifications de cette politique', body: 'Nous pouvons mettre à jour cette politique relative aux cookies de temps à autre. Nous vous informerons de toute modification en publiant la nouvelle politique sur cette page avec une date d\'entrée en vigueur actualisée.' },
+      { heading: '8. Nous contacter', body: 'Si vous avez des questions sur cette politique relative aux cookies, contactez-nous à privacy@healthcalc.ai.' },
+    ],
+  },
+  es: {
+    badge: 'Legal',
+    updated: 'Última actualización: 1 de enero de 2026',
+    intro: null,
+    sections: [
+      { heading: '1. Qué son las cookies', body: 'Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitas un sitio web. Ayudan al sitio a recordar tus preferencias y a comprender cómo lo utilizas. También usamos tecnologías similares, como el almacenamiento local, para recordar tus ajustes y elecciones de consentimiento.' },
+      { heading: '2. Cómo usamos las cookies', body: 'HealthCalc.ai utiliza cookies estrictamente para operar el sitio de forma fiable, recordar tus preferencias (como el idioma, el consentimiento y los datos de cálculo almacenados localmente en tu navegador) y medir el uso anónimo para mejorar la experiencia. Los cálculos de salud se realizan en tu navegador y no se transmiten a nuestros servidores.' },
+      { heading: '3. Tipos de cookies que usamos', body: 'Estrictamente necesarias: necesarias para funciones básicas como la navegación, la seguridad y el recuerdo de tu consentimiento de cookies. Preferencias: recuerdan opciones como el idioma y la configuración de visualización. Análisis: nos ayudan a comprender patrones de uso agregados y no identificables. Publicidad: utilizadas por Google AdSense para mostrar anuncios, incluidos anuncios personalizados basados en tus visitas a este y otros sitios.' },
+      { heading: '4. Cookies de terceros y publicidad', body: 'Usamos Google AdSense para mostrar anuncios. Google y sus socios pueden usar cookies (incluida la cookie DoubleClick) para mostrar anuncios basados en tus visitas anteriores a este sitio web y a otros sitios. Estos terceros tienen sus propias políticas de privacidad y cookies que no controlamos.' },
+      { heading: '5. Gestión y rechazo de cookies', body: 'Puedes aceptar o rechazar las cookies no esenciales a través de nuestro banner de consentimiento. También puedes controlar o eliminar cookies a través de la configuración de tu navegador, y puedes desactivar la publicidad personalizada visitando la configuración de anuncios de Google (adssettings.google.com). Bloquear algunas cookies puede afectar el funcionamiento del sitio.' },
+      { heading: '6. Consentimiento', body: 'Cuando visitas HealthCalc.ai por primera vez, mostramos un banner que solicita tu consentimiento para el uso de cookies. Tu elección se almacena localmente en tu navegador. Puedes cambiar o retirar tu consentimiento en cualquier momento borrando el almacenamiento de tu navegador o usando el banner de nuevo.' },
+      { heading: '7. Cambios en esta política', body: 'Podemos actualizar esta Política de Cookies de vez en cuando. Le notificaremos cualquier cambio publicando la nueva política en esta página con una fecha de entrada en vigor actualizada.' },
+      { heading: '8. Contacto', body: 'Si tienes preguntas sobre esta Política de Cookies, contáctanos en privacy@healthcalc.ai.' },
+    ],
+  },
+  ar: {
+    badge: 'قانوني',
+    updated: 'آخر تحديث: 1 يناير 2026',
+    intro: null,
+    sections: [
+      { heading: '1. ما هي ملفات تعريف الارتباط', body: 'ملفات تعريف الارتباط هي ملفات نصية صغيرة تُخزن على جهازك عند زيارتك لموقع إلكتروني. تساعد الموقع على تذكر تفضيلاتك وفهم كيفية استخدامك له. نستخدم أيضاً تقنيات مماثلة مثل التخزين المحلي لتذكر إعداداتك وخيارات الموافقة الخاصة بك.' },
+      { heading: '2. كيف نستخدم ملفات تعريف الارتباط', body: 'يستخدم HealthCalc.ai ملفات تعريف الارتباط بشكل صارم لتشغيل الموقع بشكل موثوق، وتذكر تفضيلاتك (مثل اللغة والموافقة ومدخلات الحساب المخزنة محلياً في متصفحك)، وقياس الاستخدام المجهول حتى نتمكن من تحسين التجربة. تُجرى حسابات الصحة في متصفحك ولا تُرسل إلى خوادمنا.' },
+      { heading: '3. أنواع ملفات تعريف الارتباط التي نستخدمها', body: 'ضرورية للغاية: مطلوبة للوظائف الأساسية مثل التنقل والأمان وتذكر موافقتك على ملفات تعريف الارتباط. التفضيلات: تتذكر خيارات مثل اللغة وإعدادات العرض. التحليلات: تساعدنا على فهم أنماط الاستخدام المجمّعة وغير المحددة للهوية. الإعلانات: يستخدمها Google AdSense لعرض الإعلانات، بما في ذلك الإعلانات المخصصة بناءً على زياراتك لهذا الموقع ومواقع أخرى.' },
+      { heading: '4. ملفات تعريف ارتباط الطرف الثالث والإعلانات', body: 'نستخدم Google AdSense لعرض الإعلانات. قد يستخدم Google وشركاؤه ملفات تعريف الارتباط (بما في ذلك ملف تعريف ارتباط DoubleClick) لعرض إعلانات بناءً على زياراتك السابقة لهذا الموقع ومواقع أخرى. لدى هؤلاء الأطراف الثالثة سياساتهم الخاصة للخصوصية وملفات تعريف الارتباط التي لا نتحكم بها.' },
+      { heading: '5. إدارة ملفات تعريف الارتباط وإلغاء الاشتراك', body: 'يمكنك قبول أو رفض ملفات تعريف الارتباط غير الضرورية من خلال لافتة الموافقة الخاصة بنا. يمكنك أيضاً التحكم في ملفات تعريف الارتباط أو حذفها من خلال إعدادات متصفحك، ويمكنك إلغاء الاشتراك في الإعلانات المخصصة بزيارة إعدادات إعلانات Google (adssettings.google.com). قد يؤثر حظر بعض ملفات تعريف الارتباط على وظائف الموقع.' },
+      { heading: '6. الموافقة', body: 'عند زيارتك الأولى لموقع HealthCalc.ai، نعرض لافتة تطلب موافقتك على استخدام ملفات تعريف الارتباط. يُخزَّن خيارك محلياً في متصفحك. يمكنك تغيير موافقتك أو سحبها في أي وقت عن طريق مسح تخزين متصفحك أو استخدام اللافتة مرة أخرى.' },
+      { heading: '7. التغييرات على هذه السياسة', body: 'قد نقوم بتحديث سياسة ملفات تعريف الارتباط هذه من وقت لآخر. سنخطرك بأي تغييرات عن طريق نشر السياسة الجديدة على هذه الصفحة مع تاريخ سريان محدّث.' },
+      { heading: '8. اتصل بنا', body: 'إذا كانت لديك أي أسئلة حول سياسة ملفات تعريف الارتباط هذه، فيرجى الاتصال بنا على privacy@healthcalc.ai.' },
+    ],
+  },
+  de: {
+    badge: 'Rechtliches',
+    updated: 'Zuletzt aktualisiert: 1. Januar 2026',
+    intro: null,
+    sections: [
+      { heading: '1. Was sind Cookies', body: 'Cookies sind kleine Textdateien, die auf Ihrem Gerät gespeichert werden, wenn Sie eine Website besuchen. Sie helfen der Website, Ihre Einstellungen zu speichern und zu verstehen, wie Sie sie nutzen. Wir verwenden auch ähnliche Technologien wie lokalen Speicher, um Ihre Einstellungen und Einwilligungsentscheidungen zu speichern.' },
+      { heading: '2. Wie wir Cookies verwenden', body: 'HealthCalc.ai verwendet Cookies ausschließlich, um die Website zuverlässig zu betreiben, Ihre Einstellungen zu speichern (wie Sprache, Einwilligung und lokal in Ihrem Browser gespeicherte Rechnereingaben) und die anonyme Nutzung zu messen, damit wir das Erlebnis verbessern können. Gesundheitsberechnungen werden in Ihrem Browser durchgeführt und nicht an unsere Server übertragen.' },
+      { heading: '3. Arten von Cookies, die wir verwenden', body: 'Unbedingt erforderlich: erforderlich für Kernfunktionen wie Navigation, Sicherheit und das Speichern Ihrer Cookie-Einwilligung. Einstellungen: speichern Entscheidungen wie Sprache und Anzeigeeinstellungen. Analyse: helfen uns, aggregierte, nicht identifizierende Nutzungsmuster zu verstehen. Werbung: werden von Google AdSense verwendet, um Anzeigen zu schalten, einschließlich personalisierter Anzeigen basierend auf Ihren Besuchen dieser und anderer Websites.' },
+      { heading: '4. Cookies Dritter und Werbung', body: 'Wir verwenden Google AdSense, um Werbung anzuzeigen. Google und seine Partner können Cookies (einschließlich des DoubleClick-Cookies) verwenden, um Anzeigen basierend auf Ihren früheren Besuchen dieser Website und anderer Websites zu schalten. Diese Dritten haben ihre eigenen Datenschutz- und Cookie-Richtlinien, die wir nicht kontrollieren.' },
+      { heading: '5. Verwaltung und Ablehnung von Cookies', body: 'Sie können nicht wesentliche Cookies über unser Einwilligungsbanner akzeptieren oder ablehnen. Sie können Cookies auch über Ihre Browsereinstellungen steuern oder löschen und personalisierte Werbung über die Google-Anzeigeneinstellungen (adssettings.google.com) deaktivieren. Das Blockieren einiger Cookies kann die Funktionalität der Website beeinträchtigen.' },
+      { heading: '6. Einwilligung', body: 'Bei Ihrem ersten Besuch von HealthCalc.ai zeigen wir ein Banner an, das um Ihre Einwilligung zur Verwendung von Cookies bittet. Ihre Wahl wird lokal in Ihrem Browser gespeichert. Sie können Ihre Einwilligung jederzeit ändern oder widerrufen, indem Sie den Browserspeicher löschen oder das Banner erneut verwenden.' },
+      { heading: '7. Änderungen dieser Richtlinie', body: 'Wir können diese Cookie-Richtlinie von Zeit zu Zeit aktualisieren. Wir informieren Sie über Änderungen, indem wir die neue Richtlinie mit einem aktualisierten Datum auf dieser Seite veröffentlichen.' },
+      { heading: '8. Kontakt', body: 'Wenn Sie Fragen zu dieser Cookie-Richtlinie haben, kontaktieren Sie uns bitte unter privacy@healthcalc.ai.' },
+    ],
+  },
+};
+
 export const medicalDisclaimerDocs: Record<Language, LegalDocument> = {
   en: {
     badge: 'Important Notice',

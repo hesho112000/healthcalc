@@ -1125,6 +1125,11 @@ type TranslationKeys = {
   footerContact: string;
   footerPrivacy: string;
   footerTerms: string;
+  footerCookies: string;
+  cookiePolicy: string;
+  cookieConsentText: string;
+  cookieConsentAccept: string;
+  cookieConsentLearnMore: string;
   footerNews: string;
   footerNewsText: string;
   footerEmailPlaceholder: string;
@@ -2292,6 +2297,8 @@ type TranslationKeys = {
   'seo.terms.description': string;
   'seo.disclaimer.title': string;
   'seo.disclaimer.description': string;
+  'seo.cookies.title': string;
+  'seo.cookies.description': string;
   'seo.notFound.title': string;
   'seo.notFound.description': string;
   'wizard.condition.diabetes.name': string;
@@ -2854,6 +2861,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'seo.terms.description': 'Terms and conditions for using HealthCalc.',
     'seo.disclaimer.title': 'Medical Disclaimer',
     'seo.disclaimer.description': 'Important information about the educational nature of our content.',
+    'seo.cookies.title': 'Cookie Policy',
+    'seo.cookies.description': 'How HealthCalc.ai uses cookies and how you can manage them.',
     'seo.notFound.title': 'Page Not Found',
     'seo.notFound.description': "The page you're looking for doesn't exist.",
     'wizard.condition.diabetes.name': 'Diabetes',
@@ -4651,6 +4660,11 @@ export const translations: Record<Language, TranslationKeys> = {
     footerContact: 'Contact Us',
     footerPrivacy: 'Privacy Policy',
     footerTerms: 'Terms of Use',
+    footerCookies: 'Cookie Policy',
+    cookiePolicy: 'Cookie Policy',
+    cookieConsentText: 'We use cookies to operate the site, remember your preferences, and serve ads through Google AdSense. See our Cookie Policy for details.',
+    cookieConsentAccept: 'Accept',
+    cookieConsentLearnMore: 'Learn more',
     footerNews: 'Weekly Newsletter',
     footerNewsText: 'Get practical nutrition tips every week.',
     footerEmailPlaceholder: 'Your email',
@@ -5393,6 +5407,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'seo.terms.description': "Conditions générales d'utilisation de HealthCalc.",
     'seo.disclaimer.title': 'Avis Médical',
     'seo.disclaimer.description': 'Informations importantes sur la nature éducative de notre contenu.',
+    'seo.cookies.title': 'Politique de Cookies',
+    'seo.cookies.description': 'Comment HealthCalc.ai utilise les cookies et comment les gérer.',
     'seo.notFound.title': 'Page Introuvable',
     'seo.notFound.description': "La page que vous recherchez n'existe pas.",
     'wizard.condition.diabetes.name': 'Diabète',
@@ -7190,6 +7206,11 @@ export const translations: Record<Language, TranslationKeys> = {
     footerContact: 'Contactez-nous',
     footerPrivacy: 'Politique de Confidentialité',
     footerTerms: "Conditions d'Utilisation",
+    footerCookies: 'Politique de Cookies',
+    cookiePolicy: 'Politique de Cookies',
+    cookieConsentText: 'Nous utilisons des cookies pour faire fonctionner le site, mémoriser vos préférences et diffuser des annonces via Google AdSense. Consultez notre Politique de Cookies pour en savoir plus.',
+    cookieConsentAccept: 'Accepter',
+    cookieConsentLearnMore: 'En savoir plus',
     footerNews: 'Newsletter Hebdomadaire',
     footerNewsText: 'Recevez des conseils nutritionnels pratiques chaque semaine.',
     footerEmailPlaceholder: 'Votre email',
@@ -7902,6 +7923,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'seo.terms.description': 'Términos y condiciones para usar HealthCalc.',
     'seo.disclaimer.title': 'Aviso Médico',
     'seo.disclaimer.description': 'Información importante sobre la naturaleza educativa de nuestro contenido.',
+    'seo.cookies.title': 'Política de Cookies',
+    'seo.cookies.description': 'Cómo HealthCalc.ai usa las cookies y cómo puedes gestionarlas.',
     'seo.notFound.title': 'Página No Encontrada',
     'seo.notFound.description': 'La página que buscas no existe.',
     'wizard.condition.diabetes.name': 'Diabetes',
@@ -9699,6 +9722,11 @@ export const translations: Record<Language, TranslationKeys> = {
     footerContact: 'Contáctanos',
     footerPrivacy: 'Política de Privacidad',
     footerTerms: 'Términos de Uso',
+    footerCookies: 'Política de Cookies',
+    cookiePolicy: 'Política de Cookies',
+    cookieConsentText: 'Usamos cookies para operar el sitio, recordar tus preferencias y mostrar anuncios a través de Google AdSense. Consulta nuestra Política de Cookies para más detalles.',
+    cookieConsentAccept: 'Aceptar',
+    cookieConsentLearnMore: 'Más información',
     footerNews: 'Boletín Semanal',
     footerNewsText: 'Recibe consejos nutricionales prácticos cada semana.',
     footerEmailPlaceholder: 'Tu correo',
@@ -10411,6 +10439,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'seo.terms.description': 'الشروط والأحكام لاستخدام HealthCalc.',
     'seo.disclaimer.title': 'إخلاء مسؤولية طبي',
     'seo.disclaimer.description': 'معلومات مهمة عن الطبيعة التعليمية لمحتوانا.',
+    'seo.cookies.title': 'سياسة ملفات تعريف الارتباط',
+    'seo.cookies.description': 'كيف يستخدم HealthCalc.ai ملفات تعريف الارتباط وكيف يمكنك إدارتها.',
     'seo.notFound.title': 'الصفحة غير موجودة',
     'seo.notFound.description': 'الصفحة التي تبحث عنها غير موجودة.',
     'wizard.condition.diabetes.name': 'السكري',
@@ -12208,6 +12238,11 @@ export const translations: Record<Language, TranslationKeys> = {
     footerContact: 'تواصل معنا',
     footerPrivacy: 'سياسة الخصوصية',
     footerTerms: 'شروط الاستخدام',
+    footerCookies: 'سياسة ملفات تعريف الارتباط',
+    cookiePolicy: 'سياسة ملفات تعريف الارتباط',
+    cookieConsentText: 'نستخدم ملفات تعريف الارتباط لتشغيل الموقع وتذكر تفضيلاتك وعرض الإعلانات عبر Google AdSense. راجع سياسة ملفات تعريف الارتباط لدينا لمزيد من التفاصيل.',
+    cookieConsentAccept: 'قبول',
+    cookieConsentLearnMore: 'معرفة المزيد',
     footerNews: 'النشرة الأسبوعية',
     footerNewsText: 'احصل على نصائح تغذية عملية كل أسبوع.',
     footerEmailPlaceholder: 'بريدك الإلكتروني',
@@ -12931,6 +12966,8 @@ export const translations: Record<Language, TranslationKeys> = {
     'seo.terms.description': 'Bedingungen für die Nutzung von HealthCalc.',
     'seo.disclaimer.title': 'Medizinischer Hinweis',
     'seo.disclaimer.description': 'Wichtige Informationen zum Bildungscharakter unserer Inhalte.',
+    'seo.cookies.title': 'Cookie-Richtlinie',
+    'seo.cookies.description': 'Wie HealthCalc.ai Cookies verwendet und wie Sie sie verwalten können.',
     'seo.notFound.title': 'Seite Nicht Gefunden',
     'seo.notFound.description': 'Die gesuchte Seite existiert nicht.',
     'wizard.condition.diabetes.name': 'Diabetes',
@@ -14728,6 +14765,11 @@ export const translations: Record<Language, TranslationKeys> = {
     footerContact: 'Kontaktieren Sie uns',
     footerPrivacy: 'Datenschutzrichtlinie',
     footerTerms: 'Nutzungsbedingungen',
+    footerCookies: 'Cookie-Richtlinie',
+    cookiePolicy: 'Cookie-Richtlinie',
+    cookieConsentText: 'Wir verwenden Cookies, um die Website zu betreiben, Ihre Einstellungen zu speichern und Anzeigen über Google AdSense zu schalten. Weitere Informationen finden Sie in unserer Cookie-Richtlinie.',
+    cookieConsentAccept: 'Akzeptieren',
+    cookieConsentLearnMore: 'Mehr erfahren',
     footerNews: 'Wöchentlicher Newsletter',
     footerNewsText: 'Erhalten Sie jede Woche praktische Ernährungstipps.',
     footerEmailPlaceholder: 'Ihre E-Mail-Adresse',

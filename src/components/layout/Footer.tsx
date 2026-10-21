@@ -45,6 +45,7 @@ const Footer: React.FC = () => {
             <Link to="/contact">{t('footerContact')}</Link>
             <Link to="/privacy">{t('footerPrivacy')}</Link>
             <Link to="/terms">{t('footerTerms')}</Link>
+            <Link to="/cookies">{t('footerCookies')}</Link>
           </div>
 
           <div className="footer-col">

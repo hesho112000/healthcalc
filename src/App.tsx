@@ -7,6 +7,7 @@ import { SubscriptionProvider } from './context/SubscriptionContext';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import InstallBanner from './components/layout/InstallBanner';
+import CookieConsentBanner from './components/common/CookieConsentBanner';
 import { AppRoutes } from './routes';
 
 const App: React.FC = () => {
@@ -23,6 +24,7 @@ const App: React.FC = () => {
               </main>
               <Footer />
               <InstallBanner />
+              <CookieConsentBanner />
             </div>
           </Router>
         </SubscriptionProvider>
