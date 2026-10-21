@@ -64,8 +64,11 @@ for (const filePath of walk(path.join(ROOT, 'src', 'data'))) {
     if (!isExerciseFile && sourceKey) sourceKeys.add(sourceKey);
     entries.push({
       id,
+      filePath,
       sourceKey,
       table: isExerciseFile ? 'exercises' : 'dishes',
+      name_en: getField(record, 'nameEn', 'name_en'),
+      name_ar: getField(record, 'nameAr', 'name_ar'),
       name_fr: getField(record, 'nameFr', 'name_fr'),
       name_es: getField(record, 'nameEs', 'name_es'),
       name_de: getField(record, 'nameDe', 'name_de'),
@@ -75,24 +78,30 @@ for (const filePath of walk(path.join(ROOT, 'src', 'data'))) {
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } });
 
-// Map each local source key to exactly one database UUID. The local dish id is
-// embedded in `source`; the dishes table's actual `id` is a UUID.
-const dishUuidBySource = new Map();
+// Build exact source and composite-name indexes. Many legacy source values are
+// dataset labels shared by multiple dishes, so only a unique name pair can be
+// used as a fallback for resolving the database UUID.
+const dishRowsBySource = new Map();
+const dishRowsByNamePair = new Map();
 {
   let from = 0;
   for (;;) {
     const { data, error } = await supabase
       .from('dishes')
-      .select('id,source')
+      .select('id,source,name_en,name_ar')
       .order('id', { ascending: true })
       .range(from, from + 999);
     if (error) throw new Error(`Dish UUID lookup failed: ${error.message}`);
     for (const row of data ?? []) {
-      if (!sourceKeys.has(row.source)) continue;
-      if (dishUuidBySource.has(row.source)) {
-        throw new Error(`Ambiguous dish source key maps to multiple UUIDs: ${row.source}`);
+      if (row.source) {
+        const sourceRows = dishRowsBySource.get(row.source) ?? [];
+        sourceRows.push(row);
+        dishRowsBySource.set(row.source, sourceRows);
       }
-      dishUuidBySource.set(row.source, row.id);
+      const namePairKey = JSON.stringify([row.name_en, row.name_ar]);
+      const namePairRows = dishRowsByNamePair.get(namePairKey) ?? [];
+      namePairRows.push(row);
+      dishRowsByNamePair.set(namePairKey, namePairRows);
     }
     if ((data ?? []).length < 1000) break;
     from += data.length;
@@ -116,30 +125,102 @@ const exerciseIds = new Set();
 }
 
 const matched = [];
-let skipped = 0;
+const failedMappings = [];
+const localDishNamePairCounts = new Map();
 for (const entry of entries) {
-  const hasId = typeof entry.id === 'string' && entry.id.trim().length > 0;
-  const uuid = entry.table === 'dishes' && entry.sourceKey
-    ? dishUuidBySource.get(entry.sourceKey)
-    : entry.table === 'exercises' && hasId
-      ? entry.id
-      : null;
-  const exists = entry.table === 'dishes' ? uuid != null : hasId && exerciseIds.has(entry.id);
-  if (!exists) {
-    skipped++;
-    continue;
-  }
-  for (const field of ['name_fr', 'name_es', 'name_de']) {
-    if (typeof entry[field] !== 'string' || !entry[field].trim()) {
-      throw new Error(`Matched ${entry.table} record ${entry.sourceKey} is missing ${field}`);
+  if (entry.table !== 'dishes') continue;
+  const key = JSON.stringify([entry.name_en, entry.name_ar]);
+  localDishNamePairCounts.set(key, (localDishNamePairCounts.get(key) ?? 0) + 1);
+}
+
+const matchCounts = { source: 0, namePair: 0, exerciseId: 0 };
+for (const entry of entries) {
+  let uuid = null;
+  let method = null;
+  let reason = null;
+  let candidates = [];
+
+  if (entry.table === 'exercises') {
+    if (typeof entry.id === 'string' && exerciseIds.has(entry.id)) {
+      uuid = entry.id;
+      method = 'exerciseId';
+    } else {
+      reason = 'exercise_id_not_found';
+    }
+  } else {
+    const sourceRows = entry.sourceKey ? dishRowsBySource.get(entry.sourceKey) ?? [] : [];
+    if (sourceRows.length === 1) {
+      uuid = sourceRows[0].id;
+      method = 'source';
+    } else if (sourceRows.length > 1) {
+      reason = 'ambiguous_source_key';
+      candidates = sourceRows;
+    } else {
+      const hasNames = typeof entry.name_en === 'string' && entry.name_en.trim()
+        && typeof entry.name_ar === 'string' && entry.name_ar.trim();
+      const namePairKey = JSON.stringify([entry.name_en, entry.name_ar]);
+      const nameRows = hasNames ? dishRowsByNamePair.get(namePairKey) ?? [] : [];
+      if (nameRows.length > 1) {
+        reason = 'ambiguous_database_name_pair';
+        candidates = nameRows;
+      } else if (nameRows.length === 1 && localDishNamePairCounts.get(namePairKey) > 1) {
+        reason = 'ambiguous_local_name_pair';
+        candidates = nameRows;
+      } else if (nameRows.length === 1) {
+        uuid = nameRows[0].id;
+        method = 'namePair';
+      } else {
+        reason = hasNames ? 'no_database_match' : 'missing_local_names';
+      }
     }
   }
-  matched.push({ ...entry, uuid });
+
+  if (!uuid) {
+    failedMappings.push({
+      file: path.relative(ROOT, entry.filePath),
+      table: entry.table,
+      localId: entry.id ?? null,
+      sourceKey: entry.sourceKey,
+      name_en: entry.name_en ?? null,
+      name_ar: entry.name_ar ?? null,
+      reason,
+      candidates: candidates.map(({ id, source }) => ({ id, source })),
+    });
+    continue;
+  }
+  const missingTranslationFields = ['name_fr', 'name_es', 'name_de'].filter(
+    (field) => typeof entry[field] !== 'string' || !entry[field].trim(),
+  );
+  if (missingTranslationFields.length) {
+    failedMappings.push({
+      file: path.relative(ROOT, entry.filePath),
+      table: entry.table,
+      localId: entry.id ?? null,
+      sourceKey: entry.sourceKey,
+      name_en: entry.name_en ?? null,
+      name_ar: entry.name_ar ?? null,
+      reason: 'missing_translation_fields',
+      missingFields: missingTranslationFields,
+      candidates: [{ id: uuid }],
+    });
+    continue;
+  }
+  matchCounts[method]++;
+  matched.push({ ...entry, uuid, method });
 }
 
 const dishMatches = matched.filter((entry) => entry.table === 'dishes').length;
 const exerciseMatches = matched.length - dishMatches;
-console.log(`Found ${entries.length} local records; matched ${matched.length} (${dishMatches} dishes, ${exerciseMatches} exercises); skipped ${skipped}.`);
+const failedMappingPath = path.join(ROOT, 'scripts', 'failed-mapping.json');
+fs.writeFileSync(failedMappingPath, `${JSON.stringify({
+  generatedAt: new Date().toISOString(),
+  summary: { localRecords: entries.length, matched: matched.length, failed: failedMappings.length },
+  failures: failedMappings,
+}, null, 2)}\n`, 'utf8');
+
+console.log(`Found ${entries.length} local records; matched ${matched.length} (${dishMatches} dishes, ${exerciseMatches} exercises); failed mappings ${failedMappings.length}.`);
+console.log(`Mapping methods: ${matchCounts.source} exact source, ${matchCounts.namePair} unique name-pair fallback, ${matchCounts.exerciseId} exercise IDs.`);
+console.log(`Failed mapping details: ${path.relative(ROOT, failedMappingPath)}`);
 
 if (!process.argv.includes('--confirm')) {
   console.log('Dry run only. Re-run with --confirm to apply updates.');
@@ -147,23 +228,33 @@ if (!process.argv.includes('--confirm')) {
 }
 
 const batchSize = 100;
+const concurrency = 10;
 let updated = 0;
 let failed = 0;
 for (let offset = 0; offset < matched.length; offset += batchSize) {
   const batch = matched.slice(offset, offset + batchSize);
   console.log(`Updating batch ${Math.floor(offset / batchSize) + 1}/${Math.ceil(matched.length / batchSize)} (${batch.length} records)`);
-  for (const entry of batch) {
-    const payload = { name_fr: entry.name_fr, name_es: entry.name_es, name_de: entry.name_de };
-    const table = entry.table;
-    const { error } = await supabase.from(table).update(payload).eq('id', entry.uuid);
-    if (error) {
-      failed++;
-      console.error(`Failed ${table} UUID ${entry.uuid}: ${error.message}`);
-    } else {
-      updated++;
+  for (let groupOffset = 0; groupOffset < batch.length; groupOffset += concurrency) {
+    const group = batch.slice(groupOffset, groupOffset + concurrency);
+    const results = await Promise.all(group.map(async (entry) => {
+      const payload = { name_fr: entry.name_fr, name_es: entry.name_es, name_de: entry.name_de };
+      try {
+        const { error } = await supabase.from(entry.table).update(payload).eq('id', entry.uuid);
+        return { entry, error };
+      } catch (error) {
+        return { entry, error };
+      }
+    }));
+    for (const { entry, error } of results) {
+      if (error) {
+        failed++;
+        console.error(`Failed ${entry.table} UUID ${entry.uuid}: ${error.message}`);
+      } else {
+        updated++;
+      }
     }
   }
 }
 
-console.log(`Migration complete: ${updated} updated, ${failed} failed.`);
+console.log(`Migration complete: ${updated} updated, ${failed} update errors, ${failedMappings.length} failed mappings.`);
 if (failed) process.exitCode = 1;
