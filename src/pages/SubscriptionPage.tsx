@@ -1,52 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, CreditCard, History, ShieldCheck } from 'lucide-react';
+import { ArrowRight, CreditCard, History, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useSubscription, TIER_PRICE, tierPlanKey } from '../context/SubscriptionContext';
-import type { Tier } from '../context/SubscriptionContext';
 import { translations } from '../i18n/translations';
 
 type TKey = keyof typeof translations.en;
 
 const tk = (key: string): TKey => key as TKey;
 
-const TIERS: Tier[] = ['free', 'basic', 'pro', 'elite'];
-
-const formatDate = (days: number): string => {
-  const date = new Date(Date.now() + days * 86400000);
-  return date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
-};
-
 const SubscriptionPage: React.FC = () => {
   const { t, dir } = useLanguage();
-  const { tier, upgrade, setTier } = useSubscription();
-  const [toast, setToast] = useState('');
-
-  const index = TIERS.indexOf(tier);
-  const nextTier = index < TIERS.length - 1 ? TIERS[index + 1] : null;
-  const prevTier = index > 0 ? TIERS[index - 1] : null;
-
-  const note = (message: string) => {
-    setToast(message);
-    window.setTimeout(() => setToast(''), 2600);
-  };
-
-  const handleUpgrade = () => {
-    if (!nextTier) return;
-    upgrade(nextTier);
-    note(`${t(tierPlanKey(nextTier))} · ${t(tk('sub.upgraded'))}`);
-  };
-
-  const handleDowngrade = () => {
-    if (!prevTier) return;
-    setTier(prevTier);
-    note(`${t(tierPlanKey(prevTier))} · ${t(tk('sub.downgraded'))}`);
-  };
-
-  const handleCancel = () => {
-    setTier('free');
-    note(t(tk('sub.cancelled')));
-  };
+  const { tier } = useSubscription();
 
   return (
     <div className="min-h-screen bg-[#FDFBF7]" dir={dir}>
@@ -85,7 +50,7 @@ const SubscriptionPage: React.FC = () => {
             <div>
               <span className="block text-xs font-bold text-[#FDFBF7]/60">{t(tk('sub.nextBilling'))}</span>
               <b className="mt-1 block text-lg font-extrabold tabular-nums">
-                {tier === 'free' ? '—' : formatDate(30)}
+                —
               </b>
               <span className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-[#FDFBF7]/10 px-3 py-1 text-xs font-bold">
                 <span className="h-2 w-2 rounded-full bg-[#D4A017]" />
@@ -93,33 +58,8 @@ const SubscriptionPage: React.FC = () => {
               </span>
             </div>
           </div>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <button
-              type="button"
-              onClick={handleUpgrade}
-              disabled={!nextTier}
-              className="inline-flex items-center gap-2 rounded-full bg-[#D4A017] text-[#0F4C3A] px-6 py-3 text-sm font-extrabold hover:bg-[#B8860B] transition disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              {t(tk('sub.upgrade'))}
-              <ArrowLeft size={15} strokeWidth={2.5} className="rtl:rotate-180" />
-            </button>
-            <button
-              type="button"
-              onClick={handleDowngrade}
-              disabled={!prevTier}
-              className="inline-flex items-center gap-2 rounded-full bg-[#FDFBF7]/10 text-[#FDFBF7] px-6 py-3 text-sm font-extrabold hover:bg-[#FDFBF7]/20 transition disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              {t(tk('sub.downgrade'))}
-            </button>
-            {tier !== 'free' && (
-              <button
-                type="button"
-                onClick={handleCancel}
-                className="inline-flex items-center gap-2 rounded-full border border-[#B91C1C]/70 text-[#f2a0a0] px-6 py-3 text-sm font-extrabold hover:bg-[#B91C1C]/20 transition"
-              >
-                {t(tk('sub.cancel'))}
-              </button>
-            )}
+          <div role="status" className="mt-8 rounded-2xl bg-[#FDFBF7]/10 p-4 text-sm font-semibold text-[#FDFBF7]">
+            Coming Soon — Premium · {t('universe.comingSoon')}
           </div>
         </section>
 
@@ -129,15 +69,7 @@ const SubscriptionPage: React.FC = () => {
               <CreditCard size={14} />
               {t(tk('sub.paymentMethod'))}
             </span>
-            <div className="mt-4 flex items-center gap-3 rounded-2xl bg-[#F4F1EB] p-4">
-              <span className="inline-flex h-10 w-14 items-center justify-center rounded-lg bg-[#0F4C3A] text-xs font-extrabold text-[#FDFBF7]">
-                VISA
-              </span>
-              <div>
-                <b className="block text-sm text-[#0F4C3A] tabular-nums">{t(tk('sub.card'))}</b>
-                <span className="text-xs text-[#6B7A75]">{t(tk('sub.cardHint'))}</span>
-              </div>
-            </div>
+            <p className="mt-4 rounded-2xl bg-[#F4F1EB] p-4 text-sm text-[#6B7A75]">{t('universe.comingSoon')}</p>
           </section>
 
           <section className="rounded-3xl border border-[#EFEBE4] bg-white p-6 md:p-8">
@@ -150,11 +82,6 @@ const SubscriptionPage: React.FC = () => {
         </div>
       </main>
 
-      {toast && (
-        <div className="fixed bottom-8 inset-x-0 z-50 flex justify-center px-4 pointer-events-none" role="status" aria-live="polite" aria-atomic="true">
-          <div className="rounded-full bg-[#0F4C3A] text-[#FDFBF7] text-sm font-bold px-6 py-3 shadow-lg">{toast}</div>
-        </div>
-      )}
     </div>
   );
 };

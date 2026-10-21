@@ -9,7 +9,7 @@ import { useUserData } from '../hooks/useUserData';
 import { migrateLocalData } from '../services/migrateLocalData';
 import { savePlanToStorage } from '../utils/planStorage';
 import type { PlanStoragePayload } from '../utils/planStorage';
-import type { FeatureId, Tier } from '../context/SubscriptionContext';
+import type { FeatureId } from '../context/SubscriptionContext';
 import PaywallModal from '../components/health-universe/PaywallModal';
 import UserProfileCard from '../components/hub/UserProfileCard';
 import DailyGoalsCard from '../components/hub/DailyGoalsCard';
@@ -56,7 +56,7 @@ const migratedUsers = new Set<string>();
 const MyHealthHubPage: React.FC = () => {
   const { t, dir, language: lang } = useLanguage();
   const { user } = useAuth();
-  const { hasFeature, upgrade } = useSubscription();
+  const { hasFeature } = useSubscription();
   const navigate = useNavigate();
   const location = useLocation();
   const userData = useUserData();
@@ -182,12 +182,6 @@ const MyHealthHubPage: React.FC = () => {
 
   const gate = (feature: FeatureId) => {
     if (!hasFeature(feature)) setPaywall(feature);
-  };
-
-  const handleUpgrade = (tier: Tier) => {
-    upgrade(tier);
-    setPaywall(null);
-    note(t('planPrompt.cta.startTrial'));
   };
 
   const note = (message: string) => {
@@ -482,7 +476,7 @@ const MyHealthHubPage: React.FC = () => {
         </section>
       </main>
 
-      <PaywallModal open={paywall !== null} feature={paywall} onClose={() => setPaywall(null)} onUpgrade={handleUpgrade} />
+      <PaywallModal open={paywall !== null} feature={paywall} onClose={() => setPaywall(null)} />
 
       <HealthChat paid={hasFeature('aiChat')} onUnlock={() => gate('aiChat')} name={name} />
 

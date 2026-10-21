@@ -142,30 +142,7 @@ router.put('/me/password', authMiddleware, (req, res) => {
 });
 
 router.post('/subscribe', authMiddleware, (req, res) => {
-  try {
-    const userId = req.user.id;
-    const now = new Date();
-    const endDate = new Date(now);
-    endDate.setFullYear(endDate.getFullYear() + 1);
-
-    const startDateStr = now.toISOString();
-    const endDateStr = endDate.toISOString();
-
-    db.prepare(
-      'INSERT INTO subscriptions (user_id, plan_type, price, currency, start_date, end_date, status) VALUES (?, ?, ?, ?, ?, ?, ?)'
-    ).run(userId, 'annual', 15.00, 'USD', startDateStr, endDateStr, 'active');
-
-    db.prepare(
-      'UPDATE users SET subscription_status = ?, subscription_end_date = ? WHERE id = ?'
-    ).run('premium', endDateStr, userId);
-
-    const user = db.prepare('SELECT id, name, email, subscription_status, subscription_end_date, created_at FROM users WHERE id = ?').get(userId);
-
-    res.json({ user, message: 'Subscription activated successfully' });
-  } catch (err) {
-    console.error('Subscribe error:', err);
-    res.status(500).json({ error: 'Internal server error' });
-  }
+  res.status(501).json({ error: 'Subscriptions are temporarily unavailable' });
 });
 
 router.post('/unsubscribe', authMiddleware, (req, res) => {

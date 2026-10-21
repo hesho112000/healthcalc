@@ -1,7 +1,6 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAuth, isAdmin } from '../context/AuthContext';
-import { useAdmin } from '../context/AdminContext';
+import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 
 interface ProtectedRouteProps {
@@ -10,7 +9,6 @@ interface ProtectedRouteProps {
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
-  const { isAdmin: adminMode } = useAdmin();
   const { t } = useLanguage();
 
   if (loading) {
@@ -24,8 +22,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     );
   }
 
-  // Admin bypass for testing
-  if (!isAuthenticated && !adminMode && !isAdmin()) {
+  if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
 

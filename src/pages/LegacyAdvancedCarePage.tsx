@@ -371,7 +371,7 @@ const LegacyAdvancedCarePage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#f8fafc]">
-      <CheckoutModal isOpen={showCheckout} onClose={() => setShowCheckout(false)} onSuccess={() => setShowCheckout(false)} price="$15/year" />
+      <CheckoutModal isOpen={showCheckout} onClose={() => setShowCheckout(false)} />
       <Breadcrumbs />
 
       {/* ─── Hero ─── */}

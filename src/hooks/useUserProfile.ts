@@ -81,8 +81,20 @@ export interface UserProfile {
 }
 
 export const USER_PROFILE_STORAGE_KEY = 'healthcalc_user_profile';
+const PROFILE_CLEARED_EVENT = 'healthcalc:user-profile-cleared';
 
 const LEGACY_KEYS = ['fitness-inputs', 'fitness-wizard-input', 'hc_calc_profile', 'hc_calculator_bridge'];
+const PROFILE_STORAGE_KEYS = [USER_PROFILE_STORAGE_KEY, ...LEGACY_KEYS, 'healthcalc_conditions', 'userTDEE', 'userBMR'];
+
+export const clearUserProfileStorage = (): void => {
+  try {
+    PROFILE_STORAGE_KEYS.forEach((key) => localStorage.removeItem(key));
+  } catch {
+    /* ignore storage failures */
+  }
+  if (typeof window !== 'undefined') window.dispatchEvent(new Event(PROFILE_CLEARED_EVENT));
+};
+
 const EMPTY_PROFILE: UserProfile = {
   age: null,
   gender: null,
@@ -329,8 +341,13 @@ export const useUserProfile = () => {
     const handleStorage = (event: StorageEvent) => {
       if (event.key === USER_PROFILE_STORAGE_KEY) setProfile(readProfile());
     };
+    const handleProfileCleared = () => setProfile({ ...EMPTY_PROFILE });
     window.addEventListener('storage', handleStorage);
-    return () => window.removeEventListener('storage', handleStorage);
+    window.addEventListener(PROFILE_CLEARED_EVENT, handleProfileCleared);
+    return () => {
+      window.removeEventListener('storage', handleStorage);
+      window.removeEventListener(PROFILE_CLEARED_EVENT, handleProfileCleared);
+    };
   }, []);
 
   const updateProfile = (updates: Partial<UserProfile>): void => {
@@ -340,11 +357,7 @@ export const useUserProfile = () => {
   };
 
   const resetProfile = (): void => {
-    try {
-      [USER_PROFILE_STORAGE_KEY, ...LEGACY_KEYS, 'healthcalc_conditions', 'userTDEE', 'userBMR'].forEach((key) => localStorage.removeItem(key));
-    } catch {
-      /* ignore storage failures */
-    }
+    clearUserProfileStorage();
     setProfile({ ...EMPTY_PROFILE });
   };
 

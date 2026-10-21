@@ -185,7 +185,7 @@ const AdvancedCareWizardPage: React.FC = () => {
   const { t, language, dir } = useLanguage();
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { hasFeature, upgrade, setTier } = useSubscription();
+  const { hasFeature, setTier } = useSubscription();
   const [paywallFeature, setPaywallFeature] = useState<FeatureId | null>(null);
   const [searchParams] = useSearchParams();
   const fromUrlConditions: ConditionId[] = (() => {
@@ -957,10 +957,6 @@ ${conditionTags}
         open={!!paywallFeature}
         feature={paywallFeature}
         onClose={() => setPaywallFeature(null)}
-        onUpgrade={(tier) => {
-          upgrade(tier);
-          setPaywallFeature(null);
-        }}
       />
     </div>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Check, Lock, X } from 'lucide-react';
+import { Check, Lock, X } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { translations } from '../../i18n/translations';
 import {
@@ -16,7 +16,6 @@ interface PaywallModalProps {
   open: boolean;
   feature: FeatureId | null;
   onClose: () => void;
-  onUpgrade: (tier: Tier) => void;
 }
 
 const TTS = (
@@ -56,7 +55,7 @@ const TIERS: Array<{ tier: Tier; items: TKey[] }> = [
   },
 ];
 
-const PaywallModal: React.FC<PaywallModalProps> = ({ open, feature, onClose, onUpgrade }) => {
+const PaywallModal: React.FC<PaywallModalProps> = ({ open, feature, onClose }) => {
   const { t, dir } = useLanguage();
   const { tierForFeature } = useSubscription();
 
@@ -137,11 +136,10 @@ const PaywallModal: React.FC<PaywallModalProps> = ({ open, feature, onClose, onU
         <div className="px-7 pb-9 pt-6 text-center">
           <button
             type="button"
-            onClick={() => onUpgrade(requiredTier)}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#D4A017] px-8 py-4 text-base font-extrabold text-[#0F4C3A] hover:bg-[#c9a12f] shadow-[0_10px_26px_rgba(212,160,23,0.35)] transition-all"
+            disabled
+            className="inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-2xl bg-gray-200 px-8 py-4 text-base font-extrabold text-gray-600"
           >
-            {t('planPrompt.cta.startTrial')}
-            <ArrowRight size={19} strokeWidth={2.5} className="rtl:rotate-180" />
+            Coming Soon — Premium
           </button>
           <p className="mt-3 text-xs font-semibold text-[#6B7A75]">{t('planPrompt.trust')}</p>
         </div>

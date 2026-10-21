@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Check } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
-import { ADMIN_PASSWORD_OVERRIDE_KEY } from '../../context/AdminContext';
 
 const SITE_NAME_KEY = 'healthcalc_site_name';
 const SITE_DESC_KEY = 'healthcalc_site_desc';
@@ -38,7 +37,6 @@ const SettingsPanel: React.FC = () => {
   const { t } = useLanguage();
   const [siteName, setSiteName] = useState(() => read(SITE_NAME_KEY, 'HealthCalc'));
   const [siteDesc, setSiteDesc] = useState(() => read(SITE_DESC_KEY, 'Free health calculators & personalized care plans.'));
-  const [newPassword, setNewPassword] = useState('');
   const [phoneAuth, setPhoneAuth] = useState(() => readFlag(FEATURE_PHONE_KEY, false));
   const [aiChat, setAiChat] = useState(() => readFlag(FEATURE_AI_KEY, true));
   const [toast, setToast] = useState(false);
@@ -46,10 +44,6 @@ const SettingsPanel: React.FC = () => {
   const saveAll = () => {
     write(SITE_NAME_KEY, siteName.trim() || 'HealthCalc');
     write(SITE_DESC_KEY, siteDesc.trim());
-    if (newPassword.trim().length >= 6) {
-      write(ADMIN_PASSWORD_OVERRIDE_KEY, newPassword.trim());
-      setNewPassword('');
-    }
     write(FEATURE_PHONE_KEY, phoneAuth);
     write(FEATURE_AI_KEY, aiChat);
     setToast(true);
@@ -61,7 +55,7 @@ const SettingsPanel: React.FC = () => {
 
   return (
     <div className="rounded-2xl border border-[#EFEBE4] bg-white p-5 shadow-[0_8px_24px_rgba(15,76,58,0.06)]">
-      <div className="grid gap-5 lg:grid-cols-2">
+      <div className="grid gap-5">
         <div className="rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] p-5">
           <h3 className="text-sm font-extrabold text-[#0F4C3A]">{t('admin.settings.siteName')}</h3>
           <p className="mt-1 text-xs font-semibold text-[#6B7A75]">{t('admin.settings.siteDescription')}</p>
@@ -80,20 +74,6 @@ const SettingsPanel: React.FC = () => {
           </label>
         </div>
 
-        <div className="rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] p-5">
-          <h3 className="text-sm font-extrabold text-[#0F4C3A]">{t('admin.settings.adminPassword')}</h3>
-          <p className="mt-1 text-xs font-semibold text-[#6B7A75]">{t('admin.settings.newPassword')}</p>
-          <label className="mt-3 block">
-            <span className="text-xs font-bold text-[#6B7A75]">{t('admin.settings.newPassword')}</span>
-            <input
-              type="password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              placeholder={t('admin.settings.newPassword')}
-              className={fieldClass}
-            />
-          </label>
-        </div>
       </div>
 
       <div className="mt-5 rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] p-5">

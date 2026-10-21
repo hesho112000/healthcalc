@@ -1,28 +1,9 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import { supabase } from '../lib/supabase';
 import type { Session, User as SupabaseUser } from '@supabase/supabase-js';
-import { ADMIN_STORAGE_KEY, getAdminSecretKey } from './AdminContext';
+import { clearUserProfileStorage } from '../hooks/useUserProfile';
 
 export const ENABLE_PHONE_AUTH = false;
-
-export const isAdmin = (): boolean => {
-  try {
-    return (
-      localStorage.getItem('dev_mode') === 'ADMIN_2026' ||
-      localStorage.getItem(ADMIN_STORAGE_KEY) === getAdminSecretKey()
-    );
-  } catch {
-    return false;
-  }
-};
-
-export const activateAdmin = (): void => {
-  localStorage.setItem('dev_mode', 'ADMIN_2026');
-};
-
-export const deactivateAdmin = (): void => {
-  localStorage.removeItem('dev_mode');
-};
 
 export type SubscriptionStatus = 'free' | 'basic' | 'pro' | 'elite';
 
@@ -37,7 +18,7 @@ export interface AuthUser {
 
 export const hasPremiumAccess = (user: AuthUser | null): boolean => {
   const status = user?.subscription_status;
-  return status === 'pro' || status === 'elite' || isAdmin();
+  return status === 'pro' || status === 'elite';
 };
 
 interface AuthContextType {
@@ -82,15 +63,20 @@ const buildAuthUser = async (supabaseUser: SupabaseUser): Promise<AuthUser> => {
   try {
     const { data } = await supabase
       .from('subscriptions')
-      .select('tier, status, expires_at')
+      .select('tier, status, started_at, expires_at')
       .eq('user_id', supabaseUser.id)
       .order('started_at', { ascending: false })
       .limit(1)
       .maybeSingle();
-    if (data?.tier && data.status !== 'cancelled') {
+    const validTiers: SubscriptionStatus[] = ['free', 'basic', 'pro', 'elite'];
+    const startsAt = data?.started_at ? Date.parse(data.started_at) : null;
+    const expiresAt = data?.expires_at ? Date.parse(data.expires_at) : null;
+    const alreadyStarted = startsAt === null || (Number.isFinite(startsAt) && startsAt <= Date.now());
+    const notExpired = expiresAt === null || (Number.isFinite(expiresAt) && expiresAt > Date.now());
+    if (data?.status === 'active' && validTiers.includes(data.tier as SubscriptionStatus) && alreadyStarted && notExpired) {
       subscription_status = data.tier as SubscriptionStatus;
+      subscription_end_date = data.expires_at ?? null;
     }
-    if (data?.expires_at) subscription_end_date = data.expires_at;
   } catch {
     /* ignore */
   }
@@ -148,7 +134,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           void ensureProfile(nextSession.user.id, built.name);
         }
       } else if (event === 'SIGNED_OUT') {
+        clearUserProfileStorage();
         setUser(null);
+        setSession(null);
       }
       if (mounted) setLoading(false);
     });
@@ -183,9 +171,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }, []);
 
   const signOut = useCallback(async () => {
-    await supabase.auth.signOut();
-    setUser(null);
-    setSession(null);
+    try {
+      await supabase.auth.signOut();
+    } finally {
+      clearUserProfileStorage();
+      setUser(null);
+      setSession(null);
+    }
   }, []);
 
   const signInWithGoogle = useCallback(async () => {

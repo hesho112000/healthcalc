@@ -62,7 +62,7 @@ const DashboardPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#f8fafc]">
-      {ENABLE_PREMIUM && <CheckoutModal isOpen={showCheckout} onClose={() => setShowCheckout(false)} onSuccess={() => setShowCheckout(false)} price="$15/year" />}
+      {ENABLE_PREMIUM && <CheckoutModal isOpen={showCheckout} onClose={() => setShowCheckout(false)} />}
       <div className="bg-gradient-to-r from-primary-600 to-primary-700 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-14">
           <div className="flex items-center justify-between gap-4 flex-wrap">

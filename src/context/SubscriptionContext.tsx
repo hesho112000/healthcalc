@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useEffect, ReactNode } from 'react';
 import { translations } from '../i18n/translations';
-import { useAuth, hasPremiumAccess, isAdmin } from './AuthContext';
+import { useAuth } from './AuthContext';
 
 type TKey = keyof typeof translations.en;
 
@@ -56,46 +56,28 @@ interface SubscriptionContextType {
   activeTier: Tier;
   setTier: (tier: Tier) => void;
   upgrade: (tier: Tier) => void;
-  hasFeature: (feature: FeatureId, tierOverride?: Tier) => boolean;
+  hasFeature: (feature: FeatureId) => boolean;
   tierForFeature: (feature: FeatureId) => Tier;
 }
 
 const SubscriptionContext = createContext<SubscriptionContextType | undefined>(undefined);
 
-const STORAGE_KEY = 'hc_subscription_tier';
-
 export const SubscriptionProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { user } = useAuth();
-  const [tier, setTierState] = useState<Tier>(() => {
+  useEffect(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY) as Tier | null;
-      return saved && saved in TIER_ORDER ? saved : 'free';
+      localStorage.removeItem('hc_subscription_tier');
     } catch {
-      return 'free';
+      /* ignore storage failures */
     }
-  });
+  }, []);
+  const tier: Tier = user?.subscription_status ?? 'free';
+  const activeTier = tier;
+  const setTier = (_next: Tier) => undefined;
+  const upgrade = (_next: Tier) => undefined;
 
-  const setTier = (next: Tier) => {
-    setTierState(next);
-    try {
-      localStorage.setItem(STORAGE_KEY, next);
-    } catch {
-      /* ignore */
-    }
-  };
-
-  const upgrade = (next: Tier) => {
-    if (TIER_ORDER[next] > TIER_ORDER[tier]) setTier(next);
-  };
-
-  const activeTier: Tier = isAdmin()
-    ? 'elite'
-    : hasPremiumAccess(user)
-      ? 'pro'
-      : tier;
-
-  const hasFeature = (feature: FeatureId, tierOverride?: Tier): boolean =>
-    TIER_ORDER[tierOverride ?? activeTier] >= TIER_ORDER[FEATURES[feature].minTier];
+  const hasFeature = (feature: FeatureId): boolean =>
+    TIER_ORDER[activeTier] >= TIER_ORDER[FEATURES[feature].minTier];
 
   const tierForFeature = (feature: FeatureId): Tier => FEATURES[feature].minTier;
 
