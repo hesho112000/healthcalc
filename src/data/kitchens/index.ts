@@ -40,9 +40,23 @@ export interface KitchenCategory {
   dishes: KitchenDish[];
 }
 
+export const DIET_KITCHEN_IDS = [
+  'diet-keto',
+  'diet-vegan',
+  'diet-mediterranean',
+  'diet-high-protein',
+  'diet-low-carb',
+  'diet-paleo',
+  'diet-gluten-free',
+  'diet-dash',
+  'diet-intermittent-fasting',
+  'diet-vegetarian',
+] as const;
+
 export const KITCHEN_REGION_KITCHEN_IDS = {
   'north-america': ['american', 'canada', 'mexican', 'cuban', 'jamaican', 'costa-rican'],
   'south-america': ['argentinian', 'colombian', 'peruvian', 'chilean', 'brazilian', 'venezuelan'],
+  'diet-plans': [...DIET_KITCHEN_IDS],
 } as const;
 
 export type KitchenRegionId = keyof typeof KITCHEN_REGION_KITCHEN_IDS;
@@ -285,9 +299,9 @@ const NAME_BY_ID: Record<string, string> = {
   japanese: 'المطبخ الياباني',
   british: 'المطبخ البريطاني',
   brazilian: 'المطبخ البرازيلي',
-  argentinian: 'الأرجنتين',
-  chilean: 'تشيلي',
-  colombian: 'كولومبيا',
+  argentinian: 'المطبخ الأرجنتيني',
+  chilean: 'المطبخ التشيلي',
+  colombian: 'المطبخ الكولومبي',
   'costa-rican': 'المطبخ الكوستاريكي',
   cuban: 'المطبخ الكوبي',
   emirati: 'المطبخ الإماراتي',
@@ -303,13 +317,13 @@ const NAME_BY_ID: Record<string, string> = {
   korean: 'المطبخ الكوري',
   taiwanese: 'المطبخ التايواني',
   kuwaiti: 'المطبخ الكويتي',
-  mexican: 'المكسيك',
+  mexican: 'المطبخ المكسيكي',
   libyan: 'المطبخ الليبي',
   moroccan: 'المطبخ المغربي',
   'new-zealand': 'المطبخ النيوزيلندي',
   omani: 'المطبخ العماني',
   pakistani: 'المطبخ الباكستاني',
-  peruvian: 'بيرو',
+  peruvian: 'المطبخ البيروفي',
   saudi: 'المطبخ السعودي',
   nigerian: 'المطبخ النيجيري',
   qatar: 'المطبخ القطري',
@@ -339,7 +353,7 @@ ghanaian: 'المطبخ الغاني',
   denmark: 'المطبخ الدنماركي',
   finland: 'المطبخ الفنلندي',
   ukraine: 'المطبخ الأوكراني',
-  'eastern-european': 'أوروبا الشرقية',
+  'eastern-european': 'المطبخ الأوروبي الشرقي',
   venezuelan: 'المطبخ الفنزويلي',
 };
 
@@ -389,13 +403,13 @@ const KITCHEN_EN_BY_ID: Record<string, string> = {
   egyptian: 'Egyptian Kitchen', tunisian: 'Tunisian Kitchen', syrian: 'Syrian Kitchen', palestinian: 'Palestinian Kitchen',
   lebanese: 'Lebanese Kitchen', jordanian: 'Jordanian Kitchen', algerian: 'Algerian Kitchen', american: 'American Kitchen',
   bahraini: 'Bahraini Kitchen', australian: 'Australian Kitchen', chinese: 'Chinese Kitchen', japanese: 'Japanese Kitchen',
-   british: 'British Kitchen', brazilian: 'Brazilian Kitchen', argentinian: 'Argentina', chilean: 'Chile', colombian: 'Colombia',
+   british: 'British Kitchen', brazilian: 'Brazilian Kitchen', argentinian: 'Argentinian Kitchen', chilean: 'Chilean Kitchen', colombian: 'Colombian Kitchen',
   'costa-rican': 'Costa Rican Kitchen', cuban: 'Cuban Kitchen', emirati: 'Emirati Kitchen', ethiopian: 'Ethiopian Kitchen',
   french: 'French Kitchen', italian: 'Italian Kitchen', indian: 'Indian Kitchen', indonesian: 'Indonesian Kitchen',
   malaysian: 'Malaysian Kitchen', greek: 'Greek Kitchen', jamaican: 'Jamaican Kitchen', kenyan: 'Kenyan Kitchen',
-   korean: 'Korean Kitchen', taiwanese: 'Taiwanese Kitchen', kuwaiti: 'Kuwaiti Kitchen', mexican: 'Mexico',
+   korean: 'Korean Kitchen', taiwanese: 'Taiwanese Kitchen', kuwaiti: 'Kuwaiti Kitchen', mexican: 'Mexican Kitchen',
   libyan: 'Libyan Kitchen', moroccan: 'Moroccan Kitchen', 'new-zealand': 'New Zealand Kitchen', omani: 'Omani Kitchen',
-  pakistani: 'Pakistani Kitchen', peruvian: 'Peru', saudi: 'Saudi Kitchen', nigerian: 'Nigerian Kitchen',
+  pakistani: 'Pakistani Kitchen', peruvian: 'Peruvian Kitchen', saudi: 'Saudi Kitchen', nigerian: 'Nigerian Kitchen',
   qatar: 'Qatari Kitchen', rwandan: 'Rwandan Kitchen', swiss: 'Swiss Kitchen', thai: 'Thai Kitchen',
   vietnamese: 'Vietnamese Kitchen', spanish: 'Spanish Kitchen', 'south-african': 'South African Kitchen',
   ghanaian: 'Ghanaian Kitchen', seychellois: 'Seychellois Kitchen', mauritian: 'Mauritian Kitchen',
@@ -404,7 +418,7 @@ const KITCHEN_EN_BY_ID: Record<string, string> = {
   benelux: 'Benelux Kitchen', usa: 'American Kitchen', canada: 'Canadian Kitchen', australasia: 'Australasian Kitchen',
   norway: 'Norwegian Kitchen', sweden: 'Swedish Kitchen', denmark: 'Danish Kitchen', finland: 'Finnish Kitchen',
   ukraine: 'Ukrainian Kitchen',
-  'eastern-european': 'Eastern European',
+  'eastern-european': 'Eastern European Kitchen',
   venezuelan: 'Venezuelan Kitchen',
 };
 
@@ -651,6 +665,7 @@ function buildDiet(path: string, mod: any): KitchenInfo {
     sample: dishes[0] ?? null,
     dishes,
     categories: [],
+    regionId: 'diet-plans',
     rich: false,
   };
 }

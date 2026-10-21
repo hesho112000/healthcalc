@@ -384,26 +384,23 @@ const RegionMarker: React.FC<{ value: string; label: string; className?: string 
 const REGIONS: RegionDef[] = [
   { id: 'africa', emoji: '🌍', en: 'Africa', ar: 'أفريقيا', ids: ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'nigerian', 'ethiopian', 'kenyan', 'rwandan', 'seychellois', 'mauritian', 'gabonese', 'botswanan', 'south-african', 'ghanaian'] },
   { id: 'middle-east', emoji: '🕌', en: 'Middle East & Gulf', ar: 'الشرق الأوسط والخليج', ids: ['saudi', 'emirati', 'omani', 'kuwaiti', 'qatar', 'bahraini', 'lebanese', 'palestinian', 'syrian', 'jordanian'] },
-  { id: 'asia', emoji: '🌏', en: 'Asia', ar: 'آسيا', ids: ['indian', 'pakistani', 'indonesian', 'malaysian', 'chinese', 'japanese', 'korean', 'thai', 'vietnamese', 'filipino'] },
-  { id: 'oceania', emoji: '🌏', en: 'Oceania', ar: 'أوقيانوسيا', ids: ['australasia'] },
+  { id: 'asia', emoji: '🌏', en: 'Asia & Oceania', ar: 'آسيا وأوقيانوسيا', ids: ['indian', 'pakistani', 'indonesian', 'malaysian', 'chinese', 'japanese', 'korean', 'thai', 'vietnamese', 'filipino', 'australasia'] },
   { id: 'north-america', emoji: '🌎', en: 'North America', ar: 'أمريكا الشمالية', translationKey: 'region.north-america', ids: [...KITCHEN_REGION_KITCHEN_IDS['north-america']] },
   { id: 'south-america', emoji: '🌎', en: 'South America', ar: 'أمريكا الجنوبية', translationKey: 'region.south-america', ids: [...KITCHEN_REGION_KITCHEN_IDS['south-america']] },
   { id: 'europe', emoji: '🏰', en: 'Europe', ar: 'أوروبا', ids: ['italian', 'french', 'spanish', 'greek', 'turkey', 'british', 'swiss', 'germany', 'austria', 'benelux', 'norway', 'sweden', 'denmark', 'finland', 'ukraine', 'eastern-european'] },
-  { id: 'special-diets', emoji: '🌿', en: 'Special Diets', ar: 'أنظمة غذائية خاصة', ids: ['diet-keto', 'diet-vegan', 'diet-vegetarian', 'diet-high-protein', 'diet-mediterranean', 'diet-low-carb', 'diet-dash', 'diet-gluten-free', 'diet-intermittent-fasting', 'diet-paleo'] },
+  { id: 'special-diets', emoji: '🌿', en: 'Diet Plans', ar: 'برامج غذائية', ids: [...KITCHEN_REGION_KITCHEN_IDS['diet-plans']] },
 ];
 
-type CuisineRegionId = 'europe' | 'asia' | 'americas' | 'mena' | 'africa' | 'oceania';
+type CuisineRegionId = 'diet-plans' | 'europe' | 'asia' | 'americas' | 'mena' | 'africa';
 
-const CUISINE_REGIONS: { id: CuisineRegionId; en: string; ar: string; ids: string[] }[] = [
-  { id: 'europe', en: 'Europe', ar: 'أوروبا', ids: ['italian', 'french', 'spanish', 'greek', 'turkey', 'british', 'swiss', 'germany', 'austria', 'benelux', 'norway', 'sweden', 'denmark', 'finland', 'ukraine', 'eastern-european', 'diet-mediterranean'] },
-  { id: 'asia', en: 'Asia', ar: 'آسيا', ids: ['indian', 'pakistani', 'indonesian', 'malaysian', 'chinese', 'japanese', 'korean', 'thai', 'vietnamese', 'filipino', 'taiwan'] },
-  { id: 'americas', en: 'Americas', ar: 'الأمريكتان', ids: [...KITCHEN_REGION_KITCHEN_IDS['north-america'], ...KITCHEN_REGION_KITCHEN_IDS['south-america'], 'american', 'diet-dash', 'diet-keto'] },
-  { id: 'mena', en: 'MENA', ar: 'الشرق الأوسط وشمال أفريقيا', ids: ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'omani', 'kuwaiti', 'qatar', 'bahraini', 'lebanese', 'palestinian', 'syrian', 'jordanian'] },
+const CUISINE_REGIONS: { id: CuisineRegionId; en: string; ar: string; translationKey?: 'region.diet-plans'; ids: string[] }[] = [
+  { id: 'europe', en: 'Europe', ar: 'أوروبا', ids: ['italian', 'french', 'spanish', 'greek', 'turkey', 'british', 'swiss', 'germany', 'austria', 'benelux', 'norway', 'sweden', 'denmark', 'finland', 'ukraine', 'eastern-european'] },
+  { id: 'asia', en: 'Asia & Oceania', ar: 'آسيا وأوقيانوسيا', ids: ['indian', 'pakistani', 'indonesian', 'malaysian', 'chinese', 'japanese', 'korean', 'thai', 'vietnamese', 'filipino', 'taiwan', 'australasia', 'australian', 'new-zealand'] },
+  { id: 'americas', en: 'Americas', ar: 'الأمريكتان', ids: [...KITCHEN_REGION_KITCHEN_IDS['north-america'], ...KITCHEN_REGION_KITCHEN_IDS['south-america'], 'american'] },
+  { id: 'mena', en: 'Middle East', ar: 'الشرق الأوسط', ids: ['egyptian', 'libyan', 'tunisian', 'algerian', 'moroccan', 'saudi', 'emirati', 'omani', 'kuwaiti', 'qatar', 'bahraini', 'lebanese', 'palestinian', 'syrian', 'jordanian'] },
   { id: 'africa', en: 'Africa', ar: 'أفريقيا', ids: ['nigerian', 'ethiopian', 'kenyan', 'rwandan', 'seychellois', 'mauritian', 'gabonese', 'botswanan', 'south-african', 'ghanaian'] },
-  { id: 'oceania', en: 'Oceania', ar: 'أوقيانوسيا', ids: ['australasia', 'australian', 'new-zealand'] },
+  { id: 'diet-plans', en: 'Diet Plans', ar: 'برامج غذائية', translationKey: 'region.diet-plans', ids: [...KITCHEN_REGION_KITCHEN_IDS['diet-plans']] },
 ];
-
-const GLOBAL_DIET_KITCHEN_IDS = ['diet-gluten-free', 'diet-high-protein', 'diet-intermittent-fasting', 'diet-low-carb', 'diet-paleo', 'diet-vegan', 'diet-vegetarian'];
 
 const cuisineRegionForKitchen = (kitchenId: string): CuisineRegionId =>
   CUISINE_REGIONS.find((region) => region.ids.includes(kitchenId))?.id ?? 'europe';
@@ -1653,9 +1650,8 @@ const WeightLossPage: React.FC = () => {
       region.id,
       [...uniqueKitchens.values()]
         .filter((kitchen) =>
-          (kitchen.regionId && region.id === 'americas') ||
-          region.ids.includes(kitchen.id) ||
-          GLOBAL_DIET_KITCHEN_IDS.includes(kitchen.id),
+          kitchen.regionId === region.id ||
+          region.ids.includes(kitchen.id),
         )
         .sort((a, b) => kitchenLabel(a).localeCompare(kitchenLabel(b))),
     ])) as Record<CuisineRegionId, KitchenInfo[]>;
@@ -3626,6 +3622,7 @@ const WeightLossPage: React.FC = () => {
                   >
                     {CUISINE_REGIONS.map((region, index) => {
                       const active = activeCuisineRegion === region.id;
+                      const regionName = region.translationKey ? t(region.translationKey) : (language === 'ar' ? region.ar : region.en);
                       const dishTotal = kitchensByCuisineRegion[region.id].reduce((sum, kitchen) => sum + (kitchenCounts[kitchen.id] ?? kitchen.total), 0);
                       const formatNumber = (value: number) => new Intl.NumberFormat(language === 'ar' ? 'ar' : 'en-US').format(value);
                       return (
@@ -3637,7 +3634,7 @@ const WeightLossPage: React.FC = () => {
                           role="tab"
                           aria-selected={active}
                           aria-controls="kitchen-region-panel"
-                          aria-label={`${language === 'ar' ? region.ar : region.en} · ${formatNumber(dishTotal)} ${language === 'ar' ? 'طبق' : 'dishes'}`}
+                          aria-label={`${regionName} · ${formatNumber(dishTotal)} ${language === 'ar' ? 'طبق' : 'dishes'}`}
                           tabIndex={active ? 0 : -1}
                           onClick={() => setActiveCuisineRegion(region.id)}
                           onKeyDown={(event) => {
@@ -3651,7 +3648,7 @@ const WeightLossPage: React.FC = () => {
                           }}
                           className={`shrink-0 rounded-full px-4 py-2.5 text-[12px] font-extrabold transition-colors ${active ? 'bg-[#059669] text-white shadow-sm' : 'bg-[#F1F3F2] text-[#34433C] hover:bg-[#E5E9E7]'}`}
                         >
-                          {language === 'ar' ? region.ar : region.en} · {formatNumber(dishTotal)}
+                          {regionName} · {formatNumber(dishTotal)}
                         </button>
                       );
                     })}

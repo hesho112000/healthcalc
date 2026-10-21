@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { FOODS_DATABASE, CUISINE_META, Cuisine, FoodItem } from '../utils/calculations_expanded';
+import { FOODS_DATABASE, CUISINE_META, CUISINE_GROUPS, Cuisine, FoodItem } from '../utils/calculations_expanded';
 import Flag, { isCountryCode } from '../components/common/Flag';
 import { useLanguage } from '../context/LanguageContext';
 import { getPortionMeasure } from '../utils/cuisineCatalog';
@@ -7,6 +7,10 @@ import { getPortionMeasure } from '../utils/cuisineCatalog';
 const FoodLibraryPage: React.FC = () => {
   const { language, t, dir } = useLanguage();
   const cuisineName = (meta: { label_ar: string; label_en: string }): string => (language === 'ar' ? meta.label_ar : meta.label_en);
+  const orderedCuisineGroups = useMemo(
+    () => [...CUISINE_GROUPS].sort((a, b) => (a.region === 'Special Diets' ? 1 : 0) - (b.region === 'Special Diets' ? 1 : 0)),
+    [],
+  );
   const dishName = (f: FoodItem): string => (language === 'ar' ? f.name_ar || f.name_en : f.name_en || f.name);
   const gramsSuffix = language === 'ar' ? 'جم' : 'g';
   const [search, setSearch] = useState('');
@@ -83,10 +87,14 @@ const FoodLibraryPage: React.FC = () => {
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 outline-none bg-white"
               >
                 <option value="all">🌍 {t('foodLibAllCuisines')} ({FOODS_DATABASE.length})</option>
-                {Object.entries(CUISINE_META).map(([key, meta]) => (
-                  <option key={key} value={key}>
-                    {cuisineName(meta)}
-                  </option>
+                {orderedCuisineGroups.map((group) => (
+                  <optgroup key={group.region} label={language === 'ar' ? group.regionAr : group.region}>
+                    {group.items.map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {language === 'ar' ? item.nameAr : item.nameEn}
+                      </option>
+                    ))}
+                  </optgroup>
                 ))}
               </select>
             </div>
@@ -129,29 +137,45 @@ const FoodLibraryPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Quick cuisine chips */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          <button
-            onClick={() => setSelectedCuisine('all')}
-            className={`px-4 py-2 rounded-full text-sm font-bold border-2 transition ${
-              selectedCuisine === 'all' ? 'bg-gray-900 text-white border-gray-900' : 'bg-white border-gray-200 hover:border-gray-300'
-            }`}
-          >
-            🌍 {t('foodLibAll')}
-          </button>
-          {Object.entries(CUISINE_META).map(([key, meta]) => (
+        {/* Quick cuisine chips, grouped by region */}
+        <div className="space-y-4 mb-6">
+          <div className="flex flex-wrap gap-2">
             <button
-              key={key}
-              onClick={() => setSelectedCuisine(key as Cuisine)}
-              className={`px-4 py-2 rounded-full text-sm font-bold border-2 transition flex items-center gap-1.5 ${
-                selectedCuisine === key ? 'bg-green-500 text-white border-green-500' : `bg-white hover:bg-gray-50 ${meta.color}`
+              onClick={() => setSelectedCuisine('all')}
+              className={`px-4 py-2 rounded-full text-sm font-bold border-2 transition ${
+                selectedCuisine === 'all' ? 'bg-gray-900 text-white border-gray-900' : 'bg-white border-gray-200 hover:border-gray-300'
               }`}
             >
-              {isCountryCode(meta.flag)
-                ? <Flag countryCode={meta.flag} alt={`${cuisineName(meta)} flag`} className="h-3.5 w-5" />
-                : <span>{meta.flag}</span>}
-              {cuisineName(meta)}
+              🌍 {t('foodLibAll')}
             </button>
+          </div>
+          {orderedCuisineGroups.map((group) => (
+            <div key={group.region}>
+              <p className={`mb-2 text-xs font-bold uppercase tracking-wide ${group.region === 'Special Diets' ? 'text-green-600' : 'text-gray-400'}`}>
+                {language === 'ar' ? group.regionAr : group.region}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {group.items.map((item) => {
+                  const meta = CUISINE_META[item.id];
+                  const key = item.id;
+                  const name = language === 'ar' ? item.nameAr : item.nameEn;
+                  return (
+                    <button
+                      key={key}
+                      onClick={() => setSelectedCuisine(key as Cuisine)}
+                      className={`px-4 py-2 rounded-full text-sm font-bold border-2 transition flex items-center gap-1.5 ${
+                        selectedCuisine === key ? 'bg-green-500 text-white border-green-500' : `bg-white hover:bg-gray-50 ${meta?.color ?? ''}`
+                      }`}
+                    >
+                      {meta && isCountryCode(meta.flag)
+                        ? <Flag countryCode={meta.flag} alt={`${name} flag`} className="h-3.5 w-5" />
+                        : <span>{meta?.flag}</span>}
+                      {name}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           ))}
         </div>
 

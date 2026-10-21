@@ -14,8 +14,8 @@ export const calculateBodyFat = (waist: number, neck: number, height: number, ge
 
 export const calculateWaterIntake = (weight: number): number => Math.round(weight * 0.033 * 1000);
 
-export { FOODS_DATABASE, CUISINE_META, CUISINE_OPTIONS, getFoodsByCuisine, generateMealWithCuisine } from './calculations';
-export type { Cuisine, FoodItem } from './calculations';
+export { FOODS_DATABASE, CUISINE_META, CUISINE_OPTIONS, CUISINE_GROUPS, getFoodsByCuisine, generateMealWithCuisine } from './calculations';
+export type { Cuisine, FoodItem, CuisineGroup } from './calculations';
 
 import type { Exercise, ExerciseType } from '../data/exercises/index';
 import type { Language } from '../types';

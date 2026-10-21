@@ -16,6 +16,7 @@ type TranslationKeys = {
   'kitchen.chilean.description': string;
   'region.north-america': string;
   'region.south-america': string;
+  'region.diet-plans': string;
   // Header
   searchPlaceholder: string;
   searchResultsTitle: string;
@@ -2553,17 +2554,17 @@ type TranslationKeys = {
 
 export const translations: Record<Language, TranslationKeys> = {
   en: {
-    'kitchen.eastern-european.name': 'Eastern European',
+    'kitchen.eastern-european.name': 'Eastern European Kitchen',
     'kitchen.eastern-european.description': 'Polish, Russian, Czech, Hungarian',
-    'kitchen.mexican.name': 'Mexico',
+    'kitchen.mexican.name': 'Mexican Kitchen',
     'kitchen.mexican.description': 'Tacos, Burritos, Guacamole',
-    'kitchen.argentinian.name': 'Argentina',
+    'kitchen.argentinian.name': 'Argentinian Kitchen',
     'kitchen.argentinian.description': 'Asado, Empanadas, Chimichurri',
-    'kitchen.colombian.name': 'Colombia',
+    'kitchen.colombian.name': 'Colombian Kitchen',
     'kitchen.colombian.description': 'Arepas, Bandeja Paisa, Ajiaco',
-    'kitchen.peruvian.name': 'Peru',
+    'kitchen.peruvian.name': 'Peruvian Kitchen',
     'kitchen.peruvian.description': 'Ceviche, Lomo Saltado, Causa',
-    'kitchen.chilean.name': 'Chile',
+    'kitchen.chilean.name': 'Chilean Kitchen',
     'kitchen.chilean.description': 'Empanadas, Pastel de Choclo, Cazuela',
     // Advanced Care Wizard
     'wizard.eyebrow': '',
@@ -4763,6 +4764,7 @@ export const translations: Record<Language, TranslationKeys> = {
     foodLibAllCuisines: 'All cuisines',
     'region.north-america': 'North America',
     'region.south-america': 'South America',
+    'region.diet-plans': 'Diet Plans',
     foodLibSortLabel: 'Sort',
     foodLibSortCalories: 'Lowest calories',
     foodLibSortHighProtein: 'Highest protein',
@@ -5099,17 +5101,17 @@ export const translations: Record<Language, TranslationKeys> = {
 
   },
   fr: {
-    'kitchen.eastern-european.name': 'Europe de l’Est',
+    'kitchen.eastern-european.name': 'Cuisine d’Europe de l’Est',
     'kitchen.eastern-european.description': 'Pologne, Russie, Tchéquie, Hongrie',
-    'kitchen.mexican.name': 'Mexique',
+    'kitchen.mexican.name': 'Cuisine mexicaine',
     'kitchen.mexican.description': 'Tacos, burritos, guacamole',
-    'kitchen.argentinian.name': 'Argentine',
+    'kitchen.argentinian.name': 'Cuisine argentine',
     'kitchen.argentinian.description': 'Asado, empanadas, chimichurri',
-    'kitchen.colombian.name': 'Colombie',
+    'kitchen.colombian.name': 'Cuisine colombienne',
     'kitchen.colombian.description': 'Arepas, bandeja paisa, ajiaco',
-    'kitchen.peruvian.name': 'Pérou',
+    'kitchen.peruvian.name': 'Cuisine péruvienne',
     'kitchen.peruvian.description': 'Ceviche, lomo saltado, causa',
-    'kitchen.chilean.name': 'Chili',
+    'kitchen.chilean.name': 'Cuisine chilienne',
     'kitchen.chilean.description': 'Empanadas, pastel de choclo, cazuela',
     // Advanced Care Wizard
     'wizard.eyebrow': '',
@@ -7309,6 +7311,7 @@ export const translations: Record<Language, TranslationKeys> = {
     foodLibAllCuisines: 'Toutes les cuisines',
     'region.north-america': 'Amérique du Nord',
     'region.south-america': 'Amérique du Sud',
+    'region.diet-plans': 'Programmes alimentaires',
     foodLibSortLabel: 'Trier',
     foodLibSortCalories: 'Moins de calories',
     foodLibSortHighProtein: 'Plus de protéines',
@@ -7615,17 +7618,17 @@ export const translations: Record<Language, TranslationKeys> = {
     pmEmail: 'E-mail'
   },
   es: {
-    'kitchen.eastern-european.name': 'Europa del Este',
+    'kitchen.eastern-european.name': 'Cocina de Europa del Este',
     'kitchen.eastern-european.description': 'Polonia, Rusia, Chequia, Hungría',
-    'kitchen.mexican.name': 'México',
+    'kitchen.mexican.name': 'Cocina mexicana',
     'kitchen.mexican.description': 'Tacos, burritos y guacamole',
-    'kitchen.argentinian.name': 'Argentina',
+    'kitchen.argentinian.name': 'Cocina argentina',
     'kitchen.argentinian.description': 'Asado, empanadas y chimichurri',
-    'kitchen.colombian.name': 'Colombia',
+    'kitchen.colombian.name': 'Cocina colombiana',
     'kitchen.colombian.description': 'Arepas, bandeja paisa y ajiaco',
-    'kitchen.peruvian.name': 'Perú',
+    'kitchen.peruvian.name': 'Cocina peruana',
     'kitchen.peruvian.description': 'Ceviche, lomo saltado y causa',
-    'kitchen.chilean.name': 'Chile',
+    'kitchen.chilean.name': 'Cocina chilena',
     'kitchen.chilean.description': 'Empanadas, pastel de choclo y cazuela',
     // Advanced Care Wizard
     'wizard.eyebrow': '',
@@ -9825,6 +9828,7 @@ export const translations: Record<Language, TranslationKeys> = {
     foodLibAllCuisines: 'Todas las cocinas',
     'region.north-america': 'América del Norte',
     'region.south-america': 'América del Sur',
+    'region.diet-plans': 'Planes de dieta',
     foodLibSortLabel: 'Ordenar',
     foodLibSortCalories: 'Menos calorías',
     foodLibSortHighProtein: 'Más proteína',
@@ -10131,17 +10135,17 @@ export const translations: Record<Language, TranslationKeys> = {
     pmEmail: 'Correo'
   },
   ar: {
-    'kitchen.eastern-european.name': 'أوروبا الشرقية',
+    'kitchen.eastern-european.name': 'المطبخ الأوروبي الشرقي',
     'kitchen.eastern-european.description': 'بولندا وروسيا والتشيك والمجر',
-    'kitchen.mexican.name': 'المكسيك',
+    'kitchen.mexican.name': 'المطبخ المكسيكي',
     'kitchen.mexican.description': 'تاكو وبوريتو وغواكامولي',
-    'kitchen.argentinian.name': 'الأرجنتين',
+    'kitchen.argentinian.name': 'المطبخ الأرجنتيني',
     'kitchen.argentinian.description': 'أسادو وإمبانادا وتشيميتشوري',
-    'kitchen.colombian.name': 'كولومبيا',
+    'kitchen.colombian.name': 'المطبخ الكولومبي',
     'kitchen.colombian.description': 'أريبا وبانديخا بايسا وأخياكو',
-    'kitchen.peruvian.name': 'بيرو',
+    'kitchen.peruvian.name': 'المطبخ البيروفي',
     'kitchen.peruvian.description': 'سيفيتشي، لومو سالتادو، كاوسا',
-    'kitchen.chilean.name': 'تشيلي',
+    'kitchen.chilean.name': 'المطبخ التشيلي',
     'kitchen.chilean.description': 'إمبانادا، باستيل دي تشوكلو، كازويلا',
     // Advanced Care Wizard
     'wizard.eyebrow': '',
@@ -12341,6 +12345,7 @@ export const translations: Record<Language, TranslationKeys> = {
     foodLibAllCuisines: 'كل المطابخ',
     'region.north-america': 'أمريكا الشمالية',
     'region.south-america': 'أمريكا الجنوبية',
+    'region.diet-plans': 'برامج غذائية',
     foodLibSortLabel: 'ترتيب',
     foodLibSortCalories: 'الأقل سعرات',
     foodLibSortHighProtein: 'الأعلى بروتين',
@@ -12658,17 +12663,17 @@ export const translations: Record<Language, TranslationKeys> = {
   },
 
   de: {
-    'kitchen.eastern-european.name': 'Osteuropa',
+    'kitchen.eastern-european.name': 'Osteuropäische Küche',
     'kitchen.eastern-european.description': 'Polen, Russland, Tschechien, Ungarn',
-    'kitchen.mexican.name': 'Mexiko',
+    'kitchen.mexican.name': 'Mexikanische Küche',
     'kitchen.mexican.description': 'Tacos, Burritos und Guacamole',
-    'kitchen.argentinian.name': 'Argentinien',
+    'kitchen.argentinian.name': 'Argentinische Küche',
     'kitchen.argentinian.description': 'Asado, Empanadas und Chimichurri',
-    'kitchen.colombian.name': 'Kolumbien',
+    'kitchen.colombian.name': 'Kolumbianische Küche',
     'kitchen.colombian.description': 'Arepas, Bandeja Paisa und Ajiaco',
-    'kitchen.peruvian.name': 'Peru',
+    'kitchen.peruvian.name': 'Peruanische Küche',
     'kitchen.peruvian.description': 'Ceviche, Lomo Saltado und Causa',
-    'kitchen.chilean.name': 'Chile',
+    'kitchen.chilean.name': 'Chilenische Küche',
     'kitchen.chilean.description': 'Empanadas, Pastel de Choclo und Cazuela',
     // Advanced Care Wizard
     'wizard.eyebrow': '',
@@ -14868,6 +14873,7 @@ export const translations: Record<Language, TranslationKeys> = {
     foodLibAllCuisines: 'Alle Küchen',
     'region.north-america': 'Nordamerika',
     'region.south-america': 'Südamerika',
+    'region.diet-plans': 'Ernährungsprogramme',
     foodLibSortLabel: 'Sortieren',
     foodLibSortCalories: 'Wenigste Kalorien',
     foodLibSortHighProtein: 'Meiste Proteine',

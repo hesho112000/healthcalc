@@ -826,6 +826,7 @@ export const CUISINE_META: Record<string, { label: string; color: string; flag: 
   }, {} as Record<string, { label: string; color: string; flag: string; label_ar: string; label_en: string }>);
 
 export { CUISINE_GROUPS, CUISINE_FLAGS, REGIONAL_FOODS } from './cuisineCatalog';
+export type { CuisineGroup, CuisineGroupItem } from './cuisineCatalog';
 
 export const getFoodsByCuisine = (cuisine: Cuisine, _targetCalories?: number): FoodItem[] =>
   FOODS_DATABASE.filter((f) => f.cuisine.includes(cuisine) || f.cuisine.includes('all'));
