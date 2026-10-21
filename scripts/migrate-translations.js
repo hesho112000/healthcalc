@@ -21,125 +21,149 @@ require.extensions['.ts'] = (module, filename) => {
 };
 
 function walk(dir) {
-  const out = [];
+  const files = [];
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) out.push(...walk(full));
-    else if (entry.name.endsWith('-full.ts')) out.push(full);
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) files.push(...walk(fullPath));
+    else if (entry.name.endsWith('-full.ts')) files.push(fullPath);
   }
-  return out;
-}
-
-function pick(record, camel, snake) {
-  if (record == null) return undefined;
-  if (record[camel] != null) return record[camel];
-  if (record[snake] != null) return record[snake];
-  return undefined;
+  return files;
 }
 
 function collectRecords(filePath) {
-  const mod = require(filePath);
+  const exports = require(filePath);
   const records = [];
   const visit = (value) => {
     if (Array.isArray(value)) {
-      for (const item of value) {
-        if (item && typeof item === 'object' && !Array.isArray(item) && item.id != null) {
-          records.push(item);
-        } else {
-          visit(item);
-        }
-      }
+      for (const item of value) visit(item);
     } else if (value && typeof value === 'object') {
-      for (const v of Object.values(value)) visit(v);
+      if (value.id != null) records.push(value);
+      else for (const item of Object.values(value)) visit(item);
     }
   };
-  visit(mod);
+  visit(exports);
   return records;
 }
 
-const isExercises = (filePath) => filePath.includes(`${path.sep}exercises${path.sep}`);
+function getField(record, camelCase, snakeCase) {
+  return record[camelCase] ?? record[snakeCase];
+}
 
-const files = walk(path.join(ROOT, 'src', 'data'));
 const entries = [];
-for (const filePath of files) {
+const sourceKeys = new Set();
+for (const filePath of walk(path.join(ROOT, 'src', 'data'))) {
+  const isExerciseFile = filePath.split(path.sep).includes('exercises');
   const basename = path.basename(filePath);
-  const table = isExercises(filePath) ? 'exercises' : 'dishes';
   for (const record of collectRecords(filePath)) {
     const id = record.id;
-    const nameFr = pick(record, 'nameFr', 'name_fr');
-    const nameEs = pick(record, 'nameEs', 'name_es');
-    const nameDe = pick(record, 'nameDe', 'name_de');
-    entries.push({ filePath, basename, table, id, nameFr, nameEs, nameDe, sourceKey: `${basename}:${id}` });
+    const hasId = typeof id === 'string' && id.trim().length > 0;
+    const sourceKey = hasId ? `${basename}:${id}` : null;
+    if (!isExerciseFile && sourceKey && sourceKeys.has(sourceKey)) {
+      throw new Error(`Duplicate local dish source key: ${sourceKey}`);
+    }
+    if (!isExerciseFile && sourceKey) sourceKeys.add(sourceKey);
+    entries.push({
+      id,
+      sourceKey,
+      table: isExerciseFile ? 'exercises' : 'dishes',
+      name_fr: getField(record, 'nameFr', 'name_fr'),
+      name_es: getField(record, 'nameEs', 'name_es'),
+      name_de: getField(record, 'nameDe', 'name_de'),
+    });
   }
 }
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } });
 
-// Precompute existing targets for an accurate dry-run count.
-const existingExerciseIds = new Set();
+// Map each local source key to exactly one database UUID. The local dish id is
+// embedded in `source`; the dishes table's actual `id` is a UUID.
+const dishUuidBySource = new Map();
 {
   let from = 0;
   for (;;) {
-    const { data, error } = await supabase.from('exercises').select('id').range(from, from + 999);
+    const { data, error } = await supabase
+      .from('dishes')
+      .select('id,source')
+      .order('id', { ascending: true })
+      .range(from, from + 999);
+    if (error) throw new Error(`Dish UUID lookup failed: ${error.message}`);
+    for (const row of data ?? []) {
+      if (!sourceKeys.has(row.source)) continue;
+      if (dishUuidBySource.has(row.source)) {
+        throw new Error(`Ambiguous dish source key maps to multiple UUIDs: ${row.source}`);
+      }
+      dishUuidBySource.set(row.source, row.id);
+    }
+    if ((data ?? []).length < 1000) break;
+    from += data.length;
+  }
+}
+
+const exerciseIds = new Set();
+{
+  let from = 0;
+  for (;;) {
+    const { data, error } = await supabase
+      .from('exercises')
+      .select('id')
+      .order('id', { ascending: true })
+      .range(from, from + 999);
     if (error) throw new Error(`Exercise lookup failed: ${error.message}`);
-    for (const row of data ?? []) existingExerciseIds.add(row.id);
-    if ((data ?? []).length < 1000) break;
-    from += data.length;
-  }
-}
-const existingDishSources = new Set();
-{
-  let from = 0;
-  for (;;) {
-    const { data, error } = await supabase.from('dishes').select('source').range(from, from + 999);
-    if (error) throw new Error(`Dish lookup failed: ${error.message}`);
-    for (const row of data ?? []) existingDishSources.add(row.source);
+    for (const row of data ?? []) exerciseIds.add(row.id);
     if ((data ?? []).length < 1000) break;
     from += data.length;
   }
 }
 
-function isMatch(entry) {
-  if (entry.table === 'exercises') return existingExerciseIds.has(entry.id);
-  return existingDishSources.has(entry.sourceKey);
+const matched = [];
+let skipped = 0;
+for (const entry of entries) {
+  const hasId = typeof entry.id === 'string' && entry.id.trim().length > 0;
+  const uuid = entry.table === 'dishes' && entry.sourceKey
+    ? dishUuidBySource.get(entry.sourceKey)
+    : entry.table === 'exercises' && hasId
+      ? entry.id
+      : null;
+  const exists = entry.table === 'dishes' ? uuid != null : hasId && exerciseIds.has(entry.id);
+  if (!exists) {
+    skipped++;
+    continue;
+  }
+  for (const field of ['name_fr', 'name_es', 'name_de']) {
+    if (typeof entry[field] !== 'string' || !entry[field].trim()) {
+      throw new Error(`Matched ${entry.table} record ${entry.sourceKey} is missing ${field}`);
+    }
+  }
+  matched.push({ ...entry, uuid });
 }
 
-const total = entries.length;
-const matches = entries.filter(isMatch).length;
-const confirm = process.argv.includes('--confirm');
+const dishMatches = matched.filter((entry) => entry.table === 'dishes').length;
+const exerciseMatches = matched.length - dishMatches;
+console.log(`Found ${entries.length} local records; matched ${matched.length} (${dishMatches} dishes, ${exerciseMatches} exercises); skipped ${skipped}.`);
 
-console.log(`Found ${total} records. Would update ${matches}.`);
-
-if (!confirm) {
+if (!process.argv.includes('--confirm')) {
   console.log('Dry run only. Re-run with --confirm to apply updates.');
   process.exit(0);
 }
 
-let updated = 0;
-let skipped = 0;
-let failed = 0;
 const batchSize = 100;
-for (let i = 0; i < entries.length; i += batchSize) {
-  const batch = entries.slice(i, i + batchSize);
-  console.log(`Batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(entries.length / batchSize)}: processing ${batch.length} records`);
+let updated = 0;
+let failed = 0;
+for (let offset = 0; offset < matched.length; offset += batchSize) {
+  const batch = matched.slice(offset, offset + batchSize);
+  console.log(`Updating batch ${Math.floor(offset / batchSize) + 1}/${Math.ceil(matched.length / batchSize)} (${batch.length} records)`);
   for (const entry of batch) {
-    if (!isMatch(entry)) { skipped++; continue; }
-    try {
-      const payload = { name_fr: entry.nameFr, name_es: entry.nameEs, name_de: entry.nameDe };
-      let error;
-      if (entry.table === 'exercises') {
-        ({ error } = await supabase.from('exercises').update(payload).eq('id', entry.id));
-      } else {
-        ({ error } = await supabase.from('dishes').update(payload).eq('source', entry.sourceKey));
-      }
-      if (error) throw error;
-      updated++;
-    } catch (err) {
+    const payload = { name_fr: entry.name_fr, name_es: entry.name_es, name_de: entry.name_de };
+    const table = entry.table;
+    const { error } = await supabase.from(table).update(payload).eq('id', entry.uuid);
+    if (error) {
       failed++;
-      console.error(`Failed ${entry.table} ${entry.sourceKey}: ${err.message}`);
+      console.error(`Failed ${table} UUID ${entry.uuid}: ${error.message}`);
+    } else {
+      updated++;
     }
   }
 }
 
-console.log(`Migration complete: ${updated} updated, ${skipped} skipped, ${failed} failed.`);
+console.log(`Migration complete: ${updated} updated, ${failed} failed.`);
 if (failed) process.exitCode = 1;
