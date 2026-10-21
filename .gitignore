@@ -9,3 +9,10 @@ __pycache__/
 *.pyc 
 scripts/validation-report.json 
 scripts/cleanup-halal-violations.backup.json 
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+/.last-run.json
