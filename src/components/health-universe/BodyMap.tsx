@@ -66,6 +66,7 @@ export {
 } from '../../utils/healthScoring';
 
 const BODY_MAP_SRC = `${import.meta.env.BASE_URL}assets/body-map.png`;
+const BODY_MAP_WEBP = `${import.meta.env.BASE_URL}assets/body-map.webp`;
 
 interface BodyMapProps {
   selectedConditions?: readonly ConditionId[];
@@ -84,12 +85,17 @@ const BodyMap: React.FC<BodyMapProps> = ({ selectedConditions = [], interactive 
         .hu-active { animation: hu-pulse 1.6s ease-in-out infinite; }
         .hu-selected { animation: hu-pulse 2s ease-in-out infinite; }
       `}</style>
-      <img
-        src={BODY_MAP_SRC}
-        alt={t('universe.title')}
-        className="w-full h-auto select-none mix-blend-multiply"
-        draggable={false}
-      />
+      <picture>
+        <source srcSet={BODY_MAP_WEBP} type="image/webp" />
+        <img
+          src={BODY_MAP_SRC}
+          alt={t('universe.title')}
+          className="w-full h-auto select-none mix-blend-multiply"
+          loading="lazy"
+          decoding="async"
+          draggable={false}
+        />
+      </picture>
 
       <div className={interactive ? '' : 'pointer-events-none'}>
         {BODY_DOTS.map((dot) => {

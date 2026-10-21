@@ -14,6 +14,8 @@
     "validate:baseline": "node scripts/check-validation-baseline.mjs",
     "validate:baseline:update": "node scripts/check-validation-baseline.mjs --update",
     "validate:nutrition": "node nutrition-validator.js",
+    "generate:sitemap": "node scripts/generate-sitemap.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs",
     "test:kitchens": "esbuild scripts/test-multi-kitchen-generator.ts --bundle --platform=node --format=esm --target=node22 --external:@supabase/supabase-js --external:dotenv --log-level=warning --outfile=node_modules/.cache/kitchens-e2e.mjs && node node_modules/.cache/kitchens-e2e.mjs",
     "prepare": "husky"
   },
