@@ -11,7 +11,7 @@ interface SEOProps {
   locale?: string;
 }
 
-const BASE_URL = (import.meta.env.VITE_SITE_URL || 'https://hesho112000.github.io/healthcalc').replace(/\/+$/, '');
+const BASE_URL = (import.meta.env.VITE_SITE_URL || 'https://healthfingerprint.com').replace(/\/+$/, '');
 const DEFAULT_IMAGE = `${BASE_URL}/assets/og-image.png`;
 
 const LANGUAGES: Array<{ lang: string; label: string }> = [

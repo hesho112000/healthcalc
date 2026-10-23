@@ -2,7 +2,7 @@ import { writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
-const SITE_BASE = (process.env.VITE_SITE_URL || 'https://hesho112000.github.io/healthcalc').replace(/\/+$/, '');
+const SITE_BASE = (process.env.VITE_SITE_URL || 'https://healthfingerprint.com').replace(/\/+$/, '');
 const LANGUAGES = ['en', 'ar', 'fr', 'es', 'de'];
 const TODAY = new Date().toISOString().slice(0, 10);
 

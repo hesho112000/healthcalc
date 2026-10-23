@@ -58,8 +58,8 @@ const ArticlePage: React.FC = () => {
     description,
     datePublished: article.publishedAt,
     author: { '@type': 'Organization', name: 'HealthCalc' },
-    publisher: { '@type': 'Organization', name: 'HealthCalc', url: 'https://hesho112000.github.io/healthcalc/' },
-    mainEntityOfPage: `https://hesho112000.github.io/healthcalc/resources/article/${article.slug}`,
+    publisher: { '@type': 'Organization', name: 'HealthCalc', url: 'https://healthfingerprint.com/' },
+    mainEntityOfPage: `https://healthfingerprint.com/resources/article/${article.slug}`,
   };
 
   return (
