@@ -11,7 +11,7 @@ export default defineConfig({
   timeout: 120_000,
   expect: { timeout: 20_000 },
   use: {
-    baseURL: 'http://127.0.0.1:5173/healthcalc/',
+    baseURL: 'http://127.0.0.1:5173/',
     trace: 'on-first-retry',
     navigationTimeout: 60_000,
   },
@@ -23,7 +23,7 @@ export default defineConfig({
   ],
   webServer: {
     command: 'npm run dev:ui -- --port 5173 --strictPort',
-    url: 'http://127.0.0.1:5173/healthcalc/',
+    url: 'http://127.0.0.1:5173/',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },

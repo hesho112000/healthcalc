@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <title>Redirecting...</title>
     <script>
-      // GitHub Pages 404 redirect trick
-      var pathSegmentsToKeep = 1; // /healthcalc/ is the base
+      // Keep paths rooted at the domain for static-hosting fallback.
+      var pathSegmentsToKeep = 0;
       var l = window.location;
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
