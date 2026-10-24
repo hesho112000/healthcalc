@@ -6,6 +6,75 @@ import { getPortionMeasure } from '../utils/cuisineCatalog';
 import type { Language } from '../types';
 
 const ARABIC_SCRIPT = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/;
+const PAGE_SIZE = 50;
+const LOAD_MORE_LABEL: Record<Language, string> = {
+  en: 'Load more',
+  fr: 'Charger plus',
+  es: 'Cargar más',
+  ar: 'تحميل المزيد',
+  de: 'Mehr laden',
+};
+const FOOD_KEYS = new WeakMap<FoodItem, number>();
+FOODS_DATABASE.forEach((food, index) => FOOD_KEYS.set(food, index));
+
+const MemoizedFoodRow: React.FC<{ food: FoodItem }> = React.memo(({ food }) => {
+  const { language, t } = useLanguage();
+  const englishName = [food.name_en, food.name]
+    .map((name) => typeof name === 'string' ? name.trim() : '')
+    .find((name) => name.length > 0 && !ARABIC_SCRIPT.test(name))
+    ?? t('foodLibUnknownName');
+  const name = language === 'ar'
+    ? (typeof food.name_ar === 'string' ? food.name_ar.trim() : '') || englishName
+    : englishName;
+  const gramsSuffix = ({ en: 'g', fr: 'g', es: 'g', ar: 'جم', de: 'g' } satisfies Record<Language, string>)[language];
+  const cuisineName = (meta: { label_ar: string; label_en: string }): string => language === 'ar' ? meta.label_ar : meta.label_en;
+
+  return (
+    <tr className="border-b last:border-0 hover:bg-green-50/50 transition group">
+      <td className="py-4 px-6">
+        <div className="flex items-center gap-1.5">
+          <span className="font-bold text-gray-900 group-hover:text-green-700 transition">{name}</span>
+          {food.verified && (
+            <span className="px-1.5 py-0.5 rounded bg-emerald-600 text-[8px] font-bold text-white" title={`USDA ${t('foodLibColCalories')}`}>{t('foodLibUsdaBadge')} ✓</span>
+          )}
+        </div>
+        {language === 'ar' && food.name_en !== name && (
+          <div className="text-xs text-gray-400">{food.name_en}</div>
+        )}
+      </td>
+      <td className="py-4 px-4">
+        <div className="flex flex-wrap gap-1">
+          {food.cuisine.slice(0, 2).map((c) => (
+            <span key={c} className="text-[11px] px-2 py-0.5 rounded-full bg-gray-100 border">
+              {CUISINE_META[c] && isCountryCode(CUISINE_META[c].flag)
+                ? <Flag countryCode={CUISINE_META[c].flag} alt={`${cuisineName(CUISINE_META[c])} flag`} className="h-3 w-4" />
+                : CUISINE_META[c]?.flag}
+              {' '}{CUISINE_META[c] ? cuisineName(CUISINE_META[c]) : c}
+            </span>
+          ))}
+        </div>
+      </td>
+      <td className="py-4 px-4 text-sm text-gray-600">
+        <div>{getPortionMeasure(food.portion, language)}</div>
+        <span className="inline-block mt-1 bg-gray-100 border text-gray-600 px-2 py-0.5 rounded-full text-[11px] font-bold whitespace-nowrap">
+          {food.portion.grams}{gramsSuffix} • {food.calories} kcal
+        </span>
+      </td>
+      <td className="py-4 px-3 text-center">
+        <span className={`px-3 py-1 rounded-full text-xs font-extrabold ${
+          food.calories < 100 ? 'bg-green-100 text-green-700' :
+          food.calories < 180 ? 'bg-yellow-100 text-yellow-700' :
+          'bg-red-100 text-red-700'
+        }`}>
+          {food.calories}
+        </span>
+      </td>
+      <td className="py-4 px-3 text-center text-sm font-bold text-gray-700">{food.protein}{gramsSuffix}</td>
+      <td className="py-4 px-3 text-center text-sm text-gray-500">{food.carbs}{gramsSuffix}</td>
+      <td className="py-4 px-3 text-center text-sm text-gray-500">{food.fat}{gramsSuffix}</td>
+    </tr>
+  );
+});
 
 const FoodLibraryPage: React.FC = () => {
   const { language, t, dir } = useLanguage();
@@ -21,29 +90,11 @@ const FoodLibraryPage: React.FC = () => {
     () => [...CUISINE_GROUPS].sort((a, b) => (a.region === 'Special Diets' ? 1 : 0) - (b.region === 'Special Diets' ? 1 : 0)),
     [],
   );
-  const englishFoodName = (food: FoodItem): string => {
-    const candidates = [food.name_en, food.name];
-    return candidates
-      .map((name) => typeof name === 'string' ? name.trim() : '')
-      .find((name) => name.length > 0 && !ARABIC_SCRIPT.test(name))
-      ?? t('foodLibUnknownName');
-  };
-  const dishName = (food: FoodItem): string => {
-    const english = englishFoodName(food);
-    const names: Record<Language, string> = {
-      en: english,
-      fr: english,
-      es: english,
-      ar: (typeof food.name_ar === 'string' ? food.name_ar.trim() : '') || english,
-      de: english,
-    };
-    return names[language];
-  };
-  const gramsSuffix = ({ en: 'g', fr: 'g', es: 'g', ar: 'جم', de: 'g' } satisfies Record<Language, string>)[language];
   const [search, setSearch] = useState('');
   const [selectedCuisine, setSelectedCuisine] = useState<Cuisine | 'all'>('all');
   const [calorieFilter, setCalorieFilter] = useState<[number, number]>([0, 500]);
   const [sortBy, setSortBy] = useState<'calories' | 'protein' | 'name'>('calories');
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const filteredFoods = useMemo(() => {
     let foods = [...FOODS_DATABASE];
@@ -64,11 +115,16 @@ const FoodLibraryPage: React.FC = () => {
     foods.sort((a, b) => {
       if (sortBy === 'calories') return a.calories - b.calories;
       if (sortBy === 'protein') return b.protein - a.protein;
-      return dishName(a).localeCompare(dishName(b), language);
+      const nameA = language === 'ar' ? a.name_ar || a.name_en : a.name_en || a.name;
+      const nameB = language === 'ar' ? b.name_ar || b.name_en : b.name_en || b.name;
+      const displayNameA = nameA.trim() && !ARABIC_SCRIPT.test(nameA) ? nameA : a.name.trim() && !ARABIC_SCRIPT.test(a.name) ? a.name : t('foodLibUnknownName');
+      const displayNameB = nameB.trim() && !ARABIC_SCRIPT.test(nameB) ? nameB : b.name.trim() && !ARABIC_SCRIPT.test(b.name) ? b.name : t('foodLibUnknownName');
+      return displayNameA.localeCompare(displayNameB, language);
     });
 
     return foods;
-  }, [search, selectedCuisine, calorieFilter, sortBy, language]);
+  }, [search, selectedCuisine, calorieFilter, sortBy, language, t]);
+  const visibleFoods = useMemo(() => filteredFoods.slice(0, visibleCount), [filteredFoods, visibleCount]);
 
   const calorieOptions: { label: string; range: [number, number] }[] = [
     { label: t('foodLibCalLow'), range: [0, 150] },
@@ -100,7 +156,7 @@ const FoodLibraryPage: React.FC = () => {
                 type="text"
                 placeholder={t('foodLibSearchPlaceholder')}
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => { setSearch(e.target.value); setVisibleCount(PAGE_SIZE); }}
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-100 outline-none transition"
               />
             </div>
@@ -109,7 +165,7 @@ const FoodLibraryPage: React.FC = () => {
               <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ {t('foodLibCuisineLabel')}</label>
               <select
                 value={selectedCuisine}
-                onChange={(e) => setSelectedCuisine(e.target.value as any)}
+                onChange={(e) => { setSelectedCuisine(e.target.value as any); setVisibleCount(PAGE_SIZE); }}
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 outline-none bg-white"
               >
                 <option value="all">🌍 {t('foodLibAllCuisines')} ({FOODS_DATABASE.length})</option>
@@ -129,7 +185,7 @@ const FoodLibraryPage: React.FC = () => {
               <label className="text-xs font-bold text-gray-500 mb-2 block">📊 {t('foodLibSortLabel')}</label>
               <select
                 value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as any)}
+                onChange={(e) => { setSortBy(e.target.value as any); setVisibleCount(PAGE_SIZE); }}
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 outline-none bg-white"
               >
                 <option value="calories">🔥 {t('foodLibSortCalories')}</option>
@@ -146,7 +202,7 @@ const FoodLibraryPage: React.FC = () => {
               {calorieOptions.map((opt) => (
                 <button
                   key={opt.range.join('-')}
-                  onClick={() => setCalorieFilter(opt.range)}
+                  onClick={() => { setCalorieFilter(opt.range); setVisibleCount(PAGE_SIZE); }}
                   className={`px-3 py-1.5 rounded-full text-xs font-bold border transition ${
                     calorieFilter[0] === opt.range[0] && calorieFilter[1] === opt.range[1]
                       ? 'bg-green-500 text-white border-green-500'
@@ -167,7 +223,7 @@ const FoodLibraryPage: React.FC = () => {
         <div className="space-y-4 mb-6">
           <div className="flex flex-wrap gap-2">
             <button
-              onClick={() => setSelectedCuisine('all')}
+              onClick={() => { setSelectedCuisine('all'); setVisibleCount(PAGE_SIZE); }}
               className={`px-4 py-2 rounded-full text-sm font-bold border-2 transition ${
                 selectedCuisine === 'all' ? 'bg-gray-900 text-white border-gray-900' : 'bg-white border-gray-200 hover:border-gray-300'
               }`}
@@ -188,7 +244,7 @@ const FoodLibraryPage: React.FC = () => {
                   return (
                     <button
                       key={key}
-                      onClick={() => setSelectedCuisine(key as Cuisine)}
+                      onClick={() => { setSelectedCuisine(key as Cuisine); setVisibleCount(PAGE_SIZE); }}
                       className={`px-4 py-2 rounded-full text-sm font-bold border-2 transition flex items-center gap-1.5 ${
                         selectedCuisine === key ? 'bg-green-500 text-white border-green-500' : `bg-white hover:bg-gray-50 ${meta?.color ?? ''}`
                       }`}
@@ -221,50 +277,8 @@ const FoodLibraryPage: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredFoods.map((food, idx) => (
-                  <tr key={idx} className="border-b last:border-0 hover:bg-green-50/50 transition group">
-                    <td className="py-4 px-6">
-                      <div className="flex items-center gap-1.5">
-                        <span className="font-bold text-gray-900 group-hover:text-green-700 transition">{dishName(food)}</span>
-                        {food.verified && (
-                          <span className="px-1.5 py-0.5 rounded bg-emerald-600 text-[8px] font-bold text-white" title={`USDA ${t('foodLibColCalories')}`}>{t('foodLibUsdaBadge')} ✓</span>
-                        )}
-                      </div>
-                      {language === 'ar' && food.name_en !== dishName(food) && (
-                        <div className="text-xs text-gray-400">{food.name_en}</div>
-                      )}
-                    </td>
-                    <td className="py-4 px-4">
-                      <div className="flex flex-wrap gap-1">
-                        {food.cuisine.slice(0, 2).map((c) => (
-                          <span key={c} className="text-[11px] px-2 py-0.5 rounded-full bg-gray-100 border">
-                            {CUISINE_META[c] && isCountryCode(CUISINE_META[c].flag)
-                              ? <Flag countryCode={CUISINE_META[c].flag} alt={`${cuisineName(CUISINE_META[c])} flag`} className="h-3 w-4" />
-                              : CUISINE_META[c]?.flag}
-                            {' '}{CUISINE_META[c] ? cuisineName(CUISINE_META[c]) : c}
-                          </span>
-                        ))}
-                      </div>
-                    </td>
-                    <td className="py-4 px-4 text-sm text-gray-600">
-                      <div>{getPortionMeasure(food.portion, language)}</div>
-                      <span className="inline-block mt-1 bg-gray-100 border text-gray-600 px-2 py-0.5 rounded-full text-[11px] font-bold whitespace-nowrap">
-                        {food.portion.grams}{gramsSuffix} • {food.calories} kcal
-                      </span>
-                    </td>
-                    <td className="py-4 px-3 text-center">
-                      <span className={`px-3 py-1 rounded-full text-xs font-extrabold ${
-                        food.calories < 100 ? 'bg-green-100 text-green-700' :
-                        food.calories < 180 ? 'bg-yellow-100 text-yellow-700' :
-                        'bg-red-100 text-red-700'
-                      }`}>
-                        {food.calories}
-                      </span>
-                    </td>
-                    <td className="py-4 px-3 text-center text-sm font-bold text-gray-700">{food.protein}{gramsSuffix}</td>
-                    <td className="py-4 px-3 text-center text-sm text-gray-500">{food.carbs}{gramsSuffix}</td>
-                    <td className="py-4 px-3 text-center text-sm text-gray-500">{food.fat}{gramsSuffix}</td>
-                  </tr>
+                {visibleFoods.map((food) => (
+                  <MemoizedFoodRow key={FOOD_KEYS.get(food)} food={food} />
                 ))}
               </tbody>
             </table>
@@ -274,8 +288,19 @@ const FoodLibraryPage: React.FC = () => {
             <div className="py-16 text-center">
               <div className="text-5xl mb-4">🔍</div>
               <p className="text-gray-500 font-medium">{t('foodLibNoResults')}</p>
-              <button onClick={() => { setSearch(''); setSelectedCuisine('all'); setCalorieFilter([0, 500]); }} className="mt-3 text-green-600 font-bold text-sm">
+              <button onClick={() => { setSearch(''); setSelectedCuisine('all'); setCalorieFilter([0, 500]); setVisibleCount(PAGE_SIZE); }} className="mt-3 text-green-600 font-bold text-sm">
                 {t('foodLibClearFilters')}
+              </button>
+            </div>
+          )}
+          {visibleCount < filteredFoods.length && (
+            <div className="border-t p-4 text-center">
+              <button
+                type="button"
+                onClick={() => setVisibleCount((count) => Math.min(count + PAGE_SIZE, filteredFoods.length))}
+                className="px-6 py-2.5 rounded-xl bg-green-600 text-white font-bold hover:bg-green-700 transition"
+              >
+                {LOAD_MORE_LABEL[language]} ({Math.min(PAGE_SIZE, filteredFoods.length - visibleCount)})
               </button>
             </div>
           )}
