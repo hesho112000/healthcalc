@@ -12,7 +12,7 @@ import { AppRoutes } from './routes';
 
 const AppShell: React.FC = () => {
   const { pathname } = useLocation();
-  const isPreview = pathname === '/ui-preview';
+  const isPreview = pathname === '/ui-preview' || pathname === '/hero-preview';
 
   return (
     <div className="min-h-screen flex flex-col">
