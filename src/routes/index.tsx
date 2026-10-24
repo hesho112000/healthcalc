@@ -1,10 +1,9 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy } from 'react';
 import { Routes, Route, Navigate, Link, useParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
 import ProtectedRoute from '../components/ProtectedRoute';
 import AdminProtectedRoute from '../components/AdminProtectedRoute';
-import LoadingFallback from '../components/LoadingFallback';
 import { ENABLE_PREMIUM } from '../config/featureFlags';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
@@ -72,7 +71,6 @@ const StaticStepPage: React.FC<{ step: number }> = ({ step }) => (
 );
 
 export const AppRoutes: React.FC = () => (
-  <Suspense fallback={<LoadingFallback />}>
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/weight-loss" element={<WeightLossPage />} />
@@ -147,5 +145,4 @@ export const AppRoutes: React.FC = () => (
 
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
-  </Suspense>
 );
