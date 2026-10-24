@@ -3,16 +3,43 @@ import { FOODS_DATABASE, CUISINE_META, CUISINE_GROUPS, Cuisine, FoodItem } from 
 import Flag, { isCountryCode } from '../components/common/Flag';
 import { useLanguage } from '../context/LanguageContext';
 import { getPortionMeasure } from '../utils/cuisineCatalog';
+import type { Language } from '../types';
+
+const ARABIC_SCRIPT = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/;
 
 const FoodLibraryPage: React.FC = () => {
   const { language, t, dir } = useLanguage();
-  const cuisineName = (meta: { label_ar: string; label_en: string }): string => (language === 'ar' ? meta.label_ar : meta.label_en);
+  const englishArabicLabel = (english: string, arabic: string): string => ({
+    en: english,
+    fr: english,
+    es: english,
+    ar: arabic,
+    de: english,
+  } satisfies Record<Language, string>)[language];
+  const cuisineName = (meta: { label_ar: string; label_en: string }): string => englishArabicLabel(meta.label_en, meta.label_ar);
   const orderedCuisineGroups = useMemo(
     () => [...CUISINE_GROUPS].sort((a, b) => (a.region === 'Special Diets' ? 1 : 0) - (b.region === 'Special Diets' ? 1 : 0)),
     [],
   );
-  const dishName = (f: FoodItem): string => (language === 'ar' ? f.name_ar || f.name_en : f.name_en || f.name);
-  const gramsSuffix = language === 'ar' ? 'جم' : 'g';
+  const englishFoodName = (food: FoodItem): string => {
+    const candidates = [food.name_en, food.name];
+    return candidates
+      .map((name) => typeof name === 'string' ? name.trim() : '')
+      .find((name) => name.length > 0 && !ARABIC_SCRIPT.test(name))
+      ?? t('foodLibUnknownName');
+  };
+  const dishName = (food: FoodItem): string => {
+    const english = englishFoodName(food);
+    const names: Record<Language, string> = {
+      en: english,
+      fr: english,
+      es: english,
+      ar: (typeof food.name_ar === 'string' ? food.name_ar.trim() : '') || english,
+      de: english,
+    };
+    return names[language];
+  };
+  const gramsSuffix = ({ en: 'g', fr: 'g', es: 'g', ar: 'جم', de: 'g' } satisfies Record<Language, string>)[language];
   const [search, setSearch] = useState('');
   const [selectedCuisine, setSelectedCuisine] = useState<Cuisine | 'all'>('all');
   const [calorieFilter, setCalorieFilter] = useState<[number, number]>([0, 500]);
@@ -20,13 +47,12 @@ const FoodLibraryPage: React.FC = () => {
 
   const filteredFoods = useMemo(() => {
     let foods = [...FOODS_DATABASE];
+    const searchTerm = search.trim().toLocaleLowerCase(language);
 
-    if (search) {
-      foods = foods.filter(f => 
-        f.name.toLowerCase().includes(search.toLowerCase()) ||
-        (f.name_ar || '').toLowerCase().includes(search.toLowerCase()) ||
-        f.name_en.toLowerCase().includes(search.toLowerCase())
-      );
+    if (searchTerm) {
+      foods = foods.filter((food) => [food.name, food.name_ar, food.name_en].some(
+        (name) => typeof name === 'string' && name.toLocaleLowerCase(language).includes(searchTerm),
+      ));
     }
 
     if (selectedCuisine !== 'all') {
@@ -38,11 +64,11 @@ const FoodLibraryPage: React.FC = () => {
     foods.sort((a, b) => {
       if (sortBy === 'calories') return a.calories - b.calories;
       if (sortBy === 'protein') return b.protein - a.protein;
-      return dishName(a).localeCompare(dishName(b), language === 'ar' ? 'ar' : undefined);
+      return dishName(a).localeCompare(dishName(b), language);
     });
 
     return foods;
-  }, [search, selectedCuisine, calorieFilter, sortBy]);
+  }, [search, selectedCuisine, calorieFilter, sortBy, language]);
 
   const calorieOptions: { label: string; range: [number, number] }[] = [
     { label: t('foodLibCalLow'), range: [0, 150] },
@@ -88,10 +114,10 @@ const FoodLibraryPage: React.FC = () => {
               >
                 <option value="all">🌍 {t('foodLibAllCuisines')} ({FOODS_DATABASE.length})</option>
                 {orderedCuisineGroups.map((group) => (
-                  <optgroup key={group.region} label={language === 'ar' ? group.regionAr : group.region}>
+                  <optgroup key={group.region} label={englishArabicLabel(group.region, group.regionAr)}>
                     {group.items.map((item) => (
                       <option key={item.id} value={item.id}>
-                        {language === 'ar' ? item.nameAr : item.nameEn}
+                        {englishArabicLabel(item.nameEn, item.nameAr)}
                       </option>
                     ))}
                   </optgroup>
@@ -152,13 +178,13 @@ const FoodLibraryPage: React.FC = () => {
           {orderedCuisineGroups.map((group) => (
             <div key={group.region}>
               <p className={`mb-2 text-xs font-bold uppercase tracking-wide ${group.region === 'Special Diets' ? 'text-green-600' : 'text-gray-400'}`}>
-                {language === 'ar' ? group.regionAr : group.region}
+                {englishArabicLabel(group.region, group.regionAr)}
               </p>
               <div className="flex flex-wrap gap-2">
                 {group.items.map((item) => {
                   const meta = CUISINE_META[item.id];
                   const key = item.id;
-                  const name = language === 'ar' ? item.nameAr : item.nameEn;
+                  const name = englishArabicLabel(item.nameEn, item.nameAr);
                   return (
                     <button
                       key={key}

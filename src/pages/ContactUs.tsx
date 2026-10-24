@@ -96,7 +96,7 @@ const ContactUs: React.FC = () => {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="input-field"
-                      placeholder="John Doe"
+                      placeholder={t('contactNamePlaceholder')}
                     />
                   </div>
                   <div>
@@ -107,7 +107,7 @@ const ContactUs: React.FC = () => {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="input-field"
-                      placeholder="john@example.com"
+                      placeholder={t('contactEmailPlaceholder')}
                     />
                   </div>
                   <div>

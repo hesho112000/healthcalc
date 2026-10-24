@@ -82,7 +82,9 @@ type TranslationKeys = {
   disclaimer: string;
   // Contact
   contactName: string;
+  contactNamePlaceholder: string;
   contactEmail: string;
+  contactEmailPlaceholder: string;
   contactMessage: string;
   contactSupportBadge: string;
   contactRespondSubtitle: string;
@@ -356,7 +358,12 @@ type TranslationKeys = {
   'fitnessPage.profile.height': string;
   'fitnessPage.profile.weight': string;
   'fitnessPage.profile.activity': string;
+  'fitnessPage.profile.goalPlaceholder': string;
+  'fitnessPage.profile.resetSaved': string;
   'fitnessPage.cta.calculate': string;
+  'fitnessPage.error.age': string;
+  'fitnessPage.error.height': string;
+  'fitnessPage.error.weight': string;
   'fitnessPage.results.title': string;
   'fitnessPage.results.subtitle': string;
   'fitnessPage.results.macrosEyebrow': string;
@@ -379,6 +386,32 @@ type TranslationKeys = {
   'wizard.steps.kitchen': string;
   'wizard.steps.goals': string;
   'wizard.steps.blueprint': string;
+  'weightLoss.stepLabel.welcome': string;
+  'weightLoss.stepLabel.basics': string;
+  'weightLoss.stepLabel.measurements': string;
+  'weightLoss.stepLabel.lifestyle': string;
+  'weightLoss.stepLabel.eating': string;
+  'weightLoss.stepLabel.goalDiscovery': string;
+  'weightLoss.stepLabel.goalSelection': string;
+  'weightLoss.stepLabel.bodyConcerns': string;
+  'weightLoss.stepLabel.exercise': string;
+  'weightLoss.stepLabel.kitchen': string;
+  'weightLoss.stepLabel.recommendations': string;
+  'weightLoss.stepLabel.preview': string;
+  'weightLoss.stepLabel.complete': string;
+  'weightLoss.stepTitle.welcome': string;
+  'weightLoss.stepTitle.basics': string;
+  'weightLoss.stepTitle.measurements': string;
+  'weightLoss.stepTitle.lifestyle': string;
+  'weightLoss.stepTitle.eating': string;
+  'weightLoss.stepTitle.goalDiscovery': string;
+  'weightLoss.stepTitle.goalSelection': string;
+  'weightLoss.stepTitle.bodyConcerns': string;
+  'weightLoss.stepTitle.exercise': string;
+  'weightLoss.stepTitle.kitchen': string;
+  'weightLoss.stepTitle.recommendations': string;
+  'weightLoss.stepTitle.preview': string;
+  'weightLoss.stepTitle.complete': string;
   'wizard.unit.years': string;
   'wizard.unit.cm': string;
   'wizard.unit.kg': string;
@@ -1258,6 +1291,7 @@ type TranslationKeys = {
   foodLibUsdaBadge: string;
   foodLibNoResults: string;
   foodLibClearFilters: string;
+  foodLibUnknownName: string;
   foodLibSeoTitle: string;
   foodLibSeoBody: string;
   // Checkout / payment
@@ -3653,7 +3687,9 @@ export const translations: Record<Language, TranslationKeys> = {
     contactUs: 'Contact Us',
     disclaimer: 'HealthFingerprint.com provides information for educational purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult your physician before starting any diet or workout program.',
     contactName: 'Full Name',
+    contactNamePlaceholder: 'Jane Smith',
     contactEmail: 'Email Address',
+    contactEmailPlaceholder: 'you@example.com',
     contactMessage: 'Your Message',
     contactSupportBadge: 'Support',
     contactRespondSubtitle: 'We typically respond within 48 business hours',
@@ -4419,7 +4455,12 @@ export const translations: Record<Language, TranslationKeys> = {
     'fitnessPage.profile.height': 'Height',
     'fitnessPage.profile.weight': 'Weight',
     'fitnessPage.profile.activity': 'Activity Level',
+    'fitnessPage.profile.goalPlaceholder': 'Choose a goal',
+    'fitnessPage.profile.resetSaved': 'Reset saved data',
     'fitnessPage.cta.calculate': 'Calculate My Results 🔥',
+    'fitnessPage.error.age': 'Please enter a valid age (10–120).',
+    'fitnessPage.error.height': 'Please enter a valid height (100–250 cm).',
+    'fitnessPage.error.weight': 'Please enter a valid weight (20–300 kg).',
     'fitnessPage.results.title': 'Your Results Dashboard',
     'fitnessPage.results.subtitle': 'All metrics calculated instantly with evidence-based formulas.',
     'fitnessPage.results.macrosEyebrow': 'MACRONUTRIENTS',
@@ -4441,6 +4482,32 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.steps.kitchen': 'Kitchen',
     'wizard.steps.goals': 'Goals',
     'wizard.steps.blueprint': 'Blueprint',
+    'weightLoss.stepLabel.welcome': 'Welcome',
+    'weightLoss.stepLabel.basics': 'Basic Information',
+    'weightLoss.stepLabel.measurements': 'Measurements',
+    'weightLoss.stepLabel.lifestyle': 'Lifestyle',
+    'weightLoss.stepLabel.eating': 'Eating Habits',
+    'weightLoss.stepLabel.goalDiscovery': 'Goal Discovery',
+    'weightLoss.stepLabel.goalSelection': 'Goal Selection',
+    'weightLoss.stepLabel.bodyConcerns': 'Body Concerns',
+    'weightLoss.stepLabel.exercise': 'Exercise',
+    'weightLoss.stepLabel.kitchen': 'Kitchen',
+    'weightLoss.stepLabel.recommendations': 'Recommendations',
+    'weightLoss.stepLabel.preview': 'Preview',
+    'weightLoss.stepLabel.complete': 'Plan Complete',
+    'weightLoss.stepTitle.welcome': 'Let’s build your personalized nutrition plan',
+    'weightLoss.stepTitle.basics': 'Basic Information',
+    'weightLoss.stepTitle.measurements': 'Body Measurements',
+    'weightLoss.stepTitle.lifestyle': 'Your Daily Lifestyle',
+    'weightLoss.stepTitle.eating': 'Your Dietary Habits',
+    'weightLoss.stepTitle.goalDiscovery': 'What would you like to achieve?',
+    'weightLoss.stepTitle.goalSelection': 'Select Your Goals',
+    'weightLoss.stepTitle.bodyConcerns': 'Specific Body Areas to Work On',
+    'weightLoss.stepTitle.exercise': 'Recommended Exercises For Your Goals',
+    'weightLoss.stepTitle.kitchen': 'Choose Your Cuisine',
+    'weightLoss.stepTitle.recommendations': 'Your Personalized Recommendations',
+    'weightLoss.stepTitle.preview': 'Your Plan Preview',
+    'weightLoss.stepTitle.complete': 'Your Personalized Plan is Ready!',
     'wizard.unit.years': 'yr',
     'wizard.unit.cm': 'cm',
     'wizard.unit.kg': 'kg',
@@ -4802,6 +4869,7 @@ export const translations: Record<Language, TranslationKeys> = {
     foodLibUsdaBadge: 'USDA',
     foodLibNoResults: 'No results for this search',
     foodLibClearFilters: 'Clear filters',
+    foodLibUnknownName: 'Unnamed food',
     foodLibSeoTitle: 'Why is the HealthCalc library accurate?',
     foodLibSeoBody: 'Every calorie comes from USDA FoodData Central, the world\'s largest food database. Each item is calculated per gram, not estimated. Use the library in any diet: weight loss, muscle gain, keto, or plant-based. Kitchens: Mediterranean, Gulf, Levant, North African, Asian, European and more.',
     coAnnualSub: 'Annual subscription · Cancel anytime',
@@ -6208,7 +6276,9 @@ export const translations: Record<Language, TranslationKeys> = {
     contactUs: 'Contactez-nous',
     disclaimer: 'HealthFingerprint.com fournit des informations à des fins éducatives uniquement. Ce n\'est pas un substitut à un avis médical professionnel, un diagnostic ou un traitement. Consultez toujours votre médecin avant de commencer un régime ou un programme d\'exercice.',
     contactName: 'Nom Complet',
+    contactNamePlaceholder: 'Jean Dupont',
     contactEmail: 'Adresse Email',
+    contactEmailPlaceholder: 'vous@exemple.com',
     contactMessage: 'Votre Message',
     contactSupportBadge: 'Assistance',
     contactRespondSubtitle: 'Nous répondons généralement sous 48 heures ouvrées',
@@ -6974,7 +7044,12 @@ export const translations: Record<Language, TranslationKeys> = {
     'fitnessPage.profile.height': 'Taille',
     'fitnessPage.profile.weight': 'Poids',
     'fitnessPage.profile.activity': 'Niveau d’activité',
+    'fitnessPage.profile.goalPlaceholder': 'Choisissez un objectif',
     'fitnessPage.cta.calculate': 'Calculer mes résultats 🔥',
+    'fitnessPage.profile.resetSaved': 'Réinitialiser les données enregistrées',
+    'fitnessPage.error.age': 'Veuillez saisir un âge valide (10–120).',
+    'fitnessPage.error.height': 'Veuillez saisir une taille valide (100–250 cm).',
+    'fitnessPage.error.weight': 'Veuillez saisir un poids valide (20–300 kg).',
     'fitnessPage.results.title': 'Votre tableau de résultats',
     'fitnessPage.results.subtitle': 'Tous les indicateurs calculés instantanément avec des formules fondées sur des preuves.',
     'fitnessPage.results.macrosEyebrow': 'MACRONUTRIMENTS',
@@ -6996,6 +7071,32 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.steps.kitchen': 'Cuisine',
     'wizard.steps.goals': 'Objectifs',
     'wizard.steps.blueprint': 'Plan',
+    'weightLoss.stepLabel.welcome': 'Bienvenue',
+    'weightLoss.stepLabel.basics': 'Informations de base',
+    'weightLoss.stepLabel.measurements': 'Mensurations',
+    'weightLoss.stepLabel.lifestyle': 'Mode de vie',
+    'weightLoss.stepLabel.eating': 'Habitudes alimentaires',
+    'weightLoss.stepLabel.goalDiscovery': 'Découverte des objectifs',
+    'weightLoss.stepLabel.goalSelection': 'Choix des objectifs',
+    'weightLoss.stepLabel.bodyConcerns': 'Zones à travailler',
+    'weightLoss.stepLabel.exercise': 'Exercice',
+    'weightLoss.stepLabel.kitchen': 'Cuisine',
+    'weightLoss.stepLabel.recommendations': 'Recommandations',
+    'weightLoss.stepLabel.preview': 'Aperçu',
+    'weightLoss.stepLabel.complete': 'Plan terminé',
+    'weightLoss.stepTitle.welcome': 'Construisons votre plan nutritionnel personnalisé',
+    'weightLoss.stepTitle.basics': 'Informations de base',
+    'weightLoss.stepTitle.measurements': 'Mensurations',
+    'weightLoss.stepTitle.lifestyle': 'Votre mode de vie quotidien',
+    'weightLoss.stepTitle.eating': 'Vos habitudes alimentaires',
+    'weightLoss.stepTitle.goalDiscovery': 'Que souhaitez-vous accomplir ?',
+    'weightLoss.stepTitle.goalSelection': 'Choisissez vos objectifs',
+    'weightLoss.stepTitle.bodyConcerns': 'Zones du corps à améliorer',
+    'weightLoss.stepTitle.exercise': 'Exercices recommandés selon vos objectifs',
+    'weightLoss.stepTitle.kitchen': 'Choisissez votre cuisine',
+    'weightLoss.stepTitle.recommendations': 'Vos recommandations personnalisées',
+    'weightLoss.stepTitle.preview': 'Aperçu de votre plan',
+    'weightLoss.stepTitle.complete': 'Votre plan personnalisé est prêt !',
     'wizard.unit.years': 'ans',
     'wizard.unit.cm': 'cm',
     'wizard.unit.kg': 'kg',
@@ -7357,6 +7458,7 @@ export const translations: Record<Language, TranslationKeys> = {
     foodLibUsdaBadge: 'USDA',
     foodLibNoResults: 'Aucun résultat pour cette recherche',
     foodLibClearFilters: 'Effacer les filtres',
+    foodLibUnknownName: 'Aliment sans nom',
     foodLibSeoTitle: 'Pourquoi la bibliothèque HealthCalc est-elle précise ?',
     foodLibSeoBody: 'Chaque calorie provient de USDA FoodData Central, la plus grande base de données alimentaires au monde. Chaque plat est calculé au gramme près, sans approximation. Utilisez la bibliothèque dans tout régime : perte de poids, prise de masse, cétogène ou végétal. Cuisines : méditerranéenne, du Golfe, du Levant, d\'Afrique du Nord, asiatique, européenne et plus.',
     coAnnualSub: 'Abonnement annuel · Annulable à tout moment',
@@ -8733,7 +8835,9 @@ export const translations: Record<Language, TranslationKeys> = {
     contactUs: 'Contáctenos',
     disclaimer: 'HealthFingerprint.com proporciona información solo para fines educativos. No sustituye el consejo médico profesional, el diagnóstico o el tratamiento. Siempre consulte a su médico antes de comenzar cualquier dieta o programa de ejercicios.',
     contactName: 'Nombre Completo',
+    contactNamePlaceholder: 'María García',
     contactEmail: 'Correo Electrónico',
+    contactEmailPlaceholder: 'tu@ejemplo.com',
     contactMessage: 'Tu Mensaje',
     contactSupportBadge: 'Soporte',
     contactRespondSubtitle: 'Normalmente respondemos en un plazo de 48 horas laborables',
@@ -9499,7 +9603,12 @@ export const translations: Record<Language, TranslationKeys> = {
     'fitnessPage.profile.height': 'Altura',
     'fitnessPage.profile.weight': 'Peso',
     'fitnessPage.profile.activity': 'Nivel de actividad',
+    'fitnessPage.profile.goalPlaceholder': 'Elige un objetivo',
     'fitnessPage.cta.calculate': 'Calcular mis resultados 🔥',
+    'fitnessPage.profile.resetSaved': 'Restablecer datos guardados',
+    'fitnessPage.error.age': 'Introduce una edad válida (10–120).',
+    'fitnessPage.error.height': 'Introduce una altura válida (100–250 cm).',
+    'fitnessPage.error.weight': 'Introduce un peso válido (20–300 kg).',
     'fitnessPage.results.title': 'Tu panel de resultados',
     'fitnessPage.results.subtitle': 'Todas las métricas calculadas al instante con fórmulas basadas en evidencia.',
     'fitnessPage.results.macrosEyebrow': 'MACRONUTRIENTES',
@@ -9521,6 +9630,32 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.steps.kitchen': 'Cocina',
     'wizard.steps.goals': 'Metas',
     'wizard.steps.blueprint': 'Plan',
+    'weightLoss.stepLabel.welcome': 'Bienvenida',
+    'weightLoss.stepLabel.basics': 'Datos básicos',
+    'weightLoss.stepLabel.measurements': 'Mediciones',
+    'weightLoss.stepLabel.lifestyle': 'Estilo de vida',
+    'weightLoss.stepLabel.eating': 'Hábitos alimentarios',
+    'weightLoss.stepLabel.goalDiscovery': 'Descubrir objetivos',
+    'weightLoss.stepLabel.goalSelection': 'Selección de objetivos',
+    'weightLoss.stepLabel.bodyConcerns': 'Áreas a mejorar',
+    'weightLoss.stepLabel.exercise': 'Ejercicio',
+    'weightLoss.stepLabel.kitchen': 'Cocina',
+    'weightLoss.stepLabel.recommendations': 'Recomendaciones',
+    'weightLoss.stepLabel.preview': 'Vista previa',
+    'weightLoss.stepLabel.complete': 'Plan completo',
+    'weightLoss.stepTitle.welcome': 'Creemos tu plan nutricional personalizado',
+    'weightLoss.stepTitle.basics': 'Datos básicos',
+    'weightLoss.stepTitle.measurements': 'Mediciones corporales',
+    'weightLoss.stepTitle.lifestyle': 'Tu estilo de vida diario',
+    'weightLoss.stepTitle.eating': 'Tus hábitos alimentarios',
+    'weightLoss.stepTitle.goalDiscovery': '¿Qué te gustaría conseguir?',
+    'weightLoss.stepTitle.goalSelection': 'Selecciona tus objetivos',
+    'weightLoss.stepTitle.bodyConcerns': 'Áreas del cuerpo que quieres mejorar',
+    'weightLoss.stepTitle.exercise': 'Ejercicios recomendados para tus objetivos',
+    'weightLoss.stepTitle.kitchen': 'Elige tu cocina',
+    'weightLoss.stepTitle.recommendations': 'Tus recomendaciones personalizadas',
+    'weightLoss.stepTitle.preview': 'Vista previa de tu plan',
+    'weightLoss.stepTitle.complete': '¡Tu plan personalizado está listo!',
     'wizard.unit.years': 'años',
     'wizard.unit.cm': 'cm',
     'wizard.unit.kg': 'kg',
@@ -9882,6 +10017,7 @@ export const translations: Record<Language, TranslationKeys> = {
     foodLibUsdaBadge: 'USDA',
     foodLibNoResults: 'Sin resultados para esta búsqueda',
     foodLibClearFilters: 'Limpiar filtros',
+    foodLibUnknownName: 'Alimento sin nombre',
     foodLibSeoTitle: '¿Por qué es precisa la biblioteca de HealthCalc?',
     foodLibSeoBody: 'Cada caloría proviene de USDA FoodData Central, la base de datos de alimentos más grande del mundo. Cada plato se calcula por gramo, no por estimación. Usa la biblioteca en cualquier dieta: pérdida de peso, ganancia muscular, cetogénica o vegetal. Cocinas: mediterránea, del Golfo, levantina, norteafricana, asiática, europea y más.',
     coAnnualSub: 'Suscripción anual · Cancela cuando quieras',
@@ -11258,7 +11394,9 @@ export const translations: Record<Language, TranslationKeys> = {
     contactUs: 'اتصل بنا',
     disclaimer: 'توفر HealthFingerprint.com معلومات لأغراض تعليمية فقط. وهي ليست بديلاً عن النصيحة الطبية المهنية أو التشخيص أو العلاج. استشر طبيبك دائماً قبل بدء أي نظام غذائي أو برنامج تمارين.',
     contactName: 'الاسم الكامل',
+    contactNamePlaceholder: 'أحمد محمد',
     contactEmail: 'البريد الإلكتروني',
+    contactEmailPlaceholder: 'name@example.com',
     contactMessage: 'رسالتك',
     contactSupportBadge: 'الدعم',
     contactRespondSubtitle: 'نرد عادةً خلال 48 ساعة عمل',
@@ -12024,7 +12162,12 @@ export const translations: Record<Language, TranslationKeys> = {
     'fitnessPage.profile.height': 'الطول',
     'fitnessPage.profile.weight': 'الوزن',
     'fitnessPage.profile.activity': 'مستوى النشاط',
+    'fitnessPage.profile.goalPlaceholder': 'اختر هدفًا',
     'fitnessPage.cta.calculate': 'احسب نتائجي 🔥',
+    'fitnessPage.profile.resetSaved': 'مسح البيانات المحفوظة',
+    'fitnessPage.error.age': 'يرجى إدخال عمر صالح (10–120).',
+    'fitnessPage.error.height': 'يرجى إدخال طول صالح (100–250 سم).',
+    'fitnessPage.error.weight': 'يرجى إدخال وزن صالح (20–300 كجم).',
     'fitnessPage.results.title': 'لوحة نتائجك',
     'fitnessPage.results.subtitle': 'جميع المؤشرات محسوبة فوراً بصيغ مبنية على الأدلة.',
     'fitnessPage.results.macrosEyebrow': 'المغذيات الكبرى',
@@ -12046,6 +12189,32 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.steps.kitchen': 'المطبخ',
     'wizard.steps.goals': 'الأهداف',
     'wizard.steps.blueprint': 'الخطة',
+    'weightLoss.stepLabel.welcome': 'مرحباً',
+    'weightLoss.stepLabel.basics': 'المعلومات الأساسية',
+    'weightLoss.stepLabel.measurements': 'القياسات',
+    'weightLoss.stepLabel.lifestyle': 'نمط الحياة',
+    'weightLoss.stepLabel.eating': 'العادات الغذائية',
+    'weightLoss.stepLabel.goalDiscovery': 'اكتشاف الهدف',
+    'weightLoss.stepLabel.goalSelection': 'اختيار الأهداف',
+    'weightLoss.stepLabel.bodyConcerns': 'مناطق الاهتمام',
+    'weightLoss.stepLabel.exercise': 'التمارين',
+    'weightLoss.stepLabel.kitchen': 'المطبخ',
+    'weightLoss.stepLabel.recommendations': 'التوصيات',
+    'weightLoss.stepLabel.preview': 'معاينة الخطة',
+    'weightLoss.stepLabel.complete': 'الخطة مكتملة',
+    'weightLoss.stepTitle.welcome': 'لنُعِدّ خطة تغذية مخصصة لك',
+    'weightLoss.stepTitle.basics': 'المعلومات الأساسية',
+    'weightLoss.stepTitle.measurements': 'قياسات الجسم',
+    'weightLoss.stepTitle.lifestyle': 'نمط حياتك اليومي',
+    'weightLoss.stepTitle.eating': 'عاداتك الغذائية',
+    'weightLoss.stepTitle.goalDiscovery': 'ما الذي ترغب في تحقيقه؟',
+    'weightLoss.stepTitle.goalSelection': 'اختر أهدافك',
+    'weightLoss.stepTitle.bodyConcerns': 'مناطق الجسم التي تريد تحسينها',
+    'weightLoss.stepTitle.exercise': 'تمارين مقترحة بناءً على أهدافك',
+    'weightLoss.stepTitle.kitchen': 'اختر مطبخك المفضل',
+    'weightLoss.stepTitle.recommendations': 'توصياتك الشخصية',
+    'weightLoss.stepTitle.preview': 'معاينة خطتك',
+    'weightLoss.stepTitle.complete': 'خطتك الشخصية جاهزة!',
     'wizard.unit.years': 'سنة',
     'wizard.unit.cm': 'سم',
     'wizard.unit.kg': 'كجم',
@@ -12407,6 +12576,7 @@ export const translations: Record<Language, TranslationKeys> = {
     foodLibUsdaBadge: 'USDA',
     foodLibNoResults: 'لا توجد نتائج لهذا البحث',
     foodLibClearFilters: 'مسح الفلاتر',
+    foodLibUnknownName: 'صنف غير معروف',
     foodLibSeoTitle: 'ليه مكتبة healthcalc دقيقة؟',
     foodLibSeoBody: 'كل السعرات محسوبة من USDA FoodData Central - أكبر قاعدة بيانات أكل في العالم. بنحسب كل صنف بالجرام، مش تقديري. تقدر تستخدم المكتبة دي في أي نظام غذائي: تخسيس، تضخيم، كيتو، أو نباتي. المطابخ: متوسطي، خليجي، شامي، شمال أفريقي، آسيوي، أوروبي وأكثر.',
     coAnnualSub: 'اشتراك سنوي · إلغاء في أي وقت',
@@ -13794,7 +13964,9 @@ export const translations: Record<Language, TranslationKeys> = {
     contactUs: 'Kontaktieren Sie uns',
     disclaimer: 'HealthFingerprint.com stellt Informationen ausschließlich zu Bildungszwecken bereit. Es ist kein Ersatz für professionelle medizinische Beratung, Diagnose oder Behandlung. Konsultieren Sie vor Beginn eines Ernährungs- oder Trainingsprogramms stets Ihren Arzt.',
     contactName: 'Vollständiger Name',
+    contactNamePlaceholder: 'Max Mustermann',
     contactEmail: 'E-Mail-Adresse',
+    contactEmailPlaceholder: 'name@beispiel.de',
     contactMessage: 'Ihre Nachricht',
     contactSupportBadge: 'Support',
     contactRespondSubtitle: 'Wir antworten in der Regel innerhalb von 48 Geschäftsstunden',
@@ -14560,7 +14732,12 @@ export const translations: Record<Language, TranslationKeys> = {
     'fitnessPage.profile.height': 'Größe',
     'fitnessPage.profile.weight': 'Gewicht',
     'fitnessPage.profile.activity': 'Aktivitätsniveau',
+    'fitnessPage.profile.goalPlaceholder': 'Wählen Sie ein Ziel',
     'fitnessPage.cta.calculate': 'Meine Ergebnisse berechnen 🔥',
+    'fitnessPage.profile.resetSaved': 'Gespeicherte Daten zurücksetzen',
+    'fitnessPage.error.age': 'Bitte geben Sie ein gültiges Alter ein (10–120).',
+    'fitnessPage.error.height': 'Bitte geben Sie eine gültige Größe ein (100–250 cm).',
+    'fitnessPage.error.weight': 'Bitte geben Sie ein gültiges Gewicht ein (20–300 kg).',
     'fitnessPage.results.title': 'Ihre Ergebnisübersicht',
     'fitnessPage.results.subtitle': 'Alle Werte sofort berechnet mit evidenzbasierten Formeln.',
     'fitnessPage.results.macrosEyebrow': 'MAKRONÄHRSTOFFE',
@@ -14582,6 +14759,32 @@ export const translations: Record<Language, TranslationKeys> = {
     'wizard.steps.kitchen': 'Küche',
     'wizard.steps.goals': 'Ziele',
     'wizard.steps.blueprint': 'Plan',
+    'weightLoss.stepLabel.welcome': 'Willkommen',
+    'weightLoss.stepLabel.basics': 'Grundlagen',
+    'weightLoss.stepLabel.measurements': 'Messwerte',
+    'weightLoss.stepLabel.lifestyle': 'Lebensstil',
+    'weightLoss.stepLabel.eating': 'Essgewohnheiten',
+    'weightLoss.stepLabel.goalDiscovery': 'Zielbestimmung',
+    'weightLoss.stepLabel.goalSelection': 'Zielauswahl',
+    'weightLoss.stepLabel.bodyConcerns': 'Körperbereiche',
+    'weightLoss.stepLabel.exercise': 'Bewegung',
+    'weightLoss.stepLabel.kitchen': 'Küche',
+    'weightLoss.stepLabel.recommendations': 'Empfehlungen',
+    'weightLoss.stepLabel.preview': 'Vorschau',
+    'weightLoss.stepLabel.complete': 'Plan abgeschlossen',
+    'weightLoss.stepTitle.welcome': 'Erstellen wir Ihren persönlichen Ernährungsplan',
+    'weightLoss.stepTitle.basics': 'Grundlegende Informationen',
+    'weightLoss.stepTitle.measurements': 'Körpermaße',
+    'weightLoss.stepTitle.lifestyle': 'Ihr täglicher Lebensstil',
+    'weightLoss.stepTitle.eating': 'Ihre Essgewohnheiten',
+    'weightLoss.stepTitle.goalDiscovery': 'Was möchten Sie erreichen?',
+    'weightLoss.stepTitle.goalSelection': 'Wählen Sie Ihre Ziele',
+    'weightLoss.stepTitle.bodyConcerns': 'Körperbereiche, die Sie verbessern möchten',
+    'weightLoss.stepTitle.exercise': 'Übungsempfehlungen für Ihre Ziele',
+    'weightLoss.stepTitle.kitchen': 'Wählen Sie Ihre Küche',
+    'weightLoss.stepTitle.recommendations': 'Ihre persönlichen Empfehlungen',
+    'weightLoss.stepTitle.preview': 'Vorschau Ihres Plans',
+    'weightLoss.stepTitle.complete': 'Ihr persönlicher Plan ist fertig!',
     'wizard.unit.years': 'J.',
     'wizard.unit.cm': 'cm',
     'wizard.unit.kg': 'kg',
@@ -14943,6 +15146,7 @@ export const translations: Record<Language, TranslationKeys> = {
     foodLibUsdaBadge: 'USDA',
     foodLibNoResults: 'Keine Ergebnisse für diese Suche',
     foodLibClearFilters: 'Filter zurücksetzen',
+    foodLibUnknownName: 'Unbenanntes Lebensmittel',
     foodLibSeoTitle: 'Warum ist die HealthCalc-Bibliothek präzise?',
     foodLibSeoBody: 'Jede Kalorie stammt aus USDA FoodData Central, der weltweit größten Lebensmitteldatenbank. Jedes Lebensmittel wird pro Gramm berechnet, nicht geschätzt. Nutzen Sie die Bibliothek für jede Ernährung: Gewichtsverlust, Muskelaufbau, Keto oder pflanzenbasiert. Küchen: Mittelmeer, Golf, Levante, Nordafrika, Asien, Europa und mehr.',
     coAnnualSub: 'Jahresabonnement · Jederzeit kündbar',

@@ -2037,20 +2037,20 @@ const WeightLossPage: React.FC = () => {
   );
 
   const fromCalculator = enteredFromCalculator(profile);
-  const wizardSteps: { n: Step; label: string }[] = [
-    { n: 1, label: language === 'ar' ? 'البداية' : 'Welcome' },
-    { n: 2, label: language === 'ar' ? 'الأساسيات' : 'Basics' },
-    { n: 3, label: language === 'ar' ? 'القياسات' : 'Measurements' },
-    { n: 4, label: language === 'ar' ? 'نمط الحياة' : 'Lifestyle' },
-    { n: 5, label: language === 'ar' ? 'عادات الأكل' : 'Eating' },
-    { n: 6, label: language === 'ar' ? 'اكتشاف الهدف' : 'Goal Discovery' },
-    { n: 7, label: language === 'ar' ? 'اختيار الأهداف' : 'Goal Selection' },
-    { n: 8, label: language === 'ar' ? 'مناطق الاهتمام' : 'Body Concerns' },
-    { n: 9, label: language === 'ar' ? 'التمارين المقترحة' : 'Exercise' },
-    { n: 10, label: language === 'ar' ? 'المطبخ' : 'Kitchen' },
-    { n: 11, label: language === 'ar' ? 'التوصيات' : 'Recommendations' },
-    { n: 12, label: language === 'ar' ? 'المعاينة' : 'Preview' },
-    { n: 13, label: language === 'ar' ? 'المراجعة' : 'Review' },
+  const wizardSteps: { n: Step; label: string; title: string }[] = [
+    { n: 1, label: t('weightLoss.stepLabel.welcome'), title: t('weightLoss.stepTitle.welcome') },
+    { n: 2, label: t('weightLoss.stepLabel.basics'), title: t('weightLoss.stepTitle.basics') },
+    { n: 3, label: t('weightLoss.stepLabel.measurements'), title: t('weightLoss.stepTitle.measurements') },
+    { n: 4, label: t('weightLoss.stepLabel.lifestyle'), title: t('weightLoss.stepTitle.lifestyle') },
+    { n: 5, label: t('weightLoss.stepLabel.eating'), title: t('weightLoss.stepTitle.eating') },
+    { n: 6, label: t('weightLoss.stepLabel.goalDiscovery'), title: t('weightLoss.stepTitle.goalDiscovery') },
+    { n: 7, label: t('weightLoss.stepLabel.goalSelection'), title: t('weightLoss.stepTitle.goalSelection') },
+    { n: 8, label: t('weightLoss.stepLabel.bodyConcerns'), title: t('weightLoss.stepTitle.bodyConcerns') },
+    { n: 9, label: t('weightLoss.stepLabel.exercise'), title: t('weightLoss.stepTitle.exercise') },
+    { n: 10, label: t('weightLoss.stepLabel.kitchen'), title: t('weightLoss.stepTitle.kitchen') },
+    { n: 11, label: t('weightLoss.stepLabel.recommendations'), title: t('weightLoss.stepTitle.recommendations') },
+    { n: 12, label: t('weightLoss.stepLabel.preview'), title: t('weightLoss.stepTitle.preview') },
+    { n: 13, label: t('weightLoss.stepLabel.complete'), title: t('weightLoss.stepTitle.complete') },
   ];
   const visibleSteps = startedFromHero
     ? wizardSteps.filter((x) => x.n >= 4 && (x.n !== 6 || step === 6))
@@ -2060,36 +2060,9 @@ const WeightLossPage: React.FC = () => {
   const progressTotal = startedFromHero ? visibleSteps.length : wizardSteps.length;
   const progressStepNumber = startedFromHero ? visibleStepNumber : step;
   const progressPct = progressTotal > 1 ? Math.max(0, Math.min(100, (visibleStepNumber / progressTotal) * 100)) : 0;
-  const stepTitle = (() => {
-    if (step === 1) return language === 'ar' ? 'لنبنِ خطة غذائك الشخصية' : "Let's build your personalized nutrition plan";
-    if (step === 2) return language === 'ar' ? 'المعلومات الأساسية' : 'Basic Information';
-    if (step === 3) return language === 'ar' ? 'قياسات الجسم' : 'Body Measurements';
-    if (step === 4) return language === 'ar' ? 'نمط الحياة' : 'Lifestyle';
-    if (step === 5) return language === 'ar' ? 'العادات الغذائية الحالية' : 'Current Dietary Habits';
-    if (step === 6) return language === 'ar' ? 'ما الذي ترغب في تحقيقه؟' : 'What would you like to achieve?';
-    if (step === 7) return language === 'ar' ? 'اختر أهدافك' : 'Select Your Goals';
-    if (step === 8) return language === 'ar' ? 'مناطق الجسم التي تريد تحسينها' : 'Specific Body Areas to Work On';
-    if (step === 9) return language === 'ar' ? 'تمارين مقترحة بناءً على أهدافك' : 'Recommended Exercises For Your Goals';
-    if (step === 10) return language === 'ar' ? 'اختر مطبخك المفضل' : 'Choose Your Cuisine';
-    if (step === 11) return language === 'ar' ? 'توصياتك الشخصية' : 'Your Final Recommendations';
-    if (step === 12) return language === 'ar' ? 'معاينة خطتك' : 'Your Plan Preview';
-    return language === 'ar' ? 'خطتك الشخصية جاهزة!' : 'Your Personalized Plan is Ready!';
-  })();
-  const stepEyebrow = (() => {
-    if (step === 1) return language === 'ar' ? 'مرحباً بك' : 'WELCOME';
-    if (step === 2) return language === 'ar' ? 'المعلومات الأساسية' : 'BASIC INFORMATION';
-    if (step === 3) return language === 'ar' ? 'قياسات الجسم' : 'BODY MEASUREMENTS';
-    if (step === 4) return language === 'ar' ? 'نمط حياتك' : 'LIFESTYLE';
-    if (step === 5) return language === 'ar' ? 'عاداتك الغذائية الحالية' : 'CURRENT EATING HABITS';
-    if (step === 6) return language === 'ar' ? 'اكتشاف الهدف' : 'GOAL DISCOVERY';
-    if (step === 7) return language === 'ar' ? 'اختيار الأهداف' : 'GOAL SELECTION';
-    if (step === 8) return language === 'ar' ? 'مناطق الاهتمام' : 'BODY CONCERNS';
-    if (step === 9) return language === 'ar' ? 'التمارين' : 'EXERCISE';
-    if (step === 10) return language === 'ar' ? 'اختيار المطبخ' : 'KITCHEN SELECTION';
-    if (step === 11) return language === 'ar' ? 'بناءً على إجاباتك' : 'BASED ON YOUR PROFILE';
-    if (step === 12) return language === 'ar' ? 'معاينة الخطة' : 'PLAN PREVIEW';
-    return language === 'ar' ? 'الخطة مكتملة' : 'PLAN COMPLETE';
-  })();
+  const activeWizardStep = wizardSteps.find((wizardStep) => wizardStep.n === step);
+  const stepTitle = activeWizardStep?.title ?? t('weightLoss.stepTitle.complete');
+  const stepEyebrow = activeWizardStep?.label.toLocaleUpperCase(language) ?? '';
 
   const numbers = useMemo(() => {
     const { age: a, height: h, weight: w } = parsed;

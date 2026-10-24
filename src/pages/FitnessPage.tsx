@@ -7,12 +7,14 @@ import SEO from '../components/seo/SEO';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import FitnessHeroVisual from '../components/illustrations/FitnessHeroVisual';
 import { useUserProfile, type UserGoal, type UserProfile } from '../hooks/useUserProfile';
+import type { Language } from '../types';
 
 interface FormData { age: string; gender: 'male' | 'female'; heightCm: string; weightKg: string; activityLevel: string; goal: UserGoal | '' }
 
 const ACT: Record<string, number> = { sedentary: 1.2, light: 1.375, moderate: 1.55, active: 1.725, very_active: 1.9 };
 const ACT_ORDER = ['sedentary', 'light', 'moderate', 'active', 'very_active'];
 const ACT_LABELS: Record<string, string> = { sedentary: 'fcSedentary', light: 'fcLight', moderate: 'fcModerate', active: 'fcActive', very_active: 'fcVeryActive' };
+const NUMBER_LOCALE_BY_LANGUAGE: Record<Language, string> = { en: 'en-US', fr: 'fr-FR', es: 'es-ES', ar: 'ar-EG', de: 'de-DE' };
 
 function bmiValue(hCm: number, wKg: number) { const h = hCm / 100; return h ? wKg / (h * h) : 0; }
 function bmrValue(g: 'male' | 'female', age: number, hCm: number, wKg: number) {
@@ -113,11 +115,11 @@ const FitnessPage: React.FC = () => {
     const age = parseInt(form.age, 10);
     const height = parseInt(form.heightCm, 10);
     const weight = parseInt(form.weightKg, 10);
-    if (!age || age < 10 || age > 120) return 'Please enter a valid age (10-120).';
-    if (!height || height < 100 || height > 250) return 'Please enter a valid height (100-250 cm).';
-    if (!weight || weight < 20 || weight > 300) return 'Please enter a valid weight (20-300 kg).';
+    if (!age || age < 10 || age > 120) return t('fitnessPage.error.age');
+    if (!height || height < 100 || height > 250) return t('fitnessPage.error.height');
+    if (!weight || weight < 20 || weight > 300) return t('fitnessPage.error.weight');
     return '';
-  }, [form]);
+  }, [form, t]);
 
   const saveSharedProfile = () => {
     const updated: Partial<UserProfile> = {
@@ -318,7 +320,7 @@ const FitnessPage: React.FC = () => {
             <div className="mt-5">
               <label className="wiz-label" htmlFor="fitness-goal">{t('goal')}</label>
               <select id="fitness-goal" className="wiz-input" value={form.goal} onChange={(e) => patch({ goal: e.target.value as UserGoal | '' })}>
-                <option value="">{language === 'ar' ? 'اختر هدفًا' : 'Choose a goal'}</option>
+                <option value="">{t('fitnessPage.profile.goalPlaceholder')}</option>
                 <option value="lose">{t('wizard.step4.goalTypes.lose')}</option>
                 <option value="gain_muscle">{t('wizard.step4.goalTypes.gainMuscle')}</option>
                 <option value="gain_weight">{t('wizard.step4.goalTypes.gainWeight')}</option>
@@ -344,7 +346,7 @@ const FitnessPage: React.FC = () => {
               }}
               className="mx-auto mt-3 block rounded-full px-4 py-2 text-xs font-semibold text-[#6B7A75] hover:bg-[#F4F1EB]"
             >
-              {language === 'ar' ? 'مسح البيانات المحفوظة' : 'Reset saved data'}
+              {t('fitnessPage.profile.resetSaved')}
             </button>
           </div>
         </section>
@@ -401,7 +403,7 @@ const FitnessPage: React.FC = () => {
                     </ResponsiveContainer>
                     <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center">
                       <span className="text-[9px] font-extrabold uppercase tracking-[0.13em] text-[#87958A]">{t('fitnessPage.results.dailyCalories')}</span>
-                      <strong className="num mt-1 text-[27px] font-black leading-none tracking-tight text-[#153A2E]">{macroTargetCalories.toLocaleString(language === 'ar' ? 'ar-EG' : undefined)}</strong>
+                      <strong className="num mt-1 text-[27px] font-black leading-none tracking-tight text-[#153A2E]">{macroTargetCalories.toLocaleString(NUMBER_LOCALE_BY_LANGUAGE[language])}</strong>
                       <span className="mt-1 text-[10px] font-semibold text-[#87958A]">kcal / day</span>
                     </div>
                   </div>
