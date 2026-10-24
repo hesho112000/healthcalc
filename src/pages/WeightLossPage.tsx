@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Activity, ArrowRight, Beef, Briefcase, Check, ChevronLeft, Cigarette, Coffee, Cookie, CupSoda, Droplets, Dumbbell, Info, Minus, Moon,
   PartyPopper, Play, Plus, Ruler, Salad, ShieldCheck, Smile, Sparkles, Sun, Target, Timer, User, UtensilsCrossed,
@@ -239,10 +239,11 @@ const SUGARY_DRINK_OPTIONS: { value: SugaryDrinksFrequency; en: string; ar: stri
 
 const hasBasicInfo = (profile: UserProfile): boolean => profile.age !== null && profile.gender !== null;
 const hasMeasurements = (profile: UserProfile): boolean => profile.height !== null && profile.weight !== null;
-const enteredFromCalculator = (profile: UserProfile): boolean => hasBasicInfo(profile) && hasMeasurements(profile);
+const enteredFromCalculator = (profile: UserProfile): boolean => hasBasicInfo(profile) && hasMeasurements(profile) && (profile.goal !== null || profile.wizardGoal !== null);
 
 type WizardDraft = {
   step?: number;
+  startedFromHero?: boolean;
   planType?: PlanType;
   age?: string;
   sex?: Sex;
@@ -1561,6 +1562,8 @@ const WizardFooter: React.FC<{ onBack: () => void; onNext: () => void; nextDisab
 
 const WeightLossPage: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const startWithHeroProfile = (location.state as { startWithHeroProfile?: boolean } | null)?.startWithHeroProfile === true;
   const { t, language } = useLanguage();
   const { profile, updateProfile, resetProfile } = useUserProfile();
   const { exercises: unifiedExercises, loading: unifiedExercisesLoading } = useUnifiedExercises();
@@ -1583,7 +1586,8 @@ const WeightLossPage: React.FC = () => {
   const profileInitials = user?.name?.trim() && user.name !== 'Guest'
     ? user.name.trim().split(/\s+/).slice(0, 2).map((part) => part.charAt(0)).join('').toUpperCase()
     : 'HC';
-  const [restoredDraft] = useState<WizardDraft | null>(() => readWizardDraft());
+  const [restoredDraft] = useState<WizardDraft | null>(() => startWithHeroProfile ? null : readWizardDraft());
+  const [startedFromHero, setStartedFromHero] = useState(startWithHeroProfile || restoredDraft?.startedFromHero === true);
   const wizardCompletedRef = useRef(false);
   const [step, setStep] = useState<Step>(() => initialWizardStep(profile, restoredDraft));
   const [planType, setPlanType] = useState<PlanType>(() => restoredDraft?.planType ?? profile.planType ?? 'both');
@@ -1760,6 +1764,10 @@ const WeightLossPage: React.FC = () => {
   }, [unifiedExercisesLoading]);
 
   useEffect(() => {
+    if (startWithHeroProfile) navigate(location.pathname, { replace: true, state: null });
+  }, [startWithHeroProfile, location.pathname, navigate]);
+
+  useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [step]);
 
@@ -1776,6 +1784,7 @@ const WeightLossPage: React.FC = () => {
     if (wizardCompletedRef.current) return;
     saveWizardStep(step);
     saveWizardDraft(step, {
+      startedFromHero,
       planType,
       age,
       sex,
@@ -1828,6 +1837,7 @@ const WeightLossPage: React.FC = () => {
     });
   }, [
     step,
+    startedFromHero,
     planType,
     age,
     sex,
@@ -2042,10 +2052,14 @@ const WeightLossPage: React.FC = () => {
     { n: 12, label: language === 'ar' ? 'المعاينة' : 'Preview' },
     { n: 13, label: language === 'ar' ? 'المراجعة' : 'Review' },
   ];
-  const visibleSteps = fromCalculator ? wizardSteps.filter((x) => x.n >= 4) : wizardSteps;
+  const visibleSteps = startedFromHero
+    ? wizardSteps.filter((x) => x.n >= 4 && (x.n !== 6 || step === 6))
+    : fromCalculator ? wizardSteps.filter((x) => x.n >= 4) : wizardSteps;
   const visIdx = Math.max(0, visibleSteps.findIndex((x) => x.n === step));
   const visibleStepNumber = visIdx + 1;
-  const progressPct = wizardSteps.length > 1 ? Math.max(0, Math.min(100, (visibleStepNumber / wizardSteps.length) * 100)) : 0;
+  const progressTotal = startedFromHero ? visibleSteps.length : wizardSteps.length;
+  const progressStepNumber = startedFromHero ? visibleStepNumber : step;
+  const progressPct = progressTotal > 1 ? Math.max(0, Math.min(100, (visibleStepNumber / progressTotal) * 100)) : 0;
   const stepTitle = (() => {
     if (step === 1) return language === 'ar' ? 'لنبنِ خطة غذائك الشخصية' : "Let's build your personalized nutrition plan";
     if (step === 2) return language === 'ar' ? 'المعلومات الأساسية' : 'Basic Information';
@@ -2285,7 +2299,7 @@ const WeightLossPage: React.FC = () => {
     }
     if (step === 5) {
       updateProfile({ mealsPerDay, snacksBetweenMeals, breakfastType, meatFrequency, vegetablesFrequency, sugaryDrinks, dietaryPreferences });
-      setStep(6);
+      setStep(startedFromHero && profile.wizardGoal !== null ? 7 : 6);
       return;
     }
     if (step === 6) {
@@ -2720,6 +2734,7 @@ const WeightLossPage: React.FC = () => {
     setShowPlan(false);
     setShowStartOverConfirm(false);
     setStep(1);
+    setStartedFromHero(false);
     setPlanType('both');
     setAge('');
     setSex('male');
@@ -3010,7 +3025,7 @@ const WeightLossPage: React.FC = () => {
                 <div className="flex items-center justify-between gap-2">
                   <span className="wiz-progress-badge truncate">{stepEyebrow}</span>
                    <span className="text-[12px] font-bold text-[#6B7A75] whitespace-nowrap shrink-0">
-                     {t('wizard.stepOf')} <span className="num">{step}</span> {t('wizard.of')} <span className="num">13</span>
+                     {t('wizard.stepOf')} <span className="num">{progressStepNumber}</span> {t('wizard.of')} <span className="num">{progressTotal}</span>
                   </span>
                 </div>
                 <h1 className="mt-2 text-[22px] md:text-[26px] font-extrabold leading-tight text-[#0F4C3A]">{stepTitle}</h1>
@@ -3031,7 +3046,7 @@ const WeightLossPage: React.FC = () => {
                           done ? 'bg-[#D4A017] border-[#D4A017] text-[#0F4C3A]' : active ? 'border-[#0F4C3A] bg-white text-[#0F4C3A]' : 'border-[#E3E0D8] bg-white text-[#A0A8A4]'
                         }`}
                       >
-                        {done ? '✓' : x.n}
+                        {done ? '✓' : startedFromHero ? visibleSteps.findIndex((visibleStep) => visibleStep.n === x.n) + 1 : x.n}
                       </div>
                       <span className={`hidden max-w-full truncate text-center text-[10.5px] font-semibold tracking-wide sm:block ${active ? 'text-[#0F4C3A]' : done ? 'text-[#6B7A75]' : 'text-[#A0A8A4]'}`}>{x.label}</span>
                     </div>

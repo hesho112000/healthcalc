@@ -22,8 +22,6 @@ const MedicalDisclaimerPage = lazy(() => import('../pages/MedicalDisclaimerPage'
 const CookiePolicy = lazy(() => import('../pages/CookiePolicy'));
 const ContactUs = lazy(() => import('../pages/ContactUs'));
 const FitnessPage = lazy(() => import('../pages/FitnessPage'));
-const HealthProfilePreview = lazy(() => import('../pages/HealthProfilePreview'));
-const HomeHeroPreview = lazy(() => import('../pages/HomeHeroPreview'));
 const WorkoutPlanPage = lazy(() => import('../pages/WorkoutPlanPage'));
 const SmartwatchSyncPage = lazy(() => import('../pages/SmartwatchSyncPage'));
 const FoodLibraryPage = lazy(() => import('../pages/FoodLibraryPage'));
@@ -81,8 +79,6 @@ export const AppRoutes: React.FC = () => (
       <Route path="/diabetes" element={<DiabetesPage />} />
       {LegacyAdvancedCarePage && <Route path="/premium" element={<LegacyAdvancedCarePage />} />}
       <Route path="/fitness" element={<FitnessPage />} />
-      <Route path="/ui-preview" element={<HealthProfilePreview />} />
-      <Route path="/hero-preview" element={<HomeHeroPreview />} />
       <Route path="/bmi" element={<FitnessPage />} />
       <Route path="/bmr" element={<FitnessPage />} />
       <Route path="/ideal-weight" element={<FitnessPage />} />

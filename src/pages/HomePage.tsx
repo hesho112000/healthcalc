@@ -1,19 +1,19 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Activity, ArrowRight, Bean, BookOpen, Check, CheckCircle2, Cross, Droplet, Dumbbell, Filter, Flame, Footprints, Globe, HeartPulse, Hourglass, Languages, Leaf, Moon, RefreshCw, Salad, Smartphone, Sparkles, Star, Target, Timer, TrendingDown, Users, UtensilsCrossed, Watch } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Activity, ArrowRight, Bean, BookOpen, CalendarDays, Check, CheckCircle2, ChevronDown, Cross, Droplet, Dumbbell, Filter, Flame, Footprints, HeartPulse, Hourglass, Languages, Leaf, Mars, Moon, RefreshCw, Ruler, Salad, Scale, ShieldCheck, Smartphone, Sparkles, Star, Target, Timer, TrendingDown, Users, UtensilsCrossed, Venus, Watch } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import type { ArticleCategory } from '../data/articles';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
 import { useUserProfile } from '../hooks/useUserProfile';
+import type { UserGoal, WizardGoalSelection } from '../hooks/useUserProfile';
 import SectionIllustration from '../components/illustrations/SectionIllustration';
-import HealthFingerprint from '../components/illustrations/HealthFingerprint';
-import FloatingStats from '../components/illustrations/FloatingStats';
 import TrustBar from '../components/sections/TrustBar';
 import HowItWorks from '../components/sections/HowItWorks';
 import StartFreeDropdown from '../components/layout/StartFreeDropdown';
 import Flag from '../components/common/Flag';
 import { ENABLE_PREMIUM } from '../config/featureFlags';
+import './HomeHero.css';
 
 const conditions: Array<{ icon: LucideIcon; en: string; ar: string; path: string }> = [
   { icon: Droplet, en: 'Diabetes', ar: 'سكر', path: '/diabetes' },
@@ -36,6 +36,20 @@ const trustSignals: Array<{ icon: LucideIcon; value: number; decimals?: number; 
 ];
 
 const TRUST_SOURCES = ['WHO', 'ADA', 'NHS', 'Mayo Clinic', 'Harvard Medical'];
+
+const HERO_GOAL_TO_USER_GOAL: Record<WizardGoalSelection, UserGoal> = {
+  lose_weight: 'lose',
+  maintain_weight: 'wellness',
+  build_muscle: 'gain_muscle',
+  improve_health: 'wellness',
+};
+
+const HERO_GOALS: { value: WizardGoalSelection; label: string }[] = [
+  { value: 'lose_weight', label: 'Lose weight' },
+  { value: 'maintain_weight', label: 'Maintain weight' },
+  { value: 'build_muscle', label: 'Build muscle' },
+  { value: 'improve_health', label: 'Feel healthier' },
+];
 
 const localeFor = (lang: string): string =>
   lang === 'ar' ? 'ar-EG' : lang === 'fr' ? 'fr-FR' : lang === 'es' ? 'es-ES' : lang === 'de' ? 'de-DE' : 'en-US';
@@ -81,7 +95,14 @@ const CATEGORY_ICON: Record<ArticleCategory, LucideIcon> = {
 
 const HomePage: React.FC = () => {
   const { t, dir, language } = useLanguage();
+  const navigate = useNavigate();
   const { profile, updateProfile, resetProfile } = useUserProfile();
+  const [heroProfileError, setHeroProfileError] = useState(false);
+  const heroGoal: WizardGoalSelection = profile.wizardGoal ?? (
+    profile.goal === 'gain_muscle' || profile.goal === 'gain_weight' || profile.goal === 'athletic' ? 'build_muscle'
+      : profile.goal === 'wellness' ? 'maintain_weight'
+        : 'lose_weight'
+  );
   const inputClass = 'mixed-text mt-1 block w-full border-0 bg-transparent p-0 text-sm font-bold text-[#0F4C3A] outline-none focus:ring-0';
   const selectClass = 'mt-1 w-full min-w-0 rounded-lg border border-[#E4E8E2] bg-white px-2 py-1.5 text-xs font-semibold text-[#0F4C3A] outline-none focus:border-[#0F4C3A]';
   const watchBenefits = language === 'ar'
@@ -153,6 +174,35 @@ const HomePage: React.FC = () => {
     [articlesData]
   );
 
+  const handleHeroGoalChange = (value: WizardGoalSelection) => {
+    updateProfile({
+      goal: HERO_GOAL_TO_USER_GOAL[value],
+      wizardGoal: value,
+      goalDiscovery: value,
+      goals: [value],
+    });
+  };
+
+  const handleHeroCalculate = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (profile.gender === null || profile.age === null || profile.height === null || profile.weight === null) {
+      setHeroProfileError(true);
+      return;
+    }
+    setHeroProfileError(false);
+    updateProfile({
+      age: profile.age,
+      gender: profile.gender,
+      height: profile.height,
+      weight: profile.weight,
+      goal: HERO_GOAL_TO_USER_GOAL[heroGoal],
+      wizardGoal: heroGoal,
+      goalDiscovery: heroGoal,
+      goals: [heroGoal],
+    });
+    navigate('/weight-loss', { state: { startWithHeroProfile: true } });
+  };
+
   const handleFastingNotify = (event: React.FormEvent) => {
     event.preventDefault();
     const email = fastingEmail.trim();
@@ -180,52 +230,63 @@ const HomePage: React.FC = () => {
   return (
     <div className="home-shell" dir={dir}>
       <SEO title={t('seo.home.title')} description={t('seo.home.description')} url="/" />
-      <section className="hero-section">
-        <div className="hero-mesh" />
-        <div className="max-w-7xl mx-auto px-6 py-12 lg:py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-16 items-center">
-            <div className="hero-copy">
-              <span className="hero-eyebrow">{t('heroEyebrow')}</span>
-              <h1 className="hero-title">
-                <span className="hero-title-line1">{t('heroTitleLine1')}</span>
-                <span className="hero-title-line2">{t('heroTitleLine2')}</span>
-              </h1>
-              <p>{t('heroSubtitle')}</p>
-              <div className="hero-stats" aria-label="HealthFingerprint in numbers">
-                <div className="hero-stat">
-                  <span className="hero-stat-icon"><UtensilsCrossed aria-hidden="true" size={19} /></span>
-                  <span className="min-w-0"><b>{t('heroStatDishesValue')}</b><small>{t('heroStatDishesLabel')}</small></span>
-                </div>
-                <div className="hero-stat">
-                  <span className="hero-stat-icon"><Globe aria-hidden="true" size={19} /></span>
-                  <span className="min-w-0"><b>{t('heroStatKitchensValue')}</b><small>{t('heroStatKitchensLabel')}</small></span>
-                </div>
-                <div className="hero-stat">
-                  <span className="hero-stat-icon"><Languages aria-hidden="true" size={19} /></span>
-                  <span className="min-w-0"><b>{t('heroStatLanguagesValue')}</b><small>{t('heroStatLanguagesLabel')}</small></span>
-                </div>
-                <div className="hero-stat">
-                  <span className="hero-stat-icon"><Star aria-hidden="true" size={19} /></span>
-                  <span className="min-w-0"><b>{t('trustRatingValue')}</b><small>{t('trustRating')}</small></span>
-                </div>
-              </div>
-              <div className="hero-actions">
-                <Link to="/fitness" className="hero-cta">{t('heroCta')} <ArrowRight aria-hidden="true" size={20} className="rtl:rotate-180" /></Link>
-                <a href="#how-it-works" className="hero-link">{t('heroSecondaryCta')}</a>
-              </div>
-              <div className="hero-trust">
-                <span><Star size={14} strokeWidth={2.5} aria-hidden="true" />{t('trustRatingValue')}</span>
-                <span className="hero-trust-sep">·</span>
-                <span><Users size={14} strokeWidth={2.5} aria-hidden="true" /> {t('trustUsersValue')} · {t('trustUsers')}</span>
-                <span className="hero-trust-sep">·</span>
-                <span><BookOpen size={14} strokeWidth={2.5} aria-hidden="true" /> {t('trustDoctor')}</span>
-              </div>
-            </div>
-            <div className="hero-visual">
-              <HealthFingerprint />
-              <FloatingStats />
+      <section className="hero-section home-hero-hook" dir="ltr">
+        <div className="hh-preview__ambient hh-preview__ambient--one" aria-hidden="true" />
+        <div className="hh-preview__ambient hh-preview__ambient--two" aria-hidden="true" />
+        <div className="hh-preview__hero">
+          <div className="hh-preview__message">
+            <span className="hh-preview__badge"><Sparkles size={13} /> The Ultimate Health &amp; Diet Platform</span>
+            <h1>Know Your Macros.<br />Eat What You <em>Love.</em></h1>
+            <p className="hh-preview__subhead">Calculate your daily calories, explore 18,000+ global dishes, and get personalized meal plans in seconds.</p>
+            <div className="hh-preview__proof" aria-label="Platform highlights">
+              <div className="hh-proof-item"><span className="hh-proof-item__icon"><UtensilsCrossed size={16} /></span><strong>18,000<sup>+</sup></strong><small>Dishes</small></div>
+              <span className="hh-preview__proof-divider" />
+              <div className="hh-proof-item"><span className="hh-proof-item__icon"><Languages size={16} /></span><strong>5</strong><small>Languages</small></div>
+              <span className="hh-preview__proof-divider" />
+              <div className="hh-proof-item"><span className="hh-proof-item__icon"><HeartPulse size={16} /></span><strong>100%</strong><small>Free</small></div>
             </div>
           </div>
+
+          <section className="hh-calculator" aria-labelledby="hh-calculator-heading">
+            <div className="hh-calculator__shine" aria-hidden="true" />
+            <div className="hh-calculator__topline"><span><i /> YOUR PERSONAL STARTING POINT</span><span className="hh-calculator__time"><Sparkles size={12} /> 30 sec</span></div>
+            <div className="hh-calculator__heading"><div><span className="hh-calculator__eyebrow">A FEW QUICK DETAILS</span><h2 id="hh-calculator-heading">Let’s make it <em>yours.</em></h2></div><span className="hh-calculator__step">01 <i>/</i> 01</span></div>
+
+            <form onSubmit={handleHeroCalculate}>
+              <div className="hh-form-grid hh-form-grid--three">
+                <label className="hh-field" htmlFor="hero-profile-age">
+                  <span><CalendarDays size={13} /> Age</span>
+                  <span className="hh-field__control"><input id="hero-profile-age" type="number" min="12" max="80" inputMode="numeric" value={profile.age ?? ''} onChange={(event) => { setHeroProfileError(false); updateProfile({ age: event.target.value ? Number(event.target.value) : null }); }} required /><small>years</small></span>
+                </label>
+                <label className="hh-field" htmlFor="hero-profile-height">
+                  <span><Ruler size={13} /> Height</span>
+                  <span className="hh-field__control"><input id="hero-profile-height" type="number" min="120" max="220" inputMode="decimal" value={profile.height ?? ''} onChange={(event) => { setHeroProfileError(false); updateProfile({ height: event.target.value ? Number(event.target.value) : null }); }} required /><small>cm</small></span>
+                </label>
+                <label className="hh-field" htmlFor="hero-profile-weight">
+                  <span><Scale size={13} /> Weight</span>
+                  <span className="hh-field__control"><input id="hero-profile-weight" type="number" min="30" max="250" inputMode="decimal" value={profile.weight ?? ''} onChange={(event) => { setHeroProfileError(false); updateProfile({ weight: event.target.value ? Number(event.target.value) : null }); }} required /><small>kg</small></span>
+                </label>
+              </div>
+
+              <div className="hh-form-grid hh-form-grid--two">
+                <fieldset className="hh-gender-field">
+                  <legend>Gender</legend>
+                  <div className="hh-gender-switch" role="group" aria-label="Gender">
+                    <button type="button" className={profile.gender === 'female' ? 'is-selected' : ''} aria-pressed={profile.gender === 'female'} onClick={() => { setHeroProfileError(false); updateProfile({ gender: 'female' }); }}><Venus size={14} /> Woman</button>
+                    <button type="button" className={profile.gender === 'male' ? 'is-selected' : ''} aria-pressed={profile.gender === 'male'} onClick={() => { setHeroProfileError(false); updateProfile({ gender: 'male' }); }}><Mars size={14} /> Man</button>
+                  </div>
+                </fieldset>
+                <label className="hh-field hh-goal-field" htmlFor="hero-profile-goal">
+                  <span>Your primary goal</span>
+                  <span className="hh-select-wrap"><select id="hero-profile-goal" value={heroGoal} onChange={(event) => handleHeroGoalChange(event.target.value as WizardGoalSelection)}>{HERO_GOALS.map((goal) => <option key={goal.value} value={goal.value}>{goal.label}</option>)}</select><ChevronDown size={15} /></span>
+                </label>
+              </div>
+
+              {heroProfileError && <p className="hh-profile-error" role="alert">Add your age, measurements, and gender to get started.</p>}
+              <button className="hh-calculate-button" type="submit">Calculate My Results <span>🚀</span><ArrowRight size={19} /></button>
+              <p className="hh-no-signup"><ShieldCheck size={14} /> No sign-up required. Instant results.</p>
+            </form>
+          </section>
         </div>
       </section>
 
