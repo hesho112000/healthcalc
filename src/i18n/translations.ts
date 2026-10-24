@@ -359,6 +359,14 @@ type TranslationKeys = {
   'fitnessPage.cta.calculate': string;
   'fitnessPage.results.title': string;
   'fitnessPage.results.subtitle': string;
+  'fitnessPage.results.macrosEyebrow': string;
+  'fitnessPage.results.macrosTitle': string;
+  'fitnessPage.results.macrosSubtitle': string;
+  'fitnessPage.results.dailyTarget': string;
+  'fitnessPage.results.dailyCalories': string;
+  'fitnessPage.results.macroLegend': string;
+  'fitnessPage.results.bmiScaleTitle': string;
+  'fitnessPage.results.bmiScaleSubtitle': string;
   'fitnessPage.cta.continue': string;
   // Weight & Fitness wizard
   'wizard.stepOf': string;
@@ -4414,7 +4422,15 @@ export const translations: Record<Language, TranslationKeys> = {
     'fitnessPage.cta.calculate': 'Calculate My Results 🔥',
     'fitnessPage.results.title': 'Your Results Dashboard',
     'fitnessPage.results.subtitle': 'All metrics calculated instantly with evidence-based formulas.',
-    'fitnessPage.cta.continue': 'Continue to Weight & Fitness Plan →',
+    'fitnessPage.results.macrosEyebrow': 'MACRONUTRIENTS',
+    'fitnessPage.results.macrosTitle': 'Daily macro targets',
+    'fitnessPage.results.macrosSubtitle': 'A balanced estimate based on your calorie goal.',
+    'fitnessPage.results.dailyTarget': 'YOUR GOAL',
+    'fitnessPage.results.dailyCalories': 'daily calories',
+    'fitnessPage.results.macroLegend': 'Macronutrient targets in grams and percent of calories',
+    'fitnessPage.results.bmiScaleTitle': 'Your BMI range',
+    'fitnessPage.results.bmiScaleSubtitle': 'See how your BMI compares to adult reference ranges.',
+    'fitnessPage.cta.continue': 'Get My Personalized Plan →',
     'wizard.stepOf': 'Step',
     'wizard.of': 'of',
     'wizard.back': 'Back',
@@ -6961,7 +6977,15 @@ export const translations: Record<Language, TranslationKeys> = {
     'fitnessPage.cta.calculate': 'Calculer mes résultats 🔥',
     'fitnessPage.results.title': 'Votre tableau de résultats',
     'fitnessPage.results.subtitle': 'Tous les indicateurs calculés instantanément avec des formules fondées sur des preuves.',
-    'fitnessPage.cta.continue': 'Continuer vers le plan poids et fitness →',
+    'fitnessPage.results.macrosEyebrow': 'MACRONUTRIMENTS',
+    'fitnessPage.results.macrosTitle': 'Vos objectifs en macronutriments',
+    'fitnessPage.results.macrosSubtitle': 'Une estimation équilibrée selon votre objectif calorique.',
+    'fitnessPage.results.dailyTarget': 'VOTRE OBJECTIF',
+    'fitnessPage.results.dailyCalories': 'calories quotidiennes',
+    'fitnessPage.results.macroLegend': 'Objectifs nutritionnels en grammes et pourcentage des calories',
+    'fitnessPage.results.bmiScaleTitle': 'Votre plage d’IMC',
+    'fitnessPage.results.bmiScaleSubtitle': 'Comparez votre IMC aux plages de référence adultes.',
+    'fitnessPage.cta.continue': 'Obtenir mon plan personnalisé →',
     'wizard.stepOf': 'Étape',
     'wizard.of': 'sur',
     'wizard.back': 'Retour',
@@ -9478,7 +9502,15 @@ export const translations: Record<Language, TranslationKeys> = {
     'fitnessPage.cta.calculate': 'Calcular mis resultados 🔥',
     'fitnessPage.results.title': 'Tu panel de resultados',
     'fitnessPage.results.subtitle': 'Todas las métricas calculadas al instante con fórmulas basadas en evidencia.',
-    'fitnessPage.cta.continue': 'Continuar al plan de peso y fitness →',
+    'fitnessPage.results.macrosEyebrow': 'MACRONUTRIENTES',
+    'fitnessPage.results.macrosTitle': 'Tus objetivos de macros',
+    'fitnessPage.results.macrosSubtitle': 'Una estimación equilibrada según tu objetivo calórico.',
+    'fitnessPage.results.dailyTarget': 'TU OBJETIVO',
+    'fitnessPage.results.dailyCalories': 'calorías diarias',
+    'fitnessPage.results.macroLegend': 'Objetivos de macronutrientes en gramos y porcentaje de calorías',
+    'fitnessPage.results.bmiScaleTitle': 'Tu rango de IMC',
+    'fitnessPage.results.bmiScaleSubtitle': 'Compara tu IMC con los rangos de referencia para adultos.',
+    'fitnessPage.cta.continue': 'Obtener mi plan personalizado →',
     'wizard.stepOf': 'Paso',
     'wizard.of': 'de',
     'wizard.back': 'Atrás',
@@ -11995,7 +12027,15 @@ export const translations: Record<Language, TranslationKeys> = {
     'fitnessPage.cta.calculate': 'احسب نتائجي 🔥',
     'fitnessPage.results.title': 'لوحة نتائجك',
     'fitnessPage.results.subtitle': 'جميع المؤشرات محسوبة فوراً بصيغ مبنية على الأدلة.',
-    'fitnessPage.cta.continue': 'متابعة إلى خطة الوزن واللياقة ←',
+    'fitnessPage.results.macrosEyebrow': 'المغذيات الكبرى',
+    'fitnessPage.results.macrosTitle': 'أهداف المغذيات اليومية',
+    'fitnessPage.results.macrosSubtitle': 'تقدير متوازن بناءً على هدفك من السعرات.',
+    'fitnessPage.results.dailyTarget': 'هدفك اليومي',
+    'fitnessPage.results.dailyCalories': 'السعرات اليومية',
+    'fitnessPage.results.macroLegend': 'أهداف المغذيات بالجرام ونسبة السعرات',
+    'fitnessPage.results.bmiScaleTitle': 'نطاق مؤشر كتلة الجسم',
+    'fitnessPage.results.bmiScaleSubtitle': 'قارن مؤشرك بالنطاقات المرجعية للبالغين.',
+    'fitnessPage.cta.continue': 'احصل على خطتي الشخصية ←',
     'wizard.stepOf': 'خطوة',
     'wizard.of': 'من',
     'wizard.back': 'رجوع',
@@ -14523,7 +14563,15 @@ export const translations: Record<Language, TranslationKeys> = {
     'fitnessPage.cta.calculate': 'Meine Ergebnisse berechnen 🔥',
     'fitnessPage.results.title': 'Ihre Ergebnisübersicht',
     'fitnessPage.results.subtitle': 'Alle Werte sofort berechnet mit evidenzbasierten Formeln.',
-    'fitnessPage.cta.continue': 'Weiter zum Gewichts- und Fitnessplan →',
+    'fitnessPage.results.macrosEyebrow': 'MAKRONÄHRSTOFFE',
+    'fitnessPage.results.macrosTitle': 'Tägliche Makroziele',
+    'fitnessPage.results.macrosSubtitle': 'Eine ausgewogene Schätzung nach Ihrem Kalorienziel.',
+    'fitnessPage.results.dailyTarget': 'IHR ZIEL',
+    'fitnessPage.results.dailyCalories': 'Kalorien pro Tag',
+    'fitnessPage.results.macroLegend': 'Makronährstoffziele in Gramm und Prozent der Kalorien',
+    'fitnessPage.results.bmiScaleTitle': 'Ihr BMI-Bereich',
+    'fitnessPage.results.bmiScaleSubtitle': 'Vergleichen Sie Ihren BMI mit Referenzbereichen für Erwachsene.',
+    'fitnessPage.cta.continue': 'Meinen persönlichen Plan erstellen →',
     'wizard.stepOf': 'Schritt',
     'wizard.of': 'von',
     'wizard.back': 'Zurück',

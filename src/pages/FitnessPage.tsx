@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Dumbbell, Flame, Gauge, HeartPulse, Ruler, Wind } from 'lucide-react';
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
@@ -18,10 +19,10 @@ function bmrValue(g: 'male' | 'female', age: number, hCm: number, wKg: number) {
   return g === 'male' ? 10 * wKg + 6.25 * hCm - 5 * age + 5 : 10 * wKg + 6.25 * hCm - 5 * age - 161;
 }
 function bmiStatus(bmi: number) {
-  if (bmi < 18.5) return { key: 'fcBmiUnder', color: '#3b82f6' };
-  if (bmi < 25) return { key: 'fcPillHealthy', color: '#0F4C3A' };
-  if (bmi < 30) return { key: 'fcBmiOver', color: '#f59e0b' };
-  return { key: 'fcBmiObese', color: '#ef4444' };
+  if (bmi < 18.5) return { key: 'fcBmiUnder', color: '#8EA39A' };
+  if (bmi < 25) return { key: 'fcBmiNormal', color: '#0F4C3A' };
+  if (bmi < 30) return { key: 'fcBmiOver', color: '#C49B45' };
+  return { key: 'fcBmiObese', color: '#C77762' };
 }
 function estBodyFat(g: 'male' | 'female', bmi: number, age: number) {
   return g === 'male' ? 1.2 * bmi + 0.23 * age - 16.2 : 1.2 * bmi + 0.23 * age - 5.4;
@@ -61,6 +62,13 @@ const HR_COLORS = ['#0F4C3A', '#D4A017', '#fb923c', '#ef4444'];
 const riskColor = (k: string) => (k === 'fcWhrLevelLow' ? '#0F4C3A' : k === 'fcWhrLevelModerate' ? '#f59e0b' : '#ef4444');
 const vo2Color = (k: string) => (k === 'fcVo2Poor' ? '#ef4444' : k === 'fcVo2Fair' ? '#f59e0b' : k === 'fcVo2Good' ? '#0F4C3A' : k === 'fcVo2Excellent' ? '#3b82f6' : '#8b5cf6');
 const bfColor = (k: string) => (k === 'fcBfLevelObese' ? '#ef4444' : k === 'fcBfLevelAverage' ? '#f59e0b' : '#0F4C3A');
+
+interface MacroChartDatum {
+  name: string;
+  percentage: number;
+  grams: number;
+  color: string;
+}
 
 const FitnessPage: React.FC = () => {
   const { t, language } = useLanguage();
@@ -177,11 +185,41 @@ const FitnessPage: React.FC = () => {
   };
 
   const bmiStatusD = metrics ? bmiStatus(metrics.bmi) : null;
-  const bmiPct = metrics ? Math.max(4, Math.min(100, ((metrics.bmi - 14) / 26) * 100)) : 0;
   const bfs = metrics ? bfLevel(form.gender, metrics.bodyFat) : 'fcBfLevelFitness';
   const bfPct = metrics ? Math.max(4, Math.min(100, (metrics.bodyFat / 45) * 100)) : 0;
   const whr = metrics ? whrRisk(form.gender, metrics.whr) : 'fcWhrLevelLow';
   const vo2lvl = metrics ? vo2Level(metrics.vo2) : 'fcVo2Good';
+  const macroTargetCalories = metrics ? (form.goal === 'lose' ? metrics.lose : metrics.maintain) : 0;
+  const macroProteinPercent = form.goal === 'gain_muscle' ? 35 : 30;
+  const macroCarbsPercent = 40;
+  const macroFatPercent = 100 - macroProteinPercent - macroCarbsPercent;
+  const macroChartData: MacroChartDatum[] = [
+    {
+      name: t('wizard.macro.protein' as any),
+      percentage: macroProteinPercent,
+      grams: Math.round((macroTargetCalories * macroProteinPercent) / 100 / 4),
+      color: '#16815F',
+    },
+    {
+      name: t('wizard.macro.carbs' as any),
+      percentage: macroCarbsPercent,
+      grams: Math.round((macroTargetCalories * macroCarbsPercent) / 100 / 4),
+      color: '#D5A447',
+    },
+    {
+      name: t('wizard.macro.fat' as any),
+      percentage: macroFatPercent,
+      grams: Math.round((macroTargetCalories * macroFatPercent) / 100 / 9),
+      color: '#E18A70',
+    },
+  ];
+  const bmiScaleRanges = [
+    { label: t('fcBmiUnder'), range: '<18.5', min: 14, max: 18.5, color: '#D9E2DC' },
+    { label: t('fcBmiNormal'), range: '18.5–24.9', min: 18.5, max: 25, color: '#16815F' },
+    { label: t('fcBmiOver'), range: '25–29.9', min: 25, max: 30, color: '#E9D49A' },
+    { label: t('fcBmiObese'), range: '≥30', min: 30, max: 40, color: '#E8B7A8' },
+  ];
+  const bmiScalePosition = metrics ? Math.max(0, Math.min(100, ((metrics.bmi - 14) / (40 - 14)) * 100)) : 0;
 
   const unitSuffix = (u: string) => (
     <span className="absolute inset-inline-end-4 top-1/2 -translate-y-1/2 text-[12px] font-semibold text-[#A0A8A4] pointer-events-none">{u}</span>
@@ -318,25 +356,130 @@ const FitnessPage: React.FC = () => {
               <p className="mt-1 text-[14px] text-[#6B7A75]">{t('fitnessPage.results.subtitle')}</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              <div className={resultCard}>
-                <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center gap-2.5">
-                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[rgba(15,76,58,0.08)] text-[#0F4C3A]"><Gauge size={20} strokeWidth={2.3} /></span>
-                    <span className="text-[12px] font-extrabold uppercase tracking-[0.14em] text-[#6B7A75]">BMI</span>
-                  </span>
-                  <span className="text-[11px] font-bold px-3 py-1 rounded-full" style={{ background: `${bmiStatusD.color}18`, color: bmiStatusD.color }}>{t(bmiStatusD.key as any)}</span>
+            <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+              <section className={`${resultCard} min-w-0 p-5 sm:p-7`} aria-labelledby="fitness-macro-chart-title">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <span className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#A17D3E]">{t('fitnessPage.results.macrosEyebrow')}</span>
+                    <h3 id="fitness-macro-chart-title" className="mt-1 text-[18px] font-extrabold text-[#153A2E]">{t('fitnessPage.results.macrosTitle')}</h3>
+                    <p className="mt-1 text-[12px] leading-relaxed text-[#74847A]">{t('fitnessPage.results.macrosSubtitle')}</p>
+                  </div>
+                  <span className="shrink-0 rounded-full border border-[#E1EAE1] bg-[#F5F8F3] px-3 py-1.5 text-[10px] font-bold text-[#52705C]">{t('fitnessPage.results.dailyTarget')}</span>
                 </div>
-                <div className="mt-4 flex items-baseline gap-2">
-                  <span className="num text-[40px] leading-none font-extrabold text-[#0F4C3A]">{metrics.bmi}</span>
-                  <span className="text-[12px] font-semibold text-[#A0A8A4]">kg/m²</span>
-                </div>
-                <div className="mt-4 h-2.5 rounded-full bg-[#F4F1EB] overflow-hidden">
-                  <div className="h-full rounded-full" style={{ width: `${bmiPct}%`, background: bmiStatusD.color }} />
-                </div>
-              </div>
 
-              <div className="rounded-3xl p-7 border border-[#D4A017] shadow-[0_12px_30px_rgba(15,76,58,0.18)]" style={{ background: 'linear-gradient(135deg,#0F4C3A,#14532D 60%,#1f6b52)' }}>
+                <div className="mt-3 grid grid-cols-1 items-center gap-2 sm:grid-cols-[minmax(210px,.95fr)_minmax(0,1.05fr)] sm:gap-3">
+                  <div className="relative mx-auto h-[230px] w-full max-w-[280px]" role="img" aria-label={macroChartData.map((macro) => `${macro.name}: ${macro.grams} grams, ${macro.percentage}%`).join('. ')}>
+                    <ResponsiveContainer width="100%" height="100%">
+                      <PieChart>
+                        <Pie
+                          data={macroChartData}
+                          dataKey="percentage"
+                          nameKey="name"
+                          cx="50%"
+                          cy="50%"
+                          innerRadius={67}
+                          outerRadius={94}
+                          paddingAngle={4}
+                          cornerRadius={5}
+                          stroke="none"
+                          isAnimationActive
+                          animationDuration={1050}
+                          animationEasing="ease-out"
+                        >
+                          {macroChartData.map((macro) => <Cell key={macro.name} fill={macro.color} />)}
+                        </Pie>
+                        <Tooltip
+                          cursor={false}
+                          formatter={(_value, _name, item) => {
+                            const macro = item.payload as MacroChartDatum;
+                            return [`${macro.grams} g · ${macro.percentage}%`, macro.name];
+                          }}
+                          contentStyle={{ borderRadius: 14, border: '1px solid #E3EAE2', boxShadow: '0 10px 28px rgba(20, 55, 39, .12)', fontSize: 12 }}
+                          labelStyle={{ color: '#17382F', fontWeight: 700 }}
+                        />
+                      </PieChart>
+                    </ResponsiveContainer>
+                    <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center">
+                      <span className="text-[9px] font-extrabold uppercase tracking-[0.13em] text-[#87958A]">{t('fitnessPage.results.dailyCalories')}</span>
+                      <strong className="num mt-1 text-[27px] font-black leading-none tracking-tight text-[#153A2E]">{macroTargetCalories.toLocaleString(language === 'ar' ? 'ar-EG' : undefined)}</strong>
+                      <span className="mt-1 text-[10px] font-semibold text-[#87958A]">kcal / day</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2" aria-label={t('fitnessPage.results.macroLegend')}>
+                    {macroChartData.map((macro) => (
+                      <div key={macro.name} className="flex items-center justify-between gap-3 rounded-2xl border border-[#E8EDE7] bg-[#FBFCF9] px-3.5 py-3">
+                        <div className="flex min-w-0 items-center gap-2.5">
+                          <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ backgroundColor: macro.color }} />
+                          <span className="truncate text-[12px] font-bold text-[#40554A]">{macro.name}</span>
+                        </div>
+                        <div className="shrink-0 text-end">
+                          <strong className="num text-[13px] font-extrabold text-[#183E30]">{macro.grams} g</strong>
+                          <span className="ms-1.5 text-[10px] font-semibold text-[#89958C]">{macro.percentage}%</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              <section className={`${resultCard} min-w-0 p-5 sm:p-7`} aria-labelledby="fitness-bmi-scale-title">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <span className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#A17D3E]">BMI · kg/m²</span>
+                    <h3 id="fitness-bmi-scale-title" className="mt-1 text-[18px] font-extrabold text-[#153A2E]">{t('fitnessPage.results.bmiScaleTitle')}</h3>
+                    <p className="mt-1 text-[12px] leading-relaxed text-[#74847A]">{t('fitnessPage.results.bmiScaleSubtitle')}</p>
+                  </div>
+                  <span className="shrink-0 rounded-full px-3 py-1.5 text-[10px] font-bold" style={{ background: `${bmiStatusD.color}18`, color: bmiStatusD.color }}>{t(bmiStatusD.key as any)}</span>
+                </div>
+
+                <div className="mt-7 flex items-baseline gap-2">
+                  <span className="num text-[42px] font-black leading-none tracking-tight text-[#153A2E]">{metrics.bmi.toFixed(1)}</span>
+                  <span className="text-[12px] font-semibold text-[#87958A]">kg/m²</span>
+                </div>
+                <div
+                  className="mt-6"
+                  role="meter"
+                  aria-label={`${t('fitnessPage.results.bmiScaleTitle')}: ${metrics.bmi.toFixed(1)}, ${t(bmiStatusD.key as any)}`}
+                  aria-valuetext={`${metrics.bmi.toFixed(1)} (${t(bmiStatusD.key as any)})`}
+                  aria-valuemin={14}
+                  aria-valuemax={40}
+                  aria-valuenow={Math.max(14, Math.min(40, metrics.bmi))}
+                >
+                  <div className="relative">
+                    <div className="flex h-3.5 overflow-hidden rounded-full ring-1 ring-inset ring-black/5">
+                      {bmiScaleRanges.map((range) => (
+                        <span
+                          key={range.label}
+                          className="h-full"
+                          style={{ width: `${((range.max - range.min) / (40 - 14)) * 100}%`, backgroundColor: range.color }}
+                        />
+                      ))}
+                    </div>
+                    <span className="absolute top-[-7px] z-10 -translate-x-1/2 transition-[left] duration-1000 ease-out" style={{ left: `${bmiScalePosition}%` }} aria-hidden="true">
+                      <span className="mx-auto block h-[27px] w-[3px] rounded-full bg-[#17382F] shadow-[0_1px_4px_rgba(12,40,28,.3)]" />
+                      <span className="absolute left-1/2 top-[-2px] h-2.5 w-2.5 -translate-x-1/2 rounded-full border-2 border-white bg-[#17382F] shadow-sm" />
+                    </span>
+                  </div>
+                  <div className="mt-2 flex justify-between px-0.5 text-[9px] font-semibold tabular-nums text-[#98A198]"><span>14</span><span>18.5</span><span>25</span><span>30</span><span>40+</span></div>
+                </div>
+
+                <div className="mt-5 grid grid-cols-2 gap-x-3 gap-y-3 sm:grid-cols-4">
+                  {bmiScaleRanges.map((range) => (
+                    <div key={range.label} className="min-w-0">
+                      <span className="flex items-center gap-1.5 text-[9px] font-bold leading-tight text-[#58695E]">
+                        <i className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: range.color }} />
+                        <span className="truncate">{range.label}</span>
+                      </span>
+                      <span className="ms-3.5 mt-1 block text-[8px] font-semibold text-[#98A198]">{range.range}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </div>
+
+            <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
+              <div className="rounded-3xl border border-[#D4A017] p-7 shadow-[0_12px_30px_rgba(15,76,58,0.18)]" style={{ background: 'linear-gradient(135deg,#0F4C3A,#14532D 60%,#1f6b52)' }}>
                 <div className="flex items-center justify-between">
                   <span className="inline-flex items-center gap-2.5">
                     <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/10 text-[#D4A017]"><Flame size={20} strokeWidth={2.3} /></span>
