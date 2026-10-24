@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import { AdminProvider } from './context/AdminContext';
 import { AuthProvider } from './context/AuthContext';
@@ -10,6 +10,23 @@ import InstallBanner from './components/layout/InstallBanner';
 import CookieConsentBanner from './components/common/CookieConsentBanner';
 import { AppRoutes } from './routes';
 
+const AppShell: React.FC = () => {
+  const { pathname } = useLocation();
+  const isPreview = pathname === '/ui-preview';
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      {!isPreview && <Header />}
+      <main className="flex-1">
+        <AppRoutes />
+      </main>
+      {!isPreview && <Footer />}
+      {!isPreview && <InstallBanner />}
+      {!isPreview && <CookieConsentBanner />}
+    </div>
+  );
+};
+
 const App: React.FC = () => {
   return (
     <LanguageProvider>
@@ -17,16 +34,8 @@ const App: React.FC = () => {
         <AuthProvider>
           <SubscriptionProvider>
             <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-            <div className="min-h-screen flex flex-col">
-              <Header />
-              <main className="flex-1">
-                <AppRoutes />
-              </main>
-              <Footer />
-              <InstallBanner />
-              <CookieConsentBanner />
-            </div>
-          </Router>
+              <AppShell />
+            </Router>
         </SubscriptionProvider>
         </AuthProvider>
       </AdminProvider>
