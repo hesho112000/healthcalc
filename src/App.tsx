@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import { AdminProvider } from './context/AdminContext';
 import { AuthProvider } from './context/AuthContext';
@@ -16,7 +16,7 @@ const App: React.FC = () => {
       <AdminProvider>
         <AuthProvider>
           <SubscriptionProvider>
-            <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+            <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
               <div className="min-h-screen flex flex-col">
                 <Header />
                 <main className="flex-1">
@@ -26,7 +26,7 @@ const App: React.FC = () => {
                 <InstallBanner />
                 <CookieConsentBanner />
               </div>
-            </Router>
+            </BrowserRouter>
         </SubscriptionProvider>
         </AuthProvider>
       </AdminProvider>
