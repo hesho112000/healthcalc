@@ -24,7 +24,6 @@ const FitnessPage = lazy(() => import('../pages/FitnessPage'));
 const WorkoutPlanPage = lazy(() => import('../pages/WorkoutPlanPage'));
 const SmartwatchSyncPage = lazy(() => import('../pages/SmartwatchSyncPage'));
 const FoodLibraryPage = lazy(() => import('../pages/FoodLibraryPage'));
-const FoodLibraryPreview = lazy(() => import('../pages/FoodLibraryPreview'));
 const HealthUniversePage = ENABLE_PREMIUM ? lazy(() => import('../pages/HealthUniversePage')) : null;
 const AdvancedLabPage = ENABLE_PREMIUM ? lazy(() => import('../pages/AdvancedLabPage')) : null;
 const AdvancedCareWizardPage = ENABLE_PREMIUM ? lazy(() => import('../pages/AdvancedCareWizardPage')) : null;
@@ -85,7 +84,6 @@ export const AppRoutes: React.FC = () => (
       <Route path="/workout-plan" element={<WorkoutPlanPage />} />
       <Route path="/smartwatch-sync" element={<SmartwatchSyncPage />} />
       <Route path="/food-library" element={<FoodLibraryPage />} />
-      <Route path="/food-library-preview" element={<FoodLibraryPreview />} />
       {HealthUniversePage && <Route path="/advanced-care" element={<HealthUniversePage />} />}
       {OrganHubPage && <Route path="/advanced-care/:organId" element={<OrganHubPage />} />}
       {AdvancedLabPage && <Route path="/advanced-care/lab" element={<AdvancedLabPage />} />}

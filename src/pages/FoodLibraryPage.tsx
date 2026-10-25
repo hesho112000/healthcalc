@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { ChevronDown, Search } from 'lucide-react';
 import { FOODS_DATABASE, CUISINE_META, CUISINE_GROUPS, Cuisine, FoodItem } from '../utils/calculations_expanded';
 import Flag, { isCountryCode } from '../components/common/Flag';
 import { useLanguage } from '../context/LanguageContext';
@@ -146,123 +147,89 @@ const FoodLibraryPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        {/* Search & Filters */}
-        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-gray-100 p-6 mb-10 sticky top-20 z-20">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-            <div className="md:col-span-5">
-              <label className="text-xs font-semibold text-gray-500 mb-2 block">🔍 {t('foodLibSearchLabel')}</label>
+      <section aria-label={t('foodLibSearchLabel')} className="sticky top-[72px] z-30 border-b border-gray-200 bg-white/90 shadow-[0_8px_24px_rgba(15,23,42,0.06)] backdrop-blur-md">
+        <div className="mx-auto max-w-6xl px-4 py-3">
+          <div className="grid gap-3 lg:grid-cols-[minmax(220px,1fr)_minmax(190px,0.8fr)_minmax(180px,0.65fr)] lg:items-end">
+            <div>
+              <label htmlFor="food-library-search" className="mb-1.5 block text-[11px] font-bold uppercase tracking-wide text-gray-500">🔍 {t('foodLibSearchLabel')}</label>
               <div className="relative">
+                <Search size={17} aria-hidden="true" className="pointer-events-none absolute start-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input
-                  type="text"
+                  id="food-library-search"
+                  type="search"
                   placeholder={t('foodLibSearchPlaceholder')}
                   value={search}
                   onChange={(e) => { setSearch(e.target.value); setVisibleCount(PAGE_SIZE); }}
-                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 outline-none transition bg-white/60"
+                  className="h-11 w-full rounded-xl border border-gray-200 bg-white ps-10 pe-4 text-sm text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10"
                 />
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">🔍</span>
               </div>
             </div>
 
-            <div className="md:col-span-4">
-              <label className="text-xs font-semibold text-gray-500 mb-2 block">🍽️ {t('foodLibCuisineLabel')}</label>
-              <select
-                value={selectedCuisine}
-                onChange={(e) => { setSelectedCuisine(e.target.value as any); setVisibleCount(PAGE_SIZE); }}
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 outline-none bg-white/60 appearance-none"
-              >
-                <option value="all">🌍 {t('foodLibAllCuisines')} ({FOODS_DATABASE.length})</option>
-                {orderedCuisineGroups.map((group) => (
-                  <optgroup key={group.region} label={englishArabicLabel(group.region, group.regionAr)}>
-                    {group.items.map((item) => (
-                      <option key={item.id} value={item.id}>
-                        {englishArabicLabel(item.nameEn, item.nameAr)}
-                      </option>
-                    ))}
-                  </optgroup>
-                ))}
-              </select>
-            </div>
-
-            <div className="md:col-span-3">
-              <label className="text-xs font-semibold text-gray-500 mb-2 block">📊 {t('foodLibSortLabel')}</label>
-              <select
-                value={sortBy}
-                onChange={(e) => { setSortBy(e.target.value as any); setVisibleCount(PAGE_SIZE); }}
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 outline-none bg-white/60 appearance-none"
-              >
-                <option value="calories">🔥 {t('foodLibSortCalories')}</option>
-                <option value="protein">💪 {t('foodLibSortHighProtein')}</option>
-                <option value="name">🔤 {t('foodLibSortName')}</option>
-              </select>
-            </div>
-          </div>
-
-          {/* Calorie filter */}
-          <div className="mt-5 flex items-center gap-4 flex-wrap">
-            <span className="text-xs font-semibold text-gray-500">{t('foodLibCaloriesFilter')}</span>
-            <div className="flex gap-2 flex-wrap">
-              {calorieOptions.map((opt) => (
-                <button
-                  key={opt.range.join('-')}
-                  onClick={() => { setCalorieFilter(opt.range); setVisibleCount(PAGE_SIZE); }}
-                  className={`px-4 py-1.5 rounded-full text-xs font-semibold border-2 transition-all ${
-                    calorieFilter[0] === opt.range[0] && calorieFilter[1] === opt.range[1]
-                      ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-emerald-500 shadow-md'
-                      : 'bg-white/50 text-gray-600 border-gray-200 hover:border-emerald-300 hover:bg-emerald-50/50'
-                  }`}
+            <div>
+              <label htmlFor="food-library-cuisine" className="mb-1.5 block text-[11px] font-bold uppercase tracking-wide text-gray-500">🍽️ {t('foodLibCuisineLabel')}</label>
+              <div className="relative">
+                <select
+                  id="food-library-cuisine"
+                  value={selectedCuisine}
+                  onChange={(e) => { setSelectedCuisine(e.target.value as Cuisine | 'all'); setVisibleCount(PAGE_SIZE); }}
+                  className="h-11 w-full appearance-none rounded-xl border border-gray-200 bg-white ps-4 pe-10 text-sm text-gray-700 outline-none transition focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10"
                 >
-                  {opt.label}
-                </button>
-              ))}
-            </div>
-            <span className="ml-auto text-xs text-gray-400">
-              {filteredFoods.length} {t('foodLibResults')}
-            </span>
-          </div>
-        </div>
-
-        {/* Quick cuisine chips, grouped by region */}
-        <div className="space-y-4 mb-6">
-          <div className="flex flex-wrap gap-2">
-            <button
-              onClick={() => { setSelectedCuisine('all'); setVisibleCount(PAGE_SIZE); }}
-              className={`px-4 py-2 rounded-full text-sm font-bold border-2 transition ${
-                selectedCuisine === 'all' ? 'bg-gray-900 text-white border-gray-900' : 'bg-white border-gray-200 hover:border-gray-300'
-              }`}
-            >
-              🌍 {t('foodLibAll')}
-            </button>
-          </div>
-          {orderedCuisineGroups.map((group) => (
-            <div key={group.region}>
-              <p className={`mb-2 text-xs font-bold uppercase tracking-wide ${group.region === 'Special Diets' ? 'text-green-600' : 'text-gray-400'}`}>
-                {englishArabicLabel(group.region, group.regionAr)}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {group.items.map((item) => {
-                  const meta = CUISINE_META[item.id];
-                  const key = item.id;
-                  const name = englishArabicLabel(item.nameEn, item.nameAr);
-                  return (
-                    <button
-                      key={key}
-                      onClick={() => { setSelectedCuisine(key as Cuisine); setVisibleCount(PAGE_SIZE); }}
-                      className={`px-4 py-2 rounded-full text-sm font-bold border-2 transition flex items-center gap-1.5 ${
-                        selectedCuisine === key ? 'bg-green-500 text-white border-green-500' : `bg-white hover:bg-gray-50 ${meta?.color ?? ''}`
-                      }`}
-                    >
-                      {meta && isCountryCode(meta.flag)
-                        ? <Flag countryCode={meta.flag} alt={`${name} flag`} className="h-3.5 w-5" />
-                        : <span>{meta?.flag}</span>}
-                      {name}
-                    </button>
-                  );
-                })}
+                  <option value="all">🌍 {t('foodLibAllCuisines')} ({FOODS_DATABASE.length})</option>
+                  {orderedCuisineGroups.map((group) => (
+                    <optgroup key={group.region} label={englishArabicLabel(group.region, group.regionAr)}>
+                      {group.items.map((item) => (
+                        <option key={item.id} value={item.id}>
+                          {englishArabicLabel(item.nameEn, item.nameAr)}
+                        </option>
+                      ))}
+                    </optgroup>
+                  ))}
+                </select>
+                <ChevronDown size={16} aria-hidden="true" className="pointer-events-none absolute end-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
               </div>
             </div>
-          ))}
+
+            <div>
+              <label htmlFor="food-library-sort" className="mb-1.5 block text-[11px] font-bold uppercase tracking-wide text-gray-500">📊 {t('foodLibSortLabel')}</label>
+              <div className="relative">
+                <select
+                  id="food-library-sort"
+                  value={sortBy}
+                  onChange={(e) => { setSortBy(e.target.value as 'calories' | 'protein' | 'name'); setVisibleCount(PAGE_SIZE); }}
+                  className="h-11 w-full appearance-none rounded-xl border border-gray-200 bg-white ps-4 pe-10 text-sm text-gray-700 outline-none transition focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10"
+                >
+                  <option value="calories">🔥 {t('foodLibSortCalories')}</option>
+                  <option value="protein">💪 {t('foodLibSortHighProtein')}</option>
+                  <option value="name">🔤 {t('foodLibSortName')}</option>
+                </select>
+                <ChevronDown size={16} aria-hidden="true" className="pointer-events-none absolute end-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-3 flex flex-wrap items-center gap-2.5 border-t border-gray-100 pt-3">
+            <span className="me-1 text-[11px] font-bold uppercase tracking-wide text-gray-500">{t('foodLibCaloriesFilter')}</span>
+            {calorieOptions.map((opt) => (
+              <button
+                type="button"
+                key={opt.range.join('-')}
+                aria-pressed={calorieFilter[0] === opt.range[0] && calorieFilter[1] === opt.range[1]}
+                onClick={() => { setCalorieFilter(opt.range); setVisibleCount(PAGE_SIZE); }}
+                className={`rounded-full border px-3 py-2 text-xs font-semibold transition sm:px-4 ${
+                  calorieFilter[0] === opt.range[0] && calorieFilter[1] === opt.range[1]
+                    ? 'border-emerald-700 bg-emerald-700 text-white shadow-sm'
+                    : 'border-gray-200 bg-white text-gray-600 hover:border-emerald-400 hover:text-emerald-800'
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+            <span className="ms-auto text-xs text-gray-400">{filteredFoods.length} {t('foodLibResults')}</span>
+          </div>
         </div>
+      </section>
+
+      <div className="max-w-6xl mx-auto px-4 py-8">
 
         {/* Food table */}
         <div className="bg-white rounded-2xl shadow-sm border overflow-hidden">
