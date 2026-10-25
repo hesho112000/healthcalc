@@ -6,6 +6,7 @@
 import type { Language } from '../../types';
 
 export interface KitchenDish {
+  id?: string;
   name: string;
   nameAr?: string;
   nameEn?: string;

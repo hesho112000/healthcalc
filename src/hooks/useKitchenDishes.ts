@@ -46,6 +46,7 @@ function rowToDish(r: DishRow): KitchenDish {
   const baseCal = r.base_cal_serv ?? 0;
   const servingsG = r.base_serving_g ?? 100;
   return {
+    id: r.id,
     name: r.name_ar ?? r.name_en ?? '',
     nameAr: r.name_ar ?? undefined,
     nameEn: r.name_en ?? undefined,
@@ -105,6 +106,7 @@ function loadAllDishes(): Promise<DishRow[]> {
 
 export interface UseKitchenDishesResult {
   kitchens: Record<string, KitchenInfo>;
+  allDishes: KitchenDish[];
   loading: boolean;
   error: string | null;
   refetch: () => void;
@@ -117,7 +119,8 @@ export interface UseKitchenDishesResult {
  * KITCHEN_REGION_FAMILIES + isAuthenticForKitchen rules used everywhere else.
  * Falls back to the static registry when Supabase is unconfigured or empty.
  */
-export function useKitchenDishes(): UseKitchenDishesResult {
+export function useKitchenDishes(options: { includeAllDishes?: boolean } = {}): UseKitchenDishesResult {
+  const { includeAllDishes = false } = options;
   const [rows, setRows] = useState<DishRow[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -189,5 +192,7 @@ export function useKitchenDishes(): UseKitchenDishesResult {
     return out;
   }, [rows]);
 
-  return { kitchens, loading, error, refetch };
+  const allDishes = useMemo(() => includeAllDishes ? rows.map(rowToDish) : [], [rows, includeAllDishes]);
+
+  return { kitchens, allDishes, loading, error, refetch };
 }
