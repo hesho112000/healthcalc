@@ -148,25 +148,28 @@ const FoodLibraryPage: React.FC = () => {
 
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Search & Filters */}
-        <div className="bg-white rounded-2xl shadow-sm border p-6 mb-8 sticky top-20 z-10">
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-gray-100 p-6 mb-10 sticky top-20 z-20">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
             <div className="md:col-span-5">
-              <label className="text-xs font-bold text-gray-500 mb-2 block">🔍 {t('foodLibSearchLabel')}</label>
-              <input
-                type="text"
-                placeholder={t('foodLibSearchPlaceholder')}
-                value={search}
-                onChange={(e) => { setSearch(e.target.value); setVisibleCount(PAGE_SIZE); }}
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-100 outline-none transition"
-              />
+              <label className="text-xs font-semibold text-gray-500 mb-2 block">🔍 {t('foodLibSearchLabel')}</label>
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder={t('foodLibSearchPlaceholder')}
+                  value={search}
+                  onChange={(e) => { setSearch(e.target.value); setVisibleCount(PAGE_SIZE); }}
+                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 outline-none transition bg-white/60"
+                />
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">🔍</span>
+              </div>
             </div>
 
             <div className="md:col-span-4">
-              <label className="text-xs font-bold text-gray-500 mb-2 block">🍽️ {t('foodLibCuisineLabel')}</label>
+              <label className="text-xs font-semibold text-gray-500 mb-2 block">🍽️ {t('foodLibCuisineLabel')}</label>
               <select
                 value={selectedCuisine}
                 onChange={(e) => { setSelectedCuisine(e.target.value as any); setVisibleCount(PAGE_SIZE); }}
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 outline-none bg-white"
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 outline-none bg-white/60 appearance-none"
               >
                 <option value="all">🌍 {t('foodLibAllCuisines')} ({FOODS_DATABASE.length})</option>
                 {orderedCuisineGroups.map((group) => (
@@ -182,11 +185,11 @@ const FoodLibraryPage: React.FC = () => {
             </div>
 
             <div className="md:col-span-3">
-              <label className="text-xs font-bold text-gray-500 mb-2 block">📊 {t('foodLibSortLabel')}</label>
+              <label className="text-xs font-semibold text-gray-500 mb-2 block">📊 {t('foodLibSortLabel')}</label>
               <select
                 value={sortBy}
                 onChange={(e) => { setSortBy(e.target.value as any); setVisibleCount(PAGE_SIZE); }}
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 outline-none bg-white"
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 outline-none bg-white/60 appearance-none"
               >
                 <option value="calories">🔥 {t('foodLibSortCalories')}</option>
                 <option value="protein">💪 {t('foodLibSortHighProtein')}</option>
@@ -196,17 +199,17 @@ const FoodLibraryPage: React.FC = () => {
           </div>
 
           {/* Calorie filter */}
-          <div className="mt-6 flex items-center gap-4 flex-wrap">
-            <span className="text-xs font-bold text-gray-500">{t('foodLibCaloriesFilter')}</span>
+          <div className="mt-5 flex items-center gap-4 flex-wrap">
+            <span className="text-xs font-semibold text-gray-500">{t('foodLibCaloriesFilter')}</span>
             <div className="flex gap-2 flex-wrap">
               {calorieOptions.map((opt) => (
                 <button
                   key={opt.range.join('-')}
                   onClick={() => { setCalorieFilter(opt.range); setVisibleCount(PAGE_SIZE); }}
-                  className={`px-3 py-1.5 rounded-full text-xs font-bold border transition ${
+                  className={`px-4 py-1.5 rounded-full text-xs font-semibold border-2 transition-all ${
                     calorieFilter[0] === opt.range[0] && calorieFilter[1] === opt.range[1]
-                      ? 'bg-green-500 text-white border-green-500'
-                      : 'bg-white text-gray-600 border-gray-200 hover:border-green-300'
+                      ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-emerald-500 shadow-md'
+                      : 'bg-white/50 text-gray-600 border-gray-200 hover:border-emerald-300 hover:bg-emerald-50/50'
                   }`}
                 >
                   {opt.label}
