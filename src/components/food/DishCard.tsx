@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
 
+import { Link } from 'react-router-dom';
+
 export interface Dish {
   id: string;
   name_en?: string | null;
@@ -58,7 +60,8 @@ export default function DishCard({ dish, locale }: { dish: Dish; locale: string 
   const emoji    = MEAL_EMOJI[(dish.meal_type ?? '').toLowerCase()] ?? '🍽️';
 
   return (
-    <article className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-emerald-400/50 hover:shadow-xl hover:shadow-emerald-500/10">
+    <Link to={`/food-library/${dish.id}`} className="block h-full">
+      <article className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-emerald-400/50 hover:shadow-xl hover:shadow-emerald-500/10">
       <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-slate-50">
         <span className="text-6xl opacity-80 transition-transform duration-500 group-hover:scale-110" aria-hidden="true">
           {emoji}
@@ -85,5 +88,6 @@ export default function DishCard({ dish, locale }: { dish: Dish; locale: string 
         </dl>
       </div>
     </article>
+    </Link>
   );
 }

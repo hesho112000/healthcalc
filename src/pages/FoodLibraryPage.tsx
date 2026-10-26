@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { supabaseClient as supabase } from '../lib/supabaseClient';
 import DishCard, { isValidDish, type Dish } from '../components/food/DishCard';
+import SEO from '../components/seo/SEO';
 
 const PAGE_SIZE = 50;
 const TABLE = 'dishes';
@@ -88,6 +89,7 @@ export default function FoodLibraryPage() {
 
   return (
     <main className="mx-auto min-h-screen w-full max-w-7xl px-4 pb-16 pt-8 bg-slate-50/50">
+      <SEO title="Food Library | Browse 18,000+ Dishes - HealthFingerprint" description="Explore detailed nutrition data, macros, and calories for over 18,980 local and international dishes. Search and filter our comprehensive food database." />
       <header className="mb-6">
         <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">Food Library</h1>
         <p className="mt-1 text-sm text-slate-500">
