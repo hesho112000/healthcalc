@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowLeft, Check, Flame, Activity } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, Flame, Activity } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
 import { supabaseClient as supabase } from '../lib/supabaseClient';
@@ -16,6 +16,15 @@ type DbDish = Dish & {
   is_fried?: boolean | null;
   is_sweet?: boolean | null;
 };
+
+const RECIPE_LINKS = [
+  { keywords: ['foul', 'medames', 'fava'], slug: 'foul-medames', title: 'Foul Medames Recipe' },
+  { keywords: ['grilled chicken', 'brown rice'], slug: 'grilled-chicken-brown-rice', title: 'Grilled Chicken Recipe' },
+  { keywords: ['tagine', 'tunisian'], slug: 'tunisian-vegetable-tagine', title: 'Tunisian Tagine Recipe' },
+  { keywords: ['tabbouleh', 'lebanese'], slug: 'lebanese-tabbouleh', title: 'Lebanese Tabbouleh Recipe' },
+  { keywords: ['kabsa', 'saudi'], slug: 'saudi-kabsa-lighter', title: 'Saudi Kabsa Recipe' },
+  { keywords: ['lentil soup', 'moroccan'], slug: 'moroccan-lentil-soup', title: 'Moroccan Lentil Soup Recipe' },
+];
 
 const DishDetailPage: React.FC = () => {
   const { dir, language } = useLanguage();
@@ -136,6 +145,12 @@ const DishDetailPage: React.FC = () => {
     if (dish.healthy === true) benefits.push('Marked as a healthy choice by our nutritional guidelines.');
     if (dish.is_fried === true) benefits.push('Note: This dish is fried. Consume in moderation as part of a balanced diet.');
     return benefits;
+  })();
+
+  const matchedRecipe = (() => {
+    if (!dish) return null;
+    const searchText = (dish.name_en || '').toLowerCase();
+    return RECIPE_LINKS.find(recipe => recipe.keywords.some(keyword => searchText.includes(keyword))) || null;
   })();
 
   const nutritionJsonLd = {
@@ -273,6 +288,16 @@ const DishDetailPage: React.FC = () => {
                 </li>
               ))}
             </ul>
+          </section>
+        )}
+
+        {matchedRecipe && (
+          <section className="mt-6 rounded-3xl border border-emerald-200 bg-emerald-50 p-6">
+            <p className="text-sm font-semibold text-emerald-900">Want to cook this? Check out our full recipe.</p>
+            <Link to={`/resources/recipe/${matchedRecipe.slug}`} className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#0F4C3A] px-5 py-3 text-sm font-extrabold text-[#FDFBF7] hover:bg-[#1a6b53] transition-colors">
+              {matchedRecipe.title}
+              <ArrowRight size={16} className="rtl:rotate-180" />
+            </Link>
           </section>
         )}
       </div>
