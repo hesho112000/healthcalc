@@ -79,6 +79,7 @@ const Header: React.FC = () => {
   const links: { to: string; exact?: boolean; key: string }[] = [
     { to: '/', key: 'nav.home', exact: true },
     { to: '/fitness', key: 'nav.calculators' },
+    { to: '/food-library', key: 'nav.foodLibrary' },
     ...(ENABLE_PREMIUM ? [{ to: '/advanced-care', key: 'nav.advancedCare' }] : []),
     ...(ENABLE_PREMIUM && hubReady ? [{ to: '/my-health-hub', key: 'nav.myHealthHub' }] : []),
     { to: '/resources', key: 'nav.resources' },
