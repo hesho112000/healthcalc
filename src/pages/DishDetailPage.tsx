@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowLeft, Flame, Activity } from 'lucide-react';
+import { ArrowLeft, Check, Flame, Activity } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
 import { supabaseClient as supabase } from '../lib/supabaseClient';
@@ -126,6 +126,18 @@ const DishDetailPage: React.FC = () => {
 
   const description = `${name} nutrition: ${fmt(caloriesRaw, ' kcal')} per 100g, ${fmt(proteinRaw, 'g protein')}. ${generateHealthDescription()}`;
 
+  const healthBenefits = (() => {
+    if (!dish) return [];
+    const benefits: string[] = [];
+    if (proteinRaw != null && proteinRaw >= 15) benefits.push('High in protein, which supports muscle repair and growth.');
+    if (fiberRaw != null && fiberRaw >= 5) benefits.push('Rich in dietary fiber, promoting healthy digestion.');
+    if (fatRaw != null && fatRaw <= 5) benefits.push('Low in fat, making it a suitable choice for weight management.');
+    if (carbsRaw != null && carbsRaw <= 15) benefits.push('Low in carbohydrates, fitting well into low-carb diets.');
+    if (dish.healthy === true) benefits.push('Marked as a healthy choice by our nutritional guidelines.');
+    if (dish.is_fried === true) benefits.push('Note: This dish is fried. Consume in moderation as part of a balanced diet.');
+    return benefits;
+  })();
+
   const nutritionJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'NutritionInformation',
@@ -247,6 +259,22 @@ const DishDetailPage: React.FC = () => {
           <h2 className="text-lg font-extrabold text-[#0F4C3A]">Health Profile</h2>
           <p className="mt-3 text-[15px] leading-relaxed text-[#4A5A55]">{generateHealthDescription()}</p>
         </section>
+
+        {healthBenefits.length > 0 && (
+          <section className="mt-6 rounded-3xl border border-[#EFEBE4] bg-white p-6">
+            <h3 className="text-lg font-semibold text-[#0F4C3A] mt-8 mb-4">Health Benefits & Considerations</h3>
+            <ul className="space-y-3">
+              {healthBenefits.map((benefit, i) => (
+                <li key={i} className="flex items-start gap-3 text-[15px] leading-relaxed text-[#4A5A55]">
+                  <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#D4A017]/10 text-[#0F4C3A]">
+                    <Check size={14} />
+                  </span>
+                  <span>{benefit}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
       </div>
     </div>
   );
