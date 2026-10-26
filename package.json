@@ -9,6 +9,7 @@
     "dev:api": "cd server && node index.js",
     "start": "concurrently \"npm run dev:api\" \"npm run dev:ui\"",
     "build": "vite build",
+    "prebuild": "node scripts/generate-sitemap.mjs",
     "preview": "vite preview",
     "validate": "node scripts/validate-data.mjs",
     "validate:baseline": "node scripts/check-validation-baseline.mjs",
