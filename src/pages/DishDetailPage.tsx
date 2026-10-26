@@ -69,14 +69,17 @@ const DishDetailPage: React.FC = () => {
   const region = dish?.region ? String(dish.region).replace('pan_', '').replace(/_/g, ' ') : '';
   const mealType = dish?.meal_type ? String(dish.meal_type).replace(/_/g, ' ') : '';
 
-  const calories = Math.round(dish?.cal_100 ?? 0);
-  const protein = Math.round(dish?.protein ?? 0);
-  const carbs = Math.round(dish?.carbs ?? 0);
-  const fat = Math.round(dish?.fat ?? 0);
-  const fiber = Math.round(dish?.fiber ?? 0);
-  const sugar = Math.round(dish?.sugar ?? 0);
-  const sodium = Math.round(dish?.sodium ?? 0);
-  const satFat = Math.round(dish?.sat_fat ?? 0);
+  const fmt = (value: number | null | undefined, unit: string) =>
+    value == null ? 'N/A' : `${Math.round(value)}${unit}`;
+
+  const caloriesRaw = dish?.cal_100 ?? null;
+  const proteinRaw = dish?.protein ?? null;
+  const carbsRaw = dish?.carbs ?? null;
+  const fatRaw = dish?.fat ?? null;
+  const fiberRaw = dish?.fiber ?? null;
+  const sugarRaw = dish?.sugar ?? null;
+  const sodiumRaw = dish?.sodium ?? null;
+  const satFatRaw = dish?.sat_fat ?? null;
 
   const generateHealthDescription = () => {
     if (!dish) return '';
@@ -91,50 +94,50 @@ const DishDetailPage: React.FC = () => {
     if (dish.is_sweet) {
       parts.push(`This is a sweet preparation, best kept as an occasional treat within a balanced diet.`);
     }
-    if (protein >= 20) {
-      parts.push(`At ${protein}g of protein per 100g, it makes a solid protein source for meals and recovery.`);
-    } else if (protein >= 12) {
+    if ((proteinRaw ?? 0) >= 20) {
+      parts.push(`At ${proteinRaw ?? 0}g of protein per 100g, it makes a solid protein source for meals and recovery.`);
+    } else if ((proteinRaw ?? 0) >= 12) {
       parts.push(`It provides a moderate amount of protein to help keep you satisfied.`);
     }
-    if (carbs >= 40) {
-      parts.push(`With ${carbs}g of carbs per 100g, it is fairly energy-dense and useful around active periods.`);
+    if ((carbsRaw ?? 0) >= 40) {
+      parts.push(`With ${carbsRaw ?? 0}g of carbs per 100g, it is fairly energy-dense and useful around active periods.`);
     }
-    if (fat >= 18) {
-      parts.push(`The fat content is ${fat}g per 100g, so portion awareness helps keep overall intake balanced.`);
-    } else if (fat <= 5) {
-      parts.push(`Low in fat at ${fat}g per 100g, it can suit lighter meal plans.`);
+    if ((fatRaw ?? 0) >= 18) {
+      parts.push(`The fat content is ${fatRaw ?? 0}g per 100g, so portion awareness helps keep overall intake balanced.`);
+    } else if ((fatRaw ?? 0) <= 5) {
+      parts.push(`Low in fat at ${fatRaw ?? 0}g per 100g, it can suit lighter meal plans.`);
     }
-    if (fiber >= 5) {
-      parts.push(`It contains ${fiber}g of fiber, which supports digestion and steady energy.`);
+    if ((fiberRaw ?? 0) >= 5) {
+      parts.push(`It contains ${fiberRaw ?? 0}g of fiber, which supports digestion and steady energy.`);
     }
-    if (sugar > 15) {
-      parts.push(`Sugar content is ${sugar}g per 100g, so consider pairing it with fiber or protein to smooth absorption.`);
+    if ((sugarRaw ?? 0) > 15) {
+      parts.push(`Sugar content is ${sugarRaw ?? 0}g per 100g, so consider pairing it with fiber or protein to smooth absorption.`);
     }
-    if (sodium >= 400) {
-      parts.push(`Sodium is ${sodium}mg per 100g, so balance it with lower-sodium sides and hydration.`);
+    if ((sodiumRaw ?? 0) >= 400) {
+      parts.push(`Sodium is ${sodiumRaw ?? 0}mg per 100g, so balance it with lower-sodium sides and hydration.`);
     }
 
     if (!parts.length) {
-      parts.push(`This dish offers ${calories} kcal per 100g with a straightforward macronutrient profile you can fit into your daily targets.`);
+      parts.push(`This dish offers ${fmt(caloriesRaw, ' kcal')} per 100g with a straightforward macronutrient profile you can fit into your daily targets.`);
     }
 
     return parts.slice(0, 2).join(' ');
   };
 
-  const description = `${name} nutrition: ${calories} kcal per 100g, ${protein}g protein. ${generateHealthDescription()}`;
+  const description = `${name} nutrition: ${fmt(caloriesRaw, ' kcal')} per 100g, ${fmt(proteinRaw, 'g protein')}. ${generateHealthDescription()}`;
 
   const nutritionJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'NutritionInformation',
     name,
-    calories: `${calories} calories`,
-    proteinContent: `${protein} g`,
-    carbohydrateContent: `${carbs} g`,
-    fatContent: `${fat} g`,
-    fiberContent: `${fiber} g`,
-    sugarContent: `${sugar} g`,
-    sodiumContent: `${sodium} mg`,
-    saturatedFatContent: `${satFat} g`,
+    calories: fmt(caloriesRaw, ' calories'),
+    proteinContent: fmt(proteinRaw, ' g'),
+    carbohydrateContent: fmt(carbsRaw, ' g'),
+    fatContent: fmt(fatRaw, ' g'),
+    fiberContent: fmt(fiberRaw, ' g'),
+    sugarContent: fmt(sugarRaw, ' g'),
+    sodiumContent: fmt(sodiumRaw, ' mg'),
+    saturatedFatContent: fmt(satFatRaw, ' g'),
   };
 
   if (loading) {
@@ -194,7 +197,7 @@ const DishDetailPage: React.FC = () => {
           <div className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-bold text-[#FDFBF7]">
             <span className="inline-flex items-center gap-1.5">
               <Flame size={16} className="text-[#D4A017]" />
-              {calories} kcal / 100g
+              {fmt(caloriesRaw, ' kcal / 100g')}
             </span>
           </div>
         </header>
@@ -207,35 +210,35 @@ const DishDetailPage: React.FC = () => {
           <dl className="mt-4 divide-y divide-[#E4DFD4]">
             <div className="flex items-center justify-between py-3">
               <dt className="text-sm font-semibold text-[#6B7A75]">Calories</dt>
-              <dd className="text-sm font-extrabold text-[#0F4C3A]">{calories} kcal</dd>
+              <dd className="text-sm font-extrabold text-[#0F4C3A]">{fmt(caloriesRaw, ' kcal')}</dd>
             </div>
             <div className="flex items-center justify-between py-3">
               <dt className="text-sm font-semibold text-[#6B7A75]">Protein</dt>
-              <dd className="text-sm font-extrabold text-[#0F4C3A]">{protein} g</dd>
+              <dd className="text-sm font-extrabold text-[#0F4C3A]">{fmt(proteinRaw, ' g')}</dd>
             </div>
             <div className="flex items-center justify-between py-3">
               <dt className="text-sm font-semibold text-[#6B7A75]">Carbs</dt>
-              <dd className="text-sm font-extrabold text-[#0F4C3A]">{carbs} g</dd>
+              <dd className="text-sm font-extrabold text-[#0F4C3A]">{fmt(carbsRaw, ' g')}</dd>
             </div>
             <div className="flex items-center justify-between py-3">
               <dt className="text-sm font-semibold text-[#6B7A75]">Fat</dt>
-              <dd className="text-sm font-extrabold text-[#0F4C3A]">{fat} g</dd>
+              <dd className="text-sm font-extrabold text-[#0F4C3A]">{fmt(fatRaw, ' g')}</dd>
             </div>
             <div className="flex items-center justify-between py-3">
               <dt className="text-sm font-semibold text-[#6B7A75]">Fiber</dt>
-              <dd className="text-sm font-extrabold text-[#0F4C3A]">{fiber} g</dd>
+              <dd className="text-sm font-extrabold text-[#0F4C3A]">{fmt(fiberRaw, ' g')}</dd>
             </div>
             <div className="flex items-center justify-between py-3">
               <dt className="text-sm font-semibold text-[#6B7A75]">Sugar</dt>
-              <dd className="text-sm font-extrabold text-[#0F4C3A]">{sugar} g</dd>
+              <dd className="text-sm font-extrabold text-[#0F4C3A]">{fmt(sugarRaw, ' g')}</dd>
             </div>
             <div className="flex items-center justify-between py-3">
               <dt className="text-sm font-semibold text-[#6B7A75]">Sodium</dt>
-              <dd className="text-sm font-extrabold text-[#0F4C3A]">{sodium} mg</dd>
+              <dd className="text-sm font-extrabold text-[#0F4C3A]">{fmt(sodiumRaw, ' mg')}</dd>
             </div>
             <div className="flex items-center justify-between py-3">
               <dt className="text-sm font-semibold text-[#6B7A75]">Saturated Fat</dt>
-              <dd className="text-sm font-extrabold text-[#0F4C3A]">{satFat} g</dd>
+              <dd className="text-sm font-extrabold text-[#0F4C3A]">{fmt(satFatRaw, ' g')}</dd>
             </div>
           </dl>
         </section>
