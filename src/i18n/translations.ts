@@ -26,7 +26,6 @@ type TranslationKeys = {
   weightLoss: string;
   diabetes: string;
   healthPlanLabel: string;
-  foodLibrary: string;
   // Hero
   heroTitle: string;
   heroSubtitle: string;
@@ -196,6 +195,7 @@ type TranslationKeys = {
   'nav.startNow': string;
   'nav.profile': string;
   'nav.signOut': string;
+  'nav.foodLibrary': string;
   heroEyebrow: string;
   heroTitleLine1: string;
   heroTitleLine2: string;
@@ -3629,7 +3629,6 @@ export const translations: Record<Language, TranslationKeys> = {
     weightLoss: 'Weight & Fitness',
     diabetes: 'Diabetes & Hypertension',
     healthPlanLabel: ENABLE_PREMIUM ? 'Health plans' : '',
-    foodLibrary: 'Food Library',
     heroTitle: 'Your Personalized Health & Fitness Blueprint',
     heroSubtitle: 'Free AI-powered BMI, BMR, and TDEE calculators, plus advanced medical care for diabetes, hypertension, cholesterol, and gout.',
     heroCTA: 'Get Started Free',
@@ -4296,6 +4295,7 @@ export const translations: Record<Language, TranslationKeys> = {
     'nav.startNow': 'Start Now',
     'nav.profile': 'Profile',
     'nav.signOut': 'Sign out',
+    'nav.foodLibrary': 'Food Library',
     heroEyebrow: 'Your Biological Fingerprint',
     heroTitleLine1: 'Understand Your Body.',
     heroTitleLine2: 'Transform Your Health.',
@@ -6219,7 +6219,7 @@ export const translations: Record<Language, TranslationKeys> = {
     weightLoss: 'Poids & Fitness',
     diabetes: 'Diabète & Hypertension',
     healthPlanLabel: 'Plans santé',
-    foodLibrary: 'Bibliothèque d\'aliments',
+    'nav.foodLibrary': 'Bibliothèque d\'aliments',
     heroTitle: 'Votre Plan Santé & Fitness Personnalisé',
     heroSubtitle: "Calculateurs gratuits d'IMC, de BMR et de TDEE, plus des soins médicaux avancés pour le diabète, l'hypertension, le cholestérol et la goutte.",
     heroCTA: 'Commencer Gratuitement',
@@ -8779,7 +8779,7 @@ export const translations: Record<Language, TranslationKeys> = {
     weightLoss: 'Peso y Fitness',
     diabetes: 'Diabetes e Hipertensión',
     healthPlanLabel: 'Planes de salud',
-    foodLibrary: 'Biblioteca de alimentos',
+    'nav.foodLibrary': 'Biblioteca de alimentos',
     heroTitle: 'Tu Plan Personalizado de Salud y Fitness',
     heroSubtitle: 'Calculadoras gratuitas de IMC, TMB y GET, además de atención médica avanzada para diabetes, hipertensión, colesterol y gota.',
     heroCTA: 'Empezar Gratis',
@@ -11339,7 +11339,7 @@ export const translations: Record<Language, TranslationKeys> = {
     weightLoss: 'الوزن واللياقة',
     diabetes: 'السكري وارتفاع ضغط الدم',
     healthPlanLabel: 'خطط صحية',
-    foodLibrary: 'مكتبة الطعام',
+    'nav.foodLibrary': 'مكتبة الطعام',
     heroTitle: 'خطتك الشخصية للصحة واللياقة',
     heroSubtitle: 'حاسبات مجانية لـ BMI وBMR وTDEE، بالإضافة إلى رعاية طبية متقدمة لداء السكري وارتفاع ضغط الدم والكوليسترول والنقرس.',
     heroCTA: 'ابدأ مجاناً',
@@ -13910,7 +13910,7 @@ export const translations: Record<Language, TranslationKeys> = {
     weightLoss: 'Gewicht & Fitness',
     diabetes: 'Diabetes & Bluthochdruck',
     healthPlanLabel: 'Gesundheitspläne',
-    foodLibrary: 'Lebensmittelbibliothek',
+    'nav.foodLibrary': 'Lebensmittelbibliothek',
     heroTitle: 'Ihr personalisiertes Gesundheits- & Fitness-Blueprint',
     heroSubtitle: 'Kostenlose KI-gestützte BMI-, BMR- und TDEE-Rechner sowie erweiterte medizinische Versorgung bei Diabetes, Bluthochdruck, Cholesterin und Gicht.',
     heroCTA: 'Kostenlos starten',
