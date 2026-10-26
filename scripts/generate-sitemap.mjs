@@ -7,28 +7,8 @@ import { createClient } from '@supabase/supabase-js';
 config();
 
 const SITE_BASE = (process.env.VITE_SITE_URL || 'https://healthfingerprint.com').replace(/\/+$/, '');
-const LANGUAGES = ['en', 'ar', 'fr', 'es', 'de'];
-const TODAY = new Date().toISOString().slice(0, 10);
-const BATCH_SIZE = 50;
-
-const PUBLIC_ROUTES = [
-  { path: '/', changefreq: 'monthly', priority: '1.0' },
-  { path: '/weight-loss', changefreq: 'monthly', priority: '0.9' },
-  { path: '/diabetes', changefreq: 'monthly', priority: '0.9' },
-  { path: '/fitness', changefreq: 'monthly', priority: '0.9' },
-  { path: '/food-library', changefreq: 'monthly', priority: '0.9' },
-  { path: '/about', changefreq: 'yearly', priority: '0.5' },
-  { path: '/resources', changefreq: 'weekly', priority: '0.8' },
-  ...['understanding-hba1c', 'blood-pressure-myths', 'gout-flare-ups', 'intermittent-fasting-safety', 'lower-cholesterol-naturally', 'mindful-eating', 'pcos-insulin-resistance', 'science-of-sleep', 'strength-training-diabetes'].map((slug) => ({ path: `/resources/article/${slug}`, changefreq: 'yearly', priority: '0.6' })),
-  ...['foul-medames', 'grilled-chicken-brown-rice', 'lebanese-tabbouleh', 'moroccan-lentil-soup', 'saudi-kabsa-lighter', 'tunisian-vegetable-tagine'].map((slug) => ({ path: `/resources/recipe/${slug}`, changefreq: 'yearly', priority: '0.6' })),
-  ...['low-impact-cardio', 'strength-hypertension', 'swimming-fitness', 'tai-chi-balance', 'walking-for-diabetes', 'yoga-stress-relief'].map((slug) => ({ path: `/resources/exercise/${slug}`, changefreq: 'yearly', priority: '0.6' })),
-  { path: '/contact', changefreq: 'yearly', priority: '0.4' },
-  { path: '/privacy', changefreq: 'yearly', priority: '0.3' },
-  { path: '/terms', changefreq: 'yearly', priority: '0.3' },
-  { path: '/disclaimer', changefreq: 'yearly', priority: '0.3' },
-  { path: '/cookies', changefreq: 'yearly', priority: '0.3' },
-  { path: '/faq', changefreq: 'yearly', priority: '0.4' },
-];
+const OUTPUT_PATH = fileURLToPath(new URL('../public/sitemap.xml', import.meta.url));
+const BATCH_SIZE = 1000;
 
 const escapeXml = (value) =>
   String(value)
@@ -38,28 +18,14 @@ const escapeXml = (value) =>
     .replaceAll('>', '&gt;')
     .replaceAll("'", '&apos;');
 
-const routeUrl = (routePath, language) => {
-  const localized = new URL(`${SITE_BASE}${routePath}`);
-  localized.searchParams.set('lang', language);
-  return localized.toString();
-};
-
-const staticEntries = PUBLIC_ROUTES.flatMap((route) => {
-  const alternates = LANGUAGES.map((language) =>
-    `    <xhtml:link rel="alternate" hreflang="${language}" href="${escapeXml(routeUrl(route.path, language))}" />`
-  ).join('\n');
-  const xDefault = `    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(routeUrl(route.path, 'en'))}" />`;
-
-  return LANGUAGES.map((language) => `  <url>\n    <loc>${escapeXml(routeUrl(route.path, language))}</loc>\n${alternates}\n${xDefault}\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>${route.changefreq}</changefreq>\n    <priority>${route.priority}</priority>\n  </url>`);
-}).join('\n');
-
 async function fetchAllDishIds() {
   const supabase = createClient(process.env.VITE_SUPABASE_URL, process.env.VITE_SUPABASE_ANON_KEY);
   const ids = [];
   let from = 0;
-  let to = BATCH_SIZE - 1;
+  let totalFetched = 0;
 
   while (true) {
+    const to = from + BATCH_SIZE - 1;
     const { data, error } = await supabase
       .from('dishes')
       .select('id')
@@ -67,61 +33,72 @@ async function fetchAllDishIds() {
       .range(from, to);
 
     if (error) {
-      throw new Error(`Failed to fetch dishes batch ${from}-${to}: ${error.message}`);
+      throw new Error(`Supabase error at range ${from}-${to}: ${error.message}`);
     }
 
     const batch = data ?? [];
-    for (const row of batch) ids.push(row.id);
+    if (batch.length === 0) {
+      console.log(`No more dishes at offset ${from}. Stopping.`);
+      break;
+    }
 
-    if (batch.length < BATCH_SIZE) break;
+    for (const row of batch) ids.push(row.id);
+    totalFetched += batch.length;
+    console.log(`Fetched ${batch.length} ids (total: ${totalFetched})...`);
+
+    if (batch.length < BATCH_SIZE) {
+      console.log(`Final batch smaller than ${BATCH_SIZE}. Stopping.`);
+      break;
+    }
 
     from += BATCH_SIZE;
-    to += BATCH_SIZE;
   }
 
   return ids;
 }
 
-async function countAllDishes() {
-  const supabase = createClient(process.env.VITE_SUPABASE_URL, process.env.VITE_SUPABASE_ANON_KEY);
-  let count = 0;
-  let from = 0;
-  let to = BATCH_SIZE - 1;
-
-  while (true) {
-    const { count: c, error } = await supabase
-      .from('dishes')
-      .select('*', { count: 'exact', head: true })
-      .range(from, to);
-
-    if (error) {
-      throw new Error(`Failed to count dishes batch ${from}-${to}: ${error.message}`);
-    }
-    if (c == null) break;
-
-    count = c;
-    if (c <= to) break;
-
-    from += BATCH_SIZE;
-    to += BATCH_SIZE;
-  }
-
-  return count;
-}
-
 const buildSitemap = async () => {
-  const [ids, totalDishes] = await Promise.all([fetchAllDishIds(), countAllDishes()]);
+  const ids = await fetchAllDishIds();
+
+  const staticEntries = `
+  <url>
+    <loc>${escapeXml(`${SITE_BASE}/`)}</loc>
+    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>${escapeXml(`${SITE_BASE}/food-library`)}</loc>
+    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>${escapeXml(`${SITE_BASE}/resources`)}</loc>
+    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>${escapeXml(`${SITE_BASE}/about`)}</loc>
+    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>`;
 
   const dishEntries = ids
-    .map((id) => `  <url>\n    <loc>${escapeXml(`${SITE_BASE}/food-library/${id}`)}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`)
+    .map((id) => `  <url>
+    <loc>${escapeXml(`${SITE_BASE}/food-library/${id}`)}</loc>
+    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>`)
     .join('\n');
 
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${staticEntries}\n${dishEntries}\n</urlset>\n`;
-  const outputPath = fileURLToPath(new URL('../public/sitemap.xml', import.meta.url));
-  await writeFile(outputPath, sitemap, 'utf8');
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${staticEntries}\n${dishEntries}\n</urlset>\n`;
 
-  const total = PUBLIC_ROUTES.length * LANGUAGES.length + totalDishes;
-  console.log(`SUCCESS: Sitemap generated with ${total} URLs at ${path.relative(process.cwd(), outputPath)}`);
+  await writeFile(OUTPUT_PATH, sitemap, 'utf8');
+  console.log(`SUCCESS: Sitemap generated with ${4 + ids.length} URLs at ${path.relative(process.cwd(), OUTPUT_PATH)}`);
 };
 
 buildSitemap().catch((err) => {

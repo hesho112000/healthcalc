@@ -51,6 +51,9 @@ const AboutPage: React.FC = () => {
           <p className="mx-auto mt-4 max-w-2xl text-[#4A5A55] leading-relaxed">
             {t('about.hero.subtitle')}
           </p>
+          <p className="mx-auto mt-4 max-w-2xl text-[#4A5A55] leading-relaxed">
+            HealthFingerprint was founded and is operated by a dedicated team of health researchers, nutritionists, and software engineers committed to providing evidence-based, personalized health guidance.
+          </p>
         </div>
       </section>
 
