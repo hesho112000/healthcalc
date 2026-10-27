@@ -14,6 +14,7 @@ import StartFreeDropdown from '../components/layout/StartFreeDropdown';
 import Flag from '../components/common/Flag';
 import { ENABLE_PREMIUM } from '../config/featureFlags';
 import './HomeHero.css';
+import { supabaseClient } from '../lib/supabaseClient';
 
 const conditions: Array<{ icon: LucideIcon; en: string; ar: string; path: string }> = [
   { icon: Droplet, en: 'Diabetes', ar: 'سكر', path: '/diabetes' },
@@ -116,6 +117,8 @@ const HomePage: React.FC = () => {
       ];
   const [watchEmail, setWatchEmail] = useState('');
   const [watchJoined, setWatchJoined] = useState(false);
+  const [watchLoading, setWatchLoading] = useState(false);
+  const [watchError, setWatchError] = useState('');
 
   const countLocale = localeFor(language);
   const fmtCount = (n: number): string => n.toLocaleString(countLocale);
@@ -149,6 +152,8 @@ const HomePage: React.FC = () => {
 
   const [fastingEmail, setFastingEmail] = useState('');
   const [fastingJoined, setFastingJoined] = useState(false);
+  const [fastingLoading, setFastingLoading] = useState(false);
+  const [fastingError, setFastingError] = useState('');
   const blogSectionRef = useRef<HTMLElement | null>(null);
   const [articlesData, setArticlesData] = useState<typeof import('../data/articles') | null>(null);
   useEffect(() => {
@@ -201,28 +206,61 @@ const HomePage: React.FC = () => {
     navigate('/weight-loss', { state: { startWithHeroProfile: true } });
   };
 
-  const handleFastingNotify = (event: React.FormEvent) => {
-    event.preventDefault();
-    const email = fastingEmail.trim();
+  const handleSubscribe = async (e: React.FormEvent, sourceName: string) => {
+    e.preventDefault();
+    if (!supabaseClient) {
+      // Fallback to localStorage if no Supabase
+      const email = sourceName === 'Fasting Hub' ? fastingEmail.trim() : watchEmail.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+      try {
+        const key = sourceName === 'Fasting Hub' ? 'hf_fasting_notify' : 'hf_watch_notify';
+        const saved: string[] = JSON.parse(localStorage.getItem(key) || '[]');
+        if (!saved.includes(email)) saved.push(email);
+        localStorage.setItem(key, JSON.stringify(saved));
+      } catch {}
+      if (sourceName === 'Fasting Hub') setFastingJoined(true);
+      else setWatchJoined(true);
+      return;
+    }
+
+    const email = sourceName === 'Fasting Hub' ? fastingEmail.trim() : watchEmail.trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+
+    if (sourceName === 'Fasting Hub') {
+      setFastingLoading(true);
+      setFastingError('');
+    } else {
+      setWatchLoading(true);
+      setWatchError('');
+    }
+
     try {
-      const saved: string[] = JSON.parse(localStorage.getItem('hf_fasting_notify') || '[]');
-      if (!saved.includes(email)) saved.push(email);
-      localStorage.setItem('hf_fasting_notify', JSON.stringify(saved));
-    } catch {}
-    setFastingJoined(true);
+      const { error } = await supabaseClient.from('subscribers').insert([{ email: email, source: sourceName }]);
+      if (!error) {
+        if (sourceName === 'Fasting Hub') setFastingJoined(true);
+        else setWatchJoined(true);
+      } else if ((error as any).code === '23505') {
+        if (sourceName === 'Fasting Hub') setFastingError("You're already subscribed!");
+        else setWatchError("You're already subscribed!");
+      } else {
+        if (sourceName === 'Fasting Hub') setFastingError('Something went wrong. Please try again.');
+        else setWatchError('Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      if (sourceName === 'Fasting Hub') setFastingError('Something went wrong. Please try again.');
+      else setWatchError('Something went wrong. Please try again.');
+    } finally {
+      if (sourceName === 'Fasting Hub') setFastingLoading(false);
+      else setWatchLoading(false);
+    }
+  };
+
+  const handleFastingNotify = (event: React.FormEvent) => {
+    handleSubscribe(event, 'Fasting Hub');
   };
 
   const handleWatchNotify = (event: React.FormEvent) => {
-    event.preventDefault();
-    const email = watchEmail.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
-    try {
-      const saved: string[] = JSON.parse(localStorage.getItem('hf_watch_notify') || '[]');
-      if (!saved.includes(email)) saved.push(email);
-      localStorage.setItem('hf_watch_notify', JSON.stringify(saved));
-    } catch {}
-    setWatchJoined(true);
+    handleSubscribe(event, 'Sync Devices');
   };
 
   return (
@@ -417,8 +455,13 @@ const HomePage: React.FC = () => {
                   aria-label={t('fastingHub.notifyPlaceholder')}
                   className="fasting-input"
                 />
-                <button type="submit" className="btn-primary">{t('fastingHub.notify')} <ArrowRight size={16} className="rtl:rotate-180" /></button>
+                <button type="submit" className="btn-primary" disabled={fastingLoading}>
+                  {fastingLoading ? 'Sending...' : <>{t('fastingHub.notify')} <ArrowRight size={16} className="rtl:rotate-180" /></>}
+                </button>
               </form>
+            )}
+            {fastingError && !fastingJoined && (
+              <p className="text-sm text-red-600 mt-2">{fastingError}</p>
             )}
             <p className="fasting-note">{t('fastingHub.privacyNote')}</p>
           </div>
@@ -567,11 +610,16 @@ const HomePage: React.FC = () => {
                     placeholder={t('watchEmailPlaceholder')}
                     className="min-w-0 flex-1 rounded-full border border-[#0F4C3A]/15 bg-white px-5 py-3 text-sm font-medium text-[#111827] shadow-sm outline-none transition focus:border-[#059669] focus:ring-2 focus:ring-[#059669]/20"
                   />
-                  <button type="submit" className="btn-primary shrink-0">
-                    {t('watchNotify')} <ArrowRight aria-hidden="true" size={16} className="rtl:rotate-180" />
+                  <button type="submit" className="btn-primary shrink-0" disabled={watchLoading}>
+                    {watchLoading ? 'Sending...' : <>{t('watchNotify')} <ArrowRight aria-hidden="true" size={16} className="rtl:rotate-180" /></>}
                   </button>
                 </div>
-                <p className="mt-2.5 text-xs text-[#6B7A75]">{t('watchPrivacyNote')}</p>
+                {watchError && (
+                  <p className="mt-2.5 text-xs text-red-600">{watchError}</p>
+                )}
+                {!watchError && (
+                  <p className="mt-2.5 text-xs text-[#6B7A75]">{t('watchPrivacyNote')}</p>
+                )}
               </form>
             )}
           </div>
