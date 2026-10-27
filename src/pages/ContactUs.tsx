@@ -9,6 +9,9 @@ const ContactUs: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const { name, email, message } = formData;
+    const mailtoLink = `mailto:contact@healthfingerprint.com?subject=New Message from ${encodeURIComponent(name)}&body=Email: ${encodeURIComponent(email)}%0D%0A%0D%0AMessage: ${encodeURIComponent(message)}`;
+    window.location.href = mailtoLink;
     setSubmitted(true);
     setFormData({ name: '', email: '', message: '' });
   };
@@ -53,7 +56,7 @@ const ContactUs: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-gray-900">{t('contactInfoWebsite')}</p>
-                    <p className="text-sm text-gray-500">www.healthcalc.ai</p>
+                    <a href="https://healthfingerprint.com" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-primary-600 transition-colors">www.healthfingerprint.com</a>
                   </div>
                 </div>
 
