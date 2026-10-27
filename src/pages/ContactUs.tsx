@@ -41,7 +41,7 @@ const ContactUs: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-gray-900">{t('contactInfoEmail')}</p>
-                    <p className="text-sm text-gray-500">contact@healthcalc.ai</p>
+                    <p className="text-sm text-gray-500">contact@healthfingerprint.com</p>
                   </div>
                 </div>
 
