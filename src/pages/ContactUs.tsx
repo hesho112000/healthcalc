@@ -6,14 +6,39 @@ const ContactUs: React.FC = () => {
   const { t, dir } = useLanguage();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { name, email, message } = formData;
-    const mailtoLink = `mailto:contact@healthfingerprint.com?subject=New Message from ${encodeURIComponent(name)}&body=Email: ${encodeURIComponent(email)}%0D%0A%0D%0AMessage: ${encodeURIComponent(message)}`;
-    window.location.href = mailtoLink;
-    setSubmitted(true);
-    setFormData({ name: '', email: '', message: '' });
+    setIsSubmitting(true);
+    setError('');
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: '5a5b7396-f494-4c4c-8537-5287489b7d40',
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+      const result = await response.json();
+      if (result.success) {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setError('Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setError('Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -124,8 +149,13 @@ const ContactUs: React.FC = () => {
                       placeholder={t('contactPlaceholderMessage')}
                     />
                   </div>
-                  <button type="submit" className="btn-primary w-full">
-                    {t('sendMessage')} →
+                  {error && (
+                    <div className="text-sm text-red-600 bg-red-50 p-3 rounded-lg">
+                      {error}
+                    </div>
+                  )}
+                  <button type="submit" className="btn-primary w-full" disabled={isSubmitting}>
+                    {isSubmitting ? 'Sending...' : `${t('sendMessage')} →`}
                   </button>
                 </form>
               )}
