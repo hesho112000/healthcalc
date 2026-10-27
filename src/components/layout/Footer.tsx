@@ -1,17 +1,47 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
+import { supabaseClient } from '../../lib/supabaseClient';
 
 const Footer: React.FC = () => {
   const { t, dir } = useLanguage();
   const [email, setEmail] = useState('');
-  const [joined, setJoined] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
+  const [statusType, setStatusType] = useState<'success' | 'warning' | 'error' | ''>('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
-    setJoined(true);
-    setEmail('');
+    setIsSubmitting(true);
+    setStatusMessage('');
+    setStatusType('');
+
+    try {
+      if (supabaseClient) {
+        const { error } = await supabaseClient.from('subscribers').insert([{ email: email.trim(), source: 'Footer Newsletter' }]);
+        if (!error) {
+          setEmail('');
+          setStatusMessage('Subscribed successfully!');
+          setStatusType('success');
+        } else if ((error as any).code === '23505') {
+          setStatusMessage('You are already subscribed!');
+          setStatusType('warning');
+        } else {
+          setStatusMessage('Something went wrong. Please try again.');
+          setStatusType('error');
+        }
+      } else {
+        setEmail('');
+        setStatusMessage('Subscribed successfully!');
+        setStatusType('success');
+      }
+    } catch (err) {
+      setStatusMessage('Something went wrong. Please try again.');
+      setStatusType('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -51,15 +81,27 @@ const Footer: React.FC = () => {
           <div className="footer-col">
             <h4>{t('footerNews')}</h4>
             <p className="footer-news-text">{t('footerNewsText')}</p>
-            <form className="footer-form" onSubmit={handleSubmit}>
+            <form className="footer-form" onSubmit={handleSubscribe}>
               <input
                 type="email"
+                required
                 placeholder={t('footerEmailPlaceholder')}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <button type="submit" className="btn-primary">{joined ? t('footerSubscribed') : t('footerSubscribe')}</button>
+              <button type="submit" className="btn-primary" disabled={isSubmitting}>
+                {isSubmitting ? 'Subscribing...' : t('footerSubscribe')}
+              </button>
             </form>
+            {statusMessage && (
+              <p className={`text-xs mt-2 ${
+                statusType === 'success' ? 'text-green-600' :
+                statusType === 'warning' ? 'text-yellow-600' :
+                'text-red-600'
+              }`}>
+                {statusMessage}
+              </p>
+            )}
           </div>
         </div>
 
