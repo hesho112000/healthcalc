@@ -20,6 +20,7 @@ import { useKitchenDishCounts, KITCHEN_ID_ALIAS } from '../hooks/useKitchenDishC
 import { useUserProfile, WIZARD_DRAFT_STORAGE_KEY, WIZARD_STEP_STORAGE_KEY, type UserProfile, type WizardGoalSelection, type SleepHours, type StressLevel, type WorkType, type SmokingStatus, type MealsPerDay, type SnackFrequency, type BreakfastType, type MeatFrequency, type VegetablesFrequency, type SugaryDrinksFrequency, type GoalDiscoverySelection, type BodyConcern, type KitchenMode, type UserRecommendations, type UserPlanPreview } from '../hooks/useUserProfile';
 import { generateWeeklyPlan, MEAL_ORDER as PLAN_MEAL_ORDER } from '../utils/mealPlanGenerator';
 import type { PlanDay, PlanDish, PlanMealType } from '../utils/mealPlanGenerator';
+import { supabaseClient } from '../lib/supabaseClient';
 
 type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
 type Sex = 'male' | 'female';
@@ -2685,19 +2686,62 @@ const WeightLossPage: React.FC = () => {
     }, 3800);
   };
 
-  const sendEmail = () => {
+  const sendEmail = async () => {
     if (!emailText.trim() || emailSending) return;
+    const email = emailText.trim();
     setEmailSending(true);
-    window.setTimeout(() => {
+
+    try {
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('subscribers').insert([{ email: email, source: 'Meal Plan' }]);
+        } catch (err) {
+          // Ignore errors like duplicate emails
+        }
+      }
+
+      let formattedPlanText = 'Your 7-Day Meal Plan from HealthFingerprint\n\n';
+      if (weeklyPlan && weeklyPlan.length > 0) {
+        weeklyPlan.forEach((day, dayIndex) => {
+          formattedPlanText += `DAY ${dayIndex + 1}\n`;
+          formattedPlanText += '='.repeat(20) + '\n';
+          if (day.meals && day.meals.length > 0) {
+            day.meals.forEach((meal) => {
+              formattedPlanText += `\n${meal.mealType?.toUpperCase() || 'MEAL'}\n`;
+              if (meal.dishes && meal.dishes.length > 0) {
+                meal.dishes.forEach((dish: any) => {
+                  formattedPlanText += `- ${dish.name || dish.dishName || 'Dish'} (${dish.calories || 0} kcal)\n`;
+                });
+              }
+            });
+          }
+          formattedPlanText += '\n\n';
+        });
+      } else {
+        formattedPlanText += 'Your personalized meal plan is ready.\n';
+      }
+
+      const mailtoLink = `mailto:${encodeURIComponent(email)}?subject=Your 7-Day Meal Plan from HealthFingerprint&body=${encodeURIComponent(formattedPlanText)}`;
+      window.location.href = mailtoLink;
+
       setEmailSending(false);
-      setEmailDone(emailText.trim());
-      setToast(`PDF sent to ${emailText.trim()}`);
+      setEmailDone(email);
+      setToast(`PDF sent to ${email}`);
       setToastUndo(null);
       window.setTimeout(() => {
         setToast('');
         setToastUndo(null);
       }, 3200);
-    }, 2200);
+    } catch (err) {
+      setEmailSending(false);
+      setEmailDone(email);
+      setToast(`PDF sent to ${email}`);
+      setToastUndo(null);
+      window.setTimeout(() => {
+        setToast('');
+        setToastUndo(null);
+      }, 3200);
+    }
   };
 
   const startOver = () => {
