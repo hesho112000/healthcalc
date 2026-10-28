@@ -2728,13 +2728,28 @@ const WeightLossPage: React.FC = () => {
       }
 
       try {
-        console.log("Sending to EmailJS with:", { to_email: email, message: formattedPlanText });
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          setEmailSending(false);
+          setToast('Invalid email address. Please try again.');
+          setToastUndo(null);
+          window.setTimeout(() => {
+            setToast('');
+            setToastUndo(null);
+          }, 3200);
+          return;
+        }
+        let truncatedMessage = formattedPlanText;
+        if (truncatedMessage.length > 1000) {
+          truncatedMessage = truncatedMessage.substring(0, 1000) + ' ... (Plan truncated for email. View full plan on website.)';
+        }
+        console.log("Sending to EmailJS with:", { to_email: email, message: truncatedMessage });
         await emailjs.send(
           'service_tcpt3ya',
           'template_ixiytd8',
           {
             to_email: email,
-            message: formattedPlanText,
+            message: truncatedMessage,
           },
           'r4oAz9EccW2nIEkWX'
         );
