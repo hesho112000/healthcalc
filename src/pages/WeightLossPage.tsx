@@ -21,6 +21,7 @@ import { useUserProfile, WIZARD_DRAFT_STORAGE_KEY, WIZARD_STEP_STORAGE_KEY, type
 import { generateWeeklyPlan, MEAL_ORDER as PLAN_MEAL_ORDER } from '../utils/mealPlanGenerator';
 import type { PlanDay, PlanDish, PlanMealType } from '../utils/mealPlanGenerator';
 import { supabaseClient } from '../lib/supabaseClient';
+import emailjs from '@emailjs/browser';
 
 type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
 type Sex = 'male' | 'female';
@@ -2703,39 +2704,57 @@ const WeightLossPage: React.FC = () => {
       let formattedPlanText = 'Your 7-Day Meal Plan from HealthFingerprint\n\n';
       if (weeklyPlan && weeklyPlan.length > 0) {
         weeklyPlan.forEach((day, dayIndex) => {
-          formattedPlanText += `DAY ${dayIndex + 1}\n`;
-          formattedPlanText += '='.repeat(20) + '\n';
+          formattedPlanText += `Day ${dayIndex + 1}:\n`;
           if (day.meals && day.meals.length > 0) {
-            day.meals.forEach((meal) => {
-              formattedPlanText += `\n${meal.mealType?.toUpperCase() || 'MEAL'}\n`;
+            day.meals.forEach((meal: any) => {
+              const mealName = meal.mealType || meal.name || 'Meal';
+              formattedPlanText += `- ${mealName}: `;
               if (meal.dishes && meal.dishes.length > 0) {
-                meal.dishes.forEach((dish: any) => {
-                  formattedPlanText += `- ${dish.name || dish.dishName || 'Dish'} (${dish.calories || 0} kcal)\n`;
-                });
+                const dishNames = meal.dishes.map((dish: any) => dish.name || dish.dishName || 'Dish').join(', ');
+                formattedPlanText += dishNames;
+              } else {
+                formattedPlanText += 'N/A';
               }
+              formattedPlanText += '\n';
             });
           }
-          formattedPlanText += '\n\n';
+          formattedPlanText += '\n';
         });
       } else {
         formattedPlanText += 'Your personalized meal plan is ready.\n';
       }
 
-      const mailtoLink = `mailto:${encodeURIComponent(email)}?subject=Your 7-Day Meal Plan from HealthFingerprint&body=${encodeURIComponent(formattedPlanText)}`;
-      window.location.href = mailtoLink;
-
-      setEmailSending(false);
-      setEmailDone(email);
-      setToast(`PDF sent to ${email}`);
-      setToastUndo(null);
-      window.setTimeout(() => {
-        setToast('');
+      try {
+        await emailjs.send(
+          'service_tcpt3ya',
+          'template_ixiytd8',
+          {
+            to_email: email,
+            message: formattedPlanText,
+          },
+          'r4oAz9EccW2nIEkWX'
+        );
+        setEmailSending(false);
+        setEmailDone(email);
+        setEmailText('');
+        setToast(`PDF sent to ${email}`);
         setToastUndo(null);
-      }, 3200);
+        window.setTimeout(() => {
+          setToast('');
+          setToastUndo(null);
+        }, 3200);
+      } catch (emailErr) {
+        setEmailSending(false);
+        setToast('Failed to send. Please try again.');
+        setToastUndo(null);
+        window.setTimeout(() => {
+          setToast('');
+          setToastUndo(null);
+        }, 3200);
+      }
     } catch (err) {
       setEmailSending(false);
-      setEmailDone(email);
-      setToast(`PDF sent to ${email}`);
+      setToast('Failed to send. Please try again.');
       setToastUndo(null);
       window.setTimeout(() => {
         setToast('');
