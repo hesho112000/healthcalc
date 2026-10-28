@@ -2695,7 +2695,10 @@ const WeightLossPage: React.FC = () => {
     try {
       if (supabaseClient) {
         try {
-          await supabaseClient.from('subscribers').insert([{ email: email, source: 'Meal Plan' }]);
+          await supabaseClient.from('subscribers').upsert(
+            { email: email, source: 'Meal Plan' },
+            { onConflict: 'email', ignoreDuplicates: true }
+          );
         } catch (err) {
           // Ignore errors like duplicate emails
         }
@@ -2725,6 +2728,7 @@ const WeightLossPage: React.FC = () => {
       }
 
       try {
+        console.log("Sending to EmailJS with:", { to_email: email, message: formattedPlanText });
         await emailjs.send(
           'service_tcpt3ya',
           'template_ixiytd8',
