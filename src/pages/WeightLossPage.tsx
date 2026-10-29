@@ -2745,7 +2745,7 @@ const WeightLossPage: React.FC = () => {
         }
         console.log("Sending to EmailJS with:", { to_email: email, message: truncatedMessage });
         await emailjs.send(
-          'service_tcpt3ya',
+          'service_rmr82d6',
           'template_ixiytd8',
           {
             to_email: email,
