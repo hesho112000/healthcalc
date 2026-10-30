@@ -3,19 +3,28 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 
 const CONSENT_KEY = 'cookie_consent_accepted';
+const CONSENT_CHOICE_KEY = 'cookie_consent_choice';
 
 const CookieConsentBanner: React.FC = () => {
   const { t, dir } = useLanguage();
-  const [accepted, setAccepted] = useState(() => {
-    try { return localStorage.getItem(CONSENT_KEY) === 'true'; } catch { return false; }
+  const [consent, setConsentState] = useState<boolean | null>(() => {
+    try {
+      const choice = localStorage.getItem(CONSENT_CHOICE_KEY);
+      if (choice === 'true') return true;
+      if (choice === 'false') return false;
+      return localStorage.getItem(CONSENT_KEY) === 'true' ? true : null;
+    } catch { return null; }
   });
 
-  const handleAccept = () => {
-    try { localStorage.setItem(CONSENT_KEY, 'true'); } catch {}
-    setAccepted(true);
+  const setConsent = (value: boolean) => {
+    try {
+      localStorage.setItem(CONSENT_KEY, String(value));
+      localStorage.setItem(CONSENT_CHOICE_KEY, String(value));
+    } catch {}
+    setConsentState(value);
   };
 
-  if (accepted) return null;
+  if (consent !== null) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-[70] p-3 md:p-4" dir={dir} role="dialog" aria-live="polite" aria-label={t('cookiePolicy')}>
@@ -39,7 +48,10 @@ const CookieConsentBanner: React.FC = () => {
           >
             {t('cookieConsentLearnMore')}
           </Link>
-          <button onClick={handleAccept} className="btn-primary text-xs py-2 px-5">
+          <button onClick={() => setConsent(false)} className="text-xs font-semibold text-gray-700 border border-gray-300 rounded-lg py-2 px-4 hover:bg-gray-50">
+            {t('cookieConsentDecline')}
+          </button>
+          <button onClick={() => setConsent(true)} className="btn-primary text-xs py-2 px-5">
             {t('cookieConsentAccept')}
           </button>
         </div>

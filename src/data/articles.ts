@@ -52,7 +52,7 @@ Your HbA1c number is the single most important blood test for diagnosing and mon
 - 5.7–6.4% — prediabetes.
 - 6.5% or higher — diabetes (confirmed on a second test).
 
-Each percentage point you lower your HbA1c meaningfully reduces the risk of complications affecting your eyes, kidneys, and nerves. Even a 1% drop can make a visible difference in long-term health outcomes.
+Lowering HbA1c may reduce the risk of complications affecting the eyes, kidneys, and nerves. The size of any benefit varies by person; discuss your individual targets with your clinician.
 
 ## How to Move the Number
 
@@ -85,7 +85,7 @@ HbA1c is a powerful, evidence-based benchmark for your metabolic health. Pair it
 - من 5.7% إلى 6.4% — مرحلة ما قبل السكري.
 - 6.5% أو أكثر — إصابة بالسكري (بعد تأكيد الفحص مرة ثانية).
 
-كل نقطة مئوية تنزلها من HbA1c تُقلل بشكل ملموس من خطر المضاعفات التي تصيب العينين والكليتين والأعصاب. حتى انخفاض بنسبة 1% يمكن أن يُحدث فرقًا واضحًا في صحتك على المدى الطويل.
+قد يساعد خفض HbA1c على تقليل خطر المضاعفات التي تصيب العينين والكليتين والأعصاب. ويختلف حجم الفائدة من شخص لآخر؛ ناقش أهدافك الفردية مع طبيبك.
 
 ## كيف تحرّك الرقم؟
 
@@ -109,7 +109,7 @@ HbA1c معيار قوي قائم على الأدلة لصحتك الأيضية. 
     en: [
       'HbA1c reflects your average blood sugar over the past 8–12 weeks, not just today\'s reading.',
       'Below 5.7% is normal; 6.5% or higher indicates diabetes.',
-      'Lowering HbA1c by 1% significantly reduces the risk of complications.',
+      'Lowering HbA1c may reduce the risk of complications; individual results vary.',
       'Test every 3–6 months and combine the result with home glucose readings.',
       'Some conditions — anemia, pregnancy, kidney disease — can skew the result.',
     ],
@@ -158,7 +158,7 @@ A single high reading doesn't confirm hypertension. Blood pressure fluctuates wi
 
 ## Myth 5: "I'm Too Young to Worry About Blood Pressure"
 
-Age is only one risk factor. A healthy-looking person in their 30s can still have elevated pressure, especially with weight gain, salty processed food, and stress. Early detection in younger adults prevents damage that silently accumulates for years. Get measured once a year, whatever your age.
+Age is only one risk factor. A healthy-looking person in their 30s can still have elevated pressure, especially with weight gain, salty processed food, and stress. Early detection may reduce the risk of damage that can accumulate over time. Ask a healthcare professional how often you should have your blood pressure checked.
 
 ## The Takeaway
 
@@ -181,7 +181,7 @@ Don't wait for symptoms — they may never come. Measure your blood pressure reg
 
 ## خرافة 5: «أنا صغير جدًا على القلق بشأن ضغط الدم»
 
-العمر مجرد عامل واحد من عوامل الخطر. فالشخص الذي يبدو بصحة جيدة في الثلاثينيات قد يكون ضغطه مرتفعًا، خاصة مع زيادة الوزن والأطعمة المصنعة المالحة والتوتر. الاكتشاف المبكر لدى البالغين الأصغر سنًا يمنع الأضرار التي تتراكم بصمت لسنوات. قس ضغطك مرة في السنة مهما كان عمرك.
+العمر مجرد عامل واحد من عوامل الخطر. فالشخص الذي يبدو بصحة جيدة في الثلاثينيات قد يكون ضغطه مرتفعًا، خاصة مع زيادة الوزن والأطعمة المصنعة المالحة والتوتر. قد يساعد الاكتشاف المبكر على تقليل خطر الأضرار التي قد تتراكم بمرور الوقت. اسأل مختص الرعاية الصحية عن عدد مرات فحص ضغط الدم المناسبة لك.
 
 ## الخلاصة
 
@@ -364,7 +364,7 @@ Excess weight multiplies gout risk, so gradual weight loss helps — but crash d
 
 ## When to See a Doctor
 
-A single flare needs evaluation: long-term untreated gout can damage joints and kidneys. Medication to lower urate is safe and efficient; your doctor can tell you whether you need it. During a flare, anti-inflammatory treatment shortens symptoms dramatically. Let your blood tests guide the decision — not just your pain.`,
+A single flare needs evaluation: long-term untreated gout can damage joints and kidneys. Medication to lower urate may be appropriate; your doctor can advise whether you need it. During a flare, anti-inflammatory treatment can shorten symptoms. Let your blood tests guide the decision — not just your pain.`,
     ar: `## ما الذي يحدث أثناء النوبة؟
 
 النقرس شكل من أشكال التهاب المفاصل الناجم عن ترسب بلورات اليورات في المفصل — وغالبًا إصبع القدم الكبير. عندما تتشكل البلورات، يطلق الجهاز المناعي استجابة عنيفة: تورم وحرارة واحمرار وألم شديد يبلغ ذروته غالبًا في الليل. بين النوبات يشعر كثيرون بأنهم طبيعيون تمامًا، وهذا ما يجعل الوقاية هي اللعبة الحقيقية.
