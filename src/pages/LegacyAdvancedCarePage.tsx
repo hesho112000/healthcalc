@@ -3,7 +3,6 @@ import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth, hasPremiumAccess } from '../context/AuthContext';
 import { usePersistedState } from '../hooks/usePersistedState';
-import AdPlaceholder from '../features/health-tools/AdPlaceholder';
 import Breadcrumbs from '../components/layout/Breadcrumbs';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import CheckoutModal from '../components/CheckoutModal';
@@ -408,7 +407,6 @@ const LegacyAdvancedCarePage: React.FC = () => {
           </div>
         )}
 
-        <AdPlaceholder size="banner" className="mx-auto mb-8" />
 
         {conflicts.length > 0 && (
           <div className="mb-8 space-y-3 animate-fade-in">
@@ -865,7 +863,6 @@ const LegacyAdvancedCarePage: React.FC = () => {
         )}
 
         <MealPlanModal isOpen={showFullPlan} onClose={() => setShowFullPlan(false)} targetCalories={0} mealPlan={[]} fullMealPlan={currentPlan || undefined} selectedDay={activeDay - 1} onDayChange={(d) => setActiveDay(d + 1)} weight={0} onSave={() => setShowFullPlan(false)} cuisine={selectedCuisine} onCuisineChange={handleCuisineChange} />
-        <AdPlaceholder size="sidebar" className="mx-auto mb-10" />
 
         <div className="card bg-gradient-to-br from-gray-50 to-white">
           <h2 className="section-title mb-2 text-center">{t('pmWhatsIncluded')}</h2>
