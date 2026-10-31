@@ -2813,6 +2813,20 @@ const WeightLossPage: React.FC = () => {
 </body>
 </html>`;
 
+      const MAX_EMAIL_HTML_LENGTH = 30000;
+      const truncationNotice = '<tr><td colspan="4" style="text-align: center; padding: 20px; font-weight: bold;">... (Plan truncated for email. Please visit HealthFingerprint.com to view your full 7-day plan).</td></tr>';
+      const closingTags = '</table></body></html>';
+      let emailMessage = emailHtml;
+
+      if (emailHtml.length > MAX_EMAIL_HTML_LENGTH) {
+        // Reserve room for the notice and closing tags so the final payload stays under the hard limit.
+        const cutoff = Math.max(0, MAX_EMAIL_HTML_LENGTH - truncationNotice.length - closingTags.length);
+        const lastRowClose = emailHtml.lastIndexOf('</tr>', cutoff);
+        const safeCutoff = lastRowClose >= 0 ? lastRowClose + '</tr>'.length : cutoff;
+        emailMessage = `${emailHtml.slice(0, safeCutoff)}${truncationNotice}${closingTags}`;
+        console.warn(`Meal plan email HTML truncated from ${emailHtml.length} to ${emailMessage.length} characters.`);
+      }
+
       try {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
@@ -2825,13 +2839,13 @@ const WeightLossPage: React.FC = () => {
           }, 3200);
           return;
         }
-        console.log("Sending to EmailJS with:", { to_email: email, message: emailHtml });
+        console.log("Sending to EmailJS with:", { to_email: email, message: emailMessage });
         await emailjs.send(
           'service_rmr82d6',
           'template_ixiytd8',
           {
             to_email: email,
-            message: emailHtml,
+            message: emailMessage,
           },
           'r4oAz9EccW2nIEkWX'
         );
@@ -2845,6 +2859,7 @@ const WeightLossPage: React.FC = () => {
           setToastUndo(null);
         }, 3200);
       } catch (emailErr) {
+        console.error('EmailJS send failed:', emailErr);
         setEmailSending(false);
         setToast('Failed to send. Please try again.');
         setToastUndo(null);
@@ -2854,6 +2869,7 @@ const WeightLossPage: React.FC = () => {
         }, 3200);
       }
     } catch (err) {
+      console.error('Meal plan email failed:', err);
       setEmailSending(false);
       setToast('Failed to send. Please try again.');
       setToastUndo(null);
