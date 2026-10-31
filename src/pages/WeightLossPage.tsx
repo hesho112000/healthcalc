@@ -2707,13 +2707,15 @@ const WeightLossPage: React.FC = () => {
       let formattedPlanText = 'Your 7-Day Meal Plan from HealthFingerprint\n\n';
       if (weeklyPlan && weeklyPlan.length > 0) {
         weeklyPlan.forEach((day, dayIndex) => {
-          formattedPlanText += `Day ${dayIndex + 1}:\n`;
+          formattedPlanText += `${t('wizard.step5.day').replace('{n}', String(dayIndex + 1))}:\n`;
           if (day.meals && day.meals.length > 0) {
-            day.meals.forEach((meal: any) => {
-              const mealName = meal.mealType || meal.name || 'Meal';
+            day.meals.forEach((meal) => {
+              const mealName = t(`wizard.step3.meals.${meal.mealType}`);
               formattedPlanText += `- ${mealName}: `;
               if (meal.dishes && meal.dishes.length > 0) {
-                const dishNames = meal.dishes.map((dish: any) => dish.name || dish.dishName || 'Dish').join(', ');
+                const dishNames = meal.dishes
+                  .map((dish) => getDishName(dish.dish, language) || dish.dish.name)
+                  .join(', ');
                 formattedPlanText += dishNames;
               } else {
                 formattedPlanText += 'N/A';
