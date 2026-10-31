@@ -2704,30 +2704,114 @@ const WeightLossPage: React.FC = () => {
         }
       }
 
-      let formattedPlanText = 'Your 7-Day Meal Plan from HealthFingerprint\n\n';
-      if (weeklyPlan && weeklyPlan.length > 0) {
-        weeklyPlan.forEach((day, dayIndex) => {
-          formattedPlanText += `${t('wizard.step5.day').replace('{n}', String(dayIndex + 1))}:\n`;
-          if (day.meals && day.meals.length > 0) {
-            day.meals.forEach((meal) => {
-              const mealName = t(`wizard.step3.meals.${meal.mealType}`);
-              formattedPlanText += `- ${mealName}: `;
-              if (meal.dishes && meal.dishes.length > 0) {
-                const dishNames = meal.dishes
-                  .map((dish) => getDishName(dish.dish, language) || dish.dish.name)
-                  .join(', ');
-                formattedPlanText += dishNames;
-              } else {
-                formattedPlanText += 'N/A';
-              }
-              formattedPlanText += '\n';
-            });
-          }
-          formattedPlanText += '\n';
-        });
-      } else {
-        formattedPlanText += 'Your personalized meal plan is ready.\n';
-      }
+      const escapeHtml = (value: string) =>
+        value
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+
+      const cleanDishName = (value: string) =>
+        escapeHtml(value.normalize('NFC').replace(/[\u0000-\u001F\u007F]/g, ' ').trim());
+
+      const logoUrl = 'https://healthfingerprint.com/icons/icon-192.png';
+      const cellStyle = 'padding:10px 12px;border-bottom:1px solid #E2EAE6;font-size:13px;line-height:1.45;vertical-align:top;';
+      const headCellStyle = 'padding:10px 12px;background-color:#0F4C3A;color:#ffffff;font-size:12px;font-weight:700;text-align:left;text-transform:uppercase;letter-spacing:0.04em;';
+      const numCellStyle = `${cellStyle}text-align:right;white-space:nowrap;`;
+
+      const planHtml = weeklyPlan && weeklyPlan.length > 0
+        ? weeklyPlan.map((day, dayIndex) => {
+          const dayTotal = day.meals.reduce(
+            (mealSum, meal) => mealSum + meal.dishes.reduce((dishSum, dish) => dishSum + (dish.calories || 0), 0),
+            0
+          );
+          const dishCount = day.meals.reduce((count, meal) => count + meal.dishes.length, 0);
+
+          const mealRows = day.meals.map((meal) => {
+            const mealName = escapeHtml(t(`wizard.step3.meals.${meal.mealType}`));
+            if (!meal.dishes || meal.dishes.length === 0) {
+              return `<tr>
+                <td style="${cellStyle}font-weight:700;color:#0F4C3A;">${mealName}</td>
+                <td style="${cellStyle}color:#8A938E;">&mdash;</td>
+                <td style="${numCellStyle}color:#8A938E;">0</td>
+                <td style="${numCellStyle}color:#8A938E;">0</td>
+              </tr>`;
+            }
+
+            return meal.dishes.map((dish, dishIndex) => {
+              const dishName = cleanDishName(getDishName(dish.dish, language) || dish.dish.name || '');
+              const weight = Math.round(dish.grams || 0);
+              const calories = Math.round(dish.calories || 0);
+              const mealCell = dishIndex === 0
+                ? `<td rowspan="${meal.dishes.length}" style="${cellStyle}font-weight:700;color:#0F4C3A;background-color:#F8FBF9;">${mealName}</td>`
+                : '';
+              return `<tr>
+                ${mealCell}
+                <td style="${cellStyle}color:#1F2A26;">${dishName}</td>
+                <td style="${numCellStyle}color:#3F4A45;">${weight} g</td>
+                <td style="${numCellStyle}color:#3F4A45;font-weight:700;">${calories}</td>
+              </tr>`;
+            }).join('');
+          }).join('');
+
+          return `<div style="margin:0 0 28px;">
+            <h3 style="margin:0 0 10px;font-size:17px;line-height:1.3;color:#0F4C3A;font-weight:700;">${escapeHtml(t('wizard.step5.day').replace('{n}', String(dayIndex + 1)))}</h3>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;border:1px solid #E2EAE6;border-radius:8px;overflow:hidden;">
+              <thead>
+                <tr>
+                  <th style="${headCellStyle}">Meal Type</th>
+                  <th style="${headCellStyle}">Dish Name</th>
+                  <th style="${headCellStyle}text-align:right;">Weight (g)</th>
+                  <th style="${headCellStyle}text-align:right;">Calories (kcal)</th>
+                </tr>
+              </thead>
+              <tbody>${mealRows}</tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3" style="padding:11px 12px;background-color:#F0F7F3;border-top:2px solid #0F4C3A;font-size:13px;font-weight:700;color:#0F4C3A;text-align:right;">Total (${dishCount} ${dishCount === 1 ? 'dish' : 'dishes'})</td>
+                  <td style="padding:11px 12px;background-color:#F0F7F3;border-top:2px solid #0F4C3A;font-size:13px;font-weight:700;color:#0F4C3A;text-align:right;white-space:nowrap;">${Math.round(dayTotal)}</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>`;
+        }).join('')
+        : '<p style="margin:0;font-size:14px;line-height:1.6;color:#3F4A45;">Your personalized meal plan is ready.</p>';
+
+      const emailHtml = `<!DOCTYPE html>
+<html lang="${escapeHtml(language)}" dir="${language === 'ar' ? 'rtl' : 'ltr'}">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your 7-Day Meal Plan</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F4F7F5;font-family:Arial,Helvetica,sans-serif;color:#1F2A26;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F4F7F5;">
+    <tr>
+      <td align="center" style="padding:24px 12px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:680px;background-color:#ffffff;border:1px solid #E2EAE6;border-radius:12px;overflow:hidden;">
+          <tr>
+            <td style="background-color:#0F4C3A;padding:26px 28px;text-align:center;">
+              <img src="${logoUrl}" alt="HealthFingerprint" width="56" height="56" style="display:block;margin:0 auto 12px;border:0;border-radius:12px;" />
+              <h1 style="margin:0;font-size:24px;line-height:1.3;color:#ffffff;font-weight:700;">Your 7-Day Meal Plan</h1>
+              <p style="margin:6px 0 0;font-size:13px;line-height:1.4;color:#D7E8E0;">HealthFingerprint</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:24px 28px 4px;">${planHtml}</td>
+          </tr>
+          <tr>
+            <td style="background-color:#F4F7F5;border-top:1px solid #E2EAE6;padding:16px 28px;text-align:center;font-size:12px;line-height:1.5;color:#6B7A75;">
+              Generated by HealthFingerprint &middot; <a href="https://healthfingerprint.com" style="color:#0F4C3A;text-decoration:none;font-weight:700;">healthfingerprint.com</a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
 
       try {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -2741,17 +2825,13 @@ const WeightLossPage: React.FC = () => {
           }, 3200);
           return;
         }
-        let truncatedMessage = formattedPlanText;
-        if (truncatedMessage.length > 1000) {
-          truncatedMessage = truncatedMessage.substring(0, 1000) + ' ... (Plan truncated for email. View full plan on website.)';
-        }
-        console.log("Sending to EmailJS with:", { to_email: email, message: truncatedMessage });
+        console.log("Sending to EmailJS with:", { to_email: email, message: emailHtml });
         await emailjs.send(
           'service_rmr82d6',
           'template_ixiytd8',
           {
             to_email: email,
-            message: truncatedMessage,
+            message: emailHtml,
           },
           'r4oAz9EccW2nIEkWX'
         );
