@@ -20,6 +20,7 @@ import { useKitchenDishCounts, KITCHEN_ID_ALIAS } from '../hooks/useKitchenDishC
 import { useUserProfile, WIZARD_DRAFT_STORAGE_KEY, WIZARD_STEP_STORAGE_KEY, type UserProfile, type WizardGoalSelection, type SleepHours, type StressLevel, type WorkType, type SmokingStatus, type MealsPerDay, type SnackFrequency, type BreakfastType, type MeatFrequency, type VegetablesFrequency, type SugaryDrinksFrequency, type GoalDiscoverySelection, type BodyConcern, type KitchenMode, type UserRecommendations, type UserPlanPreview } from '../hooks/useUserProfile';
 import { generateWeeklyPlan, MEAL_ORDER as PLAN_MEAL_ORDER } from '../utils/mealPlanGenerator';
 import type { PlanDay, PlanDish, PlanMealType } from '../utils/mealPlanGenerator';
+import { printMealPlanPdf } from '../utils/pdfGenerator';
 import { supabaseClient } from '../lib/supabaseClient';
 import emailjs from '@emailjs/browser';
 
@@ -4746,7 +4747,15 @@ const WeightLossPage: React.FC = () => {
             </div>
 
             <div className="flex flex-wrap gap-2.5">
-              <button type="button" onClick={() => window.print()} className="rounded-full bg-white border border-[#E9E5DB] text-[#0F4C3A] px-5 py-2.5 text-[13px] font-bold flex items-center gap-1.5 hover:border-[#D4A017] transition-all">
+              <button
+                type="button"
+                onClick={() => printMealPlanPdf({
+                  weeklyPlan,
+                  language,
+                  mealTypeLabel: (mealType) => t(`wizard.step3.meals.${mealType}`),
+                })}
+                className="rounded-full bg-white border border-[#E9E5DB] text-[#0F4C3A] px-5 py-2.5 text-[13px] font-bold flex items-center gap-1.5 hover:border-[#D4A017] transition-all"
+              >
                 <span>⬇️</span> {t('wizard.step5.downloadPdf')}
               </button>
               <button type="button" onClick={() => setEmailOpen(true)} className="rounded-full bg-white border border-[#E9E5DB] text-[#0F4C3A] px-5 py-2.5 text-[13px] font-bold flex items-center gap-1.5 hover:border-[#D4A017] transition-all">
