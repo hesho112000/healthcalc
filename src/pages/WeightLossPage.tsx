@@ -4753,6 +4753,8 @@ const WeightLossPage: React.FC = () => {
                   weeklyPlan,
                   language,
                   mealTypeLabel: (mealType) => t(`wizard.step3.meals.${mealType}`),
+                  exercises: plannedExercises.map(({ name, sets, reps, dur }) => ({ name, sets, reps, dur })),
+                  workoutDays: WORKOUTS.find((option) => option.id === workout)?.days,
                 })}
                 className="rounded-full bg-white border border-[#E9E5DB] text-[#0F4C3A] px-5 py-2.5 text-[13px] font-bold flex items-center gap-1.5 hover:border-[#D4A017] transition-all"
               >
