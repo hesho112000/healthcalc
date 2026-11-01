@@ -86,13 +86,13 @@ export const AppRoutes: React.FC = () => (
       <Route path="/smartwatch-sync" element={<SmartwatchSyncPage />} />
       <Route path="/food-library" element={<FoodLibraryPage />} />
       <Route path="/food-library/:id" element={<DishDetailPage />} />
-      {HealthUniversePage && <Route path="/advanced-care" element={<HealthUniversePage />} />}
-      {OrganHubPage && <Route path="/advanced-care/:organId" element={<OrganHubPage />} />}
-      {AdvancedLabPage && <Route path="/advanced-care/lab" element={<AdvancedLabPage />} />}
-      {AdvancedCareWizardPage && <Route path="/advanced-care/wizard" element={<AdvancedCareWizardPage />} />}
+      {HealthUniversePage && <Route path="/advanced-care" element={<ProtectedRoute><HealthUniversePage /></ProtectedRoute>} />}
+      {OrganHubPage && <Route path="/advanced-care/:organId" element={<ProtectedRoute><OrganHubPage /></ProtectedRoute>} />}
+      {AdvancedLabPage && <Route path="/advanced-care/lab" element={<ProtectedRoute><AdvancedLabPage /></ProtectedRoute>} />}
+      {AdvancedCareWizardPage && <Route path="/advanced-care/wizard" element={<ProtectedRoute><AdvancedCareWizardPage /></ProtectedRoute>} />}
       {ENABLE_PREMIUM && <Route path="/advanced-care/wizard/signup" element={<SignupPage />} />}
-      <Route path="/dashboard/plan" element={<PlanDashboardPage />} />
-      {MyHealthHubPage && <Route path="/my-health-hub" element={<MyHealthHubPage />} />}
+      <Route path="/dashboard/plan" element={<ProtectedRoute><PlanDashboardPage /></ProtectedRoute>} />
+      {MyHealthHubPage && <Route path="/my-health-hub" element={<ProtectedRoute><MyHealthHubPage /></ProtectedRoute>} />}
       {SubscriptionPage && <Route path="/subscription" element={<SubscriptionPage />} />}
       <Route path="/search" element={<SearchPage />} />
       <Route path="/login" element={<LoginPage />} />

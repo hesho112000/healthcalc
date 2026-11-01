@@ -212,7 +212,7 @@ const Header: React.FC = () => {
                       onClick={() => setUserOpen(false)}
                       className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-start text-sm font-bold text-[#0F4C3A] hover:bg-[#FDFBF7] transition-colors"
                     >
-                      👤 {t('nav.profile')}
+                      👤 {t('headerDashboard')}
                     </Link>
                     <div className="h-px bg-[#EFEBE4] my-1" />
                     <button
@@ -305,7 +305,7 @@ const Header: React.FC = () => {
                   🫀 {t('nav.myHealthHub')}
                 </Link>}
                 <Link to="/dashboard" className="app-header-login" onClick={() => setMobileOpen(false)}>
-                  👤 {t('nav.profile')}
+                  👤 {t('headerDashboard')}
                 </Link>
                 <button type="button" onClick={handleSignOut} className="app-header-login text-start">
                   ↩ {t('nav.signOut')}

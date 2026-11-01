@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
 import { ENABLE_PREMIUM } from '../config/featureFlags';
 import type { translations } from '../i18n/translations';
 import { FOODS_DATABASE } from '../utils/calculations';
@@ -39,26 +40,28 @@ const slotLabel = (slot: MealSlot): string => {
   return 'wizard.step6.mealSnack';
 };
 
-const PlanDashboardPage: React.FC = () => {
+const PlanDashboardContent: React.FC = () => {
   const { t, dir } = useLanguage();
+  const { session } = useAuth();
   const [plan, setPlan] = useState<SavedPlan | null>(null);
   const [name, setName] = useState('there');
-  const [checked, setChecked] = useState<string[]>(() => {
-    try {
-      const raw = localStorage.getItem('hc_dash_meal_checked');
-      return raw ? (JSON.parse(raw) as string[]) : [];
-    } catch {
-      return [];
-    }
-  });
+  const [checked, setChecked] = useState<string[]>([]);
   const [weight, setWeight] = useState<number | null>(null);
-  const [cups, setCups] = useState<number>(() => {
-    const raw = localStorage.getItem('hc_dash_water');
-    return typeof raw === 'string' ? Number(raw) || 0 : 0;
-  });
+  const [cups, setCups] = useState<number>(0);
+  const [storageLoaded, setStorageLoaded] = useState(false);
   const [toast, setToast] = useState('');
 
   useEffect(() => {
+    if (!session) {
+      setPlan(null);
+      setName('there');
+      setChecked([]);
+      setCups(0);
+      setStorageLoaded(false);
+      return;
+    }
+
+    setStorageLoaded(false);
     try {
       const raw = localStorage.getItem('hc_advanced_care_plan');
       setPlan(raw ? (JSON.parse(raw) as SavedPlan) : null);
@@ -74,18 +77,35 @@ const PlanDashboardPage: React.FC = () => {
     } catch {
       setName('there');
     }
-  }, []);
+    try {
+      const rawChecked = localStorage.getItem('hc_dash_meal_checked');
+      setChecked(rawChecked ? (JSON.parse(rawChecked) as string[]) : []);
+    } catch {
+      setChecked([]);
+    }
+    try {
+      const rawCups = localStorage.getItem('hc_dash_water');
+      setCups(typeof rawCups === 'string' ? Number(rawCups) || 0 : 0);
+    } catch {
+      setCups(0);
+    }
+    setStorageLoaded(true);
+  }, [session]);
 
   const foodById = useMemo(() => new Map(FOODS_DATABASE.map((food) => [food.name_en, food])), []);
   const exerciseById = useMemo(() => new Map(EXERCISES_DATABASE.map((ex) => [ex.id, ex])), []);
 
   useEffect(() => {
+    if (!session || !storageLoaded) return;
     localStorage.setItem('hc_dash_meal_checked', JSON.stringify(checked));
-  }, [checked]);
+  }, [checked, session, storageLoaded]);
 
   useEffect(() => {
+    if (!session || !storageLoaded) return;
     localStorage.setItem('hc_dash_water', String(cups));
-  }, [cups]);
+  }, [cups, session, storageLoaded]);
+
+  if (!session) return <Navigate to="/login" replace />;
 
   const toggleFood = (name: string) =>
     setChecked((items) => (items.includes(name) ? items.filter((item) => item !== name) : [...items, name]));
@@ -336,6 +356,15 @@ const PlanDashboardPage: React.FC = () => {
       )}
     </div>
   );
+};
+
+const PlanDashboardPage: React.FC = () => {
+  const { user, loading } = useAuth();
+
+  if (loading) return <div className="min-h-screen" aria-busy="true" />;
+  if (!user) return <Navigate to="/login" replace />;
+
+  return <PlanDashboardContent />;
 };
 
 export default PlanDashboardPage;
