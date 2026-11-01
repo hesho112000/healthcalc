@@ -2689,8 +2689,8 @@ const WeightLossPage: React.FC = () => {
   };
 
   const sendEmail = async () => {
-    if (!emailText.trim() || emailSending) return;
     const email = emailText.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || emailSending) return;
     setEmailSending(true);
 
     try {
@@ -4933,12 +4933,19 @@ const WeightLossPage: React.FC = () => {
                 </button>
               </div>
             ) : (
-              <div className="pt-2">
+              <form
+                className="pt-2"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  void sendEmail();
+                }}
+              >
                 <h3 className="text-[17px] font-bold">Send Blueprint</h3>
                 <p className="mt-1 text-[13px] text-zinc-500">Receive the blueprint as a PDF on your email.</p>
                 <label className="mt-4 block text-[12.5px] font-medium text-zinc-700">Email address</label>
                 <input
                   type="email"
+                  required
                   value={emailText}
                   onChange={(e) => setEmailText(e.target.value)}
                   placeholder="you@example.com"
@@ -4954,15 +4961,14 @@ const WeightLossPage: React.FC = () => {
                     Cancel
                   </button>
                   <button
-                    type="button"
-                    onClick={sendEmail}
-                    disabled={emailSending || !emailText.trim()}
-                    className={`flex-1 h-[48px] rounded-[14px] text-[14px] font-extrabold ${emailSending || !emailText.trim() ? 'bg-[#E9E5DB] text-[#A0A8A4]' : 'bg-[#D4A017] text-[#0F4C3A]'}`}
+                    type="submit"
+                    disabled={emailSending}
+                    className={`flex-1 h-[48px] rounded-[14px] text-[14px] font-extrabold ${emailSending ? 'bg-[#E9E5DB] text-[#A0A8A4]' : 'bg-[#D4A017] text-[#0F4C3A]'}`}
                   >
                     {emailSending ? 'Sending…' : 'Send'}
                   </button>
                 </div>
-              </div>
+              </form>
             )}
           </div>
         </div>

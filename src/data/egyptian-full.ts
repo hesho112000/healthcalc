@@ -100,7 +100,7 @@ type EgyptianHalalReplacement = Pick<EgyptianFullDish, 'nameAr' | 'nameEn' | 'na
 };
 
 const HALAL_REPLACEMENTS: Record<string, EgyptianHalalReplacement> = {
-  'Pork Meat': {
+  'Meat': {
     nameAr: 'لحم بقري',
     nameEn: 'Beef meat',
     nameFr: 'Viande de bœuf',

@@ -1,9 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 
 const CONSENT_KEY = 'cookie_consent_accepted';
 const CONSENT_CHOICE_KEY = 'cookie_consent_choice';
+
+const GA_MEASUREMENT_ID = 'G-JVGX1DCPT3';
+const ADSENSE_CLIENT = 'ca-pub-4066449967727361';
+
+const loadAnalyticsScripts = () => {
+  if (!document.getElementById('ga-gtag-script')) {
+    const gaScript = document.createElement('script');
+    gaScript.id = 'ga-gtag-script';
+    gaScript.async = true;
+    gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+    document.head.appendChild(gaScript);
+  }
+
+  if (!document.getElementById('ga-gtag-config')) {
+    const inlineScript = document.createElement('script');
+    inlineScript.id = 'ga-gtag-config';
+    inlineScript.innerHTML = `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '${GA_MEASUREMENT_ID}');
+    `;
+    document.head.appendChild(inlineScript);
+  }
+
+  if (!document.getElementById('adsense-script')) {
+    const adsScript = document.createElement('script');
+    adsScript.id = 'adsense-script';
+    adsScript.async = true;
+    adsScript.crossOrigin = 'anonymous';
+    adsScript.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`;
+    document.head.appendChild(adsScript);
+  }
+};
 
 const CookieConsentBanner: React.FC = () => {
   const { t, dir } = useLanguage();
@@ -23,6 +57,15 @@ const CookieConsentBanner: React.FC = () => {
     } catch {}
     setConsentState(value);
   };
+
+  useEffect(() => {
+    if (consent !== true) return;
+    let accepted = false;
+    try {
+      accepted = localStorage.getItem(CONSENT_KEY) === 'true';
+    } catch {}
+    if (accepted) loadAnalyticsScripts();
+  }, [consent]);
 
   if (consent !== null) return null;
 

@@ -65,8 +65,8 @@
   },
   {
     "id": "keto_bf_4",
-    "name_ar": "لحم مقدد كيتو فطار كيتو",
-    "name_en": "Bacon keto breakfast Keto",
+    "name_ar": "شرائح ديك رومي كيتو فطار كيتو",
+    "name_en": "Turkey strips keto breakfast Keto",
     "mealType": "breakfast",
     "grams": 100,
     "kcal": 95,
@@ -74,7 +74,7 @@
     "carbs": 10,
     "fat": 4,
     "cooking": "boiled",
-    "ref": "Bacon keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
+    "ref": "Turkey strips keto - Keto - Paoli et al. Ketogenic Diet Review - Nutrients 2023 - ISSN - Crosby et al. Ketogenic Diet - Harvard T.H. Chan 2023 - Johns Hopkins - Johns Hopkins Ketogenic Diet Guidelines 2024 - Epilepsy Foundation - Mayo Clinic Keto 2024",
     "name_fr": "Viande séchée, petit-déjeuner keto",
     "name_es": "Carne curada, desayuno keto",
     "name_de": "Trockenfleisch, Keto-Frühstück"

@@ -7,7 +7,7 @@ const NotFoundPage: React.FC = () => {
   const { t } = useLanguage();
   return (
     <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center px-4">
-      <SEO title={t('seo.notFound.title')} description={t('seo.notFound.description')} url={undefined} />
+      <SEO title={t('seo.notFound.title')} description={t('seo.notFound.description')} noindex={true} />
       <div className="text-center max-w-md animate-fade-in">
         <div className="w-24 h-24 bg-gray-100 rounded-3xl flex items-center justify-center mx-auto mb-6">
           <span className="text-5xl">🔍</span>

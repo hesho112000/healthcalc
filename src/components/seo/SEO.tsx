@@ -9,6 +9,7 @@ interface SEOProps {
   url?: string;
   type?: 'website' | 'article';
   locale?: string;
+  noindex?: boolean;
 }
 
 const BASE_URL = (import.meta.env.VITE_SITE_URL || 'https://healthfingerprint.com').replace(/\/+$/, '');
@@ -30,10 +31,11 @@ const SEO: React.FC<SEOProps> = ({
   url,
   type = 'website',
   locale,
+  noindex = false,
 }) => {
   const { language } = useLanguage();
   const fullTitle = `${title} | Health Fingerprint`;
-  const pageUrl = new URL(`${BASE_URL}${url ?? '/'}`);
+  const pageUrl = new URL(url ?? '/', BASE_URL);
   const localizedUrl = (lang: string) => {
     const localized = new URL(pageUrl);
     localized.searchParams.set('lang', lang);
@@ -47,7 +49,7 @@ const SEO: React.FC<SEOProps> = ({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
-      <meta name="robots" content="index, follow" />
+      <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
       <link rel="canonical" href={canonicalUrl} />
 
       <meta property="og:type" content={type} />

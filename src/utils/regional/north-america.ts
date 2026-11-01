@@ -3,7 +3,7 @@ import type { RegionalFood } from '../cuisineCatalog';
 export const FOODS: Record<string, RegionalFood[]> = {
   american: [
     { name_en: 'Pancakes with Maple Syrup', name_ar: 'بان كيك بشراب القيقب', mealType: 'breakfast', calories: 221, protein: 5.4, carbs: 34.2, fat: 7.2 },
-    { name_en: 'Scrambled Eggs and Turkey Bacon', name_ar: 'بيض مخفوق مع بيكون ديك رومي', mealType: 'breakfast', calories: 240, protein: 16.8, carbs: 2.4, fat: 16.2 },
+    { name_en: 'Scrambled Eggs and Turkey Strips', name_ar: 'بيض مخفوق مع شرائح الديك الرومي', mealType: 'breakfast', calories: 240, protein: 16.8, carbs: 2.4, fat: 16.2 },
     { name_en: 'Waffles with Butter', name_ar: 'وافل بالزبدة', mealType: 'breakfast', calories: 262, protein: 7.1, carbs: 29.6, fat: 12.7 },
     { name_en: 'Cinnamon French Toast', name_ar: 'خبز فرنسي بالقرفة', mealType: 'breakfast', calories: 275, protein: 9.2, carbs: 33.6, fat: 13 },
     { name_en: 'Cheeseburger', name_ar: 'تشيز برجر', mealType: 'lunch', calories: 635, protein: 29.9, carbs: 50.6, fat: 34.5 },
@@ -35,7 +35,7 @@ export const FOODS: Record<string, RegionalFood[]> = {
   ],
   canadian: [
     { name_en: 'Maple Pancakes', name_ar: 'فطائر بالشراب القيقبي', mealType: 'breakfast', calories: 204, protein: 5.8, carbs: 25.2, fat: 8.7 },
-    { name_en: 'Peameal Beef Bacon Sandwich', name_ar: 'ساندويتش بيكون لحم بقري', mealType: 'breakfast', calories: 700, protein: 45, carbs: 82.5, fat: 20 },
+    { name_en: 'Peameal Beef Strips Sandwich', name_ar: 'ساندويتش شرائح لحم بقري', mealType: 'breakfast', calories: 700, protein: 45, carbs: 82.5, fat: 20 },
     { name_en: 'Beaver Tails', name_ar: 'بيفر تيلز (حلوى البيور)', mealType: 'breakfast', calories: 750, protein: 15, carbs: 137.5, fat: 15 },
     { name_en: 'Oatmeal with Maple Syrup', name_ar: 'شوفان بشراب القيقب', mealType: 'breakfast', calories: 178, protein: 6.3, carbs: 30.5, fat: 3.8 },
     { name_en: 'Poutine', name_ar: 'بوتين', mealType: 'lunch', calories: 690, protein: 21, carbs: 75, fat: 33 },

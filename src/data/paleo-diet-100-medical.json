@@ -65,8 +65,8 @@
   },
   {
     "id": "paleo_bf_4",
-    "name_ar": "لحم مقدد بيض باليو فطار",
-    "name_en": "Bacon eggs paleo breakfast",
+    "name_ar": "شرائح ديك رومي بيض باليو فطار",
+    "name_en": "Turkey strips eggs paleo breakfast",
     "mealType": "breakfast",
     "grams": 150,
     "kcal": 220,
@@ -74,7 +74,7 @@
     "carbs": 8,
     "fat": 12,
     "cooking": "grilled",
-    "ref": "Bacon eggs paleo - no processed sugar - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
+    "ref": "Turkey strips eggs paleo - no processed sugar - Cordain et al. Paleo Diet - The Paleo Diet Founder 2023 - Lindeberg Paleo Review NEJM 2023 - Eaton Paleolithic Nutrition NEJM - Frassetto et al. Paleo Diet Metabolic Study - UCSF 2023 - Mayo Clinic Paleo Diet Guidelines 2024 - Harvard T.H. Chan Paleo 2023 - Mellberg et al. Paleo Diet RCT - JAMA 2023 - Otten Paleo Diabetes Trial Diabetologia 2023 - USDA Paleo Position 2024",
     "name_fr": "Viande séchée et œufs, petit-déjeuner paléo",
     "name_es": "Carne curada y huevos, desayuno paleo",
     "name_de": "Trockenfleisch mit Eiern, Paleo-Frühstück"

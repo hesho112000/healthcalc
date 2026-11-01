@@ -235,16 +235,21 @@ const HomePage: React.FC = () => {
     }
 
     try {
-      const { error } = await supabaseClient.from('subscribers').insert([{ email: email, source: sourceName }]);
-      if (!error) {
-        if (sourceName === 'Fasting Hub') setFastingJoined(true);
-        else setWatchJoined(true);
-      } else if ((error as any).code === '23505') {
-        if (sourceName === 'Fasting Hub') setFastingError("You're already subscribed!");
-        else setWatchError("You're already subscribed!");
+      if (supabaseClient) {
+        const { error } = await supabaseClient.from('subscribers').insert([{ email: email, source: sourceName }]);
+        if (!error) {
+          if (sourceName === 'Fasting Hub') setFastingJoined(true);
+          else setWatchJoined(true);
+        } else if ((error as any).code === '23505') {
+          if (sourceName === 'Fasting Hub') setFastingError("You're already subscribed!");
+          else setWatchError("You're already subscribed!");
+        } else {
+          if (sourceName === 'Fasting Hub') setFastingError('Something went wrong. Please try again.');
+          else setWatchError('Something went wrong. Please try again.');
+        }
       } else {
-        if (sourceName === 'Fasting Hub') setFastingError('Something went wrong. Please try again.');
-        else setWatchError('Something went wrong. Please try again.');
+        if (sourceName === 'Fasting Hub') setFastingError('Subscription service is temporarily unavailable.');
+        else setWatchError('Subscription service is temporarily unavailable.');
       }
     } catch (err) {
       if (sourceName === 'Fasting Hub') setFastingError('Something went wrong. Please try again.');

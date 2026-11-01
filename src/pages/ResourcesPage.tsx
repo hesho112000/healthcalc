@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
+import { supabaseClient } from '../lib/supabaseClient';
 import { translations } from '../i18n/translations';
 import { ARTICLES } from '../data/articles';
 import { RECIPES } from '../data/recipes';
@@ -59,6 +60,9 @@ const ResourcesPage: React.FC = () => {
   const [category, setCategory] = useState<Category>('all');
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
+  const [statusType, setStatusType] = useState<'success' | 'warning' | 'error' | ''>('');
   const hero = SPLIT(t('resources.hero.title'));
 
   const showAll = category === 'all';
@@ -73,11 +77,40 @@ const ResourcesPage: React.FC = () => {
     { id: 'exercises', label: t('resources.categories.exercises') },
   ];
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) return;
-    setSubscribed(true);
-    setEmail('');
+    if (!email.trim() || isSubmitting) return;
+    setIsSubmitting(true);
+    setStatusMessage('');
+    setStatusType('');
+
+    try {
+      if (supabaseClient) {
+        const { error } = await supabaseClient.from('subscribers').insert([{ email: email.trim(), source: 'Resources Newsletter' }]);
+        if (!error) {
+          setEmail('');
+          setSubscribed(true);
+          setStatusMessage('Subscribed successfully!');
+          setStatusType('success');
+        } else if ((error as any).code === '23505') {
+          setStatusMessage('You are already subscribed!');
+          setStatusType('warning');
+        } else {
+          setStatusMessage('Something went wrong. Please try again.');
+          setStatusType('error');
+        }
+      } else {
+        setEmail('');
+        setSubscribed(true);
+        setStatusMessage('Subscribed successfully!');
+        setStatusType('success');
+      }
+    } catch (err) {
+      setStatusMessage('Something went wrong. Please try again.');
+      setStatusType('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const SectionHeading: React.FC<{ title: string }> = ({ title }) => (
@@ -290,11 +323,21 @@ const ResourcesPage: React.FC = () => {
                 />
                 <button
                   type="submit"
-                  className="rounded-full bg-[#D4A017] px-8 py-3.5 text-sm font-extrabold text-[#0F4C3A] shadow-[0_10px_30px_rgba(212,160,23,0.4)] hover:bg-[#B8860B] transition-colors"
+                  disabled={isSubmitting}
+                  className="rounded-full bg-[#D4A017] px-8 py-3.5 text-sm font-extrabold text-[#0F4C3A] shadow-[0_10px_30px_rgba(212,160,23,0.4)] hover:bg-[#B8860B] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {t('resources.newsletter.cta')}
+                  {isSubmitting ? '...' : t('resources.newsletter.cta')}
                 </button>
               </form>
+            )}
+            {statusMessage && (
+              <p className={`mt-3 text-xs font-semibold ${
+                statusType === 'success' ? 'text-green-300' :
+                statusType === 'warning' ? 'text-yellow-300' :
+                'text-red-300'
+              }`}>
+                {statusMessage}
+              </p>
             )}
           </div>
         </div>

@@ -96,7 +96,7 @@ export const USDA_BASE: Record<string, USDAEntry> = {
 
   // ---- AMERICAN ----
   'Scrambled Eggs (2 large)': { kcal: 149, protein: 10, carbs: 1.7, fat: 11, fiber: 0, sodium: 300, saturatedFat: 3.2, cholesterol: 373, perServing: 120 },
-  'Scrambled Eggs and Turkey Bacon': { kcal: 200, protein: 14, carbs: 2, fat: 13.5, fiber: 0, sodium: 480, saturatedFat: 4.5, cholesterol: 330 },
+  'Scrambled Eggs and Turkey Strips': { kcal: 200, protein: 14, carbs: 2, fat: 13.5, fiber: 0, sodium: 480, saturatedFat: 4.5, cholesterol: 330 },
   'Pancakes': { kcal: 227, protein: 6.4, carbs: 28, fat: 9.7, fiber: 1.3, sodium: 439, saturatedFat: 2.1, cholesterol: 59 },
   'Pancakes with Maple Syrup': { kcal: 245, protein: 6, carbs: 38, fat: 8, fiber: 1.2, sodium: 380, saturatedFat: 2, cholesterol: 55 },
   'Waffles with Butter': { kcal: 291, protein: 7.9, carbs: 32.9, fat: 14.1, fiber: 1.5, sodium: 511, saturatedFat: 4.7, cholesterol: 70 },
@@ -438,14 +438,14 @@ export const USDA_BASE: Record<string, USDAEntry> = {
   'Stuffed Bell Peppers': { kcal: 120, protein: 5, carbs: 15, fat: 4.5, fiber: 3, sodium: 420, cholesterol: 20 },
   'Lamb Kofta with Vegetables': { kcal: 170, protein: 14, carbs: 5, fat: 10, fiber: 2, sodium: 380, cholesterol: 60 },
   'Feta with Black Olives': { kcal: 250, protein: 10, carbs: 3, fat: 22, fiber: 2, sodium: 900, saturatedFat: 12, cholesterol: 45 },
-  'Avocado & Turkey Bacon': { kcal: 260, protein: 8, carbs: 5, fat: 25, fiber: 3.5, sodium: 420, saturatedFat: 5.5, cholesterol: 20 },
+  'Avocado & Turkey Strips': { kcal: 260, protein: 8, carbs: 5, fat: 25, fiber: 3.5, sodium: 420, saturatedFat: 5.5, cholesterol: 20 },
   'Scrambled Eggs with Butter': { kcal: 200, protein: 11, carbs: 1.5, fat: 16, fiber: 0, sodium: 250, saturatedFat: 6, cholesterol: 350 },
   'Keto Cheese & Seed Bowl': { kcal: 420, protein: 15, carbs: 6, fat: 37, fiber: 5, sodium: 350, saturatedFat: 12, cholesterol: 50 },
   'Steak with Butter': { kcal: 320, protein: 25, carbs: 0, fat: 24, fiber: 0, sodium: 90, saturatedFat: 10, cholesterol: 100 },
   'Bunless Cheeseburger': { kcal: 250, protein: 20, carbs: 2, fat: 18, fiber: 0.5, sodium: 420, saturatedFat: 7, cholesterol: 70 },
   'Cauliflower Fried Rice': { kcal: 90, protein: 3, carbs: 9, fat: 5, fiber: 2.5, sodium: 380, cholesterol: 45 },
   'Grilled Salmon with Asparagus': { kcal: 180, protein: 20, carbs: 3, fat: 10, fiber: 1.5, sodium: 80, saturatedFat: 2, cholesterol: 60 },
-  'Turkey Bacon-Wrapped Chicken Thighs': { kcal: 250, protein: 24, carbs: 1, fat: 16, fiber: 0, sodium: 420, saturatedFat: 5, cholesterol: 100 },
+  'Chicken Thighs Wrapped in Turkey Strips': { kcal: 250, protein: 24, carbs: 1, fat: 16, fiber: 0, sodium: 420, saturatedFat: 5, cholesterol: 100 },
   'Zucchini Noodles with Beef Marinara': { kcal: 110, protein: 9, carbs: 6, fat: 5.5, fiber: 1.5, sodium: 420, cholesterol: 30 },
   'Garlic Butter Shrimp': { kcal: 150, protein: 20, carbs: 2, fat: 7, fiber: 0.2, sodium: 350, saturatedFat: 3, cholesterol: 190 },
   'Chicken & Cheddar Lettuce Wraps': { kcal: 150, protein: 16, carbs: 3, fat: 8, fiber: 1, sodium: 380, cholesterol: 55 },
@@ -574,7 +574,7 @@ export const USDA_BASE: Record<string, USDAEntry> = {
 
   // ---- CANADA / NORTH AMERICA ----
   'Huevos a la Mexicana': { kcal: 130, protein: 9, carbs: 4, fat: 9, fiber: 1, sodium: 380, saturatedFat: 2.5, cholesterol: 260 },
-  'Peameal Beef Bacon Sandwich': { kcal: 280, protein: 18, carbs: 33, fat: 8, fiber: 2, sodium: 620, saturatedFat: 2.5, cholesterol: 35 },
+  'Peameal Beef Strips Sandwich': { kcal: 280, protein: 18, carbs: 33, fat: 8, fiber: 2, sodium: 620, saturatedFat: 2.5, cholesterol: 35 },
   'Beaver Tails': { kcal: 300, protein: 6, carbs: 55, fat: 6, fiber: 2, sodium: 300 },
   'Poutine': { kcal: 230, protein: 7, carbs: 25, fat: 11, fiber: 2, sodium: 450, saturatedFat: 4, cholesterol: 20 },
   'Montreal Smoked Meat Sandwich': { kcal: 280, protein: 17, carbs: 30, fat: 11, fiber: 2, sodium: 650, saturatedFat: 4, cholesterol: 40 },
@@ -769,7 +769,7 @@ export const TOKEN_RULES: Array<[RegExp, string]> = [
   [/cheeseburger|burger patty/, 'Cheeseburger'],
   [/bbq.?beef.?ribs|beef.?ribs/, 'BBQ Beef Ribs'],
   [/scrambled.?egg/, 'Scrambled Eggs (2 large)'],
-  [/bacon/, 'Scrambled Eggs and Turkey Bacon'],
+  [/bacon/, 'Scrambled Eggs and Turkey Strips'],
   [/hummus.+pita|pita.+hummus/, 'Hummus + Pita'],
   [/pita/, 'Pita Bread White'],
   [/naan/, 'Naan Bread'],

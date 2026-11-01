@@ -44,26 +44,36 @@ const DishDetailPage: React.FC = () => {
 
     async function load() {
       if (!id || !supabase) {
-        setError('Missing dish id or database configuration.');
-        if (!cancelled) setLoading(false);
+        if (!cancelled) {
+          setError('Missing dish id or database configuration.');
+          setLoading(false);
+        }
         return;
       }
 
-      const { data, error: sbError } = await supabase
-        .from('dishes')
-        .select('id,name_en,name_ar,name_fr,name_es,name_de,cal_100,protein,carbs,fat,fiber,sugar,sodium,sat_fat,region,meal_type,healthy,is_fried,is_sweet')
-        .eq('id', id)
-        .maybeSingle<DbDish>();
+      try {
+        const { data, error: sbError } = await supabase
+          .from('dishes')
+          .select('id,name_en,name_ar,name_fr,name_es,name_de,cal_100,protein,carbs,fat,fiber,sugar,sodium,sat_fat,region,meal_type,healthy,is_fried,is_sweet')
+          .eq('id', id)
+          .maybeSingle<DbDish>();
 
-      if (sbError) {
-        setError(sbError.message);
-      } else if (!data) {
-        setError('Dish not found.');
-      } else {
-        setDish(data);
+        if (cancelled) return;
+
+        if (sbError) {
+          setError(sbError.message);
+        } else if (!data) {
+          setError('Dish not found.');
+        } else {
+          setDish(data);
+        }
+      } catch (err) {
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : 'Failed to load dish.');
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
       }
-
-      if (!cancelled) setLoading(false);
     }
 
     void load();
