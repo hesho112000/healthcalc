@@ -759,9 +759,6 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
         src = [...src, ...fillers];
         if (!fallbackLogged) {
           fallbackLogged = true;
-          console.log(
-            `[Plan Generator] Region "${requestedRegion}" has ${mealRegionDishes.length} meal-${meal} dish(es) (<${MIN_REGION_DISHES}); pulled ${fillers.length} general dish(es) to fill the gap`,
-          );
         }
       }
       pools[meal] = buildPool(src, conditions, meal, priority);
@@ -827,37 +824,6 @@ export function generateWeeklyPlan(options: PlanOptions): PlanDay[] {
     });
   }
 
-  const within = (p: PlanDay) => p.totalCal >= target * DAY_LOW && p.totalCal <= target * DAY_HIGH;
-  const okDays = days.filter(within).length;
-  console.log('[Plan Generator]');
-  console.log(`  Target: ${target} kcal`);
-  for (const d of days) {
-    const pct = Math.round((d.totalCal / target) * 100);
-    console.log(`  Day ${d.day}: ${d.totalCal} (${pct}%) ${within(d) ? 'OK' : 'UNDER'}`);
-  }
-  console.log(`  Days within +/-3%: ${okDays}/7`);
-
-  const isDev = typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.DEV;
-  if (isDev) {
-    const weekDishes = new Set<string>();
-    const counts = new Map<string, number>();
-    for (const day of days) {
-      let dayCount = 0;
-      for (const meal of day.meals) {
-        for (const d of meal.dishes) {
-          dayCount += 1;
-          weekDishes.add(d.dish.name);
-          counts.set(d.dish.name, (counts.get(d.dish.name) ?? 0) + 1);
-        }
-      }
-      console.log(
-        `[DEV] ${day.label} (day ${day.day}): ${day.totalCal} kcal (${Math.round((day.totalCal / target) * 100)}% of ${target}) | ${dayCount} dishes`,
-      );
-    }
-    const repeats = [...counts.entries()].filter(([, c]) => c > 2);
-    console.log(`[DEV] Week total: ${days.reduce((s, d) => s + d.totalCal, 0)} kcal | unique dishes: ${weekDishes.size}`);
-    console.log(`[DEV] Dishes repeated >2x: ${repeats.length}`, repeats.slice(0, 10));
-  }
 
   return days;
 }

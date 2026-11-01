@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
-import { translations } from '../../i18n/translations';
+import type { translations } from '../../i18n/translations';
 
 const FAQ_KEYS = [
   { q: 'advanced.faq.q1', a: 'advanced.faq.a1' },

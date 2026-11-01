@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { ENABLE_PREMIUM } from '../config/featureFlags';
+import SEO from '../components/seo/SEO';
 
 const pages: { path: string; icon: string; title: string; keywords: string }[] = [
   { path: '/fitness', icon: '⚖️', title: 'Fitness & Health Calculator', keywords: 'bmi body mass index bmr basal metabolic rate ideal weight calories tdee fitness' },
@@ -34,6 +35,7 @@ const SearchPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#f8fafc]">
+      <SEO title="Search" description="Search Health Fingerprint tools, health guides, and resources." noindex={true} />
       <div className="max-w-3xl mx-auto px-4 py-10 animate-fade-in">
         <h1 className="text-2xl font-extrabold text-gray-900">{t('searchResultsTitle')}</h1>
         {q && <p className="text-sm text-gray-500 mt-1">{t('searchResultsFor')} “{q}”</p>}

@@ -1,12 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import {
-  Activity, ArrowRight, Beef, Briefcase, Check, ChevronLeft, Cigarette, Coffee, Cookie, CupSoda, Droplets, Dumbbell, Info, Minus, Moon,
-  PartyPopper, Play, Plus, Ruler, Salad, ShieldCheck, Smile, Sparkles, Sun, Target, Timer, User, UtensilsCrossed,
-} from 'lucide-react';
+import { Activity, Beef, Briefcase, Check, Cigarette, Coffee, Cookie, CupSoda, Droplets, Dumbbell, Minus, Moon, PartyPopper, Play, Plus, Ruler, Salad, ShieldCheck, Smile, Sparkles, Sun, Target, Timer, User, UtensilsCrossed } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
-import { kitchensRegistry, totalDishesAll, getDishName, getCategoryName, getKitchenName, getKitchenCountry, KITCHEN_REGION_KITCHEN_IDS } from '../data/kitchens';
+import { kitchensRegistry, getDishName, getKitchenName, getKitchenCountry, KITCHEN_REGION_KITCHEN_IDS } from '../data/kitchens';
 import type { KitchenInfo, KitchenDish, KitchenCategory } from '../data/kitchens';
 import type { UnifiedExercise } from '../data/exercises/unified';
 import { useUnifiedExercises } from '../hooks/useUnifiedExercises';
@@ -183,7 +180,7 @@ const ACTIVITY: Record<ActivityKey, { factor: number; label: string; desc: strin
   very_active: { factor: 1.9, label: 'نشط جدا', desc: 'عمل شاق + رياضة', emoji: '🔥' },
 };
 
-const ACTIVITY_ORDER: ActivityKey[] = ['sedentary', 'light', 'moderate', 'active', 'very_active'];
+
 
 const SLEEP_OPTIONS: { value: SleepHours; en: string; ar: string }[] = [
   { value: 'under_6', en: '< 6 hours', ar: 'أقل من 6 ساعات' },
@@ -450,72 +447,12 @@ const signedDelta = (g: GoalKey, d: DietIntensity): number => {
 
 const getDiet = (g: GoalKey, id: string): DietIntensity => DIETS[g].find((d) => d.id === id) ?? DIETS[g][0];
 
-function filterDishes(kitchen: KitchenInfo, diet: DietIntensity, goal: GoalKey): KitchenDish[] {
-  const dishes = kitchen.dishes;
-  if (!dishes.length) return [];
-  if (goal === 'lose') {
-    if (diet.level === 'harsh') {
-      const f = dishes.filter((x) => x.healthy && x.cal_100 <= 150 && x.confidence >= 85);
-      return f.length ? f : dishes.filter((x) => x.cal_100 <= 180);
-    }
-    if (diet.level === 'medium') {
-      const f = dishes.filter((x) => x.cal_100 <= 220);
-      return f.length ? f : dishes;
-    }
-    const f = dishes.filter((x) => x.cal_100 <= 250);
-    return f.length ? f : dishes;
-  }
-  if (goal === 'gain_muscle' || goal === 'gain_weight') {
-    const sorted = [...dishes].sort((a, b) => b.p - a.p || b.cal_100 - a.cal_100);
-    if (diet.level === 'harsh') {
-      const f = sorted.filter((x) => x.p >= 5);
-      return f.length ? f : sorted;
-    }
-    if (diet.level === 'medium') {
-      const f = sorted.filter((x) => x.p >= 4);
-      return f.length ? f : sorted;
-    }
-    return sorted;
-  }
-  if (goal === 'wellness') {
-    const sorted = [...dishes].sort((a, b) => b.p - a.p || b.cal_100 - a.cal_100);
-    if (diet.healthyOnly) {
-      const f = dishes.filter((x) => x.healthy);
-      return f.length ? f : sorted;
-    }
-    const f = dishes.filter((x) => x.cal_100 >= 120);
-    return f.length ? f : sorted;
-  }
-  const sorted = [...dishes].sort((a, b) => b.p - a.p || b.cal_100 - a.cal_100);
-  return sorted;
-}
 
-function portionGrams(diet: DietIntensity, goal: GoalKey): number {
-  if (goal === 'lose') {
-    if (diet.level === 'harsh') return 150;
-    if (diet.level === 'medium') return 175;
-    return 200;
-  }
-  if (goal === 'gain_muscle' || goal === 'gain_weight' || goal === 'athletic') {
-    if (diet.level === 'harsh') return 300;
-    if (diet.level === 'medium') return 280;
-    return 250;
-  }
-  return 200;
-}
 
-function pickPlate(pool: KitchenDish[]): KitchenDish[] {
-  if (!pool.length) return [];
-  const light = [...pool].sort((a, b) => a.cal_100 - b.cal_100 || b.p - a.p);
-  const heavy = [...pool].sort((a, b) => b.p - a.p || b.cal_100 - a.cal_100);
-  const breakfast = light.find((x) => x.healthy) ?? light[0];
-  const snack = light.find((x) => x !== breakfast && x.cal_100 <= 180) ?? light[1] ?? light[0];
-  const lunch = heavy[0];
-  const dinner = light.find((x) => x !== breakfast && x !== lunch && x !== snack) ?? heavy[1] ?? light[light.length - 1];
-  return [breakfast, lunch, dinner, snack];
-}
 
-const FEATURED_KITCHEN_IDS = ['egyptian', 'tunisian', 'moroccan', 'diet-keto', 'diet-vegan', 'diet-high-protein', 'diet-mediterranean', 'diet-low-carb'];
+
+
+
 
 interface RegionDef {
   id: string;
@@ -1337,7 +1274,7 @@ const MEAL_MAP: Record<MealKey, MealDefinition> = {
   },
 };
 
-const MEAL_NAMES: Record<MealKey, string> = { breakfast: 'فطار', lunch: 'غدا', dinner: 'عشاء', snacks: 'سناك' };
+
 
 const EGYPTIAN_MEAL: Record<MealKey, MealDefinition['filter']> = {
   breakfast: (cat, dish) => {
@@ -1434,12 +1371,7 @@ function getMealFilter(k: KitchenInfo, key: MealKey): MealDefinition['filter'] {
   return MEAL_MAP[key].filter;
 }
 
-const MEAL_TABS: { key: MealKey; label: string; emoji: string }[] = [
-  { key: 'breakfast', label: 'فطار', emoji: '🍳' },
-  { key: 'lunch', label: 'غدا', emoji: '🍛' },
-  { key: 'dinner', label: 'عشا', emoji: '🌙' },
-  { key: 'snacks', label: 'سناك', emoji: '🍎' },
-];
+
 
 const MEAL_ORDER: MealKey[] = ['breakfast', 'lunch', 'dinner', 'snacks'];
 
@@ -1465,16 +1397,7 @@ function getMealTypesForDish(k: KitchenInfo, cat: KitchenCategory, dish: Kitchen
   return types.length ? types : ['lunch'];
 }
 
-function dishesForMeal(k: KitchenInfo, key: MealKey): KitchenDish[] {
-  const fn = getMealFilter(k, key);
-  const out: KitchenDish[] = [];
-  for (const cat of getKitchenCategories(k)) {
-    for (const d of cat.dishes) {
-      if (fn(cat, d)) out.push(d);
-    }
-  }
-  return out.filter((d, i, a) => a.findIndex((x) => x.name === d.name) === i);
-}
+
 
 const BodyFigure: React.FC<{ kind: Sex }> = ({ kind }) => (
   <svg viewBox="0 0 100 160" className="h-[70px] w-[46px] shrink-0 overflow-visible" aria-hidden="true">
@@ -1600,7 +1523,7 @@ const WeightLossPage: React.FC = () => {
   const [weight, setWeight] = useState<string>(() => restoredDraft?.weight ?? (profile.weight === null ? '' : String(profile.weight)));
   const [wizardGoal, setWizardGoal] = useState<WizardGoalSelection>(() => restoredDraft?.wizardGoal ?? initialWizardGoal(profile));
   const [goal, setGoal] = useState<GoalKey>(() => restoredDraft?.goal ?? profile.goal ?? WIZARD_GOAL_CALC[initialWizardGoal(profile)]);
-  const [editingSavedProfile, setEditingSavedProfile] = useState(false);
+  const [, setEditingSavedProfile] = useState(false);
   const [targetWeight, setTargetWeight] = useState(() => {
     if (restoredDraft?.targetWeight !== undefined) return restoredDraft.targetWeight;
     if (profile.targetWeight !== null) return String(profile.targetWeight);
@@ -1617,8 +1540,6 @@ const WeightLossPage: React.FC = () => {
     const normalized = normalizeExerciseCategories(profile.exerciseTypes);
     return normalized.length ? normalized : ['cardio', 'strength'];
   });
-  const [exerciseSearch, setExerciseSearch] = useState('');
-  const [selectedExerciseSearch, setSelectedExerciseSearch] = useState('');
   const getUnifiedExercisesByType = (typeId: WizardExerciseCategory) => unifiedExercises.filter((exercise) => exercise.type === typeId);
   const localizedExerciseName = (exercise: UnifiedExercise) =>
     language === 'ar' ? exercise.nameAr
@@ -1667,8 +1588,8 @@ const WeightLossPage: React.FC = () => {
     }
     return (['cardio', 'strength'] as const).flatMap((type) => getUnifiedExercisesByType(type).slice(0, 2).map(toPlannedShape));
   });
-  const [kitchenSearch, setKitchenSearch] = useState('');
-  const [categorySearch, setCategorySearch] = useState('');
+  const [, setKitchenSearch] = useState('');
+  const [, setCategorySearch] = useState('');
   const [kitchenMode, setKitchenMode] = useState<KitchenMode | null>(() => restoredDraft?.kitchenMode !== undefined ? restoredDraft.kitchenMode : profile.kitchenMode);
   const [kitchenSelectionAccepted, setKitchenSelectionAccepted] = useState(() => restoredDraft?.kitchenSelectionAccepted ?? false);
   const [categoryMode, setCategoryMode] = useState<'manual' | 'auto'>(() => restoredDraft?.categoryMode ?? 'manual');
@@ -1678,18 +1599,14 @@ const WeightLossPage: React.FC = () => {
     exerciseType: null,
     selectedExercises: [],
   }));
-  const [autoBuildMode, setAutoBuildMode] = useState(false);
-  const [mealTab, setMealTab] = useState<MealKey>('breakfast');
   const [openMealAccordion, setOpenMealAccordion] = useState<MealKey | null>(null);
   const [regionSel, setRegionSel] = useState<string | null>(() => restoredDraft?.regionSel !== undefined ? restoredDraft.regionSel : null);
   const [cuisineSel, setCuisineSel] = useState<string | null>(() => restoredDraft?.cuisineSel !== undefined ? restoredDraft.cuisineSel : null);
   const [kitchenRegion, setKitchenRegion] = useState<string>(() => restoredDraft?.kitchenRegion ?? 'all');
   const [activeCuisineRegion, setActiveCuisineRegion] = useState<CuisineRegionId>(() => restoredDraft?.activeCuisineRegion ?? cuisineRegionForKitchen(profile.selectedKitchen ?? profile.kitchenPreference ?? 'egyptian'));
   const cuisineRegionTabRefs = useRef<Partial<Record<CuisineRegionId, HTMLButtonElement | null>>>({});
-  const [dishSearch, setDishSearch] = useState('');
-  const [savedSearch, setSavedSearch] = useState('');
-  const [healthyOnly, setHealthyOnly] = useState(false);
-  const [expandedCat, setExpandedCat] = useState<string | null>(null);
+  const [, setSavedSearch] = useState('');
+  const [, setExpandedCat] = useState<string | null>(null);
   const [selectedDishKeys, setSelectedDishKeys] = useState<string[]>(() => draftStringList(restoredDraft?.selectedDishKeys));
   const [assignedDishes, setAssignedDishes] = useState<Record<string, MealKey[]>>(() => {
     const value = restoredDraft?.assignedDishes;
@@ -1701,7 +1618,6 @@ const WeightLossPage: React.FC = () => {
       return selected.length ? [[key, selected]] : [];
     }));
   });
-  const [editField, setEditField] = useState<'age' | 'height' | 'weight' | null>(null);
   const [dietId, setDietId] = useState(() => restoredDraft?.dietId ?? profile.dietIntensity ?? 'normal_lose');
   const [dietaryPreferences, setDietaryPreferences] = useState<string[]>(() => draftStringList(restoredDraft?.dietaryPreferences, profile.dietaryPreferences));
   const [healthConditions, setHealthConditions] = useState<string[]>(() => draftStringList(restoredDraft?.healthConditions, profile.healthConditions));
@@ -1757,8 +1673,6 @@ const WeightLossPage: React.FC = () => {
   const [autoBuilding, setAutoBuilding] = useState(false);
   const [showPlan, setShowPlan] = useState(false);
   const [showStartOverConfirm, setShowStartOverConfirm] = useState(false);
-  const [collapsedSaved, setCollapsedSaved] = useState<Set<MealKey>>(new Set());
-  const [showAllSaved, setShowAllSaved] = useState<Set<MealKey>>(new Set());
   const [toast, setToast] = useState('');
   const [toastUndo, setToastUndo] = useState<{ label: string; action: () => void } | null>(null);
 
@@ -1944,14 +1858,7 @@ const WeightLossPage: React.FC = () => {
     ])) as Record<CuisineRegionId, KitchenInfo[]>;
   }, [availableKitchens, language]);
 
-  const featuredKitchens = useMemo(() => {
-    const found = FEATURED_KITCHEN_IDS.map((id) => kitchens.find((k) => k.id === id)).filter((k): k is KitchenInfo => !!k);
-    for (const k of kitchens) {
-      if (found.length >= FEATURED_KITCHEN_IDS.length) break;
-      if (k.dishes.length && !found.some((f) => f.id === k.id)) found.push(k);
-    }
-    return found;
-  }, [kitchens]);
+
   const selectedKitchenCats = useMemo<KitchenCategory[]>(() => getKitchenCategories(selectedKitchen), [selectedKitchen]);
   const dishPoolByMeal = useMemo(
     () => (mealType: MealKey) =>
@@ -1960,7 +1867,6 @@ const WeightLossPage: React.FC = () => {
       ),
     [selectedKitchenCats, selectedKitchen],
   );
-  const countryKitchens = useMemo<KitchenInfo[]>(() => [selectedKitchen], [selectedKitchen]);
   const regionKitchens = useMemo<Record<string, KitchenInfo[]>>(() => {
     const out: Record<string, KitchenInfo[]> = {};
     for (const r of REGIONS) {
@@ -1970,74 +1876,12 @@ const WeightLossPage: React.FC = () => {
     }
     return out;
   }, [kitchens, kitchenCounts]);
-  const browseKitchens = useMemo<KitchenInfo[]>(() => {
-    if (cuisineSel) {
-      const k = kitchens.find((x) => x.id === cuisineSel);
-      if (k && k.dishes.length) return [k];
-    }
-    return countryKitchens;
-  }, [cuisineSel, countryKitchens, kitchens]);
-  const planKitchens = useMemo<KitchenInfo[]>(() => {
-    if (kitchenMode === 'surprise' && !countryKitchens.some((k) => k.id === selectedKitchen.id)) return [selectedKitchen];
-    return countryKitchens;
-  }, [countryKitchens, selectedKitchen, kitchenMode]);
-  const dishRows = useMemo(() => {
-    const rows: { key: string; kitchen: KitchenInfo; cat: KitchenCategory; dish: KitchenDish; meals: MealKey[] }[] = [];
-    for (const k of browseKitchens) {
-      for (const cat of getKitchenCategories(k)) {
-        for (const d of cat.dishes) {
-          rows.push({ key: `${k.id}::${cat.id}::${d.name}`, kitchen: k, cat, dish: d, meals: getMealTypesForDish(k, cat, d) });
-        }
-      }
-    }
-    return rows;
-  }, [browseKitchens]);
-  const tabCounts = useMemo(() => {
-    const c: Record<MealKey, number> = { breakfast: 0, lunch: 0, dinner: 0, snacks: 0 };
-    for (const r of dishRows) for (const mm of r.meals) c[mm]++;
-    return c;
-  }, [dishRows]);
-  const displayedRows = useMemo(
-    () =>
-      dishRows.filter((r) => {
-        if (healthyOnly && !r.dish.healthy) return false;
-        if (!r.meals.includes(mealTab)) return false;
-        const q = dishSearch.trim();
-        if (q && !getDishName(r.dish, language).toLowerCase().includes(q.toLowerCase()) && !getCategoryName(r.cat, language).toLowerCase().includes(q.toLowerCase()) && !r.dish.name.includes(q) && !r.cat.name_ar.includes(q)) return false;
-        return true;
-      }),
-    [dishRows, healthyOnly, mealTab, dishSearch, language],
-  );
-  const dishMealOf = useMemo(() => {
-    const m = new Map<string, MealKey[]>();
-    for (const r of dishRows) m.set(r.key, r.meals);
-    return m;
-  }, [dishRows]);
-  const selectedDishMap = useMemo(() => {
-    const m = new Map<string, KitchenDish>();
-    for (const r of dishRows) m.set(r.key, r.dish);
-    return m;
-  }, [dishRows]);
-  const mealSummary = useMemo(() => {
-    const per: Record<MealKey, { key: string; dish: KitchenDish }[]> = { breakfast: [], lunch: [], dinner: [], snacks: [] };
-    for (const key of selectedDishKeys) {
-      const dish = selectedDishMap.get(key);
-      if (!dish) continue;
-      const meals = assignedDishes[key] ? assignedDishes[key] : (dishMealOf.get(key) ?? []);
-      for (const m of meals) {
-        if (per[m]) per[m].push({ key, dish });
-      }
-    }
-    return per;
-  }, [selectedDishKeys, selectedDishMap, assignedDishes, dishMealOf]);
-  const totalCal = useMemo(
-    () => selectedDishKeys.reduce((s, k) => s + (selectedDishMap.get(k)?.cal_serv ?? 0), 0),
-    [selectedDishKeys, selectedDishMap],
-  );
-  const filteredPlanned = useMemo(
-    () => plannedExercises.filter((p) => p.name.includes(selectedExerciseSearch) || p.type.includes(selectedExerciseSearch.toLowerCase())),
-    [plannedExercises, selectedExerciseSearch],
-  );
+
+
+
+
+
+
 
   const fromCalculator = enteredFromCalculator(profile);
   const wizardSteps: { n: Step; label: string; title: string }[] = [
@@ -2107,7 +1951,7 @@ const WeightLossPage: React.FC = () => {
     };
   }, [parsed, sex, step2Data.activityLevel, goal, dietId, workout, exerciseTypes]);
 
-  const diet = numbers ? numbers.diet : getDiet(goal, dietId);
+
 
   const recommendedDiet = healthConditions.includes('diabetes')
     ? language === 'ar' ? 'قليل الكربوهيدرات' : 'Low-Carb'
@@ -2121,8 +1965,7 @@ const WeightLossPage: React.FC = () => {
             ? language === 'ar' ? 'حمية البحر المتوسط' : 'Mediterranean'
             : language === 'ar' ? 'متوازن على نمط البحر المتوسط' : 'Balanced Mediterranean';
   const recommendedWizardGoal = recommendWizardGoal(healthConditions, numbers?.bmi ?? null);
-  const recommendedGoalCalc = WIZARD_GOAL_CALC[recommendedWizardGoal];
-  const recommendedGoalDiet = DIETS[recommendedGoalCalc][0];
+
   const recommendedMaintenance = numbers?.tdeeWorkout ?? 2000;
   const recommendedDelta = goals.includes('lose_weight') ? -400 : goals.includes('build_muscle') ? 250 : 0;
   const recommendedDailyCalories = numbers?.targetCal ?? Math.max(1200, recommendedMaintenance + recommendedDelta);
@@ -2356,12 +2199,7 @@ const WeightLossPage: React.FC = () => {
     setStep(s);
   };
 
-  const selectExerciseType = (typeId: string) => {
-    const category = LEGACY_EXERCISE_TYPE_MAP[typeId];
-    if (!category) return;
-    setStep2Data((d) => ({ ...d, exerciseType: category }));
-    setExerciseTypes((prev) => (prev.includes(category) ? prev : [...prev, category]));
-  };
+
 
   const autoPickExercises = (silent = false) => {
     const picks: WizardExerciseCategory[] =
@@ -2387,60 +2225,19 @@ const WeightLossPage: React.FC = () => {
     if (!silent) notify(t('wizard.toast.autoExercises'));
   };
 
-  const saveExercises = () => {
-    localStorage.setItem('hc_planned_exercises', JSON.stringify(plannedExercises));
-    notify(t('wizard.toast.savedExercises').replace('{n}', String(plannedExercises.length)));
-  };
 
-  const removeExercise = (id: string) => {
-    setPlannedExercises((prev) => prev.filter((p) => p.id !== id));
-  };
 
-  const toggleWizardExercise = (ex: UnifiedExercise) => {
-    const on = step2Data.selectedExercises.includes(ex.id);
-    setStep2Data((d) => ({ ...d, selectedExercises: on ? d.selectedExercises.filter((id) => id !== ex.id) : [...d.selectedExercises, ex.id] }));
-    setPlannedExercises((prev) => {
-      const others = prev.filter((p) => p.id !== ex.id);
-      return on ? others : [...others, toPlannedShape(ex)];
-    });
-    if (!on) notify(t('wizard.exerciseList.added'));
-  };
 
-  const runAutoBuild = () => {
-    if (autoBuildMode) return;
-    setAutoBuildMode(true);
-    window.setTimeout(() => {
-      const map: Record<GoalKey, WizardExerciseCategory[]> = {
-        lose: ['cardio', 'hiit', 'strength'],
-        gain_muscle: ['strength', 'cardio', 'balance'],
-        gain_weight: ['strength', 'cardio', 'balance'],
-        wellness: ['flexibility', 'balance', 'cardio'],
-        athletic: ['strength', 'cardio', 'hiit', 'balance'],
-      };
-      const all = map[goal];
-      const typePicks =
-        step2Data.activityLevel === 'sedentary' || step2Data.activityLevel === 'light'
-          ? all.filter((type) => type !== 'hiit').slice(0, 3)
-          : all;
-      const picked = typePicks.flatMap((type) => getUnifiedExercisesByType(type)
-        .filter((exercise) => exercise.difficulty !== 'advanced')
-        .slice(0, 2));
-      const ids = picked.map((e) => e.id);
-      setStep2Data((d) => ({ ...d, selectedExercises: ids, exerciseType: typePicks[0] }));
-      setPlannedExercises(picked.map(toPlannedShape));
-      setExerciseTypes(typePicks);
-      setAutoBuildMode(false);
-      notify(t('wizard.toast.autoExercises'));
-    }, 2000);
-  };
+
+
+
+
 
   const goEditExercises = () => {
     setStep(9);
   };
 
-  const autoPickKitchen = () => {
-    selectSurpriseMode();
-  };
+
 
   const chooseKitchen = (k: KitchenInfo) => {
     if (selectedKitchenId !== k.id) setWeeklyPlan([]);
@@ -2562,49 +2359,13 @@ const WeightLossPage: React.FC = () => {
     savePlanPreview(nextPlan[0]);
   };
 
-  const addDish = (key: string) => {
-    const on = selectedDishKeys.includes(key);
-    const dm = dishMealOf.get(key) ?? ['lunch'];
-    if (on) {
-      setSelectedDishKeys((prev) => prev.filter((k) => k !== key));
-      setAssignedDishes((prev) => {
-        const cp = { ...prev };
-        delete cp[key];
-        return cp;
-      });
-    } else {
-      setSelectedDishKeys((prev) => [...prev, key]);
-      setAssignedDishes((prev) => ({ ...prev, [key]: dm }));
-    }
-  };
 
-  const removeChip = (key: string, meal: MealKey) => {
-    const dm = dishMealOf.get(key) ?? ['lunch'];
-    const cur = assignedDishes[key] ? assignedDishes[key] : dm;
-    const next = cur.filter((m) => m !== meal);
-    setAssignedDishes((prev) => {
-      const cp = { ...prev };
-      if (next.length) cp[key] = next;
-      else delete cp[key];
-      return cp;
-    });
-    if (!next.length) setSelectedDishKeys((prev) => prev.filter((k) => k !== key));
-  };
 
-  const assignDishToMeal = (key: string, meal: MealKey) => {
-    setAssignedDishes((prev) => {
-      const cur = prev[key] ? prev[key] : (dishMealOf.get(key) ?? []);
-      const next = cur.includes(meal) ? cur.filter((x) => x !== meal) : [...cur, meal];
-      const cp = { ...prev };
-      if (next.length) cp[key] = next;
-      else delete cp[key];
-      return cp;
-    });
-  };
 
-  const toggleExpand = (id: string) => {
-    setExpandedCat((prev) => (prev === id ? null : id));
-  };
+
+
+
+
 
   const toggleGoalSelection = (id: WizardGoalSelection) => {
     setGoals((prev) => {
@@ -2615,27 +2376,9 @@ const WeightLossPage: React.FC = () => {
       return [...prev, id];
     });
   };
-  const acceptDiscovery = () => {
-    if (!goalDiscovery) return;
-    let sel: WizardGoalSelection[] = [];
-    if (goalDiscovery === 'not_sure') {
-      const bmi = numbers?.bmi ?? null;
-      sel = [recommendWizardGoal(healthConditions, bmi)];
-    } else {
-      sel = [goalDiscovery as WizardGoalSelection];
-    }
-    setGoals(sel);
-  };
 
-  const toggleDietaryPreference = (id: string) => {
-    const next = id === 'none'
-      ? dietaryPreferences.includes('none') ? [] : ['none']
-      : dietaryPreferences.includes(id)
-        ? dietaryPreferences.filter((preference) => preference !== id)
-        : [...dietaryPreferences.filter((preference) => preference !== 'none'), id];
-    setDietaryPreferences(next);
-    updateProfile({ dietaryPreferences: next });
-  };
+
+
 
   const toggleBodyConcern = (id: BodyConcern) => {
     const next: BodyConcern[] = id === 'none'
@@ -2840,7 +2583,6 @@ const WeightLossPage: React.FC = () => {
           }, 3200);
           return;
         }
-        console.log("Sending to EmailJS with:", { to_email: email, message: emailMessage });
         await emailjs.send(
           'service_rmr82d6',
           'template_ixiytd8',
@@ -2925,7 +2667,6 @@ const WeightLossPage: React.FC = () => {
     setExerciseTypes(['cardio', 'strength']);
     setCategoryMode('manual');
     setExerciseMode('auto');
-    setAutoBuildMode(false);
     setPlannedExercises([]);
     setEditingSavedProfile(false);
     setSelectedKitchenId('egyptian');
@@ -2942,7 +2683,6 @@ const WeightLossPage: React.FC = () => {
     setCuisineSel(null);
     setKitchenSearch('');
     setCategorySearch('');
-    setDishSearch('');
     setSavedSearch('');
     try {
       localStorage.removeItem(`hc_weekly_plan_${selectedKitchenId}`);
@@ -3102,9 +2842,8 @@ const WeightLossPage: React.FC = () => {
     notify(language === 'ar' ? 'تم تبديل الطبق' : 'Dish swapped');
   };
 
-  const macrosT = (p: number, c: number, f: number): string =>
-    t('wizard.step3.macros').replace('{p}', String(Math.round(p))).replace('{c}', String(Math.round(c))).replace('{f}', String(Math.round(f)));
-  const calT = (n: number): string => t('wizard.step3.cal').replace('{n}', String(n));
+
+
 
   const waterGoal = numbers ? +Math.max(2, Math.min(3.5, parsed.weight * 0.033)).toFixed(1) : 2.3;
   const doneCount = mealsDone.filter(Boolean).length;
@@ -3135,28 +2874,9 @@ const WeightLossPage: React.FC = () => {
   const mealLabel = (mk: MealKey): string => t(('wizard.step3.meals.' + mk) as any);
   const mealTime = (mk: MealKey): string => t(('wizard.step5.mealTime.' + mk) as any);
   const ACTIVITY_LABEL = (x: ActivityKey): string => t(('wizard.activity.' + x) as any);
-  const ACTIVITY_DESC = (x: ActivityKey): string => t(('wizard.activity.' + x + '.desc') as any);
-  const dietaryPreferenceLabel = (id: string): string => {
-    const labels: Record<string, { en: string; ar: string }> = {
-      none: { en: 'No restrictions', ar: 'لا تفضيلات محددة' }, vegetarian: { en: 'Vegetarian', ar: 'نباتي' },
-      vegan: { en: 'Vegan', ar: 'نباتي صرف' }, pescatarian: { en: 'Pescatarian', ar: 'نباتي مع السمك' },
-      mediterranean: { en: 'Mediterranean', ar: 'متوسطي' }, low_carb: { en: 'Low carb', ar: 'قليل الكربوهيدرات' },
-      keto: { en: 'Keto', ar: 'كيتو' }, gluten_free: { en: 'Gluten-free', ar: 'خالٍ من الغلوتين' },
-      dairy_free: { en: 'Dairy-free', ar: 'خالٍ من الألبان' }, halal: { en: 'Halal', ar: 'حلال' },
-      lose_weight: { en: 'Lose Weight', ar: 'إنقاص الوزن' }, maintain_weight: { en: 'Maintain Weight', ar: 'الحفاظ على الوزن' },
-      build_muscle: { en: 'Build Muscle', ar: 'بناء العضلات' }, improve_health: { en: 'Improve Specific Health', ar: 'تحسين حالة صحية محددة' },
-      not_sure: { en: 'Not sure — help me decide', ar: 'لست متأكداً — ساعدني في الاختيار' },
-    };
-    return labels[id] ? language === 'ar' ? labels[id].ar : labels[id].en : id;
-  };
-  const healthConditionLabel = (id: string): string => {
-    const labels: Record<string, { en: string; ar: string }> = {
-      diabetes: { en: 'Diabetes', ar: 'السكري' }, hypertension: { en: 'Hypertension', ar: 'ارتفاع ضغط الدم' },
-      high_cholesterol: { en: 'High Cholesterol', ar: 'ارتفاع الكوليسترول' }, thyroid: { en: 'Thyroid issues', ar: 'مشكلات الغدة الدرقية' },
-      ibs_digestive: { en: 'IBS / Digestive issues', ar: 'القولون العصبي / مشكلات الهضم' }, none: { en: 'None of the above', ar: 'لا شيء مما سبق' },
-    };
-    return labels[id] ? language === 'ar' ? labels[id].ar : labels[id].en : id;
-  };
+
+
+
 
   const inputDefault = 'wiz-input';
   const cardBase = 'rounded-[26px] bg-white border border-[#EFEBE4] shadow-[0_10px_30px_rgba(15,76,58,0.06)]';

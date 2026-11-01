@@ -73,7 +73,7 @@ const InstallBanner: React.FC = () => {
             </button>
           </div>
         </div>
-        <button onClick={handleDismiss} className="text-gray-300 hover:text-gray-500 transition-colors shrink-0 p-1">
+        <button onClick={handleDismiss} aria-label={t('installNotNow')} className="text-gray-300 hover:text-gray-500 transition-colors shrink-0 p-1">
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>

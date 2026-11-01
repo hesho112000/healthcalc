@@ -117,8 +117,9 @@ const ContactUs: React.FC = () => {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="label">{t('contactName')}</label>
+                    <label htmlFor="contact-name" className="label">{t('contactName')}</label>
                     <input
+                      id="contact-name"
                       type="text"
                       required
                       value={formData.name}
@@ -128,8 +129,9 @@ const ContactUs: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label className="label">{t('contactEmail')}</label>
+                    <label htmlFor="contact-email" className="label">{t('contactEmail')}</label>
                     <input
+                      id="contact-email"
                       type="email"
                       required
                       value={formData.email}
@@ -139,8 +141,9 @@ const ContactUs: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label className="label">{t('contactMessage')}</label>
+                    <label htmlFor="contact-message" className="label">{t('contactMessage')}</label>
                     <textarea
+                      id="contact-message"
                       required
                       rows={5}
                       value={formData.message}

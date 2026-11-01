@@ -1,7 +1,7 @@
 import React from 'react';
 import { Check, Lock, X } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
-import { translations } from '../../i18n/translations';
+import type { translations } from '../../i18n/translations';
 import {
   FEATURES,
   TIER_PRICE,

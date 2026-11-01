@@ -1449,7 +1449,7 @@ export const SWITZERLAND_FULL: KitchenDish[] = [
     {
       "id": "sw-base-080",
       "nameAr": "راكليت بحبوب الانزيم النباتي فاليزي",
-      "nameEn": "Halal Certified Raclette",
+      "nameEn": "Certified Raclette",
       "nameFr": "Raclette a la presure vegetale",
       "nameEs": "Raclette con cuajo vegetal",
       "nameDe": "Raclette mit vegetabler Lab",

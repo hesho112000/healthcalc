@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { HeartPulse, FlaskConical, PersonStanding, Activity, Target, UtensilsCrossed, ClipboardCheck, Rocket } from 'lucide-react';
-import { CONDITION_DATA, CONDITION_IDS } from '../data/conditions';
+import { CONDITION_DATA } from '../data/conditions';
 import { exercisePoolFor, foodPoolFor, isConditionId, resolveConflicts } from '../data/conditions';
 import type { ConditionId, ScoredExercise, ScoredFood } from '../data/conditions';
 import type { Exercise } from '../data/exercises/types';
@@ -45,18 +45,17 @@ import type { FeatureId, Tier } from '../context/SubscriptionContext';
 import { savePlanToStorage } from '../utils/planStorage';
 import type { PlanStoragePayload } from '../utils/planStorage';
 import { saveConditions, saveLabs, savePlan, saveProfile } from '../services/supabaseData';
-import { translations } from '../i18n/translations';
 import type { LucideIcon } from 'lucide-react';
 import type { TKey, LabValues, WizardGoal, WizardLifestyle, WeightGoalKey, LifestyleGoalKey, PlanIntensity } from '../components/wizard/stepTypes';
 import { WEIGHT_GOALS, LIFESTYLE_GOALS } from '../components/wizard/stepTypes';
 
 const EMERALD = '#0F4C3A';
 const GOLD = '#D4A017';
-const CREAM = '#FDFBF7';
-const BEIGE = '#F4F1EB';
-const BORDER = '#EFEBE4';
-const MUTED = '#6B7A75';
-const RED = '#B91C1C';
+
+
+
+
+
 
 const LAB_FIELD_UNITS: Record<string, string> = {
   fasting: 'mg/dL',
@@ -107,12 +106,7 @@ const CUISINE_LOOKUP: Record<string, string> = {
   Italian: 'italian',
 };
 
-const MEAL_TABS: Array<{ key: FoodItem['mealType']; i18n: string }> = [
-  { key: 'breakfast', i18n: 'wizard.step6.mealBreakfast' },
-  { key: 'lunch', i18n: 'wizard.step6.mealLunch' },
-  { key: 'dinner', i18n: 'wizard.step6.mealDinner' },
-  { key: 'snack', i18n: 'wizard.step6.mealSnack' },
-];
+
 
 const ACTIVITY_MULTIPLIER: Record<string, number> = {
   sedentary: 1.2,
@@ -271,13 +265,10 @@ const AdvancedCareWizardPage: React.FC = () => {
   const tk = (key: string): TKey => key as TKey;
   const condName = (id: ConditionId) => t(tk(`wizard.condition.${id}.name`));
   const primary = selected[0] ?? null;
-  const conditionLabel = primary ? condName(primary) : '';
-  const conditionList = selected.map(condName).filter(Boolean).join(', ');
 
-  const activeFields = useMemo(
-    () => selected.flatMap((id) => (id === 'ibs' ? [] : LAB_FIELD_KEYS[id])),
-    [selected],
-  );
+
+
+
 
   const pool: ScoredExercise[] = useMemo(() => exercisePoolFor(selected), [selected]);
   const foodPool: ScoredFood[] = useMemo(() => foodPoolFor(selected), [selected]);
@@ -347,7 +338,7 @@ const AdvancedCareWizardPage: React.FC = () => {
   const recommendedFoods = recommendation.foods;
   const kcalExtended = recommendation.extended;
 
-  const exerciseName = (exercise: Exercise) =>
+  const exerciseName = () =>
     (({ en: 'nameEn', fr: 'nameFr', es: 'nameEs', ar: 'nameAr', de: 'nameEn' } as const)[language]) as keyof Exercise;
 
   const currentExerciseIds = useMemo(() => {
@@ -422,7 +413,7 @@ const AdvancedCareWizardPage: React.FC = () => {
   const exerciseItems: BlueprintExerciseItem[] = currentExerciseIds
     .map((id) => exerciseById.get(id))
     .filter((ex): ex is Exercise => Boolean(ex))
-    .map((ex) => ({ name: String(ex[exerciseName(ex)]), meta: `${ex.duration} · ${ex.calories} kcal` }));
+    .map((ex) => ({ name: String(ex[exerciseName()]), meta: `${ex.duration} · ${ex.calories} kcal` }));
 
   const foodItems: BlueprintFoodItem[] = currentFoodNames
     .map((name) => foodById.get(name))
@@ -654,7 +645,7 @@ const AdvancedCareWizardPage: React.FC = () => {
       .filter((ex): ex is Exercise => Boolean(ex))
       .map(
         (ex) =>
-          `<tr><td>${ex[exerciseName(ex)]}</td><td>${ex.duration}</td><td>${ex.calories} kcal</td></tr>`,
+          `<tr><td>${ex[exerciseName()]}</td><td>${ex.duration}</td><td>${ex.calories} kcal</td></tr>`,
       )
       .join('');
     const dirAttr = dir === 'rtl' ? ' dir="rtl" lang="ar"' : '';

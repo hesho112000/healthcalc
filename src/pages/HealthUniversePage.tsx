@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Check, Plus, X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
-import { translations } from '../i18n/translations';
+import type { translations } from '../i18n/translations';
 import { CONDITION_DATA, UNIVERSE_CONDITION_IDS } from '../data/conditions';
 import type { ConditionId } from '../data/conditions';
 import BodyMap, { BODY_DOTS, dotNameKey } from '../components/health-universe/BodyMap';

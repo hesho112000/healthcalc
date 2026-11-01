@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, CreditCard, History, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useSubscription, TIER_PRICE, tierPlanKey } from '../context/SubscriptionContext';
-import { translations } from '../i18n/translations';
+import type { translations } from '../i18n/translations';
 
 type TKey = keyof typeof translations.en;
 

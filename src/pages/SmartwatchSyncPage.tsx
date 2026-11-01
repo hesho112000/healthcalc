@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import Breadcrumbs from '../components/layout/Breadcrumbs';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
+import SEO from '../components/seo/SEO';
 import {
   type HealthMetrics, type SyncStatus,
   syncHealthData, getStoredMetrics, getSyncStatus, storeSyncStatus,
@@ -237,6 +238,7 @@ const SmartwatchSyncPage: React.FC = () => {
 
   return (
     <div className="tool-page min-h-screen bg-[#f8fafc]">
+      <SEO title="Smartwatch Health Sync" description="Connect health data from a compatible smartwatch to review activity, hydration, and wellness trends." url="/smartwatch-sync" />
       <Breadcrumbs />
       <div className="page-hero bg-gradient-to-r from-primary-600 to-sage-600 text-white print:hidden">
         <div className="page-hero-mesh" aria-hidden="true" />

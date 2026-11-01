@@ -6,7 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { ENABLE_PREMIUM } from '../config/featureFlags';
 import SEO from '../components/seo/SEO';
 import { ARTICLES, getArticleBySlug, lt } from '../data/articles';
-import { translations } from '../i18n/translations';
+import type { translations } from '../i18n/translations';
 
 const ReactMarkdown = lazy(() => import('react-markdown'));
 

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { translations } from '../i18n/translations';
 import Breadcrumbs from '../components/layout/Breadcrumbs';
+import SEO from '../components/seo/SEO';
 import MedicalDisclaimer from '../components/MedicalDisclaimer';
 import WorkoutBlueprintModal from '../features/plan-builder/WorkoutBlueprintModal';
 import {
@@ -94,9 +94,9 @@ const EX_TIP: Record<LangKey, (ex: Exercise) => string | undefined> = {
 };
 
 const WorkoutPlanPage: React.FC = () => {
-  const { t, language } = useLanguage();
+  const { language, dictionary } = useLanguage();
   const lang = language as LangKey;
-  const B = translations[language].workoutPlanBuilder;
+  const B = dictionary?.workoutPlanBuilder ?? ({} as NonNullable<NonNullable<typeof dictionary>['workoutPlanBuilder']>);
 
   const [goal, setGoal] = useState<WorkoutGoal>('lose_weight');
   const [level, setLevel] = useState<WorkoutLevel>('beginner');
@@ -162,8 +162,11 @@ const WorkoutPlanPage: React.FC = () => {
     setSeedOffset(s => s + 1);
   };
 
+  if (!dictionary?.workoutPlanBuilder) return <div className="min-h-screen" aria-busy="true" />;
+
   return (
     <div className="tool-page min-h-screen bg-[#f8fafc] text-gray-900">
+      <SEO title="Workout Plan Builder" description="Create a personalized weekly workout plan based on your goals, experience, available equipment, and schedule." url="/workout-plan" />
       <div className="max-w-6xl mx-auto px-4 pb-16">
         <Breadcrumbs />
 

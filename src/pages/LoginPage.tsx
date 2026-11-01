@@ -132,8 +132,9 @@ const LoginPage: React.FC = () => {
           {mode === 'email' && (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="label">{t('authEmailAddress')}</label>
+                <label htmlFor="login-email" className="label">{t('authEmailAddress')}</label>
                 <input
+                  id="login-email"
                   type="email"
                   required
                   placeholder="you@example.com"
@@ -144,8 +145,9 @@ const LoginPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="label">{t('authPassword')}</label>
+                <label htmlFor="login-password" className="label">{t('authPassword')}</label>
                 <input
+                  id="login-password"
                   type="password"
                   required
                   placeholder="••••••••"
@@ -175,8 +177,9 @@ const LoginPage: React.FC = () => {
           {mode === 'phone' && !otpSent && (
             <form onSubmit={handleSendOtp} className="space-y-4">
               <div>
-                <label className="label">{t('auth.tabPhone')}</label>
+                <label htmlFor="login-phone" className="label">{t('auth.tabPhone')}</label>
                 <input
+                  id="login-phone"
                   type="tel"
                   required
                   placeholder="+1 555 000 0000"
@@ -204,8 +207,9 @@ const LoginPage: React.FC = () => {
           {mode === 'phone' && otpSent && (
             <form onSubmit={handleVerifyOtp} className="space-y-4">
               <div>
-                <label className="label">{t('auth.enterOtp')}</label>
+                <label htmlFor="login-otp" className="label">{t('auth.enterOtp')}</label>
                 <input
+                  id="login-otp"
                   type="text"
                   required
                   inputMode="numeric"

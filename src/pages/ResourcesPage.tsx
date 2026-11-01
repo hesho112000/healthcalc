@@ -21,7 +21,7 @@ import {
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
 import { supabaseClient } from '../lib/supabaseClient';
-import { translations } from '../i18n/translations';
+import type { translations } from '../i18n/translations';
 import { ARTICLES } from '../data/articles';
 import { RECIPES } from '../data/recipes';
 import { EXERCISE_GUIDES } from '../data/exerciseGuides';

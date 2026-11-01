@@ -1,7 +1,7 @@
 import React, { lazy } from 'react';
 import { Routes, Route, Navigate, Link, useParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import { translations } from '../i18n/translations';
+import type { translations } from '../i18n/translations';
 import ProtectedRoute from '../components/ProtectedRoute';
 import AdminProtectedRoute from '../components/AdminProtectedRoute';
 import { ENABLE_PREMIUM } from '../config/featureFlags';

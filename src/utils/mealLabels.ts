@@ -1,4 +1,3 @@
-import { translations } from '../i18n/translations';
 import { Language } from '../types';
 
 type MealLabelKey = 'mealBreakfast' | 'mealLunch' | 'mealDinner' | 'mealMorningSnack' | 'mealAfternoonSnack' | 'mealSnack';
@@ -25,18 +24,18 @@ export const normalizeMealKey = (label: string | undefined): string => {
   return cleaned;
 };
 
+const MEAL_LABELS: Record<Language, Record<MealLabelKey, string>> = {
+  en: { mealBreakfast: 'Breakfast', mealLunch: 'Lunch', mealDinner: 'Dinner', mealMorningSnack: 'Morning Snack', mealAfternoonSnack: 'Afternoon Snack', mealSnack: 'Snack' },
+  fr: { mealBreakfast: 'Petit-d?jeuner', mealLunch: 'D?jeuner', mealDinner: 'D?ner', mealMorningSnack: 'Collation du matin', mealAfternoonSnack: "Collation de l'apr?s-midi", mealSnack: 'Collation' },
+  es: { mealBreakfast: 'Desayuno', mealLunch: 'Almuerzo', mealDinner: 'Cena', mealMorningSnack: 'Merienda de la ma?ana', mealAfternoonSnack: 'Merienda de la tarde', mealSnack: 'Merienda' },
+  ar: { mealBreakfast: '???????', mealLunch: '??????', mealDinner: '??????', mealMorningSnack: '???? ????? ??????', mealAfternoonSnack: '???? ????? ??????', mealSnack: '???? ?????' },
+  de: { mealBreakfast: 'Fr?hst?ck', mealLunch: 'Mittagessen', mealDinner: 'Abendessen', mealMorningSnack: 'Vormittagssnack', mealAfternoonSnack: 'Nachmittagssnack', mealSnack: 'Snack' },
+};
+
 export const getMealLabel = (label: string | undefined, lang: Language): string => {
   if (!label) return '';
   const key = MEAL_KEY_FOR_LABEL[normalizeMealKey(label)];
-  if (!key) return label;
-  const value = translations[lang]?.[key];
-  if (!value) {
-    if (lang !== 'en') {
-      console.warn(`[healthcalc] Missing ${lang} translation for meal "${label}" — falling back to English.`);
-    }
-    return translations.en[key] ?? label;
-  }
-  return value;
+  return key ? MEAL_LABELS[lang][key] : label;
 };
 
 /* ─── Meal / dish name (nameAr/nameEn/name) with language fallbacks ─── */

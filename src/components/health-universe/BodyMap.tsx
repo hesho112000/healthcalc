@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Check } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
-import { translations } from '../../i18n/translations';
+import type { translations } from '../../i18n/translations';
 import type { ConditionId } from '../../data/conditions';
 import type { HealthOrganId } from '../../utils/healthScoring';
 

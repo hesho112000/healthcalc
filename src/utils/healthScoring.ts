@@ -1,4 +1,4 @@
-import { translations } from '../i18n/translations';
+import type { translations } from '../i18n/translations';
 import type { ConditionId } from '../data/conditions';
 
 type TKey = keyof typeof translations.en;

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, ReactNode } from 'react';
-import { translations } from '../i18n/translations';
+import type { translations } from '../i18n/translations';
 import { useAuth } from './AuthContext';
 
 type TKey = keyof typeof translations.en;

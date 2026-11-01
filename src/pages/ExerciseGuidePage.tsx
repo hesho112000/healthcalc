@@ -5,7 +5,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { ENABLE_PREMIUM } from '../config/featureFlags';
 import SEO from '../components/seo/SEO';
 import { EXERCISE_GUIDES, getExerciseGuideBySlug, pickText } from '../data/exerciseGuides';
-import { translations } from '../i18n/translations';
+import type { translations } from '../i18n/translations';
 
 type TKey = keyof typeof translations.en;
 

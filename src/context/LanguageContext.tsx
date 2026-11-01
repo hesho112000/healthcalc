@@ -1,8 +1,16 @@
-import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { Language } from '../types';
-import { translations } from '../i18n/translations';
+import React, { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
+import type { Language } from '../types';
+import type { TranslationKeys } from '../i18n/translationTypes';
 
 const SUPPORTED: Language[] = ['en', 'fr', 'es', 'ar', 'de'];
+
+const loadLocale: Record<Language, () => Promise<TranslationKeys>> = {
+  en: () => import('../i18n/locales/en').then((module) => module.default),
+  fr: () => import('../i18n/locales/fr').then((module) => module.default),
+  es: () => import('../i18n/locales/es').then((module) => module.default),
+  ar: () => import('../i18n/locales/ar').then((module) => module.default),
+  de: () => import('../i18n/locales/de').then((module) => module.default),
+};
 
 function resolveInitialLanguage(): Language {
   if (typeof window !== 'undefined') {
@@ -29,8 +37,9 @@ function resolveInitialLanguage(): Language {
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: keyof typeof translations.en) => string;
+  t: (key: keyof TranslationKeys) => string;
   dir: 'ltr' | 'rtl';
+  dictionary: TranslationKeys | null;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -45,6 +54,17 @@ const languageConfig: Record<Language, { dir: 'ltr' | 'rtl' }> = {
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [language, setLanguage] = useState<Language>(resolveInitialLanguage);
+  const [dictionary, setDictionary] = useState<TranslationKeys | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    void loadLocale[language]().then((locale) => {
+      if (!cancelled) setDictionary(locale);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [language]);
 
   useEffect(() => {
     document.documentElement.dir = languageConfig[language].dir;
@@ -52,7 +72,10 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   }, [language]);
 
   const handleSetLanguage = (lang: Language) => {
-    setLanguage(lang);
+    if (lang !== language) {
+      setLanguage(lang);
+      setDictionary(null);
+    }
     try {
       localStorage.setItem('healthcalc-lang', lang);
     } catch {
@@ -60,15 +83,15 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     }
   };
 
-  const t = (key: keyof typeof translations.en): string => {
-    const val = translations[language]?.[key] ?? translations.en[key] ?? key;
+  const t = (key: keyof TranslationKeys): string => {
+    const val = dictionary?.[key] ?? key;
     return typeof val === 'string' ? val : val.title;
   };
 
   const dir = languageConfig[language].dir;
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t, dir }}>
+    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t, dir, dictionary }}>
       {children}
     </LanguageContext.Provider>
   );

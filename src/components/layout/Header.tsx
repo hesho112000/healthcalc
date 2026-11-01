@@ -4,7 +4,7 @@ import { ChevronDown, Globe, Leaf, Menu, X } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useAdmin } from '../../context/AdminContext';
 import { useAuth } from '../../context/AuthContext';
-import { translations } from '../../i18n/translations';
+import type { translations } from '../../i18n/translations';
 import type { Language } from '../../types';
 import Flag from '../common/Flag';
 import { ENABLE_PREMIUM } from '../../config/featureFlags';

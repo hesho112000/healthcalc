@@ -117,8 +117,9 @@ const SignupPage: React.FC = () => {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-semibold text-[#0F4C3A] mb-1.5">{t('wizard.signup.name')}</label>
+              <label htmlFor="signup-name" className="block text-sm font-semibold text-[#0F4C3A] mb-1.5">{t('wizard.signup.name')}</label>
               <input
+                id="signup-name"
                 type="text"
                 required
                 placeholder="John Doe"
@@ -129,8 +130,9 @@ const SignupPage: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-[#0F4C3A] mb-1.5">{t('wizard.signup.email')}</label>
+              <label htmlFor="signup-email" className="block text-sm font-semibold text-[#0F4C3A] mb-1.5">{t('wizard.signup.email')}</label>
               <input
+                id="signup-email"
                 type="email"
                 required
                 placeholder="you@example.com"
@@ -141,9 +143,10 @@ const SignupPage: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-[#0F4C3A] mb-1.5">{t('wizard.signup.password')}</label>
+              <label htmlFor="signup-password" className="block text-sm font-semibold text-[#0F4C3A] mb-1.5">{t('wizard.signup.password')}</label>
               <div className="relative">
                 <input
+                  id="signup-password"
                   type={show ? 'text' : 'password'}
                   required
                   minLength={6}
@@ -162,8 +165,8 @@ const SignupPage: React.FC = () => {
               </div>
             </div>
 
-            <label className="flex items-start gap-3 text-sm text-[#6B7A75] cursor-pointer">
-              <input type="checkbox" checked={terms} onChange={(e) => setTerms(e.target.checked)} className="mt-0.5 h-4 w-4 accent-[#0F4C3A]" />
+            <label htmlFor="signup-terms" className="flex items-start gap-3 text-sm text-[#6B7A75] cursor-pointer">
+              <input id="signup-terms" type="checkbox" checked={terms} onChange={(e) => setTerms(e.target.checked)} className="mt-0.5 h-4 w-4 accent-[#0F4C3A]" />
               <span>{t('wizard.signup.terms')}</span>
             </label>
 

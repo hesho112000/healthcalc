@@ -2,9 +2,10 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { ENABLE_PREMIUM } from '../config/featureFlags';
-import { translations } from '../i18n/translations';
+import type { translations } from '../i18n/translations';
 import { FOODS_DATABASE } from '../utils/calculations';
 import { EXERCISES_DATABASE } from '../data/exercises/index';
+import SEO from '../components/seo/SEO';
 
 const tk = (key: string) => key as keyof typeof translations.en;
 
@@ -170,6 +171,7 @@ const PlanDashboardPage: React.FC = () => {
   if (!plan) {
     return (
       <div className="min-h-screen bg-[#FDFBF7] flex items-center justify-center px-4 py-20" dir={dir}>
+        <SEO title="My Health Plan Dashboard" description="Review your saved health plan, daily meal progress, activity goals, and wellness tracking." url="/dashboard/plan" />
         <div className="text-center max-w-md w-full">
           <div className="w-20 h-20 bg-[#0F4C3A]/10 rounded-3xl flex items-center justify-center mx-auto mb-6">
             <span className="text-4xl">📋</span>
@@ -186,6 +188,7 @@ const PlanDashboardPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] pb-16" dir={dir}>
+      <SEO title="My Health Plan Dashboard" description="Review your saved health plan, daily meal progress, activity goals, and wellness tracking." url="/dashboard/plan" />
       <header className="max-w-6xl mx-auto px-4 sm:px-6 pt-12">
         <span className="inline-block text-xs font-bold text-[#0F4C3A] bg-[#D4A017]/15 rounded-full px-3 py-1.5">{t('dash.plan.title').replace('{name}', '')}</span>
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#0F4C3A] mt-3">{t('dash.plan.title').replace('{name}', name)}</h1>

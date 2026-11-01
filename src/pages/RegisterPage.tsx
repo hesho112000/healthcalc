@@ -142,8 +142,9 @@ const RegisterPage: React.FC = () => {
           {mode === 'email' && (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="label">{t('authFullName')}</label>
+                <label htmlFor="register-name" className="label">{t('authFullName')}</label>
                 <input
+                  id="register-name"
                   type="text"
                   required
                   placeholder="John Doe"
@@ -154,8 +155,9 @@ const RegisterPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="label">{t('authEmailAddress')}</label>
+                <label htmlFor="register-email" className="label">{t('authEmailAddress')}</label>
                 <input
+                  id="register-email"
                   type="email"
                   required
                   placeholder="you@example.com"
@@ -166,8 +168,9 @@ const RegisterPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="label">{t('authPassword')}</label>
+                <label htmlFor="register-password" className="label">{t('authPassword')}</label>
                 <input
+                  id="register-password"
                   type="password"
                   required
                   placeholder="Min. 6 characters"
@@ -178,8 +181,9 @@ const RegisterPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="label">{t('authConfirmPassword')}</label>
+                <label htmlFor="register-confirm-password" className="label">{t('authConfirmPassword')}</label>
                 <input
+                  id="register-confirm-password"
                   type="password"
                   required
                   placeholder={t('authRepeatPassword')}
@@ -209,8 +213,9 @@ const RegisterPage: React.FC = () => {
           {mode === 'phone' && !otpSent && (
             <form onSubmit={handleSendOtp} className="space-y-4">
               <div>
-                <label className="label">{t('auth.tabPhone')}</label>
+                <label htmlFor="register-phone" className="label">{t('auth.tabPhone')}</label>
                 <input
+                  id="register-phone"
                   type="tel"
                   required
                   placeholder="+1 555 000 0000"
@@ -238,8 +243,9 @@ const RegisterPage: React.FC = () => {
           {mode === 'phone' && otpSent && (
             <form onSubmit={handleVerifyOtp} className="space-y-4">
               <div>
-                <label className="label">{t('auth.enterOtp')}</label>
+                <label htmlFor="register-otp" className="label">{t('auth.enterOtp')}</label>
                 <input
+                  id="register-otp"
                   type="text"
                   required
                   inputMode="numeric"

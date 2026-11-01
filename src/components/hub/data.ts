@@ -1,4 +1,4 @@
-import { translations } from '../../i18n/translations';
+import type { translations } from '../../i18n/translations';
 import type { Language } from '../../types';
 import type { HealthOrganId } from '../../utils/healthScoring';
 import { exercisePoolFor, foodPoolFor, isConditionId } from '../../data/conditions';

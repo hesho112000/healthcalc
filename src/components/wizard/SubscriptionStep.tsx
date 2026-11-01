@@ -1,5 +1,5 @@
 import React from 'react';
-import { translations } from '../../i18n/translations';
+import type { translations } from '../../i18n/translations';
 import { TIER_PRICE, tierPlanKey } from '../../context/SubscriptionContext';
 import type { Tier } from '../../context/SubscriptionContext';
 import type { TKey } from './stepTypes';

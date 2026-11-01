@@ -21,6 +21,7 @@ const MedicalDisclaimer: React.FC = () => {
         onClick={() => setDismissed(true)}
         className="absolute top-3 right-3 text-amber-400 hover:text-amber-600 transition-colors p-1 rounded-lg hover:bg-amber-100"
         title={t('mdDismiss')}
+        aria-label={t('mdDismiss')}
       >
         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

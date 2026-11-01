@@ -16,6 +16,7 @@ import MealBuilder from '../features/plan-builder/MealBuilder';
 import WorkoutBlueprintModal from '../features/plan-builder/WorkoutBlueprintModal';
 import { Microscope } from 'lucide-react';
 import { IconScene } from '../components/IconScene';
+import SEO from '../components/seo/SEO';
 
 const DiabetesPage: React.FC = () => {
   const { t, language } = useLanguage();
@@ -84,6 +85,7 @@ const DiabetesPage: React.FC = () => {
 
   return (
     <div className="tool-page min-h-screen bg-[#f8fafc]">
+      <SEO title="Diabetes Management" description="Review diabetes-related lab results and build practical meal and workout plans to support your health." url="/diabetes" />
       <Breadcrumbs />
       <div className="page-hero page-hero-light">
         <div className="page-hero-mesh" aria-hidden="true" />

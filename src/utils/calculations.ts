@@ -25,14 +25,14 @@ import { KOREAN_FULL, type KoreanFullDish } from '../data/korean-full';
 import { TAIWAN_FULL, type KitchenDish as TaiwanFullDish } from '../data/taiwan-full';
 import { THAI_FULL, type ThaiFullDish } from '../data/thai-full';
 import { VIETNAMESE_FULL, type VietnameseFullDish } from '../data/vietnamese-full';
-import { ITALIAN_FULL, type ItalianFullDish } from '../data/italian-full';
+import { type ItalianFullDish } from '../data/italian-full';
 import { FRANCE_FULL, type KitchenDish as FrenchFullDish } from '../data/france-full';
-import { SPANISH_FULL, type SpanishFullDish } from '../data/spanish-full';
-import { GREEK_FULL, type GreekFullDish } from '../data/greek-full';
-import { BRITISH_FULL, type BritishFullDish } from '../data/british-full';
+import { type SpanishFullDish } from '../data/spanish-full';
+import { type GreekFullDish } from '../data/greek-full';
+import { type BritishFullDish } from '../data/british-full';
 import { UK_FULL, type KitchenDish as UKFullDish } from '../data/uk-full';
 import { GERMANY_FULL, type KitchenDish as GermanFullDish } from '../data/germany-full';
-import { SWISS_FULL, type SwissFullDish } from '../data/swiss-full';
+import { type SwissFullDish } from '../data/swiss-full';
 import { SWITZERLAND_FULL, type KitchenDish as SwissNewFullDish } from '../data/switzerland-full';
 import { AUSTRIA_FULL, type KitchenDish as AustrianFullDish } from '../data/austria-full';
 import { BENELUX_FULL, type KitchenDish as BeneluxFullDish } from '../data/benelux-full';
@@ -604,17 +604,17 @@ const toTaiwaneseFood = (e: TaiwanFullDish): FoodItem => toFullFood(e, 'taiwanes
 
 const toThaiFood = (e: ThaiFullDish): FoodItem => toFullFood(e, 'thai');
 const toVietnameseFood = (e: VietnameseFullDish): FoodItem => toFullFood(e, 'vietnamese');
-const toItalianFood = (e: ItalianFullDish): FoodItem => toFullFood(e, 'italian');
+
 const toFrenchFood = (e: FrenchFullDish): FoodItem =>
   toFullFood({ ...e, mealType: e.mealType as AmericanFullDish['mealType'] }, 'french');
-const toSpanishFood = (e: SpanishFullDish): FoodItem => toFullFood(e, 'spanish');
-const toGreekFood = (e: GreekFullDish): FoodItem => toFullFood(e, 'greek');
-const toBritishFood = (e: BritishFullDish): FoodItem => toFullFood(e, 'british');
+
+
+
 const toUKFood = (e: UKFullDish): FoodItem =>
   toFullFood({ ...e, mealType: e.mealType as AmericanFullDish['mealType'] }, 'british');
 const toGermanFood = (e: GermanFullDish): FoodItem =>
   toFullFood({ ...e, mealType: e.mealType as AmericanFullDish['mealType'] }, 'german');
-const toSwissFood = (e: SwissFullDish): FoodItem => toFullFood(e, 'swiss');
+
 const toSwissNewFood = (e: SwissNewFullDish): FoodItem =>
   toFullFood({ ...e, mealType: e.mealType as AmericanFullDish['mealType'] }, 'swiss');
 const toAustrianFood = (e: AustrianFullDish): FoodItem =>

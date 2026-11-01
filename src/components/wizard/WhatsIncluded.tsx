@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
-import { translations } from '../../i18n/translations';
+import type { translations } from '../../i18n/translations';
 
 export interface BlueprintExerciseItem {
   name: string;

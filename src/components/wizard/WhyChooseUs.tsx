@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../../context/LanguageContext';
-import { translations } from '../../i18n/translations';
+import type { translations } from '../../i18n/translations';
 
 const WhyChooseUs: React.FC = () => {
   const { t, dir } = useLanguage();
