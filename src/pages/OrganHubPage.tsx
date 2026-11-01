@@ -31,6 +31,7 @@ import {
 } from '../components/hub/data';
 import type { TKey } from '../components/hub/data';
 import ScoreRing from '../components/hub/ScoreRing';
+import { useDietFoodDatabase } from '../hooks/useDietFoodDatabase';
 
 const SLOT_KEY: Record<string, TKey> = {
   breakfast: tk('wizard.step6.mealBreakfast'),
@@ -50,6 +51,7 @@ const MENTAL_LABS: Array<{ key: string; unit: string }> = [
 
 const OrganHubPage: React.FC = () => {
   const { t, dir, language: lang } = useLanguage();
+  const dietFoodsReady = useDietFoodDatabase();
   const navigate = useNavigate();
   const { organId } = useParams<{ organId: string }>();
   const [toast, setToast] = useState('');
@@ -66,7 +68,7 @@ const OrganHubPage: React.FC = () => {
     [id],
   );
   const exPool = useMemo(() => exercisePoolForConditions(conditions), [conditions]);
-  const foodPool = useMemo(() => foodPoolForConditions(conditions), [conditions]);
+  const foodPool = useMemo(() => foodPoolForConditions(conditions), [conditions, dietFoodsReady]);
 
   const storedLabs = useMemo(() => readStoredLabs(), []);
   const profile = useMemo(() => readUserProfile(), []);

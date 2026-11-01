@@ -58,16 +58,6 @@ import lebaneseJson from '../data/lebanese-full-100-USDA.json';
 import palestinianJson from '../data/palestinian-full-100-USDA.json';
 import syrianJson from '../data/syrian-full-100-USDA.json';
 import jordanianJson from '../data/jordanian-full-100-USDA.json';
-import mediterraneanDietJson from '../data/mediterranean-diet-100-medical.json';
-import ketoDietJson from '../data/keto-diet-100-medical.json';
-import highProteinDietJson from '../data/high-protein-diet-100-medical.json';
-import vegetarianDietJson from '../data/vegetarian-diet-100-medical.json';
-import veganDietJson from '../data/vegan-diet-100-medical.json';
-import glutenFreeDietJson from '../data/gluten-free-diet-100-medical.json';
-import lowCarbDietJson from '../data/low-carb-diet-100-medical.json';
-import dashDietJson from '../data/dash-diet-100-medical.json';
-import intermittentFastingDietJson from '../data/intermittent-fasting-diet-100-medical.json';
-import paleoDietJson from '../data/paleo-diet-100-medical.json';
 import { SOUTH_AFRICAN_FULL, type SouthAfricanFullDish } from '../data/south-african-full';
 import { RWANDAN_FULL, type RwandanFullDish } from '../data/rwandan-full';
 import { KENYAN_FULL, type KenyanFullDish } from '../data/kenyan-full';
@@ -78,7 +68,7 @@ import { SEYCHELLOIS_FULL, type SeychelloisFullDish } from '../data/seychellois-
 import { MAURITIAN_FULL, type MauritianFullDish } from '../data/mauritian-full';
 import { GABONESE_FULL, type GaboneseFullDish } from '../data/gabonese-full';
 import { BOTSWANAN_FULL, type BotswananFullDish } from '../data/botswanan-full';
-import { FILIPINO_FULL, type FilipinoFullDish } from '../data/filipino-full';
+import type { FilipinoFullDish } from '../data/filipino-full';
 
 export type { Cuisine, MealType } from './cuisineCatalog';
 
@@ -705,21 +695,6 @@ const toLebaneseFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'leb
 const toPalestinianFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'palestinian');
 const toSyrianFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'syrian');
 const toJordanianFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'jordanian');
-const toMediterraneanFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'mediterranean');
-const toKetoFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'keto');
-const toHighProteinFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'high_protein');
-const toVegetarianFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'vegetarian');
-const toVeganFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'vegan');
-const toGlutenFreeFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'gluten_free');
-const toLowCarbFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'low_carb');
-const toDashFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'dash');
-const toIntermittentFastingFood = (e: LevantJsonDish): FoodItem => {
-  const f = toLevantJsonFood(e, 'intermittent_fasting');
-  if (e.tag) f.tag = e.tag;
-  return f;
-};
-const toPaleoFood = (e: LevantJsonDish): FoodItem => toLevantJsonFood(e, 'paleo');
-
 const ENRICHED_ALL: FoodItem[] = FOODS_DATABASE_RAW.map((f) => {
   const enriched = usdaEnrich(f, f.portion?.grams ?? (f.portion?.ml ?? 100));
   return {
@@ -796,20 +771,68 @@ export const FOODS_DATABASE: FoodItem[] = [
   ...MAURITIAN_FULL.map(toMauritianFood),
   ...GABONESE_FULL.map(toGaboneseFood),
   ...BOTSWANAN_FULL.map(toBotswananFood),
-  ...FILIPINO_FULL.map(toFilipinoFood),
   ...VIETNAMESE_FULL.map(toVietnameseFood),
   ...CHINESE_FULL.map(toChineseFood),
-  ...(mediterraneanDietJson as LevantJsonDish[]).map(toMediterraneanFood),
-  ...(ketoDietJson as LevantJsonDish[]).map(toKetoFood),
-  ...(highProteinDietJson as LevantJsonDish[]).map(toHighProteinFood),
-  ...(vegetarianDietJson as LevantJsonDish[]).map(toVegetarianFood),
-  ...(veganDietJson as LevantJsonDish[]).map(toVeganFood),
-  ...(glutenFreeDietJson as LevantJsonDish[]).map(toGlutenFreeFood),
-  ...(lowCarbDietJson as LevantJsonDish[]).map(toLowCarbFood),
-  ...(dashDietJson as LevantJsonDish[]).map(toDashFood),
-  ...(intermittentFastingDietJson as LevantJsonDish[]).map(toIntermittentFastingFood),
-  ...(paleoDietJson as LevantJsonDish[]).map(toPaleoFood),
 ];
+
+const DIET_FOOD_LOADERS: Array<{ cuisine: string; load: () => Promise<LevantJsonDish[]> }> = [
+  { cuisine: 'mediterranean', load: () => import('../data/mediterranean-diet-100-medical.json').then((module) => module.default as LevantJsonDish[]) },
+  { cuisine: 'keto', load: () => import('../data/keto-diet-100-medical.json').then((module) => module.default as LevantJsonDish[]) },
+  { cuisine: 'high_protein', load: () => import('../data/high-protein-diet-100-medical.json').then((module) => module.default as LevantJsonDish[]) },
+  { cuisine: 'vegetarian', load: () => import('../data/vegetarian-diet-100-medical.json').then((module) => module.default as LevantJsonDish[]) },
+  { cuisine: 'vegan', load: () => import('../data/vegan-diet-100-medical.json').then((module) => module.default as LevantJsonDish[]) },
+  { cuisine: 'gluten_free', load: () => import('../data/gluten-free-diet-100-medical.json').then((module) => module.default as LevantJsonDish[]) },
+  { cuisine: 'low_carb', load: () => import('../data/low-carb-diet-100-medical.json').then((module) => module.default as LevantJsonDish[]) },
+  { cuisine: 'dash', load: () => import('../data/dash-diet-100-medical.json').then((module) => module.default as LevantJsonDish[]) },
+  { cuisine: 'intermittent_fasting', load: () => import('../data/intermittent-fasting-diet-100-medical.json').then((module) => module.default as LevantJsonDish[]) },
+  { cuisine: 'paleo', load: () => import('../data/paleo-diet-100-medical.json').then((module) => module.default as LevantJsonDish[]) },
+];
+
+let dietFoodDatabasePromise: Promise<void> | null = null;
+
+/** Load optional diet-specific food rows only when a page needs them. */
+export const loadDietFoodDatabase = (): Promise<void> => {
+  if (!dietFoodDatabasePromise) {
+    dietFoodDatabasePromise = Promise.all(
+      DIET_FOOD_LOADERS.map(async ({ cuisine, load }) =>
+        (await load()).map((dish) => toLevantJsonFood(dish, cuisine)),
+      ),
+    ).then((groups) => {
+      const knownFoods = new Set(FOODS_DATABASE.map((food) => `${food.cuisine.join('|')}|${food.name_en}`));
+      for (const food of groups.flat()) {
+        const key = `${food.cuisine.join('|')}|${food.name_en}`;
+        if (knownFoods.has(key)) continue;
+        knownFoods.add(key);
+        FOODS_DATABASE.push(food);
+      }
+    }).catch((error: unknown) => {
+      dietFoodDatabasePromise = null;
+      throw error;
+    });
+  }
+  return dietFoodDatabasePromise;
+};
+
+let filipinoFoodDatabasePromise: Promise<void> | null = null;
+
+/** Load Filipino nutrition records only when a Filipino cuisine selection needs them. */
+export const loadFilipinoFoodDatabase = (): Promise<void> => {
+  if (!filipinoFoodDatabasePromise) {
+    filipinoFoodDatabasePromise = import('../data/filipino-full').then(({ FILIPINO_FULL }) => {
+      const known = new Set(FOODS_DATABASE.map((food) => `${food.cuisine.join('|')}|${food.name_en}`));
+      for (const food of FILIPINO_FULL.map(toFilipinoFood)) {
+        const key = `${food.cuisine.join('|')}|${food.name_en}`;
+        if (known.has(key)) continue;
+        known.add(key);
+        FOODS_DATABASE.push(food);
+      }
+    }).catch((error: unknown) => {
+      filipinoFoodDatabasePromise = null;
+      throw error;
+    });
+  }
+  return filipinoFoodDatabasePromise;
+};
 
 const CUISINE_COLORS = ['bg-blue-100 text-blue-700', 'bg-red-100 text-red-700', 'bg-yellow-100 text-yellow-700', 'bg-green-100 text-green-700', 'bg-orange-100 text-orange-700', 'bg-amber-100 text-amber-700', 'bg-[#EAF2EE] text-[#0F4C3A]', 'bg-rose-100 text-rose-700', 'bg-lime-100 text-lime-700', 'bg-purple-100 text-purple-700', 'bg-indigo-100 text-indigo-700', 'bg-[#FFF8E7] text-[#B8860B]'];
 

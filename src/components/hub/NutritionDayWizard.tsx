@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Check, Lock, UtensilsCrossed } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { dayMeals, foodDisplayName, foodPoolForConditions, SLOTS, tt } from './data';
+import { useDietFoodDatabase } from '../../hooks/useDietFoodDatabase';
 
 interface NutritionDayWizardProps {
   conditions: string[];
@@ -13,6 +14,7 @@ interface NutritionDayWizardProps {
 
 const NutritionDayWizard: React.FC<NutritionDayWizardProps> = ({ conditions, paid, day, onDayChange, onUnlock }) => {
   const { t, language: lang } = useLanguage();
+  const dietFoodsReady = useDietFoodDatabase();
 
   const [mealDone, setMealDone] = useState<Record<number, string[]>>(() => {
     try {
@@ -27,7 +29,7 @@ const NutritionDayWizard: React.FC<NutritionDayWizardProps> = ({ conditions, pai
     localStorage.setItem('hc_hub_meal_done', JSON.stringify(mealDone));
   }, [mealDone]);
 
-  const pool = useMemo(() => foodPoolForConditions(conditions), [conditions]);
+  const pool = useMemo(() => foodPoolForConditions(conditions), [conditions, dietFoodsReady]);
   const currentMeals = useMemo(() => dayMeals(pool, day), [pool, day]);
   const checked = mealDone[day] ?? [];
   const dayCalories = currentMeals.reduce((sum, row) => sum + row.foods.reduce((a, f) => a + (f.calories || 0), 0), 0);

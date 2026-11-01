@@ -17,6 +17,7 @@ import WorkoutBlueprintModal from '../features/plan-builder/WorkoutBlueprintModa
 import { Microscope } from 'lucide-react';
 import { IconScene } from '../components/IconScene';
 import SEO from '../components/seo/SEO';
+import { useDietFoodDatabase } from '../hooks/useDietFoodDatabase';
 
 const DiabetesPage: React.FC = () => {
   const { t, language } = useLanguage();
@@ -40,6 +41,7 @@ const DiabetesPage: React.FC = () => {
     const saved = localStorage.getItem('hc_selectedCuisine');
     return (saved as Cuisine) || 'egyptian';
   });
+  const dietFoodsReady = useDietFoodDatabase(String(selectedCuisine).toLowerCase() === 'filipino');
   const [showFullPlan, setShowFullPlan] = useState(false);
   const [customDayPlan, setCustomDayPlan] = useState<DayPlan[] | null>(null);
   const [workoutCompletions, setWorkoutCompletions] = usePersistedState<Record<number, Record<number, boolean>>>({}, 'hc_diabetes_workout_completions');
@@ -58,7 +60,7 @@ const DiabetesPage: React.FC = () => {
 
   const thirtyDayPlan = useMemo(() =>
     generateDiabetesPlan({ age: form.age, weight: form.weight, height: 170 }, { hba1c: form.hba1c, fastingGlucose: form.fastingGlucose }, selectedCuisine),
-    [form.age, form.weight, form.hba1c, form.fastingGlucose, selectedCuisine]
+    [form.age, form.weight, form.hba1c, form.fastingGlucose, selectedCuisine, dietFoodsReady]
   );
 
   const currentDay: DayPlan = (customDayPlan ?? thirtyDayPlan)[selectedDay];

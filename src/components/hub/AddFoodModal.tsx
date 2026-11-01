@@ -5,6 +5,7 @@ import { FOODS_DATABASE, type FoodItem } from '../../utils/calculations';
 import { getPortionMeasure } from '../../utils/cuisineCatalog';
 import { foodDisplayName, type MealSlot } from './data';
 import { addMeal } from './hubDailyStore';
+import { useDietFoodDatabase } from '../../hooks/useDietFoodDatabase';
 
 interface AddFoodModalProps {
   open: boolean;
@@ -35,6 +36,7 @@ const foodEmoji = (food: FoodItem): string =>
 
 const AddFoodModal: React.FC<AddFoodModalProps> = ({ open, slot, onClose, onAdded }) => {
   const { t, language: lang } = useLanguage();
+  const dietFoodsReady = useDietFoodDatabase(true, open);
   const [query, setQuery] = useState('');
 
   const results = useMemo(() => {
@@ -45,7 +47,7 @@ const AddFoodModal: React.FC<AddFoodModalProps> = ({ open, slot, onClose, onAdde
         f.name_en.toLowerCase().includes(q) ||
         (lang === 'ar' && f.name_ar ? f.name_ar.includes(query.trim()) : false),
     ).slice(0, 40);
-  }, [query, lang]);
+  }, [query, lang, dietFoodsReady]);
 
   if (!open) return null;
 

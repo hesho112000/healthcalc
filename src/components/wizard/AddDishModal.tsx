@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import type { KitchenDish } from '../../data/kitchens';
-import { getDishName } from '../../data/kitchens';
+import { getDishName } from '../../data/kitchens/helpers';
 import type { PlanMealType } from '../../utils/mealPlanGenerator';
 import type { Language } from '../../types';
 

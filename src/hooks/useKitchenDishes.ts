@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { supabaseClient, hasSupabaseConfig } from '../lib/supabaseClient';
 import type { KitchenDish, KitchenInfo } from '../data/kitchens';
-import { kitchensRegistry } from '../data/kitchens';
 import { isAuthenticForKitchen, KITCHEN_REGION_FAMILIES } from '../utils/kitchenAuthenticity';
 import { KITCHEN_ID_ALIAS } from './useKitchenDishCounts';
 
@@ -105,6 +104,8 @@ function loadAllDishes(): Promise<DishRow[]> {
 
 export interface UseKitchenDishesResult {
   kitchens: Record<string, KitchenInfo>;
+  registryKitchens: KitchenInfo[];
+  registryLoading: boolean;
   loading: boolean;
   error: string | null;
   refetch: () => void;
@@ -119,6 +120,8 @@ export interface UseKitchenDishesResult {
  */
 export function useKitchenDishes(): UseKitchenDishesResult {
   const [rows, setRows] = useState<DishRow[]>([]);
+  const [registryKitchens, setRegistryKitchens] = useState<KitchenInfo[]>([]);
+  const [registryLoading, setRegistryLoading] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [tick, setTick] = useState(0);
@@ -126,6 +129,24 @@ export function useKitchenDishes(): UseKitchenDishesResult {
   const refetch = useCallback(() => {
     dishesCache = null;
     setTick((v) => v + 1);
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    void import('../data/kitchens')
+      .then(async (module) => {
+        await module.loadDietKitchens();
+        if (!cancelled) setRegistryKitchens(module.kitchensRegistry);
+      })
+      .catch((error: unknown) => {
+        if (!cancelled) setError(error instanceof Error ? error.message : String(error));
+      })
+      .finally(() => {
+        if (!cancelled) setRegistryLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {
@@ -152,7 +173,7 @@ export function useKitchenDishes(): UseKitchenDishesResult {
 
   const kitchens = useMemo<Record<string, KitchenInfo>>(() => {
     const out: Record<string, KitchenInfo> = {};
-    for (const k of kitchensRegistry) {
+    for (const k of registryKitchens) {
       // Registry ids come from the src/data/<file>-full.ts basenames, so a few
       // differ from the canonical KITCHEN_REGION_FAMILIES / KITCHEN_COUNT_REGIONS
       // id for the same kitchen (turkey -> turkish, germany -> german, ...).
@@ -187,7 +208,7 @@ export function useKitchenDishes(): UseKitchenDishesResult {
       };
     }
     return out;
-  }, [rows]);
+  }, [rows, registryKitchens]);
 
-  return { kitchens, loading, error, refetch };
+  return { kitchens, registryKitchens, registryLoading, loading, error, refetch };
 }

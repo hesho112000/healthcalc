@@ -3,7 +3,11 @@
 // *-full-100-USDA.json (categories + confidence). All other kitchens come from the
 // *-full.ts adapters (flattened to the same normalized shape, confidence 70%).
 
-import type { Language } from '../../types';
+import { DIET_KITCHEN_IDS, KITCHEN_REGION_KITCHEN_IDS } from './regions';
+import type { KitchenRegionId } from './regions';
+export { DIET_KITCHEN_IDS, KITCHEN_REGION_KITCHEN_IDS } from './regions';
+export type { KitchenRegionId } from './regions';
+export { getCategoryName, getDishName, getKitchenCity, getKitchenCountry, getKitchenName } from './helpers';
 
 export interface KitchenDish {
   name: string;
@@ -39,27 +43,6 @@ export interface KitchenCategory {
   count: number;
   dishes: KitchenDish[];
 }
-
-export const DIET_KITCHEN_IDS = [
-  'diet-keto',
-  'diet-vegan',
-  'diet-mediterranean',
-  'diet-high-protein',
-  'diet-low-carb',
-  'diet-paleo',
-  'diet-gluten-free',
-  'diet-dash',
-  'diet-intermittent-fasting',
-  'diet-vegetarian',
-] as const;
-
-export const KITCHEN_REGION_KITCHEN_IDS = {
-  'north-america': ['american', 'canada', 'mexican', 'cuban', 'jamaican', 'costa-rican'],
-  'south-america': ['argentinian', 'colombian', 'peruvian', 'chilean', 'brazilian', 'venezuelan'],
-  'diet-plans': [...DIET_KITCHEN_IDS],
-} as const;
-
-export type KitchenRegionId = keyof typeof KITCHEN_REGION_KITCHEN_IDS;
 
 const KITCHEN_REGION_BY_ID = new Map<string, KitchenRegionId>(
   Object.entries(KITCHEN_REGION_KITCHEN_IDS).flatMap(([regionId, kitchenIds]) =>
@@ -607,12 +590,11 @@ function toKitchenDish(raw: any): KitchenDish | null {
   };
 }
 
+const jsonModules = import.meta.glob('../*-full-100-USDA.json') as Record<string, () => Promise<{ default: unknown }>>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const jsonModules = import.meta.glob('../*-full-100-USDA.json', { eager: true }) as Record<string, any>;
+const tsModules = import.meta.glob('../*-full.ts') as Record<string, () => Promise<Record<string, unknown>>>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const tsModules = import.meta.glob('../*-full.ts', { eager: true }) as Record<string, any>;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const dietModules = import.meta.glob('../*-diet-100-medical.json', { eager: true }) as Record<string, any>;
+const dietModules = import.meta.glob('../*-diet-100-medical.json') as Record<string, () => Promise<{ default: unknown }>>;
 
 const DIET_NAME: Record<string, string> = {
   keto: 'المطبخ الكيتو',
@@ -766,60 +748,63 @@ const LEGACY_KITCHEN_FILES = new Set([
   'chilean-full.ts',
 ]);
 
-function assemble(): KitchenInfo[] {
+async function assemble(): Promise<KitchenInfo[]> {
   const out: KitchenInfo[] = [];
-  for (const [path, mod] of Object.entries(jsonModules)) {
+  const richModules = await Promise.all(
+    Object.entries(jsonModules).map(async ([path, load]) => [path, await load()] as const),
+  );
+  for (const [path, mod] of richModules) {
     out.push(buildRich(path, mod));
   }
   const richIds = new Set(out.map((k) => k.id));
-  for (const [path, mod] of Object.entries(tsModules)) {
+  const loadedModules = await Promise.all(
+    Object.entries(tsModules).map(async ([path, load]) => [path, await load()] as const),
+  );
+  for (const [path, mod] of loadedModules) {
     const id = basenameId(path);
     const file = path.split('/').pop() || '';
     if (richIds.has(id) || LEGACY_KITCHEN_FILES.has(file)) continue;
     out.push(buildBasic(path, mod));
   }
-  for (const [path, mod] of Object.entries(dietModules)) {
-    out.push(buildDiet(path, mod));
-  }
   return out;
 }
 
-export const kitchensRegistry: KitchenInfo[] = assemble();
-export const totalDishesAll = kitchensRegistry.reduce((s, k) => s + k.total, 0);
+export let kitchensRegistry: KitchenInfo[] = [];
+export let totalDishesAll = 0;
 
-export function getDishName(dish: KitchenDish | null | undefined, lang: Language): string {
-  if (!dish) return '';
-  if (lang === 'ar') return dish.nameAr ?? dish.name ?? dish.nameEn ?? '';
-  if (lang === 'fr') return dish.nameFr ?? dish.nameEn ?? dish.name ?? '';
-  if (lang === 'es') return dish.nameEs ?? dish.nameEn ?? dish.name ?? '';
-  if (lang === 'de') return dish.nameDe ?? dish.nameEn ?? dish.name ?? '';
-  return dish.nameEn ?? dish.name ?? '';
-}
+let kitchenRegistryPromise: Promise<KitchenInfo[]> | null = null;
 
-export function getCategoryName(cat: KitchenCategory | null | undefined, lang: Language): string {
-  if (!cat) return '';
-  if (lang === 'ar') return cat.name_ar ?? cat.nameEn ?? '';
-  if (lang === 'fr') return cat.nameFr ?? cat.nameEn ?? cat.name_ar ?? '';
-  if (lang === 'es') return cat.nameEs ?? cat.nameEn ?? cat.name_ar ?? '';
-  if (lang === 'de') return cat.nameDe ?? cat.nameEn ?? cat.name_ar ?? '';
-  return cat.nameEn ?? cat.name_ar ?? '';
-}
+export const loadKitchenRegistry = (): Promise<KitchenInfo[]> => {
+  if (!kitchenRegistryPromise) {
+    kitchenRegistryPromise = assemble().then((registry) => {
+      kitchensRegistry = registry;
+      totalDishesAll = registry.reduce((sum, kitchen) => sum + kitchen.total, 0);
+      return registry;
+    }).catch((error: unknown) => {
+      kitchenRegistryPromise = null;
+      throw error;
+    });
+  }
+  return kitchenRegistryPromise;
+};
 
-export function getKitchenName(k: KitchenInfo | null | undefined, lang: Language): string {
-  if (!k) return '';
-  if (lang === 'ar') return k.kitchen;
-  if (lang === 'fr') return k.kitchenFr ?? k.kitchenEn ?? k.kitchen;
-  if (lang === 'es') return k.kitchenEs ?? k.kitchenEn ?? k.kitchen;
-  if (lang === 'de') return k.kitchenDe ?? k.kitchenEn ?? k.kitchen;
-  return k.kitchenEn ?? k.kitchen;
-}
+let dietKitchensPromise: Promise<KitchenInfo[]> | null = null;
 
-export function getKitchenCountry(k: KitchenInfo | null | undefined, lang: Language): string {
-  if (!k) return '';
-  return lang === 'ar' ? k.country : (k.countryEn ?? k.country);
-}
-
-export function getKitchenCity(k: KitchenInfo | null | undefined, lang: Language): string {
-  if (!k) return '';
-  return lang === 'ar' ? k.city : (k.cityEn ?? k.city);
-}
+/** Load the larger dietary datasets only when a kitchen/meal-planning view needs them. */
+export const loadDietKitchens = (): Promise<KitchenInfo[]> => {
+  if (!dietKitchensPromise) {
+    dietKitchensPromise = loadKitchenRegistry().then(() => Promise.all(
+      Object.entries(dietModules).map(async ([path, load]) => buildDiet(path, await load())),
+    )).then((diets) => {
+      const existingIds = new Set(kitchensRegistry.map((kitchen) => kitchen.id));
+      const newDiets = diets.filter((kitchen) => !existingIds.has(kitchen.id));
+      kitchensRegistry = [...kitchensRegistry, ...newDiets];
+      totalDishesAll = kitchensRegistry.reduce((sum, kitchen) => sum + kitchen.total, 0);
+      return newDiets;
+    }).catch((error: unknown) => {
+      dietKitchensPromise = null;
+      throw error;
+    });
+  }
+  return dietKitchensPromise;
+};

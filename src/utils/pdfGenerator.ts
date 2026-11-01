@@ -1,6 +1,6 @@
 import type { Language } from '../types';
 import type { PlanDay, PlanMealType } from './mealPlanGenerator';
-import { getDishName } from '../data/kitchens';
+import { getDishName } from '../data/kitchens/helpers';
 
 const PRINT_ROOT_ID = 'meal-plan-print-root';
 const PRINT_STYLE_ID = 'meal-plan-print-style';

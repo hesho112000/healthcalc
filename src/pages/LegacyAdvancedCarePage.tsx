@@ -1,6 +1,7 @@
 // Legacy — replaced by HealthUniversePage (advanced-care) + wizard. Kept for /premium entry points (HomePage, StartFreeDropdown, CalculatorsPage).
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { useDietFoodDatabase } from '../hooks/useDietFoodDatabase';
 import { useAuth, hasPremiumAccess } from '../context/AuthContext';
 import { usePersistedState } from '../hooks/usePersistedState';
 import Breadcrumbs from '../components/layout/Breadcrumbs';
@@ -172,6 +173,7 @@ const LegacyAdvancedCarePage: React.FC = () => {
     const saved = localStorage.getItem('hc_selectedCuisine');
     return (saved as Cuisine) || 'egyptian';
   });
+  useDietFoodDatabase(String(selectedCuisine).toLowerCase() === 'filipino');
 
   const [checkIns, setCheckIns] = useState<Record<string, Array<Record<string, string | number>>>>({});
   const [showCheckInForm, setShowCheckInForm] = useState(false);

@@ -58,9 +58,25 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 
   useEffect(() => {
     let cancelled = false;
-    void loadLocale[language]().then((locale) => {
-      if (!cancelled) setDictionary(locale);
-    });
+    const loadSelectedLocale = async () => {
+      try {
+        const locale = await loadLocale[language]();
+        if (!cancelled) setDictionary(locale);
+      } catch {
+        if (language === 'en') {
+          if (!cancelled) setDictionary(null);
+          return;
+        }
+
+        try {
+          const english = await loadLocale.en();
+          if (!cancelled) setDictionary(english);
+        } catch {
+          if (!cancelled) setDictionary(null);
+        }
+      }
+    };
+    void loadSelectedLocale();
     return () => {
       cancelled = true;
     };

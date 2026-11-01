@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { type FoodItem } from '../../utils/calculations';
+import { useDietFoodDatabase } from '../../hooks/useDietFoodDatabase';
 import { getPortionMeasure } from '../../utils/cuisineCatalog';
 import {
   type BuilderPool,
@@ -70,6 +71,7 @@ const fmt = (template: string, vars: Record<string, string | number>): string =>
 
 const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters, targetCalories = 2000, macros, condition, onGenerate, onCuisineChange, className = '' }) => {
   const { language, t } = useLanguage();
+  const dietFoodsReady = useDietFoodDatabase(cuisine.toLowerCase() === 'filipino');
   const ar = language === 'ar';
 
   const suitConditions: SuitabilityCondition[] = Array.isArray(condition)
@@ -86,7 +88,7 @@ const MealBuilder: React.FC<MealBuilderProps> = ({ cuisine, sectionType, filters
     return items.filter((it) => suitOf(it) === suitFilter);
   };
 
-  const pool = useMemo(() => buildBuilderPool(cuisine, sectionType, filters), [cuisine, sectionType, filters]);
+  const pool = useMemo(() => buildBuilderPool(cuisine, sectionType, filters), [cuisine, sectionType, filters, dietFoodsReady]);
 
   const [selections, setSelections] = useState<BuilderSelections>(() => autoSelect(pool));
   const [activeTab, setActiveTab] = useState<'breakfast' | 'lunch' | 'dinner' | 'extras'>('breakfast');

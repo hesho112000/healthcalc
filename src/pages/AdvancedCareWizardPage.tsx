@@ -48,6 +48,7 @@ import { saveConditions, saveLabs, savePlan, saveProfile } from '../services/sup
 import type { LucideIcon } from 'lucide-react';
 import type { TKey, LabValues, WizardGoal, WizardLifestyle, WeightGoalKey, LifestyleGoalKey, PlanIntensity } from '../components/wizard/stepTypes';
 import { WEIGHT_GOALS, LIFESTYLE_GOALS } from '../components/wizard/stepTypes';
+import { useDietFoodDatabase } from '../hooks/useDietFoodDatabase';
 
 const EMERALD = '#0F4C3A';
 const GOLD = '#D4A017';
@@ -216,6 +217,7 @@ const AdvancedCareWizardPage: React.FC = () => {
   const [lifestyle, setLifestyle] = useState<WizardLifestyle>({ activity: '', sleep: '', stress: '' });
   const [goal, setGoal] = useState<WizardGoal>({ weightGoal: null, lifestyleGoals: [], targetWeight: '', timelineMonths: 3, intensity: '' });
   const [cuisine, setCuisine] = useState('Egyptian');
+  const dietFoodsReady = useDietFoodDatabase(cuisine.toLowerCase().includes('filipino'));
   const [exerciseTypes, setExerciseTypes] = useState<string[]>([]);
   const [toast, setToast] = useState('');
 
@@ -271,9 +273,9 @@ const AdvancedCareWizardPage: React.FC = () => {
 
 
   const pool: ScoredExercise[] = useMemo(() => exercisePoolFor(selected), [selected]);
-  const foodPool: ScoredFood[] = useMemo(() => foodPoolFor(selected), [selected]);
+  const foodPool: ScoredFood[] = useMemo(() => foodPoolFor(selected), [selected, dietFoodsReady]);
 
-  const foodById = useMemo(() => new Map(FOODS_DATABASE.map((food) => [food.name_en, food])), []);
+  const foodById = useMemo(() => new Map(FOODS_DATABASE.map((food) => [food.name_en, food])), [dietFoodsReady]);
   const exerciseById = useMemo(() => new Map(EXERCISES_DATABASE.map((exercise) => [exercise.id, exercise])), []);
 
   const recommendedExercises = useMemo(() => pool.filter((item) => item.score !== 'avoid').slice(0, 7), [pool]);

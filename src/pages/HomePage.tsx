@@ -129,8 +129,11 @@ const HomePage: React.FC = () => {
     if (!node) return;
     let cancelled = false;
     const load = () => {
-      import('../data/kitchens')
-        .then((mod) => { if (!cancelled) setKitchenData(mod); })
+      void import('../data/kitchens')
+        .then(async (mod) => {
+          await mod.loadDietKitchens();
+          if (!cancelled) setKitchenData(mod);
+        })
         .catch(() => {});
     };
     if (typeof IntersectionObserver === 'undefined') { load(); return; }

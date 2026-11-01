@@ -7,6 +7,7 @@ import type { translations } from '../i18n/translations';
 import { FOODS_DATABASE } from '../utils/calculations';
 import { EXERCISES_DATABASE } from '../data/exercises/index';
 import SEO from '../components/seo/SEO';
+import { useDietFoodDatabase } from '../hooks/useDietFoodDatabase';
 
 const tk = (key: string) => key as keyof typeof translations.en;
 
@@ -14,6 +15,7 @@ interface SavedPlan {
   version?: number;
   savedAt?: number;
   conditions?: string[];
+  cuisine?: string;
   profile?: { age: number; height: number; weight: number; gender: string };
   foodNames?: string[];
   exerciseIds?: string[];
@@ -44,6 +46,7 @@ const PlanDashboardContent: React.FC = () => {
   const { t, dir } = useLanguage();
   const { session } = useAuth();
   const [plan, setPlan] = useState<SavedPlan | null>(null);
+  const dietFoodsReady = useDietFoodDatabase(plan?.cuisine?.toLowerCase() === 'filipino');
   const [name, setName] = useState('there');
   const [checked, setChecked] = useState<string[]>([]);
   const [weight, setWeight] = useState<number | null>(null);
@@ -92,7 +95,7 @@ const PlanDashboardContent: React.FC = () => {
     setStorageLoaded(true);
   }, [session]);
 
-  const foodById = useMemo(() => new Map(FOODS_DATABASE.map((food) => [food.name_en, food])), []);
+  const foodById = useMemo(() => new Map(FOODS_DATABASE.map((food) => [food.name_en, food])), [dietFoodsReady]);
   const exerciseById = useMemo(() => new Map(EXERCISES_DATABASE.map((ex) => [ex.id, ex])), []);
 
   useEffect(() => {

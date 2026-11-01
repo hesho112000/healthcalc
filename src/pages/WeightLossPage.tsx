@@ -3,7 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Activity, Beef, Briefcase, Check, Cigarette, Coffee, Cookie, CupSoda, Droplets, Dumbbell, Minus, Moon, PartyPopper, Play, Plus, Ruler, Salad, ShieldCheck, Smile, Sparkles, Sun, Target, Timer, User, UtensilsCrossed } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
-import { kitchensRegistry, getDishName, getKitchenName, getKitchenCountry, KITCHEN_REGION_KITCHEN_IDS } from '../data/kitchens';
+import { getDishName, getKitchenName, getKitchenCountry } from '../data/kitchens/helpers';
+import { KITCHEN_REGION_KITCHEN_IDS } from '../data/kitchens/regions';
 import type { KitchenInfo, KitchenDish, KitchenCategory } from '../data/kitchens';
 import type { UnifiedExercise } from '../data/exercises/unified';
 import { useUnifiedExercises } from '../hooks/useUnifiedExercises';
@@ -20,6 +21,27 @@ import type { PlanDay, PlanDish, PlanMealType } from '../utils/mealPlanGenerator
 import { printMealPlanPdf } from '../utils/pdfGenerator';
 import { supabaseClient } from '../lib/supabaseClient';
 import emailjs from '@emailjs/browser';
+
+const FALLBACK_KITCHEN: KitchenInfo = {
+  id: 'egyptian',
+  kitchen: 'المطبخ المصري',
+  city: 'القاهرة',
+  country: 'مصر',
+  kitchenEn: 'Egyptian Kitchen',
+  cityEn: 'Cairo',
+  countryEn: 'Egypt',
+  flag: 'eg',
+  total: 0,
+  conf100: 0,
+  conf85: 0,
+  conf70: 0,
+  sample: null,
+  dishes: [],
+  categories: [],
+  rich: false,
+};
+
+const FALLBACK_KITCHENS = [FALLBACK_KITCHEN];
 
 type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
 type Sex = 'male' | 'female';
@@ -1825,11 +1847,12 @@ const WeightLossPage: React.FC = () => {
     [age, height, weight, targetWeight, timeline],
   );
 
-  const { kitchens: supabaseKitchens } = useKitchenDishes();
+  const { kitchens: supabaseKitchens, registryKitchens, registryLoading } = useKitchenDishes();
   const kitchenCounts = useKitchenDishCounts();
+  const baseKitchens = registryKitchens.length > 0 ? registryKitchens : FALLBACK_KITCHENS;
   const kitchens = useMemo<KitchenInfo[]>(
-    () => kitchensRegistry.map((k) => supabaseKitchens[k.id] ?? k),
-    [supabaseKitchens],
+    () => baseKitchens.map((k) => supabaseKitchens[k.id] ?? k),
+    [baseKitchens, supabaseKitchens],
   );
 
   const selectedKitchen = useMemo<KitchenInfo>(
@@ -2890,6 +2913,10 @@ const WeightLossPage: React.FC = () => {
 
   const inputDefault = 'wiz-input';
   const cardBase = 'rounded-[26px] bg-white border border-[#EFEBE4] shadow-[0_10px_30px_rgba(15,76,58,0.06)]';
+
+  if (registryLoading && registryKitchens.length === 0) {
+    return <div className="min-h-screen" aria-busy="true" />;
+  }
 
   return (
     <div className="wiz-page min-h-screen text-[#0F4C3A] overflow-x-hidden antialiased bg-[#FDFBF7]">

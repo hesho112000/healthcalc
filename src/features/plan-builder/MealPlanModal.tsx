@@ -5,6 +5,7 @@ import { buildMealRowsForCuisine } from '../../utils/calculations';
 import { useLanguage } from '../../context/LanguageContext';
 import { getMealName, getFoodItemText } from '../../utils/mealLabels';
 import Flag, { isCountryCode } from '../../components/common/Flag';
+import { useDietFoodDatabase } from '../../hooks/useDietFoodDatabase';
 
 interface ModalDayData {
   meals: Array<{ meal: string; calories: number; protein: number; carbs: number; fat: number; items: string[]; icon?: string; description?: string; tips?: string; nameAr?: string; nameEn?: string; verified?: boolean; saturatedFat?: number; cholesterol?: number }>;
@@ -46,9 +47,10 @@ const MealPlanModal: React.FC<MealPlanModalProps> = ({
     return (saved as Cuisine) || 'egyptian';
   });
   const activeCuisine = propCuisine ?? internalCuisine;
+  const dietFoodsReady = useDietFoodDatabase(String(activeCuisine).toLowerCase() === 'filipino');
 
   const currentDayData = fullMealPlan && fullMealPlan[activeDay] ? fullMealPlan[activeDay] : null;
-  const cuisineMeals = useMemo(() => buildMealRowsForCuisine(activeCuisine, language === 'ar' ? 'ar' : 'en', targetCalories || 2000), [activeCuisine, language, targetCalories]);
+  const cuisineMeals = useMemo(() => buildMealRowsForCuisine(activeCuisine, language === 'ar' ? 'ar' : 'en', targetCalories || 2000), [activeCuisine, language, targetCalories, dietFoodsReady]);
   const activeMealPlan = currentDayData ? currentDayData.meals : (mealPlan.length > 0 ? cuisineMeals : mealPlan);
   const dayTheme = currentDayData?.theme ?? t('todayPlan');
   const displayCalories = targetCalories > 0 ? targetCalories : Math.round(activeMealPlan.reduce((sum, m) => sum + (m.calories || 0), 0));

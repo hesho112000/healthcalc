@@ -43,6 +43,7 @@ import {
 import type { TKey } from '../components/hub/data';
 import { readStoredLabs, organScore } from '../utils/healthScoring';
 import { LAB_REF } from '../components/hub/LabSummary';
+import { useDietFoodDatabase } from '../hooks/useDietFoodDatabase';
 
 const SLOT_KEY: Record<string, TKey> = {
   breakfast: tk('wizard.step6.mealBreakfast'),
@@ -136,6 +137,7 @@ const MyHealthHubPage: React.FC = () => {
   const dayLimit = paid ? 7 : hasFeature('hubDay3') ? 3 : hasFeature('hubDay2') ? 2 : 1;
 
   const plan = useMemo(() => readHubPlan(), [synced]);
+  useDietFoodDatabase(plan?.cuisine?.toLowerCase() === 'filipino');
   const conditions = useMemo(() => {
     const local = readHubConditions();
     return local.length > 0 ? local : dbConditions;

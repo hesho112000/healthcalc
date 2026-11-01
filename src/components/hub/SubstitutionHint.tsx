@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { foodDisplayName, foodPoolForConditions, readHubConditions, readHubPlan, tk } from './data';
 import LockedCard from './LockedCard';
+import { useDietFoodDatabase } from '../../hooks/useDietFoodDatabase';
 
 interface SubstitutionHintProps {
   paid: boolean;
@@ -15,6 +16,7 @@ const readPlanFoods = (): string[] => {
 
 const SubstitutionHint: React.FC<SubstitutionHintProps> = ({ paid, onUnlock }) => {
   const { t, language: lang } = useLanguage();
+  const dietFoodsReady = useDietFoodDatabase();
   const [index, setIndex] = useState(0);
 
   const suggestion = useMemo(() => {
@@ -29,7 +31,7 @@ const SubstitutionHint: React.FC<SubstitutionHintProps> = ({ paid, onUnlock }) =
       .sort((a, b) => (b.calories || 0) - (a.calories || 0));
     if (alternatives.length === 0) return null;
     return { item: foodDisplayName(item, lang), alt: foodDisplayName(alternatives[0], lang) };
-  }, [index, lang]);
+  }, [index, lang, dietFoodsReady]);
 
   if (!paid) {
     return <LockedCard title={t(tk('hub.substitution'))} onUnlock={onUnlock} />;
