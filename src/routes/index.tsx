@@ -4,6 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import type { translations } from '../i18n/translations';
 import ProtectedRoute from '../components/ProtectedRoute';
 import AdminProtectedRoute from '../components/AdminProtectedRoute';
+import SEO from '../components/seo/SEO';
 import { ENABLE_PREMIUM } from '../config/featureFlags';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
@@ -47,10 +48,20 @@ const LegacySeoRedirect: React.FC = () => {
   return <Navigate to={`/en/landing/${slug}`} replace />;
 };
 
-const SimplePage: React.FC<{ emoji: string; titleKey: keyof typeof translations.en; descKey: keyof typeof translations.en }> = ({ emoji, titleKey, descKey }) => {
+interface SimplePageProps {
+  emoji: string;
+  titleKey: keyof typeof translations.en;
+  descKey: keyof typeof translations.en;
+  seoTitle: string;
+  seoDescription: string;
+  url: string;
+}
+
+const SimplePage: React.FC<SimplePageProps> = ({ emoji, titleKey, descKey, seoTitle, seoDescription, url }) => {
   const { t } = useLanguage();
   return (
     <div className="px-4" style={{ padding: '120px 24px 80px', background: 'var(--bg-primary)', minHeight: '70vh' }}>
+      <SEO title={seoTitle} description={seoDescription} url={url} />
       <div className="container text-center" style={{ maxWidth: 760 }}>
         <div style={{ width: 88, height: 88, margin: '0 auto 20px', background: 'var(--primary)', color: 'var(--bg-primary)', borderRadius: 'var(--radius-lg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 40 }}>{emoji}</div>
         <h1 style={{ color: 'var(--primary)', fontSize: 30, marginBottom: 12 }}>{t(titleKey)}</h1>
@@ -128,15 +139,43 @@ export const AppRoutes: React.FC = () => (
       <Route path="/cookies" element={<CookiePolicy />} />
       <Route path="/contact" element={<ContactUs />} />
 
-      <Route path="/plan" element={<SimplePage emoji="📋" titleKey="spPlanTitle" descKey="spPlanDesc" />} />
-      <Route path="/tracking" element={<SimplePage emoji="📈" titleKey="spTrackingTitle" descKey="spTrackingDesc" />} />
-      <Route path="/bio-age" element={<SimplePage emoji="🫀" titleKey="spBioAgeTitle" descKey="spBioAgeDesc" />} />
+      <Route path="/plan" element={<SimplePage
+        emoji="📋"
+        titleKey="spPlanTitle"
+        descKey="spPlanDesc"
+        seoTitle="Your Health Plan"
+        seoDescription="View and manage your personalized health plan."
+        url="/plan"
+      />} />
+      <Route path="/tracking" element={<SimplePage
+        emoji="📈"
+        titleKey="spTrackingTitle"
+        descKey="spTrackingDesc"
+        seoTitle="Health Tracking"
+        seoDescription="Track your daily health metrics."
+        url="/tracking"
+      />} />
+      <Route path="/bio-age" element={<SimplePage
+        emoji="🫀"
+        titleKey="spBioAgeTitle"
+        descKey="spBioAgeDesc"
+        seoTitle="Biological Age Calculator"
+        seoDescription="Calculate your biological age."
+        url="/bio-age"
+      />} />
       <Route path="/resources" element={<ResourcesPage />} />
       <Route path="/resources/article/:slug" element={<ArticlePage />} />
       <Route path="/resources/recipe/:slug" element={<RecipePage />} />
       <Route path="/resources/exercise/:slug" element={<ExerciseGuidePage />} />
       <Route path="/about" element={<AboutPage />} />
-      <Route path="/faq" element={<SimplePage emoji="💬" titleKey="spFaqTitle" descKey="spFaqDesc" />} />
+      <Route path="/faq" element={<SimplePage
+        emoji="💬"
+        titleKey="spFaqTitle"
+        descKey="spFaqDesc"
+        seoTitle="Frequently Asked Questions"
+        seoDescription="Find answers to common questions."
+        url="/faq"
+      />} />
       <Route path="/wizard/step1" element={<StaticStepPage step={1} />} />
       <Route path="/wizard/step2" element={<StaticStepPage step={2} />} />
       <Route path="/Personal-Data-Entry-Step1" element={<StaticStepPage step={1} />} />

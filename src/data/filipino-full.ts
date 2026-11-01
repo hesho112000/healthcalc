@@ -8,21 +8,8 @@
 // beef tapa, kinilaw, paksiw, escabeche, ginataang gulay, biko, maja blanca,
 // leche flan, turon, banana cue, camote cue, sago't gulaman, taho, buko juice.
 // Halal: no pork, no alcohol (tuba/lambanog excluded).
-export interface FilipinoFullDish {
-  id: string;
-  nameAr: string;
-  nameEn: string;
-  nameFr: string;
-  nameEs: string;
-  nameDe: string;
-  mealType: 'breakfast' | 'lunch' | 'dinner' | 'side' | 'salad' | 'fruit';
-  grams: number;
-  kcal: number;
-  protein: number;
-  carbs: number;
-  fat: number;
-  cooking?: string;
-}
+import type { FilipinoFullDish } from './filipino-types';
+
 export const FILIPINO_FULL: FilipinoFullDish[] = [
   {"id":"ph_bf_0","nameAr":"أرز كالدو فلبيني","nameEn":"Arroz caldo","nameFr":"Arroz caldo philippin","nameEs":"Arroz caldo filipino","nameDe":"Philippinisches Arroz caldo","mealType":"breakfast","grams":100,"kcal":162,"protein":8,"carbs":28,"fat":2,"cooking":"simmered"},
   {"id":"ph_bf_1","nameAr":"تشامبورادو فلبيني","nameEn":"Champorado","nameFr":"Champorado philippin","nameEs":"Champorado filipino","nameDe":"Philippinisches Champorado","mealType":"breakfast","grams":100,"kcal":195,"protein":4,"carbs":38,"fat":3,"cooking":"simmered"},

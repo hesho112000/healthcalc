@@ -68,7 +68,7 @@ import { SEYCHELLOIS_FULL, type SeychelloisFullDish } from '../data/seychellois-
 import { MAURITIAN_FULL, type MauritianFullDish } from '../data/mauritian-full';
 import { GABONESE_FULL, type GaboneseFullDish } from '../data/gabonese-full';
 import { BOTSWANAN_FULL, type BotswananFullDish } from '../data/botswanan-full';
-import type { FilipinoFullDish } from '../data/filipino-full';
+import type { FilipinoFullDish } from '../data/filipino-types';
 
 export type { Cuisine, MealType } from './cuisineCatalog';
 
