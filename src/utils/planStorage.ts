@@ -1,3 +1,5 @@
+import { ensureLocalHealthDataOwner } from './localHealthStorage';
+
 export interface PlanStoragePayload {
   conditions: string[];
   profile: Record<string, unknown>;
@@ -21,7 +23,8 @@ export interface PlanStoragePayload {
   version?: number;
 }
 
-export const savePlanToStorage = (data: PlanStoragePayload): void => {
+export const savePlanToStorage = (data: PlanStoragePayload, userId: string | null): void => {
+  ensureLocalHealthDataOwner(userId);
   try {
     const plan: Record<string, unknown> = {
       version: data.version ?? 3,

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import { supabase } from '../lib/supabase';
 import type { Session, User as SupabaseUser } from '@supabase/supabase-js';
-import { clearUserProfileStorage } from '../hooks/useUserProfile';
+import { clearLocalHealthDataStorage, ensureLocalHealthDataOwner } from '../utils/localHealthStorage';
 
 export const ENABLE_PHONE_AUTH = false;
 
@@ -112,20 +112,40 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     let mounted = true;
 
     const init = async () => {
-      const { data } = await supabase.auth.getSession();
-      if (!mounted) return;
-      setSession(data.session);
-      if (data.session?.user) {
-        const built = await buildAuthUser(data.session.user);
-        if (mounted) setUser(built);
-        void ensureProfile(data.session.user.id, built.name);
+      try {
+        const { data } = await supabase.auth.getSession();
+        if (!mounted) return;
+        ensureLocalHealthDataOwner(data.session?.user.id ?? null);
+        setSession(data.session);
+        if (data.session?.user) {
+          const built = await buildAuthUser(data.session.user);
+          if (mounted) setUser(built);
+          void ensureProfile(data.session.user.id, built.name);
+        } else if (mounted) {
+          setUser(null);
+        }
+      } catch {
+        if (mounted) {
+          ensureLocalHealthDataOwner(null);
+          setSession(null);
+          setUser(null);
+        }
+      } finally {
+        if (mounted) setLoading(false);
       }
-      if (mounted) setLoading(false);
     };
     void init();
 
     const { data: authListener } = supabase.auth.onAuthStateChange(async (event, nextSession) => {
       if (!mounted) return;
+      if (event === 'SIGNED_IN' || event === 'SIGNED_OUT') setLoading(true);
+      if (nextSession?.user) {
+        ensureLocalHealthDataOwner(nextSession.user.id);
+      } else if (event === 'SIGNED_OUT') {
+        clearLocalHealthDataStorage(null);
+      } else if (event === 'INITIAL_SESSION') {
+        ensureLocalHealthDataOwner(null);
+      }
       setSession(nextSession);
       if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED' || event === 'USER_UPDATED' || event === 'INITIAL_SESSION') {
         if (nextSession?.user) {
@@ -134,7 +154,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           void ensureProfile(nextSession.user.id, built.name);
         }
       } else if (event === 'SIGNED_OUT') {
-        clearUserProfileStorage();
         setUser(null);
         setSession(null);
       }
@@ -150,6 +169,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const signIn = useCallback(async (email: string, password: string) => {
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) throw error;
+    ensureLocalHealthDataOwner(data.user?.id ?? null);
     setSession(data.session);
     if (data.user) {
       setUser(await buildAuthUser(data.user));
@@ -163,6 +183,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       options: { data: { name, full_name: name } },
     });
     if (error) throw error;
+    if (data.user) ensureLocalHealthDataOwner(data.user.id);
     if (data.session) setSession(data.session);
     if (data.user) {
       setUser(await buildAuthUser(data.user));
@@ -171,12 +192,14 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }, []);
 
   const signOut = useCallback(async () => {
+    setLoading(true);
     try {
       await supabase.auth.signOut();
     } finally {
-      clearUserProfileStorage();
+      clearLocalHealthDataStorage(null);
       setUser(null);
       setSession(null);
+      setLoading(false);
     }
   }, []);
 
@@ -198,6 +221,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const verifyOtp = useCallback(async (phone: string, token: string) => {
     const { data, error } = await supabase.auth.verifyOtp({ phone, token, type: 'sms' });
     if (error) throw error;
+    ensureLocalHealthDataOwner(data.user?.id ?? null);
     setSession(data.session);
     if (data.user) {
       setUser(await buildAuthUser(data.user));
@@ -234,7 +258,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         isAuthenticated: !!user,
       }}
     >
-      {children}
+      {loading ? (
+        <div className="min-h-screen flex items-center justify-center" role="status" aria-busy="true">
+          <span className="sr-only">Loading account</span>
+        </div>
+      ) : children}
     </AuthContext.Provider>
   );
 };

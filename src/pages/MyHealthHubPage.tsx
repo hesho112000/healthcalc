@@ -128,7 +128,7 @@ const MyHealthHubPage: React.FC = () => {
     } catch {
       /* ignore */
     }
-    savePlanToStorage(pd);
+    savePlanToStorage(pd, user.id);
     setSynced(true);
   }, [user, dbPlan]);
 

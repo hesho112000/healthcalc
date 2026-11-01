@@ -586,7 +586,7 @@ const AdvancedCareWizardPage: React.FC = () => {
   );
 
   const persistPlan = useCallback(() => {
-    savePlanToStorage(buildPlanPayload());
+    savePlanToStorage(buildPlanPayload(), user?.id ?? null);
   }, [buildPlanPayload]);
 
   const syncPlanToSupabase = useCallback(async () => {

@@ -2464,7 +2464,7 @@ const WeightLossPage: React.FC = () => {
       const headCellStyle = 'padding:10px 12px;background-color:#0F4C3A;color:#ffffff;font-size:12px;font-weight:700;text-align:left;text-transform:uppercase;letter-spacing:0.04em;';
       const numCellStyle = `${cellStyle}text-align:right;white-space:nowrap;`;
 
-      const planHtml = weeklyPlan && weeklyPlan.length > 0
+      const planDayHtml = weeklyPlan && weeklyPlan.length > 0
         ? weeklyPlan.map((day, dayIndex) => {
           const dayTotal = day.meals.reduce(
             (mealSum, meal) => mealSum + meal.dishes.reduce((dishSum, dish) => dishSum + (dish.calories || 0), 0),
@@ -2519,10 +2519,18 @@ const WeightLossPage: React.FC = () => {
               </tfoot>
             </table>
           </div>`;
-        }).join('')
-        : '<p style="margin:0;font-size:14px;line-height:1.6;color:#3F4A45;">Your personalized meal plan is ready.</p>';
+        })
+        : [];
 
-      const emailHtml = `<!DOCTYPE html>
+      const truncationNotice = '<p style="margin:16px 0 0;padding:12px;background-color:#FFF8E7;border:1px solid #E9D9A8;border-radius:8px;font-size:13px;line-height:1.5;color:#6B5B2A;">This email includes the first days of your plan to fit email size limits. Visit HealthFingerprint.com to view the full plan.</p>';
+      const renderEmailHtml = (daysHtml: string[], truncated: boolean): string => {
+        const planHtml = daysHtml.length > 0
+          ? `${daysHtml.join('')}${truncated ? truncationNotice : ''}`
+          : truncated
+            ? truncationNotice
+            : '<p style="margin:0;font-size:14px;line-height:1.6;color:#3F4A45;">Your personalized meal plan is ready.</p>';
+
+        return `<!DOCTYPE html>
 <html lang="${escapeHtml(language)}" dir="${language === 'ar' ? 'rtl' : 'ltr'}">
 <head>
   <meta charset="UTF-8" />
@@ -2556,19 +2564,21 @@ const WeightLossPage: React.FC = () => {
   </table>
 </body>
 </html>`;
+      };
 
       const MAX_EMAIL_HTML_LENGTH = 30000;
-      const truncationNotice = '<tr><td colspan="4" style="text-align: center; padding: 20px; font-weight: bold;">... (Plan truncated for email. Please visit HealthFingerprint.com to view your full 7-day plan).</td></tr>';
-      const closingTags = '</table></body></html>';
-      let emailMessage = emailHtml;
+      const fullEmailHtml = renderEmailHtml(planDayHtml, false);
+      let emailMessage = fullEmailHtml;
 
-      if (emailHtml.length > MAX_EMAIL_HTML_LENGTH) {
-        // Reserve room for the notice and closing tags so the final payload stays under the hard limit.
-        const cutoff = Math.max(0, MAX_EMAIL_HTML_LENGTH - truncationNotice.length - closingTags.length);
-        const lastRowClose = emailHtml.lastIndexOf('</tr>', cutoff);
-        const safeCutoff = lastRowClose >= 0 ? lastRowClose + '</tr>'.length : cutoff;
-        emailMessage = `${emailHtml.slice(0, safeCutoff)}${truncationNotice}${closingTags}`;
-        console.warn(`Meal plan email HTML truncated from ${emailHtml.length} to ${emailMessage.length} characters.`);
+      if (fullEmailHtml.length > MAX_EMAIL_HTML_LENGTH) {
+        const includedDays: string[] = [];
+        for (const dayHtml of planDayHtml) {
+          const candidate = renderEmailHtml([...includedDays, dayHtml], true);
+          if (candidate.length > MAX_EMAIL_HTML_LENGTH) break;
+          includedDays.push(dayHtml);
+        }
+        emailMessage = renderEmailHtml(includedDays, true);
+        console.warn(`Meal plan email HTML truncated by whole day from ${fullEmailHtml.length} to ${emailMessage.length} characters.`);
       }
 
       try {

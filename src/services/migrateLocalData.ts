@@ -1,6 +1,7 @@
 import { saveConditions, saveLabs, savePlan, saveProfile, saveProgress } from './supabaseData';
 import { readHubConditions, readHubProfile } from '../components/hub/data';
 import { LAB_REF } from '../components/hub/LabSummary';
+import { clearLocalHealthDataStorage, getLocalHealthDataOwner } from '../utils/localHealthStorage';
 
 export interface MigrateResult {
   uploaded: boolean;
@@ -27,22 +28,13 @@ const readJSON = <T,>(key: string): T | null => {
   }
 };
 
-const cleanup = (): void => {
-  try {
-    localStorage.removeItem('hc_advanced_care_plan');
-    localStorage.removeItem('healthcalc_plan');
-    localStorage.removeItem('healthcalc_conditions');
-    localStorage.removeItem('healthcalc_labs');
-    localStorage.removeItem('healthcalc_user_profile');
-    localStorage.removeItem('hc_hub_progress');
-  } catch {
-    /* ignore */
-  }
-};
-
 export const migrateLocalData = async (userId: string, clearAfter = false): Promise<MigrateResult> => {
   const counts = { conditions: 0, labs: 0, plans: 0, progress: 0 };
   let uploaded = false;
+
+  if (getLocalHealthDataOwner() !== userId) {
+    return { uploaded: false, error: 'Local health data owner does not match the signed-in account.', counts };
+  }
 
   const profile = readHubProfile();
   if (profile && typeof profile === 'object') {
@@ -106,7 +98,7 @@ export const migrateLocalData = async (userId: string, clearAfter = false): Prom
     }
   }
 
-  if (clearAfter && uploaded) cleanup();
+  if (clearAfter && uploaded) clearLocalHealthDataStorage(userId, false);
 
   return { uploaded, counts };
 };

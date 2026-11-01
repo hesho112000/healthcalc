@@ -84,7 +84,21 @@ const buildSitemap = async () => {
     <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
-  </url>`;
+  </url>
+  <url>
+    <loc>${escapeXml(`${SITE_BASE}/privacy`)}</loc>
+    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>${escapeXml(`${SITE_BASE}/contact`)}</loc>
+    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+`;
 
   const dishEntries = ids
     .map((id) => `  <url>
@@ -98,7 +112,7 @@ const buildSitemap = async () => {
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${staticEntries}\n${dishEntries}\n</urlset>\n`;
 
   await writeFile(OUTPUT_PATH, sitemap, 'utf8');
-  console.log(`SUCCESS: Sitemap generated with ${4 + ids.length} URLs at ${path.relative(process.cwd(), OUTPUT_PATH)}`);
+  console.log(`SUCCESS: Sitemap generated with ${6 + ids.length} URLs at ${path.relative(process.cwd(), OUTPUT_PATH)}`);
 };
 
 buildSitemap().catch((err) => {

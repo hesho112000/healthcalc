@@ -26,6 +26,18 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://healthfingerprint.com/privacy</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/contact</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
     <loc>https://healthfingerprint.com/food-library/00066fe2-9df7-4d62-a9c3-8f5ad49af26d</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
