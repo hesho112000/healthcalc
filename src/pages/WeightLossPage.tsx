@@ -194,6 +194,19 @@ const hasFourFilledMeals = (value: unknown, expectedTarget?: number): value is P
     });
   });
 
+// User edits (dish swap/removal) can intentionally move a day away from its calorie
+// target or leave a meal empty. Keep those plans usable instead of treating them as
+// if no plan had ever been generated.
+const hasWeeklyPlanStructure = (value: unknown): value is PlanDay[] =>
+  Array.isArray(value) && value.length === 7 && value.every((day) => {
+    if (!Array.isArray(day?.meals) || day.meals.length !== PLAN_MEAL_ORDER.length) return false;
+    if (!Number.isFinite(day.targetCal) || day.targetCal <= 0 || !Number.isFinite(day.totalCal)) return false;
+    return PLAN_MEAL_ORDER.every((mealType) => {
+      const meal = day.meals.find((item: { mealType?: PlanMealType }) => item?.mealType === mealType);
+      return Array.isArray(meal?.dishes);
+    });
+  });
+
 const ACTIVITY: Record<ActivityKey, { factor: number; label: string; desc: string; emoji: string }> = {
   sedentary: { factor: 1.2, label: 'خامل', desc: 'مكتبي - بدون رياضة', emoji: '🛋️' },
   light: { factor: 1.375, label: 'خفيف', desc: '1-3 أيام / أسبوع', emoji: '🚶' },
@@ -397,7 +410,7 @@ const draftPlannedExercises = (value: unknown): PlannedExercise[] | null => {
 
 const draftWeeklyPlan = (value: unknown): PlanDay[] | null => {
   try {
-    return hasFourFilledMeals(value) ? value : null;
+    return hasWeeklyPlanStructure(value) ? value : null;
   } catch {
     return null;
   }
@@ -1674,7 +1687,7 @@ const WeightLossPage: React.FC = () => {
       const raw = localStorage.getItem(`hc_weekly_plan_${kitchenId}`);
       if (raw) {
         const p = JSON.parse(raw);
-        if (hasFourFilledMeals(p)) return p;
+        if (hasWeeklyPlanStructure(p)) return p;
       }
     } catch {
       /* ignore */
@@ -2727,7 +2740,7 @@ const WeightLossPage: React.FC = () => {
 
   const viewMyPlan = () => {
     saveWizardProfile();
-    if (hasFourFilledMeals(weeklyPlan, finalRecommendations.dailyCalories)) {
+    if (hasWeeklyPlanStructure(weeklyPlan)) {
       completeWizardDraft();
       setShowPlan(true);
       return;
@@ -2860,12 +2873,20 @@ const WeightLossPage: React.FC = () => {
         if (di !== dayIndex) return d;
         const meals = d.meals.map((m, mi) => {
           if (mi !== mealIndex) return m;
+          const oldDish = m.dishes[dishIndex];
+          if (!oldDish) return m;
+          const caloriesPer100g = dish.cal_100;
+          const newWeight = caloriesPer100g > 0 && oldDish.calories > 0
+            ? Math.round((oldDish.calories / caloriesPer100g) * 100)
+            : Math.round(dish.serv_g > 0 ? dish.serv_g : 100);
           const pd: PlanDish = {
             dish,
             mealTypes: [m.mealType],
-            servings: 1,
-            grams: dish.serv_g > 0 ? dish.serv_g : 100,
-            calories: dish.cal_serv,
+            servings: dish.serv_g > 0 ? newWeight / dish.serv_g : 1,
+            grams: newWeight,
+            calories: caloriesPer100g > 0
+              ? Math.round((caloriesPer100g * newWeight) / 100)
+              : dish.cal_serv,
           };
           return { ...m, dishes: m.dishes.map((x, i) => (i === dishIndex ? pd : x)) };
         });
@@ -4455,7 +4476,7 @@ const WeightLossPage: React.FC = () => {
                 </span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-0">
-                {hasFourFilledMeals(weeklyPlan, finalRecommendations.dailyCalories) ? selectedDayMeals.map((meal, idx) => {
+                {hasWeeklyPlanStructure(weeklyPlan) ? selectedDayMeals.map((meal, idx) => {
                   const mealCal = meal.dishes.reduce((s, x) => s + x.calories, 0);
                   const isOpen = openMealAccordion === meal.mealType;
                   const title = t((meal.mealType === 'lunch' ? 'mealLunch' : meal.mealType === 'dinner' ? 'mealDinner' : meal.mealType === 'breakfast' ? 'mealBreakfast' : 'mealSnack') as any);
