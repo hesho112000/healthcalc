@@ -118,7 +118,7 @@ const ContentManager: React.FC = () => {
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
               placeholder={t('admin.content.table.title')}
-              className="mt-4 w-full rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] px-3 py-2.5 text-sm font-semibold text-[#0F4C3A] placeholder-[#94A3B8] outline-none focus:border-[#D4A017]"
+              className="mt-4 w-full rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] px-3 py-2.5 text-sm font-semibold text-[#0F4C3A] placeholder-[#94A3B8] outline-none focus:border-[#D4A017]" id="field-components-admin-contentmanager-116" name="field-components-admin-contentmanager-116"
             />
             <div className="mt-6 flex gap-2">
               <button

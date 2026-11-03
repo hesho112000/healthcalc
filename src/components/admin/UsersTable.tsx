@@ -89,7 +89,7 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onDelete, onEdit }) => {
               setPage(1);
             }}
             placeholder={t('admin.users.searchPlaceholder')}
-            className="w-full rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] py-2.5 ps-9 pe-3 text-sm font-semibold text-[#0F4C3A] placeholder-[#94A3B8] outline-none focus:border-[#D4A017]"
+            className="w-full rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] py-2.5 ps-9 pe-3 text-sm font-semibold text-[#0F4C3A] placeholder-[#94A3B8] outline-none focus:border-[#D4A017]" id="field-components-admin-userstable-84" name="field-components-admin-userstable-84"
           />
         </div>
         <p className="text-xs font-bold text-[#6B7A75]">
@@ -238,22 +238,22 @@ const UsersTable: React.FC<UsersTableProps> = ({ users, onDelete, onEdit }) => {
           <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-[0_24px_60px_rgba(15,76,58,0.25)]">
             <h3 className="text-lg font-extrabold text-[#0F4C3A]">{t('admin.users.edit')}</h3>
             <div className="mt-4 space-y-3">
-              <label className="block">
+              <label className="block" htmlFor="field-components-admin-userstable-243">
                 <span className="text-sm font-bold text-[#0F4C3A]">{t('admin.users.table.name')}</span>
                 <input
                   type="text"
                   value={editName}
                   onChange={(e) => setEditName(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] px-3 py-2.5 text-sm font-semibold text-[#0F4C3A] outline-none focus:border-[#D4A017]"
+                  className="mt-1 w-full rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] px-3 py-2.5 text-sm font-semibold text-[#0F4C3A] outline-none focus:border-[#D4A017]" id="field-components-admin-userstable-243" name="field-components-admin-userstable-243"
                 />
               </label>
-              <label className="block">
+              <label className="block" htmlFor="field-components-admin-userstable-252">
                 <span className="text-sm font-bold text-[#0F4C3A]">{t('admin.users.table.age')}</span>
                 <input
                   type="number"
                   value={editAge}
                   onChange={(e) => setEditAge(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] px-3 py-2.5 text-sm font-semibold text-[#0F4C3A] outline-none focus:border-[#D4A017]"
+                  className="mt-1 w-full rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] px-3 py-2.5 text-sm font-semibold text-[#0F4C3A] outline-none focus:border-[#D4A017]" id="field-components-admin-userstable-252" name="field-components-admin-userstable-252"
                 />
               </label>
             </div>

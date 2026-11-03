@@ -125,7 +125,7 @@ const ContactUs: React.FC = () => {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="input-field"
-                      placeholder={t('contactNamePlaceholder')}
+                      placeholder={t('contactNamePlaceholder')} name="contact-name"
                     />
                   </div>
                   <div>
@@ -137,7 +137,7 @@ const ContactUs: React.FC = () => {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="input-field"
-                      placeholder={t('contactEmailPlaceholder')}
+                      placeholder={t('contactEmailPlaceholder')} name="contact-email"
                     />
                   </div>
                   <div>
@@ -149,7 +149,7 @@ const ContactUs: React.FC = () => {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="input-field resize-none"
-                      placeholder={t('contactPlaceholderMessage')}
+                      placeholder={t('contactPlaceholderMessage')} name="contact-message"
                     />
                   </div>
                   {error && (

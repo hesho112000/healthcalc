@@ -140,7 +140,7 @@ const LoginPage: React.FC = () => {
                   placeholder="you@example.com"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="input-field"
+                  className="input-field" name="login-email"
                 />
               </div>
 
@@ -153,7 +153,7 @@ const LoginPage: React.FC = () => {
                   placeholder="••••••••"
                   value={form.password}
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
-                  className="input-field"
+                  className="input-field" name="login-password"
                 />
               </div>
 
@@ -186,7 +186,7 @@ const LoginPage: React.FC = () => {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className="input-field"
-                  style={{ direction: 'ltr' }}
+                  style={{ direction: 'ltr' }} name="login-phone"
                 />
                 <p className="text-[11px] text-gray-400 mt-1">{t('auth.enterPhone')}</p>
               </div>
@@ -218,7 +218,7 @@ const LoginPage: React.FC = () => {
                   value={otp}
                   onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
                   className="input-field tracking-[0.3em] text-center font-bold"
-                  style={{ direction: 'ltr' }}
+                  style={{ direction: 'ltr' }} name="login-otp"
                 />
               </div>
 

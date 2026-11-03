@@ -83,9 +83,12 @@ const Footer: React.FC = () => {
             <p className="footer-news-text">{t('footerNewsText')}</p>
             <form className="footer-form" onSubmit={handleSubscribe}>
               <input
+                id="footer-email"
+                name="email"
                 type="email"
                 required
                 placeholder={t('footerEmailPlaceholder')}
+                aria-label={t('footerEmailPlaceholder')}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />

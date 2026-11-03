@@ -150,7 +150,7 @@ const RegisterPage: React.FC = () => {
                   placeholder="John Doe"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="input-field"
+                  className="input-field" name="register-name"
                 />
               </div>
 
@@ -163,7 +163,7 @@ const RegisterPage: React.FC = () => {
                   placeholder="you@example.com"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="input-field"
+                  className="input-field" name="register-email"
                 />
               </div>
 
@@ -176,7 +176,7 @@ const RegisterPage: React.FC = () => {
                   placeholder="Min. 6 characters"
                   value={form.password}
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
-                  className="input-field"
+                  className="input-field" name="register-password"
                 />
               </div>
 
@@ -189,7 +189,7 @@ const RegisterPage: React.FC = () => {
                   placeholder={t('authRepeatPassword')}
                   value={form.confirmPassword}
                   onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
-                  className="input-field"
+                  className="input-field" name="register-confirm-password"
                 />
               </div>
 
@@ -222,7 +222,7 @@ const RegisterPage: React.FC = () => {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className="input-field"
-                  style={{ direction: 'ltr' }}
+                  style={{ direction: 'ltr' }} name="register-phone"
                 />
                 <p className="text-[11px] text-gray-400 mt-1">{t('auth.enterPhone')}</p>
               </div>
@@ -254,7 +254,7 @@ const RegisterPage: React.FC = () => {
                   value={otp}
                   onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
                   className="input-field tracking-[0.3em] text-center font-bold"
-                  style={{ direction: 'ltr' }}
+                  style={{ direction: 'ltr' }} name="register-otp"
                 />
               </div>
 

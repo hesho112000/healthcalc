@@ -132,7 +132,7 @@ const LabCard: React.FC<LabCardProps> = ({ condition, onSubmit }) => {
 
       <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
         {fields.map((field) => (
-          <label key={field.key} className="block">
+          <label key={field.key} className="block" htmlFor={`lab-${condition}-${field.key}`}>
             <span className="flex items-center justify-between gap-2 text-sm font-bold text-[#0F4C3A]">
               <span>{t(field.labelKey)}</span>
               <span className="rounded-full bg-[#F4F1EB] text-[10px] font-extrabold text-[#0F4C3A] px-2.5 py-1 tracking-wide">
@@ -145,7 +145,7 @@ const LabCard: React.FC<LabCardProps> = ({ condition, onSubmit }) => {
               value={values[field.key] || ''}
               onChange={(e) => apply(field, e.target.value)}
               placeholder={t(field.hintKey)}
-              className="mt-2 w-full rounded-xl border border-transparent bg-[#F4F1EB] px-4 py-3 text-base text-[#0F4C3A] placeholder-[#94A3B8] outline-none transition-all duration-200 focus:border-[#D4A017] focus:bg-[#FFF] focus:ring-2 focus:ring-[rgba(212,160,23,0.4)]"
+              className="mt-2 w-full rounded-xl border border-transparent bg-[#F4F1EB] px-4 py-3 text-base text-[#0F4C3A] placeholder-[#94A3B8] outline-none transition-all duration-200 focus:border-[#D4A017] focus:bg-[#FFF] focus:ring-2 focus:ring-[rgba(212,160,23,0.4)]" id={`lab-${condition}-${field.key}`} name={`lab-${condition}-${field.key}`}
             />
             <small className="mt-1.5 block text-xs text-[#6B7A75]">{t(field.hintKey)}</small>
           </label>

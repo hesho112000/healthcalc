@@ -481,9 +481,9 @@ const LegacyAdvancedCarePage: React.FC = () => {
             <div className="card bg-gradient-to-br from-gray-50 to-white border-gray-200/80 animate-fade-in">
               <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2"><span className="text-lg">👤</span> {t('pmPatientProfile')}</h3>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
-                <div><label className="block text-xs font-semibold text-gray-600 mb-1">{t('age')}</label><input type="number" value={profile.age} onChange={e => { setProfile(p => ({ ...p, age: +e.target.value })); setProfileApplied(false); }} className="input-field-lg w-full" min={1} max={120} /></div>
-                <div><label className="block text-xs font-semibold text-gray-600 mb-1">{t('weightLabel')} (kg)</label><input type="number" value={profile.weight} onChange={e => { setProfile(p => ({ ...p, weight: +e.target.value })); setProfileApplied(false); }} className="input-field-lg w-full" min={20} max={300} step={0.5} /></div>
-                <div><label className="block text-xs font-semibold text-gray-600 mb-1">{t('height')} (cm)</label><input type="number" value={profile.height} onChange={e => { setProfile(p => ({ ...p, height: +e.target.value })); setProfileApplied(false); }} className="input-field-lg w-full" min={100} max={250} /></div>
+                <div><label className="block text-xs font-semibold text-gray-600 mb-1" htmlFor="field-pages-legacyadvancedcarepage-484">{t('age')}</label><input type="number" value={profile.age} onChange={e => { setProfile(p => ({ ...p, age: +e.target.value })); setProfileApplied(false); }} className="input-field-lg w-full" min={1} max={120} id="field-pages-legacyadvancedcarepage-484" name="field-pages-legacyadvancedcarepage-484" /></div>
+                <div><label className="block text-xs font-semibold text-gray-600 mb-1" htmlFor="field-pages-legacyadvancedcarepage-485">{t('weightLabel')} (kg)</label><input type="number" value={profile.weight} onChange={e => { setProfile(p => ({ ...p, weight: +e.target.value })); setProfileApplied(false); }} className="input-field-lg w-full" min={20} max={300} step={0.5} id="field-pages-legacyadvancedcarepage-485" name="field-pages-legacyadvancedcarepage-485" /></div>
+                <div><label className="block text-xs font-semibold text-gray-600 mb-1" htmlFor="field-pages-legacyadvancedcarepage-486">{t('height')} (cm)</label><input type="number" value={profile.height} onChange={e => { setProfile(p => ({ ...p, height: +e.target.value })); setProfileApplied(false); }} className="input-field-lg w-full" min={100} max={250} id="field-pages-legacyadvancedcarepage-486" name="field-pages-legacyadvancedcarepage-486" /></div>
               </div>
               {Array.from(selectedConditions).map(cid => {
                 const defs = labInputDefs[cid]; if (!defs) return null;
@@ -493,8 +493,8 @@ const LegacyAdvancedCarePage: React.FC = () => {
                     <p className="text-xs font-bold text-gray-700 mb-3 flex items-center gap-2"><span>{info?.icon}</span> {info?.name} — {t('pmLabValues')}</p>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                       {defs.map(d => (
-                        <div key={d.key}><label className="block text-xs font-semibold text-gray-600 mb-1">{d.label} ({d.unit})</label>
-                          <input type="number" step={d.step} min={d.min} max={d.max} value={labValues[cid]?.[d.key] ?? d.placeholder} onChange={e => { setLabValues(prev => ({ ...prev, [cid]: { ...prev[cid], [d.key]: +e.target.value } })); setProfileApplied(false); }} className="input-field-lg w-full" /></div>
+                        <div key={d.key}><label className="block text-xs font-semibold text-gray-600 mb-1" htmlFor={`lab-${cid}-${d.key}`}>{d.label} ({d.unit})</label>
+                          <input type="number" step={d.step} min={d.min} max={d.max} value={labValues[cid]?.[d.key] ?? d.placeholder} onChange={e => { setLabValues(prev => ({ ...prev, [cid]: { ...prev[cid], [d.key]: +e.target.value } })); setProfileApplied(false); }} className="input-field-lg w-full" id={`lab-${cid}-${d.key}`} name={`lab-${cid}-${d.key}`} /></div>
                       ))}
                     </div>
                   </div>
@@ -694,9 +694,9 @@ const LegacyAdvancedCarePage: React.FC = () => {
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                         {checkInFields.map(f => (
                           <div key={f.key}>
-                            <label className="block text-[10px] font-semibold text-gray-600 mb-1">{f.icon} {f.label}</label>
+                            <label className="block text-[10px] font-semibold text-gray-600 mb-1" htmlFor={`field-pages-legacyadvancedcarepage-698-${f.key}`}>{f.icon} {f.label}</label>
                             <input type="number" step={f.step} min={f.min} max={f.max} value={checkInValues[f.key] ?? ''} onChange={e => setCheckInValues(prev => ({ ...prev, [f.key]: +e.target.value }))}
-                              className="input-field-lg w-full" placeholder={String(f.placeholder)} />
+                              className="input-field-lg w-full" placeholder={String(f.placeholder)} id={`field-pages-legacyadvancedcarepage-698-${f.key}`} name={`field-pages-legacyadvancedcarepage-698-${f.key}`} />
                           </div>
                         ))}
                       </div>
@@ -738,24 +738,24 @@ const LegacyAdvancedCarePage: React.FC = () => {
                       <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200 mb-3 animate-fade-in">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
                           <div>
-                            <label className="block text-[10px] font-semibold text-gray-600 mb-1">{t('pmSymptom')}</label>
-                            <select value={triggerSymptom} onChange={e => setTriggerSymptom(e.target.value)} className="input-field-lg w-full">
+                            <label className="block text-[10px] font-semibold text-gray-600 mb-1" htmlFor="field-pages-legacyadvancedcarepage-742">{t('pmSymptom')}</label>
+                            <select value={triggerSymptom} onChange={e => setTriggerSymptom(e.target.value)} className="input-field-lg w-full" id="field-pages-legacyadvancedcarepage-742" name="field-pages-legacyadvancedcarepage-742">
                               <option value="">{t('pmSelectOption')}</option>
                               {(symptomOptions[firstSelected] || []).map(s => <option key={s} value={s}>{s}</option>)}
                             </select>
                           </div>
                           <div>
-                            <label className="block text-[10px] font-semibold text-gray-600 mb-1">{t('pmTriggerFood')}</label>
-                            <select value={triggerCause} onChange={e => setTriggerCause(e.target.value)} className="input-field-lg w-full">
+                            <label className="block text-[10px] font-semibold text-gray-600 mb-1" htmlFor="field-pages-legacyadvancedcarepage-749">{t('pmTriggerFood')}</label>
+                            <select value={triggerCause} onChange={e => setTriggerCause(e.target.value)} className="input-field-lg w-full" id="field-pages-legacyadvancedcarepage-749" name="field-pages-legacyadvancedcarepage-749">
                               <option value="">{t('pmSelectCustom')}</option>
                               {(triggerFoods[firstSelected] || []).map(f => <option key={f} value={f}>{f}</option>)}
                             </select>
                           </div>
                           <div>
-                            <label className="block text-[10px] font-semibold text-gray-600 mb-1">{fmt(t('pmSeverity'), { n: triggerSeverity })}</label>
-                            <input type="range" min={1} max={10} value={triggerSeverity} onChange={e => setTriggerSeverity(+e.target.value)} className="w-full" />
+                            <label className="block text-[10px] font-semibold text-gray-600 mb-1" htmlFor="field-pages-legacyadvancedcarepage-756">{fmt(t('pmSeverity'), { n: triggerSeverity })}</label>
+                            <input type="range" min={1} max={10} value={triggerSeverity} onChange={e => setTriggerSeverity(+e.target.value)} className="w-full" id="field-pages-legacyadvancedcarepage-756" name="field-pages-legacyadvancedcarepage-756" />
                           </div>
-                          <div><label className="block text-[10px] font-semibold text-gray-600 mb-1">{t('pmNotes')}</label><input type="text" value={triggerNotes} onChange={e => setTriggerNotes(e.target.value)} className="input-field-lg w-full" placeholder={t('pmNotesPlaceholder')} /></div>
+                          <div><label className="block text-[10px] font-semibold text-gray-600 mb-1" htmlFor="field-pages-legacyadvancedcarepage-758">{t('pmNotes')}</label><input type="text" value={triggerNotes} onChange={e => setTriggerNotes(e.target.value)} className="input-field-lg w-full" placeholder={t('pmNotesPlaceholder')} id="field-pages-legacyadvancedcarepage-758" name="field-pages-legacyadvancedcarepage-758" /></div>
                         </div>
                         <button onClick={handleLogTrigger} className="px-4 py-2 bg-amber-500 text-white rounded-xl text-xs font-semibold hover:bg-amber-600 transition-all no-print">{t('pmSaveTrigger')}</button>
                       </div>
@@ -793,9 +793,9 @@ const LegacyAdvancedCarePage: React.FC = () => {
                       ))}
                     </div>
                     <div className="flex flex-wrap items-end gap-2">
-                      <input type="text" placeholder={t('pmMilestoneDescPlaceholder')} value={customMilestoneText} onChange={e => setCustomMilestoneText(e.target.value)} className="input-field-lg flex-1 min-w-[150px]" />
-                      <input type="number" placeholder={t('ltpTarget')} value={customMilestoneTarget} onChange={e => setCustomMilestoneTarget(e.target.value)} className="input-field-lg w-24" />
-                      <input type="text" placeholder={t('pmUnit')} value={customMilestoneUnit} onChange={e => setCustomMilestoneUnit(e.target.value)} className="input-field-lg w-20" />
+                      <input type="text" placeholder={t('pmMilestoneDescPlaceholder')} value={customMilestoneText} onChange={e => setCustomMilestoneText(e.target.value)} className="input-field-lg flex-1 min-w-[150px]" id="field-pages-legacyadvancedcarepage-796" name="field-pages-legacyadvancedcarepage-796" />
+                      <input type="number" placeholder={t('ltpTarget')} value={customMilestoneTarget} onChange={e => setCustomMilestoneTarget(e.target.value)} className="input-field-lg w-24" id="field-pages-legacyadvancedcarepage-797" name="field-pages-legacyadvancedcarepage-797" />
+                      <input type="text" placeholder={t('pmUnit')} value={customMilestoneUnit} onChange={e => setCustomMilestoneUnit(e.target.value)} className="input-field-lg w-20" id="field-pages-legacyadvancedcarepage-798" name="field-pages-legacyadvancedcarepage-798" />
                       <button onClick={() => addCustomMilestone(firstSelected)} className="px-4 py-2 bg-primary-600 text-white rounded-xl text-xs font-semibold hover:bg-primary-700 transition-all no-print">{t('pmAdd')}</button>
                     </div>
                   </div>

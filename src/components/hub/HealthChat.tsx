@@ -111,7 +111,7 @@ const HealthChat: React.FC<HealthChatProps> = ({ paid, onUnlock, name }) => {
                 if (e.key === 'Enter') send();
               }}
               placeholder={t('hub.chat.placeholder')}
-              className="flex-1 rounded-xl border border-[#EFEBE4] bg-[#F4F1EB]/40 px-4 py-2.5 text-sm outline-none focus:border-[#D4A017]"
+              className="flex-1 rounded-xl border border-[#EFEBE4] bg-[#F4F1EB]/40 px-4 py-2.5 text-sm outline-none focus:border-[#D4A017]" id="field-components-hub-healthchat-107" name="field-components-hub-healthchat-107"
             />
             <button
               type="button"

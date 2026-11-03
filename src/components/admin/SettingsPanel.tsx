@@ -59,17 +59,17 @@ const SettingsPanel: React.FC = () => {
         <div className="rounded-xl border border-[#EFEBE4] bg-[#FDFBF7] p-5">
           <h3 className="text-sm font-extrabold text-[#0F4C3A]">{t('admin.settings.siteName')}</h3>
           <p className="mt-1 text-xs font-semibold text-[#6B7A75]">{t('admin.settings.siteDescription')}</p>
-          <label className="mt-3 block">
+          <label className="mt-3 block" htmlFor="field-components-admin-settingspanel-64">
             <span className="text-xs font-bold text-[#6B7A75]">{t('admin.settings.siteName')}</span>
-            <input type="text" value={siteName} onChange={(e) => setSiteName(e.target.value)} className={fieldClass} />
+            <input type="text" value={siteName} onChange={(e) => setSiteName(e.target.value)} className={fieldClass} id="field-components-admin-settingspanel-64" name="field-components-admin-settingspanel-64" />
           </label>
-          <label className="mt-3 block">
+          <label className="mt-3 block" htmlFor="field-components-admin-settingspanel-68">
             <span className="text-xs font-bold text-[#6B7A75]">{t('admin.settings.siteDescription')}</span>
             <textarea
               rows={2}
               value={siteDesc}
               onChange={(e) => setSiteDesc(e.target.value)}
-              className={fieldClass}
+              className={fieldClass} id="field-components-admin-settingspanel-68" name="field-components-admin-settingspanel-68"
             />
           </label>
         </div>

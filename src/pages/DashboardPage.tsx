@@ -121,17 +121,17 @@ const DashboardPage: React.FC = () => {
 
               <form onSubmit={handleProfileUpdate} className="space-y-4">
                 <div>
-                  <label className="label">{t('dashName')}</label>
+                  <label className="label" htmlFor="field-pages-dashboardpage-125">{t('dashName')}</label>
                   <input
                     type="text"
                     value={profileForm.name}
                     onChange={(e) => setProfileForm({ name: e.target.value })}
-                    className="input-field"
+                    className="input-field" id="field-pages-dashboardpage-125" name="field-pages-dashboardpage-125"
                   />
                 </div>
                 <div>
-                  <label className="label">{t('dashEmail')}</label>
-                  <input type="email" value={user?.email || ''} className="input-field bg-gray-50" disabled />
+                  <label className="label" htmlFor="field-pages-dashboardpage-134">{t('dashEmail')}</label>
+                  <input type="email" value={user?.email || ''} className="input-field bg-gray-50" disabled id="field-pages-dashboardpage-134" name="field-pages-dashboardpage-134" />
                   <p className="text-[11px] text-gray-400 mt-1">{t('dashEmailCantChange')}</p>
                 </div>
                 {ENABLE_PREMIUM && <div>
@@ -170,24 +170,24 @@ const DashboardPage: React.FC = () => {
 
               <form onSubmit={handlePasswordChange} className="space-y-4">
                 <div>
-                  <label className="label">{t('dashNewPassword')}</label>
+                  <label className="label" htmlFor="field-pages-dashboardpage-174">{t('dashNewPassword')}</label>
                   <input
                     type="password"
                     required
                     placeholder={t('dashMinChars')}
                     value={pwForm.newPw}
                     onChange={(e) => setPwForm({ ...pwForm, newPw: e.target.value })}
-                    className="input-field"
+                    className="input-field" id="field-pages-dashboardpage-174" name="field-pages-dashboardpage-174"
                   />
                 </div>
                 <div>
-                  <label className="label">{t('dashConfirmPassword')}</label>
+                  <label className="label" htmlFor="field-pages-dashboardpage-185">{t('dashConfirmPassword')}</label>
                   <input
                     type="password"
                     required
                     value={pwForm.confirm}
                     onChange={(e) => setPwForm({ ...pwForm, confirm: e.target.value })}
-                    className="input-field"
+                    className="input-field" id="field-pages-dashboardpage-185" name="field-pages-dashboardpage-185"
                   />
                 </div>
                 <button type="submit" className="btn-primary">{t('dashUpdatePassword')}</button>

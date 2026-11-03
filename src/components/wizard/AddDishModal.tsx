@@ -147,7 +147,7 @@ const AddDishModal: React.FC<AddDishModalProps> = ({ open, mode, mealLabel, pool
             onChange={(e) => setQuery(e.target.value)}
             placeholder={language === 'ar' ? 'ابحث في الأطباق…' : 'Search dishes…'}
             aria-label={language === 'ar' ? 'ابحث في الأطباق' : 'Search dishes'}
-            className="flex-1 bg-transparent outline-none text-[14px] text-[#0F4C3A] placeholder:text-[#A0A8A4] min-w-0"
+            className="flex-1 bg-transparent outline-none text-[14px] text-[#0F4C3A] placeholder:text-[#A0A8A4] min-w-0" id="field-components-wizard-adddishmodal-144" name="field-components-wizard-adddishmodal-144"
           />
           <span className="text-[#0F4C3A] text-[16px] shrink-0">🔍</span>
         </div>

@@ -108,7 +108,7 @@ const QuickActions: React.FC = () => {
             onChange={(e) => setWeightInput(e.target.value)}
             inputMode="decimal"
             placeholder="kg"
-            className="w-24 rounded-xl border border-[#EFEBE4] bg-white px-3 py-2 text-sm text-slate-900 outline-0 focus:border-[#D4A017]"
+            className="w-24 rounded-xl border border-[#EFEBE4] bg-white px-3 py-2 text-sm text-slate-900 outline-0 focus:border-[#D4A017]" id="field-components-hub-quickactions-105" name="field-components-hub-quickactions-105"
           />
           <button
             type="button"

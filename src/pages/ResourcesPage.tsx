@@ -318,7 +318,7 @@ const ResourcesPage: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={t('resources.newsletter.placeholder')}
-                  className="flex-1 rounded-full border border-white/25 bg-white/10 px-5 py-3.5 text-sm text-[#FDFBF7] placeholder-[#D8E6DF]/70 outline-none focus:border-[#D4A017]"
+                  className="flex-1 rounded-full border border-white/25 bg-white/10 px-5 py-3.5 text-sm text-[#FDFBF7] placeholder-[#D8E6DF]/70 outline-none focus:border-[#D4A017]" id="field-pages-resourcespage-315" name="field-pages-resourcespage-315"
                 />
                 <button
                   type="submit"

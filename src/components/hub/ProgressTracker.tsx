@@ -166,7 +166,7 @@ const ProgressTracker: React.FC<ProgressTrackerProps> = ({ paid, onUnlock, initi
                   onChange={(e) => setWeightInput(e.target.value)}
                   inputMode="decimal"
                   placeholder={String(initialWeight ?? 0)}
-                  className="w-32 rounded-xl border border-[#EFEBE4] bg-[#F4F1EB]/30 px-3 py-2 text-sm text-slate-900 outline-0 focus:border-[#D4A017]"
+                  className="w-32 rounded-xl border border-[#EFEBE4] bg-[#F4F1EB]/30 px-3 py-2 text-sm text-slate-900 outline-0 focus:border-[#D4A017]" id="field-components-hub-progresstracker-164" name="field-components-hub-progresstracker-164"
                 />
                 <button type="button" onClick={logWeight} className="rounded-full bg-[#0F4C3A] text-[#FDFBF7] px-4 py-2.5 text-xs font-bold hover:bg-[#1a6b53] transition">{t('hub.logWeight')}</button>
               </div>

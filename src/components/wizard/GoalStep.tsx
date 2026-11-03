@@ -109,7 +109,7 @@ const GoalStep: React.FC<GoalStepProps> = ({
 
       {needsTarget && (
         <div className="grid sm:grid-cols-2 gap-4">
-          <label className="block text-sm font-semibold text-slate-900">
+          <label className="block text-sm font-semibold text-slate-900" htmlFor="field-components-wizard-goalstep-114">
             {t(tk('wizard.targetWeight'))}
             <input
               type="number"
@@ -118,7 +118,7 @@ const GoalStep: React.FC<GoalStepProps> = ({
               value={goal.targetWeight}
               placeholder={String(profile.weight)}
               onChange={(e) => onChange({ targetWeight: e.target.value })}
-              className="w-full mt-2 rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900"
+              className="w-full mt-2 rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900" id="field-components-wizard-goalstep-114" name="field-components-wizard-goalstep-114"
             />
             {goal.targetWeight && targetWeight > 0 && !targetIsValid && (
               <span className="mt-1.5 block text-[11px] font-bold text-[#B91C1C]">
@@ -126,7 +126,7 @@ const GoalStep: React.FC<GoalStepProps> = ({
               </span>
             )}
           </label>
-          <label className="block text-sm font-semibold text-slate-900">
+          <label className="block text-sm font-semibold text-slate-900" htmlFor="field-components-wizard-goalstep-131">
             {t(tk('wizard.timeline'))} <output className="ml-2 text-[#D4A017] font-bold">{goal.timelineMonths} {t(tk('wizard.months'))}</output>
             <input
               type="range"
@@ -135,7 +135,7 @@ const GoalStep: React.FC<GoalStepProps> = ({
               step={timelineStep}
               value={goal.timelineMonths}
               onChange={(e) => onChange({ timelineMonths: +e.target.value })}
-              className="w-full mt-3 accent-[#0F4C3A]"
+              className="w-full mt-3 accent-[#0F4C3A]" id="field-components-wizard-goalstep-131" name="field-components-wizard-goalstep-131"
             />
           </label>
         </div>

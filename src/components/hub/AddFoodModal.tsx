@@ -93,7 +93,7 @@ const AddFoodModal: React.FC<AddFoodModalProps> = ({ open, slot, onClose, onAdde
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={t('hub.meals.search')}
-              className="w-full bg-transparent text-sm text-slate-900 outline-0 placeholder:text-[#9AA7A2]"
+              className="w-full bg-transparent text-sm text-slate-900 outline-0 placeholder:text-[#9AA7A2]" id="field-components-hub-addfoodmodal-91" name="field-components-hub-addfoodmodal-91"
             />
           </div>
         </div>

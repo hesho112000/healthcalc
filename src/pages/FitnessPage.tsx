@@ -279,7 +279,7 @@ const FitnessPage: React.FC = () => {
               <div>
                 <label className="wiz-label" htmlFor="wiz-age">{t('fitnessPage.profile.age')}</label>
                 <div className="relative">
-                  <input id="wiz-age" type="number" inputMode="numeric" min={10} max={120} className="wiz-input" value={form.age} onChange={(e) => { setError(''); patch({ age: e.target.value }); }} />
+                  <input id="wiz-age" type="number" inputMode="numeric" min={10} max={120} className="wiz-input" value={form.age} onChange={(e) => { setError(''); patch({ age: e.target.value }); }} name="wiz-age" />
                   {unitSuffix(t('fcYears'))}
                 </div>
               </div>
@@ -297,14 +297,14 @@ const FitnessPage: React.FC = () => {
               <div>
                 <label className="wiz-label" htmlFor="wiz-height">{t('fitnessPage.profile.height')}</label>
                 <div className="relative">
-                  <input id="wiz-height" type="number" inputMode="decimal" min={100} max={250} step={0.5} className="wiz-input" value={form.heightCm} onChange={(e) => { setError(''); patch({ heightCm: e.target.value }); }} />
+                  <input id="wiz-height" type="number" inputMode="decimal" min={100} max={250} step={0.5} className="wiz-input" value={form.heightCm} onChange={(e) => { setError(''); patch({ heightCm: e.target.value }); }} name="wiz-height" />
                   {unitSuffix('cm')}
                 </div>
               </div>
               <div>
                 <label className="wiz-label" htmlFor="wiz-weight">{t('fitnessPage.profile.weight')}</label>
                 <div className="relative">
-                  <input id="wiz-weight" type="number" inputMode="decimal" min={20} max={300} step={0.5} className="wiz-input" value={form.weightKg} onChange={(e) => { setError(''); patch({ weightKg: e.target.value }); }} />
+                  <input id="wiz-weight" type="number" inputMode="decimal" min={20} max={300} step={0.5} className="wiz-input" value={form.weightKg} onChange={(e) => { setError(''); patch({ weightKg: e.target.value }); }} name="wiz-weight" />
                   {unitSuffix('kg')}
                 </div>
               </div>
@@ -312,14 +312,14 @@ const FitnessPage: React.FC = () => {
 
             <div className="mt-6">
               <label className="wiz-label" htmlFor="wiz-activity">{t('fitnessPage.profile.activity')}</label>
-              <select id="wiz-activity" className="wiz-input" value={form.activityLevel} onChange={(e) => patch({ activityLevel: e.target.value })}>
+              <select id="wiz-activity" className="wiz-input" value={form.activityLevel} onChange={(e) => patch({ activityLevel: e.target.value })} name="wiz-activity">
                 {ACT_ORDER.map((k) => <option key={k} value={k}>{t(ACT_LABELS[k] as any)}</option>)}
               </select>
             </div>
 
             <div className="mt-5">
               <label className="wiz-label" htmlFor="fitness-goal">{t('goal')}</label>
-              <select id="fitness-goal" className="wiz-input" value={form.goal} onChange={(e) => patch({ goal: e.target.value as UserGoal | '' })}>
+              <select id="fitness-goal" className="wiz-input" value={form.goal} onChange={(e) => patch({ goal: e.target.value as UserGoal | '' })} name="fitness-goal">
                 <option value="">{t('fitnessPage.profile.goalPlaceholder')}</option>
                 <option value="lose">{t('wizard.step4.goalTypes.lose')}</option>
                 <option value="gain_muscle">{t('wizard.step4.goalTypes.gainMuscle')}</option>

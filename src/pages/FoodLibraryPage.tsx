@@ -105,7 +105,7 @@ export default function FoodLibraryPage() {
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search dishes (e.g. koshari, tea)..."
             className="w-full rounded-xl bg-slate-100/50 px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
-            aria-label="Search dishes"
+            aria-label="Search dishes" id="field-pages-foodlibrarypage-102" name="field-pages-foodlibrarypage-102"
           />
         </div>
       </div>

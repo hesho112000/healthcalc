@@ -315,13 +315,13 @@ const PlanDashboardContent: React.FC = () => {
           </div>
 
           <div className="mb-5">
-            <label className="block text-sm font-semibold text-[#0F4C3A] mb-1.5">{t('dash.plan.weight')} (kg)</label>
+            <label className="block text-sm font-semibold text-[#0F4C3A] mb-1.5" htmlFor="field-pages-plandashboardpage-319">{t('dash.plan.weight')} (kg)</label>
             <input
               type="number"
               value={weightValue ?? ''}
               onChange={(e) => setWeight(Number(e.target.value))}
               placeholder="—"
-              className="w-full rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900"
+              className="w-full rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900" id="field-pages-plandashboardpage-319" name="field-pages-plandashboardpage-319"
             />
           </div>
 

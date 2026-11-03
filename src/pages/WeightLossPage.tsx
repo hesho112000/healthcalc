@@ -3047,7 +3047,7 @@ const WeightLossPage: React.FC = () => {
                       setAge(value);
                       updateProfile({ age: value ? Number(value) : null });
                     }}
-                    className={`${inputDefault} pr-16`}
+                    className={`${inputDefault} pr-16`} name="wz-age"
                   />
                   <span className="absolute inset-y-0 end-4 flex items-center text-[13px] font-bold text-[#A0A8A4]">{t('wizard.unit.years')}</span>
                 </div>
@@ -3111,7 +3111,7 @@ const WeightLossPage: React.FC = () => {
                         setHeight(value);
                         updateProfile({ height: value ? Number(value) : null });
                       }}
-                      className={`${inputDefault} pr-16`}
+                      className={`${inputDefault} pr-16`} name="wz-height"
                     />
                     <span className="absolute inset-y-0 end-4 flex items-center text-[13px] font-bold text-[#A0A8A4]">{t('wizard.unit.cm')}</span>
                   </div>
@@ -3128,7 +3128,7 @@ const WeightLossPage: React.FC = () => {
                         setWeight(value);
                         updateProfile({ weight: value ? Number(value) : null });
                       }}
-                      className={`${inputDefault} pr-16`}
+                      className={`${inputDefault} pr-16`} name="wz-weight"
                     />
                     <span className="absolute inset-y-0 end-4 flex items-center text-[13px] font-bold text-[#A0A8A4]">{t('wizard.unit.kg')}</span>
                   </div>
@@ -3150,7 +3150,7 @@ const WeightLossPage: React.FC = () => {
                       setWaist(value);
                       updateProfile({ waist: value ? Number(value) : null });
                     }}
-                    className={`${inputDefault} pr-16`}
+                    className={`${inputDefault} pr-16`} name="wz-waist"
                   />
                   <span className="absolute inset-y-0 end-4 flex items-center text-[13px] font-bold text-[#A0A8A4]">{t('wizard.unit.cm')}</span>
                 </div>
@@ -3407,11 +3407,11 @@ const WeightLossPage: React.FC = () => {
                 <div className="mt-5 grid grid-cols-2 gap-3">
                   <div>
                     <label className="wiz-label" htmlFor="targetWeight">{t('wizard.step4.targetWeight')}</label>
-                    <input id="targetWeight" value={targetWeight} onChange={(e) => setTargetWeight(e.target.value.replace(/[^0-9.]/g, ''))} inputMode="decimal" className={`${inputDefault} pr-12`} />
+                    <input id="targetWeight" value={targetWeight} onChange={(e) => setTargetWeight(e.target.value.replace(/[^0-9.]/g, ''))} inputMode="decimal" className={`${inputDefault} pr-12`} name="targetWeight" />
                   </div>
                   <div>
                     <label className="wiz-label" htmlFor="timeline">{t('wizard.step4.timeline')}</label>
-                    <input id="timeline" value={timeline} onChange={(e) => setTimeline(e.target.value.replace(/\D/g, ''))} inputMode="numeric" className={`${inputDefault} pr-16`} />
+                    <input id="timeline" value={timeline} onChange={(e) => setTimeline(e.target.value.replace(/\D/g, ''))} inputMode="numeric" className={`${inputDefault} pr-16`} name="timeline" />
                   </div>
                 </div>
                 {lossKgPerWeek !== null && (
@@ -4049,7 +4049,7 @@ const WeightLossPage: React.FC = () => {
                       value={targetWeight}
                       onChange={(e) => setTargetWeight(e.target.value.replace(/[^0-9.]/g, ''))}
                       inputMode="decimal"
-                      className={`${inputDefault} pr-14`}
+                      className={`${inputDefault} pr-14`} name="wz-target"
                     />
                     <span className="absolute inset-y-0 end-4 flex items-center text-[13px] font-bold text-[#A0A8A4]">{t('wizard.unit.kg')}</span>
                   </div>
@@ -4062,7 +4062,7 @@ const WeightLossPage: React.FC = () => {
                       value={timeline}
                       onChange={(e) => setTimeline(e.target.value.replace(/\D/g, ''))}
                       inputMode="numeric"
-                      className={`${inputDefault} pr-14`}
+                      className={`${inputDefault} pr-14`} name="wz-timeline"
                     />
                     <span className="absolute inset-y-0 end-4 flex items-center text-[13px] font-bold text-[#A0A8A4]">{t('wizard.unit.weeks')}</span>
                   </div>
@@ -4720,7 +4720,7 @@ const WeightLossPage: React.FC = () => {
               >
                 <h3 className="text-[17px] font-bold">Send Blueprint</h3>
                 <p className="mt-1 text-[13px] text-zinc-500">Receive the blueprint as a PDF on your email.</p>
-                <label className="mt-4 block text-[12.5px] font-medium text-zinc-700">Email address</label>
+                <label className="mt-4 block text-[12.5px] font-medium text-zinc-700" htmlFor="field-pages-weightlosspage-4724">Email address</label>
                 <input
                   type="email"
                   required
@@ -4728,7 +4728,7 @@ const WeightLossPage: React.FC = () => {
                   onChange={(e) => setEmailText(e.target.value)}
                   placeholder="you@example.com"
                   inputMode="email"
-                  className="mt-1.5 w-full h-[48px] rounded-[14px] border border-[#E9E5DB] px-4 outline-none focus:border-[#D4A017] focus:ring-[3px] focus:ring-[#D4A017]/20 bg-white"
+                  className="mt-1.5 w-full h-[48px] rounded-[14px] border border-[#E9E5DB] px-4 outline-none focus:border-[#D4A017] focus:ring-[3px] focus:ring-[#D4A017]/20 bg-white" id="field-pages-weightlosspage-4724" name="field-pages-weightlosspage-4724"
                 />
                 <div className="mt-5 flex gap-3">
                   <button

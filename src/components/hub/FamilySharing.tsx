@@ -75,7 +75,7 @@ const FamilySharing: React.FC<FamilySharingProps> = ({ paid, onUnlock, onNote })
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder={t(tk('hub.family.email'))}
-          className="flex-1 rounded-xl border border-[#EFEBE4] px-4 py-2.5 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900 text-sm"
+          className="flex-1 rounded-xl border border-[#EFEBE4] px-4 py-2.5 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900 text-sm" id="field-components-hub-familysharing-73" name="field-components-hub-familysharing-73"
         />
         <button
           type="button"

@@ -31,7 +31,7 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ t, profile, onChange, onC
 
   return (
     <div className="space-y-5">
-      <label className="block text-sm font-semibold text-slate-900">
+      <label className="block text-sm font-semibold text-slate-900" htmlFor="field-components-wizard-basicinfostep-36">
         {t(tk('wizard.age'))} <output className="ml-2 text-[#D4A017] font-bold">{profile.age} {t(tk('years'))}</output>
         <input
           type="range"
@@ -39,7 +39,7 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ t, profile, onChange, onC
           max="80"
           value={profile.age}
           onChange={(e) => onChange({ age: +e.target.value })}
-          className="w-full mt-3 accent-[#0F4C3A]"
+          className="w-full mt-3 accent-[#0F4C3A]" id="field-components-wizard-basicinfostep-36" name="field-components-wizard-basicinfostep-36"
         />
       </label>
 
@@ -67,7 +67,7 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ t, profile, onChange, onC
       </div>
 
       <div className="grid sm:grid-cols-2 gap-4">
-        <label className="block text-sm font-semibold text-slate-900">
+        <label className="block text-sm font-semibold text-slate-900" htmlFor="field-components-wizard-basicinfostep-72">
           {t(tk('wizard.height'))} <span className="text-[#4A5A55] font-normal">({t(tk('cm'))})</span>
           <input
             type="number"
@@ -75,10 +75,10 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ t, profile, onChange, onC
             max="250"
             value={profile.height}
             onChange={(e) => onChange({ height: +e.target.value })}
-            className="w-full mt-2 rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900"
+            className="w-full mt-2 rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900" id="field-components-wizard-basicinfostep-72" name="field-components-wizard-basicinfostep-72"
           />
         </label>
-        <label className="block text-sm font-semibold text-slate-900">
+        <label className="block text-sm font-semibold text-slate-900" htmlFor="field-components-wizard-basicinfostep-83">
           {t(tk('wizard.weight'))} <span className="text-[#4A5A55] font-normal">({t(tk('kg'))})</span>
           <input
             type="number"
@@ -86,7 +86,7 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ t, profile, onChange, onC
             max="300"
             value={profile.weight}
             onChange={(e) => onChange({ weight: +e.target.value })}
-            className="w-full mt-2 rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900"
+            className="w-full mt-2 rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900" id="field-components-wizard-basicinfostep-83" name="field-components-wizard-basicinfostep-83"
           />
         </label>
       </div>

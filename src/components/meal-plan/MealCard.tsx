@@ -134,13 +134,13 @@ const MealCard: FC<MealCardProps> = ({
       >
         <div className="min-h-0 overflow-hidden">
           {showDoneControl && (
-            <label className="mt-4 flex min-h-11 cursor-pointer touch-manipulation items-center justify-end gap-2 text-xs font-medium text-gray-700">
+            <label className="mt-4 flex min-h-11 cursor-pointer touch-manipulation items-center justify-end gap-2 text-xs font-medium text-gray-700" htmlFor={`meal-done-${mealType}`}>
               <input
                 type="checkbox"
                 checked={isDone}
                 disabled={!isExpanded}
                 onChange={(event) => onDoneChange(event.target.checked)}
-                className="h-4 w-4 rounded border-gray-300 accent-[#0F4C3A]"
+                className="h-4 w-4 rounded border-gray-300 accent-[#0F4C3A]" id={`meal-done-${mealType}`} name={`meal-done-${mealType}`}
               />
               {isArabic ? 'تحديد الوجبة كمكتملة' : 'Mark as done'}
             </label>

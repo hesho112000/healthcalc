@@ -308,15 +308,15 @@ const HomePage: React.FC = () => {
               <div className="hh-form-grid hh-form-grid--three">
                 <label className="hh-field" htmlFor="hero-profile-age">
                   <span><CalendarDays size={13} /> Age</span>
-                  <span className="hh-field__control"><input id="hero-profile-age" type="number" min="12" max="80" inputMode="numeric" value={profile.age ?? ''} onChange={(event) => { setHeroProfileError(false); updateProfile({ age: event.target.value ? Number(event.target.value) : null }); }} required /><small>years</small></span>
+                  <span className="hh-field__control"><input id="hero-profile-age" type="number" min="12" max="80" inputMode="numeric" value={profile.age ?? ''} onChange={(event) => { setHeroProfileError(false); updateProfile({ age: event.target.value ? Number(event.target.value) : null }); }} required name="hero-profile-age" /><small>years</small></span>
                 </label>
                 <label className="hh-field" htmlFor="hero-profile-height">
                   <span><Ruler size={13} /> Height</span>
-                  <span className="hh-field__control"><input id="hero-profile-height" type="number" min="120" max="220" inputMode="decimal" value={profile.height ?? ''} onChange={(event) => { setHeroProfileError(false); updateProfile({ height: event.target.value ? Number(event.target.value) : null }); }} required /><small>cm</small></span>
+                  <span className="hh-field__control"><input id="hero-profile-height" type="number" min="120" max="220" inputMode="decimal" value={profile.height ?? ''} onChange={(event) => { setHeroProfileError(false); updateProfile({ height: event.target.value ? Number(event.target.value) : null }); }} required name="hero-profile-height" /><small>cm</small></span>
                 </label>
                 <label className="hh-field" htmlFor="hero-profile-weight">
                   <span><Scale size={13} /> Weight</span>
-                  <span className="hh-field__control"><input id="hero-profile-weight" type="number" min="30" max="250" inputMode="decimal" value={profile.weight ?? ''} onChange={(event) => { setHeroProfileError(false); updateProfile({ weight: event.target.value ? Number(event.target.value) : null }); }} required /><small>kg</small></span>
+                  <span className="hh-field__control"><input id="hero-profile-weight" type="number" min="30" max="250" inputMode="decimal" value={profile.weight ?? ''} onChange={(event) => { setHeroProfileError(false); updateProfile({ weight: event.target.value ? Number(event.target.value) : null }); }} required name="hero-profile-weight" /><small>kg</small></span>
                 </label>
               </div>
 
@@ -330,7 +330,7 @@ const HomePage: React.FC = () => {
                 </fieldset>
                 <label className="hh-field hh-goal-field" htmlFor="hero-profile-goal">
                   <span>Your primary goal</span>
-                  <span className="hh-select-wrap"><select id="hero-profile-goal" value={heroGoal} onChange={(event) => handleHeroGoalChange(event.target.value as WizardGoalSelection)}>{HERO_GOALS.map((goal) => <option key={goal.value} value={goal.value}>{goal.label}</option>)}</select><ChevronDown size={15} /></span>
+                  <span className="hh-select-wrap"><select id="hero-profile-goal" value={heroGoal} onChange={(event) => handleHeroGoalChange(event.target.value as WizardGoalSelection)} name="hero-profile-goal">{HERO_GOALS.map((goal) => <option key={goal.value} value={goal.value}>{goal.label}</option>)}</select><ChevronDown size={15} /></span>
                 </label>
               </div>
 
@@ -469,7 +469,7 @@ const HomePage: React.FC = () => {
                   onChange={(event) => setFastingEmail(event.target.value)}
                   placeholder={t('fastingHub.notifyPlaceholder')}
                   aria-label={t('fastingHub.notifyPlaceholder')}
-                  className="fasting-input"
+                  className="fasting-input" id="field-pages-homepage-465" name="field-pages-homepage-465"
                 />
                 <button type="submit" className="btn-primary" disabled={fastingLoading}>
                   {fastingLoading ? 'Sending...' : <>{t('fastingHub.notify')} <ArrowRight size={16} className="rtl:rotate-180" /></>}
@@ -624,7 +624,7 @@ const HomePage: React.FC = () => {
                     value={watchEmail}
                     onChange={(event) => setWatchEmail(event.target.value)}
                     placeholder={t('watchEmailPlaceholder')}
-                    className="min-w-0 flex-1 rounded-full border border-[#0F4C3A]/15 bg-white px-5 py-3 text-sm font-medium text-[#111827] shadow-sm outline-none transition focus:border-[#059669] focus:ring-2 focus:ring-[#059669]/20"
+                    className="min-w-0 flex-1 rounded-full border border-[#0F4C3A]/15 bg-white px-5 py-3 text-sm font-medium text-[#111827] shadow-sm outline-none transition focus:border-[#059669] focus:ring-2 focus:ring-[#059669]/20" name="watch-email"
                   />
                   <button type="submit" className="btn-primary shrink-0" disabled={watchLoading}>
                     {watchLoading ? 'Sending...' : <>{t('watchNotify')} <ArrowRight aria-hidden="true" size={16} className="rtl:rotate-180" /></>}

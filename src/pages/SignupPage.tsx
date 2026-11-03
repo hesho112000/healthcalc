@@ -125,7 +125,7 @@ const SignupPage: React.FC = () => {
                 placeholder="John Doe"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900"
+                className="w-full rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900" name="signup-name"
               />
             </div>
 
@@ -138,7 +138,7 @@ const SignupPage: React.FC = () => {
                 placeholder="you@example.com"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900"
+                className="w-full rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900" name="signup-email"
               />
             </div>
 
@@ -153,7 +153,7 @@ const SignupPage: React.FC = () => {
                   placeholder="••••••••"
                   value={form.password}
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
-                  className="w-full rounded-xl border border-[#EFEBE4] px-4 py-3 pr-14 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900"
+                  className="w-full rounded-xl border border-[#EFEBE4] px-4 py-3 pr-14 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900" name="signup-password"
                 />
                 <button
                   type="button"
@@ -166,7 +166,7 @@ const SignupPage: React.FC = () => {
             </div>
 
             <label htmlFor="signup-terms" className="flex items-start gap-3 text-sm text-[#6B7A75] cursor-pointer">
-              <input id="signup-terms" type="checkbox" checked={terms} onChange={(e) => setTerms(e.target.checked)} className="mt-0.5 h-4 w-4 accent-[#0F4C3A]" />
+              <input id="signup-terms" type="checkbox" checked={terms} onChange={(e) => setTerms(e.target.checked)} className="mt-0.5 h-4 w-4 accent-[#0F4C3A]" name="signup-terms" />
               <span>{t('wizard.signup.terms')}</span>
             </label>
 

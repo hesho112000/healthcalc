@@ -136,37 +136,37 @@ const DiabetesPage: React.FC = () => {
                 </h2>
                 <div className="space-y-5">
                   <div>
-                    <label className="label">{t('fastingGlucose')} (mg/dL)</label>
+                    <label className="label" htmlFor="field-pages-diabetespage-140">{t('fastingGlucose')} (mg/dL)</label>
                     <input type="number" min={40} max={500} value={form.fastingGlucose}
                       onChange={(e) => setForm({ ...form, fastingGlucose: +e.target.value })}
-                      className="input-field-lg" />
+                      className="input-field-lg" id="field-pages-diabetespage-140" name="field-pages-diabetespage-140" />
                     <p className="text-[11px] text-gray-400 mt-1.5">Normal: 70–99 mg/dL (ADA)</p>
                   </div>
                   <div>
-                    <label className="label">{t('postPrandialGlucose')} (mg/dL)</label>
+                    <label className="label" htmlFor="field-pages-diabetespage-147">{t('postPrandialGlucose')} (mg/dL)</label>
                     <input type="number" min={40} max={500} value={form.postPrandialGlucose}
                       onChange={(e) => setForm({ ...form, postPrandialGlucose: +e.target.value })}
-                      className="input-field-lg" />
+                      className="input-field-lg" id="field-pages-diabetespage-147" name="field-pages-diabetespage-147" />
                     <p className="text-[11px] text-gray-400 mt-1.5">Normal: &lt; 140 mg/dL</p>
                   </div>
                   <div>
-                    <label className="label">{t('hba1c')} (%)</label>
+                    <label className="label" htmlFor="field-pages-diabetespage-154">{t('hba1c')} (%)</label>
                     <input type="number" min={3} max={20} step={0.1} value={form.hba1c}
                       onChange={(e) => setForm({ ...form, hba1c: +e.target.value })}
-                      className="input-field-lg" />
+                      className="input-field-lg" id="field-pages-diabetespage-154" name="field-pages-diabetespage-154" />
                     <p className="text-[11px] text-gray-400 mt-1.5">Normal: &lt; 5.7% (ADA)</p>
                   </div>
                   <div>
-                    <label className="label">{t('systolicBP')} (mmHg)</label>
+                    <label className="label" htmlFor="field-pages-diabetespage-161">{t('systolicBP')} (mmHg)</label>
                     <input type="number" min={60} max={250} value={form.systolicBP}
                       onChange={(e) => setForm({ ...form, systolicBP: +e.target.value })}
-                      className="input-field-lg" />
+                      className="input-field-lg" id="field-pages-diabetespage-161" name="field-pages-diabetespage-161" />
                   </div>
                   <div>
-                    <label className="label">{t('diastolicBP')} (mmHg)</label>
+                    <label className="label" htmlFor="field-pages-diabetespage-167">{t('diastolicBP')} (mmHg)</label>
                     <input type="number" min={30} max={150} value={form.diastolicBP}
                       onChange={(e) => setForm({ ...form, diastolicBP: +e.target.value })}
-                      className="input-field-lg" />
+                      className="input-field-lg" id="field-pages-diabetespage-167" name="field-pages-diabetespage-167" />
                   </div>
                   <button type="submit" className="btn-primary w-full py-3.5 text-base bg-rose-600 hover:bg-rose-700">
                     {t('analyzeLabs')}
@@ -188,22 +188,22 @@ const DiabetesPage: React.FC = () => {
                 </h2>
                 <div className="space-y-5">
                   <div>
-                    <label className="label">{t('systolicBP')} (mmHg)</label>
+                    <label className="label" htmlFor="field-pages-diabetespage-192">{t('systolicBP')} (mmHg)</label>
                     <input type="number" min={60} max={250} value={form.systolicBP}
                       onChange={(e) => setForm({ ...form, systolicBP: +e.target.value })}
-                      className="input-field-lg" />
+                      className="input-field-lg" id="field-pages-diabetespage-192" name="field-pages-diabetespage-192" />
                   </div>
                   <div>
-                    <label className="label">{t('diastolicBP')} (mmHg)</label>
+                    <label className="label" htmlFor="field-pages-diabetespage-198">{t('diastolicBP')} (mmHg)</label>
                     <input type="number" min={30} max={150} value={form.diastolicBP}
                       onChange={(e) => setForm({ ...form, diastolicBP: +e.target.value })}
-                      className="input-field-lg" />
+                      className="input-field-lg" id="field-pages-diabetespage-198" name="field-pages-diabetespage-198" />
                   </div>
                   <div>
-                    <label className="label">{t('age')}</label>
+                    <label className="label" htmlFor="field-pages-diabetespage-204">{t('age')}</label>
                     <input type="number" min={14} max={100} value={form.age}
                       onChange={(e) => setForm({ ...form, age: +e.target.value })}
-                      className="input-field-lg" />
+                      className="input-field-lg" id="field-pages-diabetespage-204" name="field-pages-diabetespage-204" />
                   </div>
                   <button type="submit" className="btn-primary w-full py-3.5 text-base bg-rose-600 hover:bg-rose-700">
                     Classify BP

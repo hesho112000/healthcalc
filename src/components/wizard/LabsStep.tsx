@@ -87,7 +87,7 @@ const LabsStep: React.FC<LabsStepProps> = ({ t, selected, hasLabs, setHasLabs, l
       {hasLabs === true && activeFields.length > 0 && (
         <div className="grid sm:grid-cols-2 gap-4 mt-2">
           {activeFields.map((key) => (
-            <label key={key} className="block text-sm font-semibold text-slate-900">
+            <label key={key} className="block text-sm font-semibold text-slate-900" htmlFor={`field-components-wizard-labsstep-92-${key}`}>
               {t(tk(`wizard.lab.${key}`))} <span className="text-[#4A5A55] font-normal">({LAB_FIELD_UNITS[key]})</span>
               <input
                 required
@@ -95,7 +95,7 @@ const LabsStep: React.FC<LabsStepProps> = ({ t, selected, hasLabs, setHasLabs, l
                 value={labs[key] || ''}
                 onChange={(e) => setLabs({ ...labs, [key]: e.target.value })}
                 placeholder={LAB_FIELD_HINTS.has(key) ? t(tk(`advanced.lab.field.${key}.hint`)) : '—'}
-                className="w-full mt-2 rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900"
+                className="w-full mt-2 rounded-xl border border-[#EFEBE4] px-4 py-3 outline-none focus:border-[#D4A017] bg-[#F4F1EB]/40 text-slate-900" id={`field-components-wizard-labsstep-92-${key}`} name={`field-components-wizard-labsstep-92-${key}`}
               />
               {LAB_FIELD_HINTS.has(key) && (
                 <small className="text-[#4A5A55] font-normal">{t(tk(`advanced.lab.field.${key}.hint`))}</small>
