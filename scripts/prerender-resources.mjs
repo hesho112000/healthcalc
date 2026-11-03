@@ -107,7 +107,7 @@ const breadcrumbs = (label) => `<nav aria-label="Breadcrumb" style="${NAV_STYLE}
 const renderHome = ({ articles }) => `<main style="${PAGE_STYLE}">
   <h1 style="${H1_STYLE}">Health Fingerprint: Free Health Calculators and Personalized Care Plans</h1>
   <p style="font-size:1.1rem;color:#4A5A55;margin:0 0 16px;">Health Fingerprint helps you understand your body with free, evidence-based calculators, personalized meal plans, and practical nutrition information. Use the tools below to estimate your needs, then explore our health library for guidance you can act on.</p>
-  <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=860&amp;h=400&amp;fit=crop" alt="A balanced plated dinner with salmon and vegetables" width="860" height="400" loading="eager" style="display:block;width:100%;max-width:680px;height:auto;max-height:320px;object-fit:cover;border-radius:16px;margin:20px 0 28px;">
+  <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="A colorful, healthy meal bowl with fresh vegetables" width="1200" height="800" loading="eager" style="display:block;width:100%;max-width:680px;height:auto;max-height:320px;object-fit:cover;object-position:center;border-radius:16px;margin:20px 0 28px;">
 
   <h2 style="${H2_STYLE}">Free Health Calculators</h2>
   <ul style="${LIST_STYLE}">

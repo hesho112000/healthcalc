@@ -283,9 +283,9 @@ const HomePage: React.FC = () => {
             <h1>Know Your Macros.<br />Eat What You <em>Love.</em></h1>
             <p className="hh-preview__subhead">Calculate your daily calories, explore 18,000+ global dishes, and get personalized meal plans in seconds.</p>
             <img
-              className="mt-6 h-40 w-full max-w-[430px] rounded-2xl object-cover shadow-md"
-              src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=860&h=400&fit=crop"
-              alt="A balanced plated dinner with salmon and vegetables"
+              className="mt-6 h-40 w-full max-w-[430px] rounded-2xl object-cover object-center shadow-md"
+              src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+              alt="A colorful, healthy meal bowl with fresh vegetables"
               width={860}
               height={400}
               fetchPriority="high"
