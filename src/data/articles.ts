@@ -40,13 +40,13 @@ const HBA1C: Article = {
   content: {
     en: `## What Is HbA1c?
 
-HbA1c (glycated hemoglobin) measures the average amount of glucose attached to your red blood cells over the past 8–12 weeks. Unlike a finger-stick test, which gives a single snapshot, HbA1c shows the bigger picture — how well your blood sugar has been controlled over time.
+HbA1c (glycated hemoglobin) measures the average amount of glucose attached to your red blood cells over the past 8–12 weeks. [The CDC explains how the A1C test reflects average blood sugar over roughly three months](https://www.cdc.gov/diabetes/diabetes-testing/prediabetes-a1c-test.html). Unlike a finger-stick test, which gives a single snapshot, HbA1c shows the bigger picture — how well your blood sugar has been controlled over time.
 
 Hemoglobin is the protein inside red blood cells that carries oxygen. When glucose is present in your blood, it binds to hemoglobin. The more glucose you have circulating, the more hemoglobin becomes glycated. Since red blood cells live about 3 months, the HbA1c percentage reflects roughly a 3-month average.
 
 ## Why It Matters
 
-Your HbA1c number is the single most important blood test for diagnosing and monitoring diabetes:
+Your HbA1c number is one important blood test for diagnosing and monitoring diabetes. [The CDC describes the commonly used A1C ranges for prediabetes and diabetes](https://www.cdc.gov/diabetes/diabetes-testing/prediabetes-a1c-test.html):
 
 - Below 5.7% — normal range.
 - 5.7–6.4% — prediabetes.
@@ -66,7 +66,7 @@ Your HbA1c responds slowly but steadily to consistent habits:
 
 ## What Can Fool the Result
 
-Certain situations can make HbA1c less reliable: recent blood loss or transfusions, anemia, pregnancy, kidney disease, and some hemoglobin variants. If your result doesn't match your home readings, discuss this with your clinician.
+Certain situations can make HbA1c less reliable: recent blood loss or transfusions, anemia, pregnancy, kidney disease, and some hemoglobin variants. [The NIDDK explains factors that can affect A1C test accuracy](https://www.niddk.nih.gov/health-information/diagnostic-tests/a1c-test). If your result doesn't match your home readings, discuss this with your clinician.
 
 ## The Bottom Line
 

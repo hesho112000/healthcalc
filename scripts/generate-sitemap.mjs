@@ -9,6 +9,7 @@ config();
 
 const SITE_BASE = (process.env.VITE_SITE_URL || 'https://healthfingerprint.com').replace(/\/+$/, '');
 const OUTPUT_PATH = fileURLToPath(new URL('../public/sitemap.xml', import.meta.url));
+const DISH_DATA_PATH = fileURLToPath(new URL('../.dish-seo-data.json', import.meta.url));
 // Read-only pagination. This script never inserts, updates, or deletes rows.
 // Keep each database read within the requested 50-record limit.
 const BATCH_SIZE = 50;
@@ -21,9 +22,9 @@ const escapeXml = (value) =>
     .replaceAll('>', '&gt;')
     .replaceAll("'", '&apos;');
 
-async function fetchAllDishIds() {
+async function fetchAllDishes() {
   const supabase = createClient(process.env.VITE_SUPABASE_URL, process.env.VITE_SUPABASE_ANON_KEY);
-  const ids = [];
+  const dishes = [];
   let from = 0;
   let totalFetched = 0;
 
@@ -31,7 +32,7 @@ async function fetchAllDishIds() {
     const to = from + BATCH_SIZE - 1;
     const { data, error } = await supabase
       .from('dishes')
-      .select('id')
+      .select('id,name_en,cal_100,protein,carbs,fat')
       .order('id', { ascending: true })
       .range(from, to);
 
@@ -45,9 +46,9 @@ async function fetchAllDishIds() {
       break;
     }
 
-    for (const row of batch) ids.push(row.id);
+    dishes.push(...batch);
     totalFetched += batch.length;
-    console.log(`Fetched ${batch.length} ids (total: ${totalFetched})...`);
+    console.log(`Fetched ${batch.length} dishes (total: ${totalFetched})...`);
 
     if (batch.length < BATCH_SIZE) {
       console.log(`Final batch smaller than ${BATCH_SIZE}. Stopping.`);
@@ -57,7 +58,7 @@ async function fetchAllDishIds() {
     from += BATCH_SIZE;
   }
 
-  return ids;
+  return dishes;
 }
 
 const urlEntry = (loc, changefreq, priority) => `  <url>
@@ -68,7 +69,8 @@ const urlEntry = (loc, changefreq, priority) => `  <url>
 
 const buildSitemap = async () => {
   const { articles, recipes, exerciseGuides } = await loadContentData();
-  const ids = await fetchAllDishIds();
+  const dishes = await fetchAllDishes();
+  const ids = dishes.map((dish) => dish.id);
 
   // Resource pages are the primary editorial content for AdSense review.
   // Keep them at the very top of the sitemap with the highest priority.
@@ -99,6 +101,8 @@ const buildSitemap = async () => {
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${resourceEntries}\n${staticEntries}\n${dishEntries}\n</urlset>\n`;
 
   await writeFile(OUTPUT_PATH, sitemap, 'utf8');
+  // Build-time sidecar consumed by the prerenderer for dish titles and Product schema.
+  await writeFile(DISH_DATA_PATH, JSON.stringify(dishes), 'utf8');
 
   const resourceCount = 1 + articles.length + recipes.length + exerciseGuides.length;
   const staticCount = 8;

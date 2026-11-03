@@ -38,7 +38,7 @@
 .hh-preview__badge svg { color: #a38446; }
 .hh-preview__message h1 { max-width: 590px; margin: 24px 0 16px; color: #153a2e; font-size: clamp(52px, 5.35vw, 74px); font-weight: 760; letter-spacing: -.074em; line-height: .99; }
 .hh-preview__message h1 em { display: inline-block; color: #398263; font-family: Georgia, "Times New Roman", serif; font-weight: 400; letter-spacing: -.065em; }
-.hh-preview__subhead { max-width: 455px; margin: 0; color: #718078; font-size: 14px; font-weight: 420; line-height: 1.82; }
+.hh-preview__subhead { max-width: 455px; margin: 0; color: #4B5563; font-size: 14px; font-weight: 420; line-height: 1.82; }
 .hh-preview__proof { display: flex; align-items: center; gap: 22px; margin-top: 43px; }
 .hh-proof-item { display: grid; grid-template-columns: 31px auto; grid-template-rows: auto auto; align-items: center; column-gap: 8px; }
 .hh-proof-item__icon { width: 30px; height: 30px; grid-column: 1; grid-row: 1 / span 2; display: grid; place-items: center; border: 1px solid #e2ebe0; border-radius: 9px; background: rgba(255, 255, 255, .73); color: #658569; }

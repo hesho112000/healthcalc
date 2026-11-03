@@ -111,6 +111,13 @@ const ArticlePage: React.FC = () => {
           </div>
         </header>
 
+        <aside className="mt-6 rounded-2xl border border-[#EFEBE4] bg-white px-5 py-4 text-sm text-[#4B5563]" aria-label="Article authorship and review">
+          <p className="font-semibold">Reviewed by the HealthFingerprint Medical Team.</p>
+          <Link to="/about" className="mt-1 inline-block font-bold text-[#0F4C3A] underline underline-offset-2">
+            Learn about our editorial approach
+          </Link>
+        </aside>
+
         <article className="mt-10 space-y-5">
           <Suspense
             fallback={

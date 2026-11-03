@@ -1,0 +1,9 @@
+{
+  "name": "HealthFingerprint",
+  "description": "Health and fitness calculators, food nutrition information, personalized nutrition planning, and educational health articles.",
+  "homepage_url": "https://healthfingerprint.com/",
+  "llms_txt_url": "https://healthfingerprint.com/llms.txt",
+  "ai_catalog_url": "https://healthfingerprint.com/ai-catalog.json",
+  "logo_url": "https://healthfingerprint.com/favicon.svg",
+  "medical_disclaimer": "This site provides educational information and tools, not diagnosis or medical care."
+}

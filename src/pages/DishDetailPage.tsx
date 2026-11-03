@@ -233,16 +233,28 @@ const DishDetailPage: React.FC = () => {
 
   const nutritionJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'NutritionInformation',
+    '@type': 'Product',
     name,
-    calories: fmt(caloriesRaw, ' calories'),
-    proteinContent: fmt(proteinRaw, ' g'),
-    carbohydrateContent: fmt(carbsRaw, ' g'),
-    fatContent: fmt(fatRaw, ' g'),
-    fiberContent: fmt(fiberRaw, ' g'),
-    sugarContent: fmt(sugarRaw, ' g'),
-    sodiumContent: fmt(sodiumRaw, ' mg'),
-    saturatedFatContent: fmt(satFatRaw, ' g'),
+    description: `${name} nutrition information per 100 g.`,
+    category: mealType || 'Food',
+    url: `https://healthfingerprint.com/food-library/${dish?.id ?? id}`,
+    additionalProperty: [
+      ['Calories', caloriesRaw, 'kcal per 100 g'],
+      ['Protein', proteinRaw, 'g per 100 g'],
+      ['Carbohydrates', carbsRaw, 'g per 100 g'],
+      ['Fat', fatRaw, 'g per 100 g'],
+      ['Fiber', fiberRaw, 'g per 100 g'],
+      ['Sugar', sugarRaw, 'g per 100 g'],
+      ['Sodium', sodiumRaw, 'mg per 100 g'],
+      ['Saturated fat', satFatRaw, 'g per 100 g'],
+    ]
+      .filter(([, value]) => value != null)
+      .map(([propertyName, value, unitText]) => ({
+        '@type': 'PropertyValue',
+        name: propertyName,
+        value,
+        unitText,
+      })),
   };
 
   if (loading) {
@@ -273,7 +285,7 @@ const DishDetailPage: React.FC = () => {
     <div className="min-h-screen bg-[#FDFBF7]" dir={dir}>
       <SEO type="article" title={`${name} Nutrition Facts & Calories`} description={description} url={`/food-library/${dish.id}`} />
       <Helmet>
-        <script type="application/ld+json">{JSON.stringify(nutritionJsonLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(nutritionJsonLd).replace(/</g, '\\u003c')}</script>
       </Helmet>
 
       <div className="max-w-[720px] mx-auto px-6 pt-16 pb-20">

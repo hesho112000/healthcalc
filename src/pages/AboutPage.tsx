@@ -52,7 +52,7 @@ const AboutPage: React.FC = () => {
             {t('about.hero.subtitle')}
           </p>
           <p className="mx-auto mt-4 max-w-2xl text-[#4A5A55] leading-relaxed">
-            HealthFingerprint develops health education and software tools. Our materials are educational and do not replace individualized care from a qualified healthcare professional.
+            Our health editorial team reviews content for clarity and source quality, and we link to authoritative references where possible. We are not a medical clinic; our tools and articles are educational and do not replace individualized care from a qualified healthcare professional.
           </p>
         </div>
       </section>
@@ -111,7 +111,7 @@ const AboutPage: React.FC = () => {
                 {card.emoji}
               </div>
               <h3 className="mt-4 text-lg font-extrabold text-[#0F4C3A]">{card.title}</h3>
-              <p className="mt-2 text-sm text-[#6B7A75] leading-relaxed">{card.desc}</p>
+              <p className="mt-2 text-sm text-[#4B5563] leading-relaxed">{card.desc}</p>
             </div>
           ))}
         </div>
@@ -132,7 +132,7 @@ const AboutPage: React.FC = () => {
                 <step.icon size={24} />
               </div>
               <h3 className="mt-4 text-lg font-extrabold text-[#0F4C3A]">{step.title}</h3>
-              <p className="mt-2 text-sm text-[#6B7A75] leading-relaxed">{step.desc}</p>
+              <p className="mt-2 text-sm text-[#4B5563] leading-relaxed">{step.desc}</p>
             </div>
           ))}
         </div>

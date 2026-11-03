@@ -10,6 +10,7 @@ const SITE_BASE = (process.env.VITE_SITE_URL || 'https://healthfingerprint.com')
 const DIST_DIR = fileURLToPath(new URL('../dist/', import.meta.url));
 const SHELL_PATH = path.join(DIST_DIR, 'index.html');
 const SITEMAP_PATH = fileURLToPath(new URL('../public/sitemap.xml', import.meta.url));
+const DISH_DATA_PATH = fileURLToPath(new URL('../.dish-seo-data.json', import.meta.url));
 
 const PAGE_STYLE =
   'max-width:860px;margin:0 auto;padding:48px 20px 72px;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#374151;line-height:1.75;';
@@ -17,7 +18,7 @@ const H1_STYLE = 'font-size:2rem;line-height:1.2;color:#0F4C3A;margin:0 0 16px;f
 const H2_STYLE = 'font-size:1.35rem;line-height:1.3;color:#0F4C3A;margin:32px 0 12px;font-weight:800;';
 const LINK_STYLE = 'color:#0F4C3A;text-decoration:underline;text-underline-offset:2px;';
 const LIST_STYLE = 'padding-left:1.25rem;margin:12px 0 20px;';
-const MUTED_STYLE = 'color:#6B7A75;font-size:.95rem;';
+const MUTED_STYLE = 'color:#4B5563;font-size:.95rem;';
 const NAV_STYLE = 'font-size:.9rem;color:#6B7A75;margin-bottom:24px;';
 
 const escapeHtml = (value) =>
@@ -106,6 +107,7 @@ const breadcrumbs = (label) => `<nav aria-label="Breadcrumb" style="${NAV_STYLE}
 const renderHome = ({ articles }) => `<main style="${PAGE_STYLE}">
   <h1 style="${H1_STYLE}">Health Fingerprint: Free Health Calculators and Personalized Care Plans</h1>
   <p style="font-size:1.1rem;color:#4A5A55;margin:0 0 16px;">Health Fingerprint helps you understand your body with free, evidence-based calculators, personalized meal plans, and practical nutrition information. Use the tools below to estimate your needs, then explore our health library for guidance you can act on.</p>
+  <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=860&amp;h=400&amp;fit=crop" alt="A balanced plated dinner with salmon and vegetables" width="860" height="400" loading="eager" style="display:block;width:100%;max-width:680px;height:auto;max-height:320px;object-fit:cover;border-radius:16px;margin:20px 0 28px;">
 
   <h2 style="${H2_STYLE}">Free Health Calculators</h2>
   <ul style="${LIST_STYLE}">
@@ -200,6 +202,7 @@ const renderArticle = ({ article, articles }) => {
   ${breadcrumbs(article.title.en)}
   <article>
     <p style="${MUTED_STYLE}">${escapeHtml(article.category)} &middot; ${article.readTime} min read &middot; ${escapeHtml(article.publishedAt)}</p>
+    <p style="${MUTED_STYLE}">Reviewed by the <a href="/about" style="${LINK_STYLE}">HealthFingerprint Medical Team</a>.</p>
     <h1 style="${H1_STYLE}">${escapeHtml(article.title.en)}</h1>
     <p style="font-size:1.1rem;color:#4A5A55;margin:0 0 16px;">${escapeHtml(article.excerpt.en)}</p>
     ${markdownToHtml(article.content.en)}
@@ -405,6 +408,31 @@ const readDishIdsFromSitemap = async () => {
   return [...ids];
 };
 
+const readDishSeoData = async () => {
+  try {
+    return JSON.parse(await readFile(DISH_DATA_PATH, 'utf8'));
+  } catch (error) {
+    if (error?.code !== 'ENOENT') throw error;
+    return (await readDishIdsFromSitemap()).map((id) => ({ id, name_en: `Dish ${id}` }));
+  }
+};
+
+const productJsonLd = (dish) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: dish.name_en || `Dish ${dish.id}`,
+  description: `Nutrition information per 100 g for ${dish.name_en || `dish ${dish.id}`}.`,
+  url: `${SITE_BASE}/food-library/${dish.id}`,
+  additionalProperty: [
+    ['Calories', dish.cal_100, 'kcal per 100 g'],
+    ['Protein', dish.protein, 'g per 100 g'],
+    ['Carbohydrates', dish.carbs, 'g per 100 g'],
+    ['Fat', dish.fat, 'g per 100 g'],
+  ]
+    .filter(([, value]) => value != null)
+    .map(([name, value, unitText]) => ({ '@type': 'PropertyValue', name, value, unitText })),
+});
+
 const buildPrerenderedPages = async () => {
   const { articles, recipes, exerciseGuides } = await loadContentData();
   // Prerendered routes get a real visible <h1> from the static body, so remove
@@ -498,12 +526,13 @@ const buildPrerenderedPages = async () => {
       title: 'About Us | Health Fingerprint',
       description: "Learn about Health Fingerprint's mission to make evidence-based health guidance accessible to everyone.",
     },
-    ...(await readDishIdsFromSitemap()).map((id) => ({
-      route: `/food-library/${id}`,
-      title: `Dish ${id} Nutrition Facts & Calories | Health Fingerprint`,
-      description: `View nutrition facts, calories, protein, carbohydrates, and fat for dish ${id} in the Health Fingerprint food library.`,
+    ...(await readDishSeoData()).map((dish) => ({
+      route: `/food-library/${dish.id}`,
+      title: `${dish.name_en || `Dish ${dish.id}`} Nutrition Facts & Calories | Health Fingerprint`,
+      description: `Nutrition facts per 100 g for ${dish.name_en || `dish ${dish.id}`}: ${dish.cal_100 ?? 'N/A'} kcal, ${dish.protein ?? 'N/A'} g protein, ${dish.carbs ?? 'N/A'} g carbohydrates, and ${dish.fat ?? 'N/A'} g fat.`,
+      jsonLd: productJsonLd(dish),
     })),
-  ].map(({ route, title, description }) => ({
+  ].map(({ route, title, description, jsonLd }) => ({
     route,
     body: '',
     meta: {
@@ -511,6 +540,7 @@ const buildPrerenderedPages = async () => {
       description,
       canonical: `${SITE_BASE}${route}`,
       type: 'website',
+      jsonLd,
     },
   }));
 

@@ -1,0 +1,13 @@
+{
+  "name": "HealthFingerprint",
+  "description": "Free health and fitness calculators, personalized nutrition planning, food nutrition information, and educational health resources.",
+  "url": "https://healthfingerprint.com/",
+  "llms_txt": "https://healthfingerprint.com/llms.txt",
+  "pages": [
+    { "name": "About and editorial approach", "url": "https://healthfingerprint.com/about" },
+    { "name": "Food library", "url": "https://healthfingerprint.com/food-library" },
+    { "name": "Health resources", "url": "https://healthfingerprint.com/resources" },
+    { "name": "Contact", "url": "https://healthfingerprint.com/contact" }
+  ],
+  "medical_disclaimer": "Content and tools are educational and do not replace individualized care from a qualified healthcare professional."
+}

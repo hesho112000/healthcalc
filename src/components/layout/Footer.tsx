@@ -56,7 +56,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="footer-col">
-            <h4>{t('footerPlatform')}</h4>
+            <h3>{t('footerPlatform')}</h3>
             <Link to="/weight-loss">{t('footerPlan')}</Link>
             <Link to="/fitness">{t('footerCalories')}</Link>
             <Link to="/fitness">{t('footerBmi')}</Link>
@@ -64,13 +64,13 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="footer-col">
-            <h4>{t('footerLearn')}</h4>
+            <h3>{t('footerLearn')}</h3>
             <Link to="/about">{t('footerAbout')}</Link>
             <Link to="/resources">{t('footerResources')}</Link>
           </div>
 
           <div className="footer-col">
-            <h4>{t('footerHelp')}</h4>
+            <h3>{t('footerHelp')}</h3>
             <Link to="/faq">{t('footerFaq')}</Link>
             <Link to="/contact">{t('footerContact')}</Link>
             <Link to="/privacy">{t('footerPrivacy')}</Link>
@@ -79,7 +79,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="footer-col">
-            <h4>{t('footerNews')}</h4>
+            <h3>{t('footerNews')}</h3>
             <p className="footer-news-text">{t('footerNewsText')}</p>
             <form className="footer-form" onSubmit={handleSubscribe}>
               <input

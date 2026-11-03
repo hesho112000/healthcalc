@@ -282,6 +282,14 @@ const HomePage: React.FC = () => {
             <span className="hh-preview__badge"><Sparkles size={13} /> The Ultimate Health &amp; Diet Platform</span>
             <h1>Know Your Macros.<br />Eat What You <em>Love.</em></h1>
             <p className="hh-preview__subhead">Calculate your daily calories, explore 18,000+ global dishes, and get personalized meal plans in seconds.</p>
+            <img
+              className="mt-6 h-40 w-full max-w-[430px] rounded-2xl object-cover shadow-md"
+              src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=860&h=400&fit=crop"
+              alt="A balanced plated dinner with salmon and vegetables"
+              width={860}
+              height={400}
+              fetchPriority="high"
+            />
             <div className="hh-preview__proof" aria-label="Platform highlights">
               <div className="hh-proof-item"><span className="hh-proof-item__icon"><UtensilsCrossed size={16} /></span><strong>18,000<sup>+</sup></strong><small>Dishes</small></div>
               <span className="hh-preview__proof-divider" />
@@ -327,7 +335,7 @@ const HomePage: React.FC = () => {
               </div>
 
               {heroProfileError && <p className="hh-profile-error" role="alert">Add your age, measurements, and gender to get started.</p>}
-              <button className="hh-calculate-button" type="submit">Calculate My Results <span>🚀</span><ArrowRight size={19} /></button>
+              <button className="hh-calculate-button" type="submit" aria-label="Calculate my health and nutrition results">Calculate My Results <ArrowRight size={19} aria-hidden="true" /></button>
               <p className="hh-no-signup"><ShieldCheck size={14} /> No sign-up required. Instant results.</p>
             </form>
           </section>
@@ -347,7 +355,7 @@ const HomePage: React.FC = () => {
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="btn-primary"
             >
-              Go to Calculator ⬆️
+              Return to calculator
             </button>
           </div>
         </div>
@@ -375,7 +383,7 @@ const HomePage: React.FC = () => {
               {countryKitchens.slice(1, 4).map((k, i) => (
                 <Link to="/weight-loss" key={k.id} className={`kitchen-tile kitchen-tile-small${i === 2 ? ' kitchen-tile-wide' : ''}`}>
                   <span className="kitchen-flag-wrap"><Flag countryCode={k.flag} alt={kitchenData.getKitchenCountry(k, language)} className="h-7 w-10" /></span>
-                  <h4 className="kitchen-tile-name small">{kitchenData.getKitchenName(k, language)}</h4>
+                  <h3 className="kitchen-tile-name small">{kitchenData.getKitchenName(k, language)}</h3>
                   <p className="kitchen-tile-meta">{fmtCount(k.total)} {t('kitchensDishes')}</p>
                 </Link>
               ))}
