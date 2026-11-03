@@ -6,6 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
 import { supabaseClient as supabase } from '../lib/supabaseClient';
 import { Dish } from '../components/food/DishCard';
+import { getArticleBySlug, lt } from '../data/articles';
 
 type DbDish = Dish & {
   fiber?: number | null;
@@ -24,6 +25,13 @@ const RECIPE_LINKS = [
   { keywords: ['tabbouleh', 'lebanese'], slug: 'lebanese-tabbouleh', title: 'Lebanese Tabbouleh Recipe' },
   { keywords: ['kabsa', 'saudi'], slug: 'saudi-kabsa-lighter', title: 'Saudi Kabsa Recipe' },
   { keywords: ['lentil soup', 'moroccan'], slug: 'moroccan-lentil-soup', title: 'Moroccan Lentil Soup Recipe' },
+];
+
+const NUTRITION_ARTICLE_SLUGS = [
+  'understanding-hba1c',
+  'lower-cholesterol-naturally',
+  'strength-training-diabetes',
+  'mindful-eating',
 ];
 
 const DishDetailPage: React.FC = () => {
@@ -161,6 +169,24 @@ const DishDetailPage: React.FC = () => {
     if (!dish) return null;
     const searchText = (dish.name_en || '').toLowerCase();
     return RECIPE_LINKS.find(recipe => recipe.keywords.some(keyword => searchText.includes(keyword))) || null;
+  })();
+
+  const nutritionArticles = (() => {
+    if (!dish) return [] as Array<{ slug: string; title: string }>;
+    const slugs: string[] = [];
+
+    if ((sugarRaw ?? 0) > 15 || (carbsRaw ?? 0) >= 40) slugs.push('understanding-hba1c');
+    if ((fatRaw ?? 0) >= 18 || (sodiumRaw ?? 0) >= 400) slugs.push('lower-cholesterol-naturally');
+    if ((proteinRaw ?? 0) >= 20) slugs.push('strength-training-diabetes');
+    slugs.push('mindful-eating');
+
+    return Array.from(new Set(slugs))
+      .filter((slug) => NUTRITION_ARTICLE_SLUGS.includes(slug))
+      .flatMap((slug) => {
+        const article = getArticleBySlug(slug);
+        return article ? [{ slug: article.slug, title: lt(article.title, language) }] : [];
+      })
+      .slice(0, 3);
   })();
 
   const nutritionJsonLd = {
@@ -308,6 +334,28 @@ const DishDetailPage: React.FC = () => {
               {matchedRecipe.title}
               <ArrowRight size={16} className="rtl:rotate-180" />
             </Link>
+          </section>
+        )}
+
+        {nutritionArticles.length > 0 && (
+          <section className="mt-6 rounded-3xl border border-[#EFEBE4] bg-white p-6">
+            <h2 className="text-lg font-extrabold text-[#0F4C3A]">Read more about nutrition</h2>
+            <p className="mt-3 text-[15px] leading-relaxed text-[#4A5A55]">
+              Want more context for this dish? These evidence-based guides explain how to fit it into a balanced eating pattern.
+            </p>
+            <ul className="mt-4 space-y-3">
+              {nutritionArticles.map((article) => (
+                <li key={article.slug}>
+                  <Link
+                    to={`/resources/article/${article.slug}`}
+                    className="inline-flex items-center gap-2 text-sm font-extrabold text-[#0F4C3A] hover:text-[#D4A017] transition-colors"
+                  >
+                    {article.title}
+                    <ArrowRight size={16} className="rtl:rotate-180" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </section>
         )}
       </div>

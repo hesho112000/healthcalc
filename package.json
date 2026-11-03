@@ -10,6 +10,8 @@
     "start": "concurrently \"npm run dev:api\" \"npm run dev:ui\"",
     "build": "vite build",
     "prebuild": "node scripts/generate-sitemap.mjs",
+    "postbuild": "node scripts/prerender-resources.mjs",
+    "prerender": "node scripts/prerender-resources.mjs",
     "preview": "vite preview",
     "validate": "node scripts/validate-data.mjs",
     "validate:baseline": "node scripts/check-validation-baseline.mjs",

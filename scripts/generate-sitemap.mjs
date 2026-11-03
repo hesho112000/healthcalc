@@ -3,12 +3,15 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { config } from 'dotenv';
 import { createClient } from '@supabase/supabase-js';
+import { loadContentData } from './content-data.mjs';
 
 config();
 
 const SITE_BASE = (process.env.VITE_SITE_URL || 'https://healthfingerprint.com').replace(/\/+$/, '');
 const OUTPUT_PATH = fileURLToPath(new URL('../public/sitemap.xml', import.meta.url));
+// Read-only pagination. This script never inserts, updates, or deletes rows.
 const BATCH_SIZE = 1000;
+const TODAY = new Date().toISOString().slice(0, 10);
 
 const escapeXml = (value) =>
   String(value)
@@ -57,62 +60,54 @@ async function fetchAllDishIds() {
   return ids;
 }
 
+const urlEntry = (loc, changefreq, priority) => `  <url>
+    <loc>${escapeXml(loc)}</loc>
+    <lastmod>${TODAY}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority.toFixed(1)}</priority>
+  </url>`;
+
 const buildSitemap = async () => {
+  const { articles, recipes, exerciseGuides } = await loadContentData();
   const ids = await fetchAllDishIds();
 
-  const staticEntries = `
-  <url>
-    <loc>${escapeXml(`${SITE_BASE}/`)}</loc>
-    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>${escapeXml(`${SITE_BASE}/food-library`)}</loc>
-    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>${escapeXml(`${SITE_BASE}/resources`)}</loc>
-    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>${escapeXml(`${SITE_BASE}/about`)}</loc>
-    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>${escapeXml(`${SITE_BASE}/privacy`)}</loc>
-    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>${escapeXml(`${SITE_BASE}/contact`)}</loc>
-    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
+  // Resource pages are the primary editorial content for AdSense review.
+  // Keep them at the very top of the sitemap with the highest priority.
+  const resourceEntries = [
+    urlEntry(`${SITE_BASE}/resources`, 'weekly', 1.0),
+    ...articles.map((article) => urlEntry(`${SITE_BASE}/resources/article/${article.slug}`, 'weekly', 1.0)),
+    ...recipes.map((recipe) => urlEntry(`${SITE_BASE}/resources/recipe/${recipe.slug}`, 'weekly', 1.0)),
+    ...exerciseGuides.map((guide) => urlEntry(`${SITE_BASE}/resources/exercise/${guide.slug}`, 'weekly', 1.0)),
+  ].join('\n');
 
-`;
+  const staticEntries = [
+    urlEntry(`${SITE_BASE}/`, 'monthly', 1.0),
+    urlEntry(`${SITE_BASE}/food-library`, 'monthly', 0.7),
+    urlEntry(`${SITE_BASE}/about`, 'yearly', 0.5),
+    urlEntry(`${SITE_BASE}/privacy`, 'yearly', 0.4),
+    urlEntry(`${SITE_BASE}/terms`, 'yearly', 0.4),
+    urlEntry(`${SITE_BASE}/contact`, 'yearly', 0.4),
+    urlEntry(`${SITE_BASE}/cookies`, 'yearly', 0.3),
+    urlEntry(`${SITE_BASE}/disclaimer`, 'yearly', 0.3),
+  ].join('\n');
 
+  // Dish pages are intentionally de-prioritized so crawlers do not sample the
+  // long-tail food database as the site's primary content.
   const dishEntries = ids
-    .map((id) => `  <url>
-    <loc>${escapeXml(`${SITE_BASE}/food-library/${id}`)}</loc>
-    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>`)
+    .map((id) => urlEntry(`${SITE_BASE}/food-library/${id}`, 'monthly', 0.3))
     .join('\n');
 
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${staticEntries}\n${dishEntries}\n</urlset>\n`;
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${resourceEntries}\n${staticEntries}\n${dishEntries}\n</urlset>\n`;
 
   await writeFile(OUTPUT_PATH, sitemap, 'utf8');
-  console.log(`SUCCESS: Sitemap generated with ${6 + ids.length} URLs at ${path.relative(process.cwd(), OUTPUT_PATH)}`);
+
+  const resourceCount = 1 + articles.length + recipes.length + exerciseGuides.length;
+  const staticCount = 8;
+  console.log(
+    `SUCCESS: Sitemap generated with ${resourceCount + staticCount + ids.length} URLs ` +
+      `(${resourceCount} resources, ${staticCount} static, ${ids.length} dishes) at ` +
+      `${path.relative(process.cwd(), OUTPUT_PATH)}`,
+  );
 };
 
 buildSitemap().catch((err) => {
