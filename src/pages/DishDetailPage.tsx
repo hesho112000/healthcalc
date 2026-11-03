@@ -45,6 +45,16 @@ const RECIPE_LINKS = [
   { keywords: ['lentil', 'soup'], slug: 'vegan-lentil-vegetable-soup', title: 'Vegan Lentil & Vegetable Soup' },
   { keywords: ['apple', 'cinnamon', 'oatmeal'], slug: 'apple-cinnamon-baked-oatmeal', title: 'Apple Cinnamon Baked Oatmeal' },
   { keywords: ['stuffed pepper', 'ground chicken'], slug: 'ground-chicken-stuffed-peppers', title: 'Ground Chicken Stuffed Bell Peppers' },
+  { keywords: ['mediterranean', 'grilled chicken', 'salad'], slug: 'mediterranean-grilled-chicken-salad', title: 'Mediterranean Grilled Chicken Salad' },
+  { keywords: ['cod', 'lemon', 'olives'], slug: 'baked-cod-lemon-olives', title: 'Baked Cod with Lemon & Olives' },
+  { keywords: ['quinoa', 'tabbouleh', 'chickpeas'], slug: 'quinoa-tabbouleh-chickpeas', title: 'Quinoa Tabbouleh with Chickpeas' },
+  { keywords: ['zucchini', 'noodles', 'pesto'], slug: 'zucchini-noodles-pesto', title: 'Zucchini Noodles with Pesto & Cherry Tomatoes' },
+  { keywords: ['stuffed peppers', 'feta'], slug: 'greek-stuffed-peppers-feta', title: 'Greek Stuffed Peppers with Feta' },
+  { keywords: ['shrimp', 'scampi', 'pasta'], slug: 'shrimp-scampi-whole-wheat', title: 'Shrimp Scampi with Whole Wheat Pasta' },
+  { keywords: ['eggplant', 'parmesan'], slug: 'eggplant-parmesan-light', title: 'Eggplant Parmesan (Light & Baked)' },
+  { keywords: ['tuscan', 'white bean', 'kale', 'soup'], slug: 'tuscan-white-bean-kale-soup', title: 'Tuscan White Bean & Kale Soup' },
+  { keywords: ['caprese', 'avocado', 'salad'], slug: 'caprese-avocado-salad', title: 'Caprese Avocado Salad' },
+  { keywords: ['salmon', 'asparagus'], slug: 'lemon-herb-salmon-asparagus', title: 'Lemon Herb Salmon with Asparagus' },
 ];
 
 const NUTRITION_ARTICLE_SLUGS = [

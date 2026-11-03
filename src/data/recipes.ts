@@ -878,6 +878,196 @@ const GROUND_CHICKEN_STUFFED_PEPPERS: Recipe = {
   nutrition: { calories: 380, protein: 33, carbs: 39, fat: 11 },
 };
 
+const MEDITERRANEAN_GRILLED_CHICKEN_SALAD: Recipe = {
+  id: 'mediterranean-grilled-chicken-salad',
+  slug: 'mediterranean-grilled-chicken-salad',
+  emoji: '🥗',
+  title: { en: 'Mediterranean Grilled Chicken Salad', ar: 'سلطة دجاج مشوي متوسطية' },
+  cuisine: { en: 'Mediterranean', ar: 'متوسطي' },
+  description: { en: 'Grilled chicken over crisp romaine, cucumber, tomatoes, chickpeas, olives, and feta with lemon dressing.', ar: 'دجاج مشوي فوق خس روماني مقرمش وخيار وطماطم وحمص وزيتون وفيتا مع صلصة الليمون.' },
+  prepTime: { en: '30 min', ar: '30 دقيقة' },
+  ingredients: {
+    en: ['2 boneless skinless chicken breasts (about 12 oz)', '1 tsp olive oil', '1 tsp dried oregano', '4 cups chopped romaine lettuce', '1 cup cucumber, diced', '1 cup cherry tomatoes, halved', '1/2 cup chickpeas, drained and rinsed', '1/4 cup sliced Kalamata olives', '1/4 cup crumbled feta', '2 tbsp lemon juice'],
+    ar: ['صدرا دجاج منزوعا العظم والجلد (نحو 340 غرامًا)', 'ملعقة صغيرة زيت زيتون', 'ملعقة صغيرة أوريغانو مجفف', '4 أكواب خس روماني مفروم', 'كوب خيار مكعبات', 'كوب طماطم كرزية مقطعة أنصافًا', 'نصف كوب حمص مصفى ومغسول', 'ربع كوب زيتون كالاماتا شرائح', 'ربع كوب جبن فيتا مفتت', 'ملعقتان كبيرتان عصير ليمون'],
+  },
+  instructions: {
+    en: ['Rub chicken with olive oil and oregano; grill over medium heat until the center reaches 165°F.', 'Rest chicken for 5 minutes, then slice across the grain.', 'Whisk lemon juice with 1 tablespoon water and a little black pepper.', 'Arrange romaine, cucumber, tomatoes, chickpeas, and olives in a serving bowl.', 'Top with chicken and feta, drizzle with lemon dressing, and serve.'],
+    ar: ['تبّل الدجاج بزيت الزيتون والأوريغانو واشوه على حرارة متوسطة حتى تبلغ حرارة الوسط 165 فهرنهايت.', 'اترك الدجاج 5 دقائق ثم قطعه عكس اتجاه الألياف.', 'اخفق عصير الليمون مع ملعقة ماء وقليل من الفلفل الأسود.', 'رتب الخس والخيار والطماطم والحمص والزيتون في وعاء تقديم.', 'أضف الدجاج والفيتا واسكب صلصة الليمون ثم قدّم.'],
+  },
+  nutrition: { calories: 430, protein: 40, carbs: 32, fat: 17 },
+};
+
+const BAKED_COD_LEMON_OLIVES: Recipe = {
+  id: 'baked-cod-lemon-olives',
+  slug: 'baked-cod-lemon-olives',
+  emoji: '🐟',
+  title: { en: 'Baked Cod with Lemon & Olives', ar: 'سمك القد المخبوز بالليمون والزيتون' },
+  cuisine: { en: 'Mediterranean', ar: 'متوسطي' },
+  description: { en: 'Flaky cod baked with lemon, tomatoes, garlic, and briny olives, served with whole-grain couscous.', ar: 'سمك قد طري مخبوز مع الليمون والطماطم والثوم والزيتون، يقدم مع الكسكس الكامل.' },
+  prepTime: { en: '30 min', ar: '30 دقيقة' },
+  ingredients: {
+    en: ['4 cod fillets (5 oz each)', '1 lemon, thinly sliced', '1 cup cherry tomatoes, halved', '1/3 cup sliced Kalamata olives', '2 cloves garlic, minced', '1 tbsp olive oil', '1 tsp dried oregano', '2 cups cooked whole-wheat couscous', '2 tbsp chopped parsley'],
+    ar: ['4 شرائح سمك قد (نحو 140 غرامًا لكل شريحة)', 'ليمونة مقطعة شرائح رفيعة', 'كوب طماطم كرزية مقطعة أنصافًا', 'ثلث كوب زيتون كالاماتا شرائح', 'فصان ثوم مفرومان', 'ملعقة كبيرة زيت زيتون', 'ملعقة صغيرة أوريغانو مجفف', 'كوبان كسكس قمح كامل مطبوخ', 'ملعقتان كبيرتان بقدونس مفروم'],
+  },
+  instructions: {
+    en: ['Heat oven to 400°F and lightly oil a baking dish.', 'Arrange cod in the dish; scatter tomatoes, olives, garlic, and oregano around it.', 'Drizzle with olive oil and lay lemon slices over the fish.', 'Bake 12–16 minutes until cod flakes easily and reaches 145°F.', 'Sprinkle with parsley and serve with warm couscous and pan juices.'],
+    ar: ['سخّن الفرن إلى 400 فهرنهايت وادهن طبق خبز بقليل من الزيت.', 'رتب سمك القد في الطبق وانثر الطماطم والزيتون والثوم والأوريغانو حوله.', 'أضف زيت الزيتون وضع شرائح الليمون فوق السمك.', 'اخبز 12 إلى 16 دقيقة حتى يتفتت السمك بسهولة وتبلغ حرارته 145 فهرنهايت.', 'رش البقدونس وقدّم مع الكسكس الدافئ وعصارة الطبق.'],
+  },
+  nutrition: { calories: 390, protein: 36, carbs: 42, fat: 10 },
+};
+
+const QUINOA_TABBOULEH_CHICKPEAS: Recipe = {
+  id: 'quinoa-tabbouleh-chickpeas',
+  slug: 'quinoa-tabbouleh-chickpeas',
+  emoji: '🌿',
+  title: { en: 'Quinoa Tabbouleh with Chickpeas', ar: 'تبولة الكينوا مع الحمص' },
+  cuisine: { en: 'Mediterranean', ar: 'متوسطي' },
+  description: { en: 'A bright parsley and mint salad with fluffy quinoa, chickpeas, cucumber, tomato, and fresh lemon.', ar: 'سلطة منعشة بالبقدونس والنعناع مع كينوا خفيفة وحمص وخيار وطماطم وليمون طازج.' },
+  prepTime: { en: '25 min', ar: '25 دقيقة' },
+  ingredients: {
+    en: ['2 cups cooked quinoa, cooled', '1 cup finely chopped parsley', '1/3 cup chopped fresh mint', '1 cup cherry tomatoes, finely diced', '1/2 English cucumber, diced', '1 can chickpeas, drained and rinsed', '3 tbsp lemon juice', '2 tbsp extra-virgin olive oil', '2 green onions, thinly sliced'],
+    ar: ['كوبان كينوا مطبوخة ومبردة', 'كوب بقدونس مفروم ناعمًا', 'ثلث كوب نعناع طازج مفروم', 'كوب طماطم كرزية مفرومة ناعمًا', 'نصف خيار إنجليزي مكعبات', 'علبة حمص مصفاة ومغسولة', '3 ملاعق كبيرة عصير ليمون', 'ملعقتان كبيرتان زيت زيتون بكر ممتاز', 'بصلتان خضراوان مقطعتان شرائح رفيعة'],
+  },
+  instructions: {
+    en: ['Whisk lemon juice and olive oil in a large bowl.', 'Add parsley, mint, tomatoes, cucumber, green onions, and chickpeas.', 'Fold in cooled quinoa until evenly mixed.', 'Season with black pepper and a pinch of salt if desired.', 'Let stand for 10 minutes so flavors blend; serve chilled or at room temperature.'],
+    ar: ['اخفق عصير الليمون وزيت الزيتون في وعاء كبير.', 'أضف البقدونس والنعناع والطماطم والخيار والبصل الأخضر والحمص.', 'أضف الكينوا المبردة وقلّب حتى تمتزج المكونات.', 'تبّل بالفلفل الأسود ورشة ملح حسب الرغبة.', 'اتركها 10 دقائق لتمتزج النكهات ثم قدمها باردة أو بحرارة الغرفة.'],
+  },
+  nutrition: { calories: 380, protein: 15, carbs: 57, fat: 12 },
+};
+
+const ZUCCHINI_NOODLES_PESTO: Recipe = {
+  id: 'zucchini-noodles-pesto',
+  slug: 'zucchini-noodles-pesto',
+  emoji: '🍅',
+  title: { en: 'Zucchini Noodles with Pesto & Cherry Tomatoes', ar: 'نودلز الكوسا بالبيستو والطماطم الكرزية' },
+  cuisine: { en: 'Italian', ar: 'إيطالي' },
+  description: { en: 'Tender zucchini ribbons tossed with basil pesto, white beans, and sweet cherry tomatoes for a quick Italian-inspired meal.', ar: 'شرائح كوسا طرية ممزوجة ببيستو الريحان والفاصوليا البيضاء والطماطم الكرزية لوجبة سريعة مستوحاة من المطبخ الإيطالي.' },
+  prepTime: { en: '20 min', ar: '20 دقيقة' },
+  ingredients: {
+    en: ['4 medium zucchini, spiralized', '1 cup cherry tomatoes, halved', '1 cup cannellini beans, drained and rinsed', '1/4 cup basil pesto', '1 tsp olive oil', '2 tbsp grated Parmesan', '2 tbsp chopped fresh basil', '1/4 tsp black pepper'],
+    ar: ['4 حبات كوسا متوسطة مقطعة بشكل حلزوني', 'كوب طماطم كرزية مقطعة أنصافًا', 'كوب فاصوليا كانيليني مصفاة ومغسولة', 'ربع كوب بيستو ريحان', 'ملعقة صغيرة زيت زيتون', 'ملعقتان كبيرتان بارميزان مبشور', 'ملعقتان كبيرتان ريحان طازج مفروم', 'ربع ملعقة صغيرة فلفل أسود'],
+  },
+  instructions: {
+    en: ['Warm olive oil in a large skillet over medium heat.', 'Add tomatoes and cook 2–3 minutes until they begin to soften.', 'Add zucchini noodles and cannellini beans; toss for 2–3 minutes until just tender.', 'Remove from heat and fold in pesto and black pepper.', 'Finish with Parmesan and fresh basil; serve immediately to keep the zucchini firm.'],
+    ar: ['سخّن زيت الزيتون في مقلاة كبيرة على حرارة متوسطة.', 'أضف الطماطم واطهها دقيقتين إلى 3 حتى تبدأ باللين.', 'أضف نودلز الكوسا والفاصوليا وقلّب دقيقتين إلى 3 حتى تلين قليلًا.', 'ارفع المقلاة عن النار وأضف البيستو والفلفل الأسود.', 'زيّن بالبارميزان والريحان الطازج وقدّم فورًا للحفاظ على تماسك الكوسا.'],
+  },
+  nutrition: { calories: 350, protein: 16, carbs: 39, fat: 16 },
+};
+
+const GREEK_STUFFED_PEPPERS_FETA: Recipe = {
+  id: 'greek-stuffed-peppers-feta',
+  slug: 'greek-stuffed-peppers-feta',
+  emoji: '🫑',
+  title: { en: 'Greek Stuffed Peppers with Feta', ar: 'فلفل يوناني محشو بجبن الفيتا' },
+  cuisine: { en: 'Mediterranean', ar: 'متوسطي' },
+  description: { en: 'Bell peppers baked with quinoa, chickpeas, spinach, oregano, and tangy feta.', ar: 'فلفل حلو مخبوز ومحشو بالكينوا والحمص والسبانخ والأوريغانو وجبن الفيتا المنعش.' },
+  prepTime: { en: '50 min', ar: '50 دقيقة' },
+  ingredients: {
+    en: ['4 large bell peppers, halved lengthwise and seeded', '1 1/2 cups cooked quinoa', '1 cup chickpeas, drained and rinsed', '1 cup chopped baby spinach', '1/2 cup diced tomato', '1/3 cup crumbled feta', '1 tbsp olive oil', '1 tsp dried oregano', '1 clove garlic, minced'],
+    ar: ['4 حبات فلفل حلو كبيرة مقسومة طوليًا ومنزوعة البذور', 'كوب ونصف كينوا مطبوخة', 'كوب حمص مصفى ومغسول', 'كوب سبانخ صغيرة مفرومة', 'نصف كوب طماطم مكعبات', 'ثلث كوب جبن فيتا مفتت', 'ملعقة كبيرة زيت زيتون', 'ملعقة صغيرة أوريغانو مجفف', 'فص ثوم مفروم'],
+  },
+  instructions: {
+    en: ['Heat oven to 375°F and place pepper halves cut-side up in a baking dish.', 'Mix quinoa, chickpeas, spinach, tomato, garlic, oregano, and olive oil.', 'Spoon filling evenly into the peppers and add 1/4 cup water to the dish.', 'Cover loosely with foil and bake 30 minutes until peppers begin to soften.', 'Uncover, sprinkle with feta, and bake 10 minutes more; serve warm.'],
+    ar: ['سخّن الفرن إلى 375 فهرنهايت وضع أنصاف الفلفل في طبق الخبز والجهة المقطوعة للأعلى.', 'اخلط الكينوا والحمص والسبانخ والطماطم والثوم والأوريغانو وزيت الزيتون.', 'وزّع الحشوة داخل الفلفل وأضف ربع كوب ماء إلى الطبق.', 'غطّ الطبق بورق ألمنيوم واخبز 30 دقيقة حتى يبدأ الفلفل باللين.', 'اكشف الطبق ورش الفيتا واخبز 10 دقائق إضافية ثم قدّم دافئًا.'],
+  },
+  nutrition: { calories: 380, protein: 16, carbs: 52, fat: 13 },
+};
+
+const SHRIMP_SCAMPI_WHOLE_WHEAT: Recipe = {
+  id: 'shrimp-scampi-whole-wheat',
+  slug: 'shrimp-scampi-whole-wheat',
+  emoji: '🍤',
+  title: { en: 'Shrimp Scampi with Whole Wheat Pasta', ar: 'روبيان سكامبي مع معكرونة القمح الكامل' },
+  cuisine: { en: 'Italian', ar: 'إيطالي' },
+  description: { en: 'Garlic-lemon shrimp tossed with whole-wheat linguine, parsley, and a light olive-oil sauce.', ar: 'روبيان بالثوم والليمون ممزوج بمعكرونة لينغويني من القمح الكامل والبقدونس وصلصة زيت زيتون خفيفة.' },
+  prepTime: { en: '25 min', ar: '25 دقيقة' },
+  ingredients: {
+    en: ['8 oz whole-wheat linguine', '1 lb large shrimp, peeled and deveined', '1 tbsp olive oil', '3 cloves garlic, thinly sliced', '1/2 cup low-sodium vegetable broth', '2 tbsp lemon juice', '1/4 tsp red pepper flakes, optional', '1/4 cup chopped parsley', '2 tbsp grated Parmesan'],
+    ar: ['225 غرام لينغويني من القمح الكامل', '450 غرام روبيان كبير مقشر ومنزوع العرق', 'ملعقة كبيرة زيت زيتون', '3 فصوص ثوم مقطعة شرائح رفيعة', 'نصف كوب مرق خضار قليل الصوديوم', 'ملعقتان كبيرتان عصير ليمون', 'ربع ملعقة صغيرة رقائق فلفل أحمر، اختياري', 'ربع كوب بقدونس مفروم', 'ملعقتان كبيرتان بارميزان مبشور'],
+  },
+  instructions: {
+    en: ['Cook linguine in boiling water according to package directions; reserve 1/2 cup pasta water and drain.', 'Warm olive oil in a skillet and cook garlic for 30 seconds without browning.', 'Add shrimp and cook 1–2 minutes per side until pink and opaque.', 'Pour in broth and lemon juice; simmer briefly, then toss with pasta and a splash of pasta water.', 'Finish with parsley, red pepper flakes if using, and Parmesan; serve hot.'],
+    ar: ['اطه اللينغويني في ماء يغلي حسب تعليمات العبوة، واحتفظ بنصف كوب من ماء الطهي ثم صفّها.', 'سخّن زيت الزيتون في مقلاة واطه الثوم 30 ثانية دون تحميره.', 'أضف الروبيان واطهه دقيقة إلى دقيقتين لكل جانب حتى يصبح ورديًا ومعتمًا.', 'أضف المرق وعصير الليمون واتركه قليلًا ثم قلّب المعكرونة مع رشة من ماء الطهي.', 'أضف البقدونس ورقائق الفلفل إن رغبت والبارميزان ثم قدّم ساخنًا.'],
+  },
+  nutrition: { calories: 430, protein: 34, carbs: 54, fat: 10 },
+};
+
+const EGGPLANT_PARMESAN_LIGHT: Recipe = {
+  id: 'eggplant-parmesan-light',
+  slug: 'eggplant-parmesan-light',
+  emoji: '🍆',
+  title: { en: 'Eggplant Parmesan (Light & Baked)', ar: 'بارميزان الباذنجان الخفيف والمخبوز' },
+  cuisine: { en: 'Italian', ar: 'إيطالي' },
+  description: { en: 'Oven-baked eggplant layered with tomato marinara, part-skim mozzarella, and Parmesan for a lighter Italian classic.', ar: 'باذنجان مخبوز في الفرن بطبقات من صلصة المارينارا والموزاريلا قليلة الدسم والبارميزان لطبق إيطالي أخف.' },
+  prepTime: { en: '60 min', ar: '60 دقيقة' },
+  ingredients: {
+    en: ['2 medium eggplants, cut into 1/2-inch rounds', '1 large egg, beaten', '1 cup whole-wheat breadcrumbs', '2 cups low-sodium marinara sauce', '1 cup shredded part-skim mozzarella', '1/4 cup grated Parmesan', '1 tsp dried oregano', '1 tbsp chopped fresh basil'],
+    ar: ['حبتا باذنجان متوسطتان مقطعتان شرائح بسماكة 1/2 بوصة', 'بيضة كبيرة مخفوقة', 'كوب فتات خبز من القمح الكامل', 'كوبان صلصة مارينارا قليلة الصوديوم', 'كوب موزاريلا قليلة الدسم مبشورة', 'ربع كوب بارميزان مبشور', 'ملعقة صغيرة أوريغانو مجفف', 'ملعقة كبيرة ريحان طازج مفروم'],
+  },
+  instructions: {
+    en: ['Heat oven to 425°F and line two baking sheets with parchment.', 'Dip eggplant rounds in egg, coat with breadcrumbs, and arrange in one layer.', 'Bake 20 minutes, turning once, until lightly golden and tender.', 'Spread a thin layer of marinara in a baking dish; layer eggplant, sauce, mozzarella, and Parmesan.', 'Bake 15–18 minutes until bubbling; rest 5 minutes and finish with basil.'],
+    ar: ['سخّن الفرن إلى 425 فهرنهايت وبطّن صينيتين بورق الخبز.', 'اغمس شرائح الباذنجان في البيض ثم غطّها بفتات الخبز ورتبها بطبقة واحدة.', 'اخبز 20 دقيقة مع قلبها مرة حتى تصبح ذهبية قليلًا وطرية.', 'افرد طبقة رقيقة من المارينارا في طبق خبز ثم رتب الباذنجان والصلصة والموزاريلا والبارميزان.', 'اخبز 15 إلى 18 دقيقة حتى تظهر الفقاعات، واتركه 5 دقائق وزيّنه بالريحان.'],
+  },
+  nutrition: { calories: 360, protein: 22, carbs: 42, fat: 12 },
+};
+
+const TUSCAN_WHITE_BEAN_KALE_SOUP: Recipe = {
+  id: 'tuscan-white-bean-kale-soup',
+  slug: 'tuscan-white-bean-kale-soup',
+  emoji: '🍲',
+  title: { en: 'Tuscan White Bean & Kale Soup', ar: 'شوربة توسكانية بالفاصوليا البيضاء والكرنب' },
+  cuisine: { en: 'Mediterranean', ar: 'متوسطي' },
+  description: { en: 'A rustic Tuscan-inspired soup with white beans, kale, carrots, celery, tomatoes, and rosemary.', ar: 'شوربة ريفية مستوحاة من توسكانا بالفاصوليا البيضاء والكرنب والجزر والكرفس والطماطم وإكليل الجبل.' },
+  prepTime: { en: '40 min', ar: '40 دقيقة' },
+  ingredients: {
+    en: ['1 tbsp olive oil', '1 yellow onion, diced', '2 carrots, diced', '2 celery stalks, diced', '2 cans cannellini beans, drained and rinsed', '1 can diced tomatoes', '6 cups low-sodium vegetable broth', '4 cups chopped kale', '1 tsp dried rosemary', '1 tbsp lemon juice'],
+    ar: ['ملعقة كبيرة زيت زيتون', 'بصلة صفراء مكعبات', 'حبتا جزر مكعبات', 'عودا كرفس مكعبات', 'علبتا فاصوليا كانيليني مصفاتان ومغسولتان', 'علبة طماطم مكعبات', '6 أكواب مرق خضار قليل الصوديوم', '4 أكواب كرنب مفروم', 'ملعقة صغيرة إكليل جبل مجفف', 'ملعقة كبيرة عصير ليمون'],
+  },
+  instructions: {
+    en: ['Heat olive oil in a heavy soup pot; cook onion, carrots, and celery for 6 minutes.', 'Add beans, tomatoes, broth, and rosemary and bring to a gentle boil.', 'Simmer uncovered for 15 minutes so the vegetables soften and flavors combine.', 'Stir in kale and cook 5–7 minutes until tender; mash a few beans to thicken if desired.', 'Finish with lemon juice and black pepper and serve warm.'],
+    ar: ['سخّن زيت الزيتون في قدر شوربة ثقيل واطه البصل والجزر والكرفس 6 دقائق.', 'أضف الفاصوليا والطماطم والمرق وإكليل الجبل واتركه حتى يغلي برفق.', 'اتركه يغلي بهدوء دون غطاء 15 دقيقة حتى تلين الخضار وتمتزج النكهات.', 'أضف الكرنب واطهه 5 إلى 7 دقائق حتى يلين؛ اهرس بعض الفاصوليا للتكثيف حسب الرغبة.', 'أضف عصير الليمون والفلفل الأسود وقدّم دافئًا.'],
+  },
+  nutrition: { calories: 300, protein: 17, carbs: 48, fat: 7 },
+};
+
+const CAPRESE_AVOCADO_SALAD: Recipe = {
+  id: 'caprese-avocado-salad',
+  slug: 'caprese-avocado-salad',
+  emoji: '🥑',
+  title: { en: 'Caprese Avocado Salad', ar: 'سلطة كابريزي بالأفوكادو' },
+  cuisine: { en: 'Mediterranean', ar: 'متوسطي' },
+  description: { en: 'Ripe tomatoes, creamy avocado, fresh mozzarella, and basil with a simple balsamic dressing.', ar: 'طماطم ناضجة وأفوكادو كريمي وموزاريلا طازجة وريحان مع صلصة بلسميك بسيطة.' },
+  prepTime: { en: '15 min', ar: '15 دقيقة' },
+  ingredients: {
+    en: ['3 medium ripe tomatoes, sliced', '1 ripe avocado, sliced', '8 oz fresh mozzarella, sliced', '1 cup fresh basil leaves', '2 cups baby arugula', '1 tbsp extra-virgin olive oil', '1 tbsp balsamic vinegar', '1/4 tsp black pepper'],
+    ar: ['3 حبات طماطم ناضجة متوسطة مقطعة شرائح', 'حبة أفوكادو ناضجة مقطعة شرائح', '225 غرام موزاريلا طازجة مقطعة شرائح', 'كوب أوراق ريحان طازجة', 'كوبان جرجير صغير', 'ملعقة كبيرة زيت زيتون بكر ممتاز', 'ملعقة كبيرة خل بلسميك', 'ربع ملعقة صغيرة فلفل أسود'],
+  },
+  instructions: {
+    en: ['Arrange arugula on a serving platter.', 'Layer tomato, mozzarella, and avocado slices over the greens, tucking basil leaves between them.', 'Whisk olive oil and balsamic vinegar together.', 'Drizzle dressing over the salad, season with black pepper, and serve immediately.'],
+    ar: ['رتب الجرجير في طبق تقديم.', 'ضع شرائح الطماطم والموزاريلا والأفوكادو فوق الخضار مع توزيع أوراق الريحان بينها.', 'اخفق زيت الزيتون والخل البلسميك معًا.', 'اسكب الصلصة فوق السلطة وتبّل بالفلفل الأسود وقدّم فورًا.'],
+  },
+  nutrition: { calories: 380, protein: 17, carbs: 24, fat: 27 },
+};
+
+const LEMON_HERB_SALMON_ASPARAGUS: Recipe = {
+  id: 'lemon-herb-salmon-asparagus',
+  slug: 'lemon-herb-salmon-asparagus',
+  emoji: '🍋',
+  title: { en: 'Lemon Herb Salmon with Asparagus', ar: 'سلمون بالأعشاب والليمون مع الهليون' },
+  cuisine: { en: 'Mediterranean', ar: 'متوسطي' },
+  description: { en: 'Oven-roasted salmon with lemon, dill, and parsley alongside tender asparagus and fluffy quinoa.', ar: 'سلمون مشوي بالفرن مع الليمون والشبت والبقدونس إلى جانب الهليون الطري والكينوا الخفيفة.' },
+  prepTime: { en: '30 min', ar: '30 دقيقة' },
+  ingredients: {
+    en: ['4 salmon fillets (5 oz each)', '1 lb asparagus, trimmed', '1 lemon, zested and juiced', '1 tbsp olive oil', '1 clove garlic, minced', '1 tbsp chopped fresh dill', '1 tbsp chopped parsley', '2 cups cooked quinoa', '1/4 tsp black pepper'],
+    ar: ['4 شرائح سلمون (نحو 140 غرامًا لكل شريحة)', '450 غرام هليون منزوع الأطراف', 'بشر وعصير ليمونة', 'ملعقة كبيرة زيت زيتون', 'فص ثوم مفروم', 'ملعقة كبيرة شبت طازج مفروم', 'ملعقة كبيرة بقدونس مفروم', 'كوبان كينوا مطبوخة', 'ربع ملعقة صغيرة فلفل أسود'],
+  },
+  instructions: {
+    en: ['Heat oven to 400°F and place salmon and asparagus on a parchment-lined sheet pan.', 'Mix lemon zest and juice with olive oil, garlic, dill, parsley, and black pepper.', 'Spoon herb mixture over salmon and asparagus and turn asparagus to coat.', 'Roast 12–16 minutes until salmon flakes easily and reaches 145°F; check asparagus for tenderness.', 'Serve with warm quinoa and any lemon-herb juices from the pan.'],
+    ar: ['سخّن الفرن إلى 400 فهرنهايت وضع السلمون والهليون في صينية مبطنة بورق الخبز.', 'اخلط بشر الليمون وعصيره مع زيت الزيتون والثوم والشبت والبقدونس والفلفل.', 'اسكب خليط الأعشاب فوق السلمون والهليون وقلّب الهليون لتغطيته.', 'اشوِ 12 إلى 16 دقيقة حتى يتفتت السلمون بسهولة وتبلغ حرارته 145 فهرنهايت، وتأكد من طراوة الهليون.', 'قدّم مع الكينوا الدافئة وعصارة الليمون والأعشاب من الصينية.'],
+  },
+  nutrition: { calories: 440, protein: 38, carbs: 37, fat: 16 },
+};
+
 export const RECIPES: Recipe[] = [
   FOUL,
   CHICKEN_RICE,
@@ -905,6 +1095,16 @@ export const RECIPES: Recipe[] = [
   VEGAN_LENTIL_VEGETABLE_SOUP,
   APPLE_CINNAMON_BAKED_OATMEAL,
   GROUND_CHICKEN_STUFFED_PEPPERS,
+  MEDITERRANEAN_GRILLED_CHICKEN_SALAD,
+  BAKED_COD_LEMON_OLIVES,
+  QUINOA_TABBOULEH_CHICKPEAS,
+  ZUCCHINI_NOODLES_PESTO,
+  GREEK_STUFFED_PEPPERS_FETA,
+  SHRIMP_SCAMPI_WHOLE_WHEAT,
+  EGGPLANT_PARMESAN_LIGHT,
+  TUSCAN_WHITE_BEAN_KALE_SOUP,
+  CAPRESE_AVOCADO_SALAD,
+  LEMON_HERB_SALMON_ASPARAGUS,
 ];
 
 export const getRecipeBySlug = (slug: string): Recipe | undefined =>
