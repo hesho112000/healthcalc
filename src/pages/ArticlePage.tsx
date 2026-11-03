@@ -57,8 +57,12 @@ const ArticlePage: React.FC = () => {
     headline: title,
     description,
     datePublished: article.publishedAt,
-    author: { '@type': 'Organization', name: 'HealthCalc' },
-    publisher: { '@type': 'Organization', name: 'HealthCalc', url: 'https://healthfingerprint.com/' },
+    author: {
+      '@type': 'Person',
+      name: 'HealthFingerprint Medical Team',
+      url: 'https://healthfingerprint.com/about',
+    },
+    publisher: { '@type': 'Organization', name: 'Health Fingerprint', url: 'https://healthfingerprint.com/' },
     mainEntityOfPage: `https://healthfingerprint.com/resources/article/${article.slug}`,
   };
 

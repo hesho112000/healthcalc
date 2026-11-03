@@ -4,4 +4,28 @@ Disallow: /admin
 Disallow: /admin-login
 Disallow: /dashboard
 
+User-agent: GPTBot
+Allow: /
+Disallow: /admin
+Disallow: /admin-login
+Disallow: /dashboard
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin
+Disallow: /admin-login
+Disallow: /dashboard
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin
+Disallow: /admin-login
+Disallow: /dashboard
+
+User-agent: CCBot
+Allow: /
+Disallow: /admin
+Disallow: /admin-login
+Disallow: /dashboard
+
 Sitemap: https://healthfingerprint.com/sitemap.xml

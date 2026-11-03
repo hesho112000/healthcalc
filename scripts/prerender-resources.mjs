@@ -9,6 +9,7 @@ config();
 const SITE_BASE = (process.env.VITE_SITE_URL || 'https://healthfingerprint.com').replace(/\/+$/, '');
 const DIST_DIR = fileURLToPath(new URL('../dist/', import.meta.url));
 const SHELL_PATH = path.join(DIST_DIR, 'index.html');
+const SITEMAP_PATH = fileURLToPath(new URL('../public/sitemap.xml', import.meta.url));
 
 const PAGE_STYLE =
   'max-width:860px;margin:0 auto;padding:48px 20px 72px;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#374151;line-height:1.75;';
@@ -312,7 +313,11 @@ const articleJsonLd = (article) => ({
   headline: article.title.en,
   description: article.excerpt.en,
   datePublished: article.publishedAt,
-  author: { '@type': 'Organization', name: 'Health Fingerprint' },
+  author: {
+    '@type': 'Person',
+    name: 'HealthFingerprint Medical Team',
+    url: `${SITE_BASE}/about`,
+  },
   publisher: { '@type': 'Organization', name: 'Health Fingerprint', url: `${SITE_BASE}/` },
   mainEntityOfPage: `${SITE_BASE}/resources/article/${article.slug}`,
 });
@@ -385,6 +390,19 @@ const applyBody = (html, bodyHtml, noscript) => {
     throw new Error('Could not find the #root container in dist/index.html.');
   }
   return html.replace(rootPattern, `<div id="root">${bodyHtml}${noscript}</div>\n  </body>`);
+};
+
+const readDishIdsFromSitemap = async () => {
+  const sitemap = await readFile(SITEMAP_PATH, 'utf8');
+  const ids = new Set();
+  for (const [, rawLoc] of sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)) {
+    const loc = rawLoc.replaceAll('&amp;', '&');
+    const url = new URL(loc, `${SITE_BASE}/`);
+    if (url.origin !== new URL(SITE_BASE).origin) continue;
+    const match = url.pathname.match(/^\/food-library\/([^/]+)\/?$/);
+    if (match) ids.add(match[1]);
+  }
+  return [...ids];
 };
 
 const buildPrerenderedPages = async () => {
@@ -461,6 +479,43 @@ const buildPrerenderedPages = async () => {
     })),
   ];
 
+  // These React routes also need route-specific metadata in the raw HTML,
+  // before the client bundle runs and Helmet takes over.
+  const metadataOnlyPages = [
+    {
+      route: '/food-library',
+      title: 'Food Library | Browse 18,000+ Dishes | Health Fingerprint',
+      description:
+        'Explore detailed nutrition data, macros, and calories for over 18,980 local and international dishes. Search and filter our comprehensive food database.',
+    },
+    {
+      route: '/fitness',
+      title: 'Fitness & Health Calculator | Health Fingerprint',
+      description: 'Calculate your BMI, BMR, TDEE, and VO2 Max instantly with evidence-based formulas.',
+    },
+    {
+      route: '/about',
+      title: 'About Us | Health Fingerprint',
+      description: "Learn about Health Fingerprint's mission to make evidence-based health guidance accessible to everyone.",
+    },
+    ...(await readDishIdsFromSitemap()).map((id) => ({
+      route: `/food-library/${id}`,
+      title: `Dish ${id} Nutrition Facts & Calories | Health Fingerprint`,
+      description: `View nutrition facts, calories, protein, carbohydrates, and fat for dish ${id} in the Health Fingerprint food library.`,
+    })),
+  ].map(({ route, title, description }) => ({
+    route,
+    body: '',
+    meta: {
+      title,
+      description,
+      canonical: `${SITE_BASE}${route}`,
+      type: 'website',
+    },
+  }));
+
+  pages.push(...metadataOnlyPages);
+
   for (const page of pages) {
     const html = applyHead(applyBody(shell, page.body, noscript), page.meta);
     const outputPath =
@@ -474,7 +529,8 @@ const buildPrerenderedPages = async () => {
 
   console.log(
     `SUCCESS: Prerendered ${pages.length} static pages ` +
-      `(${1 + articles.length + recipes.length + exerciseGuides.length} resource routes) in dist/.`,
+      `(${1 + articles.length + recipes.length + exerciseGuides.length} resource routes, ` +
+      `${metadataOnlyPages.length} metadata routes) in dist/.`,
   );
 };
 

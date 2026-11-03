@@ -41,7 +41,11 @@ const SEO: React.FC<SEOProps> = ({
     localized.searchParams.set('lang', lang);
     return localized.toString();
   };
-  const canonicalUrl = localizedUrl(language);
+  // Language is selected through client state/query parameters, not distinct
+  // indexable URLs. Keep the canonical tied to the route itself.
+  const canonicalUrl = new URL(pageUrl);
+  canonicalUrl.search = '';
+  canonicalUrl.hash = '';
   const currentLocale = locale || language || 'en';
 
   return (
@@ -50,13 +54,13 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
       <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
-      <link rel="canonical" href={canonicalUrl} />
+      <link rel="canonical" href={canonicalUrl.toString()} />
 
       <meta property="og:type" content={type} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
-      <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:url" content={canonicalUrl.toString()} />
       <meta property="og:site_name" content="Health Fingerprint" />
       <meta property="og:locale" content={currentLocale} />
 

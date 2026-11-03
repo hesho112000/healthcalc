@@ -12,7 +12,6 @@ const OUTPUT_PATH = fileURLToPath(new URL('../public/sitemap.xml', import.meta.u
 // Read-only pagination. This script never inserts, updates, or deletes rows.
 // Keep each database read within the requested 50-record limit.
 const BATCH_SIZE = 50;
-const TODAY = new Date().toISOString().slice(0, 10);
 
 const escapeXml = (value) =>
   String(value)
@@ -63,7 +62,6 @@ async function fetchAllDishIds() {
 
 const urlEntry = (loc, changefreq, priority) => `  <url>
     <loc>${escapeXml(loc)}</loc>
-    <lastmod>${TODAY}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority.toFixed(1)}</priority>
   </url>`;
