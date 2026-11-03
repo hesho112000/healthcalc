@@ -574,6 +574,310 @@ const GREEK_YOGURT_BERRY_PARFAIT: Recipe = {
   nutrition: { calories: 300, protein: 25, carbs: 36, fat: 6 },
 };
 
+const HEALTHY_TURKEY_BURGER_BOWL: Recipe = {
+  id: 'healthy-turkey-burger-bowl',
+  slug: 'healthy-turkey-burger-bowl',
+  emoji: '🍔',
+  title: { en: 'Healthy Turkey Burger Bowl', ar: 'وعاء برغر الديك الرومي الصحي' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'Seasoned turkey burger, brown rice, crisp vegetables, and a tangy yogurt sauce in a filling bowl.', ar: 'برغر ديك رومي متبل مع الأرز البني والخضار الطازجة وصلصة اللبن المنعشة في وعاء مشبع.' },
+  prepTime: { en: '30 min', ar: '30 دقيقة' },
+  ingredients: {
+    en: ['1 lb lean ground turkey', '1 tsp garlic powder', '1/2 tsp smoked paprika', '1 tsp olive oil', '2 cups cooked brown rice', '2 cups shredded lettuce', '1 cup chopped tomato', '1/2 red onion, sliced', '1/2 cup plain Greek yogurt', '1 tbsp lemon juice'],
+    ar: ['450 غرام ديك رومي مفروم قليل الدهون', 'ملعقة صغيرة مسحوق ثوم', 'نصف ملعقة صغيرة بابريكا مدخنة', 'ملعقة صغيرة زيت زيتون', 'كوبان أرز بني مطبوخ', 'كوبان خس مفروم', 'كوب طماطم مقطعة', 'نصف بصلة حمراء مقطعة', 'نصف كوب لبن يوناني سادة', 'ملعقة كبيرة عصير ليمون'],
+  },
+  instructions: {
+    en: ['Mix turkey with garlic powder and paprika; shape into four thin patties.', 'Heat oil in a skillet and cook patties for 5–6 minutes per side until browned and 165°F inside.', 'Stir Greek yogurt with lemon juice and a spoonful of water to make a sauce.', 'Divide warm rice, lettuce, tomato, and onion among bowls.', 'Slice the turkey patties, place over the bowls, and drizzle with yogurt sauce.'],
+    ar: ['اخلط الديك الرومي مع مسحوق الثوم والبابريكا وشكّله إلى أربع أقراص رقيقة.', 'سخّن الزيت في مقلاة واطه الأقراص 5 إلى 6 دقائق لكل جانب حتى تتحمر وتبلغ حرارتها الداخلية 165 فهرنهايت.', 'اخلط اللبن اليوناني مع عصير الليمون وملعقة ماء لتحضير الصلصة.', 'وزّع الأرز الدافئ والخس والطماطم والبصل في الأوعية.', 'قطّع أقراص الديك الرومي وضعها فوق الأوعية ثم أضف صلصة اللبن.'],
+  },
+  nutrition: { calories: 470, protein: 39, carbs: 43, fat: 15 },
+};
+
+const BAKED_LEMON_CHICKEN_BROCCOLI: Recipe = {
+  id: 'baked-lemon-chicken-broccoli',
+  slug: 'baked-lemon-chicken-broccoli',
+  emoji: '🍋',
+  title: { en: 'Baked Lemon Chicken & Broccoli', ar: 'دجاج بالليمون والبروكلي في الفرن' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'A simple sheet-pan dinner of juicy lemon chicken, broccoli, and quinoa with garlic and herbs.', ar: 'وجبة صينية سهلة من الدجاج الطري بالليمون والبروكلي والكينوا مع الثوم والأعشاب.' },
+  prepTime: { en: '40 min', ar: '40 دقيقة' },
+  ingredients: {
+    en: ['4 boneless skinless chicken breasts (about 1 1/2 lb)', '4 cups broccoli florets', '1 lemon, zested and juiced', '2 tbsp olive oil', '2 cloves garlic, minced', '1 tsp dried oregano', '1/4 tsp black pepper', '2 cups cooked quinoa'],
+    ar: ['4 صدور دجاج منزوعة العظم والجلد (نحو 680 غرامًا)', '4 أكواب زهرات بروكلي', 'بشر وعصير ليمونة', 'ملعقتان كبيرتان زيت زيتون', 'فصان ثوم مفرومان', 'ملعقة صغيرة أوريغانو مجفف', 'ربع ملعقة صغيرة فلفل أسود', 'كوبان كينوا مطبوخة'],
+  },
+  instructions: {
+    en: ['Heat oven to 400°F and line a sheet pan with parchment.', 'Whisk lemon zest and juice with olive oil, garlic, oregano, and pepper.', 'Arrange chicken and broccoli on the pan; spoon the lemon mixture over both.', 'Bake 22–28 minutes, turning broccoli once, until chicken reaches 165°F.', 'Rest chicken for 5 minutes, slice, and serve with quinoa and pan juices.'],
+    ar: ['سخّن الفرن إلى 400 فهرنهايت وبطّن صينية بورق الخَبز.', 'اخفق بشر الليمون وعصيره مع زيت الزيتون والثوم والأوريغانو والفلفل.', 'رتب الدجاج والبروكلي في الصينية واسكب خليط الليمون فوقهما.', 'اخبز 22 إلى 28 دقيقة مع تقليب البروكلي مرة حتى تبلغ حرارة الدجاج 165 فهرنهايت.', 'اترك الدجاج 5 دقائق ثم قطعه وقدمه مع الكينوا وعصارة الصينية.'],
+  },
+  nutrition: { calories: 430, protein: 43, carbs: 39, fat: 12 },
+};
+
+const SWEET_POTATO_BLACK_BEAN_TACOS: Recipe = {
+  id: 'sweet-potato-black-bean-tacos',
+  slug: 'sweet-potato-black-bean-tacos',
+  emoji: '🌮',
+  title: { en: 'Sweet Potato & Black Bean Tacos', ar: 'تاكو البطاطا الحلوة والفاصوليا السوداء' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'Roasted sweet potato and seasoned black beans tucked into warm corn tortillas with crunchy cabbage and lime.', ar: 'بطاطا حلوة مشوية وفاصوليا سوداء متبلة داخل خبز الذرة الدافئ مع الملفوف المقرمش والليمون.' },
+  prepTime: { en: '35 min', ar: '35 دقيقة' },
+  ingredients: {
+    en: ['2 medium sweet potatoes, cubed', '1 tsp olive oil', '1/2 tsp ground cumin', '1 can black beans, drained and rinsed', '8 small corn tortillas', '1 cup shredded red cabbage', '1/2 avocado, sliced', '1/2 cup mild salsa', '1 lime, cut into wedges'],
+    ar: ['حبتا بطاطا حلوة متوسطتان مقطعتان مكعبات', 'ملعقة صغيرة زيت زيتون', 'نصف ملعقة صغيرة كمون مطحون', 'علبة فاصوليا سوداء مصفاة ومغسولة', '8 أرغفة ذرة صغيرة', 'كوب ملفوف أحمر مفروم', 'نصف أفوكادو مقطع شرائح', 'نصف كوب صلصة معتدلة', 'ليمونة خضراء مقطعة أرباعًا'],
+  },
+  instructions: {
+    en: ['Heat oven to 425°F. Toss sweet potato with oil and cumin and roast 22–25 minutes until tender.', 'Warm black beans in a small pan with a splash of water.', 'Warm tortillas in a dry skillet until pliable.', 'Fill each tortilla with sweet potato, beans, cabbage, and avocado.', 'Top with salsa and squeeze lime over the tacos before serving.'],
+    ar: ['سخّن الفرن إلى 425 فهرنهايت. قلّب البطاطا مع الزيت والكمون واشوها 22 إلى 25 دقيقة حتى تلين.', 'سخّن الفاصوليا السوداء في مقلاة صغيرة مع قليل من الماء.', 'دفّئ أرغفة الذرة في مقلاة جافة حتى تصبح لينة.', 'احشُ كل رغيف بالبطاطا والفاصوليا والملفوف والأفوكادو.', 'أضف الصلصة واعصر الليمون فوق التاكو قبل التقديم.'],
+  },
+  nutrition: { calories: 390, protein: 13, carbs: 63, fat: 11 },
+};
+
+const CLASSIC_COBB_SALAD_LIGHT: Recipe = {
+  id: 'classic-cobb-salad-light',
+  slug: 'classic-cobb-salad-light',
+  emoji: '🥗',
+  title: { en: 'Classic Cobb Salad (Light)', ar: 'سلطة كوب الكلاسيكية الخفيفة' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'A lighter Cobb-style salad with chicken, egg, avocado, tomatoes, and a creamy yogurt herb dressing.', ar: 'سلطة كوب أخف بالدجاج والبيض والأفوكادو والطماطم وصلصة الأعشاب الكريمية باللبن.' },
+  prepTime: { en: '25 min', ar: '25 دقيقة' },
+  ingredients: {
+    en: ['2 cups cooked chicken breast, diced', '4 cups chopped romaine lettuce', '2 hard-boiled eggs, quartered', '1/2 avocado, diced', '1 cup cherry tomatoes, halved', '1/2 cup cucumber, diced', '2 tbsp crumbled blue cheese', '1/2 cup plain Greek yogurt', '1 tbsp lemon juice', '1 tbsp chopped chives'],
+    ar: ['كوبان صدر دجاج مطبوخ ومقطع مكعبات', '4 أكواب خس روماني مفروم', 'بيضتان مسلوقتان مقطعتان أرباعًا', 'نصف أفوكادو مقطع مكعبات', 'كوب طماطم كرزية مقطعة أنصافًا', 'نصف كوب خيار مكعبات', 'ملعقتان كبيرتان جبن أزرق مفتت', 'نصف كوب لبن يوناني سادة', 'ملعقة كبيرة عصير ليمون', 'ملعقة كبيرة ثوم معمر مفروم'],
+  },
+  instructions: {
+    en: ['Whisk Greek yogurt, lemon juice, chives, and a tablespoon of water until smooth.', 'Arrange romaine on a large platter or divide among four plates.', 'Place chicken, egg, avocado, tomatoes, cucumber, and blue cheese in separate rows over the lettuce.', 'Drizzle lightly with yogurt dressing and serve extra dressing on the side.'],
+    ar: ['اخفق اللبن اليوناني وعصير الليمون والثوم المعمر وملعقة ماء حتى يصبح الخليط ناعمًا.', 'رتب الخس الروماني في طبق كبير أو وزعه على أربعة أطباق.', 'ضع الدجاج والبيض والأفوكادو والطماطم والخيار والجبن الأزرق في صفوف فوق الخس.', 'أضف قليلًا من صلصة اللبن وقدّم الباقي جانبًا.'],
+  },
+  nutrition: { calories: 410, protein: 39, carbs: 19, fat: 21 },
+};
+
+const MAPLE_GLAZED_SALMON: Recipe = {
+  id: 'maple-glazed-salmon',
+  slug: 'maple-glazed-salmon',
+  emoji: '🍁',
+  title: { en: 'Maple Glazed Salmon', ar: 'سلمون بطبقة القيقب' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'Oven-roasted salmon brushed with a light maple and mustard glaze, served with asparagus and brown rice.', ar: 'سلمون مشوي في الفرن مع طبقة خفيفة من القيقب والخردل، يقدم مع الهليون والأرز البني.' },
+  prepTime: { en: '30 min', ar: '30 دقيقة' },
+  ingredients: {
+    en: ['4 salmon fillets (5 oz each)', '1 tbsp pure maple syrup', '1 tbsp Dijon mustard', '1 tsp low-sodium soy sauce', '1 clove garlic, minced', '1 lb asparagus, trimmed', '1 tsp olive oil', '2 cups cooked brown rice', '1/4 tsp black pepper'],
+    ar: ['4 شرائح سلمون (نحو 140 غرامًا لكل شريحة)', 'ملعقة كبيرة شراب قيقب نقي', 'ملعقة كبيرة خردل ديجون', 'ملعقة صغيرة صلصة صويا قليلة الصوديوم', 'فص ثوم مفروم', '450 غرام هليون منزوع الأطراف', 'ملعقة صغيرة زيت زيتون', 'كوبان أرز بني مطبوخ', 'ربع ملعقة صغيرة فلفل أسود'],
+  },
+  instructions: {
+    en: ['Heat oven to 400°F and place salmon on a lined baking sheet.', 'Whisk maple syrup, Dijon, soy sauce, and garlic; brush over the salmon.', 'Toss asparagus with olive oil and pepper and arrange beside the fish.', 'Roast 12–16 minutes until salmon flakes easily and reaches 145°F; broil briefly for more color if desired.', 'Serve with brown rice and spoon any pan glaze over the salmon.'],
+    ar: ['سخّن الفرن إلى 400 فهرنهايت وضع السلمون في صينية مبطنة.', 'اخفق شراب القيقب وديجون وصلصة الصويا والثوم وادهن السلمون بالخليط.', 'قلّب الهليون مع زيت الزيتون والفلفل ورتبه بجانب السمك.', 'اشوِ 12 إلى 16 دقيقة حتى يتفتت السلمون بسهولة وتبلغ حرارته 145 فهرنهايت؛ ويمكن تحميره قليلًا من الأعلى.', 'قدّم مع الأرز البني واسكب ما تبقى من الصلصة فوق السلمون.'],
+  },
+  nutrition: { calories: 450, protein: 36, carbs: 39, fat: 17 },
+};
+
+const LEAN_BEEF_BROCCOLI_STIRFRY: Recipe = {
+  id: 'lean-beef-broccoli-stirfry',
+  slug: 'lean-beef-broccoli-stirfry',
+  emoji: '🥦',
+  title: { en: 'Lean Beef & Broccoli Stir-fry', ar: 'لحم بقري قليل الدهون مع البروكلي' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'Tender lean beef and crisp broccoli in a quick ginger-garlic sauce, served over brown rice.', ar: 'لحم بقري طري قليل الدهون وبروكلي مقرمش بصلصة الزنجبيل والثوم السريعة فوق الأرز البني.' },
+  prepTime: { en: '30 min', ar: '30 دقيقة' },
+  ingredients: {
+    en: ['1 lb lean sirloin, thinly sliced', '4 cups broccoli florets', '1 tbsp canola oil', '2 cloves garlic, minced', '1 tsp grated fresh ginger', '3 tbsp low-sodium soy sauce', '1 tsp cornstarch mixed with 2 tbsp water', '2 cups cooked brown rice', '1 tsp sesame seeds'],
+    ar: ['450 غرام لحم سيرلوين قليل الدهون مقطع شرائح رفيعة', '4 أكواب زهرات بروكلي', 'ملعقة كبيرة زيت كانولا', 'فصان ثوم مفرومان', 'ملعقة صغيرة زنجبيل طازج مبشور', '3 ملاعق كبيرة صلصة صويا قليلة الصوديوم', 'ملعقة صغيرة نشا ممزوجة بملعقتين ماء', 'كوبان أرز بني مطبوخ', 'ملعقة صغيرة بذور سمسم'],
+  },
+  instructions: {
+    en: ['Whisk soy sauce with the cornstarch mixture and set aside.', 'Heat half the oil in a large skillet; sear beef in batches for 1–2 minutes per side, then transfer to a plate.', 'Add remaining oil, broccoli, garlic, ginger, and 2 tablespoons water; cover and steam-sauté for 3 minutes.', 'Return beef to the skillet, pour in sauce, and toss until glossy and thickened.', 'Serve over brown rice and sprinkle with sesame seeds.'],
+    ar: ['اخفق صلصة الصويا مع خليط النشا واتركه جانبًا.', 'سخّن نصف الزيت في مقلاة كبيرة وحمّر اللحم على دفعات دقيقة إلى دقيقتين لكل جانب ثم ارفعه إلى طبق.', 'أضف بقية الزيت والبروكلي والثوم والزنجبيل وملعقتي ماء؛ غطّ المقلاة واطه 3 دقائق.', 'أعد اللحم واسكب الصلصة وقلّب حتى تتماسك وتغطي المكونات.', 'قدّم فوق الأرز البني وزيّن ببذور السمسم.'],
+  },
+  nutrition: { calories: 440, protein: 35, carbs: 48, fat: 12 },
+};
+
+const QUINOA_KALE_POWER_SALAD: Recipe = {
+  id: 'quinoa-kale-power-salad',
+  slug: 'quinoa-kale-power-salad',
+  emoji: '🥬',
+  title: { en: 'Quinoa & Kale Power Salad', ar: 'سلطة الكينوا والكرنب المغذية' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'A hearty plant-forward salad of quinoa, kale, chickpeas, vegetables, feta, and lemon dressing.', ar: 'سلطة نباتية مشبعة من الكينوا والكرنب والحمص والخضار وجبن الفيتا وصلصة الليمون.' },
+  prepTime: { en: '25 min', ar: '25 دقيقة' },
+  ingredients: {
+    en: ['2 cups cooked quinoa, cooled', '4 cups chopped kale, tough stems removed', '1 can chickpeas, drained and rinsed', '1 cup cherry tomatoes, halved', '1/2 cucumber, diced', '1/3 cup crumbled feta cheese', '2 tbsp olive oil', '2 tbsp lemon juice', '1 tsp Dijon mustard'],
+    ar: ['كوبان كينوا مطبوخة ومبردة', '4 أكواب كرنب مفروم ومنزوع السيقان القاسية', 'علبة حمص مصفاة ومغسولة', 'كوب طماطم كرزية مقطعة أنصافًا', 'نصف خيار مكعبات', 'ثلث كوب جبن فيتا مفتت', 'ملعقتان كبيرتان زيت زيتون', 'ملعقتان كبيرتان عصير ليمون', 'ملعقة صغيرة خردل ديجون'],
+  },
+  instructions: {
+    en: ['Whisk olive oil, lemon juice, and Dijon mustard in a small bowl.', 'Massage half the dressing into the kale for 1 minute to soften the leaves.', 'Add quinoa, chickpeas, tomatoes, and cucumber and toss gently.', 'Top with feta and the remaining dressing.', 'Chill for 10 minutes or serve at once; keep leftovers refrigerated.'],
+    ar: ['اخفق زيت الزيتون وعصير الليمون وخردل ديجون في وعاء صغير.', 'دلّك نصف الصلصة في الكرنب دقيقة واحدة لتليين الأوراق.', 'أضف الكينوا والحمص والطماطم والخيار وقلّب برفق.', 'أضف الفيتا وبقية الصلصة.', 'برّد 10 دقائق أو قدّم فورًا، واحفظ البقايا في الثلاجة.'],
+  },
+  nutrition: { calories: 390, protein: 15, carbs: 55, fat: 14 },
+};
+
+const CAULIFLOWER_CRUST_PIZZA: Recipe = {
+  id: 'cauliflower-crust-pizza',
+  slug: 'cauliflower-crust-pizza',
+  emoji: '🍕',
+  title: { en: 'Cauliflower Crust Pizza', ar: 'بيتزا بعجينة القرنبيط' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'A crisp cauliflower-based pizza crust topped with tomato sauce, mozzarella, mushrooms, and bell pepper.', ar: 'قاعدة بيتزا مقرمشة من القرنبيط مغطاة بصلصة الطماطم والموزاريلا والفطر والفلفل الحلو.' },
+  prepTime: { en: '55 min', ar: '55 دقيقة' },
+  ingredients: {
+    en: ['1 large cauliflower, riced (about 4 cups)', '1 large egg', '1/2 cup shredded part-skim mozzarella, divided', '1/4 cup grated Parmesan', '1/2 tsp dried oregano', '1/2 cup low-sodium tomato sauce', '1 cup sliced mushrooms', '1/2 bell pepper, sliced'],
+    ar: ['حبة قرنبيط كبيرة مبشورة (نحو 4 أكواب)', 'بيضة كبيرة', 'نصف كوب موزاريلا قليلة الدسم مبشورة ومقسمة', 'ربع كوب بارميزان مبشور', 'نصف ملعقة صغيرة أوريغانو مجفف', 'نصف كوب صلصة طماطم قليلة الصوديوم', 'كوب فطر مقطع شرائح', 'نصف حبة فلفل حلو مقطعة شرائح'],
+  },
+  instructions: {
+    en: ['Heat oven to 425°F. Microwave riced cauliflower for 5 minutes, cool, then squeeze very dry in a clean towel.', 'Mix cauliflower with egg, half the mozzarella, Parmesan, and oregano.', 'Press into a thin round on parchment and bake 20–25 minutes until golden and firm.', 'Spread with tomato sauce, add mushrooms, bell pepper, and remaining mozzarella.', 'Bake 8–10 minutes more until cheese melts; rest briefly before slicing.'],
+    ar: ['سخّن الفرن إلى 425 فهرنهايت. اطه القرنبيط المبشور في الميكروويف 5 دقائق ثم برّده واعصره جيدًا بمنشفة نظيفة.', 'اخلط القرنبيط مع البيض ونصف الموزاريلا والبارميزان والأوريغانو.', 'افرد الخليط دائرة رقيقة فوق ورق الخبز واخبزه 20 إلى 25 دقيقة حتى يصبح ذهبيًا ومتماسكًا.', 'افرد صلصة الطماطم وأضف الفطر والفلفل وبقية الموزاريلا.', 'اخبز 8 إلى 10 دقائق إضافية حتى يذوب الجبن، واتركه قليلًا قبل التقطيع.'],
+  },
+  nutrition: { calories: 340, protein: 24, carbs: 30, fat: 15 },
+};
+
+const SPAGHETTI_SQUASH_TURKEY_MEAT_SAUCE: Recipe = {
+  id: 'spaghetti-squash-turkey-meat-sauce',
+  slug: 'spaghetti-squash-turkey-meat-sauce',
+  emoji: '🍝',
+  title: { en: 'Spaghetti Squash with Turkey Meat Sauce', ar: 'قرع السباغيتي بصلصة الديك الرومي' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'Roasted spaghetti squash strands topped with a hearty tomato sauce of lean ground turkey and spinach.', ar: 'خيوط قرع السباغيتي المشوي مع صلصة طماطم غنية بالديك الرومي المفروم قليل الدهون والسبانخ.' },
+  prepTime: { en: '55 min', ar: '55 دقيقة' },
+  ingredients: {
+    en: ['1 large spaghetti squash, halved and seeded', '1 tsp olive oil', '1 lb lean ground turkey', '1/2 yellow onion, diced', '2 cloves garlic, minced', '2 cups no-salt-added marinara sauce', '2 cups baby spinach', '2 tbsp grated Parmesan', '1/2 tsp dried basil'],
+    ar: ['حبة قرع سباغيتي كبيرة مقسومة ومنزوعة البذور', 'ملعقة صغيرة زيت زيتون', '450 غرام ديك رومي مفروم قليل الدهون', 'نصف بصلة صفراء مكعبات', 'فصان ثوم مفرومان', 'كوبان صلصة مارينارا بلا ملح مضاف', 'كوبان سبانخ صغيرة', 'ملعقتان كبيرتان بارميزان مبشور', 'نصف ملعقة صغيرة ريحان مجفف'],
+  },
+  instructions: {
+    en: ['Heat oven to 400°F. Brush squash cut sides with olive oil and roast cut-side down for 35–40 minutes until tender.', 'Meanwhile, brown turkey in a skillet, breaking it into small pieces; add onion and cook until soft.', 'Stir in garlic, marinara, basil, and spinach; simmer for 8 minutes.', 'Scrape squash into strands with a fork and divide among plates.', 'Spoon turkey sauce over the squash and finish with Parmesan.'],
+    ar: ['سخّن الفرن إلى 400 فهرنهايت. ادهن الجهة المقطوعة من القرع بزيت الزيتون واشوه مقلوبًا 35 إلى 40 دقيقة حتى يلين.', 'حمّر الديك الرومي في مقلاة مع تفتيته، ثم أضف البصل واطهه حتى يلين.', 'أضف الثوم والمارينارا والريحان والسبانخ واترك الخليط 8 دقائق.', 'استخرج خيوط القرع بالشوكة ووزعها على الأطباق.', 'أضف صلصة الديك الرومي فوق القرع وزيّن بالبارميزان.'],
+  },
+  nutrition: { calories: 370, protein: 34, carbs: 35, fat: 11 },
+};
+
+const ALMOND_BUTTER_PROTEIN_OATMEAL: Recipe = {
+  id: 'almond-butter-protein-oatmeal',
+  slug: 'almond-butter-protein-oatmeal',
+  emoji: '🥣',
+  title: { en: 'Almond Butter Protein Oatmeal', ar: 'شوفان بالبروتين وزبدة اللوز' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'Creamy oats cooked with milk and topped with almond butter, Greek yogurt, berries, and chia seeds.', ar: 'شوفان كريمي مطهو بالحليب ومغطى بزبدة اللوز واللبن اليوناني والتوت وبذور الشيا.' },
+  prepTime: { en: '15 min', ar: '15 دقيقة' },
+  ingredients: {
+    en: ['1 cup old-fashioned rolled oats', '1 1/2 cups low-fat milk', '1/2 cup plain Greek yogurt', '2 tbsp almond butter', '1/2 cup blueberries', '1 tbsp chia seeds', '1/4 tsp ground cinnamon'],
+    ar: ['كوب شوفان ملفوف تقليدي', 'كوب ونصف حليب قليل الدسم', 'نصف كوب لبن يوناني سادة', 'ملعقتان كبيرتان زبدة لوز', 'نصف كوب توت أزرق', 'ملعقة كبيرة بذور شيا', 'ربع ملعقة صغيرة قرفة مطحونة'],
+  },
+  instructions: {
+    en: ['Combine oats, milk, and cinnamon in a saucepan.', 'Bring to a gentle simmer and cook 5–7 minutes, stirring, until creamy.', 'Divide oatmeal into two bowls and let cool slightly.', 'Top each bowl with Greek yogurt, almond butter, blueberries, and chia seeds.'],
+    ar: ['ضع الشوفان والحليب والقرفة في قدر.', 'اتركه يغلي برفق واطهه 5 إلى 7 دقائق مع التحريك حتى يصبح كريميًا.', 'وزّع الشوفان في وعاءين واتركه يبرد قليلًا.', 'أضف اللبن اليوناني وزبدة اللوز والتوت الأزرق وبذور الشيا فوق كل وعاء.'],
+  },
+  nutrition: { calories: 380, protein: 20, carbs: 48, fat: 14 },
+};
+
+const BAKED_SWEET_POTATO_COTTAGE_CHEESE: Recipe = {
+  id: 'baked-sweet-potato-cottage-cheese',
+  slug: 'baked-sweet-potato-cottage-cheese',
+  emoji: '🍠',
+  title: { en: 'Baked Sweet Potato with Cottage Cheese', ar: 'بطاطا حلوة مخبوزة مع الجبن القريش' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'A fluffy baked sweet potato filled with cottage cheese, black beans, spinach, and fresh salsa.', ar: 'بطاطا حلوة مخبوزة وهشة محشوة بالجبن القريش والفاصوليا السوداء والسبانخ والصلصة الطازجة.' },
+  prepTime: { en: '50 min', ar: '50 دقيقة' },
+  ingredients: {
+    en: ['2 medium sweet potatoes, scrubbed', '1 cup low-fat cottage cheese', '1/2 cup black beans, drained and rinsed', '1 cup baby spinach, chopped', '1/2 cup fresh tomato salsa', '1 tbsp pumpkin seeds', '1/4 tsp ground cumin'],
+    ar: ['حبتا بطاطا حلوة متوسطتان مغسولتان', 'كوب جبن قريش قليل الدسم', 'نصف كوب فاصوليا سوداء مصفاة ومغسولة', 'كوب سبانخ صغيرة مفرومة', 'نصف كوب صلصة طماطم طازجة', 'ملعقة كبيرة بذور قرع', 'ربع ملعقة صغيرة كمون مطحون'],
+  },
+  instructions: {
+    en: ['Heat oven to 400°F. Pierce potatoes several times with a fork and place on a lined tray.', 'Bake 40–50 minutes until a knife slides easily into the center.', 'Warm black beans with cumin and fold in chopped spinach until just wilted.', 'Split potatoes lengthwise and fluff the centers with a fork.', 'Top with cottage cheese, bean mixture, salsa, and pumpkin seeds.'],
+    ar: ['سخّن الفرن إلى 400 فهرنهايت. اثقب البطاطا بالشوكة عدة مرات وضعها في صينية مبطنة.', 'اخبز 40 إلى 50 دقيقة حتى تدخل السكين في الوسط بسهولة.', 'سخّن الفاصوليا مع الكمون وأضف السبانخ المفرومة حتى تذبل قليلًا.', 'افتح البطاطا طوليًا وهرّش اللب بالشوكة.', 'أضف الجبن القريش وخليط الفاصوليا والصلصة وبذور القرع.'],
+  },
+  nutrition: { calories: 350, protein: 23, carbs: 54, fat: 6 },
+};
+
+const GRILLED_SHRIMP_ZUCCHINI_SKEWERS: Recipe = {
+  id: 'grilled-shrimp-zucchini-skewers',
+  slug: 'grilled-shrimp-zucchini-skewers',
+  emoji: '🍤',
+  title: { en: 'Grilled Shrimp & Zucchini Skewers', ar: 'أسياخ روبيان وكوسا مشوية' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'Quick lemon-garlic shrimp and zucchini skewers served with brown rice for a bright summer meal.', ar: 'أسياخ سريعة من الروبيان والكوسا بالليمون والثوم تقدم مع الأرز البني لوجبة صيفية منعشة.' },
+  prepTime: { en: '25 min', ar: '25 دقيقة' },
+  ingredients: {
+    en: ['1 lb large shrimp, peeled and deveined', '2 medium zucchini, cut into thick half-moons', '1 red bell pepper, cut into chunks', '1 tbsp olive oil', '1 lemon, juiced', '2 cloves garlic, minced', '1/4 tsp black pepper', '2 cups cooked brown rice'],
+    ar: ['450 غرام روبيان كبير مقشر ومنزوع العرق', 'حبتا كوسا متوسطتان مقطعتان أنصاف دوائر سميكة', 'حبة فلفل أحمر مقطعة مكعبات', 'ملعقة كبيرة زيت زيتون', 'عصير ليمونة', 'فصان ثوم مفرومان', 'ربع ملعقة صغيرة فلفل أسود', 'كوبان أرز بني مطبوخ'],
+  },
+  instructions: {
+    en: ['If using wooden skewers, soak them in water for 20 minutes.', 'Whisk olive oil, lemon juice, garlic, and pepper; toss with shrimp and vegetables.', 'Thread shrimp, zucchini, and bell pepper onto skewers.', 'Grill over medium-high heat for 2–3 minutes per side until shrimp are opaque and cooked through.', 'Serve right away with brown rice and any remaining lemon juice.'],
+    ar: ['إذا استخدمت أسياخًا خشبية فانقعها في الماء 20 دقيقة.', 'اخفق زيت الزيتون وعصير الليمون والثوم والفلفل وقلّب معها الروبيان والخضار.', 'ضع الروبيان والكوسا والفلفل بالتناوب على الأسياخ.', 'اشوِ على حرارة متوسطة مرتفعة دقيقتين إلى 3 لكل جانب حتى ينضج الروبيان ويصبح معتمًا.', 'قدّم فورًا مع الأرز البني وما تبقى من عصير الليمون.'],
+  },
+  nutrition: { calories: 320, protein: 32, carbs: 36, fat: 8 },
+};
+
+const CHICKEN_AVOCADO_LETTUCE_WRAP: Recipe = {
+  id: 'chicken-avocado-lettuce-wrap',
+  slug: 'chicken-avocado-lettuce-wrap',
+  emoji: '🥬',
+  title: { en: 'Chicken Avocado Lettuce Wrap', ar: 'لفائف خس بالدجاج والأفوكادو' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'Cool lettuce cups filled with lime chicken, avocado, tomato, and a light Greek-yogurt dressing.', ar: 'أكواب خس منعشة محشوة بدجاج الليمون والأفوكادو والطماطم وصلصة خفيفة باللبن اليوناني.' },
+  prepTime: { en: '25 min', ar: '25 دقيقة' },
+  ingredients: {
+    en: ['2 cups cooked chicken breast, finely diced', '1 ripe avocado, diced', '8 large butter lettuce leaves', '1/2 cup chopped tomato', '1/4 cup plain Greek yogurt', '1 tbsp lime juice', '1 celery stalk, finely chopped', '2 tbsp chopped cilantro'],
+    ar: ['كوبان صدر دجاج مطبوخ ومقطع ناعمًا', 'حبة أفوكادو ناضجة مكعبات', '8 أوراق خس زبدية كبيرة', 'نصف كوب طماطم مفرومة', 'ربع كوب لبن يوناني سادة', 'ملعقة كبيرة عصير ليمون أخضر', 'عود كرفس مفروم ناعمًا', 'ملعقتان كبيرتان كزبرة مفرومة'],
+  },
+  instructions: {
+    en: ['Stir Greek yogurt and lime juice together in a small bowl.', 'Combine diced chicken, avocado, tomato, celery, and cilantro in a mixing bowl.', 'Fold in the yogurt dressing gently so the avocado keeps its shape.', 'Spoon the mixture into clean, dry lettuce leaves.', 'Serve immediately with extra lime wedges.'],
+    ar: ['اخلط اللبن اليوناني وعصير الليمون الأخضر في وعاء صغير.', 'امزج الدجاج والأفوكادو والطماطم والكرفس والكزبرة في وعاء.', 'أضف صلصة اللبن برفق حتى يحتفظ الأفوكادو بشكله.', 'ضع الخليط في أوراق خس نظيفة وجافة.', 'قدّم فورًا مع شرائح إضافية من الليمون الأخضر.'],
+  },
+  nutrition: { calories: 360, protein: 35, carbs: 17, fat: 17 },
+};
+
+const VEGAN_LENTIL_VEGETABLE_SOUP: Recipe = {
+  id: 'vegan-lentil-vegetable-soup',
+  slug: 'vegan-lentil-vegetable-soup',
+  emoji: '🍲',
+  title: { en: 'Vegan Lentil & Vegetable Soup', ar: 'شوربة عدس وخضار نباتية' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'A comforting one-pot soup of lentils, carrots, celery, tomatoes, and spinach in savory vegetable broth.', ar: 'شوربة منزلية في قدر واحد من العدس والجزر والكرفس والطماطم والسبانخ بمرق الخضار.' },
+  prepTime: { en: '45 min', ar: '45 دقيقة' },
+  ingredients: {
+    en: ['1 cup brown or green lentils, rinsed', '1 tbsp olive oil', '1 yellow onion, diced', '2 carrots, diced', '2 celery stalks, diced', '1 can diced tomatoes', '6 cups low-sodium vegetable broth', '1 tsp ground cumin', '2 cups baby spinach', '1 tbsp lemon juice'],
+    ar: ['كوب عدس بني أو أخضر مغسول', 'ملعقة كبيرة زيت زيتون', 'بصلة صفراء مكعبات', 'حبتا جزر مكعبات', 'عودا كرفس مكعبات', 'علبة طماطم مكعبات', '6 أكواب مرق خضار قليل الصوديوم', 'ملعقة صغيرة كمون مطحون', 'كوبان سبانخ صغيرة', 'ملعقة كبيرة عصير ليمون'],
+  },
+  instructions: {
+    en: ['Heat olive oil in a soup pot; cook onion, carrots, and celery for 5 minutes.', 'Add lentils, tomatoes, broth, and cumin and bring to a boil.', 'Reduce heat, cover partially, and simmer 30–35 minutes until lentils are tender.', 'Stir in spinach until wilted and finish with lemon juice.', 'Taste and season as needed; serve warm.'],
+    ar: ['سخّن زيت الزيتون في قدر الشوربة واطه البصل والجزر والكرفس 5 دقائق.', 'أضف العدس والطماطم والمرق والكمون واتركه حتى يغلي.', 'خفف النار وغطّ القدر جزئيًا واتركه 30 إلى 35 دقيقة حتى يلين العدس.', 'أضف السبانخ حتى تذبل ثم أضف عصير الليمون.', 'تذوق وعدّل التتبيل حسب الحاجة وقدّم دافئًا.'],
+  },
+  nutrition: { calories: 290, protein: 16, carbs: 47, fat: 7 },
+};
+
+const APPLE_CINNAMON_BAKED_OATMEAL: Recipe = {
+  id: 'apple-cinnamon-baked-oatmeal',
+  slug: 'apple-cinnamon-baked-oatmeal',
+  emoji: '🍎',
+  title: { en: 'Apple Cinnamon Baked Oatmeal', ar: 'شوفان مخبوز بالتفاح والقرفة' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'A make-ahead breakfast bake with rolled oats, fresh apple, cinnamon, milk, and crunchy walnuts.', ar: 'فطور مخبوز يحضّر مسبقًا من الشوفان والتفاح الطازج والقرفة والحليب والجوز المقرمش.' },
+  prepTime: { en: '45 min', ar: '45 دقيقة' },
+  ingredients: {
+    en: ['2 cups old-fashioned rolled oats', '1 large apple, diced', '1 1/2 cups low-fat milk', '1 large egg', '2 tbsp pure maple syrup', '1 tsp ground cinnamon', '1 tsp baking powder', '1/4 cup chopped walnuts', '1 tsp vanilla extract'],
+    ar: ['كوبان شوفان ملفوف تقليدي', 'حبة تفاح كبيرة مكعبات', 'كوب ونصف حليب قليل الدسم', 'بيضة كبيرة', 'ملعقتان كبيرتان شراب قيقب نقي', 'ملعقة صغيرة قرفة مطحونة', 'ملعقة صغيرة بيكنج باودر', 'ربع كوب جوز مفروم', 'ملعقة صغيرة خلاصة فانيليا'],
+  },
+  instructions: {
+    en: ['Heat oven to 350°F and lightly oil an 8-inch baking dish.', 'Whisk milk, egg, maple syrup, and vanilla in a bowl.', 'Stir oats, cinnamon, and baking powder together; fold in apple and walnuts.', 'Pour wet ingredients over the oat mixture and stir to combine.', 'Bake 30–35 minutes until the center is set; cool slightly and serve warm.'],
+    ar: ['سخّن الفرن إلى 350 فهرنهايت وادهن طبق خبز بحجم 8 بوصات بقليل من الزيت.', 'اخفق الحليب والبيض وشراب القيقب والفانيليا في وعاء.', 'اخلط الشوفان والقرفة والبيكنج باودر ثم أضف التفاح والجوز.', 'اسكب المكونات السائلة فوق خليط الشوفان وقلّب حتى تمتزج.', 'اخبز 30 إلى 35 دقيقة حتى يتماسك الوسط، ثم برّد قليلًا وقدّم دافئًا.'],
+  },
+  nutrition: { calories: 330, protein: 12, carbs: 51, fat: 10 },
+};
+
+const GROUND_CHICKEN_STUFFED_PEPPERS: Recipe = {
+  id: 'ground-chicken-stuffed-peppers',
+  slug: 'ground-chicken-stuffed-peppers',
+  emoji: '🫑',
+  title: { en: 'Ground Chicken Stuffed Bell Peppers', ar: 'فلفل حلو محشو بالدجاج المفروم' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'Bell peppers baked with a savory filling of ground chicken, brown rice, tomatoes, and herbs.', ar: 'فلفل حلو مخبوز بحشوة لذيذة من الدجاج المفروم والأرز البني والطماطم والأعشاب.' },
+  prepTime: { en: '50 min', ar: '50 دقيقة' },
+  ingredients: {
+    en: ['4 large bell peppers, tops removed and seeded', '1 lb lean ground chicken', '1 cup cooked brown rice', '1/2 yellow onion, diced', '1 cup no-salt-added tomato sauce', '2 cloves garlic, minced', '1 tsp dried Italian herbs', '1/2 cup shredded part-skim mozzarella'],
+    ar: ['4 حبات فلفل حلو كبيرة منزوعة القمم والبذور', '450 غرام دجاج مفروم قليل الدهون', 'كوب أرز بني مطبوخ', 'نصف بصلة صفراء مكعبات', 'كوب صلصة طماطم بلا ملح مضاف', 'فصان ثوم مفرومان', 'ملعقة صغيرة أعشاب إيطالية مجففة', 'نصف كوب موزاريلا قليلة الدسم مبشورة'],
+  },
+  instructions: {
+    en: ['Heat oven to 375°F and place peppers upright in a baking dish with 1/4 cup water.', 'Brown ground chicken with onion in a skillet, breaking it up; cook until no pink remains.', 'Stir in garlic, rice, tomato sauce, and Italian herbs.', 'Spoon filling into peppers, cover the dish with foil, and bake 30 minutes.', 'Uncover, add mozzarella, and bake 8–10 minutes more until peppers are tender and cheese melts.'],
+    ar: ['سخّن الفرن إلى 375 فهرنهايت وضع الفلفل قائمًا في طبق خبز مع ربع كوب ماء.', 'حمّر الدجاج المفروم مع البصل في مقلاة وفتته حتى يختفي اللون الوردي.', 'أضف الثوم والأرز وصلصة الطماطم والأعشاب وقلّب.', 'احشُ الفلفل بالخليط وغطّ الطبق بورق ألمنيوم واخبز 30 دقيقة.', 'اكشف الطبق وأضف الموزاريلا واخبز 8 إلى 10 دقائق حتى يلين الفلفل ويذوب الجبن.'],
+  },
+  nutrition: { calories: 380, protein: 33, carbs: 39, fat: 11 },
+};
+
 export const RECIPES: Recipe[] = [
   FOUL,
   CHICKEN_RICE,
@@ -585,6 +889,22 @@ export const RECIPES: Recipe[] = [
   AVOCADO_CHICKEN_BOWL,
   TURKEY_MEATBALLS_ZUCCHINI,
   GREEK_YOGURT_BERRY_PARFAIT,
+  HEALTHY_TURKEY_BURGER_BOWL,
+  BAKED_LEMON_CHICKEN_BROCCOLI,
+  SWEET_POTATO_BLACK_BEAN_TACOS,
+  CLASSIC_COBB_SALAD_LIGHT,
+  MAPLE_GLAZED_SALMON,
+  LEAN_BEEF_BROCCOLI_STIRFRY,
+  QUINOA_KALE_POWER_SALAD,
+  CAULIFLOWER_CRUST_PIZZA,
+  SPAGHETTI_SQUASH_TURKEY_MEAT_SAUCE,
+  ALMOND_BUTTER_PROTEIN_OATMEAL,
+  BAKED_SWEET_POTATO_COTTAGE_CHEESE,
+  GRILLED_SHRIMP_ZUCCHINI_SKEWERS,
+  CHICKEN_AVOCADO_LETTUCE_WRAP,
+  VEGAN_LENTIL_VEGETABLE_SOUP,
+  APPLE_CINNAMON_BAKED_OATMEAL,
+  GROUND_CHICKEN_STUFFED_PEPPERS,
 ];
 
 export const getRecipeBySlug = (slug: string): Recipe | undefined =>

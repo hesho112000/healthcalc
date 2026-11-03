@@ -29,6 +29,22 @@ const RECIPE_LINKS = [
   { keywords: ['avocado', 'chicken bowl'], slug: 'avocado-chicken-power-bowl', title: 'Avocado Chicken Power Bowl' },
   { keywords: ['turkey', 'meatballs', 'zucchini'], slug: 'lean-turkey-meatballs-zucchini', title: 'Lean Turkey Meatballs with Zucchini' },
   { keywords: ['yogurt', 'parfait', 'berries'], slug: 'greek-yogurt-berry-parfait', title: 'Greek Yogurt Berry Parfait' },
+  { keywords: ['turkey', 'burger'], slug: 'healthy-turkey-burger-bowl', title: 'Healthy Turkey Burger Bowl' },
+  { keywords: ['lemon', 'chicken', 'broccoli'], slug: 'baked-lemon-chicken-broccoli', title: 'Baked Lemon Chicken & Broccoli' },
+  { keywords: ['sweet potato', 'taco'], slug: 'sweet-potato-black-bean-tacos', title: 'Sweet Potato & Black Bean Tacos' },
+  { keywords: ['cobb', 'salad'], slug: 'classic-cobb-salad-light', title: 'Classic Cobb Salad (Light)' },
+  { keywords: ['maple', 'salmon'], slug: 'maple-glazed-salmon', title: 'Maple Glazed Salmon' },
+  { keywords: ['beef', 'broccoli', 'stir'], slug: 'lean-beef-broccoli-stirfry', title: 'Lean Beef & Broccoli Stir-fry' },
+  { keywords: ['quinoa', 'kale'], slug: 'quinoa-kale-power-salad', title: 'Quinoa & Kale Power Salad' },
+  { keywords: ['cauliflower', 'pizza'], slug: 'cauliflower-crust-pizza', title: 'Cauliflower Crust Pizza' },
+  { keywords: ['spaghetti squash', 'turkey'], slug: 'spaghetti-squash-turkey-meat-sauce', title: 'Spaghetti Squash with Turkey Meat Sauce' },
+  { keywords: ['oatmeal', 'almond butter'], slug: 'almond-butter-protein-oatmeal', title: 'Almond Butter Protein Oatmeal' },
+  { keywords: ['sweet potato', 'cottage cheese'], slug: 'baked-sweet-potato-cottage-cheese', title: 'Baked Sweet Potato with Cottage Cheese' },
+  { keywords: ['shrimp', 'zucchini', 'skewer'], slug: 'grilled-shrimp-zucchini-skewers', title: 'Grilled Shrimp & Zucchini Skewers' },
+  { keywords: ['chicken', 'avocado', 'wrap', 'lettuce'], slug: 'chicken-avocado-lettuce-wrap', title: 'Chicken Avocado Lettuce Wrap' },
+  { keywords: ['lentil', 'soup'], slug: 'vegan-lentil-vegetable-soup', title: 'Vegan Lentil & Vegetable Soup' },
+  { keywords: ['apple', 'cinnamon', 'oatmeal'], slug: 'apple-cinnamon-baked-oatmeal', title: 'Apple Cinnamon Baked Oatmeal' },
+  { keywords: ['stuffed pepper', 'ground chicken'], slug: 'ground-chicken-stuffed-peppers', title: 'Ground Chicken Stuffed Bell Peppers' },
 ];
 
 const NUTRITION_ARTICLE_SLUGS = [
@@ -172,7 +188,14 @@ const DishDetailPage: React.FC = () => {
   const matchedRecipe = (() => {
     if (!dish) return null;
     const searchText = (dish.name_en || '').toLowerCase();
-    return RECIPE_LINKS.find(recipe => recipe.keywords.some(keyword => searchText.includes(keyword))) || null;
+    return RECIPE_LINKS
+      .map((recipe, index) => ({
+        recipe,
+        index,
+        matches: recipe.keywords.filter((keyword) => searchText.includes(keyword)).length,
+      }))
+      .filter((match) => match.matches > 0)
+      .sort((a, b) => b.matches - a.matches || a.index - b.index)[0]?.recipe ?? null;
   })();
 
   const nutritionArticles = (() => {
