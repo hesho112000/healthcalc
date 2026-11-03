@@ -10,7 +10,8 @@ config();
 const SITE_BASE = (process.env.VITE_SITE_URL || 'https://healthfingerprint.com').replace(/\/+$/, '');
 const OUTPUT_PATH = fileURLToPath(new URL('../public/sitemap.xml', import.meta.url));
 // Read-only pagination. This script never inserts, updates, or deletes rows.
-const BATCH_SIZE = 1000;
+// Keep each database read within the requested 50-record limit.
+const BATCH_SIZE = 50;
 const TODAY = new Date().toISOString().slice(0, 10);
 
 const escapeXml = (value) =>
