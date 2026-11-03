@@ -7,6 +7,7 @@ import SEO from '../components/seo/SEO';
 import { supabaseClient as supabase } from '../lib/supabaseClient';
 import { Dish } from '../components/food/DishCard';
 import { getArticleBySlug, lt } from '../data/articles';
+import { getRecipeBySlug, lt as recipeLt } from '../data/recipes';
 
 type DbDish = Dish & {
   fiber?: number | null;
@@ -207,6 +208,10 @@ const DishDetailPage: React.FC = () => {
       .filter((match) => match.matches > 0)
       .sort((a, b) => b.matches - a.matches || a.index - b.index)[0]?.recipe ?? null;
   })();
+  const matchedRecipeData = matchedRecipe ? getRecipeBySlug(matchedRecipe.slug) : undefined;
+  const matchedRecipeTitle = matchedRecipeData
+    ? recipeLt(matchedRecipeData.title, language)
+    : matchedRecipe?.title ?? '';
 
   const nutritionArticles = (() => {
     if (!dish) return [] as Array<{ slug: string; title: string }>;
@@ -366,9 +371,12 @@ const DishDetailPage: React.FC = () => {
 
         {matchedRecipe && (
           <section className="mt-6 rounded-3xl border border-emerald-200 bg-emerald-50 p-6">
-            <p className="text-sm font-semibold text-emerald-900">Want to cook this? Check out our full recipe.</p>
-            <Link to={`/resources/recipe/${matchedRecipe.slug}`} className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#0F4C3A] px-5 py-3 text-sm font-extrabold text-[#FDFBF7] hover:bg-[#1a6b53] transition-colors">
-              {matchedRecipe.title}
+            <Link to={`/resources/recipe/${matchedRecipe.slug}`} className="mt-3 flex w-full items-center justify-between gap-3 rounded-2xl bg-[#0F4C3A] px-5 py-4 text-start text-sm font-extrabold text-[#FDFBF7] hover:bg-[#1a6b53] transition-colors">
+              <span>
+                {language === 'ar'
+                  ? `تبحث عن طريقة صحية لتحضير هذا الطبق؟ جرب وصفة ${matchedRecipeTitle}.`
+                  : `Looking for a healthy way to cook this? Try our ${matchedRecipeTitle} recipe.`}
+              </span>
               <ArrowRight size={16} className="rtl:rotate-180" />
             </Link>
           </section>
