@@ -22,8 +22,8 @@ import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
 import { supabaseClient } from '../lib/supabaseClient';
 import type { translations } from '../i18n/translations';
-import { ARTICLES } from '../data/articles';
-import { RECIPES } from '../data/recipes';
+import { ARTICLES, lt as articleText } from '../data/articles';
+import { RECIPES, lt as recipeText } from '../data/recipes';
 import { EXERCISE_GUIDES } from '../data/exerciseGuides';
 
 type TKey = keyof typeof translations.en;
@@ -46,7 +46,6 @@ const ART_GRADIENTS = [
 
 const ART_ICONS: LucideIcon[] = [BookOpen, HeartPulse, Droplets, FlaskConical, Moon, Sparkles, Leaf, Dumbbell, Clock];
 
-const RECIPE_EMOJIS = ['🫘', '🍗', '🥘', '🌿', '🍚', '🍲'];
 const EX_ICONS: LucideIcon[] = [PersonStanding, Activity, Dumbbell, HeartPulse, Sparkles, Flame];
 
 const SPLIT = (title: string) => {
@@ -56,7 +55,7 @@ const SPLIT = (title: string) => {
 };
 
 const ResourcesPage: React.FC = () => {
-  const { t, dir } = useLanguage();
+  const { t, dir, language } = useLanguage();
   const [category, setCategory] = useState<Category>('all');
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
@@ -161,14 +160,14 @@ const ResourcesPage: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {ARTICLES.map((article, i) => {
                 const id = i + 1;
-                const Icon = ART_ICONS[i];
+                const Icon = ART_ICONS[i % ART_ICONS.length];
                 return (
                   <Link
                     key={article.slug}
                     to={`/resources/article/${article.slug}`}
                     className="group rounded-3xl border border-[#EFEBE4] bg-white overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(15,76,58,0.10)]"
                   >
-                    <div className={`h-36 bg-gradient-to-br ${ART_GRADIENTS[i]} relative flex items-center justify-center`}>
+                    <div className={`h-36 bg-gradient-to-br ${ART_GRADIENTS[i % ART_GRADIENTS.length]} relative flex items-center justify-center`}>
                       <Icon size={44} className="text-white/85" />
                       <span className="absolute top-3 start-3 rounded-full bg-[#FDFBF7]/90 px-3 py-1 text-[10px] font-extrabold tracking-wide uppercase text-[#0F4C3A]">
                         {t('resources.tag.article')}
@@ -176,14 +175,14 @@ const ResourcesPage: React.FC = () => {
                     </div>
                     <div className="p-6">
                       <h3 className="text-base font-extrabold text-[#0F4C3A] leading-snug">
-                        {t(k(`resources.article.${id}.title`))}
+                        {id <= 9 ? t(k(`resources.article.${id}.title`)) : articleText(article.title, language)}
                       </h3>
                       <p className="mt-2 text-sm text-[#6B7A75] leading-relaxed">
-                        {t(k(`resources.article.${id}.desc`))}
+                        {id <= 9 ? t(k(`resources.article.${id}.desc`)) : articleText(article.excerpt, language)}
                       </p>
                       <div className="mt-4 flex items-center justify-between">
                         <span className="text-xs font-bold text-[#D4A017]">
-                          {t(k(`resources.article.${id}.readTime`))}
+                          {id <= 9 ? t(k(`resources.article.${id}.readTime`)) : `${article.readTime} ${t('article.readTime')}`}
                         </span>
                         <span className="inline-flex items-center gap-1 text-sm font-extrabold text-[#0F4C3A]">
                           {t('common.readMore')}
@@ -211,26 +210,26 @@ const ResourcesPage: React.FC = () => {
                     className="group rounded-3xl border border-[#EFEBE4] bg-white overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(15,76,58,0.10)]"
                   >
                     <div className="h-32 bg-gradient-to-br from-[#F4F1EB] to-[#E9E5DB] relative flex items-center justify-center">
-                      <span className="text-5xl drop-shadow-sm">{RECIPE_EMOJIS[i]}</span>
+                      <span className="text-5xl drop-shadow-sm">{recipe.emoji}</span>
                       <span className="absolute top-3 start-3 rounded-full bg-[#D4A017] px-3 py-1 text-[10px] font-extrabold tracking-wide uppercase text-[#0F4C3A]">
                         {t('resources.tag.recipe')}
                       </span>
                     </div>
                     <div className="p-6">
                       <p className="text-[10px] font-extrabold tracking-[0.18em] uppercase text-[#D4A017]">
-                        {t(k(`resources.recipe.${id}.cuisine`))}
+                        {id <= 6 ? t(k(`resources.recipe.${id}.cuisine`)) : recipeText(recipe.cuisine, language)}
                       </p>
                       <h3 className="mt-1 text-base font-extrabold text-[#0F4C3A] leading-snug">
-                        {t(k(`resources.recipe.${id}.name`))}
+                        {id <= 6 ? t(k(`resources.recipe.${id}.name`)) : recipeText(recipe.title, language)}
                       </h3>
                       <div className="mt-3 flex items-center gap-4 text-xs font-bold text-[#6B7A75]">
                         <span className="inline-flex items-center gap-1">
                           <Flame size={14} className="text-[#D4A017]" />
-                          {t(k(`resources.recipe.${id}.calories`))}
+                          {id <= 6 ? t(k(`resources.recipe.${id}.calories`)) : `${recipe.nutrition.calories} kcal`}
                         </span>
                         <span className="inline-flex items-center gap-1">
                           <Clock size={14} className="text-[#0F4C3A]" />
-                          {t(k(`resources.recipe.${id}.prepTime`))}
+                          {id <= 6 ? t(k(`resources.recipe.${id}.prepTime`)) : recipeText(recipe.prepTime, language)}
                         </span>
                       </div>
                       <div className="mt-4 inline-flex items-center gap-1 text-sm font-extrabold text-[#0F4C3A]">

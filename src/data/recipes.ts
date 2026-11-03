@@ -350,7 +350,242 @@ const LENTIL_SOUP: Recipe = {
   nutrition: { calories: 280, protein: 14, carbs: 42, fat: 7 },
 };
 
-export const RECIPES: Recipe[] = [FOUL, CHICKEN_RICE, TAGINE, TABBOULEH, KABSA, LENTIL_SOUP];
+const LEMON_HERB_SALMON: Recipe = {
+  id: 'lemon-herb-grilled-salmon',
+  slug: 'lemon-herb-grilled-salmon',
+  emoji: '🐟',
+  title: { en: 'Lemon Herb Grilled Salmon', ar: 'سلمون مشوي بالأعشاب والليمون' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: {
+    en: 'Grilled salmon with lemon, dill, and parsley, served with quinoa and broccoli for a balanced weeknight meal.',
+    ar: 'سلمون مشوي بالليمون والشبت والبقدونس، يقدم مع الكينوا والبروكلي لوجبة متوازنة.',
+  },
+  prepTime: { en: '30 min', ar: '30 دقيقة' },
+  ingredients: {
+    en: [
+      '4 salmon fillets (about 5 oz each)',
+      '1 tbsp olive oil',
+      '1 lemon, zested and juiced',
+      '2 cloves garlic, minced',
+      '1 tbsp chopped fresh dill',
+      '1 tbsp chopped fresh parsley',
+      '1/4 tsp black pepper',
+      '2 cups cooked quinoa',
+      '3 cups broccoli florets',
+    ],
+    ar: [
+      '4 شرائح سلمون (نحو 140 غرامًا لكل شريحة)',
+      'ملعقة كبيرة زيت زيتون',
+      'بشر وعصير ليمونة',
+      'فصان ثوم مفرومان',
+      'ملعقة كبيرة شبت طازج مفروم',
+      'ملعقة كبيرة بقدونس طازج مفروم',
+      'ربع ملعقة صغيرة فلفل أسود',
+      'كوبان كينوا مطبوخة',
+      '3 أكواب زهرات بروكلي',
+    ],
+  },
+  instructions: {
+    en: [
+      'Heat an outdoor grill or grill pan to medium-high and lightly oil the grates.',
+      'Stir olive oil, lemon zest and juice, garlic, dill, parsley, and black pepper together.',
+      'Brush the mixture over the salmon and let it stand for 10 minutes while the grill heats.',
+      'Grill salmon for about 4–5 minutes per side, until it flakes easily and reaches a safe internal temperature of 145°F.',
+      'Steam broccoli until tender-crisp and warm the cooked quinoa.',
+      'Serve each salmon fillet with quinoa and broccoli, spooning any remaining lemon herbs over the top.',
+    ],
+    ar: [
+      'سخّن الشواية أو مقلاة الشوي إلى حرارة متوسطة مرتفعة وادهن سطحها بقليل من الزيت.',
+      'اخلط زيت الزيتون وبشر الليمون وعصيره والثوم والشبت والبقدونس والفلفل.',
+      'ادهن السلمون بالخليط واتركه 10 دقائق أثناء تسخين الشواية.',
+      'اشوِ السلمون نحو 4 إلى 5 دقائق لكل جانب حتى يتفتت بسهولة وتبلغ حرارته الداخلية الآمنة 145 فهرنهايت.',
+      'اطه البروكلي بالبخار حتى يصبح طريًا ومتماسكًا، وسخّن الكينوا المطبوخة.',
+      'قدّم كل شريحة مع الكينوا والبروكلي وأضف ما تبقى من خليط الأعشاب والليمون.',
+    ],
+  },
+  nutrition: { calories: 430, protein: 37, carbs: 35, fat: 17 },
+};
+
+const AVOCADO_CHICKEN_BOWL: Recipe = {
+  id: 'avocado-chicken-power-bowl',
+  slug: 'avocado-chicken-power-bowl',
+  emoji: '🥑',
+  title: { en: 'Avocado Chicken Power Bowl', ar: 'وعاء الدجاج والأفوكادو المغذي' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: {
+    en: 'A colorful bowl of grilled chicken, brown rice, avocado, greens, and black beans with a bright lime dressing.',
+    ar: 'وعاء ملون من الدجاج المشوي والأرز البني والأفوكادو والخضار والفاصوليا السوداء مع صلصة الليمون.',
+  },
+  prepTime: { en: '35 min', ar: '35 دقيقة' },
+  ingredients: {
+    en: [
+      '2 boneless, skinless chicken breasts (about 12 oz total)',
+      '1 tsp olive oil',
+      '1/2 tsp ground cumin',
+      '1/4 tsp paprika',
+      '2 cups cooked brown rice',
+      '1 ripe avocado, sliced',
+      '1 cup black beans, drained and rinsed',
+      '2 cups baby spinach',
+      '1 cup cherry tomatoes, halved',
+      'Juice of 1 lime',
+      '2 tbsp plain Greek yogurt',
+    ],
+    ar: [
+      'صدرا دجاج منزوعا العظم والجلد (نحو 340 غرامًا إجمالًا)',
+      'ملعقة صغيرة زيت زيتون',
+      'نصف ملعقة صغيرة كمون مطحون',
+      'ربع ملعقة صغيرة بابريكا',
+      'كوبان أرز بني مطبوخ',
+      'حبة أفوكادو ناضجة مقطعة شرائح',
+      'كوب فاصوليا سوداء مصفاة ومغسولة',
+      'كوبان سبانخ صغيرة',
+      'كوب طماطم كرزية مقطعة أنصافًا',
+      'عصير ليمونة خضراء',
+      'ملعقتان كبيرتان لبن يوناني سادة',
+    ],
+  },
+  instructions: {
+    en: [
+      'Rub chicken with olive oil, cumin, and paprika.',
+      'Grill or sear chicken over medium heat until browned and cooked through to 165°F; rest for 5 minutes, then slice.',
+      'Whisk lime juice with Greek yogurt and 1 tablespoon of water to make a pourable dressing.',
+      'Divide warm brown rice, spinach, black beans, and tomatoes among four bowls.',
+      'Top each bowl with sliced chicken and avocado.',
+      'Drizzle with lime dressing and serve; refrigerate leftovers promptly in separate covered containers.',
+    ],
+    ar: [
+      'تبّل الدجاج بزيت الزيتون والكمون والبابريكا.',
+      'اشوِ الدجاج أو حمّره على حرارة متوسطة حتى ينضج وتبلغ حرارته الداخلية 165 فهرنهايت؛ اتركه 5 دقائق ثم قطعه.',
+      'اخفق عصير الليمون الأخضر مع اللبن اليوناني وملعقة ماء لتحضير صلصة سائلة.',
+      'وزّع الأرز البني الدافئ والسبانخ والفاصوليا والطماطم على أربعة أوعية.',
+      'أضف شرائح الدجاج والأفوكادو إلى كل وعاء.',
+      'اسكب صلصة الليمون وقدّم؛ برّد البقايا سريعًا في أوعية مغطاة منفصلة.',
+    ],
+  },
+  nutrition: { calories: 520, protein: 42, carbs: 50, fat: 17 },
+};
+
+const TURKEY_MEATBALLS_ZUCCHINI: Recipe = {
+  id: 'lean-turkey-meatballs-zucchini',
+  slug: 'lean-turkey-meatballs-zucchini',
+  emoji: '🍝',
+  title: { en: 'Lean Turkey Meatballs with Zucchini', ar: 'كرات ديك رومي قليلة الدهون مع الكوسا' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: {
+    en: 'Oven-baked lean turkey meatballs served with zucchini and tomato marinara for a lighter comfort-food dinner.',
+    ar: 'كرات ديك رومي قليلة الدهون مخبوزة بالفرن وتقدم مع الكوسا وصلصة الطماطم لوجبة منزلية أخف.',
+  },
+  prepTime: { en: '40 min', ar: '40 دقيقة' },
+  ingredients: {
+    en: [
+      '1 lb lean ground turkey',
+      '1 large egg',
+      '1/3 cup whole-wheat breadcrumbs',
+      '2 tbsp grated Parmesan cheese',
+      '2 cloves garlic, minced',
+      '1 tsp dried Italian herbs',
+      '2 medium zucchini, sliced into half-moons',
+      '2 cups no-salt-added tomato marinara sauce',
+      '1 tbsp olive oil',
+      '2 tbsp chopped fresh basil',
+    ],
+    ar: [
+      '450 غرام ديك رومي مفروم قليل الدهون',
+      'بيضة كبيرة',
+      'ثلث كوب فتات خبز من القمح الكامل',
+      'ملعقتان كبيرتان جبن بارميزان مبشور',
+      'فصان ثوم مفرومان',
+      'ملعقة صغيرة أعشاب إيطالية مجففة',
+      'حبتا كوسا متوسطتان مقطعتان أنصاف دوائر',
+      'كوبان صلصة طماطم مارينارا قليلة الملح',
+      'ملعقة كبيرة زيت زيتون',
+      'ملعقتان كبيرتان ريحان طازج مفروم',
+    ],
+  },
+  instructions: {
+    en: [
+      'Heat the oven to 400°F and line a rimmed baking sheet with parchment.',
+      'Combine ground turkey, egg, breadcrumbs, Parmesan, garlic, and Italian herbs; mix gently until just combined.',
+      'Shape into 16 small meatballs and arrange on the prepared baking sheet.',
+      'Bake for 16–20 minutes, until browned and the center reaches 165°F.',
+      'Meanwhile, warm marinara in a large skillet and simmer the zucchini in olive oil for 5–7 minutes until tender but still firm.',
+      'Add the cooked meatballs to the sauce, spoon over zucchini, and finish with fresh basil.',
+    ],
+    ar: [
+      'سخّن الفرن إلى 400 فهرنهايت وضع ورق خبز في صينية ذات حواف.',
+      'اخلط الديك الرومي والبيض وفتات الخبز والبارميزان والثوم والأعشاب برفق حتى تتجانس.',
+      'شكّل 16 كرة صغيرة ورتبها في الصينية.',
+      'اخبز 16 إلى 20 دقيقة حتى تتحمر وتبلغ حرارة وسطها 165 فهرنهايت.',
+      'في هذه الأثناء سخّن صلصة المارينارا واطه الكوسا بزيت الزيتون 5 إلى 7 دقائق حتى تلين مع بقائها متماسكة.',
+      'أضف كرات اللحم المطهوة إلى الصلصة وقدّمها فوق الكوسا مع الريحان الطازج.',
+    ],
+  },
+  nutrition: { calories: 390, protein: 36, carbs: 25, fat: 15 },
+};
+
+const GREEK_YOGURT_BERRY_PARFAIT: Recipe = {
+  id: 'greek-yogurt-berry-parfait',
+  slug: 'greek-yogurt-berry-parfait',
+  emoji: '🫐',
+  title: { en: 'Greek Yogurt Berry Parfait', ar: 'بارفيه اللبن اليوناني والتوت' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: {
+    en: 'A quick layered parfait with plain Greek yogurt, mixed berries, oats, and crunchy walnuts for breakfast or a snack.',
+    ar: 'حلوى طبقات سريعة من اللبن اليوناني السادة والتوت والشوفان والجوز للفطور أو وجبة خفيفة.',
+  },
+  prepTime: { en: '10 min', ar: '10 دقائق' },
+  ingredients: {
+    en: [
+      '2 cups plain nonfat Greek yogurt',
+      '1 cup fresh or frozen mixed berries, thawed if frozen',
+      '1/2 cup rolled oats or low-sugar granola',
+      '2 tbsp chopped walnuts',
+      '1 tsp honey, optional',
+      '1/4 tsp ground cinnamon',
+    ],
+    ar: [
+      'كوبان لبن يوناني سادة خالي الدسم',
+      'كوب توت مشكل طازج أو مجمد بعد تذويبه',
+      'نصف كوب شوفان ملفوف أو جرانولا قليلة السكر',
+      'ملعقتان كبيرتان جوز مفروم',
+      'ملعقة صغيرة عسل، اختياري',
+      'ربع ملعقة صغيرة قرفة مطحونة',
+    ],
+  },
+  instructions: {
+    en: [
+      'Stir cinnamon into the Greek yogurt.',
+      'Spoon half of the yogurt into four glasses or jars.',
+      'Add a layer of berries and a sprinkle of oats or granola.',
+      'Repeat the layers with the remaining yogurt and berries.',
+      'Top with walnuts and a small drizzle of honey if desired.',
+      'Serve right away for crunchy oats, or cover and chill; add granola just before serving.',
+    ],
+    ar: [
+      'اخلط القرفة مع اللبن اليوناني.',
+      'ضع نصف كمية اللبن في أربعة أكواب أو أوعية زجاجية.',
+      'أضف طبقة من التوت ورشة من الشوفان أو الجرانولا.',
+      'كرر الطبقات ببقية اللبن والتوت.',
+      'زيّن بالجوز وقليل من العسل حسب الرغبة.',
+      'قدّم فورًا للحفاظ على قرمشة الشوفان، أو غطّه وبرّده وأضف الجرانولا قبل التقديم.',
+    ],
+  },
+  nutrition: { calories: 300, protein: 25, carbs: 36, fat: 6 },
+};
+
+export const RECIPES: Recipe[] = [
+  FOUL,
+  CHICKEN_RICE,
+  TAGINE,
+  TABBOULEH,
+  KABSA,
+  LENTIL_SOUP,
+  LEMON_HERB_SALMON,
+  AVOCADO_CHICKEN_BOWL,
+  TURKEY_MEATBALLS_ZUCCHINI,
+  GREEK_YOGURT_BERRY_PARFAIT,
+];
 
 export const getRecipeBySlug = (slug: string): Recipe | undefined =>
   RECIPES.find((r) => r.slug === slug);

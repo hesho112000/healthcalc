@@ -25,6 +25,10 @@ const RECIPE_LINKS = [
   { keywords: ['tabbouleh', 'lebanese'], slug: 'lebanese-tabbouleh', title: 'Lebanese Tabbouleh Recipe' },
   { keywords: ['kabsa', 'saudi'], slug: 'saudi-kabsa-lighter', title: 'Saudi Kabsa Recipe' },
   { keywords: ['lentil soup', 'moroccan'], slug: 'moroccan-lentil-soup', title: 'Moroccan Lentil Soup Recipe' },
+  { keywords: ['salmon', 'grilled salmon'], slug: 'lemon-herb-grilled-salmon', title: 'Lemon Herb Grilled Salmon' },
+  { keywords: ['avocado', 'chicken bowl'], slug: 'avocado-chicken-power-bowl', title: 'Avocado Chicken Power Bowl' },
+  { keywords: ['turkey', 'meatballs', 'zucchini'], slug: 'lean-turkey-meatballs-zucchini', title: 'Lean Turkey Meatballs with Zucchini' },
+  { keywords: ['yogurt', 'parfait', 'berries'], slug: 'greek-yogurt-berry-parfait', title: 'Greek Yogurt Berry Parfait' },
 ];
 
 const NUTRITION_ARTICLE_SLUGS = [
