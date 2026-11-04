@@ -61,6 +61,16 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://healthfingerprint.com/resources/article/mediterranean-diet-for-beginners</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/article/meal-prep-mediterranean</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://healthfingerprint.com/resources/recipe/foul-medames</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -237,6 +247,56 @@
   </url>
   <url>
     <loc>https://healthfingerprint.com/resources/recipe/lemon-herb-salmon-asparagus</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/recipe/chicken-fajita-bowl</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/recipe/lean-beef-burrito-bowl</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/recipe/shrimp-tacos-cabbage-slaw</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/recipe/black-bean-sweet-potato-quesadilla</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/recipe/grilled-fish-tacos-mango-salsa</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/recipe/mexican-quinoa-salad</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/recipe/turkey-zucchini-enchiladas</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/recipe/chicken-tortilla-soup-light</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/recipe/beef-bell-pepper-fajitas</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/recipe/cilantro-lime-cauliflower-rice-bowl</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>

@@ -1315,6 +1315,638 @@ US Nutrition Facts labels follow federal requirements, but recipes and serving s
   },
 };
 
+const MEDITERRANEAN_DIET_BEGINNERS: Article = {
+  id: 'mediterranean-diet-for-beginners',
+  slug: 'mediterranean-diet-for-beginners',
+  category: 'nutrition',
+  icon: '🫒',
+  readTime: 9,
+  publishedAt: '2026-11-04',
+  tags: ['mediterranean-diet', 'beginner-guide', 'heart-health', 'nutrition'],
+  title: {
+    en: 'The Mediterranean Diet for Beginners: A Complete Guide',
+    ar: 'حمية البحر المتوسط للمبتدئين: دليل شامل',
+  },
+  excerpt: {
+    en: 'A practical introduction to the Mediterranean eating pattern, the evidence behind it, and simple ways to start without overhauling your life.',
+    ar: 'مقدمة عملية إلى نمط البحر المتوسط الغذائي والأدلة التي تدعمه وطرق بسيطة للبدء دون تغيير حياتك بالكامل.',
+  },
+  content: {
+    en: `## What the Mediterranean Diet Really Means
+
+The Mediterranean diet is not a single cuisine or a rigid list of approved foods. It is a pattern of eating inspired by traditional foodways in Greece, southern Italy, Spain, and other countries around the Mediterranean Sea. The emphasis is on vegetables, fruits, legumes, whole grains, nuts, seeds, olive oil, herbs, and fish, with moderate amounts of dairy and eggs and limited red meat, processed foods, and added sugars.
+
+Because the pattern describes broad principles rather than exact recipes, it can fit many kitchens. A family that cooks Middle Eastern, North African, or Latin American food can apply the same structure: plenty of plants, olive oil or another unsaturated oil, beans or lentils, whole grains, and a modest portion of protein. The goal is a way of eating that feels enjoyable and repeatable, not a test of cultural authenticity.
+
+### A pattern, not a strict meal plan
+
+You do not need to count every gram of fat or ban entire food groups. Instead, think about proportions and frequency. Most meals should be built around plants. Fish and seafood can appear a few times a week. Poultry and eggs can be used regularly but in smaller amounts. Sweets and refined grains can be occasional foods rather than daily staples.
+
+### Why the pattern has staying power
+
+The Mediterranean pattern is flexible, satisfying, and compatible with many budgets and traditions. It does not rely on special products, and it can be assembled from ordinary supermarket ingredients: canned beans, frozen vegetables, oats, brown rice, whole-wheat pasta, plain yogurt, eggs, and whatever fish or poultry is affordable. That flexibility helps people keep the pattern going after the first enthusiastic week.
+
+## What the Evidence Says
+
+### Heart and metabolic health
+
+Observational studies consistently associate greater adherence to a Mediterranean-style pattern with lower rates of cardiovascular disease, type 2 diabetes, and some cancers. The PREDIMED trial, a large randomized study in Spain, found that a Mediterranean diet supplemented with extra-virgin olive oil or nuts reduced the risk of major cardiovascular events compared with a control diet. Later reanalyses have refined the findings, but the overall direction has remained supportive.
+
+The pattern may help through several pathways at once: unsaturated fats in place of saturated fat, more fiber and potassium from plants, a lower sodium intake when cooking replaces packaged foods, and a greater intake of polyphenols from vegetables, fruit, olive oil, and herbs. These effects are gradual and cumulative, not dramatic overnight changes.
+
+### What it cannot do
+
+No eating pattern can guarantee a particular health outcome. The Mediterranean diet is not a substitute for prescribed medication, and it does not cancel out smoking, inactivity, or poor sleep. Weight change still depends on overall energy intake and many individual factors. Olive oil and nuts are nutritious but calorie-dense, so portions matter. The evidence supports the pattern as a sensible default, not as a promise of perfect protection.
+
+## Foods to Eat Most Days
+
+### Vegetables and fruits
+
+Aim to fill about half your plate with vegetables and fruit at most meals. Fresh produce is excellent, but frozen and canned options are nutritious and convenient. Choose canned fruit in juice rather than heavy syrup, and rinse canned vegetables if you are watching sodium. Seasonal produce, local markets, and frozen blends can keep costs down and variety up.
+
+### Legumes
+
+Beans, lentils, and chickpeas are central to the pattern. They provide protein, fiber, and slow-digesting carbohydrates. Canned beans are a practical shortcut; drain and rinse them to reduce sodium. Keep a few cans in the pantry for salads, soups, and grain bowls. Lentils cook quickly and do not require soaking, which makes them useful on busy weeknights.
+
+### Whole grains
+
+Choose oats, brown rice, barley, bulgur, whole-wheat pasta, and whole-grain bread more often than refined versions. These foods add fiber and a satisfying texture. You do not have to give up familiar foods; a smaller portion of white rice alongside extra vegetables and beans is still consistent with the pattern. The overall balance matters more than any single grain.
+
+### Healthy fats
+
+Olive oil is the signature fat of the Mediterranean pattern, but nuts, seeds, and avocado are also useful. Use oil for cooking, dressing, and finishing dishes rather than treating it as a free food. A drizzle is enough to carry flavor. Nuts and seeds add crunch and nutrients; a small handful is a practical portion.
+
+## Foods to Include Regularly but Less Often
+
+### Fish and seafood
+
+Fish and seafood provide protein and omega-3 fatty acids. Aim for fish a few times a week when it fits your budget. Canned salmon, sardines, and tuna are affordable options, and frozen fillets can be just as nutritious as fresh. If you do not eat fish, beans, lentils, tofu, eggs, and dairy can cover protein needs.
+
+### Poultry and eggs
+
+Chicken, turkey, and eggs fit comfortably into the pattern. Use grilling, roasting, poaching, or sautéing rather than deep-frying. Eggs are a convenient source of protein and can anchor a vegetable-rich breakfast or a quick dinner.
+
+### Dairy
+
+Plain yogurt and modest amounts of cheese are traditional foods in many Mediterranean regions. Choose plain yogurt more often than sweetened varieties, and use cheese as a flavoring rather than the main event. People who avoid dairy can choose fortified plant alternatives or other calcium sources.
+
+## Foods to Limit Rather Than Ban
+
+### Red meat and processed foods
+
+Red meat can appear occasionally, but smaller portions and less frequent meals are the goal. Processed meats are best kept to a minimum. When you do eat meat, pair it with plenty of vegetables and whole grains, and avoid charring it over high heat.
+
+### Added sugars and refined grains
+
+Sweets and sugary drinks are occasional foods, not everyday staples. Fruit is a satisfying dessert, and plain yogurt with cinnamon and nuts can replace a sweetened snack. Refined grains do not need to be forbidden, but choosing whole grains more often adds fiber and nutrients.
+
+### Sodium
+
+Packaged foods, restaurant meals, and cured foods can add a lot of sodium. Cook more often at home, use herbs, citrus, garlic, and spices for flavor, rinse canned beans, and compare labels when buying broth, sauces, and bread. These small choices can add up without making meals bland.
+
+## Building a Mediterranean Plate
+
+### The half-quarter-quarter guide
+
+A simple visual guide is to fill half the plate with vegetables, one quarter with a protein such as fish, chicken, beans, or eggs, and one quarter with a whole grain or starchy vegetable. Add a drizzle of olive oil, a squeeze of lemon, and fresh herbs. This structure works for lunch and dinner and can be adapted to breakfast.
+
+### Breakfast, lunch, and dinner examples
+
+For breakfast, try oats with plain yogurt, berries, and walnuts, or eggs with tomatoes, spinach, and whole-grain toast. At lunch, combine chickpeas, cucumber, tomatoes, olives, and whole-wheat pita, or build a bowl with brown rice, roasted vegetables, and grilled chicken. For dinner, serve baked fish with roasted vegetables and barley, or a lentil soup with a side salad and a slice of whole-grain bread.
+
+## A Beginner-Friendly Week
+
+### Simple meal ideas
+
+Start with meals you already enjoy and adjust the proportions. A Monday dinner could be chicken and vegetable traybake with potatoes. Tuesday could be bean soup with whole-grain bread. Wednesday could be fish tacos with cabbage and avocado. Thursday could be lentil salad with feta and tomatoes. Friday could be whole-wheat pasta with tomatoes, olives, and white beans. Saturday could be grilled chicken with a large salad. Sunday could be a vegetable and chickpea stew with couscous.
+
+### A short shopping list
+
+Olive oil, oats, brown rice, whole-wheat pasta, canned beans, lentils, canned tomatoes, frozen vegetables, onions, garlic, lemons, cucumbers, tomatoes, leafy greens, plain yogurt, eggs, fish, chicken, nuts, and fruit. Adjust quantities to your household and budget. The list is a starting point, not a requirement.
+
+## Eating Out, Budget, and Culture
+
+### Restaurant tips
+
+Look for grilled fish, chicken, or legumes, ask for vegetables as a side, and request sauces and dressings on the side. A shared appetizer, a main dish, and fruit for dessert can be a satisfying restaurant meal. You do not need to eat perfectly to benefit from the pattern.
+
+### Budget tips
+
+Canned beans, frozen vegetables, oats, eggs, and seasonal produce are often inexpensive. Plant proteins can stretch a food budget, and cooking at home reduces spending on packaged foods. Batch cooking and freezing portions can reduce waste. Cost is a real barrier for many families, so choose the affordable parts of the pattern rather than treating it as an expensive lifestyle.
+
+### Cultural adaptation
+
+The Mediterranean pattern is a set of principles, not a requirement to eat only Greek or Italian food. Use the herbs, spices, grains, and vegetables that are familiar to you. A bean stew, a vegetable curry, a grain bowl, or a fish dinner can all fit. The best version is the one your household will actually eat.
+
+## Is It Right for You?
+
+### Medical considerations
+
+Most people can benefit from a plant-forward pattern, but individual needs vary. People with diabetes may need to coordinate carbohydrate portions with medication. People with kidney disease may need to adjust potassium, phosphorus, or protein. People with food allergies need to avoid specific ingredients. People who are pregnant, older, or managing a chronic condition should ask their clinician or a registered dietitian for personalized guidance.
+
+### Children and families
+
+Children can eat the same meals as adults, with portions adjusted to appetite. Offer vegetables and beans repeatedly without pressure, and keep meals pleasant. Family meals, shared cooking, and a relaxed approach to new foods can support long-term habits better than strict rules.
+
+## Getting Started Without Overhauling Everything
+
+1. Add one vegetable to a meal you already make.
+2. Swap one refined grain for a whole grain.
+3. Cook a pot of beans or lentils and use them for two meals.
+4. Use olive oil and lemon instead of a packaged sauce once this week.
+5. Plan one fish meal and one meatless meal.
+
+## The Bottom Line
+
+The Mediterranean diet is a flexible, evidence-informed pattern that emphasizes plants, healthy fats, and minimally processed foods. It is not a guarantee of health, a cure, or a test of willpower. Start with small changes that fit your budget, culture, and medical needs, and repeat the ones that make you feel well. Consistency over months matters more than perfection in a single meal.`,
+    ar: `## ماذا تعني حمية البحر المتوسط حقًا؟
+
+حمية البحر المتوسط ليست مطبخًا واحدًا ولا قائمة صارمة بالأطعمة المسموحة. إنها نمط غذائي مستوحى من العادات الغذائية التقليدية في اليونان وجنوب إيطاليا وإسبانيا ودول أخرى حول البحر المتوسط. تركز على الخضروات والفواكه والبقوليات والحبوب الكاملة والمكسرات والبذور وزيت الزيتون والأعشاب والسمك، مع كميات معتدلة من منتجات الألبان والبيض، وكميات محدودة من اللحوم الحمراء والأطعمة المصنعة والسكريات المضافة.
+
+ولأن النمط يصف مبادئ عامة بدلًا من وصفات محددة، يمكن تطبيقه في مطابخ كثيرة. الأسرة التي تطبخ الطعام الشرقي أو شمال الأفريقي أو اللاتيني يمكنها تطبيق البنية نفسها: كثير من النباتات، وزيت الزيتون أو زيت غير مشبع آخر، والبقول أو العدس، والحبوب الكاملة، وحصة معتدلة من البروتين. الهدف هو طريقة طعام ممتعة وقابلة للتكرار، لا اختبار للأصالة الثقافية.
+
+### نمط غذائي وليس خطة صارمة
+
+لا تحتاج إلى حساب كل غرام من الدهون أو منع مجموعات غذائية كاملة. فكر في النسب والتكرار بدلًا من ذلك. ينبغي أن تُبنى معظم الوجبات حول النباتات. يمكن أن يظهر السمك والمأكولات البحرية عدة مرات أسبوعيًا. ويمكن استخدام الدواجن والبيض بانتظام وبكميات أصغر. أما الحلويات والحبوب المكررة فتبقى أطعمة من حين إلى آخر وليست أساسية يوميًا.
+
+### لماذا يستمر هذا النمط؟
+
+نمط البحر المتوسط مرن ومشبع ويتوافق مع ميزانيات وتقاليد كثيرة. لا يعتمد على منتجات خاصة، ويمكن تجميعه من مكونات المتجر العادية: الفاصوليا المعلبة والخضروات المجمدة والشوفان والأرز البني والمعكرونة الكاملة واللبن السادة والبيض والسمك أو الدواجن المتاحة. هذه المرونة تساعد الناس على الاستمرار بعد الأسبوع الأول المتحمس.
+
+## ماذا تقول الأدلة؟
+
+### صحة القلب والتمثيل الغذائي
+
+تربط الدراسات الرصدية باستمرار بين الالتزام الأكبر بنمط البحر المتوسط وبين انخفاض معدلات أمراض القلب والسكري من النوع الثاني وبعض أنواع السرطان. وقد وجدت تجربة PREDIMED، وهي دراسة عشوائية كبيرة في إسبانيا، أن حمية البحر المتوسط المدعمة بزيت الزيتون البكر الممتاز أو المكسرات قللت خطر الأحداث القلبية الكبرى مقارنة بنظام ضابط. وقد حسنت إعادة التحليلات اللاحقة تفسير النتائج، لكن الاتجاه العام ظل داعمًا.
+
+قد يساعد النمط عبر عدة مسارات في وقت واحد: استبدال الدهون المشبعة بدهون غير مشبعة، وزيادة الألياف والبوتاسيوم من النباتات، وانخفاض الصوديوم عند استبدال الأطعمة المصنعة بالطهي المنزلي، وزيادة البوليفينولات من الخضروات والفواكه وزيت الزيتون والأعشاب. هذه التأثيرات تدريجية وتراكمية، وليست تغييرات درامية بين ليلة وضحاها.
+
+### ما لا يستطيع فعله
+
+لا يمكن لأي نمط غذائي أن يضمن نتيجة صحية معينة. حمية البحر المتوسط ليست بديلًا عن الأدوية الموصوفة، ولا تلغي تأثير التدخين أو قلة الحركة أو قلة النوم. لا يزال تغير الوزن يعتمد على إجمالي الطاقة وعوامل فردية كثيرة. زيت الزيتون والمكسرات مغذية لكنها كثيفة السعرات، لذا تهم الحصص. تدعم الأدلة النمط كخيار افتراضي معقول، لا كوعد بحماية كاملة.
+
+## أطعمة تُناول معظم الأيام
+
+### الخضروات والفواكه
+
+احرص على ملء نحو نصف الطبق بالخضروات والفواكه في معظم الوجبات. المنتجات الطازجة ممتازة، لكن الخيارات المجمدة والمعلبة مغذية ومريحة. اختر الفواكه المعلبة في العصير بدلًا من الشراب الثقيل، واشطف الخضروات المعلبة إذا كنت تراقب الصوديوم. يمكن للمنتجات الموسمية والأسواق المحلية والخلطات المجمدة أن تخفض التكلفة وتزيد التنوع.
+
+### البقوليات
+
+الفاصوليا والعدس والحمص محورية في هذا النمط. فهي توفر البروتين والألياف والكربوهيدرات بطيئة الهضم. الفاصوليا المعلبة اختصار عملي؛ صفّها واشطفها لتقليل الصوديوم. احتفظ بعدة علب في المخزن للسلطات والحساء وأوعية الحبوب. ينضج العدس بسرعة ولا يحتاج إلى نقع، ما يجعله مفيدًا في أمسيات العمل المزدحمة.
+
+### الحبوب الكاملة
+
+اختر الشوفان والأرز البني والشعير والبرغل والمعكرونة الكاملة والخبز الكامل أكثر من الأنواع المكررة. تضيف هذه الأطعمة أليافًا وقوامًا مشبعًا. لا يلزمك التخلي عن الأطعمة المألوفة؛ فحصة أصغر من الأرز الأبيض مع خضروات وفاصوليا إضافية تبقى متوافقة مع النمط. التوازن العام أهم من أي حبوب بمفردها.
+
+### الدهون الصحية
+
+زيت الزيتون هو الدهن المميز لنمط البحر المتوسط، لكن المكسرات والبذور والأفوكادو مفيدة أيضًا. استخدم الزيت في الطهي والتتبيل وإنهاء الأطباق بدلًا من اعتباره طعامًا حرًا. رشة تكفي لحمل النكهة. تضيف المكسرات والبذور قرمشة ومغذيات؛ وحفنة صغيرة حصة عملية.
+
+## أطعمة تُدرج بانتظام لكن أقل تكرارًا
+
+### السمك والمأكولات البحرية
+
+يوفر السمك والمأكولات البحرية البروتين وأحماض أوميغا-3 الدهنية. احرص على السمك عدة مرات أسبوعيًا عندما تسمح الميزانية. السلمون والسردين والتونة المعلبة خيارات ميسورة، والشرائح المجمدة قد تكون مغذية كالطازجة. إذا كنت لا تأكل السمك، يمكن للفاصوليا والعدس والتوفو والبيض ومنتجات الألبان تغطية احتياجات البروتين.
+
+### الدواجن والبيض
+
+الدجاج والديك الرومي والبيض تندرج بسهولة في النمط. استخدم الشوي أو التحميص أو السلط أو التحريك بدلًا من القلي العميق. البيض مصدر عملي للبروتين ويمكن أن يكون أساس فطور غني بالخضروات أو عشاء سريع.
+
+### منتجات الألبان
+
+اللبن السادة وكميات معتدلة من الجبن أطعمة تقليدية في مناطق كثيرة من البحر المتوسط. اختر اللبن السادة أكثر من الأنواع المحلاة، واستخدم الجبن كمنكه بدلًا من أن يكون الطبق الرئيسي. من يتجنب الألبان يمكنه اختيار بدائل نباتية مدعمة أو مصادر أخرى للكالسيوم.
+
+## أطعمة تُحدّ لا تُمنع
+
+### اللحوم الحمراء والأطعمة المصنعة
+
+يمكن أن تظهر اللحوم الحمراء من حين إلى آخر، لكن الهدف هو حصص أصغر ووجبات أقل تكرارًا. من الأفضل تقليل اللحوم المصنعة إلى الحد الأدنى. وعند تناول اللحم، اجعله مع كثير من الخضروات والحبوب الكاملة، وتجنب تحميره على حرارة عالية جدًا.
+
+### السكريات المضافة والحبوب المكررة
+
+الحلويات والمشروبات السكرية أطعمة من حين إلى آخر وليست أساسية يوميًا. الفاكهة حلوى مشبعة، واللبن السادة مع القرفة والمكسرات يمكن أن يحل محل وجبة خفيفة محلاة. لا يلزم منع الحبوب المكررة، لكن اختيار الحبوب الكاملة أكثر يضيف أليافًا ومغذيات.
+
+### الصوديوم
+
+يمكن للأطعمة المعبأة ووجبات المطاعم والأطعمة المملحة أن تضيف كثيرًا من الصوديوم. اطبخ في المنزل أكثر، واستخدم الأعشاب والحمضيات والثوم والتوابل للنكهة، واشطف الفاصوليا المعلبة، وقارن الملصقات عند شراء المرق والصلصات والخبز. هذه الخيارات الصغيرة تتراكم دون أن تجعل الوجبات بلا طعم.
+
+## بناء طبق البحر المتوسط
+
+### دليل النصف والربع والربع
+
+دليل بصري بسيط هو ملء نصف الطبق بالخضروات، وربع ببروتين مثل السمك أو الدجاج أو الفاصوليا أو البيض، وربع بحبوب كاملة أو خضروات نشوية. أضف رشة زيت زيتون وعصير ليمون وأعشابًا طازجة. تصلح هذه البنية للغداء والعشاء ويمكن تكييفها للفطور.
+
+### أمثلة للفطور والغداء والعشاء
+
+للفطور، جرب الشوفان مع اللبن السادة والتوت والجوز، أو البيض مع الطماطم والسبانخ والخبز الكامل. للغداء، اخلط الحمص والخيار والطماطم والزيتون وخبز البيتا الكامل، أو ابنِ وعاءً من الأرز البني والخضروات المشوية والدجاج المشوي. للعشاء، قدم سمكًا مخبوزًا مع خضروات مشوية وشعير، أو شوربة عدس مع سلطة جانبية وشريحة خبز كامل.
+
+## أسبوع مناسب للمبتدئين
+
+### أفكار وجبات بسيطة
+
+ابدأ بوجبات تستمتع بها بالفعل وعدّل النسب. يمكن أن يكون عشاء الاثنين دجاجًا وخضروات مشوية مع البطاطا. والثلاثاء شوربة فاصوليا مع خبز كامل. والأربعاء تاكو سمك مع الملفوف والأفوكادو. والخميس سلطة عدس مع الفيتا والطماطم. والجمعة معكرونة كاملة مع الطماطم والزيتون والفاصوليا البيضاء. والسبت دجاجًا مشويًا مع سلطة كبيرة. والأحد يخنة خضروات وحمص مع الكسكس.
+
+### قائمة تسوق قصيرة
+
+زيت زيتون وشوفان وأرز بني ومعكرونة كاملة وفاصوليا معلبة وعدس وطماطم معلبة وخضروات مجمدة وبصل وثوم وليمون وخيار وطماطم وخضروات ورقية ولبن سادة وبيض وسمك ودجاج ومكسرات وفواكه. عدّل الكميات حسب أسرتك وميزانيتك. القائمة نقطة بداية وليست شرطًا.
+
+## الأكل خارج المنزل والميزانية والثقافة
+
+### نصائح المطاعم
+
+ابحث عن السمك المشوي أو الدجاج أو البقوليات، واطلب الخضروات كطبق جانبي، واطلب الصلصات والتتبيلات على الجانب. يمكن للمقبلات المشتركة وطبق رئيسي وفاكهة للحلوى أن تشكل وجبة مطعم مشبعة. لا تحتاج إلى الأكل بشكل مثالي لتستفيد من النمط.
+
+### نصائح الميزانية
+
+غالبًا ما تكون الفاصوليا المعلبة والخضروات المجمدة والشوفان والبيض والمنتجات الموسمية غير مكلفة. يمكن للبروتينات النباتية أن توسع ميزانية الطعام، والطهي في المنزل يقلل الإنفاق على الأطعمة المعبأة. يمكن للطهي بالدفعات والتجميد أن يقلل الهدر. التكلفة عائق حقيقي لكثير من الأسر، لذا اختر الأجزاء الميسورة من النمط بدلًا من اعتباره نمط حياة مكلفًا.
+
+### التكييف الثقافي
+
+نمط البحر المتوسط مجموعة مبادئ، وليس شرطًا لتناول الطعام اليوناني أو الإيطالي فقط. استخدم الأعشاب والتوابل والحبوب والخضروات المألوفة لك. يمكن أن تندرج يخنة الفاصوليا أو كاري الخضروات أو وعاء الحبوب أو عشاء السمك. أفضل نسخة هي التي ستأكلها أسرتك فعلًا.
+
+## هل يناسبك؟
+
+### اعتبارات طبية
+
+يمكن لمعظم الناس الاستفادة من نمط يميل إلى النباتات، لكن الاحتياجات الفردية تختلف. قد يحتاج المصابون بالسكري إلى تنسيق حصص الكربوهيدرات مع الأدوية. وقد يحتاج مرضى الكلى إلى تعديل البوتاسيوم أو الفوسفور أو البروتين. ويحتاج من لديه حساسية غذائية إلى تجنب مكونات محددة. وينبغي للحوامل وكبار السن ومن يدير حالة مزمنة سؤال الطبيب أو اختصاصي التغذية للحصول على إرشاد شخصي.
+
+### الأطفال والأسر
+
+يمكن للأطفال تناول الوجبات نفسها مع تعديل الحصص حسب الشهية. قدم الخضروات والبقول مرارًا دون ضغط، وحافظ على أجواء الوجبات ممتعة. الوجبات الأسرية والطهي المشترك والنهج المريح تجاه الأطعمة الجديدة تدعم العادات طويلة المدى أفضل من القواعد الصارمة.
+
+## البدء دون تغيير كل شيء
+
+1. أضف خضارًا واحدًا إلى وجبة تصنعها بالفعل.
+2. استبدل حبة مكررة بحبة كاملة.
+3. اطبخ قدرًا من الفاصوليا أو العدس واستخدمه لوجبتين.
+4. استخدم زيت الزيتون والليمون بدلًا من صلصة معبأة مرة هذا الأسبوع.
+5. خطط لوجبة سمك ووجبة بلا لحوم.
+
+## الخلاصة
+
+حمية البحر المتوسط نمط مرن قائم على الأدلة يركز على النباتات والدهون الصحية والأطعمة قليلة المعالجة. ليست ضمانًا للصحة أو علاجًا أو اختبارًا لقوة الإرادة. ابدأ بتغييرات صغيرة تناسب ميزانيتك وثقافتك واحتياجاتك الطبية، وكرر ما يجعلك تشعر بخير. الاستمرارية على مدى أشهر أهم من الكمال في وجبة واحدة.`,
+  },
+  takeaways: {
+    en: [
+      'The Mediterranean diet is a flexible pattern built around plants, healthy fats, and minimally processed foods.',
+      'Evidence is strongest for heart and metabolic health, but no eating pattern guarantees a specific outcome.',
+      'Fill half your plate with vegetables and fruit, and include beans, whole grains, fish, and olive oil regularly.',
+      'Limit rather than ban red meat, processed foods, added sugars, and excess sodium.',
+      'Start with small, affordable changes that fit your culture, budget, and medical needs.',
+    ],
+    ar: [
+      'حمية البحر المتوسط نمط مرن يقوم على النباتات والدهون الصحية والأطعمة قليلة المعالجة.',
+      'الأدلة أقوى لصحة القلب والتمثيل الغذائي، لكن لا يضمن أي نمط نتيجة محددة.',
+      'املأ نصف الطبق بالخضروات والفواكه وأدرج البقول والحبوب الكاملة والسمك وزيت الزيتون بانتظام.',
+      'حدّ من اللحوم الحمراء والأطعمة المصنعة والسكريات المضافة والصوديوم الزائد بدلًا من منعها تمامًا.',
+      'ابدأ بتغييرات صغيرة وميسورة تناسب ثقافتك وميزانيتك واحتياجاتك الطبية.',
+    ],
+  },
+};
+
+const MEAL_PREP_MEDITERRANEAN: Article = {
+  id: 'meal-prep-mediterranean',
+  slug: 'meal-prep-mediterranean',
+  category: 'lifestyle',
+  icon: '🥙',
+  readTime: 8,
+  publishedAt: '2026-11-04',
+  tags: ['meal-prep', 'mediterranean-diet', 'weekly-planning', 'nutrition'],
+  title: {
+    en: 'How to Meal Prep Mediterranean Meals for the Week',
+    ar: 'كيف تحضّر وجبات البحر المتوسط لأسبوعك',
+  },
+  excerpt: {
+    en: 'A flexible component-based meal prep system for Mediterranean eating, with a shopping list, sample week, storage guidance, and health adaptations.',
+    ar: 'نظام مرن لتحضير مكونات وجبات البحر المتوسط، مع قائمة تسوق وأسبوع نموذجي وإرشادات التخزين والتكييف الصحي.',
+  },
+  content: {
+    en: `## Why Mediterranean Meal Prep Works
+
+Meal prep has a reputation for bland containers and repetitive meals. The Mediterranean pattern offers a better model: prepare flexible components, then assemble them differently across the week. Instead of cooking five identical lunches, you cook a grain, a protein, a tray of vegetables, and a sauce or two. Each day you combine them with fresh ingredients and change the seasoning.
+
+This approach fits the Mediterranean emphasis on vegetables, legumes, whole grains, olive oil, fish, and herbs. It also respects real life. Most people do not have time to cook every meal from scratch, and convenience foods can be part of a balanced routine. The goal is to make the healthy choice easier, not to create a second job.
+
+### A framework, not a fixed menu
+
+A useful prep session produces building blocks: cooked grains, washed greens, roasted vegetables, a pot of beans, grilled chicken or fish, and a couple of sauces. You can then make bowls, wraps, salads, soups, or simple plates. The same roasted peppers can go into a lunch bowl, a frittata, or a pasta dish. The same yogurt sauce can dress a salad or top a fish fillet.
+
+### What to prep and what to leave fresh
+
+Prep foods that hold up well: cooked grains, roasted vegetables, beans, lentils, soups, stews, grilled chicken, and baked fish. Leave delicate items for the day you eat them: avocado, fresh herbs, crisp lettuce, sliced tomatoes, and citrus. These additions take seconds and make a big difference in texture and flavor.
+
+## Plan the Week in Four Steps
+
+### 1. Choose two proteins
+
+Pick two protein sources that you enjoy and can afford. Examples include chicken, fish, eggs, Greek yogurt, beans, lentils, tofu, or canned tuna. Having two options prevents boredom and gives you flexibility if your week changes. If you eat fish, include it once or twice; canned salmon or sardines are convenient and rich in omega-3 fats.
+
+### 2. Choose two grains or starches
+
+Cook a large batch of brown rice, quinoa, barley, or whole-wheat pasta. You can also roast potatoes or sweet potatoes. Having two options lets you switch between bowls and plates. Store cooked grains in shallow containers and use them within a few days, or freeze portions for later.
+
+### 3. Choose three vegetables
+
+Select at least three vegetables with different colors and textures. Roast peppers, zucchini, and onions; keep cucumbers and tomatoes for fresh salads; wash leafy greens; and keep frozen vegetables as a backup. Frozen vegetables are picked at peak freshness and can be steamed or roasted quickly.
+
+### 4. Choose two sauces
+
+Sauces turn simple ingredients into a meal. Whisk lemon juice with olive oil and herbs, blend yogurt with garlic and cucumber, or make a simple tomato salsa. A tahini-lemon dressing, a balsamic vinaigrette, or a spoonful of pesto can change the flavor of the same bowl. Store sauces separately so vegetables stay crisp.
+
+## The Shopping List
+
+### Pantry and staples
+
+Olive oil, canned beans, lentils, canned tomatoes, whole grains, nuts, seeds, garlic, onions, lemons, vinegar, and dried herbs. These items last a long time and make it easier to put a meal together at the end of a busy day.
+
+### Produce, protein, and dairy
+
+Choose vegetables and fruit that are in season or on sale. Add eggs, plain yogurt, fish, chicken, or tofu. Frozen fruit and vegetables are useful backups. If fresh herbs are expensive, buy one bunch and freeze what you do not use, or use dried herbs for cooking.
+
+### Budget-friendly swaps
+
+Canned beans cost less than many other proteins. Frozen fish and chicken can be cheaper than fresh. Store brands of oats, rice, and yogurt are often similar in quality. Buying whole vegetables instead of pre-cut ones saves money, though pre-cut produce can be worth the cost for people with limited time or mobility.
+
+### Read the labels
+
+Compare sodium in broth, canned beans, sauces, and bread. Compare added sugars in yogurt and cereal. Look for a whole grain near the start of the ingredient list. These checks take a few seconds and help you choose products that fit your goals without eliminating convenience foods.
+
+## The Prep Session
+
+### Set up before you cook
+
+Clear the counters, gather containers, and set out a cutting board, a sharp knife, and a few pots and pans. Read the recipes once before starting. Preheat the oven and start boiling water first. A little organization reduces the feeling of chaos and makes the session move faster.
+
+### Cook in an efficient order
+
+Start with grains because they take the longest. While they cook, roast vegetables on a sheet pan and brown chicken or fish in a skillet. Rinse beans and make a sauce. Use the waiting time to wash and chop fresh vegetables. If you have two oven racks, roast vegetables on one and bake chicken on the other.
+
+### Cool and store safely
+
+Divide cooked food into shallow containers so it cools quickly. Refrigerate within two hours of cooking, or sooner on a hot day. Keep the refrigerator at or below 40°F and the freezer at 0°F. Label containers with the food and date. Use cooked grains, beans, and meats within three to four days, or freeze portions you will not eat in time.
+
+### Pack sauces and toppings separately
+
+Soggy salads are a common meal-prep problem. Keep dressings, salsa, yogurt sauce, and juicy tomatoes separate until serving. Pack crisp vegetables in a separate compartment or container. Add avocado, fresh herbs, and crunchy seeds at the last minute. These small habits preserve texture and make the meal more enjoyable.
+
+## Five Mix-and-Match Meal Templates
+
+### Breakfast
+
+Combine plain Greek yogurt with oats, berries, and nuts, or prepare overnight oats with milk, chia seeds, and cinnamon. For a savory option, bake egg and vegetable cups and reheat one or two with whole-grain toast. Keep a piece of fruit for a quick addition.
+
+### Lunch bowls
+
+Start with a grain, add a protein, pile on vegetables, and finish with a sauce. For example: brown rice, chickpeas, roasted peppers, cucumber, and lemon-tahini dressing. Or quinoa, grilled chicken, spinach, tomatoes, and yogurt-herb sauce. The formula works with whatever you prepped.
+
+### Dinner plates
+
+Serve fish or chicken with roasted vegetables and a grain. Add a simple salad and a slice of whole-grain bread if you are hungry. Change the cuisine with spices: oregano and lemon for a Greek-style plate, cumin and paprika for a Mexican-inspired bowl, or herbs and garlic for an Italian-style meal.
+
+### Snacks
+
+Keep snacks simple: fruit with nuts, vegetables with hummus, plain yogurt with cinnamon, or whole-grain crackers with cheese. A planned snack can prevent extreme hunger and make the next meal more balanced. Choose snacks that you actually enjoy and can store conveniently.
+
+### Emergency meals
+
+Keep a few shelf-stable or frozen options for days when the plan falls apart. Canned beans, canned fish, whole-grain crackers, frozen vegetables, and quick-cooking couscous can become a meal in minutes. Convenience food is not a failure; it is part of a resilient routine.
+
+## A Sample Week
+
+### Monday to Wednesday
+
+Monday: grain bowl with chicken, roasted peppers, spinach, and lemon dressing. Tuesday: lentil soup with whole-grain bread and a side salad. Wednesday: fish with roasted zucchini, tomatoes, and barley.
+
+### Thursday to Sunday
+
+Thursday: chickpea salad with cucumbers, tomatoes, olives, and feta. Friday: whole-wheat pasta with tomato sauce, white beans, and spinach. Saturday: grilled chicken with a large vegetable salad and potatoes. Sunday: vegetable and bean stew with couscous, using any leftover vegetables.
+
+## Food Safety and Storage
+
+### Temperature matters
+
+Keep hot food hot and cold food cold. Reheat leftovers to 165°F. Do not leave cooked food at room temperature for more than two hours. When in doubt, throw it out. Food safety is especially important for older adults, pregnant people, young children, and anyone with a weakened immune system.
+
+### How long foods keep
+
+Cooked grains, beans, and meats generally keep for three to four days in the refrigerator. Soups and stews often keep for three to four days and freeze well. Fresh cut vegetables keep for a few days in a sealed container. Check your local food-safety guidance for specific foods and conditions.
+
+### Freezing tips
+
+Freeze portions in labeled containers or bags, press out excess air, and leave a little space for expansion. Thaw food in the refrigerator rather than on the counter. Reheat only the amount you plan to eat. Freezing cooked grains in single portions makes weeknight meals much easier.
+
+## Adapting to Health Needs
+
+### Diabetes
+
+Choose fiber-rich carbohydrates, include protein and vegetables, and spread carbohydrates across the day. Monitor your glucose response and follow your care team's advice about medication and meal timing. Meal prep can make portions more consistent, but it is not a substitute for medical guidance.
+
+### Sodium and blood pressure
+
+Rinse canned beans, choose low-sodium broth, and flavor food with herbs, citrus, garlic, and spices. Compare labels on sauces and bread. Restaurant and packaged foods are often the largest sodium sources, so cooking at home gives you more control.
+
+### Kidney disease
+
+People with kidney disease may need to adjust protein, potassium, phosphorus, or sodium. Do not change your diet based on general advice alone; ask your clinician or renal dietitian which foods and portions are right for you. Meal prep can still help, but the components may need to be customized.
+
+### Allergies and preferences
+
+Replace fish with chicken or tofu if needed, use dairy-free yogurt if you avoid dairy, and choose gluten-free grains if you avoid gluten. Check labels for allergens and cross-contact warnings. A meal plan should fit your body and your values, not the other way around.
+
+## Troubleshooting
+
+### Boredom
+
+Rotate sauces, herbs, and spices. Serve the same base ingredients in different forms: a bowl, a wrap, a salad, or a soup. Freeze half of a batch and revisit it later. Variety does not require cooking a new recipe every day.
+
+### Soggy vegetables
+
+Store components separately and dress salads at serving time. Roast vegetables until they are tender but not waterlogged. Pat fresh vegetables dry before storing. Use containers with a paper towel to absorb extra moisture if needed.
+
+### Too much prep
+
+Start with two meals, not seven. Use shortcuts such as pre-washed greens, canned beans, frozen vegetables, and rotisserie chicken. Prep only the components you know you will use. A smaller routine that lasts is better than an ambitious plan that collapses by Wednesday.
+
+### Food waste
+
+Plan leftovers intentionally. Turn extra roasted vegetables into soup or pasta. Freeze ripe fruit for smoothies. Keep a list of what is in the refrigerator and use the oldest items first. Shopping with a short list reduces impulse purchases and waste.
+
+## Your First Week
+
+Choose one protein, one grain, and two vegetables to prep this week. Make one sauce. Store everything safely. Assemble two lunches and one dinner from the components, then notice what you liked and what you would change. Next week, repeat the successful parts and add one new recipe. Mediterranean meal prep is a skill built over time, not a performance to perfect in a single Sunday.`,
+    ar: `## لماذا ينجح تحضير وجبات البحر المتوسط؟
+
+ارتبط تحضير الوجبات بفكرة العلب المملة والوجبات المتكررة. لكن نمط البحر المتوسط يقدم نموذجًا أفضل: جهّز مكونات مرنة ثم ركّبها بطرق مختلفة خلال الأسبوع. بدلًا من طهي خمس وجبات غداء متطابقة، اطبخ حبوبًا وبروتينًا وصينية خضروات وصلصة أو اثنتين. ثم اجمعها كل يوم مع مكونات طازجة وغيّر التوابل.
+
+يتوافق هذا النهج مع تركيز البحر المتوسط على الخضروات والبقوليات والحبوب الكاملة وزيت الزيتون والسمك والأعشاب. كما يحترم الحياة الواقعية؛ فمعظم الناس لا يملكون وقتًا لطهي كل وجبة من الصفر، ويمكن أن تكون الأطعمة الجاهزة جزءًا من روتين متوازن. الهدف هو جعل الخيار الصحي أسهل، لا خلق وظيفة ثانية.
+
+### إطار عمل وليس قائمة ثابتة
+
+تنتج جلسة التحضير المفيدة مكونات أساسية: حبوبًا مطبوخة وخضروات ورقية مغسولة وخضروات مشوية وقدرًا من الفاصوليا ودجاجًا أو سمكًا مشويًا وصلصتين. يمكنك بعدها صنع أوعية أو لفائف أو سلطات أو حساء أو أطباق بسيطة. يمكن أن تدخل الفلفل المشوي نفسه في وعاء غداء أو عجة أو طبق معكرونة. ويمكن أن تتبل صلصة اللبن نفسها سلطة أو تعلو شريحة سمك.
+
+### ما تحضره وما تتركه طازجًا
+
+جهّز الأطعمة التي تتحمل التخزين: الحبوب المطبوخة والخضروات المشوية والفاصوليا والعدس والحساء واليخنات والدجاج المشوي والسمك المخبوز. واترك العناصر الحساسة ليوم تناولها: الأفوكادو والأعشاب الطازجة والخس المقرمش والطماطم المقطعة والحمضيات. تضيف هذه الإضافات ثواني وتحدث فرقًا كبيرًا في القوام والنكهة.
+
+## خطط لأسبوعك في أربع خطوات
+
+### 1. اختر نوعين من البروتين
+
+اختر مصدرين للبروتين تستمتع بهما وتستطيع تحمل تكلفتهما. تشمل الأمثلة الدجاج والسمك والبيض واللبن اليوناني والفاصوليا والعدس والتوفو والتونة المعلبة. وجود خيارين يمنع الملل ويمنحك مرونة إذا تغير أسبوعك. إذا كنت تأكل السمك، أدرجه مرة أو مرتين؛ والسلمون أو السردين المعلب مريح وغني بأوميغا-3.
+
+### 2. اختر نوعين من الحبوب أو النشويات
+
+اطبخ دفعة كبيرة من الأرز البني أو الكينوا أو الشعير أو المعكرونة الكاملة. يمكنك أيضًا شوي البطاطا أو البطاطا الحلوة. وجود خيارين يتيح لك التبديل بين الأوعية والأطباق. خزّن الحبوب المطبوخة في أوعية ضحلة واستخدمها خلال أيام قليلة أو جمّد الحصص لوقت لاحق.
+
+### 3. اختر ثلاث خضروات
+
+اختر ثلاث خضروات على الأقل بألوان وقوام مختلف. اشوِ الفلفل والكوسا والبصل؛ واحتفظ بالخيار والطماطم للسلطات الطازجة؛ واغسل الخضروات الورقية؛ واحتفظ بخضروات مجمدة كاحتياط. تُقطف الخضروات المجمدة في ذروة نضارتها ويمكن طهيها على البخار أو شويها بسرعة.
+
+### 4. اختر صلصتين
+
+تحول الصلصات المكونات البسيطة إلى وجبة. اخفق عصير الليمون مع زيت الزيتون والأعشاب، أو امزج اللبن مع الثوم والخيار، أو اصنع صلصة طماطم بسيطة. يمكن لصلصة الطحينة والليمون أو خل البلسميك أو ملعقة من البيستو أن تغير نكهة الوعاء نفسه. خزّن الصلصات منفصلة لتبقى الخضروات مقرمشة.
+
+## قائمة التسوق
+
+### المخزن والأساسيات
+
+زيت الزيتون والفاصوليا المعلبة والعدس والطماطم المعلبة والحبوب الكاملة والمكسرات والبذور والثوم والبصل والليمون والخل والأعشاب المجففة. تدوم هذه العناصر طويلًا وتسهل تجهيز وجبة في نهاية يوم مزدحم.
+
+### المنتجات الطازجة والبروتين والألبان
+
+اختر خضروات وفواكه موسمية أو معروضة. أضف البيض واللبن السادة والسمك والدجاج أو التوفو. الفواكه والخضروات المجمدة احتياطيات مفيدة. إذا كانت الأعشاب الطازجة مكلفة، اشترِ حزمة واحدة وجمّد ما لا تستخدمه، أو استخدم الأعشاب المجففة في الطهي.
+
+### بدائل ميسورة
+
+الفاصوليا المعلبة أقل تكلفة من كثير من البروتينات. وقد يكون السمك والدجاج المجمد أرخص من الطازج. غالبًا ما تكون العلامات التجارية للمتجر من الشوفان والأرز واللبن بجودة مماثلة. شراء الخضروات كاملة بدلًا من المقطعة يوفر المال، وإن كانت الخضروات المقطعة تستحق التكلفة لمن لديه وقت أو حركة محدودة.
+
+### اقرأ الملصقات
+
+قارن الصوديوم في المرق والفاصوليا المعلبة والصلصات والخبز. قارن السكريات المضافة في اللبن والحبوب. ابحث عن حبة كاملة قرب بداية قائمة المكونات. تستغرق هذه الفحوصات ثواني وتساعدك على اختيار منتجات تناسب أهدافك دون التخلي عن الأطعمة الجاهزة.
+
+## جلسة التحضير
+
+### جهّز قبل الطهي
+
+أفرغ الأسطح واجمع العلب وضع لوح تقطيع وسكينًا حادًا وبعض القدور والمقالي. اقرأ الوصفات مرة قبل البدء. سخّن الفرن وابدأ غلي الماء أولًا. القليل من التنظيم يقلل الشعور بالفوضى ويجعل الجلسة أسرع.
+
+### اطبخ بترتيب فعال
+
+ابدأ بالحبوب لأنها تستغرق أطول وقت. وأثناء طهيها، اشوِ الخضروات على صينية وحمّر الدجاج أو السمك في مقلاة. اشطف الفاصوليا واصنع صلصة. استخدم وقت الانتظار لغسل الخضروات الطازجة وتقطيعها. إذا كان لديك رفان في الفرن، اشوِ الخضروات على أحدهما واخبز الدجاج على الآخر.
+
+### برّد وخزّن بأمان
+
+قسّم الطعام المطبوخ في أوعية ضحلة ليبرد بسرعة. برّده في الثلاجة خلال ساعتين من الطهي، أو أسرع في يوم حار. حافظ على درجة حرارة الثلاجة عند 40 فهرنهايت أو أقل والمجمد عند 0 فهرنهايت. اكتب اسم الطعام والتاريخ على العلب. استخدم الحبوب والفاصوليا واللحوم المطبوخة خلال ثلاثة إلى أربعة أيام، أو جمّد الحصص التي لن تتناولها في الوقت المناسب.
+
+### احفظ الصلصات والإضافات منفصلة
+
+السلطات الرطبة مشكلة شائعة في تحضير الوجبات. احتفظ بالتتبيلات والصلصة وصلصة اللبن والطماطم العصيرية منفصلة حتى التقديم. ضع الخضروات المقرمشة في قسم أو علبة منفصلة. أضف الأفوكادو والأعشاب الطازجة والبذور المقرمشة في اللحظة الأخيرة. هذه العادات الصغيرة تحافظ على القوام وتجعل الوجبة أمتع.
+
+## خمس قوالب وجبات قابلة للتبديل
+
+### الفطور
+
+اجمع اللبن اليوناني السادة مع الشوفان والتوت والمكسرات، أو حضّر شوفانًا ليليًا مع الحليب وبذور الشيا والقرفة. لخيار مالح، اخبز أكواب البيض والخضروات وأعد تسخين واحدة أو اثنتين مع خبز كامل. احتفظ بقطعة فاكهة لإضافة سريعة.
+
+### أوعية الغداء
+
+ابدأ بحبة، ثم أضف بروتينًا، وأكثر من الخضروات، وأنهِ بصلصة. مثلًا: أرز بني وحمص وفلفل مشوي وخيار وتتبيلة ليمون وطحينة. أو كينوا ودجاج مشوي وسبانخ وطماطم وصلصة لبن وأعشاب. تصلح المعادلة مع أي مكون جهزته.
+
+### أطباق العشاء
+
+قدم السمك أو الدجاج مع خضروات مشوية وحبة. أضف سلطة بسيطة وشريحة خبز كامل إذا كنت جائعًا. غيّر المطبخ بالتوابل: أوريغانو وليمون لطبق يوناني، وكمون وبابريكا لوعاء مستوحى من المكسيك، وأعشاب وثوم لوجبة إيطالية.
+
+### الوجبات الخفيفة
+
+اجعل الوجبات الخفيفة بسيطة: فاكهة مع مكسرات، خضروات مع حمص، لبن سادة مع قرفة، أو مقرمشات كاملة مع جبن. يمكن لوجبة خفيفة مخططة أن تمنع الجوع الشديد وتجعل الوجبة التالية أكثر توازنًا. اختر وجبات تستمتع بها فعلًا ويمكن تخزينها بسهولة.
+
+### وجبات الطوارئ
+
+احتفظ بخيارات قابلة للتخزين أو مجمدة للأيام التي تختل فيها الخطة. يمكن للفاصوليا المعلبة والسمك المعلب والمقرمشات الكاملة والخضروات المجمدة والكسكس سريع الطهي أن تصبح وجبة في دقائق. الطعام الجاهز ليس فشلًا؛ إنه جزء من روتين مرن.
+
+## أسبوع نموذجي
+
+### من الاثنين إلى الأربعاء
+
+الاثنين: وعاء حبوب مع دجاج وفلفل مشوي وسبانخ وتتبيلة ليمون. الثلاثاء: شوربة عدس مع خبز كامل وسلطة جانبية. الأربعاء: سمك مع كوسا مشوية وطماطم وشعير.
+
+### من الخميس إلى الأحد
+
+الخميس: سلطة حمص مع خيار وطماطم وزيتون وفيتا. الجمعة: معكرونة كاملة مع صلصة طماطم وفاصوليا بيضاء وسبانخ. السبت: دجاج مشوي مع سلطة خضروات كبيرة وبطاطا. الأحد: يخنة خضروات وفاصوليا مع كسكس باستخدام أي خضروات متبقية.
+
+## سلامة الغذاء والتخزين
+
+### درجة الحرارة مهمة
+
+احفظ الطعام الساخن ساخنًا والبارد باردًا. أعد تسخين بقايا الطعام إلى 165 فهرنهايت. لا تترك الطعام المطبوخ في درجة حرارة الغرفة أكثر من ساعتين. وعند الشك تخلص منه. سلامة الغذاء مهمة بشكل خاص لكبار السن والحوامل والأطفال الصغار ومن لديه جهاز مناعي ضعيف.
+
+### مدة صلاحية الأطعمة
+
+تبقى الحبوب والفاصوليا واللحوم المطبوخة عمومًا من ثلاثة إلى أربعة أيام في الثلاجة. ويبقى الحساء واليخنات غالبًا من ثلاثة إلى أربعة أيام ويجمد جيدًا. تبقى الخضروات الطازجة المقطعة بضعة أيام في علبة محكمة. راجع إرشادات سلامة الغذاء المحلية لأطعمة وحالات محددة.
+
+### نصائح التجميد
+
+جمّد الحصص في علب أو أكياس موسومة، واضغط الهواء الزائد واترك مساحة صغيرة للتمدد. أذب الطعام في الثلاجة بدلًا من تركه على الطاولة. أعد تسخين الكمية التي تنوي تناولها فقط. تجميد الحبوب المطبوخة في حصص فردية يجعل وجبات أيام العمل أسهل بكثير.
+
+## التكييف مع الاحتياجات الصحية
+
+### السكري
+
+اختر كربوهيدرات غنية بالألياف، وأدرج البروتين والخضروات، ووزع الكربوهيدرات خلال اليوم. راقب استجابة الجلوكوز واتبع نصيحة فريق الرعاية بشأن الأدوية وتوقيت الوجبات. يمكن لتحضير الوجبات أن يجعل الحصص أكثر ثباتًا، لكنه ليس بديلًا عن الإرشاد الطبي.
+
+### الصوديوم وضغط الدم
+
+اشطف الفاصوليا المعلبة واختر مرقًا قليل الصوديوم ونكّه الطعام بالأعشاب والحمضيات والثوم والتوابل. قارن الملصقات على الصلصات والخبز. غالبًا ما تكون أطعمة المطاعم والمعبأة أكبر مصادر الصوديوم، لذا يمنحك الطهي في المنزل مزيدًا من التحكم.
+
+### أمراض الكلى
+
+قد يحتاج مرضى الكلى إلى تعديل البروتين أو البوتاسيوم أو الفوسفور أو الصوديوم. لا تغيّر نظامك الغذائي بناءً على نصائح عامة وحدها؛ اسأل طبيبك أو اختصاصي تغذية الكلى عن الأطعمة والحصص المناسبة لك. يمكن أن يساعد تحضير الوجبات، لكن قد تحتاج المكونات إلى تخصيص.
+
+### الحساسية والتفضيلات
+
+استبدل السمك بالدجاج أو التوفو عند الحاجة، واستخدم لبنًا خاليًا من الألبان إذا تجنبتها، واختر حبوبًا خالية من الغلوتين إذا تجنبت الغلوتين. افحص الملصقات بحثًا عن مسببات الحساسية وتحذيرات التلامس المتبادل. يجب أن تناسب خطة الوجبات جسمك وقيمك، لا العكس.
+
+## حل المشكلات
+
+### الملل
+
+بدّل الصلصات والأعشاب والتوابل. قدم المكونات الأساسية نفسها بأشكال مختلفة: وعاء أو لفافة أو سلطة أو حساء. جمّد نصف الدفعة وعُد إليها لاحقًا. لا يتطلب التنوع طهي وصفة جديدة كل يوم.
+
+### الخضروات الرطبة
+
+خزّن المكونات منفصلة وتبّل السلطات وقت التقديم. اشوِ الخضروات حتى تلين دون أن تصبح مشبعة بالماء. جفف الخضروات الطازجة قبل تخزينها. استخدم علبًا مع منديل ورقي لامتصاص الرطوبة الزائدة عند الحاجة.
+
+### تحضير أكثر من اللازم
+
+ابدأ بوجبتين لا بسبع. استخدم اختصارات مثل الخضروات الورقية المغسولة والفاصوليا المعلبة والخضروات المجمدة والدجاج المشوي الجاهز. حضّر فقط المكونات التي تعلم أنك ستستخدمها. الروتين الأصغر الذي يستمر أفضل من خطة طموحة تنهار بحلول الأربعاء.
+
+### هدر الطعام
+
+خطط لبقايا الطعام عن قصد. حوّل الخضروات المشوية الإضافية إلى حساء أو معكرونة. جمّد الفواكه الناضجة للعصائر. احتفظ بقائمة بما في الثلاجة واستخدم الأقدم أولًا. التسوق بقائمة قصيرة يقلل المشتريات الاندفاعية والهدر.
+
+## أسبوعك الأول
+
+اختر بروتينًا واحدًا وحبة واحدة وخضروين لتحضيرهما هذا الأسبوع. اصنع صلصة واحدة. خزّن كل شيء بأمان. ركّب وجبتي غداء وعشاء من المكونات، ثم لاحظ ما أعجبك وما ستغيره. في الأسبوع التالي، كرر الأجزاء الناجحة وأضف وصفة جديدة. تحضير وجبات البحر المتوسط مهارة تُبنى مع الوقت، وليس أداءً يجب إتقانه في أحد واحد.`,
+  },
+  takeaways: {
+    en: [
+      'Prep flexible components such as grains, proteins, vegetables, and sauces instead of identical meals.',
+      'Choose two proteins, two grains, three vegetables, and two sauces to cover a varied week.',
+      'Keep dressings, sauces, avocado, and fresh herbs separate until serving to preserve texture.',
+      'Cool food quickly, refrigerate promptly, and follow safe storage and reheating temperatures.',
+      'Adapt portions and ingredients to diabetes, kidney disease, allergies, budget, and personal preferences.',
+    ],
+    ar: [
+      'حضّر مكونات مرنة مثل الحبوب والبروتينات والخضروات والصلصات بدلًا من وجبات متطابقة.',
+      'اختر نوعين من البروتين ونوعين من الحبوب وثلاث خضروات وصلصتين لتغطية أسبوع متنوع.',
+      'احفظ التتبيلات والصلصات والأفوكادو والأعشاب الطازجة منفصلة حتى التقديم للحفاظ على القوام.',
+      'برّد الطعام بسرعة واحفظه في الثلاجة مبكرًا واتبع درجات حرارة التخزين وإعادة التسخين الآمنة.',
+      'عدّل الحصص والمكونات حسب السكري وأمراض الكلى والحساسية والميزانية والتفضيلات الشخصية.',
+    ],
+  },
+};
+
 export const ARTICLES: Article[] = [
   HBA1C,
   BLOOD_PRESSURE_MYTHS,
@@ -1327,6 +1959,8 @@ export const ARTICLES: Article[] = [
   INTERMITTENT_FASTING,
   HIGH_PROTEIN_MEAL_PREP,
   READ_NUTRITION_LABELS,
+  MEDITERRANEAN_DIET_BEGINNERS,
+  MEAL_PREP_MEDITERRANEAN,
 ];
 
 export const getArticleBySlug = (slug: string): Article | undefined =>

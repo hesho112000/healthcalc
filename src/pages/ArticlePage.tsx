@@ -131,6 +131,9 @@ const ArticlePage: React.FC = () => {
               h2: ({ children }) => (
                 <h2 className="mt-10 mb-4 text-2xl font-extrabold text-[#0F4C3A] tracking-tight">{children}</h2>
               ),
+              h3: ({ children }) => (
+                <h3 className="mt-7 mb-3 text-lg font-extrabold text-[#0F4C3A]">{children}</h3>
+              ),
               p: ({ children }) => (
                 <p className="text-base leading-[1.8] text-[#4A5A55]">{children}</p>
               ),

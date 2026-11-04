@@ -1068,6 +1068,196 @@ const LEMON_HERB_SALMON_ASPARAGUS: Recipe = {
   nutrition: { calories: 440, protein: 38, carbs: 37, fat: 16 },
 };
 
+const CHICKEN_FAJITA_BOWL: Recipe = {
+  id: 'chicken-fajita-bowl',
+  slug: 'chicken-fajita-bowl',
+  emoji: '🌮',
+  title: { en: 'Chicken Fajita Bowl', ar: 'وعاء فاهيتا الدجاج' },
+  cuisine: { en: 'Mexican', ar: 'مكسيكي' },
+  description: { en: 'Sizzling chicken strips with bell peppers and onions over brown rice, black beans, and fresh salsa.', ar: 'شرائح دجاج مشوية مع الفلفل الملون والبصل فوق أرز بني وفاصوليا سوداء وصلصة طماطم طازجة.' },
+  prepTime: { en: '30 min', ar: '30 دقيقة' },
+  ingredients: {
+    en: ['2 boneless skinless chicken breasts (about 12 oz)', '1 red bell pepper, sliced', '1 yellow bell pepper, sliced', '1 small red onion, sliced', '1 tbsp olive oil', '1 tsp ground cumin', '1 tsp chili powder', '1/2 tsp smoked paprika', '2 cups cooked brown rice', '1 cup black beans, drained and rinsed', '1/2 cup fresh tomato salsa', '1 lime, cut into wedges', '2 tbsp chopped cilantro'],
+    ar: ['صدرا دجاج منزوعا العظم والجلد (نحو 340 غرامًا)', 'فلفل أحمر حلو مقطع شرائح', 'فلفل أصفر حلو مقطع شرائح', 'بصلة حمراء صغيرة مقطعة شرائح', 'ملعقة كبيرة زيت زيتون', 'ملعقة صغيرة كمون مطحون', 'ملعقة صغيرة مسحوق فلفل حار', 'نصف ملعقة صغيرة بابريكا مدخنة', 'كوبان أرز بني مطبوخ', 'كوب فاصوليا سوداء مصفاة ومغسولة', 'نصف كوب صلصة طماطم طازجة', 'ليمونة خضراء مقطعة أرباعًا', 'ملعقتان كبيرتان كزبرة مفرومة'],
+  },
+  instructions: {
+    en: ['Slice the chicken into thin strips and toss with cumin, chili powder, smoked paprika, and half the olive oil.', 'Heat a large skillet over medium-high heat and cook the chicken for 6 to 8 minutes until browned and cooked through; transfer to a plate.', 'Add the remaining oil, peppers, and onion to the skillet and cook 5 to 7 minutes until lightly charred but still crisp.', 'Return the chicken to the pan and squeeze over half the lime.', 'Divide brown rice and black beans between bowls, top with the chicken mixture, salsa, cilantro, and lime wedges.'],
+    ar: ['قطّع الدجاج إلى شرائح رفيعة وقلّبه مع الكمون ومسحوق الفلفل الحار والبابريكا المدخنة ونصف زيت الزيتون.', 'سخّن مقلاة كبيرة على حرارة متوسطة إلى عالية واطه الدجاج 6 إلى 8 دقائق حتى يتحمر وينضج تمامًا ثم انقله إلى طبق.', 'أضف بقية الزيت والفلفل والبصل إلى المقلاة واطهها 5 إلى 7 دقائق حتى تتحمر قليلًا مع بقائها مقرمشة.', 'أعد الدجاج إلى المقلاة واعصر عليه نصف الليمون الأخضر.', 'وزّع الأرز البني والفاصوليا السوداء في أوعية ثم أضف خليط الدجاج والصلصة والكزبرة وأرباع الليمون.'],
+  },
+  nutrition: { calories: 470, protein: 38, carbs: 48, fat: 14 },
+};
+
+const LEAN_BEEF_BURRITO_BOWL: Recipe = {
+  id: 'lean-beef-burrito-bowl',
+  slug: 'lean-beef-burrito-bowl',
+  emoji: '🌯',
+  title: { en: 'Lean Beef Burrito Bowl', ar: 'وعاء بوريتو اللحم البقري الخفيف' },
+  cuisine: { en: 'Mexican', ar: 'مكسيكي' },
+  description: { en: 'Lean ground beef with brown rice, black beans, corn, lettuce, tomatoes, and a smoky yogurt-lime sauce.', ar: 'لحم بقري مفروم قليل الدهون مع أرز بني وفاصوليا سوداء وذرة وخس وطماطم وصلصة لبنية بالليمون والبابريكا المدخنة.' },
+  prepTime: { en: '30 min', ar: '30 دقيقة' },
+  ingredients: {
+    en: ['1 lb 93% lean ground beef', '1 tsp olive oil', '2 cloves garlic, minced', '1 tsp ground cumin', '1 tsp smoked paprika', '1/2 tsp chili powder', '2 cups cooked brown rice', '1 cup black beans, drained and rinsed', '1 cup corn kernels', '2 cups shredded romaine lettuce', '1 cup cherry tomatoes, halved', '1 ripe avocado, sliced', '1/2 cup plain Greek yogurt', '1 lime, juiced'],
+    ar: ['450 غرام لحم بقري مفروم قليل الدهون (93%)', 'ملعقة صغيرة زيت زيتون', 'فصان ثوم مفرومان', 'ملعقة صغيرة كمون مطحون', 'ملعقة صغيرة بابريكا مدخنة', 'نصف ملعقة صغيرة مسحوق فلفل حار', 'كوبان أرز بني مطبوخ', 'كوب فاصوليا سوداء مصفاة ومغسولة', 'كوب حبوب ذرة', 'كوبان خس روماني مفروم', 'كوب طماطم كرزية مقطعة أنصافًا', 'حبة أفوكادو ناضجة مقطعة شرائح', 'نصف كوب لبن يوناني سادة', 'عصير ليمونة خضراء'],
+  },
+  instructions: {
+    en: ['Heat the olive oil in a skillet over medium heat and cook the garlic for 30 seconds.', 'Add the beef, cumin, smoked paprika, and chili powder; cook 6 to 8 minutes, breaking it up, until no pink remains.', 'Stir in the black beans and corn and cook 2 minutes more.', 'Whisk the Greek yogurt with the lime juice and a pinch of black pepper.', 'Build bowls with brown rice, beef mixture, lettuce, tomatoes, and avocado; drizzle with the yogurt-lime sauce.'],
+    ar: ['سخّن زيت الزيتون في مقلاة على حرارة متوسطة واطه الثوم 30 ثانية.', 'أضف اللحم البقري والكمون والبابريكا المدخنة ومسحوق الفلفل الحار واطه 6 إلى 8 دقائق مع تقليبه حتى يختفي اللون الوردي.', 'أضف الفاصوليا السوداء والذرة واطه دقيقتين إضافيتين.', 'اخفق اللبن اليوناني مع عصير الليمون ورشة فلفل أسود.', 'رتّب الأرز البني وخليط اللحم والخس والطماطم والأفوكادو في أوعية ثم اسكب صلصة اللبن والليمون.'],
+  },
+  nutrition: { calories: 490, protein: 36, carbs: 50, fat: 16 },
+};
+
+const SHRIMP_TACOS_CABBAGE_SLAW: Recipe = {
+  id: 'shrimp-tacos-cabbage-slaw',
+  slug: 'shrimp-tacos-cabbage-slaw',
+  emoji: '🍤',
+  title: { en: 'Shrimp Tacos with Cabbage Slaw', ar: 'تاكو الروبيان مع سلطة الملفوف' },
+  cuisine: { en: 'Mexican', ar: 'مكسيكي' },
+  description: { en: 'Warm corn tortillas filled with chili-lime shrimp, crunchy cabbage slaw, and creamy avocado.', ar: 'تورتيا ذرة دافئة محشوة بالروبيان بالليمون والفلفل مع سلطة ملفوف مقرمشة وأفوكادو كريمي.' },
+  prepTime: { en: '25 min', ar: '25 دقيقة' },
+  ingredients: {
+    en: ['1 lb large shrimp, peeled and deveined', '8 small corn tortillas', '3 cups shredded green cabbage', '1 carrot, grated', '1/4 cup plain Greek yogurt', '2 tbsp lime juice', '1 tbsp olive oil', '1 tsp chili powder', '1/2 tsp ground cumin', '1/4 cup chopped cilantro', '1 ripe avocado, sliced', 'Salt and black pepper'],
+    ar: ['450 غرام روبيان كبير مقشر ومنزوع العرق', '8 تورتيا ذرة صغيرة', '3 أكواب ملفوف أخضر مفروم', 'حبة جزر مبشورة', 'ربع كوب لبن يوناني سادة', 'ملعقتان كبيرتان عصير ليمون أخضر', 'ملعقة كبيرة زيت زيتون', 'ملعقة صغيرة مسحوق فلفل حار', 'نصف ملعقة صغيرة كمون مطحون', 'ربع كوب كزبرة مفرومة', 'حبة أفوكادو ناضجة مقطعة شرائح', 'ملح وفلفل أسود'],
+  },
+  instructions: {
+    en: ['Whisk the Greek yogurt with half the lime juice and a pinch of salt; toss with the cabbage and carrot and set aside.', 'Pat the shrimp dry and toss with olive oil, chili powder, cumin, salt, and pepper.', 'Cook the shrimp in a hot skillet for 2 to 3 minutes per side until pink and opaque.', 'Warm the tortillas in a dry pan for about 30 seconds per side.', 'Fill each tortilla with slaw, shrimp, avocado, cilantro, and a squeeze of the remaining lime.'],
+    ar: ['اخفق اللبن اليوناني مع نصف عصير الليمون ورشة ملح ثم قلّبه مع الملفوف والجزر واتركه جانبًا.', 'جفف الروبيان وقلّبه مع زيت الزيتون ومسحوق الفلفل الحار والكمون والملح والفلفل.', 'اطه الروبيان في مقلاة ساخنة دقيقتين إلى 3 دقائق لكل جانب حتى يصبح ورديًا ومعتمًا.', 'سخّن التورتيا في مقلاة جافة نحو 30 ثانية لكل جانب.', 'احشُ كل تورتيا بالسلطة والروبيان والأفوكادو والكزبرة واعصر عليها بقية الليمون.'],
+  },
+  nutrition: { calories: 360, protein: 27, carbs: 40, fat: 10 },
+};
+
+const BLACK_BEAN_SWEET_POTATO_QUESADILLA: Recipe = {
+  id: 'black-bean-sweet-potato-quesadilla',
+  slug: 'black-bean-sweet-potato-quesadilla',
+  emoji: '🫓',
+  title: { en: 'Black Bean & Sweet Potato Quesadilla', ar: 'كيساديا الفاصوليا السوداء والبطاطا الحلوة' },
+  cuisine: { en: 'Mexican', ar: 'مكسيكي' },
+  description: { en: 'Crispy whole-wheat quesadillas filled with roasted sweet potato, black beans, spinach, and melted cheese.', ar: 'كيساديا مقرمشة من القمح الكامل محشوة بالبطاطا الحلوة المشوية والفاصوليا السوداء والسبانخ والجبن الذائب.' },
+  prepTime: { en: '35 min', ar: '35 دقيقة' },
+  ingredients: {
+    en: ['1 large sweet potato (about 12 oz), peeled and cubed', '1 tbsp olive oil', '1 tsp ground cumin', '1 tsp smoked paprika', '1 cup black beans, drained and rinsed', '4 whole-wheat tortillas', '2 cups baby spinach', '1 cup shredded Monterey Jack cheese', '1/2 cup fresh salsa', 'Salt and black pepper'],
+    ar: ['حبة بطاطا حلوة كبيرة (نحو 340 غرامًا) مقشرة ومكعبات', 'ملعقة كبيرة زيت زيتون', 'ملعقة صغيرة كمون مطحون', 'ملعقة صغيرة بابريكا مدخنة', 'كوب فاصوليا سوداء مصفاة ومغسولة', '4 تورتيا من القمح الكامل', 'كوبان سبانخ صغيرة', 'كوب جبن مونتيري جاك مبشور', 'نصف كوب صلصة طماطم طازجة', 'ملح وفلفل أسود'],
+  },
+  instructions: {
+    en: ['Heat the oven to 400°F, toss the sweet potato with half the olive oil, cumin, paprika, salt, and pepper, and roast 20 minutes until tender.', 'Mash the roasted sweet potato with the black beans, adding a splash of water if needed.', 'Place a tortilla in a lightly oiled skillet and spread half with the sweet potato mixture, spinach, and cheese; fold and cook 3 to 4 minutes per side until golden.', 'Repeat with the remaining tortillas and filling.', 'Cut into wedges and serve with salsa.'],
+    ar: ['سخّن الفرن إلى 400 فهرنهايت وقلّب البطاطا الحلوة مع نصف زيت الزيتون والكمون والبابريكا والملح والفلفل ثم اشوِها 20 دقيقة حتى تلين.', 'اهرس البطاطا المشوية مع الفاصوليا السوداء وأضف القليل من الماء عند الحاجة.', 'ضع تورتيا في مقلاة مدهونة قليلًا وافرد على نصفها خليط البطاطا والسبانخ والجبن ثم اطوها واطهها 3 إلى 4 دقائق لكل جانب حتى تتحمر.', 'كرر العملية مع بقية التورتيا والحشوة.', 'قطّعها إلى مثلثات وقدّمها مع الصلصة.'],
+  },
+  nutrition: { calories: 420, protein: 17, carbs: 58, fat: 14 },
+};
+
+const GRILLED_FISH_TACOS_MANGO_SALSA: Recipe = {
+  id: 'grilled-fish-tacos-mango-salsa',
+  slug: 'grilled-fish-tacos-mango-salsa',
+  emoji: '🐟',
+  title: { en: 'Grilled Fish Tacos with Mango Salsa', ar: 'تاكو السمك المشوي مع صلصة المانجو' },
+  cuisine: { en: 'Mexican', ar: 'مكسيكي' },
+  description: { en: 'Charred white fish in corn tortillas with a bright mango, red onion, and cilantro salsa.', ar: 'سمك أبيض مشوي في تورتيا الذرة مع صلصة مانجو منعشة بالبصل الأحمر والكزبرة.' },
+  prepTime: { en: '30 min', ar: '30 دقيقة' },
+  ingredients: {
+    en: ['1 lb cod or tilapia fillets', '8 small corn tortillas', '1 ripe mango, diced', '1/2 small red onion, finely diced', '1 jalapeño, seeded and minced (optional)', '1/4 cup chopped cilantro', '2 limes, juiced', '1 tbsp olive oil', '1 tsp ground cumin', '1/2 tsp smoked paprika', '2 cups shredded cabbage', 'Salt and black pepper'],
+    ar: ['450 غرام فيليه سمك قد أو تيلابيا', '8 تورتيا ذرة صغيرة', 'حبة مانجو ناضجة مكعبات', 'نصف بصلة حمراء صغيرة مفرومة ناعمًا', 'حبة فلفل هالابينو منزوعة البذور ومفرومة (اختياري)', 'ربع كوب كزبرة مفرومة', 'عصير ليمونتين خضراوين', 'ملعقة كبيرة زيت زيتون', 'ملعقة صغيرة كمون مطحون', 'نصف ملعقة صغيرة بابريكا مدخنة', 'كوبان ملفوف مفروم', 'ملح وفلفل أسود'],
+  },
+  instructions: {
+    en: ['Mix the mango, red onion, jalapeño if using, half the cilantro, and the juice of one lime; season lightly and set aside.', 'Pat the fish dry and rub with olive oil, cumin, smoked paprika, salt, and pepper.', 'Grill or pan-sear the fish for 3 to 4 minutes per side until it flakes easily.', 'Warm the tortillas in a dry pan and flake the fish into large pieces.', 'Fill tortillas with cabbage, fish, mango salsa, remaining cilantro, and a squeeze of lime.'],
+    ar: ['اخلط المانجو والبصل الأحمر والهالابينو إن رغبت ونصف الكزبرة وعصير ليمونة واحدة وتبّل قليلًا ثم اتركه جانبًا.', 'جفف السمك وافركه بزيت الزيتون والكمون والبابريكا المدخنة والملح والفلفل.', 'اشوِ السمك أو اطهه في مقلاة 3 إلى 4 دقائق لكل جانب حتى يتفتت بسهولة.', 'سخّن التورتيا في مقلاة جافة وفتت السمك إلى قطع كبيرة.', 'احشُ التورتيا بالملفوف والسمك وصلصة المانجو وبقية الكزبرة واعصر عليها الليمون.'],
+  },
+  nutrition: { calories: 340, protein: 28, carbs: 38, fat: 8 },
+};
+
+const MEXICAN_QUINOA_SALAD: Recipe = {
+  id: 'mexican-quinoa-salad',
+  slug: 'mexican-quinoa-salad',
+  emoji: '🥗',
+  title: { en: 'Mexican Quinoa Salad', ar: 'سلطة الكينوا المكسيكية' },
+  cuisine: { en: 'Mexican', ar: 'مكسيكي' },
+  description: { en: 'A fiber-rich salad with quinoa, black beans, corn, tomatoes, avocado, and a smoky lime dressing.', ar: 'سلطة غنية بالألياف بالكينوا والفاصوليا السوداء والذرة والطماطم والأفوكادو وصلصة ليمون مدخنة.' },
+  prepTime: { en: '25 min', ar: '25 دقيقة' },
+  ingredients: {
+    en: ['2 cups cooked quinoa, cooled', '1 cup black beans, drained and rinsed', '1 cup corn kernels', '1 cup cherry tomatoes, halved', '1/2 English cucumber, diced', '1/4 cup finely diced red onion', '1 ripe avocado, cubed', '1/4 cup chopped cilantro', '3 tbsp lime juice', '2 tbsp olive oil', '1/2 tsp smoked paprika', '1/4 tsp chili powder', 'Salt and black pepper'],
+    ar: ['كوبان كينوا مطبوخة ومبردة', 'كوب فاصوليا سوداء مصفاة ومغسولة', 'كوب حبوب ذرة', 'كوب طماطم كرزية مقطعة أنصافًا', 'نصف خيار إنجليزي مكعبات', 'ربع كوب بصل أحمر مفروم ناعمًا', 'حبة أفوكادو ناضجة مكعبات', 'ربع كوب كزبرة مفرومة', '3 ملاعق كبيرة عصير ليمون أخضر', 'ملعقتان كبيرتان زيت زيتون', 'نصف ملعقة صغيرة بابريكا مدخنة', 'ربع ملعقة صغيرة مسحوق فلفل حار', 'ملح وفلفل أسود'],
+  },
+  instructions: {
+    en: ['Whisk the lime juice, olive oil, smoked paprika, chili powder, salt, and pepper in a large bowl.', 'Add the quinoa, black beans, corn, tomatoes, cucumber, and red onion and toss to combine.', 'Fold in the avocado and cilantro gently.', 'Let the salad stand for 10 minutes so the flavors blend.', 'Serve chilled or at room temperature.'],
+    ar: ['اخفق عصير الليمون وزيت الزيتون والبابريكا المدخنة ومسحوق الفلفل الحار والملح والفلفل في وعاء كبير.', 'أضف الكينوا والفاصوليا السوداء والذرة والطماطم والخيار والبصل الأحمر وقلّب حتى تمتزج.', 'أضف الأفوكادو والكزبرة وقلّب برفق.', 'اترك السلطة 10 دقائق لتمتزج النكهات.', 'قدّمها باردة أو بحرارة الغرفة.'],
+  },
+  nutrition: { calories: 390, protein: 14, carbs: 54, fat: 14 },
+};
+
+const TURKEY_ZUCCHINI_ENCHILADAS: Recipe = {
+  id: 'turkey-zucchini-enchiladas',
+  slug: 'turkey-zucchini-enchiladas',
+  emoji: '🫔',
+  title: { en: 'Turkey & Zucchini Enchiladas', ar: 'إنشيلادا الديك الرومي والكوسا' },
+  cuisine: { en: 'Mexican', ar: 'مكسيكي' },
+  description: { en: 'Lean turkey and grated zucchini rolled in corn tortillas, topped with red enchilada sauce and cheese, then baked.', ar: 'ديك رومي قليل الدهون وكوسا مبشورة ملفوفان في تورتيا الذرة مع صلصة إنشيلادا حمراء وجبن ثم مخبوزان.' },
+  prepTime: { en: '50 min', ar: '50 دقيقة' },
+  ingredients: {
+    en: ['1 lb lean ground turkey', '2 medium zucchini, grated and squeezed dry', '1 small onion, diced', '2 cloves garlic, minced', '1 tbsp olive oil', '1 tsp ground cumin', '1 tsp chili powder', '1 cup black beans, drained and rinsed', '8 corn tortillas', '1 1/2 cups red enchilada sauce', '1 cup shredded Monterey Jack cheese', '1/2 cup plain Greek yogurt', '1/4 cup chopped cilantro'],
+    ar: ['450 غرام ديك رومي مفروم قليل الدهون', 'حبتا كوسا متوسطتان مبشورتان ومعصورتان من الماء', 'بصلة صغيرة مكعبات', 'فصان ثوم مفرومان', 'ملعقة كبيرة زيت زيتون', 'ملعقة صغيرة كمون مطحون', 'ملعقة صغيرة مسحوق فلفل حار', 'كوب فاصوليا سوداء مصفاة ومغسولة', '8 تورتيا ذرة', 'كوب ونصف صلصة إنشيلادا حمراء', 'كوب جبن مونتيري جاك مبشور', 'نصف كوب لبن يوناني سادة', 'ربع كوب كزبرة مفرومة'],
+  },
+  instructions: {
+    en: ['Heat the oven to 375°F and spread 1/2 cup enchilada sauce in a baking dish.', 'Warm the olive oil in a skillet and cook the onion and garlic for 3 minutes.', 'Add the turkey, cumin, and chili powder and cook until no pink remains; stir in the zucchini and black beans and cook 3 minutes more.', 'Warm the tortillas, fill each with the turkey mixture, roll, and place seam-side down in the dish.', 'Pour over the remaining sauce, sprinkle with cheese, and bake 20 minutes; serve with Greek yogurt and cilantro.'],
+    ar: ['سخّن الفرن إلى 375 فهرنهايت وافرد نصف كوب من صلصة الإنشيلادا في طبق خبز.', 'سخّن زيت الزيتون في مقلاة واطه البصل والثوم 3 دقائق.', 'أضف الديك الرومي والكمون ومسحوق الفلفل الحار واطه حتى يختفي اللون الوردي ثم أضف الكوسا والفاصوليا واطه 3 دقائق إضافية.', 'سخّن التورتيا واحشُ كل واحدة بخليط الديك الرومي ثم لفها وضعها في الطبق بحيث يكون طرف اللفة للأسفل.', 'اسكب بقية الصلصة ورش الجبن واخبز 20 دقيقة ثم قدّم مع اللبن اليوناني والكزبرة.'],
+  },
+  nutrition: { calories: 410, protein: 32, carbs: 38, fat: 15 },
+};
+
+const CHICKEN_TORTILLA_SOUP_LIGHT: Recipe = {
+  id: 'chicken-tortilla-soup-light',
+  slug: 'chicken-tortilla-soup-light',
+  emoji: '🍲',
+  title: { en: 'Chicken Tortilla Soup (Light)', ar: 'شوربة التورتيا بالدجاج (خفيفة)' },
+  cuisine: { en: 'Mexican', ar: 'مكسيكي' },
+  description: { en: 'A brothy tomato-chicken soup with black beans, corn, peppers, and crispy baked tortilla strips.', ar: 'شوربة دجاج وطماطم غنية بالمرق مع فاصوليا سوداء وذرة وفلفل وشرائح تورتيا مخبوزة مقرمشة.' },
+  prepTime: { en: '40 min', ar: '40 دقيقة' },
+  ingredients: {
+    en: ['12 oz boneless skinless chicken breast', '6 cups low-sodium chicken broth', '1 can (14 oz) diced tomatoes', '1 cup black beans, drained and rinsed', '1 cup corn kernels', '1 red bell pepper, diced', '1 small onion, diced', '2 cloves garlic, minced', '1 tsp ground cumin', '1 tsp chili powder', '2 corn tortillas, cut into strips', '1 lime, juiced', '1/4 cup chopped cilantro', '1 ripe avocado, sliced'],
+    ar: ['340 غرامًا من صدر الدجاج منزوع العظم والجلد', '6 أكواب مرق دجاج قليل الصوديوم', 'علبة (400 غرام) طماطم مكعبات', 'كوب فاصوليا سوداء مصفاة ومغسولة', 'كوب حبوب ذرة', 'فلفل أحمر حلو مكعبات', 'بصلة صغيرة مكعبات', 'فصان ثوم مفرومان', 'ملعقة صغيرة كمون مطحون', 'ملعقة صغيرة مسحوق فلفل حار', 'تورتيا ذرة مقطعة شرائح', 'عصير ليمونة خضراء', 'ربع كوب كزبرة مفرومة', 'حبة أفوكادو ناضجة مقطعة شرائح'],
+  },
+  instructions: {
+    en: ['Bring the chicken broth to a gentle simmer, add the chicken, and cook 15 minutes until cooked through; remove and shred.', 'Heat a large pot, add the onion, bell pepper, and garlic, and cook 4 minutes.', 'Stir in the cumin, chili powder, tomatoes, black beans, corn, and broth; simmer 15 minutes.', 'Toss the tortilla strips with a little oil and bake at 400°F for 8 to 10 minutes until crisp.', 'Return the chicken to the soup, stir in the lime juice, and serve topped with tortilla strips, cilantro, and avocado.'],
+    ar: ['اترك مرق الدجاج يغلي بهدوء وأضف الدجاج واطهه 15 دقيقة حتى ينضج ثم أخرجه وفتته.', 'سخّن قدرًا كبيرًا وأضف البصل والفلفل والثوم واطه 4 دقائق.', 'أضف الكمون ومسحوق الفلفل الحار والطماطم والفاصوليا والذرة والمرق واتركه يغلي 15 دقيقة.', 'قلّب شرائح التورتيا مع قليل من الزيت واخبزها على 400 فهرنهايت 8 إلى 10 دقائق حتى تصبح مقرمشة.', 'أعد الدجاج إلى الشوربة وأضف عصير الليمون ثم قدّمها مع شرائح التورتيا والكزبرة والأفوكادو.'],
+  },
+  nutrition: { calories: 320, protein: 30, carbs: 32, fat: 9 },
+};
+
+const BEEF_BELL_PEPPER_FAJITAS: Recipe = {
+  id: 'beef-bell-pepper-fajitas',
+  slug: 'beef-bell-pepper-fajitas',
+  emoji: '🥩',
+  title: { en: 'Beef & Bell Pepper Fajitas', ar: 'فاهيتا اللحم البقري والفلفل الملون' },
+  cuisine: { en: 'Mexican', ar: 'مكسيكي' },
+  description: { en: 'Tender sirloin strips seared with tri-color bell peppers and onions, served with warm tortillas.', ar: 'شرائح لحم سيرلوين طرية مشوية مع فلفل ملون وبصل وتقدم مع تورتيا دافئة.' },
+  prepTime: { en: '30 min', ar: '30 دقيقة' },
+  ingredients: {
+    en: ['1 lb sirloin steak, thinly sliced against the grain', '1 red bell pepper, sliced', '1 green bell pepper, sliced', '1 yellow bell pepper, sliced', '1 large onion, sliced', '2 tbsp olive oil', '1 lime, juiced', '1 tsp ground cumin', '1 tsp chili powder', '1/2 tsp smoked paprika', '2 cloves garlic, minced', '6 small whole-wheat tortillas', '1/2 cup plain Greek yogurt', '1/2 cup fresh salsa'],
+    ar: ['450 غرام ستيك سيرلوين مقطع شرائح رفيعة عكس اتجاه الألياف', 'فلفل أحمر حلو مقطع شرائح', 'فلفل أخضر حلو مقطع شرائح', 'فلفل أصفر حلو مقطع شرائح', 'بصلة كبيرة مقطعة شرائح', 'ملعقتان كبيرتان زيت زيتون', 'عصير ليمونة خضراء', 'ملعقة صغيرة كمون مطحون', 'ملعقة صغيرة مسحوق فلفل حار', 'نصف ملعقة صغيرة بابريكا مدخنة', 'فصان ثوم مفرومان', '6 تورتيا صغيرة من القمح الكامل', 'نصف كوب لبن يوناني سادة', 'نصف كوب صلصة طماطم طازجة'],
+  },
+  instructions: {
+    en: ['Toss the beef with half the olive oil, lime juice, cumin, chili powder, smoked paprika, garlic, salt, and pepper.', 'Heat a large skillet over high heat and sear the beef for 2 to 3 minutes per side; transfer to a plate.', 'Add the remaining oil, peppers, and onion and cook 5 to 6 minutes until softened and lightly charred.', 'Return the beef and any juices to the pan and toss for 1 minute.', 'Serve in warm tortillas with Greek yogurt and salsa.'],
+    ar: ['قلّب اللحم مع نصف زيت الزيتون وعصير الليمون والكمون ومسحوق الفلفل الحار والبابريكا المدخنة والثوم والملح والفلفل.', 'سخّن مقلاة كبيرة على حرارة عالية واشوِ اللحم دقيقتين إلى 3 دقائق لكل جانب ثم انقله إلى طبق.', 'أضف بقية الزيت والفلفل والبصل واطه 5 إلى 6 دقائق حتى يلين ويتحمر قليلًا.', 'أعد اللحم وعصارته إلى المقلاة وقلّب دقيقة واحدة.', 'قدّمه في تورتيا دافئة مع اللبن اليوناني والصلصة.'],
+  },
+  nutrition: { calories: 430, protein: 35, carbs: 36, fat: 17 },
+};
+
+const CILANTRO_LIME_CAULIFLOWER_RICE_BOWL: Recipe = {
+  id: 'cilantro-lime-cauliflower-rice-bowl',
+  slug: 'cilantro-lime-cauliflower-rice-bowl',
+  emoji: '🥣',
+  title: { en: 'Cilantro Lime Cauliflower Rice Bowl', ar: 'وعاء أرز القرنبيط بالكزبرة والليمون' },
+  cuisine: { en: 'Mexican', ar: 'مكسيكي' },
+  description: { en: 'A low-carb bowl of cilantro-lime cauliflower rice with black beans, grilled chicken, avocado, and pico de gallo.', ar: 'وعاء منخفض الكربوهيدرات من أرز القرنبيط بالكزبرة والليمون مع فاصوليا سوداء ودجاج مشوي وأفوكادو وصلصة بيتو دي غايو.' },
+  prepTime: { en: '30 min', ar: '30 دقيقة' },
+  ingredients: {
+    en: ['4 cups cauliflower rice', '2 boneless skinless chicken breasts (about 12 oz)', '1 tbsp olive oil', '2 cloves garlic, minced', '1 tsp ground cumin', '1/2 tsp smoked paprika', '1 cup black beans, drained and rinsed', '1 ripe avocado, sliced', '1 cup diced tomato', '1/4 cup finely diced red onion', '1/4 cup chopped cilantro', '2 limes, juiced', 'Salt and black pepper'],
+    ar: ['4 أكواب أرز قرنبيط', 'صدرا دجاج منزوعا العظم والجلد (نحو 340 غرامًا)', 'ملعقة كبيرة زيت زيتون', 'فصان ثوم مفرومان', 'ملعقة صغيرة كمون مطحون', 'نصف ملعقة صغيرة بابريكا مدخنة', 'كوب فاصوليا سوداء مصفاة ومغسولة', 'حبة أفوكادو ناضجة مقطعة شرائح', 'كوب طماطم مكعبات', 'ربع كوب بصل أحمر مفروم ناعمًا', 'ربع كوب كزبرة مفرومة', 'عصير ليمونتين خضراوين', 'ملح وفلفل أسود'],
+  },
+  instructions: {
+    en: ['Season the chicken with cumin, smoked paprika, salt, and pepper; grill or pan-sear 6 to 7 minutes per side, then rest and slice.', 'Heat half the olive oil in a skillet and cook the garlic for 30 seconds.', 'Add the cauliflower rice and cook 5 to 6 minutes until tender; stir in half the lime juice and half the cilantro.', 'Mix the tomato, red onion, remaining cilantro, and remaining lime juice for a quick pico de gallo.', 'Build bowls with cauliflower rice, chicken, black beans, avocado, and pico de gallo.'],
+    ar: ['تبّل الدجاج بالكمون والبابريكا المدخنة والملح والفلفل واشوه أو اطهه في مقلاة 6 إلى 7 دقائق لكل جانب ثم اتركه يرتاح وقطعه.', 'سخّن نصف زيت الزيتون في مقلاة واطه الثوم 30 ثانية.', 'أضف أرز القرنبيط واطه 5 إلى 6 دقائق حتى يلين ثم أضف نصف عصير الليمون ونصف الكزبرة.', 'اخلط الطماطم والبصل الأحمر وبقية الكزبرة وبقية عصير الليمون لتحضير بيتو دي غايو سريع.', 'رتّب أرز القرنبيط والدجاج والفاصوليا والأفوكادو والبيتو دي غايو في أوعية.'],
+  },
+  nutrition: { calories: 370, protein: 34, carbs: 24, fat: 15 },
+};
+
 export const RECIPES: Recipe[] = [
   FOUL,
   CHICKEN_RICE,
@@ -1105,6 +1295,16 @@ export const RECIPES: Recipe[] = [
   TUSCAN_WHITE_BEAN_KALE_SOUP,
   CAPRESE_AVOCADO_SALAD,
   LEMON_HERB_SALMON_ASPARAGUS,
+  CHICKEN_FAJITA_BOWL,
+  LEAN_BEEF_BURRITO_BOWL,
+  SHRIMP_TACOS_CABBAGE_SLAW,
+  BLACK_BEAN_SWEET_POTATO_QUESADILLA,
+  GRILLED_FISH_TACOS_MANGO_SALSA,
+  MEXICAN_QUINOA_SALAD,
+  TURKEY_ZUCCHINI_ENCHILADAS,
+  CHICKEN_TORTILLA_SOUP_LIGHT,
+  BEEF_BELL_PEPPER_FAJITAS,
+  CILANTRO_LIME_CAULIFLOWER_RICE_BOWL,
 ];
 
 export const getRecipeBySlug = (slug: string): Recipe | undefined =>

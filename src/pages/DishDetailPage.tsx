@@ -20,6 +20,16 @@ type DbDish = Dish & {
 };
 
 const RECIPE_LINKS = [
+  { keywords: ['tortilla soup'], slug: 'chicken-tortilla-soup-light', title: 'Chicken Tortilla Soup (Light)' },
+  { keywords: ['fajita', 'bell pepper'], slug: 'beef-bell-pepper-fajitas', title: 'Beef & Bell Pepper Fajitas' },
+  { keywords: ['fajita', 'chicken'], slug: 'chicken-fajita-bowl', title: 'Chicken Fajita Bowl' },
+  { keywords: ['burrito', 'beef'], slug: 'lean-beef-burrito-bowl', title: 'Lean Beef Burrito Bowl' },
+  { keywords: ['shrimp', 'taco'], slug: 'shrimp-tacos-cabbage-slaw', title: 'Shrimp Tacos with Cabbage Slaw' },
+  { keywords: ['quesadilla', 'black bean'], slug: 'black-bean-sweet-potato-quesadilla', title: 'Black Bean & Sweet Potato Quesadilla' },
+  { keywords: ['fish taco', 'mango'], slug: 'grilled-fish-tacos-mango-salsa', title: 'Grilled Fish Tacos with Mango Salsa' },
+  { keywords: ['mexican', 'quinoa'], slug: 'mexican-quinoa-salad', title: 'Mexican Quinoa Salad' },
+  { keywords: ['enchilada', 'turkey'], slug: 'turkey-zucchini-enchiladas', title: 'Turkey & Zucchini Enchiladas' },
+  { keywords: ['cauliflower rice', 'cilantro'], slug: 'cilantro-lime-cauliflower-rice-bowl', title: 'Cilantro Lime Cauliflower Rice Bowl' },
   { keywords: ['foul', 'medames', 'fava'], slug: 'foul-medames', title: 'Foul Medames Recipe' },
   { keywords: ['grilled chicken', 'brown rice'], slug: 'grilled-chicken-brown-rice', title: 'Grilled Chicken Recipe' },
   { keywords: ['tagine', 'tunisian'], slug: 'tunisian-vegetable-tagine', title: 'Tunisian Tagine Recipe' },
