@@ -1,6 +1,6 @@
-import type { Language } from '../types';
+import { pickLocalized, type LangText, type Language, type LocalizedTextList } from '../types';
 
-export type LangText = { en: string; ar: string };
+export type { LangText } from '../types';
 
 export interface Recipe {
   id: string;
@@ -10,23 +10,34 @@ export interface Recipe {
   cuisine: LangText;
   description: LangText;
   prepTime: LangText;
-  ingredients: { en: string[]; ar: string[] };
-  instructions: { en: string[]; ar: string[] };
+  ingredients: LocalizedTextList;
+  instructions: LocalizedTextList;
   nutrition: { calories: number; protein: number; carbs: number; fat: number };
 }
 
-export const lt = (text: LangText, lang: Language): string =>
-  text[lang as keyof LangText] ?? text.en;
+export const lt = (text: LangText, lang: Language): string => pickLocalized(text, lang);
+
+export const ltList = (text: LocalizedTextList, lang: Language): string[] =>
+  pickLocalized(text, lang);
 
 const FOUL: Recipe = {
   id: 'foul-medames',
   slug: 'foul-medames',
   emoji: '🫘',
-  title: { en: 'Foul Medames', ar: 'فول مدمس' },
+  title: {
+    en: 'Foul Medames',
+    ar: 'فول مدمس',
+    fr: 'Foul Medames aux fèves',
+    es: 'Foul Medames con habas',
+    hi: 'फ़ूल मेदामेस',
+  },
   cuisine: { en: 'Egyptian', ar: 'مصري' },
   description: {
     en: 'A creamy, protein-packed Egyptian fava bean breakfast bowl that keeps you full for hours.',
     ar: 'طبق مصري كريمي غني بالبروتين من الفول، يبقيك شبعانًا لساعات.',
+    fr: 'Un bol de petit-déjeuner égyptien crémeux et riche en protéines, à base de fèves, qui vous rassasie pendant des heures.',
+    es: 'Un bol de desayuno egipcio cremoso y rico en proteínas, hecho con habas, que te mantiene saciado durante horas.',
+    hi: 'मलाईदार और प्रोटीन से भरपूर मिस्र का फवा बीन नाश्ता, जो आपको घंटों तक भरा हुआ रखता है।',
   },
   prepTime: { en: '10 min', ar: '10 دقائق' },
   ingredients: {
@@ -65,6 +76,27 @@ const FOUL: Recipe = {
       'أضف خليط الطحينة إلى الفول وتبّل بالملح.',
       'اتركه يُطهى دقيقتين إضافيتين حتى يصبح كثيفًا وكريميًا.',
       'قدّم الفول في طبق، ورش زيت الزيتون، وزين بالطماطم والبصل والبقدونس والشطة.',
+    ],
+    fr: [
+      'Chauffez doucement les fèves dans une casserole à feu moyen pendant 3 à 4 minutes, en les écrasant légèrement avec une fourchette.',
+      'Dans un bol, mélangez le tahini, l’ail, le jus de citron, le cumin et l’huile d’olive.',
+      'Incorporez le mélange de tahini aux fèves et assaisonnez avec du sel.',
+      'Laissez mijoter encore 2 minutes jusqu’à ce que le mélange soit épais et crémeux.',
+      'Servez dans un bol, arrosez d’un filet d’huile d’olive et garnissez de tomates, d’oignon, de persil et de flocons de piment.',
+    ],
+    es: [
+      'Calienta las habas suavemente en una olla a fuego medio durante 3 a 4 minutos, aplastándolas ligeramente con un tenedor.',
+      'En un bol, mezcla el tahini, el ajo, el zumo de limón, el comino y el aceite de oliva.',
+      'Incorpora la mezcla de tahini a las habas y sazona con sal.',
+      'Cocina a fuego lento otros 2 minutos hasta que la mezcla espese y quede cremosa.',
+      'Sirve en un bol, rocía con un poco de aceite de oliva y cubre con tomate, cebolla, perejil y copos de chile.',
+    ],
+    hi: [
+      'फवा बीन्स को एक बर्तन में मध्यम आँच पर 3 से 4 मिनट तक धीरे-धीरे गरम करें और काँटे से हल्का मैश करें।',
+      'एक कटोरे में ताहिनी, लहसुन, नींबू का रस, जीरा और जैतून का तेल मिलाएँ।',
+      'ताहिनी का मिश्रण फवा बीन्स में मिलाएँ और नमक से स्वाद बढ़ाएँ।',
+      '2 मिनट और धीमी आँच पर पकाएँ, जब तक मिश्रण गाढ़ा और मलाईदार न हो जाए।',
+      'एक कटोरे में परोसें, ऊपर से जैतून का तेल डालें और टमाटर, प्याज़, अजमोद और मिर्च के गुच्छे से सजाएँ।',
     ],
   },
   nutrition: { calories: 220, protein: 13, carbs: 28, fat: 7 },

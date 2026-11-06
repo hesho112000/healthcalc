@@ -1,6 +1,6 @@
-import type { Language } from '../types';
+import { pickLocalized, type LangText, type Language } from '../types';
 
-export type LangText = { en: string; ar: string };
+export type { LangText } from '../types';
 
 export type ArticleCategory = 'diabetes' | 'heart' | 'nutrition' | 'lifestyle' | 'fitness';
 
@@ -18,8 +18,7 @@ export interface Article {
   tags: string[];
 }
 
-export const lt = (text: LangText, lang: Language): string =>
-  text[lang as keyof LangText] ?? text.en;
+export const lt = (text: LangText, lang: Language): string => pickLocalized(text, lang);
 
 const HBA1C: Article = {
   id: 'understanding-hba1c',

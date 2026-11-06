@@ -2,18 +2,30 @@ import React, { createContext, useContext, useEffect, useState, type ReactNode }
 import type { Language } from '../types';
 import type { TranslationKeys } from '../i18n/translationTypes';
 
-const SUPPORTED: Language[] = ['en', 'fr', 'es', 'ar', 'de'];
+const SUPPORTED: Language[] = ['en', 'fr', 'es', 'ar', 'hi', 'de'];
 
 const loadLocale: Record<Language, () => Promise<TranslationKeys>> = {
   en: () => import('../i18n/locales/en').then((module) => module.default),
   fr: () => import('../i18n/locales/fr').then((module) => module.default),
   es: () => import('../i18n/locales/es').then((module) => module.default),
   ar: () => import('../i18n/locales/ar').then((module) => module.default),
+  hi: () => import('../i18n/locales/hi').then((module) => module.default),
   de: () => import('../i18n/locales/de').then((module) => module.default),
 };
 
 function resolveInitialLanguage(): Language {
   if (typeof window !== 'undefined') {
+    // Path-based locale URLs (`/fr/...`, `/hi/...`) take precedence.
+    const pathLanguage = window.location.pathname.split('/').filter(Boolean)[0];
+    if (pathLanguage && (SUPPORTED as string[]).includes(pathLanguage)) {
+      try {
+        window.localStorage.setItem('healthcalc-lang', pathLanguage);
+      } catch {
+        // Continue with the URL language when browser storage is unavailable.
+      }
+      return pathLanguage as Language;
+    }
+
     const queryLanguage = new URLSearchParams(window.location.search).get('lang');
     if (queryLanguage && (SUPPORTED as string[]).includes(queryLanguage)) {
       try {
@@ -49,6 +61,7 @@ const languageConfig: Record<Language, { dir: 'ltr' | 'rtl' }> = {
   fr: { dir: 'ltr' },
   es: { dir: 'ltr' },
   ar: { dir: 'rtl' },
+  hi: { dir: 'ltr' },
   de: { dir: 'ltr' },
 };
 

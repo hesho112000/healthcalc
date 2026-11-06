@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight, Check, ChefHat, Clock, Flame } from 'lucide-reac
 import { useLanguage } from '../context/LanguageContext';
 import { ENABLE_PREMIUM } from '../config/featureFlags';
 import SEO from '../components/seo/SEO';
-import { getRecipeBySlug, lt } from '../data/recipes';
+import { getRecipeBySlug, lt, ltList } from '../data/recipes';
 
 const RecipePage: React.FC = () => {
   const { t, dir, language } = useLanguage();
@@ -34,8 +34,8 @@ const RecipePage: React.FC = () => {
     );
   }
 
-  const ingredients = recipe.ingredients[language as 'en' | 'ar'] ?? recipe.ingredients.en;
-  const instructions = recipe.instructions[language as 'en' | 'ar'] ?? recipe.instructions.en;
+  const ingredients = ltList(recipe.ingredients, language);
+  const instructions = ltList(recipe.instructions, language);
   const name = lt(recipe.title, language);
   const descriptionRecipe = lt(recipe.description, language);
 

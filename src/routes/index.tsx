@@ -1,5 +1,6 @@
 import React, { lazy } from 'react';
-import { Routes, Route, Navigate, Link, useParams } from 'react-router-dom';
+import { Routes, Route, Navigate, Link, useLocation, useParams } from 'react-router-dom';
+import type { Language } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import type { translations } from '../i18n/translations';
 import ProtectedRoute from '../components/ProtectedRoute';
@@ -46,6 +47,33 @@ const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 const LegacySeoRedirect: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   return <Navigate to={`/en/landing/${slug}`} replace />;
+};
+
+const SUPPORTED_PREFIXES = new Set<string>(['en', 'fr', 'es', 'ar', 'hi', 'de']);
+
+/**
+ * Handles the path-based locale URLs advertised through hreflang
+ * (`/fr/resources`, `/hi/fitness`, ...). The language is applied and the
+ * visitor is routed to the matching page without the prefix.
+ */
+const LanguagePrefixRedirect: React.FC = () => {
+  const { lang } = useParams<{ lang: string }>();
+  const { language, setLanguage } = useLanguage();
+  const location = useLocation();
+
+  React.useEffect(() => {
+    if (lang && SUPPORTED_PREFIXES.has(lang) && language !== lang) {
+      setLanguage(lang as Language);
+    }
+  }, [lang, language, setLanguage]);
+
+  if (!lang || !SUPPORTED_PREFIXES.has(lang)) {
+    return <NotFoundPage />;
+  }
+
+  const rest = location.pathname.replace(new RegExp(`^/${lang}(?=/|$)`), '') || '/';
+
+  return <Navigate to={`${rest}${location.search}${location.hash}`} replace />;
 };
 
 interface SimplePageProps {
@@ -182,6 +210,7 @@ export const AppRoutes: React.FC = () => (
       <Route path="/Personal-Data-Entry-Step2" element={<StaticStepPage step={2} />} />
 
       <Route path="/:lang/landing/:slug" element={<LocalizedSeoPage />} />
+      <Route path="/:lang/*" element={<LanguagePrefixRedirect />} />
       <Route path="/health-guide/:slug" element={<LegacySeoRedirect />} />
 
       <Route path="*" element={<NotFoundPage />} />

@@ -23,6 +23,7 @@ const languageOptions: { code: Language; countryCode: string; label: string }[] 
   { code: 'ar', countryCode: 'sa', label: 'العربية' },
   { code: 'es', countryCode: 'es', label: 'Español' },
   { code: 'fr', countryCode: 'fr', label: 'Français' },
+  { code: 'hi', countryCode: 'in', label: 'हिन्दी' },
   { code: 'de', countryCode: 'de', label: 'Deutsch' },
 ];
 

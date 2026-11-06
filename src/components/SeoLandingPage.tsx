@@ -37,6 +37,7 @@ const dirMap: Record<Language, 'ltr' | 'rtl'> = {
   fr: 'ltr',
   es: 'ltr',
   ar: 'rtl',
+  hi: 'ltr',
   de: 'ltr',
 };
 

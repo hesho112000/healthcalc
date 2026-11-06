@@ -341,7 +341,7 @@ const AdvancedCareWizardPage: React.FC = () => {
   const kcalExtended = recommendation.extended;
 
   const exerciseName = () =>
-    (({ en: 'nameEn', fr: 'nameFr', es: 'nameEs', ar: 'nameAr', de: 'nameEn' } as const)[language]) as keyof Exercise;
+    (({ en: 'nameEn', fr: 'nameFr', es: 'nameEs', ar: 'nameAr', hi: 'nameEn', de: 'nameEn' } as const)[language]) as keyof Exercise;
 
   const currentExerciseIds = useMemo(() => {
     if (exerciseTypes.length === 0) return recommendedExercises.map((item) => item.exercise.id);

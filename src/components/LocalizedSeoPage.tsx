@@ -5,13 +5,14 @@ import SeoLandingPage, { SeoPageData } from './SeoLandingPage';
 import { allSeoPages } from '../data/seo';
 import Flag from './common/Flag';
 
-const SUPPORTED_LANGS: Language[] = ['en', 'fr', 'es', 'ar'];
+const SUPPORTED_LANGS: Language[] = ['en', 'fr', 'es', 'ar', 'hi'];
 
 const langLabels: Record<Language, { native: string; countryCode: string }> = {
   en: { native: 'English', countryCode: 'us' },
   fr: { native: 'Français', countryCode: 'fr' },
   es: { native: 'Español', countryCode: 'es' },
   ar: { native: 'العربية', countryCode: 'sa' },
+  hi: { native: 'हिन्दी', countryCode: 'in' },
   de: { native: 'Deutsch', countryCode: 'de' },
 };
 
@@ -45,7 +46,7 @@ const LanguageSwitcherBar: React.FC<{ currentLang: Language; slug: string }> = (
     <div className="bg-gray-900 border-b border-gray-800">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between">
         <span className="text-xs text-gray-400 font-medium hidden sm:inline">
-          {currentLang === 'ar' ? 'اختر اللغة' : currentLang === 'fr' ? 'Choisir la langue' : currentLang === 'es' ? 'Elegir idioma' : 'Choose language'}
+          {currentLang === 'ar' ? 'اختر اللغة' : currentLang === 'fr' ? 'Choisir la langue' : currentLang === 'es' ? 'Elegir idioma' : currentLang === 'hi' ? 'भाषा चुनें' : 'Choose language'}
         </span>
         <div className="flex items-center gap-1 sm:gap-2 mx-auto sm:mx-0">
           {SUPPORTED_LANGS.map((l) => (

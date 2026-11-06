@@ -14,7 +14,7 @@ interface FormData { age: string; gender: 'male' | 'female'; heightCm: string; w
 const ACT: Record<string, number> = { sedentary: 1.2, light: 1.375, moderate: 1.55, active: 1.725, very_active: 1.9 };
 const ACT_ORDER = ['sedentary', 'light', 'moderate', 'active', 'very_active'];
 const ACT_LABELS: Record<string, string> = { sedentary: 'fcSedentary', light: 'fcLight', moderate: 'fcModerate', active: 'fcActive', very_active: 'fcVeryActive' };
-const NUMBER_LOCALE_BY_LANGUAGE: Record<Language, string> = { en: 'en-US', fr: 'fr-FR', es: 'es-ES', ar: 'ar-EG', de: 'de-DE' };
+const NUMBER_LOCALE_BY_LANGUAGE: Record<Language, string> = { en: 'en-US', fr: 'fr-FR', es: 'es-ES', ar: 'ar-EG', hi: 'hi-IN', de: 'de-DE' };
 
 function bmiValue(hCm: number, wKg: number) { const h = hCm / 100; return h ? wKg / (h * h) : 0; }
 function bmrValue(g: 'male' | 'female', age: number, hCm: number, wKg: number) {

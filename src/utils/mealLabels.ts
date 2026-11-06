@@ -29,6 +29,7 @@ const MEAL_LABELS: Record<Language, Record<MealLabelKey, string>> = {
   fr: { mealBreakfast: 'Petit-d?jeuner', mealLunch: 'D?jeuner', mealDinner: 'D?ner', mealMorningSnack: 'Collation du matin', mealAfternoonSnack: "Collation de l'apr?s-midi", mealSnack: 'Collation' },
   es: { mealBreakfast: 'Desayuno', mealLunch: 'Almuerzo', mealDinner: 'Cena', mealMorningSnack: 'Merienda de la ma?ana', mealAfternoonSnack: 'Merienda de la tarde', mealSnack: 'Merienda' },
   ar: { mealBreakfast: '???????', mealLunch: '??????', mealDinner: '??????', mealMorningSnack: '???? ????? ??????', mealAfternoonSnack: '???? ????? ??????', mealSnack: '???? ?????' },
+  hi: { mealBreakfast: 'नाश्ता', mealLunch: 'दोपहर का भोजन', mealDinner: 'रात का खाना', mealMorningSnack: 'सुबह का नाश्ता', mealAfternoonSnack: 'दोपहर का नाश्ता', mealSnack: 'नाश्ता' },
   de: { mealBreakfast: 'Fr?hst?ck', mealLunch: 'Mittagessen', mealDinner: 'Abendessen', mealMorningSnack: 'Vormittagssnack', mealAfternoonSnack: 'Nachmittagssnack', mealSnack: 'Snack' },
 };
 

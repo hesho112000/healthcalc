@@ -12,9 +12,15 @@ export interface LegalDocument {
   sections: LegalSection[];
 }
 
-const L = (lang: Language, docs: Record<Language, LegalDocument>): LegalDocument => docs[lang] ?? docs.en;
+/**
+ * Legal copy is complete for the original locales; newer locales fall back to
+ * English until their translations are supplied.
+ */
+export type LegalDocuments = Partial<Record<Language, LegalDocument>> & { en: LegalDocument };
 
-export const privacyPolicyDocs: Record<Language, LegalDocument> = {
+const L = (lang: Language, docs: LegalDocuments): LegalDocument => docs[lang] ?? docs.en;
+
+export const privacyPolicyDocs: LegalDocuments = {
   en: {
     badge: 'Legal',
     updated: 'Last updated: January 1, 2026',
@@ -98,7 +104,7 @@ export const privacyPolicyDocs: Record<Language, LegalDocument> = {
   },
 };
 
-export const termsOfServiceDocs: Record<Language, LegalDocument> = {
+export const termsOfServiceDocs: LegalDocuments = {
   en: {
     badge: 'Legal',
     updated: 'Last updated: January 1, 2026',
@@ -191,7 +197,7 @@ export const termsOfServiceDocs: Record<Language, LegalDocument> = {
   },
 };
 
-export const cookiePolicyDocs: Record<Language, LegalDocument> = {
+export const cookiePolicyDocs: LegalDocuments = {
   en: {
     badge: 'Legal',
     updated: 'Last updated: January 1, 2026',
@@ -269,7 +275,7 @@ export const cookiePolicyDocs: Record<Language, LegalDocument> = {
   },
 };
 
-export const medicalDisclaimerDocs: Record<Language, LegalDocument> = {
+export const medicalDisclaimerDocs: LegalDocuments = {
   en: {
     badge: 'Important Notice',
     updated: 'Effective Date: January 1, 2026',
@@ -342,4 +348,4 @@ export const medicalDisclaimerDocs: Record<Language, LegalDocument> = {
   },
 };
 
-export const getLegalDoc = (lang: Language, docs: Record<Language, LegalDocument>): LegalDocument => L(lang, docs);
+export const getLegalDoc = (lang: Language, docs: LegalDocuments): LegalDocument => L(lang, docs);

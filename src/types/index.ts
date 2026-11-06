@@ -1,4 +1,50 @@
-export type Language = 'en' | 'fr' | 'es' | 'ar' | 'de';
+export type Language = 'en' | 'fr' | 'es' | 'ar' | 'hi' | 'de';
+
+/**
+ * Localized copy used across recipes and articles.
+ *
+ * `en` and `ar` are always present. The newer SEO languages (`fr`, `es`, `hi`)
+ * are optional while translations are being rolled out; every reader must go
+ * through `pickLocalized` so a missing or blank value falls back to English.
+ */
+export type LangText = {
+  en: string;
+  ar: string;
+  fr?: string;
+  es?: string;
+  hi?: string;
+};
+
+/** Localized string arrays (recipe ingredients, instructions, and similar). */
+export type LocalizedTextList = {
+  en: string[];
+  ar: string[];
+  fr?: string[];
+  es?: string[];
+  hi?: string[];
+};
+
+/**
+ * Pick a localized value with an English fallback.
+ *
+ * Falls back when the requested locale is absent, undefined, an empty string,
+ * or an empty array. This prevents partially translated content from rendering
+ * blank UI.
+ */
+export function pickLocalized<T>(
+  values: Partial<Record<Language, T>> & { en: T },
+  language: Language,
+): T {
+  const value = values[language];
+
+  if (typeof value === 'string') {
+    return (value.trim() ? value : values.en) as T;
+  }
+  if (Array.isArray(value)) {
+    return (value.length > 0 ? value : values.en) as T;
+  }
+  return (value ?? values.en) as T;
+}
 
 export interface LanguageOption {
   code: Language;
