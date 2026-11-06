@@ -1691,7 +1691,7 @@ const de: TranslationKeys = {
     // Footer
     footerTagline: 'Ihr KI-Gesundheitsbegleiter',
     'nav.home': 'Startseite',
-    'nav.calculators': 'Rechner & Fitness',
+    'nav.calculators': 'Rechner',
     'nav.advancedCare': 'Erweiterte Pflege',
     'nav.myHealthHub': 'Mein Gesundheits-Hub',
     'nav.resources': 'Ressourcen',
@@ -1774,7 +1774,7 @@ const de: TranslationKeys = {
     homeFinalEyebrow: 'IHR NÄCHSTES KAPITEL BEGINNT HIER ✨',
     homeFinalTitle: 'Kleine Eingaben. Klügere Gesundheitsentscheidungen.',
     homeFinalDesc: 'Alles, was Sie brauchen, um Ihren Körper zu verstehen und einen Plan zu erstellen, den Sie wirklich umsetzen können.',
-    brandName: 'Ihr Gesundheits-Fingerabdruck',
+    brandName: 'HealthFingerprint',
     'trust2.eyebrow': 'WELTWEIT VERTRAUT',
     'trust2.title': 'Warum über 12.450 Nutzer uns vertrauen',
     'trust2.subtitle': 'Evidenzbasierte Pläne, transparente Formeln und Aktivität in Echtzeit.',

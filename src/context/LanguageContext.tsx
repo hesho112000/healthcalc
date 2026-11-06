@@ -1,8 +1,20 @@
 import React, { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import type { Language } from '../types';
 import type { TranslationKeys } from '../i18n/translationTypes';
+import en from '../i18n/locales/en';
 
 const SUPPORTED: Language[] = ['en', 'fr', 'es', 'ar', 'hi', 'de'];
+
+/**
+ * Returns a displayable string for a dictionary entry. Some entries are
+ * objects (for example `workoutPlanBuilder`), so unwrap their `title`.
+ */
+function readTranslation(dictionary: TranslationKeys | null, key: keyof TranslationKeys): string | undefined {
+  const value = dictionary?.[key];
+  if (typeof value === 'string') return value;
+  if (value && typeof value === 'object' && typeof value.title === 'string') return value.title;
+  return undefined;
+}
 
 const loadLocale: Record<Language, () => Promise<TranslationKeys>> = {
   en: () => import('../i18n/locales/en').then((module) => module.default),
@@ -67,26 +79,25 @@ const languageConfig: Record<Language, { dir: 'ltr' | 'rtl' }> = {
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [language, setLanguage] = useState<Language>(resolveInitialLanguage);
-  const [dictionary, setDictionary] = useState<TranslationKeys | null>(null);
+  // English is bundled statically so the first paint always has readable text
+  // instead of raw dictionary keys while a locale chunk is loading.
+  const [dictionary, setDictionary] = useState<TranslationKeys>(en);
 
   useEffect(() => {
     let cancelled = false;
     const loadSelectedLocale = async () => {
+      if (language === 'en') {
+        if (!cancelled) setDictionary(en);
+        return;
+      }
+
       try {
         const locale = await loadLocale[language]();
-        if (!cancelled) setDictionary(locale);
+        // Merge over English so any key missing from the selected locale
+        // gracefully falls back to English rather than a raw key.
+        if (!cancelled) setDictionary({ ...en, ...locale });
       } catch {
-        if (language === 'en') {
-          if (!cancelled) setDictionary(null);
-          return;
-        }
-
-        try {
-          const english = await loadLocale.en();
-          if (!cancelled) setDictionary(english);
-        } catch {
-          if (!cancelled) setDictionary(null);
-        }
+        if (!cancelled) setDictionary(en);
       }
     };
     void loadSelectedLocale();
@@ -103,7 +114,8 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   const handleSetLanguage = (lang: Language) => {
     if (lang !== language) {
       setLanguage(lang);
-      setDictionary(null);
+      // Keep English visible during the switch; never show raw keys.
+      setDictionary(en);
     }
     try {
       localStorage.setItem('healthcalc-lang', lang);
@@ -113,8 +125,17 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   };
 
   const t = (key: keyof TranslationKeys): string => {
-    const val = dictionary?.[key] ?? key;
-    return typeof val === 'string' ? val : val.title;
+    const selected = readTranslation(dictionary, key);
+    if (selected !== undefined) return selected;
+
+    const fallback = readTranslation(en, key);
+    if (fallback !== undefined) return fallback;
+
+    // Last resort: never expose the raw key in the UI.
+    if (import.meta.env.DEV) {
+      console.warn(`[i18n] Missing translation key: ${String(key)}`);
+    }
+    return '';
   };
 
   const dir = languageConfig[language].dir;
