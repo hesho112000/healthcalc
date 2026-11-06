@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://healthfingerprint.com/resources</loc>
     <changefreq>weekly</changefreq>
@@ -7,66 +7,191 @@
   </url>
   <url>
     <loc>https://healthfingerprint.com/resources/article/understanding-hba1c</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/understanding-hba1c" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://healthfingerprint.com/fr/resources/article/understanding-hba1c" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://healthfingerprint.com/es/resources/article/understanding-hba1c" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://healthfingerprint.com/hi/resources/article/understanding-hba1c" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/understanding-hba1c" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/fr/resources/article/understanding-hba1c</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/understanding-hba1c" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://healthfingerprint.com/fr/resources/article/understanding-hba1c" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://healthfingerprint.com/es/resources/article/understanding-hba1c" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://healthfingerprint.com/hi/resources/article/understanding-hba1c" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/understanding-hba1c" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/es/resources/article/understanding-hba1c</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/understanding-hba1c" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://healthfingerprint.com/fr/resources/article/understanding-hba1c" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://healthfingerprint.com/es/resources/article/understanding-hba1c" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://healthfingerprint.com/hi/resources/article/understanding-hba1c" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/understanding-hba1c" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/hi/resources/article/understanding-hba1c</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/understanding-hba1c" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://healthfingerprint.com/fr/resources/article/understanding-hba1c" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://healthfingerprint.com/es/resources/article/understanding-hba1c" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://healthfingerprint.com/hi/resources/article/understanding-hba1c" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/understanding-hba1c" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://healthfingerprint.com/resources/article/blood-pressure-myths</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/blood-pressure-myths" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/blood-pressure-myths" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://healthfingerprint.com/resources/article/lower-cholesterol-naturally</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/lower-cholesterol-naturally" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://healthfingerprint.com/fr/resources/article/lower-cholesterol-naturally" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://healthfingerprint.com/es/resources/article/lower-cholesterol-naturally" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://healthfingerprint.com/hi/resources/article/lower-cholesterol-naturally" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/lower-cholesterol-naturally" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/fr/resources/article/lower-cholesterol-naturally</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/lower-cholesterol-naturally" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://healthfingerprint.com/fr/resources/article/lower-cholesterol-naturally" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://healthfingerprint.com/es/resources/article/lower-cholesterol-naturally" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://healthfingerprint.com/hi/resources/article/lower-cholesterol-naturally" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/lower-cholesterol-naturally" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/es/resources/article/lower-cholesterol-naturally</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/lower-cholesterol-naturally" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://healthfingerprint.com/fr/resources/article/lower-cholesterol-naturally" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://healthfingerprint.com/es/resources/article/lower-cholesterol-naturally" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://healthfingerprint.com/hi/resources/article/lower-cholesterol-naturally" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/lower-cholesterol-naturally" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/hi/resources/article/lower-cholesterol-naturally</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/lower-cholesterol-naturally" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://healthfingerprint.com/fr/resources/article/lower-cholesterol-naturally" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://healthfingerprint.com/es/resources/article/lower-cholesterol-naturally" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://healthfingerprint.com/hi/resources/article/lower-cholesterol-naturally" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/lower-cholesterol-naturally" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://healthfingerprint.com/resources/article/gout-flare-ups</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/gout-flare-ups" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/gout-flare-ups" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://healthfingerprint.com/resources/article/science-of-sleep</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/science-of-sleep" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/science-of-sleep" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://healthfingerprint.com/resources/article/pcos-insulin-resistance</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/pcos-insulin-resistance" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/pcos-insulin-resistance" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://healthfingerprint.com/resources/article/mindful-eating</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/mindful-eating" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/mindful-eating" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://healthfingerprint.com/resources/article/strength-training-diabetes</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/strength-training-diabetes" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/strength-training-diabetes" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://healthfingerprint.com/resources/article/intermittent-fasting-safety</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/intermittent-fasting-safety" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/intermittent-fasting-safety" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://healthfingerprint.com/resources/article/high-protein-meal-prep-weight-loss</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/high-protein-meal-prep-weight-loss" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/high-protein-meal-prep-weight-loss" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://healthfingerprint.com/resources/article/how-to-read-nutrition-labels</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/how-to-read-nutrition-labels" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/how-to-read-nutrition-labels" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://healthfingerprint.com/resources/article/mediterranean-diet-for-beginners</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/mediterranean-diet-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://healthfingerprint.com/fr/resources/article/mediterranean-diet-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://healthfingerprint.com/es/resources/article/mediterranean-diet-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://healthfingerprint.com/hi/resources/article/mediterranean-diet-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/mediterranean-diet-for-beginners" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/fr/resources/article/mediterranean-diet-for-beginners</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/mediterranean-diet-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://healthfingerprint.com/fr/resources/article/mediterranean-diet-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://healthfingerprint.com/es/resources/article/mediterranean-diet-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://healthfingerprint.com/hi/resources/article/mediterranean-diet-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/mediterranean-diet-for-beginners" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/es/resources/article/mediterranean-diet-for-beginners</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/mediterranean-diet-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://healthfingerprint.com/fr/resources/article/mediterranean-diet-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://healthfingerprint.com/es/resources/article/mediterranean-diet-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://healthfingerprint.com/hi/resources/article/mediterranean-diet-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/mediterranean-diet-for-beginners" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/hi/resources/article/mediterranean-diet-for-beginners</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/mediterranean-diet-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://healthfingerprint.com/fr/resources/article/mediterranean-diet-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://healthfingerprint.com/es/resources/article/mediterranean-diet-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://healthfingerprint.com/hi/resources/article/mediterranean-diet-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/mediterranean-diet-for-beginners" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://healthfingerprint.com/resources/article/meal-prep-mediterranean</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/meal-prep-mediterranean" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/meal-prep-mediterranean" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>

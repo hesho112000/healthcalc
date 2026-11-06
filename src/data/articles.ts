@@ -31,10 +31,16 @@ const HBA1C: Article = {
   title: {
     en: 'Understanding Your HbA1c: A Complete Guide',
     ar: 'فهم تحليل HbA1c: الدليل الشامل',
+    fr: 'Comprendre votre HbA1c : guide complet',
+    es: 'Entender tu HbA1c: guía completa',
+    hi: 'अपने HbA1c को समझें: एक संपूर्ण मार्गदर्शिका',
   },
   excerpt: {
     en: 'What your HbA1c really means, why it matters, and how to move the number in the right direction.',
     ar: 'ماذا يعني HbA1c حقًا، ولماذا يهم، وكيف تحرك الرقم في الاتجاه الصحيح.',
+    fr: 'Ce que votre HbA1c signifie vraiment, pourquoi c’est important et comment faire évoluer le chiffre dans la bonne direction.',
+    es: 'Qué significa realmente tu HbA1c, por qué importa y cómo mover la cifra en la dirección correcta.',
+    hi: 'आपका HbA1c वास्तव में क्या दर्शाता है, यह क्यों महत्वपूर्ण है, और इस संख्या को सही दिशा में कैसे बदलें।',
   },
   content: {
     en: `## What Is HbA1c?
@@ -129,6 +135,183 @@ Before an appointment, write down one question you most want answered, such as w
 ## الخلاصة
 
 HbA1c معيار قوي قائم على الأدلة لصحتك الأيضية. اجمع بينه وبين الفحص المنتظم للسكر ونمط غذائي مستدام ونشاط تستمتع به — وتمنح نفسك أوضح صورة للسيطرة الدائمة.`,
+    fr: `## Qu’est-ce que l’HbA1c ?
+
+L’HbA1c (hémoglobine glyquée) mesure la quantité moyenne de glucose fixée sur vos globules rouges au cours des 8 à 12 dernières semaines. [Le CDC explique comment le test A1C reflète la glycémie moyenne sur environ trois mois](https://www.cdc.gov/diabetes/diabetes-testing/prediabetes-a1c-test.html). Contrairement à une mesure au bout du doigt, qui donne un instantané, l’HbA1c montre la vue d’ensemble — à quel point votre glycémie a été contrôlée au fil du temps.
+
+L’hémoglobine est la protéine contenue dans les globules rouges qui transporte l’oxygène. Lorsque du glucose est présent dans le sang, il se lie à l’hémoglobine. Plus le glucose circule, plus l’hémoglobine est glyquée. Comme les globules rouges vivent environ trois mois, le pourcentage d’HbA1c reflète une moyenne d’environ trois mois.
+
+## Pourquoi c’est important
+
+Votre taux d’HbA1c est un examen sanguin important pour diagnostiquer et surveiller le diabète. [Le CDC décrit les plages d’A1C couramment utilisées pour le prédiabète et le diabète](https://www.cdc.gov/diabetes/diabetes-testing/prediabetes-a1c-test.html) :
+
+- Moins de 5,7 % — plage normale.
+- 5,7 à 6,4 % — prédiabète.
+- 6,5 % ou plus — diabète (confirmé par un second test).
+
+Abaisser l’HbA1c peut réduire le risque de complications touchant les yeux, les reins et les nerfs. L’ampleur du bénéfice varie selon les personnes ; discutez de vos objectifs individuels avec votre clinicien.
+
+## Comment faire évoluer le chiffre
+
+Votre HbA1c répond lentement mais régulièrement à des habitudes constantes :
+
+- **Faites des tests réguliers** — tous les 3 à 6 mois selon l’avis de votre médecin.
+- **Choisissez des aliments à index glycémique bas** — légumineuses, céréales complètes, légumes et protéines maigres.
+- **Bougez davantage** — 150 minutes d’activité modérée par semaine aident votre corps à mieux utiliser l’insuline.
+- **Croisez les chiffres** — votre médecin associe l’HbA1c aux mesures de glycémie à domicile pour ajuster le traitement.
+- **Restez régulier** — les habitudes quotidiennes valent mieux que des changements spectaculaires à court terme.
+
+## Ce qui peut fausser le résultat
+
+Certaines situations rendent l’HbA1c moins fiable : perte de sang ou transfusions récentes, anémie, grossesse, maladie rénale et certaines variantes de l’hémoglobine. [Le NIDDK explique les facteurs qui peuvent affecter la précision du test A1C](https://www.niddk.nih.gov/health-information/diagnostic-tests/a1c-test). Si votre résultat ne correspond pas à vos mesures à domicile, parlez-en à votre clinicien.
+
+## L’essentiel
+
+L’HbA1c est un repère puissant et fondé sur des preuves pour votre santé métabolique. Associez-le à des contrôles réguliers de la glycémie, à une alimentation durable et à une activité que vous aimez — et vous obtenez l’image la plus claire d’un contrôle durable.
+
+## Comment utiliser un résultat au quotidien
+
+### Comparer ce qui est comparable
+
+Un résultat d’A1C est surtout utile dans le cadre d’une tendance. Un clinicien peut le prescrire tous les trois mois pendant qu’un plan de traitement évolue, puis moins souvent une fois la glycémie stable. Apportez à la consultation les rapports de votre lecteur de glycémie ou de votre capteur de glucose en continu (CGM). Si le capteur montre des hypoglycémies nocturnes fréquentes alors que l’A1C reste élevé, une moyenne seule peut masquer des variations importantes. Demandez ce que le chiffre signifie au regard du temps passé dans la cible, des symptômes, des médicaments et de vos objectifs personnels.
+
+### Faire un plan adapté à une semaine ordinaire
+
+Pour un foyer, des changements utiles ne nécessitent pas de produits spéciaux. Au supermarché, comparez les flocons d’avoine non sucrés, les haricots, les légumes surgelés, le yaourt nature, les œufs et le pain complet. Un petit-déjeuner d’avoine avec des baies et des noix, ou des œufs avec des haricots et une tortilla de maïs, apporte des fibres ou des protéines qui peuvent ralentir la digestion. Au déjeuner, un bol de haricots et légumes est souvent plus réaliste que de vouloir transformer chaque repas. Les portions, les médicaments et les réponses glycémiques varient : notez ce qui fonctionne plutôt que de supposer qu’un menu convient à tous.
+
+## Construire une routine de suivi
+
+### Adapter les contrôles à la question posée
+
+Les contrôles au bout du doigt répondent à une question précise, comme l’effet d’un repas ou d’un effort sur la glycémie. Un CGM estime le glucose dans le liquide sous-cutané et révèle la direction et les tendances entre les contrôles. Ni l’un ni l’autre ne remplace l’interprétation clinique. Si les mesures semblent incohérentes avec ce que vous ressentez, suivez les instructions de l’appareil pour confirmation et contactez votre équipe soignante. Les personnes qui utilisent de l’insuline ou des médicaments pouvant provoquer une hypoglycémie ont besoin d’un plan individualisé pour l’effort, la conduite, la maladie et les repas manqués.
+
+Aux États-Unis, l’accès varie selon l’assurance, la clinique et l’éligibilité aux appareils. Demandez à un éducateur en diabétologie, à un pharmacien ou à un clinicien quels fournitures sont couvertes et comment les utiliser en sécurité. Notez brièvement les changements de médicaments, la maladie, les troubles du sommeil et l’activité inhabituelle à côté des mesures ; ces détails peuvent expliquer un résultat surprenant mieux qu’un long journal alimentaire.
+
+## Quand l’A1C a besoin de contexte
+
+L’anémie, une perte de sang ou une transfusion récente, la grossesse, une maladie rénale et certaines différences héréditaires de l’hémoglobine peuvent modifier la relation entre l’A1C et la glycémie moyenne. Un clinicien peut alors utiliser un autre test ou s’appuyer davantage sur les relevés glycémiques directs. Ne modifiez pas une ordonnance sur la base d’un seul résultat de laboratoire. Demandez si le test a été réalisé à l’intervalle prévu, si la valeur biologique correspond à votre expérience quotidienne et quelle est la prochaine étape la plus sûre. L’objectif est un plan partagé qui améliore la santé tout en évitant les hypoglycémies gênantes et les reproches inutiles.
+
+## Une courte liste de préparation pour la consultation
+
+Avant un rendez-vous, notez la question à laquelle vous voulez surtout une réponse, par exemple si votre objectif doit changer ou que faire des hypoglycémies nocturnes. Apportez les noms des médicaments, les résultats récents et quelques relevés glycémiques représentatifs plutôt que d’essayer de vous souvenir de chaque détail. Si le transport, le coût du rendez-vous ou l’accès linguistique compliquent le suivi, dites-le à la clinique ; le personnel peut connaître des services communautaires ou des visites à distance. Demandez le plan par écrit, y compris quand refaire le test et qui contacter si les mesures changent. Une prochaine étape claire transforme un résultat de laboratoire en soins utiles.`,
+    es: `## ¿Qué es la HbA1c?
+
+La HbA1c (hemoglobina glucosilada) mide la cantidad promedio de glucosa unida a los glóbulos rojos durante las últimas 8 a 12 semanas. [Los CDC explican cómo la prueba de A1C refleja la glucosa promedio en sangre durante unos tres meses](https://www.cdc.gov/diabetes/diabetes-testing/prediabetes-a1c-test.html). A diferencia de una prueba con punción en el dedo, que ofrece una sola instantánea, la HbA1c muestra el panorama general: qué tan bien se ha controlado tu glucosa con el tiempo.
+
+La hemoglobina es la proteína de los glóbulos rojos que transporta oxígeno. Cuando hay glucosa en la sangre, se une a la hemoglobina. Cuanta más glucosa circula, más hemoglobina se glucosila. Como los glóbulos rojos viven unos tres meses, el porcentaje de HbA1c refleja un promedio de aproximadamente tres meses.
+
+## Por qué importa
+
+Tu cifra de HbA1c es un análisis de sangre importante para diagnosticar y controlar la diabetes. [Los CDC describen los rangos de A1C que se usan habitualmente para la prediabetes y la diabetes](https://www.cdc.gov/diabetes/diabetes-testing/prediabetes-a1c-test.html):
+
+- Menos de 5,7 %: rango normal.
+- 5,7–6,4 %: prediabetes.
+- 6,5 % o más: diabetes (confirmada con una segunda prueba).
+
+Bajar la HbA1c puede reducir el riesgo de complicaciones que afectan los ojos, los riñones y los nervios. El tamaño del beneficio varía según la persona; habla con tu profesional sanitario sobre tus objetivos individuales.
+
+## Cómo mover la cifra
+
+Tu HbA1c responde despacio pero de forma constante a hábitos consistentes:
+
+- **Hazte pruebas con regularidad**: cada 3–6 meses según te indique tu médico.
+- **Elige alimentos con índice glucémico bajo**: legumbres, cereales integrales, verduras y proteínas magras.
+- **Muévete más**: 150 minutos de actividad moderada a la semana ayudan a tu cuerpo a usar mejor la insulina.
+- **Combina las cifras**: tu médico une la HbA1c con las lecturas de glucosa en casa para ajustar el tratamiento.
+- **Mantén la constancia**: los hábitos diarios superan los cambios drásticos a corto plazo.
+
+## Qué puede alterar el resultado
+
+Algunas situaciones hacen que la HbA1c sea menos fiable: pérdida de sangre o transfusiones recientes, anemia, embarazo, enfermedad renal y algunas variantes de la hemoglobina. [El NIDDK explica los factores que pueden afectar la precisión de la prueba de A1C](https://www.niddk.nih.gov/health-information/diagnostic-tests/a1c-test). Si tu resultado no coincide con tus lecturas en casa, coméntalo con tu profesional sanitario.
+
+## Lo esencial
+
+La HbA1c es una referencia potente y basada en la evidencia para tu salud metabólica. Combínala con controles regulares de glucosa, un patrón de alimentación sostenible y actividad que disfrutes, y tendrás la imagen más clara de un control duradero.
+
+## Cómo usar un resultado en la vida real
+
+### Comparar lo comparable
+
+Un resultado de A1C es más útil como parte de una tendencia. Un profesional puede pedirlo cada tres meses mientras cambia un plan de tratamiento y luego con menos frecuencia cuando la glucosa es estable. Lleva a la consulta los informes de tu glucómetro o de tu monitor continuo de glucosa (MCG). Si el sensor muestra bajones nocturnos frecuentes mientras la A1C sigue alta, un promedio por sí solo puede ocultar variaciones importantes. Pregunta qué significa la cifra junto con el tiempo en rango, los síntomas, los medicamentos y tus objetivos personales.
+
+### Crear un plan que encaje en una semana normal
+
+En un hogar, los cambios útiles no requieren productos especiales. En el supermercado, compara avena sin azúcar, frijoles, verduras congeladas, yogur natural, huevos y pan integral. Un desayuno de avena con frutos rojos y nueces, o huevos con frijoles y una tortilla de maíz, aporta fibra o proteína que puede ralentizar la digestión. En el almuerzo, un bol de frijoles y verduras suele ser más práctico que intentar cambiar cada comida. Las porciones, los medicamentos y las respuestas de glucosa varían, así que anota lo que funciona en lugar de suponer que un menú sirve para todos.
+
+## Crear una rutina de seguimiento
+
+### Ajustar los controles a la pregunta
+
+Las pruebas con punción en el dedo responden a una pregunta concreta, como el efecto de una comida o de un entrenamiento sobre la glucosa. Un MCG estima la glucosa en el líquido bajo la piel y revela la dirección y los patrones entre controles. Ninguno sustituye la interpretación clínica. Si las lecturas parecen incoherentes con cómo te sientes, sigue las instrucciones del dispositivo para confirmarlas y contacta con tu equipo de salud. Quienes usan insulina o medicamentos que pueden causar glucosa baja necesitan un plan individualizado para el ejercicio, la conducción, la enfermedad y las comidas omitidas.
+
+En Estados Unidos, el acceso varía según el seguro, la clínica y la elegibilidad para el dispositivo. Pregunta a un educador en diabetes, farmacéutico o profesional sanitario qué suministros están cubiertos y cómo usarlos de forma segura. Anota brevemente los cambios de medicación, la enfermedad, las alteraciones del sueño y la actividad inusual junto a las lecturas; esos detalles pueden explicar un resultado sorprendente mejor que un diario de alimentos extenso.
+
+## Cuándo la A1C necesita contexto
+
+La anemia, una pérdida de sangre o transfusión reciente, el embarazo, la enfermedad renal y algunas diferencias hereditarias de la hemoglobina pueden alterar la relación entre la A1C y la glucosa promedio. En esas situaciones, un profesional puede usar otra prueba o apoyarse más en los registros directos de glucosa. No cambies una receta basándote en un solo resultado de laboratorio. Pregunta si la prueba se hizo en el intervalo previsto, si el valor de laboratorio coincide con tu experiencia diaria y cuál es el siguiente paso más seguro. El objetivo es un plan compartido que mejore la salud evitando bajones molestos y culpas innecesarias.
+
+## Una breve lista para la consulta
+
+Antes de una cita, anota la pregunta que más te interesa responder, por ejemplo si tu objetivo debe cambiar o qué hacer con los bajones nocturnos. Lleva los nombres de los medicamentos, los resultados recientes y algunas lecturas de glucosa representativas en lugar de intentar recordar cada detalle. Si el transporte, el coste de la cita o el acceso lingüístico dificultan el seguimiento, díselo a la clínica; el personal puede conocer servicios comunitarios o visitas a distancia. Pide el plan por escrito, incluido cuándo repetir la prueba y a quién contactar si las lecturas cambian. Un siguiente paso claro convierte un resultado de laboratorio en atención útil.`,
+    hi: `## HbA1c क्या है?
+
+HbA1c (ग्लाइकेटेड हीमोग्लोबिन) पिछले 8–12 हफ्तों में आपकी लाल रक्त कोशिकाओं से जुड़े ग्लूकोज की औसत मात्रा मापता है। [CDC बताता है कि A1C परीक्षण लगभग तीन महीनों की औसत रक्त शर्करा को कैसे दर्शाता है](https://www.cdc.gov/diabetes/diabetes-testing/prediabetes-a1c-test.html)। उंगली पर खून की एक बूंद वाले परीक्षण के विपरीत, जो केवल एक पल की जानकारी देता है, HbA1c बड़ी तस्वीर दिखाता है — कि समय के साथ आपकी रक्त शर्करा कितनी अच्छी तरह नियंत्रित रही है।
+
+हीमोग्लोबिन लाल रक्त कोशिकाओं के अंदर मौजूद प्रोटीन है जो ऑक्सीजन ले जाता है। जब रक्त में ग्लूकोज होता है, तो वह हीमोग्लोबिन से जुड़ जाता है। जितना अधिक ग्लूकोज घूमता है, उतना ही अधिक हीमोग्लोबिन ग्लाइकेटेड होता है। चूंकि लाल रक्त कोशिकाएँ लगभग 3 महीने जीवित रहती हैं, HbA1c प्रतिशत लगभग 3 महीने का औसत दर्शाता है।
+
+## यह क्यों मायने रखता है
+
+आपकी HbA1c संख्या मधुमेह के निदान और निगरानी के लिए एक महत्वपूर्ण रक्त परीक्षण है। [CDC प्रीडायबिटीज और मधुमेह के लिए आमतौर पर उपयोग की जाने वाली A1C सीमाएँ बताता है](https://www.cdc.gov/diabetes/diabetes-testing/prediabetes-a1c-test.html):
+
+- 5.7% से कम — सामान्य सीमा।
+- 5.7–6.4% — प्रीडायबिटीज।
+- 6.5% या अधिक — मधुमेह (दूसरे परीक्षण से पुष्टि के बाद)।
+
+HbA1c कम करने से आँखों, गुर्दों और नसों को प्रभावित करने वाली जटिलताओं का जोखिम कम हो सकता है। लाभ की मात्रा हर व्यक्ति में अलग होती है; अपने व्यक्तिगत लक्ष्यों पर अपने चिकित्सक से चर्चा करें।
+
+## संख्या को कैसे बदलें
+
+आपका HbA1c नियमित आदतों पर धीरे-धीरे लेकिन लगातार प्रतिक्रिया देता है:
+
+- **नियमित परीक्षण कराएँ** — डॉक्टर की सलाह के अनुसार हर 3–6 महीने में।
+- **कम ग्लाइसेमिक वाले खाद्य चुनें** — दालें, साबुत अनाज, सब्जियाँ और दुबला प्रोटीन।
+- **अधिक चलें-फिरें** — हफ्ते में 150 मिनट मध्यम गतिविधि आपके शरीर को इंसुलिन बेहतर उपयोग करने में मदद करती है।
+- **संख्याओं को साथ रखें** — डॉक्टर उपचार समायोजित करने के लिए HbA1c को घर की ग्लूकोज रीडिंग के साथ जोड़ते हैं।
+- **निरंतर रहें** — रोज की आदतें अल्पकालिक नाटकीय बदलावों से बेहतर होती हैं।
+
+## क्या परिणाम को भ्रमित कर सकता है
+
+कुछ स्थितियाँ HbA1c को कम भरोसेमंद बना सकती हैं: हाल में खून की कमी या रक्ताधान, एनीमिया, गर्भावस्था, गुर्दे की बीमारी और हीमोग्लोबिन के कुछ प्रकार। [NIDDK उन कारकों को समझाता है जो A1C परीक्षण की सटीकता को प्रभावित कर सकते हैं](https://www.niddk.nih.gov/health-information/diagnostic-tests/a1c-test)। यदि आपका परिणाम आपकी घर की रीडिंग से मेल नहीं खाता, तो अपने चिकित्सक से बात करें।
+
+## मुख्य बात
+
+HbA1c आपके चयापचय स्वास्थ्य के लिए एक शक्तिशाली, प्रमाण-आधारित मानक है। इसे नियमित ग्लूकोज जाँच, टिकाऊ खान-पान के तरीके और ऐसी गतिविधि के साथ जोड़ें जिसका आप आनंद लेते हैं — और आप स्थायी नियंत्रण की सबसे स्पष्ट तस्वीर पा लेंगे।
+
+## वास्तविक जीवन में परिणाम का उपयोग कैसे करें
+
+### समान की समान से तुलना करें
+
+A1C परिणाम किसी प्रवृत्ति के हिस्से के रूप में सबसे उपयोगी होता है। जब उपचार योजना बदल रही हो तो चिकित्सक इसे हर तीन महीने में मँगा सकते हैं, और ग्लूकोज स्थिर होने पर कम बार। अपने घर के मीटर या कंटीन्यूअस ग्लूकोज मॉनिटर (CGM) की रिपोर्ट साथ लाएँ। यदि सेंसर रात में बार-बार कम ग्लूकोज दिखाता है जबकि A1C ऊँचा रहता है, तो केवल औसत महत्वपूर्ण उतार-चढ़ाव छिपा सकता है। पूछें कि यह संख्या समय-इन-रेंज, लक्षणों, दवाओं और आपके व्यक्तिगत लक्ष्यों के साथ क्या मायने रखती है।
+
+### एक सामान्य सप्ताह में फिट होने वाली योजना बनाएँ
+
+घर के लिए उपयोगी बदलावों के लिए विशेष उत्पादों की जरूरत नहीं। सुपरमार्केट में बिना मीठा किया ओट्स, बीन्स, फ्रोज़न सब्जियाँ, सादा दही, अंडे और साबुत अनाज की ब्रेड की तुलना करें। जामुन और मेवों के साथ ओट्स का नाश्ता, या बीन्स और मक्के की टॉर्टिला के साथ अंडे, फाइबर या प्रोटीन जोड़ते हैं जो पाचन को धीमा कर सकते हैं। दोपहर में बीन्स और सब्जियों का कटोरा अक्सर हर भोजन को बदलने की कोशिश से अधिक व्यावहारिक होता है। मात्रा, दवा और ग्लूकोज प्रतिक्रियाएँ अलग होती हैं, इसलिए जो काम करता है उसे लिखें, यह मानने के बजाय कि एक मेनू सबके लिए सही है।
+
+## निगरानी की दिनचर्या बनाएँ
+
+### जाँच को प्रश्न के अनुसार मिलाएँ
+
+उंगली की जाँच किसी विशेष पल का उत्तर देती है, जैसे भोजन या व्यायाम का ग्लूकोज पर असर। CGM त्वचा के नीचे के तरल में ग्लूकोज का अनुमान लगाता है और जाँचों के बीच दिशा और पैटर्न दिखाता है। कोई भी नैदानिक व्याख्या का विकल्प नहीं है। यदि रीडिंग आपको महसूस होने के तरीके से मेल नहीं खाती, तो पुष्टि के लिए डिवाइस के निर्देशों का पालन करें और अपनी देखभाल टीम से संपर्क करें। इंसुलिन या कम ग्लूकोज करने वाली दवाएँ लेने वालों को व्यायाम, गाड़ी चलाने, बीमारी और छूटे भोजन के लिए व्यक्तिगत योजना चाहिए।
+
+संयुक्त राज्य में पहुँच बीमा, क्लिनिक और डिवाइस की पात्रता के अनुसार बदलती है। मधुमेह शिक्षक, फार्मासिस्ट या चिकित्सक से पूछें कि कौन-सी आपूर्ति कवर होती है और उन्हें सुरक्षित रूप से कैसे उपयोग करें। रीडिंग के पास दवा में बदलाव, बीमारी, नींद में गड़बड़ी और असामान्य गतिविधि का संक्षिप्त नोट रखें; ये विवरण लंबी खाने की डायरी से बेहतर ढंग से आश्चर्यजनक परिणाम समझा सकते हैं।
+
+## जब A1C को संदर्भ चाहिए
+
+एनीमिया, हाल में खून की कमी या रक्ताधान, गर्भावस्था, गुर्दे की बीमारी और हीमोग्लोबिन के कुछ वंशानुगत अंतर A1C और औसत ग्लूकोज के बीच संबंध बदल सकते हैं। ऐसी स्थितियों में चिकित्सक दूसरा परीक्षण उपयोग कर सकते हैं या सीधे ग्लूकोज रिकॉर्ड पर अधिक निर्भर रह सकते हैं। एक प्रयोगशाला परिणाम के आधार पर पर्चा न बदलें। पूछें कि परीक्षण अपेक्षित अंतराल पर हुआ था या नहीं, क्या प्रयोगशाला मान आपके रोज के अनुभव से मेल खाता है, और अगला सबसे सुरक्षित कदम क्या है। लक्ष्य एक साझा योजना है जो स्वास्थ्य सुधारे और परेशान करने वाले निचले स्तर तथा अनावश्यक दोष से बचाए।
+
+## अपॉइंटमेंट के लिए छोटी चेकलिस्ट
+
+अपॉइंटमेंट से पहले एक प्रश्न लिखें जिसका उत्तर आप सबसे अधिक चाहते हैं, जैसे कि क्या आपका लक्ष्य बदलना चाहिए या रात के कम ग्लूकोज के बारे में क्या करें। हर विवरण याद रखने की कोशिश के बजाय दवाओं के नाम, हाल के परीक्षण परिणाम और कुछ प्रतिनिधि ग्लूकोज रीडिंग लाएँ। यदि परिवहन, अपॉइंटमेंट की लागत या भाषा तक पहुँच फॉलो-अप कठिन बनाती है, तो क्लिनिक को बताएँ; कर्मचारी सामुदायिक सेवाओं या दूरस्थ विज़िट के बारे में जान सकते हैं। योजना लिखित में माँगें, जिसमें परीक्षण दोबारा कब कराना है और रीडिंग बदलने पर किससे संपर्क करना है, शामिल हो। एक स्पष्ट अगला कदम प्रयोगशाला परिणाम को उपयोगी देखभाल में बदल देता है।`,
   },
   takeaways: {
     en: [
@@ -265,10 +448,16 @@ const LOWER_CHOLESTEROL: Article = {
   title: {
     en: 'How to Lower Cholesterol Naturally (Without Giving Up Flavor)',
     ar: 'كيف تخفض الكوليسترول طبيعيًا (دون التخلي عن النكهة)',
+    fr: 'Comment faire baisser naturellement votre cholestérol (sans renoncer au goût)',
+    es: 'Cómo bajar el colesterol de forma natural (sin renunciar al sabor)',
+    hi: 'कोलेस्ट्रॉल को प्राकृतिक रूप से कैसे कम करें (स्वाद छोड़े बिना)',
   },
   excerpt: {
     en: 'Heart-friendly swaps that keep your favorite meals delicious.',
     ar: 'بدائل صحية للقلب تحافظ على أطباقك المفضلة لذيذة.',
+    fr: 'Des échanges bons pour le cœur qui gardent vos plats préférés délicieux.',
+    es: 'Cambios beneficiosos para el corazón que mantienen deliciosas tus comidas favoritas.',
+    hi: 'दिल के लिए अनुकूल बदलाव जो आपके पसंदीदा भोजन को स्वादिष्ट बनाए रखते हैं।',
   },
   content: {
     en: `## It Starts With the Kitchen
@@ -369,6 +558,189 @@ Products marketed for heart health can interact with prescriptions, vary in qual
 ## اطلب الأرقام
 
 يُظهر فحص الدهون: LDL وHDL والكوليسترول الكلي والدهون الثلاثية. تحدث مع طبيبك عن المستويات المستهدفة لك — فهي تعتمد على عمرك وملف خطرك. التغذية لا تحل دائمًا محل الدواء، لكنها تجعل كل جرعة تعمل بشكل أفضل.`,
+    fr: `## Tout commence dans la cuisine
+
+Le cholestérol n’est pas votre ennemi — votre corps en a besoin pour fabriquer des hormones et des membranes cellulaires. Le problème commence lorsque le cholestérol LDL (« mauvais ») s’accumule et s’oxyde dans les parois des artères. La bonne nouvelle : l’alimentation est l’un de vos outils les plus puissants, et vous n’avez pas besoin de renoncer au goût pour l’utiliser.
+
+## Changez la matière grasse, gardez le goût
+
+Les graisses que vous choisissez comptent plus que la quantité totale :
+
+- Remplacez le beurre et la margarine par de l’huile d’olive pour la cuisson et les vinaigrettes.
+- Choisissez du poisson gras (saumon, sardines, thon) deux fois par semaine — les oméga-3 soutiennent la santé du cœur.
+- Prenez une petite poignée d’amandes ou de noix non salées en collation.
+- Utilisez de l’avocat au lieu du fromage dans les sandwichs et les salades.
+
+## Faites le plein de fibres solubles
+
+Les fibres solubles agissent comme une éponge : elles lient le cholestérol dans l’intestin afin que votre corps en élimine davantage. Les aliments riches en fibres solubles comprennent l’avoine, l’orge, les haricots et les lentilles, le gombo, l’aubergine, les pommes, les agrumes et les carottes. Visez 10 à 25 grammes par jour — un bol de flocons d’avoine et une portion de haricots vous en apportent l’essentiel.
+
+## Cuisinez avec les plantes
+
+Les stérols et stanols végétaux entrent naturellement en concurrence avec l’absorption du cholestérol. On les trouve naturellement dans les huiles végétales, les noix, les graines et les céréales complètes. Certains yaourts et margarines enrichis en ajoutent davantage. Une assiette colorée de légumes à chaque repas fait discrètement pencher la balance en votre faveur.
+
+## Des habitudes qui démultiplient les résultats
+
+Aucun aliment n’agit seul :
+
+- **Bougez chaque jour** — 30 minutes de marche améliorent le cholestérol HDL (« bon »).
+- **Arrêtez l’habitude** — fumer abîme les parois des artères et abaisse le HDL ; l’arrêt le remonte rapidement.
+- **Affinez la taille** — même une perte de poids de 5 à 10 % réduit le LDL.
+- **Limitez l’alcool** — restez modéré, si vous buvez.
+
+## Lisez l’étiquette, pas les promesses
+
+Les aliments étiquetés « pauvre en cholestérol » contiennent souvent encore des graisses saturées et des sucres raffinés. Regardez le dos : privilégiez les graisses monoinsaturées, les fibres et les aliments dont vous reconnaissez les ingrédients.
+
+## Demandez les chiffres
+
+Un bilan lipidique montre le LDL, le HDL, le cholestérol total et les triglycérides. Parlez à votre médecin de vos objectifs — ils dépendent de votre âge et de votre profil de risque. La nutrition ne remplace pas toujours les médicaments, mais elle fait mieux fonctionner chaque dose.
+
+## Transformez les conseils en plan d’épicerie
+
+### Composez une assiette flexible
+
+Dans un supermarché de quartier, commencez par des produits de base abordables : avoine, haricots secs ou en conserve sans sel ajouté, riz brun, légumes surgelés, pommes, beurre de cacahuète et yaourt nature. Un bol d’avoine avec des fruits au petit-déjeuner, un chili aux haricots au déjeuner ou des lentilles aux légumes au dîner peuvent apporter des fibres solubles sans cuisine compliquée. Utilisez de l’huile d’olive ou de colza à la place du beurre quand la recette s’y prête. Les produits surgelés sont nutritifs et réduisent souvent le gaspillage ; rincer les haricots en conserve peut réduire une partie de leur sodium.
+
+Pour un repas familier, gardez le goût et changez l’équilibre : servez une plus petite portion de pâtes crémeuses avec plus de légumes et de haricots, choisissez plus souvent du poulet ou du poisson grillé, ou utilisez avocat et tomate à la place d’une tartinade riche en graisses saturées. Ce sont des options, pas des règles. Les aliments culturels, le budget, les allergies et les préférences comptent ; le meilleur modèle est celui qu’un foyer peut répéter.
+
+## Comprendre la biologie et votre bilan
+
+Les particules de LDL transportent le cholestérol dans le sang. Lorsque trop de particules circulent longtemps, le cholestérol peut pénétrer dans les parois des artères et contribuer à la plaque. Le HDL participe au transport du cholestérol, tandis que les triglycérides reflètent un autre type de graisse circulante ; un bilan s’interprète dans son ensemble. Les choix alimentaires peuvent influencer ces valeurs, mais les gènes, la fonction thyroïdienne, le diabète, l’âge et certains médicaments comptent aussi. C’est pourquoi deux personnes mangeant de façon similaire peuvent avoir des résultats différents.
+
+### Parlez de risque, pas seulement d’une cible
+
+Aux États-Unis, les cliniciens peuvent combiner les mesures de cholestérol avec l’âge, la pression artérielle, le tabagisme, le diabète et les antécédents familiaux pour estimer le risque cardiovasculaire. Demandez quand refaire le bilan, si un schéma familial suggère un risque héréditaire et si un médicament est recommandé. Les statines et d’autres traitements hypolipémiants réduisent le risque pour de nombreuses personnes. La nutrition complète un traitement approprié ; elle ne doit pas servir de raison pour arrêter un médicament prescrit sans avis médical.
+
+## Rendre les progrès mesurables
+
+Choisissez un ou deux changements pour le mois à venir, comme ajouter des haricots plusieurs fois par semaine ou faire une marche rapide de 10 minutes après le déjeuner. Vérifiez les étiquettes pour les graisses saturées, les fibres et le sodium, et regardez au-delà des promesses en façade. Un clinicien ou un diététicien diplômé peut aider à adapter le plan à une maladie rénale, un diabète, une grossesse, l’insécurité alimentaire ou un horaire de médicaments. Si un changement est trop coûteux ou difficile, dites-le ; une alternative réalisable vaut mieux qu’un plan idéal qui n’arrive jamais.
+
+## Soyez prudent avec les compléments
+
+Les produits vendus pour la santé du cœur peuvent interagir avec les ordonnances, varier en qualité ou manquer de preuves solides pour réduire le risque cardiovasculaire. « Naturel » sur un emballage ne garantit pas la sécurité. Avant d’utiliser un complément, partagez son nom exact et sa dose avec un pharmacien ou un clinicien, surtout si vous prenez une statine, un anticoagulant ou un médicament pour la pression artérielle. Une approche alimentaire est généralement plus facile à évaluer et peut fournir des fibres et d’autres nutriments ensemble. Si votre cholestérol reste élevé malgré des habitudes soignées, ce n’est pas la preuve d’un échec ; la biologie héréditaire et d’autres facteurs de santé peuvent faire des médicaments une partie importante de la prévention.`,
+    es: `## Todo empieza en la cocina
+
+El colesterol no es tu enemigo: tu cuerpo lo necesita para fabricar hormonas y membranas celulares. El problema empieza cuando el colesterol LDL («malo») se acumula y se oxida dentro de las paredes de las arterias. La buena noticia: la comida es una de tus herramientas más poderosas, y no necesitas renunciar al sabor para usarla.
+
+## Cambia la grasa, conserva el sabor
+
+Las grasas que eliges importan más que la cantidad total:
+
+- Sustituye la mantequilla y la margarina por aceite de oliva para cocinar y aliñar.
+- Elige pescado azul (salmón, sardinas, atún) dos veces por semana: los omega-3 apoyan la salud del corazón.
+- Toma un pequeño puñado de almendras o nueces sin sal como tentempié.
+- Usa aguacate en lugar de queso en bocadillos y ensaladas.
+
+## Llena tu plato de fibra soluble
+
+La fibra soluble actúa como una esponja: une el colesterol en el intestino para que tu cuerpo elimine más. Entre los alimentos ricos en fibra soluble están la avena, la cebada, las judías y las lentejas, la okra, la berenjena, las manzanas, los cítricos y las zanahorias. Intenta consumir de 10 a 25 gramos al día: un bol de avena y una ración de judías te acercan a la mayor parte.
+
+## Cocina con plantas
+
+Los esteroles y estanoles vegetales compiten de forma natural con la absorción del colesterol. Aparecen de forma natural en aceites vegetales, frutos secos, semillas y cereales integrales. Algunos yogures y margarinas enriquecidos añaden cantidades extra. Un plato colorido de verduras en cada comida inclina discretamente la balanza a tu favor.
+
+## Hábitos que multiplican los resultados
+
+Ningún alimento funciona solo:
+
+- **Muévete a diario**: 30 minutos de caminata mejoran el colesterol HDL («bueno»).
+- **Deja el hábito**: fumar daña las paredes de las arterias y baja el HDL; dejarlo lo eleva rápidamente.
+- **Reduce la cintura**: incluso una pérdida de peso del 5–10 % reduce el LDL.
+- **Limita el alcohol**: mantenlo moderado, si es que bebes.
+
+## Lee la etiqueta, no las promesas
+
+Los alimentos etiquetados como «bajos en colesterol» a menudo siguen conteniendo grasas saturadas y azúcares refinados. Mira el reverso: prioriza las grasas monoinsaturadas, la fibra y los alimentos cuyos ingredientes reconozcas.
+
+## Pide las cifras
+
+Un perfil lipídico muestra LDL, HDL, colesterol total y triglicéridos. Habla con tu médico sobre tus niveles objetivo: dependen de tu edad y de tu perfil de riesgo. La nutrición no siempre sustituye a los medicamentos, pero hace que cada dosis funcione mejor.
+
+## Convierte el consejo en un plan de compras
+
+### Arma un plato flexible
+
+En un supermercado de barrio, empieza por básicos asequibles: avena, judías secas o en conserva sin sal añadida, arroz integral, verduras congeladas, manzanas, crema de cacahuete y yogur natural. Un bol de avena con fruta en el desayuno, un chili de judías en la comida o lentejas con verduras en la cena pueden aportar fibra soluble sin cocina complicada. Usa aceite de oliva o de colza en lugar de mantequilla cuando encaje en la receta. Los productos congelados son nutritivos y a menudo reducen el desperdicio; enjuagar las judías en conserva puede bajar parte de su sodio.
+
+Para una comida conocida, conserva el sabor y cambia el equilibrio: sirve una ración más pequeña de pasta cremosa con más verduras y judías, elige pollo o pescado a la plancha más a menudo, o usa aguacate y tomate en lugar de una crema rica en grasas saturadas. Son opciones, no reglas. La comida cultural, el presupuesto, las alergias y las preferencias importan; el mejor patrón es el que un hogar puede repetir.
+
+## Entiende la biología y tu análisis
+
+Las partículas LDL transportan colesterol por la sangre. Cuando circulan demasiadas durante mucho tiempo, el colesterol puede entrar en las paredes de las arterias y contribuir a la placa. El HDL participa en el transporte de colesterol, mientras que los triglicéridos reflejan otro tipo de grasa circulante; un perfil se interpreta en conjunto. Las elecciones alimentarias pueden influir en estos valores, pero los genes, la función tiroidea, la diabetes, la edad y algunos medicamentos también cuentan. Por eso dos personas que comen de forma parecida pueden tener resultados distintos.
+
+### Pregunta por el riesgo, no solo por un objetivo
+
+En Estados Unidos, los profesionales pueden combinar las mediciones de colesterol con la edad, la presión arterial, el tabaquismo, la diabetes y los antecedentes familiares para estimar el riesgo cardiovascular. Pregunta cuándo repetir el perfil, si un patrón familiar sugiere riesgo heredado y si se recomienda medicación. Las estatinas y otras terapias para bajar los lípidos reducen el riesgo en muchas personas. La nutrición complementa el tratamiento adecuado; no debe usarse como motivo para dejar un medicamento recetado sin orientación médica.
+
+## Haz medible el progreso
+
+Elige uno o dos cambios para el próximo mes, como añadir judías varias veces por semana o dar un paseo rápido de 10 minutos después de comer. Revisa las etiquetas de grasa saturada, fibra y sodio, y mira más allá de las promesas del envase. Un profesional sanitario o un dietista titulado puede ayudar a adaptar el plan a una enfermedad renal, diabetes, embarazo, inseguridad alimentaria o un horario de medicación. Si un cambio es demasiado caro o difícil, dilo; una alternativa viable es mejor que un plan ideal que nunca ocurre.
+
+## Sé prudente con los suplementos
+
+Los productos comercializados para la salud del corazón pueden interactuar con las recetas, variar en calidad o carecer de pruebas sólidas para reducir el riesgo cardiovascular. «Natural» en un envase no garantiza seguridad. Antes de usar un suplemento, comparte su nombre exacto y su dosis con un farmacéutico o profesional sanitario, sobre todo si tomas una estatina, un anticoagulante o un medicamento para la presión arterial. Un patrón basado en alimentos suele ser más fácil de evaluar y puede aportar fibra y otros nutrientes juntos. Si tu colesterol sigue elevado a pesar de hábitos cuidadosos, no es prueba de que hayas fracasado; la biología heredada y otros factores de salud pueden hacer que la medicación sea una parte importante de la prevención.`,
+    hi: `## शुरुआत रसोई से होती है
+
+कोलेस्ट्रॉल आपका दुश्मन नहीं है — आपके शरीर को हार्मोन और कोशिका झिल्लियाँ बनाने के लिए इसकी जरूरत होती है। समस्या तब शुरू होती है जब LDL («खराब») कोलेस्ट्रॉल धमनियों की दीवारों में जमा होकर ऑक्सीकृत होने लगता है। अच्छी खबर: भोजन आपके सबसे शक्तिशाली औजारों में से एक है, और इसका उपयोग करने के लिए स्वाद छोड़ने की जरूरत नहीं।
+
+## वसा बदलें, स्वाद बनाए रखें
+
+कुल मात्रा से अधिक महत्वपूर्ण है कि आप कौन-सी वसा चुनते हैं:
+
+- पकाने और सलाद ड्रेसिंग के लिए मक्खन और मार्जरीन की जगह जैतून का तेल लें।
+- हफ्ते में दो बार वसायुक्त मछली (सैल्मन, सार्डिन, टूना) चुनें — ओमेगा-3 दिल की सेहत को सहारा देता है।
+- नाश्ते में बिना नमक के बादाम या अखरोट की एक छोटी मुट्ठी लें।
+- सैंडविच और सलाद में पनीर की जगह एवोकाडो का उपयोग करें।
+
+## घुलनशील फाइबर से पेट भरें
+
+घुलनशील फाइबर स्पंज की तरह काम करता है: यह आंत में कोलेस्ट्रॉल को बांधता है ताकि शरीर उसे अधिक मात्रा में बाहर निकाल सके। घुलनशील फाइबर से भरपूर खाद्य पदार्थों में ओट्स, जौ, बीन्स और मसूर, भिंडी, बैंगन, सेब, खट्टे फल और गाजर शामिल हैं। दिन में 10–25 ग्राम का लक्ष्य रखें — एक कटोरा ओट्स और एक हिस्सा बीन्स आपको इसका अधिकांश हिस्सा दे देते हैं।
+
+## पौधों के साथ पकाएँ
+
+पौधों के स्टेरॉल और स्टैनॉल स्वाभाविक रूप से कोलेस्ट्रॉल के अवशोषण से प्रतिस्पर्धा करते हैं। ये वनस्पति तेलों, मेवों, बीजों और साबुत अनाज में प्राकृतिक रूप से पाए जाते हैं। कुछ फोर्टिफाइड दही और मार्जरीन अतिरिक्त मात्रा जोड़ते हैं। हर भोजन में रंग-बिरंगी सब्जियों की थाली चुपचाप संतुलन आपके पक्ष में कर देती है।
+
+## ऐसी आदतें जो परिणाम कई गुना बढ़ाती हैं
+
+कोई भी एक भोजन अकेले काम नहीं करता:
+
+- **रोज चलें-फिरें** — 30 मिनट की सैर HDL («अच्छे») कोलेस्ट्रॉल को सुधारती है।
+- **आदत छोड़ें** — धूम्रपान धमनियों की दीवारों को नुकसान पहुँचाता है और HDL घटाता है; छोड़ने पर यह जल्दी बढ़ता है।
+- **कमर घटाएँ** — 5–10% वजन घटाने से भी LDL कम होता है।
+- **शराब सीमित रखें** — यदि पीते हैं तो संयमित रहें।
+
+## दावे नहीं, लेबल पढ़ें
+
+«कम कोलेस्ट्रॉल» कहे जाने वाले खाद्य पदार्थों में अक्सर अभी भी संतृप्त वसा और रिफाइंड शर्करा होती है। पीछे देखें: मोनोअनसैचुरेटेड वसा, फाइबर और ऐसे खाद्य पदार्थों को प्राथमिकता दें जिनके सामग्री सूची की आप पहचान कर सकें।
+
+## संख्याएँ माँगें
+
+लिपिड पैनल LDL, HDL, कुल कोलेस्ट्रॉल और ट्राइग्लिसराइड दिखाता है। अपने लक्ष्य स्तरों के बारे में डॉक्टर से बात करें — ये आपकी उम्र और जोखिम प्रोफ़ाइल पर निर्भर करते हैं। पोषण हमेशा दवा की जगह नहीं लेता, लेकिन हर खुराक को बेहतर काम करने में मदद करता है।
+
+## सलाह को खरीदारी योजना में बदलें
+
+### लचीली थाली बनाएँ
+
+पड़ोस के सुपरमार्केट में किफायती बुनियादी चीजों से शुरू करें: ओट्स, सूखी या बिना नमक वाली डिब्बाबंद बीन्स, ब्राउन राइस, फ्रोज़न सब्जियाँ, सेब, पीनट बटर और सादा दही। नाश्ते में फल के साथ ओट्स का कटोरा, दोपहर में बीन्स की चिली, या रात में सब्जियों के साथ मसूर बिना जटिल पकाए घुलनशील फाइबर जोड़ सकते हैं। जहाँ रेसिपी में फिट हो, मक्खन की जगह जैतून या कैनोला तेल लें। फ्रोज़न उत्पाद पौष्टिक होते हैं और अक्सर बर्बादी कम करते हैं; डिब्बाबंद बीन्स धोने से उनका कुछ सोडियम कम हो सकता है।
+
+किसी परिचित भोजन में स्वाद बनाए रखें और संतुलन बदलें: क्रीमी पास्ता की छोटी मात्रा के साथ अधिक सब्जियाँ और बीन्स लें, अधिक बार ग्रिल्ड चिकन या मछली चुनें, या उच्च संतृप्त वसा वाले स्प्रेड की जगह एवोकाडो और टमाटर लें। ये विकल्प हैं, नियम नहीं। सांस्कृतिक भोजन, बजट, एलर्जी और पसंद मायने रखते हैं; सबसे अच्छा तरीका वह है जिसे परिवार दोहरा सके।
+
+## जीव विज्ञान और अपनी रिपोर्ट समझें
+
+LDL कण रक्त में कोलेस्ट्रॉल ले जाते हैं। जब लंबे समय तक बहुत अधिक कण घूमते हैं, तो कोलेस्ट्रॉल धमनियों की दीवारों में प्रवेश कर सकता है और प्लाक में योगदान दे सकता है। HDL कोलेस्ट्रॉल परिवहन में भाग लेता है, जबकि ट्राइग्लिसराइड एक अन्य प्रकार की घूमती वसा दर्शाते हैं; पैनल को समग्र रूप से समझा जाता है। भोजन के चुनाव इन मानों को प्रभावित कर सकते हैं, लेकिन जीन, थायरॉइड कार्य, मधुमेह, उम्र और कुछ दवाएँ भी मायने रखती हैं। इसीलिए एक जैसा खाने वाले दो लोगों के परिणाम अलग हो सकते हैं।
+
+### केवल एक लक्ष्य नहीं, जोखिम के बारे में पूछें
+
+अमेरिकी देखभाल में चिकित्सक कोलेस्ट्रॉल मापों को उम्र, रक्तचाप, धूम्रपान इतिहास, मधुमेह और पारिवारिक इतिहास के साथ जोड़कर हृदय-वाहिका जोखिम का अनुमान लगा सकते हैं। पूछें कि पैनल दोबारा कब कराना है, क्या पारिवारिक पैटर्न वंशानुगत जोखिम दर्शाता है, और क्या दवा की सिफारिश की जाती है। स्टैटिन और अन्य लिपिड-कम करने वाले उपचार कई लोगों के लिए जोखिम घटाते हैं। पोषण उचित उपचार का पूरक है; इसे चिकित्सकीय सलाह के बिना निर्धारित दवा बंद करने के कारण के रूप में नहीं उपयोग करना चाहिए।
+
+## प्रगति को मापने योग्य बनाएँ
+
+अगले महीने के लिए एक या दो बदलाव चुनें, जैसे हफ्ते में कई बार बीन्स जोड़ना या दोपहर के भोजन के बाद 10 मिनट की तेज सैर करना। संतृप्त वसा, फाइबर और सोडियम के लिए लेबल जाँचें, और पैकेज के सामने के दावों से आगे देखें। चिकित्सक या पंजीकृत आहार विशेषज्ञ गुर्दे की बीमारी, मधुमेह, गर्भावस्था, खाद्य असुरक्षा या दवा के समय-पत्र के अनुसार योजना बनाने में मदद कर सकते हैं। यदि कोई बदलाव बहुत महंगा या कठिन है, तो बताएँ; कभी न होने वाली आदर्श योजना से एक व्यावहारिक विकल्प बेहतर है।
+
+## सप्लीमेंट्स में सावधानी बरतें
+
+दिल की सेहत के लिए बेचे जाने वाले उत्पाद पर्चे की दवाओं के साथ परस्पर क्रिया कर सकते हैं, गुणवत्ता में भिन्न हो सकते हैं, या हृदय-वाहिका जोखिम घटाने के लिए मजबूत प्रमाण नहीं रखते। पैकेज पर «प्राकृतिक» होना सुरक्षा की गारंटी नहीं है। सप्लीमेंट लेने से पहले उसका सटीक नाम और खुराक फार्मासिस्ट या चिकित्सक को बताएँ, विशेषकर यदि आप स्टैटिन, रक्त पतला करने वाली दवा या रक्तचाप की दवा लेते हैं। भोजन-प्रथम तरीका आमतौर पर आकलन में आसान होता है और फाइबर तथा अन्य पोषक तत्व एक साथ दे सकता है। यदि सावधान आदतों के बावजूद आपका कोलेस्ट्रॉल ऊँचा रहता है, तो यह आपकी विफलता का प्रमाण नहीं है; वंशानुगत जीव विज्ञान और अन्य स्वास्थ्य कारक दवा को रोकथाम का महत्वपूर्ण हिस्सा बना सकते हैं।`,
   },
   takeaways: {
     en: [
@@ -1325,10 +1697,16 @@ const MEDITERRANEAN_DIET_BEGINNERS: Article = {
   title: {
     en: 'The Mediterranean Diet for Beginners: A Complete Guide',
     ar: 'حمية البحر المتوسط للمبتدئين: دليل شامل',
+    fr: 'Le régime méditerranéen pour débutants : guide complet',
+    es: 'La dieta mediterránea para principiantes: guía completa',
+    hi: 'शुरुआती लोगों के लिए भूमध्यसागरीय आहार: संपूर्ण मार्गदर्शिका',
   },
   excerpt: {
     en: 'A practical introduction to the Mediterranean eating pattern, the evidence behind it, and simple ways to start without overhauling your life.',
     ar: 'مقدمة عملية إلى نمط البحر المتوسط الغذائي والأدلة التي تدعمه وطرق بسيطة للبدء دون تغيير حياتك بالكامل.',
+    fr: 'Une introduction pratique au mode d’alimentation méditerranéen, les preuves qui le soutiennent et des moyens simples de commencer sans bouleverser votre vie.',
+    es: 'Una introducción práctica al patrón de alimentación mediterráneo, la evidencia que lo respalda y formas sencillas de empezar sin cambiar toda tu vida.',
+    hi: 'भूमध्यसागरीय खान-पान के तरीके, इसके पीछे के प्रमाण और अपनी जिंदगी को पूरी तरह बदले बिना शुरू करने के आसान तरीकों का व्यावहारिक परिचय।',
   },
   content: {
     en: `## What the Mediterranean Diet Really Means
@@ -1585,6 +1963,387 @@ The Mediterranean diet is a flexible, evidence-informed pattern that emphasizes 
 ## الخلاصة
 
 حمية البحر المتوسط نمط مرن قائم على الأدلة يركز على النباتات والدهون الصحية والأطعمة قليلة المعالجة. ليست ضمانًا للصحة أو علاجًا أو اختبارًا لقوة الإرادة. ابدأ بتغييرات صغيرة تناسب ميزانيتك وثقافتك واحتياجاتك الطبية، وكرر ما يجعلك تشعر بخير. الاستمرارية على مدى أشهر أهم من الكمال في وجبة واحدة.`,
+    fr: `## Ce que signifie vraiment le régime méditerranéen
+
+Le régime méditerranéen n’est pas une cuisine unique ni une liste rigide d’aliments autorisés. C’est un mode d’alimentation inspiré des traditions alimentaires de Grèce, du sud de l’Italie, d’Espagne et d’autres pays autour de la mer Méditerranée. L’accent est mis sur les légumes, les fruits, les légumineuses, les céréales complètes, les noix, les graines, l’huile d’olive, les herbes et le poisson, avec des quantités modérées de produits laitiers et d’œufs et une consommation limitée de viande rouge, d’aliments transformés et de sucres ajoutés.
+
+Parce que ce modèle décrit de grands principes plutôt que des recettes exactes, il peut s’adapter à de nombreuses cuisines. Une famille qui cuisine des plats du Moyen-Orient, d’Afrique du Nord ou d’Amérique latine peut appliquer la même structure : beaucoup de plantes, de l’huile d’olive ou une autre huile insaturée, des haricots ou des lentilles, des céréales complètes et une portion modérée de protéines. L’objectif est une façon de manger agréable et reproductible, pas un test d’authenticité culturelle.
+
+### Un modèle, pas un plan de repas strict
+
+Vous n’avez pas besoin de compter chaque gramme de graisse ni d’interdire des groupes alimentaires entiers. Pensez plutôt en proportions et en fréquence. La plupart des repas devraient être construits autour des plantes. Le poisson et les fruits de mer peuvent apparaître plusieurs fois par semaine. La volaille et les œufs peuvent être consommés régulièrement mais en plus petites quantités. Les sucreries et les céréales raffinées peuvent être des aliments occasionnels plutôt que des bases quotidiennes.
+
+### Pourquoi ce modèle perdure
+
+Le modèle méditerranéen est flexible, rassasiant et compatible avec de nombreux budgets et traditions. Il ne dépend pas de produits spéciaux et peut être composé d’ingrédients ordinaires du supermarché : haricots en conserve, légumes surgelés, avoine, riz brun, pâtes complètes, yaourt nature, œufs et le poisson ou la volaille abordables. Cette flexibilité aide les gens à poursuivre le modèle après la première semaine enthousiaste.
+
+## Ce que disent les preuves
+
+### Santé cardiaque et métabolique
+
+Les études observationnelles associent constamment une plus grande adhésion à un modèle méditerranéen à des taux plus faibles de maladies cardiovasculaires, de diabète de type 2 et de certains cancers. L’essai PREDIMED, une grande étude randomisée menée en Espagne, a constaté qu’un régime méditerranéen enrichi en huile d’olive vierge extra ou en noix réduisait le risque d’événements cardiovasculaires majeurs par rapport à un régime témoin. Des réanalyses ultérieures ont affiné les résultats, mais l’orientation générale est restée favorable.
+
+Le modèle peut agir par plusieurs voies à la fois : des graisses insaturées à la place des graisses saturées, plus de fibres et de potassium provenant des plantes, un apport en sodium plus faible lorsque la cuisine remplace les aliments emballés, et un apport plus élevé en polyphénols provenant des légumes, des fruits, de l’huile d’olive et des herbes. Ces effets sont progressifs et cumulatifs, pas des changements spectaculaires du jour au lendemain.
+
+### Ce qu’il ne peut pas faire
+
+Aucun mode d’alimentation ne peut garantir un résultat de santé particulier. Le régime méditerranéen ne remplace pas les médicaments prescrits et n’annule pas le tabagisme, l’inactivité ou le manque de sommeil. La variation de poids dépend toujours de l’apport énergétique global et de nombreux facteurs individuels. L’huile d’olive et les noix sont nutritives mais riches en calories, donc les portions comptent. Les preuves soutiennent ce modèle comme choix par défaut raisonnable, non comme promesse d’une protection parfaite.
+
+## Aliments à consommer la plupart des jours
+
+### Légumes et fruits
+
+Visez à remplir environ la moitié de votre assiette de légumes et de fruits à la plupart des repas. Les produits frais sont excellents, mais les options surgelées et en conserve sont nutritives et pratiques. Choisissez les fruits en conserve au jus plutôt qu’au sirop épais, et rincez les légumes en conserve si vous surveillez le sodium. Les produits de saison, les marchés locaux et les mélanges surgelés peuvent réduire les coûts et augmenter la variété.
+
+### Légumineuses
+
+Les haricots, les lentilles et les pois chiches sont au cœur du modèle. Ils apportent des protéines, des fibres et des glucides à digestion lente. Les haricots en conserve sont un raccourci pratique ; égouttez-les et rincez-les pour réduire le sodium. Gardez quelques boîtes dans le placard pour les salades, les soupes et les bols de céréales. Les lentilles cuisent rapidement et ne nécessitent pas de trempage, ce qui les rend utiles les soirs de semaine chargés.
+
+### Céréales complètes
+
+Choisissez plus souvent l’avoine, le riz brun, l’orge, le boulgour, les pâtes complètes et le pain complet plutôt que les versions raffinées. Ces aliments ajoutent des fibres et une texture satisfaisante. Vous n’avez pas à renoncer aux aliments familiers ; une plus petite portion de riz blanc accompagnée de légumes et de haricots reste cohérente avec le modèle. L’équilibre global compte plus que n’importe quelle céréale prise isolément.
+
+### Graisses saines
+
+L’huile d’olive est la graisse emblématique du modèle méditerranéen, mais les noix, les graines et l’avocat sont également utiles. Utilisez l’huile pour cuisiner, assaisonner et finir les plats plutôt que de la considérer comme un aliment libre. Un filet suffit à porter la saveur. Les noix et les graines ajoutent du croquant et des nutriments ; une petite poignée est une portion pratique.
+
+## Aliments à inclure régulièrement mais moins souvent
+
+### Poisson et fruits de mer
+
+Le poisson et les fruits de mer apportent des protéines et des acides gras oméga-3. Visez du poisson plusieurs fois par semaine lorsque votre budget le permet. Le saumon, les sardines et le thon en conserve sont des options abordables, et les filets surgelés peuvent être aussi nutritifs que les frais. Si vous ne mangez pas de poisson, les haricots, les lentilles, le tofu, les œufs et les produits laitiers peuvent couvrir les besoins en protéines.
+
+### Volaille et œufs
+
+Le poulet, la dinde et les œufs s’intègrent facilement au modèle. Utilisez le gril, le rôtissage, la cuisson pochée ou la sauté plutôt que la friture. Les œufs sont une source pratique de protéines et peuvent constituer la base d’un petit-déjeuner riche en légumes ou d’un dîner rapide.
+
+### Produits laitiers
+
+Le yaourt nature et des quantités modérées de fromage sont des aliments traditionnels dans de nombreuses régions méditerranéennes. Choisissez plus souvent le yaourt nature que les variétés sucrées, et utilisez le fromage comme aromatisant plutôt que comme élément principal. Les personnes qui évitent les produits laitiers peuvent choisir des alternatives végétales enrichies ou d’autres sources de calcium.
+
+## Aliments à limiter plutôt qu’à interdire
+
+### Viande rouge et aliments transformés
+
+La viande rouge peut apparaître occasionnellement, mais l’objectif est de plus petites portions et des repas moins fréquents. Les viandes transformées sont mieux limitées au minimum. Lorsque vous mangez de la viande, accompagnez-la de beaucoup de légumes et de céréales complètes, et évitez de la carboniser à très haute température.
+
+### Sucres ajoutés et céréales raffinées
+
+Les sucreries et les boissons sucrées sont des aliments occasionnels, pas des bases quotidiennes. Le fruit est un dessert satisfaisant, et un yaourt nature avec de la cannelle et des noix peut remplacer une collation sucrée. Les céréales raffinées n’ont pas besoin d’être interdites, mais choisir plus souvent des céréales complètes ajoute des fibres et des nutriments.
+
+### Sodium
+
+Les aliments emballés, les repas au restaurant et les aliments fumés ou salés peuvent ajouter beaucoup de sodium. Cuisinez plus souvent à la maison, utilisez des herbes, des agrumes, de l’ail et des épices pour le goût, rincez les haricots en conserve et comparez les étiquettes lors de l’achat de bouillon, de sauces et de pain. Ces petits choix peuvent s’additionner sans rendre les repas fades.
+
+## Construire une assiette méditerranéenne
+
+### Le guide moitié-quart-quart
+
+Un guide visuel simple consiste à remplir la moitié de l’assiette de légumes, un quart d’une protéine comme du poisson, du poulet, des haricots ou des œufs, et un quart d’une céréale complète ou d’un légume féculent. Ajoutez un filet d’huile d’olive, un filet de citron et des herbes fraîches. Cette structure fonctionne pour le déjeuner et le dîner et peut s’adapter au petit-déjeuner.
+
+### Exemples de petit-déjeuner, déjeuner et dîner
+
+Pour le petit-déjeuner, essayez de l’avoine avec du yaourt nature, des baies et des noix, ou des œufs avec des tomates, des épinards et du pain complet. Au déjeuner, combinez pois chiches, concombre, tomates, olives et pita complète, ou composez un bol de riz brun, légumes rôtis et poulet grillé. Pour le dîner, servez du poisson au four avec des légumes rôtis et de l’orge, ou une soupe de lentilles avec une salade et une tranche de pain complet.
+
+## Une semaine adaptée aux débutants
+
+### Idées de repas simples
+
+Commencez par des repas que vous aimez déjà et ajustez les proportions. Le dîner du lundi pourrait être du poulet et des légumes rôtis avec des pommes de terre. Le mardi, une soupe de haricots avec du pain complet. Le mercredi, des tacos de poisson avec du chou et de l’avocat. Le jeudi, une salade de lentilles avec de la feta et des tomates. Le vendredi, des pâtes complètes avec des tomates, des olives et des haricots blancs. Le samedi, du poulet grillé avec une grande salade. Le dimanche, un ragoût de légumes et de pois chiches avec du couscous.
+
+### Une courte liste de courses
+
+Huile d’olive, avoine, riz brun, pâtes complètes, haricots en conserve, lentilles, tomates en conserve, légumes surgelés, oignons, ail, citrons, concombres, tomates, légumes-feuilles, yaourt nature, œufs, poisson, poulet, noix et fruits. Ajustez les quantités à votre foyer et à votre budget. La liste est un point de départ, pas une obligation.
+
+## Manger dehors, budget et culture
+
+### Conseils au restaurant
+
+Cherchez du poisson grillé, du poulet ou des légumineuses, demandez des légumes en accompagnement et demandez les sauces et vinaigrettes à part. Une entrée partagée, un plat principal et des fruits en dessert peuvent constituer un repas de restaurant satisfaisant. Vous n’avez pas besoin de manger parfaitement pour bénéficier du modèle.
+
+### Conseils de budget
+
+Les haricots en conserve, les légumes surgelés, l’avoine, les œufs et les produits de saison sont souvent peu coûteux. Les protéines végétales peuvent étirer un budget alimentaire, et cuisiner à la maison réduit les dépenses en aliments emballés. Cuisiner en lots et congeler des portions peut réduire le gaspillage. Le coût est un véritable obstacle pour de nombreuses familles, alors choisissez les parties abordables du modèle plutôt que de le traiter comme un mode de vie coûteux.
+
+### Adaptation culturelle
+
+Le modèle méditerranéen est un ensemble de principes, pas l’obligation de ne manger que grec ou italien. Utilisez les herbes, les épices, les céréales et les légumes qui vous sont familiers. Un ragoût de haricots, un curry de légumes, un bol de céréales ou un dîner de poisson peuvent tous convenir. La meilleure version est celle que votre foyer mangera réellement.
+
+## Est-ce fait pour vous ?
+
+### Considérations médicales
+
+La plupart des gens peuvent bénéficier d’un modèle riche en plantes, mais les besoins individuels varient. Les personnes diabétiques peuvent avoir besoin de coordonner les portions de glucides avec leurs médicaments. Les personnes atteintes d’une maladie rénale peuvent avoir besoin d’ajuster le potassium, le phosphore ou les protéines. Les personnes ayant des allergies alimentaires doivent éviter des ingrédients spécifiques. Les personnes enceintes, âgées ou gérant une maladie chronique devraient demander des conseils personnalisés à leur clinicien ou à un diététicien diplômé.
+
+### Enfants et familles
+
+Les enfants peuvent manger les mêmes repas que les adultes, avec des portions adaptées à leur appétit. Proposez des légumes et des haricots à plusieurs reprises sans pression, et gardez les repas agréables. Les repas en famille, la cuisine partagée et une approche détendue des nouveaux aliments peuvent soutenir des habitudes durables mieux que des règles strictes.
+
+## Commencer sans tout bouleverser
+
+1. Ajoutez un légume à un repas que vous préparez déjà.
+2. Remplacez une céréale raffinée par une céréale complète.
+3. Faites cuire une casserole de haricots ou de lentilles et utilisez-les pour deux repas.
+4. Utilisez de l’huile d’olive et du citron au lieu d’une sauce emballée une fois cette semaine.
+5. Planifiez un repas de poisson et un repas sans viande.
+
+## L’essentiel
+
+Le régime méditerranéen est un modèle flexible et fondé sur les preuves qui met l’accent sur les plantes, les graisses saines et les aliments peu transformés. Ce n’est pas une garantie de santé, un remède ou un test de volonté. Commencez par de petits changements adaptés à votre budget, votre culture et vos besoins médicaux, et répétez ceux qui vous font du bien. La régularité sur plusieurs mois compte plus que la perfection dans un seul repas.`,
+    es: `## Qué significa realmente la dieta mediterránea
+
+La dieta mediterránea no es una sola cocina ni una lista rígida de alimentos permitidos. Es un patrón de alimentación inspirado en las tradiciones alimentarias de Grecia, el sur de Italia, España y otros países alrededor del mar Mediterráneo. Se centra en verduras, frutas, legumbres, cereales integrales, frutos secos, semillas, aceite de oliva, hierbas y pescado, con cantidades moderadas de lácteos y huevos y un consumo limitado de carne roja, alimentos procesados y azúcares añadidos.
+
+Como el patrón describe principios amplios en lugar de recetas exactas, puede encajar en muchas cocinas. Una familia que cocina comida de Oriente Medio, del norte de África o de América Latina puede aplicar la misma estructura: muchas plantas, aceite de oliva u otro aceite insaturado, judías o lentejas, cereales integrales y una porción modesta de proteína. El objetivo es una forma de comer agradable y repetible, no una prueba de autenticidad cultural.
+
+### Un patrón, no un plan estricto
+
+No necesitas contar cada gramo de grasa ni prohibir grupos de alimentos enteros. Piensa en proporciones y frecuencia. La mayoría de las comidas deberían construirse alrededor de las plantas. El pescado y el marisco pueden aparecer varias veces por semana. Las aves y los huevos pueden usarse con regularidad pero en cantidades menores. Los dulces y los cereales refinados pueden ser alimentos ocasionales en lugar de bases diarias.
+
+### Por qué el patrón perdura
+
+El patrón mediterráneo es flexible, saciante y compatible con muchos presupuestos y tradiciones. No depende de productos especiales y puede armarse con ingredientes corrientes del supermercado: judías en conserva, verduras congeladas, avena, arroz integral, pasta integral, yogur natural, huevos y el pescado o las aves que sean asequibles. Esa flexibilidad ayuda a mantener el patrón después de la primera semana entusiasta.
+
+## Qué dice la evidencia
+
+### Salud cardiovascular y metabólica
+
+Los estudios observacionales asocian de forma constante una mayor adherencia a un patrón mediterráneo con tasas más bajas de enfermedad cardiovascular, diabetes tipo 2 y algunos cánceres. El ensayo PREDIMED, un gran estudio aleatorizado en España, encontró que una dieta mediterránea suplementada con aceite de oliva virgen extra o frutos secos reducía el riesgo de eventos cardiovasculares mayores en comparación con una dieta control. Reanálisis posteriores han refinado los hallazgos, pero la dirección general ha seguido siendo favorable.
+
+El patrón puede ayudar por varias vías a la vez: grasas insaturadas en lugar de saturadas, más fibra y potasio de las plantas, menor ingesta de sodio cuando cocinar sustituye a los alimentos envasados y mayor ingesta de polifenoles de verduras, frutas, aceite de oliva y hierbas. Estos efectos son graduales y acumulativos, no cambios dramáticos de la noche a la mañana.
+
+### Lo que no puede hacer
+
+Ningún patrón de alimentación puede garantizar un resultado de salud concreto. La dieta mediterránea no sustituye a los medicamentos recetados y no neutraliza el tabaquismo, la inactividad ni el mal sueño. El cambio de peso sigue dependiendo de la ingesta energética total y de muchos factores individuales. El aceite de oliva y los frutos secos son nutritivos pero densos en calorías, así que las porciones importan. La evidencia respalda el patrón como una opción sensata por defecto, no como una promesa de protección perfecta.
+
+## Alimentos para comer la mayoría de los días
+
+### Verduras y frutas
+
+Intenta llenar aproximadamente la mitad de tu plato con verduras y fruta en la mayoría de las comidas. Los productos frescos son excelentes, pero las opciones congeladas y en conserva son nutritivas y prácticas. Elige fruta en conserva en su jugo en lugar de almíbar espeso, y enjuaga las verduras en conserva si vigilas el sodio. Los productos de temporada, los mercados locales y las mezclas congeladas pueden reducir costes y aumentar la variedad.
+
+### Legumbres
+
+Las judías, las lentejas y los garbanzos son centrales en el patrón. Aportan proteína, fibra y carbohidratos de digestión lenta. Las judías en conserva son un atajo práctico; escúrrelas y enjuágalas para reducir el sodio. Guarda algunas latas en la despensa para ensaladas, sopas y bols de cereales. Las lentejas se cocinan rápido y no necesitan remojo, lo que las hace útiles en noches de semana ocupadas.
+
+### Cereales integrales
+
+Elige avena, arroz integral, cebada, bulgur, pasta integral y pan integral con más frecuencia que las versiones refinadas. Estos alimentos añaden fibra y una textura satisfactoria. No tienes que renunciar a alimentos conocidos; una porción más pequeña de arroz blanco junto con verduras y judías extra sigue siendo coherente con el patrón. El equilibrio general importa más que cualquier cereal por sí solo.
+
+### Grasas saludables
+
+El aceite de oliva es la grasa característica del patrón mediterráneo, pero los frutos secos, las semillas y el aguacate también son útiles. Usa el aceite para cocinar, aliñar y terminar platos en lugar de tratarlo como un alimento libre. Un chorrito basta para llevar el sabor. Los frutos secos y las semillas añaden crujiente y nutrientes; un pequeño puñado es una porción práctica.
+
+## Alimentos para incluir con regularidad pero menos a menudo
+
+### Pescado y marisco
+
+El pescado y el marisco aportan proteína y ácidos grasos omega-3. Intenta comer pescado varias veces por semana cuando encaje en tu presupuesto. El salmón, las sardinas y el atún en conserva son opciones asequibles, y los filetes congelados pueden ser tan nutritivos como los frescos. Si no comes pescado, las judías, las lentejas, el tofu, los huevos y los lácteos pueden cubrir las necesidades de proteína.
+
+### Aves y huevos
+
+El pollo, el pavo y los huevos encajan cómodamente en el patrón. Usa la parrilla, el asado, el escalfado o el salteado en lugar de la fritura profunda. Los huevos son una fuente práctica de proteína y pueden sostener un desayuno rico en verduras o una cena rápida.
+
+### Lácteos
+
+El yogur natural y cantidades modestas de queso son alimentos tradicionales en muchas regiones mediterráneas. Elige yogur natural con más frecuencia que las variedades azucaradas y usa el queso como aromatizante en lugar de protagonista. Quienes evitan los lácteos pueden elegir alternativas vegetales enriquecidas u otras fuentes de calcio.
+
+## Alimentos para limitar en lugar de prohibir
+
+### Carne roja y alimentos procesados
+
+La carne roja puede aparecer de forma ocasional, pero el objetivo son porciones más pequeñas y comidas menos frecuentes. Las carnes procesadas es mejor mantenerlas al mínimo. Cuando comas carne, acompáñala con abundantes verduras y cereales integrales, y evita carbonizarla a fuego muy alto.
+
+### Azúcares añadidos y cereales refinados
+
+Los dulces y las bebidas azucaradas son alimentos ocasionales, no bases diarias. La fruta es un postre satisfactorio, y el yogur natural con canela y frutos secos puede sustituir un tentempié azucarado. Los cereales refinados no necesitan prohibirse, pero elegir cereales integrales con más frecuencia añade fibra y nutrientes.
+
+### Sodio
+
+Los alimentos envasados, las comidas de restaurante y los alimentos curados pueden añadir mucho sodio. Cocina más a menudo en casa, usa hierbas, cítricos, ajo y especias para dar sabor, enjuaga las judías en conserva y compara etiquetas al comprar caldo, salsas y pan. Estas pequeñas elecciones pueden sumar sin hacer que las comidas queden sosas.
+
+## Armar un plato mediterráneo
+
+### La guía mitad-cuarto-cuarto
+
+Una guía visual sencilla es llenar la mitad del plato con verduras, un cuarto con una proteína como pescado, pollo, judías o huevos, y un cuarto con un cereal integral o una verdura feculenta. Añade un chorrito de aceite de oliva, unas gotas de limón y hierbas frescas. Esta estructura funciona para la comida y la cena y puede adaptarse al desayuno.
+
+### Ejemplos de desayuno, comida y cena
+
+Para desayunar, prueba avena con yogur natural, frutos rojos y nueces, o huevos con tomate, espinacas y tostada integral. En la comida, combina garbanzos, pepino, tomate, aceitunas y pan de pita integral, o arma un bol con arroz integral, verduras asadas y pollo a la parrilla. Para cenar, sirve pescado al horno con verduras asadas y cebada, o una sopa de lentejas con una ensalada y una rebanada de pan integral.
+
+## Una semana para principiantes
+
+### Ideas de comidas sencillas
+
+Empieza con comidas que ya disfrutes y ajusta las proporciones. La cena del lunes podría ser pollo y verduras al horno con patatas. El martes, sopa de judías con pan integral. El miércoles, tacos de pescado con repollo y aguacate. El jueves, ensalada de lentejas con feta y tomate. El viernes, pasta integral con tomate, aceitunas y judías blancas. El sábado, pollo a la parrilla con una gran ensalada. El domingo, guiso de verduras y garbanzos con cuscús.
+
+### Una lista de compras corta
+
+Aceite de oliva, avena, arroz integral, pasta integral, judías en conserva, lentejas, tomate en conserva, verduras congeladas, cebollas, ajo, limones, pepinos, tomates, verduras de hoja, yogur natural, huevos, pescado, pollo, frutos secos y fruta. Ajusta las cantidades a tu hogar y presupuesto. La lista es un punto de partida, no un requisito.
+
+## Comer fuera, presupuesto y cultura
+
+### Consejos para restaurantes
+
+Busca pescado a la parrilla, pollo o legumbres, pide verduras como guarnición y solicita salsas y aliños aparte. Un entrante para compartir, un plato principal y fruta de postre pueden ser una comida de restaurante satisfactoria. No necesitas comer perfectamente para beneficiarte del patrón.
+
+### Consejos de presupuesto
+
+Las judías en conserva, las verduras congeladas, la avena, los huevos y los productos de temporada suelen ser económicos. Las proteínas vegetales pueden estirar un presupuesto alimentario, y cocinar en casa reduce el gasto en alimentos envasados. Cocinar por lotes y congelar porciones puede reducir el desperdicio. El coste es una barrera real para muchas familias, así que elige las partes asequibles del patrón en lugar de tratarlo como un estilo de vida caro.
+
+### Adaptación cultural
+
+El patrón mediterráneo es un conjunto de principios, no la obligación de comer solo griego o italiano. Usa las hierbas, especias, cereales y verduras que te resulten familiares. Un guiso de judías, un curry de verduras, un bol de cereales o una cena de pescado pueden encajar. La mejor versión es la que tu hogar realmente comerá.
+
+## ¿Es adecuada para ti?
+
+### Consideraciones médicas
+
+La mayoría de las personas pueden beneficiarse de un patrón con predominio de plantas, pero las necesidades individuales varían. Las personas con diabetes pueden necesitar coordinar las porciones de carbohidratos con la medicación. Las personas con enfermedad renal pueden necesitar ajustar el potasio, el fósforo o la proteína. Las personas con alergias alimentarias deben evitar ingredientes específicos. Quienes están embarazadas, son mayores o manejan una enfermedad crónica deberían pedir orientación personalizada a su profesional sanitario o a un dietista titulado.
+
+### Niños y familias
+
+Los niños pueden comer las mismas comidas que los adultos, con porciones ajustadas al apetito. Ofrece verduras y judías repetidamente sin presión y mantén las comidas agradables. Las comidas familiares, cocinar juntos y un enfoque relajado hacia los alimentos nuevos pueden apoyar hábitos a largo plazo mejor que las reglas estrictas.
+
+## Empezar sin cambiarlo todo
+
+1. Añade una verdura a una comida que ya preparas.
+2. Cambia un cereal refinado por uno integral.
+3. Cocina una olla de judías o lentejas y úsalas para dos comidas.
+4. Usa aceite de oliva y limón en lugar de una salsa envasada una vez esta semana.
+5. Planifica una comida de pescado y una comida sin carne.
+
+## Lo esencial
+
+La dieta mediterránea es un patrón flexible e informado por la evidencia que enfatiza las plantas, las grasas saludables y los alimentos mínimamente procesados. No es una garantía de salud, una cura ni una prueba de fuerza de voluntad. Empieza con pequeños cambios que encajen en tu presupuesto, cultura y necesidades médicas, y repite los que te hagan sentir bien. La constancia durante meses importa más que la perfección en una sola comida.`,
+    hi: `## भूमध्यसागरीय आहार का वास्तव में क्या अर्थ है
+
+भूमध्यसागरीय आहार कोई एक व्यंजन-परंपरा या स्वीकृत खाद्य पदार्थों की कठोर सूची नहीं है। यह ग्रीस, दक्षिणी इटली, स्पेन और भूमध्य सागर के आसपास के अन्य देशों की पारंपरिक खान-पान से प्रेरित खाने का एक तरीका है। इसमें सब्जियों, फलों, दालों, साबुत अनाज, मेवों, बीजों, जैतून के तेल, जड़ी-बूटियों और मछली पर जोर दिया जाता है, साथ में सीमित मात्रा में डेयरी और अंडे तथा सीमित लाल मांस, प्रसंस्कृत खाद्य और अतिरिक्त शर्करा।
+
+चूंकि यह तरीका सटीक रेसिपियों के बजाय व्यापक सिद्धांतों का वर्णन करता है, यह कई रसोइयों में फिट हो सकता है। मध्य पूर्व, उत्तरी अफ्रीका या लैटिन अमेरिकी खाना पकाने वाला परिवार भी यही ढाँचा अपना सकता है: ढेर सारे पौधे, जैतून का तेल या कोई अन्य असंतृप्त तेल, बीन्स या मसूर, साबुत अनाज और प्रोटीन का संयमित हिस्सा। लक्ष्य ऐसा खाने का तरीका है जो आनंददायक और दोहराने योग्य लगे, सांस्कृतिक प्रामाणिकता की परीक्षा नहीं।
+
+### एक पैटर्न, कठोर भोजन योजना नहीं
+
+आपको हर ग्राम वसा गिनने या पूरे खाद्य समूहों को प्रतिबंधित करने की जरूरत नहीं है। इसके बजाय अनुपात और आवृत्ति के बारे में सोचें। अधिकांश भोजन पौधों के आसपास बनाए जाने चाहिए। मछली और समुद्री भोजन हफ्ते में कई बार आ सकते हैं। मुर्गी और अंडे नियमित रूप से लेकिन कम मात्रा में उपयोग किए जा सकते हैं। मिठाइयाँ और रिफाइंड अनाज रोज का आधार नहीं, कभी-कभी वाले खाद्य हो सकते हैं।
+
+### यह तरीका क्यों टिकता है
+
+भूमध्यसागरीय पैटर्न लचीला, तृप्त करने वाला और कई बजट व परंपराओं के अनुकूल है। यह विशेष उत्पादों पर निर्भर नहीं है और सामान्य सुपरमार्केट सामग्री से बनाया जा सकता है: डिब्बाबंद बीन्स, फ्रोज़न सब्जियाँ, ओट्स, ब्राउन राइस, साबुत गेहूँ का पास्ता, सादा दही, अंडे और जो मछली या मुर्गी किफायती हो। यही लचीलापन लोगों को पहले उत्साही हफ्ते के बाद भी इसे जारी रखने में मदद करता है।
+
+## प्रमाण क्या कहते हैं
+
+### हृदय और चयापचय स्वास्थ्य
+
+अवलोकन अध्ययन लगातार भूमध्यसागरीय पैटर्न का अधिक पालन करने को हृदय रोग, टाइप 2 मधुमेह और कुछ कैंसर की कम दरों से जोड़ते हैं। स्पेन में एक बड़े यादृच्छिक अध्ययन PREDIMED ने पाया कि अतिरिक्त कुंवारी जैतून के तेल या मेवों से पूरक भूमध्यसागरीय आहार ने नियंत्रण आहार की तुलना में प्रमुख हृदय-वाहिका घटनाओं का जोखिम कम किया। बाद के पुनर्विश्लेषणों ने निष्कर्षों को और स्पष्ट किया, लेकिन समग्र दिशा सहायक बनी रही।
+
+यह पैटर्न एक साथ कई रास्तों से मदद कर सकता है: संतृप्त वसा की जगह असंतृप्त वसा, पौधों से अधिक फाइबर और पोटैशियम, पैकेज्ड खाद्य की जगह घर पर पकाने से कम सोडियम, और सब्जियों, फलों, जैतून के तेल व जड़ी-बूटियों से अधिक पॉलीफेनोल। ये प्रभाव धीरे-धीरे और संचयी होते हैं, रातों-रात नाटकीय बदलाव नहीं।
+
+### यह क्या नहीं कर सकता
+
+कोई भी खाने का तरीका किसी विशेष स्वास्थ्य परिणाम की गारंटी नहीं दे सकता। भूमध्यसागरीय आहार निर्धारित दवा का विकल्प नहीं है और धूम्रपान, निष्क्रियता या खराब नींद की भरपाई नहीं करता। वजन परिवर्तन अभी भी कुल ऊर्जा सेवन और कई व्यक्तिगत कारकों पर निर्भर करता है। जैतून का तेल और मेव पौष्टिक हैं लेकिन कैलोरी-घन हैं, इसलिए मात्रा मायने रखती है। प्रमाण इस पैटर्न को एक समझदार डिफ़ॉल्ट के रूप में समर्थन देते हैं, पूर्ण सुरक्षा के वादे के रूप में नहीं।
+
+## ज्यादातर दिनों में खाने वाले खाद्य
+
+### सब्जियाँ और फल
+
+अधिकांश भोजन में अपनी थाली का लगभग आधा हिस्सा सब्जियों और फलों से भरने का लक्ष्य रखें। ताजा उत्पाद उत्कृष्ट है, लेकिन फ्रोज़न और डिब्बाबंद विकल्प पौष्टिक और सुविधाजनक हैं। भारी शर्बत की जगह रस में डिब्बाबंद फल चुनें, और यदि सोडियम पर नजर रखते हैं तो डिब्बाबंद सब्जियाँ धो लें। मौसमी उत्पाद, स्थानीय बाजार और फ्रोज़न मिश्रण लागत कम और विविधता अधिक रख सकते हैं।
+
+### दालें
+
+बीन्स, मसूर और छोले इस पैटर्न के केंद्र में हैं। ये प्रोटीन, फाइबर और धीमे पचने वाले कार्बोहाइड्रेट देते हैं। डिब्बाबंद बीन्स व्यावहारिक शॉर्टकट हैं; सोडियम कम करने के लिए उन्हें छानकर धो लें। सलाद, सूप और अनाज के कटोरों के लिए पैंट्री में कुछ डिब्बे रखें। मसूर जल्दी पकता है और भिगोने की जरूरत नहीं होती, जिससे यह व्यस्त सप्ताह की रातों में उपयोगी है।
+
+### साबुत अनाज
+
+रिफाइंड संस्करणों की तुलना में ओट्स, ब्राउन राइस, जौ, बुलगुर, साबुत गेहूँ का पास्ता और साबुत अनाज की ब्रेड अधिक बार चुनें। ये खाद्य फाइबर और तृप्त करने वाली बनावट जोड़ते हैं। परिचित खाद्य छोड़ने की जरूरत नहीं; सफेद चावल की छोटी मात्रा के साथ अतिरिक्त सब्जियाँ और बीन्स भी पैटर्न के अनुरूप हैं। किसी एक अनाज से अधिक समग्र संतुलन मायने रखता है।
+
+### स्वस्थ वसा
+
+जैतून का तेल भूमध्यसागरीय पैटर्न की पहचान वाली वसा है, लेकिन मेव, बीज और एवोकाडो भी उपयोगी हैं। तेल को मुफ्त खाद्य मानने के बजाय पकाने, ड्रेसिंग और भोजन को अंतिम रूप देने के लिए उपयोग करें। स्वाद लाने के लिए एक छोटा छिड़काव पर्याप्त है। मेव और बीज कुरकुरापन और पोषक तत्व जोड़ते हैं; एक छोटी मुट्ठी व्यावहारिक मात्रा है।
+
+## नियमित लेकिन कम बार शामिल करने वाले खाद्य
+
+### मछली और समुद्री भोजन
+
+मछली और समुद्री भोजन प्रोटीन और ओमेगा-3 वसा देते हैं। जब बजट में फिट हो तो हफ्ते में कई बार मछली का लक्ष्य रखें। डिब्बाबंद सैल्मन, सार्डिन और टूना किफायती विकल्प हैं, और फ्रोज़न फिलेट ताजे जितने ही पौष्टिक हो सकते हैं। यदि आप मछली नहीं खाते, तो बीन्स, मसूर, टोफू, अंडे और डेयरी प्रोटीन की जरूरत पूरी कर सकते हैं।
+
+### मुर्गी और अंडे
+
+चिकन, टर्की और अंडे इस पैटर्न में आसानी से फिट होते हैं। डीप फ्राई की जगह ग्रिल, रोस्ट, पोच या सॉटे का उपयोग करें। अंडे प्रोटीन का सुविधाजनक स्रोत हैं और सब्जियों से भरपूर नाश्ते या जल्दी के रात के खाने का आधार बन सकते हैं।
+
+### डेयरी
+
+सादा दही और सीमित मात्रा में पनीर कई भूमध्यसागरीय क्षेत्रों के पारंपरिक खाद्य हैं। मीठी किस्मों की तुलना में सादा दही अधिक बार चुनें, और पनीर को मुख्य व्यंजन के बजाय स्वाद बढ़ाने के लिए उपयोग करें। जो डेयरी से बचते हैं वे फोर्टिफाइड पौध-आधारित विकल्प या कैल्शियम के अन्य स्रोत चुन सकते हैं।
+
+## प्रतिबंधित करने के बजाय सीमित करने वाले खाद्य
+
+### लाल मांस और प्रसंस्कृत खाद्य
+
+लाल मांस कभी-कभी आ सकता है, लेकिन लक्ष्य छोटी मात्रा और कम बार भोजन है। प्रसंस्कृत मांस को न्यूनतम रखना बेहतर है। जब मांस खाएँ, तो उसके साथ भरपूर सब्जियाँ और साबुत अनाज लें, और बहुत तेज आँच पर उसे जलने-काले होने से बचाएँ।
+
+### अतिरिक्त शर्करा और रिफाइंड अनाज
+
+मिठाइयाँ और मीठे पेय कभी-कभी वाले खाद्य हैं, रोज का आधार नहीं। फल एक तृप्त करने वाला मिठाई विकल्प है, और दालचीनी व मेवों के साथ सादा दही मीठे नाश्ते की जगह ले सकता है। रिफाइंड अनाज को प्रतिबंधित करने की जरूरत नहीं, लेकिन साबुत अनाज अधिक बार चुनने से फाइबर और पोषक तत्व बढ़ते हैं।
+
+### सोडियम
+
+पैकेज्ड खाद्य, रेस्तरां के भोजन और नमकीन-प्रसंस्कृत खाद्य बहुत अधिक सोडियम जोड़ सकते हैं। घर पर अधिक पकाएँ, स्वाद के लिए जड़ी-बूटियाँ, खट्टे फल, लहसुन और मसाले उपयोग करें, डिब्बाबंद बीन्स धोएँ, और शोरबा, सॉस व ब्रेड खरीदते समय लेबल की तुलना करें। ये छोटे चुनाव भोजन को फीका बनाए बिना जुड़ सकते हैं।
+
+## भूमध्यसागरीय थाली बनाएँ
+
+### आधा-चौथाई-चौथाई मार्गदर्शिका
+
+एक सरल दृश्य मार्गदर्शिका है: आधी थाली सब्जियों से, एक चौथाई मछली, चिकन, बीन्स या अंडे जैसे प्रोटीन से, और एक चौथाई साबुत अनाज या स्टार्च वाली सब्जी से भरें। ऊपर से जैतून का तेल, नींबू और ताजी जड़ी-बूटियाँ डालें। यह ढाँचा दोपहर और रात के खाने के लिए काम करता है और नाश्ते में भी ढाला जा सकता है।
+
+### नाश्ते, दोपहर और रात के खाने के उदाहरण
+
+नाश्ते में सादा दही, जामुन और अखरोट के साथ ओट्स, या टमाटर, पालक और साबुत अनाज टोस्ट के साथ अंडे आज़माएँ। दोपहर में छोले, खीरा, टमाटर, जैतून और साबुत गेहूँ की पीता मिलाएँ, या ब्राउन राइस, भुनी सब्जियों और ग्रिल्ड चिकन का कटोरा बनाएँ। रात के खाने में भुनी सब्जियों और जौ के साथ बेक्ड मछली, या सलाद और साबुत अनाज ब्रेड के साथ मसूर का सूप परोसें।
+
+## शुरुआती लोगों के लिए एक सप्ताह
+
+### आसान भोजन के विचार
+
+उन भोजनों से शुरू करें जिन्हें आप पहले से पसंद करते हैं और अनुपात समायोजित करें। सोमवार के रात के खाने में आलू के साथ चिकन और सब्जियों की बेक्ड ट्रे हो सकती है। मंगलवार को साबुत अनाज ब्रेड के साथ बीन्स का सूप। बुधवार को पत्तागोभी और एवोकाडो के साथ फिश टैकोस। गुरुवार को फेटा और टमाटर के साथ मसूर का सलाद। शुक्रवार को टमाटर, जैतून और सफेद बीन्स के साथ साबुत गेहूँ का पास्ता। शनिवार को बड़े सलाद के साथ ग्रिल्ड चिकन। रविवार को कूसकूस के साथ सब्जियों और छोले का स्टू।
+
+### छोटी खरीदारी सूची
+
+जैतून का तेल, ओट्स, ब्राउन राइस, साबुत गेहूँ का पास्ता, डिब्बाबंद बीन्स, मसूर, डिब्बाबंद टमाटर, फ्रोज़न सब्जियाँ, प्याज, लहसुन, नींबू, खीरा, टमाटर, पत्तेदार सब्जियाँ, सादा दही, अंडे, मछली, चिकन, मेव और फल। मात्रा अपने परिवार और बजट के अनुसार समायोजित करें। यह सूची शुरुआती बिंदु है, अनिवार्यता नहीं।
+
+## बाहर खाना, बजट और संस्कृति
+
+### रेस्तरां के सुझाव
+
+ग्रिल्ड मछली, चिकन या दालें खोजें, साइड में सब्जियाँ माँगें, और सॉस व ड्रेसिंग अलग माँगें। साझा किया गया स्टार्टर, एक मुख्य व्यंजन और मिठाई में फल एक संतोषजनक रेस्तरां भोजन हो सकता है। इस पैटर्न से लाभ पाने के लिए बिल्कुल सही खाने की जरूरत नहीं।
+
+### बजट के सुझाव
+
+डिब्बाबंद बीन्स, फ्रोज़न सब्जियाँ, ओट्स, अंडे और मौसमी उत्पाद अक्सर सस्ते होते हैं। पौध-आधारित प्रोटीन खाद्य बजट को खींच सकते हैं, और घर पर पकाने से पैकेज्ड खाद्य पर खर्च कम होता है। बैच में पकाकर हिस्से फ्रीज़ करने से बर्बादी कम हो सकती है। लागत कई परिवारों के लिए वास्तविक बाधा है, इसलिए इस पैटर्न के किफायती हिस्से चुनें, इसे महंगी जीवनशैली की तरह न देखें।
+
+### सांस्कृतिक अनुकूलन
+
+भूमध्यसागरीय पैटर्न सिद्धांतों का समूह है, केवल ग्रीक या इतालवी खाने की अनिवार्यता नहीं। अपने परिचित जड़ी-बूटियाँ, मसाले, अनाज और सब्जियाँ उपयोग करें। बीन्स का स्टू, सब्जी करी, अनाज का कटोरा या मछली का रात का खाना—सब फिट हो सकते हैं। सबसे अच्छा संस्करण वही है जो आपका परिवार वास्तव में खाएगा।
+
+## क्या यह आपके लिए सही है?
+
+### चिकित्सीय विचार
+
+अधिकांश लोगों को पौधों पर केंद्रित पैटर्न से लाभ हो सकता है, लेकिन व्यक्तिगत जरूरतें अलग होती हैं। मधुमेह वाले लोगों को कार्बोहाइड्रेट मात्रा को दवा के साथ समन्वित करना पड़ सकता है। गुर्दे की बीमारी वाले लोगों को पोटैशियम, फॉस्फोरस या प्रोटीन समायोजित करना पड़ सकता है। खाद्य एलर्जी वाले लोगों को विशिष्ट सामग्री से बचना चाहिए। गर्भवती, वृद्ध या दीर्घकालिक बीमारी संभाल रहे लोगों को अपने चिकित्सक या पंजीकृत आहार विशेषज्ञ से व्यक्तिगत मार्गदर्शन लेना चाहिए।
+
+### बच्चे और परिवार
+
+बच्चे वयस्कों जैसा ही भोजन खा सकते हैं, मात्रा भूख के अनुसार समायोजित करें। बिना दबाव के सब्जियाँ और बीन्स बार-बार पेश करें, और भोजन का माहौल सुखद रखें। पारिवारिक भोजन, साथ में पकाना और नए खाद्यों के प्रति सहज दृष्टिकोण कठोर नियमों से बेहतर दीर्घकालिक आदतों को सहारा दे सकते हैं।
+
+## सब कुछ बदले बिना शुरुआत करें
+
+1. जो भोजन आप पहले से बनाते हैं, उसमें एक सब्जी जोड़ें।
+2. एक रिफाइंड अनाज की जगह साबुत अनाज लें।
+3. एक बर्तन बीन्स या मसूर पकाएँ और दो भोजनों में उपयोग करें।
+4. इस हफ्ते एक बार पैकेज्ड सॉस की जगह जैतून का तेल और नींबू उपयोग करें।
+5. एक मछली वाला और एक बिना मांस वाला भोजन योजना में रखें।
+
+## मुख्य बात
+
+भूमध्यसागरीय आहार एक लचीला, प्रमाण-सूचित पैटर्न है जो पौधों, स्वस्थ वसा और न्यूनतम प्रसंस्कृत खाद्य पर जोर देता है। यह स्वास्थ्य की गारंटी, इलाज या इच्छाशक्ति की परीक्षा नहीं है। अपने बजट, संस्कृति और चिकित्सीय जरूरतों में फिट होने वाले छोटे बदलावों से शुरू करें, और जो आपको अच्छा महसूस कराएँ उन्हें दोहराएँ। एक भोजन में पूर्णता से अधिक महीनों तक निरंतरता मायने रखती है।`,
   },
   takeaways: {
     en: [

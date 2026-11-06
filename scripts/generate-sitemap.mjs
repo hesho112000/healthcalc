@@ -61,22 +61,65 @@ async function fetchAllDishes() {
   return dishes;
 }
 
-const urlEntry = (loc, changefreq, priority) => `  <url>
-    <loc>${escapeXml(loc)}</loc>
-    <changefreq>${changefreq}</changefreq>
-    <priority>${priority.toFixed(1)}</priority>
-  </url>`;
+// Languages translated in this batch. A localized URL is only advertised when
+// both the title and the Markdown body exist, so the sitemap never points
+// crawlers at a thin English fallback.
+const LOCALIZED_LANGUAGES = ['fr', 'es', 'hi'];
+
+const hasTranslation = (text, lang) =>
+  typeof text?.[lang] === 'string' && text[lang].trim().length > 0;
+
+const urlEntry = (loc, changefreq, priority, alternates = []) => {
+  const alternateLinks = alternates.map(
+    ({ hreflang, href }) =>
+      `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${escapeXml(href)}" />`,
+  );
+
+  return [
+    '  <url>',
+    `    <loc>${escapeXml(loc)}</loc>`,
+    ...alternateLinks,
+    `    <changefreq>${changefreq}</changefreq>`,
+    `    <priority>${priority.toFixed(1)}</priority>`,
+    '  </url>',
+  ].join('\n');
+};
 
 const buildSitemap = async () => {
   const { articles, recipes, exerciseGuides } = await loadContentData();
   const dishes = await fetchAllDishes();
   const ids = dishes.map((dish) => dish.id);
 
+  // Every translated article gets its own `<loc>` plus a full set of hreflang
+  // alternates on each locale so search engines can cluster the versions.
+  const articleEntries = articles.flatMap((article) => {
+    const articlePath = `/resources/article/${article.slug}`;
+    const canonicalUrl = `${SITE_BASE}${articlePath}`;
+    const translatedLanguages = LOCALIZED_LANGUAGES.filter(
+      (lang) => hasTranslation(article.title, lang) && hasTranslation(article.content, lang),
+    );
+    const alternates = [
+      { hreflang: 'en', href: canonicalUrl },
+      ...translatedLanguages.map((lang) => ({
+        hreflang: lang,
+        href: `${SITE_BASE}/${lang}${articlePath}`,
+      })),
+      { hreflang: 'x-default', href: canonicalUrl },
+    ];
+
+    return [
+      urlEntry(canonicalUrl, 'weekly', 1.0, alternates),
+      ...translatedLanguages.map((lang) =>
+        urlEntry(`${SITE_BASE}/${lang}${articlePath}`, 'weekly', 1.0, alternates),
+      ),
+    ];
+  });
+
   // Resource pages are the primary editorial content for AdSense review.
   // Keep them at the very top of the sitemap with the highest priority.
   const resourceEntries = [
     urlEntry(`${SITE_BASE}/resources`, 'weekly', 1.0),
-    ...articles.map((article) => urlEntry(`${SITE_BASE}/resources/article/${article.slug}`, 'weekly', 1.0)),
+    ...articleEntries,
     ...recipes.map((recipe) => urlEntry(`${SITE_BASE}/resources/recipe/${recipe.slug}`, 'weekly', 1.0)),
     ...exerciseGuides.map((guide) => urlEntry(`${SITE_BASE}/resources/exercise/${guide.slug}`, 'weekly', 1.0)),
   ].join('\n');
@@ -98,13 +141,13 @@ const buildSitemap = async () => {
     .map((id) => urlEntry(`${SITE_BASE}/food-library/${id}`, 'monthly', 0.3))
     .join('\n');
 
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${resourceEntries}\n${staticEntries}\n${dishEntries}\n</urlset>\n`;
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${resourceEntries}\n${staticEntries}\n${dishEntries}\n</urlset>\n`;
 
   await writeFile(OUTPUT_PATH, sitemap, 'utf8');
   // Build-time sidecar consumed by the prerenderer for dish titles and Product schema.
   await writeFile(DISH_DATA_PATH, JSON.stringify(dishes), 'utf8');
 
-  const resourceCount = 1 + articles.length + recipes.length + exerciseGuides.length;
+  const resourceCount = 1 + articleEntries.length + recipes.length + exerciseGuides.length;
   const staticCount = 8;
   console.log(
     `SUCCESS: Sitemap generated with ${resourceCount + staticCount + ids.length} URLs ` +
