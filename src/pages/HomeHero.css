@@ -65,19 +65,19 @@
 .hh-form-grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .hh-form-grid--two { grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); gap: 11px; margin-top: 15px; }
 .hh-field { min-width: 0; display: flex; flex-direction: column; gap: 7px; }
-.hh-field > span:first-child,.hh-gender-field legend { display: flex; align-items: center; gap: 5px; color: #78867c; font-size: 9px; font-weight: 650; }
-.hh-field > span:first-child svg { color: #77927c; }
+.hh-field > span:first-child,.hh-gender-field legend { display: flex; align-items: center; gap: 5px; color: #4B5563; font-size: 9px; font-weight: 650; }
+.hh-field > span:first-child svg { color: #4B5563; }
 .hh-field__control { height: 46px; display: flex; align-items: center; gap: 5px; padding: 0 11px; border: 1px solid #e6ebe4; border-radius: 10px; background: #fbfcf9; transition: border-color .18s ease, box-shadow .18s ease, background .18s ease; }
 .hh-field__control:focus-within { border-color: #91b39a; background: #fff; box-shadow: 0 0 0 3px rgba(64, 137, 86, .09); }
 .hh-field__control input { width: 100%; min-width: 0; padding: 0; border: 0; outline: 0; background: transparent; color: #183e30; font-size: 16px; font-weight: 680; letter-spacing: -.035em; font-variant-numeric: tabular-nums; }
 .hh-field__control input::-webkit-inner-spin-button,.hh-field__control input::-webkit-outer-spin-button { margin: 0; appearance: none; }
 .hh-field__control input[type=number] { -moz-appearance: textfield; }
-.hh-field__control small { color: #9aa49b; font-size: 8px; white-space: nowrap; }
+.hh-field__control small { color: #52635A; font-size: 8px; white-space: nowrap; }
 .hh-gender-field { min-width: 0; margin: 0; padding: 0; border: 0; }
 .hh-gender-field legend { margin-bottom: 7px; padding: 0; }
 .hh-gender-switch { height: 46px; display: flex; gap: 4px; padding: 4px; border: 1px solid #e8ece5; border-radius: 10px; background: #f6f8f3; }
-.hh-gender-switch button { min-width: 0; flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 0 5px; border: 1px solid transparent; border-radius: 7px; background: transparent; color: #7b8980; cursor: pointer; font-size: 9px; font-weight: 570; transition: color .16s ease, background .16s ease, box-shadow .16s ease; }
-.hh-gender-switch button svg { color: #819387; }
+.hh-gender-switch button { min-width: 0; flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 0 5px; border: 1px solid transparent; border-radius: 7px; background: transparent; color: #4B5563; cursor: pointer; font-size: 9px; font-weight: 570; transition: color .16s ease, background .16s ease, box-shadow .16s ease; }
+.hh-gender-switch button svg { color: #4B5563; }
 .hh-gender-switch button:hover { color: #315f43; }
 .hh-gender-switch button.is-selected { border-color: #e5ebe2; background: #fff; color: #286343; box-shadow: 0 1px 4px rgba(35, 70, 44, .075); }
 .hh-gender-switch button.is-selected svg { color: #43815c; }
@@ -93,7 +93,7 @@
 .hh-calculate-button > span { font-size: 15px; }
 .hh-calculate-button > svg { position: absolute; right: 17px; transition: transform .18s ease; }
 .hh-calculate-button:hover > svg { transform: translateX(3px); }
-.hh-no-signup { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 11px 0 0; color: #829087; font-size: 9px; }
+.hh-no-signup { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 11px 0 0; color: #52635A; font-size: 9px; }
 .hh-no-signup svg { color: #59906a; }
 .hh-profile-error { margin: 12px 0 -7px; color: #a23a32; font-size: 10px; font-weight: 600; text-align: center; }
 

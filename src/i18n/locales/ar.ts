@@ -2169,7 +2169,7 @@ const ar: TranslationKeys = {
     cookieConsentText: 'نستخدم ملفات تعريف الارتباط لتشغيل الموقع وتذكر تفضيلاتك وعرض الإعلانات عبر Google AdSense. راجع سياسة ملفات تعريف الارتباط لدينا لمزيد من التفاصيل.',
     cookieConsentAccept: 'قبول',
     cookieConsentDecline: 'رفض ملفات تعريف الارتباط غير الضرورية',
-    cookieConsentLearnMore: 'معرفة المزيد',
+    cookieConsentLearnMore: 'معرفة المزيد عن ملفات تعريف الارتباط',
     footerNews: 'النشرة الأسبوعية',
     footerNewsText: 'احصل على نصائح تغذية عملية كل أسبوع.',
     footerEmailPlaceholder: 'بريدك الإلكتروني',

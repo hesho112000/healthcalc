@@ -2169,7 +2169,7 @@ const es: TranslationKeys = {
     cookieConsentText: 'Usamos cookies para operar el sitio, recordar tus preferencias y mostrar anuncios a través de Google AdSense. Consulta nuestra Política de Cookies para más detalles.',
     cookieConsentAccept: 'Aceptar',
     cookieConsentDecline: 'Rechazar cookies no esenciales',
-    cookieConsentLearnMore: 'Más información',
+    cookieConsentLearnMore: 'Más información sobre las cookies',
     footerNews: 'Boletín Semanal',
     footerNewsText: 'Recibe consejos nutricionales prácticos cada semana.',
     footerEmailPlaceholder: 'Tu correo',

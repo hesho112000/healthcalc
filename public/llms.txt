@@ -1,15 +1,23 @@
 # HealthFingerprint
 
-HealthFingerprint provides free health and fitness calculators, personalized nutrition planning tools, food nutrition information, and educational articles.
+> Free health calculators, fitness tools, nutrition planning, and evidence-based health information.
+
+HealthFingerprint helps people explore health metrics, build meal and fitness plans, and browse nutrition information for dishes from around the world. The site provides educational tools and information, not medical diagnosis or treatment.
 
 ## Main pages
 
-- Home: https://healthfingerprint.com/
-- About and editorial approach: https://healthfingerprint.com/about
-- Food library: https://healthfingerprint.com/food-library
-- Health articles, recipes, and exercise guides: https://healthfingerprint.com/resources
-- Contact: https://healthfingerprint.com/contact
+- [Home](https://healthfingerprint.com/)
+- [Calculators and fitness tools](https://healthfingerprint.com/fitness)
+- [BMI calculator](https://healthfingerprint.com/bmi)
+- [BMR calculator](https://healthfingerprint.com/bmr)
+- [Calorie calculator](https://healthfingerprint.com/calories)
+- [Weight and fitness plan builder](https://healthfingerprint.com/weight-loss)
+- [Diabetes health tools](https://healthfingerprint.com/diabetes)
+- [Food Library](https://healthfingerprint.com/food-library)
+- [Health resources, articles, recipes, and exercise guides](https://healthfingerprint.com/resources)
+- [About HealthFingerprint](https://healthfingerprint.com/about)
+- [Contact](https://healthfingerprint.com/contact)
 
-## Scope and limitations
+## Important limitations
 
-Calculators and articles are for general education and planning. They do not diagnose, treat, or replace advice from a qualified healthcare professional. Nutrition values are estimates and may vary by recipe, ingredients, and serving size. For medical decisions, consult a clinician and the primary sources linked in each article.
+Calculators and articles are for general education and planning. They do not diagnose, treat, or replace advice from a qualified healthcare professional. Nutrition values are estimates and can vary by recipe, ingredients, and serving size. Consult a clinician for medical decisions.
