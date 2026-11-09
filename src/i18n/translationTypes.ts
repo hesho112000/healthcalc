@@ -296,6 +296,11 @@ export type TranslationKeys = {
   'trustsec.sources.title': string;
   'trustsec.sources.note': string;
   'trustsec.disclaimer': string;
+  'homeWidgets.title': string;
+  'homeWidgets.subtitle': string;
+  'homeWidgets.carouselLabel': string;
+  'homeWidgets.previous': string;
+  'homeWidgets.next': string;
   'fastingHub.eyebrow': string;
   'fastingHub.title': string;
   'fastingHub.subtitle': string;
@@ -311,6 +316,14 @@ export type TranslationKeys = {
   'homeBlog.title': string;
   'homeBlog.viewAll': string;
   'homeBlog.minRead': string;
+  'homeFood.eyebrow': string;
+  'homeFood.title': string;
+  'homeFood.subtitle': string;
+  'homeFood.viewAll': string;
+  'homeFood.perServing': string;
+  'homeDaily.eyebrow': string;
+  'homeDaily.title': string;
+  'homeDaily.more': string;
   'howItWorks.eyebrow': string;
   'howItWorks.title': string;
   'howItWorks.subtitle': string;

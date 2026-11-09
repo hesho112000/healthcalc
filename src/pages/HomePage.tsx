@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Activity, ArrowRight, Bean, BookOpen, CalendarDays, Check, CheckCircle2, ChevronDown, Cross, Droplet, Dumbbell, Filter, Flame, Footprints, HeartPulse, Hourglass, Languages, Leaf, Mars, Moon, RefreshCw, Ruler, Salad, Scale, ShieldCheck, Smartphone, Sparkles, Star, Target, Timer, TrendingDown, Users, UtensilsCrossed, Venus, Watch } from 'lucide-react';
+import { Activity, ArrowRight, Bean, BookOpen, CalendarDays, Check, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, Cross, Droplet, Dumbbell, Filter, Flame, Footprints, HeartPulse, Hourglass, Languages, Leaf, Mars, Moon, RefreshCw, Ruler, Salad, Scale, ShieldCheck, Smartphone, Sparkles, Star, Target, Timer, TrendingDown, Users, UtensilsCrossed, Venus, Watch } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import type { ArticleCategory } from '../data/articles';
 import { useLanguage } from '../context/LanguageContext';
@@ -123,6 +123,7 @@ const HomePage: React.FC = () => {
   const countLocale = localeFor(language);
   const fmtCount = (n: number): string => n.toLocaleString(countLocale);
   const kitchenSectionRef = useRef<HTMLElement | null>(null);
+  const widgetCarouselRef = useRef<HTMLDivElement | null>(null);
   const [kitchenData, setKitchenData] = useState<typeof import('../data/kitchens') | null>(null);
   useEffect(() => {
     const node = kitchenSectionRef.current;
@@ -148,10 +149,6 @@ const HomePage: React.FC = () => {
     [kitchenData]
   );
   const heroKitchen = countryKitchens[0];
-  const heroSamples = useMemo(() => {
-    if (!kitchenData || !countryKitchens[0]) return [];
-    return Array.from(new Set(countryKitchens[0].dishes.map((d) => kitchenData.getDishName(d, language)).filter(Boolean))).slice(0, 3);
-  }, [kitchenData, countryKitchens, language]);
 
   const [fastingEmail, setFastingEmail] = useState('');
   const [fastingJoined, setFastingJoined] = useState(false);
@@ -179,6 +176,24 @@ const HomePage: React.FC = () => {
     () => (articlesData ? [...articlesData.ARTICLES].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)).slice(0, 3) : []),
     [articlesData]
   );
+  const foodHighlights = useMemo(() => {
+    if (!kitchenData) return [];
+    return countryKitchens.flatMap((kitchen) => {
+      const dish = kitchen.sample ?? kitchen.dishes[0];
+      if (!dish) return [];
+      const name = kitchenData.getDishName(dish, language);
+      if (!name) return [];
+      return [{ kitchen, dish, name }];
+    }).slice(0, 4);
+  }, [kitchenData, countryKitchens, language]);
+
+  const scrollWidgetCarousel = (direction: -1 | 1) => {
+    const track = widgetCarouselRef.current;
+    if (!track) return;
+    const card = track.querySelector<HTMLElement>('.home-widget-card');
+    const distance = card ? card.offsetWidth + 16 : track.clientWidth * 0.8;
+    track.scrollBy({ left: direction * distance * (dir === 'rtl' ? -1 : 1), behavior: 'smooth' });
+  };
 
   const handleHeroGoalChange = (value: WizardGoalSelection) => {
     updateProfile({
@@ -361,40 +376,31 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section className="section-wrap section-tint" ref={kitchenSectionRef}>
+      <section className="section-wrap section-tint food-showcase-section" ref={kitchenSectionRef}>
         {kitchenData && heroKitchen ? (
           <>
             <div className="kitchen-head">
-              <span className="step-pill gold">{t('kitchensEyebrow')}</span>
-              <h2 className="kitchen-title">{countryKitchens.length} {t('kitchensTitleKitchens')}<span className="kitchen-title-dot">·</span>{fmtCount(kitchenData.totalDishesAll)} {t('kitchensTitleDishes')}</h2>
-              <p className="kitchen-sub">{t('kitchensSubtitle')}</p>
-              <Link to="/weight-loss" className="btn-primary">{t('kitchensViewAll')} <ArrowRight size={16} className="rtl:rotate-180" /></Link>
+              <span className="step-pill gold">{t('homeFood.eyebrow')}</span>
+              <h2 className="kitchen-title">{t('homeFood.title')}</h2>
+              <p className="kitchen-sub">{t('homeFood.subtitle').replace('{count}', fmtCount(kitchenData.totalDishesAll))}</p>
+              <Link to="/food-library" className="btn-primary">{t('homeFood.viewAll')} <ArrowRight size={16} className="rtl:rotate-180" /></Link>
             </div>
 
-            <div className="kitchen-bento">
-              <Link to="/weight-loss" className="kitchen-tile kitchen-tile-hero">
-                <span className="kitchen-flag-wrap"><Flag countryCode={heroKitchen.flag} alt={kitchenData.getKitchenCountry(heroKitchen, language)} className="h-10 w-14" /></span>
-                <span className="kitchen-featured-label">{t('kitchensFeatured')}</span>
-                <h3 className="kitchen-tile-name">{kitchenData.getKitchenName(heroKitchen, language)}</h3>
-                <p className="kitchen-tile-meta">{kitchenData.getKitchenCountry(heroKitchen, language)} · {fmtCount(heroKitchen.total)} {t('kitchensDishes')}</p>
-                <ul className="kitchen-samples">{heroSamples.map((s) => <li key={s}>{s}</li>)}</ul>
-                <span className="kitchen-cta">{t('kitchensExplore').replace('{kitchen}', kitchenData.getKitchenName(heroKitchen, language))} <ArrowRight size={16} className="rtl:rotate-180" /></span>
-              </Link>
-              {countryKitchens.slice(1, 4).map((k, i) => (
-                <Link to="/weight-loss" key={k.id} className={`kitchen-tile kitchen-tile-small${i === 2 ? ' kitchen-tile-wide' : ''}`}>
-                  <span className="kitchen-flag-wrap"><Flag countryCode={k.flag} alt={kitchenData.getKitchenCountry(k, language)} className="h-7 w-10" /></span>
-                  <h3 className="kitchen-tile-name small">{kitchenData.getKitchenName(k, language)}</h3>
-                  <p className="kitchen-tile-meta">{fmtCount(k.total)} {t('kitchensDishes')}</p>
+            <div className="home-food-grid">
+              {foodHighlights.map(({ kitchen, dish, name }, index) => (
+                <Link to="/food-library" key={kitchen.id} className={`home-food-card${index === 0 ? ' home-food-card--featured' : ''}`}>
+                  <span className="home-food-art" aria-hidden="true"><Salad size={index === 0 ? 48 : 36} strokeWidth={1.5} /></span>
+                  <span className="home-food-origin"><Flag countryCode={kitchen.flag} alt={kitchenData.getKitchenCountry(kitchen, language)} className="h-5 w-7" />{kitchenData.getKitchenName(kitchen, language)}</span>
+                  <h3>{name}</h3>
+                  <span className="home-food-calories">{fmtCount(Math.round(dish.cal_serv))} kcal <small>{t('homeFood.perServing')}</small></span>
+                  <span className="home-food-macros"><span>P <b>{fmtCount(Math.round(dish.p))}g</b></span><span>C <b>{fmtCount(Math.round(dish.c))}g</b></span><span>F <b>{fmtCount(Math.round(dish.f))}g</b></span></span>
                 </Link>
               ))}
             </div>
           </>
         ) : (
-          <div className="kitchen-bento kitchen-bento-loading" aria-hidden="true">
-            <div className="kitchen-tile kitchen-tile-hero" />
-            <div className="kitchen-tile kitchen-tile-small" />
-            <div className="kitchen-tile kitchen-tile-small" />
-            <div className="kitchen-tile kitchen-tile-small kitchen-tile-wide" />
+          <div className="home-food-grid home-food-grid--loading" aria-hidden="true">
+            <div className="home-food-card" /><div className="home-food-card" /><div className="home-food-card" /><div className="home-food-card" />
           </div>
         )}
       </section>
@@ -416,13 +422,17 @@ const HomePage: React.FC = () => {
       <section className="section-wrap trustsec-section">
         <div className="trustsec-head">
           <span className="step-pill gold">{t('trustsec.eyebrow')}</span>
-          <h2 className="trustsec-title">{t('trustsec.title')}</h2>
-          <p className="trustsec-sub">{t('trustsec.subtitle')}</p>
+          <h2 className="trustsec-title">{t('homeWidgets.title')}</h2>
+          <p className="trustsec-sub">{t('homeWidgets.subtitle')}</p>
+          <div className="home-widget-controls" aria-label={t('homeWidgets.carouselLabel')}>
+            <button type="button" onClick={() => scrollWidgetCarousel(-1)} aria-label={t('homeWidgets.previous')}><ChevronLeft size={19} /></button>
+            <button type="button" onClick={() => scrollWidgetCarousel(1)} aria-label={t('homeWidgets.next')}><ChevronRight size={19} /></button>
+          </div>
         </div>
 
-        <div className="trustsec-grid">
-          {trustSignals.map(({ icon: Icon, value, decimals, suffix, labelKey }) => (
-            <div className="trustsec-card" key={labelKey}>
+        <div className="home-widget-track no-scrollbar" ref={widgetCarouselRef} role="region" aria-label={t('homeWidgets.carouselLabel')} tabIndex={0}>
+          {trustSignals.map(({ icon: Icon, value, decimals, suffix, labelKey }, index) => (
+            <div className="trustsec-card home-widget-card" key={labelKey} role="group" aria-roledescription="slide" aria-label={`${index + 1} / ${trustSignals.length}`}>
               <span className="trustsec-icon"><Icon size={24} strokeWidth={2.5} /></span>
               <span className="trustsec-num"><TrustCountUp value={value} decimals={decimals} suffix={suffix} locale={countLocale} /></span>
               <span className="trustsec-label">{t(labelKey)}</span>
@@ -487,35 +497,46 @@ const HomePage: React.FC = () => {
 
       <section className="section-wrap" ref={blogSectionRef}>
         <div className="trustsec-head">
-          <span className="step-pill gold">{t('homeBlog.eyebrow')}</span>
-          <h2 className="trustsec-title">{t('homeBlog.title')}</h2>
+          <span className="step-pill gold">{t('homeDaily.eyebrow')}</span>
+          <h2 className="trustsec-title">{t('homeDaily.title')}</h2>
         </div>
-        {articlesData ? (
-          <div className="blog-grid">
-            {latestArticles.map((article) => {
+        {articlesData && latestArticles.length > 0 ? (
+          <div className="home-daily-layout">
+            {(() => {
+              const article = latestArticles[0];
               const CategoryIcon = CATEGORY_ICON[article.category];
               return (
-                <Link to={`/resources/article/${article.slug}`} className="blog-card" key={article.id}>
-                  <span className="blog-thumb"><CategoryIcon size={26} strokeWidth={2} /></span>
+                <Link to={`/resources/article/${article.slug}`} className="home-daily-feature">
+                  <span className="home-daily-feature-icon"><CategoryIcon size={28} strokeWidth={1.8} /></span>
                   <span className="blog-cat">{t(`article.category.${article.category}` as any)}</span>
-                  <h3 className="blog-title">{articlesData.lt(article.title, language)}</h3>
-                  <p className="blog-excerpt">{articlesData.lt(article.excerpt, language)}</p>
-                  <span className="blog-meta">{article.readTime} {t('homeBlog.minRead')}</span>
+                  <h3>{articlesData.lt(article.title, language)}</h3>
+                  <p>{articlesData.lt(article.excerpt, language)}</p>
+                  <span className="home-daily-date">{new Date(`${article.publishedAt}T00:00:00`).toLocaleDateString(countLocale, { year: 'numeric', month: 'long', day: 'numeric' })} <span>·</span> {article.readTime} {t('homeBlog.minRead')}</span>
                   <span className="blog-more">{t('common.readMore')} <ArrowRight size={15} className="rtl:rotate-180" /></span>
                 </Link>
               );
-            })}
+            })()}
+            <div className="home-daily-more">
+              <h3>{t('homeDaily.more')}</h3>
+              {latestArticles.slice(1).map((article) => {
+                const CategoryIcon = CATEGORY_ICON[article.category];
+                return (
+                  <Link to={`/resources/article/${article.slug}`} className="home-daily-link" key={article.id}>
+                    <span className="home-daily-link-icon"><CategoryIcon size={19} /></span>
+                    <span><small>{t(`article.category.${article.category}` as any)}</small><b>{articlesData.lt(article.title, language)}</b><small>{article.readTime} {t('homeBlog.minRead')}</small></span>
+                    <ArrowRight size={16} className="rtl:rotate-180" />
+                  </Link>
+                );
+              })}
+              <Link to="/resources" className="home-daily-all">{t('homeBlog.viewAll')} <ArrowRight size={15} className="rtl:rotate-180" /></Link>
+            </div>
           </div>
         ) : (
-          <div className="blog-grid" aria-hidden="true">
-            <div className="blog-card blog-card-skeleton" />
-            <div className="blog-card blog-card-skeleton" />
-            <div className="blog-card blog-card-skeleton" />
+          <div className="home-daily-layout" aria-hidden="true">
+            <div className="home-daily-feature blog-card-skeleton" />
+            <div className="home-daily-more blog-card-skeleton" />
           </div>
         )}
-        <div className="blog-cta">
-          <Link to="/resources" className="btn-primary">{t('homeBlog.viewAll')} <ArrowRight size={16} className="rtl:rotate-180" /></Link>
-        </div>
       </section>
 
       <section className="section-wrap">

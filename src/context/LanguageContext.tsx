@@ -16,8 +16,7 @@ function readTranslation(dictionary: TranslationKeys | null, key: keyof Translat
   return undefined;
 }
 
-const loadLocale: Record<Language, () => Promise<TranslationKeys>> = {
-  en: () => import('../i18n/locales/en').then((module) => module.default),
+const loadLocale: Record<Exclude<Language, 'en'>, () => Promise<TranslationKeys>> = {
   fr: () => import('../i18n/locales/fr').then((module) => module.default),
   es: () => import('../i18n/locales/es').then((module) => module.default),
   ar: () => import('../i18n/locales/ar').then((module) => module.default),

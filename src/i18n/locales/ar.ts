@@ -2,6 +2,19 @@ import { ENABLE_PREMIUM } from '../../config/featureFlags';
 import type { TranslationKeys } from '../translationTypes';
 
 const ar: TranslationKeys = {
+    'homeWidgets.title': 'صورة أوضح لتقدمك',
+    'homeWidgets.subtitle': 'مجتمعنا المتنامي يثق بنا في رحلته نحو صحة أفضل.',
+    'homeWidgets.carouselLabel': 'مؤشرات الصحة',
+    'homeWidgets.previous': 'المؤشرات السابقة',
+    'homeWidgets.next': 'المؤشرات التالية',
+    'homeFood.eyebrow': 'مكتبة الطعام',
+    'homeFood.title': 'أطباق شهية من حول العالم.',
+    'homeFood.subtitle': 'استكشف {count} طبقًا مع معلومات غذائية واضحة مستوحاة من مطابخ العالم.',
+    'homeFood.viewAll': 'استكشف مكتبة الطعام',
+    'homeFood.perServing': 'لكل حصة',
+    'homeDaily.eyebrow': 'قراءتك اليومية',
+    'homeDaily.title': 'معلومة اليوم الصحية',
+    'homeDaily.more': 'المزيد للاستكشاف',
     'kitchen.eastern-european.name': 'المطبخ الأوروبي الشرقي',
     'kitchen.eastern-european.description': 'بولندا وروسيا والتشيك والمجر',
     'kitchen.mexican.name': 'المطبخ المكسيكي',
