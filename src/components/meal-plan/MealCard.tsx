@@ -83,7 +83,7 @@ const MealCard: FC<MealCardProps> = ({
   return (
     <article className={`mb-4 min-w-0 rounded-3xl border border-gray-100 bg-white p-3.5 shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all duration-200 ease-out touch-manipulation sm:p-5 sm:hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] ${isExpanded ? 'border-gray-200' : ''}`}>
       <div className="flex min-w-0 items-center gap-3 sm:gap-4">
-        <div className={`relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-[20px] bg-gray-50 ${iconClass}`}>
+        <div className={`relative flex aspect-square h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-[20px] bg-gray-50 ${iconClass}`}>
           {imageUrl ? (
             <img
               src={imageUrl}
@@ -92,7 +92,7 @@ const MealCard: FC<MealCardProps> = ({
               height={200}
               loading="lazy"
               decoding="async"
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0 aspect-square h-full w-full object-cover"
               onError={() => setFailedImageUrl(imageUrl)}
             />
           ) : (

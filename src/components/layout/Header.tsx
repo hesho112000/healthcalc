@@ -99,7 +99,7 @@ const Header: React.FC = () => {
       <header className="app-header" dir={dir}>
         <div className="app-header-inner">
           <div className="flex items-center gap-3">
-          <Link to="/" className="app-header-logo">
+          <Link to="/" className="app-header-logo" aria-label={`${t('brandName')} home`}>
             <span className="app-header-logo-icon">
               <Leaf size={20} />
             </span>
@@ -246,7 +246,7 @@ const Header: React.FC = () => {
 
         <div className={`app-header-drawer${mobileOpen ? ' open' : ''}`}>
           <div className="app-header-drawer-head">
-            <Link to="/" className="app-header-logo" onClick={() => setMobileOpen(false)}>
+            <Link to="/" className="app-header-logo" aria-label={`${t('brandName')} home`} onClick={() => setMobileOpen(false)}>
               <span className="app-header-logo-icon">
                 <Leaf size={20} />
               </span>

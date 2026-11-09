@@ -298,11 +298,13 @@ const HomePage: React.FC = () => {
             <h1>Know Your Macros.<br />Eat What You <em>Love.</em></h1>
             <p className="hh-preview__subhead">Calculate your daily calories, explore 18,000+ global dishes, and get personalized meal plans in seconds.</p>
             <img
-              className="mt-6 h-40 w-full max-w-[430px] rounded-2xl object-cover object-center shadow-md"
-              src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+              className="mt-6 aspect-[2/1] w-full max-w-[430px] rounded-2xl object-cover object-center shadow-md"
+              src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&fit=crop&w=800&h=400&fm=webp&q=80"
               alt="A colorful, healthy meal bowl with fresh vegetables"
-              width={860}
+              width={800}
               height={400}
+              loading="eager"
+              decoding="async"
               fetchPriority="high"
             />
             <div className="hh-preview__proof" aria-label="Platform highlights">

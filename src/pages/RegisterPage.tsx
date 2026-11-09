@@ -293,7 +293,7 @@ const RegisterPage: React.FC = () => {
           <div className="mt-4 text-center">
             <p className="text-sm text-gray-500">
               {t('authAlreadyHave')}{' '}
-              <Link to="/login" className="text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+              <Link to="/login" className="text-primary-700 font-semibold hover:text-primary-800 transition-colors">
                 {t('authSignIn')}
               </Link>
             </p>

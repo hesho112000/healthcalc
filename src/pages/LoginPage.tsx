@@ -188,7 +188,7 @@ const LoginPage: React.FC = () => {
                   className="input-field"
                   style={{ direction: 'ltr' }} name="login-phone"
                 />
-                <p className="text-[11px] text-gray-400 mt-1">{t('auth.enterPhone')}</p>
+                <p className="text-[11px] text-gray-600 mt-1">{t('auth.enterPhone')}</p>
               </div>
 
               <button type="submit" disabled={loading} className="btn-primary w-full py-3.5">
@@ -240,7 +240,7 @@ const LoginPage: React.FC = () => {
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-200" />
               </div>
-              <span className="relative px-3 bg-white text-xs font-semibold text-gray-400">{t('auth.orContinueWith')}</span>
+              <span className="relative px-3 bg-white text-xs font-semibold text-gray-600">{t('auth.orContinueWith')}</span>
             </div>
 
             <button
@@ -257,7 +257,7 @@ const LoginPage: React.FC = () => {
           <div className="mt-4 text-center">
             <p className="text-sm text-gray-500">
               {t('authNoAccount')}{' '}
-              <Link to="/register" className="text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+              <Link to="/register" className="text-primary-700 font-semibold hover:text-primary-800 transition-colors">
                 {t('authCreateOne')}
               </Link>
             </p>

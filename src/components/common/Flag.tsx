@@ -54,7 +54,7 @@ const Flag: React.FC<FlagProps> = ({ countryCode, alt, className = '' }) => {
       height={30}
       loading="lazy"
       decoding="async"
-      className={`inline-block h-6 w-8 align-middle object-contain ${className}`.trim()}
+      className={`inline-block aspect-[4/3] h-6 w-8 align-middle object-contain ${className}`.trim()}
     />
   );
 };

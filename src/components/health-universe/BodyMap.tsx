@@ -90,7 +90,9 @@ const BodyMap: React.FC<BodyMapProps> = ({ selectedConditions = [], interactive 
         <img
           src={BODY_MAP_SRC}
           alt={t('universe.title')}
-          className="w-full h-auto select-none mix-blend-multiply"
+          width={1344}
+          height={1792}
+          className="aspect-[3/4] w-full h-auto select-none mix-blend-multiply"
           loading="lazy"
           decoding="async"
           draggable={false}

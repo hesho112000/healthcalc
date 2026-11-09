@@ -81,7 +81,7 @@ const ContactUs: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-gray-900">{t('contactInfoWebsite')}</p>
-                    <a href="https://healthfingerprint.com" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-primary-600 transition-colors">www.healthfingerprint.com</a>
+            <a href="https://healthfingerprint.com" target="_blank" rel="noopener noreferrer" aria-label="Visit the Health Fingerprint website" className="text-sm text-gray-500 hover:text-primary-600 transition-colors">www.healthfingerprint.com</a>
                   </div>
                 </div>
 

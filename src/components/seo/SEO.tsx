@@ -14,6 +14,7 @@ interface SEOProps {
 
 const BASE_URL = (import.meta.env.VITE_SITE_URL || 'https://healthfingerprint.com').replace(/\/+$/, '');
 const DEFAULT_IMAGE = `${BASE_URL}/assets/og-image.png`;
+const FALLBACK_DESCRIPTION = 'Free health calculators, personalized meal plans, nutrition facts for 18,000+ dishes, and evidence-based health guides.';
 
 const LANGUAGES: Array<{ lang: string; label: string }> = [
   { lang: 'en', label: 'English' },
@@ -63,18 +64,19 @@ const SEO: React.FC<SEOProps> = ({
   canonicalUrl.search = '';
   canonicalUrl.hash = '';
   const currentLocale = locale || language || 'en';
+  const metaDescription = description?.trim() || FALLBACK_DESCRIPTION;
 
   return (
     <Helmet>
       <title>{fullTitle}</title>
-      <meta name="description" content={description} />
+      <meta name="description" content={metaDescription} />
       {keywords && <meta name="keywords" content={keywords} />}
       <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
       <link rel="canonical" href={canonicalUrl.toString()} />
 
       <meta property="og:type" content={type} />
       <meta property="og:title" content={fullTitle} />
-      <meta property="og:description" content={description} />
+      <meta property="og:description" content={metaDescription} />
       <meta property="og:image" content={image} />
       <meta property="og:url" content={canonicalUrl.toString()} />
       <meta property="og:site_name" content="Health Fingerprint" />
@@ -82,7 +84,7 @@ const SEO: React.FC<SEOProps> = ({
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:description" content={metaDescription} />
       <meta name="twitter:image" content={image} />
 
       {LANGUAGES.map(({ lang, label }) => (

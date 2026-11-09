@@ -107,7 +107,7 @@ const breadcrumbs = (label) => `<nav aria-label="Breadcrumb" style="${NAV_STYLE}
 const renderHome = ({ articles }) => `<main style="${PAGE_STYLE}">
   <h1 style="${H1_STYLE}">Health Fingerprint: Free Health Calculators and Personalized Care Plans</h1>
   <p style="font-size:1.1rem;color:#4A5A55;margin:0 0 16px;">Health Fingerprint helps you understand your body with free, evidence-based calculators, personalized meal plans, and practical nutrition information. Use the tools below to estimate your needs, then explore our health library for guidance you can act on.</p>
-  <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="A colorful, healthy meal bowl with fresh vegetables" width="1200" height="800" loading="eager" style="display:block;width:100%;max-width:680px;height:auto;max-height:320px;object-fit:cover;object-position:center;border-radius:16px;margin:20px 0 28px;">
+  <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&amp;fit=crop&amp;w=800&amp;h=400&amp;fm=webp&amp;q=80" alt="A colorful, healthy meal bowl with fresh vegetables" width="800" height="400" loading="eager" decoding="async" style="display:block;width:100%;max-width:680px;height:auto;aspect-ratio:2/1;object-fit:cover;object-position:center;border-radius:16px;margin:20px 0 28px;">
 
   <h2 style="${H2_STYLE}">Free Health Calculators</h2>
   <ul style="${LIST_STYLE}">
@@ -362,7 +362,7 @@ const exerciseJsonLd = (guide) => ({
 
 const applyHead = (html, meta) => {
   const tags = [
-    `<meta name="description" content="${escapeAttr(meta.description)}" data-prerender="true">`,
+    `<meta name="description" content="${escapeAttr(meta.description)}" data-prerender="true" data-rh="true">`,
     `<link rel="canonical" href="${escapeAttr(meta.canonical)}" data-prerender="true">`,
     `<meta property="og:title" content="${escapeAttr(meta.title)}" data-prerender="true">`,
     `<meta property="og:description" content="${escapeAttr(meta.description)}" data-prerender="true">`,
@@ -382,6 +382,7 @@ const applyHead = (html, meta) => {
   return html
     .replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(meta.title)}</title>`)
     .replace(/<meta[^>]*data-prerender="true"[^>]*>\s*/gi, '')
+    .replace(/<meta\b(?=[^>]*\bname=["']description["'])[^>]*>\s*/gi, '')
     .replace(/<link[^>]*data-prerender="true"[^>]*>\s*/gi, '')
     .replace(/<script[^>]*data-prerender="true"[^>]*>[\s\S]*?<\/script>\s*/gi, '')
     .replace('</head>', `    ${tags.join('\n    ')}\n  </head>`);
@@ -522,9 +523,64 @@ const buildPrerenderedPages = async () => {
       description: 'Calculate your BMI, BMR, TDEE, and VO2 Max instantly with evidence-based formulas.',
     },
     {
+      route: '/weight-loss',
+      title: 'Weight & Fitness Plan Builder | Health Fingerprint',
+      description: 'Build a personalized weight loss and fitness plan tailored to your goals, activity, and favorite cuisines.',
+    },
+    {
+      route: '/diabetes',
+      title: 'Diabetes Management | Health Fingerprint',
+      description: 'Review diabetes-related lab results and build practical meal and workout plans to support your health.',
+    },
+    {
+      route: '/workout-plan',
+      title: 'Workout Plan Builder | Health Fingerprint',
+      description: 'Create a personalized weekly workout plan based on your goals, experience, available equipment, and schedule.',
+    },
+    {
+      route: '/smartwatch-sync',
+      title: 'Smartwatch Health Sync | Health Fingerprint',
+      description: 'Connect health data from a compatible smartwatch to review activity, hydration, and wellness trends.',
+    },
+    {
       route: '/about',
       title: 'About Us | Health Fingerprint',
       description: "Learn about Health Fingerprint's mission to make evidence-based health guidance accessible to everyone.",
+    },
+    {
+      route: '/login',
+      title: 'Login | Health Fingerprint',
+      description: 'Sign in to access your personalized health plan.',
+    },
+    {
+      route: '/register',
+      title: 'Sign Up | Health Fingerprint',
+      description: 'Create a free account to start your health journey.',
+    },
+    {
+      route: '/contact',
+      title: 'Contact Us | Health Fingerprint',
+      description: 'Get in touch with the Health Fingerprint team.',
+    },
+    {
+      route: '/privacy',
+      title: 'Privacy Policy | Health Fingerprint',
+      description: 'Learn how Health Fingerprint protects your personal and health data.',
+    },
+    {
+      route: '/terms',
+      title: 'Terms of Service | Health Fingerprint',
+      description: 'Review the terms and conditions for using Health Fingerprint.',
+    },
+    {
+      route: '/cookies',
+      title: 'Cookie Policy | Health Fingerprint',
+      description: 'Learn how Health Fingerprint uses cookies and how you can manage them.',
+    },
+    {
+      route: '/disclaimer',
+      title: 'Medical Disclaimer | Health Fingerprint',
+      description: 'Important information about the educational nature of Health Fingerprint content.',
     },
     ...(await readDishSeoData()).map((dish) => ({
       route: `/food-library/${dish.id}`,

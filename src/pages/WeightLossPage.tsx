@@ -2581,7 +2581,7 @@ const WeightLossPage: React.FC = () => {
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:680px;background-color:#ffffff;border:1px solid #E2EAE6;border-radius:12px;overflow:hidden;">
           <tr>
             <td style="background-color:#0F4C3A;padding:26px 28px;text-align:center;">
-              <img src="${logoUrl}" alt="HealthFingerprint" width="56" height="56" style="display:block;margin:0 auto 12px;border:0;border-radius:12px;" />
+              <img src="${logoUrl}" alt="HealthFingerprint" width="56" height="56" style="display:block;aspect-ratio:1;margin:0 auto 12px;border:0;border-radius:12px;" />
               <h1 style="margin:0;font-size:24px;line-height:1.3;color:#ffffff;font-weight:700;">Your 7-Day Meal Plan</h1>
               <p style="margin:6px 0 0;font-size:13px;line-height:1.4;color:#D7E8E0;">HealthFingerprint</p>
             </td>
