@@ -360,7 +360,27 @@ const exerciseJsonLd = (guide) => ({
   })),
 });
 
+const TRANSLATION_KEY_PATTERN = /^[a-z][\w-]*(?:\.[\w-]+)+$/i;
+
+/**
+ * Fails the build if a route's metadata still contains a raw translation key
+ * (for example `seo.home.title`) or an empty value. This keeps unresolved
+ * i18n keys out of prerendered titles and descriptions.
+ */
+const assertResolvedMeta = (meta) => {
+  for (const field of ['title', 'description']) {
+    const raw = meta[field];
+    const value = typeof raw === 'string' ? raw.trim() : '';
+    if (!value || TRANSLATION_KEY_PATTERN.test(value)) {
+      throw new Error(
+        `Refusing to prerender ${meta.route ?? 'unknown route'}: unresolved ${field} (${JSON.stringify(raw)}).`,
+      );
+    }
+  }
+};
+
 const applyHead = (html, meta) => {
+  assertResolvedMeta(meta);
   const tags = [
     `<meta name="description" content="${escapeAttr(meta.description)}" data-prerender="true" data-rh="true">`,
     `<link rel="canonical" href="${escapeAttr(meta.canonical)}" data-prerender="true">`,
@@ -592,6 +612,7 @@ const buildPrerenderedPages = async () => {
     route,
     body: '',
     meta: {
+      route,
       title,
       description,
       canonical: `${SITE_BASE}${route}`,

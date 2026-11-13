@@ -11,8 +11,13 @@ const SUPPORTED: Language[] = ['en', 'fr', 'es', 'ar', 'hi', 'de'];
  */
 function readTranslation(dictionary: TranslationKeys | null, key: keyof TranslationKeys): string | undefined {
   const value = dictionary?.[key];
-  if (typeof value === 'string') return value;
-  if (value && typeof value === 'object' && typeof value.title === 'string') return value.title;
+  // A value identical to its key means the dictionary leaked the raw key
+  // (for example `seo.home.title`). Treat it as missing so the English
+  // fallback is used instead of rendering the key in the UI or page title.
+  if (typeof value === 'string') return value === key ? undefined : value;
+  if (value && typeof value === 'object' && typeof value.title === 'string') {
+    return value.title === key ? undefined : value.title;
+  }
   return undefined;
 }
 

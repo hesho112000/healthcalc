@@ -14,7 +14,27 @@ interface SEOProps {
 
 const BASE_URL = (import.meta.env.VITE_SITE_URL || 'https://healthfingerprint.com').replace(/\/+$/, '');
 const DEFAULT_IMAGE = `${BASE_URL}/assets/og-image.png`;
+const SITE_NAME = 'Health Fingerprint';
+const DEFAULT_TITLE = 'Free Health Calculators & Personalized Care Plans';
 const FALLBACK_DESCRIPTION = 'Free health calculators, personalized meal plans, nutrition facts for 18,000+ dishes, and evidence-based health guides.';
+// Matches raw translation keys such as `seo.home.title`.
+const TRANSLATION_KEY_PATTERN = /^[a-z][\w-]*(?:\.[\w-]+)+$/i;
+
+/**
+ * Guards metadata against untranslated dictionary keys and blank values.
+ * A raw key must never reach <title>, og:title, twitter:title, or the meta
+ * description, so an unresolved value falls back to readable English copy.
+ */
+const resolveSeoText = (value: string | undefined, fallback: string): string => {
+  const text = value?.trim() ?? '';
+  if (!text || TRANSLATION_KEY_PATTERN.test(text)) {
+    if (import.meta.env.DEV) {
+      console.warn(`[seo] Replaced unresolved metadata value "${text || '(empty)'}" with a fallback.`);
+    }
+    return fallback;
+  }
+  return text;
+};
 
 const LANGUAGES: Array<{ lang: string; label: string }> = [
   { lang: 'en', label: 'English' },
@@ -47,7 +67,8 @@ const SEO: React.FC<SEOProps> = ({
   noindex = false,
 }) => {
   const { language } = useLanguage();
-  const fullTitle = `${title} | Health Fingerprint`;
+  const resolvedTitle = resolveSeoText(title, DEFAULT_TITLE);
+  const fullTitle = resolvedTitle.endsWith(`| ${SITE_NAME}`) ? resolvedTitle : `${resolvedTitle} | ${SITE_NAME}`;
   const pageUrl = new URL(url ?? '/', BASE_URL);
   // Every locale gets its own path-based URL: /<lang>/<path>. These are the
   // indexable addresses advertised through hreflang; the app redirects them to
@@ -64,7 +85,7 @@ const SEO: React.FC<SEOProps> = ({
   canonicalUrl.search = '';
   canonicalUrl.hash = '';
   const currentLocale = locale || language || 'en';
-  const metaDescription = description?.trim() || FALLBACK_DESCRIPTION;
+  const metaDescription = resolveSeoText(description, FALLBACK_DESCRIPTION);
 
   return (
     <Helmet>
