@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { supabaseClient as supabase } from '../lib/supabaseClient';
+import { getSupabaseClient } from '../lib/supabaseClient';
 import DishCard, { isValidDish, type Dish } from '../components/food/DishCard';
 import SEO from '../components/seo/SEO';
 
@@ -33,6 +33,7 @@ export default function FoodLibraryPage() {
       setLoading(true);
       setError(null);
       try {
+        const supabase = await getSupabaseClient();
         if (!supabase) throw new Error('Supabase client is not configured');
 
         let builder = supabase

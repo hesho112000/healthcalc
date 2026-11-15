@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { supabaseClient, hasSupabaseConfig } from '../lib/supabaseClient';
+import { getSupabaseClient, hasSupabaseConfig } from '../lib/supabaseClient';
 import type { KitchenDish, KitchenInfo } from '../data/kitchens';
 import { isAuthenticForKitchen, KITCHEN_REGION_FAMILIES } from '../utils/kitchenAuthenticity';
 import { KITCHEN_ID_ALIAS } from './useKitchenDishCounts';
@@ -83,9 +83,11 @@ function loadAllDishes(): Promise<DishRow[]> {
   if (!dishesCache) {
     dishesCache = (async () => {
       if (!hasSupabaseConfig()) return [];
+      const client = await getSupabaseClient();
+      if (!client) return [];
       const out: DishRow[] = [];
       for (let from = 0; ; from += PAGE) {
-        const { data, error } = await supabaseClient!
+        const { data, error } = await client
           .from('dishes')
           .select('*')
           .order('name_ar', { ascending: true })

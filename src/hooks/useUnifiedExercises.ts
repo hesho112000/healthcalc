@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { UNIFIED_EXERCISES } from '../data/exercises/unified';
 import type { ExerciseDifficulty, ExerciseType, MuscleGroup } from '../data/exercises/types';
 import type { UnifiedEquipment, UnifiedExercise } from '../data/exercises/unified';
-import { supabaseClient } from '../lib/supabaseClient';
+import { getSupabaseClient, hasSupabaseConfig } from '../lib/supabaseClient';
 
 type ExerciseRow = Record<string, unknown>;
 
@@ -69,16 +69,16 @@ export interface UseUnifiedExercisesResult {
 
 export function useUnifiedExercises(): UseUnifiedExercisesResult {
   const [exercises, setExercises] = useState<UnifiedExercise[]>(UNIFIED_EXERCISES);
-  const [loading, setLoading] = useState(!!supabaseClient);
+  const [loading, setLoading] = useState(hasSupabaseConfig());
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const client = supabaseClient;
-    if (!client) return;
     let cancelled = false;
 
     const load = async () => {
       try {
+        const client = await getSupabaseClient();
+        if (!client || cancelled) return;
         const rows: ExerciseRow[] = [];
         for (let from = 0; ; from += 1000) {
           const { data, error: queryError } = await client

@@ -1,8 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    './index.html',
+    // Only classes that appear in these files are emitted; everything else in
+    // Tailwind's utility set is purged from the production stylesheet.
+    './src/**/*.{html,js,jsx,ts,tsx}',
   ],
   theme: {
     extend: {

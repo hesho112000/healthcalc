@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
-import { supabase } from '../lib/supabase';
+import { getSupabase } from '../lib/supabase';
 import type { Session, User as SupabaseUser } from '@supabase/supabase-js';
 import { clearLocalHealthDataStorage, ensureLocalHealthDataOwner } from '../utils/localHealthStorage';
 
@@ -41,6 +41,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const buildAuthUser = async (supabaseUser: SupabaseUser): Promise<AuthUser> => {
+  const supabase = await getSupabase();
   let name: string | null = null;
   const metaName = supabaseUser.user_metadata?.name ?? supabaseUser.user_metadata?.full_name;
   if (typeof metaName === 'string' && metaName.trim()) name = metaName.trim();
@@ -93,6 +94,7 @@ const buildAuthUser = async (supabaseUser: SupabaseUser): Promise<AuthUser> => {
 
 const ensureProfile = async (id: string, name: string | null): Promise<void> => {
   try {
+    const supabase = await getSupabase();
     const { data } = await supabase.from('profiles').select('id').eq('id', id).maybeSingle();
     if (data) return;
     await supabase
@@ -110,9 +112,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   useEffect(() => {
     let mounted = true;
+    let unsubscribe: (() => void) | undefined;
 
     const init = async () => {
       try {
+        const supabase = await getSupabase();
+        if (!mounted) return;
         const { data } = await supabase.auth.getSession();
         if (!mounted) return;
         ensureLocalHealthDataOwner(data.session?.user.id ?? null);
@@ -124,6 +129,32 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         } else if (mounted) {
           setUser(null);
         }
+
+        const { data: authListener } = supabase.auth.onAuthStateChange(async (event, nextSession) => {
+          if (!mounted) return;
+          if (event === 'SIGNED_IN' || event === 'SIGNED_OUT') setLoading(true);
+          if (nextSession?.user) {
+            ensureLocalHealthDataOwner(nextSession.user.id);
+          } else if (event === 'SIGNED_OUT') {
+            clearLocalHealthDataStorage(null);
+          } else if (event === 'INITIAL_SESSION') {
+            ensureLocalHealthDataOwner(null);
+          }
+          setSession(nextSession);
+          if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED' || event === 'USER_UPDATED' || event === 'INITIAL_SESSION') {
+            if (nextSession?.user) {
+              const built = await buildAuthUser(nextSession.user);
+              if (mounted) setUser(built);
+              void ensureProfile(nextSession.user.id, built.name);
+            }
+          } else if (event === 'SIGNED_OUT') {
+            setUser(null);
+            setSession(null);
+          }
+          if (mounted) setLoading(false);
+        });
+
+        unsubscribe = () => authListener.subscription.unsubscribe();
       } catch {
         if (mounted) {
           ensureLocalHealthDataOwner(null);
@@ -136,37 +167,14 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     };
     void init();
 
-    const { data: authListener } = supabase.auth.onAuthStateChange(async (event, nextSession) => {
-      if (!mounted) return;
-      if (event === 'SIGNED_IN' || event === 'SIGNED_OUT') setLoading(true);
-      if (nextSession?.user) {
-        ensureLocalHealthDataOwner(nextSession.user.id);
-      } else if (event === 'SIGNED_OUT') {
-        clearLocalHealthDataStorage(null);
-      } else if (event === 'INITIAL_SESSION') {
-        ensureLocalHealthDataOwner(null);
-      }
-      setSession(nextSession);
-      if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED' || event === 'USER_UPDATED' || event === 'INITIAL_SESSION') {
-        if (nextSession?.user) {
-          const built = await buildAuthUser(nextSession.user);
-          if (mounted) setUser(built);
-          void ensureProfile(nextSession.user.id, built.name);
-        }
-      } else if (event === 'SIGNED_OUT') {
-        setUser(null);
-        setSession(null);
-      }
-      if (mounted) setLoading(false);
-    });
-
     return () => {
       mounted = false;
-      authListener.subscription.unsubscribe();
+      unsubscribe?.();
     };
   }, []);
 
   const signIn = useCallback(async (email: string, password: string) => {
+    const supabase = await getSupabase();
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) throw error;
     ensureLocalHealthDataOwner(data.user?.id ?? null);
@@ -177,6 +185,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }, []);
 
   const signUp = useCallback(async (name: string, email: string, password: string) => {
+    const supabase = await getSupabase();
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
@@ -194,6 +203,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const signOut = useCallback(async () => {
     setLoading(true);
     try {
+      const supabase = await getSupabase();
       await supabase.auth.signOut();
     } finally {
       clearLocalHealthDataStorage(null);
@@ -204,6 +214,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }, []);
 
   const signInWithGoogle = useCallback(async () => {
+    const supabase = await getSupabase();
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
@@ -214,11 +225,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }, []);
 
   const signInWithPhone = useCallback(async (phone: string) => {
+    const supabase = await getSupabase();
     const { error } = await supabase.auth.signInWithOtp({ phone });
     if (error) throw error;
   }, []);
 
   const verifyOtp = useCallback(async (phone: string, token: string) => {
+    const supabase = await getSupabase();
     const { data, error } = await supabase.auth.verifyOtp({ phone, token, type: 'sms' });
     if (error) throw error;
     ensureLocalHealthDataOwner(data.user?.id ?? null);

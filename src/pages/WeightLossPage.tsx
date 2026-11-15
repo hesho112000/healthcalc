@@ -19,7 +19,7 @@ import { useUserProfile, WIZARD_DRAFT_STORAGE_KEY, WIZARD_STEP_STORAGE_KEY, type
 import { generateWeeklyPlan, MEAL_ORDER as PLAN_MEAL_ORDER } from '../utils/mealPlanGenerator';
 import type { PlanDay, PlanDish, PlanMealType } from '../utils/mealPlanGenerator';
 import { printMealPlanPdf } from '../utils/pdfGenerator';
-import { supabaseClient } from '../lib/supabaseClient';
+import { getSupabaseClient } from '../lib/supabaseClient';
 import emailjs from '@emailjs/browser';
 
 const FALLBACK_KITCHEN: KitchenInfo = {
@@ -2473,9 +2473,10 @@ const WeightLossPage: React.FC = () => {
     setEmailSending(true);
 
     try {
-      if (supabaseClient) {
+      const client = await getSupabaseClient();
+      if (client) {
         try {
-          await supabaseClient.from('subscribers').upsert(
+          await client.from('subscribers').upsert(
             { email: email, source: 'Meal Plan' },
             { onConflict: 'email', ignoreDuplicates: true }
           );

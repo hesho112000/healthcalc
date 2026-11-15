@@ -1,4 +1,4 @@
-import { supabase } from '../lib/supabase';
+import { getSupabase } from '../lib/supabase';
 import type { PostgrestError } from '@supabase/supabase-js';
 
 export interface SyncProfile {
@@ -57,6 +57,7 @@ const toNumber = (value: number | string | null | undefined): number | null => {
 };
 
 export const saveProfile = async (userId: string, profile: SyncProfile): Promise<SyncResult> => {
+  const supabase = await getSupabase();
   const payload: Record<string, unknown> = {
     id: userId,
     updated_at: new Date().toISOString(),
@@ -73,6 +74,7 @@ export const saveProfile = async (userId: string, profile: SyncProfile): Promise
 };
 
 export const getProfile = async (userId: string): Promise<{ data: SyncProfileRow | null; error: PostgrestError | null }> => {
+  const supabase = await getSupabase();
   const { data, error } = await supabase
     .from('profiles')
     .select('id, full_name, age, gender, height_cm, weight_kg, updated_at')
@@ -82,6 +84,7 @@ export const getProfile = async (userId: string): Promise<{ data: SyncProfileRow
 };
 
 export const saveConditions = async (userId: string, conditionIds: string[]): Promise<SyncResult> => {
+  const supabase = await getSupabase();
   const { error: delError } = await supabase.from('user_conditions').delete().eq('user_id', userId);
   if (delError) return { error: delError };
   if (!conditionIds.length) return { error: null };
@@ -91,6 +94,7 @@ export const saveConditions = async (userId: string, conditionIds: string[]): Pr
 };
 
 export const getConditions = async (userId: string): Promise<{ data: string[]; error: PostgrestError | null }> => {
+  const supabase = await getSupabase();
   const { data, error } = await supabase.from('user_conditions').select('condition_id').eq('user_id', userId);
   return { data: ((data as Array<{ condition_id: string }>) ?? []).map((r) => r.condition_id).filter(Boolean), error };
 };
@@ -100,6 +104,7 @@ export const saveLabs = async (
   labs: Record<string, Record<string, number>>,
   units: Record<string, string> = {},
 ): Promise<SyncResult> => {
+  const supabase = await getSupabase();
   const { error: delError } = await supabase.from('labs').delete().eq('user_id', userId);
   if (delError) return { error: delError };
   const rows: SyncLabRow[] = [];
@@ -119,16 +124,19 @@ export const saveLabs = async (
 };
 
 export const getLabs = async (userId: string): Promise<{ data: SyncLabRow[]; error: PostgrestError | null }> => {
+  const supabase = await getSupabase();
   const { data, error } = await supabase.from('labs').select('marker, value, unit').eq('user_id', userId);
   return { data: (data as SyncLabRow[] | null) ?? [], error };
 };
 
 export const savePlan = async (userId: string, planData: unknown): Promise<SyncResult> => {
+  const supabase = await getSupabase();
   const { error } = await supabase.from('plans').insert({ user_id: userId, plan_data: planData });
   return { error };
 };
 
 export const getLatestPlan = async (userId: string): Promise<{ data: SyncPlanRow | null; error: PostgrestError | null }> => {
+  const supabase = await getSupabase();
   const { data, error } = await supabase
     .from('plans')
     .select('plan_data, created_at')
@@ -142,6 +150,7 @@ export const getLatestPlan = async (userId: string): Promise<{ data: SyncPlanRow
 };
 
 export const saveProgress = async (userId: string, day: SyncProgressDay): Promise<SyncResult> => {
+  const supabase = await getSupabase();
   const { error } = await supabase
     .from('progress')
     .upsert(
@@ -161,6 +170,7 @@ export const getProgress = async (
   userId: string,
   limit = 31,
 ): Promise<{ data: SyncProgressRow[]; error: PostgrestError | null }> => {
+  const supabase = await getSupabase();
   const { data, error } = await supabase
     .from('progress')
     .select('date, water_liters, weight_kg, mood, created_at')

@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, ArrowRight, Check, Flame, Activity } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
-import { supabaseClient as supabase } from '../lib/supabaseClient';
+import { getSupabaseClient } from '../lib/supabaseClient';
 import { Dish } from '../components/food/DishCard';
 import { getArticleBySlug, lt } from '../data/articles';
 import { getRecipeBySlug, lt as recipeLt } from '../data/recipes';
@@ -92,6 +92,8 @@ const DishDetailPage: React.FC = () => {
     setError(null);
 
     async function load() {
+      const supabase = await getSupabaseClient();
+      if (cancelled) return;
       if (!id || !supabase) {
         if (!cancelled) {
           setError('Missing dish id or database configuration.');

@@ -14,7 +14,7 @@ import StartFreeDropdown from '../components/layout/StartFreeDropdown';
 import Flag from '../components/common/Flag';
 import { ENABLE_PREMIUM } from '../config/featureFlags';
 import './HomeHero.css';
-import { supabaseClient } from '../lib/supabaseClient';
+import { getSupabaseClient } from '../lib/supabaseClient';
 
 const conditions: Array<{ icon: LucideIcon; en: string; ar: string; path: string }> = [
   { icon: Droplet, en: 'Diabetes', ar: 'سكر', path: '/diabetes' },
@@ -226,7 +226,8 @@ const HomePage: React.FC = () => {
 
   const handleSubscribe = async (e: React.FormEvent, sourceName: string) => {
     e.preventDefault();
-    if (!supabaseClient) {
+    const client = await getSupabaseClient();
+    if (!client) {
       // Fallback to localStorage if no Supabase
       const email = sourceName === 'Fasting Hub' ? fastingEmail.trim() : watchEmail.trim();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
@@ -253,8 +254,8 @@ const HomePage: React.FC = () => {
     }
 
     try {
-      if (supabaseClient) {
-        const { error } = await supabaseClient.from('subscribers').insert([{ email: email, source: sourceName }]);
+      if (client) {
+        const { error } = await client.from('subscribers').insert([{ email: email, source: sourceName }]);
         if (!error) {
           if (sourceName === 'Fasting Hub') setFastingJoined(true);
           else setWatchJoined(true);

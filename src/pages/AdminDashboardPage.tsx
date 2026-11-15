@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Users, CreditCard, UserPlus, FilePlus2, LogOut, ShieldCheck, Mail } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useAdmin } from '../context/AdminContext';
-import { supabase } from '../lib/supabase';
+import { getSupabase } from '../lib/supabase';
 import AdminSidebar, { AdminSection } from '../components/admin/AdminSidebar';
 import AdminStatCard from '../components/admin/AdminStatCard';
 import UsersTable from '../components/admin/UsersTable';
@@ -83,6 +83,7 @@ const AdminDashboardPage: React.FC = () => {
     const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
 
     try {
+      const supabase = await getSupabase();
       const [userCount, activeCount, new7Count, planCount] = await Promise.all([
         supabase.from('profiles').select('*', { count: 'exact', head: true }),
         supabase.from('subscriptions').select('*', { count: 'exact', head: true }).eq('status', 'active'),
@@ -240,6 +241,7 @@ const AdminDashboardPage: React.FC = () => {
 
   const deleteUser = useCallback(
     async (user: AdminUser) => {
+      const supabase = await getSupabase();
       await Promise.allSettled([
         supabase.from('profiles').delete().eq('id', user.id),
         supabase.from('user_conditions').delete().eq('user_id', user.id),
@@ -255,6 +257,7 @@ const AdminDashboardPage: React.FC = () => {
 
   const editUser = useCallback(
     async (user: AdminUser, name: string, age: number | null) => {
+      const supabase = await getSupabase();
       await supabase.from('profiles').update({ full_name: name, age }).eq('id', user.id);
       refresh();
     },

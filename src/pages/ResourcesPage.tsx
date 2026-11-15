@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
-import { supabaseClient } from '../lib/supabaseClient';
+import { getSupabaseClient } from '../lib/supabaseClient';
 import type { translations } from '../i18n/translations';
 import { ARTICLES, lt as articleText } from '../data/articles';
 import { RECIPES, lt as recipeText } from '../data/recipes';
@@ -84,8 +84,9 @@ const ResourcesPage: React.FC = () => {
     setStatusType('');
 
     try {
-      if (supabaseClient) {
-        const { error } = await supabaseClient.from('subscribers').insert([{ email: email.trim(), source: 'Resources Newsletter' }]);
+      const client = await getSupabaseClient();
+      if (client) {
+        const { error } = await client.from('subscribers').insert([{ email: email.trim(), source: 'Resources Newsletter' }]);
         if (!error) {
           setEmail('');
           setSubscribed(true);

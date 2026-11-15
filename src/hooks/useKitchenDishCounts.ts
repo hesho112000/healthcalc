@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabaseClient, hasSupabaseConfig } from '../lib/supabaseClient';
+import { getSupabaseClient, hasSupabaseConfig } from '../lib/supabaseClient';
 import { KITCHEN_COUNT_REGIONS } from '../utils/kitchenAuthenticity';
 
 // Live per-kitchen dish counts fetched from the dishes table via the region-tag
@@ -44,12 +44,14 @@ export function useKitchenDishCounts(): Record<string, number> {
     if (!hasSupabaseConfig()) return;
     let cancelled = false;
     (async () => {
+      const client = await getSupabaseClient();
+      if (!client || cancelled) return;
       const out: Record<string, number> = {};
       const rows: { region: string | null; source: string | null }[] = [];
       const PAGE = 1000;
       try {
         for (let from = 0; ; from += PAGE) {
-          const { data, error } = await supabaseClient!
+          const { data, error } = await client
             .from('dishes')
             .select('region, source')
             .order('id', { ascending: true })

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
-import { supabase } from '../../lib/supabase';
+import { getSupabase } from '../../lib/supabase';
 
 interface SaveProgressButtonProps {
   module: string;
@@ -35,6 +35,7 @@ const SaveProgressButton: React.FC<SaveProgressButtonProps> = ({ module, inputs,
     setStatus('saving');
     setErrorMsg('');
     try {
+      const supabase = await getSupabase();
       const rawWeight = Number(inputs?.weight);
       const { error } = await supabase.from('progress').insert({
         user_id: user?.id,

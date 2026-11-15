@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
-import { supabaseClient } from '../../lib/supabaseClient';
+import { getSupabaseClient } from '../../lib/supabaseClient';
 
 const Footer: React.FC = () => {
   const { t, dir } = useLanguage();
@@ -18,8 +18,9 @@ const Footer: React.FC = () => {
     setStatusType('');
 
     try {
-      if (supabaseClient) {
-        const { error } = await supabaseClient.from('subscribers').insert([{ email: email.trim(), source: 'Footer Newsletter' }]);
+      const client = await getSupabaseClient();
+      if (client) {
+        const { error } = await client.from('subscribers').insert([{ email: email.trim(), source: 'Footer Newsletter' }]);
         if (!error) {
           setEmail('');
           setStatusMessage('Subscribed successfully!');

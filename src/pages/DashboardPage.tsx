@@ -3,7 +3,7 @@ import { useAuth, hasPremiumAccess } from '../context/AuthContext';
 import HealthMetricsWidget from '../features/health-tools/HealthMetricsWidget';
 import { useLanguage } from '../context/LanguageContext';
 import CheckoutModal from '../components/CheckoutModal';
-import { supabase } from '../lib/supabase';
+import { getSupabase } from '../lib/supabase';
 import { ENABLE_PREMIUM } from '../config/featureFlags';
 
 const DashboardPage: React.FC = () => {
@@ -25,6 +25,7 @@ const DashboardPage: React.FC = () => {
     setProfileMsg({ type: '', text: '' });
     if (!user) return;
     try {
+      const supabase = await getSupabase();
       const { error } = await supabase
         .from('profiles')
         .upsert({ id: user.id, full_name: profileForm.name.trim(), updated_at: new Date().toISOString() }, { onConflict: 'id' });
@@ -48,6 +49,7 @@ const DashboardPage: React.FC = () => {
       return;
     }
     try {
+      const supabase = await getSupabase();
       const { error } = await supabase.auth.updateUser({ password: pwForm.newPw });
       if (error) throw error;
       setPwForm({ newPw: '', confirm: '' });
