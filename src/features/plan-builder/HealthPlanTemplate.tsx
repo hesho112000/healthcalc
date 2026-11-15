@@ -259,6 +259,9 @@ export const MealCard: React.FC<{
       <div className="flex items-start justify-between gap-2 mb-3">
         <div className="flex items-center gap-3 min-w-0">
           <button onClick={toggle}
+            type="button"
+            aria-label={getMealName(meal, language)}
+            aria-pressed={isDone}
             className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-all duration-200 active:scale-90 ${
               isDone ? 'bg-sage-500 text-white shadow-sm scale-110' : 'bg-gray-100 text-gray-400 hover:bg-sage-100 hover:text-sage-600'
             }`}>

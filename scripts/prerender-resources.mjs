@@ -107,7 +107,7 @@ const breadcrumbs = (label) => `<nav aria-label="Breadcrumb" style="${NAV_STYLE}
 const renderHome = ({ articles }) => `<main style="${PAGE_STYLE}">
   <h1 style="${H1_STYLE}">Health Fingerprint: Free Health Calculators and Personalized Care Plans</h1>
   <p style="font-size:1.1rem;color:#4A5A55;margin:0 0 16px;">Health Fingerprint helps you understand your body with free, evidence-based calculators, personalized meal plans, and practical nutrition information. Use the tools below to estimate your needs, then explore our health library for guidance you can act on.</p>
-  <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&amp;fit=crop&amp;w=800&amp;q=75" alt="A colorful, healthy meal bowl with fresh vegetables" width="800" height="400" loading="eager" fetchpriority="high" decoding="async" style="display:block;width:100%;max-width:680px;height:auto;aspect-ratio:2/1;object-fit:cover;object-position:center;border-radius:16px;margin:20px 0 28px;">
+  <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&amp;fit=crop&amp;w=800&amp;q=70" alt="A colorful, healthy meal bowl with fresh vegetables" width="800" height="400" loading="eager" fetchpriority="high" decoding="async" style="display:block;width:100%;max-width:680px;height:auto;aspect-ratio:2/1;object-fit:cover;object-position:center;border-radius:16px;margin:20px 0 28px;">
 
   <h2 style="${H2_STYLE}">Free Health Calculators</h2>
   <ul style="${LIST_STYLE}">
@@ -461,7 +461,11 @@ const buildPrerenderedPages = async () => {
   // Prerendered routes get a real visible <h1> from the static body, so remove
   // the old sr-only fallback heading to avoid duplicate H1s on those pages.
   const shell = (await readFile(SHELL_PATH, 'utf8')).replace(/<h1 class="sr-only"[\s\S]*?<\/h1>\s*/i, '');
-  const noscript = shell.match(/<noscript>[\s\S]*?<\/noscript>/i)?.[0] ?? '';
+  // Only the body <noscript> is the app's no-JS content fallback. The <head>
+  // also has a <noscript> font-stylesheet fallback, so scope the lookup to the
+  // body to avoid injecting the font link into #root.
+  const bodyMarkup = shell.slice(shell.search(/<body[\s>]/i));
+  const noscript = bodyMarkup.match(/<noscript\b[^>]*>[\s\S]*?<\/noscript>/i)?.[0] ?? '';
 
   const pages = [
     {

@@ -81,13 +81,13 @@ const CookieConsentBanner: React.FC = () => {
           </div>
           <div className="min-w-0">
             <p className="text-sm font-bold text-gray-900 mb-0.5">{t('cookiePolicy')}</p>
-            <p className="text-xs text-gray-500 leading-relaxed">{t('cookieConsentText')}</p>
+            <p className="text-xs text-gray-600 leading-relaxed">{t('cookieConsentText')}</p>
           </div>
         </div>
         <div className="flex items-center gap-3 shrink-0 md:justify-end">
           <Link
             to="/cookies"
-            className="text-xs font-medium text-primary-600 hover:text-primary-700 transition-colors underline underline-offset-2"
+            className="text-xs font-medium text-primary-700 hover:text-primary-800 transition-colors underline underline-offset-2"
           >
             {t('cookieConsentLearnMore')}
           </Link>

@@ -52,6 +52,7 @@ const WeeklyReport: React.FC<WeeklyReportProps> = ({ paid, onUnlock, onNote }) =
         <button
           type="button"
           role="switch"
+          aria-label={t(tk('hub.weekly'))}
           aria-checked={enabled}
           onClick={toggle}
           className={`relative h-8 w-16 shrink-0 rounded-full transition ${enabled ? 'bg-[#0F4C3A]' : 'bg-[#EFEBE4]'}`}
