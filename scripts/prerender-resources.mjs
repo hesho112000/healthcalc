@@ -438,9 +438,11 @@ const readDishSeoData = async () => {
   }
 };
 
-const productJsonLd = (dish) => ({
+const dishJsonLd = (dish) => ({
   '@context': 'https://schema.org',
-  '@type': 'Product',
+  // Informational food page, not an e-commerce product. Product markup would
+  // require offers/review/aggregateRating and trigger rich-result errors.
+  '@type': 'WebPage',
   name: dish.name_en || `Dish ${dish.id}`,
   description: `Nutrition information per 100 g for ${dish.name_en || `dish ${dish.id}`}.`,
   url: `${SITE_BASE}/food-library/${dish.id}`,
@@ -606,7 +608,7 @@ const buildPrerenderedPages = async () => {
       route: `/food-library/${dish.id}`,
       title: `${dish.name_en || `Dish ${dish.id}`} Nutrition Facts & Calories | Health Fingerprint`,
       description: `Nutrition facts per 100 g for ${dish.name_en || `dish ${dish.id}`}: ${dish.cal_100 ?? 'N/A'} kcal, ${dish.protein ?? 'N/A'} g protein, ${dish.carbs ?? 'N/A'} g carbohydrates, and ${dish.fat ?? 'N/A'} g fat.`,
-      jsonLd: productJsonLd(dish),
+      jsonLd: dishJsonLd(dish),
     })),
   ].map(({ route, title, description, jsonLd }) => ({
     route,

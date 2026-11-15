@@ -144,7 +144,7 @@ const buildSitemap = async () => {
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${resourceEntries}\n${staticEntries}\n${dishEntries}\n</urlset>\n`;
 
   await writeFile(OUTPUT_PATH, sitemap, 'utf8');
-  // Build-time sidecar consumed by the prerenderer for dish titles and Product schema.
+  // Build-time sidecar consumed by the prerenderer for dish titles and structured data.
   await writeFile(DISH_DATA_PATH, JSON.stringify(dishes), 'utf8');
 
   const resourceCount = 1 + articleEntries.length + recipes.length + exerciseGuides.length;

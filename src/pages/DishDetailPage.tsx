@@ -243,7 +243,9 @@ const DishDetailPage: React.FC = () => {
 
   const nutritionJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Product',
+    // Informational food page, not an e-commerce product. Keeping this as
+    // WebPage avoids Product rich-result requirements (offers/review/rating).
+    '@type': 'WebPage',
     name,
     description: `${name} nutrition information per 100 g.`,
     category: mealType || 'Food',
