@@ -34,22 +34,22 @@ const MEAL_STYLE: Record<PlanMealType, { icon: LucideIcon; iconClass: string; im
   breakfast: {
     icon: Sun,
     iconClass: 'bg-amber-100 text-amber-600',
-    image: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=200&h=200&fit=crop',
+    image: '/images/meal-breakfast.webp',
   },
   lunch: {
     icon: Utensils,
     iconClass: 'bg-emerald-100 text-emerald-600',
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop',
+    image: '/images/meal-lunch.webp',
   },
   dinner: {
     icon: Moon,
     iconClass: 'bg-indigo-100 text-indigo-600',
-    image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=200&h=200&fit=crop',
+    image: '/images/meal-dinner.webp',
   },
   snacks: {
     icon: Cookie,
     iconClass: 'bg-rose-100 text-rose-600',
-    image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=200&h=200&fit=crop',
+    image: '/images/meal-snacks.webp',
   },
 };
 
