@@ -19,7 +19,14 @@ type DbDish = Dish & {
   is_sweet?: boolean | null;
 };
 
-const RECIPE_LINKS = [
+type RecipeLink = {
+  keywords: string[];
+  slug: string;
+  title: string;
+  dishIds?: string[];
+};
+
+const RECIPE_LINKS: RecipeLink[] = [
   { keywords: ['tortilla soup'], slug: 'chicken-tortilla-soup-light', title: 'Chicken Tortilla Soup (Light)' },
   { keywords: ['fajita', 'bell pepper'], slug: 'beef-bell-pepper-fajitas', title: 'Beef & Bell Pepper Fajitas' },
   { keywords: ['fajita', 'chicken'], slug: 'chicken-fajita-bowl', title: 'Chicken Fajita Bowl' },
@@ -40,7 +47,12 @@ const RECIPE_LINKS = [
   { keywords: ['avocado', 'chicken bowl'], slug: 'avocado-chicken-power-bowl', title: 'Avocado Chicken Power Bowl' },
   { keywords: ['turkey', 'meatballs', 'zucchini'], slug: 'lean-turkey-meatballs-zucchini', title: 'Lean Turkey Meatballs with Zucchini' },
   { keywords: ['yogurt', 'parfait', 'berries'], slug: 'greek-yogurt-berry-parfait', title: 'Greek Yogurt Berry Parfait' },
-  { keywords: ['turkey', 'burger'], slug: 'healthy-turkey-burger-bowl', title: 'Healthy Turkey Burger Bowl' },
+  {
+    keywords: ['turkey', 'burger'],
+    dishIds: ['bc320bd7-c128-40b8-bdf3-014535d56394'],
+    slug: 'healthy-turkey-burger-bowl',
+    title: 'Healthy Turkey Burger Bowl',
+  },
   { keywords: ['lemon', 'chicken', 'broccoli'], slug: 'baked-lemon-chicken-broccoli', title: 'Baked Lemon Chicken & Broccoli' },
   { keywords: ['sweet potato', 'taco'], slug: 'sweet-potato-black-bean-tacos', title: 'Sweet Potato & Black Bean Tacos' },
   { keywords: ['cobb', 'salad'], slug: 'grilled-chicken-cobb-salad-vinaigrette', title: 'Grilled Chicken Cobb Salad' },
@@ -219,7 +231,9 @@ const DishDetailPage: React.FC = () => {
       .map((recipe, index) => ({
         recipe,
         index,
-        matches: recipe.keywords.filter((keyword) => searchText.includes(keyword)).length,
+        matches: recipe.dishIds?.includes(dish.id)
+          ? Number.MAX_SAFE_INTEGER
+          : recipe.keywords.filter((keyword) => searchText.includes(keyword)).length,
       }))
       .filter((match) => match.matches > 0)
       .sort((a, b) => b.matches - a.matches || a.index - b.index)[0]?.recipe ?? null;

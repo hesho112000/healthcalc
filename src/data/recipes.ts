@@ -612,6 +612,7 @@ const GREEK_YOGURT_BERRY_PARFAIT: Recipe = {
 const HEALTHY_TURKEY_BURGER_BOWL: Recipe = {
   id: 'healthy-turkey-burger-bowl',
   slug: 'healthy-turkey-burger-bowl',
+  foodLibraryDishId: 'bc320bd7-c128-40b8-bdf3-014535d56394',
   emoji: '🍔',
   title: { en: 'Healthy Turkey Burger Bowl', ar: 'وعاء برغر الديك الرومي الصحي' },
   cuisine: { en: 'American', ar: 'أمريكي' },
