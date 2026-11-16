@@ -99,9 +99,9 @@ const Footer: React.FC = () => {
             </form>
             {statusMessage && (
               <p className={`text-xs mt-2 ${
-                statusType === 'success' ? 'text-green-600' :
-                statusType === 'warning' ? 'text-yellow-600' :
-                'text-red-600'
+                statusType === 'success' ? 'text-green-300' :
+                statusType === 'warning' ? 'text-amber-300' :
+                'text-red-300'
               }`}>
                 {statusMessage}
               </p>

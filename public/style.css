@@ -75,11 +75,11 @@ h1,h2,h3,h4{font-family:var(--font-ar);font-weight:800;color:var(--primary)}
 .footer-social a:hover{background:var(--gold);border-color:var(--gold);color:var(--primary)}
 .footer-col h4{font-family:var(--font-ar);font-weight:800;font-size:16px;margin-bottom:20px;color:var(--bg-primary)}
 .footer-col a{display:block;color:rgba(253,251,247,.7);text-decoration:none;font-family:var(--font-ar);font-size:14px;margin-bottom:12px;transition:.2s}
-.footer-col a:hover{color:var(--gold)}
+.footer-col a:hover{color:var(--gold-light)}
 .footer-news-text{color:rgba(253,251,247,.7);font-size:13px;margin-bottom:12px;font-family:var(--font-ar)}
 .footer-form{display:flex;gap:8px}
 .footer-form input{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:var(--radius-full);padding:12px 16px;color:var(--bg-secondary);font-family:var(--font-ar);outline:none}
-.footer-form input::placeholder{color:rgba(255,255,255,.5)}
+.footer-form input::placeholder{color:rgba(255,255,255,.72)}
 .footer-form button.btn-primary{height:46px;padding:0 22px;flex-shrink:0}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:48px;padding:24px 0;display:flex;justify-content:space-between;color:rgba(253,251,247,.5);font-family:var(--font-ar);font-size:13px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:48px;padding:24px 0;display:flex;justify-content:space-between;color:rgba(253,251,247,.78);font-family:var(--font-ar);font-size:13px}
 @media(max-width:900px){.footer-grid{grid-template-columns:1fr;gap:32px}.footer-container{padding:32px 24px 0}.footer-bottom{flex-direction:column;gap:8px;text-align:center}}

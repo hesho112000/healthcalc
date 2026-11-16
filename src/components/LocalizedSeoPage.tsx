@@ -53,6 +53,8 @@ const LanguageSwitcherBar: React.FC<{ currentLang: Language; slug: string }> = (
             <Link
               key={l}
               to={`/${l}/landing/${slug}`}
+              aria-label={`Switch to ${langLabels[l].native}`}
+              aria-current={l === currentLang ? 'true' : undefined}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 ${
                 l === currentLang
                   ? 'bg-primary-600 text-white shadow-sm'

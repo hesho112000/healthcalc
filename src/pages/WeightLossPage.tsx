@@ -1489,7 +1489,7 @@ const Stepper: React.FC<{ value: number; min: number; max: number; onChange: (v:
   <div className="flex items-center gap-3 rounded-[14px] border-2 border-[#EFEBE4] bg-white p-2">
     <button
       type="button"
-      aria-label="decrease"
+      aria-label={suffix ? `Decrease ${suffix}` : 'Decrease value'}
       onClick={() => onChange(Math.max(min, value - step))}
       className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F4F1EB] text-[#0F4C3A] transition-all active:scale-95 hover:border-[#D4A017]"
     >
@@ -1501,7 +1501,7 @@ const Stepper: React.FC<{ value: number; min: number; max: number; onChange: (v:
     </span>
     <button
       type="button"
-      aria-label="increase"
+      aria-label={suffix ? `Increase ${suffix}` : 'Increase value'}
       onClick={() => onChange(Math.min(max, value + step))}
       className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F4F1EB] text-[#0F4C3A] transition-all active:scale-95 hover:border-[#D4A017]"
     >

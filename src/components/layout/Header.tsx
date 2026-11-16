@@ -76,6 +76,8 @@ const Header: React.FC = () => {
   };
 
   const displayName = user?.name || user?.email || '';
+  const currentLanguageLabel =
+    languageOptions.find((opt) => opt.code === language)?.label ?? language.toUpperCase();
 
   const links: { to: string; exact?: boolean; key: string }[] = [
     { to: '/', key: 'nav.home', exact: true },
@@ -156,27 +158,31 @@ const Header: React.FC = () => {
               <button
                 type="button"
                 className="app-header-lang"
+                aria-label={`Change language (current: ${currentLanguageLabel})`}
                 aria-haspopup="listbox"
                 aria-expanded={langOpen}
+                aria-controls="app-header-lang-menu-desktop"
                 onClick={() => setLangOpen((o) => !o)}
               >
-                <Globe size={16} />
-                <span>{language.toUpperCase()}</span>
-                <ChevronDown size={14} className={`app-header-lang-caret${langOpen ? ' open' : ''}`} />
+                <Globe size={16} aria-hidden="true" />
+                <span aria-hidden="true">{language.toUpperCase()}</span>
+                <ChevronDown size={14} className={`app-header-lang-caret${langOpen ? ' open' : ''}`} aria-hidden="true" />
               </button>
               {langOpen && (
-                <div className="app-header-lang-menu">
+                <div className="app-header-lang-menu" id="app-header-lang-menu-desktop" role="listbox" aria-label="Language">
                   {languageOptions.map((opt) => (
                     <button
                       key={opt.code}
                       type="button"
+                      role="option"
+                      aria-selected={language === opt.code}
                       className={`app-header-lang-option${language === opt.code ? ' active' : ''}`}
                       onClick={() => {
                         setLanguage(opt.code);
                         setLangOpen(false);
                       }}
                     >
-                      <Flag countryCode={opt.countryCode} alt={`Flag of ${opt.label}`} className="h-3.5 w-5" /> {opt.label}
+                      <Flag countryCode={opt.countryCode} alt="" className="h-3.5 w-5" /> {opt.label}
                       {language === opt.code && <span className="app-header-lang-check">✓</span>}
                     </button>
                   ))}
@@ -238,13 +244,15 @@ const Header: React.FC = () => {
             type="button"
             className="app-header-burger"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileOpen}
+            aria-controls="app-header-drawer"
             onClick={() => setMobileOpen((o) => !o)}
           >
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+            {mobileOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
           </button>
         </div>
 
-        <div className={`app-header-drawer${mobileOpen ? ' open' : ''}`}>
+        <div className={`app-header-drawer${mobileOpen ? ' open' : ''}`} id="app-header-drawer">
           <div className="app-header-drawer-head">
             <Link to="/" className="app-header-logo" aria-label={`${t('brandName')} home`} onClick={() => setMobileOpen(false)}>
               <span className="app-header-logo-icon">
@@ -272,27 +280,31 @@ const Header: React.FC = () => {
               <button
                 type="button"
                 className="app-header-lang app-header-lang-full"
+                aria-label={`Change language (current: ${currentLanguageLabel})`}
                 aria-haspopup="listbox"
                 aria-expanded={langOpen}
+                aria-controls="app-header-lang-menu-drawer"
                 onClick={() => setLangOpen((o) => !o)}
               >
-                <Globe size={16} />
-                <span>{language.toUpperCase()}</span>
-                <ChevronDown size={14} className={`app-header-lang-caret${langOpen ? ' open' : ''}`} />
+                <Globe size={16} aria-hidden="true" />
+                <span aria-hidden="true">{language.toUpperCase()}</span>
+                <ChevronDown size={14} className={`app-header-lang-caret${langOpen ? ' open' : ''}`} aria-hidden="true" />
               </button>
               {langOpen && (
-                <div className="app-header-lang-menu app-header-lang-menu-static">
+                <div className="app-header-lang-menu app-header-lang-menu-static" id="app-header-lang-menu-drawer" role="listbox" aria-label="Language">
                   {languageOptions.map((opt) => (
                     <button
                       key={opt.code}
                       type="button"
+                      role="option"
+                      aria-selected={language === opt.code}
                       className={`app-header-lang-option${language === opt.code ? ' active' : ''}`}
                       onClick={() => {
                         setLanguage(opt.code);
                         setLangOpen(false);
                       }}
                     >
-                      <Flag countryCode={opt.countryCode} alt={`Flag of ${opt.label}`} className="h-3.5 w-5" /> {opt.label}
+                      <Flag countryCode={opt.countryCode} alt="" className="h-3.5 w-5" /> {opt.label}
                       {language === opt.code && <span className="app-header-lang-check">✓</span>}
                     </button>
                   ))}
