@@ -368,6 +368,14 @@ export type TranslationKeys = {
   'fitnessPage.profile.gender': string;
   'fitnessPage.profile.height': string;
   'fitnessPage.profile.weight': string;
+  'fitnessPage.profile.heightMetric': string;
+  'fitnessPage.profile.heightImperial': string;
+  'fitnessPage.profile.heightInches': string;
+  'fitnessPage.profile.weightMetric': string;
+  'fitnessPage.profile.weightImperial': string;
+  'fitnessPage.units.label': string;
+  'fitnessPage.units.metric': string;
+  'fitnessPage.units.imperial': string;
   'fitnessPage.profile.activity': string;
   'fitnessPage.profile.goalPlaceholder': string;
   'fitnessPage.profile.resetSaved': string;
@@ -375,6 +383,8 @@ export type TranslationKeys = {
   'fitnessPage.error.age': string;
   'fitnessPage.error.height': string;
   'fitnessPage.error.weight': string;
+  'fitnessPage.error.heightImperial': string;
+  'fitnessPage.error.weightImperial': string;
   'fitnessPage.results.title': string;
   'fitnessPage.results.subtitle': string;
   'fitnessPage.results.macrosEyebrow': string;

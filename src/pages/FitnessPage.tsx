@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Dumbbell, Flame, Gauge, HeartPulse, Ruler, Wind } from 'lucide-react';
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
@@ -10,6 +10,44 @@ import { useUserProfile, type UserGoal, type UserProfile } from '../hooks/useUse
 import type { Language } from '../types';
 
 interface FormData { age: string; gender: 'male' | 'female'; heightCm: string; weightKg: string; activityLevel: string; goal: UserGoal | '' }
+
+type UnitSystem = 'metric' | 'imperial';
+
+const UNIT_STORAGE_KEY = 'hc_unit_system';
+const KG_PER_LB = 2.20462;
+const CM_PER_IN = 2.54;
+const roundTo = (value: number, digits: number) => {
+  const factor = 10 ** digits;
+  return Math.round(value * factor) / factor;
+};
+
+const cmToFtIn = (cm: number) => {
+  const totalInches = cm / CM_PER_IN;
+  let ft = Math.floor(totalInches / 12);
+  let inches = roundTo(totalInches - ft * 12, 1);
+  if (inches >= 12) {
+    ft += 1;
+    inches = 0;
+  }
+  return { ft: String(ft), inches: String(inches) };
+};
+
+const ftInToCm = (ft: string, inches: string) => {
+  if (!ft.trim() && !inches.trim()) return '';
+  const feet = Number.parseFloat(ft) || 0;
+  const inch = Number.parseFloat(inches) || 0;
+  return String(roundTo((feet * 12 + inch) * CM_PER_IN, 2));
+};
+
+const readStoredUnit = (): UnitSystem | null => {
+  try {
+    const stored = localStorage.getItem(UNIT_STORAGE_KEY);
+    if (stored === 'metric' || stored === 'imperial') return stored;
+  } catch {
+    // Storage can be unavailable in private mode; fall back to the language default.
+  }
+  return null;
+};
 
 const ACT: Record<string, number> = { sedentary: 1.2, light: 1.375, moderate: 1.55, active: 1.725, very_active: 1.9 };
 const ACT_ORDER = ['sedentary', 'light', 'moderate', 'active', 'very_active'];
@@ -86,7 +124,35 @@ const FitnessPage: React.FC = () => {
   }));
   const [calculated, setCalculated] = useState(() => profile.age !== null && profile.height !== null && profile.weight !== null);
   const [error, setError] = useState('');
+  const [unit, setUnit] = useState<UnitSystem>(() => readStoredUnit() ?? (language === 'en' ? 'imperial' : 'metric'));
+  const [imperialHeight, setImperialHeight] = useState(() =>
+    profile.height === null ? { ft: '', inches: '' } : cmToFtIn(profile.height),
+  );
+  const [imperialWeight, setImperialWeight] = useState(() =>
+    profile.weight === null ? '' : String(roundTo(profile.weight * KG_PER_LB, 1)),
+  );
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  // Language default only applies until the visitor picks a unit explicitly.
+  useEffect(() => {
+    if (readStoredUnit()) return;
+    setUnit(language === 'en' ? 'imperial' : 'metric');
+  }, [language]);
+
+  const changeUnit = useCallback((next: UnitSystem) => {
+    setUnit(next);
+    try {
+      localStorage.setItem(UNIT_STORAGE_KEY, next);
+    } catch {
+      // Preference still applies for this session when storage is unavailable.
+    }
+    if (next === 'imperial') {
+      const cm = Number.parseFloat(form.heightCm);
+      setImperialHeight(Number.isFinite(cm) && cm > 0 ? cmToFtIn(cm) : { ft: '', inches: '' });
+      const kg = Number.parseFloat(form.weightKg);
+      setImperialWeight(Number.isFinite(kg) && kg > 0 ? String(roundTo(kg * KG_PER_LB, 1)) : '');
+    }
+  }, [form.heightCm, form.weightKg]);
 
   const metrics = useMemo(() => {
     const age = +form.age;
@@ -113,13 +179,17 @@ const FitnessPage: React.FC = () => {
 
   const validate = useCallback(() => {
     const age = parseInt(form.age, 10);
-    const height = parseInt(form.heightCm, 10);
-    const weight = parseInt(form.weightKg, 10);
+    const height = Number.parseFloat(form.heightCm);
+    const weight = Number.parseFloat(form.weightKg);
     if (!age || age < 10 || age > 120) return t('fitnessPage.error.age');
-    if (!height || height < 100 || height > 250) return t('fitnessPage.error.height');
-    if (!weight || weight < 20 || weight > 300) return t('fitnessPage.error.weight');
+    if (!height || height < 100 || height > 250) {
+      return t(unit === 'imperial' ? 'fitnessPage.error.heightImperial' : 'fitnessPage.error.height');
+    }
+    if (!weight || weight < 20 || weight > 300) {
+      return t(unit === 'imperial' ? 'fitnessPage.error.weightImperial' : 'fitnessPage.error.weight');
+    }
     return '';
-  }, [form, t]);
+  }, [form, t, unit]);
 
   const saveSharedProfile = () => {
     const updated: Partial<UserProfile> = {
@@ -186,6 +256,20 @@ const FitnessPage: React.FC = () => {
     updateProfile(updated);
   };
 
+  const updateImperialHeight = (part: 'ft' | 'inches', value: string) => {
+    const next = { ...imperialHeight, [part]: value };
+    setImperialHeight(next);
+    setError('');
+    patch({ heightCm: ftInToCm(next.ft, next.inches) });
+  };
+
+  const updateImperialWeight = (value: string) => {
+    setImperialWeight(value);
+    setError('');
+    const lb = Number.parseFloat(value);
+    patch({ weightKg: Number.isFinite(lb) && lb > 0 ? String(roundTo(lb / KG_PER_LB, 2)) : '' });
+  };
+
   const bmiStatusD = metrics ? bmiStatus(metrics.bmi) : null;
   const bfs = metrics ? bfLevel(form.gender, metrics.bodyFat) : 'fcBfLevelFitness';
   const bfPct = metrics ? Math.max(4, Math.min(100, (metrics.bodyFat / 45) * 100)) : 0;
@@ -224,7 +308,7 @@ const FitnessPage: React.FC = () => {
   const bmiScalePosition = metrics ? Math.max(0, Math.min(100, ((metrics.bmi - 14) / (40 - 14)) * 100)) : 0;
 
   const unitSuffix = (u: string) => (
-    <span className="absolute inset-inline-end-4 top-1/2 -translate-y-1/2 text-[12px] font-semibold text-[#A0A8A4] pointer-events-none">{u}</span>
+    <span className="absolute end-4 top-1/2 -translate-y-1/2 text-[12px] font-semibold text-[#A0A8A4] pointer-events-none">{u}</span>
   );
 
   const resultCard = 'rounded-3xl bg-white p-7 border border-[#EFEBE4] shadow-[0_8px_24px_rgba(15,76,58,0.08)]';
@@ -275,11 +359,28 @@ const FitnessPage: React.FC = () => {
             <h2 className="text-[22px] font-extrabold text-[#0F4C3A]">{t('fitnessPage.profile.title')}</h2>
             <p className="mt-1 text-[14px] text-[#6B7A75]">{t('fitnessPage.profile.subtitle')}</p>
 
-            <div className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+              <span id="unit-toggle-label" className="text-[13px] font-bold text-[#0F4C3A]">{t('fitnessPage.units.label')}</span>
+              <div role="group" aria-labelledby="unit-toggle-label" className="inline-flex gap-1 rounded-full bg-[#F4F1EB] p-1">
+                {(['metric', 'imperial'] as const).map((option) => (
+                  <button
+                    key={option}
+                    type="button"
+                    aria-pressed={unit === option}
+                    onClick={() => changeUnit(option)}
+                    className={`rounded-full px-4 py-1.5 text-[12px] font-extrabold transition ${unit === option ? 'bg-[#0F4C3A] text-white shadow-[0_4px_10px_rgba(15,76,58,0.25)]' : 'text-[#6B7A75] hover:text-[#0F4C3A]'}`}
+                  >
+                    {t(option === 'metric' ? 'fitnessPage.units.metric' : 'fitnessPage.units.imperial')}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-4">
               <div>
                 <label className="wiz-label" htmlFor="wiz-age">{t('fitnessPage.profile.age')}</label>
                 <div className="relative">
-                  <input id="wiz-age" type="number" inputMode="numeric" min={10} max={120} className="wiz-input" value={form.age} onChange={(e) => { setError(''); patch({ age: e.target.value }); }} name="wiz-age" />
+                  <input id="wiz-age" type="number" inputMode="numeric" min={10} max={120} className="wiz-input pe-9" value={form.age} onChange={(e) => { setError(''); patch({ age: e.target.value }); }} name="wiz-age" />
                   {unitSuffix(t('fcYears'))}
                 </div>
               </div>
@@ -294,18 +395,62 @@ const FitnessPage: React.FC = () => {
                   ))}
                 </div>
               </div>
-              <div>
-                <label className="wiz-label" htmlFor="wiz-height">{t('fitnessPage.profile.height')}</label>
-                <div className="relative">
-                  <input id="wiz-height" type="number" inputMode="decimal" min={100} max={250} step={0.5} className="wiz-input" value={form.heightCm} onChange={(e) => { setError(''); patch({ heightCm: e.target.value }); }} name="wiz-height" />
-                  {unitSuffix('cm')}
-                </div>
+              <div className={unit === 'imperial' ? 'col-span-2 lg:col-span-1' : undefined}>
+                <label className="wiz-label" htmlFor={unit === 'imperial' ? 'wiz-height-ft' : 'wiz-height'}>
+                  {t(unit === 'imperial' ? 'fitnessPage.profile.heightImperial' : 'fitnessPage.profile.heightMetric')}
+                </label>
+                {unit === 'imperial' ? (
+                  <div className="flex gap-2">
+                    <div className="relative min-w-0 flex-1">
+                      <input
+                        id="wiz-height-ft"
+                        type="number"
+                        inputMode="numeric"
+                        min={3}
+                        max={8}
+                        step={1}
+                        placeholder="5"
+                        className="wiz-input pe-9"
+                        value={imperialHeight.ft}
+                        onChange={(e) => updateImperialHeight('ft', e.target.value)}
+                        name="wiz-height-ft"
+                      />
+                      {unitSuffix('ft')}
+                    </div>
+                    <div className="relative min-w-0 flex-1">
+                      <input
+                        id="wiz-height-in"
+                        type="number"
+                        inputMode="decimal"
+                        min={0}
+                        max={11.5}
+                        step={0.5}
+                        placeholder="9"
+                        aria-label={t('fitnessPage.profile.heightInches')}
+                        className="wiz-input pe-9"
+                        value={imperialHeight.inches}
+                        onChange={(e) => updateImperialHeight('inches', e.target.value)}
+                        name="wiz-height-in"
+                      />
+                      {unitSuffix('in')}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="relative">
+                    <input id="wiz-height" type="number" inputMode="decimal" min={100} max={250} step={0.5} placeholder="175" className="wiz-input pe-9" value={form.heightCm} onChange={(e) => { setError(''); patch({ heightCm: e.target.value }); }} name="wiz-height" />
+                    {unitSuffix('cm')}
+                  </div>
+                )}
               </div>
-              <div>
-                <label className="wiz-label" htmlFor="wiz-weight">{t('fitnessPage.profile.weight')}</label>
+              <div className={unit === 'imperial' ? 'col-span-2 lg:col-span-1' : undefined}>
+                <label className="wiz-label" htmlFor="wiz-weight">{t(unit === 'imperial' ? 'fitnessPage.profile.weightImperial' : 'fitnessPage.profile.weightMetric')}</label>
                 <div className="relative">
-                  <input id="wiz-weight" type="number" inputMode="decimal" min={20} max={300} step={0.5} className="wiz-input" value={form.weightKg} onChange={(e) => { setError(''); patch({ weightKg: e.target.value }); }} name="wiz-weight" />
-                  {unitSuffix('kg')}
+                  {unit === 'imperial' ? (
+                    <input id="wiz-weight" type="number" inputMode="decimal" min={44.1} max={661} step={0.5} placeholder="154" className="wiz-input pe-9" value={imperialWeight} onChange={(e) => updateImperialWeight(e.target.value)} name="wiz-weight" />
+                  ) : (
+                    <input id="wiz-weight" type="number" inputMode="decimal" min={20} max={300} step={0.5} placeholder="70" className="wiz-input pe-9" value={form.weightKg} onChange={(e) => { setError(''); patch({ weightKg: e.target.value }); }} name="wiz-weight" />
+                  )}
+                  {unitSuffix(unit === 'imperial' ? 'lbs' : 'kg')}
                 </div>
               </div>
             </div>
@@ -341,6 +486,8 @@ const FitnessPage: React.FC = () => {
               onClick={() => {
                 resetProfile();
                 setForm({ age: '', gender: 'male', heightCm: '', weightKg: '', activityLevel: 'moderate', goal: '' });
+                setImperialHeight({ ft: '', inches: '' });
+                setImperialWeight('');
                 setCalculated(false);
                 setError('');
               }}
