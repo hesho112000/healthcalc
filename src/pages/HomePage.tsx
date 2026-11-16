@@ -299,11 +299,11 @@ const HomePage: React.FC = () => {
             <h1>Know Your Macros.<br />Eat What You <em>Love.</em></h1>
             <p className="hh-preview__subhead">Calculate your daily calories, explore 18,000+ global dishes, and get personalized meal plans in seconds.</p>
             <img
-              className="mt-6 aspect-[2/1] w-full max-w-[430px] rounded-2xl object-cover object-center shadow-md"
+              className="mt-6 aspect-[3/2] w-full max-w-[430px] rounded-2xl object-cover object-center shadow-md"
               src="/images/hero-bowl.webp"
               alt="A colorful, healthy meal bowl with fresh vegetables"
-              width={800}
-              height={400}
+              width={672}
+              height={448}
               loading="eager"
               decoding="async"
               fetchPriority="high"

@@ -3,6 +3,23 @@
  * styled while the full stylesheet loads asynchronously.
  * Keep this file small; it is duplicated into every prerendered page.
  */
+
+/*
+ * Metric-matched Latin fallback: the swap from Arial to Inter keeps identical
+ * line boxes, removing the residual CLS caused by web-font metric differences.
+ */
+@font-face {
+  font-family: 'Inter Fallback';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: local('Arial'), local('Helvetica Neue'), local('Helvetica');
+  size-adjust: 107.12%;
+  ascent-override: 90.44%;
+  descent-override: 22.43%;
+  line-gap-override: 0%;
+}
+
 :root {
   --hc-green: #059669;
   --hc-emerald: #0F4C3A;
@@ -27,10 +44,16 @@ html {
   line-height: 1.5;
 }
 
+/* Reserve the viewport while the SPA mounts so the document height (and any
+ * scrollbar) does not jump between the prerendered shell and the React tree. */
+#root {
+  min-height: 100vh;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: Inter, 'Inter Fallback', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-size: 16px;
   line-height: 1.6;
   color: #1f2937;
@@ -167,9 +190,25 @@ textarea {
   line-height: 1.82;
 }
 
+/* Reserve the LCP image box before the async utility CSS arrives so the text
+ * and calculator below it never get pushed down. */
+.hh-preview__message img {
+  display: block;
+  width: 100%;
+  max-width: 430px;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 16px;
+}
+
 .hh-calculator {
   position: relative;
   z-index: 1;
+  /* Reserves the card's full height: late font/chunk loads cannot expand it
+   * and shift the content below (CLS). */
+  min-height: 440px;
   padding: 26px 27px 19px;
   border: 1px solid rgba(224, 232, 219, 0.95);
   border-radius: 19px;
@@ -183,6 +222,10 @@ textarea {
     width: min(100% - 40px, 680px);
     min-height: 0;
     padding: 36px 0 48px;
+  }
+
+  .hh-calculator {
+    min-height: 402px;
   }
 
   .hh-preview__message h1 {

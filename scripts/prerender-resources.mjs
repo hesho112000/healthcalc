@@ -107,7 +107,7 @@ const breadcrumbs = (label) => `<nav aria-label="Breadcrumb" style="${NAV_STYLE}
 const renderHome = ({ articles }) => `<main style="${PAGE_STYLE}">
   <h1 style="${H1_STYLE}">Health Fingerprint: Free Health Calculators and Personalized Care Plans</h1>
   <p style="font-size:1.1rem;color:#4A5A55;margin:0 0 16px;">Health Fingerprint helps you understand your body with free, evidence-based calculators, personalized meal plans, and practical nutrition information. Use the tools below to estimate your needs, then explore our health library for guidance you can act on.</p>
-  <img src="/images/hero-bowl.webp" alt="A colorful, healthy meal bowl with fresh vegetables" width="800" height="400" loading="eager" fetchpriority="high" decoding="async" style="display:block;width:100%;max-width:680px;height:auto;aspect-ratio:2/1;object-fit:cover;object-position:center;border-radius:16px;margin:20px 0 28px;">
+  <img src="/images/hero-bowl.webp" alt="A colorful, healthy meal bowl with fresh vegetables" width="672" height="448" loading="eager" fetchpriority="high" decoding="async" style="display:block;width:100%;max-width:680px;height:auto;aspect-ratio:3/2;object-fit:cover;object-position:center;border-radius:16px;margin:20px 0 28px;">
 
   <h2 style="${H2_STYLE}">Free Health Calculators</h2>
   <ul style="${LIST_STYLE}">
@@ -394,6 +394,12 @@ const applyHead = (html, meta) => {
     `<meta name="twitter:description" content="${escapeAttr(meta.description)}" data-prerender="true">`,
   ];
 
+  if (meta.preloadImage) {
+    tags.push(
+      `<link rel="preload" as="image" href="${escapeAttr(meta.preloadImage)}" fetchpriority="high" data-prerender="true">`,
+    );
+  }
+
   if (meta.jsonLd) {
     const json = JSON.stringify(meta.jsonLd).replace(/</g, '\\u003c');
     tags.push(`<script type="application/ld+json" data-prerender="true">${json}</script>`);
@@ -477,6 +483,7 @@ const buildPrerenderedPages = async () => {
           'Free health calculators, personalized meal plans, nutrition facts for 18,000+ dishes, and evidence-based guides on diabetes, heart health, fitness, and weight loss.',
         canonical: `${SITE_BASE}/`,
         type: 'website',
+        preloadImage: '/images/hero-bowl.webp',
       },
     },
     {

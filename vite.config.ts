@@ -50,6 +50,23 @@ const injectCriticalCss = (html: string) => {
   )
 }
 
+/**
+ * Adds a modulepreload for the entry bundle so the browser starts fetching it
+ * while it is still parsing the rest of the document. The entry hash is only
+ * known after bundling, which is why this runs on the emitted HTML.
+ */
+const injectEntryModulePreload = (html: string) => {
+  if (html.includes('data-entry-modulepreload')) return html
+  const entry = html.match(
+    /<script\b[^>]*\btype=["']module["'][^>]*\bsrc=["'][^"']+["'][^>]*>/i
+  )
+  if (!entry) return html
+  const href = entry[0].match(/\bsrc=["']([^"']+)["']/i)?.[1]
+  if (!href) return html
+  const preload = `<link rel="modulepreload" crossorigin href="${href}" data-entry-modulepreload>`
+  return html.replace(entry[0], `${preload}\n    ${entry[0]}`)
+}
+
 function criticalCssPlugin(): Plugin {
   return {
     name: 'critical-css-and-async-styles',
@@ -64,7 +81,7 @@ function criticalCssPlugin(): Plugin {
       if (this.meta?.watchMode) return
       try {
         const html = readFileSync(DIST_INDEX, 'utf8')
-        const next = injectCriticalCss(relaxStylesheets(html))
+        const next = injectCriticalCss(injectEntryModulePreload(relaxStylesheets(html)))
         if (next !== html) writeFileSync(DIST_INDEX, next)
       } catch {
         // No HTML emitted (e.g. library-only builds); nothing to do.

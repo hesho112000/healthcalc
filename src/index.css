@@ -29,7 +29,7 @@
 .num {
   direction: ltr;
   unicode-bidi: isolate;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'Inter Fallback', sans-serif;
   display: inline-block;
 }
 
@@ -38,7 +38,7 @@ html[lang='ar'] button,
 html[lang='ar'] input,
 html[lang='ar'] select,
 html[lang='ar'] textarea {
-  font-family: 'Cairo', 'Inter', sans-serif;
+  font-family: 'Cairo', 'Inter', 'Inter Fallback', sans-serif;
 }
 
 @layer components {
