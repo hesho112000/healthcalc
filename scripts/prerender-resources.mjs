@@ -230,6 +230,7 @@ const renderArticle = ({ article, articles }) => {
 const renderRecipe = ({ recipe, articles }) => `<main style="${PAGE_STYLE}">
   ${breadcrumbs(recipe.title.en)}
   <article>
+    ${recipe.imageUrl ? `<img src="${escapeAttr(recipe.imageUrl)}" alt="${escapeAttr(recipe.title.en)}" width="800" height="800" style="display:block;width:100%;max-width:800px;height:auto;aspect-ratio:1;object-fit:cover;border-radius:24px;margin:0 auto 24px;" />` : ''}
     <p style="${MUTED_STYLE}">${escapeHtml(recipe.cuisine.en)} &middot; ${escapeHtml(recipe.prepTime.en)} &middot; ${recipe.nutrition.calories} kcal</p>
     <h1 style="${H1_STYLE}">${escapeHtml(recipe.title.en)}</h1>
     <p style="font-size:1.1rem;color:#4A5A55;margin:0 0 16px;">${escapeHtml(recipe.description.en)}</p>
@@ -336,6 +337,7 @@ const recipeJsonLd = (recipe) => ({
   '@type': 'Recipe',
   name: recipe.title.en,
   description: recipe.description.en,
+  image: recipe.imageUrl ? [`${SITE_BASE}${recipe.imageUrl}`] : undefined,
   recipeCategory: recipe.cuisine.en,
   prepTime: `PT${recipe.prepTime.en.replace(/\D/g, '')}M`,
   recipeIngredient: recipe.ingredients.en,
@@ -461,6 +463,7 @@ const dishJsonLd = (dish) => ({
   '@type': 'WebPage',
   name: dish.name_en || `Dish ${dish.id}`,
   description: `Nutrition information per 100 g for ${dish.name_en || `dish ${dish.id}`}.`,
+  image: dish.image_url ? [`${SITE_BASE}${dish.image_url}`] : undefined,
   url: `${SITE_BASE}/food-library/${dish.id}`,
   additionalProperty: [
     ['Calories', dish.cal_100, 'kcal per 100 g'],

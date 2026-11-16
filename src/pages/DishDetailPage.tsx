@@ -109,7 +109,7 @@ const DishDetailPage: React.FC = () => {
       try {
         const { data, error: sbError } = await supabase
           .from('dishes')
-          .select('id,name_en,name_ar,name_fr,name_es,name_de,cal_100,protein,carbs,fat,fiber,sugar,sodium,sat_fat,region,meal_type,healthy,is_fried,is_sweet')
+          .select('*')
           .eq('id', id)
           .maybeSingle<DbDish>();
 
@@ -254,6 +254,7 @@ const DishDetailPage: React.FC = () => {
     '@type': 'WebPage',
     name,
     description: `${name} nutrition information per 100 g.`,
+    image: dish?.image_url ? [`https://healthfingerprint.com${dish.image_url}`] : undefined,
     category: mealType || 'Food',
     url: `https://healthfingerprint.com/food-library/${dish?.id ?? id}`,
     additionalProperty: [
@@ -316,9 +317,17 @@ const DishDetailPage: React.FC = () => {
         </div>
 
         <header className="mt-8 rounded-[32px] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] p-8 text-center shadow-[0_18px_44px_rgba(15,76,58,0.18)]">
-          <div className="mx-auto w-20 h-20 rounded-3xl bg-[#F4F1EB] flex items-center justify-center text-5xl shadow-[0_10px_30px_rgba(212,160,23,0.3)]">
-            🍽️
-          </div>
+          {dish.image_url ? (
+            <img
+              src={dish.image_url}
+              alt={name}
+              className="mx-auto h-32 w-32 rounded-3xl object-cover shadow-[0_10px_30px_rgba(212,160,23,0.3)]"
+            />
+          ) : (
+            <div className="mx-auto w-20 h-20 rounded-3xl bg-[#F4F1EB] flex items-center justify-center text-5xl shadow-[0_10px_30px_rgba(212,160,23,0.3)]">
+              🍽️
+            </div>
+          )}
           <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
             {region && (
               <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold text-[#D8E6DF]">{region}</span>

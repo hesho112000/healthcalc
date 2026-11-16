@@ -44,6 +44,7 @@ const RecipePage: React.FC = () => {
     '@type': 'Recipe',
     name,
     description: descriptionRecipe,
+    image: recipe.imageUrl ? [`https://healthfingerprint.com${recipe.imageUrl}`] : undefined,
     prepTime: `PT${recipe.prepTime.en.replace(/\D/g, '')}M`,
     recipeCategory: lt(recipe.cuisine, language),
     recipeIngredient: ingredients,
@@ -85,9 +86,17 @@ const RecipePage: React.FC = () => {
         </div>
 
         <header className="mt-8 rounded-[32px] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] p-8 text-center shadow-[0_18px_44px_rgba(15,76,58,0.18)]">
-          <div className="mx-auto w-20 h-20 rounded-3xl bg-[#F4F1EB] flex items-center justify-center text-5xl shadow-[0_10px_30px_rgba(212,160,23,0.3)]">
-            {recipe.emoji}
-          </div>
+          {recipe.imageUrl ? (
+            <img
+              src={recipe.imageUrl}
+              alt={name}
+              className="mx-auto h-48 w-full max-w-md rounded-3xl object-cover shadow-[0_10px_30px_rgba(212,160,23,0.3)]"
+            />
+          ) : (
+            <div className="mx-auto w-20 h-20 rounded-3xl bg-[#F4F1EB] flex items-center justify-center text-5xl shadow-[0_10px_30px_rgba(212,160,23,0.3)]">
+              {recipe.emoji}
+            </div>
+          )}
           <span className="mt-5 inline-block rounded-full bg-[#D4A017] px-4 py-1.5 text-xs font-extrabold tracking-wide uppercase text-[#0F4C3A]">
             {lt(recipe.cuisine, language)}
           </span>

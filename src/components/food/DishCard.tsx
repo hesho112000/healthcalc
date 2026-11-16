@@ -9,6 +9,7 @@ export interface Dish {
   name_fr?: string | null;
   name_es?: string | null;
   name_de?: string | null;
+  image_url?: string | null;
   cal_100?: number | null;
   protein?: number | null;
   carbs?: number | null;
@@ -63,9 +64,18 @@ export default function DishCard({ dish, locale }: { dish: Dish; locale: string 
     <Link to={`/food-library/${dish.id}`} className="block h-full">
       <article className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-emerald-400/50 hover:shadow-xl hover:shadow-emerald-500/10">
       <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-slate-50">
-        <span className="text-6xl opacity-80 transition-transform duration-500 group-hover:scale-110" aria-hidden="true">
-          {emoji}
-        </span>
+        {dish.image_url ? (
+          <img
+            src={dish.image_url}
+            alt={name}
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <span className="text-6xl opacity-80 transition-transform duration-500 group-hover:scale-110" aria-hidden="true">
+            {emoji}
+          </span>
+        )}
         <span className="absolute right-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-emerald-600 shadow-sm backdrop-blur">
           {calories} kcal <span className="text-[10px] text-slate-400">/ 100g</span>
         </span>

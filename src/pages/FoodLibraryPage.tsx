@@ -6,7 +6,7 @@ import SEO from '../components/seo/SEO';
 
 const PAGE_SIZE = 50;
 const TABLE = 'dishes';
-const SELECT_COLUMNS = 'id,name_en,name_ar,name_fr,name_es,name_de,cal_100,protein,carbs,fat,region,meal_type';
+const SELECT_COLUMNS = '*';
 
 export default function FoodLibraryPage() {
   const { i18n } = useTranslation();

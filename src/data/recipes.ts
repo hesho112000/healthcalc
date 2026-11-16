@@ -6,6 +6,7 @@ export interface Recipe {
   id: string;
   slug: string;
   foodLibraryDishId?: string;
+  imageUrl?: string;
   emoji: string;
   title: LangText;
   cuisine: LangText;
@@ -326,6 +327,7 @@ const KABSA: Recipe = {
 const LENTIL_SOUP: Recipe = {
   id: 'moroccan-lentil-soup',
   slug: 'moroccan-lentil-soup',
+  imageUrl: '/images/recipes/moroccan-lentil-soup.webp',
   emoji: '🍲',
   title: { en: 'Moroccan Lentil Soup', ar: 'شوربة عدس مغربية' },
   cuisine: { en: 'Moroccan', ar: 'مغربي' },
