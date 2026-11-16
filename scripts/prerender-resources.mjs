@@ -252,6 +252,12 @@ const renderRecipe = ({ recipe, articles }) => `<main style="${PAGE_STYLE}">
       <li>Fat: ${recipe.nutrition.fat} g</li>
     </ul>
 
+    <h2 style="${H2_STYLE}">Plan With This Recipe</h2>
+    <ul style="${LIST_STYLE}">
+      ${recipe.foodLibraryDishId ? `<li><a href="/food-library/${escapeAttr(recipe.foodLibraryDishId)}" style="${LINK_STYLE}">Food Library nutrition</a></li>` : ''}
+      <li><a href="/fitness" style="${LINK_STYLE}">Calorie and macro calculator</a></li>
+    </ul>
+
     <h2 style="${H2_STYLE}">Read More About Nutrition</h2>
     <ul style="${LIST_STYLE}">
       ${articles

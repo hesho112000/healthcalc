@@ -5,6 +5,7 @@ export type { LangText } from '../types';
 export interface Recipe {
   id: string;
   slug: string;
+  foodLibraryDishId?: string;
   emoji: string;
   title: LangText;
   cuisine: LangText;
@@ -1290,6 +1291,106 @@ const CILANTRO_LIME_CAULIFLOWER_RICE_BOWL: Recipe = {
   nutrition: { calories: 370, protein: 34, carbs: 24, fat: 15 },
 };
 
+const GRILLED_CHICKEN_COBB_SALAD: Recipe = {
+  id: 'grilled-chicken-cobb-salad-vinaigrette',
+  slug: 'grilled-chicken-cobb-salad-vinaigrette',
+  foodLibraryDishId: '6ef638d9-b5b9-4d65-b15d-8f5c0d1be001',
+  emoji: '🥗',
+  title: { en: 'Grilled Chicken Cobb Salad', ar: 'سلطة كوب بالدجاج المشوي' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'Grilled chicken, hard-boiled eggs, avocado, and blue cheese in neat rows over crisp romaine and radicchio, finished with a bright lemon-herb vinaigrette instead of a heavy dressing.', ar: 'دجاج مشوي وبيض مسلوق وأفوكادو وجبن أزرق في صفوف مرتبة فوق خس روماني وشيكوريا مقرمشة، مع صلصة ليمون وأعشاب خفيفة بدلًا من الصلصة الثقيلة.' },
+  prepTime: { en: '30 min', ar: '30 دقيقة' },
+  ingredients: {
+    en: ['1 lb boneless, skinless chicken breast', '1 tbsp olive oil', '1/2 tsp smoked paprika', '1/2 tsp garlic powder', '6 cups chopped romaine lettuce', '2 cups shredded radicchio or red cabbage', '3 hard-boiled eggs, quartered', '1 ripe avocado, sliced', '1 cup cherry tomatoes, halved', '1/3 cup crumbled blue cheese', '2 tbsp sliced almonds', 'Dressing: 2 tbsp olive oil, 1 tbsp lemon juice, 1 tsp Dijon mustard, 1 tbsp chopped parsley, 1 tsp chopped chives'],
+    ar: ['450 غرامًا من صدور الدجاج منزوعة العظم والجلد', 'ملعقة كبيرة زيت زيتون', 'نصف ملعقة صغيرة بابريكا مدخنة', 'نصف ملعقة صغيرة مسحوق الثوم', '6 أكواب خس روماني مفروم', 'كوبان شيكوريا حمراء أو ملفوف أحمر مفروم', '3 بيضات مسلوقة مقطعة أرباعًا', 'حبة أفوكادو ناضجة مقطعة شرائح', 'كوب طماطم كرزية مقطعة أنصافًا', 'ثلث كوب جبن أزرق مفتت', 'ملعقتان كبيرتان لوز مقطع شرائح', 'الصلصة: ملعقتان كبيرتان زيت زيتون، ملعقة كبيرة عصير ليمون، ملعقة صغيرة خردل ديجون، ملعقة كبيرة بقدونس مفروم، ملعقة صغيرة ثوم معمر مفروم'],
+  },
+  instructions: {
+    en: ['Season the chicken with smoked paprika, garlic powder, salt, and black pepper.', 'Grill or sear in a grill pan for 6 to 7 minutes per side until the center reaches 165°F; rest 5 minutes, then slice.', 'Whisk the dressing ingredients with 1 tablespoon of water until smooth.', 'Toss the romaine and radicchio with half the dressing and spread over a large platter.', 'Arrange chicken, eggs, avocado, tomatoes, blue cheese, and almonds in rows and spoon the remaining dressing over the top.'],
+    ar: ['تبّل الدجاج بالبابريكا المدخنة ومسحوق الثوم والملح والفلفل الأسود.', 'اشوِ الدجاج على الشواية أو في مقلاة مشوية 6 إلى 7 دقائق لكل جانب حتى تبلغ حرارة مركزه 165 فهرنهايت، ثم اتركه 5 دقائق وقطعه شرائح.', 'اخفق مكونات الصلصة مع ملعقة كبيرة ماء حتى تصبح ناعمة.', 'قلّب الخس الروماني والشيكوريا مع نصف الصلصة وافردهما في طبق تقديم كبير.', 'رتّب الدجاج والبيض والأفوكادو والطماطم والجبن الأزرق واللوز في صفوف ثم اسكب بقية الصلصة فوقها.'],
+  },
+  nutrition: { calories: 290, protein: 26, carbs: 8, fat: 17 },
+};
+
+const BUFFALO_CHICKEN_LETTUCE_WRAPS: Recipe = {
+  id: 'buffalo-chicken-lettuce-wraps',
+  slug: 'buffalo-chicken-lettuce-wraps',
+  foodLibraryDishId: '6ef638d9-b5b9-4d65-b15d-8f5c0d1be002',
+  emoji: '🌯',
+  title: { en: 'Buffalo Chicken Lettuce Wraps', ar: 'لفائف الخس بالدجاج بصلصة بافلو' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'Tender chicken strips tossed in a tangy buffalo sauce and piled into crisp lettuce leaves with carrot, celery, and a cooling Greek yogurt ranch.', ar: 'شرائح دجاج طرية بصلصة بافلو حارة داخل أوراق خس مقرمشة مع جزر وكرفس وصلصة رانش باردة باللبن اليوناني.' },
+  prepTime: { en: '25 min', ar: '25 دقيقة' },
+  ingredients: {
+    en: ['1 lb boneless, skinless chicken breast, cut into strips', '1/2 cup mild buffalo-style hot sauce', '1 tsp olive oil', '1/2 tsp garlic powder', '8 large butter lettuce leaves', '1 cup shredded carrot', '1/2 cup finely diced celery', '1/4 cup crumbled blue cheese (optional)', 'Ranch: 1/2 cup plain Greek yogurt, 1 tbsp milk, 1 tsp lemon juice, 1/2 tsp dried dill, 1/2 tsp garlic powder, 1 tbsp chopped chives'],
+    ar: ['450 غرامًا من صدور الدجاج منزوعة العظم والجلد مقطعة شرائح', 'نصف كوب صلصة بافلو معتدلة الحرارة', 'ملعقة صغيرة زيت زيتون', 'نصف ملعقة صغيرة مسحوق الثوم', '8 أوراق خس كبيرة', 'كوب جزر مبشور', 'نصف كوب كرفس مكعبات صغيرة', 'ربع كوب جبن أزرق مفتت (اختياري)', 'الرانش: نصف كوب لبن يوناني سادة، ملعقة كبيرة حليب، ملعقة صغيرة عصير ليمون، نصف ملعقة صغيرة شبت مجفف، نصف ملعقة صغيرة مسحوق الثوم، ملعقة كبيرة ثوم معمر مفروم'],
+  },
+  instructions: {
+    en: ['Toss the chicken strips with olive oil, garlic powder, and black pepper.', 'Sear in a hot skillet for 6 to 8 minutes, turning once, until cooked through and 165°F at the center.', 'Remove from the heat and toss the chicken with the buffalo sauce.', 'Whisk the Greek yogurt, milk, lemon juice, dill, garlic powder, and chives into a quick ranch.', 'Spoon the chicken into lettuce leaves, top with carrot, celery, and blue cheese, and drizzle with ranch.'],
+    ar: ['قلّب شرائح الدجاج مع زيت الزيتون ومسحوق الثوم والفلفل الأسود.', 'اشوِها في مقلاة ساخنة 6 إلى 8 دقائق مع تقليبها مرة واحدة حتى تنضج وتصل حرارة مركزها إلى 165 فهرنهايت.', 'ارفع المقلاة عن النار وقلّب الدجاج مع صلصة بافلو.', 'اخفق اللبن اليوناني والحليب وعصير الليمون والشبت ومسحوق الثوم والثوم المعمر لتحضير صلصة رانش سريعة.', 'وزّع الدجاج في أوراق الخس وأضف الجزر والكرفس والجبن الأزرق ثم اسكب صلصة الرانش.'],
+  },
+  nutrition: { calories: 216, protein: 24, carbs: 9, fat: 9 },
+};
+
+const TURKEY_MEATLOAF_CAULIFLOWER_MASH: Recipe = {
+  id: 'turkey-meatloaf-cauliflower-mash',
+  slug: 'turkey-meatloaf-cauliflower-mash',
+  foodLibraryDishId: '6ef638d9-b5b9-4d65-b15d-8f5c0d1be003',
+  emoji: '🍽️',
+  title: { en: 'Turkey Meatloaf with Cauliflower Mash', ar: 'رغيف الديك الرومي مع هريس القرنبيط' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'A moist, lean turkey meatloaf with grated vegetables under a light tomato glaze, served with creamy Parmesan cauliflower mash.', ar: 'رغيف ديك رومي طري وقليل الدهون مع خضار مبشورة وطبقة طماطم خفيفة، يقدم مع هريس قرنبيط كريمي بالبارميزان.' },
+  prepTime: { en: '55 min', ar: '55 دقيقة' },
+  ingredients: {
+    en: ['1 1/2 lb lean ground turkey (93%)', '1/2 cup whole-wheat panko breadcrumbs', '1 large egg', '1/2 cup finely diced onion', '1/2 cup grated carrot', '1/4 cup low-sodium tomato sauce', '1 tbsp Worcestershire sauce', '1 tsp garlic powder', '1 tsp dried oregano', '1/2 tsp black pepper', 'Glaze: 1/4 cup low-sodium tomato sauce, 1 tsp Dijon mustard', 'Mash: 1 large head cauliflower (about 6 cups florets), 2 cloves garlic, 1/4 cup grated Parmesan, 1/4 cup plain Greek yogurt, 1 tbsp olive oil'],
+    ar: ['700 غرام من الديك الرومي المفروم قليل الدهون', 'نصف كوب بقسماط قمح كامل', 'بيضة كبيرة', 'نصف كوب بصل مفروم ناعمًا', 'نصف كوب جزر مبشور', 'ربع كوب صلصة طماطم قليلة الصوديوم', 'ملعقة كبيرة صلصة ورشستر', 'ملعقة صغيرة مسحوق الثوم', 'ملعقة صغيرة أوريغانو مجفف', 'نصف ملعقة صغيرة فلفل أسود', 'الطبقة: ربع كوب صلصة طماطم قليلة الصوديوم، ملعقة صغيرة خردل ديجون', 'الهريس: رأس قرنبيط كبير (نحو 6 أكواب زهرات)، فصان ثوم، ربع كوب بارميزان مبشور، ربع كوب لبن يوناني سادة، ملعقة كبيرة زيت زيتون'],
+  },
+  instructions: {
+    en: ['Heat the oven to 375°F and line a loaf pan with parchment.', 'Mix the turkey, breadcrumbs, egg, onion, carrot, tomato sauce, Worcestershire sauce, garlic powder, oregano, and pepper until just combined.', 'Press into the pan, spread the glaze over the top, and bake 40 to 45 minutes until the center reaches 165°F.', 'Steam the cauliflower and garlic for 10 minutes, then blend with Parmesan, Greek yogurt, olive oil, salt, and pepper until smooth.', 'Rest the meatloaf 10 minutes before slicing and serve with the cauliflower mash.'],
+    ar: ['سخّن الفرن إلى 375 فهرنهايت وبطّن قالب الرغيف بورق الخبز.', 'اخلط الديك الرومي والبقسماط والبيض والبصل والجزر وصلصة الطماطم وصلصة ورشستر ومسحوق الثوم والأوريغانو والفلفل حتى يتجانس الخليط دون إفراط.', 'اضغط الخليط في القالب وافرد الطبقة فوقه واخبزه 40 إلى 45 دقيقة حتى تبلغ حرارة مركزه 165 فهرنهايت.', 'اطه القرنبيط والثوم على البخار 10 دقائق ثم اخلطهما مع البارميزان واللبن اليوناني وزيت الزيتون والملح والفلفل حتى يصبح المزيج ناعمًا.', 'اترك الرغيف 10 دقائق قبل تقطيعه وقدمه مع هريس القرنبيط.'],
+  },
+  nutrition: { calories: 336, protein: 36, carbs: 20, fat: 13 },
+};
+
+const LOADED_BAKED_SWEET_POTATO: Recipe = {
+  id: 'loaded-baked-sweet-potato',
+  slug: 'loaded-baked-sweet-potato',
+  foodLibraryDishId: '6ef638d9-b5b9-4d65-b15d-8f5c0d1be004',
+  emoji: '🍠',
+  title: { en: 'Loaded Baked Sweet Potato', ar: 'بطاطا حلوة مشوية محشوة' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'A whole baked sweet potato split and loaded with cumin-spiced black beans, corn, salsa, avocado, and cool Greek yogurt.', ar: 'حبة بطاطا حلوة مشوية كاملة مفتوحة ومحشوة بالفاصوليا السوداء بالكمون والذرة والصلصة والأفوكادو واللبن اليوناني.' },
+  prepTime: { en: '50 min', ar: '50 دقيقة' },
+  ingredients: {
+    en: ['2 medium sweet potatoes (about 10 oz each)', '1 tsp olive oil', '1 cup black beans, drained and rinsed', '1/2 cup corn kernels', '1/2 tsp ground cumin', '1/2 tsp chili powder', '1/4 cup mild salsa', '1/2 cup plain Greek yogurt', '1/2 ripe avocado, diced', '1/4 cup chopped cilantro', '1 lime, cut into wedges'],
+    ar: ['حبتا بطاطا حلوة متوسطتان (نحو 280 غرامًا لكل حبة)', 'ملعقة صغيرة زيت زيتون', 'كوب فاصوليا سوداء مصفاة ومغسولة', 'نصف كوب حبوب ذرة', 'نصف ملعقة صغيرة كمون مطحون', 'نصف ملعقة صغيرة مسحوق فلفل حار', 'ربع كوب صلصة طماطم معتدلة', 'نصف كوب لبن يوناني سادة', 'نصف حبة أفوكادو ناضجة مكعبات', 'ربع كوب كزبرة مفرومة', 'ليمونة خضراء مقطعة أرباعًا'],
+  },
+  instructions: {
+    en: ['Heat the oven to 425°F, rub the sweet potatoes with olive oil, and pierce them a few times with a fork.', 'Bake 40 to 45 minutes until completely tender, turning once halfway through.', 'Warm the black beans and corn with the cumin, chili powder, and 2 tablespoons of water.', 'Split each potato and fluff the inside with a fork.', 'Fill with beans and corn, top with salsa, Greek yogurt, avocado, and cilantro, and serve with lime wedges.'],
+    ar: ['سخّن الفرن إلى 425 فهرنهايت وادهن البطاطا بزيت الزيتون واثقبها عدة مرات بالشوكة.', 'اخبزها 40 إلى 45 دقيقة حتى تلين تمامًا مع تقليبها مرة واحدة في منتصف المدة.', 'سخّن الفاصوليا السوداء والذرة مع الكمون ومسحوق الفلفل الحار وملعقتين كبيرتين ماء.', 'افتح كل حبة بطاطا وافرك داخلها بالشوكة.', 'احشُها بالفاصوليا والذرة وأضف الصلصة واللبن اليوناني والأفوكادو والكزبرة وقدمها مع شرائح الليمون.'],
+  },
+  nutrition: { calories: 312, protein: 13, carbs: 50, fat: 7 },
+};
+
+const CRISPY_BAKED_CHICKEN_TENDERS: Recipe = {
+  id: 'crispy-baked-chicken-tenders-almond',
+  slug: 'crispy-baked-chicken-tenders-almond',
+  foodLibraryDishId: '6ef638d9-b5b9-4d65-b15d-8f5c0d1be005',
+  emoji: '🍗',
+  title: { en: 'Crispy Baked Chicken Tenders with Almond Crust', ar: 'أصابع الدجاج المقرمشة المخبوزة بطبقة اللوز' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: { en: 'Golden oven-baked chicken tenders with an almond flour and panko crust, served with a tangy Greek yogurt mustard dip instead of fryer oil.', ar: 'أصابع دجاج ذهبية مقرمشة من الفرن بطبقة من دقيق اللوز والبقسماط، تقدم مع صلصة غمس باللبن اليوناني والخردل بدلًا من القلي بالزيت.' },
+  prepTime: { en: '35 min', ar: '35 دقيقة' },
+  ingredients: {
+    en: ['1 lb chicken breast tenders', '1/2 cup almond flour', '1/2 cup whole-wheat panko breadcrumbs', '1/4 cup grated Parmesan', '1 tsp smoked paprika', '1/2 tsp garlic powder', '1/2 tsp onion powder', '1 large egg', '1 tbsp olive oil', 'Dip: 1/2 cup plain Greek yogurt, 1 tsp Dijon mustard, 1 tsp lemon juice, 1 tbsp chopped chives'],
+    ar: ['450 غرامًا من أصابع صدور الدجاج', 'نصف كوب دقيق لوز', 'نصف كوب بقسماط قمح كامل', 'ربع كوب بارميزان مبشور', 'ملعقة صغيرة بابريكا مدخنة', 'نصف ملعقة صغيرة مسحوق الثوم', 'نصف ملعقة صغيرة مسحوق البصل', 'بيضة كبيرة', 'ملعقة كبيرة زيت زيتون', 'الغمس: نصف كوب لبن يوناني سادة، ملعقة صغيرة خردل ديجون، ملعقة صغيرة عصير ليمون، ملعقة كبيرة ثوم معمر مفروم'],
+  },
+  instructions: {
+    en: ['Heat the oven to 425°F and set a wire rack over a lined sheet pan.', 'Mix the almond flour, panko, Parmesan, smoked paprika, garlic powder, and onion powder in a shallow bowl.', 'Beat the egg with 1 tablespoon of water in a second bowl.', 'Dip each tender in egg, press firmly into the crumb mixture, and place on the rack; brush lightly with olive oil.', 'Bake 16 to 20 minutes, turning once, until golden and 165°F at the center; stir the dip ingredients together and serve.'],
+    ar: ['سخّن الفرن إلى 425 فهرنهايت وضع شبكة معدنية فوق صينية مبطنة.', 'اخلط دقيق اللوز والبقسماط والبارميزان والبابريكا المدخنة ومسحوق الثوم ومسحوق البصل في وعاء مسطح.', 'اخفق البيضة مع ملعقة كبيرة ماء في وعاء ثانٍ.', 'اغمس كل إصبع دجاج في البيض ثم اضغطه جيدًا في خليط البقسماط وضعه على الشبكة وادهنه بقليل من زيت الزيتون.', 'اخبزه 16 إلى 20 دقيقة مع تقليبه مرة واحدة حتى يصبح ذهبيًا وتصل حرارة مركزه 165 فهرنهايت، ثم اخلط مكونات الغمس وقدمه معه.'],
+  },
+  nutrition: { calories: 263, protein: 28, carbs: 14, fat: 11 },
+};
+
 export const RECIPES: Recipe[] = [
   FOUL,
   CHICKEN_RICE,
@@ -1337,6 +1438,11 @@ export const RECIPES: Recipe[] = [
   CHICKEN_TORTILLA_SOUP_LIGHT,
   BEEF_BELL_PEPPER_FAJITAS,
   CILANTRO_LIME_CAULIFLOWER_RICE_BOWL,
+  GRILLED_CHICKEN_COBB_SALAD,
+  BUFFALO_CHICKEN_LETTUCE_WRAPS,
+  TURKEY_MEATLOAF_CAULIFLOWER_MASH,
+  LOADED_BAKED_SWEET_POTATO,
+  CRISPY_BAKED_CHICKEN_TENDERS,
 ];
 
 export const getRecipeBySlug = (slug: string): Recipe | undefined =>

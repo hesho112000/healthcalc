@@ -150,6 +150,29 @@ const RecipePage: React.FC = () => {
           </ol>
         </section>
 
+        <section className="mt-6 rounded-3xl border border-emerald-200 bg-emerald-50 p-6">
+          <h2 className="text-lg font-extrabold text-[#0F4C3A]">Use this recipe in your plan</h2>
+          <p className="mt-2 text-sm leading-relaxed text-[#4A5A55]">
+            Compare food nutrition and estimate your daily calorie and macro targets.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            {recipe.foodLibraryDishId && (
+              <Link
+                to={`/food-library/${recipe.foodLibraryDishId}`}
+                className="inline-flex items-center rounded-full bg-[#0F4C3A] px-5 py-2.5 text-sm font-extrabold text-white hover:bg-[#1a6b53] transition-colors"
+              >
+                Food Library nutrition
+              </Link>
+            )}
+            <Link
+              to="/fitness"
+              className="inline-flex items-center rounded-full border border-[#0F4C3A] px-5 py-2.5 text-sm font-extrabold text-[#0F4C3A] hover:bg-white transition-colors"
+            >
+              Calorie &amp; macro calculator
+            </Link>
+          </div>
+        </section>
+
         {ENABLE_PREMIUM && <section className="mt-10 relative overflow-hidden rounded-[32px] bg-gradient-to-br from-[#0F4C3A] to-[#1a6b53] px-8 py-12 text-center shadow-[0_24px_60px_rgba(15,76,58,0.25)]">
           <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(70%_140%_at_50%_0%,rgba(212,160,23,0.18),rgba(255,255,255,0)_60%)]" />
           <div className="relative">

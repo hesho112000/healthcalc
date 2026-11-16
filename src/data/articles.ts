@@ -2705,6 +2705,308 @@ Choose one protein, one grain, and two vegetables to prep this week. Make one sa
   },
 };
 
+const BELLY_FAT_CORTISOL: Article = {
+  id: 'belly-fat-cortisol-tdee',
+  slug: 'belly-fat-cortisol-tdee',
+  category: 'lifestyle',
+  icon: '🧠',
+  readTime: 7,
+  publishedAt: '2026-11-16',
+  tags: ['belly-fat', 'cortisol', 'stress', 'tdee', 'weight-management'],
+  title: {
+    en: 'The Science of Belly Fat: Why Cortisol Matters',
+    ar: 'دهون البطن: ما دور الكورتيزول؟',
+  },
+  excerpt: {
+    en: 'Explore how stress, sleep, appetite, and energy balance can affect abdominal fat—without blaming one hormone for everything.',
+    ar: 'تعرّف إلى أثر التوتر والنوم والشهية وتوازن الطاقة في دهون البطن، دون اختزال الأمر في هرمون واحد.',
+  },
+  content: {
+    en: `Abdominal fat is influenced by many things: age, genetics, sleep, food access, activity, medications, and overall energy balance. Cortisol is part of the stress response, but it is not a simple “belly-fat switch,” and ordinary stress does not mean that weight gain is inevitable.
+
+## What cortisol does
+
+Cortisol is a hormone made by the adrenal glands. It helps the body respond to demands and follows a daily rhythm. Persistently high cortisol from certain medical conditions or long-term use of corticosteroid medicines is different from the temporary rise that can occur during everyday stress. Do not stop prescribed medicine or seek hormone testing based on body shape alone; discuss concerns with a clinician.
+
+## How stress may influence weight
+
+Long-running stress can affect sleep, appetite, food choices, and the ability to keep up with movement or meal routines. Those indirect effects can make weight management harder. Research also explores links between chronic stress, cortisol, and fat distribution, but it does not show that cortisol alone explains abdominal fat for most people.
+
+## Focus on useful, measurable steps
+
+- Aim for a consistent sleep routine and regular meals that include vegetables, fruit, whole grains, and protein.
+- Choose movement you can repeat: walking, strength training, or another activity suited to your health and schedule.
+- Seek support for persistent stress, low mood, or sleep problems; these deserve care in their own right.
+- Review medicines, health conditions, and unexpected weight changes with a qualified health professional.
+
+For a practical starting point, use the [calorie and TDEE calculator](/calories) to estimate daily energy needs. It is a planning estimate, not a diagnosis or a direct measurement of cortisol. Adjust gradually based on your progress and how you feel.
+
+## When to ask for medical advice
+
+Talk with a clinician about rapid unexplained weight change, unusual muscle weakness, easy bruising, or other new symptoms. A clinician can decide whether an evaluation is appropriate. Avoid supplements that promise to “balance cortisol” unless a health professional has reviewed their safety for you.
+
+## References
+
+- [Mayo Clinic: Belly fat in women—taking and keeping it off](https://www.mayoclinic.org/healthy-lifestyle/womens-health/in-depth/belly-fat/art-20045809)
+- [NIH PubMed: Stress, overeating, and obesity—insights from human studies](https://pmc.ncbi.nlm.nih.gov/articles/PMC5403578/)
+- [World Health Organization: Obesity and overweight](https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight)
+- [Harvard Health: The truth about metabolism](https://www.health.harvard.edu/staying-healthy/the-truth-about-metabolism)`,
+    ar: '',
+  },
+  takeaways: {
+    en: [
+      'Cortisol is one part of a complex stress response, not a stand-alone cause of belly fat.',
+      'Stress can affect sleep, appetite, food choices, and activity habits.',
+      'Use a TDEE estimate as a starting point, then adjust with a clinician’s guidance when needed.',
+      'New or rapid weight changes and unusual symptoms merit medical advice.',
+    ],
+    ar: [
+      'الكورتيزول جزء من استجابة معقدة للتوتر وليس سببًا منفردًا لدهون البطن.',
+      'قد يؤثر التوتر في النوم والشهية والاختيارات الغذائية والنشاط.',
+      'استخدم تقدير TDEE كنقطة بداية واستشر مختصًا عند الحاجة.',
+      'تستدعي التغيرات السريعة أو الأعراض الجديدة استشارة طبية.',
+    ],
+  },
+};
+
+const PROTEIN_WEIGHT_LOSS: Article = {
+  id: 'protein-intake-weight-loss',
+  slug: 'protein-intake-weight-loss',
+  category: 'nutrition',
+  icon: '🥚',
+  readTime: 7,
+  publishedAt: '2026-11-16',
+  tags: ['protein', 'weight-loss', 'macros', 'nutrition'],
+  title: {
+    en: 'Protein Intake for Weight Loss: How Much Do You Really Need?',
+    ar: 'كم تحتاج من البروتين لدعم خسارة الوزن؟',
+  },
+  excerpt: {
+    en: 'Understand the adult protein reference amount, what can change individual needs, and how to plan balanced macros.',
+    ar: 'تعرّف إلى الكمية المرجعية للبروتين والعوامل التي تغيّر الاحتياج وكيفية تخطيط المغذيات الكبرى بتوازن.',
+  },
+  content: {
+    en: `Protein supports the maintenance and repair of tissues, and it can make meals satisfying. But there is no single high-protein target that is right for everyone trying to lose weight. Needs depend on body size, age, activity, health status, energy intake, and personal goals.
+
+## Start with the reference amount
+
+For many healthy adults, the Recommended Dietary Allowance is 0.8 grams of protein per kilogram of body weight per day. This is a reference intended to meet the needs of nearly all healthy adults, not a special weight-loss prescription. People who are older, highly active, pregnant, recovering from illness, or managing kidney or other conditions may need individual advice.
+
+Some weight-management research evaluates higher-protein eating patterns, often because protein may support fullness and help preserve lean tissue during energy restriction. The evidence does not mean that everyone needs a supplement or a very high intake. Overall diet quality and a sustainable calorie deficit remain important.
+
+## Build a practical plate
+
+Include a protein-rich food at meals—such as beans, lentils, eggs, fish, poultry, tofu, or plain yogurt—alongside vegetables or fruit and high-fiber grains. Spreading protein across meals can make a plan easier to follow. Choose foods you enjoy and can afford; powders are optional, not required.
+
+## Calculate macros in context
+
+Your protein target should fit your calorie needs rather than crowding out fiber-rich foods or healthy fats. Use the [calorie and macro calculator](/fitness) to estimate a starting plan, then discuss a personalized target with a registered dietitian or clinician if you have a health condition, take medicines that affect nutrition, or are unsure what is safe. Calculators provide estimates, not a medical prescription.
+
+## A note about kidney health
+
+People with chronic kidney disease or other medical concerns should not adopt a high-protein plan without professional guidance. A clinician can consider lab results, treatment, and the right amount for your circumstances.
+
+## References
+
+- [Harvard T.H. Chan School of Public Health: Protein](https://www.hsph.harvard.edu/nutritionsource/what-should-you-eat/protein/)
+- [Mayo Clinic Press: The fullness formula—why protein and fiber matter](https://mcpress.mayoclinic.org/healthy-eating/the-fullness-formula-why-protein-and-fiber-matter-for-weight-and-energy)
+- [NIH Office of Dietary Supplements: Dietary supplements for exercise and athletic performance](https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-HealthProfessional/)
+- [World Health Organization: Healthy diet](https://www.who.int/news-room/fact-sheets/detail/healthy-diet)`,
+    ar: '',
+  },
+  takeaways: {
+    en: [
+      'The adult protein RDA is 0.8 g/kg/day; weight loss does not create one universal target.',
+      'Age, activity, health, and total energy intake all affect individual needs.',
+      'Ordinary foods can meet protein needs; supplements are optional.',
+      'Use the macro calculator as a starting estimate and get individualized advice for medical concerns.',
+    ],
+    ar: [
+      'الكمية المرجعية للبالغين هي 0.8 غرام لكل كيلوغرام يوميًا، ولا يوجد هدف واحد يناسب الجميع.',
+      'يؤثر العمر والنشاط والصحة والطاقة الكلية في الاحتياج الفردي.',
+      'يمكن تلبية الاحتياج من الطعام، والمكملات اختيارية.',
+      'استخدم حاسبة المغذيات كنقطة بداية واطلب نصيحة مخصصة عند وجود حالة صحية.',
+    ],
+  },
+};
+
+const FASTING_VS_CALORIE_DEFICIT: Article = {
+  id: 'intermittent-fasting-vs-calorie-deficit',
+  slug: 'intermittent-fasting-vs-calorie-deficit',
+  category: 'nutrition',
+  icon: '⏱️',
+  readTime: 7,
+  publishedAt: '2026-11-16',
+  tags: ['intermittent-fasting', 'calorie-deficit', 'weight-management'],
+  title: {
+    en: 'Intermittent Fasting vs. Calorie Deficit',
+    ar: 'الصيام المتقطع أم خفض السعرات؟',
+  },
+  excerpt: {
+    en: 'Compare meal timing with an energy deficit, what trials suggest, and how to choose a safe, sustainable approach.',
+    ar: 'قارن بين توقيت الوجبات وخفض الطاقة، وما تشير إليه الدراسات، وكيف تختار نهجًا آمنًا ومستدامًا.',
+  },
+  content: {
+    en: `Intermittent fasting describes when a person eats; a calorie deficit describes average energy intake below energy use over time. They are not mutually exclusive: a fasting schedule can be one way some people reduce intake, while others prefer regular meals and portion planning.
+
+## What research suggests
+
+Randomized trials generally find that intermittent fasting can support weight loss, but it is not consistently better than continuous calorie restriction when total energy reduction and support are similar. Results vary by schedule, duration, adherence, and participant. No eating window overrides food quality, sleep, movement, or medical needs.
+
+## Choosing an approach
+
+Consider which routine fits your work, family meals, training, medication schedule, and hunger cues. A modest, sustainable calorie deficit is often more useful than a strict plan that is hard to maintain. If fasting makes you feel unwell, leads to overeating, or disrupts daily life, another pattern may suit you better.
+
+For more on schedules and safety, read our [intermittent fasting guide](/resources/article/intermittent-fasting-safety). You can use the [calorie calculator](/calories) to estimate a starting energy target; a number is only an estimate and should be adjusted to your circumstances.
+
+## Who should get advice first
+
+Fasting may be unsuitable or require close supervision for people who are pregnant or breastfeeding, under 18, have a history of an eating disorder, or use medicines that can cause low blood glucose. Anyone with a medical condition or a prescription tied to meals should ask their clinician before changing meal timing. Do not change medicine doses to accommodate a fasting schedule without medical advice.
+
+## References
+
+- [Harvard T.H. Chan School of Public Health: Intermittent fasting](https://www.hsph.harvard.edu/nutritionsource/healthy-weight/diet-reviews/intermittent-fasting/)
+- [NIH PubMed: Effects of intermittent and continuous calorie restriction on body weight and metabolism over 50 weeks](https://pubmed.ncbi.nlm.nih.gov/30475957/)
+- [NIH PubMed: Intermittent versus continuous energy restriction—systematic review and meta-analysis](https://pubmed.ncbi.nlm.nih.gov/37827491/)
+- [World Health Organization: Healthy diet](https://www.who.int/news-room/fact-sheets/detail/healthy-diet)`,
+    ar: '',
+  },
+  takeaways: {
+    en: [
+      'Fasting is a meal-timing pattern; a calorie deficit is an energy-balance concept.',
+      'Intermittent fasting can help some people but is not reliably superior to other sustainable approaches.',
+      'Choose a routine that fits daily life, nutrition needs, and medicines.',
+      'Ask a clinician first when pregnant, under 18, managing a condition, or using glucose-lowering medicine.',
+    ],
+    ar: [
+      'الصيام أسلوب لتوقيت الوجبات، أما العجز فهو مفهوم لتوازن الطاقة.',
+      'قد يساعد الصيام بعض الأشخاص لكنه ليس أفضل دائمًا من الأساليب المستدامة الأخرى.',
+      'اختر روتينًا يلائم الحياة والاحتياجات الغذائية والأدوية.',
+      'استشر مختصًا قبل الصيام عند الحمل أو صغر السن أو وجود حالة صحية أو أدوية للسكر.',
+    ],
+  },
+};
+
+const HIDDEN_SUGARS_HEALTHY_FOODS: Article = {
+  id: 'hidden-sugars-healthy-foods',
+  slug: 'hidden-sugars-healthy-foods',
+  category: 'nutrition',
+  icon: '🔎',
+  readTime: 6,
+  publishedAt: '2026-11-16',
+  tags: ['added-sugar', 'food-labels', 'nutrition', 'food-library'],
+  title: {
+    en: 'Hidden Sugars in “Healthy” Foods',
+    ar: 'السكريات المضافة في الأطعمة التي تبدو صحية',
+  },
+  excerpt: {
+    en: 'Learn to spot added sugars on ingredient lists and use nutrition facts without confusing them with naturally occurring sugars.',
+    ar: 'تعلّم تمييز السكريات المضافة في قوائم المكونات وقراءة المعلومات الغذائية دون الخلط بينها وبين السكريات الطبيعية.',
+  },
+  content: {
+    en: `Foods promoted as “natural,” “energy,” or “better for you” can still contain added sugars. The word “hidden” does not mean that labels conceal the ingredient; it means that sweeteners may appear in products where shoppers do not expect them.
+
+## Added sugar and total sugar are different
+
+Nutrition labels report total sugars, which can include naturally occurring sugars in foods such as plain milk and fruit, as well as sugars added during processing. Where the label provides an “Includes added sugars” line, use it to distinguish those amounts. Ingredient lists may use names such as syrup, cane sugar, honey, molasses, or ingredients ending in “-ose.”
+
+## Foods worth checking
+
+Compare flavored yogurt with plain yogurt, sweetened cereal with unsweetened options, bottled smoothies with whole fruit, and sauces or salad dressings with lower-sugar alternatives. Granola bars, coffee drinks, and packaged snacks can also vary widely. “No added sugar” does not always mean low in total sugar, and fruit does not need to be avoided because it contains natural sugars.
+
+## A simple label routine
+
+1. Check serving size first; packages can contain more than one serving.
+2. Look at total sugars and added sugars, when listed.
+3. Scan the ingredient list for sweeteners, especially near the beginning.
+4. Compare similar products and choose the one that fits your preferences and health needs.
+
+Use the [Food Library](/food-library) to explore nutrition information and compare foods. Values can differ by brand, preparation, and serving, so packaged-food labels are the best source for the exact product you buy.
+
+## References
+
+- [Harvard T.H. Chan School of Public Health: Added sugar in the diet](https://www.hsph.harvard.edu/nutritionsource/carbohydrates/added-sugar-in-the-diet/)
+- [World Health Organization: Healthy diet](https://www.who.int/news-room/fact-sheets/detail/healthy-diet)
+- [U.S. Food and Drug Administration: Added sugars on the Nutrition Facts label](https://www.fda.gov/food/nutrition-facts-label/added-sugars-nutrition-facts-label)
+- [NIH MedlinePlus: Reading food labels](https://medlineplus.gov/ency/patientinstructions/000107.htm)`,
+    ar: '',
+  },
+  takeaways: {
+    en: [
+      'Total sugars include naturally occurring and added sugars; check the added-sugars line when available.',
+      'Compare serving sizes and ingredient lists across similar products.',
+      'Words such as honey or syrup can name added sweeteners.',
+      'Use the Food Library for comparisons, and the package label for a specific branded item.',
+    ],
+    ar: [
+      'يشمل إجمالي السكر السكريات الطبيعية والمضافة؛ راجع خانة السكر المضاف عند توفرها.',
+      'قارن حجم الحصة وقائمة المكونات بين المنتجات المتشابهة.',
+      'قد تشير كلمات مثل العسل أو الشراب إلى مُحلّيات مضافة.',
+      'استخدم مكتبة الطعام للمقارنة وملصق العبوة للمنتج المحدد.',
+    ],
+  },
+};
+
+const UNDERSTANDING_BMR_TDEE: Article = {
+  id: 'understanding-bmr-vs-tdee',
+  slug: 'understanding-bmr-vs-tdee',
+  category: 'fitness',
+  icon: '🔥',
+  readTime: 7,
+  publishedAt: '2026-11-16',
+  tags: ['bmr', 'tdee', 'metabolism', 'calorie-needs'],
+  title: {
+    en: 'Understanding BMR vs. TDEE',
+    ar: 'ما الفرق بين BMR وTDEE؟',
+  },
+  excerpt: {
+    en: 'Learn what resting energy estimates include, how daily activity changes total needs, and how to use a BMR calculator.',
+    ar: 'تعرّف إلى الطاقة اللازمة في الراحة وكيف يغيّر النشاط الاحتياج اليومي وكيفية استخدام حاسبة BMR.',
+  },
+  content: {
+    en: `BMR and TDEE are related estimates, but they answer different questions. Basal metabolic rate (BMR) estimates the energy the body uses at rest for essential functions. Total daily energy expenditure (TDEE) estimates energy used across a whole day, including resting needs, movement, exercise, and the energy used to digest food.
+
+## BMR is not a calorie target
+
+BMR is not the number of calories you should automatically eat. Most people move, work, and digest food, so daily needs are higher than resting needs. BMR formulas also provide estimates; they cannot capture every individual difference or replace clinical assessment.
+
+## TDEE adds daily life
+
+Activity multipliers or other estimation methods are often used to turn BMR into an approximate TDEE. The result can be off because activity levels are difficult to classify and energy use adapts over time. Treat it as a starting estimate, not a promise of exact weight change.
+
+## How to use each number
+
+- Use BMR to understand one component of energy use at rest.
+- Use TDEE as a rough maintenance estimate when planning intake.
+- If pursuing weight change, make modest adjustments and review trends over several weeks rather than reacting to day-to-day scale changes.
+- Seek guidance from a clinician or dietitian for pregnancy, adolescence, chronic illness, recovery, or a history of disordered eating.
+
+Try the [BMR calculator](/bmr) for a resting estimate. The [calorie and activity calculator](/calories) can help estimate TDEE and a starting calorie range. Both are tools for planning, not measurements or diagnoses.
+
+## References
+
+- [Mayo Clinic: Metabolism and weight loss—how you burn calories](https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/metabolism/art-20046508)
+- [Harvard T.H. Chan School of Public Health: Energy balance](https://hsph.harvard.edu/obesity-prevention-source/energy-balance/)
+- [NIH/NIDDK: Body Weight Planner](https://www.niddk.nih.gov/bwp)
+- [World Health Organization: Physical activity](https://www.who.int/news-room/fact-sheets/detail/physical-activity)`,
+    ar: '',
+  },
+  takeaways: {
+    en: [
+      'BMR estimates energy used at rest; TDEE estimates total daily energy use.',
+      'BMR is not, by itself, a recommended daily calorie intake.',
+      'Both calculator results are estimates that can differ from an individual’s actual energy use.',
+      'Use the BMR and calorie tools as planning aids and seek personal guidance when health needs are complex.',
+    ],
+    ar: [
+      'يقدّر BMR الطاقة في الراحة، بينما يقدّر TDEE إجمالي الطاقة اليومية.',
+      'لا يمثل BMR وحده كمية السعرات الموصى بتناولها.',
+      'نتائج الحاسبات تقديرية وقد تختلف عن احتياج الفرد الفعلي.',
+      'استخدم الحاسبات للتخطيط واطلب إرشادًا شخصيًا عند تعقّد الاحتياجات الصحية.',
+    ],
+  },
+};
+
 export const ARTICLES: Article[] = [
   HBA1C,
   BLOOD_PRESSURE_MYTHS,
@@ -2719,6 +3021,11 @@ export const ARTICLES: Article[] = [
   READ_NUTRITION_LABELS,
   MEDITERRANEAN_DIET_BEGINNERS,
   MEAL_PREP_MEDITERRANEAN,
+  BELLY_FAT_CORTISOL,
+  PROTEIN_WEIGHT_LOSS,
+  FASTING_VS_CALORIE_DEFICIT,
+  HIDDEN_SUGARS_HEALTHY_FOODS,
+  UNDERSTANDING_BMR_TDEE,
 ];
 
 export const getArticleBySlug = (slug: string): Article | undefined =>

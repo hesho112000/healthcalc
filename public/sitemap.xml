@@ -196,6 +196,41 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://healthfingerprint.com/resources/article/belly-fat-cortisol-tdee</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/belly-fat-cortisol-tdee" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/belly-fat-cortisol-tdee" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/article/protein-intake-weight-loss</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/protein-intake-weight-loss" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/protein-intake-weight-loss" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/article/intermittent-fasting-vs-calorie-deficit</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/intermittent-fasting-vs-calorie-deficit" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/intermittent-fasting-vs-calorie-deficit" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/article/hidden-sugars-healthy-foods</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/hidden-sugars-healthy-foods" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/hidden-sugars-healthy-foods" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/article/understanding-bmr-vs-tdee</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://healthfingerprint.com/resources/article/understanding-bmr-vs-tdee" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://healthfingerprint.com/resources/article/understanding-bmr-vs-tdee" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://healthfingerprint.com/resources/recipe/foul-medames</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -422,6 +457,31 @@
   </url>
   <url>
     <loc>https://healthfingerprint.com/resources/recipe/cilantro-lime-cauliflower-rice-bowl</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/recipe/grilled-chicken-cobb-salad-vinaigrette</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/recipe/buffalo-chicken-lettuce-wraps</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/recipe/turkey-meatloaf-cauliflower-mash</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/recipe/loaded-baked-sweet-potato</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/recipe/crispy-baked-chicken-tenders-almond</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -41287,6 +41347,31 @@
   </url>
   <url>
     <loc>https://healthfingerprint.com/food-library/6ef4ee69-52f8-448b-a4cd-96da65a631a8</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/food-library/6ef638d9-b5b9-4d65-b15d-8f5c0d1be001</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/food-library/6ef638d9-b5b9-4d65-b15d-8f5c0d1be002</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/food-library/6ef638d9-b5b9-4d65-b15d-8f5c0d1be003</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/food-library/6ef638d9-b5b9-4d65-b15d-8f5c0d1be004</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/food-library/6ef638d9-b5b9-4d65-b15d-8f5c0d1be005</loc>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
