@@ -191,16 +191,25 @@ textarea {
 }
 
 /* Reserve the LCP image box before the async utility CSS arrives so the text
- * and calculator below it never get pushed down. */
-.hh-preview__message img {
-  display: block;
+ * and calculator below it never get pushed down. The wrapper owns the 3:2
+ * ratio; the <img> only fills it. */
+.hh-hero-media {
   width: 100%;
   max-width: 430px;
-  height: auto;
   aspect-ratio: 3 / 2;
+  margin: 24px 0 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #eef3ea;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.hh-hero-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
-  border-radius: 16px;
 }
 
 .hh-calculator {

@@ -13,9 +13,9 @@ const SITEMAP_PATH = fileURLToPath(new URL('../public/sitemap.xml', import.meta.
 const DISH_DATA_PATH = fileURLToPath(new URL('../.dish-seo-data.json', import.meta.url));
 
 const PAGE_STYLE =
-  'max-width:860px;margin:0 auto;padding:48px 20px 72px;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#374151;line-height:1.75;';
-const H1_STYLE = 'font-size:2rem;line-height:1.2;color:#0F4C3A;margin:0 0 16px;font-weight:800;';
-const H2_STYLE = 'font-size:1.35rem;line-height:1.3;color:#0F4C3A;margin:32px 0 12px;font-weight:800;';
+  'max-width:860px;margin:0 auto;padding:48px 20px 72px;box-sizing:border-box;font-family:Inter,\'Inter Fallback\',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#374151;line-height:1.75;';
+const H1_STYLE = 'font-family:inherit;font-size:2rem;line-height:1.2;color:#0F4C3A;margin:0 0 16px;font-weight:800;';
+const H2_STYLE = 'font-family:inherit;font-size:1.35rem;line-height:1.3;color:#0F4C3A;margin:32px 0 12px;font-weight:800;';
 const LINK_STYLE = 'color:#0F4C3A;text-decoration:underline;text-underline-offset:2px;';
 const LIST_STYLE = 'padding-left:1.25rem;margin:12px 0 20px;';
 const MUTED_STYLE = 'color:#4B5563;font-size:.95rem;';
@@ -419,7 +419,11 @@ const applyBody = (html, bodyHtml, noscript) => {
   if (!rootPattern.test(html)) {
     throw new Error('Could not find the #root container in dist/index.html.');
   }
-  return html.replace(rootPattern, `<div id="root">${bodyHtml}${noscript}</div>\n  </body>`);
+  // The prerendered copy is always English. Pin it to LTR: /style.css applies
+  // `html:not([dir]){direction:rtl}`, and without this the prerendered body
+  // mirrors horizontally when that stylesheet lands after first paint (CLS).
+  const ltrBody = bodyHtml.replace(/^<main /, '<main dir="ltr" ');
+  return html.replace(rootPattern, `<div id="root">${ltrBody}${noscript}</div>\n  </body>`);
 };
 
 const readDishIdsFromSitemap = async () => {
