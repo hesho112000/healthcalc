@@ -82,6 +82,66 @@ const RECIPE_LINKS: RecipeLink[] = [
   { keywords: ['tuscan', 'white bean', 'kale', 'soup'], slug: 'tuscan-white-bean-kale-soup', title: 'Tuscan White Bean & Kale Soup' },
   { keywords: ['caprese', 'avocado', 'salad'], slug: 'caprese-avocado-salad', title: 'Caprese Avocado Salad' },
   { keywords: ['salmon', 'asparagus'], slug: 'lemon-herb-salmon-asparagus', title: 'Lemon Herb Salmon with Asparagus' },
+  {
+    keywords: ['benelux', 'baked rice pudding'],
+    dishIds: ['001ced3a-7ce8-4c1d-b2bd-b2c44852531f'],
+    slug: 'benelux-baked-rice-pudding',
+    title: 'Benelux Baked Rice Pudding',
+  },
+  {
+    keywords: ['mathloutha'],
+    dishIds: ['000b2d78-8a6e-4de2-ad35-3f1182dee8c7'],
+    slug: 'chicken-mathloutha',
+    title: 'Chicken Mathloutha',
+  },
+  {
+    keywords: ['chicken pie rwandan'],
+    dishIds: ['000d4261-8c95-4451-98c3-930e56024568'],
+    slug: 'chicken-pie-rwandan',
+    title: 'Chicken pie Rwandan',
+  },
+  {
+    keywords: ['fasolada'],
+    dishIds: ['000ef540-16db-416e-bf09-911a4fa0b551'],
+    slug: 'greek-fasolada-white-bean-soup',
+    title: 'Greek Fasolada White Bean Soup',
+  },
+  {
+    keywords: ['pasta with fresh tomato sauce'],
+    dishIds: ['000a7ad4-16e9-49d1-9eef-6e3125b620ba'],
+    slug: 'italian-pasta-with-fresh-tomato-sauce',
+    title: 'Italian Pasta with Fresh Tomato Sauce',
+  },
+  {
+    keywords: ['niter kibe'],
+    dishIds: ['00194379-897e-44f6-a571-be6ecbd431d6'],
+    slug: 'niter-kibe-butter-african',
+    title: 'Niter kibe butter African',
+  },
+  {
+    keywords: ['pumpkin salad'],
+    dishIds: ['00068af1-5832-48e8-bf81-9154fb12d825'],
+    slug: 'pumpkin-salad',
+    title: 'Pumpkin salad',
+  },
+  {
+    keywords: ['puttu'],
+    dishIds: ['000722e1-d5bb-4dbf-869a-b2e9fd904d48'],
+    slug: 'puttu-indian',
+    title: 'Puttu Indian',
+  },
+  {
+    keywords: ['rice with beans rwandan'],
+    dishIds: ['000fe281-b3dc-4c67-b48e-36b5244db6fc'],
+    slug: 'rice-with-beans-rwandan',
+    title: 'Rice with beans Rwandan',
+  },
+  {
+    keywords: ['sevillian bean'],
+    dishIds: ['001400e3-b7c9-4787-86af-56c901ff42d7'],
+    slug: 'sevillian-bean-and-vegetable-stew',
+    title: 'Sevillian Bean and Vegetable Stew',
+  },
 ];
 
 const NUTRITION_ARTICLE_SLUGS = [
@@ -426,9 +486,14 @@ const DishDetailPage: React.FC = () => {
           <section className="mt-6 rounded-3xl border border-emerald-200 bg-emerald-50 p-6">
             <Link to={`/resources/recipe/${matchedRecipe.slug}`} className="mt-3 flex w-full items-center justify-between gap-3 rounded-2xl bg-[#0F4C3A] px-5 py-4 text-start text-sm font-extrabold text-[#FDFBF7] hover:bg-[#1a6b53] transition-colors">
               <span>
-                {language === 'ar'
-                  ? `تبحث عن طريقة صحية لتحضير هذا الطبق؟ جرب وصفة ${matchedRecipeTitle}.`
-                  : `Looking for a healthy way to cook this? Try our ${matchedRecipeTitle} recipe.`}
+                <span className="block text-xs font-bold uppercase tracking-wide opacity-80">
+                  {language === 'ar' ? 'عرض الوصفة كاملة' : 'View Full Recipe'}
+                </span>
+                <span className="mt-1 block">
+                  {language === 'ar'
+                    ? `تبحث عن طريقة صحية لتحضير هذا الطبق؟ جرب وصفة ${matchedRecipeTitle}.`
+                    : `Looking for a healthy way to cook this? Try our ${matchedRecipeTitle} recipe.`}
+                </span>
               </span>
               <ArrowRight size={16} className="rtl:rotate-180" />
             </Link>

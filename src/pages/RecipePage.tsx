@@ -170,7 +170,7 @@ const RecipePage: React.FC = () => {
                 to={`/food-library/${recipe.foodLibraryDishId}`}
                 className="inline-flex items-center rounded-full bg-[#0F4C3A] px-5 py-2.5 text-sm font-extrabold text-white hover:bg-[#1a6b53] transition-colors"
               >
-                Food Library nutrition
+                {language === 'ar' ? 'عرض الحقائق الغذائية الكاملة' : 'See Full Nutrition Facts'}
               </Link>
             )}
             <Link

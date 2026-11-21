@@ -1394,6 +1394,246 @@ const CRISPY_BAKED_CHICKEN_TENDERS: Recipe = {
   nutrition: { calories: 263, protein: 28, carbs: 14, fat: 11 },
 };
 
+const BENELUX_BAKED_RICE_PUDDING: Recipe = {
+  id: 'benelux-baked-rice-pudding',
+  slug: 'benelux-baked-rice-pudding',
+  foodLibraryDishId: '001ced3a-7ce8-4c1d-b2bd-b2c44852531f',
+  imageUrl: '/images/recipes/benelux-baked-rice-pudding.webp',
+  emoji: '🍮',
+  title: { en: 'Benelux Baked Rice Pudding', ar: 'بودينغ الأرز المخبوز البنلوكسي' },
+  cuisine: { en: 'Benelux', ar: 'بنلوكسي' },
+  description: {
+    en: 'Creamy short-grain rice baked with milk, egg and vanilla until golden on top.',
+    ar: 'أرز قصير الحبة كريمي يُخبز مع الحليب والبيض والفانيلا حتى يصبح وجهه ذهبيًا.',
+  },
+  prepTime: { en: '1 hr 10 min', ar: '70 دقيقة' },
+  ingredients: {
+    en: ['1 cup short-grain rice, rinsed', '4 cups whole milk', '2 eggs, lightly beaten', '1/3 cup sugar', '1 tsp vanilla extract', '1/2 tsp ground cinnamon', '1 tbsp butter for the dish', 'Pinch of salt'],
+    ar: ['كوب أرز قصير الحبة مغسول', '4 أكواب حليب كامل الدسم', 'بيضتان مخفوقتان', 'ثلث كوب سكر', 'ملعقة صغيرة فانيلا', 'نصف ملعقة صغيرة قرفة مطحونة', 'ملعقة كبيرة زبدة للطبق', 'رشة ملح'],
+  },
+  instructions: {
+    en: ['Heat the oven to 180°C (350°F) and butter a medium baking dish.', 'Simmer the rice with milk and salt over low heat for 20 minutes, stirring often.', 'Whisk the eggs with sugar and vanilla, then temper with a ladle of the warm rice mixture.', 'Stir the egg mixture into the rice and pour everything into the prepared dish.', 'Sprinkle with cinnamon and bake for 35–40 minutes until set and golden.', 'Rest for 10 minutes before serving warm or chilled.'],
+    ar: ['سخّن الفرن إلى 180 درجة مئوية وادهن طبق الخبز بالزبدة.', 'اطه الأرز مع الحليب والملح على نار هادئة 20 دقيقة مع التحريك المتكرر.', 'اخلط البيض مع السكر والفانيلا ثم أضف ملعقة من خليط الأرز الدافئ لتلطيفه.', 'أضف خليط البيض إلى الأرز واسكبه في الطبق المجهز.', 'رشّ القرفة واخبز 35 إلى 40 دقيقة حتى يتماسك ويصبح ذهبيًا.', 'اتركه 10 دقائق قبل التقديم دافئًا أو باردًا.'],
+  },
+  nutrition: { calories: 320, protein: 10, carbs: 52, fat: 8 },
+};
+
+const CHICKEN_MATHLOUTHA: Recipe = {
+  id: 'chicken-mathloutha',
+  slug: 'chicken-mathloutha',
+  foodLibraryDishId: '000b2d78-8a6e-4de2-ad35-3f1182dee8c7',
+  imageUrl: '/images/recipes/chicken-mathloutha.webp',
+  emoji: '🍗',
+  title: { en: 'Chicken Mathloutha', ar: 'دجاج المثلوثة' },
+  cuisine: { en: 'Emirati', ar: 'إماراتي' },
+  description: {
+    en: 'An Emirati one-pot chicken and rice dish scented with tomato, turmeric and warm spices.',
+    ar: 'طبق إماراتي يجمع الدجاج والأرز في قدر واحد مع الطماطم والكركم والتوابل الدافئة.',
+  },
+  prepTime: { en: '55 min', ar: '55 دقيقة' },
+  ingredients: {
+    en: ['4 chicken thighs, skinless', '1 1/2 cups basmati rice', '1 onion, finely chopped', '2 tomatoes, diced', '2 tbsp tomato paste', '1 tsp ground turmeric', '1 tsp ground cumin', '1/2 tsp ground coriander', '4 cardamom pods', '2 tbsp olive oil', '1 3/4 cups chicken stock', 'Salt and black pepper to taste'],
+    ar: ['4 أفخاذ دجاج منزوعة الجلد', 'كوب ونصف أرز بسمتي', 'بصلة مفرومة ناعمًا', 'طماطمتان مقطعتان', 'ملعقتان كبيرتان معجون طماطم', 'ملعقة صغيرة كركم', 'ملعقة صغيرة كمون', 'نصف ملعقة صغيرة كزبرة مطحونة', '4 حبات هيل', 'ملعقتان كبيرتان زيت زيتون', 'كوب وثلاثة أرباع مرق دجاج', 'ملح وفلفل أسود حسب الرغبة'],
+  },
+  instructions: {
+    en: ['Rinse the rice until the water runs clear, then drain.', 'Heat the oil in a heavy pot and brown the chicken on both sides; set aside.', 'Soften the onion in the same pot, then add tomatoes, tomato paste and spices.', 'Return the chicken, add stock and bring to a gentle simmer.', 'Stir in the rice, cover and cook on low heat for 25 minutes.', 'Fluff with a fork, rest for 5 minutes and serve with lemon wedges.'],
+    ar: ['اغسل الأرز حتى يصفو الماء ثم صفّه.', 'سخّن الزيت في قدر ثقيل وحمّر الدجاج من الجانبين ثم اتركه جانبًا.', 'أضف البصل إلى القدر حتى يلين ثم أضف الطماطم والمعجون والتوابل.', 'أعد الدجاج إلى القدر وأضف المرق واتركه يغلي برفق.', 'أضف الأرز وغطّه واطه على نار هادئة 25 دقيقة.', 'قلّب الأرز بالشوكة واتركه 5 دقائق ثم قدّمه مع شرائح الليمون.'],
+  },
+  nutrition: { calories: 480, protein: 38, carbs: 52, fat: 14 },
+};
+
+const CHICKEN_PIE_RWANDAN: Recipe = {
+  id: 'chicken-pie-rwandan',
+  slug: 'chicken-pie-rwandan',
+  foodLibraryDishId: '000d4261-8c95-4451-98c3-930e56024568',
+  imageUrl: '/images/recipes/chicken-pie-rwandan.webp',
+  emoji: '🥧',
+  title: { en: 'Chicken pie Rwandan', ar: 'فطيرة الدجاج الرواندية' },
+  cuisine: { en: 'Rwandan', ar: 'رواندي' },
+  description: {
+    en: 'A flaky Rwandan-style chicken pie with a savory chicken, potato and vegetable filling.',
+    ar: 'فطيرة رواندية بقشرة هشة وحشوة دجاج وبطاطس وخضار غنية بالنكهة.',
+  },
+  prepTime: { en: '1 hr 15 min', ar: '75 دقيقة' },
+  ingredients: {
+    en: ['2 sheets ready-rolled puff pastry', '2 cups cooked chicken, shredded', '1 potato, diced small', '1 carrot, diced', '1/2 cup frozen peas', '1 onion, chopped', '2 cloves garlic, minced', '1 tsp curry powder', '1/2 tsp dried thyme', '1/2 cup chicken stock', '1 egg, beaten for brushing', 'Salt and pepper to taste'],
+    ar: ['ورقتان من عجينة البف باستري الجاهزة', 'كوبان دجاج مطبوخ مقطع', 'بطاطسة مقطعة صغيرًا', 'جزرة مقطعة', 'نصف كوب بازلاء مجمدة', 'بصلة مفرومة', 'فصان ثوم مفرومان', 'ملعقة صغيرة مسحوق كاري', 'نصف ملعقة صغيرة زعتر مجفف', 'نصف كوب مرق دجاج', 'بيضة مخفوفة للدهن', 'ملح وفلفل حسب الرغبة'],
+  },
+  instructions: {
+    en: ['Heat the oven to 200°C (400°F) and line a baking tray.', 'Cook the potato and carrot in the stock until just tender, then drain.', 'Sauté the onion and garlic, then stir in chicken, vegetables, peas and spices.', 'Spoon the filling onto one pastry sheet and cover with the second sheet.', 'Seal the edges, cut a few slits on top and brush with beaten egg.', 'Bake for 30–35 minutes until deep golden and serve warm.'],
+    ar: ['سخّن الفرن إلى 200 درجة مئوية وافرش صينية الخبز.', 'اطه البطاطس والجزر في المرق حتى تصبح طرية ثم صفّها.', 'قلّب البصل والثوم ثم أضف الدجاج والخضار والبازلاء والتوابل.', 'اسكب الحشوة على إحدى ورقتَي العجين وغطّها بالأخرى.', 'أغلق الأطراف واعمل شقوقًا في الأعلى وادهنها بالبيض.', 'اخبز 30 إلى 35 دقيقة حتى تصبح ذهبية داكنة وقدّمها دافئة.'],
+  },
+  nutrition: { calories: 520, protein: 32, carbs: 45, fat: 24 },
+};
+
+const GREEK_FASOLADA: Recipe = {
+  id: 'greek-fasolada',
+  slug: 'greek-fasolada-white-bean-soup',
+  foodLibraryDishId: '000ef540-16db-416e-bf09-911a4fa0b551',
+  imageUrl: '/images/recipes/greek-fasolada-white-bean-soup.webp',
+  emoji: '🍲',
+  title: { en: 'Greek Fasolada White Bean Soup', ar: 'شوربة الفاصوليا البيضاء اليونانية فاسولادا' },
+  cuisine: { en: 'Greek', ar: 'يوناني' },
+  description: {
+    en: 'A hearty Greek white bean soup with tomato, celery and olive oil, finished with lemon.',
+    ar: 'شوربة يونانية دسمة بالفاصوليا البيضاء والطماطم والكرفس وزيت الزيتون، تُقدَّم بعصير الليمون.',
+  },
+  prepTime: { en: '1 hr 20 min', ar: '80 دقيقة' },
+  ingredients: {
+    en: ['1 1/2 cups dried white beans, soaked overnight', '1 onion, finely chopped', '1 carrot, diced', '2 celery stalks, diced', '3 tbsp olive oil', '2 tbsp tomato paste', '4 cups vegetable stock', '1 bay leaf', '1 tsp dried oregano', '1 lemon, juiced', 'Salt and pepper to taste'],
+    ar: ['كوب ونصف فاصوليا بيضاء مجففة منقوعة طوال الليل', 'بصلة مفرومة ناعمًا', 'جزرة مقطعة', 'عُودا كرفس مقطعان', '3 ملاعق كبيرة زيت زيتون', 'ملعقتان كبيرتان معجون طماطم', '4 أكواب مرق خضار', 'ورقة غار', 'ملعقة صغيرة أوريغانو مجفف', 'عصير ليمونة', 'ملح وفلفل حسب الرغبة'],
+  },
+  instructions: {
+    en: ['Drain the soaked beans and rinse well.', 'Warm the olive oil in a pot and soften the onion, carrot and celery.', 'Stir in tomato paste and cook for one minute, then add beans and stock.', 'Add bay leaf and oregano, cover and simmer for about 55 minutes.', 'Season with salt only once the beans are tender, then simmer 10 minutes more.', 'Stir in lemon juice and serve with crusty bread.'],
+    ar: ['صفّ الفاصوليا المنقوعة واغسلها جيدًا.', 'سخّن زيت الزيتون في قدر وأضف البصل والجزر والكرفس حتى تلين.', 'أضف معجون الطماطم وقلّب دقيقة ثم أضف الفاصوليا والمرق.', 'أضف ورقة الغار والأوريغانو وغطّ القدر واتركه يغلي نحو 55 دقيقة.', 'أضف الملح بعد تصبح الفاصوليا طرية ثم اتركها 10 دقائق إضافية.', 'أضف عصير الليمون وقدمها مع الخبز المقرمش.'],
+  },
+  nutrition: { calories: 290, protein: 14, carbs: 44, fat: 6 },
+};
+
+const ITALIAN_PASTA_FRESH_TOMATO_SAUCE: Recipe = {
+  id: 'italian-pasta-with-fresh-tomato-sauce',
+  slug: 'italian-pasta-with-fresh-tomato-sauce',
+  foodLibraryDishId: '000a7ad4-16e9-49d1-9eef-6e3125b620ba',
+  imageUrl: '/images/recipes/italian-pasta-with-fresh-tomato-sauce.webp',
+  emoji: '🍝',
+  title: { en: 'Italian Pasta with Fresh Tomato Sauce', ar: 'معكرونة إيطالية بصلصة الطماطم الطازجة' },
+  cuisine: { en: 'Italian', ar: 'إيطالي' },
+  description: {
+    en: 'Simple Italian pasta tossed with a fresh tomato and garlic sauce, basil and olive oil.',
+    ar: 'معكرونة إيطالية بسيطة مع صلصة طماطم طازجة بالثوم والريحان وزيت الزيتون.',
+  },
+  prepTime: { en: '25 min', ar: '25 دقيقة' },
+  ingredients: {
+    en: ['12 oz spaghetti or rigatoni', '4 ripe tomatoes, chopped', '3 cloves garlic, thinly sliced', '3 tbsp extra-virgin olive oil', '1 handful fresh basil leaves', '1/2 tsp chili flakes (optional)', 'Salt to taste', '2 tbsp grated Parmesan (optional)'],
+    ar: ['340 غرام معكرونة إسباغيتي أو ريغاتوني', '4 طماطم ناضجة مفرومة', '3 فصوص ثوم مقطعة رقيقة', '3 ملاعق كبيرة زيت زيتون بكر ممتاز', 'حفنة أوراق ريحان طازجة', 'نصف ملعقة صغيرة رقائق فلفل (اختياري)', 'ملح حسب الرغبة', 'ملعقتان كبيرتان جبن بارميزان مبشور (اختياري)'],
+  },
+  instructions: {
+    en: ['Bring a large pot of salted water to a boil and cook the pasta until al dente.', 'Meanwhile, warm the olive oil and gently sizzle the garlic without browning.', 'Add the tomatoes and chili flakes and cook for 10–12 minutes until saucy.', 'Tear in the basil and season with salt.', 'Drain the pasta, reserving a cup of cooking water, and toss with the sauce.', 'Loosen with a splash of pasta water and finish with Parmesan if using.'],
+    ar: ['غلي كمية كبيرة من الماء المملح واسلق المعكرونة حتى تصبح أل دينتي.', 'في هذه الأثناء سخّن زيت الزيتون وأضف الثوم برفق دون أن يحمر.', 'أضف الطماطم ورقائق الفلفل واطه 10 إلى 12 دقيقة حتى تتكون الصلصة.', 'أضف أوراق الريحان المقطعة وتبّل بالملح.', 'صفّ المعكرونة مع الاحتفاظ بكوب من ماء السلق ثم قلّبها مع الصلصة.', 'أضف قليلًا من ماء المعكرونة ورشّ البارميزان عند الرغبة.'],
+  },
+  nutrition: { calories: 420, protein: 14, carbs: 68, fat: 9 },
+};
+
+const NITER_KIBE_BUTTER_AFRICAN: Recipe = {
+  id: 'niter-kibe-butter-african',
+  slug: 'niter-kibe-butter-african',
+  foodLibraryDishId: '00194379-897e-44f6-a571-be6ecbd431d6',
+  imageUrl: '/images/recipes/niter-kibe-butter-african.webp',
+  emoji: '🧈',
+  title: { en: 'Niter kibe butter African', ar: 'زبدة نتر كيب الأفريقية' },
+  cuisine: { en: 'African', ar: 'أفريقي' },
+  description: {
+    en: 'A gently spiced clarified butter infused with onion, garlic, ginger and warming aromatics.',
+    ar: 'زبدة مصفاة متبلة برفق مع البصل والثوم والزنجبيل والتوابل الدافئة.',
+  },
+  prepTime: { en: '30 min', ar: '30 دقيقة' },
+  ingredients: {
+    en: ['250 g unsalted butter', '2 tbsp ghee or clarified butter', '1 small onion, grated', '2 cloves garlic, crushed', '1 tsp fresh ginger, grated', '1/2 tsp ground turmeric', '1/4 tsp ground cardamom', '1/4 tsp ground cinnamon', '1/4 tsp ground cloves', '1/4 tsp fenugreek seeds', '1/2 tsp black peppercorns', '1/2 tsp salt'],
+    ar: ['250 غرام زبدة غير مملحة', 'ملعقتان كبيرتان سمن أو زبدة مصفاة', 'بصلة صغيرة مبشورة', 'فصان ثوم مهروسان', 'ملعقة صغيرة زنجبيل طازج مبشور', 'نصف ملعقة صغيرة كركم', 'ربع ملعقة صغيرة هيل مطحون', 'ربع ملعقة صغيرة قرفة مطحونة', 'ربع ملعقة صغيرة قرنفل مطحون', 'ربع ملعقة صغيرة بذور حلبة', 'نصف ملعقة صغيرة حبوب فلفل أسود', 'نصف ملعقة صغيرة ملح'],
+  },
+  instructions: {
+    en: ['Melt the butter with the ghee in a small saucepan over low heat.', 'Add the grated onion, garlic and ginger and cook gently for 5 minutes.', 'Stir in all the spices and salt, then simmer very gently for 15 minutes.', 'Let the solids settle and skim off any foam from the surface.', 'Strain through a fine sieve into a clean jar, discarding the solids.', 'Cool completely, seal and store in the refrigerator for up to one month.'],
+    ar: ['ذوّب الزبدة مع السمن في قدر صغير على نار هادئة.', 'أضف البصل المبشور والثوم والزنجبيل واطه برفق 5 دقائق.', 'أضف جميع التوابل والملح ثم اتركها تغلي برفق 15 دقيقة.', 'اترك الرواسب تترقرق وأزل أي رغوة من السطح.', 'صفِّ الخليط عبر منخل ناعم في برطمان نظيف وتخلص من الرواسب.', 'اتركه يبرد تمامًا وأغلقه واحفظه في الثلاجة حتى شهر.'],
+  },
+  nutrition: { calories: 120, protein: 0, carbs: 0, fat: 13 },
+};
+
+const PUMPKIN_SALAD: Recipe = {
+  id: 'pumpkin-salad',
+  slug: 'pumpkin-salad',
+  foodLibraryDishId: '00068af1-5832-48e8-bf81-9154fb12d825',
+  imageUrl: '/images/recipes/pumpkin-salad.webp',
+  emoji: '🥗',
+  title: { en: 'Pumpkin salad', ar: 'سلطة القرع' },
+  cuisine: { en: 'Syrian', ar: 'سوري' },
+  description: {
+    en: 'A bright Syrian-style pumpkin salad with lemon, cumin, parsley and a drizzle of olive oil.',
+    ar: 'سلطة قرع سورية منعشة بالليمون والكمون والبقدونس ورشة زيت زيتون.',
+  },
+  prepTime: { en: '35 min', ar: '35 دقيقة' },
+  ingredients: {
+    en: ['500 g pumpkin, peeled and cubed', '2 tbsp olive oil', '1 small onion, thinly sliced', '1 lemon, juiced', '1 tsp ground cumin', '1/4 cup chopped parsley', '1/2 tsp sumac (optional)', 'Salt and black pepper to taste'],
+    ar: ['500 غرام قرع مقشور ومقطع مكعبات', 'ملعقتان كبيرتان زيت زيتون', 'بصلة صغيرة مقطعة رقيقة', 'عصير ليمونة', 'ملعقة صغيرة كمون مطحون', 'ربع كوب بقدونس مفروم', 'نصف ملعقة صغيرة سماق (اختياري)', 'ملح وفلفل أسود حسب الرغبة'],
+  },
+  instructions: {
+    en: ['Heat the oven to 200°C (400°F) and line a tray.', 'Toss the pumpkin with half the oil, cumin, salt and pepper.', 'Spread on the tray and roast for 20–25 minutes until tender and lightly browned.', 'Whisk the remaining oil with lemon juice and sumac.', 'Combine the warm pumpkin with onion and parsley.', 'Pour over the dressing, toss gently and serve warm or at room temperature.'],
+    ar: ['سخّن الفرن إلى 200 درجة مئوية وافرش صينية.', 'قلّب القرع مع نصف الزيت والكمون والملح والفلفل.', 'افرده في الصينية واشويه 20 إلى 25 دقيقة حتى يصبح طريًا ومحمّرًا قليلًا.', 'اخلط ما تبقى من الزيت مع عصير الليمون والسماق.', 'امزج القرع الدافئ مع البصل والبقدونس.', 'اسكب الصلصة وقلّب برفق ثم قدّمه دافئًا أو بدرجة حرارة الغرفة.'],
+  },
+  nutrition: { calories: 180, protein: 4, carbs: 24, fat: 8 },
+};
+
+const PUTTU_INDIAN: Recipe = {
+  id: 'puttu-indian',
+  slug: 'puttu-indian',
+  foodLibraryDishId: '000722e1-d5bb-4dbf-869a-b2e9fd904d48',
+  imageUrl: '/images/recipes/puttu-indian.webp',
+  emoji: '🥥',
+  title: { en: 'Puttu Indian', ar: 'بوتو هندي' },
+  cuisine: { en: 'Indian', ar: 'هندي' },
+  description: {
+    en: 'Steamed rice flour and coconut layers, a simple South Indian breakfast served with curry or banana.',
+    ar: 'طبقات من دقيق الأرز وجوز الهند المطهوة بالبخار، إفطار هندي بسيط يُقدّم مع الكاري أو الموز.',
+  },
+  prepTime: { en: '25 min', ar: '25 دقيقة' },
+  ingredients: {
+    en: ['2 cups rice flour', '1 cup freshly grated coconut', '1/2 tsp salt', '1/4 tsp cardamom powder (optional)', 'Water as needed', '1 banana, sliced (to serve)', '2 tbsp coconut oil (optional)'],
+    ar: ['كوبان دقيق أرز', 'كوب جوز هند مبشور طازج', 'نصف ملعقة صغيرة ملح', 'ربع ملعقة صغيرة مسحوق هيل (اختياري)', 'ماء حسب الحاجة', 'موزة مقطعة للتقديم', 'ملعقتان كبيرتان زيت جوز الهند (اختياري)'],
+  },
+  instructions: {
+    en: ['Mix the rice flour with salt and a little water until it holds together loosely.', 'Fold in the grated coconut and cardamom powder.', 'Fill a puttu maker or steamer mould with alternating layers of flour and coconut.', 'Steam for 8–10 minutes until the layers are set and fragrant.', 'Turn the puttu out onto a plate and drizzle with coconut oil if desired.', 'Serve warm with sliced banana or a vegetable curry.'],
+    ar: ['اخلط دقيق الأرز مع الملح وقليل من الماء حتى يتماسك برفق.', 'أضف جوز الهند المبشور ومسحوق الهيل.', 'املأ قالب البوتو أو قدر البخار بطبقات متناوبة من الدقيق وجوز الهند.', 'اطه بالبخار 8 إلى 10 دقائق حتى تتماسك الطبقات وتفوح رائحتها.', 'اقلب البوتو على طبق ورشّه بزيت جوز الهند عند الرغبة.', 'قدّمه دافئًا مع شرائح الموز أو كاري الخضار.'],
+  },
+  nutrition: { calories: 260, protein: 5, carbs: 46, fat: 6 },
+};
+
+const RICE_WITH_BEANS_RWANDAN: Recipe = {
+  id: 'rice-with-beans-rwandan',
+  slug: 'rice-with-beans-rwandan',
+  foodLibraryDishId: '000fe281-b3dc-4c67-b48e-36b5244db6fc',
+  imageUrl: '/images/recipes/rice-with-beans-rwandan.webp',
+  emoji: '🍚',
+  title: { en: 'Rice with beans Rwandan', ar: 'الأرز بالفاصوليا الرواندي' },
+  cuisine: { en: 'Rwandan', ar: 'رواندي' },
+  description: {
+    en: 'A comforting Rwandan plate of fluffy rice and tender beans cooked with tomato and spices.',
+    ar: 'طبق رواندي مريح يجمع الأرز الهش والفاصوليا الطرية مع الطماطم والتوابل.',
+  },
+  prepTime: { en: '45 min', ar: '45 دقيقة' },
+  ingredients: {
+    en: ['1 1/2 cups rice', '1 cup cooked kidney beans', '1 onion, chopped', '2 tomatoes, diced', '3 tbsp vegetable oil', '2 cloves garlic, minced', '1 tsp ground cumin', '1/2 tsp ground coriander', '2 cups vegetable stock', 'Salt and pepper to taste'],
+    ar: ['كوب ونصف أرز', 'كوب فاصوليا حمراء مطبوخة', 'بصلة مفرومة', 'طماطمتان مقطعتان', '3 ملاعق كبيرة زيت نباتي', 'فصان ثوم مفرومان', 'ملعقة صغيرة كمون مطحون', 'نصف ملعقة صغيرة كزبرة مطحونة', 'كوبان مرق خضار', 'ملح وفلفل حسب الرغبة'],
+  },
+  instructions: {
+    en: ['Rinse the rice until the water runs clear, then drain.', 'Heat the oil in a pot and soften the onion and garlic.', 'Add tomatoes and spices and cook for 5 minutes until thickened.', 'Stir in the beans and stock, then add the rice.', 'Cover and simmer on low heat for 20–25 minutes until the rice is tender.', 'Fluff with a fork, season and serve warm.'],
+    ar: ['اغسل الأرز حتى يصفو الماء ثم صفّه.', 'سخّن الزيت في قدر وأضف البصل والثوم حتى يلينا.', 'أضف الطماطم والتوابل واطه 5 دقائق حتى تتكاثف.', 'أضف الفاصوليا والمرق ثم الأرز.', 'غطّ القدر واتركه على نار هادئة 20 إلى 25 دقيقة حتى يصبح الأرز طريًا.', 'قلّبه بالشوكة وتبّله وقدمه دافئًا.'],
+  },
+  nutrition: { calories: 410, protein: 14, carbs: 72, fat: 7 },
+};
+
+const SEVILLIAN_BEAN_AND_VEGETABLE_STEW: Recipe = {
+  id: 'sevillian-bean-and-vegetable-stew',
+  slug: 'sevillian-bean-and-vegetable-stew',
+  foodLibraryDishId: '001400e3-b7c9-4787-86af-56c901ff42d7',
+  imageUrl: '/images/recipes/sevillian-bean-and-vegetable-stew.webp',
+  emoji: '🫘',
+  title: { en: 'Sevillian Bean and Vegetable Stew', ar: 'يخنة الفاصوليا والخضار الإشبيلية' },
+  cuisine: { en: 'Spanish', ar: 'إسباني' },
+  description: {
+    en: 'A rustic Seville-style stew of white beans, green beans and vegetables with smoked paprika.',
+    ar: 'يخنة ريفية على طريقة إشبيلية بالفاصوليا البيضاء والفاصوليا الخضراء والخضار والبابريكا المدخنة.',
+  },
+  prepTime: { en: '1 hr 10 min', ar: '70 دقيقة' },
+  ingredients: {
+    en: ['1 1/2 cups dried white beans, soaked overnight', '1 onion, chopped', '3 cloves garlic, minced', '1 carrot, sliced', '1 potato, cubed', '1 cup green beans, trimmed', '2 tomatoes, grated', '3 tbsp olive oil', '1 tsp smoked paprika', '1 bay leaf', '3 cups vegetable stock', 'Salt to taste'],
+    ar: ['كوب ونصف فاصوليا بيضاء مجففة منقوعة طوال الليل', 'بصلة مفرومة', '3 فصوص ثوم مفرومان', 'جزرة مقطعة', 'بطاطسة مكعبة', 'كوب فاصوليا خضراء مقلوبة الأطراف', 'طماطمتان مبشورتان', '3 ملاعق كبيرة زيت زيتون', 'ملعقة صغيرة بابريكا مدخنة', 'ورقة غار', '3 أكواب مرق خضار', 'ملح حسب الرغبة'],
+  },
+  instructions: {
+    en: ['Drain and rinse the soaked beans.', 'Warm the olive oil in a pot and soften the onion and garlic.', 'Add grated tomato and smoked paprika and cook for 3 minutes.', 'Add beans, carrot, potato, green beans, bay leaf and stock.', 'Simmer gently for 50 minutes, stirring occasionally, until the beans are tender.', 'Season with salt, discard the bay leaf and serve with crusty bread.'],
+    ar: ['صفّ الفاصوليا المنقوعة واغسلها.', 'سخّن زيت الزيتون في قدر وأضف البصل والثوم حتى يلينا.', 'أضف الطماطم المبشورة والبابريكا المدخنة واطه 3 دقائق.', 'أضف الفاصوليا والجزر والبطاطس والفاصوليا الخضراء وورقة الغار والمرق.', 'اتركها تغلي برفق 50 دقيقة مع التحريك من حين لآخر حتى تصبح الفاصوليا طرية.', 'تبّل بالملح وأزل ورقة الغار وقدمها مع الخبز المقرمش.'],
+  },
+  nutrition: { calories: 300, protein: 13, carbs: 46, fat: 7 },
+};
+
 export const RECIPES: Recipe[] = [
   FOUL,
   CHICKEN_RICE,
@@ -1446,6 +1686,16 @@ export const RECIPES: Recipe[] = [
   TURKEY_MEATLOAF_CAULIFLOWER_MASH,
   LOADED_BAKED_SWEET_POTATO,
   CRISPY_BAKED_CHICKEN_TENDERS,
+  BENELUX_BAKED_RICE_PUDDING,
+  CHICKEN_MATHLOUTHA,
+  CHICKEN_PIE_RWANDAN,
+  GREEK_FASOLADA,
+  ITALIAN_PASTA_FRESH_TOMATO_SAUCE,
+  NITER_KIBE_BUTTER_AFRICAN,
+  PUMPKIN_SALAD,
+  PUTTU_INDIAN,
+  RICE_WITH_BEANS_RWANDAN,
+  SEVILLIAN_BEAN_AND_VEGETABLE_STEW,
 ];
 
 export const getRecipeBySlug = (slug: string): Recipe | undefined =>
