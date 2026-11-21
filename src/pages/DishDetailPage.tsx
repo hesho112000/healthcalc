@@ -142,6 +142,66 @@ const RECIPE_LINKS: RecipeLink[] = [
     slug: 'sevillian-bean-and-vegetable-stew',
     title: 'Sevillian Bean and Vegetable Stew',
   },
+  {
+    keywords: ['ardennes', 'potato gratin'],
+    dishIds: ['002f3fdf-3efe-45a4-9f64-7587e1be9bcd'],
+    slug: 'ardennes-creamy-potato-gratin',
+    title: 'Ardennes Creamy Potato Gratin',
+  },
+  {
+    keywords: ['couque de dinant'],
+    dishIds: ['0032a8c0-3020-404f-a009-61e6f5ce5c0e'],
+    slug: 'benelux-couque-de-dinant-honey-biscuit',
+    title: 'Benelux Couque de Dinant Honey Biscuit',
+  },
+  {
+    keywords: ['dried pollack'],
+    dishIds: ['00266d3e-695a-41b4-83a9-5b837600a49d'],
+    slug: 'dried-pollack-soup-with-rice',
+    title: 'Dried pollack soup with rice',
+  },
+  {
+    keywords: ['barley mushroom'],
+    dishIds: ['0027826c-dc62-4658-8b9c-0bb6efcf4cbf'],
+    slug: 'estonian-barley-mushroom-porridge',
+    title: 'Estonian Barley Mushroom Porridge',
+  },
+  {
+    keywords: ['labneh'],
+    dishIds: ['001edee8-75f9-446e-9b23-670c228bc6c1'],
+    slug: 'labneh-with-garlic-and-mint',
+    title: 'Labneh with garlic and mint',
+  },
+  {
+    keywords: ['makroud'],
+    dishIds: ['0023143c-fdfc-4acf-8c74-f8f4a076d95e'],
+    slug: 'makroud-with-almonds',
+    title: 'Makroud with Almonds',
+  },
+  {
+    keywords: ['onion grilled chicken'],
+    dishIds: ['0028b6e6-a902-401c-93f9-2f3273b2e655'],
+    slug: 'onion-grilled-chicken',
+    title: 'Onion grilled chicken',
+  },
+  {
+    keywords: ['minced meat and pine nuts'],
+    dishIds: ['0022320b-0a66-40fc-b7f2-33f95486fce3'],
+    slug: 'rice-with-minced-meat-and-pine-nuts',
+    title: 'Rice with Minced Meat and Pine Nuts',
+  },
+  {
+    keywords: ['spicy meatballs'],
+    dishIds: ['00233ff2-7140-4d3a-8d87-2482816bbc36'],
+    slug: 'spicy-meatballs',
+    title: 'Spicy meatballs',
+  },
+  {
+    keywords: ['rönttönen', 'fonttonen', 'berry pastries'],
+    dishIds: ['0030a905-b309-4d98-bb3c-ad929aa53732'],
+    slug: 'turku-ronttonen-berry-pastries',
+    title: 'Turku Rönttönen Berry Pastries',
+  },
 ];
 
 const NUTRITION_ARTICLE_SLUGS = [

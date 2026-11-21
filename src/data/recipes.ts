@@ -1634,6 +1634,246 @@ const SEVILLIAN_BEAN_AND_VEGETABLE_STEW: Recipe = {
   nutrition: { calories: 300, protein: 13, carbs: 46, fat: 7 },
 };
 
+const ARDENNES_CREAMY_POTATO_GRATIN: Recipe = {
+  id: 'ardennes-creamy-potato-gratin',
+  slug: 'ardennes-creamy-potato-gratin',
+  foodLibraryDishId: '002f3fdf-3efe-45a4-9f64-7587e1be9bcd',
+  imageUrl: '/images/recipes/ardennes-creamy-potato-gratin.webp',
+  emoji: '🥔',
+  title: { en: 'Ardennes Creamy Potato Gratin', ar: 'مطابخ الأردين غراتان البطاطس بالكريمة أرديني' },
+  cuisine: { en: 'Ardennes', ar: 'أرديني' },
+  description: {
+    en: 'Thinly sliced potatoes baked with cream, garlic and nutty Emmental until tender and golden.',
+    ar: 'شرائح بطاطس رقيقة تُخبز مع الكريمة والثوم وجبن إمنتال حتى تصبح طرية وذهبية.',
+  },
+  prepTime: { en: '1 hr 15 min', ar: '75 دقيقة' },
+  ingredients: {
+    en: ['1.5 kg waxy potatoes, thinly sliced', '2 cups heavy cream', '1 cup milk', '2 cloves garlic, minced', '1 cup grated Emmental cheese', '1 tbsp butter for the dish', '1/2 tsp ground nutmeg', 'Salt and white pepper to taste'],
+    ar: ['كيلو ونصف بطاطس نشوية مقطعة شرائح رقيقة', 'كوبان كريمة ثقيلة', 'كوب حليب', 'فصان ثوم مفرومان', 'كوب جبن إمنتال مبشور', 'ملعقة كبيرة زبدة للطبق', 'نصف ملعقة صغيرة جوز الطيب المطحون', 'ملح وفلفل أبيض حسب الرغبة'],
+  },
+  instructions: {
+    en: ['Heat the oven to 190°C (375°F) and butter a large baking dish.', 'Layer the potato slices in the dish, overlapping them slightly.', 'Warm the cream with milk, garlic, nutmeg, salt and pepper, then pour evenly over the potatoes.', 'Scatter the cheese on top and cover the dish with foil.', 'Bake for 45 minutes, then remove the foil and bake 20–25 minutes more until golden and tender.', 'Rest for 10 minutes before serving.'],
+    ar: ['سخّن الفرن إلى 190 درجة مئوية وادهن طبق خبز كبيرًا بالزبدة.', 'رتّب شرائح البطاطس في الطبق مع تراكبها قليلًا.', 'سخّن الكريمة مع الحليب والثوم وجوز الطيب والملح والفلفل ثم اسكبها بالتساوي فوق البطاطس.', 'رشّ الجبن في الأعلى وغطّ الطبق بورق القصدير.', 'اخبز 45 دقيقة ثم أزل القصدير واخبز 20 إلى 25 دقيقة إضافية حتى يصبح ذهبيًا وطريًا.', 'اتركه 10 دقائق قبل التقديم.'],
+  },
+  nutrition: { calories: 420, protein: 12, carbs: 46, fat: 21 },
+};
+
+const BENELUX_COUQUE_DE_DINANT: Recipe = {
+  id: 'benelux-couque-de-dinant-honey-biscuit',
+  slug: 'benelux-couque-de-dinant-honey-biscuit',
+  foodLibraryDishId: '0032a8c0-3020-404f-a009-61e6f5ce5c0e',
+  imageUrl: '/images/recipes/benelux-couque-de-dinant-honey-biscuit.webp',
+  emoji: '🍪',
+  title: { en: 'Benelux Couque de Dinant Honey Biscuit', ar: 'بسكويت العسل الصلب بنيلوكسي' },
+  cuisine: { en: 'Benelux', ar: 'بنلوكسي' },
+  description: {
+    en: 'A firm, honey-sweetened biscuit from Dinant with a crisp snap and warm spice.',
+    ar: 'بسكويت صلب محلى بالعسل من دينان بقوام مقرمش ونكهة توابل دافئة.',
+  },
+  prepTime: { en: '45 min', ar: '45 دقيقة' },
+  ingredients: {
+    en: ['2 cups all-purpose flour', '1/2 cup honey', '1/3 cup brown sugar', '1/4 cup butter, softened', '1 egg', '1 tsp baking powder', '1/2 tsp ground cinnamon', '1/4 tsp ground cloves', 'Pinch of salt'],
+    ar: ['كوبان دقيق متعدد الأغراض', 'نصف كوب عسل', 'ثلث كوب سكر بني', 'ربع كوب زبدة طرية', 'بيضة', 'ملعقة صغيرة بيكنغ بودر', 'نصف ملعقة صغيرة قرفة مطحونة', 'ربع ملعقة صغيرة قرنفل مطحون', 'رشة ملح'],
+  },
+  instructions: {
+    en: ['Heat the oven to 180°C (350°F) and line a baking sheet.', 'Mix the flour, baking powder, cinnamon, cloves and salt.', 'Beat the butter, brown sugar and honey until creamy, then add the egg.', 'Stir in the dry ingredients to form a firm dough and rest for 10 minutes.', 'Roll out to 1 cm thick, cut into shapes and place on the sheet.', 'Bake for 18–20 minutes until firm, then cool completely before storing.'],
+    ar: ['سخّن الفرن إلى 180 درجة مئوية وافرش صينية الخبز.', 'اخلط الدقيق والبيكنغ بودر والقرفة والقرنفل والملح.', 'اخفق الزبدة والسكر البني والعسل حتى تصبح كريمية ثم أضف البيضة.', 'أضف المكونات الجافة لتكوين عجينة صلبة واتركها 10 دقائق.', 'افرد العجينة بسماكة سنتيمتر وقطّعها إلى أشكال ثم ضعها في الصينية.', 'اخبز 18 إلى 20 دقيقة حتى تصبح صلبة ثم اتركها تبرد تمامًا قبل حفظها.'],
+  },
+  nutrition: { calories: 190, protein: 3, carbs: 37, fat: 3 },
+};
+
+const DRIED_POLLACK_SOUP_WITH_RICE: Recipe = {
+  id: 'dried-pollack-soup-with-rice',
+  slug: 'dried-pollack-soup-with-rice',
+  foodLibraryDishId: '00266d3e-695a-41b4-83a9-5b837600a49d',
+  imageUrl: '/images/recipes/dried-pollack-soup-with-rice.webp',
+  emoji: '🍲',
+  title: { en: 'Dried pollack soup with rice', ar: 'حساء سمك القد المجفف مع الأرز كوري أصيل' },
+  cuisine: { en: 'Korean', ar: 'كوري' },
+  description: {
+    en: 'A comforting Korean breakfast soup with dried pollack, rice, radish and a clean savory broth.',
+    ar: 'حساء إفطار كوري مريح بسمك القد المجفف والأرز والفجل ومرق غني بالنكهة.',
+  },
+  prepTime: { en: '50 min', ar: '50 دقيقة' },
+  ingredients: {
+    en: ['100 g dried pollack, soaked 20 minutes', '1 cup cooked rice', '4 cups water', '1/2 Korean radish, sliced', '2 cloves garlic, minced', '1 tbsp fish sauce', '1 tsp sesame oil', '1 scallion, sliced', 'Salt to taste'],
+    ar: ['100 غرام سمك قد مجفف منقوع 20 دقيقة', 'كوب أرز مطبوخ', '4 أكواب ماء', 'نصف فجل كوري مقطع', 'فصان ثوم مفرومان', 'ملعقة كبيرة صلصة سمك', 'ملعقة صغيرة زيت السمسم', 'بصلة خضراء مقطعة', 'ملح حسب الرغبة'],
+  },
+  instructions: {
+    en: ['Soak the dried pollack in warm water, then rinse and cut into pieces.', 'Bring the water to a boil with the radish and garlic and simmer for 15 minutes.', 'Add the pollack and simmer gently for 10 minutes until it flakes easily.', 'Stir in the cooked rice and fish sauce and season with salt.', 'Turn off the heat, drizzle with sesame oil and top with scallion.', 'Serve hot as a light but filling meal.'],
+    ar: ['انقع سمك القد المجفف في ماء دافئ ثم اغسله وقطّعه إلى قطع.', 'غلي الماء مع الفجل والثوم واتركه يغلي 15 دقيقة.', 'أضف السمك واتركه يغلي برفق 10 دقائق حتى يتفتت بسهولة.', 'أضف الأرز المطبوخ وصلصة السمك وتبّل بالملح.', 'أطفئ النار ورشّ زيت السمسم والبصل الأخضر.', 'قدّمه ساخنًا كوجبة خفيفة ومشبعة.'],
+  },
+  nutrition: { calories: 260, protein: 28, carbs: 24, fat: 4 },
+};
+
+const ESTONIAN_BARLEY_MUSHROOM_PORRIDGE: Recipe = {
+  id: 'estonian-barley-mushroom-porridge',
+  slug: 'estonian-barley-mushroom-porridge',
+  foodLibraryDishId: '0027826c-dc62-4658-8b9c-0bb6efcf4cbf',
+  imageUrl: '/images/recipes/estonian-barley-mushroom-porridge.webp',
+  emoji: '🥣',
+  title: { en: 'Estonian Barley Mushroom Porridge', ar: 'عصيدة الشعير الإستونية بالفطر' },
+  cuisine: { en: 'Estonian', ar: 'إستوني' },
+  description: {
+    en: 'Creamy pearl barley porridge with mushrooms, onion and a touch of butter.',
+    ar: 'عصيدة شعير كريمية بالفطر والبصل ولمسة من الزبدة.',
+  },
+  prepTime: { en: '1 hr', ar: '60 دقيقة' },
+  ingredients: {
+    en: ['1 cup pearl barley, rinsed', '3 cups vegetable stock', '250 g mushrooms, sliced', '1 onion, chopped', '2 tbsp butter', '1/2 cup milk or cream', '1 tsp dried thyme', 'Salt and pepper to taste'],
+    ar: ['كوب شعير لؤلؤي مغسول', '3 أكواب مرق خضار', '250 غرام فطر مقطع', 'بصلة مفرومة', 'ملعقتان كبيرتان زبدة', 'نصف كوب حليب أو كريمة', 'ملعقة صغيرة زعتر مجفف', 'ملح وفلفل حسب الرغبة'],
+  },
+  instructions: {
+    en: ['Simmer the barley in the stock for about 40 minutes until tender.', 'Melt the butter in a skillet and cook the onion until soft.', 'Add the mushrooms and thyme and cook until the mushrooms release and absorb their liquid.', 'Stir the mushroom mixture into the barley and add the milk or cream.', 'Season with salt and pepper and simmer for 5 more minutes.', 'Serve warm in shallow bowls.'],
+    ar: ['اترك الشعير يغلي في المرق نحو 40 دقيقة حتى يصبح طريًا.', 'ذوّب الزبدة في مقلاة وأضف البصل حتى يلين.', 'أضف الفطر والزعتر واطه حتى يطلق الفطر سائله ثم يمتصه.', 'قلّب خليط الفطر مع الشعير وأضف الحليب أو الكريمة.', 'تبّل بالملح والفلفل واتركه يغلي 5 دقائق إضافية.', 'قدّمه دافئًا في أطباق مسطحة.'],
+  },
+  nutrition: { calories: 380, protein: 14, carbs: 58, fat: 10 },
+};
+
+const LABNEH_WITH_GARLIC_AND_MINT: Recipe = {
+  id: 'labneh-with-garlic-and-mint',
+  slug: 'labneh-with-garlic-and-mint',
+  foodLibraryDishId: '001edee8-75f9-446e-9b23-670c228bc6c1',
+  imageUrl: '/images/recipes/labneh-with-garlic-and-mint.webp',
+  emoji: '🥣',
+  title: { en: 'Labneh with garlic and mint', ar: 'لبنة بالثوم والنعناع' },
+  cuisine: { en: 'Syrian', ar: 'سوري' },
+  description: {
+    en: 'Strained yogurt labneh topped with garlic, dried mint and olive oil.',
+    ar: 'لبنة مصفاة مع الثوم والنعناع المجفف وزيت الزيتون.',
+  },
+  prepTime: { en: '20 min + straining', ar: '20 دقيقة + تصفيف' },
+  ingredients: {
+    en: ['2 cups thick Greek yogurt', '1 clove garlic, finely grated', '1 tsp dried mint', '2 tbsp olive oil', '1/2 tsp salt', '1 tbsp lemon juice', 'Warm pita bread to serve'],
+    ar: ['كوبان لبن يوناني كثيف', 'فص ثوم مبشور ناعمًا', 'ملعقة صغيرة نعناع مجفف', 'ملعقتان كبيرتان زيت زيتون', 'نصف ملعقة صغيرة ملح', 'ملعقة كبيرة عصير ليمون', 'خبز بيتا دافئ للتقديم'],
+  },
+  instructions: {
+    en: ['Mix the yogurt with salt and lemon juice.', 'Spoon into a cheesecloth-lined sieve and refrigerate for 6–8 hours to thicken.', 'Stir the grated garlic and dried mint into the strained labneh.', 'Shape into a bowl or roll into small balls.', 'Drizzle with olive oil and serve with warm pita bread.'],
+    ar: ['اخلط اللبن مع الملح وعصير الليمون.', 'اسكبه في منخل مبطن بقطعة قماش واتركه في الثلاجة 6 إلى 8 ساعات حتى يتكاثف.', 'أضف الثوم المبشور والنعناع المجفف إلى اللبنة المصفاة.', 'شكّلها في وعاء أو كرات صغيرة.', 'رشّها بزيت الزيتون وقدمها مع خبز البيتا الدافئ.'],
+  },
+  nutrition: { calories: 130, protein: 6, carbs: 5, fat: 6 },
+};
+
+const MAKROUD_WITH_ALMONDS: Recipe = {
+  id: 'makroud-with-almonds',
+  slug: 'makroud-with-almonds',
+  foodLibraryDishId: '0023143c-fdfc-4acf-8c74-f8f4a076d95e',
+  imageUrl: '/images/recipes/makroud-with-almonds.webp',
+  emoji: '🍪',
+  title: { en: 'Makroud with Almonds', ar: 'مقروط باللوز' },
+  cuisine: { en: 'Algerian', ar: 'جزائري' },
+  description: {
+    en: 'Semolina pastries filled with almonds and honey, scented with orange blossom.',
+    ar: 'معجنات السميد المحشوة باللوز والعسل بنكهة ماء الزهر.',
+  },
+  prepTime: { en: '1 hr 20 min', ar: '80 دقيقة' },
+  ingredients: {
+    en: ['2 cups fine semolina', '1/2 cup melted butter', '1/3 cup warm water', '1 cup ground almonds', '1/3 cup honey', '1 tsp orange blossom water', '1/2 tsp ground cinnamon', 'Sesame seeds for topping'],
+    ar: ['كوبان سميد ناعم', 'نصف كوب زبدة مذابة', 'ثلث كوب ماء دافئ', 'كوب لوز مطحون', 'ثلث كوب عسل', 'ملعقة صغيرة ماء زهر', 'نصف ملعقة صغيرة قرفة مطحونة', 'بذور سمسم للوجه'],
+  },
+  instructions: {
+    en: ['Mix semolina with melted butter and warm water to form a soft dough.', 'Combine ground almonds, honey, cinnamon and orange blossom water for the filling.', 'Roll the dough into small logs, flatten and add a spoonful of filling.', 'Fold the dough around the filling, seal and gently cut into diamond shapes.', 'Place on a lined tray, sprinkle with sesame seeds and bake at 180°C (350°F) for 25–30 minutes.', 'Brush with a little warm honey after baking and cool before serving.'],
+    ar: ['اخلط السميد مع الزبدة المذابة والماء الدافئ لتكوين عجينة طرية.', 'امزج اللوز المطحون مع العسل والقرفة وماء الزهر للحشوة.', 'شكّل العجينة أسطوانات صغيرة وافردها ثم أضف ملعقة من الحشوة.', 'أغلق العجينة حول الحشوة وقطّعها برفق إلى معينات.', 'ضعها في صينية مبطنة ورشّها بالسمسم واخبزها على 180 درجة مئوية 25 إلى 30 دقيقة.', 'ادهنها بقليل من العسل الدافئ بعد الخبز واتركها تبرد قبل التقديم.'],
+  },
+  nutrition: { calories: 90, protein: 1, carbs: 14, fat: 3 },
+};
+
+const ONION_GRILLED_CHICKEN: Recipe = {
+  id: 'onion-grilled-chicken',
+  slug: 'onion-grilled-chicken',
+  foodLibraryDishId: '0028b6e6-a902-401c-93f9-2f3273b2e655',
+  imageUrl: '/images/recipes/onion-grilled-chicken.webp',
+  emoji: '🍗',
+  title: { en: 'Onion grilled chicken', ar: 'غا نونغ بالبصل فيتنامي أصيل' },
+  cuisine: { en: 'Vietnamese', ar: 'فيتنامي' },
+  description: {
+    en: 'Vietnamese-style grilled chicken with onions, lemongrass and a savory fish sauce marinade.',
+    ar: 'دجاج مشوي على الطريقة الفيتنامية مع البصل والليمون العشبي وصلصة السمك.',
+  },
+  prepTime: { en: '40 min + marinating', ar: '40 دقيقة + تتبيل' },
+  ingredients: {
+    en: ['4 boneless chicken thighs', '1 large onion, cut into wedges', '2 tbsp fish sauce', '1 tbsp soy sauce', '1 tbsp honey', '1 stalk lemongrass, minced', '2 cloves garlic, minced', '1 tbsp vegetable oil', 'Black pepper to taste'],
+    ar: ['4 أفخاذ دجاج منزوعة العظم', 'بصلة كبيرة مقطعة إلى أجزاء', 'ملعقتان كبيرتان صلصة سمك', 'ملعقة كبيرة صلصة صويا', 'ملعقة كبيرة عسل', 'عير ليمون عشبي مفروم', 'فصان ثوم مفرومان', 'ملعقة كبيرة زيت نباتي', 'فلفل أسود حسب الرغبة'],
+  },
+  instructions: {
+    en: ['Mix fish sauce, soy sauce, honey, lemongrass, garlic, oil and pepper.', 'Coat the chicken in the marinade and refrigerate for at least 30 minutes.', 'Thread the chicken and onion wedges onto skewers.', 'Grill over medium heat for 6–8 minutes per side, basting with the remaining marinade.', 'Cook until the chicken is charred at the edges and reaches a safe internal temperature.', 'Serve with steamed rice and a fresh cucumber salad.'],
+    ar: ['اخلط صلصة السمك وصلصة الصويا والعسل والليمون العشبي والثوم والزيت والفلفل.', 'غطّ الدجاج بالتتبيل وضعه في الثلاجة 30 دقيقة على الأقل.', 'ضع الدجاج وقطع البصل في أسياخ.', 'اشوي على حرارة متوسطة 6 إلى 8 دقائق لكل جانب مع دهنها ببقية التتبيل.', 'استمر حتى يحمرّ الدجاج ويصل إلى درجة حرارة داخلية آمنة.', 'قدّمه مع الأرز المطهو بالبخار وسلطة الخيار الطازجة.'],
+  },
+  nutrition: { calories: 330, protein: 42, carbs: 4, fat: 16 },
+};
+
+const RICE_WITH_MINCED_MEAT_AND_PINE_NUTS: Recipe = {
+  id: 'rice-with-minced-meat-and-pine-nuts',
+  slug: 'rice-with-minced-meat-and-pine-nuts',
+  foodLibraryDishId: '0022320b-0a66-40fc-b7f2-33f95486fce3',
+  imageUrl: '/images/recipes/rice-with-minced-meat-and-pine-nuts.webp',
+  emoji: '🍚',
+  title: { en: 'Rice with Minced Meat and Pine Nuts', ar: 'رز باللحم المفروم والصنوبر' },
+  cuisine: { en: 'Lebanese', ar: 'لبناني' },
+  description: {
+    en: 'Fragrant basmati rice layered with spiced minced meat, pine nuts and onions.',
+    ar: 'أرز بسمتي عطري مع اللحم المفروم المتبل والصنوبر والبصل.',
+  },
+  prepTime: { en: '50 min', ar: '50 دقيقة' },
+  ingredients: {
+    en: ['2 cups basmati rice', '300 g ground beef or lamb', '1 onion, finely chopped', '1/4 cup pine nuts', '2 tbsp olive oil', '1 tsp ground allspice', '1/2 tsp ground cinnamon', '2 cups beef stock', 'Salt and pepper to taste'],
+    ar: ['كوبان أرز بسمتي', '300 غرام لحم مفروم', 'بصلة مفرومة ناعمًا', 'ربع كوب صنوبر', 'ملعقتان كبيرتان زيت زيتون', 'ملعقة صغيرة بهار مطحون', 'نصف ملعقة صغيرة قرفة مطحونة', 'كوبان مرق لحم', 'ملح وفلفل حسب الرغبة'],
+  },
+  instructions: {
+    en: ['Rinse the rice until the water runs clear and drain.', 'Toast the pine nuts in oil until golden, then remove and set aside.', 'Cook the onion in the same oil until soft, then add the minced meat and spices.', 'Add the stock and bring to a gentle boil.', 'Stir in the rice, cover and simmer on low heat for 20 minutes.', 'Fluff with a fork, scatter with pine nuts and serve warm.'],
+    ar: ['اغسل الأرز حتى يصفو الماء ثم صفّه.', 'حمّص الصنوبر في الزيت حتى يصبح ذهبيًا ثم أخرجه واتركه جانبًا.', 'اطه البصل في الزيت نفسه حتى يلين ثم أضف اللحم المفروم والتوابل.', 'أضف المرق واتركه يغلي برفق.', 'أضف الأرز وغطّه واتركه على نار هادئة 20 دقيقة.', 'قلّبه بالشوكة ورشّ الصنوبر وقدمه دافئًا.'],
+  },
+  nutrition: { calories: 480, protein: 15, carbs: 70, fat: 15 },
+};
+
+const SPICY_MEATBALLS: Recipe = {
+  id: 'spicy-meatballs',
+  slug: 'spicy-meatballs',
+  foodLibraryDishId: '00233ff2-7140-4d3a-8d87-2482816bbc36',
+  imageUrl: '/images/recipes/spicy-meatballs.webp',
+  emoji: '🍢',
+  title: { en: 'Spicy meatballs', ar: 'كرات اللحم الحار تايوان أصيل' },
+  cuisine: { en: 'Taiwanese', ar: 'تايواني' },
+  description: {
+    en: 'Juicy Taiwanese-style meatballs with chili, garlic and a glossy spicy sauce.',
+    ar: 'كرات لحم تايوانية غنية العصير بالفلفل الحار والثوم وصلصة لامعة حارة.',
+  },
+  prepTime: { en: '45 min', ar: '45 دقيقة' },
+  ingredients: {
+    en: ['500 g ground pork', '1 egg', '1/3 cup breadcrumbs', '3 cloves garlic, minced', '1 tbsp chili paste', '1 tbsp soy sauce', '1 tsp five-spice powder', '2 tbsp vegetable oil', '2 scallions, sliced'],
+    ar: ['500 غرام لحم خنزير مفروم', 'بيضة', 'ثلث كوب فتات خبز', '3 فصوص ثوم مفرومة', 'ملعقة كبيرة معجون فلفل حار', 'ملعقة كبيرة صلصة صويا', 'ملعقة صغيرة توابل خماسية', 'ملعقتان كبيرتان زيت نباتي', 'بصلتان خضراوان مقطعتان'],
+  },
+  instructions: {
+    en: ['Mix the pork with egg, breadcrumbs, garlic, chili paste, soy sauce and five-spice.', 'Shape the mixture into walnut-sized meatballs.', 'Heat the oil in a skillet and pan-fry the meatballs until browned on all sides.', 'Add a splash of water, cover and steam for 5 minutes until cooked through.', 'Uncover and toss until the sauce glazes the meatballs.', 'Garnish with sliced scallions and serve with steamed rice.'],
+    ar: ['اخلط اللحم المفروم مع البيض وفتات الخبز والثوم ومعجون الفلفل وصلصة الصويا والتوابل الخماسية.', 'شكّل الخليط كرات بحجم حبة الجوز.', 'سخّن الزيت في مقلاة واقلِ الكرات حتى تحمر من جميع الجوانب.', 'أضف رشقة ماء وغطّ المقلاة واتركها 5 دقائق حتى تنضج تمامًا.', 'ارفع الغطاء وقلّب حتى تتغطى الكرات بالصلصة اللامعة.', 'زيّنها بالبصل الأخضر وقدمها مع الأرز المبخّر.'],
+  },
+  nutrition: { calories: 360, protein: 30, carbs: 16, fat: 20 },
+};
+
+const TURKU_RONTTONEN_BERRY_PASTRIES: Recipe = {
+  id: 'turku-ronttonen-berry-pastries',
+  slug: 'turku-ronttonen-berry-pastries',
+  foodLibraryDishId: '0030a905-b309-4d98-bb3c-ad929aa53732',
+  imageUrl: '/images/recipes/turku-ronttonen-berry-pastries.webp',
+  emoji: '🫐',
+  title: { en: 'Turku Rönttönen Berry Pastries', ar: 'مطابخ توركو رونتونن معجنات التوت توركوي' },
+  cuisine: { en: 'Finnish', ar: 'فنلندي' },
+  description: {
+    en: 'Small Finnish rye pastries filled with berry jam and a hint of cardamom.',
+    ar: 'معجنات شعير فنلندية صغيرة محشوة بمربى التوت ولمسة من الهيل.',
+  },
+  prepTime: { en: '1 hr', ar: '60 دقيقة' },
+  ingredients: {
+    en: ['2 cups rye flour', '1/2 cup all-purpose flour', '1/2 cup butter, softened', '1/3 cup sugar', '1 egg', '1 tsp ground cardamom', '1/2 cup berry jam', '1 tbsp pearl sugar for topping'],
+    ar: ['كوبان دقيق شعير', 'نصف كوب دقيق متعدد الأغراض', 'نصف كوب زبدة طرية', 'ثلث كوب سكر', 'بيضة', 'ملعقة صغيرة هيل مطحون', 'نصف كوب مربى توت', 'ملعقة كبيرة سكر لؤلؤي للوجه'],
+  },
+  instructions: {
+    en: ['Cream the butter and sugar, then beat in the egg.', 'Mix the rye flour, all-purpose flour and cardamom, then add to the butter mixture.', 'Knead into a smooth dough and chill for 15 minutes.', 'Roll out and cut into small rounds, then add a spoonful of jam to each.', 'Fold the rounds in half, brush with beaten egg and sprinkle with pearl sugar.', 'Bake at 180°C (350°F) for 15–18 minutes until lightly browned.'],
+    ar: ['اخفق الزبدة والسكر ثم أضف البيضة.', 'اخلط دقيق الشعير والدقيق متعدد الأغراض والهيل ثم أضفها إلى خليط الزبدة.', 'اعجن حتى تصبح العجينة ناعمة ثم برّدها 15 دقيقة.', 'افرد العجينة وقطّعها دوائر صغيرة ثم أضف ملعقة مربى لكل دائرة.', 'اطوِ الدوائر نصفين وادهنها بالبيض ورشّها بالسكر اللؤلؤي.', 'اخبز على 180 درجة مئوية 15 إلى 18 دقيقة حتى تصبح محمرة قليلًا.'],
+  },
+  nutrition: { calories: 210, protein: 4, carbs: 30, fat: 8 },
+};
+
 export const RECIPES: Recipe[] = [
   FOUL,
   CHICKEN_RICE,
@@ -1696,6 +1936,16 @@ export const RECIPES: Recipe[] = [
   PUTTU_INDIAN,
   RICE_WITH_BEANS_RWANDAN,
   SEVILLIAN_BEAN_AND_VEGETABLE_STEW,
+  ARDENNES_CREAMY_POTATO_GRATIN,
+  BENELUX_COUQUE_DE_DINANT,
+  DRIED_POLLACK_SOUP_WITH_RICE,
+  ESTONIAN_BARLEY_MUSHROOM_PORRIDGE,
+  LABNEH_WITH_GARLIC_AND_MINT,
+  MAKROUD_WITH_ALMONDS,
+  ONION_GRILLED_CHICKEN,
+  RICE_WITH_MINCED_MEAT_AND_PINE_NUTS,
+  SPICY_MEATBALLS,
+  TURKU_RONTTONEN_BERRY_PASTRIES,
 ];
 
 export const getRecipeBySlug = (slug: string): Recipe | undefined =>
