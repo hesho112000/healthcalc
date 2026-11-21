@@ -46,6 +46,9 @@ const RecipePage: React.FC = () => {
     description: descriptionRecipe,
     image: recipe.imageUrl ? [`https://healthfingerprint.com${recipe.imageUrl}`] : undefined,
     prepTime: `PT${recipe.prepTime.en.replace(/\D/g, '')}M`,
+    cookTime: recipe.cookTime
+      ? `PT${recipe.cookTime.en.replace(/\D/g, '')}M`
+      : undefined,
     recipeCategory: lt(recipe.cuisine, language),
     recipeIngredient: ingredients,
     recipeInstructions: instructions.map((step, i) => ({ '@type': 'HowToStep', position: i + 1, text: step })),
@@ -107,6 +110,12 @@ const RecipePage: React.FC = () => {
               <Clock size={16} className="text-[#D4A017]" />
               {t('recipe.prepTime')}: {lt(recipe.prepTime, language)}
             </span>
+            {recipe.cookTime && (
+              <span className="inline-flex items-center gap-1.5">
+                <Clock size={16} className="text-[#D4A017]" />
+                {language === 'ar' ? 'وقت الطهي' : 'Cook time'}: {lt(recipe.cookTime, language)}
+              </span>
+            )}
             <span className="inline-flex items-center gap-1.5">
               <Flame size={16} className="text-[#D4A017]" />
               {recipe.nutrition.calories} kcal

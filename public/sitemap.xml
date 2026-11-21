@@ -586,6 +586,31 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://healthfingerprint.com/resources/recipe/classic-cheeseburger</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/recipe/buffalo-chicken-wings</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/recipe/buttermilk-pancakes</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/recipe/grilled-chicken-caesar-salad</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://healthfingerprint.com/resources/recipe/macaroni-and-cheese</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://healthfingerprint.com/resources/exercise/walking-for-diabetes</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>

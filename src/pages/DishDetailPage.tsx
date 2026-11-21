@@ -202,6 +202,71 @@ const RECIPE_LINKS: RecipeLink[] = [
     slug: 'turku-ronttonen-berry-pastries',
     title: 'Turku Rönttönen Berry Pastries',
   },
+  {
+    keywords: ['cheeseburger'],
+    dishIds: [
+      'bc320bd7-c128-40b8-bdf3-014535d56394',
+    ],
+    slug: 'classic-cheeseburger',
+    title: 'Classic Cheeseburger',
+  },
+  {
+    keywords: ['buffalo wings', 'chicken wings'],
+    dishIds: [
+      '03eec373-9667-4848-b8bd-9cda1f89b67f', '1faef434-47f7-4be3-9f61-1e3843e4d239', '221c9a86-2d28-426c-b256-21e3fc8c3a9b', '45992185-29e0-44f9-a0e6-4b9608d10909',
+      '5a8dd613-7b0a-47be-ab47-0c202c2556c3', '69a117b7-8632-4918-aaea-0b49924b0f50', '6fd3b017-9fe2-46e9-b252-e14e6c94b921', '745a4eda-5941-4d2c-afb7-fb0325c8cde5',
+      '822d2e3c-d745-43b4-8487-1da74a0d0ad1', '92dfc9a6-e2b4-4416-a192-25df4e081f79', '93536f6b-a1b6-4e31-9a3a-48412135d7cd', '9e90f9f3-236f-4345-a64f-3f16cee16f61',
+      'b5d77516-85aa-406d-814c-bd186e36d5f9', 'bd3cb85a-a32e-48a8-ac46-c101a38babcd', 'ec026a2a-6c38-4e98-a90f-733c1794873d', 'f0a6b948-897c-49f2-96b4-75ffbfe58602',
+      'f86d46ad-a10d-422b-97a2-d3a26e015366', 'fc780a3d-e27d-4a80-9d27-b47340f0fc0d', 'feefeb14-6273-4e27-8d56-aa8fc2b0e3d7',
+    ],
+    slug: 'buffalo-chicken-wings',
+    title: 'Buffalo Chicken Wings',
+  },
+  {
+    keywords: ['pancake'],
+    dishIds: [
+      '03c2d710-2ba5-4d14-9013-21335425bdf7', '05e44470-789d-46c1-8e17-c290258b1d18', '0ac8b13d-4cdf-4f88-8bad-d9de97ba37bf', '187f58e4-d949-4cf4-b73f-e49518c0dbfc',
+      '1a8d52e5-e705-433b-be77-909755dd03fe', '1d33abb3-d464-47be-8f14-fa75f7e4c7ef', '2001f2a3-3e7b-4e0d-ade2-bc43fefa3be7', '28bf68f4-50e6-49b4-a922-592c7f882b29',
+      '295f49a8-2459-4e86-99f9-58f92136a930', '2dd695e7-9d00-4eff-b54e-90b9c3474f54', '2f29c8e6-2498-474a-b70e-cf5fc1513185', '349bb539-e320-4a4b-9fa9-a3a74d4152bb',
+      '34fb7711-ba04-4055-8bf3-6a93aca8ab2f', '3c31e30d-7782-454f-95d6-653e23018923', '3c4e1bc2-5958-42f7-b8df-066343cb902c', '49e32e8b-bf74-4c25-b811-843630b6a49c',
+      '4de26691-f6e3-4f16-bea4-51a8019fd88d', '4fd6302f-4832-4a22-8b1f-1763be47c3d2', '5223bae0-f575-4510-ba17-dd7455220485', '5a188f21-55f0-4aa1-9f18-8c88ed5d1912',
+      '5fa540ff-64b8-4a2a-a0e8-09f6d9d7d118', '61c9b660-231b-4625-aa47-a330932bbcf9', '62a40af6-8948-4069-865c-e1e7c150f4fb', '64b26fab-461a-41e3-85d6-4770d6b9061d',
+      '66596f70-b5ea-437a-96d3-b9e16ca74daf', '67fc8cae-1117-4b6f-871e-25d7c5edf649', '6933d693-9dba-4c0c-85df-da0cc1e0c9f3', '728cacb3-980b-4767-924c-8b53efc6e103',
+      '74673f85-f156-41dc-bcde-c02ccc103245', '7fa3d09b-fab9-42dc-91d2-aed6d5c4b61e', '83c82bfc-02da-4753-9f0c-12ab6863819c', '8804a79d-9862-4cdd-86bf-6eff50b2f37f',
+      '8b0efa48-6abc-467e-8665-71cd8c4f9bc6', '8d13f3a5-3919-4d03-9068-3e8296e3737f', '8f68341f-8dd0-4fda-a0a7-075f9ad030a2', '90bf4796-f0b1-43cf-9d7c-2c66a8d9f89d',
+      '93d228fc-c252-4cfa-b061-a5b0cdafac85', '97b7a4c2-0698-47cc-b1ba-18945ade4707', '98efe4f6-8062-4f1d-941b-2add37a24a9e', '997ed050-a3bb-428e-bc41-a2de8926d018',
+      '99b1cd77-d865-42a0-b45f-97650049b2c1', '9c42638e-b9f1-4d57-8c35-0bde4be2c293', '9ccd6f90-fd2c-41b3-ac6f-ed8fe67102e0', 'a1acd56c-5c3d-4d26-950f-e09e6740e4e8',
+      'ac44efc7-1afb-430a-b09a-ee1997f40ff3', 'ace57363-dad3-449b-a64d-161206c9f61c', 'ae538ccf-8b1c-4be2-b06c-372a1be99aae', 'b059fc4c-5593-49c3-9f50-b225707f3ac6',
+      'b443fa55-1e18-400d-b746-4af0489c2de2', 'b5151987-1aed-48f1-84cc-0f778942c9b3', 'b5743800-f279-4e67-a400-ee77bef17051', 'b94138ea-16be-4de6-a964-b78de54d85e0',
+      'bf5cd26f-4c25-4487-8ba2-22f7696e3c51', 'c19f2d53-9fa5-43d6-88b2-5636e1b2eb35', 'c59586aa-27fb-489a-9b84-767dc6138c49', 'c9b7bc2e-22d5-415a-9c81-3005f6c8b601',
+      'ccbea778-3c04-4f8b-81d1-9f975d953057', 'd020f082-d384-4dc0-85d2-878ee4f38771', 'd438265c-1e19-416c-ab86-ffa66feab5b3', 'd83c5cf0-70f9-4586-9663-8b0016a5b19c',
+      'dba2ddaf-4ad4-4fcb-9d81-201118234e01', 'df26df25-8b60-40e0-8b60-70f6bac7c008', 'e1fd53ae-a6f8-4a28-8410-2cc4d6b602b0', 'e50b3588-d465-41a0-8315-7ef02984a0cb',
+      'ec11e2f0-74c0-4624-a2e0-88ae8dd0d454', 'ef8a2716-8200-491d-ab0a-e01508d62b9e', 'f2043c72-9ca9-4c51-87c8-d1aa7d88cade', 'f5645e78-e32e-4ec5-ac05-9575fc89d826',
+      'f883b1de-6c24-433f-9246-675b91303617', 'fcb25af4-4e7c-4ef1-939f-4de1a378beed', 'fd9a0767-846d-4d66-a5ef-ba874d7e3045',
+    ],
+    slug: 'buttermilk-pancakes',
+    title: 'Buttermilk Pancakes',
+  },
+  {
+    keywords: ['caesar salad'],
+    dishIds: [
+      '31bd427c-1d78-45fd-9be2-c3d21db623f6', '8fc6d02b-10ee-43cd-a0b1-d4c9a4acea60', 'a4469f5d-6901-4cf7-95da-a6fcf01d9b3b',
+    ],
+    slug: 'grilled-chicken-caesar-salad',
+    title: 'Grilled Chicken Caesar Salad',
+  },
+  {
+    keywords: ['mac and cheese', 'macaroni'],
+    dishIds: [
+      '0032831f-dcb1-4a9d-b8ae-d66981e95041', '04099e5e-41c9-4ad3-8c04-91e8415116c1', '2181ec35-af18-4bac-a901-6cad6d44d533', '229a73dd-f856-4891-988f-beded89911fa',
+      '2f20239a-ea09-4489-846c-a2cc15981952', '33e04b8e-5f4b-41e2-9e61-35685199d0b4', '38886002-f531-45f5-ba62-d882d0cec5ab', '3c7c2254-6f93-44ff-a6e9-27cf2d51a166',
+      '468a3406-c62e-43e8-bd8a-88d7c5fa3c1f', '50ddc9cb-3108-403b-9c50-1a3aba08cc12', '7cf99d03-485a-4741-a5df-ee39a2ef70ed', '8fba8928-0c31-4638-93ba-3a40240ebb03',
+      '9d8e71be-ab52-4221-bcd2-a8d43971aabb', 'c354fd81-5553-4093-a1f6-73a9164f7036', 'd83971ce-9cc2-48b2-8373-3b5815c34717', 'd9c5f419-f9ff-4d6e-859b-04576715441d',
+      'de258970-32c0-4ea7-8929-7357f0691528', 'e37be24c-7061-455a-a26f-208ad7dadea3', 'f806420a-9be9-47ba-91c6-45f62bba0097',
+    ],
+    slug: 'macaroni-and-cheese',
+    title: 'Macaroni and Cheese',
+  },
 ];
 
 const NUTRITION_ARTICLE_SLUGS = [

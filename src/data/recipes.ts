@@ -12,6 +12,7 @@ export interface Recipe {
   cuisine: LangText;
   description: LangText;
   prepTime: LangText;
+  cookTime?: LangText;
   ingredients: LocalizedTextList;
   instructions: LocalizedTextList;
   nutrition: { calories: number; protein: number; carbs: number; fat: number };
@@ -1874,6 +1875,303 @@ const TURKU_RONTTONEN_BERRY_PASTRIES: Recipe = {
   nutrition: { calories: 210, protein: 4, carbs: 30, fat: 8 },
 };
 
+const CLASSIC_CHEESEBURGER: Recipe = {
+  id: 'classic-cheeseburger',
+  slug: 'classic-cheeseburger',
+  foodLibraryDishId: 'bc320bd7-c128-40b8-bdf3-014535d56394',
+  imageUrl: '/images/recipes/classic-cheeseburger.webp',
+  emoji: '🍔',
+  title: { en: 'Classic Cheeseburger', ar: 'برجر الجبن الكلاسيكي' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: {
+    en: 'A juicy seared beef patty with melted cheddar, crisp lettuce and tomato on a toasted bun.',
+    ar: 'قطعة لحم بقري مشوية غنية العصير مع جبن الشيدر المذاب والخس والطماطم على خبز محمص.',
+  },
+  prepTime: { en: '15 min', ar: '15 دقيقة' },
+  cookTime: { en: '12 min', ar: '12 دقيقة' },
+  ingredients: {
+    en: [
+      '1 lb ground beef (80% lean)',
+      '4 burger buns',
+      '4 slices cheddar cheese (1 oz each)',
+      '1 tbsp vegetable oil',
+      '1 tsp kosher salt',
+      '1/2 tsp black pepper',
+      '4 lettuce leaves',
+      '1 medium tomato, sliced',
+      '1 tbsp ketchup',
+      '1 tbsp yellow mustard',
+    ],
+    ar: [
+      '500 غرام لحم بقري مفروم',
+      '4 أقراص خبز برجر',
+      '4 شرائح جبن شيدر',
+      'ملعقة كبيرة زيت نباتي',
+      'ملعقة صغيرة ملح خشن',
+      'نصف ملعقة صغيرة فلفل أسود',
+      '4 أوراق خس',
+      'طماطم متوسطة مقطعة',
+      'ملعقة كبيرة كاتشب',
+      'ملعقة كبيرة خردل',
+    ],
+  },
+  instructions: {
+    en: [
+      'Heat a cast-iron skillet over medium-high heat and brush lightly with oil.',
+      'Shape the beef into 4 equal patties and season both sides with salt and pepper.',
+      'Sear the patties for 4 minutes per side, then top each with cheese and cover for 1 minute to melt.',
+      'Toast the buns in the same skillet for about 30 seconds.',
+      'Spread ketchup and mustard on the buns, then layer with lettuce, tomato and the melted-cheese patties.',
+      'Serve hot with a green salad or oven-baked potato wedges.',
+    ],
+    ar: [
+      'سخّن مقلاة حديدية على حرارة متوسطة عالية وادهنها بقليل من الزيت.',
+      'شكّل اللحم 4 قطع متساوية وتبّلها بالملح والفلفل من الجانبين.',
+      'اشوي القطع 4 دقائق لكل جانب ثم ضع الجبن فوقها وغطّها دقيقة واحدة حتى يذوب.',
+      'حمّص أقراص الخبز في المقلاة نفسها نحو 30 ثانية.',
+      'انشر الكاتشب والخردل على الخبز ثم أضف الخس والطماطم وقطع اللحم بالجبن.',
+      'قدّمها ساخنة مع سلطة خضراء أو بطاطس مشوية بالفرن.',
+    ],
+  },
+  nutrition: { calories: 480, protein: 28, carbs: 35, fat: 24 },
+};
+
+const BUFFALO_CHICKEN_WINGS: Recipe = {
+  id: 'buffalo-chicken-wings',
+  slug: 'buffalo-chicken-wings',
+  foodLibraryDishId: '9e90f9f3-236f-4345-a64f-3f16cee16f61',
+  imageUrl: '/images/recipes/buffalo-chicken-wings.webp',
+  emoji: '🍗',
+  title: { en: 'Buffalo Chicken Wings', ar: 'أجنحة الدجاج بصلصة بوفالو' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: {
+    en: 'Crispy oven-baked chicken wings tossed in a tangy cayenne pepper sauce.',
+    ar: 'أجنحة دجاج مقرمشة مخبوزة بالفرن مقلوبة بصلصة حارة بنكهة الفلفل.',
+  },
+  prepTime: { en: '15 min', ar: '15 دقيقة' },
+  cookTime: { en: '25 min', ar: '25 دقيقة' },
+  ingredients: {
+    en: [
+      '2 lbs chicken wings, split at the joints',
+      '1/4 cup cayenne hot sauce',
+      '2 tbsp unsalted butter, melted',
+      '1 tbsp apple cider vinegar',
+      '1 tsp garlic powder',
+      '1/2 tsp kosher salt',
+      '1 tbsp olive oil',
+      '2 tbsp blue cheese dressing for serving',
+      'Celery sticks for serving',
+    ],
+    ar: [
+      '900 غرام أجنحة دجاج مقطعة عند المفاصل',
+      'ربع كوب صلصة فلفل حار',
+      'ملعقتان كبيرتان زبدة مذابة',
+      'ملعقة كبيرة خل تفاح',
+      'ملعقة صغيرة مسحوق ثوم',
+      'نصف ملعقة صغيرة ملح خشن',
+      'ملعقة كبيرة زيت زيتون',
+      'ملعقتان كبيرتان صلصة جبن زرقاء للتقديم',
+      'عيدان كرفس للتقديم',
+    ],
+  },
+  instructions: {
+    en: [
+      'Heat the oven to 425°F (220°C) and line a baking sheet with foil.',
+      'Pat the wings dry, then toss with olive oil, garlic powder and salt.',
+      'Arrange in a single layer and bake for 25 minutes, flipping once halfway through.',
+      'Whisk the hot sauce, melted butter and vinegar together in a large bowl.',
+      'Toss the hot wings in the sauce until evenly coated.',
+      'Serve with blue cheese dressing and celery sticks.',
+    ],
+    ar: [
+      'سخّن الفرن إلى 425 درجة فهرنهايت وافرش صينية الخبز بورق القصدير.',
+      'جفّف الأجنحة ثم قلّبها مع زيت الزيتون ومسحوق الثوم والملح.',
+      'رتّبها في طبقة واحدة واخبزها 25 دقيقة مع تقليبها مرة في المنتصف.',
+      'اخفق الصلصة الحارة والزبدة المذابة والخل في وعاء كبير.',
+      'قلّب الأجنحة الساخنة في الصلصة حتى تتغطى بالتساوي.',
+      'قدّمها مع الصلصة الجبن وعيدان الكرفس.',
+    ],
+  },
+  nutrition: { calories: 420, protein: 32, carbs: 12, fat: 26 },
+};
+
+const BUTTERMILK_PANCAKES: Recipe = {
+  id: 'buttermilk-pancakes',
+  slug: 'buttermilk-pancakes',
+  foodLibraryDishId: 'e50b3588-d465-41a0-8315-7ef02984a0cb',
+  imageUrl: '/images/recipes/buttermilk-pancakes.webp',
+  emoji: '🥞',
+  title: { en: 'Buttermilk Pancakes', ar: 'فطائر اللبن الرائب' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: {
+    en: 'Fluffy griddle pancakes with a tender crumb and a light tang from buttermilk.',
+    ar: 'فطائر هشة مطبوخة على الصاجة بقوام طري ونكهة خفيفة من اللبن الرائب.',
+  },
+  prepTime: { en: '10 min', ar: '10 دقائق' },
+  cookTime: { en: '15 min', ar: '15 دقيقة' },
+  ingredients: {
+    en: [
+      '1 cup all-purpose flour',
+      '1 cup buttermilk',
+      '1 large egg',
+      '2 tbsp granulated sugar',
+      '2 tsp baking powder',
+      '1/2 tsp kosher salt',
+      '2 tbsp unsalted butter, melted',
+      '1 tsp vanilla extract',
+      'Maple syrup and fresh berries for serving',
+    ],
+    ar: [
+      'كوب دقيق متعدد الأغراض',
+      'كوب لبن رائب',
+      'بيضة كبيرة',
+      'ملعقتان كبيرتان سكر',
+      'ملعقتان صغيرتان بيكنغ بودر',
+      'نصف ملعقة صغيرة ملح خشن',
+      'ملعقتان كبيرتان زبدة مذابة',
+      'ملعقة صغيرة خلاصة فانيلا',
+      'شراب القيقب وتوت طازج للتقديم',
+    ],
+  },
+  instructions: {
+    en: [
+      'Whisk the flour, sugar, baking powder and salt in a large bowl.',
+      'In a second bowl, whisk the buttermilk, egg, melted butter and vanilla.',
+      'Pour the wet mixture into the dry ingredients and stir just until combined; a few lumps are fine.',
+      'Let the batter rest for 5 minutes while you heat a griddle over medium heat.',
+      'Drop 1/4 cup of batter per pancake and cook for 2 minutes until bubbles form.',
+      'Flip and cook 1 more minute, then serve warm with maple syrup and berries.',
+    ],
+    ar: [
+      'اخفق الدقيق والسكر والبيكنغ بودر والملح في وعاء كبير.',
+      'في وعاء آخر اخفق اللبن الرائب والبيضة والزبدة المذابة والفانيلا.',
+      'اسكب المكونات السائلة على الجافة وقلّب حتى تتجانس فقط؛ بعض الكتل مقبول.',
+      'اترك الخليط 5 دقائق أثناء تسخين الصاجة على حرارة متوسطة.',
+      'اسكب ربع كوب من الخليط لكل فطيرة واطهها دقيقتين حتى تظهر الفقاعات.',
+      'اقلبها واطهها دقيقة إضافية ثم قدّمها دافئة مع شراب القيقب والتوت.',
+    ],
+  },
+  nutrition: { calories: 280, protein: 8, carbs: 36, fat: 11 },
+};
+
+const GRILLED_CHICKEN_CAESAR_SALAD: Recipe = {
+  id: 'grilled-chicken-caesar-salad',
+  slug: 'grilled-chicken-caesar-salad',
+  foodLibraryDishId: 'a4469f5d-6901-4cf7-95da-a6fcf01d9b3b',
+  imageUrl: '/images/recipes/grilled-chicken-caesar-salad.webp',
+  emoji: '🥗',
+  title: { en: 'Grilled Chicken Caesar Salad', ar: 'سلطة سيزر بالدجاج المشوي' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: {
+    en: 'Char-grilled chicken over crisp romaine with a creamy lemon dressing and Parmesan.',
+    ar: 'دجاج مشوي فوق خس روماني مقرمش مع صلصة ليمون كريمية وجبن بارميزان.',
+  },
+  prepTime: { en: '20 min', ar: '20 دقيقة' },
+  cookTime: { en: '12 min', ar: '12 دقيقة' },
+  ingredients: {
+    en: [
+      '1 lb boneless, skinless chicken breast',
+      '2 heads romaine lettuce, chopped',
+      '1/2 cup grated Parmesan cheese',
+      '1/4 cup mayonnaise',
+      '1 tbsp lemon juice',
+      '1 tsp Dijon mustard',
+      '1 clove garlic, minced',
+      '1 cup croutons',
+      '2 tbsp olive oil',
+      '1/2 tsp black pepper',
+    ],
+    ar: [
+      '500 غرام صدر دجاج منزوع العظم والجلد',
+      'رأسان خس روماني مقطعان',
+      'نصف كوب جبن بارميزان مبشور',
+      'ربع كوب مايونيز',
+      'ملعقة كبيرة عصير ليمون',
+      'ملعقة صغيرة خردل ديجون',
+      'فص ثوم مفروم',
+      'كوب قطع خبز محمص',
+      'ملعقتان كبيرتان زيت زيتون',
+      'نصف ملعقة صغيرة فلفل أسود',
+    ],
+  },
+  instructions: {
+    en: [
+      'Flatten the chicken slightly, brush with olive oil and season with black pepper.',
+      'Grill over medium-high heat for 6 minutes per side until cooked through.',
+      'Rest the chicken for 5 minutes, then slice it into strips.',
+      'Whisk the mayonnaise, lemon juice, mustard and garlic with 2 tbsp of water until pourable.',
+      'Toss the romaine with the dressing and half of the Parmesan.',
+      'Top with the sliced chicken, remaining cheese and croutons.',
+    ],
+    ar: [
+      'افرد صدر الدجاج قليلًا وادهنه بزيت الزيتون وتبّله بالفلفل الأسود.',
+      'اشويه على حرارة متوسطة عالية 6 دقائق لكل جانب حتى ينضج.',
+      'اتركه 5 دقائق ثم قطّعه إلى شرائح.',
+      'اخفق المايونيز وعصير الليمون والخردل والثوم مع ملعقتين كبيرتين ماء حتى يصبح سائلًا.',
+      'قلّب الخس الروماني مع الصلصة ونصف جبن البارميزان.',
+      'رتب فوقه شرائح الدجاج وبقية الجبن وقطع الخبز المحمص.',
+    ],
+  },
+  nutrition: { calories: 380, protein: 30, carbs: 14, fat: 22 },
+};
+
+const MACARONI_AND_CHEESE: Recipe = {
+  id: 'macaroni-and-cheese',
+  slug: 'macaroni-and-cheese',
+  foodLibraryDishId: 'd83971ce-9cc2-48b2-8373-3b5815c34717',
+  imageUrl: '/images/recipes/macaroni-and-cheese.webp',
+  emoji: '🧀',
+  title: { en: 'Macaroni and Cheese', ar: 'المعكرونة بالجبن' },
+  cuisine: { en: 'American', ar: 'أمريكي' },
+  description: {
+    en: 'Tender elbow macaroni folded into a smooth cheddar sauce and baked until golden.',
+    ar: 'معكرونة الكوع الطرية ممزوجة بصلصة الشيدر الناعمة ومخبوزة حتى تصبح ذهبية.',
+  },
+  prepTime: { en: '15 min', ar: '15 دقيقة' },
+  cookTime: { en: '25 min', ar: '25 دقيقة' },
+  ingredients: {
+    en: [
+      '16 oz elbow macaroni',
+      '8 oz sharp cheddar cheese, shredded',
+      '2 cups whole milk',
+      '2 tbsp unsalted butter',
+      '2 tbsp all-purpose flour',
+      '1/2 tsp kosher salt',
+      '1/4 tsp black pepper',
+      '1/2 tsp paprika',
+    ],
+    ar: [
+      '450 غرام معكرونة الكوع',
+      '225 غرام جبن شيدر مبشور',
+      'كوبان حليب كامل الدسم',
+      'ملعقتان كبيرتان زبدة',
+      'ملعقتان كبيرتان دقيق متعدد الأغراض',
+      'نصف ملعقة صغيرة ملح خشن',
+      'ربع ملعقة صغيرة فلفل أسود',
+      'نصف ملعقة صغيرة بابريكا',
+    ],
+  },
+  instructions: {
+    en: [
+      'Heat the oven to 375°F (190°C) and grease a 2-quart baking dish.',
+      'Boil the macaroni in salted water for 8 minutes, then drain.',
+      'Melt the butter in a saucepan, whisk in the flour and cook for 1 minute.',
+      'Gradually whisk in the milk and cook until the sauce thickens, about 3 minutes.',
+      'Stir in the cheese until smooth, then fold in the macaroni and season.',
+      'Transfer to the dish, sprinkle with paprika and bake for 15 minutes until bubbling.',
+    ],
+    ar: [
+      'سخّن الفرن إلى 375 درجة فهرنهايت وادهن طبق خبز.',
+      'اسلق المعكرونة في ماء مملح 8 دقائق ثم صفّها.',
+      'ذوّب الزبدة في قدر وأضف الدقيق مع الخفق واطه دقيقة واحدة.',
+      'أضف الحليب تدريجيًا مع الخفق واطه حتى تتكاثف الصلصة نحو 3 دقائق.',
+      'أضف الجبن حتى يذوب ثم قلّب المعكرونة وتبّلها.',
+      'انقلها إلى الطبق ورشّ البابريكا واخبزها 15 دقيقة حتى تغلي.',
+    ],
+  },
+  nutrition: { calories: 450, protein: 18, carbs: 48, fat: 20 },
+};
+
 export const RECIPES: Recipe[] = [
   FOUL,
   CHICKEN_RICE,
@@ -1946,6 +2244,11 @@ export const RECIPES: Recipe[] = [
   RICE_WITH_MINCED_MEAT_AND_PINE_NUTS,
   SPICY_MEATBALLS,
   TURKU_RONTTONEN_BERRY_PASTRIES,
+  CLASSIC_CHEESEBURGER,
+  BUFFALO_CHICKEN_WINGS,
+  BUTTERMILK_PANCAKES,
+  GRILLED_CHICKEN_CAESAR_SALAD,
+  MACARONI_AND_CHEESE,
 ];
 
 export const getRecipeBySlug = (slug: string): Recipe | undefined =>
