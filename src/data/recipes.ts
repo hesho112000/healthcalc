@@ -1841,11 +1841,11 @@ const SPICY_MEATBALLS: Recipe = {
   },
   prepTime: { en: '45 min', ar: '45 دقيقة' },
   ingredients: {
-    en: ['500 g ground pork', '1 egg', '1/3 cup breadcrumbs', '3 cloves garlic, minced', '1 tbsp chili paste', '1 tbsp soy sauce', '1 tsp five-spice powder', '2 tbsp vegetable oil', '2 scallions, sliced'],
-    ar: ['500 غرام لحم خنزير مفروم', 'بيضة', 'ثلث كوب فتات خبز', '3 فصوص ثوم مفرومة', 'ملعقة كبيرة معجون فلفل حار', 'ملعقة كبيرة صلصة صويا', 'ملعقة صغيرة توابل خماسية', 'ملعقتان كبيرتان زيت نباتي', 'بصلتان خضراوان مقطعتان'],
+    en: ['500 g ground beef', '1 egg', '1/3 cup breadcrumbs', '3 cloves garlic, minced', '1 tbsp chili paste', '1 tbsp soy sauce', '1 tsp five-spice powder', '2 tbsp vegetable oil', '2 scallions, sliced'],
+    ar: ['500 غرام لحم بقري مفروم', 'بيضة', 'ثلث كوب فتات خبز', '3 فصوص ثوم مفرومة', 'ملعقة كبيرة معجون فلفل حار', 'ملعقة كبيرة صلصة صويا', 'ملعقة صغيرة توابل خماسية', 'ملعقتان كبيرتان زيت نباتي', 'بصلتان خضراوان مقطعتان'],
   },
   instructions: {
-    en: ['Mix the pork with egg, breadcrumbs, garlic, chili paste, soy sauce and five-spice.', 'Shape the mixture into walnut-sized meatballs.', 'Heat the oil in a skillet and pan-fry the meatballs until browned on all sides.', 'Add a splash of water, cover and steam for 5 minutes until cooked through.', 'Uncover and toss until the sauce glazes the meatballs.', 'Garnish with sliced scallions and serve with steamed rice.'],
+    en: ['Mix the beef with egg, breadcrumbs, garlic, chili paste, soy sauce and five-spice.', 'Shape the mixture into walnut-sized meatballs.', 'Heat the oil in a skillet and pan-fry the meatballs until browned on all sides.', 'Add a splash of water, cover and steam for 5 minutes until cooked through.', 'Uncover and toss until the sauce glazes the meatballs.', 'Garnish with sliced scallions and serve with steamed rice.'],
     ar: ['اخلط اللحم المفروم مع البيض وفتات الخبز والثوم ومعجون الفلفل وصلصة الصويا والتوابل الخماسية.', 'شكّل الخليط كرات بحجم حبة الجوز.', 'سخّن الزيت في مقلاة واقلِ الكرات حتى تحمر من جميع الجوانب.', 'أضف رشقة ماء وغطّ المقلاة واتركها 5 دقائق حتى تنضج تمامًا.', 'ارفع الغطاء وقلّب حتى تتغطى الكرات بالصلصة اللامعة.', 'زيّنها بالبصل الأخضر وقدمها مع الأرز المبخّر.'],
   },
   nutrition: { calories: 360, protein: 30, carbs: 16, fat: 20 },

@@ -4143,7 +4143,7 @@ export const CHILE_FULL: KitchenDish[] = [
     ]
   },
   {
-    "id": "cl_pork_grill_cl",
+    "id": "cl_beef_grill_cl",
     "nameAr": "لحم بقري مشوي تشيلي",
     "nameEn": "Chilean grilled beef skirt steak",
     "mealType": "lunch",
