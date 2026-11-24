@@ -40,7 +40,7 @@ const HealthMetricsWidget: React.FC = () => {
             className="text-xs text-primary-600 hover:text-primary-700 font-medium disabled:opacity-50 transition-colors">
             {syncing ? t('widgetSyncing') : `🔄 ${t('swSyncNow')}`}
           </button>
-          <Link to="/smartwatch-sync" className="text-xs text-gray-400 hover:text-gray-600 transition-colors">
+          <Link to="/smartwatch-sync" className="text-xs text-gray-500 hover:text-gray-700 transition-colors">
             → {t('widgetViewAll')}
           </Link>
         </div>

@@ -920,9 +920,9 @@ const CalculatorHub: React.FC = () => {
             )}
 
             <section className="calculator-final-cta relative overflow-hidden rounded-[32px] bg-slate-900 p-6 text-white shadow-xl sm:p-10">
-              <div className="calculator-cta-glow pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-emerald-500/20 blur-3xl" />
+              <div className="calculator-cta-glow pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-emerald-900/20 blur-3xl" />
               <div className="relative">
-                <h2 className="max-w-2xl text-2xl font-extrabold tracking-tight sm:text-3xl">
+                <h2 className="max-w-2xl text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
                   {t('calculator.cta.title').replace('{calories}', format(metrics.targetCalories))}
                 </h2>
                 <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300 sm:text-base">{t('calculator.cta.subtitle')}</p>
@@ -941,7 +941,7 @@ const CalculatorHub: React.FC = () => {
                 >
                   {t('calculator.cta.button')} <ArrowRight size={18} aria-hidden="true" />
                 </button>
-                <p className="mt-3 text-xs text-slate-500">{t('calculator.cta.footnote')}</p>
+                <p className="mt-3 text-xs text-slate-400">{t('calculator.cta.footnote')}</p>
               </div>
             </section>
           </div>

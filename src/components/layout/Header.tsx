@@ -72,7 +72,7 @@ const Header: React.FC = () => {
     setUserOpen(false);
     setMobileOpen(false);
     await signOut();
-    navigate('/');
+    navigate('/discover');
   };
 
   const displayName = user?.name || user?.email || '';
@@ -80,8 +80,8 @@ const Header: React.FC = () => {
     languageOptions.find((opt) => opt.code === language)?.label ?? language.toUpperCase();
 
   const links: { to: string; exact?: boolean; key: string }[] = [
-    { to: '/', key: 'nav.home', exact: true },
-    { to: '/fitness', key: 'nav.calculators' },
+    { to: '/discover', key: 'nav.home', exact: true },
+    { to: '/', key: 'nav.calculators', exact: true },
     { to: '/food-library', key: 'nav.foodLibrary' },
     ...(ENABLE_PREMIUM ? [{ to: '/advanced-care', key: 'nav.advancedCare' }] : []),
     ...(ENABLE_PREMIUM && hubReady ? [{ to: '/my-health-hub', key: 'nav.myHealthHub' }] : []),
@@ -101,7 +101,7 @@ const Header: React.FC = () => {
       <header className="app-header" dir={dir}>
         <div className="app-header-inner">
           <div className="flex items-center gap-3">
-          <Link to="/" className="app-header-logo" aria-label={`${t('brandName')} home`}>
+          <Link to="/discover" className="app-header-logo" aria-label={`${t('brandName')} home`}>
             <span className="app-header-logo-icon">
               <Leaf size={20} />
             </span>
@@ -254,7 +254,7 @@ const Header: React.FC = () => {
 
         <div className={`app-header-drawer${mobileOpen ? ' open' : ''}`} id="app-header-drawer">
           <div className="app-header-drawer-head">
-            <Link to="/" className="app-header-logo" aria-label={`${t('brandName')} home`} onClick={() => setMobileOpen(false)}>
+            <Link to="/discover" className="app-header-logo" aria-label={`${t('brandName')} home`} onClick={() => setMobileOpen(false)}>
               <span className="app-header-logo-icon">
                 <Leaf size={20} />
               </span>
