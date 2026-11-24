@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 import { getSupabaseClient } from '../../lib/supabaseClient';
+import type { TranslationKeys } from '../../i18n/translationTypes';
 
 const Footer: React.FC = () => {
   const { t, dir } = useLanguage();
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [statusMessage, setStatusMessage] = useState('');
+  const [statusMessage, setStatusMessage] = useState<keyof TranslationKeys | ''>('');
   const [statusType, setStatusType] = useState<'success' | 'warning' | 'error' | ''>('');
 
   const handleSubscribe = async (e: React.FormEvent) => {
@@ -23,22 +24,22 @@ const Footer: React.FC = () => {
         const { error } = await client.from('subscribers').insert([{ email: email.trim(), source: 'Footer Newsletter' }]);
         if (!error) {
           setEmail('');
-          setStatusMessage('Subscribed successfully!');
+          setStatusMessage('common.subscribed');
           setStatusType('success');
         } else if ((error as any).code === '23505') {
-          setStatusMessage('You are already subscribed!');
+          setStatusMessage('common.alreadySubscribed');
           setStatusType('warning');
         } else {
-          setStatusMessage('Something went wrong. Please try again.');
+          setStatusMessage('common.errorTryAgain');
           setStatusType('error');
         }
       } else {
         setEmail('');
-        setStatusMessage('Subscribed successfully!');
+        setStatusMessage('common.subscribed');
         setStatusType('success');
       }
-    } catch (err) {
-      setStatusMessage('Something went wrong. Please try again.');
+    } catch {
+      setStatusMessage('common.errorTryAgain');
       setStatusType('error');
     } finally {
       setIsSubmitting(false);
@@ -94,7 +95,7 @@ const Footer: React.FC = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
               <button type="submit" className="btn-primary" disabled={isSubmitting}>
-                {isSubmitting ? 'Subscribing...' : t('footerSubscribe')}
+                {isSubmitting ? t('common.subscribing') : t('footerSubscribe')}
               </button>
             </form>
             {statusMessage && (
@@ -103,7 +104,7 @@ const Footer: React.FC = () => {
                 statusType === 'warning' ? 'text-amber-300' :
                 'text-red-300'
               }`}>
-                {statusMessage}
+                {statusMessage ? t(statusMessage) : ''}
               </p>
             )}
           </div>

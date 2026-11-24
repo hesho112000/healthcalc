@@ -1,16 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { getSupabaseClient } from '../lib/supabaseClient';
 import DishCard, { isValidDish, type Dish } from '../components/food/DishCard';
 import SEO from '../components/seo/SEO';
+import { useLanguage } from '../context/LanguageContext';
 
 const PAGE_SIZE = 50;
 const TABLE = 'dishes';
 const SELECT_COLUMNS = '*';
 
 export default function FoodLibraryPage() {
-  const { i18n } = useTranslation();
-  const locale = (i18n.language || 'en').split('-')[0];
+  const { language, t } = useLanguage();
+  const locale = language;
 
   const [query, setQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
@@ -67,13 +67,13 @@ export default function FoodLibraryPage() {
         setHasMore(rows.length === PAGE_SIZE);
       } catch (e: unknown) {
         if (myId === requestIdRef.current) {
-          setError(e instanceof Error ? e.message : 'Failed to load dishes');
+          setError(t('foodLibrary.errorGeneric'));
         }
       } finally {
         if (myId === requestIdRef.current) setLoading(false);
       }
     },
-    [locale],
+    [locale, t],
   );
 
   useEffect(() => {
@@ -90,11 +90,11 @@ export default function FoodLibraryPage() {
 
   return (
     <main className="mx-auto min-h-screen w-full max-w-7xl px-4 pb-16 pt-8 bg-slate-50/50">
-      <SEO title="Food Library | Browse 18,000+ Dishes" description="Explore detailed nutrition data, macros, and calories for over 18,980 local and international dishes. Search and filter our comprehensive food database." url="https://healthfingerprint.com/food-library" />
+      <SEO title={t('foodLibrary.seoTitle')} description={t('foodLibrary.seoDescription')} url="https://healthfingerprint.com/food-library" />
       <header className="mb-6">
-        <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">Food Library</h1>
+        <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">{t('foodLibrary.title')}</h1>
         <p className="mt-1 text-sm text-slate-500">
-          Browse {total.toLocaleString()} dishes with full macro breakdown.
+          {t('foodLibrary.subtitle').replace('{count}', total.toLocaleString(locale))}
         </p>
       </header>
 
@@ -104,9 +104,9 @@ export default function FoodLibraryPage() {
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search dishes (e.g. koshari, tea)..."
+            placeholder={t('foodLibrary.searchPlaceholder')}
             className="w-full rounded-xl bg-slate-100/50 px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
-            aria-label="Search dishes" id="field-pages-foodlibrarypage-102" name="field-pages-foodlibrarypage-102"
+            aria-label={t('foodLibrary.searchAria')} id="field-pages-foodlibrarypage-102" name="field-pages-foodlibrarypage-102"
           />
         </div>
       </div>
@@ -115,7 +115,7 @@ export default function FoodLibraryPage() {
         <div role="alert" className="mb-6 rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
           {error}
           <button onClick={() => void fetchPage(page, debouncedQuery, page > 0)} className="ml-3 underline underline-offset-2 hover:text-rose-900">
-            Retry
+            {t('foodLibrary.retry')}
           </button>
         </div>
       )}
@@ -128,7 +128,7 @@ export default function FoodLibraryPage() {
         </div>
       ) : dishes.length === 0 && !error ? (
         <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center text-slate-500">
-          No dishes match your search.
+          {t('foodLibrary.noResults')}
         </div>
       ) : (
         <>
@@ -145,7 +145,7 @@ export default function FoodLibraryPage() {
                 disabled={loading}
                 className="rounded-xl border border-emerald-200 bg-emerald-50 px-6 py-2.5 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-100 disabled:opacity-50"
               >
-                {loading ? 'Loading…' : 'Load more'}
+                {loading ? t('foodLibrary.loading') : t('foodLibrary.loadMore')}
               </button>
             </div>
           )}

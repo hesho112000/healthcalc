@@ -113,7 +113,7 @@ const RecipePage: React.FC = () => {
             {recipe.cookTime && (
               <span className="inline-flex items-center gap-1.5">
                 <Clock size={16} className="text-[#D4A017]" />
-                {language === 'ar' ? 'وقت الطهي' : 'Cook time'}: {lt(recipe.cookTime, language)}
+                 {t('recipe.cookTime')}: {lt(recipe.cookTime, language)}
               </span>
             )}
             <span className="inline-flex items-center gap-1.5">
@@ -169,9 +169,9 @@ const RecipePage: React.FC = () => {
         </section>
 
         <section className="mt-6 rounded-3xl border border-emerald-200 bg-emerald-50 p-6">
-          <h2 className="text-lg font-extrabold text-[#0F4C3A]">Use this recipe in your plan</h2>
+          <h2 className="text-lg font-extrabold text-[#0F4C3A]">{t('recipe.useInPlanTitle')}</h2>
           <p className="mt-2 text-sm leading-relaxed text-[#4A5A55]">
-            Compare food nutrition and estimate your daily calorie and macro targets.
+            {t('recipe.useInPlanDescription')}
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
             {recipe.foodLibraryDishId && (
@@ -179,14 +179,14 @@ const RecipePage: React.FC = () => {
                 to={`/food-library/${recipe.foodLibraryDishId}`}
                 className="inline-flex items-center rounded-full bg-[#0F4C3A] px-5 py-2.5 text-sm font-extrabold text-white hover:bg-[#1a6b53] transition-colors"
               >
-                {language === 'ar' ? 'عرض الحقائق الغذائية الكاملة' : 'See Full Nutrition Facts'}
+                {t('recipe.seeFullNutrition')}
               </Link>
             )}
             <Link
               to="/fitness"
               className="inline-flex items-center rounded-full border border-[#0F4C3A] px-5 py-2.5 text-sm font-extrabold text-[#0F4C3A] hover:bg-white transition-colors"
             >
-              Calorie &amp; macro calculator
+              {t('recipe.calorieMacroCalculator')}
             </Link>
           </div>
         </section>

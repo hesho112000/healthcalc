@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext';
 
 export interface Dish {
   id: string;
@@ -53,6 +54,7 @@ function Macro({ label, value, color }: { label: string; value: number; color: s
 }
 
 export default function DishCard({ dish, locale }: { dish: Dish; locale: string }) {
+  const { t } = useLanguage();
   const name = useMemo(() => resolveDishName(dish, locale) || '—', [dish, locale]);
   const calories = Math.round(dish.cal_100 ?? 0);
   const protein  = Math.round(dish.protein  ?? 0);
@@ -77,7 +79,7 @@ export default function DishCard({ dish, locale }: { dish: Dish; locale: string 
           </span>
         )}
         <span className="absolute right-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-emerald-600 shadow-sm backdrop-blur">
-          {calories} kcal <span className="text-[10px] text-slate-400">/ 100g</span>
+           {t('foodLibrary.caloriesPer100g').replace('{calories}', String(calories))}
         </span>
       </div>
 

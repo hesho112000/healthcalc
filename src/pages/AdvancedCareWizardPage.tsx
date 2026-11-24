@@ -658,7 +658,7 @@ const AdvancedCareWizardPage: React.FC = () => {
 <html${dirAttr}>
 <head>
 <meta charset="utf-8" />
-<title>HealthCalc Plan</title>
+<title>${t(tk('wizard.step6.planHeader'))}</title>
 <style>
   @page { margin: 24px; }
   body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; color: #0F4C3A; margin: 0; padding: 32px; background: #FDFBF7; }
@@ -674,18 +674,18 @@ const AdvancedCareWizardPage: React.FC = () => {
 </style>
 </head>
 <body>
-  <h1>HealthCalc — Personalized Plan</h1>
+  <h1>HealthCalc — ${t(tk('wizard.step6.planHeader'))}</h1>
   <p class="muted">${focusLine}</p>
   <div>
 ${conditionTags}
   </div>
   <div class="card">
     <div class="h">${t(tk('wizard.step6.planHeader'))} · ${t(tk('wizard.step6.nutritionHeader'))}</div>
-    <table><thead><tr><th>Food</th><th>Meal</th><th>Calories</th></tr></thead><tbody>${foodRows}</tbody></table>
+    <table><thead><tr><th>${t('pdf.table.food')}</th><th>${t('pdf.table.meal')}</th><th>${t('pdf.table.calories')}</th></tr></thead><tbody>${foodRows}</tbody></table>
   </div>
   <div class="card">
     <div class="h">${t(tk('wizard.step6.exercisesHeader'))}</div>
-    <table><thead><tr><th>Exercise</th><th>Duration</th><th>Calories</th></tr></thead><tbody>${exerciseRows}</tbody></table>
+    <table><thead><tr><th>${t('pdf.table.exercise')}</th><th>${t('pdf.table.duration')}</th><th>${t('pdf.table.calories')}</th></tr></thead><tbody>${exerciseRows}</tbody></table>
   </div>
   <div class="total"><span>${t(tk('wizard.step6.summary.calories')).replace('{kcal}', String(dailyKcal))}</span><span>${dailyKcal} kcal</span></div>
 </body>

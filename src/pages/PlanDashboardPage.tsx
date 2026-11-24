@@ -145,7 +145,7 @@ const PlanDashboardContent: React.FC = () => {
 <html${dirAttr}>
 <head>
 <meta charset="utf-8" />
-<title>HealthCalc Plan</title>
+   <title>${t('pdf.plan.title')}</title>
 <style>
   @page { margin: 24px; }
   body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; color: #0F4C3A; margin: 0; padding: 32px; background: #FDFBF7; }
@@ -168,11 +168,11 @@ const PlanDashboardContent: React.FC = () => {
   </div>
   <div class="card">
     <div class="h">${t('dash.plan.todayMeals')}</div>
-    <table><thead><tr><th>Food</th><th>Meal</th><th>Calories</th></tr></thead><tbody>${mealTable}</tbody></table>
+     <table><thead><tr><th>${t('pdf.table.food')}</th><th>${t('pdf.table.meal')}</th><th>${t('pdf.table.calories')}</th></tr></thead><tbody>${mealTable}</tbody></table>
   </div>
   <div class="card">
     <div class="h">${t('dash.plan.todayWorkout')}</div>
-    <table><thead><tr><th>Exercise</th><th>Duration</th><th>Calories</th></tr></thead><tbody>${exTable}</tbody></table>
+     <table><thead><tr><th>${t('pdf.table.exercise')}</th><th>${t('pdf.table.duration')}</th><th>${t('pdf.table.calories')}</th></tr></thead><tbody>${exTable}</tbody></table>
   </div>
   <div class="total"><span>${mealsDone} / ${mealRows.length}</span><span>${progress}%</span></div>
 </body>

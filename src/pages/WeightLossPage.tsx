@@ -2998,25 +2998,25 @@ const WeightLossPage: React.FC = () => {
                 <Sparkles size={30} />
               </span>
               <h2 className="mx-auto mt-5 max-w-[420px] text-[21px] font-extrabold leading-snug text-[#0F4C3A]">
-                {language === 'ar' ? 'لنبنِ خطة غذائك الشخصية' : "Let's build your personalized nutrition plan"}
+                {t('weightLoss.introTitle')}
               </h2>
               <div className="mx-auto mt-6 max-w-[400px] space-y-3 text-start">
                 <div className="flex items-center gap-3 rounded-[16px] bg-[#F4F1EB] px-4 py-3">
                   <Timer size={18} className="shrink-0 text-[#0F4C3A]" />
                   <span className="text-[13px] font-semibold text-[#52635A]">
-                    {language === 'ar' ? 'الوقت المتوقع: 3-5 دقائق.' : 'Estimated time: 3-5 minutes.'}
+                    {t('weightLoss.introTime')}
                   </span>
                 </div>
                 <div className="flex items-center gap-3 rounded-[16px] bg-[#F4F1EB] px-4 py-3">
                   <ShieldCheck size={18} className="shrink-0 text-[#0F4C3A]" />
                   <span className="text-[13px] font-semibold text-[#52635A]">
-                    {language === 'ar' ? 'يتم حفظ إجاباتك محلياً على جهازك.' : 'Your answers are saved locally on your device.'}
+                    {t('weightLoss.introPrivacy')}
                   </span>
                 </div>
               </div>
               <button type="button" onClick={next} className="cta-calc mx-auto mt-7 max-w-[400px]">
                 <span className="inline-flex items-center justify-center gap-2">
-                  <Play size={18} /> {language === 'ar' ? 'ابدأ الآن' : 'Start Now'}
+                  <Play size={18} /> {t('weightLoss.introStart')}
                 </span>
               </button>
             </div>
@@ -3396,7 +3396,7 @@ const WeightLossPage: React.FC = () => {
 
               {hasConflictGoals && (
                 <div className="mt-4 rounded-[16px] border border-red-200 bg-red-50 px-4 py-3 text-[12px] font-semibold text-red-600 leading-snug">
-                  {language === 'ar' ? 'لا يمكن اختيار "إنقاص الوزن" و"الحفاظ على الوزن" معاً.' : '"Lose Weight" and "Maintain Weight" cannot be selected together.'}
+                  {t('weightLoss.goalConflict')}
                 </div>
               )}
             </div>
@@ -4697,8 +4697,8 @@ const WeightLossPage: React.FC = () => {
             {emailDone ? (
               <div className="pt-2">
                 <div className="h-10 w-10 rounded-full bg-[#FFF8E7] border border-[#E9D9A8] text-[#B8860B] flex items-center justify-center text-xl">✓</div>
-                <h3 className="mt-3 text-[17px] font-bold">Sent</h3>
-                <p className="mt-1 text-[13.5px] text-zinc-600 break-words">PDF sent to {emailDone}</p>
+                <h3 className="mt-3 text-[17px] font-bold">{t('weightLoss.email.sent')}</h3>
+                <p className="mt-1 text-[13.5px] text-zinc-600 break-words">{t('weightLoss.email.pdfSent').replace('{email}', emailDone)}</p>
                 <button
                   type="button"
                   onClick={() => {
@@ -4708,7 +4708,7 @@ const WeightLossPage: React.FC = () => {
                   }}
                   className="mt-5 w-full h-[48px] rounded-[14px] bg-[#D4A017] text-[#0F4C3A] text-[14px] font-extrabold"
                 >
-                  Done
+                  {t('weightLoss.email.done')}
                 </button>
               </div>
             ) : (
@@ -4719,15 +4719,15 @@ const WeightLossPage: React.FC = () => {
                   void sendEmail();
                 }}
               >
-                <h3 className="text-[17px] font-bold">Send Blueprint</h3>
-                <p className="mt-1 text-[13px] text-zinc-500">Receive the blueprint as a PDF on your email.</p>
-                <label className="mt-4 block text-[12.5px] font-medium text-zinc-700" htmlFor="field-pages-weightlosspage-4724">Email address</label>
+                <h3 className="text-[17px] font-bold">{t('weightLoss.email.title')}</h3>
+                <p className="mt-1 text-[13px] text-zinc-500">{t('weightLoss.email.description')}</p>
+                <label className="mt-4 block text-[12.5px] font-medium text-zinc-700" htmlFor="field-pages-weightlosspage-4724">{t('weightLoss.email.address')}</label>
                 <input
                   type="email"
                   required
                   value={emailText}
                   onChange={(e) => setEmailText(e.target.value)}
-                  placeholder="you@example.com"
+                  placeholder={t('weightLoss.email.placeholder')}
                   inputMode="email"
                   className="mt-1.5 w-full h-[48px] rounded-[14px] border border-[#E9E5DB] px-4 outline-none focus:border-[#D4A017] focus:ring-[3px] focus:ring-[#D4A017]/20 bg-white" id="field-pages-weightlosspage-4724" name="field-pages-weightlosspage-4724"
                 />
@@ -4737,14 +4737,14 @@ const WeightLossPage: React.FC = () => {
                     onClick={() => setEmailOpen(false)}
                     className="h-[48px] px-5 rounded-[14px] border border-[#E9E5DB] bg-[#F4F1EB] text-[#0F4C3A] text-[14px] font-bold"
                   >
-                    Cancel
+                    {t('weightLoss.email.cancel')}
                   </button>
                   <button
                     type="submit"
                     disabled={emailSending}
                     className={`flex-1 h-[48px] rounded-[14px] text-[14px] font-extrabold ${emailSending ? 'bg-[#E9E5DB] text-[#A0A8A4]' : 'bg-[#D4A017] text-[#0F4C3A]'}`}
                   >
-                    {emailSending ? 'Sending…' : 'Send'}
+                    {emailSending ? t('weightLoss.email.sending') : t('weightLoss.email.send')}
                   </button>
                 </div>
               </form>

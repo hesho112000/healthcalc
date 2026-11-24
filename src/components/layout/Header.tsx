@@ -158,7 +158,7 @@ const Header: React.FC = () => {
               <button
                 type="button"
                 className="app-header-lang"
-                aria-label={`Change language (current: ${currentLanguageLabel})`}
+                aria-label={t('common.changeLanguage').replace('{language}', currentLanguageLabel)}
                 aria-haspopup="listbox"
                 aria-expanded={langOpen}
                 aria-controls="app-header-lang-menu-desktop"
@@ -169,7 +169,7 @@ const Header: React.FC = () => {
                 <ChevronDown size={14} className={`app-header-lang-caret${langOpen ? ' open' : ''}`} aria-hidden="true" />
               </button>
               {langOpen && (
-                <div className="app-header-lang-menu" id="app-header-lang-menu-desktop" role="listbox" aria-label="Language">
+                <div className="app-header-lang-menu" id="app-header-lang-menu-desktop" role="listbox" aria-label={t('common.language')}>
                   {languageOptions.map((opt) => (
                     <button
                       key={opt.code}
@@ -243,7 +243,7 @@ const Header: React.FC = () => {
           <button
             type="button"
             className="app-header-burger"
-            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-label={mobileOpen ? t('common.closeMenu') : t('common.openMenu')}
             aria-expanded={mobileOpen}
             aria-controls="app-header-drawer"
             onClick={() => setMobileOpen((o) => !o)}
@@ -280,7 +280,7 @@ const Header: React.FC = () => {
               <button
                 type="button"
                 className="app-header-lang app-header-lang-full"
-                aria-label={`Change language (current: ${currentLanguageLabel})`}
+                aria-label={t('common.changeLanguage').replace('{language}', currentLanguageLabel)}
                 aria-haspopup="listbox"
                 aria-expanded={langOpen}
                 aria-controls="app-header-lang-menu-drawer"
@@ -291,7 +291,7 @@ const Header: React.FC = () => {
                 <ChevronDown size={14} className={`app-header-lang-caret${langOpen ? ' open' : ''}`} aria-hidden="true" />
               </button>
               {langOpen && (
-                <div className="app-header-lang-menu app-header-lang-menu-static" id="app-header-lang-menu-drawer" role="listbox" aria-label="Language">
+                <div className="app-header-lang-menu app-header-lang-menu-static" id="app-header-lang-menu-drawer" role="listbox" aria-label={t('common.language')}>
                   {languageOptions.map((opt) => (
                     <button
                       key={opt.code}
@@ -341,7 +341,7 @@ const Header: React.FC = () => {
           <button
             type="button"
             className="app-header-overlay"
-            aria-label="Close menu"
+            aria-label={t('common.closeMenu')}
             onClick={() => setMobileOpen(false)}
           />
         )}

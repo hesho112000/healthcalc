@@ -1,7 +1,9 @@
 import { ENABLE_PREMIUM } from '../../config/featureFlags';
 import type { TranslationKeys } from '../translationTypes';
+import en from './en';
 
 const de: TranslationKeys = {
+    ...en,
     'kitchen.eastern-european.name': 'Osteuropäische Küche',
     'kitchen.eastern-european.description': 'Polen, Russland, Tschechien, Ungarn',
     'kitchen.mexican.name': 'Mexikanische Küche',

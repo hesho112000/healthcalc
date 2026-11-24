@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Activity, ArrowRight, Bean, BookOpen, CalendarDays, Check, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, Cross, Droplet, Dumbbell, Filter, Flame, Footprints, HeartPulse, Hourglass, Languages, Leaf, Mars, Moon, RefreshCw, Ruler, Salad, Scale, ShieldCheck, Smartphone, Sparkles, Star, Target, Timer, TrendingDown, Users, UtensilsCrossed, Venus, Watch } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import type { ArticleCategory } from '../data/articles';
+import type { TranslationKeys } from '../i18n/translationTypes';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/seo/SEO';
 import { useUserProfile } from '../hooks/useUserProfile';
@@ -16,15 +17,15 @@ import { ENABLE_PREMIUM } from '../config/featureFlags';
 import './HomeHero.css';
 import { getSupabaseClient } from '../lib/supabaseClient';
 
-const conditions: Array<{ icon: LucideIcon; en: string; ar: string; path: string }> = [
-  { icon: Droplet, en: 'Diabetes', ar: 'سكر', path: '/diabetes' },
-  { icon: HeartPulse, en: 'Hypertension', ar: 'ضغط', path: '/premium' },
-  { icon: Activity, en: 'Cholesterol', ar: 'كوليسترول', path: '/premium' },
-  { icon: Footprints, en: 'Gout', ar: 'نقرس', path: '/premium' },
-  { icon: Filter, en: 'Liver health', ar: 'كبد', path: '/premium' },
-  { icon: Bean, en: 'Kidney care', ar: 'كلى', path: '/premium' },
-  { icon: Flame, en: 'Thyroid', ar: 'غدة درقية', path: '/premium' },
-  { icon: Leaf, en: 'IBS', ar: 'قولون', path: '/premium' },
+const conditions: Array<{ icon: LucideIcon; labelKey: keyof TranslationKeys; path: string }> = [
+  { icon: Droplet, labelKey: 'wizard.condition.diabetes.name', path: '/diabetes' },
+  { icon: HeartPulse, labelKey: 'wizard.condition.hypertension.name', path: '/premium' },
+  { icon: Activity, labelKey: 'wizard.condition.cholesterol.name', path: '/premium' },
+  { icon: Footprints, labelKey: 'wizard.condition.gout.name', path: '/premium' },
+  { icon: Filter, labelKey: 'wizard.condition.liver.name', path: '/premium' },
+  { icon: Bean, labelKey: 'wizard.condition.kidney.name', path: '/premium' },
+  { icon: Flame, labelKey: 'wizard.condition.thyroid.name', path: '/premium' },
+  { icon: Leaf, labelKey: 'wizard.condition.ibs.name', path: '/premium' },
 ];
 
 type TrustLabelKey = 'trustsec.stat1.label' | 'trustsec.stat2.label' | 'trustsec.stat3.label' | 'trustsec.stat4.label';
@@ -45,11 +46,11 @@ const HERO_GOAL_TO_USER_GOAL: Record<WizardGoalSelection, UserGoal> = {
   improve_health: 'wellness',
 };
 
-const HERO_GOALS: { value: WizardGoalSelection; label: string }[] = [
-  { value: 'lose_weight', label: 'Lose weight' },
-  { value: 'maintain_weight', label: 'Maintain weight' },
-  { value: 'build_muscle', label: 'Build muscle' },
-  { value: 'improve_health', label: 'Feel healthier' },
+const HERO_GOALS: { value: WizardGoalSelection; labelKey: keyof TranslationKeys }[] = [
+  { value: 'lose_weight', labelKey: 'home.calculator.goalLose' },
+  { value: 'maintain_weight', labelKey: 'home.calculator.goalMaintain' },
+  { value: 'build_muscle', labelKey: 'home.calculator.goalBuild' },
+  { value: 'improve_health', labelKey: 'home.calculator.goalHealth' },
 ];
 
 const localeFor = (lang: string): string =>
@@ -104,17 +105,11 @@ const HomePage: React.FC = () => {
       : profile.goal === 'wellness' ? 'maintain_weight'
         : 'lose_weight'
   );
-  const watchBenefits = language === 'ar'
-    ? [
-        { icon: RefreshCw, text: 'مزامنة نشاطك اليومي تلقائيًا' },
-        { icon: HeartPulse, text: 'متابعة نبض القلب وجودة النوم' },
-        { icon: Activity, text: 'تعديل خطة الوجبات حسب بياناتك الفعلية' },
-      ]
-    : [
-        { icon: RefreshCw, text: 'Auto-sync your daily activity' },
-        { icon: HeartPulse, text: 'Track heart rate & sleep quality' },
-        { icon: Activity, text: 'Adjust your meal plan based on real data' },
-      ];
+  const watchBenefits = [
+    { icon: RefreshCw, text: t('home.watch.benefit1') },
+    { icon: HeartPulse, text: t('home.watch.benefit2') },
+    { icon: Activity, text: t('home.watch.benefit3') },
+  ];
   const [watchEmail, setWatchEmail] = useState('');
   const [watchJoined, setWatchJoined] = useState(false);
   const [watchLoading, setWatchLoading] = useState(false);
@@ -260,19 +255,19 @@ const HomePage: React.FC = () => {
           if (sourceName === 'Fasting Hub') setFastingJoined(true);
           else setWatchJoined(true);
         } else if ((error as any).code === '23505') {
-          if (sourceName === 'Fasting Hub') setFastingError("You're already subscribed!");
-          else setWatchError("You're already subscribed!");
+          if (sourceName === 'Fasting Hub') setFastingError(t('home.status.alreadySubscribed'));
+          else setWatchError(t('home.status.alreadySubscribed'));
         } else {
-          if (sourceName === 'Fasting Hub') setFastingError('Something went wrong. Please try again.');
-          else setWatchError('Something went wrong. Please try again.');
+          if (sourceName === 'Fasting Hub') setFastingError(t('home.status.genericError'));
+          else setWatchError(t('home.status.genericError'));
         }
       } else {
-        if (sourceName === 'Fasting Hub') setFastingError('Subscription service is temporarily unavailable.');
-        else setWatchError('Subscription service is temporarily unavailable.');
+        if (sourceName === 'Fasting Hub') setFastingError(t('home.status.unavailable'));
+        else setWatchError(t('home.status.unavailable'));
       }
     } catch (err) {
-      if (sourceName === 'Fasting Hub') setFastingError('Something went wrong. Please try again.');
-      else setWatchError('Something went wrong. Please try again.');
+      if (sourceName === 'Fasting Hub') setFastingError(t('home.status.genericError'));
+      else setWatchError(t('home.status.genericError'));
     } finally {
       if (sourceName === 'Fasting Hub') setFastingLoading(false);
       else setWatchLoading(false);
@@ -290,18 +285,18 @@ const HomePage: React.FC = () => {
   return (
     <div className="home-shell" dir={dir}>
       <SEO title={t('seo.home.title')} description={t('seo.home.description')} url="/" />
-      <section className="hero-section home-hero-hook" dir="ltr">
+      <section className="hero-section home-hero-hook" dir={dir}>
         <div className="hh-preview__ambient hh-preview__ambient--one" aria-hidden="true" />
         <div className="hh-preview__ambient hh-preview__ambient--two" aria-hidden="true" />
         <div className="hh-preview__hero">
-          <div className="hh-preview__message">
-            <span className="hh-preview__badge"><Sparkles size={13} /> The Ultimate Health &amp; Diet Platform</span>
-            <h1>Know Your Macros.<br />Eat What You <em>Love.</em></h1>
-            <p className="hh-preview__subhead">Calculate your daily calories, explore 18,000+ global dishes, and get personalized meal plans in seconds.</p>
+          <div className="hh-preview__message" dir={dir}>
+            <span className="hh-preview__badge"><Sparkles size={13} /> {t('home.hero.badge')}</span>
+            <h1>{t('home.hero.title1')}<br />{t('home.hero.title2')} <em>{t('home.hero.title2Accent')}</em></h1>
+            <p className="hh-preview__subhead">{t('home.hero.subtitle')}</p>
             <div className="hh-hero-media">
               <img
                 src="/images/hero-bowl.webp"
-                alt="A colorful, healthy meal bowl with fresh vegetables"
+                alt={t('home.hero.imageAlt')}
                 width={672}
                 height={448}
                 loading="eager"
@@ -309,53 +304,53 @@ const HomePage: React.FC = () => {
                 fetchPriority="high"
               />
             </div>
-            <div className="hh-preview__proof" aria-label="Platform highlights">
-              <div className="hh-proof-item"><span className="hh-proof-item__icon"><UtensilsCrossed size={16} /></span><strong>18,000<sup>+</sup></strong><small>Dishes</small></div>
-              <span className="hh-preview__proof-divider" />
-              <div className="hh-proof-item"><span className="hh-proof-item__icon"><Languages size={16} /></span><strong>5</strong><small>Languages</small></div>
-              <span className="hh-preview__proof-divider" />
-              <div className="hh-proof-item"><span className="hh-proof-item__icon"><HeartPulse size={16} /></span><strong>100%</strong><small>Free</small></div>
+              <div className="hh-preview__proof" aria-label={t('home.hero.highlights')}>
+                <div className="hh-proof-item"><span className="hh-proof-item__icon"><UtensilsCrossed size={16} /></span><strong>18,000<sup>+</sup></strong><small>{t('home.stats.dishes')}</small></div>
+                <span className="hh-preview__proof-divider" />
+                <div className="hh-proof-item"><span className="hh-proof-item__icon"><Languages size={16} /></span><strong>5</strong><small>{t('home.stats.languages')}</small></div>
+                <span className="hh-preview__proof-divider" />
+                <div className="hh-proof-item"><span className="hh-proof-item__icon"><HeartPulse size={16} /></span><strong>100%</strong><small>{t('home.stats.free')}</small></div>
             </div>
           </div>
 
-          <section className="hh-calculator" aria-labelledby="hh-calculator-heading">
+          <section className="hh-calculator" dir={dir} aria-labelledby="hh-calculator-heading">
             <div className="hh-calculator__shine" aria-hidden="true" />
-            <div className="hh-calculator__topline"><span><i /> YOUR PERSONAL STARTING POINT</span><span className="hh-calculator__time"><Sparkles size={12} /> 30 sec</span></div>
-            <div className="hh-calculator__heading"><div><span className="hh-calculator__eyebrow">A FEW QUICK DETAILS</span><h2 id="hh-calculator-heading">Let’s make it <em>yours.</em></h2></div><span className="hh-calculator__step">01 <i>/</i> 01</span></div>
+            <div className="hh-calculator__topline"><span><i /> {t('home.calculator.yourStartingPoint')}</span><span className="hh-calculator__time"><Sparkles size={12} /> {t('home.calculator.time')}</span></div>
+            <div className="hh-calculator__heading"><div><span className="hh-calculator__eyebrow">{t('home.calculator.quickDetails')}</span><h2 id="hh-calculator-heading">{t('home.calculator.titlePrefix')} <em>{t('home.calculator.titleAccent')}</em></h2></div><span className="hh-calculator__step">01 <i>/</i> 01</span></div>
 
             <form onSubmit={handleHeroCalculate}>
               <div className="hh-form-grid hh-form-grid--three">
                 <label className="hh-field" htmlFor="hero-profile-age">
-                  <span><CalendarDays size={13} /> Age</span>
-                  <span className="hh-field__control"><input id="hero-profile-age" type="number" min="12" max="80" inputMode="numeric" value={profile.age ?? ''} onChange={(event) => { setHeroProfileError(false); updateProfile({ age: event.target.value ? Number(event.target.value) : null }); }} required name="hero-profile-age" /><small>years</small></span>
+                  <span><CalendarDays size={13} /> {t('age')}</span>
+                  <span className="hh-field__control"><input id="hero-profile-age" type="number" min="12" max="80" inputMode="numeric" value={profile.age ?? ''} onChange={(event) => { setHeroProfileError(false); updateProfile({ age: event.target.value ? Number(event.target.value) : null }); }} required name="hero-profile-age" /><small>{t('years')}</small></span>
                 </label>
                 <label className="hh-field" htmlFor="hero-profile-height">
-                  <span><Ruler size={13} /> Height</span>
-                  <span className="hh-field__control"><input id="hero-profile-height" type="number" min="120" max="220" inputMode="decimal" value={profile.height ?? ''} onChange={(event) => { setHeroProfileError(false); updateProfile({ height: event.target.value ? Number(event.target.value) : null }); }} required name="hero-profile-height" /><small>cm</small></span>
+                  <span><Ruler size={13} /> {t('height')}</span>
+                  <span className="hh-field__control"><input id="hero-profile-height" type="number" min="120" max="220" inputMode="decimal" value={profile.height ?? ''} onChange={(event) => { setHeroProfileError(false); updateProfile({ height: event.target.value ? Number(event.target.value) : null }); }} required name="hero-profile-height" /><small>{t('cm')}</small></span>
                 </label>
                 <label className="hh-field" htmlFor="hero-profile-weight">
-                  <span><Scale size={13} /> Weight</span>
-                  <span className="hh-field__control"><input id="hero-profile-weight" type="number" min="30" max="250" inputMode="decimal" value={profile.weight ?? ''} onChange={(event) => { setHeroProfileError(false); updateProfile({ weight: event.target.value ? Number(event.target.value) : null }); }} required name="hero-profile-weight" /><small>kg</small></span>
+                  <span><Scale size={13} /> {t('weightLabel')}</span>
+                  <span className="hh-field__control"><input id="hero-profile-weight" type="number" min="30" max="250" inputMode="decimal" value={profile.weight ?? ''} onChange={(event) => { setHeroProfileError(false); updateProfile({ weight: event.target.value ? Number(event.target.value) : null }); }} required name="hero-profile-weight" /><small>{t('kg')}</small></span>
                 </label>
               </div>
 
               <div className="hh-form-grid hh-form-grid--two">
                 <fieldset className="hh-gender-field">
-                  <legend>Gender</legend>
-                  <div className="hh-gender-switch" role="group" aria-label="Gender">
-                    <button type="button" className={profile.gender === 'female' ? 'is-selected' : ''} aria-pressed={profile.gender === 'female'} onClick={() => { setHeroProfileError(false); updateProfile({ gender: 'female' }); }}><Venus size={14} /> Woman</button>
-                    <button type="button" className={profile.gender === 'male' ? 'is-selected' : ''} aria-pressed={profile.gender === 'male'} onClick={() => { setHeroProfileError(false); updateProfile({ gender: 'male' }); }}><Mars size={14} /> Man</button>
+                  <legend>{t('gender')}</legend>
+                  <div className="hh-gender-switch" role="group" aria-label={t('gender')}>
+                    <button type="button" className={profile.gender === 'female' ? 'is-selected' : ''} aria-pressed={profile.gender === 'female'} onClick={() => { setHeroProfileError(false); updateProfile({ gender: 'female' }); }}><Venus size={14} /> {t('home.calculator.woman')}</button>
+                    <button type="button" className={profile.gender === 'male' ? 'is-selected' : ''} aria-pressed={profile.gender === 'male'} onClick={() => { setHeroProfileError(false); updateProfile({ gender: 'male' }); }}><Mars size={14} /> {t('home.calculator.man')}</button>
                   </div>
                 </fieldset>
                 <label className="hh-field hh-goal-field" htmlFor="hero-profile-goal">
-                  <span>Your primary goal</span>
-                  <span className="hh-select-wrap"><select id="hero-profile-goal" value={heroGoal} onChange={(event) => handleHeroGoalChange(event.target.value as WizardGoalSelection)} name="hero-profile-goal">{HERO_GOALS.map((goal) => <option key={goal.value} value={goal.value}>{goal.label}</option>)}</select><ChevronDown size={15} /></span>
+                  <span>{t('home.calculator.primaryGoal')}</span>
+                  <span className="hh-select-wrap"><select id="hero-profile-goal" value={heroGoal} onChange={(event) => handleHeroGoalChange(event.target.value as WizardGoalSelection)} name="hero-profile-goal">{HERO_GOALS.map((goal) => <option key={goal.value} value={goal.value}>{t(goal.labelKey)}</option>)}</select><ChevronDown size={15} /></span>
                 </label>
               </div>
 
-              {heroProfileError && <p className="hh-profile-error" role="alert">Add your age, measurements, and gender to get started.</p>}
-              <button className="hh-calculate-button" type="submit" aria-label="Calculate my health and nutrition results">Calculate My Results <ArrowRight size={19} aria-hidden="true" /></button>
-              <p className="hh-no-signup"><ShieldCheck size={14} /> No sign-up required. Instant results.</p>
+              {heroProfileError && <p className="hh-profile-error" role="alert">{t('home.calculator.profileError')}</p>}
+              <button className="hh-calculate-button" type="submit" aria-label={t('home.calculator.calculateAria')}>{t('home.calculator.calculate')} <ArrowRight size={19} aria-hidden="true" /></button>
+              <p className="hh-no-signup"><ShieldCheck size={14} /> {t('home.calculator.noSignup')}</p>
             </form>
           </section>
         </div>
@@ -374,7 +369,7 @@ const HomePage: React.FC = () => {
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="btn-primary"
             >
-              Return to calculator
+              {t('home.calculator.return')}
             </button>
           </div>
         </div>
@@ -414,7 +409,7 @@ const HomePage: React.FC = () => {
           <div className="explainer-grid">
             <SectionIllustration kind="care" />
             <div className="section-intro"><span className="step-pill purple">{t('homeStep3')}</span><h2>{t('homeStep3Title')}</h2><p>{t('homeStep3Desc')}</p>
-              <div className="condition-grid">{conditions.map(({ icon: Icon, en, ar, path }) => <Link to={path} key={en}><span><Icon size={20} strokeWidth={2.25} aria-hidden="true" /></span><b>{language === 'ar' ? ar : en}</b></Link>)}</div>
+              <div className="condition-grid">{conditions.map(({ icon: Icon, labelKey, path }) => <Link to={path} key={labelKey}><span><Icon size={20} strokeWidth={2.25} aria-hidden="true" /></span><b>{t(labelKey)}</b></Link>)}</div>
               <Link to="/advanced-care" className="btn-primary">{t('homeExploreCare')} <ArrowRight size={16} className="rtl:rotate-180" aria-hidden="true" /></Link>
             </div>
           </div>
@@ -486,7 +481,7 @@ const HomePage: React.FC = () => {
                   className="fasting-input" id="field-pages-homepage-465" name="field-pages-homepage-465"
                 />
                 <button type="submit" className="btn-primary" disabled={fastingLoading}>
-                  {fastingLoading ? 'Sending...' : <>{t('fastingHub.notify')} <ArrowRight size={16} className="rtl:rotate-180" /></>}
+                  {fastingLoading ? t('home.status.sending') : <>{t('fastingHub.notify')} <ArrowRight size={16} className="rtl:rotate-180" /></>}
                 </button>
               </form>
             )}
@@ -550,7 +545,7 @@ const HomePage: React.FC = () => {
         >
           <div
             role="img"
-            aria-label={language === 'ar' ? 'رسم توضيحي لساعة وهاتف متصلين' : 'Smartwatch connected to a phone'}
+            aria-label={t('home.watch.imageAlt')}
             className="relative mx-auto flex aspect-square w-full max-w-[360px] items-center justify-center overflow-hidden rounded-[28px] border border-white/80 bg-gradient-to-br from-white via-[#F1F8F1] to-[#FFF6DD] shadow-[0_12px_35px_rgba(15,76,58,0.08)]"
           >
             <div className="absolute left-[14%] top-[17%] flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-[#0F4C3A] shadow-[0_8px_24px_rgba(15,76,58,0.1)]">
@@ -576,7 +571,7 @@ const HomePage: React.FC = () => {
                 <div className="flex h-full flex-col items-center rounded-[18px] bg-white px-2.5 py-3">
                   <span className="mb-4 h-1.5 w-10 rounded-full bg-[#E5E7EB]" />
                   <Smartphone aria-hidden="true" size={25} className="text-[#0F4C3A]" />
-                  <span className="mt-3 text-[10px] font-bold text-gray-700">TODAY</span>
+                  <span className="mt-3 text-[10px] font-bold text-gray-700">{t('home.watch.today')}</span>
                   <div className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-xl bg-[#F0FAF3] px-2 py-2 text-[#0F4C3A]">
                     <HeartPulse aria-hidden="true" size={14} />
                     <span className="text-[10px] font-bold">72 bpm</span>
@@ -595,15 +590,13 @@ const HomePage: React.FC = () => {
           <div dir={dir} className="min-w-0 text-start">
             <span className="inline-flex items-center gap-2 rounded-full border border-[#D4A017]/35 bg-white/80 px-3 py-1.5 text-[11px] font-extrabold tracking-[0.12em] text-[#8A6D1B]">
               <span className="h-2 w-2 rounded-full bg-[#D4A017]" />
-              {language === 'ar' ? 'مزامنة الساعة الذكية' : 'SMART WATCH SYNC'}
+              {t('home.watch.badge')}
             </span>
             <h2 className="mt-4 text-balance text-[30px] font-extrabold leading-tight tracking-tight text-[#111827] sm:text-[36px]">
               {t('watchHeadline')}
             </h2>
             <p className="mt-3 max-w-[56ch] text-[15px] leading-relaxed text-[#4B5563] sm:text-base">
-              {language === 'ar'
-                ? 'اربط Apple Watch أو Fitbit أو Garmin لتتبع الخطوات ونبض القلب والنوم تلقائيًا.'
-                : 'Connect your Apple Watch, Fitbit, or Garmin to automatically track steps, heart rate, and sleep.'}
+              {t('home.watch.subtitle')}
             </p>
 
             <ul className="mt-5 grid gap-3">
@@ -619,9 +612,9 @@ const HomePage: React.FC = () => {
 
             <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-[#0F4C3A]/10 pt-5">
               <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-gray-400">
-                {language === 'ar' ? 'يدعم' : 'SUPPORTED DEVICES'}
+                {t('home.watch.supported')}
               </span>
-              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px] font-extrabold tracking-[0.08em] text-gray-500 grayscale opacity-70" aria-label="Apple Watch, Fitbit, Garmin">
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px] font-extrabold tracking-[0.08em] text-gray-500 grayscale opacity-70" aria-label={t('home.watch.devicesAria')}>
                 <span>APPLE WATCH</span>
                 <span className="text-[15px] tracking-[0.02em]">fitbit</span>
                 <span>GARMIN</span>
@@ -652,7 +645,7 @@ const HomePage: React.FC = () => {
                     className="min-w-0 flex-1 rounded-full border border-[#0F4C3A]/15 bg-white px-5 py-3 text-sm font-medium text-[#111827] shadow-sm outline-none transition focus:border-[#059669] focus:ring-2 focus:ring-[#059669]/20" name="watch-email"
                   />
                   <button type="submit" className="btn-primary shrink-0" disabled={watchLoading}>
-                    {watchLoading ? 'Sending...' : <>{t('watchNotify')} <ArrowRight aria-hidden="true" size={16} className="rtl:rotate-180" /></>}
+                    {watchLoading ? t('home.status.sending') : <>{t('watchNotify')} <ArrowRight aria-hidden="true" size={16} className="rtl:rotate-180" /></>}
                   </button>
                 </div>
                 {watchError && (

@@ -8,6 +8,7 @@ import { getSupabaseClient } from '../lib/supabaseClient';
 import { Dish } from '../components/food/DishCard';
 import { getArticleBySlug, lt } from '../data/articles';
 import { getRecipeBySlug, lt as recipeLt } from '../data/recipes';
+import type { TranslationKeys } from '../i18n/translationTypes';
 
 type DbDish = Dish & {
   fiber?: number | null;
@@ -277,7 +278,7 @@ const NUTRITION_ARTICLE_SLUGS = [
 ];
 
 const DishDetailPage: React.FC = () => {
-  const { dir, language } = useLanguage();
+  const { dir, language, t } = useLanguage();
   const { id } = useParams<{ id: string }>();
   const [dish, setDish] = useState<DbDish | null>(null);
   const [loading, setLoading] = useState(true);
@@ -297,7 +298,7 @@ const DishDetailPage: React.FC = () => {
       if (cancelled) return;
       if (!id || !supabase) {
         if (!cancelled) {
-          setError('Missing dish id or database configuration.');
+          setError(t('dish.errorLoading'));
           setLoading(false);
         }
         return;
@@ -313,15 +314,15 @@ const DishDetailPage: React.FC = () => {
         if (cancelled) return;
 
         if (sbError) {
-          setError(sbError.message);
+          setError(t('dish.errorLoading'));
         } else if (!data) {
-          setError('Dish not found.');
+          setError(t('dish.notFound'));
         } else {
           setDish(data);
         }
-      } catch (err) {
+    } catch {
         if (!cancelled) {
-          setError(err instanceof Error ? err.message : 'Failed to load dish.');
+          setError(t('dish.errorLoading'));
         }
       } finally {
         if (!cancelled) setLoading(false);
@@ -332,7 +333,7 @@ const DishDetailPage: React.FC = () => {
     return () => {
       cancelled = true;
     };
-  }, [id]);
+  }, [id, t]);
 
   const locale = (language || 'en').split('-')[0] as keyof Pick<DbDish, 'name_en' | 'name_ar' | 'name_fr' | 'name_es' | 'name_de'>;
   const localeKey = `name_${locale}` as keyof DbDish;
@@ -341,7 +342,7 @@ const DishDetailPage: React.FC = () => {
   const mealType = dish?.meal_type ? String(dish.meal_type).replace(/_/g, ' ') : '';
 
   const fmt = (value: number | null | undefined, unit: string) =>
-    value == null ? 'N/A' : `${Math.round(value)}${unit}`;
+    value == null ? '—' : `${Math.round(value)}${unit}`;
 
   const caloriesRaw = dish?.cal_100 ?? null;
   const proteinRaw = dish?.protein ?? null;
@@ -355,57 +356,61 @@ const DishDetailPage: React.FC = () => {
   const generateHealthDescription = () => {
     if (!dish) return '';
     const parts: string[] = [];
+    const withValue = (key: keyof TranslationKeys, value: number) =>
+      t(key).replace('{value}', String(value));
 
     if (dish.healthy) {
-      parts.push(`This dish is marked as a healthy choice, with balanced macros that fit well into a nutritious eating plan.`);
+      parts.push(t('dish.profile.healthy'));
     }
     if (dish.is_fried) {
-      parts.push(`It is prepared fried, so enjoy it in moderation alongside lighter options.`);
+      parts.push(t('dish.profile.fried'));
     }
     if (dish.is_sweet) {
-      parts.push(`This is a sweet preparation, best kept as an occasional treat within a balanced diet.`);
+      parts.push(t('dish.profile.sweet'));
     }
     if ((proteinRaw ?? 0) >= 20) {
-      parts.push(`At ${proteinRaw ?? 0}g of protein per 100g, it makes a solid protein source for meals and recovery.`);
+      parts.push(withValue('dish.profile.proteinHigh', proteinRaw ?? 0));
     } else if ((proteinRaw ?? 0) >= 12) {
-      parts.push(`It provides a moderate amount of protein to help keep you satisfied.`);
+      parts.push(t('dish.profile.proteinModerate'));
     }
     if ((carbsRaw ?? 0) >= 40) {
-      parts.push(`With ${carbsRaw ?? 0}g of carbs per 100g, it is fairly energy-dense and useful around active periods.`);
+      parts.push(withValue('dish.profile.carbsHigh', carbsRaw ?? 0));
     }
     if ((fatRaw ?? 0) >= 18) {
-      parts.push(`The fat content is ${fatRaw ?? 0}g per 100g, so portion awareness helps keep overall intake balanced.`);
+      parts.push(withValue('dish.profile.fatHigh', fatRaw ?? 0));
     } else if ((fatRaw ?? 0) <= 5) {
-      parts.push(`Low in fat at ${fatRaw ?? 0}g per 100g, it can suit lighter meal plans.`);
+      parts.push(withValue('dish.profile.fatLow', fatRaw ?? 0));
     }
     if ((fiberRaw ?? 0) >= 5) {
-      parts.push(`It contains ${fiberRaw ?? 0}g of fiber, which supports digestion and steady energy.`);
+      parts.push(withValue('dish.profile.fiber', fiberRaw ?? 0));
     }
     if ((sugarRaw ?? 0) > 15) {
-      parts.push(`Sugar content is ${sugarRaw ?? 0}g per 100g, so consider pairing it with fiber or protein to smooth absorption.`);
+      parts.push(withValue('dish.profile.sugar', sugarRaw ?? 0));
     }
     if ((sodiumRaw ?? 0) >= 400) {
-      parts.push(`Sodium is ${sodiumRaw ?? 0}mg per 100g, so balance it with lower-sodium sides and hydration.`);
+      parts.push(withValue('dish.profile.sodium', sodiumRaw ?? 0));
     }
 
     if (!parts.length) {
-      parts.push(`This dish offers ${fmt(caloriesRaw, ' kcal')} per 100g with a straightforward macronutrient profile you can fit into your daily targets.`);
+      parts.push(t('dish.profile.default').replace('{calories}', fmt(caloriesRaw, '')));
     }
 
     return parts.slice(0, 2).join(' ');
   };
 
-  const description = `${name} nutrition: ${fmt(caloriesRaw, ' kcal')} per 100g, ${fmt(proteinRaw, 'g protein')}. ${generateHealthDescription()}`;
+  const description = t('dish.summary')
+    .replace('{calories}', fmt(caloriesRaw, ''))
+    .replace('{protein}', fmt(proteinRaw, ''));
 
   const healthBenefits = (() => {
     if (!dish) return [];
     const benefits: string[] = [];
-    if (proteinRaw != null && proteinRaw >= 15) benefits.push('High in protein, which supports muscle repair and growth.');
-    if (fiberRaw != null && fiberRaw >= 5) benefits.push('Rich in dietary fiber, promoting healthy digestion.');
-    if (fatRaw != null && fatRaw <= 5) benefits.push('Low in fat, making it a suitable choice for weight management.');
-    if (carbsRaw != null && carbsRaw <= 15) benefits.push('Low in carbohydrates, fitting well into low-carb diets.');
-    if (dish.healthy === true) benefits.push('Marked as a healthy choice by our nutritional guidelines.');
-    if (dish.is_fried === true) benefits.push('Note: This dish is fried. Consume in moderation as part of a balanced diet.');
+    if (proteinRaw != null && proteinRaw >= 15) benefits.push(t('dish.profile.proteinHigh').replace('{value}', String(proteinRaw)));
+    if (fiberRaw != null && fiberRaw >= 5) benefits.push(t('dish.profile.fiber').replace('{value}', String(fiberRaw)));
+    if (fatRaw != null && fatRaw <= 5) benefits.push(t('dish.profile.fatLow').replace('{value}', String(fatRaw)));
+    if (carbsRaw != null && carbsRaw <= 15) benefits.push(t('dish.profile.carbsLow').replace('{value}', String(carbsRaw)));
+    if (dish.healthy === true) benefits.push(t('dish.profile.healthy'));
+    if (dish.is_fried === true) benefits.push(t('dish.profile.fried'));
     return benefits;
   })();
 
@@ -478,7 +483,7 @@ const DishDetailPage: React.FC = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-[#FDFBF7] flex items-center justify-center px-6" dir={dir}>
-        <div className="text-center text-sm font-semibold text-slate-500">Loading dish…</div>
+        <div className="text-center text-sm font-semibold text-slate-500">{t('foodLibrary.loading')}</div>
       </div>
     );
   }
@@ -488,11 +493,11 @@ const DishDetailPage: React.FC = () => {
       <div className="min-h-screen bg-[#FDFBF7] flex items-center justify-center px-6" dir={dir}>
         <div className="text-center max-w-md">
           <div className="text-4xl mb-4">🍽️</div>
-          <h1 className="text-2xl font-extrabold text-gray-900">Dish not found</h1>
+          <h1 className="text-2xl font-extrabold text-gray-900">{t('dish.notFound')}</h1>
           <p className="mt-2 text-sm text-slate-500">{error}</p>
           <Link to="/food-library" className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#D4A017] px-6 py-3 text-sm font-extrabold text-[#0F4C3A] hover:bg-[#B8860B] transition-colors">
             <ArrowLeft size={16} className="rtl:rotate-180" />
-            Back to Food Library
+            {t('nav.foodLibrary')}
           </Link>
         </div>
       </div>
@@ -501,7 +506,7 @@ const DishDetailPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFBF7]" dir={dir}>
-      <SEO type="article" title={`${name} Nutrition Facts & Calories`} description={description} url={`/food-library/${dish.id}`} />
+      <SEO type="article" title={t('dish.seoTitle').replace('{name}', name)} description={description} url={`/food-library/${dish.id}`} />
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(nutritionJsonLd).replace(/</g, '\\u003c')}</script>
       </Helmet>
@@ -510,7 +515,7 @@ const DishDetailPage: React.FC = () => {
         <div className="flex items-center justify-between gap-3">
           <Link to="/food-library" className="inline-flex items-center gap-2 text-sm font-extrabold text-[#0F4C3A] hover:text-[#D4A017] transition-colors">
             <ArrowLeft size={16} className="rtl:rotate-180" />
-            Food Library
+            {t('nav.foodLibrary')}
           </Link>
           <span className="text-sm font-semibold text-slate-500 truncate max-w-[260px]">{name}</span>
         </div>
@@ -548,52 +553,52 @@ const DishDetailPage: React.FC = () => {
         <section className="mt-10 rounded-3xl border border-[#EFEBE4] bg-white p-6">
           <h2 className="flex items-center gap-2 text-lg font-extrabold text-[#0F4C3A]">
             <Activity size={18} className="text-[#D4A017]" />
-            Nutrition Facts
+            {t('dish.nutritionFacts')}
           </h2>
           <dl className="mt-4 divide-y divide-[#E4DFD4]">
             <div className="flex items-center justify-between py-3">
-              <dt className="text-sm font-semibold text-[#6B7A75]">Calories</dt>
+              <dt className="text-sm font-semibold text-[#6B7A75]">{t('dish.calories')}</dt>
               <dd className="text-sm font-extrabold text-[#0F4C3A]">{fmt(caloriesRaw, ' kcal')}</dd>
             </div>
             <div className="flex items-center justify-between py-3">
-              <dt className="text-sm font-semibold text-[#6B7A75]">Protein</dt>
+              <dt className="text-sm font-semibold text-[#6B7A75]">{t('protein')}</dt>
               <dd className="text-sm font-extrabold text-[#0F4C3A]">{fmt(proteinRaw, ' g')}</dd>
             </div>
             <div className="flex items-center justify-between py-3">
-              <dt className="text-sm font-semibold text-[#6B7A75]">Carbs</dt>
+              <dt className="text-sm font-semibold text-[#6B7A75]">{t('carbs')}</dt>
               <dd className="text-sm font-extrabold text-[#0F4C3A]">{fmt(carbsRaw, ' g')}</dd>
             </div>
             <div className="flex items-center justify-between py-3">
-              <dt className="text-sm font-semibold text-[#6B7A75]">Fat</dt>
+              <dt className="text-sm font-semibold text-[#6B7A75]">{t('fat')}</dt>
               <dd className="text-sm font-extrabold text-[#0F4C3A]">{fmt(fatRaw, ' g')}</dd>
             </div>
             <div className="flex items-center justify-between py-3">
-              <dt className="text-sm font-semibold text-[#6B7A75]">Fiber</dt>
+              <dt className="text-sm font-semibold text-[#6B7A75]">{t('dish.fiber')}</dt>
               <dd className="text-sm font-extrabold text-[#0F4C3A]">{fmt(fiberRaw, ' g')}</dd>
             </div>
             <div className="flex items-center justify-between py-3">
-              <dt className="text-sm font-semibold text-[#6B7A75]">Sugar</dt>
+              <dt className="text-sm font-semibold text-[#6B7A75]">{t('dish.sugar')}</dt>
               <dd className="text-sm font-extrabold text-[#0F4C3A]">{fmt(sugarRaw, ' g')}</dd>
             </div>
             <div className="flex items-center justify-between py-3">
-              <dt className="text-sm font-semibold text-[#6B7A75]">Sodium</dt>
+              <dt className="text-sm font-semibold text-[#6B7A75]">{t('dish.sodium')}</dt>
               <dd className="text-sm font-extrabold text-[#0F4C3A]">{fmt(sodiumRaw, ' mg')}</dd>
             </div>
             <div className="flex items-center justify-between py-3">
-              <dt className="text-sm font-semibold text-[#6B7A75]">Saturated Fat</dt>
+              <dt className="text-sm font-semibold text-[#6B7A75]">{t('dish.saturatedFat')}</dt>
               <dd className="text-sm font-extrabold text-[#0F4C3A]">{fmt(satFatRaw, ' g')}</dd>
             </div>
           </dl>
         </section>
 
         <section className="mt-6 rounded-3xl border border-[#EFEBE4] bg-white p-6">
-          <h2 className="text-lg font-extrabold text-[#0F4C3A]">Health Profile</h2>
-          <p className="mt-3 text-[15px] leading-relaxed text-[#4A5A55]">{generateHealthDescription()}</p>
+          <h2 className="text-lg font-extrabold text-[#0F4C3A]">{t('dish.healthProfile')}</h2>
+          <p className="mt-3 text-[15px] leading-relaxed text-[#4A5A55]">{generateHealthDescription() || t('dish.profile.empty')}</p>
         </section>
 
         {healthBenefits.length > 0 && (
           <section className="mt-6 rounded-3xl border border-[#EFEBE4] bg-white p-6">
-            <h3 className="text-lg font-semibold text-[#0F4C3A] mt-8 mb-4">Health Benefits & Considerations</h3>
+            <h3 className="text-lg font-semibold text-[#0F4C3A] mt-8 mb-4">{t('dish.healthBenefits')}</h3>
             <ul className="space-y-3">
               {healthBenefits.map((benefit, i) => (
                 <li key={i} className="flex items-start gap-3 text-[15px] leading-relaxed text-[#4A5A55]">
@@ -612,12 +617,10 @@ const DishDetailPage: React.FC = () => {
             <Link to={`/resources/recipe/${matchedRecipe.slug}`} className="mt-3 flex w-full items-center justify-between gap-3 rounded-2xl bg-[#0F4C3A] px-5 py-4 text-start text-sm font-extrabold text-[#FDFBF7] hover:bg-[#1a6b53] transition-colors">
               <span>
                 <span className="block text-xs font-bold uppercase tracking-wide opacity-80">
-                  {language === 'ar' ? 'عرض الوصفة كاملة' : 'View Full Recipe'}
+                  {t('dish.recipe.view')}
                 </span>
                 <span className="mt-1 block">
-                  {language === 'ar'
-                    ? `تبحث عن طريقة صحية لتحضير هذا الطبق؟ جرب وصفة ${matchedRecipeTitle}.`
-                    : `Looking for a healthy way to cook this? Try our ${matchedRecipeTitle} recipe.`}
+                  {t('dish.recipe.prompt').replace('{recipe}', matchedRecipeTitle)}
                 </span>
               </span>
               <ArrowRight size={16} className="rtl:rotate-180" />
@@ -627,9 +630,9 @@ const DishDetailPage: React.FC = () => {
 
         {nutritionArticles.length > 0 && (
           <section className="mt-6 rounded-3xl border border-[#EFEBE4] bg-white p-6">
-            <h2 className="text-lg font-extrabold text-[#0F4C3A]">Read more about nutrition</h2>
+            <h2 className="text-lg font-extrabold text-[#0F4C3A]">{t('dish.readMoreTitle')}</h2>
             <p className="mt-3 text-[15px] leading-relaxed text-[#4A5A55]">
-              Want more context for this dish? These evidence-based guides explain how to fit it into a balanced eating pattern.
+              {t('dish.readMoreDescription')}
             </p>
             <ul className="mt-4 space-y-3">
               {nutritionArticles.map((article) => (
