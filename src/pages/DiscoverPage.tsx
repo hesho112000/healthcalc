@@ -95,7 +95,7 @@ const CATEGORY_ICON: Record<ArticleCategory, LucideIcon> = {
   fitness: Dumbbell,
 };
 
-const HomePage: React.FC = () => {
+const DiscoverPage: React.FC = () => {
   const { t, dir, language } = useLanguage();
   const navigate = useNavigate();
   const { profile, updateProfile } = useUserProfile();
@@ -284,7 +284,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="home-shell" dir={dir}>
-      <SEO title={t('discover.seoTitle')} description={t('discover.seoDescription')} url="/discover" />
+      <SEO title={t('discover.seoTitle')} description={t('discover.seoDescription')} url="/calculator" />
       <section className="hero-section home-hero-hook" dir={dir}>
         <div className="hh-preview__ambient hh-preview__ambient--one" aria-hidden="true" />
         <div className="hh-preview__ambient hh-preview__ambient--two" aria-hidden="true" />
@@ -665,4 +665,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+export default DiscoverPage;

@@ -8,7 +8,7 @@ import AdminProtectedRoute from '../components/AdminProtectedRoute';
 import SEO from '../components/seo/SEO';
 import { ENABLE_PREMIUM } from '../config/featureFlags';
 
-const HomePage = lazy(() => import('../pages/HomePage'));
+const DiscoverPage = lazy(() => import('../pages/DiscoverPage'));
 const CalculatorHub = lazy(() => import('../pages/CalculatorHub'));
 const AdminLoginPage = lazy(() => import('../pages/AdminLoginPage'));
 const AdminDashboardPage = lazy(() => import('../pages/AdminDashboardPage'));
@@ -114,8 +114,8 @@ const StaticStepPage: React.FC<{ step: number }> = ({ step }) => (
 export const AppRoutes: React.FC = () => (
     <Routes>
       <Route path="/" element={<CalculatorHub />} />
-      <Route path="/discover" element={<HomePage />} />
-      <Route path="/calculator" element={<CalculatorHub />} />
+      <Route path="/calculator" element={<DiscoverPage />} />
+      <Route path="/discover" element={<DiscoverPage />} />
       <Route path="/bmi" element={<Navigate to="/?tab=bmi" replace />} />
       <Route path="/bmr" element={<Navigate to="/?tab=bmr" replace />} />
       <Route path="/calories" element={<Navigate to="/?tab=calories" replace />} />
