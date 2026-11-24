@@ -5,7 +5,10 @@ import { config } from 'dotenv';
 import { createClient } from '@supabase/supabase-js';
 import { loadContentData } from './content-data.mjs';
 
-config();
+const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
+const PROJECT_ROOT = path.resolve(SCRIPT_DIR, '..');
+config({ path: path.join(PROJECT_ROOT, '.env'), override: false });
+config({ path: path.join(PROJECT_ROOT, '.env.local'), override: false });
 
 const SITE_BASE = (process.env.VITE_SITE_URL || 'https://healthfingerprint.com').replace(/\/+$/, '');
 const OUTPUT_PATH = fileURLToPath(new URL('../public/sitemap.xml', import.meta.url));
@@ -23,7 +26,16 @@ const escapeXml = (value) =>
     .replaceAll("'", '&apos;');
 
 async function fetchAllDishes() {
-  const supabase = createClient(process.env.VITE_SUPABASE_URL, process.env.VITE_SUPABASE_ANON_KEY);
+  const supabaseUrl = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
+  const supabaseKey =
+    process.env.VITE_SUPABASE_ANON_KEY ||
+    process.env.SUPABASE_ANON_KEY ||
+    process.env.SUPABASE_KEY;
+  if (!supabaseUrl || !supabaseKey) {
+    throw new Error('Missing Supabase env - check .env and .env.local');
+  }
+
+  const supabase = createClient(supabaseUrl, supabaseKey);
   const dishes = [];
   let from = 0;
   let totalFetched = 0;
