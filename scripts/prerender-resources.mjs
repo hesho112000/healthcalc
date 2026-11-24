@@ -105,7 +105,7 @@ const breadcrumbs = (label) => `<nav aria-label="Breadcrumb" style="${NAV_STYLE}
 </nav>`;
 
 const renderHome = ({ articles }) => `<main style="${PAGE_STYLE}">
-  <h1 style="${H1_STYLE}">Health Fingerprint: Free Health Calculators and Personalized Care Plans</h1>
+  <h1 style="${H1_STYLE}">Your Health Hub: Free Health Calculators and Personalized Care Plans</h1>
   <p style="font-size:1.1rem;color:#4A5A55;margin:0 0 16px;">Health Fingerprint helps you understand your body with free, evidence-based calculators, personalized meal plans, and practical nutrition information. Use the tools below to estimate your needs, then explore our health library for guidance you can act on.</p>
   <img src="/images/hero-bowl.webp" alt="A colorful, healthy meal bowl with fresh vegetables" width="672" height="448" loading="eager" fetchpriority="high" decoding="async" style="display:block;width:100%;max-width:680px;height:auto;aspect-ratio:3/2;object-fit:cover;object-position:center;border-radius:16px;margin:20px 0 28px;">
 
@@ -146,6 +146,29 @@ const renderHome = ({ articles }) => `<main style="${PAGE_STYLE}">
     <li><a href="/disclaimer" style="${LINK_STYLE}">Medical Disclaimer</a> — educational information is not a substitute for medical care.</li>
     <li><a href="/contact" style="${LINK_STYLE}">Contact Us</a> — questions, corrections, and feedback.</li>
   </ul>
+</main>`;
+
+const renderCalculatorLanding = () => `<main style="${PAGE_STYLE}">
+  <p style="margin:0 0 12px;color:#047857;font-size:.75rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;">Evidence-based · WHO · CDC · NIH</p>
+  <h1 style="${H1_STYLE}">From Guessing to Gourmet in 30 Seconds</h1>
+  <p style="font-size:1.1rem;color:#4A5A55;margin:0 0 24px;">Clinical-grade calculators for BMI, BMR, TDEE, body fat, and ideal weight—verified against trusted public-health guidance and turned into meals you want to eat.</p>
+  <section style="border:1px solid #E2E8F0;border-radius:24px;background:#fff;padding:28px;margin:24px 0;">
+    <h2 style="${H2_STYLE}">Calculate your health and nutrition results</h2>
+    <p style="margin:0 0 16px;">Enter your age, gender, height, weight, activity level, and goal to see a live preview and evidence-based estimates.</p>
+    <ul style="${LIST_STYLE}">
+      <li><a href="/bmi" style="${LINK_STYLE}">BMI calculator</a></li>
+      <li><a href="/bmr" style="${LINK_STYLE}">BMR calculator</a></li>
+      <li><a href="/calories" style="${LINK_STYLE}">Daily calorie and TDEE calculator</a></li>
+      <li><a href="/body-fat" style="${LINK_STYLE}">Body fat calculator</a></li>
+      <li><a href="/ideal-weight" style="${LINK_STYLE}">Ideal weight calculator</a></li>
+    </ul>
+  </section>
+  <section style="border-radius:28px;background:#0F172A;padding:28px;color:#fff;">
+    <h2 style="color:#fff;font-size:1.5rem;margin:0 0 12px;">Ready to turn your calorie target into real meals?</h2>
+    <p style="margin:0 0 18px;color:#CBD5E1;">Explore Egyptian and Eastern European dishes, gluten-free options, and practical meal planning.</p>
+    <a href="/meal-plan" style="display:inline-block;border-radius:999px;background:#fff;color:#0F172A;padding:14px 22px;font-weight:800;text-decoration:none;">Continue to your meal plan</a>
+  </section>
+  <p style="margin-top:24px;"><a href="/discover" style="${LINK_STYLE}">Explore Your Health Hub</a> · <a href="/food-library" style="${LINK_STYLE}">Browse the food library</a></p>
 </main>`;
 
 const renderResources = ({ articles, recipes, exerciseGuides }) => `<main style="${PAGE_STYLE}">
@@ -489,12 +512,22 @@ const buildPrerenderedPages = async () => {
   const pages = [
     {
       route: '/',
+      body: renderCalculatorLanding(),
+      meta: {
+        title: 'From Guessing to Gourmet in 30 Seconds | Health Fingerprint',
+        description:
+          'Calculate BMI, BMR, TDEE, body fat, ideal weight, and macros with evidence-based formulas, then turn your results into real meals.',
+        canonical: `${SITE_BASE}/`,
+        type: 'website',
+      },
+    },
+    {
+      route: '/discover',
       body: renderHome({ articles }),
       meta: {
-        title: 'Health Fingerprint | Free Health Calculators & Personalized Care Plans',
-        description:
-          'Free health calculators, personalized meal plans, nutrition facts for 18,000+ dishes, and evidence-based guides on diabetes, heart health, fitness, and weight loss.',
-        canonical: `${SITE_BASE}/`,
+        title: 'Your Health Hub | Health Fingerprint',
+        description: 'Explore health tools, global dishes, personalized guidance, and practical health resources.',
+        canonical: `${SITE_BASE}/discover`,
         type: 'website',
         preloadImage: '/images/hero-bowl.webp',
       },
@@ -569,6 +602,47 @@ const buildPrerenderedPages = async () => {
       description: 'Calculate your BMI, BMR, TDEE, and VO2 Max instantly with evidence-based formulas.',
     },
     {
+      route: '/calculator',
+      title: 'From Guessing to Gourmet in 30 Seconds | Health Fingerprint',
+      description: 'Calculate BMI, BMR, TDEE, body fat, ideal weight, and macros with evidence-based formulas.',
+      canonical: `${SITE_BASE}/`,
+    },
+    {
+      route: '/bmi',
+      title: 'BMI Calculator | Health Fingerprint',
+      description: 'Calculate body mass index with the metric or imperial formula and explore a healthy BMI range.',
+      canonical: `${SITE_BASE}/`,
+    },
+    {
+      route: '/bmr',
+      title: 'BMR Calculator | Health Fingerprint',
+      description: 'Compare Mifflin–St Jeor, Harris–Benedict, and Katch–McArdle basal metabolic rate estimates.',
+      canonical: `${SITE_BASE}/`,
+    },
+    {
+      route: '/calories',
+      title: 'Daily Calories and TDEE Calculator | Health Fingerprint',
+      description: 'Estimate maintenance calories and daily targets using your activity level and goal.',
+      canonical: `${SITE_BASE}/`,
+    },
+    {
+      route: '/body-fat',
+      title: 'Body Fat Calculator | Health Fingerprint',
+      description: 'Estimate body fat with body measurements and learn about body-composition formulas.',
+      canonical: `${SITE_BASE}/`,
+    },
+    {
+      route: '/ideal-weight',
+      title: 'Ideal Weight Calculator | Health Fingerprint',
+      description: 'Compare ideal-weight formulas and a healthy BMI-based weight range.',
+      canonical: `${SITE_BASE}/`,
+    },
+    {
+      route: '/meal-plan',
+      title: 'Personalized Meal Plan | Health Fingerprint',
+      description: 'Continue from your calculator results to build a personalized meal plan.',
+    },
+    {
       route: '/weight-loss',
       title: 'Weight & Fitness Plan Builder | Health Fingerprint',
       description: 'Build a personalized weight loss and fitness plan tailored to your goals, activity, and favorite cuisines.',
@@ -634,14 +708,14 @@ const buildPrerenderedPages = async () => {
       description: `Nutrition facts per 100 g for ${dish.name_en || `dish ${dish.id}`}: ${dish.cal_100 ?? 'N/A'} kcal, ${dish.protein ?? 'N/A'} g protein, ${dish.carbs ?? 'N/A'} g carbohydrates, and ${dish.fat ?? 'N/A'} g fat.`,
       jsonLd: dishJsonLd(dish),
     })),
-  ].map(({ route, title, description, jsonLd }) => ({
+  ].map(({ route, title, description, jsonLd, canonical }) => ({
     route,
     body: '',
     meta: {
       route,
       title,
       description,
-      canonical: `${SITE_BASE}${route}`,
+      canonical: canonical ?? `${SITE_BASE}${route}`,
       type: 'website',
       jsonLd,
     },

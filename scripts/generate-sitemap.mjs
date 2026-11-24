@@ -136,16 +136,27 @@ const buildSitemap = async () => {
     ...exerciseGuides.map((guide) => urlEntry(`${SITE_BASE}/resources/exercise/${guide.slug}`, 'weekly', 1.0)),
   ].join('\n');
 
-  const staticEntries = [
-    urlEntry(`${SITE_BASE}/`, 'monthly', 1.0),
-    urlEntry(`${SITE_BASE}/food-library`, 'monthly', 0.7),
-    urlEntry(`${SITE_BASE}/about`, 'yearly', 0.5),
-    urlEntry(`${SITE_BASE}/privacy`, 'yearly', 0.4),
-    urlEntry(`${SITE_BASE}/terms`, 'yearly', 0.4),
-    urlEntry(`${SITE_BASE}/contact`, 'yearly', 0.4),
-    urlEntry(`${SITE_BASE}/cookies`, 'yearly', 0.3),
-    urlEntry(`${SITE_BASE}/disclaimer`, 'yearly', 0.3),
-  ].join('\n');
+  const staticRouteDetails = [
+    ['/', 'monthly', 1.0],
+    ['/calculator', 'monthly', 0.9],
+    ['/discover', 'monthly', 0.8],
+    ['/bmi', 'monthly', 0.7],
+    ['/bmr', 'monthly', 0.7],
+    ['/calories', 'monthly', 0.7],
+    ['/body-fat', 'monthly', 0.7],
+    ['/ideal-weight', 'monthly', 0.7],
+    ['/meal-plan', 'monthly', 0.7],
+    ['/food-library', 'monthly', 0.7],
+    ['/about', 'yearly', 0.5],
+    ['/privacy', 'yearly', 0.4],
+    ['/terms', 'yearly', 0.4],
+    ['/contact', 'yearly', 0.4],
+    ['/cookies', 'yearly', 0.3],
+    ['/disclaimer', 'yearly', 0.3],
+  ];
+  const staticEntries = staticRouteDetails
+    .map(([route, changefreq, priority]) => urlEntry(`${SITE_BASE}${route}`, changefreq, priority))
+    .join('\n');
 
   // Dish pages are intentionally de-prioritized so crawlers do not sample the
   // long-tail food database as the site's primary content.
@@ -160,7 +171,7 @@ const buildSitemap = async () => {
   await writeFile(DISH_DATA_PATH, JSON.stringify(dishes), 'utf8');
 
   const resourceCount = 1 + articleEntries.length + recipes.length + exerciseGuides.length;
-  const staticCount = 8;
+  const staticCount = staticRouteDetails.length;
   console.log(
     `SUCCESS: Sitemap generated with ${resourceCount + staticCount + ids.length} URLs ` +
       `(${resourceCount} resources, ${staticCount} static, ${ids.length} dishes) at ` +

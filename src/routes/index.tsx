@@ -9,6 +9,7 @@ import SEO from '../components/seo/SEO';
 import { ENABLE_PREMIUM } from '../config/featureFlags';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
+const CalculatorHub = lazy(() => import('../pages/CalculatorHub'));
 const AdminLoginPage = lazy(() => import('../pages/AdminLoginPage'));
 const AdminDashboardPage = lazy(() => import('../pages/AdminDashboardPage'));
 const WeightLossPage = lazy(() => import('../pages/WeightLossPage'));
@@ -112,15 +113,19 @@ const StaticStepPage: React.FC<{ step: number }> = ({ step }) => (
 
 export const AppRoutes: React.FC = () => (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/" element={<CalculatorHub />} />
+      <Route path="/discover" element={<HomePage />} />
+      <Route path="/calculator" element={<CalculatorHub />} />
+      <Route path="/bmi" element={<Navigate to="/?tab=bmi" replace />} />
+      <Route path="/bmr" element={<Navigate to="/?tab=bmr" replace />} />
+      <Route path="/calories" element={<Navigate to="/?tab=calories" replace />} />
+      <Route path="/body-fat" element={<Navigate to="/?tab=body-fat" replace />} />
+      <Route path="/ideal-weight" element={<Navigate to="/?tab=ideal-weight" replace />} />
+      <Route path="/meal-plan" element={<WeightLossPage />} />
       <Route path="/weight-loss" element={<WeightLossPage />} />
       <Route path="/diabetes" element={<DiabetesPage />} />
       {LegacyAdvancedCarePage && <Route path="/premium" element={<LegacyAdvancedCarePage />} />}
       <Route path="/fitness" element={<FitnessPage />} />
-      <Route path="/bmi" element={<FitnessPage />} />
-      <Route path="/bmr" element={<FitnessPage />} />
-      <Route path="/ideal-weight" element={<FitnessPage />} />
-      <Route path="/calories" element={<FitnessPage />} />
       <Route path="/workout-plan" element={<WorkoutPlanPage />} />
       <Route path="/smartwatch-sync" element={<SmartwatchSyncPage />} />
       <Route path="/food-library" element={<FoodLibraryPage />} />

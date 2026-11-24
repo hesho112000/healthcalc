@@ -284,7 +284,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="home-shell" dir={dir}>
-      <SEO title={t('seo.home.title')} description={t('seo.home.description')} url="/" />
+      <SEO title={t('discover.seoTitle')} description={t('discover.seoDescription')} url="/discover" />
       <section className="hero-section home-hero-hook" dir={dir}>
         <div className="hh-preview__ambient hh-preview__ambient--one" aria-hidden="true" />
         <div className="hh-preview__ambient hh-preview__ambient--two" aria-hidden="true" />
@@ -366,7 +366,7 @@ const HomePage: React.FC = () => {
             <div className="feature-list">{[t('homeFeat1'), t('homeFeat2'), t('homeFeat3')].map((x) => <span key={x}><Check size={15} strokeWidth={3} aria-hidden="true" /> {x}</span>)}</div>
             <button
               type="button"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              onClick={() => navigate('/')}
               className="btn-primary"
             >
               {t('home.calculator.return')}
