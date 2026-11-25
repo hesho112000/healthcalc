@@ -219,10 +219,14 @@ const InnerRoutes: React.FC = () => (
     </Routes>
 );
 
+const LOCALE_PREFIXES = ['en', 'fr', 'es', 'ar', 'hi', 'de'] as const;
+
 export const AppRoutes: React.FC = () => (
     <Routes>
       <Route path="/:lang/landing/:slug" element={<LocalizedSeoPage />} />
-      <Route path="/:lang/*" element={<LanguagePrefixLayout />} />
+      {LOCALE_PREFIXES.map((lang) => (
+        <Route key={lang} path={`/${lang}/*`} element={<LanguagePrefixLayout />} />
+      ))}
       <Route path="/*" element={<InnerRoutes />} />
     </Routes>
 );

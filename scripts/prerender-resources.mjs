@@ -728,6 +728,22 @@ const buildPrerenderedPages = async () => {
     await writeFile(outputPath, html, 'utf8');
   }
 
+  const redirectRules = [
+    '/food-library/*  /food-library/index.html  200',
+    '/resources/article/*  /resources/article/index.html  200',
+    '/resources/recipe/*  /resources/recipe/index.html  200',
+    '/resources/exercise/*  /resources/exercise/index.html  200',
+    '/landing/*  /landing/index.html  200',
+    '/en/landing/*  /en/landing/index.html  200',
+    '/fr/landing/*  /fr/landing/index.html  200',
+    '/es/landing/*  /es/landing/index.html  200',
+    '/ar/landing/*  /ar/landing/index.html  200',
+    '/hi/landing/*  /hi/landing/index.html  200',
+    '/de/landing/*  /de/landing/index.html  200',
+    '/*  /index.html  200',
+  ].join('\n') + '\n';
+  await writeFile(path.join(DIST_DIR, '_redirects'), redirectRules, 'utf8');
+
   console.log(
     `SUCCESS: Prerendered ${pages.length} static pages ` +
       `(${1 + articles.length + recipes.length + exerciseGuides.length} resource routes, ` +

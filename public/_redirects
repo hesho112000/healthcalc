@@ -1,1 +1,12 @@
-/* /index.html 200
+/food-library/*  /food-library/index.html  200
+/resources/article/*  /resources/article/index.html  200
+/resources/recipe/*  /resources/recipe/index.html  200
+/resources/exercise/*  /resources/exercise/index.html  200
+/landing/*  /landing/index.html  200
+/en/landing/*  /en/landing/index.html  200
+/fr/landing/*  /fr/landing/index.html  200
+/es/landing/*  /es/landing/index.html  200
+/ar/landing/*  /ar/landing/index.html  200
+/hi/landing/*  /hi/landing/index.html  200
+/de/landing/*  /de/landing/index.html  200
+/*  /index.html  200
