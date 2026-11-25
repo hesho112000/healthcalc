@@ -1,7 +1,9 @@
 import { ENABLE_PREMIUM } from '../../config/featureFlags';
 import type { TranslationKeys } from '../translationTypes';
+import calculatorSeoGuide from '../calculatorSeoGuide.json';
 
 const ar: TranslationKeys = {
+    ...calculatorSeoGuide.ar,
     'discover.seoTitle': 'مركزك الصحي | بصمتك الحيوية',
     'discover.seoDescription': 'استكشف أدوات الصحة والأطباق العالمية والإرشادات الصحية المخصصة.',
     'calculator.seoTitle': 'حاسبة الصحة والتغذية | بصمتك الحيوية',
@@ -2419,6 +2421,10 @@ const ar: TranslationKeys = {
     cookieConsentLearnMore: 'معرفة المزيد عن ملفات تعريف الارتباط',
     footerNews: 'النشرة الأسبوعية',
     footerNewsText: 'احصل على نصائح تغذية عملية كل أسبوع.',
+    footerSocialTitle: 'تابع Health Fingerprint',
+    footerSocialInstagram: 'Health Fingerprint على Instagram',
+    footerSocialFacebook: 'Health Fingerprint على Facebook',
+    footerSocialThreads: 'Health Fingerprint على Threads',
     footerEmailPlaceholder: 'بريدك الإلكتروني',
     footerSubscribe: 'اشترك',
     footerSubscribed: 'تم الاشتراك',

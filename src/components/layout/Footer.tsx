@@ -1,5 +1,6 @@
 import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AtSign, Camera, ThumbsUp } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 const FooterNewsletter = lazy(() => import('./FooterNewsletter'));
@@ -36,6 +37,17 @@ const Footer: React.FC = () => {
             <p className="footer-desc">
               {t('footerTagline')}
             </p>
+            <nav className="footer-social" aria-label={t('footerSocialTitle')}>
+              <a href="https://www.instagram.com/healthfingerprint/" target="_blank" rel="noopener noreferrer" aria-label={t('footerSocialInstagram')}>
+                <Camera size={18} aria-hidden="true" />
+              </a>
+              <a href="https://www.facebook.com/healthfingerprint" target="_blank" rel="noopener noreferrer" aria-label={t('footerSocialFacebook')}>
+                <ThumbsUp size={18} aria-hidden="true" />
+              </a>
+              <a href="https://www.threads.net/@healthfingerprint" target="_blank" rel="noopener noreferrer" aria-label={t('footerSocialThreads')}>
+                <AtSign size={18} aria-hidden="true" />
+              </a>
+            </nav>
           </div>
 
           <div className="footer-col">

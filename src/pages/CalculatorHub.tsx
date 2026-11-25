@@ -21,6 +21,7 @@ import { useLanguage } from '../context/LanguageContext';
 import type { Language } from '../types';
 import type { TranslationKeys } from '../i18n/translationTypes';
 import SEO from '../components/seo/SEO';
+import calculatorSeoFoods from '../data/calculatorSeoFoods.json';
 import './CalculatorHub.css';
 
 type CalculatorTab = 'bmi' | 'bmr' | 'calories' | 'body-fat' | 'ideal-weight' | 'macros';
@@ -29,6 +30,16 @@ type Gender = 'male' | 'female';
 type ActivityLevel = 'sedentary' | 'light' | 'moderate' | 'very' | 'extra';
 type Goal = 'lose' | 'maintain' | 'gain';
 type BmrFormula = 'mifflin' | 'harris' | 'katch';
+
+const SEO_GUIDE_SECTIONS = [
+  { id: 'bmi', title: 'calculator.seoGuide.bmiTitle', subtitle: 'calculator.seoGuide.bmiSubtitle', first: 'calculator.seoGuide.bmi1', second: 'calculator.seoGuide.bmi2' },
+  { id: 'bmr', title: 'calculator.seoGuide.bmrTitle', subtitle: 'calculator.seoGuide.bmrSubtitle', first: 'calculator.seoGuide.bmr1', second: 'calculator.seoGuide.bmr2' },
+  { id: 'tdee', title: 'calculator.seoGuide.tdeeTitle', subtitle: 'calculator.seoGuide.tdeeSubtitle', first: 'calculator.seoGuide.tdee1', second: 'calculator.seoGuide.tdee2' },
+  { id: 'body-fat', title: 'calculator.seoGuide.bodyFatTitle', subtitle: 'calculator.seoGuide.bodyFatSubtitle', first: 'calculator.seoGuide.bodyFat1', second: 'calculator.seoGuide.bodyFat2' },
+  { id: 'ideal-weight', title: 'calculator.seoGuide.idealTitle', subtitle: 'calculator.seoGuide.idealSubtitle', first: 'calculator.seoGuide.ideal1', second: 'calculator.seoGuide.ideal2' },
+  { id: 'how-to', title: 'calculator.seoGuide.howTitle', subtitle: 'calculator.seoGuide.howSubtitle', first: 'calculator.seoGuide.how1', second: 'calculator.seoGuide.how2' },
+  { id: 'why-health-fingerprint', title: 'calculator.seoGuide.whyTitle', subtitle: 'calculator.seoGuide.whySubtitle', first: 'calculator.seoGuide.why1', second: 'calculator.seoGuide.why2' },
+] as const;
 
 interface Profile {
   age: number;
@@ -1192,6 +1203,75 @@ const CalculatorHub: React.FC = () => {
           </aside>
         </div>
       </div>
+
+      <section className="calculator-seo-guide mx-auto w-full max-w-[1440px] px-4 pb-16 sm:px-6 lg:px-8" aria-labelledby="calculator-seo-guide-heading">
+        <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
+          <h2 id="calculator-seo-guide-heading" className="text-2xl font-extrabold text-slate-900 sm:text-3xl">
+            {t('calculator.seoGuide.title')}
+          </h2>
+          <p className="mt-4 max-w-4xl text-sm leading-7 text-slate-700 sm:text-base">
+            {t('calculator.seoGuide.intro')}
+          </p>
+
+          <div className="mt-8 space-y-8">
+            {SEO_GUIDE_SECTIONS.map((section) => (
+              <section key={section.id} aria-labelledby={`calculator-seo-${section.id}`}>
+                <h2 id={`calculator-seo-${section.id}`} className="text-xl font-bold text-slate-900 sm:text-2xl">
+                  {t(section.title)}
+                </h2>
+                <h3 className="mt-2 text-base font-semibold text-emerald-900">
+                  {t(section.subtitle)}
+                </h3>
+                <p className="mt-3 max-w-4xl text-sm leading-7 text-slate-700 sm:text-base">
+                  {t(section.first)}
+                </p>
+                <p className="mt-3 max-w-4xl text-sm leading-7 text-slate-700 sm:text-base">
+                  {t(section.second)}
+                </p>
+              </section>
+            ))}
+          </div>
+
+          <section className="mt-10" aria-labelledby="calculator-seo-foods-heading">
+            <h2 id="calculator-seo-foods-heading" className="text-xl font-bold text-slate-900 sm:text-2xl">
+              {t('calculator.seoGuide.food.title')}
+            </h2>
+            <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+              {calculatorSeoFoods.map((food, index) => {
+                const isLcpImage = index === 0;
+                const titleKey = `calculator.seoGuide.food.${food.id}.title` as keyof TranslationKeys;
+                const altKey = `calculator.seoGuide.food.${food.id}.alt` as keyof TranslationKeys;
+                const title = t(titleKey);
+                const alt = t(altKey)
+                  .replace('{calories}', String(food.calories))
+                  .replace('{protein}', String(food.protein));
+                const caption = t('calculator.seoGuide.food.caption')
+                  .replace('{calories}', String(food.calories))
+                  .replace('{protein}', String(food.protein));
+
+                return (
+                  <figure key={food.id} className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
+                    <img
+                      src={food.src}
+                      width={400}
+                      height={300}
+                      alt={alt}
+                      loading={isLcpImage ? 'eager' : 'lazy'}
+                      fetchPriority={isLcpImage ? 'high' : undefined}
+                      decoding="async"
+                      className="aspect-[4/3] w-full object-cover"
+                    />
+                    <figcaption className="p-4">
+                      <h3 className="font-bold text-slate-900">{title}</h3>
+                      <p className="mt-1 text-sm text-slate-600">{caption}</p>
+                    </figcaption>
+                  </figure>
+                );
+              })}
+            </div>
+          </section>
+        </div>
+      </section>
     </div>
   );
 };

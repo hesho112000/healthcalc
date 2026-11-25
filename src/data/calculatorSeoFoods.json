@@ -1,0 +1,26 @@
+[
+  {
+    "id": "onionChicken",
+    "src": "/images/recipes/onion-grilled-chicken.webp",
+    "calories": 330,
+    "protein": 42
+  },
+  {
+    "id": "caesar",
+    "src": "/images/recipes/grilled-chicken-caesar-salad.webp",
+    "calories": 380,
+    "protein": 30
+  },
+  {
+    "id": "fish",
+    "src": "/images/recipes/genoese-grilled-fish-with-lemon.webp",
+    "calories": 260,
+    "protein": 34
+  },
+  {
+    "id": "pomegranate",
+    "src": "/images/recipes/pomegranate-salad.webp",
+    "calories": 170,
+    "protein": 3
+  }
+]

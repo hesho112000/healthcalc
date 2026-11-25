@@ -1,7 +1,9 @@
 import { ENABLE_PREMIUM } from '../../config/featureFlags';
 import type { TranslationKeys } from '../translationTypes';
+import calculatorSeoGuide from '../calculatorSeoGuide.json';
 
 const es: TranslationKeys = {
+    ...calculatorSeoGuide.es,
     'discover.seoTitle': 'Tu centro de salud | Health Fingerprint',
     'discover.seoDescription': 'Explora herramientas de salud, platos del mundo y orientación personalizada.',
     'calculator.seoTitle': 'Calculadora de salud y nutrición | Health Fingerprint',
@@ -2419,6 +2421,10 @@ const es: TranslationKeys = {
     cookieConsentLearnMore: 'Más información sobre las cookies',
     footerNews: 'Boletín Semanal',
     footerNewsText: 'Recibe consejos nutricionales prácticos cada semana.',
+    footerSocialTitle: 'Sigue a Health Fingerprint',
+    footerSocialInstagram: 'Health Fingerprint en Instagram',
+    footerSocialFacebook: 'Health Fingerprint en Facebook',
+    footerSocialThreads: 'Health Fingerprint en Threads',
     footerEmailPlaceholder: 'Tu correo',
     footerSubscribe: 'Suscribirse',
     footerSubscribed: 'Suscrito',

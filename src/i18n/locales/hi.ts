@@ -1,4 +1,5 @@
 import type { TranslationKeys } from '../translationTypes';
+import calculatorSeoGuide from '../calculatorSeoGuide.json';
 import en from './en';
 
 /**
@@ -10,6 +11,7 @@ import en from './en';
  */
 const hi: TranslationKeys = {
   ...en,
+  ...calculatorSeoGuide.hi,
 
   'discover.seoTitle': 'आपका स्वास्थ्य केंद्र | Health Fingerprint',
   'discover.seoDescription': 'स्वास्थ्य टूल, दुनिया भर के व्यंजन और आपके लिए उपयोगी मार्गदर्शन देखें।',
@@ -376,6 +378,10 @@ const hi: TranslationKeys = {
   footerCookies: 'कुकी नीति',
   footerNews: 'साप्ताहिक समाचार-पत्र',
   footerNewsText: 'हर सप्ताह पोषण संबंधी व्यावहारिक सुझाव पाएँ।',
+  footerSocialTitle: 'Health Fingerprint को फ़ॉलो करें',
+  footerSocialInstagram: 'Instagram पर Health Fingerprint',
+  footerSocialFacebook: 'Facebook पर Health Fingerprint',
+  footerSocialThreads: 'Threads पर Health Fingerprint',
   footerEmailPlaceholder: 'आपका ईमेल',
   footerSubscribe: 'सदस्यता लें',
   footerRights: '© 2026 आपकी स्वास्थ्य पहचान — सर्वाधिकार सुरक्षित।',

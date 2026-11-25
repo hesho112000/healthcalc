@@ -7,6 +7,7 @@ import type { Language } from '../types';
 
 type AboutCopy = {
   badge: string; title: string; subtitle: string;
+  storyTitle: string; story: string;
   missionTitle: string; mission: string[];
   differentTitle: string; different: { title: string; desc: string }[];
   approachTitle: string; steps: { title: string; desc: string }[];
@@ -20,6 +21,8 @@ const COPY: Record<Language, AboutCopy> = {
     badge: 'About Health Fingerprint',
     title: 'Evidence-based health tools, made practical',
     subtitle: 'Health Fingerprint helps people understand their bodies, plan smarter meals, and build sustainable habits with calculators, nutrition data, and clear educational guides.',
+    storyTitle: 'Our story',
+    story: 'Health Fingerprint was created to make evidence-based health guidance easier to use in everyday life. The platform brings calculations, food information, meal planning, and plain-language education together so people can move from a number to a practical question or next step. We continue to improve the tools while being clear about estimates, limitations, and the role of qualified care.',
     missionTitle: 'Our mission',
     mission: [
       'We created Health Fingerprint to make reliable health guidance easier to access. Many people struggle to translate nutrition advice, calorie targets, lab values, and medical guidelines into everyday decisions. Our platform brings those pieces together in one place with practical tools you can actually use.',
@@ -54,6 +57,8 @@ const COPY: Record<Language, AboutCopy> = {
     badge: 'حول Health Fingerprint',
     title: 'أدوات صحية مبنية على الأدلة وبطريقة عملية',
     subtitle: 'تساعد Health Fingerprint الأشخاص على فهم أجسامهم، وتخطيط وجبات أذكى، وبناء عادات مستدامة من خلال الحاسبات وبيانات التغذية والأدلة التعليمية الواضحة.',
+    storyTitle: 'قصتنا',
+    story: 'أُنشئت Health Fingerprint لتسهيل استخدام الإرشادات الصحية المبنية على الأدلة في الحياة اليومية. تجمع المنصة الحسابات ومعلومات الطعام وتخطيط الوجبات والتثقيف بلغة واضحة، كي ينتقل الناس من رقم إلى سؤال عملي أو خطوة تالية. ونواصل تحسين الأدوات مع توضيح التقديرات والحدود ودور الرعاية المتخصصة.',
     missionTitle: 'مهمتنا',
     mission: [
       'أنشأنا Health Fingerprint لجعل الإرشادات الصحية الموثوقة أسهل في الوصول إليها. كثير من الأشخاص يجدون صعوبة في تحويل نصائح التغذية وأهداف السعرات وقيم التحاليل والإرشادات الطبية إلى قرارات يومية. تجمع منصتنا هذه العناصر في مكان واحد مع أدوات عملية يمكن استخدامها فعليًا.',
@@ -88,6 +93,8 @@ const COPY: Record<Language, AboutCopy> = {
     badge: 'À propos de Health Fingerprint',
     title: 'Des outils de santé fondés sur les preuves, vraiment pratiques',
     subtitle: 'Health Fingerprint aide chacun à mieux comprendre son corps, planifier des repas plus intelligents et adopter des habitudes durables grâce à des calculateurs, des données nutritionnelles et des guides clairs.',
+    storyTitle: 'Notre histoire',
+    story: 'Health Fingerprint a été créé pour rendre les conseils de santé fondés sur des preuves plus faciles à utiliser au quotidien. La plateforme réunit calculs, informations alimentaires, planification des repas et contenus pédagogiques clairs afin de transformer un chiffre en question pratique ou en prochaine étape. Nous améliorons les outils en expliquant les estimations, leurs limites et la place des soins qualifiés.',
     missionTitle: 'Notre mission',
     mission: [
       'Nous avons créé Health Fingerprint pour rendre les conseils de santé fiables plus accessibles. Beaucoup de personnes ont du mal à transformer les recommandations nutritionnelles, les objectifs caloriques, les résultats d’analyses et les directives médicales en décisions quotidiennes. Notre plateforme réunit ces éléments dans un seul endroit avec des outils pratiques.',
@@ -122,6 +129,8 @@ const COPY: Record<Language, AboutCopy> = {
     badge: 'Sobre Health Fingerprint',
     title: 'Herramientas de salud basadas en evidencia y fáciles de usar',
     subtitle: 'Health Fingerprint ayuda a las personas a entender su cuerpo, planificar mejores comidas y crear hábitos sostenibles con calculadoras, datos nutricionales y guías educativas claras.',
+    storyTitle: 'Nuestra historia',
+    story: 'Health Fingerprint se creó para facilitar el uso cotidiano de la orientación de salud basada en evidencia. La plataforma reúne cálculos, información de alimentos, planificación de comidas y educación en lenguaje claro para convertir una cifra en una pregunta práctica o un siguiente paso. Seguimos mejorando las herramientas y explicamos sus estimaciones, límites y el papel de la atención profesional.',
     missionTitle: 'Nuestra misión',
     mission: [
       'Creamos Health Fingerprint para hacer que la orientación de salud confiable sea más accesible. Muchas personas tienen dificultades para convertir consejos de nutrición, objetivos de calorías, valores de laboratorio y guías médicas en decisiones diarias. Nuestra plataforma reúne todo en un solo lugar con herramientas prácticas.',
@@ -156,6 +165,8 @@ const COPY: Record<Language, AboutCopy> = {
     badge: 'Health Fingerprint के बारे में',
     title: 'साक्ष्य-आधारित स्वास्थ्य टूल, व्यावहारिक रूप में',
     subtitle: 'Health Fingerprint लोगों को कैलकुलेटर, पोषण डेटा और स्पष्ट शैक्षिक गाइड की मदद से अपने शरीर को समझने, बेहतर भोजन योजना बनाने और टिकाऊ आदतें विकसित करने में मदद करता है।',
+    storyTitle: 'हमारी कहानी',
+    story: 'Health Fingerprint की शुरुआत प्रमाण-आधारित स्वास्थ्य मार्गदर्शन को रोज़मर्रा के जीवन में उपयोगी बनाने के उद्देश्य से हुई। यह मंच गणनाओं, भोजन जानकारी, भोजन योजना और सरल भाषा की शिक्षा को एक साथ लाता है, ताकि लोग किसी संख्या से व्यावहारिक प्रश्न या अगले कदम तक पहुँच सकें। हम अनुमानों, उनकी सीमाओं और योग्य देखभाल की भूमिका को स्पष्ट रखते हुए टूल बेहतर बनाते हैं।',
     missionTitle: 'हमारा मिशन',
     mission: [
       'हमने Health Fingerprint को विश्वसनीय स्वास्थ्य मार्गदर्शन को अधिक सुलभ बनाने के लिए बनाया। कई लोगों को पोषण सलाह, कैलोरी लक्ष्य, लैब वैल्यू और मेडिकल दिशानिर्देशों को रोजमर्रा के निर्णयों में बदलना मुश्किल लगता है। हमारा प्लेटफ़ॉर्म इन सभी को व्यावहारिक टूल के साथ एक जगह लाता है।',
@@ -190,6 +201,8 @@ const COPY: Record<Language, AboutCopy> = {
     badge: 'Über Health Fingerprint',
     title: 'Evidenzbasierte Gesundheitstools, praktisch gemacht',
     subtitle: 'Health Fingerprint hilft Menschen, ihren Körper zu verstehen, Mahlzeiten smarter zu planen und nachhaltige Gewohnheiten aufzubauen.',
+    storyTitle: 'Unsere Geschichte',
+    story: 'Health Fingerprint entstand mit dem Ziel, evidenzbasierte Gesundheitsinformationen im Alltag leichter nutzbar zu machen. Die Plattform verbindet Berechnungen, Lebensmittelinformationen, Essensplanung und verständliche Lerninhalte, damit aus einer Zahl eine praktische Frage oder ein nächster Schritt wird. Wir verbessern die Werkzeuge fortlaufend und erläutern Schätzungen, Grenzen und die Bedeutung qualifizierter Versorgung.',
     missionTitle: 'Unsere Mission',
     mission: [
       'Wir haben Health Fingerprint gegründet, um verlässliche Gesundheitsinformationen leichter zugänglich zu machen. Viele Menschen tun sich schwer, Ernährungstipps, Kalorienziele, Laborwerte und medizinische Leitlinien in den Alltag zu übertragen. Unsere Plattform bringt diese Elemente mit praktischen Tools zusammen.',
@@ -234,6 +247,13 @@ const AboutPage: React.FC = () => {
           <span className="hero-eyebrow">{c.badge}</span>
           <h1 className="hero-title mx-auto"><span className="hero-title-line1">{c.title}</span></h1>
           <p className="mx-auto mt-4 max-w-3xl text-[#4A5A55] leading-relaxed">{c.subtitle}</p>
+        </div>
+      </section>
+
+      <section className="max-w-4xl mx-auto px-6 pt-5" aria-labelledby="about-story-heading">
+        <div className="rounded-[28px] border border-[#EFEBE4] bg-white p-7">
+          <h2 id="about-story-heading" className="text-xl font-extrabold text-[#0F4C3A]">{c.storyTitle}</h2>
+          <p className="mt-3 leading-relaxed text-[#4A5A55]">{c.story}</p>
         </div>
       </section>
 

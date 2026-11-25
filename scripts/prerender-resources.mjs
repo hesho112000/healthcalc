@@ -11,6 +11,8 @@ const DIST_DIR = fileURLToPath(new URL('../dist/', import.meta.url));
 const SHELL_PATH = path.join(DIST_DIR, 'index.html');
 const SITEMAP_PATH = fileURLToPath(new URL('../public/sitemap.xml', import.meta.url));
 const DISH_DATA_PATH = fileURLToPath(new URL('../.dish-seo-data.json', import.meta.url));
+const SEO_GUIDE_PATH = fileURLToPath(new URL('../src/i18n/calculatorSeoGuide.json', import.meta.url));
+const SEO_FOODS_PATH = fileURLToPath(new URL('../src/data/calculatorSeoFoods.json', import.meta.url));
 
 const PAGE_STYLE =
   'max-width:860px;margin:0 auto;padding:48px 20px 72px;box-sizing:border-box;font-family:Inter,\'Inter Fallback\',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#374151;line-height:1.75;';
@@ -21,6 +23,9 @@ const LINK_STYLE = 'color:#0F4C3A;text-decoration:underline;text-underline-offse
 const LIST_STYLE = 'padding-left:1.25rem;margin:12px 0 20px;';
 const MUTED_STYLE = 'color:#4B5563;font-size:.95rem;';
 const NAV_STYLE = 'font-size:.9rem;color:#6B7A75;margin-bottom:24px;';
+const H3_STYLE = 'font-family:inherit;font-size:1.05rem;line-height:1.4;color:#065F46;margin:10px 0 0;font-weight:700;';
+const FOOD_IMAGE_STYLE = 'display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:14px;background:#F1F5F9;';
+const FOOTER_LINK_STYLE = 'color:rgba(255,255,255,.9);text-decoration:none;';
 
 const escapeHtml = (value) =>
   String(value)
@@ -149,7 +154,72 @@ const renderHome = ({ articles }) => `<main style="${PAGE_STYLE}">
   </ul>
 </main>`;
 
-const renderCalculatorLanding = () => `<main class="lcp-calculator-landing" style="${PAGE_STYLE}">
+const SEO_GUIDE_SECTIONS = [
+  { id: 'bmi', title: 'bmiTitle', subtitle: 'bmiSubtitle', first: 'bmi1', second: 'bmi2' },
+  { id: 'bmr', title: 'bmrTitle', subtitle: 'bmrSubtitle', first: 'bmr1', second: 'bmr2' },
+  { id: 'tdee', title: 'tdeeTitle', subtitle: 'tdeeSubtitle', first: 'tdee1', second: 'tdee2' },
+  { id: 'body-fat', title: 'bodyFatTitle', subtitle: 'bodyFatSubtitle', first: 'bodyFat1', second: 'bodyFat2' },
+  { id: 'ideal-weight', title: 'idealTitle', subtitle: 'idealSubtitle', first: 'ideal1', second: 'ideal2' },
+  { id: 'how-to', title: 'howTitle', subtitle: 'howSubtitle', first: 'how1', second: 'how2' },
+  { id: 'why-health-fingerprint', title: 'whyTitle', subtitle: 'whySubtitle', first: 'why1', second: 'why2' },
+];
+
+const renderSeoGuide = (copy, foods) => {
+  const sections = SEO_GUIDE_SECTIONS.map(
+    ({ id, title, subtitle, first, second }) => `    <section aria-labelledby="calculator-seo-${id}">
+      <h2 id="calculator-seo-${id}" style="${H2_STYLE}">${escapeHtml(copy[`calculator.seoGuide.${title}`])}</h2>
+      <h3 style="${H3_STYLE}">${escapeHtml(copy[`calculator.seoGuide.${subtitle}`])}</h3>
+      <p style="margin:14px 0 0;">${escapeHtml(copy[`calculator.seoGuide.${first}`])}</p>
+      <p style="margin:0 0 16px;">${escapeHtml(copy[`calculator.seoGuide.${second}`])}</p>
+    </section>`,
+  ).join('\n');
+
+  const foodCards = foods
+    .map((food, index) => {
+      const alt = copy[`calculator.seoGuide.food.${food.id}.alt`]
+        .replaceAll('{calories}', String(food.calories))
+        .replaceAll('{protein}', String(food.protein));
+      const caption = copy['calculator.seoGuide.food.caption']
+        .replaceAll('{calories}', String(food.calories))
+        .replaceAll('{protein}', String(food.protein));
+      const priority = index === 0 ? ' loading="eager" fetchpriority="high"' : ' loading="lazy"';
+      return `      <figure style="margin:0;border:1px solid #E2E8F0;border-radius:16px;background:#F8FAFC;overflow:hidden;">
+        <img src="${escapeAttr(food.src)}" alt="${escapeAttr(alt)}" width="400" height="300" decoding="async"${priority} style="${FOOD_IMAGE_STYLE}">
+        <figcaption style="padding:14px 16px;">
+          <h3 style="font-family:inherit;font-size:1rem;color:#0F172A;margin:0 0 4px;font-weight:800;">${escapeHtml(copy[`calculator.seoGuide.food.${food.id}.title`])}</h3>
+          <p style="margin:0;font-size:.9rem;color:#475569;">${escapeHtml(caption)}</p>
+        </figcaption>
+      </figure>`;
+    })
+    .join('\n');
+
+  return `  <section class="calculator-seo-guide" aria-labelledby="calculator-seo-guide-heading" style="margin-top:32px;border:1px solid #E2E8F0;border-radius:24px;background:#fff;padding:28px;">
+    <h2 id="calculator-seo-guide-heading" style="${H2_STYLE}">${escapeHtml(copy['calculator.seoGuide.title'])}</h2>
+    <p style="font-size:1rem;color:#374151;margin:0 0 8px;">${escapeHtml(copy['calculator.seoGuide.intro'])}</p>
+${sections}
+    <section aria-labelledby="calculator-seo-foods-heading" style="margin-top:24px;">
+      <h2 id="calculator-seo-foods-heading" style="${H2_STYLE}">${escapeHtml(copy['calculator.seoGuide.food.title'])}</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;">
+${foodCards}
+      </div>
+    </section>
+  </section>`;
+};
+
+const renderCalculatorLanding = ({ guide, foods }) => {
+  const copy = guide.en;
+  return `<header style="background:#fff;border-bottom:1px solid #E4ECE5;">
+  <nav aria-label="Primary" style="max-width:1440px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:22px;flex-wrap:wrap;font-size:.9rem;font-weight:700;">
+    <a href="/" style="color:#0F4C3A;text-decoration:none;font-size:1.05rem;">🌿 Health Fingerprint</a>
+    <a href="/" style="${LINK_STYLE}">Calculators</a>
+    <a href="/meal-planner" style="${LINK_STYLE}">Meal Planner</a>
+    <a href="/food-library" style="${LINK_STYLE}">Food Library</a>
+    <a href="/resources" style="${LINK_STYLE}">Resources</a>
+    <a href="/about" style="${LINK_STYLE}">About</a>
+    <a href="/contact" style="${LINK_STYLE}">Contact</a>
+  </nav>
+</header>
+<main class="lcp-calculator-landing" style="${PAGE_STYLE}">
   <p style="margin:0 0 12px;color:#047857;font-size:.75rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;">Evidence-based · WHO · CDC · NIH</p>
   <h1 style="${LANDING_H1_STYLE}">From Guessing to Gourmet in 30 Seconds</h1>
   <p style="font-size:1.1rem;color:#4A5A55;margin:0 0 24px;">Clinical-grade calculators for BMI, BMR, TDEE, body fat, and ideal weight—verified against trusted public-health guidance and turned into meals you want to eat.</p>
@@ -170,7 +240,26 @@ const renderCalculatorLanding = () => `<main class="lcp-calculator-landing" styl
     <a href="/meal-plan" style="display:inline-block;border-radius:999px;background:#fff;color:#0F172A;padding:14px 22px;font-weight:800;text-decoration:none;">Continue to your meal plan</a>
   </section>
   <p style="margin-top:24px;"><a href="/meal-planner" style="${LINK_STYLE}">Explore Your Health Hub</a> · <a href="/food-library" style="${LINK_STYLE}">Browse the food library</a></p>
-</main>`;
+${renderSeoGuide(copy, foods)}
+</main>
+<footer style="background:#0F4C3A;color:#fff;border-radius:32px 32px 0 0;padding:40px 24px 24px;font-size:15px;line-height:1.7;">
+  <div style="max-width:1120px;margin:0 auto;">
+    <a href="/" style="color:#fff;font-size:18px;font-weight:800;text-decoration:none;">🌿 Health Fingerprint</a>
+    <p style="color:rgba(255,255,255,.9);margin:10px 0 18px;">Practical, evidence-based calculators, food information, and guides for everyday decisions.</p>
+    <nav aria-label="Follow Health Fingerprint" style="display:flex;gap:12px;margin-bottom:24px;">
+      <a href="https://www.instagram.com/healthfingerprint/" target="_blank" rel="noopener noreferrer" aria-label="Health Fingerprint on Instagram" style="color:#fff;">Instagram</a>
+      <a href="https://www.facebook.com/healthfingerprint" target="_blank" rel="noopener noreferrer" aria-label="Health Fingerprint on Facebook" style="color:#fff;">Facebook</a>
+      <a href="https://www.threads.net/@healthfingerprint" target="_blank" rel="noopener noreferrer" aria-label="Health Fingerprint on Threads" style="color:#fff;">Threads</a>
+    </nav>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;">
+      <div><h2 style="color:#D97706;font-size:12px;text-transform:uppercase;letter-spacing:.12em;margin:0 0 12px;">Platform</h2><a href="/meal-planner" style="${FOOTER_LINK_STYLE}">Meal Planner</a><br><a href="/food-library" style="${FOOTER_LINK_STYLE}">Food Library</a></div>
+      <div><h2 style="color:#D97706;font-size:12px;text-transform:uppercase;letter-spacing:.12em;margin:0 0 12px;">Learn</h2><a href="/about" style="${FOOTER_LINK_STYLE}">About</a><br><a href="/resources" style="${FOOTER_LINK_STYLE}">Resources</a></div>
+      <div><h2 style="color:#D97706;font-size:12px;text-transform:uppercase;letter-spacing:.12em;margin:0 0 12px;">Help</h2><a href="/contact" style="${FOOTER_LINK_STYLE}">Contact</a><br><a href="/privacy" style="${FOOTER_LINK_STYLE}">Privacy</a><br><a href="/terms" style="${FOOTER_LINK_STYLE}">Terms</a></div>
+    </div>
+    <p style="font-size:12px;color:rgba(255,255,255,.9);border-top:1px solid rgba(255,255,255,.16);margin:28px 0 0;padding-top:18px;">Educational information only. Not medical advice, diagnosis, or treatment. Calculator results are estimates; ask a qualified professional about personal health questions.</p>
+  </div>
+</footer>`;
+};
 
 const renderResources = ({ articles, recipes, exerciseGuides }) => `<main style="${PAGE_STYLE}">
   ${breadcrumbs('')}
@@ -460,7 +549,7 @@ const applyBody = (html, bodyHtml, noscript) => {
   // The prerendered copy is always English. Pin it to LTR: /style.css applies
   // `html:not([dir]){direction:rtl}`, and without this the prerendered body
   // mirrors horizontally when that stylesheet lands after first paint (CLS).
-  const ltrBody = bodyHtml.replace(/^<main /, '<main dir="ltr" ');
+  const ltrBody = bodyHtml.replace(/<main\b/, '<main dir="ltr"');
   return html.replace(rootPattern, `<div id="root">${ltrBody}${noscript}</div>\n  </body>`);
 };
 
@@ -507,6 +596,10 @@ const dishJsonLd = (dish) => ({
 
 const buildPrerenderedPages = async () => {
   const { articles, recipes, exerciseGuides } = await loadContentData();
+  // The homepage guide reuses the same i18n catalog that the React t() calls
+  // read, so the prerendered English copy never drifts from the app strings.
+  const seoGuide = JSON.parse(await readFile(SEO_GUIDE_PATH, 'utf8'));
+  const seoFoods = JSON.parse(await readFile(SEO_FOODS_PATH, 'utf8'));
   // Prerendered routes get a real visible <h1> from the static body, so remove
   // the old sr-only fallback heading to avoid duplicate H1s on those pages.
   const shell = (await readFile(SHELL_PATH, 'utf8')).replace(/<h1 class="sr-only"[\s\S]*?<\/h1>\s*/i, '');
@@ -519,7 +612,7 @@ const buildPrerenderedPages = async () => {
   const pages = [
     {
       route: '/',
-      body: renderCalculatorLanding(),
+      body: renderCalculatorLanding({ guide: seoGuide, foods: seoFoods }),
       meta: {
         route: '/',
         title: 'From Guessing to Gourmet in 30 Seconds | Health Fingerprint',
@@ -527,6 +620,7 @@ const buildPrerenderedPages = async () => {
           'Calculate BMI, BMR, TDEE, body fat, ideal weight, and macros with evidence-based formulas, then turn your results into real meals.',
         canonical: `${SITE_BASE}/`,
         type: 'website',
+        preloadImage: seoFoods[0]?.src,
       },
     },
     {
