@@ -15,6 +15,7 @@ const DISH_DATA_PATH = fileURLToPath(new URL('../.dish-seo-data.json', import.me
 const PAGE_STYLE =
   'max-width:860px;margin:0 auto;padding:48px 20px 72px;box-sizing:border-box;font-family:Inter,\'Inter Fallback\',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#374151;line-height:1.75;';
 const H1_STYLE = 'font-family:inherit;font-size:2rem;line-height:1.2;color:#0F4C3A;margin:0 0 16px;font-weight:800;';
+const LANDING_H1_STYLE = 'font-family:inherit;font-size:32px;line-height:1.2;color:#065F46;margin:0 0 16px;font-weight:800;';
 const H2_STYLE = 'font-family:inherit;font-size:1.35rem;line-height:1.3;color:#0F4C3A;margin:32px 0 12px;font-weight:800;';
 const LINK_STYLE = 'color:#0F4C3A;text-decoration:underline;text-underline-offset:2px;';
 const LIST_STYLE = 'padding-left:1.25rem;margin:12px 0 20px;';
@@ -148,9 +149,9 @@ const renderHome = ({ articles }) => `<main style="${PAGE_STYLE}">
   </ul>
 </main>`;
 
-const renderCalculatorLanding = () => `<main style="${PAGE_STYLE}">
+const renderCalculatorLanding = () => `<main class="lcp-calculator-landing" style="${PAGE_STYLE}">
   <p style="margin:0 0 12px;color:#047857;font-size:.75rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;">Evidence-based · WHO · CDC · NIH</p>
-  <h1 style="${H1_STYLE}">From Guessing to Gourmet in 30 Seconds</h1>
+  <h1 style="${LANDING_H1_STYLE}">From Guessing to Gourmet in 30 Seconds</h1>
   <p style="font-size:1.1rem;color:#4A5A55;margin:0 0 24px;">Clinical-grade calculators for BMI, BMR, TDEE, body fat, and ideal weight—verified against trusted public-health guidance and turned into meals you want to eat.</p>
   <section style="border:1px solid #E2E8F0;border-radius:24px;background:#fff;padding:28px;margin:24px 0;">
     <h2 style="${H2_STYLE}">Calculate your health and nutrition results</h2>
@@ -412,6 +413,7 @@ const assertResolvedMeta = (meta) => {
 
 const applyHead = (html, meta) => {
   assertResolvedMeta(meta);
+  const rootRoutePreload = html.match(/<link\b[^>]*data-root-route-preload[^>]*>/i)?.[0];
   const tags = [
     `<meta name="description" content="${escapeAttr(meta.description)}" data-prerender="true" data-rh="true">`,
     `<link rel="canonical" href="${escapeAttr(meta.canonical)}" data-prerender="true">`,
@@ -431,6 +433,10 @@ const applyHead = (html, meta) => {
     );
   }
 
+  if (meta.route === '/' && rootRoutePreload) {
+    tags.push(rootRoutePreload.replace(/\sdata-root-route-preload\b/i, ' data-prerender="true"'));
+  }
+
   if (meta.jsonLd) {
     const json = JSON.stringify(meta.jsonLd).replace(/</g, '\\u003c');
     tags.push(`<script type="application/ld+json" data-prerender="true">${json}</script>`);
@@ -441,6 +447,7 @@ const applyHead = (html, meta) => {
     .replace(/<meta[^>]*data-prerender="true"[^>]*>\s*/gi, '')
     .replace(/<meta\b(?=[^>]*\bname=["']description["'])[^>]*>\s*/gi, '')
     .replace(/<link[^>]*data-prerender="true"[^>]*>\s*/gi, '')
+    .replace(/<link\b[^>]*data-root-route-preload[^>]*>\s*/gi, '')
     .replace(/<script[^>]*data-prerender="true"[^>]*>[\s\S]*?<\/script>\s*/gi, '')
     .replace('</head>', `    ${tags.join('\n    ')}\n  </head>`);
 };
@@ -514,6 +521,7 @@ const buildPrerenderedPages = async () => {
       route: '/',
       body: renderCalculatorLanding(),
       meta: {
+        route: '/',
         title: 'From Guessing to Gourmet in 30 Seconds | Health Fingerprint',
         description:
           'Calculate BMI, BMR, TDEE, body fat, ideal weight, and macros with evidence-based formulas, then turn your results into real meals.',

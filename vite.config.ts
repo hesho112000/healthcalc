@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
@@ -8,6 +8,7 @@ import react from '@vitejs/plugin-react'
 // so it is safe to ship this file outside the bundle.
 const CRITICAL_CSS = readFileSync(new URL('./critical.css', import.meta.url), 'utf8')
 const DIST_INDEX = fileURLToPath(new URL('./dist/index.html', import.meta.url))
+const DIST_ASSETS = fileURLToPath(new URL('./dist/assets/', import.meta.url))
 
 const asyncStylesheet = (href: string, crossorigin: boolean) => {
   const cross = crossorigin ? ' crossorigin' : ''
@@ -67,6 +68,23 @@ const injectEntryModulePreload = (html: string) => {
   return html.replace(entry[0], `${preload}\n    ${entry[0]}`)
 }
 
+const injectCalculatorHubPreload = (html: string) => {
+  if (html.includes('data-root-route-preload')) return html
+
+  try {
+    const chunk = readdirSync(DIST_ASSETS).find((file) => /^CalculatorHub-[\w-]+\.js$/.test(file))
+    if (!chunk) return html
+
+    const preload = `<link rel="modulepreload" crossorigin fetchpriority="high" href="/assets/${chunk}" data-root-route-preload>`
+    const entryPreload = html.match(/<link\b[^>]*data-entry-modulepreload[^>]*>/i)?.[0]
+    return entryPreload
+      ? html.replace(entryPreload, `${preload}\n    ${entryPreload}`)
+      : html.replace('</head>', `    ${preload}\n  </head>`)
+  } catch {
+    return html
+  }
+}
+
 function criticalCssPlugin(): Plugin {
   return {
     name: 'critical-css-and-async-styles',
@@ -81,7 +99,9 @@ function criticalCssPlugin(): Plugin {
       if (this.meta?.watchMode) return
       try {
         const html = readFileSync(DIST_INDEX, 'utf8')
-        const next = injectCriticalCss(injectEntryModulePreload(relaxStylesheets(html)))
+        const next = injectCalculatorHubPreload(
+          injectCriticalCss(injectEntryModulePreload(relaxStylesheets(html))),
+        )
         if (next !== html) writeFileSync(DIST_INDEX, next)
       } catch {
         // No HTML emitted (e.g. library-only builds); nothing to do.

@@ -21,8 +21,6 @@ import { useLanguage } from '../context/LanguageContext';
 import type { Language } from '../types';
 import type { TranslationKeys } from '../i18n/translationTypes';
 import SEO from '../components/seo/SEO';
-import { RECIPES, lt as recipeLt } from '../data/recipes';
-import { ARTICLES, lt as articleLt } from '../data/articles';
 import './CalculatorHub.css';
 
 type CalculatorTab = 'bmi' | 'bmr' | 'calories' | 'body-fat' | 'ideal-weight' | 'macros';
@@ -281,6 +279,9 @@ const CalculatorHub: React.FC = () => {
   const [animatedCalories, setAnimatedCalories] = useState(0);
   const resultsRef = useRef<HTMLElement | null>(null);
   const highlightTimer = useRef<number | null>(null);
+  const recommendationsRef = useRef<HTMLElement | null>(null);
+  const [recipeData, setRecipeData] = useState<typeof import('../data/recipes') | null>(null);
+  const [articleData, setArticleData] = useState<typeof import('../data/articles') | null>(null);
   const localeByLanguage: Record<Language, string> = {
     en: 'en-US', ar: 'ar-EG', fr: 'fr-FR', es: 'es-ES', hi: 'hi-IN', de: 'de-DE',
   };
@@ -388,6 +389,45 @@ const CalculatorHub: React.FC = () => {
     if (highlightTimer.current !== null) window.clearTimeout(highlightTimer.current);
   }, []);
 
+  useEffect(() => {
+    const node = recommendationsRef.current;
+    if (!node) return;
+
+    let cancelled = false;
+    const loadRecommendations = async () => {
+      try {
+        const [recipes, articles] = await Promise.all([
+          import('../data/recipes'),
+          import('../data/articles'),
+        ]);
+        if (!cancelled) {
+          setRecipeData(recipes);
+          setArticleData(articles);
+        }
+      } catch {
+        // Recommendations are supplementary; keep the calculator usable if they fail to load.
+      }
+    };
+
+    if (typeof IntersectionObserver === 'undefined') {
+      void loadRecommendations();
+      return () => { cancelled = true; };
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        observer.disconnect();
+        void loadRecommendations();
+      }
+    }, { rootMargin: '400px' });
+    observer.observe(node);
+
+    return () => {
+      cancelled = true;
+      observer.disconnect();
+    };
+  }, []);
+
   const updateProfile = (patch: Partial<Profile>) => {
     setProfile((current) => ({ ...current, ...patch }));
     setIsDirty(true);
@@ -466,6 +506,8 @@ const CalculatorHub: React.FC = () => {
     { id: 'katch', key: 'calculator.formula.katch', value: metrics.katch },
   ];
   const tabLabel = t(TABS.find(({ id }) => id === activeTab)?.labelKey ?? 'calculator.nav.bmi');
+  const featuredRecipes = recipeData?.RECIPES.slice(0, 6) ?? [];
+  const latestArticles = articleData?.ARTICLES.slice(0, 6) ?? [];
   const bmiPercent = Math.max(0, Math.min(100, ((metrics.bmi - 14) / 26) * 100));
   const gaugeRotation = -120 + bmiPercent * 2.4;
   const macroTotal = metrics.macros.protein + metrics.macros.carbs + metrics.macros.fat;
@@ -480,7 +522,7 @@ const CalculatorHub: React.FC = () => {
             <ShieldCheck size={14} aria-hidden="true" />
             <span>{t('calculator.hero.badge')}</span>
           </div>
-          <h1 className="max-w-4xl font-display text-4xl font-extrabold tracking-[-0.03em] text-slate-900 sm:text-5xl">
+          <h1 className="max-w-4xl font-display text-[32px] font-extrabold leading-[1.2] tracking-[-0.03em] text-slate-900 sm:text-5xl">
             {t('calculator.hero.titlePrefix')}{' '}
             <span className="bg-gradient-to-r from-emerald-600 to-emerald-400 bg-clip-text text-transparent">
               {t('calculator.hero.titleAccent')}
@@ -1022,26 +1064,30 @@ const CalculatorHub: React.FC = () => {
               })()}
             </section>
 
-            <section className="grid gap-5 lg:grid-cols-2" aria-labelledby="home-links-heading">
+            <section ref={recommendationsRef} className="grid gap-5 lg:grid-cols-2" aria-labelledby="home-links-heading" aria-busy={!recipeData || !articleData}>
               <div className="rounded-3xl bg-white p-6 shadow-[0_0_0_1px_rgba(0,0,0,0.03),0_4px_24px_rgba(0,0,0,0.04)]">
                 <h2 id="home-links-heading" className="text-xl font-bold text-slate-900">{language === 'ar' ? 'وصفات مميزة' : language === 'fr' ? 'Recettes en vedette' : language === 'es' ? 'Recetas destacadas' : language === 'hi' ? 'विशेष रेसिपी' : 'Featured Recipes'}</h2>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  {RECIPES.slice(0, 6).map((r) => (
+                  {recipeData ? featuredRecipes.map((r) => (
                     <Link key={r.slug} to={`/resources/recipe/${r.slug}`} className="rounded-2xl border border-slate-100 p-4 hover:border-emerald-200 hover:bg-emerald-50/40 transition-colors">
-                      <div className="text-sm font-bold text-slate-900">{recipeLt(r.title, language)}</div>
-                      <div className="mt-1 text-xs text-slate-500">{recipeLt(r.cuisine, language)} · {r.nutrition.calories} kcal</div>
+                      <div className="text-sm font-bold text-slate-900">{recipeData.lt(r.title, language)}</div>
+                      <div className="mt-1 text-xs text-slate-500">{recipeData.lt(r.cuisine, language)} · {r.nutrition.calories} kcal</div>
                     </Link>
+                  )) : Array.from({ length: 6 }, (_, index) => (
+                    <div key={index} aria-hidden="true" className="h-[72px] animate-pulse rounded-2xl bg-slate-100" />
                   ))}
                 </div>
               </div>
               <div className="rounded-3xl bg-white p-6 shadow-[0_0_0_1px_rgba(0,0,0,0.03),0_4px_24px_rgba(0,0,0,0.04)]">
                 <h2 className="text-xl font-bold text-slate-900">{language === 'ar' ? 'أحدث المقالات' : language === 'fr' ? 'Derniers articles' : language === 'es' ? 'Últimos artículos' : language === 'hi' ? 'नवीनतम लेख' : 'Latest Articles'}</h2>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  {ARTICLES.slice(0, 6).map((a) => (
+                  {articleData ? latestArticles.map((a) => (
                     <Link key={a.slug} to={`/resources/article/${a.slug}`} className="rounded-2xl border border-slate-100 p-4 hover:border-emerald-200 hover:bg-emerald-50/40 transition-colors">
-                      <div className="text-sm font-bold text-slate-900 line-clamp-2">{articleLt(a.title, language)}</div>
+                      <div className="text-sm font-bold text-slate-900 line-clamp-2">{articleData.lt(a.title, language)}</div>
                       <div className="mt-1 text-xs text-slate-500">{a.readTime} min · {a.publishedAt}</div>
                     </Link>
+                  )) : Array.from({ length: 6 }, (_, index) => (
+                    <div key={index} aria-hidden="true" className="h-[72px] animate-pulse rounded-2xl bg-slate-100" />
                   ))}
                 </div>
               </div>

@@ -183,6 +183,20 @@ textarea {
   line-height: 0.99;
 }
 
+.lcp-calculator-landing h1,
+.calculator-hero h1 {
+  color: #065f46;
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+@media (min-width: 640px) {
+  .calculator-hero h1 {
+    font-size: 48px;
+    line-height: 1;
+  }
+}
+
 .hh-preview__subhead {
   max-width: 455px;
   color: var(--hc-muted);
