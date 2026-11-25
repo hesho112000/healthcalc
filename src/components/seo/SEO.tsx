@@ -70,9 +70,9 @@ const SEO: React.FC<SEOProps> = ({
   const resolvedTitle = resolveSeoText(title, DEFAULT_TITLE);
   const fullTitle = resolvedTitle.endsWith(`| ${SITE_NAME}`) ? resolvedTitle : `${resolvedTitle} | ${SITE_NAME}`;
   const pageUrl = new URL(url ?? '/', BASE_URL);
-  // Every locale gets its own path-based URL: /<lang>/<path>. These are the
-  // indexable addresses advertised through hreflang; the app redirects them to
-  // the matching route while keeping the selected language.
+  const currentLocale = locale || language || 'en';
+  // Every locale gets its own path-based URL: /<lang>/<path>. Canonical and
+  // hreflang must agree on that localized URL to avoid duplicate-content signals.
   const localizedUrl = (lang: string) => {
     const localized = new URL(pageUrl);
     const cleanPath = stripLanguagePrefix(localized.pathname).replace(/^\/+/, '');
@@ -81,10 +81,7 @@ const SEO: React.FC<SEOProps> = ({
     localized.hash = '';
     return localized.toString();
   };
-  const canonicalUrl = new URL(pageUrl);
-  canonicalUrl.search = '';
-  canonicalUrl.hash = '';
-  const currentLocale = locale || language || 'en';
+  const canonicalUrl = new URL(localizedUrl(currentLocale));
   const metaDescription = resolveSeoText(description, FALLBACK_DESCRIPTION);
 
   return (

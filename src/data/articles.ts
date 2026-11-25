@@ -14,6 +14,7 @@ export interface Article {
   takeaways: { en: string[]; ar: string[] };
   readTime: number;
   publishedAt: string;
+  dateModified?: string;
   icon: string;
   tags: string[];
 }

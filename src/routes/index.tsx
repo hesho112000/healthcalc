@@ -57,10 +57,9 @@ const SUPPORTED_PREFIXES = new Set<string>(['en', 'fr', 'es', 'ar', 'hi', 'de'])
  * (`/fr/resources`, `/hi/fitness`, ...). The language is applied and the
  * visitor is routed to the matching page without the prefix.
  */
-const LanguagePrefixRedirect: React.FC = () => {
+const LanguagePrefixLayout: React.FC = () => {
   const { lang } = useParams<{ lang: string }>();
   const { language, setLanguage } = useLanguage();
-  const location = useLocation();
 
   React.useEffect(() => {
     if (lang && SUPPORTED_PREFIXES.has(lang) && language !== lang) {
@@ -72,9 +71,7 @@ const LanguagePrefixRedirect: React.FC = () => {
     return <NotFoundPage />;
   }
 
-  const rest = location.pathname.replace(new RegExp(`^/${lang}(?=/|$)`), '') || '/';
-
-  return <Navigate to={`${rest}${location.search}${location.hash}`} replace />;
+  return <InnerRoutes />;
 };
 
 interface SimplePageProps {
@@ -111,7 +108,7 @@ const StaticStepPage: React.FC<{ step: number }> = ({ step }) => (
   </div>
 );
 
-export const AppRoutes: React.FC = () => (
+const InnerRoutes: React.FC = () => (
     <Routes>
       <Route path="/" element={<CalculatorHub />} />
       <Route path="/meal-planner" element={<DiscoverPage />} />
@@ -216,10 +213,16 @@ export const AppRoutes: React.FC = () => (
       <Route path="/Personal-Data-Entry-Step1" element={<StaticStepPage step={1} />} />
       <Route path="/Personal-Data-Entry-Step2" element={<StaticStepPage step={2} />} />
 
-      <Route path="/:lang/landing/:slug" element={<LocalizedSeoPage />} />
-      <Route path="/:lang/*" element={<LanguagePrefixRedirect />} />
+      <Route path="/landing/:slug" element={<LocalizedSeoPage />} />
       <Route path="/health-guide/:slug" element={<LegacySeoRedirect />} />
-
       <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+);
+
+export const AppRoutes: React.FC = () => (
+    <Routes>
+      <Route path="/:lang/landing/:slug" element={<LocalizedSeoPage />} />
+      <Route path="/:lang/*" element={<LanguagePrefixLayout />} />
+      <Route path="/*" element={<InnerRoutes />} />
     </Routes>
 );

@@ -1857,6 +1857,7 @@ const es: TranslationKeys = {
     'article.backToResources': 'Volver a Recursos',
     'article.readTime': 'min de lectura',
     'article.byTeam': 'Por el equipo de HealthCalc',
+  'article.lastUpdated': 'Última actualización',
     'article.keyTakeaways': 'Puntos Clave',
     'article.related': 'También te puede gustar...',
     'article.cta.title': '¿Quieres un plan personalizado?',

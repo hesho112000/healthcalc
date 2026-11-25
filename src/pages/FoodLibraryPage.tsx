@@ -39,7 +39,7 @@ export default function FoodLibraryPage() {
         let builder = supabase
           .from(TABLE)
           .select(SELECT_COLUMNS, { count: 'exact' })
-          .order('id', { ascending: true })
+          .order('created_at', { ascending: false, nullsFirst: false }).order('id', { ascending: false })
           .range(pageIndex * PAGE_SIZE, pageIndex * PAGE_SIZE + PAGE_SIZE - 1);
 
         if (q) {

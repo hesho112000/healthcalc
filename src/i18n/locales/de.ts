@@ -1859,6 +1859,7 @@ const de: TranslationKeys = {
     'article.backToResources': 'Zurück zu den Ressourcen',
     'article.readTime': 'Min. Lesezeit',
     'article.byTeam': 'Vom HealthCalc-Team',
+  'article.lastUpdated': 'Zuletzt aktualisiert',
     'article.keyTakeaways': 'Wichtige Erkenntnisse',
     'article.related': 'Das könnte dir auch gefallen...',
     'article.cta.title': 'Möchtest du einen persönlichen Plan?',

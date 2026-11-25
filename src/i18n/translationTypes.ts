@@ -1346,6 +1346,7 @@ export type TranslationKeys = {
   'article.backToResources': string;
   'article.readTime': string;
   'article.byTeam': string;
+  'article.lastUpdated': string;
   'article.keyTakeaways': string;
   'article.related': string;
   'article.cta.title': string;

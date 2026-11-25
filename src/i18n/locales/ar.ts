@@ -1870,6 +1870,7 @@ const ar: TranslationKeys = {
     'article.backToResources': 'العودة إلى المصادر',
     'article.readTime': 'دقائق قراءة',
     'article.byTeam': 'بواسطة فريق HealthCalc',
+  'article.lastUpdated': 'آخر تحديث',
     'article.keyTakeaways': 'أهم النقاط',
     'article.related': 'قد يعجبك أيضًا...',
     'article.cta.title': 'هل تريد خطة مخصصة؟',

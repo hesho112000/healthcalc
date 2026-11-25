@@ -51,12 +51,14 @@ const ArticlePage: React.FC = () => {
   const takeaways = article.takeaways[language as 'en' | 'ar'] ?? article.takeaways.en;
   const categoryKey = `article.category.${article.category}` as TKey;
 
+  const dateModified = article.dateModified || article.publishedAt;
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: title,
     description,
     datePublished: article.publishedAt,
+    dateModified,
     author: {
       '@type': 'Person',
       name: 'HealthFingerprint Medical Team',
@@ -107,6 +109,7 @@ const ArticlePage: React.FC = () => {
               {article.readTime} {t('article.readTime')}
             </span>
             <span className="font-semibold">{article.publishedAt}</span>
+            <span className="font-semibold">{t('article.lastUpdated')}: {dateModified}</span>
             <span className="font-semibold">{t('article.byTeam')}</span>
           </div>
         </header>

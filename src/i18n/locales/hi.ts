@@ -212,6 +212,7 @@ const hi: TranslationKeys = {
   'article.authorshipReview': 'लेख का लेखक और समीक्षा',
   'article.reviewedBy': 'HealthFingerprint की चिकित्सा टीम द्वारा समीक्षा की गई।',
   'article.editorialApproach': 'हमारी संपादकीय प्रक्रिया जानें',
+  'article.lastUpdated': 'अंतिम अपडेट',
   'common.language': 'भाषा',
   'common.changeLanguage': 'भाषा बदलें (वर्तमान: {language})',
   'common.openMenu': 'मेनू खोलें',

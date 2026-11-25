@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import {
   Activity,
   ArrowRight,
@@ -21,6 +21,8 @@ import { useLanguage } from '../context/LanguageContext';
 import type { Language } from '../types';
 import type { TranslationKeys } from '../i18n/translationTypes';
 import SEO from '../components/seo/SEO';
+import { RECIPES, lt as recipeLt } from '../data/recipes';
+import { ARTICLES, lt as articleLt } from '../data/articles';
 import './CalculatorHub.css';
 
 type CalculatorTab = 'bmi' | 'bmr' | 'calories' | 'body-fat' | 'ideal-weight' | 'macros';
@@ -918,6 +920,153 @@ const CalculatorHub: React.FC = () => {
                 </section>
               </section>
             )}
+
+            <section className="rounded-3xl bg-white p-6 shadow-[0_0_0_1px_rgba(0,0,0,0.03),0_4px_24px_rgba(0,0,0,0.04)] sm:p-8" aria-labelledby="calculator-science-heading">
+              {(() => {
+                const copyByLang: Record<string, { eyebrow: string; title: string; intro: string; bmrTitle: string; bmrBody: string; tdeeTitle: string; tdeeBody: string; howTitle: string; howBody: string; linksTitle: string }> = {
+                  en: {
+                    eyebrow: 'Evidence-Based Guide',
+                    title: 'How BMR, TDEE, and calorie targets work',
+                    intro: 'Understanding the science behind your numbers helps you use this calculator as a practical planning tool, not just a one-time score. Your results combine body measurements, age, sex, activity, and goal to estimate how much energy your body uses and how to adjust intake safely.',
+                    bmrTitle: 'Basal Metabolic Rate (BMR)',
+                    bmrBody: 'BMR is the energy your body needs at rest to support essential functions such as breathing, circulation, temperature regulation, and cell repair. It is usually the largest part of daily calorie burn. We estimate BMR using established equations such as Mifflin-St Jeor, which uses weight, height, age, and sex. Muscle mass, genetics, hormones, sleep, and medical conditions can also influence real-world BMR, so treat the number as a strong estimate rather than a medical diagnosis.',
+                    tdeeTitle: 'Total Daily Energy Expenditure (TDEE)',
+                    tdeeBody: 'TDEE starts with BMR and multiplies it by an activity factor to reflect movement throughout the day. This includes exercise, walking, work activity, and non-exercise movement. If your lifestyle is sedentary, your TDEE will be closer to BMR; if you train frequently or have an active job, your TDEE rises. Choosing the right activity level matters because overestimating activity is a common reason calorie plans stop working.',
+                    howTitle: 'How to use this calculator',
+                    howBody: 'Start by entering accurate measurements, then select the activity level that matches your normal week. Use the calorie target as a starting point: maintain for weight stability, a moderate deficit for gradual fat loss, or a small surplus for muscle gain. Recheck your numbers every few weeks as weight, activity, or goals change. For best results, pair calculator estimates with balanced meals, strength training, sleep, and professional guidance when you have a medical condition.',
+                    linksTitle: 'Explore more health tools and guides',
+                  },
+                  ar: {
+                    eyebrow: 'دليل مبني على الأدلة',
+                    title: 'كيف تعمل BMR وTDEE وأهداف السعرات',
+                    intro: 'فهم العلم وراء الأرقام يساعدك على استخدام هذه الحاسبة كأداة تخطيط عملية وليست مجرد نتيجة لمرة واحدة. تجمع نتائجك بين قياسات الجسم والعمر والجنس والنشاط والهدف لتقدير الطاقة التي يستخدمها جسمك وكيف تضبط السعرات بأمان.',
+                    bmrTitle: 'معدل الأيض الأساسي (BMR)',
+                    bmrBody: 'BMR هو الطاقة التي يحتاجها جسمك في حالة الراحة لدعم الوظائف الأساسية مثل التنفس والدورة الدموية وتنظيم الحرارة وإصلاح الخلايا. وعادة ما يكون أكبر جزء من حرق السعرات اليومي. نقدّر BMR باستخدام معادلات معتمدة مثل Mifflin-St Jeor التي تعتمد على الوزن والطول والعمر والجنس. الكتلة العضلية والوراثة والهرمونات والنوم والحالات الطبية قد تؤثر أيضًا، لذلك اعتبر الرقم تقديرًا قويًا وليس تشخيصًا طبيًا.',
+                    tdeeTitle: 'إجمالي استهلاك الطاقة اليومي (TDEE)',
+                    tdeeBody: 'يبدأ TDEE من BMR ثم يضربه في معامل النشاط ليعكس الحركة خلال اليوم، بما في ذلك التمارين والمشي ونشاط العمل والحركة اليومية. إذا كان نمط حياتك خاملًا سيكون TDEE أقرب إلى BMR، وإذا كنت نشطًا أو تتمرن كثيرًا فسيزيد. اختيار مستوى النشاط الصحيح مهم لأن المبالغة في تقدير النشاط سبب شائع لفشل خطط السعرات.',
+                    howTitle: 'كيفية استخدام هذه الحاسبة',
+                    howBody: 'ابدأ بإدخال قياسات دقيقة، ثم اختر مستوى النشاط الذي يطابق أسبوعك المعتاد. استخدم هدف السعرات كنقطة بداية: الثبات للحفاظ على الوزن، عجز معتدل لفقدان الدهون تدريجيًا، أو فائض صغير لزيادة العضلات. أعد مراجعة الأرقام كل بضعة أسابيع مع تغير الوزن أو النشاط أو الأهداف. ولأفضل النتائج، اجمع بين تقديرات الحاسبة والوجبات المتوازنة وتمارين القوة والنوم واستشارة مختص عند وجود حالة طبية.',
+                    linksTitle: 'استكشف المزيد من الأدوات والأدلة الصحية',
+                  },
+                  fr: {
+                    eyebrow: 'Guide fondé sur les preuves',
+                    title: 'Comment fonctionnent le BMR, le TDEE et les objectifs caloriques',
+                    intro: 'Comprendre la science derrière vos chiffres vous aide à utiliser cette calculatrice comme un outil de planification pratique. Vos résultats combinent mesures corporelles, âge, sexe, activité et objectif pour estimer l’énergie utilisée par votre corps et ajuster l’apport en toute sécurité.',
+                    bmrTitle: 'Métabolisme de base (BMR)',
+                    bmrBody: 'Le BMR est l’énergie dont votre corps a besoin au repos pour assurer les fonctions essentielles comme la respiration, la circulation, la régulation de la température et la réparation cellulaire. C’est souvent la plus grande part des calories brûlées chaque jour. Nous estimons le BMR avec des équations reconnues comme Mifflin-St Jeor. La masse musculaire, la génétique, les hormones, le sommeil et les conditions médicales peuvent aussi influencer le BMR réel.',
+                    tdeeTitle: 'Dépense énergétique totale quotidienne (TDEE)',
+                    tdeeBody: 'Le TDEE part du BMR et le multiplie par un facteur d’activité pour refléter les mouvements de la journée : exercice, marche, travail et activité hors sport. Si vous êtes sédentaire, votre TDEE sera proche du BMR ; si vous êtes très actif, il augmente. Choisir le bon niveau d’activité est essentiel car surestimer l’activité est une cause fréquente d’échec des plans caloriques.',
+                    howTitle: 'Comment utiliser cette calculatrice',
+                    howBody: 'Commencez par saisir des mesures précises, puis choisissez le niveau d’activité qui correspond à votre semaine habituelle. Utilisez l’objectif calorique comme point de départ : maintien pour stabiliser le poids, déficit modéré pour une perte de graisse progressive, ou léger surplus pour prendre du muscle. Réévaluez vos chiffres toutes les quelques semaines. Pour de meilleurs résultats, associez ces estimations à des repas équilibrés, du renforcement, du sommeil et un avis professionnel si nécessaire.',
+                    linksTitle: 'Explorez plus d’outils et de guides santé',
+                  },
+                  es: {
+                    eyebrow: 'Guía basada en evidencia',
+                    title: 'Cómo funcionan el BMR, el TDEE y los objetivos de calorías',
+                    intro: 'Entender la ciencia detrás de tus números te ayuda a usar esta calculadora como una herramienta práctica de planificación. Tus resultados combinan medidas corporales, edad, sexo, actividad y objetivo para estimar cuánta energía usa tu cuerpo y cómo ajustar la ingesta de forma segura.',
+                    bmrTitle: 'Tasa metabólica basal (BMR)',
+                    bmrBody: 'El BMR es la energía que tu cuerpo necesita en reposo para funciones esenciales como respirar, la circulación, la regulación de la temperatura y la reparación celular. Suele ser la mayor parte del gasto calórico diario. Estimamos el BMR con ecuaciones reconocidas como Mifflin-St Jeor. La masa muscular, la genética, las hormonas, el sueño y las condiciones médicas también pueden influir en el BMR real.',
+                    tdeeTitle: 'Gasto energético total diario (TDEE)',
+                    tdeeBody: 'El TDEE parte del BMR y lo multiplica por un factor de actividad para reflejar el movimiento diario: ejercicio, caminar, trabajo y actividad fuera del entrenamiento. Si tu estilo de vida es sedentario, tu TDEE estará cerca del BMR; si eres muy activo, aumentará. Elegir bien el nivel de actividad es importante porque sobreestimar la actividad es una causa común de que los planes de calorías no funcionen.',
+                    howTitle: 'Cómo usar esta calculadora',
+                    howBody: 'Empieza ingresando medidas precisas y selecciona el nivel de actividad que coincida con tu semana normal. Usa el objetivo calórico como punto de partida: mantenimiento para estabilidad, déficit moderado para pérdida gradual de grasa o un pequeño superávit para ganar músculo. Revisa tus números cada pocas semanas. Para mejores resultados, combina estas estimaciones con comidas equilibradas, entrenamiento de fuerza, sueño y orientación profesional cuando sea necesario.',
+                    linksTitle: 'Explora más herramientas y guías de salud',
+                  },
+                  hi: {
+                    eyebrow: 'साक्ष्य-आधारित मार्गदर्शिका',
+                    title: 'BMR, TDEE और कैलोरी लक्ष्य कैसे काम करते हैं',
+                    intro: 'अपने नंबरों के पीछे का विज्ञान समझने से आप इस कैलकुलेटर का उपयोग एक व्यावहारिक योजना टूल के रूप में कर सकते हैं। आपके परिणाम शरीर के माप, उम्र, लिंग, गतिविधि और लक्ष्य को मिलाकर अनुमान लगाते हैं कि आपका शरीर कितनी ऊर्जा उपयोग करता है और सेवन को सुरक्षित रूप से कैसे समायोजित करें।',
+                    bmrTitle: 'बेसल मेटाबॉलिक रेट (BMR)',
+                    bmrBody: 'BMR वह ऊर्जा है जिसकी आपके शरीर को आराम की स्थिति में सांस लेने, रक्त संचार, तापमान नियंत्रण और कोशिका मरम्मत जैसी आवश्यक प्रक्रियाओं के लिए जरूरत होती है। यह आमतौर पर दैनिक कैलोरी खर्च का सबसे बड़ा हिस्सा होता है। हम Mifflin-St Jeor जैसे स्थापित समीकरणों से BMR का अनुमान लगाते हैं। मांसपेशी द्रव्यमान, आनुवंशिकी, हार्मोन, नींद और चिकित्सा स्थितियाँ भी वास्तविक BMR को प्रभावित कर सकती हैं।',
+                    tdeeTitle: 'कुल दैनिक ऊर्जा व्यय (TDEE)',
+                    tdeeBody: 'TDEE BMR से शुरू होता है और दिनभर की गतिविधि को दर्शाने के लिए इसे गतिविधि कारक से गुणा करता है। इसमें व्यायाम, चलना, काम की गतिविधि और गैर-व्यायाम मूवमेंट शामिल हैं। यदि आपकी जीवनशैली बैठी हुई है तो TDEE BMR के करीब होगा; यदि आप सक्रिय हैं तो यह बढ़ेगा। सही गतिविधि स्तर चुनना महत्वपूर्ण है क्योंकि गतिविधि को अधिक आंकना कैलोरी योजनाओं के विफल होने का सामान्य कारण है।',
+                    howTitle: 'इस कैलकुलेटर का उपयोग कैसे करें',
+                    howBody: 'सटीक माप दर्ज करें और अपनी सामान्य सप्ताहचर्या से मेल खाने वाला गतिविधि स्तर चुनें। कैलोरी लक्ष्य को शुरुआती बिंदु के रूप में उपयोग करें: वजन स्थिर रखने के लिए मेंटेन, धीरे-धीरे फैट लॉस के लिए मध्यम déficit, या मांसपेशी बढ़ाने के लिए छोटा surplus। हर कुछ हफ्तों में नंबर दोबारा जांचें। बेहतर परिणामों के लिए संतुलित भोजन, स्ट्रेंथ ट्रेनिंग, नींद और जरूरत पड़ने पर विशेषज्ञ सलाह के साथ इन अनुमानों को जोड़ें।',
+                    linksTitle: 'और स्वास्थ्य टूल व मार्गदर्शिकाएँ देखें',
+                  },
+                  de: {
+                    eyebrow: 'Evidenzbasierter Leitfaden',
+                    title: 'So funktionieren BMR, TDEE und Kalorienziele',
+                    intro: 'Wenn Sie die Wissenschaft hinter Ihren Zahlen verstehen, können Sie diesen Rechner als praktisches Planungstool nutzen. Ihre Ergebnisse kombinieren Körpermaße, Alter, Geschlecht, Aktivität und Ziel, um den Energiebedarf Ihres Körpers einzuschätzen.',
+                    bmrTitle: 'Grundumsatz (BMR)',
+                    bmrBody: 'Der BMR ist die Energie, die Ihr Körper in Ruhe für lebenswichtige Funktionen wie Atmung, Kreislauf, Temperaturregulierung und Zellreparatur benötigt. Er macht meist den größten Teil des täglichen Kalorienverbrauchs aus. Wir schätzen den BMR mit anerkannten Formeln wie Mifflin-St Jeor. Muskelmasse, Genetik, Hormone, Schlaf und Erkrankungen können den tatsächlichen BMR beeinflussen.',
+                    tdeeTitle: 'Gesamtumsatz (TDEE)',
+                    tdeeBody: 'Der TDEE geht vom BMR aus und multipliziert ihn mit einem Aktivitätsfaktor, der Bewegung im Alltag und Training berücksichtigt. Ein sitzender Lebensstil liegt näher am BMR, ein aktiver deutlich darüber. Die richtige Aktivitätsstufe ist wichtig, da eine Überschätzung häufig dazu führt, dass Kalorienpläne nicht funktionieren.',
+                    howTitle: 'So nutzen Sie diesen Rechner',
+                    howBody: 'Geben Sie genaue Messwerte ein und wählen Sie die Aktivitätsstufe, die zu Ihrer normalen Woche passt. Nutzen Sie das Kalorienziel als Startpunkt: Erhalt für Stabilität, moderates Defizit für Fettabbau oder leichter Überschuss für Muskelaufbau. Überprüfen Sie die Werte alle paar Wochen und kombinieren Sie sie mit ausgewogener Ernährung, Krafttraining, Schlaf und bei Bedarf professioneller Beratung.',
+                    linksTitle: 'Weitere Gesundheitstools und Ratgeber',
+                  },
+                };
+                const copy = copyByLang[language] || copyByLang.en;
+                return (
+                  <>
+                    <p className="calc-label mb-2">{copy.eyebrow}</p>
+                    <h2 id="calculator-science-heading" className="text-2xl font-bold text-slate-900 sm:text-3xl">{copy.title}</h2>
+                    <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">{copy.intro}</p>
+                    <div className="mt-6 grid gap-5 md:grid-cols-2">
+                      <article className="rounded-2xl bg-slate-50 p-5">
+                        <h3 className="text-lg font-bold text-slate-900">{copy.bmrTitle}</h3>
+                        <p className="mt-2 text-sm leading-7 text-slate-600">{copy.bmrBody}</p>
+                      </article>
+                      <article className="rounded-2xl bg-slate-50 p-5">
+                        <h3 className="text-lg font-bold text-slate-900">{copy.tdeeTitle}</h3>
+                        <p className="mt-2 text-sm leading-7 text-slate-600">{copy.tdeeBody}</p>
+                      </article>
+                    </div>
+                    <article className="mt-5 rounded-2xl border border-emerald-100 bg-emerald-50/50 p-5">
+                      <h3 className="text-lg font-bold text-slate-900">{copy.howTitle}</h3>
+                      <p className="mt-2 text-sm leading-7 text-slate-700">{copy.howBody}</p>
+                    </article>
+                  </>
+                );
+              })()}
+            </section>
+
+            <section className="grid gap-5 lg:grid-cols-2" aria-labelledby="home-links-heading">
+              <div className="rounded-3xl bg-white p-6 shadow-[0_0_0_1px_rgba(0,0,0,0.03),0_4px_24px_rgba(0,0,0,0.04)]">
+                <h2 id="home-links-heading" className="text-xl font-bold text-slate-900">{language === 'ar' ? 'وصفات مميزة' : language === 'fr' ? 'Recettes en vedette' : language === 'es' ? 'Recetas destacadas' : language === 'hi' ? 'विशेष रेसिपी' : 'Featured Recipes'}</h2>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {RECIPES.slice(0, 6).map((r) => (
+                    <Link key={r.slug} to={`/resources/recipe/${r.slug}`} className="rounded-2xl border border-slate-100 p-4 hover:border-emerald-200 hover:bg-emerald-50/40 transition-colors">
+                      <div className="text-sm font-bold text-slate-900">{recipeLt(r.title, language)}</div>
+                      <div className="mt-1 text-xs text-slate-500">{recipeLt(r.cuisine, language)} · {r.nutrition.calories} kcal</div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              <div className="rounded-3xl bg-white p-6 shadow-[0_0_0_1px_rgba(0,0,0,0.03),0_4px_24px_rgba(0,0,0,0.04)]">
+                <h2 className="text-xl font-bold text-slate-900">{language === 'ar' ? 'أحدث المقالات' : language === 'fr' ? 'Derniers articles' : language === 'es' ? 'Últimos artículos' : language === 'hi' ? 'नवीनतम लेख' : 'Latest Articles'}</h2>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {ARTICLES.slice(0, 6).map((a) => (
+                    <Link key={a.slug} to={`/resources/article/${a.slug}`} className="rounded-2xl border border-slate-100 p-4 hover:border-emerald-200 hover:bg-emerald-50/40 transition-colors">
+                      <div className="text-sm font-bold text-slate-900 line-clamp-2">{articleLt(a.title, language)}</div>
+                      <div className="mt-1 text-xs text-slate-500">{a.readTime} min · {a.publishedAt}</div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            <section className="rounded-3xl bg-white p-6 shadow-[0_0_0_1px_rgba(0,0,0,0.03),0_4px_24px_rgba(0,0,0,0.04)]" aria-labelledby="home-tools-heading">
+              <h2 id="home-tools-heading" className="text-xl font-bold text-slate-900">{language === 'ar' ? 'أدوات وموارد مهمة' : language === 'fr' ? 'Outils et ressources importants' : language === 'es' ? 'Herramientas y recursos importantes' : language === 'hi' ? 'महत्वपूर्ण टूल और संसाधन' : 'Important Tools and Resources'}</h2>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {[
+                  { to: '/meal-planner', label: { en: 'Meal Planner', ar: 'مخطط الوجبات', fr: 'Planificateur de repas', es: 'Planificador de comidas', hi: 'मील प्लानर' } },
+                  { to: '/food-library', label: { en: 'Food Library', ar: 'مكتبة الطعام', fr: 'Bibliothèque alimentaire', es: 'Biblioteca de alimentos', hi: 'फूड लाइब्रेरी' } },
+                  { to: '/resources', label: { en: 'Health Resources', ar: 'الموارد الصحية', fr: 'Ressources santé', es: 'Recursos de salud', hi: 'स्वास्थ्य संसाधन' } },
+                  { to: '/weight-loss', label: { en: 'Weight Loss Plan', ar: 'خطة فقدان الوزن', fr: 'Plan de perte de poids', es: 'Plan de pérdida de peso', hi: 'वजन घटाने की योजना' } },
+                  { to: '/diabetes', label: { en: 'Diabetes Guide', ar: 'دليل السكري', fr: 'Guide diabète', es: 'Guía de diabetes', hi: 'मधुमेह गाइड' } },
+                  { to: '/about', label: { en: 'About Us', ar: 'من نحن', fr: 'À propos', es: 'Sobre nosotros', hi: 'हमारे बारे में' } },
+                  { to: '/contact', label: { en: 'Contact', ar: 'تواصل معنا', fr: 'Contact', es: 'Contacto', hi: 'संपर्क' } },
+                  { to: '/privacy', label: { en: 'Privacy Policy', ar: 'سياسة الخصوصية', fr: 'Politique de confidentialité', es: 'Política de privacidad', hi: 'गोपनीयता नीति' } },
+                  { to: '/terms', label: { en: 'Terms of Service', ar: 'شروط الخدمة', fr: "Conditions d'utilisation", es: 'Términos de servicio', hi: 'सेवा की शर्तें' } },
+                ].map((item) => (
+                  <Link key={item.to} to={item.to} className="rounded-2xl border border-slate-100 px-4 py-3 text-sm font-semibold text-slate-700 hover:border-emerald-200 hover:bg-emerald-50/40 hover:text-emerald-900 transition-colors">
+                    {(item.label as any)[language] || item.label.en}
+                  </Link>
+                ))}
+              </div>
+            </section>
 
             <section className="calculator-final-cta relative overflow-hidden rounded-[32px] bg-slate-900 p-6 text-white shadow-xl sm:p-10">
               <div className="calculator-cta-glow pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-emerald-900/20 blur-3xl" />

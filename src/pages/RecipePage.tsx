@@ -39,12 +39,16 @@ const RecipePage: React.FC = () => {
   const name = lt(recipe.title, language);
   const descriptionRecipe = lt(recipe.description, language);
 
+  const datePublished = recipe.publishedAt || '2026-05-01';
+  const dateModified = recipe.dateModified || datePublished;
   const recipeJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Recipe',
     name,
     description: descriptionRecipe,
     image: recipe.imageUrl ? [`https://healthfingerprint.com${recipe.imageUrl}`] : undefined,
+    datePublished,
+    dateModified,
     prepTime: `PT${recipe.prepTime.en.replace(/\D/g, '')}M`,
     cookTime: recipe.cookTime
       ? `PT${recipe.cookTime.en.replace(/\D/g, '')}M`
@@ -119,6 +123,9 @@ const RecipePage: React.FC = () => {
             <span className="inline-flex items-center gap-1.5">
               <Flame size={16} className="text-[#D4A017]" />
               {recipe.nutrition.calories} kcal
+            </span>
+            <span className="inline-flex items-center gap-1.5 text-[#D8E6DF]">
+              {t('article.lastUpdated')}: {dateModified}
             </span>
           </div>
         </header>

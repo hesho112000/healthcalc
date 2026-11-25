@@ -3,6 +3,7 @@ Allow: /
 Disallow: /admin
 Disallow: /admin-login
 Disallow: /dashboard
+Disallow: /dashboard/
 
 User-agent: GPTBot
 Allow: /
