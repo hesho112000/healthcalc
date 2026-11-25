@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
       <div className="footer-container">
         <div className="footer-grid">
           <div className="footer-col">
-            <Link to="/discover" className="footer-logo" aria-label={`${t('brandName')} home`}>{t('brandName')} <span aria-hidden="true">🌿</span></Link>
+            <Link to="/" className="footer-logo" aria-label={`${t('brandName')} home`}>{t('brandName')} <span aria-hidden="true">🌿</span></Link>
             <p className="footer-desc">
               {t('footerTagline')}
             </p>
@@ -59,9 +59,9 @@ const Footer: React.FC = () => {
 
           <div className="footer-col">
             <h3>{t('footerPlatform')}</h3>
-            <Link to="/weight-loss">{t('footerPlan')}</Link>
-            <Link to="/fitness">{t('footerCalories')}</Link>
-            <Link to="/fitness">{t('footerBmi')}</Link>
+            <Link to="/meal-planner">{t('footerPlan')}</Link>
+            <Link to="/">{t('footerCalories')}</Link>
+            <Link to="/?tab=bmi">{t('footerBmi')}</Link>
             <Link to="/food-library">{t('footerFoodLibrary')}</Link>
           </div>
 

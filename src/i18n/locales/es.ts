@@ -1926,7 +1926,8 @@ const es: TranslationKeys = {
     // Footer
     footerTagline: 'Tu Compañero de Salud IA',
     'nav.home': 'Inicio',
-    'nav.calculators': 'Calculadoras & Fitness',
+    'nav.calculators': 'Fitness y Calculadora',
+    'nav.mealPlanner': 'Planificador de Comidas',
     'nav.advancedCare': 'Cuidado Avanzado',
     'nav.myHealthHub': 'Mi Centro de Salud',
     'nav.resources': 'Recursos',

@@ -138,8 +138,7 @@ const buildSitemap = async () => {
 
   const staticRouteDetails = [
     ['/', 'monthly', 1.0],
-    ['/calculator', 'monthly', 0.9],
-    ['/discover', 'monthly', 0.8],
+    ['/meal-planner', 'monthly', 0.8],
     ['/bmi', 'monthly', 0.7],
     ['/bmr', 'monthly', 0.7],
     ['/calories', 'monthly', 0.7],

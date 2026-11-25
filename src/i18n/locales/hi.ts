@@ -389,7 +389,8 @@ const hi: TranslationKeys = {
   diabetes: 'मधुमेह और उच्च रक्तचाप',
 
   'nav.home': 'होम',
-  'nav.calculators': 'कैलकुलेटर और फ़िटनेस',
+    'nav.calculators': 'फिटनेस और कैलकुलेटर',
+    'nav.mealPlanner': 'मील प्लानर',
   'nav.advancedCare': 'स्वास्थ्य उपकरण',
   'nav.myHealthHub': 'मेरा स्वास्थ्य केंद्र',
   'nav.resources': 'संसाधन',

@@ -15,7 +15,7 @@ const StartFreeDropdown: React.FC<StartFreeDropdownProps> = ({ buttonClassName, 
   const rootRef = useRef<HTMLDivElement>(null);
 
   const items: { path: string; icon: string; label: string }[] = [
-    { path: '/fitness', icon: '📊', label: t('ddFitness') },
+    { path: '/', icon: '📊', label: t('ddFitness') },
     { path: '/weight-loss', icon: '⚖️', label: t('ddWeight') },
     ...(ENABLE_PREMIUM ? [
       { path: '/premium', icon: '🏥', label: t('ddAdvancedCare') },

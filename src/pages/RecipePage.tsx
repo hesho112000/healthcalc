@@ -183,7 +183,7 @@ const RecipePage: React.FC = () => {
               </Link>
             )}
             <Link
-              to="/fitness"
+              to="/"
               className="inline-flex items-center rounded-full border border-[#0F4C3A] px-5 py-2.5 text-sm font-extrabold text-[#0F4C3A] hover:bg-white transition-colors"
             >
               {t('recipe.calorieMacroCalculator')}

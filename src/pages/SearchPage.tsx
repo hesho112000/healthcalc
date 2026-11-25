@@ -5,7 +5,7 @@ import { ENABLE_PREMIUM } from '../config/featureFlags';
 import SEO from '../components/seo/SEO';
 
 const pages: { path: string; icon: string; title: string; keywords: string }[] = [
-  { path: '/fitness', icon: '⚖️', title: 'Fitness & Health Calculator', keywords: 'bmi body mass index bmr basal metabolic rate ideal weight calories tdee fitness' },
+  { path: '/', icon: '⚖️', title: 'Fitness & Health Calculator', keywords: 'bmi body mass index bmr basal metabolic rate ideal weight calories tdee fitness' },
   { path: '/smartwatch-sync', icon: '⌚', title: 'Smartwatch Sync', keywords: 'smartwatch apple health google health connect watch wearable tracker' },
   { path: '/weight-loss', icon: '🏋️', title: 'Weight & Fitness', keywords: 'weight loss meal plan workout calorie deficit plan' },
   ...(ENABLE_PREMIUM ? [{ path: '/advanced-care', icon: '✨', title: 'Advanced Care', keywords: 'advanced care plans ibs gout kidney liver thyroid hypertension cholesterol care' }] : []),

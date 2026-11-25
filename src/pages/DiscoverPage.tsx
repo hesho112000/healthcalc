@@ -284,7 +284,7 @@ const DiscoverPage: React.FC = () => {
 
   return (
     <div className="home-shell" dir={dir}>
-      <SEO title={t('discover.seoTitle')} description={t('discover.seoDescription')} url="/calculator" />
+      <SEO title={t('discover.seoTitle')} description={t('discover.seoDescription')} url="/meal-planner" />
       <section className="hero-section home-hero-hook" dir={dir}>
         <div className="hh-preview__ambient hh-preview__ambient--one" aria-hidden="true" />
         <div className="hh-preview__ambient hh-preview__ambient--two" aria-hidden="true" />

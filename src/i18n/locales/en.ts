@@ -1925,7 +1925,8 @@ const en: TranslationKeys = {
     // Footer
     footerTagline: 'Your AI Health Companion',
     'nav.home': 'Home',
-    'nav.calculators': 'Calculators & Fitness',
+    'nav.calculators': 'Fitness & Calculator',
+    'nav.mealPlanner': 'Meal Planner',
     'nav.advancedCare': ENABLE_PREMIUM ? 'Health tools' : '',
     'nav.myHealthHub': 'My Health Hub',
     'nav.resources': 'Resources',

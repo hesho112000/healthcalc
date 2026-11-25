@@ -168,7 +168,7 @@ const renderCalculatorLanding = () => `<main style="${PAGE_STYLE}">
     <p style="margin:0 0 18px;color:#CBD5E1;">Explore Egyptian and Eastern European dishes, gluten-free options, and practical meal planning.</p>
     <a href="/meal-plan" style="display:inline-block;border-radius:999px;background:#fff;color:#0F172A;padding:14px 22px;font-weight:800;text-decoration:none;">Continue to your meal plan</a>
   </section>
-  <p style="margin-top:24px;"><a href="/calculator" style="${LINK_STYLE}">Explore Your Health Hub</a> · <a href="/food-library" style="${LINK_STYLE}">Browse the food library</a></p>
+  <p style="margin-top:24px;"><a href="/meal-planner" style="${LINK_STYLE}">Explore Your Health Hub</a> · <a href="/food-library" style="${LINK_STYLE}">Browse the food library</a></p>
 </main>`;
 
 const renderResources = ({ articles, recipes, exerciseGuides }) => `<main style="${PAGE_STYLE}">
@@ -522,23 +522,12 @@ const buildPrerenderedPages = async () => {
       },
     },
     {
-      route: '/calculator',
+      route: '/meal-planner',
       body: renderHome({ articles }),
       meta: {
         title: 'Your Health Hub | Health Fingerprint',
         description: 'Explore health tools, global dishes, personalized guidance, and practical health resources.',
-        canonical: `${SITE_BASE}/calculator`,
-        type: 'website',
-        preloadImage: '/images/hero-bowl.webp',
-      },
-    },
-    {
-      route: '/discover',
-      body: renderHome({ articles }),
-      meta: {
-        title: 'Your Health Hub | Health Fingerprint',
-        description: 'Explore health tools, global dishes, personalized guidance, and practical health resources.',
-        canonical: `${SITE_BASE}/calculator`,
+        canonical: `${SITE_BASE}/meal-planner`,
         type: 'website',
         preloadImage: '/images/hero-bowl.webp',
       },

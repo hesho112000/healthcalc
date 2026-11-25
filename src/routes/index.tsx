@@ -23,7 +23,7 @@ const TermsOfService = lazy(() => import('../pages/TermsOfService'));
 const MedicalDisclaimerPage = lazy(() => import('../pages/MedicalDisclaimerPage'));
 const CookiePolicy = lazy(() => import('../pages/CookiePolicy'));
 const ContactUs = lazy(() => import('../pages/ContactUs'));
-const FitnessPage = lazy(() => import('../pages/FitnessPage'));
+
 const WorkoutPlanPage = lazy(() => import('../pages/WorkoutPlanPage'));
 const SmartwatchSyncPage = lazy(() => import('../pages/SmartwatchSyncPage'));
 const FoodLibraryPage = lazy(() => import('../pages/FoodLibraryPage'));
@@ -114,8 +114,10 @@ const StaticStepPage: React.FC<{ step: number }> = ({ step }) => (
 export const AppRoutes: React.FC = () => (
     <Routes>
       <Route path="/" element={<CalculatorHub />} />
-      <Route path="/calculator" element={<DiscoverPage />} />
-      <Route path="/discover" element={<DiscoverPage />} />
+      <Route path="/meal-planner" element={<DiscoverPage />} />
+      <Route path="/calculator" element={<Navigate to="/" replace />} />
+      <Route path="/discover" element={<Navigate to="/meal-planner" replace />} />
+      <Route path="/fitness-calculator" element={<Navigate to="/" replace />} />
       <Route path="/bmi" element={<Navigate to="/?tab=bmi" replace />} />
       <Route path="/bmr" element={<Navigate to="/?tab=bmr" replace />} />
       <Route path="/calories" element={<Navigate to="/?tab=calories" replace />} />
@@ -125,7 +127,7 @@ export const AppRoutes: React.FC = () => (
       <Route path="/weight-loss" element={<WeightLossPage />} />
       <Route path="/diabetes" element={<DiabetesPage />} />
       {LegacyAdvancedCarePage && <Route path="/premium" element={<LegacyAdvancedCarePage />} />}
-      <Route path="/fitness" element={<FitnessPage />} />
+      <Route path="/fitness" element={<Navigate to="/" replace />} />
       <Route path="/workout-plan" element={<WorkoutPlanPage />} />
       <Route path="/smartwatch-sync" element={<SmartwatchSyncPage />} />
       <Route path="/food-library" element={<FoodLibraryPage />} />

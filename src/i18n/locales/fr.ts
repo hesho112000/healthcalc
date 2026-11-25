@@ -1926,7 +1926,8 @@ const fr: TranslationKeys = {
     // Footer
     footerTagline: 'Votre Compagnon Santé IA',
     'nav.home': 'Accueil',
-    'nav.calculators': 'Calculatrices & Fitness',
+    'nav.calculators': 'Fitness & Calculatrice',
+    'nav.mealPlanner': 'Planificateur de Repas',
     'nav.advancedCare': 'Soins Avancés',
     'nav.myHealthHub': 'Mon Hub Santé',
     'nav.resources': 'Ressources',

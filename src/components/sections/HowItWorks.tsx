@@ -94,7 +94,7 @@ const HowItWorks: React.FC = () => {
               </div>
 
               <div className="mt-8 flex flex-col items-start gap-3">
-                <Link to="/fitness" className="btn-secondary">
+                <Link to="/" className="btn-secondary">
                   {t('howItWorks.free.cta')} {arrow}
                 </Link>
                 <span className="text-[12px] text-[#6B7A75]">{t('howItWorks.free.note')}</span>

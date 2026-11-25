@@ -2800,7 +2800,7 @@ Include a protein-rich food at meals—such as beans, lentils, eggs, fish, poult
 
 ## Calculate macros in context
 
-Your protein target should fit your calorie needs rather than crowding out fiber-rich foods or healthy fats. Use the [calorie and macro calculator](/fitness) to estimate a starting plan, then discuss a personalized target with a registered dietitian or clinician if you have a health condition, take medicines that affect nutrition, or are unsure what is safe. Calculators provide estimates, not a medical prescription.
+Your protein target should fit your calorie needs rather than crowding out fiber-rich foods or healthy fats. Use the [calorie and macro calculator](/) to estimate a starting plan, then discuss a personalized target with a registered dietitian or clinician if you have a health condition, take medicines that affect nutrition, or are unsure what is safe. Calculators provide estimates, not a medical prescription.
 
 ## A note about kidney health
 

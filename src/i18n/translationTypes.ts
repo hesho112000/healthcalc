@@ -418,6 +418,7 @@ export type TranslationKeys = {
   // Header navigation
   'nav.home': string;
   'nav.calculators': string;
+  'nav.mealPlanner': string;
   'nav.advancedCare': string;
   'nav.myHealthHub': string;
   'nav.resources': string;

@@ -1928,7 +1928,8 @@ const de: TranslationKeys = {
     // Footer
     footerTagline: 'Ihr KI-Gesundheitsbegleiter',
     'nav.home': 'Startseite',
-    'nav.calculators': 'Rechner',
+    'nav.calculators': 'Fitness & Rechner',
+    'nav.mealPlanner': 'Mahlzeitenplaner',
     'nav.advancedCare': 'Erweiterte Pflege',
     'nav.myHealthHub': 'Mein Gesundheits-Hub',
     'nav.resources': 'Ressourcen',

@@ -1939,7 +1939,8 @@ const ar: TranslationKeys = {
     // Footer
     footerTagline: 'رفيقك الصحي بالذكاء الاصطناعي',
     'nav.home': 'الرئيسية',
-    'nav.calculators': 'الحاسبات واللياقة',
+    'nav.calculators': 'اللياقة والحاسبة',
+    'nav.mealPlanner': 'مخطط الوجبات',
     'nav.advancedCare': 'الرعاية المتقدمة',
     'nav.myHealthHub': 'مركز صحتي',
     'nav.resources': 'المصادر',
