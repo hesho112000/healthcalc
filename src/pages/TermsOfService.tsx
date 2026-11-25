@@ -16,7 +16,7 @@ const TermsOfService: React.FC = () => {
             <span className="w-1.5 h-1.5 bg-gray-300 rounded-full" />
             <span className="text-xs font-medium text-gray-200">{doc.badge}</span>
           </div>
-          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight">{t('termsOfService')}</h1>
+          <h1 className="text-white text-2xl md:text-3xl font-extrabold tracking-tight">{t('termsOfService')}</h1>
           <p className="text-gray-300 text-sm mt-2">{doc.updated}</p>
         </div>
       </div>

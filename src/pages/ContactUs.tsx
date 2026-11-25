@@ -103,7 +103,7 @@ const ContactUs: React.FC = () => {
       <div className="bg-gradient-to-r from-[#0F4C3A] to-[#1a6b53] text-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 md:py-16">
           <span className="inline-flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-full text-xs font-medium text-[#D4A017]">{c.badge}</span>
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mt-4">{c.title}</h1>
+          <h1 className="text-white text-3xl md:text-4xl font-extrabold tracking-tight mt-4">{c.title}</h1>
           <p className="text-white/85 mt-3 max-w-3xl leading-relaxed">{c.intro}</p>
         </div>
       </div>
