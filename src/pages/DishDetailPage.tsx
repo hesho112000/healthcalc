@@ -268,6 +268,96 @@ const RECIPE_LINKS: RecipeLink[] = [
     slug: 'macaroni-and-cheese',
     title: 'Macaroni and Cheese',
   },
+  {
+    keywords: ['garlic chicken shawarma', 'shawarma chicken'],
+    dishIds: ['db873d8b-26ff-47cb-b35a-a16220f40740'],
+    slug: 'garlic-chicken-shawarma',
+    title: 'Garlic Chicken Shawarma',
+  },
+  {
+    keywords: ['genoese grilled fish', 'grilled fish lemon'],
+    dishIds: ['1f17becd-da58-4ef7-9de1-1ab1cb537cdd'],
+    slug: 'genoese-grilled-fish-with-lemon',
+    title: 'Genoese Grilled Fish with Lemon',
+  },
+  {
+    keywords: ['plain paratha', 'paratha indian'],
+    dishIds: ['de90fb66-0e3f-4584-9736-c96689c9218e'],
+    slug: 'indian-plain-paratha',
+    title: 'Indian Plain Paratha',
+  },
+  {
+    keywords: ['kgaare', 'pap botswanan'],
+    dishIds: ['5d9deafa-bf7b-4a74-80ce-6b173b7bf5d2'],
+    slug: 'kgaare-with-pap-botswanan',
+    title: 'Kgaare with Pap',
+  },
+  {
+    keywords: ['korean corn dog', 'corn dog'],
+    dishIds: ['7d667333-92c2-4372-a1cf-73e1372e00da'],
+    slug: 'korean-corn-dog',
+    title: 'Korean Corn Dog',
+  },
+  {
+    keywords: ['mbakbka', 'bread in broth'],
+    dishIds: ['3e432eaf-ef80-47f9-8ab2-77ce69b0f81a'],
+    slug: 'mbakbka-bread-in-broth',
+    title: 'M\'Bakbka (Bread in Broth)',
+  },
+  {
+    keywords: ['mafe fish', 'fish mafe'],
+    dishIds: ['cb592517-f0bb-4356-afd6-1931c7f09317'],
+    slug: 'mafe-fish',
+    title: 'Mafe Fish',
+  },
+  {
+    keywords: ['merluza pollada', 'cassava aji'],
+    dishIds: ['f44017e9-78a3-4701-a0b6-fb03474e8c21'],
+    slug: 'merluza-pollada-with-cassava-and-aji-sauce',
+    title: 'Merluza Pollada with Cassava and Aji Sauce',
+  },
+  {
+    keywords: ['plantain stuffed', 'black beans panela'],
+    dishIds: ['f4e1614e-98e8-4705-90a4-a3702e008e4f'],
+    slug: 'plantain-stuffed-with-black-beans-and-panela',
+    title: 'Plantain Stuffed with Black Beans and Panela',
+  },
+  {
+    keywords: ['pomegranate salad', 'salad pomegranate'],
+    dishIds: ['3fa4d7e5-f109-44e5-beef-d5599cd4a956'],
+    slug: 'pomegranate-salad',
+    title: 'Pomegranate Salad',
+  },
+  {
+    keywords: ['rendang kering', 'beef rendang'],
+    dishIds: ['c8bb22b3-ab97-4efa-b9a2-3ea909312a5e'],
+    slug: 'rendang-kering-malaysian-dry-beef-rendang',
+    title: 'Rendang Kering (Malaysian Dry Beef Rendang)',
+  },
+  {
+    keywords: ['smoked beef barbecue', 'beef barbecue'],
+    dishIds: ['dccaaded-6613-4e83-af37-c5c112fe5789'],
+    slug: 'smoked-beef-barbecue',
+    title: 'Smoked Beef Barbecue',
+  },
+  {
+    keywords: ['tampere vegetable soup', 'finnish vegetable soup'],
+    dishIds: ['fb827064-280a-4330-b373-21d258421455'],
+    slug: 'tampere-vegetable-soup',
+    title: 'Tampere Vegetable Soup',
+  },
+  {
+    keywords: ['vegetable soba', 'soba noodles'],
+    dishIds: ['06699041-4583-40ab-ae61-b7f20d67ccbe'],
+    slug: 'vegetable-soba',
+    title: 'Vegetable Soba',
+  },
+  {
+    keywords: ['mutton qorma', 'qorma pakistani'],
+    dishIds: ['17189ef2-ab16-488b-a046-147c9d640c50'],
+    slug: 'mutton-qorma-pakistani',
+    title: 'Mutton Qorma (Pakistani Style)',
+  },
 ];
 
 const NUTRITION_ARTICLE_SLUGS = [
