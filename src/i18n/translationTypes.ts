@@ -2895,4 +2895,15 @@ export type TranslationKeys = {
   'hub.streaks.dailyLog': string;
   'hub.streaks.markDone': string;
   'hub.streaks.done': string;
+
+  // Meal Planner Wizard — Add Dish modal
+  'wizard.addDish.titleSwap': string;
+  'wizard.addDish.titleAdd': string;
+  'wizard.addDish.calorieHint': string;
+  'wizard.addDish.subtitle': string;
+  'wizard.addDish.close': string;
+  'wizard.addDish.searchPlaceholder': string;
+  'wizard.addDish.searchAria': string;
+  'wizard.addDish.current': string;
+  'wizard.addDish.noResults': string;
 };

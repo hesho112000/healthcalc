@@ -4,6 +4,17 @@ import calculatorSeoGuide from '../calculatorSeoGuide.json';
 
 const ar: TranslationKeys = {
     ...calculatorSeoGuide.ar,
+
+    // Meal Planner Wizard — Add Dish modal
+    'wizard.addDish.titleSwap': 'بدّل طبق في {meal}',
+    'wizard.addDish.titleAdd': 'إضافة طبق إلى {meal}',
+    'wizard.addDish.calorieHint': 'البديل يطابق ±20% من السعرات الحالية ({min}–{max} kcal)',
+    'wizard.addDish.subtitle': 'اختر طبقاً من مطبخك',
+    'wizard.addDish.close': 'إغلاق',
+    'wizard.addDish.searchPlaceholder': 'ابحث في الأطباق…',
+    'wizard.addDish.searchAria': 'ابحث في الأطباق',
+    'wizard.addDish.current': 'الحالي',
+    'wizard.addDish.noResults': 'لا توجد نتائج',
     'discover.seoTitle': 'مركزك الصحي | بصمتك الحيوية',
     'discover.seoDescription': 'استكشف أدوات الصحة والأطباق العالمية والإرشادات الصحية المخصصة.',
     'calculator.seoTitle': 'حاسبة الصحة والتغذية | بصمتك الحيوية',

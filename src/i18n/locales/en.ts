@@ -4,6 +4,17 @@ import calculatorSeoGuide from '../calculatorSeoGuide.json';
 
 const en: TranslationKeys = {
     ...calculatorSeoGuide.en,
+
+    // Meal Planner Wizard — Add Dish modal
+    'wizard.addDish.titleSwap': 'Swap dish in {meal}',
+    'wizard.addDish.titleAdd': 'Add dish to {meal}',
+    'wizard.addDish.calorieHint': 'Alternatives match ±20% of current calories ({min}–{max} kcal)',
+    'wizard.addDish.subtitle': 'Pick a dish from your cuisine',
+    'wizard.addDish.close': 'Close',
+    'wizard.addDish.searchPlaceholder': 'Search dishes…',
+    'wizard.addDish.searchAria': 'Search dishes',
+    'wizard.addDish.current': 'Current',
+    'wizard.addDish.noResults': 'No results',
     'discover.seoTitle': 'Your Health Hub | Health Fingerprint',
     'discover.seoDescription': 'Explore health tools, global dishes, personalized guidance, and practical health resources.',
     'calculator.seoTitle': 'Health & Nutrition Calculator | Health Fingerprint',

@@ -6,6 +6,17 @@ import en from './en';
 const de: TranslationKeys = {
     ...en,
     ...calculatorSeoGuide.de,
+
+    // Meal Planner Wizard — Add Dish modal
+    'wizard.addDish.titleSwap': 'Gericht in {meal} tauschen',
+    'wizard.addDish.titleAdd': 'Gericht zu {meal} hinzufügen',
+    'wizard.addDish.calorieHint': 'Alternativen entsprechen ±20 % der aktuellen Kalorien ({min}–{max} kcal)',
+    'wizard.addDish.subtitle': 'Wähle ein Gericht aus deiner Küche',
+    'wizard.addDish.close': 'Schließen',
+    'wizard.addDish.searchPlaceholder': 'Gerichte suchen…',
+    'wizard.addDish.searchAria': 'Gerichte suchen',
+    'wizard.addDish.current': 'Aktuell',
+    'wizard.addDish.noResults': 'Keine Ergebnisse',
     'discover.seoTitle': 'Dein Gesundheitszentrum | Health Fingerprint',
     'discover.seoDescription': 'Entdecke Gesundheitstools, Gerichte aus aller Welt und persönliche Empfehlungen.',
     'calculator.seoTitle': 'Gesundheits- und Ernährungsrechner | Health Fingerprint',

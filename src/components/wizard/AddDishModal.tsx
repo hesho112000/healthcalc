@@ -3,6 +3,7 @@ import type { KitchenDish } from '../../data/kitchens';
 import { getDishName } from '../../data/kitchens/helpers';
 import type { PlanMealType } from '../../utils/mealPlanGenerator';
 import type { Language } from '../../types';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface AddDishModalProps {
   open: boolean;
@@ -25,6 +26,9 @@ const haptic = (ms = 8) => {
 };
 
 const AddDishModal: React.FC<AddDishModalProps> = ({ open, mode, mealLabel, pool, currentDish, language, onClose, onSelect }) => {
+  const { t } = useLanguage();
+  const fmt = (key: Parameters<typeof t>[0], vars: Record<string, string | number>): string =>
+    t(key).replace(/\{(\w+)\}/g, (_, k: string) => (k in vars ? String(vars[k]) : `{${k}}`));
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
@@ -110,30 +114,22 @@ const AddDishModal: React.FC<AddDishModalProps> = ({ open, mode, mealLabel, pool
           <div className="min-w-0">
             <h3 id="add-dish-modal-title" className="text-[17px] font-extrabold truncate">
               {isSwap ? '🔄' : '➕'}{' '}
-              {language === 'ar'
-                ? isSwap
-                  ? `بدّل طبق في ${mealLabel}`
-                  : `إضافة طبق إلى ${mealLabel}`
-                : isSwap
-                  ? `Swap dish in ${mealLabel}`
-                  : `Add dish to ${mealLabel}`}
+              {fmt(isSwap ? 'wizard.addDish.titleSwap' : 'wizard.addDish.titleAdd', { meal: mealLabel })}
             </h3>
             {isSwap && currentDish ? (
               <p className="text-[11.5px] text-[#8A938E] mt-0.5 leading-snug">
-                {language === 'ar'
-                  ? `البديل يطابق ±20% من السعرات الحالية (${minC}–${maxC} kcal)`
-                  : `Alternatives match ±20% of current calories (${minC}–${maxC} kcal)`}
+                {fmt('wizard.addDish.calorieHint', { min: minC, max: maxC })}
               </p>
             ) : (
               <p className="text-[11.5px] text-[#8A938E] mt-0.5">
-                {language === 'ar' ? 'اختر طبقاً من مطبخك' : 'Pick a dish from your cuisine'}
+                {t('wizard.addDish.subtitle')}
               </p>
             )}
           </div>
           <button
             type="button"
             onClick={onClose}
-            aria-label={language === 'ar' ? 'إغلاق' : 'Close'}
+            aria-label={t('wizard.addDish.close')}
             className="w-8 h-8 rounded-full text-zinc-400 hover:text-zinc-700 hover:bg-[#F4F1EB] text-[16px] shrink-0 transition-all"
           >
             ✕
@@ -145,8 +141,8 @@ const AddDishModal: React.FC<AddDishModalProps> = ({ open, mode, mealLabel, pool
             ref={inputRef}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder={language === 'ar' ? 'ابحث في الأطباق…' : 'Search dishes…'}
-            aria-label={language === 'ar' ? 'ابحث في الأطباق' : 'Search dishes'}
+            placeholder={t('wizard.addDish.searchPlaceholder')}
+            aria-label={t('wizard.addDish.searchAria')}
             className="flex-1 bg-transparent outline-none text-[14px] text-[#0F4C3A] placeholder:text-[#A0A8A4] min-w-0" id="field-components-wizard-adddishmodal-144" name="field-components-wizard-adddishmodal-144"
           />
           <span className="text-[#0F4C3A] text-[16px] shrink-0">🔍</span>
@@ -189,7 +185,7 @@ const AddDishModal: React.FC<AddDishModalProps> = ({ open, mode, mealLabel, pool
                       <span className="font-bold text-[13px] text-[#0F4C3A] truncate">{getDishName(d, language as Language)}</span>
                       {isCurrent && (
                         <span className="text-[10px] font-bold bg-[#D4A017] text-[#0F4C3A] px-2 py-0.5 rounded-full shrink-0">
-                          {language === 'ar' ? 'الحالي' : 'Current'}
+                          {t('wizard.addDish.current')}
                         </span>
                       )}
                     </div>
@@ -213,7 +209,7 @@ const AddDishModal: React.FC<AddDishModalProps> = ({ open, mode, mealLabel, pool
               );
             })
           ) : (
-            <div className="text-center text-[13px] text-[#A0A8A4] py-8">{language === 'ar' ? 'لا توجد نتائج' : 'No results'}</div>
+            <div className="text-center text-[13px] text-[#A0A8A4] py-8">{t('wizard.addDish.noResults')}</div>
           )}
         </div>
       </div>

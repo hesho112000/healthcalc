@@ -13,6 +13,17 @@ const hi: TranslationKeys = {
   ...en,
   ...calculatorSeoGuide.hi,
 
+  // Meal Planner Wizard — Add Dish modal
+  'wizard.addDish.titleSwap': '{meal} में व्यंजन बदलें',
+  'wizard.addDish.titleAdd': '{meal} में व्यंजन जोड़ें',
+  'wizard.addDish.calorieHint': 'विकल्प वर्तमान कैलोरी के ±20% से मेल खाते हैं ({min}–{max} kcal)',
+  'wizard.addDish.subtitle': 'अपने खानपान से एक व्यंजन चुनें',
+  'wizard.addDish.close': 'बंद करें',
+  'wizard.addDish.searchPlaceholder': 'व्यंजन खोजें…',
+  'wizard.addDish.searchAria': 'व्यंजन खोजें',
+  'wizard.addDish.current': 'वर्तमान',
+  'wizard.addDish.noResults': 'कोई परिणाम नहीं',
+
   'discover.seoTitle': 'आपका स्वास्थ्य केंद्र | Health Fingerprint',
   'discover.seoDescription': 'स्वास्थ्य टूल, दुनिया भर के व्यंजन और आपके लिए उपयोगी मार्गदर्शन देखें।',
   'calculator.seoTitle': 'स्वास्थ्य और पोषण कैलकुलेटर | Health Fingerprint',
