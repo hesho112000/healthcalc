@@ -56,6 +56,9 @@ const stripLanguagePrefix = (pathname: string): string => {
   return pathname;
 };
 
+const withTrailingSlash = (pathname: string): string =>
+  pathname.endsWith('/') ? pathname : `${pathname}/`;
+
 const SEO: React.FC<SEOProps> = ({
   title,
   description,
@@ -75,8 +78,15 @@ const SEO: React.FC<SEOProps> = ({
   // hreflang must agree on that localized URL to avoid duplicate-content signals.
   const localizedUrl = (lang: string) => {
     const localized = new URL(pageUrl);
-    const cleanPath = stripLanguagePrefix(localized.pathname).replace(/^\/+/, '');
-    localized.pathname = `/${lang}${cleanPath ? `/${cleanPath}` : ''}`;
+    const cleanPath = stripLanguagePrefix(localized.pathname)
+      .replace(/^\/+/, '')
+      .replace(/\/+$/, '');
+    const basePath = cleanPath ? `/${cleanPath}` : '/';
+    // English canonicals stay unprefixed; translated routes own `/<lang>/` URLs.
+    localized.pathname =
+      lang === 'en'
+        ? withTrailingSlash(basePath)
+        : withTrailingSlash(`/${lang}${basePath === '/' ? '' : basePath}`);
     localized.searchParams.delete('lang');
     localized.hash = '';
     return localized.toString();

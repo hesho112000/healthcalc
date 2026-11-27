@@ -1,12 +1,15 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { config } from 'dotenv';
 import { loadContentData } from './content-data.mjs';
+import {
+  LOCALIZED_LANGUAGES,
+  SITE_BASE,
+  canonicalUrl,
+  hasTranslation,
+  localizedText,
+} from './seo-config.mjs';
 
-config();
-
-const SITE_BASE = (process.env.VITE_SITE_URL || 'https://healthfingerprint.com').replace(/\/+$/, '');
 const DIST_DIR = fileURLToPath(new URL('../dist/', import.meta.url));
 const SHELL_PATH = path.join(DIST_DIR, 'index.html');
 const SITEMAP_PATH = fileURLToPath(new URL('../public/sitemap.xml', import.meta.url));
@@ -36,6 +39,8 @@ const escapeHtml = (value) =>
     .replaceAll("'", '&#39;');
 
 const escapeAttr = (value) => escapeHtml(value).replaceAll('\n', ' ');
+
+const localizedList = (value, lang) => (Array.isArray(value?.[lang]) ? value[lang] : value?.en ?? []);
 
 const renderInline = (value) =>
   escapeHtml(value)
@@ -104,9 +109,9 @@ const markdownToHtml = (markdown) => {
   return out.join('\n');
 };
 
-const breadcrumbs = (label) => `<nav aria-label="Breadcrumb" style="${NAV_STYLE}">
-  <a href="/" style="${LINK_STYLE}">Home</a> <span aria-hidden="true">/</span>
-  <a href="/resources" style="${LINK_STYLE}">Health Resources</a>
+const breadcrumbs = (label, prefix = '') => `<nav aria-label="Breadcrumb" style="${NAV_STYLE}">
+  <a href="${prefix}/" style="${LINK_STYLE}">Home</a> <span aria-hidden="true">/</span>
+  <a href="${prefix}/resources/" style="${LINK_STYLE}">Health Resources</a>
   ${label ? `<span aria-hidden="true">/</span> <span>${escapeHtml(label)}</span>` : ''}
 </nav>`;
 
@@ -305,24 +310,29 @@ const renderResources = ({ articles, recipes, exerciseGuides }) => `<main style=
   </ul>
 </main>`;
 
-const renderArticle = ({ article, articles }) => {
+const renderArticle = ({ article, articles, lang = 'en' }) => {
   const related = [
     ...articles.filter((item) => item.category === article.category && item.slug !== article.slug),
     ...articles.filter((item) => item.category !== article.category && item.slug !== article.slug),
   ].slice(0, 3);
+  const title = localizedText(article.title, lang);
+  const excerpt = localizedText(article.excerpt, lang);
+  const content = localizedText(article.content, lang);
+  const takeaways = localizedList(article.takeaways, lang);
+  const prefix = lang === 'en' ? '' : `/${lang}`;
 
   return `<main style="${PAGE_STYLE}">
-  ${breadcrumbs(article.title.en)}
+  ${breadcrumbs(title, prefix)}
   <article>
     <p style="${MUTED_STYLE}">${escapeHtml(article.category)} &middot; ${article.readTime} min read &middot; ${escapeHtml(article.publishedAt)}</p>
-    <p style="${MUTED_STYLE}">Reviewed by the <a href="/about" style="${LINK_STYLE}">HealthFingerprint Medical Team</a>.</p>
-    <h1 style="${H1_STYLE}">${escapeHtml(article.title.en)}</h1>
-    <p style="font-size:1.1rem;color:#4A5A55;margin:0 0 16px;">${escapeHtml(article.excerpt.en)}</p>
-    ${markdownToHtml(article.content.en)}
+    <p style="${MUTED_STYLE}">Reviewed by the <a href="${prefix}/about/" style="${LINK_STYLE}">HealthFingerprint Medical Team</a>.</p>
+    <h1 style="${H1_STYLE}">${escapeHtml(title)}</h1>
+    <p style="font-size:1.1rem;color:#4A5A55;margin:0 0 16px;">${escapeHtml(excerpt)}</p>
+    ${markdownToHtml(content)}
 
     <h2 style="${H2_STYLE}">Key Takeaways</h2>
     <ul style="${LIST_STYLE}">
-      ${article.takeaways.en.map((point) => `<li>${escapeHtml(point)}</li>`).join('\n      ')}
+      ${takeaways.map((point) => `<li>${escapeHtml(point)}</li>`).join('\n      ')}
     </ul>
 
     <h2 style="${H2_STYLE}">Related Articles</h2>
@@ -330,12 +340,12 @@ const renderArticle = ({ article, articles }) => {
       ${related
         .map(
           (item) =>
-            `<li><a href="/resources/article/${item.slug}" style="${LINK_STYLE}">${escapeHtml(item.title.en)}</a></li>`,
+            `<li><a href="${prefix}/resources/article/${item.slug}/" style="${LINK_STYLE}">${escapeHtml(localizedText(item.title, lang))}</a></li>`,
         )
         .join('\n      ')}
     </ul>
 
-    <p style="margin-top:32px;"><a href="/resources" style="${LINK_STYLE}">&larr; Back to all health resources</a></p>
+    <p style="margin-top:32px;"><a href="${prefix}/resources/" style="${LINK_STYLE}">&larr; Back to all health resources</a></p>
   </article>
 </main>`;
 };
@@ -442,7 +452,7 @@ const articleJsonLd = (article) => ({
     url: `${SITE_BASE}/about`,
   },
   publisher: { '@type': 'Organization', name: 'Health Fingerprint', url: `${SITE_BASE}/` },
-  mainEntityOfPage: `${SITE_BASE}/resources/article/${article.slug}`,
+  mainEntityOfPage: canonicalUrl(`/resources/article/${article.slug}`),
 });
 
 const recipeJsonLd = (recipe) => ({
@@ -502,6 +512,9 @@ const assertResolvedMeta = (meta) => {
 
 const applyHead = (html, meta) => {
   assertResolvedMeta(meta);
+  if (!String(meta.canonical || '').endsWith('/')) {
+    throw new Error(`Refusing to prerender ${meta.route ?? 'unknown route'}: canonical must be slash-terminated.`);
+  }
   const rootRoutePreload = html.match(/<link\b[^>]*data-root-route-preload[^>]*>/i)?.[0];
   const tags = [
     `<meta name="description" content="${escapeAttr(meta.description)}" data-prerender="true" data-rh="true">`,
@@ -583,7 +596,7 @@ const dishJsonLd = (dish) => ({
   name: dish.name_en || `Dish ${dish.id}`,
   description: `Nutrition information per 100 g for ${dish.name_en || `dish ${dish.id}`}.`,
   image: dish.image_url ? [`${SITE_BASE}${dish.image_url}`] : undefined,
-  url: `${SITE_BASE}/food-library/${dish.id}`,
+  url: canonicalUrl(`/food-library/${dish.id}`),
   additionalProperty: [
     ['Calories', dish.cal_100, 'kcal per 100 g'],
     ['Protein', dish.protein, 'g per 100 g'],
@@ -618,7 +631,7 @@ const buildPrerenderedPages = async () => {
         title: 'From Guessing to Gourmet in 30 Seconds | Health Fingerprint',
         description:
           'Calculate BMI, BMR, TDEE, body fat, ideal weight, and macros with evidence-based formulas, then turn your results into real meals.',
-        canonical: `${SITE_BASE}/`,
+        canonical: canonicalUrl('/'),
         type: 'website',
         preloadImage: seoFoods[0]?.src,
       },
@@ -629,7 +642,7 @@ const buildPrerenderedPages = async () => {
       meta: {
         title: 'Your Health Hub | Health Fingerprint',
         description: 'Explore health tools, global dishes, personalized guidance, and practical health resources.',
-        canonical: `${SITE_BASE}/meal-planner`,
+        canonical: canonicalUrl('/meal-planner'),
         type: 'website',
         preloadImage: '/images/hero-bowl.webp',
       },
@@ -641,7 +654,7 @@ const buildPrerenderedPages = async () => {
         title: 'Health Resources: Articles, Recipes & Exercise Guides | Health Fingerprint',
         description:
           'Evidence-based health articles, healthy recipes, and exercise guides covering diabetes, cholesterol, nutrition, sleep, fitness, and sustainable lifestyle habits.',
-        canonical: `${SITE_BASE}/resources`,
+        canonical: canonicalUrl('/resources'),
         type: 'website',
         jsonLd: {
           '@context': 'https://schema.org',
@@ -649,8 +662,8 @@ const buildPrerenderedPages = async () => {
           name: 'Health Resources: Articles, Recipes & Exercise Guides',
           description:
             'Evidence-based health articles, healthy recipes, and exercise guides from Health Fingerprint.',
-          url: `${SITE_BASE}/resources`,
-          isPartOf: { '@type': 'WebSite', name: 'Health Fingerprint', url: `${SITE_BASE}/` },
+          url: canonicalUrl('/resources'),
+          isPartOf: { '@type': 'WebSite', name: 'Health Fingerprint', url: canonicalUrl('/') },
         },
       },
     },
@@ -660,18 +673,46 @@ const buildPrerenderedPages = async () => {
       meta: {
         title: `${article.title.en} | Health Fingerprint`,
         description: article.excerpt.en,
-        canonical: `${SITE_BASE}/resources/article/${article.slug}`,
+        canonical: canonicalUrl(`/resources/article/${article.slug}`),
         type: 'article',
         jsonLd: articleJsonLd(article),
       },
     })),
+    // Localized articles are advertised in the sitemap, so they need their own
+    // raw HTML with a self-referencing canonical instead of the SPA shell.
+    ...LOCALIZED_LANGUAGES.flatMap((lang) =>
+      articles
+        .filter((article) => hasTranslation(article.title, lang) && hasTranslation(article.content, lang))
+        .map((article) => {
+          const route = `/${lang}/resources/article/${article.slug}`;
+          const title = localizedText(article.title, lang);
+          const description = localizedText(article.excerpt, lang);
+          return {
+            route,
+            body: renderArticle({ article, articles, lang }),
+            meta: {
+              route,
+              title: `${title} | Health Fingerprint`,
+              description,
+              canonical: canonicalUrl(route),
+              type: 'article',
+              jsonLd: {
+                ...articleJsonLd(article),
+                headline: title,
+                description,
+                mainEntityOfPage: canonicalUrl(route),
+              },
+            },
+          };
+        }),
+    ),
     ...recipes.map((recipe) => ({
       route: `/resources/recipe/${recipe.slug}`,
       body: renderRecipe({ recipe, articles }),
       meta: {
         title: `${recipe.title.en} | Health Fingerprint`,
         description: recipe.description.en,
-        canonical: `${SITE_BASE}/resources/recipe/${recipe.slug}`,
+        canonical: canonicalUrl(`/resources/recipe/${recipe.slug}`),
         type: 'article',
         jsonLd: recipeJsonLd(recipe),
       },
@@ -682,7 +723,7 @@ const buildPrerenderedPages = async () => {
       meta: {
         title: `${guide.title.en} | Health Fingerprint`,
         description: guide.description.en,
-        canonical: `${SITE_BASE}/resources/exercise/${guide.slug}`,
+        canonical: canonicalUrl(`/resources/exercise/${guide.slug}`),
         type: 'article',
         jsonLd: exerciseJsonLd(guide),
       },
@@ -707,31 +748,26 @@ const buildPrerenderedPages = async () => {
       route: '/bmi',
       title: 'BMI Calculator | Health Fingerprint',
       description: 'Calculate body mass index with the metric or imperial formula and explore a healthy BMI range.',
-      canonical: `${SITE_BASE}/`,
     },
     {
       route: '/bmr',
       title: 'BMR Calculator | Health Fingerprint',
       description: 'Compare Mifflin–St Jeor, Harris–Benedict, and Katch–McArdle basal metabolic rate estimates.',
-      canonical: `${SITE_BASE}/`,
     },
     {
       route: '/calories',
       title: 'Daily Calories and TDEE Calculator | Health Fingerprint',
       description: 'Estimate maintenance calories and daily targets using your activity level and goal.',
-      canonical: `${SITE_BASE}/`,
     },
     {
       route: '/body-fat',
       title: 'Body Fat Calculator | Health Fingerprint',
       description: 'Estimate body fat with body measurements and learn about body-composition formulas.',
-      canonical: `${SITE_BASE}/`,
     },
     {
       route: '/ideal-weight',
       title: 'Ideal Weight Calculator | Health Fingerprint',
       description: 'Compare ideal-weight formulas and a healthy BMI-based weight range.',
-      canonical: `${SITE_BASE}/`,
     },
     {
       route: '/meal-plan',
@@ -811,7 +847,7 @@ const buildPrerenderedPages = async () => {
       route,
       title,
       description,
-      canonical: canonical ?? `${SITE_BASE}${route}`,
+      canonical: canonical ?? canonicalUrl(route),
       type: 'website',
       jsonLd,
     },

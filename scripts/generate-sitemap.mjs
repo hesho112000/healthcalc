@@ -1,16 +1,10 @@
 import { writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { config } from 'dotenv';
 import { createClient } from '@supabase/supabase-js';
 import { loadContentData } from './content-data.mjs';
+import { LOCALIZED_LANGUAGES, canonicalUrl, hasTranslation } from './seo-config.mjs';
 
-const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
-const PROJECT_ROOT = path.resolve(SCRIPT_DIR, '..');
-config({ path: path.join(PROJECT_ROOT, '.env'), override: false });
-config({ path: path.join(PROJECT_ROOT, '.env.local'), override: false });
-
-const SITE_BASE = (process.env.VITE_SITE_URL || 'https://healthfingerprint.com').replace(/\/+$/, '');
 const OUTPUT_PATH = fileURLToPath(new URL('../public/sitemap.xml', import.meta.url));
 const DISH_DATA_PATH = fileURLToPath(new URL('../.dish-seo-data.json', import.meta.url));
 // Read-only pagination. This script never inserts, updates, or deletes rows.
@@ -73,13 +67,8 @@ async function fetchAllDishes() {
   return dishes;
 }
 
-// Languages translated in this batch. A localized URL is only advertised when
-// both the title and the Markdown body exist, so the sitemap never points
-// crawlers at a thin English fallback.
-const LOCALIZED_LANGUAGES = ['fr', 'es', 'hi'];
-
-const hasTranslation = (text, lang) =>
-  typeof text?.[lang] === 'string' && text[lang].trim().length > 0;
+// A localized URL is only advertised when both the title and the Markdown body
+// exist, so the sitemap never points crawlers at a thin English fallback.
 
 const urlEntry = (loc, changefreq, priority, alternates = []) => {
   const alternateLinks = alternates.map(
@@ -106,23 +95,23 @@ const buildSitemap = async () => {
   // alternates on each locale so search engines can cluster the versions.
   const articleEntries = articles.flatMap((article) => {
     const articlePath = `/resources/article/${article.slug}`;
-    const canonicalUrl = `${SITE_BASE}${articlePath}`;
+    const baseArticleUrl = canonicalUrl(articlePath);
     const translatedLanguages = LOCALIZED_LANGUAGES.filter(
       (lang) => hasTranslation(article.title, lang) && hasTranslation(article.content, lang),
     );
     const alternates = [
-      { hreflang: 'en', href: canonicalUrl },
+      { hreflang: 'en', href: baseArticleUrl },
       ...translatedLanguages.map((lang) => ({
         hreflang: lang,
-        href: `${SITE_BASE}/${lang}${articlePath}`,
+        href: canonicalUrl(`/${lang}${articlePath}`),
       })),
-      { hreflang: 'x-default', href: canonicalUrl },
+      { hreflang: 'x-default', href: baseArticleUrl },
     ];
 
     return [
-      urlEntry(canonicalUrl, 'weekly', 1.0, alternates),
+      urlEntry(baseArticleUrl, 'weekly', 1.0, alternates),
       ...translatedLanguages.map((lang) =>
-        urlEntry(`${SITE_BASE}/${lang}${articlePath}`, 'weekly', 1.0, alternates),
+        urlEntry(canonicalUrl(`/${lang}${articlePath}`), 'weekly', 1.0, alternates),
       ),
     ];
   });
@@ -130,10 +119,10 @@ const buildSitemap = async () => {
   // Resource pages are the primary editorial content for AdSense review.
   // Keep them at the very top of the sitemap with the highest priority.
   const resourceEntries = [
-    urlEntry(`${SITE_BASE}/resources`, 'weekly', 1.0),
+    urlEntry(canonicalUrl('/resources'), 'weekly', 1.0),
     ...articleEntries,
-    ...recipes.map((recipe) => urlEntry(`${SITE_BASE}/resources/recipe/${recipe.slug}`, 'weekly', 1.0)),
-    ...exerciseGuides.map((guide) => urlEntry(`${SITE_BASE}/resources/exercise/${guide.slug}`, 'weekly', 1.0)),
+    ...recipes.map((recipe) => urlEntry(canonicalUrl(`/resources/recipe/${recipe.slug}`), 'weekly', 1.0)),
+    ...exerciseGuides.map((guide) => urlEntry(canonicalUrl(`/resources/exercise/${guide.slug}`), 'weekly', 1.0)),
   ].join('\n');
 
   const staticRouteDetails = [
@@ -154,13 +143,13 @@ const buildSitemap = async () => {
     ['/disclaimer', 'yearly', 0.3],
   ];
   const staticEntries = staticRouteDetails
-    .map(([route, changefreq, priority]) => urlEntry(`${SITE_BASE}${route}`, changefreq, priority))
+    .map(([route, changefreq, priority]) => urlEntry(canonicalUrl(route), changefreq, priority))
     .join('\n');
 
   // Dish pages are intentionally de-prioritized so crawlers do not sample the
   // long-tail food database as the site's primary content.
   const dishEntries = ids
-    .map((id) => urlEntry(`${SITE_BASE}/food-library/${id}`, 'monthly', 0.3))
+    .map((id) => urlEntry(canonicalUrl(`/food-library/${id}`), 'monthly', 0.3))
     .join('\n');
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${resourceEntries}\n${staticEntries}\n${dishEntries}\n</urlset>\n`;
